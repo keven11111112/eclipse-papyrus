@@ -14,7 +14,6 @@ import org.eclipse.papyrus.uml.alf.TemplateBinding;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Template Binding</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -22,7 +21,6 @@ public abstract class TemplateBindingImpl extends SyntaxElementImpl implements T
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TemplateBindingImpl() {
@@ -32,7 +30,6 @@ public abstract class TemplateBindingImpl extends SyntaxElementImpl implements T
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -43,7 +40,6 @@ public abstract class TemplateBindingImpl extends SyntaxElementImpl implements T
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String toString() {
@@ -55,7 +51,6 @@ public abstract class TemplateBindingImpl extends SyntaxElementImpl implements T
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean matches(ElementReference template) {
@@ -67,7 +62,6 @@ public abstract class TemplateBindingImpl extends SyntaxElementImpl implements T
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TemplateBinding copy() {
@@ -79,7 +73,6 @@ public abstract class TemplateBindingImpl extends SyntaxElementImpl implements T
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ElementReference> bindTo(ElementReference template) {
@@ -91,20 +84,19 @@ public abstract class TemplateBindingImpl extends SyntaxElementImpl implements T
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.TEMPLATE_BINDING___TO_STRING:
-			return toString();
-		case AlfPackage.TEMPLATE_BINDING___MATCHES__ELEMENTREFERENCE:
-			return matches((ElementReference) arguments.get(0));
-		case AlfPackage.TEMPLATE_BINDING___COPY:
-			return copy();
-		case AlfPackage.TEMPLATE_BINDING___BIND_TO__ELEMENTREFERENCE:
-			return bindTo((ElementReference) arguments.get(0));
+			case AlfPackage.TEMPLATE_BINDING___TO_STRING:
+				return toString();
+			case AlfPackage.TEMPLATE_BINDING___MATCHES__ELEMENTREFERENCE:
+				return matches((ElementReference)arguments.get(0));
+			case AlfPackage.TEMPLATE_BINDING___COPY:
+				return copy();
+			case AlfPackage.TEMPLATE_BINDING___BIND_TO__ELEMENTREFERENCE:
+				return bindTo((ElementReference)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

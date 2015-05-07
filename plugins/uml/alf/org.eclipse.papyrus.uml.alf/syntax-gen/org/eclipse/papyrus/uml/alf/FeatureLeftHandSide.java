@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getFeatureLeftHandSide()
@@ -37,7 +37,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * 
 	 * The actual expression parsed for this feature left-hand side.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression</em>' containment reference.
 	 * @see #setExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getFeatureLeftHandSide_Expression()
@@ -50,9 +49,7 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#getExpression <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression</em>' containment reference.
+	 * @param value the new value of the '<em>Expression</em>' containment reference.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -61,7 +58,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referents = self.feature().referent->select(isProperty()) in\n          if referents->size() <> 1 then null\n          else referents->any(true)\n          endif'"
 	 * @generated
 	 */
@@ -70,9 +66,7 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression.oclIsKindOf(PropertyAccessExpression) then\n          self.expression.oclAsType(PropertyAccessExpression).featureReference\n        else if self.expression.oclIsKindOf(SequenceAccessExpression) then\n          let primary = self.expression.oclAsType(SequenceAccessExpression).primary in\n            if primary.oclIsKindOf(PropertyAccessExpression) then\n              primary.oclAsType(PropertyAccessExpression).featureReference\n            else\n              null\n            endif\n        else\n          null\n        endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression.oclIsKindOf(PropertyAccessExpression) then\n          self.expression.oclAsType(PropertyAccessExpression).featureReference\n        else if self.expression.oclIsKindOf(SequenceAccessExpression) then\n          let primary = self.expression.oclAsType(SequenceAccessExpression).primary in\n            if primary.oclIsKindOf(PropertyAccessExpression) then\n              primary.oclAsType(PropertyAccessExpression).featureReference\n            else\n              null\n            endif\n        else\n          null\n        endif endif'"
 	 * @generated
 	 */
 	FeatureReference feature();
@@ -80,7 +74,14 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression'"
+	 * @generated
+	 */
+	Expression expression();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.expression.oclIsKindOf(SequenceAccessExpression) then null\n        else self.expression.oclAsType(SequenceAccessExpression).index\n        endif'"
 	 * @generated
 	 */
@@ -89,7 +90,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -105,7 +105,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * (And the assignments before an index are those after the feature reference.)
 	 * (See the LeftHandSide::assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -120,7 +119,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * after the index expression.
 	 * (See the LeftHandSide::assignmentsAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -133,9 +131,7 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * The expression of the feature reference of a feature left-hand side must
 	 * have a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.feature().expression in\n        let type = expression.type in\n          expression.upper = 1 and\n          -- Note: The following condition ensures that a data value update will\n          -- be to an existing assigned name.\n          (type <> null and type.isDataType()) implies self.isDataValueUpdate()'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.feature().expression in\n        let type = expression.type in\n          expression.upper = 1 and\n          -- Note: The following condition ensures that a data value update will\n          -- be to an existing assigned name.\n          (type <> null and type.isDataType()) implies self.isDataValueUpdate()'"
 	 * @generated
 	 */
 	boolean featureLeftHandSideFeatureExpression(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -149,7 +145,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * reference.
 	 * (See the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -163,7 +158,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * which the feature reference of the left-hand side resolves.
 	 * (See the referent() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -176,7 +170,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * The type of a feature left-hand side is the type of its referent.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -190,7 +183,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * Otherwise, its lower bound is that of its referent.
 	 * (see the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -204,7 +196,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * Otherwise, its upper bound is that of its referent.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -217,7 +208,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * The feature of a feature-left hand side must have a single referent that
 	 * is a structural feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent <> null'"
 	 * @generated
 	 */
@@ -230,7 +220,6 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	 * If a feature left-hand side has an index, then the referent of the
 	 * feature must be ordered and non-unique.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.index() <> null implies\n          let referent = self.referent in\n            referent <> null and referent.isOrdered() and referent.isNonunique()'"
 	 * @generated
 	 */

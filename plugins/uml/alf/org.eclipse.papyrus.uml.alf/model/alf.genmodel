@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.uml.alf/syntax-gen" modelPluginID="org.eclipse.papyrus.uml.alf"
-    modelName="Alf" reflectiveDelegation="true" featureDelegation="Reflective" complianceLevel="8.0"
-    copyrightFields="false" operationReflection="true" importOrganizing="true">
+    modelName="Alf" reflectiveDelegation="true" importerID="org.eclipse.emf.importer.ecore"
+    featureDelegation="Reflective" complianceLevel="8.0" copyrightFields="false" operationReflection="true"
+    importOrganizing="true">
   <foreignModel>alf.ecore</foreignModel>
   <genPackages prefix="Alf" basePackage="org.eclipse.papyrus.uml" resource="XML" disposableProviderFactory="true"
       loadInitialization="true" literalsInterface="false" ecorePackage="alf.ecore#/">
@@ -717,6 +718,7 @@
     <genClasses image="false" ecoreClass="alf.ecore#//Expression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference alf.ecore#//Expression/assignmentBefore"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference alf.ecore#//Expression/assignmentAfter"/>
+      <genOperations ecoreOperation="alf.ecore#//Expression/reference"/>
       <genOperations ecoreOperation="alf.ecore#//Expression/newAssignments"/>
       <genOperations ecoreOperation="alf.ecore#//Expression/updateAssignments"/>
       <genOperations ecoreOperation="alf.ecore#//Expression/Expression_updateAssignments"/>
@@ -735,6 +737,17 @@
         <genParameters ecoreParameter="alf.ecore#//Expression/expressionUniqueAssignments/diagnostics"/>
         <genParameters ecoreParameter="alf.ecore#//Expression/expressionUniqueAssignments/context"/>
       </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="alf.ecore#//ExpressionReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference alf.ecore#//ExpressionReference/expression"/>
+      <genOperations ecoreOperation="alf.ecore#//ExpressionReference/type"/>
+      <genOperations ecoreOperation="alf.ecore#//ExpressionReference/lower"/>
+      <genOperations ecoreOperation="alf.ecore#//ExpressionReference/upper"/>
+      <genOperations ecoreOperation="alf.ecore#//ExpressionReference/isAddTarget">
+        <genParameters ecoreParameter="alf.ecore#//ExpressionReference/isAddTarget/targetExpression"/>
+      </genOperations>
+      <genOperations ecoreOperation="alf.ecore#//ExpressionReference/assignmentsBefore"/>
+      <genOperations ecoreOperation="alf.ecore#//ExpressionReference/updateAssignments"/>
     </genClasses>
     <genClasses ecoreClass="alf.ecore#//ExtentOrExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference alf.ecore#//ExtentOrExpression/name"/>
@@ -1035,6 +1048,9 @@
       <genOperations ecoreOperation="alf.ecore#//PositionalTuple/outputFor">
         <genParameters ecoreParameter="alf.ecore#//PositionalTuple/outputFor/parameters"/>
       </genOperations>
+      <genOperations ecoreOperation="alf.ecore#//PositionalTuple/outputForExpression">
+        <genParameters ecoreParameter="alf.ecore#//PositionalTuple/outputForExpression/expression"/>
+      </genOperations>
       <genOperations ecoreOperation="alf.ecore#//PositionalTuple/positionalTupleArguments">
         <genParameters ecoreParameter="alf.ecore#//PositionalTuple/positionalTupleArguments/diagnostics"/>
         <genParameters ecoreParameter="alf.ecore#//PositionalTuple/positionalTupleArguments/context"/>
@@ -1054,6 +1070,9 @@
       <genOperations ecoreOperation="alf.ecore#//Tuple/output"/>
       <genOperations ecoreOperation="alf.ecore#//Tuple/outputFor">
         <genParameters ecoreParameter="alf.ecore#//Tuple/outputFor/parameters"/>
+      </genOperations>
+      <genOperations ecoreOperation="alf.ecore#//Tuple/outputForExpression">
+        <genParameters ecoreParameter="alf.ecore#//Tuple/outputForExpression/expression"/>
       </genOperations>
       <genOperations ecoreOperation="alf.ecore#//Tuple/assignmentsBefore">
         <genParameters ecoreParameter="alf.ecore#//Tuple/assignmentsBefore/element"/>
@@ -1315,6 +1334,7 @@
         <genParameters ecoreParameter="alf.ecore#//SequenceOperationExpression/isAddTarget/targetExpression"/>
       </genOperations>
       <genOperations ecoreOperation="alf.ecore#//SequenceOperationExpression/firstParameter"/>
+      <genOperations ecoreOperation="alf.ecore#//SequenceOperationExpression/firstArgument"/>
       <genOperations ecoreOperation="alf.ecore#//SequenceOperationExpression/sequenceOperationExpressionReferentDerivation">
         <genParameters ecoreParameter="alf.ecore#//SequenceOperationExpression/sequenceOperationExpressionReferentDerivation/diagnostics"/>
         <genParameters ecoreParameter="alf.ecore#//SequenceOperationExpression/sequenceOperationExpressionReferentDerivation/context"/>
@@ -1742,9 +1762,10 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="alf.ecore#//FeatureLeftHandSide">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference alf.ecore#//FeatureLeftHandSide/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference alf.ecore#//FeatureLeftHandSide/expression.1"/>
       <genOperations ecoreOperation="alf.ecore#//FeatureLeftHandSide/referent"/>
       <genOperations ecoreOperation="alf.ecore#//FeatureLeftHandSide/feature"/>
+      <genOperations ecoreOperation="alf.ecore#//FeatureLeftHandSide/expression"/>
       <genOperations ecoreOperation="alf.ecore#//FeatureLeftHandSide/index"/>
       <genOperations ecoreOperation="alf.ecore#//FeatureLeftHandSide/localName"/>
       <genOperations ecoreOperation="alf.ecore#//FeatureLeftHandSide/featureLeftHandSideAssignmentBeforeDerivation">
@@ -1914,7 +1935,7 @@
       <genOperations ecoreOperation="alf.ecore#//NameExpression/assignmentFor_">
         <genParameters ecoreParameter="alf.ecore#//NameExpression/assignmentFor_/localName"/>
       </genOperations>
-      <genOperations ecoreOperation="alf.ecore#//NameExpression/isAddTarget"/>
+      <genOperations ecoreOperation="alf.ecore#//NameExpression/isAddTargetName"/>
       <genOperations ecoreOperation="alf.ecore#//NameExpression/nameExpressionAssignmentDerivation">
         <genParameters ecoreParameter="alf.ecore#//NameExpression/nameExpressionAssignmentDerivation/diagnostics"/>
         <genParameters ecoreParameter="alf.ecore#//NameExpression/nameExpressionAssignmentDerivation/context"/>
@@ -2223,6 +2244,9 @@
       <genOperations ecoreOperation="alf.ecore#//NamedTuple/outputFor">
         <genParameters ecoreParameter="alf.ecore#//NamedTuple/outputFor/parameters"/>
       </genOperations>
+      <genOperations ecoreOperation="alf.ecore#//NamedTuple/outputForExpression">
+        <genParameters ecoreParameter="alf.ecore#//NamedTuple/outputForExpression/expression"/>
+      </genOperations>
       <genOperations ecoreOperation="alf.ecore#//NamedTuple/namedTupleArgumentNames">
         <genParameters ecoreParameter="alf.ecore#//NamedTuple/namedTupleArgumentNames/diagnostics"/>
         <genParameters ecoreParameter="alf.ecore#//NamedTuple/namedTupleArgumentNames/context"/>
@@ -2274,6 +2298,8 @@
       <genOperations ecoreOperation="alf.ecore#//NameLeftHandSide/lower"/>
       <genOperations ecoreOperation="alf.ecore#//NameLeftHandSide/oldAssignment"/>
       <genOperations ecoreOperation="alf.ecore#//NameLeftHandSide/feature"/>
+      <genOperations ecoreOperation="alf.ecore#//NameLeftHandSide/expression"/>
+      <genOperations ecoreOperation="alf.ecore#//NameLeftHandSide/primary"/>
       <genOperations ecoreOperation="alf.ecore#//NameLeftHandSide/localName"/>
       <genOperations ecoreOperation="alf.ecore#//NameLeftHandSide/nameLeftHandSideAssignmentAfterDerivation">
         <genParameters ecoreParameter="alf.ecore#//NameLeftHandSide/nameLeftHandSideAssignmentAfterDerivation/diagnostics"/>
@@ -2317,11 +2343,12 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="alf.ecore#//EffectiveLeftHandSide">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference alf.ecore#//EffectiveLeftHandSide/expression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference alf.ecore#//EffectiveLeftHandSide/expression.1"/>
       <genOperations ecoreOperation="alf.ecore#//EffectiveLeftHandSide/target"/>
       <genOperations ecoreOperation="alf.ecore#//EffectiveLeftHandSide/index"/>
       <genOperations ecoreOperation="alf.ecore#//EffectiveLeftHandSide/feature"/>
       <genOperations ecoreOperation="alf.ecore#//EffectiveLeftHandSide/primary"/>
+      <genOperations ecoreOperation="alf.ecore#//EffectiveLeftHandSide/expression"/>
     </genClasses>
     <genClasses ecoreClass="alf.ecore#//SequenceReductionExpression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference alf.ecore#//SequenceReductionExpression/referent"/>

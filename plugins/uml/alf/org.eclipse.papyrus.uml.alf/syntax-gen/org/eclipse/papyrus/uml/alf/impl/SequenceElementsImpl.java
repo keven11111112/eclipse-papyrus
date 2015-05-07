@@ -17,12 +17,11 @@ import org.eclipse.papyrus.uml.alf.SequenceElements;
  * An implementation of the model object '<em><b>Sequence Elements</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.SequenceElementsImpl#getUpper <em>Upper</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.SequenceElementsImpl#getLower <em>Lower</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.SequenceElementsImpl#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.SequenceElementsImpl#getLower <em>Lower</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,7 +30,6 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SequenceElementsImpl() {
@@ -41,7 +39,6 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,17 +49,15 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger getUpper() {
-		return (BigInteger) eGet(AlfPackage.eINSTANCE.getSequenceElements_Upper(), true);
+		return (BigInteger)eGet(AlfPackage.eINSTANCE.getSequenceElements_Upper(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUpper(BigInteger newUpper) {
@@ -72,17 +67,15 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger getLower() {
-		return (BigInteger) eGet(AlfPackage.eINSTANCE.getSequenceElements_Lower(), true);
+		return (BigInteger)eGet(AlfPackage.eINSTANCE.getSequenceElements_Lower(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLower(BigInteger newLower) {
@@ -92,7 +85,6 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean conformsTo(ElementReference type) {
@@ -104,7 +96,6 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AssignedSource> assignmentsAfter() {
@@ -116,7 +107,6 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger upper() {
@@ -128,7 +118,6 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger lower() {
@@ -140,20 +129,19 @@ public abstract class SequenceElementsImpl extends SyntaxElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.SEQUENCE_ELEMENTS___CONFORMS_TO__ELEMENTREFERENCE:
-			return conformsTo((ElementReference) arguments.get(0));
-		case AlfPackage.SEQUENCE_ELEMENTS___ASSIGNMENTS_AFTER:
-			return assignmentsAfter();
-		case AlfPackage.SEQUENCE_ELEMENTS___UPPER:
-			return upper();
-		case AlfPackage.SEQUENCE_ELEMENTS___LOWER:
-			return lower();
+			case AlfPackage.SEQUENCE_ELEMENTS___CONFORMS_TO__ELEMENTREFERENCE:
+				return conformsTo((ElementReference)arguments.get(0));
+			case AlfPackage.SEQUENCE_ELEMENTS___ASSIGNMENTS_AFTER:
+				return assignmentsAfter();
+			case AlfPackage.SEQUENCE_ELEMENTS___UPPER:
+				return upper();
+			case AlfPackage.SEQUENCE_ELEMENTS___LOWER:
+				return lower();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

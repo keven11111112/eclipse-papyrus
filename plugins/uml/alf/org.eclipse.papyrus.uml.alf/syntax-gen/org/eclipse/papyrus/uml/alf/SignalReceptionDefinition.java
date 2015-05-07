@@ -24,7 +24,6 @@ public interface SignalReceptionDefinition extends SignalDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
@@ -37,7 +36,6 @@ public interface SignalReceptionDefinition extends SignalDefinition {
 	 * <!-- begin-model-doc -->
 	 * A signal reception definition is a feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

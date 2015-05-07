@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.InternalElementReference#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.InternalElementReference#getElement <em>Element</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getInternalElementReference()
@@ -33,7 +33,6 @@ public interface InternalElementReference extends ElementReference {
 	 * <!-- begin-model-doc -->
 	 * The Alf syntax element that represents the referenced model element.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(SyntaxElement)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getInternalElementReference_Element()
@@ -46,9 +45,7 @@ public interface InternalElementReference extends ElementReference {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.InternalElementReference#getElement <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Element</em>' reference.
+	 * @param value the new value of the '<em>Element</em>' reference.
 	 * @see #getElement()
 	 * @generated
 	 */
@@ -57,7 +54,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
@@ -67,7 +63,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element'"
 	 * @generated
 	 */
@@ -76,9 +71,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.element.oclIsKindOf(Member) then self.element.oclAsType(Member)\n        else if self.element.oclIsKindOf(MemberDefinition) then\n          let container = self.element.oclContainer() in\n            if container.oclIsKindOf(Member) then container.oclAsType(Member)\n            else null\n            endif\n        else null\n        endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.element.oclIsKindOf(Member) then self.element.oclAsType(Member)\n        else if self.element.oclIsKindOf(MemberDefinition) then\n          let container = self.element.oclContainer() in\n            if container.oclIsKindOf(Member) then container.oclAsType(Member)\n            else null\n            endif\n        else null\n        endif endif'"
 	 * @generated
 	 */
 	Member asMember();
@@ -86,7 +79,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" memberRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element.oclIsKindOf(MemberDefinition) and\n        self.element.oclAsType(MemberDefinition).isSameKindAs(member)'"
 	 * @generated
@@ -96,7 +88,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(MemberDefinition)'"
 	 * @generated
@@ -106,7 +97,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(NamespaceDefinition)'"
 	 * @generated
@@ -116,7 +106,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" unitRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.isNamespace() and self.stubFor(unit) <> null'"
 	 * @generated
@@ -126,7 +115,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(ModelNamespace)'"
 	 * @generated
@@ -136,7 +124,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(PackageDefinition)'"
 	 * @generated
@@ -146,7 +133,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -156,10 +142,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element.oclIsKindOf(Member) and\n        not self.element.oclIsKindOf(FormalParameter) and\n        not self.element.oclIsKindOf(ClassifierTemplateParameter) and\n        not self.isFeature()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element.oclIsKindOf(Member) and\n        not self.element.oclIsKindOf(FormalParameter) and\n        not self.element.oclIsKindOf(ClassifierTemplateParameter) and\n        not self.isFeature()'"
 	 * @generated
 	 */
 	boolean isPackageableElement();
@@ -167,7 +151,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(ClassifierDefinition)'"
 	 * @generated
@@ -177,10 +160,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isAbstractClassifier()\n          else\n            self.isClassifier() and \n            self.element.oclAsType(ClassifierDefinition).isAbstract\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isAbstractClassifier()\n          else\n            self.isClassifier() and \n            self.element.oclAsType(ClassifierDefinition).isAbstract\n          endif'"
 	 * @generated
 	 */
 	boolean isAbstractClassifier();
@@ -188,10 +169,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isAssociation()\n          else\n            self.element.oclIsKindOf(AssociationDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isAssociation()\n          else\n            self.element.oclIsKindOf(AssociationDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isAssociation();
@@ -199,10 +178,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isDataType()\n          else\n            self.element.oclIsKindOf(DataTypeDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isDataType()\n          else\n            self.element.oclIsKindOf(DataTypeDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isDataType();
@@ -210,10 +187,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isClass()\n          else\n            self.element.oclIsKindOf(ClassDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isClass()\n          else\n            self.element.oclIsKindOf(ClassDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isClass();
@@ -221,10 +196,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isActiveClass()\n          else\n            self.element.oclIsKindOf(ActiveClassDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isActiveClass()\n          else\n            self.element.oclIsKindOf(ActiveClassDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isActiveClass();
@@ -232,10 +205,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isSignal()\n          else\n            self.element.oclIsKindOf(SignalDefinition) or\n            self.element.oclIsKindOf(SignalReceptionDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isSignal()\n          else\n            self.element.oclIsKindOf(SignalDefinition) or\n            self.element.oclIsKindOf(SignalReceptionDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isSignal();
@@ -243,10 +214,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isEnumeration()\n          else\n            self.element.oclIsKindOf(EnumerationDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isEnumeration()\n          else\n            self.element.oclIsKindOf(EnumerationDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isEnumeration();
@@ -254,10 +223,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isBehavior()\n          else\n            self.element.oclIsKindOf(ActivityDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isBehavior()\n          else\n            self.element.oclIsKindOf(ActivityDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isBehavior();
@@ -265,10 +232,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isActivity()\n          else\n            self.element.oclIsKindOf(ActivityDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isActivity()\n          else\n            self.element.oclIsKindOf(ActivityDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isActivity();
@@ -276,10 +241,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isActivity() and \n          let stub = self.stub() in\n            -- The case of the stub being a property covers the case of an\n            -- activity used in the default value of an external property.\n            stub <> null and (stub.isOperation() or stub.isProperty())'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isActivity() and \n          let stub = self.stub() in\n            -- The case of the stub being a property covers the case of an\n            -- activity used in the default value of an external property.\n            stub <> null and (stub.isOperation() or stub.isProperty())'"
 	 * @generated
 	 */
 	boolean isMethod();
@@ -287,10 +250,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isReception()\n          else\n            self.element.oclIsKindOf(ReceptionDefinition) or\n            self.element.oclIsKindOf(SignalReceptionDefinition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.isReception()\n          else\n            self.element.oclIsKindOf(ReceptionDefinition) or\n            self.element.oclIsKindOf(SignalReceptionDefinition)\n          endif'"
 	 * @generated
 	 */
 	boolean isReception();
@@ -298,7 +259,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -308,7 +268,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(OperationDefinition)'"
 	 * @generated
@@ -318,7 +277,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isOperation() and\n        self.element.oclAsType(OperationDefinition).isConstructor'"
 	 * @generated
@@ -328,7 +286,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isOperation() and\n        self.element.oclAsType(OperationDefinition).isDestructor'"
 	 * @generated
@@ -338,7 +295,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element.oclIsKindOf(MemberDefinition) and \n        self.element.oclAsType(MemberDefinition).isFeature'"
 	 * @generated
@@ -348,7 +304,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element.oclIsKindOf(PropertyDefinition)'"
 	 * @generated
@@ -358,7 +313,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isProperty() and\n        self.asMember().namespace.oclIsKindOf(AssociationDefinition)'"
 	 * @generated
@@ -368,7 +322,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element.oclIsKindOf(FormalParameter)'"
 	 * @generated
@@ -378,7 +331,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element.oclIsKindOf(MemberDefinition) and\n        self.element.oclAsType(MemberDefinition).isTemplate()'"
 	 * @generated
@@ -388,7 +340,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(ClassifierTemplateParameter)'"
 	 * @generated
@@ -398,7 +349,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(ClassifierTemplateParameter)'"
 	 * @generated
@@ -408,7 +358,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(ClassifierTemplateParameter)'"
 	 * @generated
@@ -418,7 +367,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(BoundClassifier)'"
 	 * @generated
@@ -428,7 +376,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(EnumerationLiteralName)'"
 	 * @generated
@@ -438,7 +385,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(LoopVariableDefinition)'"
 	 * @generated
@@ -448,7 +394,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(Annotation)'"
 	 * @generated
@@ -458,7 +403,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(SequenceExpansionExpression)'"
 	 * @generated
@@ -468,7 +412,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.oclIsKindOf(AnyType)'"
 	 * @generated
@@ -478,7 +421,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -488,7 +430,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamedElement() then null\n        else self.element.oclAsType(MemberDefinition).actualName()\n        endif'"
 	 * @generated
 	 */
@@ -497,7 +438,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let member = self.asMember() in\n          if member = null then null\n          else member.visibility()\n          endif'"
 	 * @generated
 	 */
@@ -506,9 +446,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isNamespace() then \n          self.element.oclAsType(NamespaceDefinition).ownedMember.toReference()->\n            asOrderedSet()\n        else\n          OrderedSet(ElementReference){}\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isNamespace() then \n          self.element.oclAsType(NamespaceDefinition).ownedMember.toReference()->\n            asOrderedSet()\n        else\n          OrderedSet(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> ownedMembers();
@@ -516,9 +454,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isNamespace() then \n          self.element.oclAsType(NamespaceDefinition).member.toReference()->\n            asOrderedSet()\n        else \n          OrderedSet(ElementReference){}\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isNamespace() then \n          self.element.oclAsType(NamespaceDefinition).member.toReference()->\n            asOrderedSet()\n        else \n          OrderedSet(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> members();
@@ -526,9 +462,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isProperty() then null\n        else\n          let member = self.asMember() in\n            if member = null then null\n            else\n              let owner = member.owner() in\n                if not owner.oclIsKindOf(AssociationDefinition) then null\n                else\n                  let ends = owner.oclAsType(AssociationDefinition).ownedMember in\n                    if ends->size() <> 2 then null\n                    else ends->any(e | e <> member).oclAsType(Member).toReference()\n                    endif\n                endif\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isProperty() then null\n        else\n          let member = self.asMember() in\n            if member = null then null\n            else\n              let owner = member.owner() in\n                if not owner.oclIsKindOf(AssociationDefinition) then null\n                else\n                  let ends = owner.oclAsType(AssociationDefinition).ownedMember in\n                    if ends->size() <> 2 then null\n                    else ends->any(e | e <> member).oclAsType(Member).toReference()\n                    endif\n                endif\n            endif\n        endif'"
 	 * @generated
 	 */
 	ElementReference opposite();
@@ -536,9 +470,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let element = self.element in\n          if element.oclIsKindOf(ReceptionDefinition) then\n            element.oclAsType(ReceptionDefinition).signal\n          else if element.oclIsKindOf(SignalReceptionDefinition) then\n            element.oclAsType(SignalReceptionDefinition).toReference()\n          else\n            null\n          endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let element = self.element in\n          if element.oclIsKindOf(ReceptionDefinition) then\n            element.oclAsType(ReceptionDefinition).signal\n          else if element.oclIsKindOf(SignalReceptionDefinition) then\n            element.oclAsType(SignalReceptionDefinition).toReference()\n          else\n            null\n          endif endif'"
 	 * @generated
 	 */
 	ElementReference signal();
@@ -546,9 +478,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.parameters()\n          else if self.isBehavior() or self.isOperation() then\n            self.element.oclAsType(NamespaceDefinition).parameters().toReference()->asOrderedSet()\n          else\n            OrderedSet(ElementReference){}\n          endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.parameters()\n          else if self.isBehavior() or self.isOperation() then\n            self.element.oclAsType(NamespaceDefinition).parameters().toReference()->asOrderedSet()\n          else\n            OrderedSet(ElementReference){}\n          endif endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parameters();
@@ -556,9 +486,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.returnParameter()\n          else if self.isBehavior() or self.isOperation() then\n            let returnParameter = self.element.oclAsType(NamespaceDefinition).returnParameter() in\n              if returnParameter = null then\n                null\n              else\n                returnParameter.toReference()\n              endif\n          else\n            null\n          endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.returnParameter()\n          else if self.isBehavior() or self.isOperation() then\n            let returnParameter = self.element.oclAsType(NamespaceDefinition).returnParameter() in\n              if returnParameter = null then\n                null\n              else\n                returnParameter.toReference()\n              endif\n          else\n            null\n          endif endif'"
 	 * @generated
 	 */
 	ElementReference returnParameter();
@@ -566,9 +494,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isOperation() then \n          self\n        else if self.isBehavior() then\n          self.element.oclAsType(NamespaceDefinition).stub()\n        else \n          null\n        endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isOperation() then \n          self\n        else if self.isBehavior() then\n          self.element.oclAsType(NamespaceDefinition).stub()\n        else \n          null\n        endif endif'"
 	 * @generated
 	 */
 	ElementReference specification();
@@ -576,7 +502,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isOperation() then Set(ElementReference){}\n        else self.oclAsType(OperationDefinition).redefinedOperation\n        endif'"
 	 * @generated
@@ -586,7 +511,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.element.oclIsKindOf(MemberDefinition) then\n          self.element.oclAsType(MemberDefinition).outerScope()\n        else\n          null\n        endif'"
 	 * @generated
 	 */
@@ -595,7 +519,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplateBinding() then\n          self.element.oclAsType(BoundClassifier).template\n        else\n          null\n        endif'"
 	 * @generated
 	 */
@@ -604,9 +527,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplate() then\n          self.element.oclAsType(ClassifierDefinition).templateParameters().toReference()\n        else\n          OrderedSet(ElementReference){}\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplate() then\n          self.element.oclAsType(ClassifierDefinition).templateParameters().toReference()\n        else\n          OrderedSet(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> templateParameters();
@@ -614,7 +535,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.templateParameters()'"
 	 * @generated
 	 */
@@ -623,9 +543,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplateBinding() then\n          self.element.oclAsType(BoundClassifier).actual->collect (actual |\n            if actual.isAnyType() then null else actual endif\n          )->asOrderedSet()\n        else\n          OrderedSet(ElementReference){}\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplateBinding() then\n          self.element.oclAsType(BoundClassifier).actual->collect (actual |\n            if actual.isAnyType() then null else actual endif\n          )->asOrderedSet()\n        else\n          OrderedSet(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> templateActuals();
@@ -633,7 +551,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isParameter() then\n          self.element.oclAsType(FormalParameter).direction\n        else\n          null\n        endif'"
 	 * @generated
 	 */
@@ -642,7 +559,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isAssociationEnd() then null\n        else self.namespace()\n        endif'"
 	 * @generated
 	 */
@@ -651,9 +567,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.type\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.type\n        else if self.isBehavior() or self.isOperation() then\n          let returnParameter = self.returnParameter() in\n            if returnParameter = null then null\n            else returnParameter.type()\n            endif\n        else if self.isEnumerationLiteral() then\n          self.namespace()\n        else\n          null\n        endif endif endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.type\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.type\n        else if self.isBehavior() or self.isOperation() then\n          let returnParameter = self.returnParameter() in\n            if returnParameter = null then null\n            else returnParameter.type()\n            endif\n        else if self.isEnumerationLiteral() then\n          self.namespace()\n        else\n          null\n        endif endif endif endif'"
 	 * @generated
 	 */
 	ElementReference type();
@@ -661,10 +575,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.lower\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.lower\n        else\n          1\n        endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.lower\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.lower\n        else\n          1\n        endif endif'"
 	 * @generated
 	 */
 	BigInteger lower();
@@ -672,10 +584,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.upper\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.upper\n        else\n          1\n        endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.upper\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.upper\n        else\n          1\n        endif endif'"
 	 * @generated
 	 */
 	BigInteger upper();
@@ -683,10 +593,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.isOrdered()\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.isOrdered()\n        else\n          false\n        endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.isOrdered()\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.isOrdered()\n        else\n          false\n        endif endif'"
 	 * @generated
 	 */
 	boolean isOrdered();
@@ -694,10 +602,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.isNonunique()\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.isNonunique()\n        else\n          false\n        endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProperty() then\n          self.element.oclAsType(PropertyDefinition).typePart.isNonunique()\n        else if self.isParameter() then\n          self.element.oclAsType(FormalParameter).typePart.isNonunique()\n        else\n          false\n        endif endif'"
 	 * @generated
 	 */
 	boolean isNonunique();
@@ -705,10 +611,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isClassifier() then\n          self.element.oclAsType(ClassifierDefinition).specializationReferent\n        else\n          Set(ElementReference){}\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isClassifier() then\n          self.element.oclAsType(ClassifierDefinition).specializationReferent\n        else\n          Set(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parents();
@@ -716,10 +620,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isClassifier() then\n          self.element.removeDuplicateElements(\n            self->closure(parents())->excluding(self)->asBag()\n          )->asSet()\n        else\n          Set(ElementReference){}\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isClassifier() then\n          self.element.removeDuplicateElements(\n            self->closure(parents())->excluding(self)->asBag()\n          )->asSet()\n        else\n          Set(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> allParents();
@@ -727,9 +629,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isActiveClass() then null\n        else\n          let classifierBehavior = \n            self.element.oclAsType(ActiveClassDefinition).classifierBehavior in\n            if classifierBehavior = null then null\n            else classifierBehavior.toReference()\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isActiveClass() then null\n        else\n          let classifierBehavior = \n            self.element.oclAsType(ActiveClassDefinition).classifierBehavior in\n            if classifierBehavior = null then null\n            else classifierBehavior.toReference()\n            endif\n        endif'"
 	 * @generated
 	 */
 	ElementReference classifierBehavior();
@@ -737,7 +637,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then Set(ecore::EObject){}\n        else self.element.oclAsType(NamespaceDefinition).appliedProfiles()\n        endif'"
 	 * @generated
@@ -747,9 +646,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isActivity() then null\n        else\n          let namespace = self.element.oclAsType(ActivityDefinition).namespaceReference() in\n            if namespace = null or \n              not self.equals(namespace.classifierBehavior()) then null\n            else namespace\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isActivity() then null\n        else\n          let namespace = self.element.oclAsType(ActivityDefinition).namespaceReference() in\n            if namespace = null or \n              not self.equals(namespace.classifierBehavior()) then null\n            else namespace\n            endif\n        endif'"
 	 * @generated
 	 */
 	ElementReference activeClass();
@@ -757,10 +654,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        other = null or\n        self.isClassifier() and (self.equals(other) or\n        self.element.oclAsType(ClassifierDefinition).\n          specializationReferent->exists(conformsTo(other)))'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        other = null or\n        self.isClassifier() and (self.equals(other) or\n        self.element.oclAsType(ClassifierDefinition).\n          specializationReferent->exists(conformsTo(other)))'"
 	 * @generated
 	 */
 	boolean conformsTo(ElementReference other);
@@ -768,7 +663,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='other <> null and other.asAlf() = self.element'"
 	 * @generated
@@ -778,7 +672,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='InternalElementReference{element = self.element}'"
 	 * @generated
@@ -788,7 +681,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then null\n        else self.element.oclAsType(NamespaceDefinition).modelScope()\n        endif'"
 	 * @generated
 	 */
@@ -797,10 +689,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" pathNameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.element.oclIsKindOf(ModelNamespace) then\n          Set(ElementReference){}\n        else\n          self.element.oclAsType(ModelNamespace).resolvePathName(pathName)\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.element.oclIsKindOf(ModelNamespace) then\n          Set(ElementReference){}\n        else\n          self.element.oclAsType(ModelNamespace).resolvePathName(pathName)\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> resolvePathName(String pathName);
@@ -808,10 +698,8 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" nameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.resolveInScope(name)\n          else if not self.isNamespace() then Set(ElementReference){}\n          else \n            self.element.oclAsType(NamespaceDefinition).resolveInScope(name).\n              toReference()\n          endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.resolveInScope(name)\n          else if not self.isNamespace() then Set(ElementReference){}\n          else \n            self.element.oclAsType(NamespaceDefinition).resolveInScope(name).\n              toReference()\n          endif endif'"
 	 * @generated
 	 */
 	EList<ElementReference> resolveInScope(String name);
@@ -819,7 +707,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" stereotypeNameRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Set(ElementReference){}'"
 	 * @generated
@@ -829,7 +716,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then null\n        else self.element.oclAsType(NamespaceDefinition).stub()\n        endif'"
 	 * @generated
 	 */
@@ -838,7 +724,6 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model unitRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then null\n        else self.element.oclAsType(NamespaceDefinition).stubFor(unit)\n        endif'"
 	 * @generated

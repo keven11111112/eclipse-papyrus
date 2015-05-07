@@ -20,11 +20,10 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>Element Import Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.ElementImportReferenceImpl#getAlias <em>Alias</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.ElementImportReferenceImpl#getAlias <em>Alias</em>}</li>
  * </ul>
  *
  * @generated
@@ -33,7 +32,6 @@ public class ElementImportReferenceImpl extends ImportReferenceImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ElementImportReferenceImpl() {
@@ -43,7 +41,6 @@ public class ElementImportReferenceImpl extends ImportReferenceImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -54,17 +51,15 @@ public class ElementImportReferenceImpl extends ImportReferenceImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getAlias() {
-		return (String) eGet(AlfPackage.eINSTANCE.getElementImportReference_Alias(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getElementImportReference_Alias(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAlias(String newAlias) {
@@ -75,24 +70,23 @@ public class ElementImportReferenceImpl extends ImportReferenceImpl implements E
 	 * The cached invocation delegate for the '{@link #importedMembers() <em>Imported Members</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #importedMembers()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IMPORTED_MEMBERS__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getElementImportReference__ImportedMembers()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IMPORTED_MEMBERS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getElementImportReference__ImportedMembers()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Member> importedMembers() {
 		try {
-			return (EList<Member>) IMPORTED_MEMBERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<Member>)IMPORTED_MEMBERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -101,48 +95,46 @@ public class ElementImportReferenceImpl extends ImportReferenceImpl implements E
 	 * The cached validation expression for the '{@link #elementImportReferenceReferent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Element Import Reference Referent</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #elementImportReferenceReferent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String ELEMENT_IMPORT_REFERENCE_REFERENT_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
-			"                      self.referent <>null and self.referent.isPackageableElement()";
+		"                      self.referent <>null and self.referent.isPackageableElement()";
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean elementImportReferenceReferent(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return AlfValidator.validate
+		return
+			AlfValidator.validate
 				(AlfPackage.eINSTANCE.getElementImportReference(),
-						this,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						AlfPackage.eINSTANCE.getElementImportReference__ElementImportReferenceReferent__DiagnosticChain_Map(),
-						ELEMENT_IMPORT_REFERENCE_REFERENT_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
-						Diagnostic.ERROR,
-						AlfValidator.DIAGNOSTIC_SOURCE,
-						AlfValidator.ELEMENT_IMPORT_REFERENCE__ELEMENT_IMPORT_REFERENCE_REFERENT);
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 AlfPackage.eINSTANCE.getElementImportReference__ElementImportReferenceReferent__DiagnosticChain_Map(),
+				 ELEMENT_IMPORT_REFERENCE_REFERENT_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 AlfValidator.DIAGNOSTIC_SOURCE,
+				 AlfValidator.ELEMENT_IMPORT_REFERENCE__ELEMENT_IMPORT_REFERENCE_REFERENT);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.ELEMENT_IMPORT_REFERENCE___IMPORTED_MEMBERS:
-			return importedMembers();
-		case AlfPackage.ELEMENT_IMPORT_REFERENCE___ELEMENT_IMPORT_REFERENCE_REFERENT__DIAGNOSTICCHAIN_MAP:
-			return elementImportReferenceReferent((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.ELEMENT_IMPORT_REFERENCE___IMPORTED_MEMBERS:
+				return importedMembers();
+			case AlfPackage.ELEMENT_IMPORT_REFERENCE___ELEMENT_IMPORT_REFERENCE_REFERENT__DIAGNOSTICCHAIN_MAP:
+				return elementImportReferenceReferent((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -13,7 +13,6 @@ import org.eclipse.papyrus.uml.alf.ReturnParameter;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Return Parameter</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -21,7 +20,6 @@ public class ReturnParameterImpl extends FormalParameterImpl implements ReturnPa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReturnParameterImpl() {
@@ -31,7 +29,6 @@ public class ReturnParameterImpl extends FormalParameterImpl implements ReturnPa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

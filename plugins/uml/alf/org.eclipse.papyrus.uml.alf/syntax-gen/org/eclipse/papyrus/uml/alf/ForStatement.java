@@ -20,9 +20,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ForStatement#getBody <em>Body</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ForStatement#getVariableDefinition <em>Variable Definition</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ForStatement#isIsParallel <em>Is Parallel</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ForStatement#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ForStatement#getVariableDefinition <em>Variable Definition</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ForStatement#isIsParallel <em>Is Parallel</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getForStatement()
@@ -37,7 +37,6 @@ public interface ForStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The sequence of statements to be iteratively executed.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Body</em>' containment reference.
 	 * @see #setBody(Block)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getForStatement_Body()
@@ -50,9 +49,7 @@ public interface ForStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ForStatement#getBody <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Body</em>' containment reference.
+	 * @param value the new value of the '<em>Body</em>' containment reference.
 	 * @see #getBody()
 	 * @generated
 	 */
@@ -66,7 +63,6 @@ public interface ForStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * A list of definitions of one or more loop variables.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Variable Definition</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getForStatement_VariableDefinition()
 	 * @model containment="true" required="true"
@@ -81,7 +77,6 @@ public interface ForStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * Whether the for statement is parallel.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Parallel</em>' attribute.
 	 * @see #setIsParallel(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getForStatement_IsParallel()
@@ -97,9 +92,7 @@ public interface ForStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ForStatement#isIsParallel <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Parallel</em>' attribute.
+	 * @param value the new value of the '<em>Is Parallel</em>' attribute.
 	 * @see #isIsParallel()
 	 * @generated
 	 */
@@ -108,7 +101,6 @@ public interface ForStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self'"
 	 * @generated
 	 */
@@ -117,10 +109,8 @@ public interface ForStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.body <> element then\n          self.assignmentBefore\n        else\n          let assignments = \n            self.variableDefinition.assignmentAfter->asSet() in\n            if not self.isParallel then\n              assignments\n            else\n              let parallelNames = self.parallelNames() in\n                self.updateAll(\n                  assignments,\n                  assignments->select(a | parallelNames->includes(a.name)).\n                    copy(self, true)->asSet()\n                )\n\n            endif\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.body <> element then\n          self.assignmentBefore\n        else\n          let assignments = \n            self.variableDefinition.assignmentAfter->asSet() in\n            if not self.isParallel then\n              assignments\n            else\n              let parallelNames = self.parallelNames() in\n                self.updateAll(\n                  assignments,\n                  assignments->select(a | parallelNames->includes(a.name)).\n                    copy(self, true)->asSet()\n                )\n\n            endif\n        endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsBefore(SyntaxElement element);
@@ -128,10 +118,8 @@ public interface ForStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.variableDefinition->iterate(\n          v, assignments : Set(AssignedSource) = self.assignmentBefore |\n          self.updateAll(assignments, v.newAssignments())\n        )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.variableDefinition->iterate(\n          v, assignments : Set(AssignedSource) = self.assignmentBefore |\n          self.updateAll(assignments, v.newAssignments())\n        )'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsAfterVariables();
@@ -139,10 +127,8 @@ public interface ForStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let namesBefore = self.assignmentBefore.name in\n        let newAssignments =\n          self.body.newAssignments()->\n            select(a | namesBefore->includes(a.name)).\n            copy(self, null)->asSet()\n        in\n        let variables = self.variableDefinition.variable in\n        let assignmentsAfter = \n          self.updateAll(\n            self.variableDefinition.assignmentAfter->asSet(), \n            newAssignments\n          )->reject(a | variables->includes(a.name)) in\n        let parallelNames = self.parallelNames() in\n        let parallelNameAssignments =\n          assignmentsAfter->\n            select(a | parallelNames->includes(a.name)).\n            copy(self, false)->asSet()\n        in\n          self.updateAll(assignmentsAfter, parallelNameAssignments)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let namesBefore = self.assignmentBefore.name in\n        let newAssignments =\n          self.body.newAssignments()->\n            select(a | namesBefore->includes(a.name)).\n            copy(self, null)->asSet()\n        in\n        let variables = self.variableDefinition.variable in\n        let assignmentsAfter = \n          self.updateAll(\n            self.variableDefinition.assignmentAfter->asSet(), \n            newAssignments\n          )->reject(a | variables->includes(a.name)) in\n        let parallelNames = self.parallelNames() in\n        let parallelNameAssignments =\n          assignmentsAfter->\n            select(a | parallelNames->includes(a.name)).\n            copy(self, false)->asSet()\n        in\n          self.updateAll(assignmentsAfter, parallelNameAssignments)'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsAfter();
@@ -150,10 +136,8 @@ public interface ForStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isParallel then\n          Set(String){}\n        else\n          self.annotation()->select(identifier = \'parallel\').oclAsType(Annotation).argument->asSet()\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isParallel then\n          Set(String){}\n        else\n          self.annotation()->select(identifier = \'parallel\').oclAsType(Annotation).argument->asSet()\n        endif'"
 	 * @generated
 	 */
 	EList<String> parallelNames();
@@ -170,7 +154,6 @@ public interface ForStatement extends Statement {
 	 * annotations are changed to be the for statement itself.
 	 * (See the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -192,7 +175,6 @@ public interface ForStatement extends Statement {
 	 * assigned source after the for statement is the for statement itself.
 	 * (See the assignmentsAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -211,9 +193,7 @@ public interface ForStatement extends Statement {
 	 * behaviors is done in NameExpression, BehaviorInvocationExpression and
 	 * SequenceOperationExpression.)
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignments = self.variableDefinition.assignmentAfter in\n          self.parallelNames()->forAll(n |\n            assignments->exists(name = n and lower = 0 and upper = -1)\n          )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignments = self.variableDefinition.assignmentAfter in\n          self.parallelNames()->forAll(n |\n            assignments->exists(name = n and lower = 0 and upper = -1)\n          )'"
 	 * @generated
 	 */
 	boolean forStatementParallelAnnotationNames(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -225,18 +205,16 @@ public interface ForStatement extends Statement {
 	 * If, after the loop variable definitions of a parallel for statement, a
 	 * name has an assigned source, then it must have the same assigned source
 	 * after the block of the for statement. Other than for names defined in the
-	 * 
 	 * @parallel annotation of the for statement, the assigned source for such
-	 *           names is the same after the for statement as before it. Any names defined
-	 *           in the @parallel annotation have the for statement itself as their assigned
-	 *           source after the for statement. Other than names given in the @parallel
-	 *           annotation, if a name is unassigned after the loop variable definitions,
-	 *           then it is considered unassigned after the for statement, even if it is
-	 *           assigned in the block of the for statement.
-	 *           (See also the assignmentsAfter() operation.)
-	 *           <!-- end-model-doc -->
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isParallel then true\n        else\n          self.body.newAssignments().name->\n            excludesAll(self.variableDefinition.assignmentAfter.name)\n          /*\n           * The following is guaranteed by assignmentsAfter():\n          let parallelNames = self.parallelNames() in\n            self.assignmentAfter->forAll(a |\n              assignmentsAfterVariables->exists(name = a.name) and\n              if parallelNames->includes(a.name) then a.source = self \n              else a.source = assignmentsAfterVariables->any(name = a.name).source \n              endif\n            )\n          \052/\n        endif'"
+	 * names is the same after the for statement as before it. Any names defined
+	 * in the @parallel annotation have the for statement itself as their assigned
+	 * source after the for statement. Other than names given in the @parallel
+	 * annotation, if a name is unassigned after the loop variable definitions,
+	 * then it is considered unassigned after the for statement, even if it is
+	 * assigned in the block of the for statement.
+	 * (See also the assignmentsAfter() operation.)
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isParallel then true\n        else\n          self.body.newAssignments().name->\n            excludesAll(self.variableDefinition.assignmentAfter.name)\n          /*\n           * The following is guaranteed by assignmentsAfter():\n          let parallelNames = self.parallelNames() in\n            self.assignmentAfter->forAll(a |\n              assignmentsAfterVariables->exists(name = a.name) and\n              if parallelNames->includes(a.name) then a.source = self \n              else a.source = assignmentsAfterVariables->any(name = a.name).source \n              endif\n            )\n          \052/\n        endif'"
 	 * @generated
 	 */
 	boolean forStatementParallelAssignmentsAfter(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -250,7 +228,6 @@ public interface ForStatement extends Statement {
 	 * definitions.
 	 * (See derivation of VariableDefinition::isFirst.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -264,7 +241,6 @@ public interface ForStatement extends Statement {
 	 * must be the for statement (the same as before the body).
 	 * (See the assignmentAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -276,7 +252,6 @@ public interface ForStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * A for statement is parallel if it has a @parallel annotation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -290,7 +265,6 @@ public interface ForStatement extends Statement {
 	 * are the for statement.
 	 * (See the SyntaxElement::enclosingStatement() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -301,9 +275,8 @@ public interface ForStatement extends Statement {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * In addition to an @isolated annotation, a for statement may have a
-	 * 
 	 * @parallel annotation.
-	 *           <!-- end-model-doc -->
+	 * <!-- end-model-doc -->
 	 * @model required="true" annotationRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.Statement_annotationAllowed(annotation) or\n                  annotation.identifier = \'parallel\''"
 	 * @generated

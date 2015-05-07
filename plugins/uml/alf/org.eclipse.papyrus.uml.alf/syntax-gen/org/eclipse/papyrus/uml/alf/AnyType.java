@@ -23,7 +23,6 @@ public interface AnyType extends ClassifierDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\'any\''"
 	 * @generated
 	 */

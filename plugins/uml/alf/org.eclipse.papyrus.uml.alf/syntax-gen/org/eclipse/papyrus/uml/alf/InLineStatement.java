@@ -19,8 +19,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.InLineStatement#getLanguage <em>Language</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.InLineStatement#getCode <em>Code</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.InLineStatement#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.InLineStatement#getCode <em>Code</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getInLineStatement()
@@ -35,7 +35,6 @@ public interface InLineStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The name of the language in which the code is written.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Language</em>' attribute.
 	 * @see #setLanguage(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getInLineStatement_Language()
@@ -49,9 +48,7 @@ public interface InLineStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.InLineStatement#getLanguage <em>Language</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Language</em>' attribute.
+	 * @param value the new value of the '<em>Language</em>' attribute.
 	 * @see #getLanguage()
 	 * @generated
 	 */
@@ -64,7 +61,6 @@ public interface InLineStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The in-line code to be executed.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Code</em>' attribute.
 	 * @see #setCode(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getInLineStatement_Code()
@@ -79,9 +75,7 @@ public interface InLineStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.InLineStatement#getCode <em>Code</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Code</em>' attribute.
+	 * @param value the new value of the '<em>Code</em>' attribute.
 	 * @see #getCode()
 	 * @generated
 	 */
@@ -94,7 +88,6 @@ public interface InLineStatement extends Statement {
 	 * The assignments after an in-line statement are the same as the assignments
 	 * before the statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

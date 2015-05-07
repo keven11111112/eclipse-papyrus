@@ -21,15 +21,15 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#isIsAmbiguous <em>Is Ambiguous</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getPathName <em>Path Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#isIsFeatureReference <em>Is Feature Reference</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getQualification <em>Qualification</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getDisambiguation <em>Disambiguation</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getNameBinding <em>Name Binding</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getReferent <em>Referent</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getUnqualifiedName <em>Unqualified Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getTemplateName <em>Template Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#isIsAmbiguous <em>Is Ambiguous</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#isIsFeatureReference <em>Is Feature Reference</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getQualification <em>Qualification</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getDisambiguation <em>Disambiguation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getNameBinding <em>Name Binding</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getReferent <em>Referent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getUnqualifiedName <em>Unqualified Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.QualifiedName#getTemplateName <em>Template Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName()
@@ -45,7 +45,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * Whether this qualified name is ambiguous.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Ambiguous</em>' attribute.
 	 * @see #setIsAmbiguous(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_IsAmbiguous()
@@ -58,9 +57,7 @@ public interface QualifiedName extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.QualifiedName#isIsAmbiguous <em>Is Ambiguous</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Ambiguous</em>' attribute.
+	 * @param value the new value of the '<em>Is Ambiguous</em>' attribute.
 	 * @see #isIsAmbiguous()
 	 * @generated
 	 */
@@ -74,13 +71,11 @@ public interface QualifiedName extends SyntaxElement {
 	 * The complete path name for the qualified name, with individual name
 	 * bindings separated by "::" punctuation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Path Name</em>' attribute.
 	 * @see #setPathName(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_PathName()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.unqualifiedName = null then \'\'\n        else if self.qualification = null then self.unqualifiedName.toString()\n        else self.qualification.pathName + \'::\' + self.unqualifiedName.toString()\n        endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.unqualifiedName = null then \'\'\n        else if self.qualification = null then self.unqualifiedName.toString()\n        else self.qualification.pathName + \'::\' + self.unqualifiedName.toString()\n        endif endif'"
 	 * @generated
 	 */
 	String getPathName();
@@ -89,9 +84,7 @@ public interface QualifiedName extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.QualifiedName#getPathName <em>Path Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Path Name</em>' attribute.
+	 * @param value the new value of the '<em>Path Name</em>' attribute.
 	 * @see #getPathName()
 	 * @generated
 	 */
@@ -105,7 +98,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * Indicates whether this qualified name has been disambiguated to a
 	 * feature reference.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Feature Reference</em>' attribute.
 	 * @see #setIsFeatureReference(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_IsFeatureReference()
@@ -119,9 +111,7 @@ public interface QualifiedName extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.QualifiedName#isIsFeatureReference <em>Is Feature Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Feature Reference</em>' attribute.
+	 * @param value the new value of the '<em>Is Feature Reference</em>' attribute.
 	 * @see #isIsFeatureReference()
 	 * @generated
 	 */
@@ -135,13 +125,11 @@ public interface QualifiedName extends SyntaxElement {
 	 * The qualified name corresponding to the qualification part of this
 	 * qualified name, if any.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Qualification</em>' reference.
 	 * @see #setQualification(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_Qualification()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let n = self.nameBinding->size() in \n          if n <= 1 then null\n          else QualifiedName{\n            nameBinding = self.nameBinding->subOrderedSet(1, n - 1).copy(),\n            isAmbiguous = n > 1 and self.isAmbiguous,\n            owner = self.owner()\n          }\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let n = self.nameBinding->size() in \n          if n <= 1 then null\n          else QualifiedName{\n            nameBinding = self.nameBinding->subOrderedSet(1, n - 1).copy(),\n            isAmbiguous = n > 1 and self.isAmbiguous,\n            owner = self.owner()\n          }\n          endif'"
 	 * @generated
 	 */
 	QualifiedName getQualification();
@@ -150,9 +138,7 @@ public interface QualifiedName extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.QualifiedName#getQualification <em>Qualification</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Qualification</em>' reference.
+	 * @param value the new value of the '<em>Qualification</em>' reference.
 	 * @see #getQualification()
 	 * @generated
 	 */
@@ -166,7 +152,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * The disambiguation into a feature reference of a syntactic element
 	 * initially parsed as a qualified name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Disambiguation</em>' reference.
 	 * @see #setDisambiguation(FeatureReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_Disambiguation()
@@ -180,9 +165,7 @@ public interface QualifiedName extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.QualifiedName#getDisambiguation <em>Disambiguation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Disambiguation</em>' reference.
+	 * @param value the new value of the '<em>Disambiguation</em>' reference.
 	 * @see #getDisambiguation()
 	 * @generated
 	 */
@@ -196,7 +179,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The sequence of individual name bindings in this qualified name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Name Binding</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_NameBinding()
 	 * @model containment="true"
@@ -216,7 +198,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * name is for a template instantiation, then the referent is the equivalent
 	 * bound element.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Referent</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_Referent()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -233,7 +214,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * The rightmost individual name binding in the qualified name, without the
 	 * qualification.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Unqualified Name</em>' reference.
 	 * @see #setUnqualifiedName(NameBinding)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_UnqualifiedName()
@@ -247,9 +227,7 @@ public interface QualifiedName extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.QualifiedName#getUnqualifiedName <em>Unqualified Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Unqualified Name</em>' reference.
+	 * @param value the new value of the '<em>Unqualified Name</em>' reference.
 	 * @see #getUnqualifiedName()
 	 * @generated
 	 */
@@ -263,13 +241,11 @@ public interface QualifiedName extends SyntaxElement {
 	 * If this qualified name is for a template binding, then the name of the
 	 * template for which this qualified name is a binding.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Template Name</em>' reference.
 	 * @see #setTemplateName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getQualifiedName_TemplateName()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.unqualifiedName = null or \n          self.unqualifiedName.binding = null then \n          null\n        else if self.nameBinding->size() = 1 then\n          QualifiedName{\n            nameBinding = Sequence{NameBinding{name = self.unqualifiedName.name}},\n            isAmbiguous = false,\n            owner = self.owner()\n          }\n        else\n          QualifiedName{\n            nameBinding = self.nameBinding->subOrderedSet(1, self.nameBinding->size() - 1).copy()->\n              append(NameBinding{name = self.unqualifiedName.name}),\n            isAmbiguous = false,\n            owner = self.owner()\n          }\n        endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.unqualifiedName = null or \n          self.unqualifiedName.binding = null then \n          null\n        else if self.nameBinding->size() = 1 then\n          QualifiedName{\n            nameBinding = Sequence{NameBinding{name = self.unqualifiedName.name}},\n            isAmbiguous = false,\n            owner = self.owner()\n          }\n        else\n          QualifiedName{\n            nameBinding = self.nameBinding->subOrderedSet(1, self.nameBinding->size() - 1).copy()->\n              append(NameBinding{name = self.unqualifiedName.name}),\n            isAmbiguous = false,\n            owner = self.owner()\n          }\n        endif endif'"
 	 * @generated
 	 */
 	QualifiedName getTemplateName();
@@ -278,9 +254,7 @@ public interface QualifiedName extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.QualifiedName#getTemplateName <em>Template Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Template Name</em>' reference.
+	 * @param value the new value of the '<em>Template Name</em>' reference.
 	 * @see #getTemplateName()
 	 * @generated
 	 */
@@ -289,7 +263,6 @@ public interface QualifiedName extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='QualifiedName{\n        nameBinding = self.nameBinding.copy(),\n        isAmbiguous = self.isAmbiguous,\n        owner = self.owner()\n      }'"
 	 * @generated
@@ -299,10 +272,8 @@ public interface QualifiedName extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" nameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let nameBinding = NameBinding{name = name} in\n          QualifiedName{\n            nameBinding = self.nameBinding.copy()->append(nameBinding),\n            isAmbiguous = self.isAmbiguous,\n            owner = self.owner()\n          }'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let nameBinding = NameBinding{name = name} in\n          QualifiedName{\n            nameBinding = self.nameBinding.copy()->append(nameBinding),\n            isAmbiguous = self.isAmbiguous,\n            owner = self.owner()\n          }'"
 	 * @generated
 	 */
 	QualifiedName addName(String name);
@@ -310,10 +281,8 @@ public interface QualifiedName extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" nameBindingsMany="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        QualifiedName{\n          nameBinding = self.nameBinding.copy()->includingAll(nameBindings),\n          isAmbiguous = self.isAmbiguous,\n          owner = self.owner()\n        }'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        QualifiedName{\n          nameBinding = self.nameBinding.copy()->includingAll(nameBindings),\n          isAmbiguous = self.isAmbiguous,\n          owner = self.owner()\n        }'"
 	 * @generated
 	 */
 	QualifiedName addNameBindings(EList<NameBinding> nameBindings);
@@ -326,7 +295,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * Get the referents for this qualified name as a fully qualified name in
 	 * model scope.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -339,7 +307,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * The unqualified name of a qualified name is the last name binding.
 	 * 
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -362,7 +329,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * the argument qualified name, separated by commas, all surrounded by the
 	 * angle brackets "<" and ">".
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -375,7 +341,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * A qualified name is a feature reference if its disambiguation is not
 	 * empty.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -391,7 +356,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * last one. The qualification of a qualified name is considered ambiguous
 	 * if the qualified name is ambiguous and has more than two name bindings.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -407,7 +371,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * name of the qualified name and a target expression determined by the
 	 * disambiguation of the qualification of the qualified name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -421,7 +384,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * resolve in the current scope, according to the UML rules for namespaces
 	 * and named elements.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -434,7 +396,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * If a qualified name is a local name, then the reference must be within
 	 * the same local scope as the definition of the named element.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -447,7 +408,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * If a qualified name is an unqualified, non-local name, then it must be
 	 * visible in the current scope of the use of the name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -461,7 +421,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * name an element of the namespace named by the qualification, where the
 	 * first name in the qualification must name an element of the current scope.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -478,9 +437,7 @@ public interface QualifiedName extends SyntaxElement {
 	 * classifiers, then the referent of the corresponding argument name must conform
 	 * to all those constraining classifiers.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      self.templateName <> null implies\n        let templates = self.templateName.referent in \n          templates->size() = 1 and \n          templates->forAll(template | \n            template.isTemplate() and \n            self.unqualifiedName.binding.matches(template)\n          )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      self.templateName <> null implies\n        let templates = self.templateName.referent in \n          templates->size() = 1 and \n          templates->forAll(template | \n            template.isTemplate() and \n            self.unqualifiedName.binding.matches(template)\n          )'"
 	 * @generated
 	 */
 	boolean qualifiedNameTemplateBinding(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -494,7 +451,6 @@ public interface QualifiedName extends SyntaxElement {
 	 * the original qualified name, but with the template binding removed on the
 	 * last name binding.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -503,7 +459,6 @@ public interface QualifiedName extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -512,9 +467,7 @@ public interface QualifiedName extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isAmbiguous or self.qualification = null then null\n        else if self.qualification.referent->exists(isNamespace()) then null\n        else \n          FeatureReference{\n            nameBinding = self.unqualifiedName.copy(), \n            expression = \n              if self.qualification.isFeatureReference then \n                PropertyAccessExpression{\n                  featureReference = self.qualification.disambiguation\n                }\n              else NameExpression{name = self.qualification}\n              endif,\n            owner = self.owner()\n          }\n        endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isAmbiguous or self.qualification = null then null\n        else if self.qualification.referent->exists(isNamespace()) then null\n        else \n          FeatureReference{\n            nameBinding = self.unqualifiedName.copy(), \n            expression = \n              if self.qualification.isFeatureReference then \n                PropertyAccessExpression{\n                  featureReference = self.qualification.disambiguation\n                }\n              else NameExpression{name = self.qualification}\n              endif,\n            owner = self.owner()\n          }\n        endif endif'"
 	 * @generated
 	 */
 	FeatureReference disambiguation();
@@ -522,7 +475,6 @@ public interface QualifiedName extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -531,10 +483,8 @@ public interface QualifiedName extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      if self.isFeatureReference then\n        Set(ElementReference){}\n      else if self.templateName = null then\n        let n = self.nameBinding->size() in\n        let currentScope = self.currentScope() in\n          if n = 0 or currentScope = null then\n            Set(ElementReference){}\n          else if n = 1 then\n            -- Resolve as an unqualified name.\n            currentScope.resolve(self.unqualifiedName.toName())\n          else\n            -- Resolve as a qualified name.\n            self.qualification.referent->select(isNamespace()).\n              resolveVisible(self.unqualifiedName.toName(), currentScope)->\n              asSet()\n          endif endif\n      else\n        -- Resolve as a bound element.\n        let referents = self.templateName.referent in\n          if referents->size() <> 1 then\n            Set(ElementReference){}\n          else\n            let template = referents->any(true) in\n            let actuals = self.unqualifiedName.binding.bindTo(template) in\n              Set{template.bind(actuals)}\n          endif\n      endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      if self.isFeatureReference then\n        Set(ElementReference){}\n      else if self.templateName = null then\n        let n = self.nameBinding->size() in\n        let currentScope = self.currentScope() in\n          if n = 0 or currentScope = null then\n            Set(ElementReference){}\n          else if n = 1 then\n            -- Resolve as an unqualified name.\n            currentScope.resolve(self.unqualifiedName.toName())\n          else\n            -- Resolve as a qualified name.\n            self.qualification.referent->select(isNamespace()).\n              resolveVisible(self.unqualifiedName.toName(), currentScope)->\n              asSet()\n          endif endif\n      else\n        -- Resolve as a bound element.\n        let referents = self.templateName.referent in\n          if referents->size() <> 1 then\n            Set(ElementReference){}\n          else\n            let template = referents->any(true) in\n            let actuals = self.unqualifiedName.binding.bindTo(template) in\n              Set{template.bind(actuals)}\n          endif\n      endif endif'"
 	 * @generated
 	 */
 	EList<ElementReference> referent();

@@ -28,7 +28,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.booleanType()'"
 	 * @generated
 	 */
@@ -37,7 +36,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.operand1.lower = 0 or self.operand2.lower = 0 then 0 else 1 endif'"
 	 * @generated
@@ -47,7 +45,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -61,7 +58,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	 * A conditional logical expression has type Boolean.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -75,7 +71,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	 * the lower bound if either operand expression is 0 and 1 otherwise.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -88,7 +83,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	 * A conditional logical expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -100,7 +94,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * The operands of a conditional logical expression must have type Boolean.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.isBooleanType(self.operand1.type) and self.isBooleanType(self.operand2.type)'"
 	 * @generated
 	 */
@@ -116,7 +109,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	 * same as those after the first operand expression.
 	 * (See the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
@@ -126,7 +118,6 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.operand2 = element then self.operand1.assignmentAfter\n        else self.assignmentBefore\n        endif'"
 	 * @generated
@@ -145,10 +136,8 @@ public interface ConditionalLogicalExpression extends BinaryExpression {
 	 * the second operand expression. Otherwise its assigned source after the
 	 * conditional logical expression is the conditional logical expression itself.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                    let namesBefore = self.operand2.assignmentBefore.name->asSet() in\n                      self.updateAll(\n                        self.operand2.assignmentBefore,\n                        self.operand2.newAssignments()->\n                          reject(namesBefore->excludes(name)).\n                          copy(self, null)->asSet()\n                      )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                    let namesBefore = self.operand2.assignmentBefore.name->asSet() in\n                      self.updateAll(\n                        self.operand2.assignmentBefore,\n                        self.operand2.newAssignments()->\n                          reject(namesBefore->excludes(name)).\n                          copy(self, null)->asSet()\n                      )'"
 	 * @generated
 	 */
 	EList<AssignedSource> updateAssignments();

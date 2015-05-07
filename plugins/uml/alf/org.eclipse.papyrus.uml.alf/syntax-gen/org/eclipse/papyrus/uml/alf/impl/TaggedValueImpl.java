@@ -12,13 +12,12 @@ import org.eclipse.papyrus.uml.alf.TaggedValue;
  * An implementation of the model object '<em><b>Tagged Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.TaggedValueImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.TaggedValueImpl#getValue <em>Value</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.TaggedValueImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.TaggedValueImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.TaggedValueImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.TaggedValueImpl#getOperator <em>Operator</em>}</li>
  * </ul>
  *
  * @generated
@@ -27,7 +26,6 @@ public class TaggedValueImpl extends SyntaxElementImpl implements TaggedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TaggedValueImpl() {
@@ -37,7 +35,6 @@ public class TaggedValueImpl extends SyntaxElementImpl implements TaggedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -48,17 +45,15 @@ public class TaggedValueImpl extends SyntaxElementImpl implements TaggedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(AlfPackage.eINSTANCE.getTaggedValue_Name(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getTaggedValue_Name(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -68,17 +63,15 @@ public class TaggedValueImpl extends SyntaxElementImpl implements TaggedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getValue() {
-		return (String) eGet(AlfPackage.eINSTANCE.getTaggedValue_Value(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getTaggedValue_Value(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValue(String newValue) {
@@ -88,17 +81,15 @@ public class TaggedValueImpl extends SyntaxElementImpl implements TaggedValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getOperator() {
-		return (String) eGet(AlfPackage.eINSTANCE.getTaggedValue_Operator(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getTaggedValue_Operator(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOperator(String newOperator) {

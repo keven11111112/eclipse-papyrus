@@ -25,7 +25,6 @@ public interface NumericUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.integerType()'"
 	 * @generated
 	 */
@@ -34,7 +33,6 @@ public interface NumericUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.lower'"
 	 * @generated
@@ -44,7 +42,6 @@ public interface NumericUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -58,7 +55,6 @@ public interface NumericUnaryExpression extends UnaryExpression {
 	 * A numeric unary expression must have type Integer.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -72,7 +68,6 @@ public interface NumericUnaryExpression extends UnaryExpression {
 	 * operand expression.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -85,7 +80,6 @@ public interface NumericUnaryExpression extends UnaryExpression {
 	 * A numeric unary expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -98,7 +92,6 @@ public interface NumericUnaryExpression extends UnaryExpression {
 	 * The operand expression must have type Integer and a multiplicity upper
 	 * bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.isIntegerType(self.operand.type) and self.operand.upper = 1'"
 	 * @generated
 	 */

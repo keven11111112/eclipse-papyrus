@@ -20,9 +20,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.Block#getStatement <em>Statement</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.Block#getAssignmentAfter <em>Assignment After</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.Block#getAssignmentBefore <em>Assignment Before</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Block#getStatement <em>Statement</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Block#getAssignmentAfter <em>Assignment After</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Block#getAssignmentBefore <em>Assignment Before</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBlock()
@@ -38,7 +38,6 @@ public interface Block extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The ordered sequence of statements in the block.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Statement</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBlock_Statement()
 	 * @model containment="true"
@@ -56,12 +55,10 @@ public interface Block extends SyntaxElement {
 	 * This includes not only any assignments made within the block, but also
 	 * any assignments that are unchanged from before the block.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment After</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBlock_AssignmentAfter()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n                  if self.statement->isEmpty() then self.assignmentBefore\n                  else self.statement->last().statement.assignmentAfter\n                  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n                  if self.statement->isEmpty() then self.assignmentBefore\n                  else self.statement->last().statement.assignmentAfter\n                  endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> getAssignmentAfter();
@@ -74,7 +71,6 @@ public interface Block extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The assigned sources for local names available lexically before this block.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment Before</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBlock_AssignmentBefore()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -86,10 +82,8 @@ public interface Block extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    if not self.statement->includes(element) then Set(AssignedSource){}\n    else\n      let i = self.statement->indexOf(element) in\n        if i = 1 then self.assignmentBefore\n        else \n          let statementBefore = self.statement->at(i-1) in\n            -- NOTE: Xtext editor will try to semantically validate even\n            -- when there are syntax errors.\n            if statementBefore.statement = null then\n              self.assignmentsBefore(statementBefore)\n            else\n              statementBefore.statement.assignmentAfter\n            endif\n        endif\n    endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    if not self.statement->includes(element) then Set(AssignedSource){}\n    else\n      let i = self.statement->indexOf(element) in\n        if i = 1 then self.assignmentBefore\n        else \n          let statementBefore = self.statement->at(i-1) in\n            -- NOTE: Xtext editor will try to semantically validate even\n            -- when there are syntax errors.\n            if statementBefore.statement = null then\n              self.assignmentsBefore(statementBefore)\n            else\n              statementBefore.statement.assignmentAfter\n            endif\n        endif\n    endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsBefore(SyntaxElement element);
@@ -100,7 +94,6 @@ public interface Block extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * Get the assigned sources for assignments made within this block.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignmentsBefore = self.assignmentBefore in\n          self.assignmentAfter->select(isNew(assignmentsBefore))'"
 	 * @generated
@@ -114,7 +107,6 @@ public interface Block extends SyntaxElement {
 	 * The assignments before each statement in a block other than the first are
 	 * the same as the assignments after the previous statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -127,7 +119,6 @@ public interface Block extends SyntaxElement {
 	 * The assignments before the first statement of a block are the same as the
 	 * assignments before the block.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -141,7 +132,6 @@ public interface Block extends SyntaxElement {
 	 * as the assignments after the last statement of the block. Otherwise they
 	 * are the same as the assignments before the block.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

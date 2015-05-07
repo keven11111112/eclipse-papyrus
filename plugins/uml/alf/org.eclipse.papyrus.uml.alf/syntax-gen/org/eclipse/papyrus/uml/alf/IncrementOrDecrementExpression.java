@@ -21,15 +21,15 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getAssignment <em>Assignment</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getOperand <em>Operand</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getFeature <em>Feature</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsPrefix <em>Is Prefix</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsFeature <em>Is Feature</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsIndexed <em>Is Indexed</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsDataValueUpdate <em>Is Data Value Update</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getAssignment <em>Assignment</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsPrefix <em>Is Prefix</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsFeature <em>Is Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsIndexed <em>Is Indexed</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsDataValueUpdate <em>Is Data Value Update</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getOperator <em>Operator</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression()
@@ -44,13 +44,11 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * If the operand is a name, then the new assigned source for that name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment</em>' reference.
 	 * @see #setAssignment(AssignedSource)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_Assignment()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.isFeature then null\n        else\n          let assignments = \n            self.assignmentBefore->select(name = self.operand.localName()) in\n            if assignments->isEmpty() then null\n            else assignments->any(true).copy(self, null)\n            endif\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.isFeature then null\n        else\n          let assignments = \n            self.assignmentBefore->select(name = self.operand.localName()) in\n            if assignments->isEmpty() then null\n            else assignments->any(true).copy(self, null)\n            endif\n        endif'"
 	 * @generated
 	 */
 	AssignedSource getAssignment();
@@ -59,9 +57,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getAssignment <em>Assignment</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Assignment</em>' reference.
+	 * @param value the new value of the '<em>Assignment</em>' reference.
 	 * @see #getAssignment()
 	 * @generated
 	 */
@@ -74,7 +70,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The operand, which must have the form of an assignment left-hand side.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Operand</em>' containment reference.
 	 * @see #setOperand(LeftHandSide)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_Operand()
@@ -87,9 +82,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getOperand <em>Operand</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operand</em>' containment reference.
+	 * @param value the new value of the '<em>Operand</em>' containment reference.
 	 * @see #getOperand()
 	 * @generated
 	 */
@@ -103,7 +96,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * The effective expression used to obtain the original value of the operand
 	 * to be updated.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression</em>' reference.
 	 * @see #setExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_Expression()
@@ -117,9 +109,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getExpression <em>Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression</em>' reference.
+	 * @param value the new value of the '<em>Expression</em>' reference.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -132,7 +122,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * If the operand is a feature, then the referent for that feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Feature</em>' reference.
 	 * @see #setFeature(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_Feature()
@@ -146,9 +135,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getFeature <em>Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Feature</em>' reference.
+	 * @param value the new value of the '<em>Feature</em>' reference.
 	 * @see #getFeature()
 	 * @generated
 	 */
@@ -162,7 +149,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether the operator is being used as a prefix or a postfix.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Prefix</em>' attribute.
 	 * @see #setIsPrefix(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_IsPrefix()
@@ -175,9 +161,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsPrefix <em>Is Prefix</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Prefix</em>' attribute.
+	 * @param value the new value of the '<em>Is Prefix</em>' attribute.
 	 * @see #isIsPrefix()
 	 * @generated
 	 */
@@ -190,7 +174,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether the operand is a feature or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Feature</em>' attribute.
 	 * @see #setIsFeature(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_IsFeature()
@@ -204,9 +187,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsFeature <em>Is Feature</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Feature</em>' attribute.
+	 * @param value the new value of the '<em>Is Feature</em>' attribute.
 	 * @see #isIsFeature()
 	 * @generated
 	 */
@@ -219,7 +200,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether the operand has an index or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Indexed</em>' attribute.
 	 * @see #setIsIndexed(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_IsIndexed()
@@ -233,9 +213,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsIndexed <em>Is Indexed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Indexed</em>' attribute.
+	 * @param value the new value of the '<em>Is Indexed</em>' attribute.
 	 * @see #isIsIndexed()
 	 * @generated
 	 */
@@ -249,7 +227,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Whether this expression updates an attribute of a data value held in a
 	 * local name or parameter.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Data Value Update</em>' attribute.
 	 * @see #setIsDataValueUpdate(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_IsDataValueUpdate()
@@ -263,9 +240,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#isIsDataValueUpdate <em>Is Data Value Update</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Data Value Update</em>' attribute.
+	 * @param value the new value of the '<em>Is Data Value Update</em>' attribute.
 	 * @see #isIsDataValueUpdate()
 	 * @generated
 	 */
@@ -281,7 +256,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The increment ("++") or decrement ("--") operator for this expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see #setOperator(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIncrementOrDecrementExpression_Operator()
@@ -294,9 +268,7 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operator</em>' attribute.
+	 * @param value the new value of the '<em>Operator</em>' attribute.
 	 * @see #getOperator()
 	 * @generated
 	 */
@@ -305,7 +277,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.integerType()'"
 	 * @generated
 	 */
@@ -314,7 +285,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.lower'"
 	 * @generated
@@ -324,7 +294,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -339,7 +308,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * the assignment for the expression is a new assigned source for the name
 	 * with the expression as the source.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -352,7 +320,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * An increment or decrement expression has a feature as its operand if the
 	 * operand is a kind of FeatureLeftHandSide.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -364,7 +331,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * An increment or decrement expression is indexed if its operand is indexed.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -377,7 +343,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * An increment or decrement expression is a data value update if its
 	 * operand is an attribute of a data value held in a local name or parameter.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -390,7 +355,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * If the operand of an increment or decrement expression is a feature,
 	 * then the referent for the operand.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -405,7 +369,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * expression or sequence access expression, as appropriate for evaluation
 	 * to obtain the original value to be updated.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -418,7 +381,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * An increment or decrement expression has type Integer.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -432,7 +394,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * bound as its operand expression.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -445,7 +406,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * An increment or decrement expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -457,7 +417,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The operand expression must have type Integer and a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.isIntegerType(self.operand.type) and self.operand.upper = 1'"
 	 * @generated
 	 */
@@ -472,7 +431,6 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * expression.
 	 * (See the SyntaxElement::assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -486,10 +444,8 @@ public interface IncrementOrDecrementExpression extends Expression {
 	 * those after its operand expression. Further, if the operand expression,
 	 * considered as a left hand side, is a local name, then this is reassigned.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                                            let assignment = self.assignment in\n                                              if assignment = null then self.operand.assignmentAfter\n                                              else assignment.update(self.operand.assignmentAfter)\n                                              endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                                            let assignment = self.assignment in\n                                              if assignment = null then self.operand.assignmentAfter\n                                              else assignment.update(self.operand.assignmentAfter)\n                                              endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> updateAssignments();

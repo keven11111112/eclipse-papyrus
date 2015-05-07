@@ -25,7 +25,6 @@ public interface BooleanUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.booleanType()'"
 	 * @generated
 	 */
@@ -34,7 +33,6 @@ public interface BooleanUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.lower'"
 	 * @generated
@@ -44,7 +42,6 @@ public interface BooleanUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -58,7 +55,6 @@ public interface BooleanUnaryExpression extends UnaryExpression {
 	 * A Boolean unary expression has type Boolean.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -72,7 +68,6 @@ public interface BooleanUnaryExpression extends UnaryExpression {
 	 * as its operand expression.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -85,7 +80,6 @@ public interface BooleanUnaryExpression extends UnaryExpression {
 	 * A Boolean unary expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -98,7 +92,6 @@ public interface BooleanUnaryExpression extends UnaryExpression {
 	 * The operand expression of a Boolean unary expression must have type
 	 * Boolean and a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.isBooleanType(self.operand.type) and self.operand.upper = 1'"
 	 * @generated
 	 */

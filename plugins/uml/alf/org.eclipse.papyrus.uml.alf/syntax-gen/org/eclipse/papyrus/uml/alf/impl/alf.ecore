@@ -2174,6 +2174,11 @@
         eType="#//ElementReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//AssignableElement">
+    <eOperations name="reference" lowerBound="1" eType="#//ExpressionReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ExpressionReference{expression = self}"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="newAssignments" ordered="false" upperBound="-1" eType="#//AssignedSource">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;        let assignmentsBefore = self.assignmentBefore in&#xA;          self.assignmentAfter->select(isNew(assignmentsBefore))"/>
@@ -2238,6 +2243,41 @@
         <details key="derivation" value="self.updateAssignmentsCached()"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionReference" eSuperTypes="#//Expression">
+    <eOperations name="type" eType="#//ElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.expression.type"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="lower" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.expression.lower"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="upper" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.expression.upper"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isAddTarget" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.expression.isAddTarget(targetExpression)"/>
+      </eAnnotations>
+      <eParameters name="targetExpression" lowerBound="1" eType="#//Expression"/>
+    </eOperations>
+    <eOperations name="assignmentsBefore" ordered="false" upperBound="-1" eType="#//AssignedSource">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.expression.assignmentBefore"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="updateAssignments" ordered="false" upperBound="-1" eType="#//AssignedSource">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.expression.assignmentAfter"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
+        eType="#//Expression"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtentOrExpression" eSuperTypes="#//Expression">
     <eOperations name="isAddTarget" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2996,6 +3036,12 @@
       </eAnnotations>
       <eParameters name="parameters" upperBound="-1" eType="#//ElementReference"/>
     </eOperations>
+    <eOperations name="outputForExpression" eType="#//OutputNamedExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if self.expression->excludes(expression) then null&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let i = self.expression->indexOf(expression) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let parameter = self.invocation.parameter->at(i) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;OutputNamedExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;name = parameter.name(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expression = expression,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="expression" lowerBound="1" eType="#//Expression"/>
+    </eOperations>
     <eOperations name="positionalTupleArguments" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.size() &lt;= self.invocation.parameterCount()"/>
@@ -3031,9 +3077,12 @@
     <eOperations name="outputFor" ordered="false" upperBound="-1" eType="#//OutputNamedExpression">
       <eParameters name="parameters" upperBound="-1" eType="#//ElementReference"/>
     </eOperations>
+    <eOperations name="outputForExpression" eType="#//OutputNamedExpression">
+      <eParameters name="expression" lowerBound="1" eType="#//Expression"/>
+    </eOperations>
     <eOperations name="assignmentsBefore" ordered="false" upperBound="-1" eType="#//AssignedSource">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;--        let assignmentsBefore = self.assignmentsBefore() in&#xA;--          if not element.oclIsKindOf(NameExpression) then assignmentsBefore&#xA;--          else&#xA;--            let outputs : Set = self.output->select(expression = element) in&#xA;--              if outputs->isEmpty() then assignmentsBefore&#xA;--              else self.updateFor(assignmentsBefore, &#xA;--                outputs->any(true).oclAsType(OutputNamedExpression)&#xA;--              )&#xA;--              endif&#xA;--          endif&#xA;          self.assignmentsBefore()"/>
+        <details key="body" value="&#xA;--        let assignmentsBefore = self.assignmentsBefore() in&#xA;--          if not element.oclIsKindOf(NameExpression) then assignmentsBefore&#xA;--          else&#xA;--            let output = self.outputForExpression(element.oclAsType(NameExpression)) in&#xA;--              if output = null then assignmentsBefore&#xA;--              else self.updateFor(assignmentsBefore, output)&#xA;--              endif&#xA;--          endif;&#xA;        self.assignmentsBefore()"/>
       </eAnnotations>
       <eParameters name="element" lowerBound="1" eType="#//SyntaxElement"/>
     </eOperations>
@@ -3178,14 +3227,14 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" volatile="true"
         transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="&#xA;        let parameterType = self.tuple().invocation.parameterNamed(self.name).type() in&#xA;          parameterType &lt;> null and self.expression.type &lt;> null and&#xA;          self.isCollectionClass(parameterType) and &#xA;            not self.isCollectionClass(self.expression.type)"/>
+        <details key="derivation" value="&#xA;        let parameter = self.tuple().invocation.parameterNamed(self.name) in&#xA;        &#x9;parameter &lt;> null and&#xA;        &#x9;let parameterType = parameter.type() in&#xA;&#x9;          parameterType &lt;> null and self.expression.type &lt;> null and&#xA;&#x9;          self.isCollectionClass(parameterType) and &#xA;&#x9;            not self.isCollectionClass(self.expression.type)"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isBitStringConversion"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" volatile="true"
         transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="&#xA;        let parameterType = self.tuple().invocation.parameterNamed(self.name).type() in&#xA;          parameterType &lt;> null and self.expression &lt;> null and&#xA;          (self.isBitStringType(parameterType) or &#xA;            self.isBitStringCollectionClass(parameterType)) and &#xA;          not self.isBitStringType(self.expression.type)"/>
+        <details key="derivation" value="&#xA;        let parameter = self.tuple().invocation.parameterNamed(self.name) in&#xA;        &#x9;parameter &lt;> null and&#xA;        &#x9;let parameterType = parameter.type() in&#xA;&#x9;          parameterType &lt;> null and self.expression &lt;> null and&#xA;&#x9;          (self.isBitStringType(parameterType) or &#xA;&#x9;            self.isBitStringCollectionClass(parameterType)) and &#xA;&#x9;          not self.isBitStringType(self.expression.type)"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -3746,6 +3795,11 @@
     <eOperations name="firstParameter" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;        let referent = self.referent in&#xA;          if referent = null then null&#xA;          else&#xA;            let parameters = referent.parameters() in&#xA;              if parameters->isEmpty() then null&#xA;              else parameters->first()&#xA;              endif&#xA;          endif"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="firstArgument" lowerBound="1" eType="#//OutputNamedExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;let firstParameter = self.firstParameter() in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;OutputNamedExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;name = if firstParameter = null then null else firstParameter.name() endif,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expression = self.primary.expression,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;index = null,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self.tuple&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="sequenceOperationExpressionReferentDerivation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -4559,7 +4613,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" volatile="true"
         transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="&#xA;        let lhsType = self.leftHandSide.type in&#xA;        let rhsType = self.type in -- Note: This works for both simple and compound assignments.assignment.&#xA;          rhsType &lt;> null and lhsType &lt;> null and&#xA;          (self.isIntegerType(rhsType) or&#xA;            self.isCollectionConversion and self.isIntegerCollectionClass(rhsType)&#xA;          )"/>
+        <details key="derivation" value="&#xA;        let lhsType = self.leftHandSide.type in&#xA;        let rhsType = self.type in -- Note: This works for both simple and compound assignments.assignment.&#xA;          rhsType &lt;> null and lhsType &lt;> null and self.isBitStringType(lhsType) and&#xA;          (self.isIntegerType(rhsType) or&#xA;            self.isCollectionConversion and self.isIntegerCollectionClass(rhsType)&#xA;          )"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -4945,6 +4999,11 @@
     <eOperations name="feature" eType="#//FeatureReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;        if self.expression.oclIsKindOf(PropertyAccessExpression) then&#xA;          self.expression.oclAsType(PropertyAccessExpression).featureReference&#xA;        else if self.expression.oclIsKindOf(SequenceAccessExpression) then&#xA;          let primary = self.expression.oclAsType(SequenceAccessExpression).primary in&#xA;            if primary.oclIsKindOf(PropertyAccessExpression) then&#xA;              primary.oclAsType(PropertyAccessExpression).featureReference&#xA;            else&#xA;              null&#xA;            endif&#xA;        else&#xA;          null&#xA;        endif endif"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="expression" eType="#//Expression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.expression"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="index" eType="#//Expression">
@@ -5386,7 +5445,7 @@
     </eOperations>
     <eOperations name="upper" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;       let assignment = self.assignment in&#xA;          if assignment &lt;> null then assignment.upper&#xA;          else&#xA;            let enumerationLiteral = self.enumerationLiteral in&#xA;              if enumerationLiteral &lt;> null then 1&#xA;              else&#xA;                let propertyAccess = self.propertyAccess in&#xA;                  if propertyAccess &lt;> null then propertyAccess.upper&#xA;                  else 0&#xA;                  endif&#xA;              endif&#xA;          endif"/>
+        <details key="body" value="&#xA;       let assignment = self.assignment in&#xA;          if assignment &lt;> null then assignment.upper&#xA;          else&#xA;            let enumerationLiteral = self.enumerationLiteral in&#xA;              if enumerationLiteral &lt;> null then 1&#xA;              else&#xA;                let propertyAccess = self.propertyAccess in&#xA;                  if propertyAccess &lt;> null then propertyAccess.upper&#xA;                  else 1 -- Note: This ensures a name defined as an &quot;out&quot; argument is not considered null.&#xA;                  endif&#xA;              endif&#xA;          endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="lower" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
@@ -5404,11 +5463,11 @@
     </eOperations>
     <eOperations name="assignmentFor_" eType="#//AssignedSource">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;      let assignments = self.assignmentBefore->select(name = localName) in&#xA;        if assignments->isEmpty() or &#xA;           assignments->forAll(isParallelLocalName) and not self.isAddTarget()&#xA;        then &#xA;          null&#xA;        else &#xA;          assignments->any(true)&#xA;        endif"/>
+        <details key="body" value="&#xA;      let assignments = self.assignmentBefore->select(name = localName) in&#xA;        if assignments->isEmpty() or &#xA;           assignments->forAll(isParallelLocalName) and not self.isAddTargetName()&#xA;        then &#xA;          null&#xA;        else &#xA;          assignments->any(true)&#xA;        endif"/>
       </eAnnotations>
       <eParameters name="localName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="isAddTarget" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="isAddTargetName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;      let expression = self.enclosingExpression() in&#xA;        if expression = null then false&#xA;        else expression.isAddTarget(self)&#xA;        endif"/>
       </eAnnotations>
@@ -6261,7 +6320,7 @@
     </eOperations>
     <eOperations name="inputFor" ordered="false" upperBound="-1" eType="#//InputNamedExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        parameters->select(&#xA;          let direction = direction() in&#xA;            direction = 'in' or direction = 'inout' &#xA;        )->collect(parameter |&#xA;          let parameterName = parameter.name() in&#xA;          let arguments = self.namedExpression->select(actualName() = parameterName) in&#xA;            if arguments->isEmpty() then&#xA;              InputNamedExpression{&#xA;                name = parameterName,&#xA;                expression = SequenceConstructionExpression{&#xA;                  hasMultiplicity = true&#xA;                },&#xA;                owner = self&#xA;              }&#xA;            else&#xA;              let argument : NamedExpression = arguments->any(true) in&#xA;                InputNamedExpression{&#xA;                  name = parameterName,&#xA;                  expression = argument.expression,&#xA;                  index = argument.index&#xA;                }&#xA;            endif&#xA;        )->asSet()"/>
+        <details key="body" value="&#xA;        parameters->select(&#xA;          let direction = direction() in&#xA;            direction = 'in' or direction = 'inout' &#xA;        )->collect(parameter |&#xA;          let parameterName = parameter.name() in&#xA;          let arguments = self.namedExpression->select(actualName() = parameterName) in&#xA;            if arguments->isEmpty() then&#xA;              InputNamedExpression{&#xA;                name = parameterName,&#xA;                expression = SequenceConstructionExpression{&#xA;                  hasMultiplicity = true&#xA;                },&#xA;                owner = self&#xA;              }&#xA;            else&#xA;              let argument : NamedExpression = arguments->any(true) in&#xA;                InputNamedExpression{&#xA;                  name = parameterName,&#xA;                  expression = argument.expression,&#xA;                  index = argument.index,&#xA;                  owner = self&#xA;                }&#xA;            endif&#xA;        )->asSet()"/>
       </eAnnotations>
       <eParameters name="parameters" upperBound="-1" eType="#//ElementReference"/>
     </eOperations>
@@ -6270,6 +6329,12 @@
         <details key="body" value="&#xA;        parameters->select(parameter |&#xA;          let direction = parameter.direction() in&#xA;            -- NOTE: This allows missing arguments for out parameters.&#xA;            direction = 'out' and &#xA;              self.namedExpression->exists(actualName() = parameter.name()) or&#xA;            direction = 'inout' &#xA;        )->collect(parameter |&#xA;          let parameterName = parameter.name() in&#xA;          let arguments = self.namedExpression->select(actualName() = parameterName) in&#xA;            if arguments->isEmpty() then&#xA;              -- NOTE: This will cause an error for a missing argument for&#xA;              -- an inout parameter.&#xA;              OutputNamedExpression{&#xA;                name = parameterName,&#xA;                expression = SequenceConstructionExpression{&#xA;                  hasMultiplicity = true&#xA;                },&#xA;                owner = self&#xA;              }&#xA;            else&#xA;              let argument : NamedExpression = arguments->any(true) in&#xA;                OutputNamedExpression{&#xA;                  name = parameterName,&#xA;                  index = argument.index,&#xA;                  expression = argument.expression,&#xA;                  owner = self&#xA;                }&#xA;            endif&#xA;        )->asSet()"/>
       </eAnnotations>
       <eParameters name="parameters" upperBound="-1" eType="#//ElementReference"/>
+    </eOperations>
+    <eOperations name="outputForExpression" eType="#//OutputNamedExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;let arguments = self.namedExpression->select(a | a.expression = expression) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if arguments->isEmpty() then null&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let argument = arguments->any(true) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;OutputNamedExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;name = argument.name,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;index = argument.index,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expression = expression,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="expression" lowerBound="1" eType="#//Expression"/>
     </eOperations>
     <eOperations name="namedTupleArgumentNames" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -6425,6 +6490,16 @@
         <details key="body" value="self.target().disambiguation"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="expression" lowerBound="1" eType="#//Expression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;let expression = self.primary() in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if self.index = null then expression&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SequenceAccessExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;primary = expression,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;index = index.reference(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="primary" lowerBound="1" eType="#//Expression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;let feature = self.feature() in&#xA;&#x9;&#x9;&#x9;&#x9;if feature = null then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;NameExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;name = self.target.copy(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PropertyAccessExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;feature = feature,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="localName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;        if self.feature() &lt;> null then null&#xA;        else self.target().unqualifiedName.toName()&#xA;        endif"/>
@@ -6559,6 +6634,11 @@
     <eOperations name="primary" lowerBound="1" eType="#//Expression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;        if self.expression.oclIsKindOf(SequenceAccessExpression) then&#xA;          self.expression.oclAsType(SequenceAccessExpression).primary&#xA;        else&#xA;          expression&#xA;        endif"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="expression" eType="#//Expression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.expression"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"

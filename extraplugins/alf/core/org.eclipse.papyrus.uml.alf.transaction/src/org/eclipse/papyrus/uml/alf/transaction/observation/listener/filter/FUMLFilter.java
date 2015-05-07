@@ -16,23 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.AssociationClass;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.CommunicationPath;
-import org.eclipse.uml2.uml.Component;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Enumeration;
-import org.eclipse.uml2.uml.Extension;
-import org.eclipse.uml2.uml.Generalization;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.Node;
-import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
@@ -51,20 +35,34 @@ public class FUMLFilter extends NotificationFilter.Custom {
 		}
 		Object feature = notification.getFeature();
 		if (notifier != null && feature != null) {
-			if (this.isEnumeration(notifier)) {
+			if (FUMLScopeUtil.isEnumeration(notifier)) {
 				return this.isEnumerationFeatureListened((EStructuralFeature) feature);
-			} else if (this.isDataType(notifier)) {
+			} else if (FUMLScopeUtil.isDataType(notifier)) {
 				return this.isDatatypeFeatureListened((EStructuralFeature) feature);
-			} else if (this.isPackage(notifier)) {
+			} else if (FUMLScopeUtil.isPackage(notifier)) {
 				return this.isPackageFeatureListened((EStructuralFeature) feature);
-			} else if (this.isAssociation(notifier)) {
+			}/* else if (this.isAssociation(notifier)) {
 				return this.isAssociationFeatureListener((EStructuralFeature) feature);
-			} else if (this.isSignal(notifier)) {
+			}*/ else if (FUMLScopeUtil.isSignal(notifier)) {
 				return this.isSignalFeatureListened((EStructuralFeature) feature);
-			} else if (this.isClass(notifier)) {
+			} else if (FUMLScopeUtil.isClass(notifier)) {
 				return this.isClassFeatureListened((EStructuralFeature) feature);
-			} else if (this.isGeneralization(notifier)) {
+			} else if (FUMLScopeUtil.isGeneralization(notifier)) {
 				return this.isGeneralizationtFeatureListened((EStructuralFeature) feature);
+			}else if(FUMLScopeUtil.isProperty(notifier)){
+				return this.isPropertyFeatureListened((EStructuralFeature)feature);
+			}else if(FUMLScopeUtil.isOperation(notifier)){
+				return this.isOperationFeatureListened((EStructuralFeature)feature);
+			}else if(FUMLScopeUtil.isReception(notifier)){
+				return this.isReceptionFeatureListened((EStructuralFeature)feature);
+			}else if(FUMLScopeUtil.isLiteralUnlimitedNatural(notifier)){
+				return this.isLiteralUnlimitedNaturalFeatureListened((EStructuralFeature)feature);
+			}else if(FUMLScopeUtil.isEnumerationLiteral(notifier)){
+				return this.isEnumerationLiteralFeatureListened((EStructuralFeature)feature);
+			}else if(FUMLScopeUtil.isPackageImport(notifier)){
+				return this.isPackageImportFeatureListened((EStructuralFeature)feature);
+			}else if(FUMLScopeUtil.isElementImport(notifier)){
+				return this.isElementImportFeatureListened((EStructuralFeature)feature);
 			}
 		}
 		return false;
@@ -80,93 +78,7 @@ public class FUMLFilter extends NotificationFilter.Custom {
 		}
 		return allowed;
 	}
-
-	/*----------------------------------------------------------------------------*/
-	/* Enforce the filter to respect the fUML subset */
-	/*----------------------------------------------------------------------------*/
-
-	private boolean isGeneralization(Object notifier) {
-		return notifier instanceof Generalization;
-	}
-
-	/**
-	 * 
-	 * @param notifier
-	 * @return
-	 */
-	private boolean isClass(Object notifier) {
-		if (notifier instanceof Class &&
-				(!(notifier instanceof AssociationClass) &&
-						!(notifier instanceof Component) &&
-						!(notifier instanceof Node) &&
-						!(notifier instanceof Stereotype) &&
-				!(notifier instanceof Behavior))) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * 
-	 * @param notifier
-	 * @return
-	 */
-	private boolean isSignal(Object notifier) {
-		return notifier instanceof Signal;
-	}
-
-	/**
-	 * 
-	 * @param notifier
-	 * @return
-	 */
-	private boolean isDataType(Object notifier) {
-		if (notifier instanceof DataType
-				&& !(notifier instanceof Enumeration)) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * 
-	 * @param notifier
-	 * @return
-	 */
-	private boolean isPackage(Object notifier) {
-		if (notifier != null
-				&& notifier instanceof Package
-				&& !(notifier instanceof Model)
-				&& !(notifier instanceof Profile)) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * 
-	 * @param notifier
-	 * @return
-	 */
-	private boolean isEnumeration(Object notifier) {
-		return notifier instanceof Enumeration;
-	}
-
-	/**
-	 * 
-	 * @param notifier
-	 * @return
-	 */
-	private boolean isAssociation(Object notifier) {
-		if (notifier instanceof Association
-				&& !(notifier instanceof AssociationClass)
-				&& !(notifier instanceof Extension)
-				&& !(notifier instanceof CommunicationPath)) {
-			return true;
-		}
-		return false;
-	}
-
+	
 	/*----------------------------------------------------------------------------*/
 	/* Low level checks encoding the UML meta-model hierarchy */
 	/*----------------------------------------------------------------------------*/
@@ -196,7 +108,7 @@ public class FUMLFilter extends NotificationFilter.Custom {
 
 	private boolean isNamespaceFeatureListened(EStructuralFeature feature) {
 		if (UMLPackage.eINSTANCE.getNamespace_ElementImport() == feature
-				|| UMLPackage.eINSTANCE.getNamespace_ImportedMember() == feature
+				//|| UMLPackage.eINSTANCE.getNamespace_ImportedMember() == feature [Detected when element import changes]
 				|| UMLPackage.eINSTANCE.getNamespace_Member() == feature
 				|| UMLPackage.eINSTANCE.getNamespace_OwnedMember() == feature
 				|| UMLPackage.eINSTANCE.getNamespace_PackageImport() == feature
@@ -228,7 +140,7 @@ public class FUMLFilter extends NotificationFilter.Custom {
 				|| UMLPackage.eINSTANCE.getClassifier_IsAbstract() == feature
 				|| UMLPackage.eINSTANCE.getClassifier_Attribute() == feature
 				|| UMLPackage.eINSTANCE.getClassifier_Feature() == feature
-				|| UMLPackage.eINSTANCE.getClassifier_General() == feature
+				//|| UMLPackage.eINSTANCE.getClassifier_General() == feature [Detected when generalization changes]
 				|| UMLPackage.eINSTANCE.getClassifier_Generalization() == feature
 				|| this.isNamespaceFeatureListened(feature)
 				|| this.isTypeFeatureListened(feature)) {
@@ -271,6 +183,7 @@ public class FUMLFilter extends NotificationFilter.Custom {
 		return false;
 	}
 
+	@SuppressWarnings("unused")
 	private boolean isAssociationFeatureListener(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getAssociation_OwnedEnd() == feature || this.isClassifierFeatureListened(feature);
 	}
@@ -285,5 +198,156 @@ public class FUMLFilter extends NotificationFilter.Custom {
 
 	private boolean isEnumerationFeatureListened(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getEnumeration_OwnedLiteral() == feature || this.isDatatypeFeatureListened(feature);
+	}
+	
+	private boolean isRedefinableElementFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf() == feature
+				|| UMLPackage.eINSTANCE.getRedefinableElement_RedefinedElement() == feature
+				|| UMLPackage.eINSTANCE.getRedefinableElement_RedefinitionContext() == feature
+				|| this.isNamedElementFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isFeatureFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getFeature_IsStatic() == feature
+				|| UMLPackage.eINSTANCE.getFeature_FeaturingClassifier() == feature
+				|| this.isRedefinableElementFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isMultiplicityElementFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered() == feature
+				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique() == feature
+				|| UMLPackage.eINSTANCE.getMultiplicityElement_Lower() == feature
+				|| UMLPackage.eINSTANCE.getMultiplicityElement_Upper() == feature){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isTypedElementFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getTypedElement_Type() == feature
+				|| this.isNamedElementFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isStructuralFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly() == feature
+				|| this.isFeatureFeatureListened(feature)
+				|| this.isMultiplicityElementFeatureListened(feature)
+				|| this.isTypedElementFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isPropertyFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getProperty_Aggregation() == feature
+				|| UMLPackage.eINSTANCE.getProperty_IsComposite() == feature
+				|| UMLPackage.eINSTANCE.getProperty_IsDerived() == feature
+				|| UMLPackage.eINSTANCE.getProperty_IsDerivedUnion() == feature
+				|| UMLPackage.eINSTANCE.getProperty_IsID()==feature
+				|| UMLPackage.eINSTANCE.getProperty_Association() == feature
+				|| UMLPackage.eINSTANCE.getProperty_Class() == feature
+				|| UMLPackage.eINSTANCE.getProperty_Datatype() == feature
+				|| UMLPackage.eINSTANCE.getProperty_Opposite() == feature
+				|| UMLPackage.eINSTANCE.getProperty_OwningAssociation() == feature
+				|| this.isStructuralFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isValueSpecificationFeatureListened(EStructuralFeature feature){
+		if(this.isTypedElementFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isLiteralSpecificationFeatureListened(EStructuralFeature feature){
+		if(this.isValueSpecificationFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isLiteralUnlimitedNaturalFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value() == feature
+				|| this.isLiteralSpecificationFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isBehavioralFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getBehavioralFeature_Concurrency() == feature
+				|| UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter() == feature
+				|| UMLPackage.eINSTANCE.getBehavioralFeature_Method() == feature
+				|| this.isFeatureFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isOperationFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getOperation_IsQuery() == feature
+				|| UMLPackage.eINSTANCE.getOperation_RedefinedOperation() == feature
+				|| UMLPackage.eINSTANCE.getOperation_Type() == feature
+				|| UMLPackage.eINSTANCE.getOperation_Class() == feature
+				|| this.isBehavioralFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isReceptionFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getReception_Signal() == feature
+				|| this.isBehavioralFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isInstanceSpecificationFeatureListener(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier() == feature
+				|| UMLPackage.eINSTANCE.getInstanceSpecification_Slot() == feature
+				|| this.isNamedElementFeatureListened(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isEnumerationLiteralFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getEnumerationLiteral_Enumeration() == feature
+				|| this.isInstanceSpecificationFeatureListener(feature)){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isPackageImportFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getPackageImport_Visibility() == feature
+				|| UMLPackage.eINSTANCE.getPackageImport_ImportedPackage() == feature
+			    || UMLPackage.eINSTANCE.getPackageImport_ImportingNamespace() == feature){
+			return true;
+		}
+		return false;	
+	}
+	
+	private boolean isElementImportFeatureListened(EStructuralFeature feature){
+		if(UMLPackage.eINSTANCE.getElementImport_ImportedElement() == feature
+				|| UMLPackage.eINSTANCE.getElementImport_ImportingNamespace() == feature
+				|| UMLPackage.eINSTANCE.getElementImport_Visibility() == feature
+				|| UMLPackage.eINSTANCE.getElementImport_Alias() == feature){
+			return true;
+		}
+		return false;
 	}
 }

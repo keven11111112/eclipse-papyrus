@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.CastExpression#getOperand <em>Operand</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.CastExpression#getTypeName <em>Type Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.CastExpression#isIsAny <em>Is Any</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.CastExpression#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.CastExpression#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.CastExpression#isIsAny <em>Is Any</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getCastExpression()
@@ -38,7 +38,6 @@ public interface CastExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The operand expression of the cast expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Operand</em>' containment reference.
 	 * @see #setOperand(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getCastExpression_Operand()
@@ -51,9 +50,7 @@ public interface CastExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.CastExpression#getOperand <em>Operand</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operand</em>' containment reference.
+	 * @param value the new value of the '<em>Operand</em>' containment reference.
 	 * @see #getOperand()
 	 * @generated
 	 */
@@ -66,7 +63,6 @@ public interface CastExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The named type of the cast expression (if any)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type Name</em>' containment reference.
 	 * @see #setTypeName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getCastExpression_TypeName()
@@ -79,9 +75,7 @@ public interface CastExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.CastExpression#getTypeName <em>Type Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type Name</em>' containment reference.
+	 * @param value the new value of the '<em>Type Name</em>' containment reference.
 	 * @see #getTypeName()
 	 * @generated
 	 */
@@ -94,7 +88,6 @@ public interface CastExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether the cast expression has an empty type.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Any</em>' attribute.
 	 * @see #setIsAny(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getCastExpression_IsAny()
@@ -107,9 +100,7 @@ public interface CastExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.CastExpression#isIsAny <em>Is Any</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Any</em>' attribute.
+	 * @param value the new value of the '<em>Is Any</em>' attribute.
 	 * @see #isIsAny()
 	 * @generated
 	 */
@@ -118,9 +109,7 @@ public interface CastExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.typeName = null then null\n        else\n          let referents = self.typeName.referent->\n                select(isClassifier() and not isTemplate()) in\n            if referents->size() <> 1 then null\n            else referents->any(true)\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.typeName = null then null\n        else\n          let referents = self.typeName.referent->\n                select(isClassifier() and not isTemplate()) in\n            if referents->size() <> 1 then null\n            else referents->any(true)\n            endif\n        endif'"
 	 * @generated
 	 */
 	ElementReference type();
@@ -128,7 +117,6 @@ public interface CastExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='0'"
 	 * @generated
@@ -138,7 +126,6 @@ public interface CastExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.upper'"
 	 * @generated
@@ -153,7 +140,6 @@ public interface CastExpression extends Expression {
 	 * there is one).
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -166,7 +152,6 @@ public interface CastExpression extends Expression {
 	 * A cast expression has a multiplicity lower bound of 0.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -180,7 +165,6 @@ public interface CastExpression extends Expression {
 	 * upper bound of its operand expression.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -193,7 +177,6 @@ public interface CastExpression extends Expression {
 	 * If the cast expression has a type name, then it must resolve to a
 	 * non-template classifier.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.typeName <> null implies self.type <> null'"
 	 * @generated
 	 */
@@ -206,7 +189,6 @@ public interface CastExpression extends Expression {
 	 * The assignments before the operand of a cast expression are the same as
 	 * those before the cast expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -219,7 +201,6 @@ public interface CastExpression extends Expression {
 	 * The assignments after a cast expression are the same as those after its
 	 * operand expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.assignmentAfter'"
 	 * @generated

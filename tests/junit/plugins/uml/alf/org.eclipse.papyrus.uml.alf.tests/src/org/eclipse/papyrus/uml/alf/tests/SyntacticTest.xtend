@@ -24,11 +24,13 @@ import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import org.junit.Ignore
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade
 
 @InjectWith(AlfInjectorProvider)
 @RunWith(XtextRunner)
@@ -45,10 +47,8 @@ class SyntacticTest extends ParserTest {
     resourceSet = new XtextResourceSet()
     
     OCL.initialize(resourceSet);
-    //UML2Pivot.initialize(resourceSet)
     OCLstdlib.install();
     OCLDelegateDomain.initialize(resourceSet)
-    //OCLstdlibStandaloneSetup.doSetup()
 
     testDirectory = System.getProperty("test.directory", TEST_DIRECTORY)
   }
@@ -59,6 +59,13 @@ class SyntacticTest extends ParserTest {
   	System.out.print("[SyntacticTest] ")
     val failures = parseDirectory(resourceSet, testDirectory, false);
     assertEquals(0, failures)
+  }
+  
+  override parseResource(Resource resource, boolean validate) {
+	ModelNamespaceFacade.instance.createEmptyValidationContext(resource);
+	val failures = super.parseResource(resource, validate);
+	ModelNamespaceFacade.instance.deleteValidationContext(resource);
+	return failures;
   }
   
   @AfterClass

@@ -218,8 +218,11 @@ class AlfFormatter extends AbstractDeclarativeFormatter {
     
     // Enumeration Definition
     c.setIndentationIncrement().after(enumerationDefinitionAccess.leftCurlyBracketKeyword_1);
+    c.setLinewrap().after(enumerationDefinitionAccess.leftCurlyBracketKeyword_1);
+    c.setLinewrap().before(enumerationDefinitionAccess.rightCurlyBracketKeyword_3);
     c.setIndentationDecrement().before(enumerationDefinitionAccess.rightCurlyBracketKeyword_3);
     c.setLinewrap().after(enumerationDefinitionAccess.rightCurlyBracketKeyword_3);
+    c.setLinewrap().after(enumerationDefinitionAccess.commaKeyword_2_1_0);
     
     c.setIndentationIncrement().after(enumerationDefinitionOrStubAccess.leftCurlyBracketKeyword_1_1_0);
     c.setIndentationDecrement().before(enumerationDefinitionOrStubAccess.rightCurlyBracketKeyword_1_1_2);

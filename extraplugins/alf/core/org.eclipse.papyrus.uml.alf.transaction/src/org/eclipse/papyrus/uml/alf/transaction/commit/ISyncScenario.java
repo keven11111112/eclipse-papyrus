@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf.transaction.commit;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -19,12 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.uml2.uml.Element;
 
 public interface ISyncScenario {
-	/**
-	 * The core method of a scenario
-	 * 
-	 * @param target
-	 *            - the element for which the scenario is executed
-	 * @return command - a command (that may be compound) to be executed in order to perform the synchronization
-	 */
-	public Command synchronize(Element target, List<Notification> changes);
+	
+	public Command synchronize(HashMap<Element, List<Notification>> changes);
 }

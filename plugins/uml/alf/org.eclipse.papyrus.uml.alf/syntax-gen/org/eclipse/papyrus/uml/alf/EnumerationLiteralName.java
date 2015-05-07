@@ -24,7 +24,6 @@ public interface EnumerationLiteralName extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * Returns false. (Enumeration literal name cannot have annotations.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" annotationRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated

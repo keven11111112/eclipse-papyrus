@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.TaggedValueList#getTaggedValue <em>Tagged Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TaggedValueList#getTaggedValue <em>Tagged Value</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTaggedValueList()
@@ -33,7 +33,6 @@ public interface TaggedValueList extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The tagged values in the set.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Tagged Value</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTaggedValueList_TaggedValue()
 	 * @model containment="true" required="true" ordered="false"

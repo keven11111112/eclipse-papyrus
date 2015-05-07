@@ -21,11 +21,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#getNonDefaultClause <em>Non Default Clause</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#getDefaultClause <em>Default Clause</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#isIsAssured <em>Is Assured</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#isIsDeterminate <em>Is Determinate</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#getNonDefaultClause <em>Non Default Clause</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#getDefaultClause <em>Default Clause</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#isIsAssured <em>Is Assured</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SwitchStatement#isIsDeterminate <em>Is Determinate</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSwitchStatement()
@@ -42,7 +42,6 @@ public interface SwitchStatement extends Statement {
 	 * The set of switch clauses whose cases are to be tested against the switch
 	 * value.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Non Default Clause</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSwitchStatement_NonDefaultClause()
 	 * @model containment="true" ordered="false"
@@ -57,7 +56,6 @@ public interface SwitchStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The expression to be evaluated to provide the switch value.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression</em>' containment reference.
 	 * @see #setExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSwitchStatement_Expression()
@@ -70,9 +68,7 @@ public interface SwitchStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SwitchStatement#getExpression <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression</em>' containment reference.
+	 * @param value the new value of the '<em>Expression</em>' containment reference.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -86,7 +82,6 @@ public interface SwitchStatement extends Statement {
 	 * A sequence of statements to be executed if no switch clause case matches
 	 * the switch value.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Default Clause</em>' containment reference.
 	 * @see #setDefaultClause(Block)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSwitchStatement_DefaultClause()
@@ -99,9 +94,7 @@ public interface SwitchStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SwitchStatement#getDefaultClause <em>Default Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Default Clause</em>' containment reference.
+	 * @param value the new value of the '<em>Default Clause</em>' containment reference.
 	 * @see #getDefaultClause()
 	 * @generated
 	 */
@@ -114,7 +107,6 @@ public interface SwitchStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * Whether at least one case in the switch statement is assured to match.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Assured</em>' attribute.
 	 * @see #setIsAssured(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSwitchStatement_IsAssured()
@@ -128,9 +120,7 @@ public interface SwitchStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SwitchStatement#isIsAssured <em>Is Assured</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Assured</em>' attribute.
+	 * @param value the new value of the '<em>Is Assured</em>' attribute.
 	 * @see #isIsAssured()
 	 * @generated
 	 */
@@ -143,7 +133,6 @@ public interface SwitchStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * Whether at most one case in the if statement will ever to match.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Determinate</em>' attribute.
 	 * @see #setIsDeterminate(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSwitchStatement_IsDeterminate()
@@ -157,9 +146,7 @@ public interface SwitchStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SwitchStatement#isIsDeterminate <em>Is Determinate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Determinate</em>' attribute.
+	 * @param value the new value of the '<em>Is Determinate</em>' attribute.
 	 * @see #isIsDeterminate()
 	 * @generated
 	 */
@@ -168,10 +155,8 @@ public interface SwitchStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            if self.nonDefaultClause->includes(element) or \n                              self.defaultClause = element then\n                              self.expression.assignmentAfter\n                            else\n                              self.assignmentBefore\n                            endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            if self.nonDefaultClause->includes(element) or \n                              self.defaultClause = element then\n                              self.expression.assignmentAfter\n                            else\n                              self.assignmentBefore\n                            endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsBefore(SyntaxElement element);
@@ -179,10 +164,8 @@ public interface SwitchStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            let blocks =\n                              if self.defaultClause = null then\n                                self.nonDefaultClause.block\n                              else\n                                self.nonDefaultClause.block->including(self.defaultClause)\n                              endif\n                            in\n                              self.updateAll(\n                                self.Statement_assignmentsAfter(),\n                                self.mergeAssignments(blocks)\n                              )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            let blocks =\n                              if self.defaultClause = null then\n                                self.nonDefaultClause.block\n                              else\n                                self.nonDefaultClause.block->including(self.defaultClause)\n                              endif\n                            in\n                              self.updateAll(\n                                self.Statement_assignmentsAfter(),\n                                self.mergeAssignments(blocks)\n                              )'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsAfter();
@@ -195,7 +178,6 @@ public interface SwitchStatement extends Statement {
 	 * the assignments after the expression of the switch statement.
 	 * (See assignmentBefore(element) expression.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -208,7 +190,6 @@ public interface SwitchStatement extends Statement {
 	 * The same local name may not be assigned in more than one case expression
 	 * in a switch statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            self.nonDefaultClause.case.newAssignments()->isUnique(name)'"
 	 * @generated
 	 */
@@ -225,7 +206,6 @@ public interface SwitchStatement extends Statement {
 	 * the same as before the switch statement.
 	 * (See assignmentsAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -247,9 +227,7 @@ public interface SwitchStatement extends Statement {
 	 * upper bound that is the maximum for the name in each clause.
 	 * (See also assignmentsAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            let newNames = self.assignmentAfter.name->excludingAll(self.assignmentBefore.name) in\n\t                            if self.defaultClause = null then\n\t                              newNames->isEmpty()\n\t                            else\n\t                              self.nonDefaultClause.block->including(self.defaultClause)->forAll(\n\t                              \tassignmentAfter.name->includesAll(newNames)\n\t                              )\n\t                            endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            let newNames = self.assignmentAfter.name->excludingAll(self.assignmentBefore.name) in\n\t                            if self.defaultClause = null then\n\t                              newNames->isEmpty()\n\t                            else\n\t                              self.nonDefaultClause.block->including(self.defaultClause)->forAll(\n\t                              \tassignmentAfter.name->includesAll(newNames)\n\t                              )\n\t                            endif'"
 	 * @generated
 	 */
 	boolean switchStatementAssignments(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -260,7 +238,6 @@ public interface SwitchStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * A switch statement expression must have a multiplicity no greater than 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression.upper <= 1'"
 	 * @generated
 	 */
@@ -274,7 +251,6 @@ public interface SwitchStatement extends Statement {
 	 * of its switch clauses.
 	 * (See SyntaxElement::enclosingStatement() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -286,7 +262,6 @@ public interface SwitchStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * A switch statement is determinate if it has a @determinate annotation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -298,7 +273,6 @@ public interface SwitchStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * A switch statement is assured if it has an @assured annotation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -309,12 +283,10 @@ public interface SwitchStatement extends Statement {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * In addition to an @isolated annotation, a switch statement may have
-	 * 
 	 * @assured and @determinate annotations. They may not have arguments.
-	 *          <!-- end-model-doc -->
+	 * <!-- end-model-doc -->
 	 * @model required="true" annotationRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.Statement_annotationAllowed(annotation) or\n                  (annotation.identifier = \'assured\' or annotation.identifier = \'determinate\') and \n                    annotation.argument->isEmpty()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.Statement_annotationAllowed(annotation) or\n                  (annotation.identifier = \'assured\' or annotation.identifier = \'determinate\') and \n                    annotation.argument->isEmpty()'"
 	 * @generated
 	 */
 	boolean annotationAllowed(Annotation annotation);

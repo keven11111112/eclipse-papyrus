@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getReferent <em>Referent</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getNamespace <em>Namespace</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getTemplateBinding <em>Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getReferent <em>Referent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getTemplateBinding <em>Template Binding</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBoundElementReference()
@@ -38,7 +38,6 @@ public interface BoundElementReference extends ElementReference {
 	 * If the meaning of the '<em>Referent</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Referent</em>' reference.
 	 * @see #setReferent(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBoundElementReference_Referent()
@@ -51,9 +50,7 @@ public interface BoundElementReference extends ElementReference {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getReferent <em>Referent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Referent</em>' reference.
+	 * @param value the new value of the '<em>Referent</em>' reference.
 	 * @see #getReferent()
 	 * @generated
 	 */
@@ -66,7 +63,6 @@ public interface BoundElementReference extends ElementReference {
 	 * If the meaning of the '<em>Namespace</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Namespace</em>' reference.
 	 * @see #setNamespace(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBoundElementReference_Namespace()
@@ -79,9 +75,7 @@ public interface BoundElementReference extends ElementReference {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getNamespace <em>Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Namespace</em>' reference.
+	 * @param value the new value of the '<em>Namespace</em>' reference.
 	 * @see #getNamespace()
 	 * @generated
 	 */
@@ -94,7 +88,6 @@ public interface BoundElementReference extends ElementReference {
 	 * If the meaning of the '<em>Template Binding</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Template Binding</em>' reference.
 	 * @see #setTemplateBinding(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBoundElementReference_TemplateBinding()
@@ -107,9 +100,7 @@ public interface BoundElementReference extends ElementReference {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BoundElementReference#getTemplateBinding <em>Template Binding</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Template Binding</em>' reference.
+	 * @param value the new value of the '<em>Template Binding</em>' reference.
 	 * @see #getTemplateBinding()
 	 * @generated
 	 */
@@ -118,7 +109,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -128,7 +118,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
@@ -138,7 +127,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -147,7 +135,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.asMember()'"
 	 * @generated
 	 */
@@ -156,9 +143,7 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        Member{\n          visibility = self.visibility(),\n          definition = ImportedMember{\n            name = self.name(),\n            referent = self.referent\n          }\n        }'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        Member{\n          visibility = self.visibility(),\n          definition = ImportedMember{\n            name = self.name(),\n            referent = self.referent\n          }\n        }'"
 	 * @generated
 	 */
 	Member asMember();
@@ -166,7 +151,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" memberRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isSameKindAs(member)'"
 	 * @generated
@@ -176,7 +160,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
@@ -186,7 +169,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isNamespace()'"
 	 * @generated
@@ -196,7 +178,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" unitRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -206,7 +187,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -216,7 +196,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isPackage()'"
 	 * @generated
@@ -226,7 +205,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isProfile()'"
 	 * @generated
@@ -236,7 +214,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isPackageableElement()'"
 	 * @generated
@@ -246,7 +223,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isClassifier()'"
 	 * @generated
@@ -256,7 +232,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isAbstractClassifier()'"
 	 * @generated
@@ -266,7 +241,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isAssociation()'"
 	 * @generated
@@ -276,7 +250,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isDataType()'"
 	 * @generated
@@ -286,7 +259,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isClass()'"
 	 * @generated
@@ -296,7 +268,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isActiveClass()'"
 	 * @generated
@@ -306,7 +277,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isSignal()'"
 	 * @generated
@@ -316,7 +286,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isEnumeration()'"
 	 * @generated
@@ -326,7 +295,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isBehavior()'"
 	 * @generated
@@ -336,7 +304,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isActivity()'"
 	 * @generated
@@ -346,7 +313,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isMethod()'"
 	 * @generated
@@ -356,7 +322,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isPrimitiveType()'"
 	 * @generated
@@ -366,7 +331,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isReception()'"
 	 * @generated
@@ -376,7 +340,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isOperation()'"
 	 * @generated
@@ -386,7 +349,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isConstructor()'"
 	 * @generated
@@ -396,7 +358,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isDestructor()'"
 	 * @generated
@@ -406,7 +367,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isFeature()'"
 	 * @generated
@@ -416,7 +376,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isProperty()'"
 	 * @generated
@@ -426,7 +385,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isAssociationEnd()'"
 	 * @generated
@@ -436,7 +394,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isParameter()'"
 	 * @generated
@@ -446,7 +403,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplateBinding() then\n          self.templateBinding.isTemplate()\n        else\n          self.referent.isTemplate()\n        endif'"
 	 * @generated
@@ -456,7 +412,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -466,7 +421,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -476,7 +430,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -486,7 +439,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isStereotype()'"
 	 * @generated
@@ -496,7 +448,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isEnumerationLiteral()'"
 	 * @generated
@@ -506,7 +457,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -516,7 +466,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -526,7 +475,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -536,7 +484,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" otherRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isDistinguishableFrom(other)'"
 	 * @generated
@@ -546,7 +493,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.name()'"
 	 * @generated
 	 */
@@ -555,7 +501,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.visibility()'"
 	 * @generated
 	 */
@@ -564,7 +509,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(\n          self.referent.ownedMembers()->reject(isTemplateParameter())\n        )'"
 	 * @generated
 	 */
@@ -573,7 +517,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(\n          self.referent.members()->reject(isTemplateParameter())\n        )'"
 	 * @generated
 	 */
@@ -582,7 +525,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferenceTo(self.referent.opposite())'"
 	 * @generated
 	 */
@@ -591,7 +533,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferenceTo(self.referent.signal())'"
 	 * @generated
 	 */
@@ -600,7 +541,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.parameters())'"
 	 * @generated
 	 */
@@ -609,7 +549,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferenceTo(self.referent.returnParameter())'"
 	 * @generated
 	 */
@@ -618,7 +557,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferenceTo(self.referent.specification())'"
 	 * @generated
 	 */
@@ -627,7 +565,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.redefinedOperations()'"
 	 * @generated
@@ -637,9 +574,7 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.namespace <> null then self.namespace\n        else\n          let namespace = self.referent.namespace() in\n            if self.template() <> null then namespace\n            else self.boundReferenceTo(namespace)\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.namespace <> null then self.namespace\n        else\n          let namespace = self.referent.namespace() in\n            if self.template() <> null then namespace\n            else self.boundReferenceTo(namespace)\n            endif\n        endif'"
 	 * @generated
 	 */
 	ElementReference namespace();
@@ -647,7 +582,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplateBinding() then self.referent\n        else null\n        endif'"
 	 * @generated
 	 */
@@ -656,7 +590,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='OrderedSet(ElementReference){}'"
 	 * @generated
 	 */
@@ -665,7 +598,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='OrderedSet(ElementReference){}'"
 	 * @generated
 	 */
@@ -674,7 +606,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.templateBinding.template().equals(self.referent)'"
 	 * @generated
@@ -684,7 +615,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplateBinding() then self.templateBinding.templateActuals()\n        else OrderedSet(ElementReference){}\n        endif'"
 	 * @generated
 	 */
@@ -693,7 +623,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.direction()'"
 	 * @generated
 	 */
@@ -702,7 +631,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isAssociationEnd() then self.namespace()\n        else null\n        endif'"
 	 * @generated
 	 */
@@ -711,9 +639,7 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let type = self.referent.type() in\n          -- This handles the special case of a constructor of a template class\n          -- that has that class directly as its return type, rather than a\n          -- template binding for it.\n          if self.isConstructor() and \n            self.templateBinding.template().equals(type) then\n            type.bind(self.templateBinding.templateActuals()->asSequence())\n          else\n            self.boundReferenceTo(type)\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let type = self.referent.type() in\n          -- This handles the special case of a constructor of a template class\n          -- that has that class directly as its return type, rather than a\n          -- template binding for it.\n          if self.isConstructor() and \n            self.templateBinding.template().equals(type) then\n            type.bind(self.templateBinding.templateActuals()->asSequence())\n          else\n            self.boundReferenceTo(type)\n          endif'"
 	 * @generated
 	 */
 	ElementReference type();
@@ -721,7 +647,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.lower()'"
 	 * @generated
@@ -731,7 +656,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.upper()'"
 	 * @generated
@@ -741,7 +665,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isOrdered()'"
 	 * @generated
@@ -751,7 +674,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isNonunique()'"
 	 * @generated
@@ -761,7 +683,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.parents()->asOrderedSet())'"
 	 * @generated
@@ -771,7 +692,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.allParents()->asOrderedSet())'"
 	 * @generated
@@ -781,7 +701,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.classifierBehavior()'"
 	 * @generated
 	 */
@@ -790,7 +709,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.appliedProfiles()'"
 	 * @generated
@@ -800,7 +718,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent'"
 	 * @generated
@@ -810,7 +727,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.templateBinding'"
 	 * @generated
 	 */
@@ -819,7 +735,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isActivity() then self\n        else null\n        endif'"
 	 * @generated
 	 */
@@ -828,7 +743,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.activeClass() <> null'"
 	 * @generated
@@ -838,7 +752,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        other = null or\n        self.isClassifier() and (self.equals(other) or\n        self.parents()->exists(conformsTo(other)))'"
 	 * @generated
@@ -848,10 +761,8 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        other <> null and\n        other.oclIsKindOf(BoundElementReference) and\n        self.templateBinding.equals(other.templateBinding()) and\n        self.referent.equals(other.oclAsType(BoundElementReference).referent)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        other <> null and\n        other.oclIsKindOf(BoundElementReference) and\n        self.templateBinding.equals(other.templateBinding()) and\n        self.referent.equals(other.oclAsType(BoundElementReference).referent)'"
 	 * @generated
 	 */
 	boolean equals(ElementReference other);
@@ -859,7 +770,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        BoundElementReference{\n          referent = self.referent,\n          namespace = self.namespace,\n          templateBinding = self.templateBinding\n        }'"
 	 * @generated
@@ -869,7 +779,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.modelScope()'"
 	 * @generated
@@ -879,7 +788,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" pathNameRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Set(ElementReference){}'"
 	 * @generated
@@ -889,7 +797,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" nameRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(name() = name)->asSet()'"
 	 * @generated
@@ -899,7 +806,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" stereotypeNameRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Set(ElementReference){}'"
 	 * @generated
@@ -909,7 +815,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -918,7 +823,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model unitRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
@@ -928,7 +832,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -937,9 +840,7 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if element = null then null\n        else if not element.isNamedElement() then element\n        else if element.isTemplateBinding() then\n          let actuals = self.boundReferencesTo(element.templateActuals()) in\n            element.template().bind(actuals)\n        else if element.isParameteredElement() then\n          let parameters = \n            self.templateBinding.template().parameteredElements()->asSequence() in\n          let i = element.positionIn(parameters) in\n            if i > 0 then\n              self.templateBinding.templateActuals()->at(i)\n            else\n              element\n            endif\n        else\n          let elementTemplateBinding = element.templateBinding() in\n            if elementTemplateBinding = null then \n              if self.referent.equals(element.namespace()) then\n                BoundElementReference{\n                  referent = element,\n                  namespace = self,\n                  templateBinding = self.templateBinding\n                  }\n              else if self.templateBinding.template().containsMember(element) then\n                BoundElementReference{\n                  referent = element,\n                  namespace = null,\n                  templateBinding = self.templateBinding\n                }\n              else\n                element\n              endif endif\n            else if not elementTemplateBinding.equals(self.templateBinding) then\n              BoundElementReference{\n                referent = element.reference(),\n                namespace = null,\n                templateBinding = \n                  self.boundReferenceTo(elementTemplateBinding).templateBinding()\n              }\n            else\n              element\n            endif endif\n        endif endif endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if element = null then null\n        else if not element.isNamedElement() then element\n        else if element.isTemplateBinding() then\n          let actuals = self.boundReferencesTo(element.templateActuals()) in\n            element.template().bind(actuals)\n        else if element.isParameteredElement() then\n          let parameters = \n            self.templateBinding.template().parameteredElements()->asSequence() in\n          let i = element.positionIn(parameters) in\n            if i > 0 then\n              self.templateBinding.templateActuals()->at(i)\n            else\n              element\n            endif\n        else\n          let elementTemplateBinding = element.templateBinding() in\n            if elementTemplateBinding = null then \n              if self.referent.equals(element.namespace()) then\n                BoundElementReference{\n                  referent = element,\n                  namespace = self,\n                  templateBinding = self.templateBinding\n                  }\n              else if self.templateBinding.template().containsMember(element) then\n                BoundElementReference{\n                  referent = element,\n                  namespace = null,\n                  templateBinding = self.templateBinding\n                }\n              else\n                element\n              endif endif\n            else if not elementTemplateBinding.equals(self.templateBinding) then\n              BoundElementReference{\n                referent = element.reference(),\n                namespace = null,\n                templateBinding = \n                  self.boundReferenceTo(elementTemplateBinding).templateBinding()\n              }\n            else\n              element\n            endif endif\n        endif endif endif endif'"
 	 * @generated
 	 */
 	ElementReference boundReferenceTo1(ElementReference element);
@@ -947,7 +848,6 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model unique="false" elementsMany="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='elements->collect(element | self.boundReferenceTo(element))'"
 	 * @generated

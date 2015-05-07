@@ -19,13 +19,13 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getNamespaceName <em>Namespace Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getDefinition <em>Definition</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getImport <em>Import</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getNamespace <em>Namespace</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#isIsModelLibrary <em>Is Model Library</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getAppliedProfile <em>Applied Profile</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getNamespaceName <em>Namespace Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getImport <em>Import</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#isIsModelLibrary <em>Is Model Library</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getAppliedProfile <em>Applied Profile</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getAnnotation <em>Annotation</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnitDefinition()
@@ -41,7 +41,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * A declaration of the name of the namespace that contains this unit as a
 	 * subunit.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Namespace Name</em>' containment reference.
 	 * @see #setNamespaceName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnitDefinition_NamespaceName()
@@ -54,9 +53,7 @@ public interface UnitDefinition extends DocumentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getNamespaceName <em>Namespace Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Namespace Name</em>' containment reference.
+	 * @param value the new value of the '<em>Namespace Name</em>' containment reference.
 	 * @see #getNamespaceName()
 	 * @generated
 	 */
@@ -70,7 +67,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * The definition of the unit as a namespace.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Definition</em>' containment reference.
 	 * @see #setDefinition(NamespaceDefinition)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnitDefinition_Definition()
@@ -84,9 +80,7 @@ public interface UnitDefinition extends DocumentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getDefinition <em>Definition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Definition</em>' containment reference.
+	 * @param value the new value of the '<em>Definition</em>' containment reference.
 	 * @see #getDefinition()
 	 * @generated
 	 */
@@ -101,7 +95,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * The set of references to imported elements or packages.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Import</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnitDefinition_Import()
 	 * @see org.eclipse.papyrus.uml.alf.ImportReference#getUnit
@@ -118,13 +111,11 @@ public interface UnitDefinition extends DocumentedElement {
 	 * A reference to the namespace denoted by the declared namespace name for
 	 * the unit, if any.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Namespace</em>' reference.
 	 * @see #setNamespace(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnitDefinition_Namespace()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n                  if self.namespaceName = null then\n                    null\n                  else\n                    let referents = self.namespaceName.modelReferents() in\n                      if referents->size() = 1 then\n                        referents->any(true)\n                      else\n                        null\n                      endif\n                  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n                  if self.namespaceName = null then\n                    null\n                  else\n                    let referents = self.namespaceName.modelReferents() in\n                      if referents->size() = 1 then\n                        referents->any(true)\n                      else\n                        null\n                      endif\n                  endif'"
 	 * @generated
 	 */
 	ElementReference getNamespace();
@@ -133,9 +124,7 @@ public interface UnitDefinition extends DocumentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.UnitDefinition#getNamespace <em>Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Namespace</em>' reference.
+	 * @param value the new value of the '<em>Namespace</em>' reference.
 	 * @see #getNamespace()
 	 * @generated
 	 */
@@ -148,7 +137,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * Whether this unit definition is for a model library or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Model Library</em>' attribute.
 	 * @see #setIsModelLibrary(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnitDefinition_IsModelLibrary()
@@ -162,9 +150,7 @@ public interface UnitDefinition extends DocumentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.UnitDefinition#isIsModelLibrary <em>Is Model Library</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Model Library</em>' attribute.
+	 * @param value the new value of the '<em>Is Model Library</em>' attribute.
 	 * @see #isIsModelLibrary()
 	 * @generated
 	 */
@@ -178,7 +164,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * The profiles applied to this unit.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Applied Profile</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnitDefinition_AppliedProfile()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -195,7 +180,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * The stereotype annotations on this unit definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Annotation</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnitDefinition_Annotation()
 	 * @model containment="true" ordered="false"
@@ -206,10 +190,8 @@ public interface UnitDefinition extends DocumentedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                  if self.isModelLibrary then\n                    self.import\n                  else\n                    self.import->union(self.implicitImports())\n                  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                  if self.isModelLibrary then\n                    self.import\n                  else\n                    self.import->union(self.implicitImports())\n                  endif'"
 	 * @generated
 	 */
 	EList<ImportReference> imports();
@@ -217,10 +199,8 @@ public interface UnitDefinition extends DocumentedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                  Set{\'PrimitiveTypes\', \'PrimitiveBehaviors\', \'BasicInputOutput\', \n                      \'CollectionFunctions\', \'CollectionClasses\'}->\n                    collect(name | self.implicitImportFor(name))->asSet()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                  Set{\'PrimitiveTypes\', \'PrimitiveBehaviors\', \'BasicInputOutput\', \n                      \'CollectionFunctions\', \'CollectionClasses\'}->\n                    collect(name | self.implicitImportFor(name))->asSet()'"
 	 * @generated
 	 */
 	EList<ImportReference> implicitImports();
@@ -228,10 +208,8 @@ public interface UnitDefinition extends DocumentedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" nameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                  PackageImportReference {\n                    referentName = QualifiedName{\n                      nameBinding = Sequence{\n                        NameBinding{name = \'Alf\'},\n                        NameBinding{name = \'Library\'},\n                        NameBinding{name = name}\n                      }\n                    }\n                  }'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                  PackageImportReference {\n                    referentName = QualifiedName{\n                      nameBinding = Sequence{\n                        NameBinding{name = \'Alf\'},\n                        NameBinding{name = \'Library\'},\n                        NameBinding{name = name}\n                      }\n                    }\n                  }'"
 	 * @generated
 	 */
 	ImportReference implicitImportFor(String name);
@@ -243,7 +221,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * If a unit definition has a declared namespace name, then the containing
 	 * namespace for the unit is the referent for that name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -257,7 +234,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * to a UML namespace or an Alf unit definition. If it is an Alf unit
 	 * definition, then it must have a stub for this unit definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.namespaceName <> null implies\n          let namespace = self.namespace in\n            namespace <> null and namespace.isNamespaceFor(self)'"
 	 * @generated
 	 */
@@ -271,7 +247,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * definition has a stereotype annotation for the UML standard stereotype
 	 * ModelLibrary.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -284,7 +259,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * Unless the unit definition is a model library, it has private package
 	 * import references for all the sub-packages of the Alf::Library package.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -300,7 +274,6 @@ public interface UnitDefinition extends DocumentedElement {
 	 * definition also include the applied profiles for its associated package
 	 * definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

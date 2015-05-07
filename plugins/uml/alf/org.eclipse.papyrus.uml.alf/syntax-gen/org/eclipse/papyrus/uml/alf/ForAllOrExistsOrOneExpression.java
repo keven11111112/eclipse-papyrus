@@ -27,7 +27,6 @@ public interface ForAllOrExistsOrOneExpression extends SequenceExpansionExpressi
 	 * <!-- begin-model-doc -->
 	 * A forAll, exists or one expression has the type Boolean.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -39,7 +38,6 @@ public interface ForAllOrExistsOrOneExpression extends SequenceExpansionExpressi
 	 * <!-- begin-model-doc -->
 	 * A forAll, exists or one expression has a multiplicity lower bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -51,7 +49,6 @@ public interface ForAllOrExistsOrOneExpression extends SequenceExpansionExpressi
 	 * <!-- begin-model-doc -->
 	 * A forAll, exists or one expression has a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -63,7 +60,6 @@ public interface ForAllOrExistsOrOneExpression extends SequenceExpansionExpressi
 	 * <!-- begin-model-doc -->
 	 * The argument of a forAll, exists or one expression must have type Boolean and a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

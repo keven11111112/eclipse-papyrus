@@ -17,10 +17,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.Member#getDefinition <em>Definition</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.Member#getVisibility <em>Visibility</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.Member#getNamespace <em>Namespace</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.Member#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Member#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Member#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Member#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Member#getAnnotation <em>Annotation</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getMember()
@@ -35,7 +35,6 @@ public interface Member extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * 
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Definition</em>' containment reference.
 	 * @see #setDefinition(MemberDefinition)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getMember_Definition()
@@ -48,9 +47,7 @@ public interface Member extends DocumentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.Member#getDefinition <em>Definition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Definition</em>' containment reference.
+	 * @param value the new value of the '<em>Definition</em>' containment reference.
 	 * @see #getDefinition()
 	 * @generated
 	 */
@@ -63,7 +60,6 @@ public interface Member extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * An indication of the visibility of the member outside of its namespace.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see #setVisibility(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getMember_Visibility()
@@ -76,9 +72,7 @@ public interface Member extends DocumentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.Member#getVisibility <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Visibility</em>' attribute.
+	 * @param value the new value of the '<em>Visibility</em>' attribute.
 	 * @see #getVisibility()
 	 * @generated
 	 */
@@ -94,7 +88,6 @@ public interface Member extends DocumentedElement {
 	 * (The namespace definitions for units are not physically nested within another
 	 * Alf namespace definition.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Namespace</em>' container reference.
 	 * @see #setNamespace(NamespaceDefinition)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getMember_Namespace()
@@ -108,9 +101,7 @@ public interface Member extends DocumentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.Member#getNamespace <em>Namespace</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Namespace</em>' container reference.
+	 * @param value the new value of the '<em>Namespace</em>' container reference.
 	 * @see #getNamespace()
 	 * @generated
 	 */
@@ -124,7 +115,6 @@ public interface Member extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * The stereotype annotations on this member definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Annotation</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getMember_Annotation()
 	 * @model containment="true" ordered="false"
@@ -135,7 +125,6 @@ public interface Member extends DocumentedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.definition.toReference()'"
 	 * @generated
@@ -145,10 +134,8 @@ public interface Member extends DocumentedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.visibility <> null then self.visibility\n        else if definition.oclIsKindOf(EnumerationLiteralName) then \'public\'\n        else \'package\'\n        endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.visibility <> null then self.visibility\n        else if definition.oclIsKindOf(EnumerationLiteralName) then \'public\'\n        else \'package\'\n        endif endif'"
 	 * @generated
 	 */
 	String visibility();

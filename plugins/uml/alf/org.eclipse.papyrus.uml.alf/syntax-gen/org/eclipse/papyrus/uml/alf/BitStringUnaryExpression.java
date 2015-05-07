@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.BitStringUnaryExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BitStringUnaryExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBitStringUnaryExpression()
@@ -31,7 +31,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether BitString conversion is required on the operand expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #setIsBitStringConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBitStringUnaryExpression_IsBitStringConversion()
@@ -47,9 +46,7 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BitStringUnaryExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Bit String Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #isIsBitStringConversion()
 	 * @generated
 	 */
@@ -58,7 +55,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.bitStringType()'"
 	 * @generated
 	 */
@@ -67,7 +63,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.lower'"
 	 * @generated
@@ -77,7 +72,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -91,7 +85,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	 * A BitString unary expression has type BitString.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -105,7 +98,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	 * operand expression.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -118,7 +110,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	 * A BitString unary expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -131,9 +122,7 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	 * The operand expression of a BitString unary expression must have type
 	 * BitString or Integer and a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                let operandType = self.operand.type in\n                  (self.isBitStringType(operandType) or self.isIntegerType(operandType)) and\n                  self.operand.upper = 1'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                let operandType = self.operand.type in\n                  (self.isBitStringType(operandType) or self.isIntegerType(operandType)) and\n                  self.operand.upper = 1'"
 	 * @generated
 	 */
 	boolean bitStringUnaryExpressionOperand(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -145,7 +134,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	 * BitString conversion is required if the operand expression of a BitString
 	 * unary expression has type Integer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

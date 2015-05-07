@@ -21,23 +21,23 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getOperator <em>Operator</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getLeftHandSide <em>Left Hand Side</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getRightHandSide <em>Right Hand Side</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getAssignment <em>Assignment</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getFeature <em>Feature</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsIndexed <em>Is Indexed</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsArithmetic <em>Is Arithmetic</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsLogical <em>Is Logical</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsShift <em>Is Shift</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsConcatenation <em>Is Concatenation</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsDefinition <em>Is Definition</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsSimple <em>Is Simple</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsFeature <em>Is Feature</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsDataValueUpdate <em>Is Data Value Update</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsCollectionConversion <em>Is Collection Conversion</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getLeftHandSide <em>Left Hand Side</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getRightHandSide <em>Right Hand Side</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getAssignment <em>Assignment</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsIndexed <em>Is Indexed</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsArithmetic <em>Is Arithmetic</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsLogical <em>Is Logical</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsShift <em>Is Shift</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsConcatenation <em>Is Concatenation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsDefinition <em>Is Definition</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsSimple <em>Is Simple</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsFeature <em>Is Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsDataValueUpdate <em>Is Data Value Update</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsCollectionConversion <em>Is Collection Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression()
@@ -52,7 +52,6 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The image of the assignment operator used in the expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see #setOperator(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_Operator()
@@ -65,9 +64,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operator</em>' attribute.
+	 * @param value the new value of the '<em>Operator</em>' attribute.
 	 * @see #getOperator()
 	 * @generated
 	 */
@@ -80,7 +77,6 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The left-hand side of the assignment, to which a value is to be assigned.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Left Hand Side</em>' containment reference.
 	 * @see #setLeftHandSide(LeftHandSide)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_LeftHandSide()
@@ -93,9 +89,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getLeftHandSide <em>Left Hand Side</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Left Hand Side</em>' containment reference.
+	 * @param value the new value of the '<em>Left Hand Side</em>' containment reference.
 	 * @see #getLeftHandSide()
 	 * @generated
 	 */
@@ -108,7 +102,6 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The right-hand side expression of the assignment, which produces the value being assigned.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Right Hand Side</em>' containment reference.
 	 * @see #setRightHandSide(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_RightHandSide()
@@ -121,9 +114,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getRightHandSide <em>Right Hand Side</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Right Hand Side</em>' containment reference.
+	 * @param value the new value of the '<em>Right Hand Side</em>' containment reference.
 	 * @see #getRightHandSide()
 	 * @generated
 	 */
@@ -138,13 +129,11 @@ public interface AssignmentExpression extends Expression {
 	 * (Note: This also includes assignments to parameters and local names that
 	 * are the source of data value updates.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment</em>' reference.
 	 * @see #setAssignment(AssignedSource)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_Assignment()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n          let name = self.leftHandSide.assignedName() in\n            if name = null then null\n            else if self.isDefinition then\n              AssignedSource{\n                name = name,\n                source = self,\n                type = self.rightHandSide.type,\n                lower = 0,\n                upper = if self.rightHandSide.upper = 1 then 1 else -1 endif\n              }\n            else\n              let assignments = self.assignmentBefore->select(a | a.name = name) in\n                if assignments->isEmpty() then null\n                else\n                  let oldAssignment = assignments->any(true) in\n                    AssignedSource{\n                      name = name,\n                      source = self,\n                      type = oldAssignment.type,\n                      lower = oldAssignment.lower,\n                      upper = oldAssignment.upper\n                  }\n                endif\n            endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n          let name = self.leftHandSide.assignedName() in\n            if name = null then null\n            else if self.isDefinition then\n              AssignedSource{\n                name = name,\n                source = self,\n                type = self.rightHandSide.type,\n                lower = 0,\n                upper = if self.rightHandSide.upper = 1 then 1 else -1 endif\n              }\n            else\n              let assignments = self.assignmentBefore->select(a | a.name = name) in\n                if assignments->isEmpty() then null\n                else\n                  let oldAssignment = assignments->any(true) in\n                    AssignedSource{\n                      name = name,\n                      source = self,\n                      type = oldAssignment.type,\n                      lower = oldAssignment.lower,\n                      upper = oldAssignment.upper\n                  }\n                endif\n            endif endif'"
 	 * @generated
 	 */
 	AssignedSource getAssignment();
@@ -153,9 +142,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getAssignment <em>Assignment</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Assignment</em>' reference.
+	 * @param value the new value of the '<em>Assignment</em>' reference.
 	 * @see #getAssignment()
 	 * @generated
 	 */
@@ -168,13 +155,11 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * If the left-hand side is a feature, then the referent for that feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Feature</em>' reference.
 	 * @see #setFeature(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_Feature()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let feature = self.leftHandSide.feature() in\n          if feature = null then null\n          else\n            let referents = feature.referent in\n              if referents->isEmpty() then null\n              else referents->any(true)\n              endif\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let feature = self.leftHandSide.feature() in\n          if feature = null then null\n          else\n            let referents = feature.referent in\n              if referents->isEmpty() then null\n              else referents->any(true)\n              endif\n          endif'"
 	 * @generated
 	 */
 	ElementReference getFeature();
@@ -183,9 +168,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getFeature <em>Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Feature</em>' reference.
+	 * @param value the new value of the '<em>Feature</em>' reference.
 	 * @see #getFeature()
 	 * @generated
 	 */
@@ -198,7 +181,6 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * If the left-hand side is a feature, whether it has an index or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Indexed</em>' attribute.
 	 * @see #setIsIndexed(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsIndexed()
@@ -212,9 +194,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsIndexed <em>Is Indexed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Indexed</em>' attribute.
+	 * @param value the new value of the '<em>Is Indexed</em>' attribute.
 	 * @see #isIsIndexed()
 	 * @generated
 	 */
@@ -228,7 +208,6 @@ public interface AssignmentExpression extends Expression {
 	 * If this is a compound assignment, whether the compound assignment
 	 * operator is arithmetic or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Arithmetic</em>' attribute.
 	 * @see #setIsArithmetic(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsArithmetic()
@@ -242,9 +221,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsArithmetic <em>Is Arithmetic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Arithmetic</em>' attribute.
+	 * @param value the new value of the '<em>Is Arithmetic</em>' attribute.
 	 * @see #isIsArithmetic()
 	 * @generated
 	 */
@@ -257,7 +234,6 @@ public interface AssignmentExpression extends Expression {
 	 * If the meaning of the '<em>Is Logical</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Is Logical</em>' attribute.
 	 * @see #setIsLogical(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsLogical()
@@ -271,9 +247,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsLogical <em>Is Logical</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Logical</em>' attribute.
+	 * @param value the new value of the '<em>Is Logical</em>' attribute.
 	 * @see #isIsLogical()
 	 * @generated
 	 */
@@ -286,7 +260,6 @@ public interface AssignmentExpression extends Expression {
 	 * If the meaning of the '<em>Is Shift</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Is Shift</em>' attribute.
 	 * @see #setIsShift(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsShift()
@@ -300,9 +273,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsShift <em>Is Shift</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Shift</em>' attribute.
+	 * @param value the new value of the '<em>Is Shift</em>' attribute.
 	 * @see #isIsShift()
 	 * @generated
 	 */
@@ -315,7 +286,6 @@ public interface AssignmentExpression extends Expression {
 	 * If the meaning of the '<em>Is Concatenation</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Is Concatenation</em>' attribute.
 	 * @see #setIsConcatenation(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsConcatenation()
@@ -329,9 +299,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsConcatenation <em>Is Concatenation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Concatenation</em>' attribute.
+	 * @param value the new value of the '<em>Is Concatenation</em>' attribute.
 	 * @see #isIsConcatenation()
 	 * @generated
 	 */
@@ -344,7 +312,6 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether this assignment is the definition of a new local name or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Definition</em>' attribute.
 	 * @see #setIsDefinition(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsDefinition()
@@ -358,9 +325,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsDefinition <em>Is Definition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Definition</em>' attribute.
+	 * @param value the new value of the '<em>Is Definition</em>' attribute.
 	 * @see #isIsDefinition()
 	 * @generated
 	 */
@@ -373,7 +338,6 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether this is a simple assignment or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Simple</em>' attribute.
 	 * @see #setIsSimple(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsSimple()
@@ -387,9 +351,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsSimple <em>Is Simple</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Simple</em>' attribute.
+	 * @param value the new value of the '<em>Is Simple</em>' attribute.
 	 * @see #isIsSimple()
 	 * @generated
 	 */
@@ -403,7 +365,6 @@ public interface AssignmentExpression extends Expression {
 	 * If this is a compound assignment, then the effective expression used to
 	 * obtain the original value of the left-hand side to be updated.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression</em>' reference.
 	 * @see #setExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_Expression()
@@ -417,9 +378,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#getExpression <em>Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression</em>' reference.
+	 * @param value the new value of the '<em>Expression</em>' reference.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -432,7 +391,6 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether the left-hand side is a feature or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Feature</em>' attribute.
 	 * @see #setIsFeature(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsFeature()
@@ -445,9 +403,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsFeature <em>Is Feature</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Feature</em>' attribute.
+	 * @param value the new value of the '<em>Is Feature</em>' attribute.
 	 * @see #isIsFeature()
 	 * @generated
 	 */
@@ -461,7 +417,6 @@ public interface AssignmentExpression extends Expression {
 	 * Whether this assignment updates an attribute of a data value held in a
 	 * local name or parameter.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Data Value Update</em>' attribute.
 	 * @see #setIsDataValueUpdate(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsDataValueUpdate()
@@ -475,9 +430,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsDataValueUpdate <em>Is Data Value Update</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Data Value Update</em>' attribute.
+	 * @param value the new value of the '<em>Is Data Value Update</em>' attribute.
 	 * @see #isIsDataValueUpdate()
 	 * @generated
 	 */
@@ -490,13 +443,11 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether collection conversion is required for this assignment.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Collection Conversion</em>' attribute.
 	 * @see #setIsCollectionConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsCollectionConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let lhsType = self.leftHandSide.type in\n        let rhsType = self.rightHandSide.type in\n          lhsType <> null and rhsType <> null and\n          not self.isCollectionClass(lhsType) and\n          self.isCollectionClass(rhsType) and \n          self.rightHandSide.upper = 1'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let lhsType = self.leftHandSide.type in\n        let rhsType = self.rightHandSide.type in\n          lhsType <> null and rhsType <> null and\n          not self.isCollectionClass(lhsType) and\n          self.isCollectionClass(rhsType) and \n          self.rightHandSide.upper = 1'"
 	 * @generated
 	 */
 	boolean isIsCollectionConversion();
@@ -505,9 +456,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsCollectionConversion <em>Is Collection Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Collection Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Collection Conversion</em>' attribute.
 	 * @see #isIsCollectionConversion()
 	 * @generated
 	 */
@@ -520,13 +469,11 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether BitString conversion is required for this assignment.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #setIsBitStringConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsBitStringConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let lhsType = self.leftHandSide.type in\n        let rhsType = self.type in -- Note: This works for both simple and compound assignments.assignment.\n          rhsType <> null and lhsType <> null and\n          (self.isIntegerType(rhsType) or\n            self.isCollectionConversion and self.isIntegerCollectionClass(rhsType)\n          )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let lhsType = self.leftHandSide.type in\n        let rhsType = self.type in -- Note: This works for both simple and compound assignments.assignment.\n          rhsType <> null and lhsType <> null and self.isBitStringType(lhsType) and\n          (self.isIntegerType(rhsType) or\n            self.isCollectionConversion and self.isIntegerCollectionClass(rhsType)\n          )'"
 	 * @generated
 	 */
 	boolean isIsBitStringConversion();
@@ -535,9 +482,7 @@ public interface AssignmentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignmentExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Bit String Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #isIsBitStringConversion()
 	 * @generated
 	 */
@@ -546,7 +491,6 @@ public interface AssignmentExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isSimple then self.rightHandSide.type\n        else self.leftHandSide.type\n        endif'"
 	 * @generated
 	 */
@@ -555,7 +499,6 @@ public interface AssignmentExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.rightHandSide.upper'"
 	 * @generated
@@ -565,7 +508,6 @@ public interface AssignmentExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isSimple then self.rightHandSide.lower\n        else self.leftHandSide.lower\n        endif'"
 	 * @generated
@@ -575,7 +517,6 @@ public interface AssignmentExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if element = self.leftHandSide then self.rightHandSide.assignmentAfter\n        else self.assignmentBefore\n        endif'"
 	 * @generated
@@ -589,7 +530,6 @@ public interface AssignmentExpression extends Expression {
 	 * An assignment expression is a simple assignment if the assignment
 	 * operator is "=".
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -602,7 +542,6 @@ public interface AssignmentExpression extends Expression {
 	 * An assignment expression is an arithmetic assignment if its operator is a
 	 * compound assignment operator for an arithmetic operation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -616,7 +555,6 @@ public interface AssignmentExpression extends Expression {
 	 * its left hand side is a local name for which there is no assignment
 	 * before the expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -629,7 +567,6 @@ public interface AssignmentExpression extends Expression {
 	 * The left hand side of an assignment expression is a feature if it is a
 	 * kind of FeatureLeftHandSide.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -641,7 +578,6 @@ public interface AssignmentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The left hand side of an assignment expression is indexed if it has an index.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -654,7 +590,6 @@ public interface AssignmentExpression extends Expression {
 	 * An assignment expression is a data value update if its left hand side is
 	 * an attribute of a data value held in a local name or parameter.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -672,7 +607,6 @@ public interface AssignmentExpression extends Expression {
 	 * left-hand side and the multiplicity is also the same as the left-hand
 	 * side, if the left-hand side is not indexed, and is * if it is indexed.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -685,7 +619,6 @@ public interface AssignmentExpression extends Expression {
 	 * If the left-hand side of an assignment expression is a feature, then the
 	 * feature of the assignment is the referent of the left-hand side.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -700,7 +633,6 @@ public interface AssignmentExpression extends Expression {
 	 * access expression, as appropriate for evaluation to obtain the original
 	 * value to be updated.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -715,7 +647,6 @@ public interface AssignmentExpression extends Expression {
 	 * left-hand side.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -729,7 +660,6 @@ public interface AssignmentExpression extends Expression {
 	 * right-hand side expression.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -744,7 +674,6 @@ public interface AssignmentExpression extends Expression {
 	 * same multiplicity as its left-hand side.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -759,7 +688,6 @@ public interface AssignmentExpression extends Expression {
 	 * untyped or have a type that conforms to the type of the right-hand side
 	 * expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        (self.isSimple and not self.isDefinition) implies\n          self.leftHandSide.isTypeConformantWith(self.rightHandSide)'"
 	 * @generated
 	 */
@@ -774,7 +702,6 @@ public interface AssignmentExpression extends Expression {
 	 * to 1, then the multiplicity upper bound of the right-hand side cannot be
 	 * greater than that of the left-hand side.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        (self.isSimple and not self.isDefinition) implies\n          self.leftHandSide.isMultiplicityConformantWith(self.rightHandSide)'"
 	 * @generated
 	 */
@@ -793,9 +720,7 @@ public interface AssignmentExpression extends Expression {
 	 * operator is a shift operator, then the left-hand side must have type
 	 * BitString and the right-hand side must have type Integer.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    not self.isSimple implies\n      let lhsType = self.leftHandSide.type in\n      let rhsType = self.rightHandSide.type in\n        lhsType <> null and rhsType <> null and\n          (self.isArithmetic and \n            self.isIntegerType(lhsType) and self.isIntegerType(rhsType) or\n           self.isLogical and\n            (self.isBooleanType(lhsType) and self.isBooleanType(rhsType) or\n             self.isBitStringType(lhsType) and \n              (self.isBitStringType(rhsType) or self.isIntegerType(rhsType))\n            ) or\n           self.isShift and\n            self.isBitStringType(lhsType) and self.isIntegerType(rhsType) or\n           self.isConcatenation and\n            self.isStringType(lhsType) and self.isStringType(rhsType)\n          )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    not self.isSimple implies\n      let lhsType = self.leftHandSide.type in\n      let rhsType = self.rightHandSide.type in\n        lhsType <> null and rhsType <> null and\n          (self.isArithmetic and \n            self.isIntegerType(lhsType) and self.isIntegerType(rhsType) or\n           self.isLogical and\n            (self.isBooleanType(lhsType) and self.isBooleanType(rhsType) or\n             self.isBitStringType(lhsType) and \n              (self.isBitStringType(rhsType) or self.isIntegerType(rhsType))\n            ) or\n           self.isShift and\n            self.isBitStringType(lhsType) and self.isIntegerType(rhsType) or\n           self.isConcatenation and\n            self.isStringType(lhsType) and self.isStringType(rhsType)\n          )'"
 	 * @generated
 	 */
 	boolean assignmentExpressionCompoundAssignmentTypeConformance(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -807,7 +732,6 @@ public interface AssignmentExpression extends Expression {
 	 * For a compound assignment, both the left-hand and right-hand sides must
 	 * have a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='(not self.isSimple) implies \n                (self.leftHandSide.upper = 1 and self.rightHandSide.upper = 1)'"
 	 * @generated
 	 */
@@ -823,7 +747,6 @@ public interface AssignmentExpression extends Expression {
 	 * side is the assigned source after the right-hand side expression.
 	 * (See the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -837,7 +760,6 @@ public interface AssignmentExpression extends Expression {
 	 * right-hand side is a collection class and its multiplicity upper bound
 	 * is 1, and the type of the left-hand side is not a collection class.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -852,7 +774,6 @@ public interface AssignmentExpression extends Expression {
 	 * or collection conversion is required and the type of the right-hand side
 	 * is a collection class whose argument type is Integer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -866,9 +787,7 @@ public interface AssignmentExpression extends Expression {
 	 * type is a data type, then the assignment expression must be a data value
 	 * update.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.leftHandSide.feature() in\n          feature <> null implies\n            let type = feature.expression.type in\n              (type <> null and type.isDataType()) implies\n                self.isDataValueUpdate'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.leftHandSide.feature() in\n          feature <> null implies\n            let type = feature.expression.type in\n              (type <> null and type.isDataType()) implies\n                self.isDataValueUpdate'"
 	 * @generated
 	 */
 	boolean assignmentExpressionDataValueUpdateLegality(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -881,10 +800,8 @@ public interface AssignmentExpression extends Expression {
 	 * the left-hand side, updated by the assignment from the assignment
 	 * expression, if any.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignment = self.assignment in\n          if assignment = null then self.leftHandSide.assignmentAfter\n          else assignment.update(self.leftHandSide.assignmentAfter)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignment = self.assignment in\n          if assignment = null then self.leftHandSide.assignmentAfter\n          else assignment.update(self.leftHandSide.assignmentAfter)\n          endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> updateAssignments();

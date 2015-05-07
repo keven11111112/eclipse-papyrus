@@ -22,7 +22,6 @@ public interface ModelNamespace extends PackageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -31,7 +30,6 @@ public interface ModelNamespace extends PackageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.toReference()'"
 	 * @generated
 	 */
@@ -40,7 +38,6 @@ public interface ModelNamespace extends PackageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='QualifiedName{nameBinding = OrderedSet(NameBinding){}}'"
 	 * @generated
 	 */
@@ -49,7 +46,6 @@ public interface ModelNamespace extends PackageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" nameRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.resolveInRoot(name)'"
 	 * @generated
@@ -62,7 +58,6 @@ public interface ModelNamespace extends PackageDefinition {
 	 * <!-- begin-model-doc -->
 	 * EXTERNAL
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false" nameRequired="true"
 	 * @generated
 	 */
@@ -74,7 +69,6 @@ public interface ModelNamespace extends PackageDefinition {
 	 * <!-- begin-model-doc -->
 	 * EXTERNAL
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false" pathNameRequired="true"
 	 * @generated
 	 */
@@ -83,7 +77,6 @@ public interface ModelNamespace extends PackageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" oppositeEndTypeRequired="true" nameRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Set(ElementReference){}'"
 	 * @generated
@@ -93,7 +86,6 @@ public interface ModelNamespace extends PackageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='ModelNamespace_appliedProfiles()'"
 	 * @generated
@@ -103,7 +95,6 @@ public interface ModelNamespace extends PackageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model unitRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='ModelNamespace_stubFor(unit)'"
 	 * @generated
@@ -116,7 +107,6 @@ public interface ModelNamespace extends PackageDefinition {
 	 * <!-- begin-model-doc -->
 	 * EXTERNAL
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model unitRequired="true"
 	 * @generated
 	 */
@@ -128,7 +118,6 @@ public interface ModelNamespace extends PackageDefinition {
 	 * <!-- begin-model-doc -->
 	 * EXTERNAL
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */

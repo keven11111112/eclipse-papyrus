@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceExpressionList#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceExpressionList#getElement <em>Element</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceExpressionList()
@@ -37,7 +37,6 @@ public interface SequenceExpressionList extends SequenceElements {
 	 * <!-- begin-model-doc -->
 	 * The list of expressions whose values determine the elements of the sequence.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Element</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceExpressionList_Element()
 	 * @model containment="true" required="true"
@@ -53,10 +52,8 @@ public interface SequenceExpressionList extends SequenceElements {
 	 * more than 1. The type of each expression in the list must conform to
 	 * the given type (with allowance for bit string conversion).
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element->forAll(element |\n          let elementType = element.type in\n            element.upper <= 1 and \n              (type = null or elementType <> null and\n                (elementType.conformsTo(type) or\n                 self.isIntegerType(elementType) and self.isBitStringType(type)\n                )\n              )\n        )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.element->forAll(element |\n          let elementType = element.type in\n            element.upper <= 1 and \n              (type = null or elementType <> null and\n                (elementType.conformsTo(type) or\n                 self.isIntegerType(elementType) and self.isBitStringType(type)\n                )\n              )\n        )'"
 	 * @generated
 	 */
 	boolean conformsTo(ElementReference type);
@@ -64,10 +61,8 @@ public interface SequenceExpressionList extends SequenceElements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.element->includes(element) or \n          self.element->first() = element then\n          self.assignmentsBefore()\n        else\n          let i = self.element->indexOf(element) in\n            self.element->at(i-1).assignmentAfter\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.element->includes(element) or \n          self.element->first() = element then\n          self.assignmentsBefore()\n        else\n          let i = self.element->indexOf(element) in\n            self.element->at(i-1).assignmentAfter\n        endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsBefore(SyntaxElement element);
@@ -75,7 +70,6 @@ public interface SequenceExpressionList extends SequenceElements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element->last().assignmentAfter'"
 	 * @generated
@@ -85,7 +79,6 @@ public interface SequenceExpressionList extends SequenceElements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.element.lower->sum()'"
 	 * @generated
@@ -95,7 +88,6 @@ public interface SequenceExpressionList extends SequenceElements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let lowerBounds = self.element.lower in\n          if lowerBounds->includes(-1) then -1\n          else lowerBounds->sum()\n          endif'"
 	 * @generated
@@ -111,7 +103,6 @@ public interface SequenceExpressionList extends SequenceElements {
 	 * in the list.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -128,7 +119,6 @@ public interface SequenceExpressionList extends SequenceElements {
 	 * upper bound.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

@@ -20,9 +20,9 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#getReferent <em>Referent</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#isIsDirect <em>Is Direct</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#getReferent <em>Referent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#isIsDirect <em>Is Direct</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getClassificationExpression()
@@ -37,13 +37,11 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * <!-- begin-model-doc -->
 	 * The classifier to which the type name of the expression resolves.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Referent</em>' reference.
 	 * @see #setReferent(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getClassificationExpression_Referent()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let referents = self.typeName.referent->select(isClassifier()) in\n          if referents->size() <> 1 then null\n          else referents->any(true)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let referents = self.typeName.referent->select(isClassifier()) in\n          if referents->size() <> 1 then null\n          else referents->any(true)\n          endif'"
 	 * @generated
 	 */
 	ElementReference getReferent();
@@ -52,9 +50,7 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#getReferent <em>Referent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Referent</em>' reference.
+	 * @param value the new value of the '<em>Referent</em>' reference.
 	 * @see #getReferent()
 	 * @generated
 	 */
@@ -67,7 +63,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether the test is for the operand to have the given type directly or to only conform to the given type.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Direct</em>' attribute.
 	 * @see #setIsDirect(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getClassificationExpression_IsDirect()
@@ -81,9 +76,7 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#isIsDirect <em>Is Direct</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Direct</em>' attribute.
+	 * @param value the new value of the '<em>Is Direct</em>' attribute.
 	 * @see #isIsDirect()
 	 * @generated
 	 */
@@ -96,7 +89,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * <!-- begin-model-doc -->
 	 * The name of the type that the operand is to be tested against.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type Name</em>' containment reference.
 	 * @see #setTypeName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getClassificationExpression_TypeName()
@@ -109,9 +101,7 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ClassificationExpression#getTypeName <em>Type Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type Name</em>' containment reference.
+	 * @param value the new value of the '<em>Type Name</em>' containment reference.
 	 * @see #getTypeName()
 	 * @generated
 	 */
@@ -120,7 +110,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.booleanType()'"
 	 * @generated
 	 */
@@ -129,7 +118,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.lower'"
 	 * @generated
@@ -139,7 +127,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -152,7 +139,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * <!-- begin-model-doc -->
 	 * A classification expression is direct if its operator is "hastype".
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -165,7 +151,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * The referent of a classification expression is the classifier to which
 	 * the type name resolves.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -178,7 +163,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * A classification expression has type Boolean.
 	 * (see the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -192,7 +176,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * same as the lower bound of its operand expression.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -205,7 +188,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * A classification expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -217,7 +199,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * <!-- begin-model-doc -->
 	 * The type name in a classification expression must resolve to a non-template classifier.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent <> null and not self.referent.isTemplate()'"
 	 * @generated
 	 */
@@ -229,7 +210,6 @@ public interface ClassificationExpression extends UnaryExpression {
 	 * <!-- begin-model-doc -->
 	 * The operand expression of a classification expression must have a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.upper = 1'"
 	 * @generated
 	 */

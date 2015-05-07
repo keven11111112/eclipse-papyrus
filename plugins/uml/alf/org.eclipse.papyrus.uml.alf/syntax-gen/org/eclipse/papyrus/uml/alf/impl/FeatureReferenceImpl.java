@@ -35,13 +35,12 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>Feature Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.FeatureReferenceImpl#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.FeatureReferenceImpl#getReferent <em>Referent</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.FeatureReferenceImpl#getNameBinding <em>Name Binding</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.FeatureReferenceImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.FeatureReferenceImpl#getReferent <em>Referent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.FeatureReferenceImpl#getNameBinding <em>Name Binding</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,7 +65,6 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,17 +75,15 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression getExpression() {
-		return (Expression) eGet(AlfPackage.eINSTANCE.getFeatureReference_Expression(), true);
+		return (Expression)eGet(AlfPackage.eINSTANCE.getFeatureReference_Expression(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExpression(Expression newExpression) {
@@ -97,28 +93,25 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ElementReference> getReferent() {
-		return (EList<ElementReference>) eGet(AlfPackage.eINSTANCE.getFeatureReference_Referent(), true);
+		return (EList<ElementReference>)eGet(AlfPackage.eINSTANCE.getFeatureReference_Referent(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NameBinding getNameBinding() {
-		return (NameBinding) eGet(AlfPackage.eINSTANCE.getFeatureReference_NameBinding(), true);
+		return (NameBinding)eGet(AlfPackage.eINSTANCE.getFeatureReference_NameBinding(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNameBinding(NameBinding newNameBinding) {
@@ -129,24 +122,23 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	 * The cached invocation delegate for the '{@link #updateAssignments() <em>Update Assignments</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #updateAssignments()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFeatureReference__UpdateAssignments()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFeatureReference__UpdateAssignments()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> updateAssignments() {
 		try {
-			return (EList<AssignedSource>) UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<AssignedSource>)UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -155,24 +147,22 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	 * The cached invocation delegate for the '{@link #behavioralFeatureReferent(org.eclipse.papyrus.uml.alf.InvocationExpression) <em>Behavioral Feature Referent</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #behavioralFeatureReferent(org.eclipse.papyrus.uml.alf.InvocationExpression)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate BEHAVIORAL_FEATURE_REFERENT_INVOCATION_EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFeatureReference__BehavioralFeatureReferent__InvocationExpression())
-			.getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate BEHAVIORAL_FEATURE_REFERENT_INVOCATION_EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFeatureReference__BehavioralFeatureReferent__InvocationExpression()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference behavioralFeatureReferent(InvocationExpression invocation) {
 		try {
-			return (ElementReference) BEHAVIORAL_FEATURE_REFERENT_INVOCATION_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { invocation }));
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)BEHAVIORAL_FEATURE_REFERENT_INVOCATION_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{invocation}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -180,7 +170,6 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean featureReferenceReferentDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -191,12 +180,12 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.FEATURE_REFERENCE__FEATURE_REFERENCE_REFERENT_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "featureReferenceReferentDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.FEATURE_REFERENCE__FEATURE_REFERENCE_REFERENT_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "featureReferenceReferentDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -207,33 +196,32 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	 * The cached validation expression for the '{@link #featureReferenceTargetType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Feature Reference Target Type</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #featureReferenceTargetType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String FEATURE_REFERENCE_TARGET_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
-			"        let type = self.expression.type in\n" +
-			"          type <> null and not type.isPrimitiveType() and not type.isEnumeration()";
+		"        let type = self.expression.type in\n" +
+		"          type <> null and not type.isPrimitiveType() and not type.isEnumeration()";
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean featureReferenceTargetType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return AlfValidator.validate
+		return
+			AlfValidator.validate
 				(AlfPackage.eINSTANCE.getFeatureReference(),
-						this,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						AlfPackage.eINSTANCE.getFeatureReference__FeatureReferenceTargetType__DiagnosticChain_Map(),
-						FEATURE_REFERENCE_TARGET_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
-						Diagnostic.ERROR,
-						AlfValidator.DIAGNOSTIC_SOURCE,
-						AlfValidator.FEATURE_REFERENCE__FEATURE_REFERENCE_TARGET_TYPE);
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 AlfPackage.eINSTANCE.getFeatureReference__FeatureReferenceTargetType__DiagnosticChain_Map(),
+				 FEATURE_REFERENCE_TARGET_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 AlfValidator.DIAGNOSTIC_SOURCE,
+				 AlfValidator.FEATURE_REFERENCE__FEATURE_REFERENCE_TARGET_TYPE);
 	}
 
 	private EList<ElementReference> referents = null;
@@ -255,24 +243,23 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	 * The cached invocation delegate for the '{@link #referent() <em>Referent</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #referent()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate REFERENT__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFeatureReference__Referent()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate REFERENT__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFeatureReference__Referent()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ElementReference> referent() {
 		try {
-			return (EList<ElementReference>) REFERENT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<ElementReference>)REFERENT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -281,24 +268,23 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	 * The cached invocation delegate for the '{@link #FeatureReference_referent() <em>Feature Reference referent</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #FeatureReference_referent()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate FEATURE_REFERENCE_REFERENT__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFeatureReference__FeatureReference_referent()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate FEATURE_REFERENCE_REFERENT__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFeatureReference__FeatureReference_referent()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ElementReference> FeatureReference_referent() {
 		try {
-			return (EList<ElementReference>) FEATURE_REFERENCE_REFERENT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<ElementReference>)FEATURE_REFERENCE_REFERENT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -306,17 +292,14 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Expression.class) {
 			switch (baseOperationID) {
-			case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS:
-				return AlfPackage.FEATURE_REFERENCE___UPDATE_ASSIGNMENTS;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS: return AlfPackage.FEATURE_REFERENCE___UPDATE_ASSIGNMENTS;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -325,27 +308,26 @@ public class FeatureReferenceImpl extends ExpressionImpl implements FeatureRefer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.FEATURE_REFERENCE___UPDATE_ASSIGNMENTS:
-			return updateAssignments();
-		case AlfPackage.FEATURE_REFERENCE___BEHAVIORAL_FEATURE_REFERENT__INVOCATIONEXPRESSION:
-			return behavioralFeatureReferent((InvocationExpression) arguments.get(0));
-		case AlfPackage.FEATURE_REFERENCE___FEATURE_REFERENCE_REFERENT_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return featureReferenceReferentDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.FEATURE_REFERENCE___FEATURE_REFERENCE_TARGET_TYPE__DIAGNOSTICCHAIN_MAP:
-			return featureReferenceTargetType((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.FEATURE_REFERENCE___REFERENT_CACHED:
-			return referentCached();
-		case AlfPackage.FEATURE_REFERENCE___REFERENT:
-			return referent();
-		case AlfPackage.FEATURE_REFERENCE___FEATURE_REFERENCE_REFERENT:
-			return FeatureReference_referent();
+			case AlfPackage.FEATURE_REFERENCE___UPDATE_ASSIGNMENTS:
+				return updateAssignments();
+			case AlfPackage.FEATURE_REFERENCE___BEHAVIORAL_FEATURE_REFERENT__INVOCATIONEXPRESSION:
+				return behavioralFeatureReferent((InvocationExpression)arguments.get(0));
+			case AlfPackage.FEATURE_REFERENCE___FEATURE_REFERENCE_REFERENT_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return featureReferenceReferentDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.FEATURE_REFERENCE___FEATURE_REFERENCE_TARGET_TYPE__DIAGNOSTICCHAIN_MAP:
+				return featureReferenceTargetType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.FEATURE_REFERENCE___REFERENT_CACHED:
+				return referentCached();
+			case AlfPackage.FEATURE_REFERENCE___REFERENT:
+				return referent();
+			case AlfPackage.FEATURE_REFERENCE___FEATURE_REFERENCE_REFERENT:
+				return FeatureReference_referent();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

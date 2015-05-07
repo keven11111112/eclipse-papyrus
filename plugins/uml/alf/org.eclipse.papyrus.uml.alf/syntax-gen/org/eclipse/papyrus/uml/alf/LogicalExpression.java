@@ -20,9 +20,9 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitWise <em>Is Bit Wise</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitStringConversion1 <em>Is Bit String Conversion1</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitStringConversion2 <em>Is Bit String Conversion2</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitWise <em>Is Bit Wise</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitStringConversion1 <em>Is Bit String Conversion1</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitStringConversion2 <em>Is Bit String Conversion2</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLogicalExpression()
@@ -37,7 +37,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether this is a bit-wise logical operation on bit strings.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Bit Wise</em>' attribute.
 	 * @see #setIsBitWise(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLogicalExpression_IsBitWise()
@@ -53,9 +52,7 @@ public interface LogicalExpression extends BinaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitWise <em>Is Bit Wise</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Bit Wise</em>' attribute.
+	 * @param value the new value of the '<em>Is Bit Wise</em>' attribute.
 	 * @see #isIsBitWise()
 	 * @generated
 	 */
@@ -68,7 +65,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether the first operand expression requires BitString conversion.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Bit String Conversion1</em>' attribute.
 	 * @see #setIsBitStringConversion1(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLogicalExpression_IsBitStringConversion1()
@@ -82,9 +78,7 @@ public interface LogicalExpression extends BinaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitStringConversion1 <em>Is Bit String Conversion1</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Bit String Conversion1</em>' attribute.
+	 * @param value the new value of the '<em>Is Bit String Conversion1</em>' attribute.
 	 * @see #isIsBitStringConversion1()
 	 * @generated
 	 */
@@ -97,7 +91,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether the second operand expression requires BitString conversion.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Bit String Conversion2</em>' attribute.
 	 * @see #setIsBitStringConversion2(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLogicalExpression_IsBitStringConversion2()
@@ -113,9 +106,7 @@ public interface LogicalExpression extends BinaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LogicalExpression#isIsBitStringConversion2 <em>Is Bit String Conversion2</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Bit String Conversion2</em>' attribute.
+	 * @param value the new value of the '<em>Is Bit String Conversion2</em>' attribute.
 	 * @see #isIsBitStringConversion2()
 	 * @generated
 	 */
@@ -124,7 +115,6 @@ public interface LogicalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isBitWise then self.bitStringType()\n        else self.booleanType()\n        endif'"
 	 * @generated
 	 */
@@ -133,7 +123,6 @@ public interface LogicalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.operand1.lower = 0 or self.operand2.lower = 0 then 0 else 1 endif'"
 	 * @generated
@@ -143,7 +132,6 @@ public interface LogicalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -158,7 +146,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * BitString if it is bit-wise.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -172,7 +159,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * bound if either operand expression is 0 and 1 otherwise.annotation
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -185,7 +171,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * A logical expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -199,9 +184,7 @@ public interface LogicalExpression extends BinaryExpression {
 	 * BitString. However, if one of the operands is Boolean, then the other
 	 * must also be Boolean.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let type1 = self.operand1.type in\n        let type2 = self.operand2.type in\n          self.isBooleanType(type1) and self.isBooleanType(type2) or\n          (self.isIntegerType(type1) or self.isBitStringType(type1)) and\n            (self.isIntegerType(type2) or self.isBitStringType(type2))'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let type1 = self.operand1.type in\n        let type2 = self.operand2.type in\n          self.isBooleanType(type1) and self.isBooleanType(type2) or\n          (self.isIntegerType(type1) or self.isBitStringType(type1)) and\n            (self.isIntegerType(type2) or self.isBitStringType(type2))'"
 	 * @generated
 	 */
 	boolean logicalExpressionOperands(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -213,7 +196,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * BitString conversion is required if the first operand expression of a
 	 * logical expression has type Integer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -226,7 +208,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * BitString conversion is required if the second operand expression of a
 	 * logical expression has type Integer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -239,7 +220,6 @@ public interface LogicalExpression extends BinaryExpression {
 	 * A logical expression is bit-wise if the type of its first operand is not
 	 * Boolean.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

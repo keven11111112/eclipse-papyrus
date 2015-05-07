@@ -10,7 +10,6 @@ import org.eclipse.papyrus.uml.alf.ForAllOrExistsOrOneExpression;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>For All Or Exists Or One Expression</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -18,7 +17,6 @@ public class ForAllOrExistsOrOneExpressionImpl extends SequenceExpansionExpressi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ForAllOrExistsOrOneExpressionImpl() {
@@ -28,7 +26,6 @@ public class ForAllOrExistsOrOneExpressionImpl extends SequenceExpansionExpressi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

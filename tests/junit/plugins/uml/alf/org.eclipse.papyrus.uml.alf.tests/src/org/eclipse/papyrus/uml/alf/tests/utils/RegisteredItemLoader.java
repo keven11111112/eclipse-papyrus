@@ -206,4 +206,13 @@ public class RegisteredItemLoader {
 		this.registeredItemResourceSet.getResources().clear();
 		this.registeredItemResourceSet = null;
 	}
+	
+	public class RequiredElementsNames {
+		/* Profiles */
+		public final static String STANDARD_PROFILE = "Standard";
+		public final static String ACTION_LANGUAGE_PROFILE = "ActionLanguage";
+		/* Libraries */
+		public final static String ALF_LIBRARY = "Alf Library";
+		public final static String UML_PRIMITIVE_TYPES = "UMLPrimitiveTypes";
+	}
 }

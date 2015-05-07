@@ -29,7 +29,6 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Signal Reception Definition</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -37,7 +36,6 @@ public class SignalReceptionDefinitionImpl extends SignalDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SignalReceptionDefinitionImpl() {
@@ -47,7 +45,6 @@ public class SignalReceptionDefinitionImpl extends SignalDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,23 +56,22 @@ public class SignalReceptionDefinitionImpl extends SignalDefinitionImpl implemen
 	 * The cached invocation delegate for the '{@link #isFeature() <em>Is Feature</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getSignalReceptionDefinition__IsFeature()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getSignalReceptionDefinition__IsFeature()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isFeature() {
 		try {
-			return (Boolean) IS_FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -83,7 +79,6 @@ public class SignalReceptionDefinitionImpl extends SignalDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean signalReceptionDefinitionIsFeatureDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -94,12 +89,12 @@ public class SignalReceptionDefinitionImpl extends SignalDefinitionImpl implemen
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.SIGNAL_RECEPTION_DEFINITION__SIGNAL_RECEPTION_DEFINITION_IS_FEATURE_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "signalReceptionDefinitionIsFeatureDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.SIGNAL_RECEPTION_DEFINITION__SIGNAL_RECEPTION_DEFINITION_IS_FEATURE_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "signalReceptionDefinitionIsFeatureDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -109,17 +104,14 @@ public class SignalReceptionDefinitionImpl extends SignalDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MemberDefinition.class) {
 			switch (baseOperationID) {
-			case AlfPackage.MEMBER_DEFINITION___IS_FEATURE:
-				return AlfPackage.SIGNAL_RECEPTION_DEFINITION___IS_FEATURE;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.MEMBER_DEFINITION___IS_FEATURE: return AlfPackage.SIGNAL_RECEPTION_DEFINITION___IS_FEATURE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -128,17 +120,16 @@ public class SignalReceptionDefinitionImpl extends SignalDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.SIGNAL_RECEPTION_DEFINITION___IS_FEATURE:
-			return isFeature();
-		case AlfPackage.SIGNAL_RECEPTION_DEFINITION___SIGNAL_RECEPTION_DEFINITION_IS_FEATURE_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return signalReceptionDefinitionIsFeatureDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.SIGNAL_RECEPTION_DEFINITION___IS_FEATURE:
+				return isFeature();
+			case AlfPackage.SIGNAL_RECEPTION_DEFINITION___SIGNAL_RECEPTION_DEFINITION_IS_FEATURE_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return signalReceptionDefinitionIsFeatureDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
