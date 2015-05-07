@@ -11,8 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
-import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.css.provider.IPapyrusElementProvider;
 
 
 @SuppressWarnings("restriction")
@@ -20,5 +20,5 @@ public interface ICSSElementProviderFactory {
 
 	public boolean isProviderFor(CSSDiagram diagram);
 
-	public IElementProvider createProvider(CSSDiagram diagram);
+	public IPapyrusElementProvider createProvider(CSSDiagram diagram);
 }

@@ -13,29 +13,58 @@
 
 package org.eclipse.papyrus.umlrt.ui.handlers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.umlrt.custom.utils.ProtocolUtils;
 import org.eclipse.papyrus.views.modelexplorer.handler.CopyHandler;
+import org.eclipse.uml2.uml.Collaboration;
 
 /**
  * Specific copy handler for model explorer
  */
 public class RTProtocolCopyHandler extends CopyHandler {
 
+	/**
+	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getSelectedElements()
+	 *
+	 * @return
+	 */
+	@Override
+	protected List<EObject> getSelectedElements() {
+		List<EObject> result = super.getSelectedElements();
+		if (result == null || result.isEmpty()) {
+			return result;
+		}
 
-	// /**
-	// * Construct copy command from the selection
-	// *
-	// * @param editingDomain
-	// * @param selectedElements
-	// * @return
-	// */
-	// public static Command buildCopyCommand(TransactionalEditingDomain editingDomain, Collection<EObject> selectedElements) {
-	//// DefaultCopyCommand defaultCopyCommand = new DefaultCopyCommand(editingDomain, papyrusClipboard, selectedElements);
-	//// List<IStrategy> allStrategies = PasteStrategyManager.getInstance().getAllStrategies();
-	//// for (IStrategy iStrategy : allStrategies) {
-	//// IPasteStrategy iPasteStrategy = (IPasteStrategy) iStrategy;
-	//// iPasteStrategy.prepare(papyrusClipboard, selectedElements);
-	//// }
-	//// return defaultCopyCommand;
-	// return super.buildCopyCommand(editingDomain, selectedElements, )
-	// }
+		for (EObject selectedElement : result) {
+			if (ProtocolUtils.isProtocol(selectedElement)) {
+				// a copy list should be created, with protocol replaced by their protocol containers
+				return getListOfSelectedElementsWithProtocolReplaced(result);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Copies the given list and replace the protocol inside the list by their protocolcontainers
+	 * 
+	 * @param selectedElements
+	 *            the list to update
+	 * @return the new list, with protocol containers rather than protocol
+	 */
+	protected static List<EObject> getListOfSelectedElementsWithProtocolReplaced(Collection<EObject> selectedElements) {
+		List<EObject> result = new ArrayList<EObject>(selectedElements);
+		for (EObject object : selectedElements) {
+			if (ProtocolUtils.isProtocol(object)) {
+				int i = result.indexOf(object);
+				result.remove(i);
+				result.add(i, ProtocolUtils.getProtocolContainer((Collaboration) object));
+			}
+		}
+		return result;
+	}
+
 }

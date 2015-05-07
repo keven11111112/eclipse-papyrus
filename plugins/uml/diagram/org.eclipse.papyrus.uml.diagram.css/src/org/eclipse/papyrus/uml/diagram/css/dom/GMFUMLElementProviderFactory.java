@@ -11,9 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
-import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ICSSElementProviderFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.css.provider.IPapyrusElementProvider;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -32,7 +32,7 @@ public class GMFUMLElementProviderFactory implements ICSSElementProviderFactory 
 	}
 
 	@Override
-	public IElementProvider createProvider(CSSDiagram diagram) {
+	public IPapyrusElementProvider createProvider(CSSDiagram diagram) {
 		return new GMFUMLElementProvider();
 	}
 

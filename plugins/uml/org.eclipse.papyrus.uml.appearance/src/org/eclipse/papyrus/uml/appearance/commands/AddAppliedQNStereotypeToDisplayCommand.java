@@ -23,7 +23,10 @@ import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusCons
 /**
  * The Class AddQNAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to
  * display withe the qualifiedName.
+ * 
+ * @deprecated Use the commands into oep.uml.diagram.common.stereotype.display.command
  */
+@Deprecated
 public class AddAppliedQNStereotypeToDisplayCommand extends CreateEAnnotationCommand {
 
 	/** The qualified namedepht. */

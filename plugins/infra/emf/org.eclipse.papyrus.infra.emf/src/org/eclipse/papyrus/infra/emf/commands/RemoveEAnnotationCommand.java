@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.commands;
 
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -49,6 +48,8 @@ public class RemoveEAnnotationCommand extends org.eclipse.emf.transaction.Record
 	/** The e annotation name. */
 	private String eAnnotationName;
 
+	private EModelElement eAnnotation;
+
 	/**
 	 * Instantiates a new creates the e annotation command.
 	 *
@@ -66,12 +67,33 @@ public class RemoveEAnnotationCommand extends org.eclipse.emf.transaction.Record
 	}
 
 	/**
+	 * Instantiates a new creates the e annotation command.
+	 *
+	 * @param domain
+	 *            the domain
+	 * @param object
+	 *            the object
+	 * @param eAnnotation
+	 *            The Eannotation
+	 * 
+	 */
+	public RemoveEAnnotationCommand(TransactionalEditingDomain domain, EModelElement object, EModelElement eAnnotation) {
+		super(domain);
+		this.eAnnotation = eAnnotation;
+		this.object = object;
+
+
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void doExecute() {
-		EAnnotation annotation = object.getEAnnotation(eAnnotationName);
-		object.getEAnnotations().remove(annotation);
+		if (eAnnotation == null && eAnnotationName != null) {
+			eAnnotation = object.getEAnnotation(eAnnotationName);
+		}
+		object.getEAnnotations().remove(eAnnotation);
 	}
 
 }

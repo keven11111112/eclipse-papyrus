@@ -23,13 +23,16 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
+import org.eclipse.gmf.runtime.emf.type.core.IEditHelperContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -37,6 +40,8 @@ import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.emf.commands.UnsetValueCommand;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
+import org.eclipse.papyrus.infra.services.edit.utils.CacheRegistry;
+import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 
 /**
  * <pre>
@@ -63,17 +68,93 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementC
 public class DefaultEditHelper extends AbstractEditHelper {
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Cache_Maps = "Cache_Maps";//$NON-NLS-1$
+	public static final String Cache_Maps = IRequestCacheEntries.Cache_Maps;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Element_Type = "Element_Type";//$NON-NLS-1$	
+	public static final String Element_Type = IRequestCacheEntries.Element_Type;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Checked_Elements = "Checked_Elements";//$NON-NLS-1$	
+	public static final String Checked_Elements = IRequestCacheEntries.Checked_Elements;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String EditHelper_Advice = "EditHelper_Advice";//$NON-NLS-1$
+	public static final String EditHelper_Advice = IRequestCacheEntries.EditHelper_Advice;
 
+	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
+	public static final String Client_Context = IRequestCacheEntries.Client_Context;
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean approveRequest(IEditCommandRequest request) {
+		if (request instanceof CreateRelationshipRequest) {
+			// specific case for relationship should be handled
+			return super.approveRequest(request);
+		} else if (request instanceof CreateElementRequest) {
+			// check the containment feature.
+			Object context = request.getEditHelperContext();
+			if (context instanceof EObject) {
+				EObject owner = (EObject) context;
+				EReference reference = getContainmentFeature((CreateElementRequest) request);
+				// The context may not have this reference if some intermediate
+				// container is to be created by the edit-helper.
+				// But, then, we can only optimistically report that we can create
+				// the child
+				if ((reference != null) && (owner.eClass().getEAllContainments().contains(reference))) {
+					// Don't replace an existing value
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+		return super.approveRequest(request);
+	}
+
+	/**
+	 * @return
+	 */
+	protected EReference getContainmentFeature(CreateElementRequest request) {
+		EReference containmentFeature = request.getContainmentFeature();
+		if (containmentFeature != null) {
+			return containmentFeature;
+		}
+
+		EClass classToEdit = getEClassToEdit(request);
+
+		if (classToEdit != null) {
+			IElementType type = request.getElementType();
+
+			if (type != null && type.getEClass() != null) {
+				return PackageUtil.findFeature(classToEdit,
+						type.getEClass());
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the EClass of the element to be edited.
+	 * 
+	 * @return the EClass
+	 */
+	protected EClass getEClassToEdit(CreateElementRequest request) {
+
+		Object context = request.getEditHelperContext();
+
+		if (context instanceof EObject) {
+			return ((EObject) context).eClass();
+
+		} else {
+			IElementType type = ElementTypeRegistry.getInstance()
+					.getElementType(context);
+
+			if (type != null) {
+				return type.getEClass();
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -237,22 +318,55 @@ public class DefaultEditHelper extends AbstractEditHelper {
 	protected IEditHelperAdvice[] getEditHelperAdvice(IEditCommandRequest req) {
 		IEditHelperAdvice[] advices = null;
 		Object editHelperContext = req.getEditHelperContext();
+		if (editHelperContext == null) {
+			return null;
+		}
+
 		Map cacheMaps = (Map) req.getParameter(Cache_Maps);
 		if (cacheMaps != null) {
-			Map contextMap = (Map) cacheMaps.get(editHelperContext);
-			if (contextMap != null) {
-				advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+			if (editHelperContext instanceof IEditHelperContext) {
+				IElementType type = ((IEditHelperContext) editHelperContext).getElementType();
+				if (type != null) {
+					Map contextMap = (Map) cacheMaps.get(type);
+					if (contextMap != null) {
+						advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+					}
+				} else {
+					// get Type from the eobject
+					EObject contextObject = ((IEditHelperContext) editHelperContext).getEObject();
+					Map contextMap = (Map) cacheMaps.get(contextObject);
+					if (contextMap != null) {
+						advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+					}
+
+				}
+
+			} else {
+				Map contextMap = (Map) cacheMaps.get(editHelperContext);
+				if (contextMap != null) {
+					advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+				}
 			}
+
 		}
 
 		if (advices == null) {
 
 			if (editHelperContext instanceof EObject) {
-				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
+				IElementType type = ElementTypeRegistry.getInstance().getElementType((EObject) editHelperContext, req.getClientContext());
+				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
+				// advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
 
 			} else if (editHelperContext instanceof IElementType) {
-				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((IElementType) editHelperContext, req.getClientContext());
+				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), ((IElementType) editHelperContext));
 
+			} else if (editHelperContext instanceof IEditHelperContext) {
+				IElementType type = ((IEditHelperContext) editHelperContext).getElementType();
+				if (type != null) {
+					advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
+				} else {
+					advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
+				}
 			} else {
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
 			}

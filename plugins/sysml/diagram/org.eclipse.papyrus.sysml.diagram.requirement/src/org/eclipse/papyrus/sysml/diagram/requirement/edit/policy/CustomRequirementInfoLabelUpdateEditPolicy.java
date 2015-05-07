@@ -24,11 +24,6 @@ import org.eclipse.uml2.uml.Element;
  */
 public class CustomRequirementInfoLabelUpdateEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
 
-	@Override
-	public void refreshDisplay() {
-		EditPart host = this.getHost();
-		host.refresh();
-	}
 
 	@Override
 	protected Element getUMLElement() {
@@ -39,6 +34,16 @@ public class CustomRequirementInfoLabelUpdateEditPolicy extends AbstractAppliedS
 		// Getting the class out of the edit part.
 		Element clazz = (Element) ((View) classEditPart.getModel()).getElement();
 		return clazz;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#refreshDisplay()
+	 *
+	 */
+	@Override
+	public void refreshDisplay() {
+		// Do nothing
+
 	}
 
 }

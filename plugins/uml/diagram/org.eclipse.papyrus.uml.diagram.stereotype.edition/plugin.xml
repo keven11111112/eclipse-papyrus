@@ -9,6 +9,12 @@
             name="Low">
       </Priority>
    </editpolicyProvider>
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.stereotype.edition.provider.StereotypeDisplayMigrationEditPolicyProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+   </editpolicyProvider>
 </extension>
 <extension
        id="stereotype-ep-provider"
@@ -20,7 +26,7 @@
 			<object
 	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 		    	id="StereotypePropertiesEditPartProvider">
-			    <method name="getType()" value="AppliedStereotypeCompartment,AppliedStereotypeProperty,AppliedStereotypesComment,AppliedStereotypesCommentLink"/>
+			    <method name="getType()" value="StereotypePropertyBrace, StereotypeBrace, StereotypeLabel, StereotypeComment,StereotypeCompartment,StereotypeProperty,StereotypeCommentLink"/>
 		   </object>
 	   </editpartProvider>
    </extension>

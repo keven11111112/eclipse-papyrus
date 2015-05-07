@@ -54,12 +54,10 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.commands.ApplyStereotypeCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.DefferedAppliedStereotypeToDisplayCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.uml.diagram.common.ui.dialogs.PropertyEditors;
@@ -220,7 +218,7 @@ public class StereotypePostAction extends ModelPostAction {
 	/** the column for the stereotypes */
 	private TreeViewerColumn stereotypeColumn = null;
 
-	/** the column with the checkboxes for the runtime properties */
+	/** the column with the check boxes for the runtime properties */
 	private TreeViewerColumn runtimeColumn = null;
 
 	private ArrayList<Value> savedValues;
@@ -290,9 +288,6 @@ public class StereotypePostAction extends ModelPostAction {
 		final ApplyStereotypeRequest request = new ApplyStereotypeRequest(viewAdapter, config.getStereotypesToApplyQN(), true);
 
 		cmd.add(new ApplyStereotypeCommand(editingDomain, request));
-
-		// 2. display stereotypes
-		cmd.add(new EMFtoGMFCommandWrapper(new DefferedAppliedStereotypeToDisplayCommand(editingDomain, viewAdapter, "")));
 
 		AbstractTransactionalCommand setPropertiesCommand = new AbstractTransactionalCommand(editingDomain, "Set stereotype values", null) {
 
@@ -631,7 +626,7 @@ public class StereotypePostAction extends ModelPostAction {
 	 * <ul>
 	 * <li>
 	 * {@link #createConfigurationComposite(Composite, PaletteEntryProxy, List)}</li>
-	 * <li> {@link #performAddButtonPressed(TreeViewer)} when we add or remove stereotypes</li>
+	 * <li>{@link #performAddButtonPressed(TreeViewer)} when we add or remove stereotypes</li>
 	 * </ul>
 	 */
 	protected void updateStereotypeViewer() {
@@ -891,10 +886,10 @@ public class StereotypePostAction extends ModelPostAction {
 	 * Set the {@link Button#setEnabled(boolean)} parameter to true or false for
 	 * the buttons following the selected element in the {@link StereotypePostAction#stereotypeViewer}
 	 * <ul>
-	 * <li> {@link StereotypePostAction#addButton}</li>
-	 * <li> {@link StereotypePostAction#removeButton}</li>
-	 * <li> {@link StereotypePostAction#upButton}</li>
-	 * <li> {@link StereotypePostAction#downButton}</li>
+	 * <li>{@link StereotypePostAction#addButton}</li>
+	 * <li>{@link StereotypePostAction#removeButton}</li>
+	 * <li>{@link StereotypePostAction#upButton}</li>
+	 * <li>{@link StereotypePostAction#downButton}</li>
 	 * </ul>
 	 *
 	 * @param event
@@ -1085,7 +1080,8 @@ public class StereotypePostAction extends ModelPostAction {
 	 * test if all the selected element in the selection are fron the same level
 	 *
 	 * @param selection
-	 * @return <ul>
+	 * @return
+	 * 		<ul>
 	 *         <li>{@code true} if all the element are from the same level in the tree</li>
 	 *         <li>{@code false if not}</li>
 	 *         </ul>

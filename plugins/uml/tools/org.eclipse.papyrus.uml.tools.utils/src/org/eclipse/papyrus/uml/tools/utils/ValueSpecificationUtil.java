@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.Interval;
 import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralNull;
+import org.eclipse.uml2.uml.LiteralReal;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -125,6 +126,9 @@ public class ValueSpecificationUtil {
 				String max = getSpecificationValue(interval.getMax());
 				value = String.format(INTERVAL_FORMAT, min, max);
 				break;
+			case UMLPackage.LITERAL_REAL:
+				LiteralReal real = (LiteralReal) specification;
+				return Double.toString(real.getValue()); // Precision?
 			default: {
 				break;
 			}

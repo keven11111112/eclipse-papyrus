@@ -186,14 +186,14 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 			}
 			// When the selection is computed from the outline, get the associated editor
 			if (part instanceof ContentOutline) {
-				IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
+				IContributedContentsView contributedView = (((ContentOutline) part).getAdapter(IContributedContentsView.class));
 				if (contributedView != null) {
 					part = contributedView.getContributingPart();
 				}
 			}
 
 			if (part instanceof IAdaptable) {
-				domain = (TransactionalEditingDomain) ((IAdaptable) part).getAdapter(TransactionalEditingDomain.class);
+				domain = ((IAdaptable) part).getAdapter(TransactionalEditingDomain.class);
 			}
 		}
 	}

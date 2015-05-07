@@ -33,8 +33,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.InsertFloatingLabelFrom
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationFloatingNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassFloatingNameEditPart;
@@ -48,8 +48,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeFloatingNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyFloatingNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationFloatingNameEditPart;
@@ -105,13 +105,13 @@ public class ClassReconcilier extends DiagramReconciler {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put(String.valueOf(ClassEditPart.VISUAL_ID), String.valueOf(ClassFloatingNameEditPart.VISUAL_ID));
 		map.put(String.valueOf(AssociationClassEditPart.VISUAL_ID), String.valueOf(AssociationClassFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(AssociationEditPart.VISUAL_ID), String.valueOf(AssociationFloatingNameEditPart.VISUAL_ID));
+		map.put(String.valueOf(AssociationNodeEditPart.VISUAL_ID), String.valueOf(AssociationFloatingNameEditPart.VISUAL_ID));
 		map.put(String.valueOf(ClassEditPartCN.VISUAL_ID), String.valueOf(ClassFloatingNameEditPartCN.VISUAL_ID));
 		map.put(String.valueOf(ComponentEditPart.VISUAL_ID), String.valueOf(ComponentFloatingNameEditPart.VISUAL_ID));
 		map.put(String.valueOf(ComponentEditPartCN.VISUAL_ID), String.valueOf(ComponentFloatingNameEditPartCN.VISUAL_ID));
 		map.put(String.valueOf(DataTypeEditPart.VISUAL_ID), String.valueOf(DataTypeFloatingNameEditPart.VISUAL_ID));
 		map.put(String.valueOf(DataTypeEditPartCN.VISUAL_ID), String.valueOf(DataTypeFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(DependencyEditPart.VISUAL_ID), String.valueOf(DependencyFloatingNameEditPart.VISUAL_ID));
+		map.put(String.valueOf(DependencyNodeEditPart.VISUAL_ID), String.valueOf(DependencyFloatingNameEditPart.VISUAL_ID));
 		map.put(String.valueOf(EnumerationEditPart.VISUAL_ID), String.valueOf(EnumerationFloatingNameEditPart.VISUAL_ID));
 		map.put(String.valueOf(EnumerationEditPartCN.VISUAL_ID), String.valueOf(EnumerationFloatingNameEditPartCN.VISUAL_ID));
 		map.put(String.valueOf(InformationItemEditPart.VISUAL_ID), String.valueOf(InformationItemFloatingNameEditPart.VISUAL_ID));
@@ -135,7 +135,7 @@ public class ClassReconcilier extends DiagramReconciler {
 		TreeIterator<EObject> allContentIterator = diagram.eAllContents();
 
 		while (allContentIterator.hasNext()) {
-			EObject eObject = (EObject) allContentIterator.next();
+			EObject eObject = allContentIterator.next();
 
 			if (eObject instanceof View) {
 				if (((View) eObject).getType().equals(CONTAINMENT_LINK_AFFIXEDNODE_OLD_VISUAL_ID)) {
@@ -161,7 +161,7 @@ public class ClassReconcilier extends DiagramReconciler {
 			TreeIterator<EObject> allContentIterator = diagram.eAllContents();
 
 			while (allContentIterator.hasNext()) {
-				EObject eObject = (EObject) allContentIterator.next();
+				EObject eObject = allContentIterator.next();
 
 				if (eObject instanceof Edge) {
 					if (((Edge) eObject).getType().equals(CONTAINMENT_LINK_OLD_VISUAL_ID)) {

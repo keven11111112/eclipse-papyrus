@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.provider;
@@ -23,10 +24,11 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.RestrictedAbstractEditPartProvider;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeEmptyEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeMultilinePropertyEditPart;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypePropertyEditPart;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
 
 
@@ -42,10 +44,17 @@ public class StereotypePropertiesEditPartProvider extends RestrictedAbstractEdit
 	public StereotypePropertiesEditPartProvider() {
 		super();
 
-		nodeMap.put(AppliedStereotypeCompartmentEditPart.ID, AppliedStereotypeCompartmentEditPart.class);
-		nodeMap.put(AppliedStereotypePropertyEditPart.ID, AppliedStereotypeMultilinePropertyEditPart.class);
-		nodeMap.put(AppliedStereotypesCommentEditPart.ID, AppliedStereotypesCommentEditPart.class);
-		edgeMap.put(AppliedStereotypesCommentLinkEditPart.ID, AppliedStereotypesCommentLinkEditPart.class);
+		nodeMap.put(StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE, AppliedStereotypeCompartmentEditPart.class);
+		nodeMap.put(StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE, AppliedStereotypeMultilinePropertyEditPart.class);
+		nodeMap.put(StereotypeDisplayConstant.STEREOTYPE_COMMENT_TYPE, AppliedStereotypeCommentEditPart.class);
+		nodeMap.put(StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE, AppliedStereotypeEmptyEditPart.class);
+		nodeMap.put(StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE, AppliedStereotypeEmptyEditPart.class);
+		nodeMap.put(StereotypeDisplayConstant.STEREOTYPE_PROPERTY_BRACE_TYPE, AppliedStereotypeEmptyEditPart.class);
+
+
+		edgeMap.put(StereotypeDisplayConstant.STEREOTYPE_COMMENT_LINK_TYPE, AppliedStereotypesCommentLinkEditPart.class);
+
+
 
 	}
 

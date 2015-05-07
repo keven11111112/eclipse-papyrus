@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -26,6 +27,7 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.gmf.runtime.diagram.ui.figures.NoteFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
@@ -42,7 +44,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	protected NoteFigureBorder noteBorder = null;
 
 	/**
-	 * Added for stereptypes properties
+	 * Added for stereotypes properties
 	 */
 	protected StereotypePropertiesCompartment stereotypePropertiesContent;
 
@@ -51,6 +53,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	 */
 	protected Label stereotypePropertiesInBraceContent;
 
+	/** Stereotype Wrapping Label */
 	protected PapyrusWrappingLabel stereotypesLabel;
 
 	/**
@@ -84,6 +87,9 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 		this.add(stereotypesLabel, getStereotypeLabelPosition());
 	}
 
+	/**
+	 * Create Properties Content
+	 */
 	protected void createStereotypePropertiesContent() {
 		stereotypePropertiesContent = new StereotypePropertiesCompartment();
 		stereotypePropertiesContent.setFill(false);
@@ -105,6 +111,12 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 
 	}
 
+	/**
+	 * Fill the Compartment with the properties
+	 * 
+	 * @param stereotypeProperties
+	 *            Properties List to display
+	 */
 	private void fillStereotypePropertiesInCompartment(String stereotypeProperties) {
 
 		stereotypePropertiesContent.getChildren().clear();
@@ -120,6 +132,11 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 		repaint();
 	}
 
+	/**
+	 * Retrieve the Property position
+	 * 
+	 * @return The integer for the Position of the property by incrementation
+	 */
 	protected int getStereotypePropertiesCompartmentPosition() {
 		int position = getChildren().indexOf(stereotypesLabel);
 		position++;
@@ -184,7 +201,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 
 		// Set stereotype text on figure
 		if (!"".equals(stereotypeProperties)) {
-			this.stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
+			this.stereotypePropertiesInBraceContent.setText(StereotypeDisplayConstant.BRACE_LEFT + stereotypeProperties + StereotypeDisplayConstant.BRACE_RIGHT);
 		} else {
 			this.stereotypePropertiesInBraceContent.setText("");
 		}
@@ -233,7 +250,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	 * @param stereotypes
 	 *            the string representing the stereotypes to be displayed
 	 */
-	public void setStereotypes(String stereotypes) {
+	protected void setStereotypes(String stereotypes) {
 		if (stereotypes == null) {
 			// Remove label if any
 			if (this.stereotypesLabel != null) {
