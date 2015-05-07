@@ -61,7 +61,7 @@ public class ActivityHelper extends ElementEditHelper {
 	 * @return
 	 */
 	protected boolean isActivityNode(IElementType type) {
-		return type.getEClass() != null && UMLPackage.eINSTANCE.getObjectNode().isSuperTypeOf(type.getEClass());
+		return type.getEClass() != null && UMLPackage.eINSTANCE.getActivityNode().isSuperTypeOf(type.getEClass());
 	}
 
 	protected CreateElementRequest createStructuredNodeRequest(CreateElementRequest baseReq) {
