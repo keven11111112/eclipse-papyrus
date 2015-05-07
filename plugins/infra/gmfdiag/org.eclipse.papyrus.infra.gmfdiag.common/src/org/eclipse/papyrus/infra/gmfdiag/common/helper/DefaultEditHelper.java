@@ -353,9 +353,9 @@ public class DefaultEditHelper extends AbstractEditHelper {
 		if (advices == null) {
 
 			if (editHelperContext instanceof EObject) {
-				IElementType type = ElementTypeRegistry.getInstance().getElementType((EObject) editHelperContext, req.getClientContext());
-				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
-				// advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
+				// IElementType type = ElementTypeRegistry.getInstance().getElementType((EObject) editHelperContext, req.getClientContext());
+				// advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
+				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
 
 			} else if (editHelperContext instanceof IElementType) {
 				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), ((IElementType) editHelperContext));

@@ -89,7 +89,7 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 			IElementType type = createElementRequest.getElementType();
 
 			// type should only be compatible with UMLRT::OperationAsMessages
-			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.RT_MESSAGE_ID);
+			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.PROTOCOL_MESSAGE_ID);
 			// should not be null, otherwise, element type model is not loaded correctly. abort.
 			if (umlRTMessageType == null) {
 				Activator.log.debug("RTMessage element type is not accessible");
@@ -127,7 +127,7 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 			IElementType type = createElementRequest.getElementType();
 
 			// type should only be compatible with UMLRT::OperationAsMessages
-			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.RT_MESSAGE_ID);
+			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.PROTOCOL_MESSAGE_ID);
 			// should not be null, otherwise, element type model is not loaded correctly. abort.
 			if (umlRTMessageType == null || type == null) {
 				Activator.log.debug("RTMessage element type is not accessible");
@@ -143,9 +143,9 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 				GetEditContextCommand command = new GetEditContextCommand(request);
 				if (request.getEditContext() instanceof Collaboration) {
 					// retrieve all needed element types
-					IElementType rTMessageTypeIn = UMLRTElementTypesEnumerator.RT_MESSAGE_IN;
-					IElementType rTMessageTypeOut = UMLRTElementTypesEnumerator.RT_MESSAGE_OUT;
-					IElementType rTMessageTypeInOut = UMLRTElementTypesEnumerator.RT_MESSAGE_INOUT;
+					IElementType rTMessageTypeIn = UMLRTElementTypesEnumerator.PROTOCOL_MESSAGE_IN;
+					IElementType rTMessageTypeOut = UMLRTElementTypesEnumerator.PROTOCOL_MESSAGE_OUT;
+					IElementType rTMessageTypeInOut = UMLRTElementTypesEnumerator.PROTOCOL_MESSAGE_INOUT;
 					if (types.contains(rTMessageTypeIn)) {
 						command.setEditContext(ProtocolUtils.getMessageSetIn((Collaboration) request.getEditContext()));
 					} else if (types.contains(rTMessageTypeOut)) {
