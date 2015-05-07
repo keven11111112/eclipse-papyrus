@@ -31,9 +31,9 @@ public class ActivityHelper extends ElementEditHelper {
 	@Override
 	protected ICommand getCreateCommand(CreateElementRequest req) {
 		CreateElementRequest request;
-		boolean isObjectNode = isObjectNode(req.getElementType());
-		if (isObjectNode) {
-			request = createObjectNodeRequest(req);
+		boolean isActivityNode = isActivityNode(req.getElementType());
+		if (isActivityNode) {
+			request = createActivityNodeRequest(req);
 		} else {
 			boolean isStructureNode = isStructuredNode(req.getElementType());
 			if (isStructureNode) {
@@ -49,7 +49,7 @@ public class ActivityHelper extends ElementEditHelper {
 	 * @param elementType
 	 * @return
 	 */
-	private CreateElementRequest createObjectNodeRequest(CreateElementRequest baseReq) {
+	private CreateElementRequest createActivityNodeRequest(CreateElementRequest baseReq) {
 		CreateElementRequest req = new CreateElementRequest(baseReq.getEditingDomain(), baseReq.getContainer(), baseReq.getElementType());
 		req.addParameters(baseReq.getParameters());
 		req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_OwnedNode());
@@ -60,7 +60,7 @@ public class ActivityHelper extends ElementEditHelper {
 	 * @param elementType
 	 * @return
 	 */
-	protected boolean isObjectNode(IElementType type) {
+	protected boolean isActivityNode(IElementType type) {
 		return type.getEClass() != null && UMLPackage.eINSTANCE.getObjectNode().isSuperTypeOf(type.getEClass());
 	}
 
