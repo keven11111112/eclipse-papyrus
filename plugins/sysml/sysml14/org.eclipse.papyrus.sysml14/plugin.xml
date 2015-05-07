@@ -110,7 +110,7 @@
            iconpath="icons/SysMLProfile.gif"
            name="SysML 1.4"
            path="platform:/plugin/org.eclipse.papyrus.sysml14/model/SysML.profile.uml"
-           provider="CEA LIST">
+           provider="Eclipse Modeling Project">
      </profile>
   </extension>   
    
@@ -121,7 +121,7 @@
            iconpath="icons/SysMLLibrary.gif"
            name="SyMLLibraries"
            path="platform:/plugin/org.eclipse.papyrus.sysml14/model/SyMLLibraries.uml"
-           provider="CEA LIST">
+           provider="Eclipse Modeling Project">
      </library>
   </extension>    
    

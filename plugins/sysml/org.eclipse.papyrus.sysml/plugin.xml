@@ -190,7 +190,7 @@
            iconpath="icons/SysMLProfile.gif"
            name="SysML"
            path="pathmap://SysML_PROFILES/SysML.profile.uml"
-           provider="CEA LIST">
+           provider="Eclipse Modeling Project">
      </profile>
   </extension>
   <extension
@@ -200,7 +200,7 @@
            iconpath="icons/SysMLLibrary.gif"
            name="SysMLPrimitiveTypes"
            path="pathmap://SysML_LIBRARIES/SysMLPrimitiveTypes.uml"
-           provider="CEA LIST">
+           provider="Eclipse Modeling Project">
      </library>
   </extension>    
 </plugin>

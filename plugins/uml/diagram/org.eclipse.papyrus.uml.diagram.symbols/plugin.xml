@@ -25,7 +25,7 @@
             iconpath="icons/symbols.gif"
             name="Papyrus Internal"
             path="pathmap://PAPYRUS_INTERNAL_PROFILES/PapyrusInternal.profile.uml"
-            provider="CEA LIST">
+            provider="Eclipse Modeling Project">
       </profile>
    </extension>
    <extension

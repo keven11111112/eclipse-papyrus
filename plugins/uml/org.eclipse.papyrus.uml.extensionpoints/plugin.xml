@@ -21,7 +21,7 @@
             path="pathmap://UML_PROFILES/Ecore.profile.uml"
             iconpath="icons/ecore.gif"
             name="Ecore"
-            provider="Eclipe.org">
+            provider="Eclipse Modeling Project">
       </profile>
    </extension>
    <extension
@@ -31,7 +31,7 @@
             iconpath="icons/uml.gif"
             name="UMLPrimitiveTypes"
             path="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </library>
    </extension>
    <extension
@@ -41,7 +41,7 @@
             iconpath="icons/ecore.gif"
             name="EcorePrimitiveTypes"
             path="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </library>
    </extension>
    <extension
@@ -51,7 +51,7 @@
             iconpath="icons/xml.gif"
             name="XMLPrimitiveTypes"
             path="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </library>
    </extension> 
       <extension
@@ -61,7 +61,7 @@
             iconpath="icons/java.gif"
             name="JavaPrimitiveTypes"
             path="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </library>
    </extension>
      <extension
@@ -71,7 +71,7 @@
             iconpath="icons/uml.gif"
             name="UMLMetamodel"
             path="pathmap://UML_METAMODELS/UML.metamodel.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </metamodel>
    </extension>
    
@@ -82,7 +82,7 @@
             iconpath="icons/ecore.gif"
             name="EcoreMetamodel"
             path="pathmap://UML_METAMODELS/Ecore.metamodel.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </metamodel>
    </extension>
 </plugin>
