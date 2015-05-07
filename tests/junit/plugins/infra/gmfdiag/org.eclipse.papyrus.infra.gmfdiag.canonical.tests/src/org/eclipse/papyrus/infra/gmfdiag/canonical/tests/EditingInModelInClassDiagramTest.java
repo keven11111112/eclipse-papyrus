@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
 
 import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
-import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
-import static org.eclipse.papyrus.junit.matchers.MoreMatchers.lessThan;
 import static org.hamcrest.CoreMatchers.either;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -305,7 +303,6 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
 			assertThat(attributes.getChildren().indexOf(barEditPart), is(0));
 			assertThat(attributes.getChildren().indexOf(okEditPart), is(1));
-			assertThat(barEditPart.getFigure().getBounds().y, lessThan(okEditPart.getFigure().getBounds().y));
 		}
 
 		undo();
@@ -315,7 +312,6 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
 			assertThat(attributes.getChildren().indexOf(barEditPart), is(1));
 			assertThat(attributes.getChildren().indexOf(okEditPart), is(0));
-			assertThat(barEditPart.getFigure().getBounds().y, greaterThan(okEditPart.getFigure().getBounds().y));
 		}
 
 		redo();
@@ -325,7 +321,6 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
 			assertThat(attributes.getChildren().indexOf(barEditPart), is(0));
 			assertThat(attributes.getChildren().indexOf(okEditPart), is(1));
-			assertThat(barEditPart.getFigure().getBounds().y, lessThan(okEditPart.getFigure().getBounds().y));
 		}
 	}
 
