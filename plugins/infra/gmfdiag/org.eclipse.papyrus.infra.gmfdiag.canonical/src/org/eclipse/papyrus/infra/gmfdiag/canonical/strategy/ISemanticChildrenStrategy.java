@@ -9,6 +9,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 420549
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.canonical.strategy;
@@ -34,7 +35,8 @@ public interface ISemanticChildrenStrategy {
 	 *            the visual (notational) representation of the semantic element, to provide diagram context if required (such as
 	 *            for determining the appropriate part-with-port match of a connector end)
 	 * @return list of semantic elements, or {@code null} to indicate that the strategy does not support the given element.
-	 *         <b>Note</b> that the result is specifically a {@link List} type because the GMF {@link CanonicalEditPolicy} expects lists of children, not other kinds of collections
+	 *         <b>Note</b> that the result is specifically a {@link List} type to support synchronization of the order of
+	 *         elements presented in list compartments
 	 */
 	public List<? extends EObject> getCanonicalSemanticChildren(EObject semanticFromEditPart, View viewFromEditPart);
 

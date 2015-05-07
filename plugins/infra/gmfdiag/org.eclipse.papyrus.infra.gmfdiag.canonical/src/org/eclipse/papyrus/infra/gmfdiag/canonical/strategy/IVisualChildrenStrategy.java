@@ -32,7 +32,8 @@ public interface IVisualChildrenStrategy {
 	 * @param view
 	 *            the edit-part's notation view
 	 * @return a list of child views, or {@code null} to indicate that the strategy does not support the given edit-part.
-	 *         <b>Note</b> that the result is specifically a {@link List} type because the GMF {@link CanonicalEditPolicy} expects lists of views, not other kinds of collections
+	 *         <b>Note</b> that the result is specifically a {@link List} type to support synchronization of the order of
+	 *         elements presented in list compartments
 	 */
 	public List<? extends View> getCanonicalChildren(EditPart editPart, View view);
 
