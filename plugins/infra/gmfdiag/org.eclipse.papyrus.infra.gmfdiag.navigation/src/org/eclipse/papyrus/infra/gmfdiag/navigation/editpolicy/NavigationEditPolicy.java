@@ -32,10 +32,10 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
-import org.eclipse.papyrus.views.modelexplorer.Activator;
 
 /**
  * An edit policy to use the {@link NavigationService} on GMF Diagrams

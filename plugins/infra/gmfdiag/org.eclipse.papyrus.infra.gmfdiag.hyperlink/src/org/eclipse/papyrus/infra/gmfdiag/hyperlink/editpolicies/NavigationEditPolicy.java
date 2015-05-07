@@ -25,6 +25,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
@@ -51,6 +52,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.AdvancedHLManager;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
@@ -59,7 +61,9 @@ import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.service.HyperlinkService;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorNavigationDialog;
+import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
 
 /**
@@ -109,9 +113,6 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		}
 		final EObject semanticElement = gep.resolveSemanticElement();
 
-		// navigable element by using heuristic
-		List<NavigableElement> navElements = null;
-
 		// defaultHyperlinks
 		final ArrayList<HyperLinkObject> defaultHyperLinkObject = new ArrayList<HyperLinkObject>();
 		final ArrayList<HyperLinkObject> hyperLinkObjectList;
@@ -143,81 +144,28 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 				}
 
 			}
-
-			// fill navigation by using heuristics
-			navElements = NavigationHelper.getInstance().getAllNavigableElements(semanticElement);
-			HashMap<NavigableElement, List<CreationCommandDescriptor>> possibleCreations = new HashMap<NavigableElement, List<CreationCommandDescriptor>>();
-
+			
 			// test which kind of navigation by consulting preference
-			String navigationKind = Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DOUBLECLICK_KIND);
+			String navigationKind = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DOUBLECLICK_KIND);
 
-			// no naviagation
+			// no navigation
 			if (navigationKind.equals(INavigationPreferenceConstant.NO_NAVIGATION)) {
 				// do nothing
 				return UnexecutableCommand.INSTANCE;
 			}
 
-			// navigation by using heuristic
-			// add list of diagram navigables by using heuristic
+			// Create default hyperlinks by contributors
 			if (navigationKind.equals(INavigationPreferenceConstant.EXPLICIT_IMPLICIT_NAVIGATION)) {
-				for (NavigableElement navElement : navElements) {
-					final EObject element = navElement.getElement();
-					if (navElement instanceof ExistingNavigableElement) {
-						List<Diagram> associatedDiagrams = DiagramUtils.getAssociatedDiagrams(element, null);
-
-						// ignore the current diagram
-						associatedDiagrams.remove(gep.getNotationView().getDiagram());
-						if (associatedDiagrams != null && !associatedDiagrams.isEmpty()) {
-							existingDiagrams.put(navElement, associatedDiagrams);
-						}
-					}
-				}
-
-				Iterator<List<Diagram>> iter = existingDiagrams.values().iterator();
-				while (iter.hasNext()) {
-					List<Diagram> list = iter.next();
-					Iterator<Diagram> iterDiagram = list.iterator();
-					while (iterDiagram.hasNext()) {
-						Diagram diagram = iterDiagram.next();
-						HyperLinkEditor hyperLinkEditor = new HyperLinkEditor();
-						hyperLinkEditor.setObject(diagram);
-						hyperLinkEditor.setTooltipText(diagram.getName() + " (found by heuristic)");
-						// look for if a hyperlink already exists
-						HyperLinkObject foundHyperlink = null;
-						for (int i = 0; i < defaultHyperLinkObject.size() && foundHyperlink == null; i++) {
-							if (defaultHyperLinkObject.get(i).getObject().equals(diagram)) {
-								foundHyperlink = defaultHyperLinkObject.get(i);
-							}
-						}
-						// the diagram was not into the list of existing default
-						// hyperlink
-						if (foundHyperlink == null) {
-							defaultHyperLinkObject.add(hyperLinkEditor);
-						}
+				// If clicked-on object is a diagram shortcut, we do not add hyperlinks by contributors
+				if (!(semanticElement instanceof Diagram) && defaultHyperLinkObject.size() == 0) {
+					HyperlinkService hyperlinkService = ServiceUtilsForEObject.getInstance().getServiceRegistry(semanticElement).getService(HyperlinkService.class);
+					defaultHyperLinkObject.addAll(hyperlinkService.getHyperlinks(semanticElement));
+					for (HyperLinkObject hyperlink : defaultHyperLinkObject) {
+						hyperlink.setIsDefault(true);
 					}
 				}
 			}
-
-			// Disable to improve usability and user-friendliness.
-			// See Bug 420177: Double click on Hyperlink open diagram AND HyperLink window
-			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=420177
-
-			// if(defaultHyperLinkObject.isEmpty()) {
-			// Command command = new Command() {
-			//
-			// @Override
-			// public void execute() {
-			// EObject semanticElement = gep.getNotationView().getElement();
-			// if(semanticElement instanceof EModelElement) {
-			// HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(createEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (EModelElement)semanticElement, gep.getNotationView(), hyperlinkHelperFactory);
-			// hyperLinkManagerShell.setInput(hyperLinkObjectList);
-			// hyperLinkManagerShell.open();
-			// }
-			// }
-			// };
-			// return command;
-			// }
-
+			
 			if (defaultHyperLinkObject.size() == 1) {
 				// open the diagram
 				final HyperLinkObject hyperlinkObject = defaultHyperLinkObject.get(0);
@@ -351,7 +299,59 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 				return new NavigateHyperlinksCommand();
 			}
+			
+			// No default hyperlinks, so we open the manager shell if the clicked-on object is not a diagram shotcut
+			if (!(semanticElement instanceof Diagram)) {
+				if (defaultHyperLinkObject.size() == 0) {
+					class AddHyperlinkCommand extends Command {
+						private Command addLinkCommand;
+						
+						private AddHyperlinkCommand() {
+							super("Add hyperlink");
+						}
+						
+						public void execute() {
+							addLinkCommand = new Command("Add Hyperlink") {
+								@Override
+								public void execute() {
+									HyperLinkManagerShell hyperLinkManagerShell = new HyperLinkManagerShell(createEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(), (EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
+											((IGraphicalEditPart) getHost()).getNotationView(), hyperlinkHelperFactory);
+									hyperLinkManagerShell.setInput(hyperLinkObjectList);
+									hyperLinkManagerShell.open(); // TODO cannot click Ok
+								}
+							};
+							
+							addLinkCommand.execute();
+						}
+						
+						@Override
+						public void undo() {
+							if (addLinkCommand != null && addLinkCommand.canUndo()) {
+								addLinkCommand.undo();
+							}
+						}
 
+						@Override
+						public void redo() {
+							if (addLinkCommand != null && addLinkCommand.canRedo()) {
+								addLinkCommand.redo();
+							}
+						}
+
+						@Override
+						public void dispose() {
+							if (addLinkCommand != null) {
+								addLinkCommand.dispose();
+								addLinkCommand = null;
+							}
+
+							super.dispose();
+						}
+					};
+					
+					return new AddHyperlinkCommand();
+				}
+			}
 		} catch (Exception e) {
 			Activator.log.error("Impossible to load hyperlinks", e);
 		}

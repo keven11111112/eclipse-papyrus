@@ -878,4 +878,13 @@
          target="1.2.0">
    </diagramReconciler>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
+   <contributor
+         contributor="org.eclipse.papyrus.uml.diagram.statemachine.custom.hyperlink.OwnedBehaviorHyperlinkContributor"
+         description="Creates hyperlinks referencing a state machine represented in a diagram owned by a behaviored classifier"
+         id="org.eclipse.papyrus.uml.diagram.statemachine.ownedBehaviorHyperlinkContributor"
+         label="Owned state machine hyperlinks">
+   </contributor>
+</extension>
 </plugin>

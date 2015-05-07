@@ -3367,4 +3367,14 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
    </diagramReconciler>
 </extension>
 
+<extension
+      point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
+   <contributor
+         contributor="org.eclipse.papyrus.uml.diagram.activity.hyperlink.OwnedBehaviorHyperlinkContributor"
+         description="Creates hyperlinks referencing an activity represented in a diagram owned by a behaviored classifier"
+         id="org.eclipse.papyrus.uml.diagram.activity.ownedBehaviorHyperlinkContributor"
+         label="Owned activity hyperlinks">
+   </contributor>
+</extension>
+
 </plugin>

@@ -1764,7 +1764,27 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
-
+<extension
+         point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.clazz.custom.hyperlink.InnerClassHyperlinkContributor"
+            description="Creates hyperlinks referencing inner classes of a class"
+            id="org.eclipse.papyrus.uml.diagram.clazz.hyperlink.innerClassHyperlinkContributor"
+            label="Inner class diagram hyperlinks">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.clazz.custom.hyperlink.NestingPackageHyperlinkContributor"
+            description="Creates hyperlinks referencing class diagrams that are directly owned by the nesting package of the selected package"
+            id="org.eclipse.papyrus.uml.diagram.clazz.hyperlink.NestingPackageHyperlinkContributor"
+            label="Nesting package class diagram hyperlinks">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.clazz.custom.hyperlink.NestedPackageHyperlinkContributor"
+            description="Creates hyperlinks referencing class diagrams that are directly owned by nested packages of the selected package"
+            id="org.eclipse.papyrus.uml.diagram.clazz.hyperlink.NestedPackageHyperlinkContributor"
+            label="Nested package class diagram hyperlinks">
+      </contributor>
+</extension>
 
 
 </plugin>
