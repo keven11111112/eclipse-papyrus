@@ -9,20 +9,6 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Protocol_3010"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Protocol_3014"/>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.ProtocolContainer" label="ProtocolContainer" description="Create a ProtocolContainer">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Package.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_2007"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_3009"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_PapyrusUMLClassDiagram"/>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.RTMessageSet" label="RTMessageSet" description="Create a RTMessageSet">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Interface.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_2004"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3023"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3036"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3037"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3038"/>
-    </ownedConfigurations>
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.ProtocolMessage" label="ProtocolMessage" description="Create a Protocol Message">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Operation.gif"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3003"/>
