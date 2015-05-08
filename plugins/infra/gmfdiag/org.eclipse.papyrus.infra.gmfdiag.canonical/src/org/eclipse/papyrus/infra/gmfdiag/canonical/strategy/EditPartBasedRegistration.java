@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.gmfdiag.canonical.strategy;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.internal.Activator;
@@ -34,8 +33,6 @@ abstract class EditPartBasedRegistration<T, R extends EditPartBasedRegistration<
 
 	private Class<?> editPartType;
 
-	private IStatus editPartTypeFailure;
-
 	public EditPartBasedRegistration(IConfigurationElement config, Class<T> extensionType) throws CoreException {
 		super(config, extensionType);
 
@@ -43,7 +40,7 @@ abstract class EditPartBasedRegistration<T, R extends EditPartBasedRegistration<
 	}
 
 	private Class<?> getEditPartType() {
-		if ((editPartType == null) && (editPartTypeFailure == null) && (editPartClassName != null)) {
+		if ((editPartType == null) && (editPartClassName != null)) {
 			IConfigurationElement config = getConfigurationElement();
 			Bundle bundle = Platform.getBundle(config.getContributor().getName());
 			if ((bundle != null) && (bundle.getState() == Bundle.ACTIVE)) {

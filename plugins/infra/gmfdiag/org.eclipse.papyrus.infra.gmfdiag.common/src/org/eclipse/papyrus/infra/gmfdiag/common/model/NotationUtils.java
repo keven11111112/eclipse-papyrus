@@ -410,7 +410,7 @@ public class NotationUtils {
 	 */
 	public static EList<String> getStringListValue(View view, String property, EList<String> defaultStringList) {
 		EList<String> value = defaultStringList;
-		if (view != null && property != null && property != "") {
+		if (view != null && property != null && !property.isEmpty()) {
 			EClass stringValueStyle = NotationPackage.eINSTANCE.getStringListValueStyle();
 			if (stringValueStyle != null) {
 				NamedStyle style;

@@ -162,15 +162,18 @@ public class StrategyEditor extends MultipleReferenceEditor {
 	// Returns the new status of the first PasteStrategy in the selection.
 	// Returns null if the selection doesn't contain any PasteStrategy
 	private Boolean findIsActive(IStructuredSelection selection) {
+		Boolean result = null; // Assume that no PasteStrategy will be found in the selection
+
 		Iterator<?> iterator = selection.iterator();
-		while (iterator.hasNext()) {
+		while ((result == null) && iterator.hasNext()) {
 			Object element = iterator.next();
 			if (element instanceof IStrategy) {
 				boolean isActive = getStrategyManager().isActive((IStrategy) element); // Current status
-				return !isActive; // New status (Toggle)
+				result = !isActive; // New status (Toggle)
 			}
 		}
-		return null; // No PasteStrategy found in the selection
+
+		return result;
 	}
 
 	protected void updateStrategy(IStrategy strategy, Button button, boolean isActive) {

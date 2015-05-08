@@ -26,6 +26,7 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.RegistryReader;
@@ -220,9 +221,12 @@ public class ModelingAssistantModelRegistry implements IProviderChangeListener {
 									case IResourceDelta.REMOVED:
 										if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0) {
 											// It was moved
-											URI newURI = URI.createPlatformResourceURI(delta.getMovedToPath().toString(), true);
-											deregisterWorkspaceAssistantModel(uri);
-											registerWorkspaceAssistantModel(newURI);
+											IPath movedToPath = delta.getMovedToPath();
+											if (movedToPath != null) {
+												URI newURI = URI.createPlatformResourceURI(movedToPath.toString(), true);
+												deregisterWorkspaceAssistantModel(uri);
+												registerWorkspaceAssistantModel(newURI);
+											}
 										} else if (resource.getProject().isAccessible()) {
 											// It was deleted
 											deregisterWorkspaceAssistantModel(uri);
