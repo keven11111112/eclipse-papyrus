@@ -48,7 +48,7 @@ public class ActivityHelper extends ElementEditHelper {
 //			}
 //		}
 		// return super.getCreateCommand(request);
-		return super.getCreateCommand(req);
+		return super.getCreateCommand(req); 
 	}
 	
 	/**
