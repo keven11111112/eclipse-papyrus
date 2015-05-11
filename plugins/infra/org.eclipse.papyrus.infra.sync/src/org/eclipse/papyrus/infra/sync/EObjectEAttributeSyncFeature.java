@@ -162,7 +162,7 @@ public class EObjectEAttributeSyncFeature<M extends EObject> extends SyncFeature
 	protected Command getRemoveCommand(SyncItem<M, EObject> from, SyncItem<M, EObject> to, Object value) {
 		return attribute.isMany()
 				? RemoveCommand.create(getEditingDomain(), to.getBackend(), attribute, value)
-				: SetCommand.create(getEditingDomain(), to.getBackend(), attribute, null);
+				: SetCommand.create(getEditingDomain(), to.getBackend(), attribute, SetCommand.UNSET_VALUE);
 	}
 
 	/**
