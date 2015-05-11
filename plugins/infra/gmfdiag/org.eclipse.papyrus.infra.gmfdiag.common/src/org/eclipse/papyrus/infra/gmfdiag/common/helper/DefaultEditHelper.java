@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IEditHelperContext;
@@ -101,7 +100,6 @@ public class DefaultEditHelper extends AbstractEditHelper {
 				// But, then, we can only optimistically report that we can create
 				// the child
 				if ((reference != null) && (owner.eClass().getEAllContainments().contains(reference))) {
-					// Don't replace an existing value
 					return true;
 				} else {
 					return false;
@@ -120,17 +118,9 @@ public class DefaultEditHelper extends AbstractEditHelper {
 			return containmentFeature;
 		}
 
-		EClass classToEdit = getEClassToEdit(request);
-
-		if (classToEdit != null) {
-			IElementType type = request.getElementType();
-
-			if (type != null && type.getEClass() != null) {
-				return PackageUtil.findFeature(classToEdit,
-						type.getEClass());
-			}
-		}
-		return null;
+		containmentFeature = computeContainmentFeature(request);
+		request.initializeContainmentFeature(containmentFeature);
+		return containmentFeature;
 	}
 
 	/**
@@ -403,9 +393,9 @@ public class DefaultEditHelper extends AbstractEditHelper {
 		return result;
 	}
 
-
-	protected boolean initializeWithThisSpecializationType(ISpecializationType specializationType, CreateElementRequest req) {
+	protected EReference getContainmentFeatureFromSpecializationType(ISpecializationType specializationType, CreateElementRequest req) {
 		if (specializationType != null) {
+
 			IContainerDescriptor containerDescriptor = specializationType.getEContainerDescriptor();
 
 			if (containerDescriptor != null) {
@@ -430,12 +420,20 @@ public class DefaultEditHelper extends AbstractEditHelper {
 
 						if (eClass != null && eClass.getEAllReferences().contains(features[i])) {
 							// Use the first feature
-							req.initializeContainmentFeature((features[i]));
-							return true;
+							return features[i];
 						}
 					}
 				}
 			}
+		}
+		return null;
+	}
+
+	protected boolean initializeWithThisSpecializationType(ISpecializationType specializationType, CreateElementRequest req) {
+		EReference containmentFeature = getContainmentFeatureFromSpecializationType(specializationType, req);
+		if (containmentFeature != null) {
+			req.initializeContainmentFeature(containmentFeature);
+			return true;
 		}
 		return false;
 	}
@@ -462,45 +460,57 @@ public class DefaultEditHelper extends AbstractEditHelper {
 	public void initializeDefaultFeature(CreateElementRequest req) {
 
 		if (req.getContainmentFeature() == null) {
+			EReference containmentFeature = computeContainmentFeature(req);
+			if (containmentFeature != null) {
+				req.initializeContainmentFeature(containmentFeature);
+			}
+		}
+	}
 
-			// First, try to find the feature from the element type
-			ISpecializationType specializationType = (ISpecializationType) req.getElementType().getAdapter(ISpecializationType.class);
 
-			if (specializationType != null) {
+	protected EReference computeContainmentFeature(CreateElementRequest request) {
+		// First, try to find the feature from the element type
+		ISpecializationType specializationType = (ISpecializationType) request.getElementType().getAdapter(ISpecializationType.class);
 
-				boolean initialized = initializeWithThisSpecializationType(specializationType, req);
-				IElementType[] superTypes = specializationType.getAllSuperTypes();
+		if (specializationType != null) {
 
-				// Try to initialize with the superTypes if not already initialized
-				for (int i = 0; i < superTypes.length && !initialized; i++) {
-					IElementType superElementType = superTypes[i];
+			EReference reference = getContainmentFeatureFromSpecializationType(specializationType, request);
+			if (reference != null) {
+				return reference;
+			}
 
-					if (superElementType instanceof ISpecializationType) {
-						initialized = initializeWithThisSpecializationType((ISpecializationType) superElementType, req);
+			IElementType[] superTypes = specializationType.getAllSuperTypes();
 
-						if (initialized) {
-							return;
-						}
+			// Try to initialize with the superTypes if not already initialized
+			for (int i = 0; i < superTypes.length; i++) {
+				IElementType superElementType = superTypes[i];
+
+				if (superElementType instanceof ISpecializationType) {
+					reference = getContainmentFeatureFromSpecializationType((ISpecializationType) superElementType, request);
+					if (reference != null) {
+						return reference;
 					}
 				}
 			}
+		}
 
-			EClass eClass = req.getElementType().getEClass();
+		// reference has not been found from element types ==> return from default containment feature for EClass
+		EClass eClass = request.getElementType().getEClass();
 
-			if (eClass != null) {
-				// Next, try to get a default feature
-				EReference defaultFeature = getDefaultContainmentFeature(eClass);
-				if (defaultFeature != null) {
-					req.initializeContainmentFeature(defaultFeature);
-					return;
-				}
+		if (eClass != null) {
+			// Next, try to get a default feature
+			EReference defaultFeature = getDefaultContainmentFeature(eClass);
+			if (defaultFeature != null) {
+				return defaultFeature;
+			}
 
-				// Compute default container (the first feature of container that can contain the new element's type)
-				EReference defaultEReference = findDefaultContainmentFeature(req.getContainer().eClass(), eClass);
-				if (defaultEReference != null) {
-					req.initializeContainmentFeature(defaultEReference);
-				}
+			// Compute default container (the first feature of container that can contain the new element's type)
+			EReference defaultEReference = findDefaultContainmentFeature(request.getContainer().eClass(), eClass);
+			if (defaultEReference != null) {
+				return defaultEReference;
 			}
 		}
+		// should never happen
+		return null;
 	}
 }

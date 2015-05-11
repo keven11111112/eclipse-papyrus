@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.uml.service.types.tests.creation;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -28,12 +27,17 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.command.CreateChildCommand;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -46,6 +50,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -157,6 +163,40 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 		Assert.assertEquals("Wrong number of nodes after 2nd undo", initialNumberOfNodes, testActivity.getNodes().size());
 	}
 
+	@Test
+	public void testUML() throws Exception {
+		int initialNumberOfNodes = 0;
+
+		// retrieve item provider from Activity
+		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(testActivity);
+		// create the central buffer node
+		Object newValue = UMLFactory.eINSTANCE.createCallBehaviorAction();
+		EReference ref = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+		IEditingDomainItemProvider editingDomainItemProvider = AdapterFactoryEditingDomain.getEditingDomainItemProviderFor(testActivity);
+		Command possibleCommand = editingDomainItemProvider.createCommand(testActivity, editingDomain, CreateChildCommand.class,
+				new CommandParameter(testActivity, ref, new CommandParameter(testActivity, ref, newValue)));
+		if (possibleCommand != null && possibleCommand.canExecute()) {
+			Assert.assertEquals("Wrong number of nodes before creation", initialNumberOfNodes, testActivity.getNodes().size());
+
+			domain.getCommandStack().execute(possibleCommand);
+			Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes + 1, testActivity.getOwnedNodes().size());
+			Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes + 1, testActivity.getNodes().size());
+
+			domain.getCommandStack().undo();
+			Assert.assertEquals("Wrong number of owned nodes after undo", initialNumberOfNodes, testActivity.getOwnedNodes().size());
+			Assert.assertEquals("Wrong number of nodes after undo", initialNumberOfNodes, testActivity.getNodes().size());
+
+			domain.getCommandStack().redo();
+			Assert.assertEquals("Wrong number of owned nodes after redo", initialNumberOfNodes + 1, testActivity.getOwnedNodes().size());
+			Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes + 1, testActivity.getNodes().size());
+
+			domain.getCommandStack().undo();
+			Assert.assertEquals("Wrong number of nodes after 2nd undo", initialNumberOfNodes, testActivity.getNodes().size());
+		}
+
+	}
+
+
 	/**
 	 * Creates the element in the given owner element, undo and redo the action
 	 *
@@ -170,21 +210,17 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 	protected Command getCreateChildCommand(EObject owner, IHintedType hintedType, boolean canCreate) throws Exception {
 		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
 		ICommand command = elementEditService.getEditCommand(new CreateElementRequest(owner, hintedType));
-		assertTrue("Command should be a CreationCommand", command instanceof CreateElementCommand);
+		// assertTrue("Command should be a CreationCommand", command instanceof CreateElementCommand);
 		// test if the command is enable and compare with the canCreate parameter
-		boolean canExecute = command.canExecute();
-		if (canExecute) {
-			// executable but was expected as not executable
-			if (!canCreate) {
-				fail("Creation command is executable but it was expected as not executable");
-			} else {
-				// command is executable, and it was expected to => run the creation
-				Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
-				return emfCommand;
-			}
+		if (canCreate) {
+			Assert.assertNotNull("Command should be executable, so not null", command);
+			Assert.assertTrue("Command should be executable", command.canExecute());
+			return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
 		} else {
-			if (canCreate) {
-				fail("Creation command is not executable but it was expected to be executable");
+			if (command != null) {
+				// command was not null. It should be unexecutable in this case
+				Assert.assertFalse("Command should not be executable", command.canExecute());
+
 			}
 		}
 		return null;
