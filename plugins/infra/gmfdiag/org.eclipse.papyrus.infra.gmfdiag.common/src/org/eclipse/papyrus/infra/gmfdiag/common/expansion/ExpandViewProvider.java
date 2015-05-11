@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.Activator;
@@ -151,7 +152,6 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 						}
 					}
 				}
-				return ClassLoaderHelper.loadClass(viewFactoryPath);
 			}
 		}
 		return null;
@@ -190,25 +190,15 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 		diagramType=null;
 	}
 
+	
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#isRelevantDiagram(org.eclipse.gmf.runtime.notation.Diagram)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation)
 	 *
-	 * @param diagram
+	 * @param op
 	 * @return
 	 */
 	@Override
-	protected boolean isRelevantDiagram(Diagram diagram) {
-		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
-		if(viewPrototype!=null){
-			if(diagramExpansionRegistry.getUsage(viewPrototype.getLabel())!=null){
-				return true;
-			}
-			return false;
-
-		}
-		if ((diagramExpansionRegistry.getUsage(diagram.getType())!=null)) {
-			return true;
-		}
+	protected boolean provides(CreateViewForKindOperation op) {
 		return false;
 	}
 }

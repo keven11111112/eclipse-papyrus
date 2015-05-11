@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.providers.IGraphicalTypeRegistry
 
 /**
  * This class is used to know all graphical type that can be added in the diagram.
- * By defaut it accopt all. This is the ExpandViewProvider that verify the job
+ * By default it accepts all. This is the ExpandViewProvider that verify the job
  * #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010
  *
  */
@@ -31,11 +31,7 @@ public class IdentityGraphicalElementType implements  IGraphicalTypeRegistry {
 	 */
 	@Override
 	public String getEdgeGraphicalType(EObject domainElement) {
-		String graphicalType = UNDEFINED_TYPE;
-		if (domainElement == null) {
-			return UNDEFINED_TYPE;
-		}
-		return graphicalType;
+		return UNDEFINED_TYPE;
 	}
 
 	/**
@@ -55,10 +51,7 @@ public class IdentityGraphicalElementType implements  IGraphicalTypeRegistry {
 	 */
 	@Override
 	public String getEdgeGraphicalType(String proposedType) {
-		if (isKnownEdgeType(proposedType)) {
 			return proposedType;
-		}
-		return UNDEFINED_TYPE;
 	}
 
 	/**
@@ -66,12 +59,7 @@ public class IdentityGraphicalElementType implements  IGraphicalTypeRegistry {
 	 */
 	@Override
 	public String getNodeGraphicalType(EObject domainElement, String containerType) {
-		String graphicalType = UNDEFINED_TYPE;
-		if ((containerType == null) || (domainElement == null)) {
-			return UNDEFINED_TYPE;
-		}
-
-		return graphicalType;
+		return UNDEFINED_TYPE;
 	}
 
 	/**
@@ -92,11 +80,7 @@ public class IdentityGraphicalElementType implements  IGraphicalTypeRegistry {
 	 */
 	@Override
 	public String getNodeGraphicalType(String proposedType, String containerType) {
-		if (isKnownNodeType(proposedType)) {
 			return proposedType;
-		}
-
-		return UNDEFINED_TYPE;
 	}
 
 	/**

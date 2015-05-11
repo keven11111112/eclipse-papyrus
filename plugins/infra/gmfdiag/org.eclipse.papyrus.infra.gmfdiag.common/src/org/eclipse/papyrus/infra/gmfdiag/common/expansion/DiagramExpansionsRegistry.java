@@ -40,7 +40,7 @@ import org.osgi.framework.Bundle;
  */
 public class DiagramExpansionsRegistry {
 
-	protected final String EXPANSION_MODEL_EXTENSION_ID = "org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion"; //$NON-NLS-1$
+	protected final static String EXPANSION_MODEL_EXTENSION_ID = "org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion"; //$NON-NLS-1$
 	protected final String MODEL_ID = "model"; //$NON-NLS-1$
 	protected ArrayList<DiagramExpansion> diagramExpansions = new ArrayList<DiagramExpansion>();
 	protected HashMap<String, UseContext> usages = new HashMap<String, UseContext>();
@@ -68,7 +68,9 @@ public class DiagramExpansionsRegistry {
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXPANSION_MODEL_EXTENSION_ID);
 		for (int i = 0; i < configElements.length; i++) {
 			DiagramExpansion diagramExpansion = initializeOneModel(resourceSet, configElements[i]);
-			installExpansionModel(diagramExpansion);
+			if(diagramExpansion!=null){
+				installExpansionModel(diagramExpansion);
+			}
 		}
 
 	}
@@ -132,13 +134,8 @@ public class DiagramExpansionsRegistry {
 	 *            the extension point
 	 */
 	private DiagramExpansion initializeOneModel(ResourceSet resourceSet, IConfigurationElement element) {
-		try {
-			return createExtension(resourceSet, element, element.getAttribute(MODEL_ID));
+		return createExtension(resourceSet, element, element.getAttribute(MODEL_ID));
 
-		} catch (Exception e) {
-			Activator.log.error("model of new DiagramExpansion can not be loaded: ", e); //$NON-NLS-1$
-		}
-		return null;
 	}
 
 	/**
@@ -150,14 +147,15 @@ public class DiagramExpansionsRegistry {
 	 *            the extension point
 	 * @param classAttribute
 	 *            the name of the resource to load
-	 * @return the loaded Folder
+	 * @return null or the Diagram Expansion model
 	 * @throws Exception
 	 *             if the resource is not loaded
 	 */
-	private static DiagramExpansion createExtension(final ResourceSet resourceSet, final IConfigurationElement element, final String classAttribute) throws Exception {
+	private static DiagramExpansion createExtension(final ResourceSet resourceSet, final IConfigurationElement element, final String classAttribute) {
+		URL url=null;
 		try {
 			Bundle extensionBundle = Platform.getBundle(element.getDeclaringExtension().getNamespaceIdentifier());
-			URL url = extensionBundle.getResource(classAttribute);
+			url = extensionBundle.getResource(classAttribute);
 
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 			if (url != null) {
@@ -171,7 +169,8 @@ public class DiagramExpansionsRegistry {
 			}
 			return null;
 		} catch (Exception e) {
-			throw new Exception("unable to create Extension" + e); //$NON-NLS-1$
+			Activator.log.error("Unable to load an extension for "+EXPANSION_MODEL_EXTENSION_ID +" with the url"+url, e); //$NON-NLS-1$
+			return null;
 		}
 	}
 

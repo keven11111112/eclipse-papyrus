@@ -28,6 +28,8 @@ ExpansionAddCompartment.class,
 ExpansionAddChildLabel.class,
 ExpansionAddBorderItem.class,
 ExpansionAddCompartmentWithKind.class,
+ExpansionAddLink.class,
+ExpansionDropElements.class,
 GMFUnsafeTest.class 
 }
 )

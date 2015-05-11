@@ -1,0 +1,2540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Document="http:///schemas/Document/_RQrLoGwBEeSIYu1Ih2FYyQ/10" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:structure="http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Document/_RQrLoGwBEeSIYu1Ih2FYyQ/10 pathmap://DEVELOPER_PROFILES/Document.profile.uml#_RQrLoWwBEeSIYu1Ih2FYyQ http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6 pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ">
+  <uml:Model xmi:id="_ubgMwNE7EeSLjPxDpRV9AQ" name="DiagramExpansion">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_ubgMwdE7EeSLjPxDpRV9AQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Model" xmi:id="_ubgMwtE7EeSLjPxDpRV9AQ" name="Requirements">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_cc0CcNSEEeSRNI7img_HuA">
+        <body>This project is related to the Bug 463290 </body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_RML9cNE8EeSLjPxDpRV9AQ" name="Add Graphical Elements">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_yrPMQNRfEeSRNI7img_HuA" name="Add Graphical Compartments"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IzpZkNR7EeSRNI7img_HuA" name="Assistant"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_TvjGcNR7EeSRNI7img_HuA" name="Creation from the palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_hAd5ENE9EeSLjPxDpRV9AQ" name="Non impact on parent diagrams"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ajYZgNFAEeSLjPxDpRV9AQ" name="ExpransionModel">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_EzirkN97EeS3V7Bu6N14fQ" name="The model has to be well-built"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_dOkloNR7EeSRNI7img_HuA" name="Expanded diagrams viewed with original editor"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_awNtwNelEeS6Ldj4lOPYhg" name="CSS driven"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_k0ZvgNelEeS6Ldj4lOPYhg" name="View point relation"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_YVqh0OG0EeSnB-BHGWjC_A" name="Loading at runtime"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_MR8PYPPKEeSkj8g2gtcZXQ" name="Toto" client="_yrPMQNRfEeSRNI7img_HuA" supplier="_RML9cNE8EeSLjPxDpRV9AQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_ubgMw9E7EeSLjPxDpRV9AQ" name="UseCases">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_UMznENFCEeSxf_hKmhrahA" annotatedElement="_ubgMw9E7EeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_ubgMxNE7EeSLjPxDpRV9AQ" name="useCasesAbstraction" client="_ubgMw9E7EeSLjPxDpRV9AQ" supplier="_ubgMwtE7EeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_ubgMxdE7EeSLjPxDpRV9AQ" name="Diagram Expansion" useCase="_L_66oNFBEeSLjPxDpRV9AQ _CzHdsNR_EeSRNI7img_HuA _EM-zoNR_EeSRNI7img_HuA _G9nvQNR_EeSRNI7img_HuA _Go0LEPPHEeSkj8g2gtcZXQ">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_L_66oNFBEeSLjPxDpRV9AQ" name="Add compartments" subject="_ubgMxdE7EeSLjPxDpRV9AQ">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_JWAlMNFZEeSxf_hKmhrahA" annotatedElement="_L_66oNFBEeSLjPxDpRV9AQ">
+            <body>A developper can add compartments inside a node. It can be XYlayout or list or other type of compartments.</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_CzHdsNR_EeSRNI7img_HuA" name="Add new Nodes" subject="_ubgMxdE7EeSLjPxDpRV9AQ"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_EM-zoNR_EeSRNI7img_HuA" name="Add new Child Label" subject="_ubgMxdE7EeSLjPxDpRV9AQ"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_G9nvQNR_EeSRNI7img_HuA" name="Add new border item" subject="_ubgMxdE7EeSLjPxDpRV9AQ"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Go0LEPPHEeSkj8g2gtcZXQ" name="Add new Link" subject="_ubgMxdE7EeSLjPxDpRV9AQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_SGc0ANFBEeSLjPxDpRV9AQ" name="Developper"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_TfRBENFBEeSLjPxDpRV9AQ" name="A_add compartments_developper" memberEnd="_TfUEYNFBEeSLjPxDpRV9AQ _TfUEYdFBEeSLjPxDpRV9AQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TfS2QNFBEeSLjPxDpRV9AQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TfTdUNFBEeSLjPxDpRV9AQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_TfUEYNFBEeSLjPxDpRV9AQ" name="add compartments" type="_L_66oNFBEeSLjPxDpRV9AQ" association="_TfRBENFBEeSLjPxDpRV9AQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_TfUEYdFBEeSLjPxDpRV9AQ" name="developper" type="_SGc0ANFBEeSLjPxDpRV9AQ" association="_TfRBENFBEeSLjPxDpRV9AQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Km3G0NR_EeSRNI7img_HuA" name="A_add new nodes_developper" memberEnd="_Km6xMNR_EeSRNI7img_HuA _Km7YQNR_EeSRNI7img_HuA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Km48ANR_EeSRNI7img_HuA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Km5jENR_EeSRNI7img_HuA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Km6xMNR_EeSRNI7img_HuA" name="add new nodes" type="_CzHdsNR_EeSRNI7img_HuA" association="_Km3G0NR_EeSRNI7img_HuA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Km7YQNR_EeSRNI7img_HuA" name="developper" type="_SGc0ANFBEeSLjPxDpRV9AQ" association="_Km3G0NR_EeSRNI7img_HuA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_L9m3UNR_EeSRNI7img_HuA" name="A_add new child label_developper" memberEnd="_L9neYtR_EeSRNI7img_HuA _L9oFcNR_EeSRNI7img_HuA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L9neYNR_EeSRNI7img_HuA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_L9neYdR_EeSRNI7img_HuA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_L9neYtR_EeSRNI7img_HuA" name="add new child label" type="_EM-zoNR_EeSRNI7img_HuA" association="_L9m3UNR_EeSRNI7img_HuA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_L9oFcNR_EeSRNI7img_HuA" name="developper" type="_SGc0ANFBEeSLjPxDpRV9AQ" association="_L9m3UNR_EeSRNI7img_HuA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Me3xUNR_EeSRNI7img_HuA" name="A_add new border item_developper" memberEnd="_Me4_cNR_EeSRNI7img_HuA _Me4_cdR_EeSRNI7img_HuA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Me4YYNR_EeSRNI7img_HuA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Me4YYdR_EeSRNI7img_HuA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Me4_cNR_EeSRNI7img_HuA" name="add new border item" type="_G9nvQNR_EeSRNI7img_HuA" association="_Me3xUNR_EeSRNI7img_HuA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Me4_cdR_EeSRNI7img_HuA" name="developper" type="_SGc0ANFBEeSLjPxDpRV9AQ" association="_Me3xUNR_EeSRNI7img_HuA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_JJafkPPHEeSkj8g2gtcZXQ" name="A_add new link_developper" memberEnd="_JJeJ8PPHEeSkj8g2gtcZXQ _JJexAPPHEeSkj8g2gtcZXQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JJc70PPHEeSkj8g2gtcZXQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JJdi4PPHEeSkj8g2gtcZXQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_JJeJ8PPHEeSkj8g2gtcZXQ" name="add new link" type="_Go0LEPPHEeSkj8g2gtcZXQ" association="_JJafkPPHEeSkj8g2gtcZXQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_JJexAPPHEeSkj8g2gtcZXQ" name="developper" type="_SGc0ANFBEeSLjPxDpRV9AQ" association="_JJafkPPHEeSkj8g2gtcZXQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Rk1h0PPJEeSkj8g2gtcZXQ" client="_L_66oNFBEeSLjPxDpRV9AQ" supplier="_yrPMQNRfEeSRNI7img_HuA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfZS4PPJEeSkj8g2gtcZXQ" client="_EM-zoNR_EeSRNI7img_HuA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_WWLw8PPJEeSkj8g2gtcZXQ" client="_G9nvQNR_EeSRNI7img_HuA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_XhP14PPJEeSkj8g2gtcZXQ" client="_G9nvQNR_EeSRNI7img_HuA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_YDSL8PPJEeSkj8g2gtcZXQ" client="_Go0LEPPHEeSkj8g2gtcZXQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Yg9mcPPJEeSkj8g2gtcZXQ" client="_EM-zoNR_EeSRNI7img_HuA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_ZsHK8PPJEeSkj8g2gtcZXQ" client="_CzHdsNR_EeSRNI7img_HuA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_kI22oPPJEeSkj8g2gtcZXQ" client="_Go0LEPPHEeSkj8g2gtcZXQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_ubgMxtE7EeSLjPxDpRV9AQ" name="Design">
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_ubgMx9E7EeSLjPxDpRV9AQ" name="DesignAbstraction" client="_ubgMxtE7EeSLjPxDpRV9AQ" supplier="_ubgMw9E7EeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_PzOsUPSwEeSXvMBl0X3W0A" name="common">
+        <packagedElement xmi:type="uml:Package" xmi:id="_PzOsUfSwEeSXvMBl0X3W0A" name="expansion">
+          <packagedElement xmi:type="uml:Class" xmi:id="_PzRIkPSwEeSXvMBl0X3W0A" name="ChildrenListRepresentation" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_PzRIkfSwEeSXvMBl0X3W0A">
+              <body>&#xD;
+ * This class is a structure that is adapted for the code of provider not to describe compartments as the model&#xD;
+ *  it satisfy #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060&#xD;
+ *&#xD;
+ </body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_PzTk0_SwEeSXvMBl0X3W0A" name="DEBUG_PREFIX" visibility="private" isLeaf="true" isStatic="true" type="_PzTk0vSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_PzTk1PSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * &#xD;
+	 </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_PzUL4vSwEeSXvMBl0X3W0A" name="IDMap" visibility="public" type="_PzUL4fSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_PzUy8PSwEeSXvMBl0X3W0A" name="parentChildrenRelation" visibility="public" type="_PzUL4fSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_PzUy8_SwEeSXvMBl0X3W0A" name="useContext" visibility="protected" type="_PzUy8vSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_PzWBEPSwEeSXvMBl0X3W0A" name="createStructure" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_PzWoIPSwEeSXvMBl0X3W0A" name="representation" type="_PzVaAPSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_PzWoIfSwEeSXvMBl0X3W0A" name="idListToAdd" type="_PzTk0vSwEeSXvMBl0X3W0A">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PzWoIvSwEeSXvMBl0X3W0A"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PzXPMPSwEeSXvMBl0X3W0A" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_PzXPMfSwEeSXvMBl0X3W0A" name="initStructure" visibility="protected"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_PzXPMvSwEeSXvMBl0X3W0A" name="toString" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_PzXPM_SwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * @see java.lang.Object#toString()&#xD;
+	 *&#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_PzZEYPSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P0B9kPSwEeSXvMBl0X3W0A" name="CreateInducedRepresentationViewCommand" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_P0B9kfSwEeSXvMBl0X3W0A">
+              <body>&#xD;
+ * Command to create the compartment displaying shapes for an element&#xD;
+ * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011&#xD;
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_P0DLsPSwEeSXvMBl0X3W0A" general="_P0CkpfSwEeSXvMBl0X3W0A"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P0DywvSwEeSXvMBl0X3W0A" name="owner" visibility="private" type="_P0DywfSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P0Dyw_SwEeSXvMBl0X3W0A">
+                <body> owner of the compartment view to create </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P0EZ0vSwEeSXvMBl0X3W0A" name="isVisible" visibility="private" type="_P0EZ0fSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P0EZ0_SwEeSXvMBl0X3W0A">
+                <body> boolean that indicates if the comaprtment has to be visible or not </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P0EZ1PSwEeSXvMBl0X3W0A" name="visualHint" visibility="private" type="_PzTk0vSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P0Fn8PSwEeSXvMBl0X3W0A" name="preferenceHint" visibility="private" type="_P0FA4_SwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P0Fn8fSwEeSXvMBl0X3W0A" name="doExecute" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P0Fn8vSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P0Fn8_SwEeSXvMBl0X3W0A" name="setVisible" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P0Fn9PSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * Sets the visiblity of the created compartment&#xD;
+	 *&#xD;
+	 * @param isVisible&#xD;
+	 *            &lt;code>true&lt;/code> if the compartment should be visible&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P0GPAPSwEeSXvMBl0X3W0A" name="isVisible" type="_P0EZ0fSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P0J5YPSwEeSXvMBl0X3W0A" name="DiagramExpansionSingleton" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_P0KgcPSwEeSXvMBl0X3W0A">
+              <body>&#xD;
+ * This factory is used to give an instance of the diagram expansion&#xD;
+ *&#xD;
+ </body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P0KgcvSwEeSXvMBl0X3W0A" name="diagramExpansionRegistry" visibility="protected" type="_P0KgcfSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P0LHgPSwEeSXvMBl0X3W0A" name="diagramExpansionSingleton" visibility="protected" isStatic="true" type="_P0J5YPSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P0LHgfSwEeSXvMBl0X3W0A" name="getInstance" visibility="public" isStatic="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P0LHgvSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * &#xD;
+	 * @return an instance of the DiagramExpansion Singleton&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P0LHg_SwEeSXvMBl0X3W0A" type="_P0J5YPSwEeSXvMBl0X3W0A" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P0LHhPSwEeSXvMBl0X3W0A" name="getDiagramExpansionRegistry" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P0LukPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * get the diagram expansion associated to this singleton&#xD;
+	 * @return {@link DiagramExpansionsRegistry}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P0LukfSwEeSXvMBl0X3W0A" type="_P0KgcfSwEeSXvMBl0X3W0A" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P0KgcfSwEeSXvMBl0X3W0A" name="DiagramExpansionsRegistry" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_P2ifAPSwEeSXvMBl0X3W0A">
+              <body>
+ * This class is used to load all extension point call org.eclipse.papyrus.infra.gmfdiag.diagramexpansion
+ * It gives the set of all Diagram expansion that has to be used
+ * #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060
+ *
+ </body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P2ifAfSwEeSXvMBl0X3W0A" name="EXPANSION_MODEL_EXTENSION_ID" visibility="protected" isLeaf="true" isStatic="true" type="_PzTk0vSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P2jGEPSwEeSXvMBl0X3W0A" name="MODEL_ID" visibility="protected" isLeaf="true" type="_PzTk0vSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P2jGEvSwEeSXvMBl0X3W0A" name="diagramExpansions" visibility="protected" type="_P2jGEfSwEeSXvMBl0X3W0A" isUnique="false">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_P2jtIPSwEeSXvMBl0X3W0A"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_P2jtIfSwEeSXvMBl0X3W0A" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P2jtIvSwEeSXvMBl0X3W0A" name="usages" visibility="protected" type="_PzUL4fSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P2jtI_SwEeSXvMBl0X3W0A" name="mapChildreen" visibility="public" type="_PzUL4fSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P2kUMPSwEeSXvMBl0X3W0A" name="DEBUG_EXPANSION" visibility="protected" isLeaf="true" isStatic="true" type="_P0EZ0fSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P2kUMfSwEeSXvMBl0X3W0A" name="init" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P2kUMvSwEeSXvMBl0X3W0A">
+                <body>
+	 * this method load the extension points
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P2kUM_SwEeSXvMBl0X3W0A" name="installExpansionModel" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2k7QPSwEeSXvMBl0X3W0A" name="diagramExpansion" type="_P2jGEfSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P2k7QfSwEeSXvMBl0X3W0A" name="getDiagramExpansions" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P2k7QvSwEeSXvMBl0X3W0A">
+                <body>
+	 *
+	 * @return the set of DiagramExpansion
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2k7Q_SwEeSXvMBl0X3W0A" type="_P2jGEfSwEeSXvMBl0X3W0A" direction="return">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_P2liUPSwEeSXvMBl0X3W0A"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_P2liUfSwEeSXvMBl0X3W0A" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P2liUvSwEeSXvMBl0X3W0A" name="getUsage" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P2liU_SwEeSXvMBl0X3W0A">
+                <body>
+	 * get the usecontext associate to a diagram type
+	 *
+	 * @param diagramType
+	 *            the id of a diagram of the id of a view prototype
+	 * @return a useConstext or null if not usage exist.
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2liVPSwEeSXvMBl0X3W0A" type="_PzUy8vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2mJYPSwEeSXvMBl0X3W0A" name="diagramType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P2nXg_SwEeSXvMBl0X3W0A" name="initializeOneModel" visibility="private">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P2nXhPSwEeSXvMBl0X3W0A">
+                <body>
+	 * Load one model
+	 *
+	 * @param element
+	 *            the extension point
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2n-kPSwEeSXvMBl0X3W0A" type="_P2jGEfSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2n-kfSwEeSXvMBl0X3W0A" name="resourceSet" type="_P2mJY_SwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2n-kvSwEeSXvMBl0X3W0A" name="element" type="_P2nXgvSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P2n-k_SwEeSXvMBl0X3W0A" name="createExtension" visibility="private" isStatic="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P2oloPSwEeSXvMBl0X3W0A">
+                <body>
+	 * Load a resource instanceof DiagramExpansion
+	 *
+	 * @param resourceSet
+	 *            the resource set in which to load the menu model
+	 * @param element
+	 *            the extension point
+	 * @param classAttribute
+	 *            the name of the resource to load
+	 * @return null or the Diagram Expansion model
+	 * @throws Exception
+	 *             if the resource is not loaded
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2olofSwEeSXvMBl0X3W0A" type="_P2jGEfSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2olovSwEeSXvMBl0X3W0A" name="resourceSet" type="_P2mJY_SwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2pMsPSwEeSXvMBl0X3W0A" name="element" type="_P2nXgvSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2pMsfSwEeSXvMBl0X3W0A" name="classAttribute" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P2pzwfSwEeSXvMBl0X3W0A" name="loadExpansion" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P2pzwvSwEeSXvMBl0X3W0A">
+                <body>
+	 * this method is used to load a model expansion at runtime.
+	 * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100
+	 *
+	 * @param resourceURI
+	 *            the URI of the model expansion.
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P2pzw_SwEeSXvMBl0X3W0A" name="resourceURI" type="_P2pzwPSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P2pzxPSwEeSXvMBl0X3W0A" name="clear" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P2qa0PSwEeSXvMBl0X3W0A">
+                <body>
+	 * this method is used to clear the registry about all expansion.
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P5g6gPSwEeSXvMBl0X3W0A" name="ExpandEditPartProvider" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_P5hhkPSwEeSXvMBl0X3W0A">
+              <body>
+ * 
+ * This class is a generic EditpartProvider that is enable to associate controler to new notation element by reading an expansion model
+ * See Requirement #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010
+ *
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_P5iIofSwEeSXvMBl0X3W0A" general="_P5iIoPSwEeSXvMBl0X3W0A"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P5iIovSwEeSXvMBl0X3W0A" name="DEBUG_PREFIX" visibility="private" isLeaf="true" isStatic="true" type="_PzTk0vSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P5iIo_SwEeSXvMBl0X3W0A">
+                <body>
+	 * 
+	 </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P5iIpPSwEeSXvMBl0X3W0A" name="DEBUG_EXPANSION" visibility="private" isLeaf="true" isStatic="true" type="_P0EZ0fSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P5ivsfSwEeSXvMBl0X3W0A" name="nodeMap" visibility="protected" type="_P5ivsPSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P5ivsvSwEeSXvMBl0X3W0A">
+                <body> Map containing node view types supported by this provider </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P5ivs_SwEeSXvMBl0X3W0A" name="edgeMap" visibility="protected" type="_P5ivsPSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P5ivtPSwEeSXvMBl0X3W0A">
+                <body> Map containing edge view types supported by this provider </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P5jWwPSwEeSXvMBl0X3W0A" name="diagramExpansionRegistry" visibility="private" type="_P0KgcfSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P5jWwfSwEeSXvMBl0X3W0A" name="getDiagramType" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5jWwvSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5jWw_SwEeSXvMBl0X3W0A" name="currentView" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P5j91PSwEeSXvMBl0X3W0A" name="provides" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P5kk4PSwEeSXvMBl0X3W0A">
+                <body>
+	 * @see org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
+	 *
+	 * @param operation
+	 * @return
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5kk4fSwEeSXvMBl0X3W0A" type="_P0EZ0fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5kk4vSwEeSXvMBl0X3W0A" name="operation" type="_P5j90_SwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P5kk4_SwEeSXvMBl0X3W0A" name="createGraphicEditPart" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P5kk5PSwEeSXvMBl0X3W0A">
+                <body>
+	 * @see org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProvider#createGraphicEditPart(org.eclipse.gmf.runtime.notation.View)
+	 *
+	 * @param view
+	 * @return
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5lL8vSwEeSXvMBl0X3W0A" type="_P5lL8fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5lL8_SwEeSXvMBl0X3W0A" name="view" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P5lzAPSwEeSXvMBl0X3W0A" name="getCreationConstructor" visibility="private">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P5lzAfSwEeSXvMBl0X3W0A">
+                <body> 
+	 * Return the appropriate constuctor for the cached editpart class. 
+	 * @return a constructor (&lt;tt>null&lt;/tt> if none could be found).
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5lzBPSwEeSXvMBl0X3W0A" type="_P5lzA_SwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5maEPSwEeSXvMBl0X3W0A" name="editpartClass" type="_P5lL9PSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P5maEvSwEeSXvMBl0X3W0A" name="createNewGraphicEditPart" visibility="private">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P5maE_SwEeSXvMBl0X3W0A">
+                <body>
+	 * Creates an editpart via reflection.
+	 * @param constructorParams the editpart's constructor paramters.
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5maFPSwEeSXvMBl0X3W0A" type="_P5lL8fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5nBIPSwEeSXvMBl0X3W0A" name="editpartClass" type="_P5lL9PSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P5nBIfSwEeSXvMBl0X3W0A" name="constructorParams" type="_P5maEfSwEeSXvMBl0X3W0A">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_P5nBIvSwEeSXvMBl0X3W0A"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_P5nBI_SwEeSXvMBl0X3W0A" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P8Kl4PSwEeSXvMBl0X3W0A" name="ExpandViewProvider" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_P8LM8PSwEeSXvMBl0X3W0A">
+              <body>&#xD;
+ * &#xD;
+ * This class is a generic ViewProvider that is enable to create notation element by reading an expansion model&#xD;
+ * See Requirement #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010&#xD;
+ *                 #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040&#xD;
+ *&#xD;
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_P8LM8_SwEeSXvMBl0X3W0A" general="_P8LM8vSwEeSXvMBl0X3W0A"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P8R6ofSwEeSXvMBl0X3W0A" name="DEBUG_PREFIX" visibility="private" isLeaf="true" isStatic="true" type="_PzTk0vSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P8ShsPSwEeSXvMBl0X3W0A" name="DEBUG_EXPANSION" visibility="private" isLeaf="true" isStatic="true" type="_P0EZ0fSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P8ShsfSwEeSXvMBl0X3W0A" name="nodeMap" visibility="protected" type="_P5ivsPSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8ShsvSwEeSXvMBl0X3W0A">
+                <body> Map containing node view types supported by this provider </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P8TIwPSwEeSXvMBl0X3W0A" name="edgeMap" visibility="protected" type="_P5ivsPSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8TIwfSwEeSXvMBl0X3W0A">
+                <body> Map containing edge view types supported by this provider </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P8TIwvSwEeSXvMBl0X3W0A" name="diagramExpansionRegistry" visibility="protected" type="_P0KgcfSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_P8R6oPSwEeSXvMBl0X3W0A" name="ExpandViewProvider implements IViewProvider" client="_P8Kl4PSwEeSXvMBl0X3W0A" supplier="_P8LM9fSwEeSXvMBl0X3W0A" contract="_P8LM9fSwEeSXvMBl0X3W0A"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8TIw_SwEeSXvMBl0X3W0A" name="initGraphicalTypeRegistry" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8TIxPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8Tv0_SwEeSXvMBl0X3W0A" name="provides" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8Tv1PSwEeSXvMBl0X3W0A" type="_P0EZ0fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8UW4PSwEeSXvMBl0X3W0A" name="operation" type="_P8Tv0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8UW4vSwEeSXvMBl0X3W0A" name="provides" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8UW4_SwEeSXvMBl0X3W0A" type="_P0EZ0fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8U98PSwEeSXvMBl0X3W0A" name="operation" type="_P8UW4fSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8U98vSwEeSXvMBl0X3W0A" name="providesFromExpansionModel" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8U98_SwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * this method consults the expansion model to know if the view can be created in the current container.&#xD;
+	 * @param operation the proposition of creation&#xD;
+	 * @return true if the expansion model declare it, else false&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8VlAPSwEeSXvMBl0X3W0A" type="_P0EZ0fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8VlAfSwEeSXvMBl0X3W0A" name="operation" type="_P8U98fSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8VlA_SwEeSXvMBl0X3W0A" name="getNodeViewClass" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8WMEPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8WMEfSwEeSXvMBl0X3W0A" type="_P5lL9PSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8WMEvSwEeSXvMBl0X3W0A" name="semanticAdapter" type="_P8VlAvSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8WzIPSwEeSXvMBl0X3W0A" name="containerView" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8WzIfSwEeSXvMBl0X3W0A" name="graphicalType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8WzIvSwEeSXvMBl0X3W0A" name="getViewFactory" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8WzI_SwEeSXvMBl0X3W0A" type="_P5lL9PSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8XaMPSwEeSXvMBl0X3W0A" name="containerView" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8XaMfSwEeSXvMBl0X3W0A" name="graphicalType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8XaMvSwEeSXvMBl0X3W0A" name="getDiagramType" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8XaM_SwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * get the diagram type from a view.&#xD;
+	 * @param currentView the current view&#xD;
+	 * @return the diagram type it can be also a view point&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8YBQPSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8YBQfSwEeSXvMBl0X3W0A" name="currentView" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8YBQvSwEeSXvMBl0X3W0A" name="getEdgeViewClass" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8YBQ_SwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8YoUPSwEeSXvMBl0X3W0A" type="_P5lL9PSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8YoUfSwEeSXvMBl0X3W0A" name="semanticAdapter" type="_P8VlAvSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8YoUvSwEeSXvMBl0X3W0A" name="containerView" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8YoU_SwEeSXvMBl0X3W0A" name="graphicalType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8ZPYPSwEeSXvMBl0X3W0A" name="initDiagramType" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8ZPYfSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8ZPY_SwEeSXvMBl0X3W0A" name="provides" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P8ZPZPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation)&#xD;
+	 *&#xD;
+	 * @param op&#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8Z2cPSwEeSXvMBl0X3W0A" type="_P0EZ0fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P8Z2cfSwEeSXvMBl0X3W0A" name="op" type="_P8ZPYvSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P8y4APSwEeSXvMBl0X3W0A" name="IdentityGraphicalElementType" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_P8y4AfSwEeSXvMBl0X3W0A">
+              <body>&#xD;
+ * This class is used to know all graphical type that can be added in the diagram.&#xD;
+ * By default it accepts all. This is the ExpandViewProvider that verify the job&#xD;
+ * #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010&#xD;
+ *&#xD;
+ </body>
+            </ownedComment>
+            <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_P8zfEfSwEeSXvMBl0X3W0A" name="IdentityGraphicalElementType implements IGraphicalTypeRegistry" client="_P8y4APSwEeSXvMBl0X3W0A" supplier="_P8zfEPSwEeSXvMBl0X3W0A" contract="_P8zfEPSwEeSXvMBl0X3W0A"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P8zfE_SwEeSXvMBl0X3W0A" name="getEdgeGraphicalType" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P80GIPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P80GIfSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P80GIvSwEeSXvMBl0X3W0A" name="domainElement" type="_P8zfEvSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P80tM_SwEeSXvMBl0X3W0A" name="getEdgeGraphicalType" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P80tNPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P80tNfSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P81UQPSwEeSXvMBl0X3W0A" name="elementType" type="_P80tMvSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P81UQfSwEeSXvMBl0X3W0A" name="getEdgeGraphicalType" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P81UQvSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P81UQ_SwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P81URPSwEeSXvMBl0X3W0A" name="proposedType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P817UPSwEeSXvMBl0X3W0A" name="getNodeGraphicalType" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P817UfSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P817UvSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P817U_SwEeSXvMBl0X3W0A" name="domainElement" type="_P8zfEvSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P82iYPSwEeSXvMBl0X3W0A" name="containerType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P82iYfSwEeSXvMBl0X3W0A" name="getNodeGraphicalType" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P82iYvSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P82iY_SwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P83JcPSwEeSXvMBl0X3W0A" name="elementType" type="_P80tMvSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P83JcfSwEeSXvMBl0X3W0A" name="containerType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P83JcvSwEeSXvMBl0X3W0A" name="getNodeGraphicalType" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P83Jc_SwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P83wgPSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P83wgfSwEeSXvMBl0X3W0A" name="proposedType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P83wgvSwEeSXvMBl0X3W0A" name="containerType" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P83wg_SwEeSXvMBl0X3W0A" name="isKnownEdgeType" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P83whPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P84XkPSwEeSXvMBl0X3W0A" type="_P0EZ0fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P84XkfSwEeSXvMBl0X3W0A" name="type" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P84XkvSwEeSXvMBl0X3W0A" name="isKnownNodeType" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P84Xk_SwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P84-oPSwEeSXvMBl0X3W0A" type="_P0EZ0fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P84-ofSwEeSXvMBl0X3W0A" name="type" type="_PzTk0vSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P-h9YPSwEeSXvMBl0X3W0A" name="InducedRepresentationCreationEditPolicy" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_P-h9YfSwEeSXvMBl0X3W0A">
+              <body>&#xD;
+ * this edit policy can be apply only on {@link IPapyrusEditPart} in order to&#xD;
+ * access to primary figure. the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}.&#xD;
+&#xD;
+ * it creates the compartment displaying shapes for an element by reading the expansion model&#xD;
+ * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011&#xD;
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_P-ikdvSwEeSXvMBl0X3W0A" general="_P-ikdfSwEeSXvMBl0X3W0A"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P-jLgPSwEeSXvMBl0X3W0A" name="INDUCED_REPRESENTATION_CREATOR_EDITPOLICY" visibility="public" isLeaf="true" isStatic="true" type="_PzTk0vSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-jLgfSwEeSXvMBl0X3W0A">
+                <body> constant for this edit policy role </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P-jykfSwEeSXvMBl0X3W0A" name="notificationManager" visibility="protected" type="_P-jykPSwEeSXvMBl0X3W0A" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-jykvSwEeSXvMBl0X3W0A">
+                <body> manager for notifications: should the compartment react to the notification? </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P-jyk_SwEeSXvMBl0X3W0A" name="diagramExpansionRegistry" visibility="protected" type="_P0KgcfSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P-jylPSwEeSXvMBl0X3W0A" name="activate" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-kZoPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 *&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P-kZofSwEeSXvMBl0X3W0A" name="deactivate" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-kZovSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 *&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P-kZo_SwEeSXvMBl0X3W0A" name="getView" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-kZpPSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * Returns the view controlled by the host edit part&#xD;
+	 *&#xD;
+	 * @return the view controlled by the host edit part&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-kZpfSwEeSXvMBl0X3W0A" type="_P0DywfSwEeSXvMBl0X3W0A" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P-lAsPSwEeSXvMBl0X3W0A" name="executeShapeCompartmentCreation" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-lAsfSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * the goal of this method is to execute the a command to create a notation node for a compartment of stereotype&#xD;
+	 *&#xD;
+	 * @param editPart&#xD;
+	 *            the editpart owner of the new compartment&#xD;
+	 * @param appliedstereotype&#xD;
+	 *            the stereotype application&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-lAsvSwEeSXvMBl0X3W0A" name="editPart" type="_P5lL8fSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-lAs_SwEeSXvMBl0X3W0A" name="existedDynamicCompartment" type="_PzUL4fSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-lnwPSwEeSXvMBl0X3W0A" name="wantedChildreenID" type="_PzTk0vSwEeSXvMBl0X3W0A">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_P-lnwfSwEeSXvMBl0X3W0A"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_P-lnwvSwEeSXvMBl0X3W0A" value="*"/>
+              </ownedParameter>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-lnw_SwEeSXvMBl0X3W0A" name="listRepresentation" type="_PzRIkPSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P-mO0PSwEeSXvMBl0X3W0A" name="getEditingDomain" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-mO0fSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * Returns the editing domain for the given edit Part&#xD;
+	 *&#xD;
+	 * @param editPart&#xD;
+	 *            the edit part from which editing domain is searched&#xD;
+	 * @return the editing domain&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-mO0_SwEeSXvMBl0X3W0A" type="_P-mO0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-mO1PSwEeSXvMBl0X3W0A" name="editPart" type="_P5lL8fSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P-m14PSwEeSXvMBl0X3W0A" name="getDiagramType" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-m14fSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-m14vSwEeSXvMBl0X3W0A" name="currentView" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P-m14_SwEeSXvMBl0X3W0A" name="updateAddedCompartment" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-m15PSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * this method creates a node for the compartment of stereotype if it does not exist.&#xD;
+	 *&#xD;
+	 * @param stereotypeApplication&#xD;
+	 *            the stereotype application&#xD;
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P-nc8PSwEeSXvMBl0X3W0A" name="getAddedCompartmentView" visibility="private">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P-nc8fSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * Returns the view corresponding to the shape compartment&#xD;
+	 *&#xD;
+	 * @param view &#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-nc8vSwEeSXvMBl0X3W0A" type="_PzUL4fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-nc8_SwEeSXvMBl0X3W0A" name="view" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P-oEAPSwEeSXvMBl0X3W0A" name="childreenID" type="_PzTk0vSwEeSXvMBl0X3W0A">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_P-oEAfSwEeSXvMBl0X3W0A"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_P-oEAvSwEeSXvMBl0X3W0A" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P_pXsPSwEeSXvMBl0X3W0A" name="InducedRepresentationPolicyProvider" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_P_p-wPSwEeSXvMBl0X3W0A">
+              <body>&#xD;
+ * Edit policy provider to install InducedRepresentationPolicy in charge to create&#xD;
+ * compartments displaying shapes for an element by reading the expansion model&#xD;
+ * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011&#xD;
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_P_p-wvSwEeSXvMBl0X3W0A" general="_P_p-wfSwEeSXvMBl0X3W0A"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_P_ql0vSwEeSXvMBl0X3W0A" name="diagramExpansionRegistry" visibility="private" type="_P0KgcfSwEeSXvMBl0X3W0A" isUnique="false"/>
+            <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_P_ql0fSwEeSXvMBl0X3W0A" name="InducedRepresentationPolicyProvider implements IEditPolicyProvider" client="_P_pXsPSwEeSXvMBl0X3W0A" supplier="_P_ql0PSwEeSXvMBl0X3W0A" contract="_P_ql0PSwEeSXvMBl0X3W0A"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P_rM4PSwEeSXvMBl0X3W0A" name="getDiagramType" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P_rM4fSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * get the diagram type from a view.&#xD;
+	 * @param currentView the current view&#xD;
+	 * @return the diagram type it can be also a view point&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P_rM4vSwEeSXvMBl0X3W0A" type="_PzTk0vSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P_rM4_SwEeSXvMBl0X3W0A" name="currentView" type="_P0DywfSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P_rz8PSwEeSXvMBl0X3W0A" name="provides" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P_rz8fSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P_rz8vSwEeSXvMBl0X3W0A" type="_P0EZ0fSwEeSXvMBl0X3W0A" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P_rz8_SwEeSXvMBl0X3W0A" name="operation" type="_P5j90_SwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_P_sbAPSwEeSXvMBl0X3W0A" name="createEditPolicies" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_P_sbAfSwEeSXvMBl0X3W0A">
+                <body>&#xD;
+	 * {@inheritDoc}&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_P_sbAvSwEeSXvMBl0X3W0A" name="editPart" type="_P_rz9PSwEeSXvMBl0X3W0A"/>
+            </ownedOperation>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_PzUy8fSwEeSXvMBl0X3W0A" name="expansionmodel">
+          <packagedElement xmi:type="uml:Class" xmi:id="_PzUy8vSwEeSXvMBl0X3W0A" name="UseContext"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_PzVaAPSwEeSXvMBl0X3W0A" name="AbstractRepresentation"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_P2jGEfSwEeSXvMBl0X3W0A" name="DiagramExpansion"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_P8LM8fSwEeSXvMBl0X3W0A" name="providers">
+          <packagedElement xmi:type="uml:Class" xmi:id="_P8LM8vSwEeSXvMBl0X3W0A" name="CustomAbstractViewProvider"/>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_P8zfEPSwEeSXvMBl0X3W0A" name="IGraphicalTypeRegistry"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_P-jLgvSwEeSXvMBl0X3W0A" name="service">
+          <packagedElement xmi:type="uml:Package" xmi:id="_P-jLg_SwEeSXvMBl0X3W0A" name="shape">
+            <packagedElement xmi:type="uml:Class" xmi:id="_P-jykPSwEeSXvMBl0X3W0A" name="NotificationManager"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_ubgMyNE7EeSLjPxDpRV9AQ" name="Test">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_O9BAcPPIEeSkj8g2gtcZXQ">
+        <body>The code coverage  for:&#xD;
+- org.eclipse.papyrus.infra.gmfdiag.common.expansion is equals to 90,1 %.&#xD;
+- ExpansionElementDropStrategy.java	87,0 %&#xD;
+&#xD;
+The function is coverage at 52%</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_ubgMydE7EeSLjPxDpRV9AQ" name="Dependency1" client="_ubgMyNE7EeSLjPxDpRV9AQ" supplier="_ubgMw9E7EeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_ubgMytE7EeSLjPxDpRV9AQ" name="Dependency2" client="_ubgMyNE7EeSLjPxDpRV9AQ" supplier="_ubgMxtE7EeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_-We7oOG2EeSJG5UikeIXVQ" name="T001-Load ExpansionModel">
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_B3DtEOKAEeSwE5hduTH6nQ" name="init_DiagramExpansionRegistry"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_D_XdYOKAEeSwE5hduTH6nQ" name="load_BadDiagramExpansion"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_FpjHQOKAEeSwE5hduTH6nQ" name="load_BadelementTypeDiagramExpansion"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_Hz_lkOKAEeSwE5hduTH6nQ" name="load_BadProviderDiagramExpansion"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_fbBhQOKAEeSwE5hduTH6nQ" name="load_DiagramExpansion"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_iHx0wOG3EeSJG5UikeIXVQ" client="_-We7oOG2EeSJG5UikeIXVQ" supplier="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_yR-hwOHTEeSJG5UikeIXVQ" client="_-We7oOG2EeSJG5UikeIXVQ" supplier="_YVqh0OG0EeSnB-BHGWjC_A"/>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_HskbEOHUEeSJG5UikeIXVQ" name="T002-Add a compartment">
+        <ownedComment xmi:type="uml:Comment" xmi:id="__tv5wPPvEeSRcOkL7xliQg" annotatedElement="_HskbEOHUEeSJG5UikeIXVQ">
+          <body>The goal of this test is to know if a compartment can be added on existed node.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_W-9AAOHUEeSJG5UikeIXVQ" client="_HskbEOHUEeSJG5UikeIXVQ" supplier="_yrPMQNRfEeSRNI7img_HuA"/>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_gn_C0PPHEeSkj8g2gtcZXQ" name="T003-Add Child Label">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_KmxRwPPwEeSRcOkL7xliQg" annotatedElement="_gn_C0PPHEeSkj8g2gtcZXQ">
+          <body>The goal of this test is to know if a child label can be added inside compartments.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_hq0_4PPHEeSkj8g2gtcZXQ" name="T006-Add Compartment with Kind">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_OHLdcPPwEeSRcOkL7xliQg" annotatedElement="_hq0_4PPHEeSkj8g2gtcZXQ">
+          <body>The goal of this test is to know if a compartment can be added on existed node by using library of compartments.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_hwSHoPPHEeSkj8g2gtcZXQ" name="T004-Add Border Item">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_P5AncPPwEeSRcOkL7xliQg" annotatedElement="_hwSHoPPHEeSkj8g2gtcZXQ">
+          <body>The goal of this test is to know if a border item can be added on existed node.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_h0_ogPPHEeSkj8g2gtcZXQ" name="T005-Add link">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_T1xX8PPwEeSRcOkL7xliQg" annotatedElement="_h0_ogPPHEeSkj8g2gtcZXQ">
+          <body>The goal of this test is to know if a link can be added inside a diagram.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_h4zxgPPHEeSkj8g2gtcZXQ" name="T006-Drop of Elements">
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_YO8cwPSiEeSXvMBl0X3W0A" name="testDropInsideBadcontainer"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_Wgn5wPSiEeSXvMBl0X3W0A" name="testDropInsidecontainer"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_0lbosPPHEeSkj8g2gtcZXQ" client="_hq0_4PPHEeSkj8g2gtcZXQ" supplier="_yrPMQNRfEeSRNI7img_HuA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_7eubwPPHEeSkj8g2gtcZXQ" client="_hwSHoPPHEeSkj8g2gtcZXQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_76a5QPPHEeSkj8g2gtcZXQ" client="_gn_C0PPHEeSkj8g2gtcZXQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="__tg7IPPtEeSRcOkL7xliQg" client="_h0_ogPPHEeSkj8g2gtcZXQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_o_eVkPPwEeSRcOkL7xliQg" client="_HskbEOHUEeSJG5UikeIXVQ" supplier="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_ppRggPPwEeSRcOkL7xliQg" client="_hq0_4PPHEeSkj8g2gtcZXQ" supplier="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_qjyoAPPwEeSRcOkL7xliQg" client="_h0_ogPPHEeSkj8g2gtcZXQ" supplier="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_rHkqgPPwEeSRcOkL7xliQg" client="_hwSHoPPHEeSkj8g2gtcZXQ" supplier="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_r3CYkPPwEeSRcOkL7xliQg" client="_gn_C0PPHEeSkj8g2gtcZXQ" supplier="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_oDaggPPxEeSRcOkL7xliQg" client="_h4zxgPPHEeSkj8g2gtcZXQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_BxwdAPStEeSXvMBl0X3W0A" client="_hq0_4PPHEeSkj8g2gtcZXQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_gQMWYPSiEeSXvMBl0X3W0A" name="Expansion of diagram by adding compartments">
+      <packagedElement xmi:type="uml:Package" xmi:id="_gQR18PSiEeSXvMBl0X3W0A" name="Table of Contents">
+        <packagedElement xmi:type="uml:Package" xmi:id="_gfR7QPSiEeSXvMBl0X3W0A" name="Requirements"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gfTwcPSiEeSXvMBl0X3W0A" name="Use Cases">
+          <packagedElement xmi:type="uml:Package" xmi:id="_gfVloPSiEeSXvMBl0X3W0A" name="Diagram Expansion">
+            <packagedElement xmi:type="uml:Package" xmi:id="_gfYB4PSiEeSXvMBl0X3W0A" name="Add compartments"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_gfaeIfSiEeSXvMBl0X3W0A" name="Add new Nodes"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_gfdhcPSiEeSXvMBl0X3W0A" name="Add new Child Label"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_gfgkwPSiEeSXvMBl0X3W0A" name="Add new border item"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_gfjBAfSiEeSXvMBl0X3W0A" name="Add new Link"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gfldQPSiEeSXvMBl0X3W0A" name="Design"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gfn5gPSiEeSXvMBl0X3W0A" name="Tests">
+          <packagedElement xmi:type="uml:Package" xmi:id="_gfpusfSiEeSXvMBl0X3W0A" name="T001-Load ExpansionModel"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gfsyAPSiEeSXvMBl0X3W0A" name="T002-Add a compartment"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gfunMfSiEeSXvMBl0X3W0A" name="T003-Add Child Label"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gfxqgPSiEeSXvMBl0X3W0A" name="T006-Add Compartment with Kind"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gf0GwPSiEeSXvMBl0X3W0A" name="T004-Add Border Item"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gf178fSiEeSXvMBl0X3W0A" name="T005-Add link"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gf4YMPSiEeSXvMBl0X3W0A" name="T006-Drop of Elements"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gf6NYfSiEeSXvMBl0X3W0A" name="Requirements Coverage"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_gQU5QfSiEeSXvMBl0X3W0A" name="Requirements">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQcOAPSiEeSXvMBl0X3W0A">
+          <body>- Add Graphical Elements (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010): 
+ The system shall be able to add new graphical elements in new diagrams or existing diagrams</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQgfcPSiEeSXvMBl0X3W0A">
+          <body>- Add Graphical Compartments (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011): 
+ The developper can add new compartments from a existed graphical element.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQkJ0PSiEeSXvMBl0X3W0A">
+          <body>- Add new nodes (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_012): 
+ A developper can add new nodes in the diagram that no exist in the existed diagram or  add element by reuse existed shape.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQnNIPSiEeSXvMBl0X3W0A">
+          <body>- Add new child label (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_013): 
+ A developper can add new child labels ( element that can be contained in a list compartment) in the diagram that no exist in the existed diagram or  add element by reuse existed child label.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQq3gPSiEeSXvMBl0X3W0A">
+          <body>- Add new border item (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_014): 
+ A developper can add new border items ( element that can be installed around the  shape) in the diagram that no exist in the existed diagram or  add element by reuse existed child label.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQt60PSiEeSXvMBl0X3W0A">
+          <body>- AddNewLinks (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_015): 
+ A developper can add new links in the diagram that no exist in the existed diagram or  add element by reuse existed child label.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQyMQPSiEeSXvMBl0X3W0A">
+          <body>- Reuse representations from diagram (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016): 
+ It must be able to reuse rperesentations from existed diagrams</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQ3EwPSiEeSXvMBl0X3W0A">
+          <body>- Drop of new Elements (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020): 
+ New Elements can be dropped from the model explorer.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQ7WMPSiEeSXvMBl0X3W0A">
+          <body>- Assistant (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030): 
+ The new element must be created by using assistant meachnism</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gQ_noPSiEeSXvMBl0X3W0A">
+          <body>- Creation from the palette (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040): 
+ Elements can be created fom the palette</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gRDSAPSiEeSXvMBl0X3W0A">
+          <body>- Non impact on parent diagrams (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050): 
+ the inheridted diagram must not impact parent diagram by addin the new compartments.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gRGVUPSiEeSXvMBl0X3W0A">
+          <body>- ExpransionModel (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060): 
+ The expansion of diagram has to be a model and be interpreted</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gRJ_sPSiEeSXvMBl0X3W0A">
+          <body>- The model has to be well-built (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061): 
+ When the model is done, the ystem has to ensure that it can be correctly interpreted.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gRNDAPSiEeSXvMBl0X3W0A">
+          <body>- Expanded diagrams viewed with original editor (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070): 
+ The original diagram must be view in original diagram, exteernal element must have a predefined shape.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gRQGUPSiEeSXvMBl0X3W0A">
+          <body>- CSS driven (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080): 
+ The added element must be driven by CSS</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gRTwsPSiEeSXvMBl0X3W0A">
+          <body>- View point relation (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090): 
+ The new specialization editor must benefit of all specializations.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gRXbEPSiEeSXvMBl0X3W0A">
+          <body>- Loading at runtime (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100): 
+ An expansion model must be able to load during runtime, not only with extension point.&#xD;
+It allow to be tested by Junit Tests.&#xD;
+</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_gRbFcPSiEeSXvMBl0X3W0A" name="Use Cases">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gbN6oPSiEeSXvMBl0X3W0A">
+          <body>UseCaseDiagram</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gbQW4PSiEeSXvMBl0X3W0A">
+          <body xsi:nil="true"/>
+        </ownedComment>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gbSMEPSiEeSXvMBl0X3W0A" name="Diagram Expansion">
+          <packagedElement xmi:type="uml:Package" xmi:id="_gbUBQPSiEeSXvMBl0X3W0A" name="Add compartments">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gbV2cPSiEeSXvMBl0X3W0A">
+              <body>A developper can add compartments inside a node. It can be XYlayout or list or other type of compartments.</body>
+            </ownedComment>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gbXroPSiEeSXvMBl0X3W0A" name="Add new Nodes"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gbY5wfSiEeSXvMBl0X3W0A" name="Add new Child Label"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gbau8fSiEeSXvMBl0X3W0A" name="Add new border item"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_gbckIfSiEeSXvMBl0X3W0A" name="Add new Link"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_gbeZUPSiEeSXvMBl0X3W0A" name="Design"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_gbfncfSiEeSXvMBl0X3W0A" name="Tests">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gdpjkPSiEeSXvMBl0X3W0A">
+          <body>Test</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gdsm4PSiEeSXvMBl0X3W0A">
+          <body>The code coverage  for:&#xD;
+- org.eclipse.papyrus.infra.gmfdiag.common.expansion is equals to 90,1 %.&#xD;
+- ExpansionElementDropStrategy.java	87,0 %&#xD;
+&#xD;
+The function is coverage at 35%</body>
+        </ownedComment>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gdt1AfSiEeSXvMBl0X3W0A" name="T001-Load ExpansionModel"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gdvqMPSiEeSXvMBl0X3W0A" name="T002-Add a compartment">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gdw4UfSiEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a compartment can be added on existed node.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gdytgfSiEeSXvMBl0X3W0A" name="T003-Add Child Label">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gd0isfSiEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a child label can be added inside compartments.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gd1w0fSiEeSXvMBl0X3W0A" name="T006-Add Compartment with Kind">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gd3mAPSiEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a compartment can be added on existed node by using library of compartments.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gd5bMPSiEeSXvMBl0X3W0A" name="T004-Add Border Item">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gd6pUfSiEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a border item can be added on existed node.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gd73cfSiEeSXvMBl0X3W0A" name="T005-Add link">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gd9soPSiEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a link can be added inside a diagram.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gd-6wfSiEeSXvMBl0X3W0A" name="T006-Drop of Elements"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_geAv8fSiEeSXvMBl0X3W0A" name="Requirements Coverage">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_geB-EfSiEeSXvMBl0X3W0A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geIEsPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geIEsvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geIrwPSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geIrwvSiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geLvEPSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geOLUPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geOyYfSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gePZcPSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gePZcvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geQAgPSiEeSXvMBl0X3W0A">
+                <body>Add compartments</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geQAgvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geQnkfSiEeSXvMBl0X3W0A">
+                <body>T002-Add a compartment</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geROofSiEeSXvMBl0X3W0A">
+                <body>T006-Add Compartment with Kind</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geScwPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geTD0fSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geTD0_SiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_012</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geTq4PSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geTq4vSiEeSXvMBl0X3W0A">
+                <body>Add new Child Label</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geUR8fSiEeSXvMBl0X3W0A">
+                <body>Add new border item</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geUR8_SiEeSXvMBl0X3W0A">
+                <body>Add new Link</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geU5AfSiEeSXvMBl0X3W0A">
+                <body>Add new Nodes</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geU5A_SiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_012 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geXVQPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geX8UfSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geX8U_SiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_013</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geYjYfSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geZKcPSiEeSXvMBl0X3W0A">
+                <body>Add new Child Label</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geZKcvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geZxgfSiEeSXvMBl0X3W0A">
+                <body>T003-Add Child Label</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_013 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gebmsPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gebmsvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gecNwPSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_014</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gecNwvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gec00PSiEeSXvMBl0X3W0A">
+                <body>Add new border item</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gec00vSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gef4IPSiEeSXvMBl0X3W0A">
+                <body>T004-Add Border Item</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_014 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gehtUPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gehtUvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geiUYfSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_015</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geiUY_SiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gei7cfSiEeSXvMBl0X3W0A">
+                <body>Add new Link</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gejigfSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gekJkPSiEeSXvMBl0X3W0A">
+                <body>T005-Add link</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_015 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gelXsPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gel-wfSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gel-w_SiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geml0fSiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_genM4fSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geppIPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geppIvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_geppJPSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geqQMfSiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geq3QvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gereUfSiEeSXvMBl0X3W0A">
+                <body>T006-Drop of Elements</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_getTgPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_getTgvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_get6kfSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_get6k_SiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geuhovSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gew94PSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gexk8PSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gexk8vSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geyMAPSiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_geyzEPSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_ge0oQPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_ge1PUfSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge12YfSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_ge12Y_SiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_ge3EgPSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_ge5gwPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_ge6H0PSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge6H0vSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_ge6H1PSiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_ge7V8PSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge79APSiEeSXvMBl0X3W0A">
+                <body>T001-Load ExpansionModel</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge79AvSiEeSXvMBl0X3W0A">
+                <body>T002-Add a compartment</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge8kEPSiEeSXvMBl0X3W0A">
+                <body>T006-Add Compartment with Kind</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge8kEvSiEeSXvMBl0X3W0A">
+                <body>T005-Add link</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge9LIPSiEeSXvMBl0X3W0A">
+                <body>T004-Add Border Item</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge9LIvSiEeSXvMBl0X3W0A">
+                <body>T003-Add Child Label</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_ge_AUPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_ge_AUvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_ge_nYfSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_ge_nY_SiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfAOcvSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfCqsPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfDRwfSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gfD40fSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfEf4PSiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfFuAPSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfHjMPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfHjMvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gfIKQfSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfIKQ_SiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfIxUvSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfLNkPSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfLNkvSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gfL0oPSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfL0ovSiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfMbsfSiEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfOQ4PSiEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfO38PSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gfO38vSiEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfO39PSiEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_gfQGEPSiEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_gfQGEvSiEeSXvMBl0X3W0A">
+                <body>T001-Load ExpansionModel</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100 as id</body>
+          </ownedComment>
+          <body>Requirements Coverage Table</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_geB-EvSiEeSXvMBl0X3W0A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geLIAPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geml0_SiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geq3QPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geuhoPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geyMAvSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_ge2dcfSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_ge6u4fSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfAOcPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfFG8fSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfIxUPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfL0pPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfPfAfSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100</body>
+          </ownedComment>
+          <body>Unsatisfied requirements (12 out of 17) : </body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_geDzQPSiEeSXvMBl0X3W0A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geMWIPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_geVgEfSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_012</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_genz8PSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gevIsfSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gezaIPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_ge3EgvSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfA1gfSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfFuAvSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfJYYfSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_gfNCwPSiEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090</body>
+          </ownedComment>
+          <body>Unverified requirements (10 out of 17) : </body>
+        </ownedComment>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_UyDosPSuEeSXvMBl0X3W0A" name="Expansion of diagram by adding compartments">
+      <packagedElement xmi:type="uml:Package" xmi:id="_UyHTEPSuEeSXvMBl0X3W0A" name="Table of Contents">
+        <packagedElement xmi:type="uml:Package" xmi:id="_U3rvkPSuEeSXvMBl0X3W0A" name="Requirements"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U3s9sPSuEeSXvMBl0X3W0A" name="Use Cases">
+          <packagedElement xmi:type="uml:Package" xmi:id="_U3tkwfSuEeSXvMBl0X3W0A" name="Diagram Expansion">
+            <packagedElement xmi:type="uml:Package" xmi:id="_U3uy4fSuEeSXvMBl0X3W0A" name="Add compartments"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_U3wBAfSuEeSXvMBl0X3W0A" name="Add new Nodes"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_U3xPIPSuEeSXvMBl0X3W0A" name="Add new Child Label"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_U3x2MfSuEeSXvMBl0X3W0A" name="Add new border item"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_U3zEUfSuEeSXvMBl0X3W0A" name="Add new Link"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U3zrYfSuEeSXvMBl0X3W0A" name="Design"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U305gfSuEeSXvMBl0X3W0A" name="Tests">
+          <packagedElement xmi:type="uml:Package" xmi:id="_U32HofSuEeSXvMBl0X3W0A" name="T001-Load ExpansionModel"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U32usfSuEeSXvMBl0X3W0A" name="T002-Add a compartment"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U3380fSuEeSXvMBl0X3W0A" name="T003-Add Child Label"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U35K8PSuEeSXvMBl0X3W0A" name="T006-Add Compartment with Kind"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U36ZEPSuEeSXvMBl0X3W0A" name="T004-Add Border Item"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U37AIfSuEeSXvMBl0X3W0A" name="T005-Add link"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U38OQfSuEeSXvMBl0X3W0A" name="T006-Drop of Elements"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U39cYPSuEeSXvMBl0X3W0A" name="Requirements Coverage"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_UyIhMfSuEeSXvMBl0X3W0A" name="Requirements">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyMLkPSuEeSXvMBl0X3W0A">
+          <body>- Add Graphical Elements (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010): 
+ The system shall be able to add new graphical elements in new diagrams or existing diagrams</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyPO4PSuEeSXvMBl0X3W0A">
+          <body>- Add Graphical Compartments (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011): 
+ The developper can add new compartments from a existed graphical element.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyRrIPSuEeSXvMBl0X3W0A">
+          <body>- Add new nodes (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_012): 
+ A developper can add new nodes in the diagram that no exist in the existed diagram or  add element by reuse existed shape.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyUHYPSuEeSXvMBl0X3W0A">
+          <body>- Add new child label (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_013): 
+ A developper can add new child labels ( element that can be contained in a list compartment) in the diagram that no exist in the existed diagram or  add element by reuse existed child label.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyV8kPSuEeSXvMBl0X3W0A">
+          <body>- Add new border item (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_014): 
+ A developper can add new border items ( element that can be installed around the  shape) in the diagram that no exist in the existed diagram or  add element by reuse existed child label.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyYY0PSuEeSXvMBl0X3W0A">
+          <body>- AddNewLinks (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_015): 
+ A developper can add new links in the diagram that no exist in the existed diagram or  add element by reuse existed child label.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyaOAPSuEeSXvMBl0X3W0A">
+          <body>- Reuse representations from diagram (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016): 
+ It must be able to reuse rperesentations from existed diagrams</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UycqQPSuEeSXvMBl0X3W0A">
+          <body>- Drop of new Elements (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020): 
+ New Elements can be dropped from the model explorer.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyefcPSuEeSXvMBl0X3W0A">
+          <body>- Assistant (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030): 
+ The new element must be created by using assistant meachnism</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Uyg7sPSuEeSXvMBl0X3W0A">
+          <body>- Creation from the palette (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040): 
+ Elements can be created fom the palette</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Uyiw4PSuEeSXvMBl0X3W0A">
+          <body>- Non impact on parent diagrams (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050): 
+ the inheridted diagram must not impact parent diagram by addin the new compartments.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UylNIPSuEeSXvMBl0X3W0A">
+          <body>- ExpransionModel (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060): 
+ The expansion of diagram has to be a model and be interpreted</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UynCUPSuEeSXvMBl0X3W0A">
+          <body>- The model has to be well-built (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061): 
+ When the model is done, the ystem has to ensure that it can be correctly interpreted.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Uyo3gPSuEeSXvMBl0X3W0A">
+          <body>- Expanded diagrams viewed with original editor (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070): 
+ The original diagram must be view in original diagram, exteernal element must have a predefined shape.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyrTwPSuEeSXvMBl0X3W0A">
+          <body>- CSS driven (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080): 
+ The added element must be driven by CSS</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UytI8PSuEeSXvMBl0X3W0A">
+          <body>- View point relation (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090): 
+ The new specialization editor must benefit of all specializations.</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UyvlMPSuEeSXvMBl0X3W0A">
+          <body>- Loading at runtime (id=org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100): 
+ An expansion model must be able to load during runtime, not only with extension point.&#xD;
+It allow to be tested by Junit Tests.&#xD;
+</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_UyxaYPSuEeSXvMBl0X3W0A" name="Use Cases">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_U0ZLAPSuEeSXvMBl0X3W0A">
+          <body>UseCaseDiagram</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_U0bnQPSuEeSXvMBl0X3W0A">
+          <body xsi:nil="true"/>
+        </ownedComment>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U0c1YPSuEeSXvMBl0X3W0A" name="Diagram Expansion">
+          <packagedElement xmi:type="uml:Package" xmi:id="_U0dccfSuEeSXvMBl0X3W0A" name="Add compartments">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U0eqkfSuEeSXvMBl0X3W0A">
+              <body>A developper can add compartments inside a node. It can be XYlayout or list or other type of compartments.</body>
+            </ownedComment>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U0f4sfSuEeSXvMBl0X3W0A" name="Add new Nodes"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U0hG0PSuEeSXvMBl0X3W0A" name="Add new Child Label"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U0ht4fSuEeSXvMBl0X3W0A" name="Add new border item"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_U0i8AfSuEeSXvMBl0X3W0A" name="Add new Link"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_U0kKIfSuEeSXvMBl0X3W0A" name="Design"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_U0lYQfSuEeSXvMBl0X3W0A" name="Tests">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_U2kVQPSuEeSXvMBl0X3W0A">
+          <body>Test</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_U2ljYfSuEeSXvMBl0X3W0A">
+          <body>The code coverage  for:&#xD;
+- org.eclipse.papyrus.infra.gmfdiag.common.expansion is equals to 90,1 %.&#xD;
+- ExpansionElementDropStrategy.java	87,0 %&#xD;
+&#xD;
+The function is coverage at 41%</body>
+        </ownedComment>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U2mxgfSuEeSXvMBl0X3W0A" name="T001-Load ExpansionModel"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U2n_oPSuEeSXvMBl0X3W0A" name="T002-Add a compartment">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U2omsfSuEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a compartment can be added on existed node.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U2p00fSuEeSXvMBl0X3W0A" name="T003-Add Child Label">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U2rC8fSuEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a child label can be added inside compartments.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U2rqAfSuEeSXvMBl0X3W0A" name="T006-Add Compartment with Kind">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U2s4IfSuEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a compartment can be added on existed node by using library of compartments.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U2uGQfSuEeSXvMBl0X3W0A" name="T004-Add Border Item">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U2vUYPSuEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a border item can be added on existed node.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U2v7cfSuEeSXvMBl0X3W0A" name="T005-Add link">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U2xJkfSuEeSXvMBl0X3W0A">
+            <body>The goal of this test is to know if a link can be added inside a diagram.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_U2xwofSuEeSXvMBl0X3W0A" name="T006-Drop of Elements"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_U2y-wfSuEeSXvMBl0X3W0A" name="Requirements Coverage">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_U20M4fSuEeSXvMBl0X3W0A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U233QPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U24eUfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U24eU_SuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U25FYPSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U25scvSuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U27hoPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U28IsPSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U28IsvSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U28ItPSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U28vwPSuEeSXvMBl0X3W0A">
+                <body>Add compartments</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U28vwvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U29W0fSuEeSXvMBl0X3W0A">
+                <body>T002-Add a compartment</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U29W0_SuEeSXvMBl0X3W0A">
+                <body>T006-Add Compartment with Kind</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U2-k8PSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U2_MAfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U2_MA_SuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_012</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U2_zEfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U2_zE_SuEeSXvMBl0X3W0A">
+                <body>Add new Child Label</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3AaIfSuEeSXvMBl0X3W0A">
+                <body>Add new border item</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3AaI_SuEeSXvMBl0X3W0A">
+                <body>Add new Link</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3BBMPSuEeSXvMBl0X3W0A">
+                <body>Add new Nodes</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3BBMvSuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_012 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3C2YPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3C2YvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3C2ZPSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_013</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3DdcfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3Ddc_SuEeSXvMBl0X3W0A">
+                <body>Add new Child Label</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3EEgfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3EEg_SuEeSXvMBl0X3W0A">
+                <body>T003-Add Child Label</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_013 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3FSoPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3F5sPSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3F5svSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_014</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3F5tPSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3GgwPSuEeSXvMBl0X3W0A">
+                <body>Add new border item</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3GgwvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3HH0PSuEeSXvMBl0X3W0A">
+                <body>T004-Add Border Item</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_014 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3IV8PSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3IV8vSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3I9APSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_015</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3I9AvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3I9BPSuEeSXvMBl0X3W0A">
+                <body>Add new Link</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3JkEfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3JkE_SuEeSXvMBl0X3W0A">
+                <body>T005-Add link</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_015 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3KyMPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3LZQfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3LZQ_SuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3LZRfSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3MnYPSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3MnYvSuEeSXvMBl0X3W0A">
+                <body>T006-Add Compartment with Kind</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3N1gPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3N1gvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3OckfSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3Ock_SuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3PDovSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3PqsPSuEeSXvMBl0X3W0A">
+                <body>T006-Drop of Elements</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3Q40PSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3Q40vSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3Q41PSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3Rf4fSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3SG8fSuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3T8IPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3T8IvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3T8JPSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3UjMPSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3VKQPSuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3WYYPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3W_cPSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3W_cvSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3W_dPSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3XmgvSuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3ZbsPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3ZbsvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3ZbtPSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3aCwfSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3ap0vSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3bQ4PSuEeSXvMBl0X3W0A">
+                <body>T001-Load ExpansionModel</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3bQ4vSuEeSXvMBl0X3W0A">
+                <body>T002-Add a compartment</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3b38PSuEeSXvMBl0X3W0A">
+                <body>T006-Add Compartment with Kind</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3b38vSuEeSXvMBl0X3W0A">
+                <body>T005-Add link</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3b39PSuEeSXvMBl0X3W0A">
+                <body>T004-Add Border Item</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3cfAfSuEeSXvMBl0X3W0A">
+                <body>T003-Add Child Label</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3dtIPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3dtIvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3dtJPSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3eUMfSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3e7QPSuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3gJYPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3gwcfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3gwc_SuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3gwdfSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3hXg_SuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3jMsPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3jMsvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3jzwfSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3jzw_SuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3ka0vSuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3mQAPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3mQAvSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3mQBPSuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3m3EfSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3neIfSuEeSXvMBl0X3W0A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3osQPSuEeSXvMBl0X3W0A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3pTUfSuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3pTU_SuEeSXvMBl0X3W0A">
+                <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3pTVfSuEeSXvMBl0X3W0A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_U3p6Y_SuEeSXvMBl0X3W0A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_U3qhcfSuEeSXvMBl0X3W0A">
+                <body>T001-Load ExpansionModel</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100 as id</body>
+          </ownedComment>
+          <body>Requirements Coverage Table</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_U20M4vSuEeSXvMBl0X3W0A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U25scPSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3MAUfSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_016</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3PDoPSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3Rf4_SuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3UjMvSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3XmgPSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3ap0PSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3eUM_SuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3hXgfSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3ka0PSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3m3E_SuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3p6YfSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100</body>
+          </ownedComment>
+          <body>Unsatisfied requirements (12 out of 17) : </body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_U20z8fSuEeSXvMBl0X3W0A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U26TgPSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3BoQPSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_012</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3SuAPSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3VKQvSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3YNkfSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3e7QvSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3h-kfSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3lB4PSuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_U3neI_SuEeSXvMBl0X3W0A">
+            <body>org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090</body>
+          </ownedComment>
+          <body>Unverified requirements (9 out of 17) : </body>
+        </ownedComment>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_Z4OmYPSwEeSXvMBl0X3W0A" name="Library">
+      <packagedElement xmi:type="uml:Model" xmi:id="_PzS9wPSwEeSXvMBl0X3W0A" name="java">
+        <packagedElement xmi:type="uml:Package" xmi:id="_PzTk0PSwEeSXvMBl0X3W0A" name="java">
+          <packagedElement xmi:type="uml:Package" xmi:id="_PzTk0fSwEeSXvMBl0X3W0A" name="lang">
+            <packagedElement xmi:type="uml:Class" xmi:id="_PzTk0vSwEeSXvMBl0X3W0A" name="String"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_P5lL9PSwEeSXvMBl0X3W0A" name="Class"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_P5lzAvSwEeSXvMBl0X3W0A" name="reflect">
+              <packagedElement xmi:type="uml:Class" xmi:id="_P5lzA_SwEeSXvMBl0X3W0A" name="Constructor"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_P5maEfSwEeSXvMBl0X3W0A" name="Object"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_PzUL4PSwEeSXvMBl0X3W0A" name="util">
+            <packagedElement xmi:type="uml:Class" xmi:id="_PzUL4fSwEeSXvMBl0X3W0A" name="HashMap"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_P5ivsPSwEeSXvMBl0X3W0A" name="Map"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_P0CkoPSwEeSXvMBl0X3W0A" name="emf">
+        <packagedElement xmi:type="uml:Package" xmi:id="_P0CkofSwEeSXvMBl0X3W0A" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_P0CkovSwEeSXvMBl0X3W0A" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_P0Cko_SwEeSXvMBl0X3W0A" name="emf">
+              <packagedElement xmi:type="uml:Package" xmi:id="_P0CkpPSwEeSXvMBl0X3W0A" name="transaction">
+                <packagedElement xmi:type="uml:Class" xmi:id="_P0CkpfSwEeSXvMBl0X3W0A" name="RecordingCommand"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_P-mO0vSwEeSXvMBl0X3W0A" name="TransactionalEditingDomain"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Package" xmi:id="_P2mJYfSwEeSXvMBl0X3W0A" name="ecore">
+                <packagedElement xmi:type="uml:Package" xmi:id="_P2mJYvSwEeSXvMBl0X3W0A" name="resource">
+                  <packagedElement xmi:type="uml:Class" xmi:id="_P2mJY_SwEeSXvMBl0X3W0A" name="ResourceSet"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_P8zfEvSwEeSXvMBl0X3W0A" name="EObject"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Package" xmi:id="_P2pMsvSwEeSXvMBl0X3W0A" name="common">
+                <packagedElement xmi:type="uml:Package" xmi:id="_P2pMs_SwEeSXvMBl0X3W0A" name="util">
+                  <packagedElement xmi:type="uml:Class" xmi:id="_P2pzwPSwEeSXvMBl0X3W0A" name="URI"/>
+                </packagedElement>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_P0DLsfSwEeSXvMBl0X3W0A" name="gmf">
+        <packagedElement xmi:type="uml:Package" xmi:id="_P0DLsvSwEeSXvMBl0X3W0A" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_P0DLs_SwEeSXvMBl0X3W0A" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_P0DLtPSwEeSXvMBl0X3W0A" name="gmf">
+              <packagedElement xmi:type="uml:Package" xmi:id="_P0DLtfSwEeSXvMBl0X3W0A" name="runtime">
+                <packagedElement xmi:type="uml:Package" xmi:id="_P0DywPSwEeSXvMBl0X3W0A" name="notation">
+                  <packagedElement xmi:type="uml:Class" xmi:id="_P0DywfSwEeSXvMBl0X3W0A" name="View"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Package" xmi:id="_P0FA4PSwEeSXvMBl0X3W0A" name="diagram">
+                  <packagedElement xmi:type="uml:Package" xmi:id="_P0FA4fSwEeSXvMBl0X3W0A" name="core">
+                    <packagedElement xmi:type="uml:Package" xmi:id="_P0FA4vSwEeSXvMBl0X3W0A" name="preferences">
+                      <packagedElement xmi:type="uml:Class" xmi:id="_P0FA4_SwEeSXvMBl0X3W0A" name="PreferencesHint"/>
+                    </packagedElement>
+                    <packagedElement xmi:type="uml:Package" xmi:id="_P8LM9PSwEeSXvMBl0X3W0A" name="providers">
+                      <packagedElement xmi:type="uml:Interface" xmi:id="_P8LM9fSwEeSXvMBl0X3W0A" name="IViewProvider"/>
+                    </packagedElement>
+                    <packagedElement xmi:type="uml:Package" xmi:id="_P8Tv0PSwEeSXvMBl0X3W0A" name="services">
+                      <packagedElement xmi:type="uml:Package" xmi:id="_P8Tv0fSwEeSXvMBl0X3W0A" name="view">
+                        <packagedElement xmi:type="uml:Class" xmi:id="_P8Tv0vSwEeSXvMBl0X3W0A" name="CreateNodeViewOperation"/>
+                        <packagedElement xmi:type="uml:Class" xmi:id="_P8UW4fSwEeSXvMBl0X3W0A" name="CreateEdgeViewOperation"/>
+                        <packagedElement xmi:type="uml:Class" xmi:id="_P8U98fSwEeSXvMBl0X3W0A" name="CreateChildViewOperation"/>
+                        <packagedElement xmi:type="uml:Class" xmi:id="_P8ZPYvSwEeSXvMBl0X3W0A" name="CreateViewForKindOperation"/>
+                      </packagedElement>
+                    </packagedElement>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Package" xmi:id="_P5hhkfSwEeSXvMBl0X3W0A" name="ui">
+                    <packagedElement xmi:type="uml:Package" xmi:id="_P5hhkvSwEeSXvMBl0X3W0A" name="services">
+                      <packagedElement xmi:type="uml:Package" xmi:id="_P5hhk_SwEeSXvMBl0X3W0A" name="editpart">
+                        <packagedElement xmi:type="uml:Class" xmi:id="_P5iIoPSwEeSXvMBl0X3W0A" name="AbstractEditPartProvider"/>
+                      </packagedElement>
+                      <packagedElement xmi:type="uml:Package" xmi:id="_P_p-w_SwEeSXvMBl0X3W0A" name="editpolicy">
+                        <packagedElement xmi:type="uml:Interface" xmi:id="_P_ql0PSwEeSXvMBl0X3W0A" name="IEditPolicyProvider"/>
+                      </packagedElement>
+                    </packagedElement>
+                    <packagedElement xmi:type="uml:Package" xmi:id="_P5lL8PSwEeSXvMBl0X3W0A" name="editparts">
+                      <packagedElement xmi:type="uml:Interface" xmi:id="_P5lL8fSwEeSXvMBl0X3W0A" name="IGraphicalEditPart"/>
+                    </packagedElement>
+                  </packagedElement>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Package" xmi:id="_P5j90PSwEeSXvMBl0X3W0A" name="common">
+                  <packagedElement xmi:type="uml:Package" xmi:id="_P5j90fSwEeSXvMBl0X3W0A" name="core">
+                    <packagedElement xmi:type="uml:Package" xmi:id="_P5j90vSwEeSXvMBl0X3W0A" name="service">
+                      <packagedElement xmi:type="uml:Interface" xmi:id="_P5j90_SwEeSXvMBl0X3W0A" name="IOperation"/>
+                      <packagedElement xmi:type="uml:Class" xmi:id="_P_p-wfSwEeSXvMBl0X3W0A" name="AbstractProvider"/>
+                    </packagedElement>
+                  </packagedElement>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Package" xmi:id="_P80GI_SwEeSXvMBl0X3W0A" name="emf">
+                  <packagedElement xmi:type="uml:Package" xmi:id="_P80tMPSwEeSXvMBl0X3W0A" name="type">
+                    <packagedElement xmi:type="uml:Package" xmi:id="_P80tMfSwEeSXvMBl0X3W0A" name="core">
+                      <packagedElement xmi:type="uml:Interface" xmi:id="_P80tMvSwEeSXvMBl0X3W0A" name="IElementType"/>
+                    </packagedElement>
+                  </packagedElement>
+                </packagedElement>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_P0DyxPSwEeSXvMBl0X3W0A" name="datatype">
+        <packagedElement xmi:type="uml:Package" xmi:id="_P0EZ0PSwEeSXvMBl0X3W0A" name="datatype">
+          <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_P0EZ0fSwEeSXvMBl0X3W0A" name="Boolean"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_P2mwcPSwEeSXvMBl0X3W0A" name="core">
+        <packagedElement xmi:type="uml:Package" xmi:id="_P2mwcfSwEeSXvMBl0X3W0A" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_P2mwcvSwEeSXvMBl0X3W0A" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_P2nXgPSwEeSXvMBl0X3W0A" name="core">
+              <packagedElement xmi:type="uml:Package" xmi:id="_P2nXgfSwEeSXvMBl0X3W0A" name="runtime">
+                <packagedElement xmi:type="uml:Interface" xmi:id="_P2nXgvSwEeSXvMBl0X3W0A" name="IConfigurationElement"/>
+                <packagedElement xmi:type="uml:Interface" xmi:id="_P8VlAvSwEeSXvMBl0X3W0A" name="IAdaptable"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_P-ikcPSwEeSXvMBl0X3W0A" name="gef">
+        <packagedElement xmi:type="uml:Package" xmi:id="_P-ikcfSwEeSXvMBl0X3W0A" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_P-ikcvSwEeSXvMBl0X3W0A" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_P-ikc_SwEeSXvMBl0X3W0A" name="gef">
+              <packagedElement xmi:type="uml:Package" xmi:id="_P-ikdPSwEeSXvMBl0X3W0A" name="editpolicies">
+                <packagedElement xmi:type="uml:Class" xmi:id="_P-ikdfSwEeSXvMBl0X3W0A" name="GraphicalEditPolicy"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_P_rz9PSwEeSXvMBl0X3W0A" name="EditPart"/>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ubgMy9E7EeSLjPxDpRV9AQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8qYtUNE7EeSLjPxDpRV9AQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8qYtUdE7EeSLjPxDpRV9AQ" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8qYtUtE7EeSLjPxDpRV9AQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8qYtU9E7EeSLjPxDpRV9AQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8qYtVNE7EeSLjPxDpRV9AQ" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8qYtVdE7EeSLjPxDpRV9AQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ubgMzNE7EeSLjPxDpRV9AQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rplkQXVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_kWqjAMbXEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ubgMzdE7EeSLjPxDpRV9AQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8wt-0NE7EeSLjPxDpRV9AQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wt-0dE7EeSLjPxDpRV9AQ" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wt-0tE7EeSLjPxDpRV9AQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wt-09E7EeSLjPxDpRV9AQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wt-1NE7EeSLjPxDpRV9AQ" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wt-1dE7EeSLjPxDpRV9AQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ubgMztE7EeSLjPxDpRV9AQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_qCT3MMbXEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ubgMz9E7EeSLjPxDpRV9AQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8wvM8NE7EeSLjPxDpRV9AQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wvM8dE7EeSLjPxDpRV9AQ" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wvM8tE7EeSLjPxDpRV9AQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wvM89E7EeSLjPxDpRV9AQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wvM9NE7EeSLjPxDpRV9AQ" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wvM9dE7EeSLjPxDpRV9AQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ubgM0NE7EeSLjPxDpRV9AQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpnZcXVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_2LNtQMbYEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ubgM0dE7EeSLjPxDpRV9AQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ubgM0tE7EeSLjPxDpRV9AQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ubgM09E7EeSLjPxDpRV9AQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8wv0ANE7EeSLjPxDpRV9AQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wv0AdE7EeSLjPxDpRV9AQ" key="Version" value="0.0.11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wv0AtE7EeSLjPxDpRV9AQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wv0A9E7EeSLjPxDpRV9AQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wv0BNE7EeSLjPxDpRV9AQ" key="Date" value="2014-11-14"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8wv0BdE7EeSLjPxDpRV9AQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ubgM1NE7EeSLjPxDpRV9AQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/Document.profile.uml#_RQrLoWwBEeSIYu1Ih2FYyQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/Document.profile.uml#_D0JcUMnzEeO9CYUoXDRplw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_P2xBAPPKEeSkj8g2gtcZXQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_P2y2MPPKEeSkj8g2gtcZXQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <structure:Project xmi:id="_ubgM1dE7EeSLjPxDpRV9AQ" author="P. Tessier" version="1.0.0" base_Model="_ubgMwNE7EeSLjPxDpRV9AQ" title="Expansion of diagram by adding compartments"/>
+  <structure:Requirements xmi:id="_ubgM1tE7EeSLjPxDpRV9AQ" base_Model="_ubgMwtE7EeSLjPxDpRV9AQ"/>
+  <structure:UseCases xmi:id="_ubgM19E7EeSLjPxDpRV9AQ" base_Model="_ubgMw9E7EeSLjPxDpRV9AQ"/>
+  <structure:Design xmi:id="_ubgM2NE7EeSLjPxDpRV9AQ" base_Model="_ubgMxtE7EeSLjPxDpRV9AQ"/>
+  <structure:Tests xmi:id="_ubgM2dE7EeSLjPxDpRV9AQ" base_Model="_ubgMyNE7EeSLjPxDpRV9AQ"/>
+  <Requirements:Requirement xmi:id="_RMSEENE8EeSLjPxDpRV9AQ" text="The system shall be able to add new graphical elements in new diagrams or existing diagrams" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010" base_Class="_RML9cNE8EeSLjPxDpRV9AQ"/>
+  <Requirements:Requirement xmi:id="_hAfHMNE9EeSLjPxDpRV9AQ" text="the inheridted diagram must not impact parent diagram by addin the new compartments." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_050" base_Class="_hAd5ENE9EeSLjPxDpRV9AQ"/>
+  <Requirements:Requirement xmi:id="_ajZnoNFAEeSLjPxDpRV9AQ" text="The expansion of diagram has to be a model and be interpreted" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060" base_Class="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+  <Requirements:Requirement xmi:id="_yrbZgNRfEeSRNI7img_HuA" text="The developper can add new compartments from a existed graphical element." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011" base_Class="_yrPMQNRfEeSRNI7img_HuA"/>
+  <Requirements:Requirement xmi:id="_IzqAoNR7EeSRNI7img_HuA" text="The new element must be created by using assistant meachnism" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_030" base_Class="_IzpZkNR7EeSRNI7img_HuA"/>
+  <Requirements:Requirement xmi:id="_TvkUkNR7EeSRNI7img_HuA" text="Elements can be created fom the palette" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040" base_Class="_TvjGcNR7EeSRNI7img_HuA"/>
+  <Requirements:Requirement xmi:id="_dOlMsNR7EeSRNI7img_HuA" text="The original diagram must be view in original diagram, exteernal element must have a predefined shape." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070" base_Class="_dOkloNR7EeSRNI7img_HuA"/>
+  <Requirements:Requirement xmi:id="_awPi8NelEeS6Ldj4lOPYhg" text="The added element must be driven by CSS" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080" base_Class="_awNtwNelEeS6Ldj4lOPYhg"/>
+  <Requirements:Requirement xmi:id="_k0aWkNelEeS6Ldj4lOPYhg" text="The new specialization editor must benefit of all specializations." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090" base_Class="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Requirements:Requirement xmi:id="_EzmV8N97EeS3V7Bu6N14fQ" text="When the model is done, the ystem has to ensure that it can be correctly interpreted." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061" base_Class="_EzirkN97EeS3V7Bu6N14fQ"/>
+  <Requirements:Requirement xmi:id="_YV3WIOG0EeSnB-BHGWjC_A" text="An expansion model must be able to load during runtime, not only with extension point.&#xD;&#xA;It allow to be tested by Junit Tests.&#xD;&#xA;" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100" base_Class="_YVqh0OG0EeSnB-BHGWjC_A"/>
+  <Requirements:TestCase xmi:id="_F3UP0OG3EeSJG5UikeIXVQ" base_Behavior="_-We7oOG2EeSJG5UikeIXVQ"/>
+  <Requirements:Verify xmi:id="_jdx-YOG3EeSJG5UikeIXVQ" base_Abstraction="_iHx0wOG3EeSJG5UikeIXVQ"/>
+  <Requirements:Verify xmi:id="_zfzm0OHTEeSJG5UikeIXVQ" base_Abstraction="_yR-hwOHTEeSJG5UikeIXVQ"/>
+  <Requirements:TestCase xmi:id="_R-xDoOHUEeSJG5UikeIXVQ" base_Behavior="_HskbEOHUEeSJG5UikeIXVQ"/>
+  <Requirements:Verify xmi:id="_X-zTcOHUEeSJG5UikeIXVQ" base_Abstraction="_W-9AAOHUEeSJG5UikeIXVQ"/>
+  <Requirements:TestCase xmi:id="_lJzBIPPHEeSkj8g2gtcZXQ" base_Behavior="_gn_C0PPHEeSkj8g2gtcZXQ"/>
+  <Requirements:TestCase xmi:id="_u-9vcPPHEeSkj8g2gtcZXQ" base_Behavior="_hwSHoPPHEeSkj8g2gtcZXQ"/>
+  <Requirements:TestCase xmi:id="_vr6VAPPHEeSkj8g2gtcZXQ" base_Behavior="_hq0_4PPHEeSkj8g2gtcZXQ"/>
+  <Requirements:Verify xmi:id="_1lYp0PPHEeSkj8g2gtcZXQ" base_Abstraction="_0lbosPPHEeSkj8g2gtcZXQ"/>
+  <Requirements:Verify xmi:id="_9A7OUPPHEeSkj8g2gtcZXQ" base_Abstraction="_7eubwPPHEeSkj8g2gtcZXQ"/>
+  <Requirements:Verify xmi:id="_9vLbcPPHEeSkj8g2gtcZXQ" base_Abstraction="_76a5QPPHEeSkj8g2gtcZXQ"/>
+  <Requirements:Satisfy xmi:id="_bFW10PPJEeSkj8g2gtcZXQ" base_Abstraction="_Rk1h0PPJEeSkj8g2gtcZXQ"/>
+  <Requirements:Satisfy xmi:id="_bxdt4PPJEeSkj8g2gtcZXQ" base_Abstraction="_ZsHK8PPJEeSkj8g2gtcZXQ"/>
+  <Requirements:Satisfy xmi:id="_cnAOwPPJEeSkj8g2gtcZXQ" base_Abstraction="_VfZS4PPJEeSkj8g2gtcZXQ"/>
+  <Requirements:Satisfy xmi:id="_dVz1gPPJEeSkj8g2gtcZXQ" base_Abstraction="_WWLw8PPJEeSkj8g2gtcZXQ"/>
+  <Requirements:Satisfy xmi:id="_eD8t4PPJEeSkj8g2gtcZXQ" base_Abstraction="_XhP14PPJEeSkj8g2gtcZXQ"/>
+  <Requirements:Satisfy xmi:id="_etJb4PPJEeSkj8g2gtcZXQ" base_Abstraction="_YDSL8PPJEeSkj8g2gtcZXQ"/>
+  <Requirements:Satisfy xmi:id="_k-dB4PPJEeSkj8g2gtcZXQ" base_Abstraction="_kI22oPPJEeSkj8g2gtcZXQ"/>
+  <Requirements:Satisfy xmi:id="_oGeiwPPJEeSkj8g2gtcZXQ" base_Abstraction="_Yg9mcPPJEeSkj8g2gtcZXQ"/>
+  <standard:Refine xmi:id="_RH1AQPPKEeSkj8g2gtcZXQ" base_Abstraction="_MR8PYPPKEeSkj8g2gtcZXQ"/>
+  <Requirements:TestCase xmi:id="_5fpqsPPtEeSRcOkL7xliQg" base_Behavior="_h0_ogPPHEeSkj8g2gtcZXQ"/>
+  <Requirements:Verify xmi:id="_COmX0PPuEeSRcOkL7xliQg" base_Abstraction="__tg7IPPtEeSRcOkL7xliQg"/>
+  <Requirements:Verify xmi:id="_tLqCIPPwEeSRcOkL7xliQg" base_Abstraction="_r3CYkPPwEeSRcOkL7xliQg"/>
+  <Requirements:Verify xmi:id="_t6vVsPPwEeSRcOkL7xliQg" base_Abstraction="_rHkqgPPwEeSRcOkL7xliQg"/>
+  <Requirements:Verify xmi:id="_vGvOwPPwEeSRcOkL7xliQg" base_Abstraction="_o_eVkPPwEeSRcOkL7xliQg"/>
+  <Requirements:Verify xmi:id="_vr1f4PPwEeSRcOkL7xliQg" base_Abstraction="_qjyoAPPwEeSRcOkL7xliQg"/>
+  <Requirements:Verify xmi:id="_w3IOUPPwEeSRcOkL7xliQg" base_Abstraction="_ppRggPPwEeSRcOkL7xliQg"/>
+  <Requirements:TestCase xmi:id="_h9qqQPPxEeSRcOkL7xliQg" base_Behavior="_h4zxgPPHEeSkj8g2gtcZXQ"/>
+  <Requirements:Verify xmi:id="_qGOFwPPxEeSRcOkL7xliQg" base_Abstraction="_oDaggPPxEeSRcOkL7xliQg"/>
+  <Document:Document xmi:id="_gQQn0PSiEeSXvMBl0X3W0A" base_Model="_gQMWYPSiEeSXvMBl0X3W0A" author="P. Tessier" version="1.0.0"/>
+  <Document:TableOfContent xmi:id="_gQU5QPSiEeSXvMBl0X3W0A" base_Package="_gQR18PSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gQXVgPSiEeSXvMBl0X3W0A" base_Package="_gQU5QfSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQeqQPSiEeSXvMBl0X3W0A" base_Comment="_gQcOAPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQiUoPSiEeSXvMBl0X3W0A" base_Comment="_gQgfcPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQlX8PSiEeSXvMBl0X3W0A" base_Comment="_gQkJ0PSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQpCUPSiEeSXvMBl0X3W0A" base_Comment="_gQnNIPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQsFoPSiEeSXvMBl0X3W0A" base_Comment="_gQq3gPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQvwAPSiEeSXvMBl0X3W0A" base_Comment="_gQt60PSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQ0ogPSiEeSXvMBl0X3W0A" base_Comment="_gQyMQPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQ458PSiEeSXvMBl0X3W0A" base_Comment="_gQ3EwPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gQ9LYPSiEeSXvMBl0X3W0A" base_Comment="_gQ7WMPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gRCD4PSiEeSXvMBl0X3W0A" base_Comment="_gQ_noPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gRFHMPSiEeSXvMBl0X3W0A" base_Comment="_gRDSAPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gRIKgPSiEeSXvMBl0X3W0A" base_Comment="_gRGVUPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gRLN0PSiEeSXvMBl0X3W0A" base_Comment="_gRJ_sPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gRORIPSiEeSXvMBl0X3W0A" base_Comment="_gRNDAPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gRR7gPSiEeSXvMBl0X3W0A" base_Comment="_gRQGUPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gRVl4PSiEeSXvMBl0X3W0A" base_Comment="_gRTwsPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gRYpMPSiEeSXvMBl0X3W0A" base_Comment="_gRXbEPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gRcTkPSiEeSXvMBl0X3W0A" base_Package="_gRbFcPSiEeSXvMBl0X3W0A"/>
+  <Document:ImageRef xmi:id="_gbPv0PSiEeSXvMBl0X3W0A" base_Comment="_gbN6oPSiEeSXvMBl0X3W0A" ref="./imgDOC/UseCaseDiagram.png"/>
+  <Document:Content xmi:id="_gbRlAPSiEeSXvMBl0X3W0A" base_Comment="_gbQW4PSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gbTaMPSiEeSXvMBl0X3W0A" base_Package="_gbSMEPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gbVPYPSiEeSXvMBl0X3W0A" base_Package="_gbUBQPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gbXEkPSiEeSXvMBl0X3W0A" base_Comment="_gbV2cPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gbY5wPSiEeSXvMBl0X3W0A" base_Package="_gbXroPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gbau8PSiEeSXvMBl0X3W0A" base_Package="_gbY5wfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gbckIPSiEeSXvMBl0X3W0A" base_Package="_gbau8fSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gbdyQPSiEeSXvMBl0X3W0A" base_Package="_gbckIfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gbfncPSiEeSXvMBl0X3W0A" base_Package="_gbeZUPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gbhcoPSiEeSXvMBl0X3W0A" base_Package="_gbfncfSiEeSXvMBl0X3W0A"/>
+  <Document:ImageRef xmi:id="_gdr_0PSiEeSXvMBl0X3W0A" base_Comment="_gdpjkPSiEeSXvMBl0X3W0A" ref="./imgDOC/Test.png"/>
+  <Document:Content xmi:id="_gdt1APSiEeSXvMBl0X3W0A" base_Comment="_gdsm4PSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gdvDIPSiEeSXvMBl0X3W0A" base_Package="_gdt1AfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gdw4UPSiEeSXvMBl0X3W0A" base_Package="_gdvqMPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gdytgPSiEeSXvMBl0X3W0A" base_Comment="_gdw4UfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gd0isPSiEeSXvMBl0X3W0A" base_Package="_gdytgfSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gd1w0PSiEeSXvMBl0X3W0A" base_Comment="_gd0isfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gd2-8PSiEeSXvMBl0X3W0A" base_Package="_gd1w0fSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gd40IPSiEeSXvMBl0X3W0A" base_Comment="_gd3mAPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gd6pUPSiEeSXvMBl0X3W0A" base_Package="_gd5bMPSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gd73cPSiEeSXvMBl0X3W0A" base_Comment="_gd6pUfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gd9FkPSiEeSXvMBl0X3W0A" base_Package="_gd73cfSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_gd-6wPSiEeSXvMBl0X3W0A" base_Comment="_gd9soPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_geAv8PSiEeSXvMBl0X3W0A" base_Package="_gd-6wfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_geB-EPSiEeSXvMBl0X3W0A" base_Package="_geAv8fSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_geDMMPSiEeSXvMBl0X3W0A" base_Comment="_geB-EvSiEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_geDzQfSiEeSXvMBl0X3W0A" base_Comment="_geDzQPSiEeSXvMBl0X3W0A"/>
+  <Document:Table xmi:id="_geFBYPSiEeSXvMBl0X3W0A" caption="RequirementsCoverageTable" base_Comment="_geB-EfSiEeSXvMBl0X3W0A"/>
+  <Document:Line xmi:id="_geIEsfSiEeSXvMBl0X3W0A" base_Comment="_geIEsPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geIEs_SiEeSXvMBl0X3W0A" base_Comment="_geIEsvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geIrwfSiEeSXvMBl0X3W0A" base_Comment="_geIrwPSiEeSXvMBl0X3W0A" ref="_RML9cNE8EeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_geIrw_SiEeSXvMBl0X3W0A" base_Comment="_geIrwvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geLIAfSiEeSXvMBl0X3W0A" base_Comment="_geLIAPSiEeSXvMBl0X3W0A" ref="_RML9cNE8EeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_geLvEfSiEeSXvMBl0X3W0A" base_Comment="_geLvEPSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geMWIfSiEeSXvMBl0X3W0A" base_Comment="_geMWIPSiEeSXvMBl0X3W0A" ref="_RML9cNE8EeSLjPxDpRV9AQ"/>
+  <Document:Line xmi:id="_geOyYPSiEeSXvMBl0X3W0A" base_Comment="_geOLUPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geOyYvSiEeSXvMBl0X3W0A" base_Comment="_geOyYfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gePZcfSiEeSXvMBl0X3W0A" base_Comment="_gePZcPSiEeSXvMBl0X3W0A" ref="_yrPMQNRfEeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_gePZc_SiEeSXvMBl0X3W0A" base_Comment="_gePZcvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geQAgfSiEeSXvMBl0X3W0A" base_Comment="_geQAgPSiEeSXvMBl0X3W0A" ref="_L_66oNFBEeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_geQnkPSiEeSXvMBl0X3W0A" base_Comment="_geQAgvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geROoPSiEeSXvMBl0X3W0A" base_Comment="_geQnkfSiEeSXvMBl0X3W0A" ref="_HskbEOHUEeSJG5UikeIXVQ"/>
+  <Document:RefContent xmi:id="_geROovSiEeSXvMBl0X3W0A" base_Comment="_geROofSiEeSXvMBl0X3W0A" ref="_hq0_4PPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_geTD0PSiEeSXvMBl0X3W0A" base_Comment="_geScwPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geTD0vSiEeSXvMBl0X3W0A" base_Comment="_geTD0fSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geTD1PSiEeSXvMBl0X3W0A" base_Comment="_geTD0_SiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geTq4fSiEeSXvMBl0X3W0A" base_Comment="_geTq4PSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geUR8PSiEeSXvMBl0X3W0A" base_Comment="_geTq4vSiEeSXvMBl0X3W0A" ref="_EM-zoNR_EeSRNI7img_HuA"/>
+  <Document:RefContent xmi:id="_geUR8vSiEeSXvMBl0X3W0A" base_Comment="_geUR8fSiEeSXvMBl0X3W0A" ref="_G9nvQNR_EeSRNI7img_HuA"/>
+  <Document:RefContent xmi:id="_geU5APSiEeSXvMBl0X3W0A" base_Comment="_geUR8_SiEeSXvMBl0X3W0A" ref="_Go0LEPPHEeSkj8g2gtcZXQ"/>
+  <Document:RefContent xmi:id="_geU5AvSiEeSXvMBl0X3W0A" base_Comment="_geU5AfSiEeSXvMBl0X3W0A" ref="_CzHdsNR_EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_geVgEPSiEeSXvMBl0X3W0A" base_Comment="_geU5A_SiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geVgEvSiEeSXvMBl0X3W0A" base_Comment="_geVgEfSiEeSXvMBl0X3W0A"/>
+  <Document:Line xmi:id="_geX8UPSiEeSXvMBl0X3W0A" base_Comment="_geXVQPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geX8UvSiEeSXvMBl0X3W0A" base_Comment="_geX8UfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geYjYPSiEeSXvMBl0X3W0A" base_Comment="_geX8U_SiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geYjYvSiEeSXvMBl0X3W0A" base_Comment="_geYjYfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geZKcfSiEeSXvMBl0X3W0A" base_Comment="_geZKcPSiEeSXvMBl0X3W0A" ref="_EM-zoNR_EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_geZxgPSiEeSXvMBl0X3W0A" base_Comment="_geZKcvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geZxgvSiEeSXvMBl0X3W0A" base_Comment="_geZxgfSiEeSXvMBl0X3W0A" ref="_gn_C0PPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_gebmsfSiEeSXvMBl0X3W0A" base_Comment="_gebmsPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gebms_SiEeSXvMBl0X3W0A" base_Comment="_gebmsvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gecNwfSiEeSXvMBl0X3W0A" base_Comment="_gecNwPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gecNw_SiEeSXvMBl0X3W0A" base_Comment="_gecNwvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gec00fSiEeSXvMBl0X3W0A" base_Comment="_gec00PSiEeSXvMBl0X3W0A" ref="_G9nvQNR_EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_gedb4PSiEeSXvMBl0X3W0A" base_Comment="_gec00vSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gef4IfSiEeSXvMBl0X3W0A" base_Comment="_gef4IPSiEeSXvMBl0X3W0A" ref="_hwSHoPPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_gehtUfSiEeSXvMBl0X3W0A" base_Comment="_gehtUPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geiUYPSiEeSXvMBl0X3W0A" base_Comment="_gehtUvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geiUYvSiEeSXvMBl0X3W0A" base_Comment="_geiUYfSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gei7cPSiEeSXvMBl0X3W0A" base_Comment="_geiUY_SiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gejigPSiEeSXvMBl0X3W0A" base_Comment="_gei7cfSiEeSXvMBl0X3W0A" ref="_Go0LEPPHEeSkj8g2gtcZXQ"/>
+  <Document:Cell xmi:id="_gejigvSiEeSXvMBl0X3W0A" base_Comment="_gejigfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gekJkfSiEeSXvMBl0X3W0A" base_Comment="_gekJkPSiEeSXvMBl0X3W0A" ref="_h0_ogPPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_gel-wPSiEeSXvMBl0X3W0A" base_Comment="_gelXsPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gel-wvSiEeSXvMBl0X3W0A" base_Comment="_gel-wfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geml0PSiEeSXvMBl0X3W0A" base_Comment="_gel-w_SiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geml0vSiEeSXvMBl0X3W0A" base_Comment="_geml0fSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_genM4PSiEeSXvMBl0X3W0A" base_Comment="_geml0_SiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_genM4vSiEeSXvMBl0X3W0A" base_Comment="_genM4fSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_genz8fSiEeSXvMBl0X3W0A" base_Comment="_genz8PSiEeSXvMBl0X3W0A"/>
+  <Document:Line xmi:id="_geppIfSiEeSXvMBl0X3W0A" base_Comment="_geppIPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geppI_SiEeSXvMBl0X3W0A" base_Comment="_geppIvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geqQMPSiEeSXvMBl0X3W0A" base_Comment="_geppJPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_geqQMvSiEeSXvMBl0X3W0A" base_Comment="_geqQMfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geq3QfSiEeSXvMBl0X3W0A" base_Comment="_geq3QPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gereUPSiEeSXvMBl0X3W0A" base_Comment="_geq3QvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gereUvSiEeSXvMBl0X3W0A" base_Comment="_gereUfSiEeSXvMBl0X3W0A" ref="_h4zxgPPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_getTgfSiEeSXvMBl0X3W0A" base_Comment="_getTgPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_get6kPSiEeSXvMBl0X3W0A" base_Comment="_getTgvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_get6kvSiEeSXvMBl0X3W0A" base_Comment="_get6kfSiEeSXvMBl0X3W0A" ref="_IzpZkNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_get6lPSiEeSXvMBl0X3W0A" base_Comment="_get6k_SiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geuhofSiEeSXvMBl0X3W0A" base_Comment="_geuhoPSiEeSXvMBl0X3W0A" ref="_IzpZkNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_gevIsPSiEeSXvMBl0X3W0A" base_Comment="_geuhovSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gevIsvSiEeSXvMBl0X3W0A" base_Comment="_gevIsfSiEeSXvMBl0X3W0A" ref="_IzpZkNR7EeSRNI7img_HuA"/>
+  <Document:Line xmi:id="_gew94fSiEeSXvMBl0X3W0A" base_Comment="_gew94PSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gexk8fSiEeSXvMBl0X3W0A" base_Comment="_gexk8PSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gexk8_SiEeSXvMBl0X3W0A" base_Comment="_gexk8vSiEeSXvMBl0X3W0A" ref="_TvjGcNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_geyMAfSiEeSXvMBl0X3W0A" base_Comment="_geyMAPSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_geyMA_SiEeSXvMBl0X3W0A" base_Comment="_geyMAvSiEeSXvMBl0X3W0A" ref="_TvjGcNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_geyzEfSiEeSXvMBl0X3W0A" base_Comment="_geyzEPSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gezaIfSiEeSXvMBl0X3W0A" base_Comment="_gezaIPSiEeSXvMBl0X3W0A" ref="_TvjGcNR7EeSRNI7img_HuA"/>
+  <Document:Line xmi:id="_ge1PUPSiEeSXvMBl0X3W0A" base_Comment="_ge0oQPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_ge12YPSiEeSXvMBl0X3W0A" base_Comment="_ge1PUfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_ge12YvSiEeSXvMBl0X3W0A" base_Comment="_ge12YfSiEeSXvMBl0X3W0A" ref="_hAd5ENE9EeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_ge2dcPSiEeSXvMBl0X3W0A" base_Comment="_ge12Y_SiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_ge2dcvSiEeSXvMBl0X3W0A" base_Comment="_ge2dcfSiEeSXvMBl0X3W0A" ref="_hAd5ENE9EeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_ge3EgfSiEeSXvMBl0X3W0A" base_Comment="_ge3EgPSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_ge3rkPSiEeSXvMBl0X3W0A" base_Comment="_ge3EgvSiEeSXvMBl0X3W0A" ref="_hAd5ENE9EeSLjPxDpRV9AQ"/>
+  <Document:Line xmi:id="_ge5gwfSiEeSXvMBl0X3W0A" base_Comment="_ge5gwPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_ge6H0fSiEeSXvMBl0X3W0A" base_Comment="_ge6H0PSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_ge6H0_SiEeSXvMBl0X3W0A" base_Comment="_ge6H0vSiEeSXvMBl0X3W0A" ref="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_ge6u4PSiEeSXvMBl0X3W0A" base_Comment="_ge6H1PSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_ge6u4vSiEeSXvMBl0X3W0A" base_Comment="_ge6u4fSiEeSXvMBl0X3W0A" ref="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_ge7V8fSiEeSXvMBl0X3W0A" base_Comment="_ge7V8PSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_ge79AfSiEeSXvMBl0X3W0A" base_Comment="_ge79APSiEeSXvMBl0X3W0A" ref="_-We7oOG2EeSJG5UikeIXVQ"/>
+  <Document:RefContent xmi:id="_ge79A_SiEeSXvMBl0X3W0A" base_Comment="_ge79AvSiEeSXvMBl0X3W0A" ref="_HskbEOHUEeSJG5UikeIXVQ"/>
+  <Document:RefContent xmi:id="_ge8kEfSiEeSXvMBl0X3W0A" base_Comment="_ge8kEPSiEeSXvMBl0X3W0A" ref="_hq0_4PPHEeSkj8g2gtcZXQ"/>
+  <Document:RefContent xmi:id="_ge8kE_SiEeSXvMBl0X3W0A" base_Comment="_ge8kEvSiEeSXvMBl0X3W0A" ref="_h0_ogPPHEeSkj8g2gtcZXQ"/>
+  <Document:RefContent xmi:id="_ge9LIfSiEeSXvMBl0X3W0A" base_Comment="_ge9LIPSiEeSXvMBl0X3W0A" ref="_hwSHoPPHEeSkj8g2gtcZXQ"/>
+  <Document:RefContent xmi:id="_ge9LI_SiEeSXvMBl0X3W0A" base_Comment="_ge9LIvSiEeSXvMBl0X3W0A" ref="_gn_C0PPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_ge_AUfSiEeSXvMBl0X3W0A" base_Comment="_ge_AUPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_ge_nYPSiEeSXvMBl0X3W0A" base_Comment="_ge_AUvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_ge_nYvSiEeSXvMBl0X3W0A" base_Comment="_ge_nYfSiEeSXvMBl0X3W0A" ref="_EzirkN97EeS3V7Bu6N14fQ"/>
+  <Document:Cell xmi:id="_ge_nZPSiEeSXvMBl0X3W0A" base_Comment="_ge_nY_SiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfAOcfSiEeSXvMBl0X3W0A" base_Comment="_gfAOcPSiEeSXvMBl0X3W0A" ref="_EzirkN97EeS3V7Bu6N14fQ"/>
+  <Document:Cell xmi:id="_gfA1gPSiEeSXvMBl0X3W0A" base_Comment="_gfAOcvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfA1gvSiEeSXvMBl0X3W0A" base_Comment="_gfA1gfSiEeSXvMBl0X3W0A" ref="_EzirkN97EeS3V7Bu6N14fQ"/>
+  <Document:Line xmi:id="_gfDRwPSiEeSXvMBl0X3W0A" base_Comment="_gfCqsPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gfD40PSiEeSXvMBl0X3W0A" base_Comment="_gfDRwfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfD40vSiEeSXvMBl0X3W0A" base_Comment="_gfD40fSiEeSXvMBl0X3W0A" ref="_dOkloNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_gfFG8PSiEeSXvMBl0X3W0A" base_Comment="_gfEf4PSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfFG8vSiEeSXvMBl0X3W0A" base_Comment="_gfFG8fSiEeSXvMBl0X3W0A" ref="_dOkloNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_gfFuAfSiEeSXvMBl0X3W0A" base_Comment="_gfFuAPSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfFuA_SiEeSXvMBl0X3W0A" base_Comment="_gfFuAvSiEeSXvMBl0X3W0A" ref="_dOkloNR7EeSRNI7img_HuA"/>
+  <Document:Line xmi:id="_gfHjMfSiEeSXvMBl0X3W0A" base_Comment="_gfHjMPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gfIKQPSiEeSXvMBl0X3W0A" base_Comment="_gfHjMvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfIKQvSiEeSXvMBl0X3W0A" base_Comment="_gfIKQfSiEeSXvMBl0X3W0A" ref="_awNtwNelEeS6Ldj4lOPYhg"/>
+  <Document:Cell xmi:id="_gfIKRPSiEeSXvMBl0X3W0A" base_Comment="_gfIKQ_SiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfIxUfSiEeSXvMBl0X3W0A" base_Comment="_gfIxUPSiEeSXvMBl0X3W0A" ref="_awNtwNelEeS6Ldj4lOPYhg"/>
+  <Document:Cell xmi:id="_gfJYYPSiEeSXvMBl0X3W0A" base_Comment="_gfIxUvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfJYYvSiEeSXvMBl0X3W0A" base_Comment="_gfJYYfSiEeSXvMBl0X3W0A" ref="_awNtwNelEeS6Ldj4lOPYhg"/>
+  <Document:Line xmi:id="_gfLNkfSiEeSXvMBl0X3W0A" base_Comment="_gfLNkPSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gfLNk_SiEeSXvMBl0X3W0A" base_Comment="_gfLNkvSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfL0ofSiEeSXvMBl0X3W0A" base_Comment="_gfL0oPSiEeSXvMBl0X3W0A" ref="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Document:Cell xmi:id="_gfL0o_SiEeSXvMBl0X3W0A" base_Comment="_gfL0ovSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfMbsPSiEeSXvMBl0X3W0A" base_Comment="_gfL0pPSiEeSXvMBl0X3W0A" ref="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Document:Cell xmi:id="_gfMbsvSiEeSXvMBl0X3W0A" base_Comment="_gfMbsfSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfNCwfSiEeSXvMBl0X3W0A" base_Comment="_gfNCwPSiEeSXvMBl0X3W0A" ref="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Document:Line xmi:id="_gfOQ4fSiEeSXvMBl0X3W0A" base_Comment="_gfOQ4PSiEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_gfO38fSiEeSXvMBl0X3W0A" base_Comment="_gfO38PSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfO38_SiEeSXvMBl0X3W0A" base_Comment="_gfO38vSiEeSXvMBl0X3W0A" ref="_YVqh0OG0EeSnB-BHGWjC_A"/>
+  <Document:Cell xmi:id="_gfPfAPSiEeSXvMBl0X3W0A" base_Comment="_gfO39PSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfPfAvSiEeSXvMBl0X3W0A" base_Comment="_gfPfAfSiEeSXvMBl0X3W0A" ref="_YVqh0OG0EeSnB-BHGWjC_A"/>
+  <Document:Cell xmi:id="_gfQGEfSiEeSXvMBl0X3W0A" base_Comment="_gfQGEPSiEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_gfQGE_SiEeSXvMBl0X3W0A" base_Comment="_gfQGEvSiEeSXvMBl0X3W0A" ref="_-We7oOG2EeSJG5UikeIXVQ"/>
+  <Document:Section xmi:id="_gfTJYPSiEeSXvMBl0X3W0A" base_Package="_gfR7QPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfU-kPSiEeSXvMBl0X3W0A" base_Package="_gfTwcPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfXa0PSiEeSXvMBl0X3W0A" base_Package="_gfVloPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfaeIPSiEeSXvMBl0X3W0A" base_Package="_gfYB4PSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfc6YPSiEeSXvMBl0X3W0A" base_Package="_gfaeIfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gff9sPSiEeSXvMBl0X3W0A" base_Package="_gfdhcPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfjBAPSiEeSXvMBl0X3W0A" base_Package="_gfgkwPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfk2MPSiEeSXvMBl0X3W0A" base_Package="_gfjBAfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfnScPSiEeSXvMBl0X3W0A" base_Package="_gfldQPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfpusPSiEeSXvMBl0X3W0A" base_Package="_gfn5gPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfsK8PSiEeSXvMBl0X3W0A" base_Package="_gfpusfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfunMPSiEeSXvMBl0X3W0A" base_Package="_gfsyAPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfxDcPSiEeSXvMBl0X3W0A" base_Package="_gfunMfSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gfzfsPSiEeSXvMBl0X3W0A" base_Package="_gfxqgPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gf178PSiEeSXvMBl0X3W0A" base_Package="_gf0GwPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gf3xIPSiEeSXvMBl0X3W0A" base_Package="_gf178fSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gf6NYPSiEeSXvMBl0X3W0A" base_Package="_gf4YMPSiEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_gf8poPSiEeSXvMBl0X3W0A" base_Package="_gf6NYfSiEeSXvMBl0X3W0A"/>
+  <Requirements:Verify xmi:id="_Et7TMPStEeSXvMBl0X3W0A" base_Abstraction="_BxwdAPStEeSXvMBl0X3W0A"/>
+  <Document:Document xmi:id="_UyGE8PSuEeSXvMBl0X3W0A" base_Model="_UyDosPSuEeSXvMBl0X3W0A" author="P. Tessier" version="1.0.0"/>
+  <Document:TableOfContent xmi:id="_UyIhMPSuEeSXvMBl0X3W0A" base_Package="_UyHTEPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_UyKWYPSuEeSXvMBl0X3W0A" base_Package="_UyIhMfSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyNZsPSuEeSXvMBl0X3W0A" base_Comment="_UyMLkPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyQdAPSuEeSXvMBl0X3W0A" base_Comment="_UyPO4PSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyS5QPSuEeSXvMBl0X3W0A" base_Comment="_UyRrIPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyUucPSuEeSXvMBl0X3W0A" base_Comment="_UyUHYPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyXKsPSuEeSXvMBl0X3W0A" base_Comment="_UyV8kPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyY_4PSuEeSXvMBl0X3W0A" base_Comment="_UyYY0PSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UybcIPSuEeSXvMBl0X3W0A" base_Comment="_UyaOAPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UydRUPSuEeSXvMBl0X3W0A" base_Comment="_UycqQPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyftkPSuEeSXvMBl0X3W0A" base_Comment="_UyefcPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyhiwPSuEeSXvMBl0X3W0A" base_Comment="_Uyg7sPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_Uyj_APSuEeSXvMBl0X3W0A" base_Comment="_Uyiw4PSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_Uyl0MPSuEeSXvMBl0X3W0A" base_Comment="_UylNIPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UynpYPSuEeSXvMBl0X3W0A" base_Comment="_UynCUPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyqFoPSuEeSXvMBl0X3W0A" base_Comment="_Uyo3gPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_Uyr60PSuEeSXvMBl0X3W0A" base_Comment="_UyrTwPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UyuXEPSuEeSXvMBl0X3W0A" base_Comment="_UytI8PSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_UywMQPSuEeSXvMBl0X3W0A" base_Comment="_UyvlMPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_UyyBcPSuEeSXvMBl0X3W0A" base_Package="_UyxaYPSuEeSXvMBl0X3W0A"/>
+  <Document:ImageRef xmi:id="_U0bAMPSuEeSXvMBl0X3W0A" base_Comment="_U0ZLAPSuEeSXvMBl0X3W0A" ref="./imgDOC/UseCaseDiagram.png"/>
+  <Document:Content xmi:id="_U0cOUPSuEeSXvMBl0X3W0A" base_Comment="_U0bnQPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U0dccPSuEeSXvMBl0X3W0A" base_Package="_U0c1YPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U0eqkPSuEeSXvMBl0X3W0A" base_Package="_U0dccfSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_U0f4sPSuEeSXvMBl0X3W0A" base_Comment="_U0eqkfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U0gfwPSuEeSXvMBl0X3W0A" base_Package="_U0f4sfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U0ht4PSuEeSXvMBl0X3W0A" base_Package="_U0hG0PSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U0i8APSuEeSXvMBl0X3W0A" base_Package="_U0ht4fSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U0kKIPSuEeSXvMBl0X3W0A" base_Package="_U0i8AfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U0lYQPSuEeSXvMBl0X3W0A" base_Package="_U0kKIfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U0mmYPSuEeSXvMBl0X3W0A" base_Package="_U0lYQfSuEeSXvMBl0X3W0A"/>
+  <Document:ImageRef xmi:id="_U2ljYPSuEeSXvMBl0X3W0A" base_Comment="_U2kVQPSuEeSXvMBl0X3W0A" ref="./imgDOC/Test.png"/>
+  <Document:Content xmi:id="_U2mxgPSuEeSXvMBl0X3W0A" base_Comment="_U2ljYfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U2nYkPSuEeSXvMBl0X3W0A" base_Package="_U2mxgfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U2omsPSuEeSXvMBl0X3W0A" base_Package="_U2n_oPSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_U2p00PSuEeSXvMBl0X3W0A" base_Comment="_U2omsfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U2rC8PSuEeSXvMBl0X3W0A" base_Package="_U2p00fSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_U2rqAPSuEeSXvMBl0X3W0A" base_Comment="_U2rC8fSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U2s4IPSuEeSXvMBl0X3W0A" base_Package="_U2rqAfSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_U2uGQPSuEeSXvMBl0X3W0A" base_Comment="_U2s4IfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U2utUPSuEeSXvMBl0X3W0A" base_Package="_U2uGQfSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_U2v7cPSuEeSXvMBl0X3W0A" base_Comment="_U2vUYPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U2xJkPSuEeSXvMBl0X3W0A" base_Package="_U2v7cfSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_U2xwoPSuEeSXvMBl0X3W0A" base_Comment="_U2xJkfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U2y-wPSuEeSXvMBl0X3W0A" base_Package="_U2xwofSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U20M4PSuEeSXvMBl0X3W0A" base_Package="_U2y-wfSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_U20z8PSuEeSXvMBl0X3W0A" base_Comment="_U20M4vSuEeSXvMBl0X3W0A"/>
+  <Document:Content xmi:id="_U21bAPSuEeSXvMBl0X3W0A" base_Comment="_U20z8fSuEeSXvMBl0X3W0A"/>
+  <Document:Table xmi:id="_U22CEPSuEeSXvMBl0X3W0A" caption="RequirementsCoverageTable" base_Comment="_U20M4fSuEeSXvMBl0X3W0A"/>
+  <Document:Line xmi:id="_U24eUPSuEeSXvMBl0X3W0A" base_Comment="_U233QPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U24eUvSuEeSXvMBl0X3W0A" base_Comment="_U24eUfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U24eVPSuEeSXvMBl0X3W0A" base_Comment="_U24eU_SuEeSXvMBl0X3W0A" ref="_RML9cNE8EeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_U25FYfSuEeSXvMBl0X3W0A" base_Comment="_U25FYPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U25scfSuEeSXvMBl0X3W0A" base_Comment="_U25scPSuEeSXvMBl0X3W0A" ref="_RML9cNE8EeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_U25sc_SuEeSXvMBl0X3W0A" base_Comment="_U25scvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U26TgfSuEeSXvMBl0X3W0A" base_Comment="_U26TgPSuEeSXvMBl0X3W0A" ref="_RML9cNE8EeSLjPxDpRV9AQ"/>
+  <Document:Line xmi:id="_U27hofSuEeSXvMBl0X3W0A" base_Comment="_U27hoPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U28IsfSuEeSXvMBl0X3W0A" base_Comment="_U28IsPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U28Is_SuEeSXvMBl0X3W0A" base_Comment="_U28IsvSuEeSXvMBl0X3W0A" ref="_yrPMQNRfEeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U28ItfSuEeSXvMBl0X3W0A" base_Comment="_U28ItPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U28vwfSuEeSXvMBl0X3W0A" base_Comment="_U28vwPSuEeSXvMBl0X3W0A" ref="_L_66oNFBEeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_U29W0PSuEeSXvMBl0X3W0A" base_Comment="_U28vwvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U29W0vSuEeSXvMBl0X3W0A" base_Comment="_U29W0fSuEeSXvMBl0X3W0A" ref="_HskbEOHUEeSJG5UikeIXVQ"/>
+  <Document:RefContent xmi:id="_U29W1PSuEeSXvMBl0X3W0A" base_Comment="_U29W0_SuEeSXvMBl0X3W0A" ref="_hq0_4PPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_U2_MAPSuEeSXvMBl0X3W0A" base_Comment="_U2-k8PSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U2_MAvSuEeSXvMBl0X3W0A" base_Comment="_U2_MAfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U2_zEPSuEeSXvMBl0X3W0A" base_Comment="_U2_MA_SuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U2_zEvSuEeSXvMBl0X3W0A" base_Comment="_U2_zEfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3AaIPSuEeSXvMBl0X3W0A" base_Comment="_U2_zE_SuEeSXvMBl0X3W0A" ref="_EM-zoNR_EeSRNI7img_HuA"/>
+  <Document:RefContent xmi:id="_U3AaIvSuEeSXvMBl0X3W0A" base_Comment="_U3AaIfSuEeSXvMBl0X3W0A" ref="_G9nvQNR_EeSRNI7img_HuA"/>
+  <Document:RefContent xmi:id="_U3AaJPSuEeSXvMBl0X3W0A" base_Comment="_U3AaI_SuEeSXvMBl0X3W0A" ref="_Go0LEPPHEeSkj8g2gtcZXQ"/>
+  <Document:RefContent xmi:id="_U3BBMfSuEeSXvMBl0X3W0A" base_Comment="_U3BBMPSuEeSXvMBl0X3W0A" ref="_CzHdsNR_EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3BBM_SuEeSXvMBl0X3W0A" base_Comment="_U3BBMvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3BoQfSuEeSXvMBl0X3W0A" base_Comment="_U3BoQPSuEeSXvMBl0X3W0A"/>
+  <Document:Line xmi:id="_U3C2YfSuEeSXvMBl0X3W0A" base_Comment="_U3C2YPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3C2Y_SuEeSXvMBl0X3W0A" base_Comment="_U3C2YvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3DdcPSuEeSXvMBl0X3W0A" base_Comment="_U3C2ZPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3DdcvSuEeSXvMBl0X3W0A" base_Comment="_U3DdcfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3EEgPSuEeSXvMBl0X3W0A" base_Comment="_U3Ddc_SuEeSXvMBl0X3W0A" ref="_EM-zoNR_EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3EEgvSuEeSXvMBl0X3W0A" base_Comment="_U3EEgfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3ErkPSuEeSXvMBl0X3W0A" base_Comment="_U3EEg_SuEeSXvMBl0X3W0A" ref="_gn_C0PPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_U3FSofSuEeSXvMBl0X3W0A" base_Comment="_U3FSoPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3F5sfSuEeSXvMBl0X3W0A" base_Comment="_U3F5sPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3F5s_SuEeSXvMBl0X3W0A" base_Comment="_U3F5svSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3F5tfSuEeSXvMBl0X3W0A" base_Comment="_U3F5tPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3GgwfSuEeSXvMBl0X3W0A" base_Comment="_U3GgwPSuEeSXvMBl0X3W0A" ref="_G9nvQNR_EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3Ggw_SuEeSXvMBl0X3W0A" base_Comment="_U3GgwvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3HH0fSuEeSXvMBl0X3W0A" base_Comment="_U3HH0PSuEeSXvMBl0X3W0A" ref="_hwSHoPPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_U3IV8fSuEeSXvMBl0X3W0A" base_Comment="_U3IV8PSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3IV8_SuEeSXvMBl0X3W0A" base_Comment="_U3IV8vSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3I9AfSuEeSXvMBl0X3W0A" base_Comment="_U3I9APSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3I9A_SuEeSXvMBl0X3W0A" base_Comment="_U3I9AvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3JkEPSuEeSXvMBl0X3W0A" base_Comment="_U3I9BPSuEeSXvMBl0X3W0A" ref="_Go0LEPPHEeSkj8g2gtcZXQ"/>
+  <Document:Cell xmi:id="_U3JkEvSuEeSXvMBl0X3W0A" base_Comment="_U3JkEfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3KLIPSuEeSXvMBl0X3W0A" base_Comment="_U3JkE_SuEeSXvMBl0X3W0A" ref="_h0_ogPPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_U3LZQPSuEeSXvMBl0X3W0A" base_Comment="_U3KyMPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3LZQvSuEeSXvMBl0X3W0A" base_Comment="_U3LZQfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3LZRPSuEeSXvMBl0X3W0A" base_Comment="_U3LZQ_SuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3MAUPSuEeSXvMBl0X3W0A" base_Comment="_U3LZRfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3MAUvSuEeSXvMBl0X3W0A" base_Comment="_U3MAUfSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3MnYfSuEeSXvMBl0X3W0A" base_Comment="_U3MnYPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3MnY_SuEeSXvMBl0X3W0A" base_Comment="_U3MnYvSuEeSXvMBl0X3W0A" ref="_hq0_4PPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_U3N1gfSuEeSXvMBl0X3W0A" base_Comment="_U3N1gPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3OckPSuEeSXvMBl0X3W0A" base_Comment="_U3N1gvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3OckvSuEeSXvMBl0X3W0A" base_Comment="_U3OckfSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3OclPSuEeSXvMBl0X3W0A" base_Comment="_U3Ock_SuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3PDofSuEeSXvMBl0X3W0A" base_Comment="_U3PDoPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3PDo_SuEeSXvMBl0X3W0A" base_Comment="_U3PDovSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3PqsfSuEeSXvMBl0X3W0A" base_Comment="_U3PqsPSuEeSXvMBl0X3W0A" ref="_h4zxgPPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_U3Q40fSuEeSXvMBl0X3W0A" base_Comment="_U3Q40PSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3Q40_SuEeSXvMBl0X3W0A" base_Comment="_U3Q40vSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3Rf4PSuEeSXvMBl0X3W0A" base_Comment="_U3Q41PSuEeSXvMBl0X3W0A" ref="_IzpZkNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3Rf4vSuEeSXvMBl0X3W0A" base_Comment="_U3Rf4fSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3SG8PSuEeSXvMBl0X3W0A" base_Comment="_U3Rf4_SuEeSXvMBl0X3W0A" ref="_IzpZkNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3SG8vSuEeSXvMBl0X3W0A" base_Comment="_U3SG8fSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3SuAfSuEeSXvMBl0X3W0A" base_Comment="_U3SuAPSuEeSXvMBl0X3W0A" ref="_IzpZkNR7EeSRNI7img_HuA"/>
+  <Document:Line xmi:id="_U3T8IfSuEeSXvMBl0X3W0A" base_Comment="_U3T8IPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3T8I_SuEeSXvMBl0X3W0A" base_Comment="_U3T8IvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3T8JfSuEeSXvMBl0X3W0A" base_Comment="_U3T8JPSuEeSXvMBl0X3W0A" ref="_TvjGcNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3UjMfSuEeSXvMBl0X3W0A" base_Comment="_U3UjMPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3UjM_SuEeSXvMBl0X3W0A" base_Comment="_U3UjMvSuEeSXvMBl0X3W0A" ref="_TvjGcNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3VKQfSuEeSXvMBl0X3W0A" base_Comment="_U3VKQPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3VKQ_SuEeSXvMBl0X3W0A" base_Comment="_U3VKQvSuEeSXvMBl0X3W0A" ref="_TvjGcNR7EeSRNI7img_HuA"/>
+  <Document:Line xmi:id="_U3WYYfSuEeSXvMBl0X3W0A" base_Comment="_U3WYYPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3W_cfSuEeSXvMBl0X3W0A" base_Comment="_U3W_cPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3W_c_SuEeSXvMBl0X3W0A" base_Comment="_U3W_cvSuEeSXvMBl0X3W0A" ref="_hAd5ENE9EeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_U3W_dfSuEeSXvMBl0X3W0A" base_Comment="_U3W_dPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3XmgfSuEeSXvMBl0X3W0A" base_Comment="_U3XmgPSuEeSXvMBl0X3W0A" ref="_hAd5ENE9EeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_U3YNkPSuEeSXvMBl0X3W0A" base_Comment="_U3XmgvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3YNkvSuEeSXvMBl0X3W0A" base_Comment="_U3YNkfSuEeSXvMBl0X3W0A" ref="_hAd5ENE9EeSLjPxDpRV9AQ"/>
+  <Document:Line xmi:id="_U3ZbsfSuEeSXvMBl0X3W0A" base_Comment="_U3ZbsPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3Zbs_SuEeSXvMBl0X3W0A" base_Comment="_U3ZbsvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3aCwPSuEeSXvMBl0X3W0A" base_Comment="_U3ZbtPSuEeSXvMBl0X3W0A" ref="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_U3aCwvSuEeSXvMBl0X3W0A" base_Comment="_U3aCwfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3ap0fSuEeSXvMBl0X3W0A" base_Comment="_U3ap0PSuEeSXvMBl0X3W0A" ref="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+  <Document:Cell xmi:id="_U3ap0_SuEeSXvMBl0X3W0A" base_Comment="_U3ap0vSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3bQ4fSuEeSXvMBl0X3W0A" base_Comment="_U3bQ4PSuEeSXvMBl0X3W0A" ref="_-We7oOG2EeSJG5UikeIXVQ"/>
+  <Document:RefContent xmi:id="_U3bQ4_SuEeSXvMBl0X3W0A" base_Comment="_U3bQ4vSuEeSXvMBl0X3W0A" ref="_HskbEOHUEeSJG5UikeIXVQ"/>
+  <Document:RefContent xmi:id="_U3b38fSuEeSXvMBl0X3W0A" base_Comment="_U3b38PSuEeSXvMBl0X3W0A" ref="_hq0_4PPHEeSkj8g2gtcZXQ"/>
+  <Document:RefContent xmi:id="_U3b38_SuEeSXvMBl0X3W0A" base_Comment="_U3b38vSuEeSXvMBl0X3W0A" ref="_h0_ogPPHEeSkj8g2gtcZXQ"/>
+  <Document:RefContent xmi:id="_U3cfAPSuEeSXvMBl0X3W0A" base_Comment="_U3b39PSuEeSXvMBl0X3W0A" ref="_hwSHoPPHEeSkj8g2gtcZXQ"/>
+  <Document:RefContent xmi:id="_U3cfAvSuEeSXvMBl0X3W0A" base_Comment="_U3cfAfSuEeSXvMBl0X3W0A" ref="_gn_C0PPHEeSkj8g2gtcZXQ"/>
+  <Document:Line xmi:id="_U3dtIfSuEeSXvMBl0X3W0A" base_Comment="_U3dtIPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3dtI_SuEeSXvMBl0X3W0A" base_Comment="_U3dtIvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3eUMPSuEeSXvMBl0X3W0A" base_Comment="_U3dtJPSuEeSXvMBl0X3W0A" ref="_EzirkN97EeS3V7Bu6N14fQ"/>
+  <Document:Cell xmi:id="_U3eUMvSuEeSXvMBl0X3W0A" base_Comment="_U3eUMfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3eUNPSuEeSXvMBl0X3W0A" base_Comment="_U3eUM_SuEeSXvMBl0X3W0A" ref="_EzirkN97EeS3V7Bu6N14fQ"/>
+  <Document:Cell xmi:id="_U3e7QfSuEeSXvMBl0X3W0A" base_Comment="_U3e7QPSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3fiUPSuEeSXvMBl0X3W0A" base_Comment="_U3e7QvSuEeSXvMBl0X3W0A" ref="_EzirkN97EeS3V7Bu6N14fQ"/>
+  <Document:Line xmi:id="_U3gwcPSuEeSXvMBl0X3W0A" base_Comment="_U3gJYPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3gwcvSuEeSXvMBl0X3W0A" base_Comment="_U3gwcfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3gwdPSuEeSXvMBl0X3W0A" base_Comment="_U3gwc_SuEeSXvMBl0X3W0A" ref="_dOkloNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3hXgPSuEeSXvMBl0X3W0A" base_Comment="_U3gwdfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3hXgvSuEeSXvMBl0X3W0A" base_Comment="_U3hXgfSuEeSXvMBl0X3W0A" ref="_dOkloNR7EeSRNI7img_HuA"/>
+  <Document:Cell xmi:id="_U3h-kPSuEeSXvMBl0X3W0A" base_Comment="_U3hXg_SuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3h-kvSuEeSXvMBl0X3W0A" base_Comment="_U3h-kfSuEeSXvMBl0X3W0A" ref="_dOkloNR7EeSRNI7img_HuA"/>
+  <Document:Line xmi:id="_U3jMsfSuEeSXvMBl0X3W0A" base_Comment="_U3jMsPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3jzwPSuEeSXvMBl0X3W0A" base_Comment="_U3jMsvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3jzwvSuEeSXvMBl0X3W0A" base_Comment="_U3jzwfSuEeSXvMBl0X3W0A" ref="_awNtwNelEeS6Ldj4lOPYhg"/>
+  <Document:Cell xmi:id="_U3jzxPSuEeSXvMBl0X3W0A" base_Comment="_U3jzw_SuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3ka0fSuEeSXvMBl0X3W0A" base_Comment="_U3ka0PSuEeSXvMBl0X3W0A" ref="_awNtwNelEeS6Ldj4lOPYhg"/>
+  <Document:Cell xmi:id="_U3ka0_SuEeSXvMBl0X3W0A" base_Comment="_U3ka0vSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3lB4fSuEeSXvMBl0X3W0A" base_Comment="_U3lB4PSuEeSXvMBl0X3W0A" ref="_awNtwNelEeS6Ldj4lOPYhg"/>
+  <Document:Line xmi:id="_U3mQAfSuEeSXvMBl0X3W0A" base_Comment="_U3mQAPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3mQA_SuEeSXvMBl0X3W0A" base_Comment="_U3mQAvSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3m3EPSuEeSXvMBl0X3W0A" base_Comment="_U3mQBPSuEeSXvMBl0X3W0A" ref="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Document:Cell xmi:id="_U3m3EvSuEeSXvMBl0X3W0A" base_Comment="_U3m3EfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3neIPSuEeSXvMBl0X3W0A" base_Comment="_U3m3E_SuEeSXvMBl0X3W0A" ref="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Document:Cell xmi:id="_U3neIvSuEeSXvMBl0X3W0A" base_Comment="_U3neIfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3oFMPSuEeSXvMBl0X3W0A" base_Comment="_U3neI_SuEeSXvMBl0X3W0A" ref="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Document:Line xmi:id="_U3pTUPSuEeSXvMBl0X3W0A" base_Comment="_U3osQPSuEeSXvMBl0X3W0A"/>
+  <Document:Cell xmi:id="_U3pTUvSuEeSXvMBl0X3W0A" base_Comment="_U3pTUfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3pTVPSuEeSXvMBl0X3W0A" base_Comment="_U3pTU_SuEeSXvMBl0X3W0A" ref="_YVqh0OG0EeSnB-BHGWjC_A"/>
+  <Document:Cell xmi:id="_U3p6YPSuEeSXvMBl0X3W0A" base_Comment="_U3pTVfSuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3p6YvSuEeSXvMBl0X3W0A" base_Comment="_U3p6YfSuEeSXvMBl0X3W0A" ref="_YVqh0OG0EeSnB-BHGWjC_A"/>
+  <Document:Cell xmi:id="_U3qhcPSuEeSXvMBl0X3W0A" base_Comment="_U3p6Y_SuEeSXvMBl0X3W0A"/>
+  <Document:RefContent xmi:id="_U3qhcvSuEeSXvMBl0X3W0A" base_Comment="_U3qhcfSuEeSXvMBl0X3W0A" ref="_-We7oOG2EeSJG5UikeIXVQ"/>
+  <Document:Section xmi:id="_U3sWoPSuEeSXvMBl0X3W0A" base_Package="_U3rvkPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3tkwPSuEeSXvMBl0X3W0A" base_Package="_U3s9sPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3uy4PSuEeSXvMBl0X3W0A" base_Package="_U3tkwfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3wBAPSuEeSXvMBl0X3W0A" base_Package="_U3uy4fSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3woEPSuEeSXvMBl0X3W0A" base_Package="_U3wBAfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3x2MPSuEeSXvMBl0X3W0A" base_Package="_U3xPIPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3zEUPSuEeSXvMBl0X3W0A" base_Package="_U3x2MfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3zrYPSuEeSXvMBl0X3W0A" base_Package="_U3zEUfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U305gPSuEeSXvMBl0X3W0A" base_Package="_U3zrYfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U32HoPSuEeSXvMBl0X3W0A" base_Package="_U305gfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U32usPSuEeSXvMBl0X3W0A" base_Package="_U32HofSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3380PSuEeSXvMBl0X3W0A" base_Package="_U32usfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U34j4PSuEeSXvMBl0X3W0A" base_Package="_U3380fSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U35yAPSuEeSXvMBl0X3W0A" base_Package="_U35K8PSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U37AIPSuEeSXvMBl0X3W0A" base_Package="_U36ZEPSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U38OQPSuEeSXvMBl0X3W0A" base_Package="_U37AIfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U381UPSuEeSXvMBl0X3W0A" base_Package="_U38OQfSuEeSXvMBl0X3W0A"/>
+  <Document:Section xmi:id="_U3-DcPSuEeSXvMBl0X3W0A" base_Package="_U39cYPSuEeSXvMBl0X3W0A"/>
+</xmi:XMI>

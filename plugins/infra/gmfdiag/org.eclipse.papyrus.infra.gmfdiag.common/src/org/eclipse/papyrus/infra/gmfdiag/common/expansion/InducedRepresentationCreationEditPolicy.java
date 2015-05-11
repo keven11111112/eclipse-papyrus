@@ -16,24 +16,17 @@ package org.eclipse.papyrus.infra.gmfdiag.common.expansion;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
-import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
-import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.InducedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.NotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * this edit policy can be apply only on {@link IPapyrusEditPart} in order to
@@ -42,7 +35,7 @@ import org.eclipse.swt.widgets.Display;
  * it creates the compartment displaying shapes for an element by reading the expansion model
  * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011
  */
-public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
+public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy {
 
 	/** constant for this edit policy role */
 	public final static String INDUCED_REPRESENTATION_CREATOR_EDITPOLICY = "InducedRepresentationCreationEditPolicy"; //$NON-NLS-1$
@@ -99,13 +92,6 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 		return (View) getHost().getModel();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void refreshDisplay() {
-		final IGraphicalEditPart editPart = (IGraphicalEditPart) getHost();
-		editPart.refresh();
-	}
 
 
 	/**
@@ -131,12 +117,8 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 										editPart.getNotationView(),
 										true,
 										editPart.getDiagramPreferencesHint());
-						try {
 							// This should not change the command stack, as this transaction will only manipulate transient views. Create a transaction manually, if needed
 							GMFUnsafe.write(domain, command);
-						} catch (Exception e) {
-							Activator.log.error(e);
-						}
 					} catch (Exception e) {
 						Activator.log.error(e);
 					}
@@ -158,27 +140,7 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 		return editPart.getEditingDomain();
 	}
 
-	/**
-	 * Gets the diagram event broker from the editing domain.
-	 *
-	 * @return the diagram event broker
-	 */
-	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (theEditingDomain != null) {
-			return DiagramEventBroker.getInstance(theEditingDomain);
-		}
-		return null;
-	}
 
-	/**
-	 *
-	 * {@inheritedDoc}
-	 */
-	@Override
-	public void notifyChanged(Notification notification) {
-		refreshDisplay();
-	}
 	protected String getDiagramType(View currentView) {
 		Diagram diagram=currentView.getDiagram();
 		String currentDiagramType=null;
@@ -234,6 +196,5 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 		}
 		return dynamicCompartments;
 	}
-
 
 }

@@ -37,7 +37,7 @@ import org.osgi.framework.Bundle;
 
 /**
  * this Test is used to test if it is possible to add compartment
- * see #Test T002-Add a compartment
+ * see #Test T004-Add Border Item
  * 
  *
  */
