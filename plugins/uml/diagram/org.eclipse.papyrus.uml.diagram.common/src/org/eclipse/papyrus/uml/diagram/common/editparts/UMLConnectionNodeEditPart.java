@@ -151,7 +151,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionEditPart imple
 
 		// if the string is not empty, then, the figure has to display it. Else,
 		// it displays nothing
-		if (stereotypesToDisplay != "" || imageToDisplay != null) {
+		if (!"".equals(stereotypesToDisplay) || imageToDisplay != null) {
 			getPrimaryShape().setStereotypeDisplay(stereotypesToDisplay, imageToDisplay);
 		} else {
 			// getPrimaryShape().setStereotypeDisplay(null, null);

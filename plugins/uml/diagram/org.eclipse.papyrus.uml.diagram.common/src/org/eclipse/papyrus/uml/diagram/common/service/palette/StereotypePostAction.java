@@ -300,8 +300,9 @@ public class StereotypePostAction extends ModelPostAction {
 					packageContainer = packageContainer.getOwner();
 				} while (!(packageContainer instanceof org.eclipse.uml2.uml.Package) && packageContainer != null);
 
-
-				config.setAppliedProfiles(((org.eclipse.uml2.uml.Package) packageContainer).getAllAppliedProfiles());
+				if (packageContainer != null) {
+					config.setAppliedProfiles(((org.eclipse.uml2.uml.Package) packageContainer).getAllAppliedProfiles());
+				}
 
 				if (config.hasRuntimeProperties()) {
 					defineRuntimeProperties(config);
@@ -652,8 +653,8 @@ public class StereotypePostAction extends ModelPostAction {
 	 */
 	protected void performAddButtonPressed(TreeViewer tree) {
 		TreeSelection selection = (TreeSelection) tree.getSelection();
-		Object selectedElement = selection.getFirstElement();
-		if (selection != null && selection.size() == 1 && !(selectedElement instanceof StereotypeRepresentation)) {
+		if (selection != null && selection.size() == 1) {
+			Object selectedElement = selection.getFirstElement();
 			if (selectedElement instanceof PropertyRepresentation) {
 				// We want add a value to a multi-valued property or edit a
 				// value to a mono-valued property

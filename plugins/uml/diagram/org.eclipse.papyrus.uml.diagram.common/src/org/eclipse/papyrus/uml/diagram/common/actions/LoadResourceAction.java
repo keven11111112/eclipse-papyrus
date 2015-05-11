@@ -19,8 +19,10 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
@@ -34,7 +36,15 @@ public class LoadResourceAction extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IEditorPart diagramEditor = HandlerUtil.getActiveEditorChecked(event);
-		Shell shell = diagramEditor.getEditorSite().getShell();
+		IEditorSite site = diagramEditor.getEditorSite();
+		Shell shell = null;
+		if (site != null) {
+			shell = site.getShell();
+		} else {
+			Activator.log.error("Impossible to find the active shell from the diagram editor", null);
+			return null;
+		}
+
 
 		IDiagramWorkbenchPart workbenchPart;
 		if (diagramEditor instanceof IDiagramWorkbenchPart) {
