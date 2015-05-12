@@ -17,6 +17,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.NodePositionSyncFeature;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.NodeSizeSyncFeature;
 import org.eclipse.papyrus.umlrt.ui.internal.sync.UMLRTMasterSlaveSyncBucket;
+import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Vertex;
 
@@ -31,7 +32,8 @@ public class VertexSyncBucket extends UMLRTMasterSlaveSyncBucket<Vertex> {
 		add(new NodeSizeSyncFeature<>(this));
 		add(new NodePositionSyncFeature<>(this));
 
-		if (model instanceof State) {
+		// Final states don't contain regions
+		if ((model instanceof State) && !(model instanceof FinalState)) {
 			add(new StateMachineRegionsSyncFeature<>(this));
 		}
 	}
