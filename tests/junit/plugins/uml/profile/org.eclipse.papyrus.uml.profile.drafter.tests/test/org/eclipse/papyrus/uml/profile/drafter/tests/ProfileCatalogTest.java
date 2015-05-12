@@ -12,17 +12,24 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.profile.drafter;
+package org.eclipse.papyrus.uml.profile.drafter.tests;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
+import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.uml.profile.drafter.Activator;
+import org.eclipse.papyrus.uml.profile.drafter.ProfileCatalog;
 import org.eclipse.papyrus.uml.profile.drafter.exceptions.NotFoundException;
-import org.eclipse.papyrus.uml.profile.drafter.tests.EclipseProject;
 import org.eclipse.papyrus.uml.profile.drafter.tests.ModelSetManager;
 import org.eclipse.papyrus.uml.profile.drafter.tests.exception.TestUtilsException;
 import org.eclipse.uml2.uml.NamedElement;
@@ -34,14 +41,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.osgi.framework.Bundle;
 
 
 /**
  * @author cedric dumoulin
  *
  */
-@Ignore("Fails during BeforeClass with Maven - Can't be Annotated with @InvalidTest")
-public class ProfileCatalogTest {
+public class ProfileCatalogTest extends AbstractDrafterTest{
 
 	/**
 	 * Name of the project that is created.
@@ -56,13 +63,13 @@ public class ProfileCatalogTest {
 	/**
 	 * Prefix name of the resources
 	 */
-	static protected String TEST_MODEL_1 = "models/testProfile1";
+	static protected String TEST_MODEL_1 = "testProfile1";
 
 	/**
 	 * Prefix name of the resources
 	 */
-	static protected String PROFILE1_MODEL = "models/house.profile";
-	static protected String PROFILE2_MODEL = "models/pets.profile";
+	static protected String PROFILE1_MODEL = "house.profile";
+	static protected String PROFILE2_MODEL = "pets.profile";
 
 	/**
 	 * Full name of the di resource, in project.
@@ -83,21 +90,7 @@ public class ProfileCatalogTest {
 	/**
 	 * Created project.
 	 */
-	static protected EclipseProject project;
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		// Copy resources from plugin to a new project
-		project = new EclipseProject(PROJECT_NAME);
-		project.copyResources(FROM_PROJECT_NAME, TEST_MODEL_1 + ".di", TEST_MODEL_1 + ".uml", TEST_MODEL_1 + ".notation");
-
-		// Copy sterotype.
-		project.copyResources(FROM_PROJECT_NAME, PROFILE1_MODEL + ".di", PROFILE1_MODEL + ".uml", PROFILE1_MODEL + ".notation");
-		project.copyResources(FROM_PROJECT_NAME, PROFILE2_MODEL + ".di", PROFILE2_MODEL + ".uml", PROFILE2_MODEL + ".notation");
-	}
+	protected IFile diProfile1File;
 
 	/**
 	 * @throws java.lang.Exception
@@ -108,10 +101,31 @@ public class ProfileCatalogTest {
 
 
 	/**
+	 * @throws IOException 
+	 * @throws CoreException 
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() throws CoreException, IOException {
+		initModel(PROJECT_NAME, TEST_MODEL_1, getBundle());
+		diProfile1File= PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".di", getBundle(), project, PROFILE1_MODEL + ".di");
+
+		// Copy resources from plugin to a new project
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".uml", getBundle(), project, PROFILE1_MODEL + ".uml");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".notation", getBundle(), project, PROFILE1_MODEL + ".notation");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE2_MODEL + ".di", getBundle(), project, PROFILE2_MODEL + ".di");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE2_MODEL + ".uml", getBundle(), project, PROFILE2_MODEL + ".uml");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE2_MODEL + ".notation", getBundle(), project, PROFILE2_MODEL + ".notation");
+
+	}
+
+	/**
+	 * 
+	 * @throws TestUtilsException
+	 */
+	@Test
+	public void testProfileCopy() throws TestUtilsException {
+		assertNotNull(diProfile1File);
 	}
 
 	/**
@@ -336,11 +350,10 @@ public class ProfileCatalogTest {
 		assertNotNull("Class found", namedElement);
 		assertTrue("Right Class found", namedElement instanceof org.eclipse.uml2.uml.Class);
 
-		// Chack sterotype
+		// Check sterotype
 		List<Stereotype> stereotypes = namedElement.getAppliedStereotypes();
 		assertTrue("Stereotype applied", !stereotypes.isEmpty());
 		assertNotNull("Stereotype found", namedElement.getAppliedStereotype("house::Building"));
 	}
-
 
 }

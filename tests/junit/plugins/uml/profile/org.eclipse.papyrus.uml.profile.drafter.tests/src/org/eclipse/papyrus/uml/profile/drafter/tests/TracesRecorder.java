@@ -13,9 +13,6 @@ package org.eclipse.papyrus.uml.profile.drafter.tests;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
-
-
 /**
  * This class is used to record a list of traces.
  * Traces are for event triggered by a method.

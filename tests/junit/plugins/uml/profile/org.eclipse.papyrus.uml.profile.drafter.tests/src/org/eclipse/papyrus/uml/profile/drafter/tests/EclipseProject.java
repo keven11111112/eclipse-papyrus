@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.profile.drafter.tests;
  *****************************************************************************/
 
 
+import java.io.IOException;
 import java.net.URL;
 
 import org.eclipse.core.resources.IFile;
@@ -28,6 +29,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.uml.profile.drafter.tests.exception.ExecutionException;
 
 
@@ -110,29 +112,14 @@ public class EclipseProject {
 	 * @return
 	 * @throws ExecutionException
 	 */
-	// FIXME does not work on Maven
 	public IFile copyResource(String fromBundle, String fromResourceName, String toResourceName) throws ExecutionException {
 
 		try {
-			Path toURL = new Path(toResourceName);
-			// System.out.println(toURL);
-
-			IFile file = project.getFile(toResourceName);
-			// link all the models resources
-			if (!file.exists()) {
-				// Create intermediate folders
-				ensureFolders(file);
-
-				URL url = FileLocator.find(Platform.getBundle(fromBundle), new Path(fromResourceName), null);
-				URL newFile = FileLocator.resolve(url);
-
-				// encode the URI for spaces in the path
-				// And then create a link to the file
-				file.createLink(new URL(newFile.toString().replaceAll(" ", "%20")).toURI(), IResource.REPLACE, monitor);
-			}
-			return file;
-		} catch (Exception e) {
-			throw new ExecutionException("Can't copy resource '" + toResourceName + "'.", e);
+			return PapyrusProjectUtils.copyIFile(fromResourceName, Platform.getBundle(fromBundle), project, toResourceName);
+		} catch (CoreException e1) {
+			throw new ExecutionException("Can't copy core resource '" + toResourceName + "'.", e1);
+		} catch (IOException e1) {
+			throw new ExecutionException("Can't copy resource '" + toResourceName + "'.", e1);
 		}
 	}
 
