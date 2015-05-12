@@ -21,10 +21,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder#getMenu <em>Menu</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder#getMenu <em>Menu</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage#getFolder()
  * @model
@@ -39,6 +39,7 @@ public interface Folder extends Menu {
 	 * If the meaning of the '<em>Menu</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Menu</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage#getFolder_Menu()
 	 * @model containment="true"

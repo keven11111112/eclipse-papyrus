@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ *
  * @generated
  */
 public class FolderItemProvider extends MenuItemProvider {
@@ -36,6 +37,7 @@ public class FolderItemProvider extends MenuItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public FolderItemProvider(AdapterFactory adapterFactory) {
@@ -46,6 +48,7 @@ public class FolderItemProvider extends MenuItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -58,11 +61,11 @@ public class FolderItemProvider extends MenuItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -77,6 +80,7 @@ public class FolderItemProvider extends MenuItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -91,6 +95,7 @@ public class FolderItemProvider extends MenuItemProvider {
 	 * This returns Folder.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -102,14 +107,15 @@ public class FolderItemProvider extends MenuItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Folder)object).getLabel();
+		String label = ((Folder) object).getLabel();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Folder_type") :
-			getString("_UI_Folder_type") + " " + label;
+				getString("_UI_Folder_type") :
+				getString("_UI_Folder_type") + " " + label;
 	}
 
 
@@ -118,6 +124,7 @@ public class FolderItemProvider extends MenuItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -125,9 +132,9 @@ public class FolderItemProvider extends MenuItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Folder.class)) {
-			case ElementCreationMenuModelPackage.FOLDER__MENU:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ElementCreationMenuModelPackage.FOLDER__MENU:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -137,6 +144,7 @@ public class FolderItemProvider extends MenuItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -144,19 +152,14 @@ public class FolderItemProvider extends MenuItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(ElementCreationMenuModelPackage.Literals.FOLDER__MENU,
-				 ElementCreationMenuModelFactory.eINSTANCE.createFolder()));
+						ElementCreationMenuModelFactory.eINSTANCE.createFolder()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(ElementCreationMenuModelPackage.Literals.FOLDER__MENU,
-				 ElementCreationMenuModelFactory.eINSTANCE.createCreationMenu()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ElementCreationMenuModelPackage.Literals.FOLDER__MENU,
-				 ElementCreationMenuModelFactory.eINSTANCE.createCreateRelationshipMenu()));
+						ElementCreationMenuModelFactory.eINSTANCE.createCreationMenu()));
 	}
 
 }

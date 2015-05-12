@@ -8,7 +8,6 @@
  *
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Initial API and implementation
- *   Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565 
  *   
  *****************************************************************************/
 
@@ -58,7 +57,7 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 	 *
 	 * @param reference
 	 * @param container
-	 * @param creationMenu 
+	 * @param extendedType
 	 * @return
 	 */
 	@Override
@@ -73,6 +72,7 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 			// Wrap command to select created element
 			buildCommand = RevealResultCommand.wrap(buildCommand, viewPart, container);
 		}
+
 		return buildCommand;
 	}
 

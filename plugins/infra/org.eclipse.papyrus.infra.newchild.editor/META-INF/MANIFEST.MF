@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation
+Export-Package: org.eclipse.papyrus.infra.newchild.elementcreationmenu
+ model.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.papyrus.infra.newchild.edit;bundle-version="1.1.0";visibility:=reexport,
@@ -14,7 +15,10 @@ Bundle-Version: 1.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation.ElementCreationMenuModelEditorPlugin$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.infra.newchild.editor;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.newchild.elementcreationme
+ numodel.presentation.ElementCreationMenuModelEditorPlugin$Implementat
+ ion
+Bundle-SymbolicName: org.eclipse.papyrus.infra.newchild.editor;singlet
+ on:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

@@ -15,7 +15,10 @@ package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.*;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +29,7 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
+ *
  * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage
  * @generated
  */
@@ -34,6 +38,7 @@ public class ElementCreationMenuModelSwitch<T> extends Switch<T> {
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected static ElementCreationMenuModelPackage modelPackage;
@@ -42,6 +47,7 @@ public class ElementCreationMenuModelSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ElementCreationMenuModelSwitch() {
@@ -54,7 +60,8 @@ public class ElementCreationMenuModelSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
+	 *
+	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -67,41 +74,45 @@ public class ElementCreationMenuModelSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ElementCreationMenuModelPackage.FOLDER: {
-				Folder folder = (Folder)theEObject;
-				T result = caseFolder(folder);
-				if (result == null) result = caseMenu(folder);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+		case ElementCreationMenuModelPackage.FOLDER: {
+			Folder folder = (Folder) theEObject;
+			T result = caseFolder(folder);
+			if (result == null) {
+				result = caseMenu(folder);
 			}
-			case ElementCreationMenuModelPackage.MENU: {
-				Menu menu = (Menu)theEObject;
-				T result = caseMenu(menu);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case ElementCreationMenuModelPackage.CREATION_MENU: {
-				CreationMenu creationMenu = (CreationMenu)theEObject;
-				T result = caseCreationMenu(creationMenu);
-				if (result == null) result = caseMenu(creationMenu);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case ElementCreationMenuModelPackage.MENU: {
+			Menu menu = (Menu) theEObject;
+			T result = caseMenu(menu);
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case ElementCreationMenuModelPackage.CREATE_RELATIONSHIP_MENU: {
-				CreateRelationshipMenu createRelationshipMenu = (CreateRelationshipMenu)theEObject;
-				T result = caseCreateRelationshipMenu(createRelationshipMenu);
-				if (result == null) result = caseCreationMenu(createRelationshipMenu);
-				if (result == null) result = caseMenu(createRelationshipMenu);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case ElementCreationMenuModelPackage.CREATION_MENU: {
+			CreationMenu creationMenu = (CreationMenu) theEObject;
+			T result = caseCreationMenu(creationMenu);
+			if (result == null) {
+				result = caseMenu(creationMenu);
 			}
-			default: return defaultCase(theEObject);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -111,7 +122,9 @@ public class ElementCreationMenuModelSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 *
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Folder</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -126,7 +139,9 @@ public class ElementCreationMenuModelSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 *
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Menu</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -141,7 +156,9 @@ public class ElementCreationMenuModelSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 *
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Creation Menu</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -151,27 +168,14 @@ public class ElementCreationMenuModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Create Relationship Menu</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Create Relationship Menu</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCreateRelationshipMenu(CreateRelationshipMenu object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 *
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

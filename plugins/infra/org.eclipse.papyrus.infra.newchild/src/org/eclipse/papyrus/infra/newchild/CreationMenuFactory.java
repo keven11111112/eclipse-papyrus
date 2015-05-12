@@ -9,7 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
- *		Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565 
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.newchild;
 
@@ -45,7 +45,6 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreateRelationshipMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
@@ -53,9 +52,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
-import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
-import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
@@ -284,7 +281,7 @@ public class CreationMenuFactory {
 	 *
 	 * @param selectedObject
 	 * @param currentCreationMenu
-	 * @return return the list of EReference that can be calculated
+	 * @return return the list of Ereference that can be calculated
 	 */
 	protected ArrayList<EStructuralFeature> getEreferences(EObject selectedObject, CreationMenu currentCreationMenu) {
 		ArrayList<EStructuralFeature> possibleEFeatures = new ArrayList<EStructuralFeature>();
@@ -411,7 +408,7 @@ public class CreationMenuFactory {
 		}
 		
 		if (createGMFCommand != null) {
-			Command emfCommand = org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper.wrap(createGMFCommand);
+			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
 			return emfCommand;
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -449,9 +446,7 @@ public class CreationMenuFactory {
 	 * @return
 	 * 		the creation request to use in this handler
 	 */
-	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu) {
-		String extendedType = creationMenu.getElementTypeIdRef();
-
+	protected CreateElementRequest buildRequest(EReference reference, EObject container, String extendedType) {
 		if (reference == null) {
 			if (creationMenu instanceof CreateRelationshipMenu) {
 				CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(extendedType));
