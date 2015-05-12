@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.infra.sync;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
@@ -57,4 +58,15 @@ public interface ISyncObject {
 	<V, X extends Exception> V run(SyncServiceRunnable<V, X> operation) throws X;
 
 	TransactionalEditingDomain getEditingDomain();
+
+	/**
+	 * Executes the specified {@code command} in the context of the current {@linkplain #getEditingDomain() editing domain}.
+	 * If the domain has a read/write transaction in progress, then the command is executed as a nested transaction.
+	 * Otherwise, it is assumed that the context of the command is an initial synchronization on opening a model or diagram
+	 * and the command is executed in an unprotected write transaction.
+	 * 
+	 * @param command
+	 *            a command to execute in the current editing domain
+	 */
+	void execute(Command command);
 }

@@ -14,14 +14,21 @@
 package org.eclipse.papyrus.infra.sync.internal;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.InternalTransaction;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -214,6 +221,49 @@ public class SyncService implements ISyncService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public void execute(Command command) {
+		if (!command.canExecute()) {
+			throw new IllegalArgumentException("unexecutable command"); //$NON-NLS-1$
+		}
+
+		if (command instanceof IdentityCommand) {
+			return;
+		}
+
+		InternalTransactionalEditingDomain domain = TypeUtils.as(editingDomain, InternalTransactionalEditingDomain.class);
+		if (domain == null) {
+			// Easy
+			command.execute();
+		} else {
+			Transaction active = domain.getActiveTransaction();
+			if ((active == null) || active.isReadOnly()) {
+				try {
+					// Need to execute an unprotected write
+					InternalTransaction transaction = domain.startTransaction(false, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, true));
+					try {
+						command.execute();
+					} finally {
+						transaction.commit();
+					}
+				} catch (InterruptedException e) {
+					// This would be weird
+					Activator.log.error(e);
+				} catch (RollbackException e) {
+					// The only thing that can cause an unprotected write to roll back is a run-time exception
+					Activator.log.error("Unprotected synchronization update rolled back. See next log entry for the cause.", null); //$NON-NLS-1$
+					Activator.log.log(e.getStatus());
+				}
+			} else if (Boolean.TRUE.equals(active.getOptions().get(Transaction.OPTION_UNPROTECTED))) {
+				// Already in an unprotected context? Just execute the command
+				command.execute();
+			} else {
+				// Papyrus uses a nesting command stack, so just execute the command and it will happen in a nested transaction
+				domain.getCommandStack().execute(command);
+			}
+		}
 	}
 
 	//

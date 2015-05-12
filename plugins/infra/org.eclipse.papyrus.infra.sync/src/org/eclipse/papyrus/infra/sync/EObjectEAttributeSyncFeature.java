@@ -17,7 +17,6 @@ package org.eclipse.papyrus.infra.sync;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EAttribute;
@@ -26,7 +25,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 
 import com.google.common.base.Objects;
 
@@ -101,10 +99,7 @@ public class EObjectEAttributeSyncFeature<M extends EObject> extends SyncFeature
 
 		if (!Objects.equal(valueFrom, valueTo)) {
 			Command command = SetCommand.create(getEditingDomain(), to.getBackend(), attribute, valueFrom);
-
-			// get the command stack and execute
-			CommandStack stack = TransactionUtil.getEditingDomain(to.getModel()).getCommandStack();
-			stack.execute(command);
+			execute(command);
 		}
 	}
 

@@ -20,14 +20,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.ObjectArrays;
@@ -207,9 +205,7 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 		}
 
 		if (command != null) {
-			// get the command stack and execute
-			CommandStack stack = TransactionUtil.getEditingDomain(to.getModel()).getCommandStack();
-			stack.execute(command);
+			execute(command);
 		}
 	}
 
