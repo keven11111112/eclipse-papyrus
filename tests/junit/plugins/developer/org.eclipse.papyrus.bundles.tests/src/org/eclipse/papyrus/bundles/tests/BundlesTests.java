@@ -51,7 +51,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	private static final String REGEX_VERSION_NUMBER = BundleTestsUtils.PAPYRUS_VERSION.replaceAll("\\.", "\\\\.") + "\\..*"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	// Indicates that the bundle name must contain the (Incubation) string
-	//private static final String REGEX_INCUBATION = ".*\\(Incubation\\)"; //$NON-NLS-1$
+	// private static final String REGEX_INCUBATION = ".*\\(Incubation\\)"; //$NON-NLS-1$
 
 	private static final String INCUBATION_KEYWORD = "(Incubation)"; //$NON-NLS-1$
 
@@ -120,6 +120,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	/**
 	 * Tests that each papyrus plugins have the correct version
 	 */
+	@InvalidTest("FIXME: add exceptions for incubating extra plug-ins, which have a different version")
 	@Test
 	public void versionTest() {
 		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, REGEX_VERSION_NUMBER, false, false);
@@ -280,6 +281,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	 * We want that all Papyrus dependencies in the Papyrus plugin will be
 	 * define
 	 */
+	@InvalidTest("FIXME: add exceptions for incubating extra plug-ins, which have a different version")
 	@Test
 	public void papyrusDependencyVersionTest() {
 		testPapyrusDependencies2("org.eclipse.papyrus", PAPYRUS_VERSION);//$NON-NLS-1$
@@ -394,7 +396,8 @@ public class BundlesTests extends AbstractPapyrusTest {
 		 *
 		 * @param first
 		 * @param second
-		 * @return <ul>
+		 * @return
+		 * 		<ul>
 		 *         <li>0 when they are equal</li>
 		 *         <li>1 if first is greater than second</li>
 		 *         <li>-1 if first is smaller than second</li>
@@ -544,7 +547,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 		Assert.assertTrue(finalErrorMessage.toString(), nbError == 0);
 
 		// Do not fail on warnings
-		//Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$
+		// Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$
 	}
 
 }
