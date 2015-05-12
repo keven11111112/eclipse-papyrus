@@ -18,6 +18,7 @@
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	protected View hostView = null;
 
-	protected EList<Stereotype> stereotypeList;
+	protected List<Stereotype> stereotypeList = Collections.emptyList();
 
 
 	/**
@@ -141,7 +142,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 
 	/**
-	 * 
+	 *
 	 * {@inheritedDoc}
 	 */
 	@Override
@@ -176,7 +177,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	/**
 	 * Refresh the NotationStructure of the Node for the StereotypeList
-	 * 
+	 *
 	 */
 	public void refreshStereotypeStructure() {
 
@@ -191,7 +192,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	/**
 	 * Refresh Brace Compartment and Properties Structure into notation model.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The stereotype for which the Structure is Refreshed
 	 */
@@ -207,7 +208,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	/**
 	 * Refresh The StereotypeLabel notation structure.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The stereotype of which the Label has to be refreshed.
 	 */
@@ -275,7 +276,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	/**
 	 * In charge of properties view creation
-	 * 
+	 *
 	 * @param stereotype
 	 *            The stereotype of which the Properties should be created
 	 */
@@ -295,7 +296,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	/**
 	 * In Charge of PropertyView Creation
-	 * 
+	 *
 	 * @param compartment
 	 *            The Compartment owner of the Property that will be created
 	 * @param property
@@ -316,7 +317,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * List on all the existing node contained into the main view.
 	 * For each node related to the stereotype structure, check if the related Stereotype is still applied
 	 * If no, remove the non relevant node.
-	 * 
+	 *
 	 * @param view
 	 *            The main parent view of the host EditPart
 	 */
@@ -422,7 +423,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	/**
 	 * Execute the command to remove the Stereotype.
-	 * 
+	 *
 	 * @param editPart
 	 *            Edit Part on which the command is executed
 	 * @param label

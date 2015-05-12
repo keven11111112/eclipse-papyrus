@@ -26,8 +26,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypePropertyViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCompartmentCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypePropertyViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Extension;
@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * this edit policy can be apply only on {@link IPapyrusEditPart} in order to
  * access to primary figure. the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}
- * 
+ *
  */
 
 public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
@@ -55,7 +55,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 	/**
 	 * Refresh the NotationStructure of the Node for this Stereotype
-	 * 
+	 *
 	 * @param notationView
 	 * @param stereo
 	 */
@@ -82,7 +82,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 	/**
 	 * Refresh The StereotypeCompartment notation structure.
-	 * 
+	 *
 	 * @param view
 	 * @param stereotype
 	 */
@@ -116,7 +116,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 	/**
 	 * In charge of properties view creation
-	 * 
+	 *
 	 * @param eObject
 	 *            The Edit Part of which the Properties should be created
 	 */
@@ -137,7 +137,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 	/**
 	 * In Charge of PropertyView Creation
-	 * 
+	 *
 	 * @param propertyType
 	 *            Type of Property {@link StereotypeDisplayConstant#STEREOTYPE_PROPERTY_TYPE} or {@link StereotypeDisplayConstant#STEREOTYPE_PROPERTY_BRACE_TYPE}
 	 * @param compartment

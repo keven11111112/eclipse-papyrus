@@ -52,7 +52,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * - create notation view associated to this CommentEditPart
  * - refresh the Comment content based on the UML information
  * by using NamedStyle mechanism into Notation model
- * 
+ *
  *
  */
 public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
@@ -124,7 +124,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 	/**
 	 * Refresh the structure for the Stereotype List
-	 * 
+	 *
 	 * @param stereotypeList
 	 *            The list of Stereotype applied on the Element.
 	 */
@@ -165,10 +165,10 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 	/**
 	 * Get the number of Visible Compartments
-	 * 
+	 *
 	 * @param view
 	 *            The View where the number of visible Compartment are evaluated
-	 * 
+	 *
 	 * @return the number of Visible Stereotype Compartment
 	 */
 	protected int getAppliedStereotypeCompartmentNumber(View view) {
@@ -203,7 +203,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 	/**
 	 * Refresh The StereotypeCompartment notation structure.
-	 * 
+	 *
 	 * @param stereotype
 	 *            Stereotype related to the Compartment to created
 	 */
@@ -236,7 +236,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 	/**
 	 * In charge of properties view creation
-	 * 
+	 *
 	 * @param eObject
 	 *            The Edit Part of which the Properties should be created
 	 */
@@ -255,7 +255,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 	/**
 	 * In Charge of PropertyView Creation
-	 * 
+	 *
 	 * @param propertyType
 	 *            Type of Property {@link StereotypeDisplayConstant#STEREOTYPE_PROPERTY_TYPE} or {@link StereotypeDisplayConstant#STEREOTYPE_PROPERTY_BRACE_TYPE}
 	 * @param compartment
@@ -312,7 +312,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 	/**
 	 * In charge of Comment Node creation.
-	 * 
+	 *
 	 * @return The Comment Node newly created
 	 */
 	private Node createCommentNode() {
