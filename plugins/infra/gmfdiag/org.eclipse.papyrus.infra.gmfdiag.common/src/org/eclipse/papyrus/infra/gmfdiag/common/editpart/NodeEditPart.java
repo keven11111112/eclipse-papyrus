@@ -26,7 +26,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.FillStyle;
@@ -84,39 +83,40 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 */
 	protected void addBorderItem(IFigure borderItemContainer,
 			IBorderItemEditPart borderItemEditPart) {
-		if( borderItemEditPart instanceof IBorderItemWithLocator){
-			borderItemContainer.add(borderItemEditPart.getFigure(), ((IBorderItemWithLocator)borderItemEditPart).getNewBorderItemLocator(getMainFigure()));
-			//super.addBorderItem(borderItemContainer, borderItemEditPart);
-		}
-		else{
+		if (borderItemEditPart instanceof IBorderItemWithLocator) {
+			borderItemContainer.add(borderItemEditPart.getFigure(), ((IBorderItemWithLocator) borderItemEditPart).getNewBorderItemLocator(getMainFigure()));
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
+
 	/**
 	 * Refresh the SVG Path for anchorable elements
 	 */
 	protected void refreshSVGPath() {
 		View view = getNotationView();
 		if (svgNodePlate != null) {
-			BooleanValueStyle followStyle = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), FollowSVGSymbolEditPolicy.FOLLOW_SVG_SYMBOL);
-			//follow SVG is set to true
-			if (followStyle != null && followStyle.isBooleanValue()) {
-				if (ShapeService.getInstance().hasShapeToDisplay(getNotationView())) {
-					List<SVGDocument> svgToDisplay = ShapeService.getInstance().getSVGDocumentToDisplay(getNotationView());
-					int documentNumber = svgToDisplay.size();
-					//If there is more than one element we don't follow the SVG path.
-					if(documentNumber == 1) {
-						//Set the SVG document of the SVGNodePlate to the document to display
-						svgNodePlate.setSVGDocument(svgToDisplay.get(0));
-					} else {
-						svgNodePlate.setSVGDocument(null);
-					}
+
+			if (ShapeService.getInstance().hasShapeToDisplay(getNotationView())) {
+				List<SVGDocument> svgToDisplay = ShapeService.getInstance().getSVGDocumentToDisplay(getNotationView());
+				int documentNumber = svgToDisplay.size();
+				// If there is more than one element we don't follow the SVG path.
+				if (documentNumber == 1) {
+					// Set the SVG document of the SVGNodePlate to the document to display
+					svgNodePlate.setSVGDocument(svgToDisplay.get(0));
 				} else {
 					svgNodePlate.setSVGDocument(null);
 				}
 			} else {
 				svgNodePlate.setSVGDocument(null);
 			}
+
+			BooleanValueStyle followStyle = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), FollowSVGSymbolEditPolicy.FOLLOW_SVG_SYMBOL);
+			// set follow SVG path
+			if (followStyle != null) {
+				svgNodePlate.setFollowSVGPapyrusPath(followStyle.isBooleanValue());
+			}
+
 		}
 	}
 

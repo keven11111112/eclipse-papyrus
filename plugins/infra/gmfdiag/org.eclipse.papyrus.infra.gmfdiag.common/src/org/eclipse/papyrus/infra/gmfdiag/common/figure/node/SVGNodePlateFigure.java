@@ -123,6 +123,18 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	/** The default node plate. */
 	protected DefaultSizeNodeFigure defaultNodePlate;
 
+	/** The follow svg papyrus path. */
+	private boolean followSVGPapyrusPath = false;
+
+	/**
+	 * Sets if has to follow svg papyrus path.
+	 *
+	 * @param followSVGPapyrusPath
+	 *            the followSVGPapyrusPath to set
+	 */
+	public void setFollowSVGPapyrusPath(boolean followSVGPapyrusPath) {
+		this.followSVGPapyrusPath = followSVGPapyrusPath;
+	}
 
 	/**
 	 * Initializes the figure.
@@ -135,7 +147,6 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	public SVGNodePlateFigure(int width, int height) {
 		super(width, height);
 	}
-
 
 	/**
 	 * Associates the given SVG document to this figure
@@ -389,7 +400,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	 */
 	@Override
 	protected ConnectionAnchor createAnchor(PrecisionPoint p) {
-		if (this.outlinePoints == null) {
+		if (this.outlinePoints == null || !followSVGPapyrusPath) {
 			if (defaultNodePlate instanceof IOvalAnchorableFigure) {
 				defaultNodePlate.setBounds(this.getBounds());
 				if (p != null) {
@@ -419,7 +430,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	 */
 	@Override
 	protected ConnectionAnchor createDefaultAnchor() {
-		if (this.outlinePoints == null) {
+		if (this.outlinePoints == null || !followSVGPapyrusPath) {
 			if (defaultNodePlate instanceof IOvalAnchorableFigure) {
 				defaultNodePlate.setBounds(this.getBounds());
 				return new SlidableEllipseAnchor(this);
@@ -438,7 +449,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	 */
 	@Override
 	public PointList getPolygonPoints() {
-		if (this.outlinePoints == null) {
+		if (this.outlinePoints == null || !followSVGPapyrusPath) {
 			if (defaultNodePlate != null) {
 				defaultNodePlate.setBounds(this.getBounds());
 				return defaultNodePlate.getPolygonPoints();
