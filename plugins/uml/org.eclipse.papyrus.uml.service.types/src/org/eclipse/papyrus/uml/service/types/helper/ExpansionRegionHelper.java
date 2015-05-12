@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.uml2.uml.ExpansionNode;
 import org.eclipse.uml2.uml.ExpansionRegion;
 import org.eclipse.uml2.uml.StructuredActivityNode;
@@ -68,5 +69,17 @@ public class ExpansionRegionHelper extends StructuredActivityNodeHelper {
 	 */
 	protected boolean isExpansionNodeType(IElementType type) {
 		return UMLPackage.eINSTANCE.getExpansionNode().equals(type.getEClass());
+	}
+
+	@Override
+	protected boolean approveRequest(IEditCommandRequest request) {
+		if (request instanceof CreateElementRequest) {
+			CreateElementRequest createReq = (CreateElementRequest) request;
+			// containment feature will set in ExpansionRegionHelper#getCreateCommand(CreateElementRequest)
+			if (isExpansionNodeType(createReq.getElementType())) {
+				return true;
+			}
+		}
+		return super.approveRequest(request);
 	}
 }
