@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 461629
+ *  Christian W. Damus - bug 466997
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.IExecutorPolicy;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
@@ -60,9 +62,24 @@ public class DiagramHelper {
 	private static final LoadingCache<TransactionalEditingDomain, Executor> domainExecutors = CacheBuilder.newBuilder().weakKeys().build(new CacheLoader<TransactionalEditingDomain, Executor>() {
 		@Override
 		public Executor load(TransactionalEditingDomain domain) {
+			// Diagram refreshes must happen on the UI thread, so we must exclude the transaction
+			// executor, itself, in the case that the transaction is not running on the UI thread
+			IExecutorPolicy policy = new IExecutorPolicy() {
+				@Override
+				public Ranking rank(Runnable task, Executor executor) {
+					if (executor == uiExecutor) {
+						// Always OK to fall back to the UI-thread executor
+						return Ranking.ACCEPTABLE;
+					} else {
+						// The case of the transaction executor
+						return (Display.getCurrent() == null) ? Ranking.DEPRECATED : Ranking.PREFERRED;
+					}
+				}
+			};
+
 			// Edit-parts will be asked to refresh, and they would do this in read-only transaction, which subsequently
 			// requires canonical edit policies invoked recursively to run unprotected transactions, breaking undo/redo
-			return TransactionHelper.createTransactionExecutor(domain, uiExecutor, TransactionHelper.mergeReadOnlyOption(true));
+			return TransactionHelper.createTransactionExecutor(domain, uiExecutor, policy, TransactionHelper.mergeReadOnlyOption(true));
 		}
 	});
 
@@ -115,7 +132,7 @@ public class DiagramHelper {
 	public static void refresh(IEditorPart editorPart) {
 		List<IEditorPart> visibleEditorParts = null;
 		if (editorPart instanceof IMultiDiagramEditor) {
-			ServicesRegistry servicesRegistry = (ServicesRegistry) editorPart.getAdapter(ServicesRegistry.class);
+			ServicesRegistry servicesRegistry = editorPart.getAdapter(ServicesRegistry.class);
 			if (servicesRegistry != null) {
 				try {
 					ISashWindowsContainer container = ServiceUtils.getInstance().getISashWindowsContainer(servicesRegistry);
