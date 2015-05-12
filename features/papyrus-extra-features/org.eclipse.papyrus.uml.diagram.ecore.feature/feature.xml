@@ -14,7 +14,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="%licenseURL">
-      %licenseURL
+      %license
    </license>
 
    <plugin
