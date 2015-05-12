@@ -329,6 +329,37 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 	}
 
 	/**
+	 * Case of an Directed Composition association between B1 and B2, end B2 is owned by Block B1 and end B2 is owned by Association. Test changes B2 to B3.
+	 */
+	@Test
+	@PluginResource("/resources/418509/model.di")
+	public void testSysMLCase5() {
+
+		// Get data test
+		Association association = (Association) modelSetFixture.getModel().getMember("Directed Composition");
+		StructuredClassifier target = (StructuredClassifier) modelSetFixture.getModel().getMember("B3");
+		StructuredClassifier source = (StructuredClassifier) modelSetFixture.getModel().getMember("B2");
+		StructuredClassifier targetAssiociation = (StructuredClassifier) modelSetFixture.getModel().getMember("B1");
+
+		assertEquals(1, association.getOwnedEnds().size());
+
+		Diagram diagram = DiagramUtils.getNotationDiagram((ModelSet) modelSetFixture.getResourceSet(), "BDD 446668");
+		EditPart targetEP = getEditPart(target, diagram);
+
+		// Build a request and execute it
+		ReorientRelationshipRequest request = new ReorientRelationshipRequest(association, target, source, ReorientRequest.REORIENT_TARGET);
+		Command command = targetEP.getCommand(new EditCommandRequestWrapper(request));
+		modelSetFixture.getEditingDomain().getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
+
+		assertEquals(1, association.getOwnedEnds().size());
+		assertNotNull(association.getOwnedEnd("b1_1", targetAssiociation));
+		assertNotNull(targetAssiociation.getOwnedAttribute("b2_1", target));
+
+
+	}
+
+
+	/**
 	 * Gets the edits the part.
 	 *
 	 * @param semanticElement
