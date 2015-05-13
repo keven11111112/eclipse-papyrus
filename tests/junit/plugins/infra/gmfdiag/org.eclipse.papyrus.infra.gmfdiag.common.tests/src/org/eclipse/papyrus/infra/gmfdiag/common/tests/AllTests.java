@@ -30,6 +30,7 @@ ExpansionAddBorderItem.class,
 ExpansionAddCompartmentWithKind.class,
 ExpansionAddLink.class,
 ExpansionDropElements.class,
+AssistantUsage.class,
 GMFUnsafeTest.class 
 }
 )

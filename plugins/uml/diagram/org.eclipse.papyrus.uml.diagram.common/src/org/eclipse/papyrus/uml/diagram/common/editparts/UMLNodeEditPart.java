@@ -14,12 +14,15 @@
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
@@ -178,6 +181,18 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	public EditPart getTargetEditPart(Request request) {
 		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType())) {
 			return this;
+		}
+		
+		//find the edipart that can respond to this request
+		List<?> subEditParts=getChildren();
+		for (Object object : subEditParts) {
+			if(object instanceof CompartmentEditPart){
+				Command cmd=((CompartmentEditPart)object).getCommand(request);
+				if (cmd!=null && cmd.canExecute()){
+					return ((CompartmentEditPart)object);
+				}
+			}
+			
 		}
 		return super.getTargetEditPart(request);
 	}

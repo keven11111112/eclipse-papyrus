@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.service.types.tests.suites;
 
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateElementTest;
+import org.eclipse.papyrus.uml.service.types.tests.creation.CreateProfileRelationshipTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreatePureUMLElementTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateRelationshipTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteAssociationTest;
@@ -33,6 +34,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		CreatePureUMLElementTest.class, // pure uml tests, only element edit service
 		CreateElementTest.class,
 		CreateRelationshipTest.class,
+		CreateProfileRelationshipTest.class,
 		DeletePureUMLElementTest.class,
 		DeleteAssociationTest.class,
 		DeleteDependentWithStereotypeApplications458685.class })

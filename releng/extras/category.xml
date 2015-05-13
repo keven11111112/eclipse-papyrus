@@ -84,7 +84,7 @@
    <feature url="features/org.eclipse.papyrus.extra.qompass.designer.tracing.feature_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.qompass.designer.tracing.feature" version="1.1.0.qualifier">
       <category name="org.eclipse.papyrus.extra.qompass.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.uml.diagram.ecore.feature_1.1.0.qualifier.jar" id="org.eclipse.papyrus.uml.diagram.ecore.feature" version="1.1.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.uml.diagram.ecore.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.uml.diagram.ecore.feature" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.java.generator.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.java.generator.feature.source" version="1.1.0.qualifier">
@@ -126,7 +126,7 @@
    <feature url="features/org.eclipse.papyrus.extra.cdo.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.cdo.feature.source" version="1.1.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.uml.diagram.ecore.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.uml.diagram.ecore.feature.source" version="1.1.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.uml.diagram.ecore.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.uml.diagram.ecore.feature.source" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature.source" version="1.1.0.qualifier">

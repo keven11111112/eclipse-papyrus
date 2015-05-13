@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.draw2d.FigureCanvas;
@@ -34,10 +34,14 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropO
 import org.eclipse.papyrus.infra.sync.EStructuralFeatureSyncFeature;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncItem;
+import org.eclipse.papyrus.infra.sync.SyncRegistry;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.swt.widgets.Control;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.MapMaker;
 
 /**
@@ -47,10 +51,14 @@ import com.google.common.collect.MapMaker;
  *
  * @param <M>
  *            The type of the underlying model element common to all synchronized items in a single bucket
+ * @param <N>
+ *            The type of the model element visualized by the nested diagram views that I synchronize
  * @param <T>
  *            The type of the backend element to synchronize
  */
-public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T extends EditPart> extends EStructuralFeatureSyncFeature<M, T> {
+public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N extends EObject, T extends EditPart> extends EStructuralFeatureSyncFeature<M, T> {
+	private final SyncRegistry<N, T, Notification> nestedRegistry;
+
 	private Map<EObject, EObject> lastKnownElements = new MapMaker().weakKeys().weakValues().makeMap();
 
 	/**
@@ -66,8 +74,15 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 	 */
 	public AbstractNestedDiagramViewsSyncFeature(SyncBucket<M, T, Notification> bucket, EReference reference, EReference... more) {
 		super(bucket, reference, more);
+
+		nestedRegistry = getSyncRegistry(getNestedSyncRegistryType());
 	}
 
+	protected abstract Class<? extends SyncRegistry<N, T, Notification>> getNestedSyncRegistryType();
+
+	protected SyncRegistry<N, T, Notification> getNestedSyncRegistry() {
+		return nestedRegistry;
+	}
 
 	/**
 	 * Gets the edit part that shall be observed and modified from the specified one
@@ -77,6 +92,33 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 	 * @return The effective edit part that is observed and modified
 	 */
 	protected abstract EditPart getEffectiveEditPart(EditPart parent);
+
+	@Override
+	protected final Iterable<? extends T> getContents(T backend) {
+		return filterContents(basicGetContents(backend));
+	}
+
+	/**
+	 * Gets an unfiltered view of the nested edit-parts with the specified {@code backend} edit-part, which depends
+	 * on the kind of edit-part that it is.
+	 * 
+	 * @param backend
+	 *            a back-end edit-part
+	 * @return the raw view of its children, either nested nodes or contained/attached connections, as appropriate
+	 */
+	abstract Iterable<? extends T> basicGetContents(T backend);
+
+	protected Iterable<? extends T> filterContents(Iterable<? extends T> rawContents) {
+		return Iterables.filter(rawContents, new Predicate<T>() {
+			private final Class<? extends N> nestedType = nestedRegistry.getModelType();
+
+			@Override
+			public boolean apply(T input) {
+				View view = TypeUtils.as(input.getModel(), View.class);
+				return (view != null) && nestedType.isInstance(view.getElement());
+			}
+		});
+	}
 
 	/**
 	 * Override this one because we need to execute post-actions asynchronously.
@@ -181,9 +223,9 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 		if (parent == null || model == null) {
 			return null;
 		}
-		List<? extends T> children = getContents(parent);
-		for (int i = 0; i < children.size(); i++) {
-			T child = children.get(i);
+		Iterable<? extends T> children = getContents(parent);
+		for (Iterator<? extends T> iter = children.iterator(); iter.hasNext();) {
+			T child = iter.next();
 			if (model == getModelOf(child)) {
 				return child;
 			}

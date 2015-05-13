@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncItem;
 import org.eclipse.papyrus.infra.sync.SyncRegistry;
 import org.eclipse.papyrus.umlrt.internal.sync.UMLSyncFeature;
+import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -65,8 +66,9 @@ public class RegionVerticesSyncFeature extends UMLSyncFeature<Region, Vertex> {
 			result = synchronizingWrapper(registry, vertex, result);
 		}
 
-		// And if it's a state, it has additional synchronization to be done
-		if (vertex instanceof State) {
+		// And if it's a state, it has additional synchronization to be done for its regions (supporting composite states).
+		// Note that FinalStates, though they are states, do not have regions
+		if ((vertex instanceof State) && !(vertex instanceof FinalState)) {
 			State state = (State) vertex;
 			State superState = (State) superVertex;
 			StateSyncRegistry stateRegistry = getSyncRegistry(StateSyncRegistry.class);

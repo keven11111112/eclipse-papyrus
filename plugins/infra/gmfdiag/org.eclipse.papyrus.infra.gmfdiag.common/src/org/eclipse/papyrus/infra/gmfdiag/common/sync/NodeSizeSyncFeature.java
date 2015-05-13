@@ -17,10 +17,8 @@ package org.eclipse.papyrus.infra.gmfdiag.common.sync;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.RequestConstants;
@@ -28,9 +26,6 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncFeature;
@@ -120,13 +115,7 @@ public class NodeSizeSyncFeature<M extends EObject, T extends EditPart> extends 
 			// dispatch the reaction
 			if (message == null) {
 				// this is an initial sync request
-				try {
-					TransactionalEditingDomain domain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(toEditPart);
-					CommandStack stack = domain.getCommandStack();
-					stack.execute(reaction);
-				} catch (ServiceException e) {
-					Activator.log.error(e);
-				}
+				execute(reaction);
 			} else {
 				// this is reaction to a change
 				Dispatcher dispatcher = dispatchMgr.getDispatcher(from, message.getFeature());

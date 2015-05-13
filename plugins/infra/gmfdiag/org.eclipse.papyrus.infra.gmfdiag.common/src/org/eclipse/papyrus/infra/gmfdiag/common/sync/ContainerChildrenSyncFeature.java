@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
 
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -33,10 +32,12 @@ import com.google.common.collect.Iterators;
  *
  * @param <M>
  *            The type of the underlying model element common to all synchronized items in a single bucket
+ * @param <N>
+ *            The type of the model element visualized by the nested diagram views that I synchronize
  * @param <T>
  *            The type of the backend element to synchronize
  */
-public class ContainerChildrenSyncFeature<M extends EObject, T extends EditPart> extends AbstractNestedDiagramViewsSyncFeature<M, T> {
+public abstract class ContainerChildrenSyncFeature<M extends EObject, N extends EObject, T extends EditPart> extends AbstractNestedDiagramViewsSyncFeature<M, N, T> {
 	/**
 	 * Initialized this feature
 	 *
@@ -67,8 +68,9 @@ public class ContainerChildrenSyncFeature<M extends EObject, T extends EditPart>
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	protected List<? extends T> getContents(T backend) {
+	Iterable<? extends T> basicGetContents(T backend) {
 		return getEffectiveEditPart(backend).getChildren();
 	}
 }
