@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.profile.custom.helper;
+package org.eclipse.papyrus.uml.service.types.helper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -28,6 +27,7 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -43,8 +43,6 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
-import org.eclipse.papyrus.uml.diagram.profile.custom.policies.ExtensionCustomNameEditPolicy;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.ui.IEditorPart;
@@ -64,6 +62,9 @@ import org.eclipse.uml2.uml.UMLFactory;
  * Helper for the Extensions
  */
 public class ExtensionHelper extends ElementHelper {
+
+	/** constant for this edit policy role */
+	public final static String SPECIFIC_EXTENSION_NAME_POLICY = "SpecificExtensionNameEditPolicy"; //$NON-NLS-1$
 
 	/**
 	 * the extension's name begins by this string
@@ -167,9 +168,10 @@ public class ExtensionHelper extends ElementHelper {
 		if (!view.isEmpty()) {
 			IEditorPart editor = MDTUtil.getActiveEditor();
 			DiagramEditPart diagram = (DiagramEditPart) ((IMultiDiagramEditor) editor).getAdapter(DiagramEditPart.class);
-			EditPart extensionEP = DiagramEditPartsUtil.getEditPartFromView((View) view.get(0), diagram);
-			if (extensionEP instanceof ExtensionEditPart) {
-				policy = extensionEP.getEditPolicy(ExtensionCustomNameEditPolicy.SPECIFIC_EXTENSION_NAME_POLICY);
+			IGraphicalEditPart extensionEP = (IGraphicalEditPart) DiagramEditPartsUtil.getEditPartFromView((View) view.get(0), diagram);
+			EObject extensionSemantic = extensionEP.resolveSemanticElement();
+			if (extensionSemantic != null && extensionSemantic instanceof Extension) {
+				policy = extensionEP.getEditPolicy(ExtensionHelper.SPECIFIC_EXTENSION_NAME_POLICY);
 			}
 			// we change the stereotype to listen!
 			if (policy != null) {
@@ -280,7 +282,7 @@ public class ExtensionHelper extends ElementHelper {
 	 * @param source
 	 *            the source
 	 * @return
-	 *         Returns a name for this extension
+	 * 		Returns a name for this extension
 	 */
 	public static String getExtensionName(Element extensionParent, Stereotype source, Class target) {
 		String name = "E_"; //$NON-NLS-1$
@@ -296,7 +298,7 @@ public class ExtensionHelper extends ElementHelper {
 	 * @param extension
 	 *            the extension
 	 * @return
-	 *         the name deduces from the properties
+	 * 		the name deduces from the properties
 	 */
 	public static String deduceExtensionNameFromProperties(Extension extension) {
 		// determine the name, if the user doesn't edit it

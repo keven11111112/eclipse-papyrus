@@ -12,8 +12,7 @@
  *
  *****************************************************************************/
 
-
-package org.eclipse.papyrus.uml.diagram.profile.custom.helper;
+package org.eclipse.papyrus.uml.service.types.helper;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.commands.Command;

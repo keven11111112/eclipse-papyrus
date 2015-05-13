@@ -18,13 +18,9 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.CustomAssociationCreateCommand;
-import org.eclipse.papyrus.uml.diagram.profile.custom.commands.CustomExtensionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.profile.custom.commands.CustomExtensionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MetaclassHelper;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.AssociationBranchCreateCommand;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.MetaclassItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
 
@@ -50,9 +46,7 @@ public class CustomMetaclassItemSemanticEditPolicyCN extends MetaclassItemSemant
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (UMLElementTypes.Extension_1013 == req.getElementType()) {
-			return getGEFWrapper(new CustomExtensionCreateCommand(req, req.getSource(), req.getTarget()));
-		} else if (UMLElementTypes.Association_4001 == req.getElementType()) {
+		if (UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new CustomAssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		} else if (UMLElementTypes.Association_4019 == req.getElementType()) {
 			return getGEFWrapper(new AssociationBranchCreateCommand(req, req.getSource(), req.getTarget()));
@@ -85,22 +79,5 @@ public class CustomMetaclassItemSemanticEditPolicyCN extends MetaclassItemSemant
 		}
 
 		return cc;
-	}
-
-	/**
-	 *
-	 * @see org.eclipse.papyrus.uml.diagram.profile.edit.policies.MetaclassItemSemanticEditPolicy#getReorientRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest)
-	 *
-	 * @param req
-	 * @return
-	 */
-	@Override
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
-		case ExtensionEditPart.VISUAL_ID:
-			return getGEFWrapper(new CustomExtensionReorientCommand(req));
-		default:
-		}
-		return super.getReorientRelationshipCommand(req);
 	}
 }
