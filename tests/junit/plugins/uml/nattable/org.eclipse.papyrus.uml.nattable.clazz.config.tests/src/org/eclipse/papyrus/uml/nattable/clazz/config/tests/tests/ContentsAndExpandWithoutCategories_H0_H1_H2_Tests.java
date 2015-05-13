@@ -38,7 +38,7 @@ import org.junit.Test;
  *
  */
 @PluginResource("resources/contents_and_expand_tests_resources/ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.di")//$NON-NLS-1$
-public class ContentsAndExpandWithoutCategories_H1_H1_H2_Tests {
+public class ContentsAndExpandWithoutCategories_H0_H1_H2_Tests {
 
 	@Rule
 	public final PapyrusEditorFixture fixture = new PapyrusEditorFixture();

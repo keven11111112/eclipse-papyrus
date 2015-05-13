@@ -15,6 +15,8 @@
 package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -307,9 +309,13 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 
 		Assert.assertTrue("index of row does not match", rowSelectedPositions.length == 3); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 2); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 4); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 5); //$NON-NLS-1$
+		Collection<?> selectedRows = Arrays.asList(rowSelectedPositions);
+		Assert.assertTrue("the row 2 is not selection", selectedRows.contains(Integer.valueOf(2)));
+		Assert.assertTrue("the row 4 is not selection", selectedRows.contains(Integer.valueOf(4)));
+		Assert.assertTrue("the row 5 is not selection", selectedRows.contains(Integer.valueOf(5)));
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 2); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 4); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 5); //$NON-NLS-1$
 		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
 	}
 

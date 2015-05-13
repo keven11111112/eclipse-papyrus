@@ -36,7 +36,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		OpenTableTest.class,
 		ContentsAndExpandWithCategories_0_1_2_Tests.class,
-		ContentsAndExpandWithoutCategories_H1_H1_H2_Tests.class,
+		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,
 		PasteWithCategories_Empty_H1_H1_MultiColumns_Test.class,
 		PasteWithCategories_Empty_H1_V1_MultiColumns_Test.class,
 		PasteWithCategories_Empty_H3_V1_MultiColumns_Test.class,

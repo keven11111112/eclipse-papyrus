@@ -26,6 +26,7 @@
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.uml.textedit.tests.feature</module>
     	<module>../features/papyrus-tests-features/org.eclipse.papyrus.uml.alf.tests.feature</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.editor.integration.tests</module>
+		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.clipboard.tests</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.di.tests</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.tests</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.tests</module>
