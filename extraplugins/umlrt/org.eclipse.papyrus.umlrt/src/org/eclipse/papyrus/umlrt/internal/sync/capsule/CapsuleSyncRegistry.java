@@ -28,14 +28,10 @@ public class CapsuleSyncRegistry extends UMLSyncRegistry<org.eclipse.uml2.uml.Cl
 
 	@Override
 	public org.eclipse.uml2.uml.Class getModelOf(EObject backend) {
-		return getSuperCapsule(backend);
-	}
-
-	public static org.eclipse.uml2.uml.Class getSuperCapsule(EObject capsule) {
 		org.eclipse.uml2.uml.Class result = null;
 
-		if (capsule instanceof org.eclipse.uml2.uml.Class) {
-			result = CapsuleUtils.getSuperCapsule((org.eclipse.uml2.uml.Class) capsule);
+		if (backend instanceof org.eclipse.uml2.uml.Class) {
+			result = CapsuleUtils.getSuperCapsule((org.eclipse.uml2.uml.Class) backend);
 		}
 
 		return result;

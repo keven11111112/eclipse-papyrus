@@ -389,7 +389,7 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 	 * 
 	 * @return the wrapper command (never {@code null})
 	 */
-	protected <N> Command synchronizingWrapper(final SyncRegistry<N, ? super T, Notification> registry, final T backend, Command command) {
+	protected Command synchronizingWrapper(final SyncRegistry<?, ? super T, Notification> registry, final T backend, Command command) {
 		class Wrapper extends CommandWrapper {
 			Wrapper() {
 				super();

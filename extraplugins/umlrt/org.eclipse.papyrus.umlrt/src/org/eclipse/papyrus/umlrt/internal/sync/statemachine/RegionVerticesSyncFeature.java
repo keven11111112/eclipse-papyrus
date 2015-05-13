@@ -16,14 +16,11 @@ package org.eclipse.papyrus.umlrt.internal.sync.statemachine;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncItem;
 import org.eclipse.papyrus.infra.sync.SyncRegistry;
 import org.eclipse.papyrus.umlrt.internal.sync.UMLSyncFeature;
-import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Region;
-import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
 
@@ -47,40 +44,18 @@ public class RegionVerticesSyncFeature extends UMLSyncFeature<Region, Vertex> {
 		Vertex vertex = (Vertex) target;
 		Vertex superVertex = (Vertex) source;
 
-		if (vertex instanceof State) {
-			State state = (State) vertex;
-
-			if (state.getRedefinedState() != source) {
-				result = SetCommand.create(getEditingDomain(), state, UMLPackage.Literals.STATE__REDEFINED_STATE, source);
-			}
+		VertexSyncRegistry registry = (VertexSyncRegistry) getNestedRegistry();
+		if (!registry.redefines(vertex, superVertex)) {
+			result = registry.createSetRedefinedVertexCommand(vertex, superVertex);
 		}
 
-		SyncRegistry<Vertex, EObject, Notification> registry = getNestedRegistry();
-		if (registry != null) {
-			// Synchronize with the corresponding vertex in the super state machine
-			SyncBucket<Vertex, EObject, Notification> bucket = registry.getBucket(superVertex);
-			if (bucket == null) {
-				bucket = new VertexSyncBucket(superVertex);
-				registry.register(bucket);
-			}
-			result = synchronizingWrapper(registry, vertex, result);
+		// Synchronize with the corresponding vertex in the super state machine
+		SyncBucket<Vertex, EObject, Notification> bucket = registry.getBucket(superVertex);
+		if (bucket == null) {
+			bucket = new VertexSyncBucket(superVertex);
+			registry.register(bucket);
 		}
-
-		// And if it's a state, it has additional synchronization to be done for its regions (supporting composite states).
-		// Note that FinalStates, though they are states, do not have regions
-		if ((vertex instanceof State) && !(vertex instanceof FinalState)) {
-			State state = (State) vertex;
-			State superState = (State) superVertex;
-			StateSyncRegistry stateRegistry = getSyncRegistry(StateSyncRegistry.class);
-
-			// Synchronize state details with the corresponding state in the super state machine
-			SyncBucket<State, EObject, Notification> bucket = stateRegistry.getBucket(superState);
-			if (bucket == null) {
-				bucket = new StateSyncBucket(superState);
-				stateRegistry.register(bucket);
-			}
-			result = synchronizingWrapper(stateRegistry, state, result);
-		}
+		result = synchronizingWrapper(registry, vertex, result);
 
 		return result;
 	}

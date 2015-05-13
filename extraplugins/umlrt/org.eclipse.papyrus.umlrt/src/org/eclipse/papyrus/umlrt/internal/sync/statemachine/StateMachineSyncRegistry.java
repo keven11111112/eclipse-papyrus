@@ -29,14 +29,10 @@ public class StateMachineSyncRegistry extends UMLSyncRegistry<StateMachine> {
 
 	@Override
 	public StateMachine getModelOf(EObject backend) {
-		return getSuperStateMachine(backend);
-	}
-
-	public static StateMachine getSuperStateMachine(EObject stateMachine) {
 		StateMachine result = null;
 
-		if (stateMachine instanceof StateMachine) {
-			result = CapsuleUtils.getSuperBehavior((StateMachine) stateMachine);
+		if (backend instanceof StateMachine) {
+			result = CapsuleUtils.getSuperBehavior((StateMachine) backend);
 		}
 
 		return result;
