@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.umlrt.ui.internal.sync;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -21,10 +23,14 @@ import org.eclipse.papyrus.infra.gmfdiag.common.sync.DiagramEdgesSyncFeature;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncItem;
 
+import com.google.common.collect.MapMaker;
+
 /**
  * Synchronization feature for the edit-parts visualizing connections in an UML-RT diagram.
  */
 public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends EObject> extends DiagramEdgesSyncFeature<M, N, EditPart> {
+	private final Map<N, N> lastKnownMatch = new MapMaker().weakKeys().weakValues().makeMap();
+
 	public UMLRTDiagramEdgesSyncFeature(SyncBucket<M, EditPart, Notification> bucket) {
 		super(bucket);
 	}
@@ -46,8 +52,11 @@ public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends 
 	protected boolean match(EObject sourceModel, EObject targetModel) {
 		final UMLRTSyncRegistry<N> nestedRegistry = getNestedSyncRegistry();
 
-		// Is the source object redefined by the target object?
-		return nestedRegistry.getRedefinedElement(nestedRegistry.getModelType().cast(targetModel)) == sourceModel;
+		// Is the source object redefined by the target object? Or was it when last the source model was attached?
+		N matched = nestedRegistry.getRedefinedElement(nestedRegistry.getModelType().cast(targetModel));
+		return (sourceModel.eResource() == null)
+				? lastKnownMatch.get(targetModel) == sourceModel
+				: matched == sourceModel;
 	}
 
 	/**
@@ -89,6 +98,9 @@ public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends 
 			for (EditPart next : getContents(master.getBackend())) {
 				N matchNested = nestedRegistry.getModelOf(next);
 				if (matchNested == masterNested) {
+					// Remember this pairing in case the underlying model elements are later deleted
+					lastKnownMatch.put(nested, masterNested);
+
 					// Synchronize our new child with this master edit-part
 					SyncBucket<N, EditPart, Notification> bucket = nestedRegistry.getBucket(masterNested);
 					if (bucket == null) {

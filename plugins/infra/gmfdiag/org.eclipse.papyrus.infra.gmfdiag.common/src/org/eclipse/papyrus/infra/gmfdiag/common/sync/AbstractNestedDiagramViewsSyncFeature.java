@@ -22,10 +22,11 @@ import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -121,7 +122,7 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 	}
 
 	/**
-	 * Override this one because we need to execute post-actions asynchronously.
+	 * Override this one because we need to execute certain post-actions asynchronously.
 	 */
 	@Override
 	protected Command getAddCommand(final SyncItem<M, T> from, final SyncItem<M, T> to, final EObject newModel) {
@@ -180,7 +181,10 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 			@Override
 			public void undo() {
 				if (child != null) {
-					onTargetRemoved(to, child);
+					Command additional = onTargetRemoved(to, child);
+					if (additional != null) {
+						additional.execute();
+					}
 				}
 				getDropCommand().undo();
 			}
@@ -197,7 +201,10 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 					public T run(ISyncService syncService) {
 						child = retrieveChild(to.getBackend(), getTargetModel(from, to, objectToDrop));
 						if (child != null) {
-							onTargetAdded(from, newModel, to, child);
+							Command additional = onTargetAdded(from, newModel, to, child);
+							if (additional != null) {
+								syncService.execute(additional);
+							}
 						}
 						return child;
 					}
@@ -233,9 +240,69 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 		return null;
 	}
 
+	/**
+	 * Override this one because we need to execute certain post-actions asynchronously.
+	 */
+	@Override
+	protected Command getRemoveCommand(final SyncItem<M, T> from, final EObject oldSource, final SyncItem<M, T> to, T _oldTarget) {
+		final View oldView = (View) _oldTarget.getModel();
+
+		return new CommandWrapper(doGetRemoveCommand(from, oldSource, to, _oldTarget)) {
+			private T oldTarget;
+
+			@Override
+			public void execute() {
+				updateOldTarget();
+				super.execute();
+				onDo();
+			}
+
+			private void updateOldTarget() {
+				Object editPart = to.getBackend().getViewer().getEditPartRegistry().get(oldView);
+				oldTarget = AbstractNestedDiagramViewsSyncFeature.this.getNestedSyncRegistry().getBackendType().cast(editPart);
+			}
+
+			@Override
+			public void undo() {
+				super.undo();
+
+				// Only notify of add if we had done that in the first place (this is not an initial sync that is being undone)
+				if (oldSource != null) {
+					UISyncUtils.asyncExec(AbstractNestedDiagramViewsSyncFeature.this, new SyncServiceRunnable.Safe<Command>() {
+						@Override
+						public Command run(ISyncService syncService) {
+							// A new edit-part is always created when a deleted view is restored, so find it.
+							updateOldTarget();
+
+							Command additional = onTargetAdded(from, oldSource, to, oldTarget);
+							if (additional != null) {
+								syncService.execute(additional);
+							}
+							return additional;
+						}
+					});
+				}
+			}
+
+			@Override
+			public void redo() {
+				updateOldTarget();
+				super.redo();
+				onDo();
+			}
+
+			private void onDo() {
+				Command additional = onTargetRemoved(to, oldTarget);
+				if (additional != null) {
+					additional.execute();
+				}
+			}
+		};
+	}
+
 	@Override
 	protected Command doGetRemoveCommand(final SyncItem<M, T> from, final EObject oldSource, final SyncItem<M, T> to, final T oldTarget) {
-		return RemoveCommand.create(getEditingDomain(), oldTarget.getModel());
+		return DeleteCommand.create(getEditingDomain(), oldTarget.getModel());
 	}
 
 	@Override

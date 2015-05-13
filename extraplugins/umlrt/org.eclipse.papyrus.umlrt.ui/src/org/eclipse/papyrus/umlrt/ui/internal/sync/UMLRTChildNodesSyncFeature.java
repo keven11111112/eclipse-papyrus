@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.umlrt.ui.internal.sync;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -21,10 +23,14 @@ import org.eclipse.papyrus.infra.gmfdiag.common.sync.ContainerChildrenSyncFeatur
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncItem;
 
+import com.google.common.collect.MapMaker;
+
 /**
  * Synchronization feature for the edit-parts visualizing the nodes in an UML-RT diagram.
  */
 public abstract class UMLRTChildNodesSyncFeature<M extends EObject, N extends EObject> extends ContainerChildrenSyncFeature<M, N, EditPart> {
+	private final Map<N, N> lastKnownMatch = new MapMaker().weakKeys().weakValues().makeMap();
+
 	public UMLRTChildNodesSyncFeature(SyncBucket<M, EditPart, Notification> bucket) {
 		super(bucket);
 	}
@@ -51,8 +57,13 @@ public abstract class UMLRTChildNodesSyncFeature<M extends EObject, N extends EO
 		// One case of a match is when I already have established synchronization between these elements
 		result = nestedRegistry.getModelType().isInstance(sourceModel) && nestedRegistry.getSemanticSyncRegistry().synchronizes(targetModel, nestedRegistry.getModelType().cast(sourceModel));
 
-		// Otherwise, is the source object redefined by the target object?
-		result = result || (nestedRegistry.getRedefinedElement(nestedRegistry.getModelType().cast(targetModel)) == sourceModel);
+		if (!result) {
+			// Otherwise, is the source object redefined by the target object?
+			N matched = nestedRegistry.getRedefinedElement(nestedRegistry.getModelType().cast(targetModel));
+			result = (sourceModel.eResource() == null)
+					? lastKnownMatch.get(targetModel) == sourceModel
+					: matched == sourceModel;
+		}
 
 		return result;
 	}
@@ -96,6 +107,9 @@ public abstract class UMLRTChildNodesSyncFeature<M extends EObject, N extends EO
 			for (EditPart next : getContents(master.getBackend())) {
 				N matchNested = nestedRegistry.getModelOf(next);
 				if (matchNested == masterNested) {
+					// Remember this pairing in case the underlying model elements are later deleted
+					lastKnownMatch.put(nested, masterNested);
+
 					// Synchronize our new child with this master edit-part
 					SyncBucket<N, EditPart, Notification> bucket = nestedRegistry.getBucket(masterNested);
 					if (bucket == null) {

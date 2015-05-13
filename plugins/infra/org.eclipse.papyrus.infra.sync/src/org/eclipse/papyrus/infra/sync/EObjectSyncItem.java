@@ -24,4 +24,17 @@ public abstract class EObjectSyncItem<M, T extends EObject> extends SyncItem<M, 
 		super(backend);
 	}
 
+	@Override
+	public boolean isActive() {
+		boolean result = super.isActive();
+
+		if (result) {
+			EObject eObject = getBackend();
+
+			// Detached objects do not synchronize
+			result = (eObject != null) && (eObject.eResource() != null);
+		}
+
+		return result;
+	}
 }
