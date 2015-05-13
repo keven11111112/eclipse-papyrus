@@ -17,13 +17,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -32,25 +29,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeConfigurationTypeRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.ChildrenListRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansion.InducedRepresentationCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Interface;
 import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
@@ -158,7 +150,6 @@ public class ExpansionDropElements extends AbstractEditorTest{
 		try {
 			initModel("ExpansionModelProject", "ExpansionModelTest", getBundle());
 			openDiagram(editor, "NewDiagram");
-			SynchronizableGmfDiagramEditor	diagramEditor = (SynchronizableGmfDiagramEditor)editor.getActiveEditor();
 			DiagramEditPart diagramEditPart = (DiagramEditPart)editor.getAdapter(DiagramEditPart.class);
 			Assert.assertNotNull("A Class edit Part must exist", diagramEditPart);
 			Assert.assertNotNull("The diagram must be opened", diagramEditPart);

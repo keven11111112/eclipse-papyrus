@@ -16,19 +16,15 @@ package org.eclipse.papyrus.infra.gmfdiag.common.tests;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.ChildrenListRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansion.InducedRepresentationCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.junit.Assert;
@@ -103,11 +99,10 @@ public class ExpansionAddBorderItem extends AbstractEditorTest{
 		try {
 			initModel("ExpansionModelProject", "ExpansionModelTest", getBundle());
 			openDiagram(editor, "NewDiagram");
-			SynchronizableGmfDiagramEditor	diagramEditor = (SynchronizableGmfDiagramEditor)editor.getActiveEditor();
 			DiagramEditPart diagramEditPart = (DiagramEditPart)editor.getAdapter(DiagramEditPart.class);
 			Assert.assertNotNull("The diagram must be opened", diagramEditPart);
 			IGraphicalEditPart classEditPart =(IGraphicalEditPart)diagramEditPart.getChildren().get(0);
-			Assert.assertNotNull("A Class edit Part must exist", diagramEditPart);
+			Assert.assertNotNull("A Class edit Part must exist", classEditPart);
 
 		} catch (Exception e) {
 			e.printStackTrace();
