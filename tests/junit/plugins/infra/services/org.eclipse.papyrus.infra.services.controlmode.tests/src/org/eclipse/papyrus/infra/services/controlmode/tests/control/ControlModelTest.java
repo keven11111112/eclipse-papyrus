@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.services.controlmode.tests.Messages;
+import org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol.AbstractUncontrolModelTest;
+import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -526,6 +528,128 @@ public class ControlModelTest extends AbstractControlModeTest {
 		assertFalse(editor.isDirty());
 		assertFalse(editorFixture.getProject().getProject().getFile(firstFragmentName).exists());
 		assertFalse(editorFixture.getProject().getProject().getFile(secondFragmentName).exists());
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertTrue("After have reloaded the editor, there are still controlled elements.", getControlledElements().isEmpty());
+	}
+
+	/**
+	 * Test of controlling and uncontrolling without save between both actions.
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	@PluginResource("model/ControlModelsSeveralFragments/ControlModeSameResource.di")
+	public void testControlModeUseCase3() throws Exception {
+		desactivateDialog();
+
+		ControlModeAssertion runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#save()
+			 *
+			 */
+			@Override
+			protected void save() {
+				// Not save
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, false);
+				assertNotNull(resource);
+			}
+		};
+
+
+
+		// Control first Package
+		runnableWithResult.testControl();
+
+		// Create an uncontrol assertion
+		runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#getElementToControl()
+			 *
+			 * @return
+			 */
+			@Override
+			protected Element getElementToControl() {
+				return getSelectedElements().get(0);
+
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeControl()
+			 *
+			 */
+			@Override
+			protected void assertBeforeControl() {
+				// Before Uncontrol
+				Assert.assertNotNull(getElementToControl());
+
+				// Verify if
+				Assert.assertNotSame("The controlled submodel's resource equals its parent's", model.eResource(), getElementToControl().eResource());
+				Assert.assertTrue(message, HandlerUtils.getActiveHandlerFor(getCommandId()).isEnabled());
+			}
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#getCommandId()
+			 *
+			 * @return
+			 */
+			@Override
+			protected String getCommandId() {
+				// Return Uncontrol command ID
+				return AbstractUncontrolModelTest.COMMAND_ID;
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertBeforeSave() {
+
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#save()
+			 *
+			 */
+			@Override
+			protected void save() {
+				// Not save
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = controlElement.eResource();
+				assertNotNull(resource);
+
+				// Assert that the resource for the model and the submodel
+				// are the same
+				Assert.assertSame(Messages.AbstractUncontrolModelTest_1, model.eResource(), resource);
+
+			}
+		};
+
+		// Uncontrol Package
+		runnableWithResult.testControl();
+
+		save();
 
 		editorFixture.close(editor);
 		openEditor();

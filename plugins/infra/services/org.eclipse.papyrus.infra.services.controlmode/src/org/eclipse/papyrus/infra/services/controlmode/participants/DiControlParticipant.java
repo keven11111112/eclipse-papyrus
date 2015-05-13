@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.services.controlmode.participants;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
@@ -113,10 +114,28 @@ public class DiControlParticipant implements IControlCommandParticipant, IUncont
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	/**
+	 * Gets the clear di command.
+	 *
+	 * @param request
+	 *            the request
+	 * @return the clear di command
+	 */
 	protected ICommand getClearDiCommand(final ControlModeRequest request) {
 		ModelSet modelSet = request.getModelSet();
-		IFile affectedFiles = WorkspaceSynchronizer.getFile(modelSet.getAssociatedResource(request.getTargetObject(), DiModel.DI_FILE_EXTENSION, true));
-		return new CleanSashCommand(Collections.singletonList(affectedFiles), request);
+		List<IFile> affectedFiles = null;
+
+		try {
+			// Try to retrieve resource from ModelSet
+			Resource associatedResource = modelSet.getAssociatedResource(request.getTargetObject(), DiModel.DI_FILE_EXTENSION, true);
+			IFile affectedFile = WorkspaceSynchronizer.getFile(associatedResource);
+			affectedFiles = Collections.singletonList(affectedFile);
+		} catch (Exception resourceException) {
+			// Resource was not yet saved
+			affectedFiles = Collections.<IFile> emptyList();
+		}
+
+		return new CleanSashCommand(affectedFiles, request);
 	}
 
 	/**
