@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ecore Configuration for Papyrus
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.ecore;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.ecore.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.1.0",
