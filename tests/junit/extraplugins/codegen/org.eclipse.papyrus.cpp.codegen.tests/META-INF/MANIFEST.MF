@@ -13,7 +13,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.infra.services.openelement;bundle-version="1.1.0",
  org.eclipse.cdt.core,
- org.eclipse.papyrus.acceleo;bundle-version="1.1.0",
  org.eclipse.papyrus.infra.emf;bundle-version="1.1.0",
  org.eclipse.papyrus.junit.framework;bundle-version="1.1.0",
  org.eclipse.papyrus.junit.utils;bundle-version="1.1.0"

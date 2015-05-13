@@ -10,7 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 443417
  *  Christian W. Damus (CEA) - bug 444227
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.widgets;
 
@@ -245,6 +245,9 @@ public class ViewEditor extends AbstractPropertyEditor {
 				scrolled.getDisplay().asyncExec(new Runnable() {
 
 					public void run() {
+						if (scrolled.isDisposed()) {
+							return;
+						}
 						resizeScrolledComposite(scrolled);
 					}
 				});
@@ -267,7 +270,7 @@ public class ViewEditor extends AbstractPropertyEditor {
 
 	/**
 	 * Recompute the size of a {@code scrolled} composite's client area and adjust its scroll bars accordingly.
-	 * 
+	 *
 	 * @param scrolled
 	 *            a scrolled composite to force to adapt to a new layout
 	 */

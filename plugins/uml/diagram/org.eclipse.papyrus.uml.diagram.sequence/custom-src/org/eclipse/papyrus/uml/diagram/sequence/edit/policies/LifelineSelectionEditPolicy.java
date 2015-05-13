@@ -27,6 +27,8 @@ import org.eclipse.gef.tools.ResizeTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -37,7 +39,7 @@ import org.eclipse.uml2.uml.Lifeline;
 public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 
 	public LifelineSelectionEditPolicy() {
-		setResizeDirections(PositionConstants.NORTH | PositionConstants.SOUTH | PositionConstants.WEST | PositionConstants.EAST);
+		setResizeDirections(PositionConstants.WEST | PositionConstants.EAST);
 	}
 
 	@Override
@@ -63,7 +65,6 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 		final IFigure fig = primaryShape.getFigureLifelineNameContainerFigure();
 		createResizeHandle(host, list, fig, PositionConstants.WEST);
 		createResizeHandle(host, list, fig, PositionConstants.EAST);
-		createResizeHandle(list, PositionConstants.SOUTH);
 		return list;
 	}
 
@@ -93,9 +94,9 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 		boolean skipMinSize = false;
 		// Only enable horizontal dragging on lifelines(except lifelines that are result of a create message).
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
-		if (this.getHost() instanceof LifelineEditPart) {
+		if (this.getHost() instanceof CustomLifelineEditPart) {
 			skipMinSize = true;
-			LifelineEditPart lifelineEP = (LifelineEditPart) this.getHost();
+			CustomLifelineEditPart lifelineEP = (CustomLifelineEditPart) this.getHost();
 			if (!SequenceUtil.isCreateMessageEndLifeline(lifelineEP)) {
 				request.getMoveDelta().y = 0;
 			}
@@ -103,6 +104,17 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 			// restrict child size within parent bounds
 			keepInParentBounds(lifelineEP, request, rect);
 			changeCombinedFragmentBounds(request, lifelineEP);
+			// Adjust lifeline's height if no DestructionOccurrenceSpecification
+			List<?> children = lifelineEP.getChildren();
+			boolean hasDOS = false;
+			for (Object child : children) {
+				if (child instanceof DestructionOccurrenceSpecificationEditPart) {
+					hasDOS = true;
+				}
+			}
+			if (!hasDOS) {
+				rect.height -= request.getMoveDelta().y;
+			}
 		}
 		Point left = rect.getLeft();
 		Point right = rect.getRight();

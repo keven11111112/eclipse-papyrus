@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.alf;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -74,10 +75,24 @@ public class ModelMerge {
 			this.updateClassifier(targetActivity, sourceActivity);
 			this.updateCollection(targetActivity.getOwnedParameters(), sourceActivity.getOwnedParameters());
 			targetActivity.setIsActive(sourceActivity.isActive());
-			BehavioralFeature specification = sourceActivity.getSpecification();
-			// NOTE: Removes the source activity as a method of its former specification.
-			sourceActivity.setSpecification(null);
-			targetActivity.setSpecification(specification);
+			
+			/*
+			 * FIXME: null test avoid the activity to be removed from the method list of an operation. The specification 
+			 * is always null when an activity playing the role of a method is compiled.
+			 * */
+			BehavioralFeature newSpecification = sourceActivity.getSpecification();			
+			if(newSpecification!=null){ 
+				sourceActivity.setSpecification(null);
+				targetActivity.setSpecification(newSpecification);
+			}
+			
+			// NOTE: the elements contained in the activity (i.e., nodes and edges) are not preserved between two compilations
+			/*1. Destroy elements*/
+			targetActivity.getNodes().clear();
+			targetActivity.getEdges().clear();
+			/*2. Create them from the mapped specification*/
+			this.updateCollection(targetActivity.getOwnedNodes(), sourceActivity.getNodes());
+			this.updateCollection(targetActivity.getEdges(), sourceActivity.getEdges());
 		} else if (source instanceof Class && target instanceof Class) {
 			Class sourceClass = (Class) source;
 			Class targetClass = (Class) target;
@@ -316,6 +331,51 @@ public class ModelMerge {
 			}
 		}
 		return null;
+	}
+	
+	protected static Operation findOwnedOperationWithName(String name, Class clazz){
+		Operation operation = null;
+		Iterator<Operation> iteratorOperation = clazz.getOwnedOperations().iterator();
+		while(operation == null && iteratorOperation.hasNext()){
+			operation = iteratorOperation.next();
+			if(!operation.getName().equals(name)){
+				operation = null;
+			}
+		}
+		return null;
+	}
+	
+	/*protected static boolean isCohesive(Operation operation, Behavior ownedBehavior){
+		boolean cohesive = true;
+		int parameterCount = operation.getOwnedParameters().size();
+		if(parameterCount==ownedBehavior.getOwnedParameters().size()){
+			int i = 0;
+			while(cohesive && i < parameterCount){
+				Parameter operationParameter = operation.getOwnedParameters().get(i);
+				Parameter behaviorParameter = ownedBehavior.getOwnedParameters().get(i);
+				if(operationParameter.getType()!=behaviorParameter.getType()){
+					cohesive = false;
+				}
+			}
+		}
+		return cohesive;
+	}*/
+
+	protected static String nameOf(NamedElement element) {
+		String name = element.getName();
+		return isStubName(name)? name.substring(0, name.length() - 5): name;
+	}
+	
+	protected static boolean notStub(NamedElement element) {
+		return !isStubName(element.getName());
+	}
+	
+	protected static boolean isStubName(String name) {
+		return name != null && name.endsWith("$stub");
+	}
+	
+	protected static boolean isMethodName(String name){
+		return name != null && name.matches(".+\\\\$method\\\\$[0-9]+");
 	}
 
 	protected static String nameOf(NamedElement element) {

@@ -15,10 +15,12 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomCombinedFragment2ResizeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomCombinedFragment2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.CoRegionCombinedFragmentFigure;
 import org.eclipse.uml2.uml.Lifeline;
@@ -44,6 +46,7 @@ public class CustomCombinedFragment2EditPart extends CombinedFragment2EditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomCombinedFragment2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new CustomCombinedFragment2ResizeEditPolicy());
 	}
 
 	/**

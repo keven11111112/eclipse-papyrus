@@ -60,7 +60,7 @@ public class CustomDecisionNodeEditPart extends DecisionNodeEditPart {
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(20, 20);
+		DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(20, 30);
 		return result;
 	}
 

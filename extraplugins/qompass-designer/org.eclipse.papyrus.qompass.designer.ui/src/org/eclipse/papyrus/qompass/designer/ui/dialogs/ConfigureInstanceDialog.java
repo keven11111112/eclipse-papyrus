@@ -139,6 +139,9 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		// visitedPackages = new BasicEList<Package> ();
 		m_feature = feature;
 		m_model = PackageUtil.getUserModel(from);
+		if (m_model == null) {
+			m_model = PackageUtil.getRootPackage(feature);
+		}
 		m_instance = null;
 		if (feature instanceof Connector) {
 			org.eclipse.papyrus.FCM.Connector fcmConn = UMLUtil.getStereotypeApplication(feature,

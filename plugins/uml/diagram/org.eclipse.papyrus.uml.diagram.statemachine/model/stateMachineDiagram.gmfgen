@@ -55,6 +55,7 @@
       <elementType
           xsi:type="gmfgen:MetamodelType"
           uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Package_1000"
+          definedExternally="true"
           editHelperClassName="PackageEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
@@ -1989,6 +1990,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"
             displayName="Transition"
+            definedExternally="true"
             editHelperClassName="TransitionEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2092,6 +2094,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000"
             displayName="Generalization"
+            definedExternally="true"
             editHelperClassName="GeneralizationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2146,7 +2149,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -2165,7 +2169,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -2184,7 +2189,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomContextLinkFigure"/>
@@ -2342,6 +2348,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif"
               createMethodName="createRegionCreationTool"
+              id="&quot;statemachine.createNodesGroup.region&quot;"
               genNodes="/0/@diagram/@childNodes.0"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2350,6 +2357,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
               createMethodName="createStateCreationTool"
+              id="&quot;statemachine.createNodesGroup.state&quot;"
               genNodes="/0/@diagram/@childNodes.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2358,6 +2366,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif"
               createMethodName="createInitialCreationTool"
+              id="&quot;statemachine.createNodesGroup.initial&quot;"
               genNodes="/0/@diagram/@childNodes.3"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2366,6 +2375,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif"
               createMethodName="createFinalStateCreationTool"
+              id="&quot;statemachine.createNodesGroup.finalstate&quot;"
               genNodes="/0/@diagram/@childNodes.1"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2374,6 +2384,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_shallowHistory.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_shallowHistory.gif"
               createMethodName="createShallowHistoryCreationTool"
+              id="&quot;statemachine.createNodesGroup.shallowhistory&quot;"
               genNodes="/0/@diagram/@childNodes.8"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2382,6 +2393,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_deepHistory.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_deepHistory.gif"
               createMethodName="createDeepHistoryCreationTool"
+              id="&quot;statemachine.createNodesGroup.deephistory&quot;"
               genNodes="/0/@diagram/@childNodes.9"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2390,6 +2402,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_fork.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_fork.gif"
               createMethodName="createForkCreationTool"
+              id="&quot;statemachine.createNodesGroup.fork&quot;"
               genNodes="/0/@diagram/@childNodes.5"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2398,6 +2411,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_join.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_join.gif"
               createMethodName="createJoinCreationTool"
+              id="&quot;statemachine.createNodesGroup.join&quot;"
               genNodes="/0/@diagram/@childNodes.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2406,6 +2420,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_choice.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_choice.gif"
               createMethodName="createChoiceCreationTool"
+              id="&quot;statemachine.createNodesGroup.choice&quot;"
               genNodes="/0/@diagram/@childNodes.6"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2414,6 +2429,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_junction.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_junction.gif"
               createMethodName="createJunctionCreationTool"
+              id="&quot;statemachine.createNodesGroup.junction&quot;"
               genNodes="/0/@diagram/@childNodes.7"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2422,6 +2438,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif"
               createMethodName="createEntryPointCreationTool"
+              id="&quot;statemachine.createNodesGroup.entrypoint&quot;"
               genNodes="/0/@diagram/@childNodes.11"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2430,6 +2447,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif"
               createMethodName="createExitPointCreationTool"
+              id="&quot;statemachine.createNodesGroup.exitpoint&quot;"
               genNodes="/0/@diagram/@childNodes.12"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2438,6 +2456,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif"
               createMethodName="createTerminateCreationTool"
+              id="&quot;statemachine.createNodesGroup.terminate&quot;"
               genNodes="/0/@diagram/@childNodes.10"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2446,6 +2465,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
               createMethodName="createConnectionPointReferenceCreationTool"
+              id="&quot;statemachine.createNodesGroup.connectionpointreference&quot;"
               genNodes="/0/@diagram/@childNodes.13"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2454,6 +2474,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               createMethodName="createStateMachineCommentCreationTool"
+              id="&quot;statemachine.createNodesGroup.comment&quot;"
               genNodes="/0/@diagram/@childNodes.14"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2462,6 +2483,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               createMethodName="createConstraintCreationTool"
+              id="&quot;statemachine.createNodesGroup.constraint&quot;"
               genNodes="/0/@diagram/@childNodes.15"/>
         </groups>
         <groups
@@ -2477,6 +2499,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif"
               createMethodName="createTransitionCreationTool"
+              id="&quot;statemachine.createEdgesGroup.transition&quot;"
               qualifiedToolName=""
               genLinks="/0/@diagram/@links.0"/>
           <entries
@@ -2486,6 +2509,7 @@
               largeIconPath="icons/obj16/Link.gif"
               smallIconPath="icons/obj16/Link.gif"
               createMethodName="createCommentlinkCreationTool"
+              id="&quot;statemachine.createEdgesGroup.link&quot;"
               genLinks="/0/@diagram/@links.2 /0/@diagram/@links.3"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2493,6 +2517,7 @@
               description="Creation of a context link for a Constraint"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              id="&quot;statemachine.createEdgesGroup.contextlink&quot;"
               genLinks="/0/@diagram/@links.4"/>
         </groups>
       </palette>

@@ -21,15 +21,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.gmfdiag.common.parsers.AbstractElementTypeBasedAttributeParser;
 import org.eclipse.papyrus.uml.diagram.composite.part.Messages;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 
 /**
  * @generated
  */
-public class MessageFormatParser extends AbstractAttributeParser {
+public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser {
 
 	/**
 	 * @generated

@@ -33,8 +33,8 @@ import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
@@ -46,6 +46,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationC
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.designer.core.transformations.connector.ConnectorReification;
 import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
@@ -117,7 +118,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			// tmComponent is not a member of the target model. This is the case, if tmComponent is
 			// in an imported model that has not been copied during the transformation towards an intermediate
 			// model.
-			tmPkgOwner = MapUtil.getAndCreate(Utils.getTop(tmCDP), tmComponent.allNamespaces(), true);
+			tmPkgOwner = MapUtil.getAndCreate(PackageUtil.getRootPackage(tmCDP), tmComponent.allNamespaces(), true);
 		}
 		// create a container with the suitable postfix
 		tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName() + containerPostfix, false);

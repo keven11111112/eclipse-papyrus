@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
@@ -27,7 +28,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.Rule;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Rule</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  * <p>
  * The following features are implemented:
  * </p>
@@ -94,8 +94,9 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 	public void setPermit(boolean newPermit) {
 		boolean oldPermit = permit;
 		permit = newPermit;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.RULE__PERMIT, oldPermit, permit));
+		}
 	}
 
 	/**
@@ -106,8 +107,8 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigurationPackage.RULE__PERMIT:
-				return isPermit();
+		case ConfigurationPackage.RULE__PERMIT:
+			return isPermit();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,9 +121,9 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigurationPackage.RULE__PERMIT:
-				setPermit((Boolean)newValue);
-				return;
+		case ConfigurationPackage.RULE__PERMIT:
+			setPermit((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,9 +136,9 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.RULE__PERMIT:
-				setPermit(PERMIT_EDEFAULT);
-				return;
+		case ConfigurationPackage.RULE__PERMIT:
+			setPermit(PERMIT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -150,8 +151,8 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.RULE__PERMIT:
-				return permit != PERMIT_EDEFAULT;
+		case ConfigurationPackage.RULE__PERMIT:
+			return permit != PERMIT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -163,7 +164,9 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (permit: ");

@@ -25,11 +25,11 @@ import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedula
 import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.ElementFilter;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.commands.AddMarteAndFcmProfile;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.BootLoaderGen;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -299,7 +299,7 @@ public class AllocationDialog extends SelectionStatusDialog {
 				Shell shell = new Shell();
 				if (MessageDialog.openQuestion(shell, "Error",
 						"Stereotype application failed. The profile MARTE::Allocation is probably not applied. Try to apply it?")) {
-					AbstractEMFOperation applyProfile = new AddMarteAndFcmProfile(Utils.getTop(is), AddMarteAndFcmProfile.APPLY_ALLOC, TransactionUtil.getEditingDomain(is));
+					AbstractEMFOperation applyProfile = new AddMarteAndFcmProfile(PackageUtil.getRootPackage(is), AddMarteAndFcmProfile.APPLY_ALLOC, TransactionUtil.getEditingDomain(is));
 					CommandSupport.exec(applyProfile);
 					AllocUtils.allocate(is, newNode);
 				}

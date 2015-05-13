@@ -18,10 +18,10 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.FCM.util.IBindingHelper;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
 import org.eclipse.papyrus.qompass.designer.core.templates.BindingUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.qompass.designer.core.templates.TextTemplateBinding;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.modellibs.core.Activator;
@@ -111,7 +111,7 @@ public class LoopOperations implements IBindingHelper, PreCopyListener {
 				copy.removeForCopy(literal);
 				newLiteral = copy.getCopy(literal);
 				try {
-					String newName = AcceleoDriverWrapper.evaluate(literal.getName(), intfOperation, null);
+					String newName = TextTemplateBinding.bind(literal.getName(), intfOperation, null);
 					newLiteral.setName(newName);
 				} catch (TransformationException e) {
 					Activator.log.error(e);

@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
@@ -143,7 +143,7 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	public int getNamePosition() {
 		// get the value of the CSS property
 		View model = (View) getModel();
-		StringValueStyle labelAlignment = (StringValueStyle) model.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), NAME_POSITION);
+		StringValueStyle labelAlignment = (StringValueStyle) model.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), TEXT_ALIGNMENT);
 
 		int textAlignment = 0;
 		if (labelAlignment != null) {
@@ -184,6 +184,8 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	 */
 	private void refreshLabelMargin() {
 		Object model = this.getModel();
+
+
 		if (model instanceof View) {
 			int leftMargin = NotationUtils.getIntValue((View) model, LEFT_MARGIN_PROPERTY, getDefaultLeftNameMargin());
 			int rightMargin = NotationUtils.getIntValue((View) model, RIGHT_MARGIN_PROPERTY, getDefaultRightNameMargin());
@@ -234,34 +236,46 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	 * Refresh label display.
 	 */
 	protected void refreshLabelDisplay() {
+
 		View view = getNotationView();
+		IPapyrusNodeNamedElementFigure figure = getNodeNamedElementFigure();
+
 		// SVGNodePlate can be null!
 		if (svgNodePlate != null) {
 			if (svgNodePlate.hasLabelBounds()) {
-				getNodeNamedElementFigure().getNameLabel().setTextWrap(true);
+				figure.getNameLabel().setTextWrap(true);
 			}
 			else {
-				getNodeNamedElementFigure().getNameLabel().setTextWrap(false);
+				figure.getNameLabel().setTextWrap(false);
 			}
 		}
+		// Get NamedStyle display preferences
 		BooleanValueStyle displayNameStyle = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), NameDisplayEditPolicy.DISPLAY_NAME);
 		BooleanValueStyle displayStereotypes = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_STEREOTYPES);
 		BooleanValueStyle displayTags = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_TAGS);
+
+
+		// Manage the display of Name Label
 		if (displayNameStyle != null && !displayNameStyle.isBooleanValue()) {
-			getNodeNamedElementFigure().removeNameLabel();
-			getNodeNamedElementFigure().removeStereotypeLabel();
-			getNodeNamedElementFigure().removeTaggedLabel();
+			figure.removeNameLabel();
+			figure.removeStereotypeLabel();
+			figure.removeTaggedLabel();
 		} else {
-			getNodeNamedElementFigure().restoreNameLabel();
+			figure.restoreNameLabel();
+
+			// Manage the display of Stereotypes Label
 			if (displayStereotypes != null && !displayStereotypes.isBooleanValue()) {
-				getNodeNamedElementFigure().removeStereotypeLabel();
+				figure.removeStereotypeLabel();
 			} else {
-				getNodeNamedElementFigure().restoreStereotypeLabel();
+				figure.restoreStereotypeLabel();
+
 			}
+
+			// Manage the display of the Stereotypes Properties Label
 			if (displayTags != null && !displayTags.isBooleanValue()) {
-				getNodeNamedElementFigure().removeTaggedLabel();
+				figure.removeTaggedLabel();
 			} else {
-				getNodeNamedElementFigure().restoreTaggedLabel();
+				figure.restoreTaggedLabel();
 			}
 		}
 	}

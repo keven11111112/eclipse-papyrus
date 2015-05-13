@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRootElementPage;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 
 			@Override
 			protected String[] getDiagramCategoryIds() {
-				return new String[]{ "uml" };
+				return new String[] { "uml" };
 			}
 
 			@Override
@@ -75,7 +76,9 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 
 	@Test
 	public void testOrderOfPages() {
-		Class<?>[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramCategoryPage.class, SelectDiagramKindPage.class, SelectRootElementPage.class, };
+		// actual pages: [SelectDiagramCategory -> SelectDiagramCategoryPage, SelectStorageProvider -> SelectStorageProviderPage,
+		// NewPapyrusModel -> NewModelFilePage, NewCDOModel -> NewModelPage, SelectDiagramKind -> SelectDiagramKindPage, SelectRootPage -> SelectRootElementPage]
+		Class<?>[] expectedPages = new Class[] { SelectDiagramCategoryPage.class, NewModelFilePage.class, SelectDiagramKindPage.class, SelectRootElementPage.class, };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
@@ -100,13 +103,13 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 
 			@Override
 			protected String[] getDiagramCategoryIds() {
-				return new String[]{ CreateProfileModelCommand.COMMAND_ID };
+				return new String[] { CreateProfileModelCommand.COMMAND_ID };
 			}
 
 		};
 
 		// ensure that the dialog would create a profile
-		settings.saveDefaultDiagramCategory(new String[]{ "profile" });
+		settings.saveDefaultDiagramCategory(new String[] { "profile" });
 
 		initWizardDialog(wizard);
 		NewModelFilePage page = getPage(wizard, NewModelFilePage.class);

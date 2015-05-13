@@ -18,16 +18,15 @@ import java.io.File
 import java.io.IOException
 import org.eclipse.emf.common.util.BasicDiagnostic
 import org.eclipse.papyrus.uml.alf.MappingError
-import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl
 import org.eclipse.papyrus.uml.alf.tests.ParserTest
-import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea
 import org.eclipse.xtext.junit4.XtextRunner
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import org.junit.Ignore
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade
 
 @RunWith(XtextRunner)
 class MappingTest extends ParserTest {
@@ -44,12 +43,10 @@ class MappingTest extends ParserTest {
     mapper = new AlfMapper()
     testDirectory = System.getProperty("test.directory", TEST_DIRECTORY)
     testFile = System.getProperty("test.file");
-  	var modelArea = new ContextModelArea("Model");
-  	ModelNamespaceImpl.setContext(modelArea.getModel);
   }
 
   @Test
-  //@Ignore("Doesn't run on Maven - Bug 464026")
+  @Ignore("Doesn't run on Maven - Bug 464026")
   def void testMapping() {
     var failures = 0
     var File[] files
@@ -66,6 +63,7 @@ class MappingTest extends ParserTest {
       if (name.substring(l - 4, l).equals(".alf")) {
         System.out.print(name + ": ")
         val resource = mapper.getResource(file.path)
+        ModelNamespaceFacade.instance.createEmptyValidationContext(resource);
         val parseFailures = parseResource(resource, true)
         if (parseFailures > 0) {
           failures = failures + parseFailures
@@ -88,6 +86,7 @@ class MappingTest extends ParserTest {
             failures = failures + 1
           }
         }
+        ModelNamespaceFacade.instance.deleteValidationContext(resource);
         resource.unload()
       }
     }

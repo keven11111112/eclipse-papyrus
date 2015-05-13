@@ -20,102 +20,88 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 	
 	public class AbstractRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AbstractRule");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cVisibilityAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cVisibilityVisibilityKindParserRuleCall_0_0_0 = (RuleCall)cVisibilityAssignment_0_0.eContents().get(0);
-		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
-		private final Assignment cNameAssignment_0_1_0 = (Assignment)cGroup_0_1.eContents().get(0);
-		private final RuleCall cNameVALUE_SPECIFICATION_IDTerminalRuleCall_0_1_0_0 = (RuleCall)cNameAssignment_0_1_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_0_1_1 = (Keyword)cGroup_0_1.eContents().get(1);
-		private final Alternatives cAlternatives_0_2 = (Alternatives)cGroup_0.eContents().get(2);
-		private final Assignment cValueAssignment_0_2_0 = (Assignment)cAlternatives_0_2.eContents().get(0);
-		private final Alternatives cValueAlternatives_0_2_0_0 = (Alternatives)cValueAssignment_0_2_0.eContents().get(0);
-		private final RuleCall cValueLiteralBooleanRuleParserRuleCall_0_2_0_0_0 = (RuleCall)cValueAlternatives_0_2_0_0.eContents().get(0);
-		private final RuleCall cValueLiteralIntegerOrUnlimitedNaturalRuleParserRuleCall_0_2_0_0_1 = (RuleCall)cValueAlternatives_0_2_0_0.eContents().get(1);
-		private final RuleCall cValueLiteralRealRuleParserRuleCall_0_2_0_0_2 = (RuleCall)cValueAlternatives_0_2_0_0.eContents().get(2);
-		private final RuleCall cValueLiteralNullRuleParserRuleCall_0_2_0_0_3 = (RuleCall)cValueAlternatives_0_2_0_0.eContents().get(3);
-		private final RuleCall cValueLiteralStringRuleParserRuleCall_0_2_0_0_4 = (RuleCall)cValueAlternatives_0_2_0_0.eContents().get(4);
-		private final Assignment cInstanceSpecificationAssignment_0_2_1 = (Assignment)cAlternatives_0_2.eContents().get(1);
-		private final CrossReference cInstanceSpecificationInstanceSpecificationCrossReference_0_2_1_0 = (CrossReference)cInstanceSpecificationAssignment_0_2_1.eContents().get(0);
-		private final RuleCall cInstanceSpecificationInstanceSpecificationIDTerminalRuleCall_0_2_1_0_1 = (RuleCall)cInstanceSpecificationInstanceSpecificationCrossReference_0_2_1_0.eContents().get(1);
-		private final Assignment cUndefinedAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cUndefinedUndefinedRuleParserRuleCall_1_0 = (RuleCall)cUndefinedAssignment_1.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVisibilityVisibilityKindParserRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameVALUE_SPECIFICATION_IDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cInstanceSpecificationAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final CrossReference cInstanceSpecificationInstanceSpecificationCrossReference_2_0_0 = (CrossReference)cInstanceSpecificationAssignment_2_0.eContents().get(0);
+		private final RuleCall cInstanceSpecificationInstanceSpecificationIDTerminalRuleCall_2_0_0_1 = (RuleCall)cInstanceSpecificationInstanceSpecificationCrossReference_2_0_0.eContents().get(1);
+		private final Assignment cValueAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Alternatives cValueAlternatives_2_1_0 = (Alternatives)cValueAssignment_2_1.eContents().get(0);
+		private final RuleCall cValueLiteralBooleanRuleParserRuleCall_2_1_0_0 = (RuleCall)cValueAlternatives_2_1_0.eContents().get(0);
+		private final RuleCall cValueLiteralIntegerOrUnlimitedNaturalRuleParserRuleCall_2_1_0_1 = (RuleCall)cValueAlternatives_2_1_0.eContents().get(1);
+		private final RuleCall cValueLiteralRealRuleParserRuleCall_2_1_0_2 = (RuleCall)cValueAlternatives_2_1_0.eContents().get(2);
+		private final RuleCall cValueLiteralNullRuleParserRuleCall_2_1_0_3 = (RuleCall)cValueAlternatives_2_1_0.eContents().get(3);
+		private final RuleCall cValueLiteralStringRuleParserRuleCall_2_1_0_4 = (RuleCall)cValueAlternatives_2_1_0.eContents().get(4);
+		private final Assignment cUndefinedAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cUndefinedUndefinedRuleParserRuleCall_2_2_0 = (RuleCall)cUndefinedAssignment_2_2.eContents().get(0);
 		
 		//AbstractRule:
-		//	visibility=VisibilityKind? (name=VALUE_SPECIFICATION_ID "=")? (value=(LiteralBooleanRule |
-		//	LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule | LiteralStringRule) |
-		//	instanceSpecification=[uml::InstanceSpecification]) | undefined=UndefinedRule;
+		//	visibility=VisibilityKind? name=VALUE_SPECIFICATION_ID? (instanceSpecification=[uml::InstanceSpecification] |
+		//	value=(LiteralBooleanRule | LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule |
+		//	LiteralStringRule) | undefined=UndefinedRule);
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=VisibilityKind? (name=VALUE_SPECIFICATION_ID "=")? (value=(LiteralBooleanRule |
-		//LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule | LiteralStringRule) |
-		//instanceSpecification=[uml::InstanceSpecification]) | undefined=UndefinedRule
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//visibility=VisibilityKind? (name=VALUE_SPECIFICATION_ID "=")? (value=(LiteralBooleanRule |
-		//LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule | LiteralStringRule) |
-		//instanceSpecification=[uml::InstanceSpecification])
-		public Group getGroup_0() { return cGroup_0; }
+		//visibility=VisibilityKind? name=VALUE_SPECIFICATION_ID? (instanceSpecification=[uml::InstanceSpecification] |
+		//value=(LiteralBooleanRule | LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule |
+		//LiteralStringRule) | undefined=UndefinedRule)
+		public Group getGroup() { return cGroup; }
 
 		//visibility=VisibilityKind?
-		public Assignment getVisibilityAssignment_0_0() { return cVisibilityAssignment_0_0; }
+		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
 
 		//VisibilityKind
-		public RuleCall getVisibilityVisibilityKindParserRuleCall_0_0_0() { return cVisibilityVisibilityKindParserRuleCall_0_0_0; }
+		public RuleCall getVisibilityVisibilityKindParserRuleCall_0_0() { return cVisibilityVisibilityKindParserRuleCall_0_0; }
 
-		//(name=VALUE_SPECIFICATION_ID "=")?
-		public Group getGroup_0_1() { return cGroup_0_1; }
-
-		//name=VALUE_SPECIFICATION_ID
-		public Assignment getNameAssignment_0_1_0() { return cNameAssignment_0_1_0; }
+		//name=VALUE_SPECIFICATION_ID?
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//VALUE_SPECIFICATION_ID
-		public RuleCall getNameVALUE_SPECIFICATION_IDTerminalRuleCall_0_1_0_0() { return cNameVALUE_SPECIFICATION_IDTerminalRuleCall_0_1_0_0; }
+		public RuleCall getNameVALUE_SPECIFICATION_IDTerminalRuleCall_1_0() { return cNameVALUE_SPECIFICATION_IDTerminalRuleCall_1_0; }
 
-		//"="
-		public Keyword getEqualsSignKeyword_0_1_1() { return cEqualsSignKeyword_0_1_1; }
+		//instanceSpecification=[uml::InstanceSpecification] | value=(LiteralBooleanRule | LiteralIntegerOrUnlimitedNaturalRule |
+		//LiteralRealRule | LiteralNullRule | LiteralStringRule) | undefined=UndefinedRule
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
-		//value=(LiteralBooleanRule | LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule |
-		//LiteralStringRule) | instanceSpecification=[uml::InstanceSpecification]
-		public Alternatives getAlternatives_0_2() { return cAlternatives_0_2; }
+		//instanceSpecification=[uml::InstanceSpecification]
+		public Assignment getInstanceSpecificationAssignment_2_0() { return cInstanceSpecificationAssignment_2_0; }
+
+		//[uml::InstanceSpecification]
+		public CrossReference getInstanceSpecificationInstanceSpecificationCrossReference_2_0_0() { return cInstanceSpecificationInstanceSpecificationCrossReference_2_0_0; }
+
+		//ID
+		public RuleCall getInstanceSpecificationInstanceSpecificationIDTerminalRuleCall_2_0_0_1() { return cInstanceSpecificationInstanceSpecificationIDTerminalRuleCall_2_0_0_1; }
 
 		//value=(LiteralBooleanRule | LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule |
 		//LiteralStringRule)
-		public Assignment getValueAssignment_0_2_0() { return cValueAssignment_0_2_0; }
+		public Assignment getValueAssignment_2_1() { return cValueAssignment_2_1; }
 
 		//LiteralBooleanRule | LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule | LiteralStringRule
-		public Alternatives getValueAlternatives_0_2_0_0() { return cValueAlternatives_0_2_0_0; }
+		public Alternatives getValueAlternatives_2_1_0() { return cValueAlternatives_2_1_0; }
 
 		//LiteralBooleanRule
-		public RuleCall getValueLiteralBooleanRuleParserRuleCall_0_2_0_0_0() { return cValueLiteralBooleanRuleParserRuleCall_0_2_0_0_0; }
+		public RuleCall getValueLiteralBooleanRuleParserRuleCall_2_1_0_0() { return cValueLiteralBooleanRuleParserRuleCall_2_1_0_0; }
 
 		//LiteralIntegerOrUnlimitedNaturalRule
-		public RuleCall getValueLiteralIntegerOrUnlimitedNaturalRuleParserRuleCall_0_2_0_0_1() { return cValueLiteralIntegerOrUnlimitedNaturalRuleParserRuleCall_0_2_0_0_1; }
+		public RuleCall getValueLiteralIntegerOrUnlimitedNaturalRuleParserRuleCall_2_1_0_1() { return cValueLiteralIntegerOrUnlimitedNaturalRuleParserRuleCall_2_1_0_1; }
 
 		//LiteralRealRule
-		public RuleCall getValueLiteralRealRuleParserRuleCall_0_2_0_0_2() { return cValueLiteralRealRuleParserRuleCall_0_2_0_0_2; }
+		public RuleCall getValueLiteralRealRuleParserRuleCall_2_1_0_2() { return cValueLiteralRealRuleParserRuleCall_2_1_0_2; }
 
 		//LiteralNullRule
-		public RuleCall getValueLiteralNullRuleParserRuleCall_0_2_0_0_3() { return cValueLiteralNullRuleParserRuleCall_0_2_0_0_3; }
+		public RuleCall getValueLiteralNullRuleParserRuleCall_2_1_0_3() { return cValueLiteralNullRuleParserRuleCall_2_1_0_3; }
 
 		//LiteralStringRule
-		public RuleCall getValueLiteralStringRuleParserRuleCall_0_2_0_0_4() { return cValueLiteralStringRuleParserRuleCall_0_2_0_0_4; }
-
-		//instanceSpecification=[uml::InstanceSpecification]
-		public Assignment getInstanceSpecificationAssignment_0_2_1() { return cInstanceSpecificationAssignment_0_2_1; }
-
-		//[uml::InstanceSpecification]
-		public CrossReference getInstanceSpecificationInstanceSpecificationCrossReference_0_2_1_0() { return cInstanceSpecificationInstanceSpecificationCrossReference_0_2_1_0; }
-
-		//ID
-		public RuleCall getInstanceSpecificationInstanceSpecificationIDTerminalRuleCall_0_2_1_0_1() { return cInstanceSpecificationInstanceSpecificationIDTerminalRuleCall_0_2_1_0_1; }
+		public RuleCall getValueLiteralStringRuleParserRuleCall_2_1_0_4() { return cValueLiteralStringRuleParserRuleCall_2_1_0_4; }
 
 		//undefined=UndefinedRule
-		public Assignment getUndefinedAssignment_1() { return cUndefinedAssignment_1; }
+		public Assignment getUndefinedAssignment_2_2() { return cUndefinedAssignment_2_2; }
 
 		//UndefinedRule
-		public RuleCall getUndefinedUndefinedRuleParserRuleCall_1_0() { return cUndefinedUndefinedRuleParserRuleCall_1_0; }
+		public RuleCall getUndefinedUndefinedRuleParserRuleCall_2_2_0() { return cUndefinedUndefinedRuleParserRuleCall_2_2_0; }
 	}
 
 	public class LiteralBooleanRuleElements extends AbstractParserRuleElementFinder {
@@ -144,18 +130,38 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 
 	public class LiteralIntegerOrUnlimitedNaturalRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LiteralIntegerOrUnlimitedNaturalRule");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueVALUE_SPECIFICATION_INTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cValueAlternatives_0_0 = (Alternatives)cValueAssignment_0.eContents().get(0);
+		private final RuleCall cValueINTTerminalRuleCall_0_0_0 = (RuleCall)cValueAlternatives_0_0.eContents().get(0);
+		private final RuleCall cValueVALUE_SPECIFICATION_NEGATIVE_INTTerminalRuleCall_0_0_1 = (RuleCall)cValueAlternatives_0_0.eContents().get(1);
+		private final Assignment cUnlimitedAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final Keyword cUnlimitedAsteriskKeyword_1_0 = (Keyword)cUnlimitedAssignment_1.eContents().get(0);
 		
 		//LiteralIntegerOrUnlimitedNaturalRule:
-		//	value=VALUE_SPECIFICATION_INT;
+		//	value=(INT | VALUE_SPECIFICATION_NEGATIVE_INT) | unlimited="*";
 		@Override public ParserRule getRule() { return rule; }
 
-		//value=VALUE_SPECIFICATION_INT
-		public Assignment getValueAssignment() { return cValueAssignment; }
+		//value=(INT | VALUE_SPECIFICATION_NEGATIVE_INT) | unlimited="*"
+		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//VALUE_SPECIFICATION_INT
-		public RuleCall getValueVALUE_SPECIFICATION_INTTerminalRuleCall_0() { return cValueVALUE_SPECIFICATION_INTTerminalRuleCall_0; }
+		//value=(INT | VALUE_SPECIFICATION_NEGATIVE_INT)
+		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
+
+		//INT | VALUE_SPECIFICATION_NEGATIVE_INT
+		public Alternatives getValueAlternatives_0_0() { return cValueAlternatives_0_0; }
+
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_0_0_0() { return cValueINTTerminalRuleCall_0_0_0; }
+
+		//VALUE_SPECIFICATION_NEGATIVE_INT
+		public RuleCall getValueVALUE_SPECIFICATION_NEGATIVE_INTTerminalRuleCall_0_0_1() { return cValueVALUE_SPECIFICATION_NEGATIVE_INTTerminalRuleCall_0_0_1; }
+
+		//unlimited="*"
+		public Assignment getUnlimitedAssignment_1() { return cUnlimitedAssignment_1; }
+
+		//"*"
+		public Keyword getUnlimitedAsteriskKeyword_1_0() { return cUnlimitedAsteriskKeyword_1_0; }
 	}
 
 	public class LiteralRealRuleElements extends AbstractParserRuleElementFinder {
@@ -193,17 +199,17 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 	public class LiteralStringRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LiteralStringRule");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueVALUE_SPECIFICATION_STRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//LiteralStringRule:
-		//	value=VALUE_SPECIFICATION_STRING;
+		//	value=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		//value=VALUE_SPECIFICATION_STRING
+		//value=STRING
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		//VALUE_SPECIFICATION_STRING
-		public RuleCall getValueVALUE_SPECIFICATION_STRINGTerminalRuleCall_0() { return cValueVALUE_SPECIFICATION_STRINGTerminalRuleCall_0; }
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
 	}
 
 	public class UndefinedRuleElements extends AbstractParserRuleElementFinder {
@@ -276,9 +282,8 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 	private final UndefinedRuleElements pUndefinedRule;
 	private final VisibilityKindElements pVisibilityKind;
 	private final TerminalRule tVALUE_SPECIFICATION_ID;
-	private final TerminalRule tVALUE_SPECIFICATION_INT;
+	private final TerminalRule tVALUE_SPECIFICATION_NEGATIVE_INT;
 	private final TerminalRule tVALUE_SPECIFICATION_DOUBLE;
-	private final TerminalRule tVALUE_SPECIFICATION_STRING;
 	
 	private final Grammar grammar;
 
@@ -298,9 +303,8 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 		this.pUndefinedRule = new UndefinedRuleElements();
 		this.pVisibilityKind = new VisibilityKindElements();
 		this.tVALUE_SPECIFICATION_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "VALUE_SPECIFICATION_ID");
-		this.tVALUE_SPECIFICATION_INT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "VALUE_SPECIFICATION_INT");
+		this.tVALUE_SPECIFICATION_NEGATIVE_INT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "VALUE_SPECIFICATION_NEGATIVE_INT");
 		this.tVALUE_SPECIFICATION_DOUBLE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "VALUE_SPECIFICATION_DOUBLE");
-		this.tVALUE_SPECIFICATION_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "VALUE_SPECIFICATION_STRING");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -331,9 +335,9 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 
 	
 	//AbstractRule:
-	//	visibility=VisibilityKind? (name=VALUE_SPECIFICATION_ID "=")? (value=(LiteralBooleanRule |
-	//	LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule | LiteralStringRule) |
-	//	instanceSpecification=[uml::InstanceSpecification]) | undefined=UndefinedRule;
+	//	visibility=VisibilityKind? name=VALUE_SPECIFICATION_ID? (instanceSpecification=[uml::InstanceSpecification] |
+	//	value=(LiteralBooleanRule | LiteralIntegerOrUnlimitedNaturalRule | LiteralRealRule | LiteralNullRule |
+	//	LiteralStringRule) | undefined=UndefinedRule);
 	public AbstractRuleElements getAbstractRuleAccess() {
 		return pAbstractRule;
 	}
@@ -353,7 +357,7 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 	}
 
 	//LiteralIntegerOrUnlimitedNaturalRule:
-	//	value=VALUE_SPECIFICATION_INT;
+	//	value=(INT | VALUE_SPECIFICATION_NEGATIVE_INT) | unlimited="*";
 	public LiteralIntegerOrUnlimitedNaturalRuleElements getLiteralIntegerOrUnlimitedNaturalRuleAccess() {
 		return pLiteralIntegerOrUnlimitedNaturalRule;
 	}
@@ -383,7 +387,7 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 	}
 
 	//LiteralStringRule:
-	//	value=VALUE_SPECIFICATION_STRING;
+	//	value=STRING;
 	public LiteralStringRuleElements getLiteralStringRuleAccess() {
 		return pLiteralStringRule;
 	}
@@ -412,30 +416,23 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 		return getVisibilityKindAccess().getRule();
 	}
 
-	//// Manage the basic terminals to avoid XText completion problem
+	//// Manage the basic terminals
 	//terminal VALUE_SPECIFICATION_ID:
-	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "-" | "0".."9")* "=";
 	public TerminalRule getVALUE_SPECIFICATION_IDRule() {
 		return tVALUE_SPECIFICATION_ID;
 	} 
 
-	//terminal VALUE_SPECIFICATION_INT:
-	//	"-"? "0".."9"+ | "*";
-	public TerminalRule getVALUE_SPECIFICATION_INTRule() {
-		return tVALUE_SPECIFICATION_INT;
+	//terminal VALUE_SPECIFICATION_NEGATIVE_INT returns ecore::EInt:
+	//	"-" INT;
+	public TerminalRule getVALUE_SPECIFICATION_NEGATIVE_INTRule() {
+		return tVALUE_SPECIFICATION_NEGATIVE_INT;
 	} 
 
 	//terminal VALUE_SPECIFICATION_DOUBLE returns ecore::EDouble:
-	//	"-"? ("0".."9"+ ("." | ",") "0".."9"* | "0".."9"* ("." | ",") "0".."9"+);
+	//	"-"? (INT ("." | ",") INT | INT ("." | ",") | ("." | ",") INT);
 	public TerminalRule getVALUE_SPECIFICATION_DOUBLERule() {
 		return tVALUE_SPECIFICATION_DOUBLE;
-	} 
-
-	//terminal VALUE_SPECIFICATION_STRING:
-	//	"\"" ("\\" . / * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\""))* "\"" | "\'" ("\\" .
-	//	/ * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\'"))* "\'";
-	public TerminalRule getVALUE_SPECIFICATION_STRINGRule() {
-		return tVALUE_SPECIFICATION_STRING;
 	} 
 
 	//terminal ID:

@@ -50,13 +50,13 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomZOrderCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.PreserveAnchorsPositionCommandEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart.StateInvariantResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -78,6 +78,12 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/** Initialization width of CoRegion. */
 	public final static int COREGION_INIT_WIDTH = 30;
+
+	/** Width of Destruction Occurrence Specification. */
+	public final static int DESTRUCTION_INIT_SIZE = 20;
+
+	/** Spacing below Lifeline. */
+	public final static int LIFELINE_SOUTH_SPACING = 14;
 
 	/** Initialization height of Execution Specification. */
 	public final static int EXECUTION_INIT_HEIGHT = 50;
@@ -102,6 +108,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	private static final String CO_REGION_HINT = ((IHintedType) UMLElementTypes.CombinedFragment_3018).getSemanticHint();
 
+	private static final String DESTRUCTION_OCCURANCE_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_3022).getSemanticHint();
+	
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		EditPart targetEditPart = super.getTargetEditPart(request);
@@ -189,6 +197,12 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						return cmd;
 					}
 				}
+				if (DESTRUCTION_OCCURANCE_SPECIFICATION_HINT.equals(semanticHint)) {
+					Command cmd = getCommandForDestructionOccuranceCreation(cvr, viewDescriptor);
+					if (cmd != null) {
+						return cmd;
+					}
+				}
 				if (UMLVisualIDRegistry.getType(StateInvariantEditPart.VISUAL_ID).equals(semanticHint)) {
 					Command cmd = getCommandForStateInvariant(cvr, viewDescriptor);
 					if (cmd != null) {
@@ -235,10 +249,14 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		switch (UMLVisualIDRegistry.getVisualID(childView)) {
 		case StateInvariantEditPart.VISUAL_ID:
 			return new StateInvariantResizableEditPolicy();
-		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-			return new BorderItemResizableEditPolicy();
+		//case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+		//	return new BorderItemResizableEditPolicy();
 		}
-		return super.createChildEditPolicy(child);
+		EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		if (result == null) {
+			return super.createChildEditPolicy(child);
+		}
+		return result;
 	}
 
 	@Override
@@ -262,13 +280,13 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			}
 			String destructionHint = ((IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_3022).getSemanticHint();
 			if (destructionHint.equals(req.getViewAndElementDescriptor().getSemanticHint()) && constraint.width < 0 && constraint.height < 0) {
-				constraint.width = constraint.height = 20;// set initial size, same as DestructionOccurrenceSpecificationPreferencePage
+				constraint.width = constraint.height = DESTRUCTION_INIT_SIZE;// set initial size, same as DestructionOccurrenceSpecificationPreferencePage
 			}
 		}
 		return constraint;
 	}
 
-	private static Rectangle getNewBoundsForCoRegion(LifelineEditPart lifelineEP, Rectangle bounds) {
+	private static Rectangle getNewBoundsForChild(LifelineEditPart lifelineEP, Rectangle bounds, int figureWidth) {
 		Rectangle newBounds = bounds.getCopy();
 		// Get the dotline figure
 		LifelineDotLineFigure figureLifelineDotLineFigure = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure();
@@ -276,8 +294,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		figureLifelineDotLineFigure.translateToRelative(newBounds);
 		newBounds.translate(figureLifelineDotLineFigure.getBounds().getLocation().getCopy().negate());
 		Rectangle dotLineFigureBounds = figureLifelineDotLineFigure.getBounds();
-		newBounds.x = dotLineFigureBounds.width / 2 - COREGION_INIT_WIDTH / 2;
-		newBounds.width = COREGION_INIT_WIDTH;
+		newBounds.x = dotLineFigureBounds.width / 2 - figureWidth / 2;
+		newBounds.width = figureWidth;
 		return newBounds;
 	}
 
@@ -295,11 +313,25 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		if (newBounds.x < 0 || newBounds.y < 0) {
 			newBounds.x = newBounds.y = 0;
 		}
-		newBounds = getNewBoundsForCoRegion((LifelineEditPart) getHost(), newBounds);
+		newBounds = getNewBoundsForChild((LifelineEditPart) getHost(), newBounds, COREGION_INIT_WIDTH);
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 	}
 
+	private Command getCommandForDestructionOccuranceCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
+		if (cvr.getLocation() == null) {
+			return UnexecutableCommand.INSTANCE; 
+		}
+		LifelineEditPart lifelineEP = (LifelineEditPart) getHost();
+		// Translate the absolute location to relative
+		Point location = cvr.getLocation().getCopy();
+		lifelineEP.getFigure().translateToRelative(location);
+		location.translate(lifelineEP.getLocation().getCopy().negate());
+		CompoundCommand command = new CompoundCommand();
+		command = getSetLifelineHeightCommand(command, lifelineEP, location.y);
+		return command;
+	}
+	
 	private Rectangle getCreateExecuteSpecificationBounds(Point location, Dimension size, String semanticHint) {
 		Point newLocation = location == null ? new Point() : location.getCopy();
 		if (newLocation.x < 0 || newLocation.y < 0) {
@@ -610,7 +642,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		if (editParts != null) {
 			CompoundCommand compoundCmd = new CompoundCommand();
 			compoundCmd.setLabel("Move or resize");
-			compoundCmd.setDebugLabel("Debug: Move or resize of an ExecutionSpecification");
+			compoundCmd.setDebugLabel("Debug: Move or resize of a Lifeline's children");
 			for (EditPart ep : editParts) {
 				if (ep instanceof ActionExecutionSpecificationEditPart || ep instanceof BehaviorExecutionSpecificationEditPart) {
 					// an execution specification have been moved or resized
@@ -699,7 +731,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						bounds.translate(moveDelta);
 					}
 					// Create and add the set bounds command to the compound command
-					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(cf2EP.getEditingDomain(), "Resize of a CoRegion", cf2EP, getNewBoundsForCoRegion(lifelineEP, bounds));
+					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(cf2EP.getEditingDomain(), "Resize of a CoRegion", cf2EP, getNewBoundsForChild(lifelineEP, bounds, COREGION_INIT_WIDTH));
 					compoundCmd.add(new ICommandProxy(setBoundsCmd));
 					// keep absolute position of anchors
 					if (sizeDelta != null && sizeDelta.height != 0) {
@@ -707,12 +739,50 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 								request.getResizeDirection())));
 					}
 				}
+				if (ep instanceof DestructionOccurrenceSpecificationEditPart) {
+					Rectangle rectLifeline = lifelineEP.getFigure().getBounds();
+					compoundCmd = getSetLifelineHeightCommand(compoundCmd,lifelineEP, rectLifeline.height + request.getMoveDelta().y);
+				}
 			}
 			if (!compoundCmd.isEmpty()) {
 				return compoundCmd;
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Modifies Lifeline's height and keeps anchors' positions intact.  
+	 *
+	 * @param compoundCmd
+	 *            command to add to
+	 * @param lifelineEP
+	 *            Lifeline's edit part
+	 * @param newHeight
+	 *            new height of the Lifeline
+	 *
+	 * @return the compound command 
+	 */
+	public static CompoundCommand getSetLifelineHeightCommand(CompoundCommand compoundCmd, LifelineEditPart lifelineEP, int newHeight) {
+		Rectangle rectLifeline = lifelineEP.getFigure().getBounds() .getCopy();
+		Dimension zoomedAddon = new Dimension(0, DESTRUCTION_INIT_SIZE/2);
+		lifelineEP.getFigure().translateToRelative(zoomedAddon);
+		int minimumHeight = ((CustomLifelineEditPart)lifelineEP).getMinimumHeight(-1, true) + zoomedAddon.height;
+		newHeight = Math.max(newHeight, minimumHeight);
+		int heightDelta = newHeight - rectLifeline.height;
+		if (heightDelta == 0) {
+			return compoundCmd;
+		}
+		rectLifeline.height += heightDelta;
+		ChangeBoundsRequest lifelineResizeRequest = new ChangeBoundsRequest();
+		lifelineResizeRequest.setSizeDelta(new Dimension(0, heightDelta));
+		lifelineResizeRequest.setResizeDirection(PositionConstants.NORTH);
+		lifelineResizeRequest.setEditParts(lifelineEP);
+		compoundCmd.add(new ICommandProxy(new SetBoundsCommand(lifelineEP.getEditingDomain(), "Move of Lifeline/DOS", lifelineEP, rectLifeline)));
+		PreserveAnchorsPositionCommandEx preserveAnchorsCommand = new PreserveAnchorsPositionCommandEx(lifelineEP, new Dimension(0, heightDelta), PreserveAnchorsPositionCommand.PRESERVE_Y, lifelineEP.getPrimaryShape()
+				.getFigureLifelineDotLineFigure(), PositionConstants.SOUTH);
+		compoundCmd.add(new ICommandProxy(preserveAnchorsCommand));
+		return compoundCmd;
 	}
 
 	/**

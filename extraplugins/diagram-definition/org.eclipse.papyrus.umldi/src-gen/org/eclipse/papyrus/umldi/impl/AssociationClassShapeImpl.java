@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Association Class Shape</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class AssociationClassShapeImpl extends ClassShapeImpl implements AssociationClassShape {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssociationClassShapeImpl() {
@@ -40,11 +36,11 @@ public class AssociationClassShapeImpl extends ClassShapeImpl implements Associa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ASSOCIATION_CLASS_SHAPE;
 	}
+
 } //AssociationClassShapeImpl

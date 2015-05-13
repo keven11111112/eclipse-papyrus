@@ -285,6 +285,12 @@
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
         </newModelPath>
       </owningRules>
+      <owningRules xmi:id="_mUlEMPMBEeSgleMNa7-Uhw">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interface"/>
+        <newModelPath xmi:id="_mUlEMfMBEeSgleMNa7-Uhw" creationType="org.eclipse.papyrus.uml.ProtocolStateMachine">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Interface/protocol"/>
+        </newModelPath>
+      </owningRules>
       <childRules xmi:id="_7wM0ytxhEeOqHvRyiN87hA"/>
     </modelKinds>
     <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wM0y9xhEeOqHvRyiN87hA" implementationID="PapyrusUMLTimingDiagram" categories="_7wNb4txhEeOqHvRyiN87hA">

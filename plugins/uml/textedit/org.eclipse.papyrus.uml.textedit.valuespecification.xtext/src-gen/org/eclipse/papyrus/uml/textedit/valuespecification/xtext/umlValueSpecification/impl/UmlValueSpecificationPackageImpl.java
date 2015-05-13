@@ -188,7 +188,7 @@ public class UmlValueSpecificationPackageImpl extends EPackageImpl implements Um
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAbstractRule_Value()
+  public EReference getAbstractRule_InstanceSpecification()
   {
     return (EReference)abstractRuleEClass.getEStructuralFeatures().get(2);
   }
@@ -198,7 +198,7 @@ public class UmlValueSpecificationPackageImpl extends EPackageImpl implements Um
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAbstractRule_InstanceSpecification()
+  public EReference getAbstractRule_Value()
   {
     return (EReference)abstractRuleEClass.getEStructuralFeatures().get(3);
   }
@@ -251,6 +251,16 @@ public class UmlValueSpecificationPackageImpl extends EPackageImpl implements Um
   public EAttribute getLiteralIntegerOrUnlimitedNaturalRule_Value()
   {
     return (EAttribute)literalIntegerOrUnlimitedNaturalRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLiteralIntegerOrUnlimitedNaturalRule_Unlimited()
+  {
+    return (EAttribute)literalIntegerOrUnlimitedNaturalRuleEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -416,8 +426,8 @@ public class UmlValueSpecificationPackageImpl extends EPackageImpl implements Um
     abstractRuleEClass = createEClass(ABSTRACT_RULE);
     createEReference(abstractRuleEClass, ABSTRACT_RULE__VISIBILITY);
     createEAttribute(abstractRuleEClass, ABSTRACT_RULE__NAME);
-    createEReference(abstractRuleEClass, ABSTRACT_RULE__VALUE);
     createEReference(abstractRuleEClass, ABSTRACT_RULE__INSTANCE_SPECIFICATION);
+    createEReference(abstractRuleEClass, ABSTRACT_RULE__VALUE);
     createEReference(abstractRuleEClass, ABSTRACT_RULE__UNDEFINED);
 
     literalBooleanRuleEClass = createEClass(LITERAL_BOOLEAN_RULE);
@@ -425,6 +435,7 @@ public class UmlValueSpecificationPackageImpl extends EPackageImpl implements Um
 
     literalIntegerOrUnlimitedNaturalRuleEClass = createEClass(LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE);
     createEAttribute(literalIntegerOrUnlimitedNaturalRuleEClass, LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE);
+    createEAttribute(literalIntegerOrUnlimitedNaturalRuleEClass, LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__UNLIMITED);
 
     literalRealRuleEClass = createEClass(LITERAL_REAL_RULE);
     createEAttribute(literalRealRuleEClass, LITERAL_REAL_RULE__VALUE);
@@ -483,15 +494,16 @@ public class UmlValueSpecificationPackageImpl extends EPackageImpl implements Um
     initEClass(abstractRuleEClass, AbstractRule.class, "AbstractRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAbstractRule_Visibility(), this.getVisibilityKind(), null, "visibility", null, 0, 1, AbstractRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAbstractRule_Name(), theEcorePackage.getEString(), "name", null, 0, 1, AbstractRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAbstractRule_Value(), theEcorePackage.getEObject(), null, "value", null, 0, 1, AbstractRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAbstractRule_InstanceSpecification(), theUMLPackage.getInstanceSpecification(), null, "instanceSpecification", null, 0, 1, AbstractRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAbstractRule_Value(), theEcorePackage.getEObject(), null, "value", null, 0, 1, AbstractRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAbstractRule_Undefined(), this.getUndefinedRule(), null, "undefined", null, 0, 1, AbstractRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(literalBooleanRuleEClass, LiteralBooleanRule.class, "LiteralBooleanRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getLiteralBooleanRule_Value(), theEcorePackage.getEString(), "value", null, 0, 1, LiteralBooleanRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(literalIntegerOrUnlimitedNaturalRuleEClass, LiteralIntegerOrUnlimitedNaturalRule.class, "LiteralIntegerOrUnlimitedNaturalRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLiteralIntegerOrUnlimitedNaturalRule_Value(), theEcorePackage.getEString(), "value", null, 0, 1, LiteralIntegerOrUnlimitedNaturalRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLiteralIntegerOrUnlimitedNaturalRule_Value(), theEcorePackage.getEInt(), "value", null, 0, 1, LiteralIntegerOrUnlimitedNaturalRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLiteralIntegerOrUnlimitedNaturalRule_Unlimited(), theEcorePackage.getEString(), "unlimited", null, 0, 1, LiteralIntegerOrUnlimitedNaturalRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(literalRealRuleEClass, LiteralRealRule.class, "LiteralRealRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getLiteralRealRule_Value(), theEcorePackage.getEDouble(), "value", null, 0, 1, LiteralRealRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

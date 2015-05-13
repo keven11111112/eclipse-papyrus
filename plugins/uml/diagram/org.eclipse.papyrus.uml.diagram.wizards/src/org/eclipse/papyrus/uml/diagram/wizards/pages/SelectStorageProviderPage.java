@@ -23,8 +23,9 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
-import org.eclipse.papyrus.uml.diagram.wizards.INewModelStorageProvider;
-import org.eclipse.papyrus.uml.diagram.wizards.NewModelStorageProviderRegistry;
+import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
+import org.eclipse.papyrus.uml.diagram.wizards.providers.INewModelStorageProvider;
+import org.eclipse.papyrus.uml.diagram.wizards.providers.NewModelStorageProviderRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -58,8 +59,8 @@ public class SelectStorageProviderPage
 
 		this.registry = registry;
 
-		setTitle("Model Storage");
-		setDescription("Select the kind of storage for the new model.");
+		setTitle(Messages.SelectStorageProviderPage_0);
+		setDescription(Messages.SelectStorageProviderPage_1);
 	}
 
 	public void createControl(Composite parent) {
@@ -71,7 +72,7 @@ public class SelectStorageProviderPage
 		myComposite.setLayout(new GridLayout());
 
 		new Label(myComposite, SWT.NONE)
-				.setText("Where would you like to store the new model?");
+			.setText(Messages.SelectStorageProviderPage_2);
 
 		Composite selectionArea = new Composite(myComposite, SWT.NONE);
 		selectionArea.setLayout(new GridLayout());
@@ -197,7 +198,7 @@ public class SelectStorageProviderPage
 					next.selectionChanged(event);
 				} catch (Exception e) {
 					Activator.log.error(
-							"Uncaught exception in selection listener.", e);
+						Messages.SelectStorageProviderPage_3, e);
 				}
 			}
 		}

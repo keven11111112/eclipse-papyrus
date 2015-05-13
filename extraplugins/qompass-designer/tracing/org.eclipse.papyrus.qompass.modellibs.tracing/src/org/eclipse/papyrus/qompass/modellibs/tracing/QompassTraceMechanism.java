@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -152,7 +153,7 @@ public class QompassTraceMechanism implements ITraceMechanism {
 			}
 			return new BasicEList<ContainerRule>();
 		} else {
-			Package top = Utils.getTop((Element) eObj);
+			Package top = PackageUtil.getRootPackage((Element) eObj);
 			return Utils.getAllRules(top);
 		}
 	}

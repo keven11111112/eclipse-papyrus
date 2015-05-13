@@ -40,5 +40,5 @@ Bundle-Activator: org.eclipse.papyrus.uml.diagram.menu.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.menu;singleton:=t
  rue
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Description: %pluginDescription

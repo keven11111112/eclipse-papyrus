@@ -48,8 +48,9 @@ public class CustomMessage4ReorientCommand extends Message4ReorientCommand {
 		if (!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
+		Element target = MessageConnectionHelper.getMessageTarget(getLink());		
 		Interaction container = (Interaction) getLink().eContainer();
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4006(container, getLink(), getNewSource(), getOldTarget())) {
+		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4006(container, getLink(), getNewSource(), target)) {
 			return false;
 		}
 		return MessageConnectionHelper.canReorientSource(getLink(), getNewSource());
@@ -63,7 +64,7 @@ public class CustomMessage4ReorientCommand extends Message4ReorientCommand {
 		if (!(getOldTarget() instanceof Element && getNewTarget() instanceof Element)) {
 			return false;
 		}
-		Element source = getLink().getOwner();
+		Element source = MessageConnectionHelper.getMessageSource(getLink());		
 		if (!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}

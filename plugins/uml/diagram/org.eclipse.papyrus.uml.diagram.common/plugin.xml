@@ -32,13 +32,6 @@
    </category>
    
 </extension>
-<extension
-      point="org.eclipse.papyrus.infra.core.modelListener">
-   <listener
-         name="StereotypeApplicationListener"
-         realization="org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener">
-   </listener>
-</extension>
 
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">

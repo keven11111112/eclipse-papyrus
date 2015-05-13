@@ -30,8 +30,8 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
+import org.eclipse.papyrus.uml.tools.databinding.ExtendedMultiplicityObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.ExtensionEndMultiplicityObservableValue;
-import org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.NavigationObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.OwnerObservableValue;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
@@ -85,7 +85,7 @@ public class MemberEndModelElement extends AbstractModelElement {
 			if (source instanceof ExtensionEnd) {
 				return new ExtensionEndMultiplicityObservableValue((ExtensionEnd) source, domain);
 			}
-			return new MultiplicityObservableValue(source, domain);
+			return new ExtendedMultiplicityObservableValue(source, domain);
 		} else if (propertyPath.equals(OWNER)) {
 			return new OwnerObservableValue(source, domain);
 		} else if (propertyPath.equals(NAVIGABLE)) {

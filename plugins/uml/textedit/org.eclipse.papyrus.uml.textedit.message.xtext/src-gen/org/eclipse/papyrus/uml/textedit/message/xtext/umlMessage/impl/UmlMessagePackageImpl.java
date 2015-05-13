@@ -20,8 +20,7 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
  *
  * @generated
  */
-public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePackage
-{
+public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39,18 +38,23 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	private EClass sequenceTermRuleEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private UmlMessagePackageImpl()
-	{
+	private UmlMessagePackageImpl() {
 		super(eNS_URI, UmlMessageFactory.eINSTANCE);
 	}
 
@@ -66,15 +70,17 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link UmlMessagePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link UmlMessagePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static UmlMessagePackage init()
-	{
+	public static UmlMessagePackage init() {
 		if (isInited) {
 			return (UmlMessagePackage) EPackage.Registry.INSTANCE.getEPackage(UmlMessagePackage.eNS_URI);
 		}
@@ -109,8 +115,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * @generated
 	 */
 	@Override
-	public EClass getMessageRule()
-	{
+	public EClass getMessageRule() {
 		return messageRuleEClass;
 	}
 
@@ -121,8 +126,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * @generated
 	 */
 	@Override
-	public EReference getMessageRule_SequenceTerm()
-	{
+	public EReference getMessageRule_SequenceTerm() {
 		return (EReference) messageRuleEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -133,8 +137,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getMessageRule_Name()
-	{
+	public EAttribute getMessageRule_Name() {
 		return (EAttribute) messageRuleEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -145,8 +148,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * @generated
 	 */
 	@Override
-	public EClass getSequenceTermRule()
-	{
+	public EClass getSequenceTermRule() {
 		return sequenceTermRuleEClass;
 	}
 
@@ -157,8 +159,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSequenceTermRule_SequencialOrder()
-	{
+	public EAttribute getSequenceTermRule_SequencialOrder() {
 		return (EAttribute) sequenceTermRuleEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -169,8 +170,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSequenceTermRule_SequenceName()
-	{
+	public EAttribute getSequenceTermRule_SequenceName() {
 		return (EAttribute) sequenceTermRuleEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -181,8 +181,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSequenceTermRule_Recurrence()
-	{
+	public EAttribute getSequenceTermRule_Recurrence() {
 		return (EAttribute) sequenceTermRuleEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -193,8 +192,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 * @generated
 	 */
 	@Override
-	public UmlMessageFactory getUmlMessageFactory()
-	{
+	public UmlMessageFactory getUmlMessageFactory() {
 		return (UmlMessageFactory) getEFactoryInstance();
 	}
 
@@ -214,8 +212,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 *
 	 * @generated
 	 */
-	public void createPackageContents()
-	{
+	public void createPackageContents() {
 		if (isCreated) {
 			return;
 		}
@@ -248,8 +245,7 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
 	 *
 	 * @generated
 	 */
-	public void initializePackageContents()
-	{
+	public void initializePackageContents() {
 		if (isInitialized) {
 			return;
 		}

@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.umldi.ContainmentEdge;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 
@@ -19,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Containment Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class ContainmentEdgeImpl extends UmlEdgeImpl implements ContainmentEdge {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ContainmentEdgeImpl() {
@@ -39,11 +36,11 @@ public class ContainmentEdgeImpl extends UmlEdgeImpl implements ContainmentEdge 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.CONTAINMENT_EDGE;
 	}
+
 } //ContainmentEdgeImpl

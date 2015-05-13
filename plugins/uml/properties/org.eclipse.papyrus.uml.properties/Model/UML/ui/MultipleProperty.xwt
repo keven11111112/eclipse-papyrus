@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composite xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets"
 	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
 	<Composite.layout>
@@ -28,7 +29,7 @@
 		</Composite.layout>
 		<ppe:EnumCombo input="{Binding}" property="UML:Property:aggregation"></ppe:EnumCombo>
 		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
-		<ppe:StringCombo input="{Binding}" property="Multiplicity:multiplicity"></ppe:StringCombo>
+		<uml:MultiplicityDialog input="{Binding}" property="Multiplicity:multiplicity"></uml:MultiplicityDialog>
 		<ppe:ReferenceDialog input="{Binding}" property="UML:TypedElement:type"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>

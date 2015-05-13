@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.dd.dg.util.DGResourceImpl
  * @generated
  */
@@ -33,7 +32,6 @@ public class DGResourceFactoryImpl extends ResourceFactoryImpl {
 	 * Creates an instance of the resource factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DGResourceFactoryImpl() {
@@ -44,7 +42,6 @@ public class DGResourceFactoryImpl extends ResourceFactoryImpl {
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

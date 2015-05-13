@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.alf.FeatureReference;
 import org.eclipse.papyrus.uml.alf.NameBinding;
 import org.eclipse.papyrus.uml.alf.QualifiedName;
 import org.eclipse.papyrus.uml.alf.util.AlfValidator;
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade;
 
 /**
  * <!-- begin-user-doc -->
@@ -305,7 +306,7 @@ public class QualifiedNameImpl extends SyntaxElementImpl implements QualifiedNam
 	 * @generated NOT
 	 */
 	public EList<ElementReference> modelReferents() {
-		return ModelNamespaceImpl.resolveInModelScope(this);
+		return ModelNamespaceFacade.getInstance().resolveInModelScope(this);
 	}
 
 	/**

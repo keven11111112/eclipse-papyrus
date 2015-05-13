@@ -39,6 +39,20 @@ public interface ISashWindowsContainer {
 	 * @return
 	 */
 	public List<IPage> getVisiblePages();
+	
+	/**
+	 * Get the next IPage in the tabs list.
+	 *
+	 * @return
+	 */
+	public IPage getNextPage();
+	
+	/**
+	 * Get the next IPage in the tabs list.
+	 *
+	 * @return
+	 */
+	public IPage getPreviousPage();
 
 	/**
 	 * Return a list of all folders opened in this SashContainer. The list should only

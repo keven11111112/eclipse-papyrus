@@ -107,6 +107,12 @@
         iconPath="/icons/full/obj16/Package.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_5m7RcOc2EeSW0_lDigZ13g"
+        name="Protocol Container Advice"
+        identifier="org.eclipse.papyrus.umlrt.ProcotolContainerAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.ProtocolContainerEditHelperAdvice"
+        inheritance="all"/>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
         xmi:id="_ubJcwqeUEeSUR5jX0TaAcA">
@@ -139,11 +145,101 @@
         iconPath="/icons/full/obj16/Interface.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Interface</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_1caKcOUVEeSW0_lDigZ13g"
+        name="org.eclipse.papyrus.umlrt.custom.advice.MessageSetEditHelperAdvice"
+        description="Edit helper advice on "
+        identifier="org.eclipse.papyrus.umlrt.custom.advice.MessageSetEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.MessageSetEditHelperAdvice"/>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
         xmi:id="_ubJcyKeUEeSUR5jX0TaAcA">
       <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
     </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_At0JAONwEeSMDu6IBsn9eg"
+      name="ProtocolMessage"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessage">
+    <iconEntry
+        xmi:id="_At0JAeNwEeSMDu6IBsn9eg"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Operation</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_At0JAuNwEeSMDu6IBsn9eg"
+        name="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageEditHelperAdvice"
+        description="advice for Operation"
+        identifier="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageEditHelperAdvice"
+        inheritance="all"/>
+    <matcherConfiguration
+        xmi:id="_OPE2wOqQEeS-F5lSZrhlvg"
+        matcherClassName="org.eclipse.papyrus.umlrt.custom.advice.RTMessageMatcher"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_1puuMOToEeSW0_lDigZ13g"
+      name="ProtocolMessageIN"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageIn">
+    <iconEntry
+        xmi:id="_7aYeMOToEeSW0_lDigZ13g"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessage</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_7aZFQOToEeSW0_lDigZ13g"
+        name="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInEditHelperAdvice"
+        description="advice for Operation as Message IN"
+        identifier="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInEditHelperAdvice"
+        inheritance="all"/>
+    <matcherConfiguration
+        xmi:id="_PLPkEOqQEeS-F5lSZrhlvg"
+        matcherClassName="org.eclipse.papyrus.umlrt.custom.advice.RTMessageInMatcher"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_Vv9-gOzDEeSbg9FMiG2BVg"
+      name="ProtocolMessageOUT"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageOut">
+    <iconEntry
+        xmi:id="_Vv9-gezDEeSbg9FMiG2BVg"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessage</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_Vv9-guzDEeSbg9FMiG2BVg"
+        name="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageOutEditHelperAdvice"
+        description="advice for Operation as RTMessage OUT"
+        identifier="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageOutEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageOutEditHelperAdvice"
+        inheritance="all"/>
+    <matcherConfiguration
+        xmi:id="_Vv9-g-zDEeSbg9FMiG2BVg"
+        matcherClassName="org.eclipse.papyrus.umlrt.custom.advice.RTMessageOutMatcher"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_WBNfgOzDEeSbg9FMiG2BVg"
+      name="ProtocolMessageINOUT"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageInOut">
+    <iconEntry
+        xmi:id="_WBNfgezDEeSbg9FMiG2BVg"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessage</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_WBNfguzDEeSbg9FMiG2BVg"
+        name="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInOutEditHelperAdvice"
+        description="advice for Operation as Message INOUT"
+        identifier="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInOutEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInOutEditHelperAdvice"
+        inheritance="all"/>
+    <matcherConfiguration
+        xmi:id="_WBNfg-zDEeSbg9FMiG2BVg"
+        matcherClassName="org.eclipse.papyrus.umlrt.custom.advice.RTMessageInOutMatcher"/>
   </elementTypeConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
@@ -248,5 +344,15 @@
         updateName="true">
       <requiredProfiles>UMLRealTime</requiredProfiles>
     </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations
+      xmi:id="_Mb9lIOc0EeSW0_lDigZ13g"
+      name="org.eclipse.papyrus.umlrt.custom.advice.BehavioredClassifierEditHelperAdvice"
+      identifier="org.eclipse.papyrus.umlrt.custom.advice.BehavioredClassifierEditHelperAdvice"
+      editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.BehavioredClassifierEditHelperAdvice"
+      inheritance="all">
+    <target
+        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+        href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScaNtlYCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

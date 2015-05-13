@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLMultiplicityElementUtil;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
@@ -152,17 +153,10 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			// manage multiplicity
 			if ((maskValues.contains(ICustomAppearance.DISP_MULTIPLICITY))) {
 
-				// If multiplicity is [1] (SysML default), only show when explicitly asked.
 				// TODO : add a case for default with multiplicity not set.
-				String lower = (property.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(property.getLowerValue()) : "1";
-				String upper = (property.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(property.getUpperValue()) : "1";
-				if ((maskValues.contains(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY)) || !("1".equals(lower) && "1".equals(upper))) {
-
-					if (lower.equals(upper)) {
-						result = String.format(MULTIPLICITY_FORMAT_ALT, result, lower, upper);
-					} else {
-						result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
-					}
+				String multiplicity = SysMLMultiplicityElementUtil.formatMultiplicity(property, maskValues);
+				if (multiplicity != null && !multiplicity.isEmpty()) {
+					result += " " + multiplicity;
 				}
 			}
 

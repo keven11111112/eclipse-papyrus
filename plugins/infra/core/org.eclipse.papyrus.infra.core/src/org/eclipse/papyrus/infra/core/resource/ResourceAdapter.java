@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 399859
+ *   Christian W. Damus - bug 465416
  *
  */
 package org.eclipse.papyrus.infra.core.resource;
@@ -291,6 +292,51 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
 			handleResourceSetChangeEvent(event);
 			return null;
+		}
+
+		/**
+		 * Installs me on the specified editing domain and processes existing loaded resources through the
+		 * {@link #handleResourceAdded(Resource)} and (for resources that are already loaded)
+		 * {@link #handleResourceLoaded(Resource)} call-backs. Clients that do not want this initial
+		 * discovery step should just add me directly to the editing domain as a listener.
+		 * 
+		 * @param editingDomain
+		 *            an editing domain in which to install me
+		 */
+		public void install(TransactionalEditingDomain editingDomain) {
+			editingDomain.addResourceSetListener(this);
+
+			// Safe iteration in case of additional resources being loaded (which will be picked up by the listener separately)
+			for (Resource next : ImmutableList.copyOf(editingDomain.getResourceSet().getResources())) {
+				handleResourceAdded(next);
+
+				if (next.isLoaded()) {
+					handleResourceLoaded(next);
+				}
+			}
+		}
+
+		/**
+		 * Uninstalls me from the specified editing domain and processes existing loaded resources through the
+		 * {@link #handleResourceRemoved(Resource)} call-back. Loaded resources are still loaded, so they are
+		 * not run through {@link #handleResourceUnloaded(Resource)}: this is not symmetric with {@link #install(TransactionalEditingDomain)}.
+		 * Clients that do not want this un-discovery step should just remove me directly fromthe editing domain.
+		 * 
+		 * @param editingDomain
+		 *            an editing domain from which to uninstall me
+		 */
+		public void uninstall(TransactionalEditingDomain editingDomain) {
+			try {
+				ResourceSet resourceSet = editingDomain.getResourceSet();
+				if (resourceSet != null) {
+					// Safe iteration
+					for (Resource next : ImmutableList.copyOf(resourceSet.getResources())) {
+						handleResourceRemoved(next);
+					}
+				}
+			} finally {
+				editingDomain.addResourceSetListener(this);
+			}
 		}
 
 		protected void handleResourceSetChangeEvent(ResourceSetChangeEvent event) {

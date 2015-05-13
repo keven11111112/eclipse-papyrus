@@ -53,6 +53,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
@@ -150,6 +151,20 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 		return notifier;
 	}
 
+	public Command getUpdateLifelinesHeightsCommand(Command command) {
+		for (Object child : CustomInteractionEditPart.this.getChildren()) {
+			if (child instanceof InteractionInteractionCompartmentEditPart) {
+				InteractionInteractionCompartmentEditPart childEditPart = (InteractionInteractionCompartmentEditPart) child;
+				for (Object grandChild : childEditPart.getChildren()) {
+					if (grandChild instanceof CustomLifelineEditPart) {
+						command = ((CustomLifelineEditPart)grandChild).getAlignLifelineBottomToParentCommand(command, false);
+					}
+				}
+			}
+		}
+		return command;
+	}
+
 	/**
 	 * @Override
 	 */
@@ -177,7 +192,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 				if (newBounds.width < minimumSize.width || newBounds.height < minimumSize.height) {
 					return UnexecutableCommand.INSTANCE;
 				}
-				Command command = super.getResizeCommand(request);
+				Command command = getUpdateLifelinesHeightsCommand(super.getResizeCommand(request));
 				/** Anchors for Lost/Found message were updated, there's no need to preserve positions after resize. */
 				// if(command != null && command.canExecute()) {
 				// if(newBounds.width >= minimumSize.width && newBounds.height >= minimumSize.height) {
@@ -208,14 +223,22 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 						for (Object grandChild : childEditPart.getChildren()) {
 							GraphicalEditPart editPart = (GraphicalEditPart) grandChild;
 							IFigure figure = editPart.getFigure();
-							bounds.union(figure.getBounds());
+							if (grandChild instanceof CustomLifelineEditPart) {
+								Rectangle childBounds = figure.getBounds().getCopy();
+								childBounds.height = ((CustomLifelineEditPart)grandChild).getMinimumHeight(-1);
+								bounds.union(childBounds);
+							} else {
+								bounds.union(figure.getBounds());
+							}
 						}
 						IFigure figure = childEditPart.getFigure();
 						Rectangle rectangle = figure.getBounds();
 						IFigure parentfigure = CustomInteractionEditPart.this.getFigure();
 						Rectangle parentRectangle = parentfigure.getBounds();
-						bounds.width += parentRectangle.width - rectangle.width + 10; // border 2x5
-						bounds.height += parentRectangle.height - rectangle.height + 16; // border 2x5 + 2x3
+						Dimension zoomedAddon = new Dimension(10, 16);
+						figure.translateToRelative(zoomedAddon);
+						bounds.width += parentRectangle.width - rectangle.width + zoomedAddon.width; // border 2x5
+						bounds.height += parentRectangle.height - rectangle.height + zoomedAddon.height; // border 2x5 + 2x3
 						break;
 					}
 				}
@@ -401,6 +424,12 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 						}
 					};
 					CommandHelper.executeCommandWithoutHistory(getEditingDomain(), cmd, true);
+				}
+				// Handle Start-up and Undo of creating a MessageCreate
+				// Other cases of keeping lifelines' heights up to date are handled elsewhere in order to prevent blinking
+				Command commandUpdateLifelines = getUpdateLifelinesHeightsCommand(null);
+				if (commandUpdateLifelines != null) {
+					CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new GEFtoEMFCommandWrapper(commandUpdateLifelines), true);
 				}
 			}
 		}

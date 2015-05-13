@@ -33,7 +33,11 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * The Class AppliedStereotypeHelper.
+ * 
+ * @deprecated Use the Helper into oep.uml.diagram.common.stereotype.display.helper
+ * 
  */
+@Deprecated
 public class AppliedStereotypeHelper {
 
 	/**

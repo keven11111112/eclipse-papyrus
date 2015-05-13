@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.util;
 
@@ -72,7 +73,7 @@ public class ConfigurationAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -83,93 +84,117 @@ public class ConfigurationAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConfigurationSwitch<Adapter> modelSwitch =
-		new ConfigurationSwitch<Adapter>() {
-			@Override
-			public Adapter casePapyrusConfiguration(PapyrusConfiguration object) {
-				return createPapyrusConfigurationAdapter();
-			}
-			@Override
-			public Adapter casePapyrusViewpoint(PapyrusViewpoint object) {
-				return createPapyrusViewpointAdapter();
-			}
-			@Override
-			public Adapter casePapyrusView(PapyrusView object) {
-				return createPapyrusViewAdapter();
-			}
-			@Override
-			public Adapter casePapyrusDiagram(PapyrusDiagram object) {
-				return createPapyrusDiagramAdapter();
-			}
-			@Override
-			public Adapter casePapyrusSyncTable(PapyrusSyncTable object) {
-				return createPapyrusSyncTableAdapter();
-			}
-			@Override
-			public Adapter casePapyrusTable(PapyrusTable object) {
-				return createPapyrusTableAdapter();
-			}
-			@Override
-			public Adapter caseRule(Rule object) {
-				return createRuleAdapter();
-			}
-			@Override
-			public Adapter caseModelRule(ModelRule object) {
-				return createModelRuleAdapter();
-			}
-			@Override
-			public Adapter caseOwningRule(OwningRule object) {
-				return createOwningRuleAdapter();
-			}
-			@Override
-			public Adapter caseChildRule(ChildRule object) {
-				return createChildRuleAdapter();
-			}
-			@Override
-			public Adapter casePaletteRule(PaletteRule object) {
-				return createPaletteRuleAdapter();
-			}
-			@Override
-			public Adapter casePathElement(PathElement object) {
-				return createPathElementAdapter();
-			}
-			@Override
-			public Adapter caseCategory(Category object) {
-				return createCategoryAdapter();
-			}
-			@Override
-			public Adapter caseModelAutoCreate(ModelAutoCreate object) {
-				return createModelAutoCreateAdapter();
-			}
-			@Override
-			public Adapter caseRootAutoSelect(RootAutoSelect object) {
-				return createRootAutoSelectAdapter();
-			}
-			@Override
-			public Adapter caseArchitectureFramework(ArchitectureFramework object) {
-				return createArchitectureFrameworkAdapter();
-			}
-			@Override
-			public Adapter caseADElement(ADElement object) {
-				return createADElementAdapter();
-			}
-			@Override
-			public Adapter caseArchitectureViewpoint(ArchitectureViewpoint object) {
-				return createArchitectureViewpointAdapter();
-			}
-			@Override
-			public Adapter caseModelKind(ModelKind object) {
-				return createModelKindAdapter();
-			}
-			@Override
-			public Adapter caseDisplayUnit(DisplayUnit object) {
-				return createDisplayUnitAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected ConfigurationSwitch<Adapter> modelSwitch = new ConfigurationSwitch<Adapter>() {
+		@Override
+		public Adapter casePapyrusConfiguration(PapyrusConfiguration object) {
+			return createPapyrusConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter casePapyrusViewpoint(PapyrusViewpoint object) {
+			return createPapyrusViewpointAdapter();
+		}
+
+		@Override
+		public Adapter casePapyrusView(PapyrusView object) {
+			return createPapyrusViewAdapter();
+		}
+
+		@Override
+		public Adapter casePapyrusDiagram(PapyrusDiagram object) {
+			return createPapyrusDiagramAdapter();
+		}
+
+		@Override
+		public Adapter casePapyrusSyncTable(PapyrusSyncTable object) {
+			return createPapyrusSyncTableAdapter();
+		}
+
+		@Override
+		public Adapter casePapyrusTable(PapyrusTable object) {
+			return createPapyrusTableAdapter();
+		}
+
+		@Override
+		public Adapter caseRule(Rule object) {
+			return createRuleAdapter();
+		}
+
+		@Override
+		public Adapter caseModelRule(ModelRule object) {
+			return createModelRuleAdapter();
+		}
+
+		@Override
+		public Adapter caseOwningRule(OwningRule object) {
+			return createOwningRuleAdapter();
+		}
+
+		@Override
+		public Adapter caseChildRule(ChildRule object) {
+			return createChildRuleAdapter();
+		}
+
+		@Override
+		public Adapter casePaletteRule(PaletteRule object) {
+			return createPaletteRuleAdapter();
+		}
+
+		@Override
+		public Adapter casePathElement(PathElement object) {
+			return createPathElementAdapter();
+		}
+
+		@Override
+		public Adapter caseCategory(Category object) {
+			return createCategoryAdapter();
+		}
+
+		@Override
+		public Adapter caseModelAutoCreate(ModelAutoCreate object) {
+			return createModelAutoCreateAdapter();
+		}
+
+		@Override
+		public Adapter caseRootAutoSelect(RootAutoSelect object) {
+			return createRootAutoSelectAdapter();
+		}
+
+		@Override
+		public Adapter caseAssistantRule(AssistantRule object) {
+			return createAssistantRuleAdapter();
+		}
+
+		@Override
+		public Adapter caseArchitectureFramework(ArchitectureFramework object) {
+			return createArchitectureFrameworkAdapter();
+		}
+
+		@Override
+		public Adapter caseADElement(ADElement object) {
+			return createADElementAdapter();
+		}
+
+		@Override
+		public Adapter caseArchitectureViewpoint(ArchitectureViewpoint object) {
+			return createArchitectureViewpointAdapter();
+		}
+
+		@Override
+		public Adapter caseModelKind(ModelKind object) {
+			return createModelKindAdapter();
+		}
+
+		@Override
+		public Adapter caseDisplayUnit(DisplayUnit object) {
+			return createDisplayUnitAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -181,7 +206,7 @@ public class ConfigurationAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 
@@ -392,6 +417,20 @@ public class ConfigurationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRootAutoSelectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule <em>Assistant Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule
+	 * @generated
+	 */
+	public Adapter createAssistantRuleAdapter() {
 		return null;
 	}
 

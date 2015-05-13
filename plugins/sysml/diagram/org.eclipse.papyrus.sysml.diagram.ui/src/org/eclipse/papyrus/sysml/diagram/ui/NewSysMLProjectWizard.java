@@ -69,7 +69,12 @@ public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 	 */
 	@Override
 	protected String[] getDiagramCategoryIds() {
-		return new String[] { CreateSysMLModelCommand.COMMAND_ID };
+		return new String[]{ CreateSysMLModelCommand.COMMAND_ID };
+	}
+
+	@Override
+	public boolean isPapyrusRootWizard() {
+		return false;
 	}
 
 }

@@ -69,5 +69,9 @@ public class NewRobotmlProjectWizard extends NewPapyrusProjectWizard {
 		return new String[] { CreateRobotmlModelCommand.COMMAND_ID };
 	}
 
+	@Override
+	public boolean isPapyrusRootWizard() {
+		return false;
+	}
 
 }

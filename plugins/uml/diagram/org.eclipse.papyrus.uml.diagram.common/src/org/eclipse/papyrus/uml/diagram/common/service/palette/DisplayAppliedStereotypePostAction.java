@@ -146,7 +146,7 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				View view = (View) viewAdapter.getAdapter(View.class);
+				View view = viewAdapter.getAdapter(View.class);
 
 				// creates the commands to display simple stereotypes name
 				for (String stereotypeName : stereotypesToDisplay) {

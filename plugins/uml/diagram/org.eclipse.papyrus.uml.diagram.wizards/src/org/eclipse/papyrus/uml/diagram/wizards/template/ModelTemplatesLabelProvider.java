@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.wizards.template;
 
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -48,9 +48,9 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object, int)
 	 */
 	public String getColumnText(Object element, int columnIndex) {
-		if (element instanceof ModelTemplateDescription) {
-			ModelTemplateDescription modelTemplate = (ModelTemplateDescription) element;
-			return NLS.bind(org.eclipse.papyrus.uml.diagram.wizards.Messages.ModelTemplatesLabelProvider_model_template_description_text, modelTemplate.getName(), modelTemplate.getFileName());
+		if(element instanceof ModelTemplateDescription) {
+			ModelTemplateDescription modelTemplate = (ModelTemplateDescription)element;
+			return Messages.bind(org.eclipse.papyrus.uml.diagram.wizards.messages.Messages.ModelTemplatesLabelProvider_model_template_description_text, modelTemplate.getName(), modelTemplate.getFileName());
 		}
 		return null;
 	}

@@ -47,8 +47,8 @@ public class LifelineStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(lifeline);
 
 		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(400, 100), null);
-		Point start = SequenceUtil.getAbsoluteBounds(lifeline).getCenter();
-		Point end = SequenceUtil.getAbsoluteBounds(lifeline2).getCenter();
+		Point start = SequenceUtil.getAbsoluteBounds(lifeline).getTop().translate(0, 50);
+		Point end = SequenceUtil.getAbsoluteBounds(lifeline2).getTop().translate(0, 50);
 		alignVertically(start, end);
 		link = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline2.getViewer(), start, lifeline, end, lifeline2);
 		assertNotNull("link", link);

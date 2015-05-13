@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 446865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -24,6 +25,7 @@ import org.eclipse.jface.fieldassist.FieldDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.papyrus.infra.widgets.databinding.StyledTextObservableValue;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
+import org.eclipse.papyrus.infra.widgets.validator.AbstractValidator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyEvent;
@@ -68,7 +70,6 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 
 
 	/**
-	 *
 	 * Constructor.
 	 *
 	 * @param parent
@@ -78,11 +79,23 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 	 */
 	public StyledTextStringEditor(Composite parent, int style) {
 		this(parent, style, null, DEFAULT_HEIGHT_HINT, DEFAULT_WIDTH_HINT);
-
 	}
 
 	/**
+	 * Constructor.
 	 *
+	 * @param parent
+	 *            The composite in which this editor should be displayed
+	 * @param style
+	 *            The style for this editor's text box
+	 * @param targetValidator
+	 *            The validator used for the styled text.
+	 */
+	public StyledTextStringEditor(final Composite parent, final int style, final AbstractValidator targetValidator) {
+		this(parent, style, null, DEFAULT_HEIGHT_HINT, DEFAULT_WIDTH_HINT, targetValidator);
+	}
+
+	/**
 	 * Constructor.
 	 *
 	 * @param parent
@@ -97,7 +110,22 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 	}
 
 	/**
+	 * Constructor.
 	 *
+	 * @param parent
+	 *            The composite in which this editor should be displayed
+	 * @param style
+	 *            The style for this editor's text box
+	 * @param label
+	 *            The label for this editor
+	 * @param targetValidator
+	 *            The validator used for the styled text.
+	 */
+	public StyledTextStringEditor(final Composite parent, final int style, final String label, final AbstractValidator targetValidator) {
+		this(parent, style, label, DEFAULT_HEIGHT_HINT, DEFAULT_WIDTH_HINT, targetValidator);
+	}
+
+	/**
 	 * Constructor.
 	 *
 	 * @param parent
@@ -114,7 +142,6 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 	}
 
 	/**
-	 *
 	 * Constructor.
 	 *
 	 * @param parent
@@ -129,20 +156,43 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 	 *            Width hint of the text area in multiline mode
 	 */
 	public StyledTextStringEditor(Composite parent, int style, String label, int heighHint, int widthHint) {
+		this(parent, style, label, heighHint, widthHint, null);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param parent
+	 *            The composite in which this editor should be displayed
+	 * @param style
+	 *            The style for this editor's text box
+	 * @param label
+	 *            The label for this editor
+	 * @param heighHint
+	 *            Height hint of the text area in multiline mode
+	 * @param widthHint
+	 *            Width hint of the text area in multiline mode
+	 * @param targetValidator
+	 *            The validator used for the styled text.
+	 */
+	public StyledTextStringEditor(final Composite parent, final int style, final String label, final int heighHint, final int widthHint, final AbstractValidator targetValidator) {
 		super(parent, label);
+
+		this.targetValidator = targetValidator;
 
 		GridData data = getDefaultLayoutData();
 		data.grabExcessVerticalSpace = true;
 		data.grabExcessHorizontalSpace = true;
 		data.verticalAlignment = SWT.FILL;
 		data.horizontalAlignment = SWT.FILL;
+		int styledTextStyle = style;
 		if ((style & SWT.MULTI) != 0) {
 			data.minimumHeight = heighHint;
 			data.minimumWidth = widthHint;
-			style = style | SWT.V_SCROLL;
+			styledTextStyle = style | SWT.V_SCROLL;
 		}
 
-		text = createStyledText(this, null, style);
+		text = createStyledText(this, null, styledTextStyle);
 		text.setLayoutData(data);
 
 		if (label != null) {
@@ -164,7 +214,6 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 		layout.marginWidth = 0;
 
 		pack();
-
 	}
 
 
@@ -279,7 +328,7 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 		commit();
 		changeColorField();
 	}
-	
+
 	@Override
 	public void setToolTipText(String tooltip) {
 		text.setToolTipText(tooltip);
@@ -295,7 +344,7 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 		if (value instanceof String) {
 			this.text.setText((String) value);
 		} else {
-			this.text.setText(""); //$NON-NLS-1$;
+			this.text.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -378,11 +427,11 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 			timer.schedule(currentValidateTask, delay);
 		}
 		if (targetValidator != null) {
-			IStatus status = targetValidator.validate(text.getText());
+			IStatus status = targetValidator.validate(getTextToValidate());
 			updateStatus(status);
 		}
 		if (modelValidator != null) {
-			IStatus status = modelValidator.validate(text.getText());
+			IStatus status = modelValidator.validate(getTextToValidate());
 			updateStatus(status);
 			if (binding == null) {
 				update();
@@ -406,6 +455,15 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 		}
 	}
 
+	/**
+	 * Gets the string to validate.
+	 * 
+	 * @return The string text to validate.
+	 */
+	protected String getTextToValidate() {
+		return text.getText();
+	}
+
 	@Override
 	public void dispose() {
 		cancelCurrentTask();
@@ -423,29 +481,30 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 
 	@Override
 	public void updateStatus(IStatus status) {
-		switch (status.getSeverity()) {
-		case IStatus.OK:
-			controlDecoration.hide();
-			break;
-		case IStatus.WARNING:
-			FieldDecoration warning = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
-			controlDecoration.setImage(warning.getImage());
-			controlDecoration.showHoverText(status.getMessage());
-			controlDecoration.setDescriptionText(status.getMessage());
-			controlDecoration.show();
-			break;
-		case IStatus.ERROR:
-			FieldDecoration error = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
-			controlDecoration.setImage(error.getImage());
-			controlDecoration.showHoverText(status.getMessage());
-			controlDecoration.setDescriptionText(status.getMessage());
-			controlDecoration.show();
-			break;
-		default:
-			controlDecoration.hide();
-			break;
+		if(!isDisposed()){
+			switch (status.getSeverity()) {
+			case IStatus.OK:
+				controlDecoration.hide();
+				break;
+			case IStatus.WARNING:
+				FieldDecoration warning = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
+				controlDecoration.setImage(warning.getImage());
+				controlDecoration.showHoverText(status.getMessage());
+				controlDecoration.setDescriptionText(status.getMessage());
+				controlDecoration.show();
+				break;
+			case IStatus.ERROR:
+				FieldDecoration error = FieldDecorationRegistry.getDefault().getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+				controlDecoration.setImage(error.getImage());
+				controlDecoration.showHoverText(status.getMessage());
+				controlDecoration.setDescriptionText(status.getMessage());
+				controlDecoration.show();
+				break;
+			default:
+				controlDecoration.hide();
+				break;
+			}
 		}
-
 	}
 
 	@Override
@@ -468,27 +527,35 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 
 						@Override
 						public void run() {
-							text.setBackground(DEFAULT);
-							text.update();
+							if(!text.isDisposed()){
+								text.setBackground(DEFAULT);
+								text.update();
+							}
 						}
 					});
 				}
 			};
 			if (errorBinding) {
-				text.setBackground(ERROR);
-				text.update();
+				if(!text.isDisposed()){
+					text.setBackground(ERROR);
+					text.update();
+				}
 			} else {
 				IStatus status = (IStatus) binding.getValidationStatus().getValue();
 				switch (status.getSeverity()) {
 				case IStatus.OK:
 				case IStatus.WARNING:
 					timer.schedule(changeColorTask, 600);
-					text.setBackground(VALID);
-					text.update();
+					if(!text.isDisposed()){
+						text.setBackground(VALID);
+						text.update();
+					}
 					break;
 				case IStatus.ERROR:
-					text.setBackground(ERROR);
-					text.update();
+					if(!text.isDisposed()){
+						text.setBackground(ERROR);
+						text.update();
+					}
 					break;
 
 				}

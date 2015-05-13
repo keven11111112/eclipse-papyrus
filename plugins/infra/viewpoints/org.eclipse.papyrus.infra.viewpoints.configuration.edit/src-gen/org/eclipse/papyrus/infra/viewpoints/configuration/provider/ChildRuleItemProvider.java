@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -73,19 +74,17 @@ public class ChildRuleItemProvider
 	 * @generated NOT
 	 */
 	protected void addElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new EClassPropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_ChildRule_element_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_element_feature", "_UI_ChildRule_type"),
-								ConfigurationPackage.Literals.CHILD_RULE__ELEMENT,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new EClassPropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ChildRule_element_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_element_feature", "_UI_ChildRule_type"),
+				ConfigurationPackage.Literals.CHILD_RULE__ELEMENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -96,19 +95,17 @@ public class ChildRuleItemProvider
 	 * @generated NOT
 	 */
 	protected void addStereotypesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new StereotypePropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_ChildRule_stereotypes_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_stereotypes_feature", "_UI_ChildRule_type"),
-								ConfigurationPackage.Literals.CHILD_RULE__STEREOTYPES,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new StereotypePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ChildRule_stereotypes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_stereotypes_feature", "_UI_ChildRule_type"),
+				ConfigurationPackage.Literals.CHILD_RULE__STEREOTYPES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -119,19 +116,17 @@ public class ChildRuleItemProvider
 	 * @generated NOT
 	 */
 	protected void addOriginPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new EClassPropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_ChildRule_origin_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_origin_feature", "_UI_ChildRule_type"),
-								ConfigurationPackage.Literals.CHILD_RULE__ORIGIN,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new EClassPropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ChildRule_origin_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_origin_feature", "_UI_ChildRule_type"),
+				ConfigurationPackage.Literals.CHILD_RULE__ORIGIN,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -177,6 +172,16 @@ public class ChildRuleItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -215,9 +220,9 @@ public class ChildRuleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ChildRule.class)) {
-			case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -233,10 +238,8 @@ public class ChildRuleItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ConfigurationPackage.Literals.CHILD_RULE__INSERTION_PATH,
-				 ConfigurationFactory.eINSTANCE.createPathElement()));
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.CHILD_RULE__INSERTION_PATH,
+				ConfigurationFactory.eINSTANCE.createPathElement()));
 	}
 
 }

@@ -97,6 +97,7 @@ import org.eclipse.papyrus.infra.nattable.utils.CellMapKey;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
+import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -113,16 +114,18 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.commands.ICommandService;
 
-import ca.odell.glazedlists.EventList;
-import ca.odell.glazedlists.FilterList;
-import ca.odell.glazedlists.GlazedLists;
-
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
+import ca.odell.glazedlists.EventList;
+import ca.odell.glazedlists.FilterList;
+import ca.odell.glazedlists.GlazedLists;
+import ca.odell.glazedlists.event.ListEvent;
+import ca.odell.glazedlists.event.ListEventListener;
+
 /**
- * TODO : this class must be refactored, all the part concerning tree table must be push in the subclass {@link TreeNattableModelManager}
- * 
+ * All the code concerning tree table is in the subclass {@link TreeNattableModelManager}
+ *
  *
  */
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
@@ -203,10 +206,29 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/** Flag to avoid reentrant call to refresh. */
 	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
 
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param rawModel
+	 *
+	 *            the model of the managed table
+	 */
+	public NattableModelManager(final Table rawModel) {
+		this(rawModel, new ObjectsSelectionExtractor());
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param rawModel
+	 *            the table model
+	 * @param selectionExtractor
+	 *            the selection extrator
+	 */
 	public NattableModelManager(final Table rawModel, final ISelectionExtractor selectionExtractor) {
 		super(rawModel, selectionExtractor);
-
-
 
 		this.rowProvider = rawModel.getCurrentRowAxisProvider();
 		this.columnProvider = rawModel.getCurrentColumnAxisProvider();
@@ -232,7 +254,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 							mergeTable();
 							// for the fun of it!
 							// in fact it is to fix the test org.eclipse.papyrus.sysml.nattable.requirement.tests.tests.RevealRequirementTableTest.test6SelectMultipleElementsInvertAxisAllColumns()
-							// it is a work around and not really a nice fix, because I don't undestand the bug...
+							// it is a work around and not really a nice fix, because I don't understand the bug...
 							getBodyLayerStack().getRowHideShowLayer().showAllRows();
 							getBodyLayerStack().getColumnHideShowLayer().showAllColumns();
 
@@ -294,24 +316,71 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		};
 		rawModel.eAdapters().add(tableCellsListener);
+
+		addListeners();
 	}
 
+	private ListEventListener<Object> listEventListener;
+
 	/**
-	 *
-	 * Constructor.
-	 *
-	 * @param rawModel
-	 *
-	 *            the model of the managed table
+	 * add required listener
 	 */
-	public NattableModelManager(final Table rawModel) {
-		this(rawModel, new ObjectsSelectionExtractor());
+	protected void addListeners() {
+		this.listEventListener = new ListEventListener<Object>() {
+
+			/**
+			 * 
+			 * @param listChanges
+			 */
+			@Override
+			public void listChanged(ListEvent<Object> listChanges) {
+				manageEventListChanges(listChanges);
+			}
+
+		};
+		EventList<?> rowsList = (EventList<?>) getRowElementsList();
+		EventList<?> columnsList = (EventList<?>) getColumnElementsList();
+		rowsList.addListEventListener(this.listEventListener);
+		columnsList.addListEventListener(this.listEventListener);
 	}
 
 	/**
 	 * 
+	 * @param listChanges
+	 *            manage the list events
+	 */
+	private void manageEventListChanges(ListEvent<Object> listChanges) {
+		EventList<?> sourceList = listChanges.getSourceList();
+		CellEditorDeclaration declaration = TableHelper.getCellEditorDeclaration(this);
+		boolean needConfiguration = false;
+		if (CellEditorDeclaration.COLUMN == declaration && sourceList == getColumnElementsList()) {
+			needConfiguration = true;
+		}
+		if (CellEditorDeclaration.ROW == declaration && sourceList == getRowElementsList()) {
+			needConfiguration = true;
+		}
+		if (needConfiguration) {
+			configureCellAxisEditor();
+			configureFilters();
+			refreshNatTable();
+		}
+	}
+
+	/**
+	 * remove required listener
+	 */
+	protected void removeListeners() {
+		EventList<?> rowsList = (EventList<?>) getRowElementsList();
+		EventList<?> columnsList = (EventList<?>) getColumnElementsList();
+		rowsList.removeListEventListener(this.listEventListener);
+		columnsList.removeListEventListener(this.listEventListener);
+	}
+
+
+	/**
+	 *
 	 * @return
-	 *         the new list to use for vertical element
+	 * 		the new list to use for vertical element
 	 */
 	protected List<Object> createVerticalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
@@ -322,9 +391,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         the new list to use for horizontal element
+	 * 		the new list to use for horizontal element
 	 */
 	protected List<Object> createHorizontalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
@@ -366,7 +435,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 
 		getContextEditingDomain().getCommandStack().addCommandStackListener(this.refreshListener);
-		if (getTableEditingDomain() != getContextEditingDomain()) {
+		if (getTableEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
 			getTableEditingDomain().getCommandStack().addCommandStackListener(this.refreshListener);
 		}
 		this.focusListener = new FocusListener() {
@@ -399,6 +468,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 * this command update the status of the toggle actions
 	 */
+	@Override
 	protected void updateToggleActionState() {
 		super.updateToggleActionState();
 		final ICommandService commandService = EclipseCommandUtils.getCommandService();
@@ -585,7 +655,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.columnManager.setAxisComparator(null);
 
 		updateToggleActionState();
-		configureNatTable();
+		// configureNatTable();
+
+		configureCellAxisEditor();
+		configureFilters();
 		refreshNatTable();
 	}
 
@@ -696,7 +769,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			natTable.removeLayerListener(layerListener);
 		}
 
-
+		removeListeners();
 		super.dispose();
 	}
 
@@ -866,7 +939,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 *
 	 * @return
-	 *         a new runnable for the refreash action
+	 * 		a new runnable for the refreash action
 	 */
 	private Runnable createRefreshRunnable() {
 		return new Runnable() {
@@ -950,7 +1023,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		NattableModelManager.this.rowManager.updateAxisContents();
 		CellEditorDeclaration declaration = getCellEditorDeclarationToUse(getTable());
 		if (declaration.equals(CellEditorDeclaration.ROW)) {
-			configureNatTable();
+			// configureNatTable(); : see bug 463058: [Table 2] Invert Axis + add/remove columns break the display of the table
 			refreshNatTable();
 		} else {
 			refreshNatTable();
@@ -966,7 +1039,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		NattableModelManager.this.columnManager.updateAxisContents();
 		CellEditorDeclaration declaration = getCellEditorDeclarationToUse(getTable());
 		if (declaration.equals(CellEditorDeclaration.COLUMN)) {
-			configureNatTable();
+			// configureNatTable(); : see bug 463058: [Table 2] Invert Axis + add/remove columns break the display of the table
 			refreshNatTable();
 		} else {
 			refreshNatTable();
@@ -978,7 +1051,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @param table
 	 *            the table
 	 * @return
-	 *         the celleditor declaration to use according to the table configuration and {@link Table#isInvertAxis()}
+	 * 		the celleditor declaration to use according to the table configuration and {@link Table#isInvertAxis()}
 	 */
 	private CellEditorDeclaration getCellEditorDeclarationToUse(final Table table) {
 		CellEditorDeclaration declaration = table.getTableConfiguration().getCellEditorDeclaration();
@@ -1637,19 +1710,21 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				return ((NotificationFilter.createEventTypeFilter(Notification.SET))
 						.or(NotificationFilter.createEventTypeFilter(Notification.ADD))
 						.or(NotificationFilter.createEventTypeFilter(Notification.REMOVE)))
-						.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
-								.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
-								.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
-								.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
+								.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
+										.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
+										.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
+										.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
 				// return NotificationFilter.createNotifierTypeFilter(EObject.class);
 			}
 		};
 
 		getContextEditingDomain().addResourceSetListener(resourceSetListener);
-		getTableEditingDomain().addResourceSetListener(resourceSetListener);
+		if (getTableEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
+			getTableEditingDomain().addResourceSetListener(resourceSetListener);
+		}
 
 	}
 
@@ -1758,9 +1833,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * @return
-	 *         the filter strategy to use
-	 * 
+	 * 		the filter strategy to use
+	 *
 	 */
+	@Override
 	protected IFilterStrategy<Object> createFilterStrategy() {
 		return new PapyrusFilterStrategy(this, new PapyrusColumnAccesor());
 		// TODO

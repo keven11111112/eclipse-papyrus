@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:XMI_20110701="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Package xmi:id="_0" name="DG" URI="http://www.omg.org/spec/DD/20110901/DG">
     <ownedComment xmi:type="uml:Comment" xmi:id="_ownedComment.0" annotatedElement="_0">
       <body>The Diagram Graphics (DG) package contains a model of graphical primitives that can be instantiated when mapping from a language abstract syntax models and diagram interchange (DI) models to visual presentations. The mapping effectively defines the concrete syntax of a language. This specification does not restrict how the mappings are done, or what languages are used to define them.</body>
@@ -601,7 +601,7 @@
       <ownedComment xmi:type="uml:Comment" xmi:id="Polygon-_ownedComment.0" annotatedElement="Polygon">
         <body>Polygon is a marked element that defines a closed shape consisting of a sequence of connected straight line segments.</body>
       </ownedComment>
-      <generalization xmi:type="uml:Generalization" xmi:id="_2PhcNfo2EeOw_Nx9vOEGaA" general="MarkedElement"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_pK36UNozEeSwm-kFhWiM0w" general="MarkedElement"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="Polygon-point" name="point" visibility="public" isOrdered="true">
         <ownedComment xmi:type="uml:Comment" xmi:id="Polygon-point-_ownedComment.0" annotatedElement="Polygon-point">
           <body>a list of 3 or more points making up the polygon.</body>
@@ -745,11 +745,6 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Pe_4vo2EeOw_Nx9vOEGaA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Pe_4_o2EeOw_Nx9vOEGaA" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_V49isA35EeSM9dpvq2CG1g" name="script" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="DC.uml#String"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WPHY4A35EeSM9dpvq2CG1g"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WPH_8A35EeSM9dpvq2CG1g" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Rotate" name="Rotate">
@@ -1268,24 +1263,20 @@
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
-    <xmi:Extension extender="http://www.eclipse.org/uml2/4.0.0/UML">
+    <XMI_20110701:Extension extender="http://www.eclipse.org/uml2/4.0.0/UML">
       
-    </xmi:Extension>
+    </XMI_20110701:Extension>
   </uml:Package>
   <Ecore:EPackage xmi:id="_mhwLgM1vEeOX1ohrWoozJQ" base_Package="_0" packageName="dg" nsPrefix="dg" basePackage="org.eclipse.papyrus.dd" prefix="DG"/>
   <Ecore:EReference xmi:id="_f0214M2UEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-fill"/>
-  <Ecore:EReference xmi:id="_llTxkM2UEeOtK5GsJlm5Mw" isUnsettable="true"/>
   <Ecore:EAttribute xmi:id="_rXVakM2UEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-fillOpacity"/>
   <Ecore:EAttribute xmi:id="_uksHYM2UEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-strokeWidth"/>
   <Ecore:EAttribute xmi:id="_xRnnsM2UEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-strokeOpacity"/>
-  <Ecore:EReference xmi:id="_zsCbsM2UEeOtK5GsJlm5Mw" isUnsettable="true"/>
   <Ecore:EAttribute xmi:id="_3RPAwM2UEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-strokeDashLength"/>
   <Ecore:EAttribute xmi:id="_5MnvYM2UEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-fontSize"/>
   <Ecore:EAttribute xmi:id="_-LD_UM2UEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-fontName"/>
-  <Ecore:EReference xmi:id="_JF5VMM2VEeOtK5GsJlm5Mw" isUnsettable="true"/>
   <Ecore:EAttribute xmi:id="_Lh6rsM2VEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-fontItalic"/>
   <Ecore:EAttribute xmi:id="_NiNIcM2VEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-fontBold"/>
-  <Ecore:EAttribute xmi:id="_PKi_QM2VEeOtK5GsJlm5Mw" isUnsettable="true"/>
   <Ecore:EAttribute xmi:id="_QsHfsM2VEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="Style-fontStrikeThrough"/>
   <Ecore:EReference xmi:id="_Kem58M2oEeOtK5GsJlm5Mw" isUnsettable="true" base_Property="_KemS4M2oEeOtK5GsJlm5Mw"/>
   <Ecore:EAttribute xmi:id="_huN4sNevEeOsUY1jE2-lpg" isUnsettable="true" base_Property="_jfIkE9esEeOsUY1jE2-lpg"/>

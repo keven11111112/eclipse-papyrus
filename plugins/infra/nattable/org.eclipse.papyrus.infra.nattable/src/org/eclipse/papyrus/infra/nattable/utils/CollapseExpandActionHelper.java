@@ -19,16 +19,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.plaf.TableUI;
+
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.tree.command.TreeCollapseAllCommand;
 import org.eclipse.nebula.widgets.nattable.tree.command.TreeExpandAllCommand;
 import org.eclipse.nebula.widgets.nattable.tree.command.TreeExpandCollapseCommand;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.tools.util.SelectionHelper;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * This class is not in API.
@@ -60,7 +65,7 @@ public class CollapseExpandActionHelper {
 			natTable.doCommand(new TreeExpandAllCommand());
 			return;
 		case COLLAPSE_ALL:
-			natTable.doCommand(new TreeCollapseAllCommand());
+			doCollapseAll(axisProvider, natTable);
 			return;
 		default:
 			break;
@@ -71,8 +76,31 @@ public class CollapseExpandActionHelper {
 		} else {
 			doCollapseExpandActionOnChoosenRows(actionId, selectedAxis, axisProvider, natTable);
 		}
+	}
 
+	/**
+	 * Do the collapse all action
+	 * 
+	 * @param axisProvider
+	 *            the axis provider
+	 * @param natTable
+	 *            the nattable widget
+	 */
+	private static final void doCollapseAll(ITableAxisElementProvider axisProvider, NatTable natTable) {
+		natTable.doCommand(new TreeCollapseAllCommand());
 
+		// with collapse all, we must check than the root category is not hidden. If the root is hidden, the table will be displayed as empty
+		//added thanks to the bug 463312  
+		if (axisProvider instanceof INattableModelManager && StyleUtils.isHiddenDepth((INattableModelManager) axisProvider, 0)) {
+			List<Object> rows = axisProvider.getRowElementsList();
+			List<ITreeItemAxis> axis = new ArrayList<ITreeItemAxis>();
+			for (Object current : rows) {
+				Assert.isTrue(current instanceof ITreeItemAxis);
+				Assert.isTrue(((ITreeItemAxis) current).getParent() == null);
+				axis.add((ITreeItemAxis) current);
+			}
+			doCollapseExpandActionOnChoosenRows(CollapseAndExpandActionsEnum.EXPAND_ONE_LEVEL, axis, axisProvider, natTable);
+		}
 	}
 
 	/**

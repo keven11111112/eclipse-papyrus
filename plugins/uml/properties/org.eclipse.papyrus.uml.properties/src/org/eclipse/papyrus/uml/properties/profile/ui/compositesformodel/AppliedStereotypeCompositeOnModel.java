@@ -58,7 +58,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * This composite is used to display applied stereotype in the model. It allows applying or desapply a stereotype
  */
@@ -478,7 +478,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							domain.getCommandStack().execute(getApplyStereotypeCommmand(elt, st, domain));
+							domain.getCommandStack().execute(getApplyStereotypeCommand(elt, st, domain));
 						}
 					});
 				}
@@ -638,7 +638,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 *            Transaction domain to execute command
 	 * @return Command to execute to apply stereotype on element
 	 */
-	protected Command getApplyStereotypeCommmand(final Element elt, final Stereotype st, final TransactionalEditingDomain domain) {
+	protected Command getApplyStereotypeCommand(final Element elt, final Stereotype st, final TransactionalEditingDomain domain) {
 		return new RecordingCommand(domain) {
 
 			/**
@@ -647,7 +647,6 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			@Override
 			protected void doExecute() {
 				elt.applyStereotype(st);
-				elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
 				refresh();
 			}
 		};

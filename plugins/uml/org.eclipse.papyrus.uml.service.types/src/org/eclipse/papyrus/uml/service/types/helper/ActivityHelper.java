@@ -30,10 +30,40 @@ public class ActivityHelper extends ElementEditHelper {
 	
 	@Override
 	protected ICommand getCreateCommand(CreateElementRequest req) {
-		CreateElementRequest createRequest = isStructuredNode(req.getElementType()) ? createStructuredNodeRequest(req) : req;
-		return super.getCreateCommand(createRequest);
+		CreateElementRequest request;
+		boolean isActivityNode = isActivityNode(req.getElementType());
+		if (isActivityNode) {
+			request = createActivityNodeRequest(req);
+		} else {
+			boolean isStructureNode = isStructuredNode(req.getElementType());
+			if (isStructureNode) {
+				request = createStructuredNodeRequest(req);
+			} else {
+				request = req;
+			}
+		}
+		return super.getCreateCommand(request);
 	}
 	
+	/**
+	 * @param elementType
+	 * @return
+	 */
+	private CreateElementRequest createActivityNodeRequest(CreateElementRequest baseReq) {
+		CreateElementRequest req = new CreateElementRequest(baseReq.getEditingDomain(), baseReq.getContainer(), baseReq.getElementType());
+		req.addParameters(baseReq.getParameters());
+		req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_OwnedNode());
+		return req;
+	}
+
+	/**
+	 * @param elementType
+	 * @return
+	 */
+	protected boolean isActivityNode(IElementType type) {
+		return type.getEClass() != null && UMLPackage.eINSTANCE.getObjectNode().isSuperTypeOf(type.getEClass());
+	}
+
 	protected CreateElementRequest createStructuredNodeRequest(CreateElementRequest baseReq) {
 		CreateElementRequest req = new CreateElementRequest(baseReq.getEditingDomain(), baseReq.getContainer(), baseReq.getElementType());
 		req.addParameters(baseReq.getParameters());

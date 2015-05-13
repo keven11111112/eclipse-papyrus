@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.service.palette;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
@@ -157,15 +158,7 @@ public class PropertyRepresentation {
 	 */
 	protected String getPropertyMultiplicity() {
 		Assert.isNotNull(umlProperty, "The property has not been set!"); //$NON-NLS-1$
-		String multiplicity = "[" + umlProperty.getLower() + ".."; //$NON-NLS-1$ //$NON-NLS-2$
-		int upper = umlProperty.getUpper();
-		if (upper == -1) {
-			multiplicity += "*"; //$NON-NLS-1$
-		} else {
-			multiplicity += upper;
-		}
-		multiplicity += "]"; //$NON-NLS-1$
-		return multiplicity;
+		return MultiplicityElementUtil.formatMultiplicity(umlProperty);
 	}
 
 	/**
@@ -289,7 +282,7 @@ public class PropertyRepresentation {
 		if (getType() != null) {
 			type = getType().getLabel();
 		}
-		label += ": " + type + getPropertyMultiplicity() + " = " + getValueToDisplay(); //$NON-NLS-1$ //$NON-NLS-2$
+		label += ": " + type + " " + getPropertyMultiplicity() + " = " + getValueToDisplay(); //$NON-NLS-1$ //$NON-NLS-2$
 		return label;
 	}
 

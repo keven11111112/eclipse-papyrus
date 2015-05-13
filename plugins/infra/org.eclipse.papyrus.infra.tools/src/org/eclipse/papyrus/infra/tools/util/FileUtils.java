@@ -48,7 +48,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * 
+	 * this method read a file and return a string, the line separator used will we System.getProperty("line.separator")
 	 * @param pluginName
 	 *            the name of the plugin owning the file
 	 * @param filePath
@@ -58,6 +58,22 @@ public class FileUtils {
 	 * @return
 	 */
 	public static final String getStringFromPlatformFile(final String pluginName, final String filePath, final String fileNameWithExtension) {
+		return getStringFromPlatformFile(pluginName, filePath, fileNameWithExtension, System.getProperty("line.separator")); //$NON-NLS-1$
+	}
+
+	/**
+	 * 
+	 * @param pluginName
+	 *            the name of the plugin owning the file
+	 * @param filePath
+	 *            the path of the file
+	 * @param fileNameWithExtension
+	 *            the name fo the file with its extension
+	 * @param lineSeparator
+	 *            the line separator to use
+	 * @return
+	 */
+	public static final String getStringFromPlatformFile(final String pluginName, final String filePath, final String fileNameWithExtension, final String lineSeparator) {
 		Assert.isNotNull(pluginName);
 		Assert.isNotNull(filePath);
 		Assert.isNotNull(fileNameWithExtension);
@@ -86,7 +102,7 @@ public class FileUtils {
 
 			while ((inputLine = in.readLine()) != null) {
 				builder.append(inputLine);
-				builder.append(System.getProperty("line.separator")); //$NON-NLS-1$
+				builder.append(lineSeparator); //$NON-NLS-1$
 			}
 
 			in.close();

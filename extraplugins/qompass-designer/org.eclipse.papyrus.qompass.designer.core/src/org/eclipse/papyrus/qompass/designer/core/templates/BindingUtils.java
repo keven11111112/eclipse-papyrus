@@ -20,7 +20,6 @@ import org.eclipse.papyrus.C_Cpp.ConstInit;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -64,7 +63,7 @@ public class BindingUtils {
 			if (actual instanceof Classifier) {
 				bindOperation(newOperation, (Classifier) actual);
 			}
-			String newName = AcceleoDriverWrapper.evaluate(operation.getName(), actual, null);
+			String newName = TextTemplateBinding.bind(operation.getName(), actual, null);
 			newOperation.setName(newName);
 
 			return newOperation;
@@ -89,7 +88,7 @@ public class BindingUtils {
 	public static OpaqueBehavior instantiateBehavior(LazyCopier copy, Element actual, OpaqueBehavior opaqueBehavior) throws TransformationException {
 		OpaqueBehavior newBehavior = copy.getCopy(opaqueBehavior);
 		if (actual instanceof NamedElement) {
-			String newName = AcceleoDriverWrapper.evaluate(opaqueBehavior.getName(), actual, null);
+			String newName = TextTemplateBinding.bind(opaqueBehavior.getName(), actual, null);
 			newBehavior.setName(newName);
 		}
 		EList<String> bodyList = newBehavior.getBodies();
@@ -97,7 +96,7 @@ public class BindingUtils {
 			String body = bodyList.get(i);
 			TransformationContext.classifier = (Classifier) newBehavior.getOwner();
 			// pass qualified operation name as template name. Used to identify script in case of an error
-			String newBody = AcceleoDriverWrapper.evaluate(body, newBehavior.getQualifiedName(), actual, null);
+			String newBody = TextTemplateBinding.bind(body, actual);
 			bodyList.set(i, newBody);
 		}
 		return newBehavior;
@@ -118,7 +117,7 @@ public class BindingUtils {
 		if (cppConstInit != null) {
 			// TODO: specific to C++
 			String init = cppConstInit.getInitialisation();
-			String newInit = AcceleoDriverWrapper.bind(init, actual);
+			String newInit = TextTemplateBinding.bind(init, actual);
 			cppConstInit.setInitialisation(newInit);
 		}
 	}

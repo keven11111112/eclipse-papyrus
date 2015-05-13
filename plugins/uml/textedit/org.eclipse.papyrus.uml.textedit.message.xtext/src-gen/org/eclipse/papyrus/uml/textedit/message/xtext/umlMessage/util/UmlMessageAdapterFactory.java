@@ -19,8 +19,7 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
  * @see org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage
  * @generated
  */
-public class UmlMessageAdapterFactory extends AdapterFactoryImpl
-{
+public class UmlMessageAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -37,10 +36,8 @@ public class UmlMessageAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	public UmlMessageAdapterFactory()
-	{
-		if (modelPackage == null)
-		{
+	public UmlMessageAdapterFactory() {
+		if (modelPackage == null) {
 			modelPackage = UmlMessagePackage.eINSTANCE;
 		}
 	}
@@ -55,14 +52,11 @@ public class UmlMessageAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
-		if (object == modelPackage)
-		{
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -75,27 +69,22 @@ public class UmlMessageAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	protected UmlMessageSwitch<Adapter> modelSwitch =
-			new UmlMessageSwitch<Adapter>()
-			{
-				@Override
-				public Adapter caseMessageRule(MessageRule object)
-				{
-					return createMessageRuleAdapter();
-				}
+	protected UmlMessageSwitch<Adapter> modelSwitch = new UmlMessageSwitch<Adapter>() {
+		@Override
+		public Adapter caseMessageRule(MessageRule object) {
+			return createMessageRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseSequenceTermRule(SequenceTermRule object)
-				{
-					return createSequenceTermRuleAdapter();
-				}
+		@Override
+		public Adapter caseSequenceTermRule(SequenceTermRule object) {
+			return createSequenceTermRuleAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object)
-				{
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -108,8 +97,7 @@ public class UmlMessageAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
@@ -125,8 +113,7 @@ public class UmlMessageAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule
 	 * @generated
 	 */
-	public Adapter createMessageRuleAdapter()
-	{
+	public Adapter createMessageRuleAdapter() {
 		return null;
 	}
 
@@ -141,8 +128,7 @@ public class UmlMessageAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule
 	 * @generated
 	 */
-	public Adapter createSequenceTermRuleAdapter()
-	{
+	public Adapter createSequenceTermRuleAdapter() {
 		return null;
 	}
 
@@ -155,8 +141,7 @@ public class UmlMessageAdapterFactory extends AdapterFactoryImpl
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

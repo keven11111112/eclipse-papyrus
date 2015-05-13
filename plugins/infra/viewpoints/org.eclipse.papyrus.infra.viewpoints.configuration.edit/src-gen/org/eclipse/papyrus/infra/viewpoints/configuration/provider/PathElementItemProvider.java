@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -85,19 +86,17 @@ public class PathElementItemProvider
 	 * @generated NOT
 	 */
 	protected void addFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new EReferencePropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_PathElement_feature_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_PathElement_feature_feature", "_UI_PathElement_type"),
-								ConfigurationPackage.Literals.PATH_ELEMENT__FEATURE,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new EReferencePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PathElement_feature_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PathElement_feature_feature", "_UI_PathElement_type"),
+				ConfigurationPackage.Literals.PATH_ELEMENT__FEATURE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -106,19 +105,17 @@ public class PathElementItemProvider
 	 * <!-- end-user-doc -->
 	 */
 	protected void addOriginPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PathElement_origin_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PathElement_origin_feature", "_UI_PathElement_type"),
-						ConfigurationPackage.Literals.PATH_ELEMENT__ORIGIN,
-						false,
-						false,
-						false,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PathElement_origin_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PathElement_origin_feature", "_UI_PathElement_type"),
+				ConfigurationPackage.Literals.PATH_ELEMENT__ORIGIN,
+				false,
+				false,
+				false,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -128,19 +125,17 @@ public class PathElementItemProvider
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PathElement_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PathElement_target_feature", "_UI_PathElement_type"),
-				 ConfigurationPackage.Literals.PATH_ELEMENT__TARGET,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PathElement_target_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PathElement_target_feature", "_UI_PathElement_type"),
+				ConfigurationPackage.Literals.PATH_ELEMENT__TARGET,
+				false,
+				false,
+				false,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -153,6 +148,16 @@ public class PathElementItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/PathElement.png"));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -208,7 +213,7 @@ public class PathElementItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

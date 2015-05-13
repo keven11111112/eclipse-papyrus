@@ -33,7 +33,12 @@ import com.google.common.collect.Collections2;
 /**
  * The Class AddAppliedStereotypeToDisplayCommand used to set the list of
  * applied stereotype to display
+ * 
+ * @deprecated The Display of stereotype is now treated with notation View (Bug 455311)
+ *             use the command into oep.uml.diagram.common.stereotype.display.command instead
+ * 
  */
+@Deprecated
 public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotationCommand {
 
 	/** The qualified names' stereotypes list . */
@@ -63,7 +68,7 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 	 */
 	@Override
 	protected void doExecute() {
-		View view = (View) adapter.getAdapter(View.class);
+		View view = adapter.getAdapter(View.class);
 		EObject view_element = view.getElement();
 		Element element = (Element) view_element;
 		Collection<String> strStereotypes = Collections2.transform(element.getAppliedStereotypes(), new Function<Stereotype, String>() {

@@ -20,16 +20,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
-import org.eclipse.papyrus.uml.diagram.wizards.Messages;
-import org.eclipse.papyrus.uml.diagram.wizards.SettingsHelper;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryRegistry;
+import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
+import org.eclipse.papyrus.uml.diagram.wizards.utils.SettingsHelper;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -39,6 +39,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -109,6 +110,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 *            the parent
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	public void createControl(Composite parent) {
 		Composite plate = new Composite(parent, SWT.NONE);
 		plate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -116,9 +118,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		gridLayout.marginWidth = 10;
 		plate.setLayout(gridLayout);
 		setControl(plate);
-
 		createDiagramCategoryForm(plate);
-
 		setPageComplete(validatePage());
 	}
 
@@ -130,20 +130,6 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		setPageComplete(validatePage());
 	}
 
-	/**
-	 *
-	 * Gets the diagram category.
-	 *
-	 * @return the diagram category
-	 * @deprecated Use getDiagramCategories() instead.
-	 */
-	@Deprecated
-	public String getDiagramCategory() {
-		if (!mySelectedDiagramCategoryIds.isEmpty()) {
-			return mySelectedDiagramCategoryIds.get(0);
-		}
-		return null;
-	}
 
 	/**
 	 * Gets the diagram categories.
@@ -179,11 +165,6 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			setErrorMessage(Messages.SelectDiagramCategoryPage_select_one_category);
 			return false;
 		}
-		for (String newCategory : categories) {
-			if (!validateCategoryExists(newCategory)) {
-				return false;
-			}
-		}
 		if (!validateFileExtension(categories)) {
 			return false;
 		}
@@ -200,31 +181,15 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	protected boolean validateFileExtension(String... categories) {
 		IStatus status = ((CreateModelWizard) getWizard()).diagramCategoryChanged(categories);
 		switch (status.getSeverity()) {
-		case IStatus.ERROR:
-			setErrorMessage(status.getMessage());
-			return false;
-		case IStatus.WARNING:
+			// case Status.ERROR:
+			// setErrorMessage(status.getMessage());
+			// return false;
+		case Status.WARNING:
 			setMessage(status.getMessage(), IMessageProvider.WARNING);
 			break;
 		case IStatus.INFO:
 			setMessage(status.getMessage(), IMessageProvider.INFORMATION);
 			break;
-		}
-		return true;
-	}
-
-	/**
-	 * Validate category exists.
-	 *
-	 * @param newCategory
-	 *            the new category
-	 * @return true, if successful
-	 */
-	protected boolean validateCategoryExists(String newCategory) {
-		DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
-		if (selected == null) {
-			setErrorMessage(NLS.bind(Messages.SelectDiagramCategoryPage_cannot_find_category, newCategory));
-			return false;
 		}
 		return true;
 	}
@@ -251,6 +216,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 			private SelectionEvent prevEvent;
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (e == prevEvent) {
 					return;
@@ -261,6 +227,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 				prevEvent = e;
 			}
 
+			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		};
@@ -371,6 +338,12 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		group.setLayoutData(data);
 		return group;
+	}
+
+	@Override
+	public void performHelp() {
+		PlatformUI.getWorkbench().getHelpSystem().displayHelp("org.eclipse.papyrus.uml.diagram.wizards.Category"); //$NON-NLS-1$
+
 	}
 
 

@@ -15,6 +15,13 @@ package org.eclipse.papyrus.infra.nattable.configuration;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.transaction.NotificationFilter;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
@@ -32,13 +39,33 @@ import org.eclipse.papyrus.infra.nattable.command.UpdateFilterMapCommand;
 import org.eclipse.papyrus.infra.nattable.converter.GenericDisplayConverter;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.FilterConfigurationRegistry;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.widgets.Display;
+
+import ca.odell.glazedlists.EventList;
+import ca.odell.glazedlists.event.ListEvent;
+import ca.odell.glazedlists.event.ListEventListener;
 
 /**
  * This class configure the filters for the table
  *
+ *
+ *
+ * The configuration for the edition of the table.
+ * 
+ * This configuration listen some elements to reset the cell editor declaration when required:
+ * <li>the elements list to be able to reset the cell editor configuration after add/remove axis</li>
+ * <li>the attribute invert axis of the table</li>
+ * <li>the nattable widget to be able to remove added listener when the widget is disposed</li>
+ *
  */
 public class FilterRowCustomConfiguration extends AbstractRegistryConfiguration {
+
+
 
 	/**
 	 * 
@@ -47,7 +74,6 @@ public class FilterRowCustomConfiguration extends AbstractRegistryConfiguration 
 	 * @param configRegistry
 	 */
 	public void configureRegistry(IConfigRegistry configRegistry) {
-
 		// Shade the row to be slightly darker than the blue background.
 		final Style rowStyle = new Style();
 		rowStyle.setAttributeValue(CellStyleAttributes.BACKGROUND_COLOR, GUIHelper.getColor(197, 212, 231));
@@ -56,21 +82,8 @@ public class FilterRowCustomConfiguration extends AbstractRegistryConfiguration 
 		configRegistry.registerConfigAttribute(FilterRowConfigAttributes.FILTER_DISPLAY_CONVERTER, new GenericDisplayConverter());
 
 		// configure the filter for each columns
-		INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new FilterRowPainter(new FilterIconPainter(GUIHelper.getImage("filter"))), DisplayMode.NORMAL, GridRegion.FILTER_ROW); //$NON-NLS-1$
 
 		configRegistry.registerConfigAttribute(FilterRowConfigAttributes.TEXT_DELIMITER, "&"); //$NON-NLS-1$
-
-		List<?> columnElement = modelManager.getColumnElementsList();
-		INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL,  NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		NatTable nattable = (NatTable) manager.getAdapter(NatTable.class);
-		for (int i = 0; i < columnElement.size(); i++) {
-			StringBuilder builder = new StringBuilder(FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX);
-			builder.append(Integer.valueOf(i).toString());
-			FilterConfigurationRegistry.INSTANCE.configureFilter(configRegistry, columnElement.get(i), builder.toString());
-			nattable.doCommand(new UpdateFilterMapCommand(i));
-		}
 	}
-
-
 }

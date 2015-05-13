@@ -7,7 +7,6 @@
  */
 package org.eclipse.papyrus.cpp.codegen.tests;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -26,7 +25,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
@@ -269,7 +267,6 @@ public class CppCodegenTest {
 	private void assertGenerate(String fragment) throws Exception {
 		selectSemanticElement(fragment);
 		handlerService.executeCommand(GENERATE_COMMAND_ID, null);
-		assertFalse("Acceleo errors occured during code generation.", AcceleoDriver.hasErrors());
 	}
 
 	private void selectSemanticElement(String uriFragment) throws Exception {

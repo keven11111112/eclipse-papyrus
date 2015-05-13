@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.uml.alf;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,6 +34,7 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -65,6 +67,7 @@ public class AlfMapper {
 
 		this.context = new ExecutionContextImpl();
 		this.context.setConfigProperty("keepModeling", true);
+		this.context.setLog(new WriterLog(new OutputStreamWriter(System.err)));
 
 		this.injector = new AlfStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}

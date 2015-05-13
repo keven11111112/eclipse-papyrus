@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
@@ -17,7 +18,6 @@ package org.eclipse.papyrus.infra.viewpoints.policy;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,10 +36,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.core.pluginexplorer.Plugin;
 import org.eclipse.papyrus.infra.core.pluginexplorer.PluginEntry;
+import org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ChildRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
@@ -49,7 +51,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusConfiguration;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusViewpoint;
-import org.eclipse.papyrus.infra.viewpoints.configuration.RootAutoSelect;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.ArchitectureViewpoint;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.ModelKind;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.Stakeholder;
@@ -140,9 +141,9 @@ public class PolicyChecker {
 		}
 		Resource res = CONFIGURATIONS_RESOURCE_SET.getResource(uri, true);
 		EList<EObject> contents = res.getContents();
-		if (contents.size() >0){
+		if (contents.size() > 0) {
 			config = (PapyrusConfiguration) contents.get(0);
-			CONFIGURATIONS_CACHE.put(location, config);				
+			CONFIGURATIONS_CACHE.put(location, config);
 		}
 		return config;
 	}
@@ -582,6 +583,35 @@ public class PolicyChecker {
 	}
 
 	/**
+	 * Determines whether the given diagram can have a modeling assistant creating the specified element type.
+	 *
+	 * @param diagram
+	 *            The diagram
+	 * @param elementType
+	 *            A modeling assistant element type
+	 * @return whether the modeling assistant is allowed
+	 */
+	public boolean isInModelingAssistants(Diagram diagram, IElementType elementType) {
+		ViewPrototype prototype = ViewPrototype.get(diagram);
+		if (prototype == null) {
+			// This diagram is not in the current policy
+			return false;
+		}
+
+		PapyrusDiagram config = (PapyrusDiagram) prototype.configuration;
+		while (config != null) {
+			for (AssistantRule rule : config.getAssistantRules()) {
+				int result = allows(rule, elementType);
+				if (result != RESULT_UNKNOWN) {
+					return (result == RESULT_PERMIT);
+				}
+			}
+			config = (PapyrusDiagram) config.getParent();
+		}
+		return DEFAULT_POLICY_UNKNWON_PALETTE;
+	}
+
+	/**
 	 * Determines whether the given view configuration element is part of the current viewpoint
 	 *
 	 * @param config
@@ -648,7 +678,7 @@ public class PolicyChecker {
 				if (rule.getNewModelPath() != null && !rule.getNewModelPath().isEmpty()) {
 					// Auto-created root => always OK
 					result.add(proto);
-				} else if (rule.getSelectDiagramRoot() != null && !rule.getSelectDiagramRoot().isEmpty()){
+				} else if (rule.getSelectDiagramRoot() != null && !rule.getSelectDiagramRoot().isEmpty()) {
 					result.add(proto);
 				} else {
 					// We have to check if the owner can also be a root
@@ -1028,5 +1058,20 @@ public class PolicyChecker {
 			return rule.isPermit() ? RESULT_PERMIT : RESULT_DENY;
 		}
 		return RESULT_UNKNOWN;
+	}
+
+	/**
+	 * Checks a modeling assistant element against a rule.
+	 *
+	 * @param rule
+	 *            The assistant rule
+	 * @param elementType
+	 *            The modeling assistant element type
+	 * @return The check result
+	 */
+	private int allows(AssistantRule rule, IElementType elementType) {
+		return rule.matches(elementType)
+				? (rule.isPermit() ? RESULT_PERMIT : RESULT_DENY)
+				: RESULT_UNKNOWN;
 	}
 }

@@ -206,11 +206,11 @@ public class PapyrusCDTEditor extends CEditor {
 			public void focusLost(FocusEvent e) {
 				// potential problem for undo/redo!!
 				if (isDirty()) {
+					doSave(new NullProgressMonitor());
 					syncCpp.syncCDTtoModel();
 					Classifier classifier = (Classifier) papyrusTextInstance.getEditedObject();
-					doSave(new NullProgressMonitor());
 					// regenerate code. TODO: raises update dialog
-					SyncModelToCDT.syncModelToCDT(classifier);
+					// SyncModelToCDT.syncModelToCDT(classifier);
 				}
 				// restore handlers
 				IActionBars actionBars = getEditorSite().getActionBars();

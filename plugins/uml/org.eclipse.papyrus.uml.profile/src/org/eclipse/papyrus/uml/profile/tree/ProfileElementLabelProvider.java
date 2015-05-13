@@ -42,6 +42,7 @@ import org.eclipse.papyrus.uml.profile.tree.objects.UnlimitedNaturalValueTreeObj
 import org.eclipse.papyrus.uml.profile.tree.objects.UserPrimitiveTypeValueTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.ValueTreeObject;
 import org.eclipse.papyrus.uml.profile.utils.Util;
+import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
 import org.eclipse.swt.graphics.Image;
@@ -358,28 +359,14 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the property short label
 	 */
 	private String getPropertyShortLabel(Property property) {
-
-		String label = "";
-
 		String derived = "";
 		if (property.isDerived()) {
 			derived = "/";
 		}
-		int upper = property.getUpper();
-		int lower = property.getLower();
-
 		Type type = property.getType();
-
 		String typeName = type == null ? TypeUtil.UNDEFINED_TYPE_NAME : type.getName();
 		String name = property.getName();
-
-		if (upper != -1) {
-			label = derived + name + ": " + typeName + " " + "[" + lower + ".." + upper + "]";
-		} else {
-			label = derived + name + ": " + typeName + " " + "[" + lower + "..*]";
-		}
-
-		return label;
+		return derived + name + ": " + typeName + " " + MultiplicityElementUtil.formatMultiplicity(property);
 	}
 
 	/**

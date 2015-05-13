@@ -56,7 +56,8 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 	 *            The CSS engine used to handle the custom properties
 	 */
 	public CSSCustomStyleDelegate(View view, ExtendedCSSEngine engine) {
-		this.view = CSSDOMSemanticElementHelper.findPrimaryView(view);
+
+		this.view = CSSDOMSemanticElementHelper.getInstance().findPrimaryView(view);
 		this.engine = engine;
 		this.element = engine.getElement(this.view);
 	}

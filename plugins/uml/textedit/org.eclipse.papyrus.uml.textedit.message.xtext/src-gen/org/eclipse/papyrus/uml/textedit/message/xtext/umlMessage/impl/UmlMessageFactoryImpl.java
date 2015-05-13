@@ -19,8 +19,7 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
  *
  * @generated
  */
-public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFactory
-{
+public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -28,17 +27,13 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 *
 	 * @generated
 	 */
-	public static UmlMessageFactory init()
-	{
-		try
-		{
+	public static UmlMessageFactory init() {
+		try {
 			UmlMessageFactory theUmlMessageFactory = (UmlMessageFactory) EPackage.Registry.INSTANCE.getEFactory(UmlMessagePackage.eNS_URI);
-			if (theUmlMessageFactory != null)
-			{
+			if (theUmlMessageFactory != null) {
 				return theUmlMessageFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new UmlMessageFactoryImpl();
@@ -51,8 +46,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 *
 	 * @generated
 	 */
-	public UmlMessageFactoryImpl()
-	{
+	public UmlMessageFactoryImpl() {
 		super();
 	}
 
@@ -63,10 +57,8 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case UmlMessagePackage.MESSAGE_RULE:
 			return createMessageRule();
 		case UmlMessagePackage.SEQUENCE_TERM_RULE:
@@ -83,8 +75,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 * @generated
 	 */
 	@Override
-	public MessageRule createMessageRule()
-	{
+	public MessageRule createMessageRule() {
 		MessageRuleImpl messageRule = new MessageRuleImpl();
 		return messageRule;
 	}
@@ -96,8 +87,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 * @generated
 	 */
 	@Override
-	public SequenceTermRule createSequenceTermRule()
-	{
+	public SequenceTermRule createSequenceTermRule() {
 		SequenceTermRuleImpl sequenceTermRule = new SequenceTermRuleImpl();
 		return sequenceTermRule;
 	}
@@ -109,8 +99,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 * @generated
 	 */
 	@Override
-	public UmlMessagePackage getUmlMessagePackage()
-	{
+	public UmlMessagePackage getUmlMessagePackage() {
 		return (UmlMessagePackage) getEPackage();
 	}
 
@@ -122,8 +111,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 * @generated
 	 */
 	@Deprecated
-	public static UmlMessagePackage getPackage()
-	{
+	public static UmlMessagePackage getPackage() {
 		return UmlMessagePackage.eINSTANCE;
 	}
 

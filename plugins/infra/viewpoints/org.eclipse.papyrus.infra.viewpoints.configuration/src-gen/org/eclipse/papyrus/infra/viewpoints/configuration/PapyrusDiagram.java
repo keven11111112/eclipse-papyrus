@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration;
 
@@ -28,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getCustomStyle <em>Custom Style</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getChildRules <em>Child Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getPaletteRules <em>Palette Rules</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getAssistantRules <em>Assistant Rules</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage#getPapyrusDiagram()
@@ -116,5 +118,20 @@ public interface PapyrusDiagram extends PapyrusView {
 	 * @generated
 	 */
 	EList<PaletteRule> getPaletteRules();
+
+	/**
+	 * Returns the value of the '<em><b>Assistant Rules</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * These rules determine which modeling assistants should be presented in this diagram
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Assistant Rules</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage#getPapyrusDiagram_AssistantRules()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AssistantRule> getAssistantRules();
 
 } // PapyrusDiagram

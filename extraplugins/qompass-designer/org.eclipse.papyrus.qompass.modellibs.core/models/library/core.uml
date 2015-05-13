@@ -17,43 +17,6 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/osal.uml#_ROTQYC-OEdySSa8YESkO2w"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_TFq8cOy6Ed2UrumbR9YAVg" name="composites">
-      <packagedElement xmi:type="uml:Class" xmi:id="_WK3LwOy6Ed2UrumbR9YAVg" name="Composite">
-        <ownedComment xmi:type="uml:Comment" xmi:id="_IiLnAMFjEd-Mveea1W_olA">
-          <body>currently unused, not sure whether really needed</body>
-        </ownedComment>
-        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_2JtG8Oy6Ed2UrumbR9YAVg" name="b:createConnections" visibility="package" specification="_wlXUoOy6Ed2UrumbR9YAVg">
-          <language>C/C++</language>
-          <body>[template (clazz: Class)]
-/* --- create internal connections --- */
-[for (connector : Connector | clazz.getOwnedConnectors())]%>
-	[comment call createConnection (this = connector instance) define in utils /]
-	// connector [connector.name/]
-	[createConnection(connector)/]
-[/for]
-[/template]</body>
-        </ownedBehavior>
-        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_D83p8Oy9Ed2UrumbR9YAVg" name="b:setup" specification="_BTEWIOy9Ed2UrumbR9YAVg">
-          <language>C/C++</language>
-          <body>[template (clazz: Class)]
-// createParts
-// assign implementations fixed at component design time
-[for (Property part | clazz.part)]
-	[if (type.isImplementation)]
-	[part.name/] = &amp;m_[part.name/]_impl;
-	[/if]
-[/for]
-	
-// assign implementation fixed at deployment time
-[for (Property part | clazz.part)]
-	[if (type.isImplementation)]
-m_[part.name/] = [part.name/]
-	[/if]
-[/for]
-[/template]</body>
-        </ownedBehavior>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_wlXUoOy6Ed2UrumbR9YAVg" name="createConnections" method="_2JtG8Oy6Ed2UrumbR9YAVg"/>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_BTEWIOy9Ed2UrumbR9YAVg" name="setup" method="_D83p8Oy9Ed2UrumbR9YAVg"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_1RehUAGpEd6eR-dxi5su4Q" name="BootLoader">
         <ownedComment xmi:type="uml:Comment" xmi:id="_JMwYwMGJEd-Mveea1W_olA">
           <body>A template for the bootloader generation.</body>
@@ -113,28 +76,7 @@ TODO: configurable buffer size, use data structure (CppParameterStorage)</body>
           <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_nBpugClzEd-eoo60eNyGlg" name="derived realization of I" client="_Whe8EClYEd-eoo60eNyGlg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_WhfjIilYEd-eoo60eNyGlg" name="[name/]" specification="_2bwsEClzEd-eoo60eNyGlg">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
-[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
-
-[template public op(operation : Operation)]
-// TODO: need suitable constant dimensioning
-pBuffer = &amp;buffer['['/]500[']'/];  // grows backwards
-int operationID = ID_[operation.name/];
-	
-// now marshall in and inout parameters via ASN.1
-[for (parameter : Parameter | operation.parametersInInout())]
-{
-	[parameter.type.cppType()/] varName_ASN = [parameter.name/];
-	BEncAsnContent (&amp;pBuffer, &amp;varName_ASN);
-}
-[/for]
-BEncAsnContent (&amp;pBuffer, &amp;operationID);
-
-pthread_t pt;
-pthread_create (&amp;pt, NULL, staticDispatch, (void *) this);
-// TODO: add semaphore which assures that subsequent calls to [operation.name/] are not executed before dispatch
-// has removed the parameters from the pBuffer stack (pBuffer can be corrupted).
-[/template]</body>
+            <body>!xtend AsyncCalls.asyncCall</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_WhfjIylYEd-eoo60eNyGlg" name="static[name/]" specification="_WhfjJSlYEd-eoo60eNyGlg">
             <language>C/C++</language>
@@ -144,32 +86,7 @@ return NULL;
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_nV2DcED5Ed-_DOja_sRgWA" name="dispatch" specification="_G6LzAD3QEd-Bk-AHd6yyoA">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
-[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
-
-[template public dispatch(clazz : Class)]
-int operationID;
-BDecAsnContent (&amp;pBuffer, operationID);
-switch (operationID)
-{
-[for (operation : Operation | clazz.ownedOperation)]
-  case ID_[operation.name/]
-	{
-	[for (parameter : Parameter | operation.parametersInInout()->reverse())]
-		[parameter.type.cppType()/] [parameter.name/]
-		{
-			[parameter.type.cppType()/] varName_ASN; 
-			BDecAsnContent (&amp;pBuffer, &amp;varName_ASN);
-			[parameter.name/] = varName_ASN;
-		}
-	[/for]
-		// delegate call to executor
-		rconn->[operation.cppCall()/];
-		break;
-	}
-[/for]
-}
-[/template]</body>
+            <body>!xtend AsyncCalls.dispatch_</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_WhfjJSlYEd-eoo60eNyGlg" name="staticDispatch" isStatic="true" method="_WhfjIylYEd-eoo60eNyGlg">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_WhfjJilYEd-eoo60eNyGlg" name="arg">
@@ -204,28 +121,7 @@ spawning new requests</body>
           <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_pXzxh0J1Ed-Ps4Bfh0j9LQ" name="derived realization of I" client="_pXzKcEJ1Ed-Ps4Bfh0j9LQ" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pXzxhEJ1Ed-Ps4Bfh0j9LQ" name="[name/]" specification="_pXzxjkJ1Ed-Ps4Bfh0j9LQ">
             <language>C/C++</language>
-            <body>[template marshall(operation: Operation)]
-// TODO: need suitable constant dimensioning
-pBuffer = &amp;buffer[500];  // grows backwards
-int operationID = ID_[operation.name/];
-	
-// now marshall in and inout parameters via ASN.1
-for (parameter : Parameter | parametersInInout(operation)]
-{
-	[cppType(parameter.type)/] varName_ASN = [parameter.name/];
-	BEncAsnContent (&amp;pBuffer, &amp;varName_ASN);
-}
-[/for]
-BEncAsnContent (&amp;pBuffer, &amp;operationID);
-
-// find associated thread and signal its semaphore
-// pass &quot;this&quot; to access buffer
-// pthread_t pt;
-// pthread_create (&amp;pt, NULL, staticDispatch, (void *) this);
-// TODO: add semaphore which assures that 2 snd calls to [operation.name/] is not done before dispatch
-// is executed
-[/template]
-</body>
+            <body>!xtend AsyncCalls.asyncCall</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pXzxhUJ1Ed-Ps4Bfh0j9LQ" name="static[name/]" specification="_pXzxiEJ1Ed-Ps4Bfh0j9LQ">
             <language>C/C++</language>
@@ -235,40 +131,7 @@ return NULL;
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pXzxhkJ1Ed-Ps4Bfh0j9LQ" name="dispatch" specification="_pXzxj0J1Ed-Ps4Bfh0j9LQ">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
-[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
-
-[template public dispatch(clazz : Class)]
-int operationID;
-BDecAsnContent (&amp;pBuffer, operationID);
-switch (operationID)
-{
-[for (operation : Operation | clazz.ownedOperation)]
-  case ID_[operation.name/]
-	{
-	[for (parameter : Parameter | operation.parametersInInout()->reverse())]
-		[parameter.type.cppType()/] [parameter.name/]
-		{
-			[cppType(parameter.type)/] varName_ASN; 
-			BDecAsnContent (&amp;pBuffer, &amp;varName_ASN);
-			[parameter.name/] = varName_ASN;
-		}
-	[/for]
-		// delegate call to executor
-		[if (not (type = null))] [operation.type.cppType()/] ret = [/if]rconn->[operation.cppCall()/];
-	[for (parameter : Parameter | operation.parametersOutInout())]
-		{
-			[parameter.type.cppType()/] varName_ASN = [parameter.name/];
-			BEncAsnContent (&amp;pBuffer, &amp;varName_ASN);
-		}
-	[/for]
-		resultsReady = 1;
-		break;
-	}
-[/for]
-}
-[/template]
-</body>
+            <body>!xtend AsyncCalls.dispatchWithThreadPool</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_pXzxiEJ1Ed-Ps4Bfh0j9LQ" name="staticDispatch" isStatic="true" method="_pXzxhUJ1Ed-Ps4Bfh0j9LQ">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_pXzxiUJ1Ed-Ps4Bfh0j9LQ" name="arg">
@@ -291,7 +154,7 @@ switch (operationID)
             <body>Description: A simple implementation of asynchronous calls. It will execution requests by means of a single dispatcher thread</body>
           </ownedComment>
           <ownedComment xmi:type="uml:Comment" xmi:id="_lEC3ADJLEeCAhMtIsY9HwA">
-            <body>Polling variant of corbas asynchronous messaging (AMI), enables asynchronous calls while reading
+            <body>Polling variant of CORBAs asynchronous messaging (AMI), enables asynchronous calls while reading
 return values (also called deferred synchronous):
 Instead of specified return values, functions return a poller object which may be queried for
 the result.
@@ -309,49 +172,7 @@ TODO: complete, move into model of Qompass AMI plugin</body>
           <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_3itBmtdwEd-ZnqCk2P2ZKg" name="derived realization of I" client="_3itBkNdwEd-ZnqCk2P2ZKg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_3itBl9dwEd-ZnqCk2P2ZKg" name="[name/]" specification="_3itBoddwEd-ZnqCk2P2ZKg">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
-[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
-
-[template public marshall(operation : Operation)]
-[if (operation.name.oclAsType(String).endsWith('Poll'))]
-[comment polling function/]
-if (!resultArrived) {
-	// wait for result, condition will be fired upon arrival
-	TimeVal timeVal = TimeVal::current () + timeout;
-	m_cond.waitUpto (timeout);
-}
-	[for (parameter : Parameter | operation.parametersInInout()->reverse())]
-		[parameter.type.cppType()/] [parameter.name/];
-		{
-			[parameter.type.cppType()/] varName_ASN; 
-			BDecAsnContent (&amp;pBuffer, &amp;varName_ASN);
-			[parameter.name/] = varName_ASN;
-		}
-	[/for]
-}
-[if (not (type = null))]return retValue;[/if]
-[else]
-// TODO: need suitable constant dimensioning
-pBuffer = &amp;buffer['['/]500[']'/];  // grows backwards
-int operationID = ID_[operation.name/];
-	
-// now marshall in and inout parameters via ASN.1
-[for (parameter : Parameter | operation.parametersInInout())]
-	[parameter.type.cppType()/] [parameter.name/];
-	{
-		[parameter.type.cppType()/] varName_ASN = [parameter.name/];
-		BEncAsnContent (&amp;pBuffer, &amp;varName_ASN);
-	}
-[/for]
-BEncAsnContent (&amp;pBuffer, &amp;operationID);
-
-pthread_t pt;
-pthread_create (&amp;pt, NULL, staticDispatch, (void *) this);
-// TODO: add semaphore which assures that subsequent calls to [operation.name/] are not executed before dispatch
-// has removed the parameters from the pBuffer stack (pBuffer can be corrupted).
-// even worse: buffer will be deallocated even without a 2nd call!
-[/if]
-[/template]</body>
+            <body>!xtend AMIPull.operation</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_3itBmNdwEd-ZnqCk2P2ZKg" name="static[name/]" specification="_3itBm9dwEd-ZnqCk2P2ZKg">
             <language>C/C++</language>
@@ -361,40 +182,7 @@ return NULL;
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_3itBmddwEd-ZnqCk2P2ZKg" name="dispatch" specification="_3itBotdwEd-ZnqCk2P2ZKg">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
-[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
-
-[template public dispatch(clazz : Class)]
-int operationID;
-BDecAsnContent (&amp;pBuffer, operationID);
-switch (operationID)
-{
-[for (operation : Operation | clazz.ownedOperation)]
-  case ID_[operation.name/]
-	{
-	[for (parameter : Parameter | operation.parametersInInout()->reverse())]
-		[parameter.type.cppType()/] [parameter.name/]
-		{
-			[cppType(parameter.type)/] varName_ASN; 
-			BDecAsnContent (&amp;pBuffer, &amp;varName_ASN);
-			[parameter.name/] = varName_ASN;
-		}
-	[/for]
-		// delegate call to executor
-		[if (not (type = null))] [operation.type.cppType()/] ret = [/if]rconn->[operation.cppCall()/];
-	[for (parameter : Parameter | operation.parametersOutInout())]
-		{
-			[parameter.type.cppType()/] varName_ASN = [parameter.name/];
-			BEncAsnContent (&amp;pBuffer, &amp;varName_ASN);
-		}
-	[/for]
-		resultsReady = 1;
-		break;
-	}
-[/for]
-}
-[/template]
-</body>
+            <body>!xtend AsyncCall.dispatch_</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_3itBm9dwEd-ZnqCk2P2ZKg" name="staticDispatch" isStatic="true" method="_3itBmNdwEd-ZnqCk2P2ZKg">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_3itBnNdwEd-ZnqCk2P2ZKg" name="arg">
@@ -417,16 +205,7 @@ switch (operationID)
           <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_8e_ocF7sEeGEmrrwB1vhPg" name="derived realization of I" client="_Mo2kwF7pEeGEmrrwB1vhPg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DmUQcF7tEeGEmrrwB1vhPg" name="operation1" specification="_ChD4kF7tEeGEmrrwB1vhPg">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
-[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
-
-[template public multiply(operation : Operation)]
-for (int i=0; i&lt;9; i++) {
-	if (rconn['['/]i[']'/] != 0) {
-		rconn['['/]i[']'/]->[operation.cppCall()/];
-	}
-}
-[/template]</body>
+            <body>!xtend MultipleReceptacle.operation_</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_ChD4kF7tEeGEmrrwB1vhPg" name="[name/]" method="_DmUQcF7tEeGEmrrwB1vhPg"/>
         </packagedElement>
@@ -497,20 +276,7 @@ Call operations of buffer component?
           <generalization xmi:type="uml:Generalization" xmi:id="_EWShMPNHEeCovO8AYZymZQ" general="_b_yh4AzyEd6it_RkGhz_AA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qRJc8PNJEeCovO8AYZymZQ" name="[name/]" specification="_aGt1sPNJEeCovO8AYZymZQ">
             <language>C/C++</language>
-            <body>[template marshallStruct(operation : Operation)]
-struct ParamData {
-[for (parameter : Parameter | parametersInInout(operation))]
-	int [cppType(name)/];
-[/for]
-};
-Event event;
-event.ID = [operation.name/];
-event.kind = CallEvent;
-ParamData * data = &amp;event.params; 
-[for (parameter : Parameter | parametersInInout(operation))]
-	data->[parameter.name/] = [parameter.name/];
-[/for]
-out->dispatch(event);</body>
+            <body>!xtend StructBasedMarshalling.marshall</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_aGt1sPNJEeCovO8AYZymZQ" name="[name/]" method="_qRJc8PNJEeCovO8AYZymZQ"/>
         </packagedElement>
@@ -558,14 +324,7 @@ out->dispatch(event);</body>
           <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_1tfFAJyCEd6WR4pSVO_UYw" name="derived realization of I" client="_jOU60A1jEd6tvthBDl600Q" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_GSdesJ09Ed6l5bTPBsl00Q" name="[name/]" specification="__y0hwJ08Ed6l5bTPBsl00Q">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
-
-[template public methodCall(operation : Operation)]
-// put pre-interceptors here
-[comment type is a derived property containing the operations return type/]
-[if not (operation.type = null)]return [/if]rconn->[operation.cppCall()/];
-// put post-interceptors here
-[/template]</body>
+            <body>!xtend SyncCalls.syncCall</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="__y0hwJ08Ed6l5bTPBsl00Q" name="[name/]" method="_GSdesJ09Ed6l5bTPBsl00Q"/>
         </packagedElement>
@@ -963,25 +722,16 @@ pthread_setschedparam (pt, SCHED_RR, &amp;schedParam);
         <ownedAttribute xmi:type="uml:Property" xmi:id="_k-OpoPN8EeCovO8AYZymZQ" name="events" visibility="public" type="_WkkjoPNUEeCovO8AYZymZQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mr7hkPN8EeCovO8AYZymZQ" value="20"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mr-k4PN8EeCovO8AYZymZQ" value="20"/>
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_msGgsPN8EeCovO8AYZymZQ">
-            <value xsi:nil="true"/>
-          </defaultValue>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="__a1A0PQXEeCovO8AYZymZQ" name="m_size" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A1N7MPQYEeCovO8AYZymZQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A1OiQPQYEeCovO8AYZymZQ" value="1"/>
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_A1QXcPQYEeCovO8AYZymZQ">
-            <value xsi:nil="true"/>
-          </defaultValue>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_KnS5QPQYEeCovO8AYZymZQ" name="m_cond" visibility="public">
           <type xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_QWlVgPRTEeCUGrV0Hl4JwQ"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KyZ9EPQYEeCovO8AYZymZQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KyakIPQYEeCovO8AYZymZQ" value="1"/>
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_KydncPQYEeCovO8AYZymZQ">
-            <value xsi:nil="true"/>
-          </defaultValue>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_Ig_MUCSlEeG6GJ4vU06VYQ" name="ID_TIMEOUT" isStatic="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
@@ -989,12 +739,35 @@ pthread_setschedparam (pt, SCHED_RR, &amp;schedParam);
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IjCawCSlEeG6GJ4vU06VYQ" value="1"/>
           <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_SjUM4CSlEeG6GJ4vU06VYQ" name="" value="-1"/>
         </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_aY-AcNhrEeSAk4H5GXhpNA" name="readIndex" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aY-AcdhrEeSAk4H5GXhpNA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aY-ActhrEeSAk4H5GXhpNA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_dllGYNhrEeSAk4H5GXhpNA" name="writeIndex" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dllGYdhrEeSAk4H5GXhpNA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dlltcNhrEeSAk4H5GXhpNA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_YHC5wNhuEeSqPLTzapTtmQ" name="POOL_SIZE" isStatic="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YHC5wdhuEeSqPLTzapTtmQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YHC5wthuEeSqPLTzapTtmQ" value="1"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_YHC5w9huEeSqPLTzapTtmQ" name="" value="20"/>
+        </ownedAttribute>
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_mI0xEPQXEeCovO8AYZymZQ" name="derived realization of IPoolControl" client="_JRmo0PNAEeCovO8AYZymZQ" supplier="_omxU4PNAEeCovO8AYZymZQ" contract="_omxU4PNAEeCovO8AYZymZQ"/>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_2HjeoPQXEeCovO8AYZymZQ" name="writeEvent" specification="_f1HmEPQREeCovO8AYZymZQ0">
           <language>C/C++</language>
-          <body>events[0] = event;
-m_size = 1;
-m_cond.signal();
+          <body>if (m_size &lt; POOL_SIZE) {
+	events[writeIndex] = event;
+	writeIndex = (writeIndex + 1) % POOL_SIZE;
+	m_size++
+	if (m_size == 1) {
+		// was 0 before, notify waiting clients
+		m_cond.signal();
+	}
+}
+
 </body>
         </ownedBehavior>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_5Sw2YPQXEeCovO8AYZymZQ" name="size" specification="_FBMo4PQXEeCovO8AYZymZQ0">
@@ -1003,20 +776,29 @@ m_cond.signal();
         </ownedBehavior>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_9xRCAPQXEeCovO8AYZymZQ" name="readEvent" specification="_tK0poPQWEeCovO8AYZymZQ0">
           <language>C/C++</language>
-          <body>OS_AL::Time::TimeVal wakeup = OS_AL::Time::TimeVal::current();
-wakeup += timeout;
-int retCode = m_cond.waitUpto (wakeup);
-if (retCode == ETIMEDOUT) {
-	CallEvent_ event;
-	event.operationID = ID_TIMEOUT;
-	return event;
+          <body>if (m_size == 0) {
+	// no element is in pool. Wait until it is placed inside
+	// TODO: potential race condition
+	OS_AL::Time::TimeVal wakeup = OS_AL::Time::TimeVal::current();
+	wakeup += timeout;
+	int retCode = m_cond.waitUpto (wakeup);
+	if (retCode == ETIMEDOUT) {
+		CallEvent_ event;
+		event.operationID = ID_TIMEOUT;
+		return event;
+	}
 }
-m_size = 0;
-return events[0];</body>
+int current = readIndex;
+readIndex = (readIndex+1) % POOL_SIZE;
+m_size--;
+return events[current];</body>
         </ownedBehavior>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JoG14PRUEeCKVJwdD4MMsg" name="EventPool" specification="_lrF08PRTEeCUGrV0Hl4JwQ">
           <language>C/C++</language>
-          <body>m_cond.lock();</body>
+          <body>m_cond.lock();
+readIndex = 0;
+writeIndex = 0;
+m_size = 0;</body>
         </ownedBehavior>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_tK0poPQWEeCovO8AYZymZQ0" name="readEvent" method="_9xRCAPQXEeCovO8AYZymZQ">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_HUTnoCVyEeGaL60JjVj19Q" name="timeout">
@@ -1376,56 +1158,17 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:Port xmi:id="_Zjd1EP-EEd6628OhKk_dpg" base_Port="_ZjdOAP-EEd6628OhKk_dpg" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
   <C_Cpp:Ptr xmi:id="_Aw8hMP-FEd6628OhKk_dpg" base_parameter="_1TXqoP-EEd6628OhKk_dpg"/>
   <C_Cpp:Ptr xmi:id="_NjCToP-FEd6628OhKk_dpg" base_parameter="_BywjgP-FEd6628OhKk_dpg"/>
-  <FCM:DerivedElement xmi:id="_u9zyYARIEd--t-uhRn9OBA">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
   <FCM:InteractionComponent xmi:id="_5hzVkARIEd--t-uhRn9OBA" base_Class="_cxVEsK-iEd6DndT7kDY1-A"/>
   <FCM:ContainerRule xmi:id="_3Jq5MARLEd-OidZzGKCpzg" base_Class="_14WtMARJEd--t-uhRn9OBA" portSet="__SL-kNtxEd6nqsBVkgJEEA" interceptor="_u9ykQARIEd--t-uhRn9OBA" interceptorImpl="_u9ykQARIEd--t-uhRn9OBA"/>
   <C_Cpp:Include xmi:id="_Q7TVYBJcEd-QgZm_R1AKbA" body="#include &lt;pthread.h>" base_class="_SiY_AP-EEd6628OhKk_dpg"/>
-  <FCM:Port xmi:id="_WhfjKylYEd-eoo60eNyGlg"/>
-  <FCM:DerivedElement xmi:id="_CvwokClZEd-eoo60eNyGlg">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
-  <FCM:DerivedElement xmi:id="_FzffUClZEd-eoo60eNyGlg">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
-  <FCM:DerivedElement xmi:id="_M0_fQClxEd-eoo60eNyGlg">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
-  <FCM:DerivedElement xmi:id="_TDYesClyEd-eoo60eNyGlg">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
-  <FCM:DerivedElement xmi:id="_T2uAIClyEd-eoo60eNyGlg">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
-  <FCM:DerivedElement xmi:id="_W_pf8ClyEd-eoo60eNyGlg">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
-  <FCM:DerivedElement xmi:id="_egrzAClzEd-eoo60eNyGlg">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
   <FCM:InteractionComponent xmi:id="_efp4QClzEd-eoo60eNyGlg" base_Class="_Whe8EClYEd-eoo60eNyGlg"/>
-  <FCM:DerivedElement xmi:id="_cWdkwCsAEd-uZPFNCty7PQ">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
   <FCM:Port xmi:id="_N0to8Cu4Ed-uZPFNCty7PQ" base_Port="_N0tB4Cu4Ed-uZPFNCty7PQ" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
   <standard:Create xmi:id="_WFy8ECu9Ed-uZPFNCty7PQ" base_BehavioralFeature="_JM4I4Cu9Ed-uZPFNCty7PQ"/>
-  <C_Cpp:External xmi:id="_EbeZ8Cu-Ed-uZPFNCty7PQ" name="semaphore.h" base_class="_BY-fwCnxEd-eoo60eNyGlg"/>
-  <C_Cpp:External xmi:id="_7tUvUCvDEd-uZPFNCty7PQ" name="pthread.h" base_class="_5KatsCvDEd-uZPFNCty7PQ"/>
   <C_Cpp:Ptr xmi:id="_G6PMUCvHEd-uZPFNCty7PQ" base_parameter="_Dn-xYCvHEd-uZPFNCty7PQ"/>
   <C_Cpp:Ptr xmi:id="_NPp2QCvHEd-uZPFNCty7PQ" base_parameter="_IdnDkCvHEd-uZPFNCty7PQ"/>
   <C_Cpp:Const xmi:id="_dtZbECvHEd-uZPFNCty7PQ" base_property="_Xq00oCvHEd-uZPFNCty7PQ"/>
-  <FCM:DerivedElement xmi:id="_uCGF8DAXEd-lz72LqmDbzA">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
-  <FCM:DerivedElement xmi:id="_fYvj8DNZEd-0bO2vHbUkEA">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
   <FCM:Template xmi:id="_iOmWwDNZEd-0bO2vHbUkEA" base_Element="_KOvHsPiREd2UhpY2Y3WUyg" helper="_nLe_sHJDEeOMF7YEvnQt5g" kind="LoopOperations" templateParam="_ZzlzMPfBEd2TbIfwytOyPA"/>
   <FCM:Template xmi:id="_qcrLcDNZEd-0bO2vHbUkEA" base_Element="__y0hwJ08Ed6l5bTPBsl00Q" helper="_nLe_sHJDEeOMF7YEvnQt5g" kind="LoopOperations" formalParam="_ZzlzMPfBEd2TbIfwytOyPA" templateParam="_ZzlzMPfBEd2TbIfwytOyPA"/>
-  <FCM:DerivedElement xmi:id="_K9PRoDNwEd-1k-POY2IaLg">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
   <FCM:DerivedElement xmi:id="_JqAFUD16Ed-Bk-AHd6yyoA" base_Element="_JmxyMD16Ed-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_WHyq4Dz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
@@ -1490,10 +1233,6 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:PortKind xmi:id="_H5-aQLqOEd-SedGzMDDkww" base_Class="_AQZZwLqOEd-SedGzMDDkww"/>
   <FCM:PortKind xmi:id="_KtgR0LqOEd-SedGzMDDkww" base_Class="__nMrwLqNEd-SedGzMDDkww"/>
   <FCM:ConfigurationProperty xmi:id="_s0fGMMGJEd-Mveea1W_olA" base_Property="_rVfYoMGJEd-Mveea1W_olA"/>
-  <C_Cpp:ExternLibrary xmi:id="_OQ81ENYGEd-CgJIavLpOxQ" base_Package="_I19MANYGEd-CgJIavLpOxQ">
-    <libs>pthread</libs>
-  </C_Cpp:ExternLibrary>
-  <C_Cpp:External xmi:id="_p8NbMNYGEd-CgJIavLpOxQ" name="pthread.h" base_class="_ea234NYGEd-CgJIavLpOxQ"/>
   <FCM:InteractionComponent xmi:id="_8BUh8NdwEd-ZnqCk2P2ZKg" base_Class="_3itBkNdwEd-ZnqCk2P2ZKg"/>
   <FCM:Template xmi:id="_CTIeQNdxEd-ZnqCk2P2ZKg" base_Element="_3itBoddwEd-ZnqCk2P2ZKg" helper="_nLe_sHJDEeOMF7YEvnQt5g" kind="LoopOperations"/>
   <C_Cpp:Typedef xmi:id="_68Aa4No9Ed-wvpj-p-V_QQ" definition="union {&#xA;&lt;%for (ownedOperations) {%>&#xA;struct Op_&lt;%name%> {&#xA;&lt;%for (ownedParameters) {%>&#xA;&lt;%cppType%> &lt;%name%>;&#xA;&lt;%}%>&#xA;} op_&lt;%name%>;&#xA;&lt;%}%>&#xA;};" base_primitivetype="_xOqL0No9Ed-wvpj-p-V_QQ"/>
@@ -1558,4 +1297,5 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:CompToOOmapping xmi:id="_45ldwKLvEeSBiP8ZTcBQrQ" base_Class="_pu1x4KLvEeSBiP8ZTcBQrQ"/>
   <FCM:CompToOOmapping xmi:id="_5zQ3wKLvEeSBiP8ZTcBQrQ" base_Class="_mgbVIKLvEeSBiP8ZTcBQrQ"/>
   <FCM:CompToOOmapping xmi:id="_66vdMKLvEeSBiP8ZTcBQrQ" base_Class="_nRnhgKLvEeSBiP8ZTcBQrQ"/>
+  <C_Cpp:Const xmi:id="_YKw8INhuEeSqPLTzapTtmQ" base_property="_YHC5wNhuEeSqPLTzapTtmQ"/>
 </xmi:XMI>

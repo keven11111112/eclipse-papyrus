@@ -92,6 +92,13 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 		 */
 		@Override
 		public void layout(IFigure container) {
+			// Look for a ScrollBarPane to hide ScrollPane
+			IFigure scrollPaneFigure = FigureUtils.findParentFigureInstance(container, ScrollPane.class);
+
+			// Hide the ScrollBar if a ScrollPan is found
+			if (scrollPaneFigure instanceof ScrollPane) {
+				((ScrollPane) scrollPaneFigure).setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
+			}
 
 			// if there is aspect ratio and only one figure is set
 			if (isMaintainAspectRatio() && container.getParent().getChildren().size() == 1) {
@@ -137,15 +144,11 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 				y = center.y - height / 2;
 				x = center.x - width / 2;
 				container.setBounds(new Rectangle(x, y, width, height));
-			}
-			// Look for a ScrollBarPane to hide ScrollPane
-			IFigure parentFigure = container;
-			while (!(parentFigure instanceof ScrollPane) && parentFigure.getParent() != null) {
-				parentFigure = parentFigure.getParent();
-			}
-			// Hide the ScrollBar if a ScrollPan is found
-			if (parentFigure instanceof ScrollPane) {
-				((ScrollPane) parentFigure).setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
+			} else {
+				// Set bounds
+				if (scrollPaneFigure instanceof ScrollPane) {
+					container.setBounds(scrollPaneFigure.getBounds());
+				}
 			}
 
 		}

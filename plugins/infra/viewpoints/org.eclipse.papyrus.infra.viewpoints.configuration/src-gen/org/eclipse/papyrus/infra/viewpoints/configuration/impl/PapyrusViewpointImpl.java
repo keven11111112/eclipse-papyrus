@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
@@ -29,7 +30,6 @@ import org.eclipse.papyrus.infra.viewpoints.iso42010.impl.ArchitectureViewpointI
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Papyrus Viewpoint</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  * <p>
  * The following features are implemented:
  * </p>
@@ -76,11 +76,12 @@ public class PapyrusViewpointImpl extends ArchitectureViewpointImpl implements P
 	 */
 	public PapyrusViewpoint getParent() {
 		if (parent != null && parent.eIsProxy()) {
-			InternalEObject oldParent = (InternalEObject)parent;
-			parent = (PapyrusViewpoint)eResolveProxy(oldParent);
+			InternalEObject oldParent = (InternalEObject) parent;
+			parent = (PapyrusViewpoint) eResolveProxy(oldParent);
 			if (parent != oldParent) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT, oldParent, parent));
+				}
 			}
 		}
 		return parent;
@@ -103,8 +104,9 @@ public class PapyrusViewpointImpl extends ArchitectureViewpointImpl implements P
 	public void setParent(PapyrusViewpoint newParent) {
 		PapyrusViewpoint oldParent = parent;
 		parent = newParent;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT, oldParent, parent));
+		}
 	}
 
 	/**
@@ -115,9 +117,11 @@ public class PapyrusViewpointImpl extends ArchitectureViewpointImpl implements P
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT:
-				if (resolve) return getParent();
-				return basicGetParent();
+		case ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT:
+			if (resolve) {
+				return getParent();
+			}
+			return basicGetParent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,9 +134,9 @@ public class PapyrusViewpointImpl extends ArchitectureViewpointImpl implements P
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT:
-				setParent((PapyrusViewpoint)newValue);
-				return;
+		case ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT:
+			setParent((PapyrusViewpoint) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -145,9 +149,9 @@ public class PapyrusViewpointImpl extends ArchitectureViewpointImpl implements P
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT:
-				setParent((PapyrusViewpoint)null);
-				return;
+		case ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT:
+			setParent((PapyrusViewpoint) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -160,8 +164,8 @@ public class PapyrusViewpointImpl extends ArchitectureViewpointImpl implements P
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT:
-				return parent != null;
+		case ConfigurationPackage.PAPYRUS_VIEWPOINT__PARENT:
+			return parent != null;
 		}
 		return super.eIsSet(featureID);
 	}

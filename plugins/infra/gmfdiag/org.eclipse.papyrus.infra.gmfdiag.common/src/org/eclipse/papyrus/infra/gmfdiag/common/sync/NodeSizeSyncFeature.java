@@ -1,0 +1,158 @@
+/*****************************************************************************
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 465416
+ *
+ *****************************************************************************/
+
+package org.eclipse.papyrus.infra.gmfdiag.common.sync;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.RequestConstants;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.Size;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
+import org.eclipse.papyrus.infra.sync.SyncBucket;
+import org.eclipse.papyrus.infra.sync.SyncFeature;
+import org.eclipse.papyrus.infra.sync.SyncItem;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
+
+/**
+ * Represents a synchronization feature for the position of GMF notation nodes
+ *
+ * @author Laurent Wouters
+ *
+ * @param <M>
+ *            The type of the underlying model element common to all synchronized items in a single bucket
+ * @param <T>
+ *            The type of the backend element to synchronize
+ */
+public class NodeSizeSyncFeature<M extends EObject, T extends EditPart> extends SyncFeature<M, T, Notification> {
+	/**
+	 * Represents a dispatcher for this feature
+	 *
+	 * @author Laurent Wouters
+	 */
+	private class Dispatcher extends NodeSizeSyncDispatcher<M, T> {
+		public Dispatcher(SyncItem<M, T> item) {
+			super(item);
+		}
+
+		@Override
+		public void onClear() {
+			// clears the parent bucket
+			getBucket().clear();
+		}
+
+		@Override
+		protected void onFilteredChange(Notification notification) {
+			NodeSizeSyncFeature.this.onChange(item, notification);
+		}
+	}
+
+	/**
+	 * The active dispatchers
+	 */
+	private EMFDispatchManager<Dispatcher> dispatchMgr = createSingleDispatchManager();
+
+	/**
+	 * Initialized this feature
+	 *
+	 * @param bucket
+	 *            The bucket doing the synchronization
+	 */
+	public NodeSizeSyncFeature(SyncBucket<M, T, Notification> bucket) {
+		super(bucket);
+	}
+
+	@Override
+	public void observe(SyncItem<M, T> item) {
+		dispatchMgr.add(item, new Dispatcher(item));
+	}
+
+	@Override
+	public void unobserve(SyncItem<M, T> item) {
+		dispatchMgr.remove(item);
+	}
+
+	@Override
+	protected void onClear() {
+		dispatchMgr.removeAll();
+	}
+
+	@Override
+	public void synchronize(SyncItem<M, T> from, SyncItem<M, T> to, Notification message) {
+		EditPart fromEditPart = from.getBackend();
+		EditPart toEditPart = to.getBackend();
+
+		// retrieve the sizes
+		Dimension sizeFrom = getSize(fromEditPart);
+		Dimension sizeTo = getSize(toEditPart);
+
+		if (!sizeFrom.equals(sizeTo)) {
+			// compute the reaction command
+			ChangeBoundsRequest request = new ChangeBoundsRequest();
+			request.setType(RequestConstants.REQ_RESIZE);
+			request.setEditParts(toEditPart);
+			request.setSizeDelta(sizeFrom.getShrinked(sizeTo));
+			Command reaction = GEFtoEMFCommandWrapper.wrap(toEditPart.getCommand(request));
+
+			// dispatch the reaction
+			if (message == null) {
+				// this is an initial sync request
+				try {
+					TransactionalEditingDomain domain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(toEditPart);
+					CommandStack stack = domain.getCommandStack();
+					stack.execute(reaction);
+				} catch (ServiceException e) {
+					Activator.log.error(e);
+				}
+			} else {
+				// this is reaction to a change
+				Dispatcher dispatcher = dispatchMgr.getDispatcher(from, message.getFeature());
+				if (dispatcher != null) {
+					dispatcher.react(reaction);
+				}
+			}
+		}
+	}
+
+	Dimension getSize(EditPart editPart) {
+		Dimension result = null;
+
+		Node node = (Node) editPart.getModel();
+		Size size = TypeUtils.as(node.getLayoutConstraint(), Size.class);
+		if ((size != null) && (size.getWidth() >= 0) && (size.getHeight() >= 0)) {
+			// Nice. We have non-default (non-computed) size
+			result = new Dimension(size.getWidth(), size.getHeight());
+		}
+
+		if (result == null) {
+			// Need to get the actual dimensions from the edit-part's figure
+			IFigure figure = ((GraphicalEditPart) editPart).getFigure();
+			result = figure.getBounds().getSize();
+		}
+
+		return result;
+	}
+}

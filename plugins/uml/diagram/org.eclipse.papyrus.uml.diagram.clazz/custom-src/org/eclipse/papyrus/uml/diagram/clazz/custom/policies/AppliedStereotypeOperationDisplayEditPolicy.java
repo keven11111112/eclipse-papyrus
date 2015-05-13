@@ -46,4 +46,6 @@ public class AppliedStereotypeOperationDisplayEditPolicy extends AbstractApplied
 		// calls the helper for this edit Part
 		OperationLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
 	}
+
+
 }

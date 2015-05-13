@@ -80,9 +80,10 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 		return result;
 	}
 
+
 	@Override
 	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart) {
-		Collection<Element> result = null;
+	Collection<Element> result = null;
 
 		if (semanticFromEditPart instanceof NamedElement) {
 			// Handle changes to client/supplier dependencies
@@ -164,4 +165,5 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 			return super.caseMessageEnd(object);
 		}
 	}
+
 }

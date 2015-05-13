@@ -114,7 +114,16 @@
      </profile>
   </extension>   
    
-   
+     <extension
+        point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+     <library
+           description="UML library for SysML (from OMG SysML V1.4)"
+           iconpath="icons/SysMLLibrary.gif"
+           name="SyMLLibraries"
+           path="platform:/plugin/org.eclipse.papyrus.sysml14/model/SyMLLibraries.uml"
+           provider="CEA LIST">
+     </library>
+  </extension>    
    
    
 </plugin>

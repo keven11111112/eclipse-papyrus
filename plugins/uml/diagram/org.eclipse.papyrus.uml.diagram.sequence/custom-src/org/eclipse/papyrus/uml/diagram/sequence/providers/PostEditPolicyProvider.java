@@ -34,7 +34,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 
 
 /**
@@ -99,7 +99,7 @@ public class PostEditPolicyProvider implements IEditPolicyProvider {
 		if (editPart instanceof AbstractExecutionSpecificationEditPart || editPart instanceof CustomDestructionOccurrenceSpecificationEditPart || editPart instanceof CustomDurationConstraintEditPart || editPart instanceof CustomDurationConstraintEditPart
 				|| editPart instanceof CustomStateInvariantEditPart || editPart instanceof CustomTimeConstraintLabelEditPart || editPart instanceof CustomTimeObservationLabelEditPart || editPart instanceof AbstractMessageEditPart
 				|| editPart instanceof GeneralOrderingEditPart || editPart instanceof CustomContinuationEditPart || editPart instanceof CustomInteractionOperandEditPart || editPart instanceof GateEditPart) {
-			editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
+			editPart.installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 		}
 	}
 

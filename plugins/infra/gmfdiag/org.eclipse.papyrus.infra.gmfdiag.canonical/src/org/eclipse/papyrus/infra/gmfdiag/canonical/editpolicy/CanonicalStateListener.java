@@ -36,7 +36,7 @@ import com.google.common.collect.MapMaker;
 /**
  * A {@link DiagramEventBroker} listener that is notified when the {@link CanonicalStyle} of a view changes.
  */
-public class CanonicalStateListener extends ReferenceCounted<CanonicalStateListener> implements NotificationListener {
+public class CanonicalStateListener extends ReferenceCounted<CanonicalStateListener>implements NotificationListener {
 	private static final ConcurrentMap<IGraphicalEditPart, CanonicalStateListener> listeners = new MapMaker().weakKeys().weakValues().makeMap();
 
 	private final IGraphicalEditPart owner;
@@ -95,17 +95,19 @@ public class CanonicalStateListener extends ReferenceCounted<CanonicalStateListe
 	}
 
 	private void install() {
-		View view = owner.getNotationView();
+		if (owner != null) {
+			View view = owner.getNotationView();
 
-		DiagramEventBroker broker = getDiagramEventBroker();
-		broker.addNotificationListener(view, NotationPackage.Literals.VIEW__STYLES, this);
+			DiagramEventBroker broker = getDiagramEventBroker();
+			broker.addNotificationListener(view, NotationPackage.Literals.VIEW__STYLES, this);
 
-		// If provided by CSS, the style could be a transient floating object. In that case, don't listen to
-		// it (CSS cannot change its state). Or, if the view itself is a CanonicalStyle, then we're already
-		// listening to it
-		CanonicalStyle style = (CanonicalStyle) view.getStyle(NotationPackage.Literals.CANONICAL_STYLE);
-		if ((style != null) && (style.eContainer() == view)) {
-			install(style);
+			// If provided by CSS, the style could be a transient floating object. In that case, don't listen to
+			// it (CSS cannot change its state). Or, if the view itself is a CanonicalStyle, then we're already
+			// listening to it
+			CanonicalStyle style = (CanonicalStyle) view.getStyle(NotationPackage.Literals.CANONICAL_STYLE);
+			if ((style != null) && (style.eContainer() == view)) {
+				install(style);
+			}
 		}
 	}
 

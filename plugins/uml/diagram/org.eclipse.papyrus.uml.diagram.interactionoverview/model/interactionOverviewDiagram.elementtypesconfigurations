@@ -5,7 +5,9 @@
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008</specializedTypesID>
     <editHelperAdviceConfiguration xmi:id="_FYd2YGpzEeSbA6Db03aufw" identifier="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionEditHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionEditHelperAdvice"/>
   </elementTypeConfigurations>
-  <adviceBindingsConfigurations xmi:id="_zAcw0GaOEeSyJIsxLao1Pw" name="" identifier="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionUseEditHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionUseEditHelperAdvice">
-    <target xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.elementtypesconfigurations#_x8G0d2aNEeSyJIsxLao1Pw"/>
-  </adviceBindingsConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_QywZsOm6EeSdwvyVD4uXcQ" name="org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_As_InteractionUse_5005" identifier="org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_As_InteractionUse_5005" hint="5005">
+    <iconEntry xmi:id="_sFytEOm6EeSdwvyVD4uXcQ" iconPath="/icons/full/obj16/CallBehaviorAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_BaseType</specializedTypesID>
+  </elementTypeConfigurations>
+  <adviceBindingsConfigurations xmi:id="_zAcw0GaOEeSyJIsxLao1Pw" name="" identifier="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionUseEditHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionUseEditHelperAdvice" target="_QywZsOm6EeSdwvyVD4uXcQ"/>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

@@ -17,8 +17,12 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="maintoc.xml"
-            primary="true">
+            file="maintoc-user.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="maintoc-dev.xml"
+            primary="false">
       </toc>
    </extension>
 

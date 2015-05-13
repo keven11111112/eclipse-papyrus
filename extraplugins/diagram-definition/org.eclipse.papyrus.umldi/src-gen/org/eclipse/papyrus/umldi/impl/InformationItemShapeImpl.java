@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Information Item Shape</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class InformationItemShapeImpl extends ClassifierShapeImpl implements InformationItemShape {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InformationItemShapeImpl() {
@@ -40,11 +36,11 @@ public class InformationItemShapeImpl extends ClassifierShapeImpl implements Inf
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.INFORMATION_ITEM_SHAPE;
 	}
+
 } //InformationItemShapeImpl

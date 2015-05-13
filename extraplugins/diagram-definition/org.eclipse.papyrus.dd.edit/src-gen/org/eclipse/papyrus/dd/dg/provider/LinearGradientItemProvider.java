@@ -16,14 +16,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemColorProvider;
-import org.eclipse.emf.edit.provider.IItemFontProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.dd.dc.DCFactory;
 import org.eclipse.papyrus.dd.dg.DGPackage;
@@ -33,10 +26,9 @@ import org.eclipse.papyrus.dd.dg.LinearGradient;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.LinearGradient} object.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
-public class LinearGradientItemProvider extends GradientItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemColorProvider, IItemFontProvider {
+public class LinearGradientItemProvider extends GradientItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -56,8 +48,9 @@ public class LinearGradientItemProvider extends GradientItemProvider implements 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
+
 		}
 		return itemPropertyDescriptors;
 	}
@@ -67,12 +60,11 @@ public class LinearGradientItemProvider extends GradientItemProvider implements 
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if(childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DGPackage.Literals.LINEAR_GRADIENT__START);
 			childrenFeatures.add(DGPackage.Literals.LINEAR_GRADIENT__END);
@@ -82,13 +74,13 @@ public class LinearGradientItemProvider extends GradientItemProvider implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
+
 		return super.getChildFeature(object, child);
 	}
 
@@ -96,7 +88,6 @@ public class LinearGradientItemProvider extends GradientItemProvider implements 
 	 * This returns LinearGradient.gif.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,13 +99,14 @@ public class LinearGradientItemProvider extends GradientItemProvider implements 
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((LinearGradient)object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_LinearGradient_type") : getString("_UI_LinearGradient_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_LinearGradient_type") :
+			getString("_UI_LinearGradient_type") + " " + label;
 	}
 
 	/**
@@ -122,17 +114,17 @@ public class LinearGradientItemProvider extends GradientItemProvider implements 
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		switch(notification.getFeatureID(LinearGradient.class)) {
-		case DGPackage.LINEAR_GRADIENT__START:
-		case DGPackage.LINEAR_GRADIENT__END:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+
+		switch (notification.getFeatureID(LinearGradient.class)) {
+			case DGPackage.LINEAR_GRADIENT__START:
+			case DGPackage.LINEAR_GRADIENT__END:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -147,8 +139,16 @@ public class LinearGradientItemProvider extends GradientItemProvider implements 
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-		newChildDescriptors.add(createChildParameter(DGPackage.Literals.LINEAR_GRADIENT__START, DCFactory.eINSTANCE.createPoint()));
-		newChildDescriptors.add(createChildParameter(DGPackage.Literals.LINEAR_GRADIENT__END, DCFactory.eINSTANCE.createPoint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DGPackage.Literals.LINEAR_GRADIENT__START,
+				 DCFactory.eINSTANCE.createPoint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DGPackage.Literals.LINEAR_GRADIENT__END,
+				 DCFactory.eINSTANCE.createPoint()));
 	}
 
 	/**
@@ -161,9 +161,15 @@ public class LinearGradientItemProvider extends GradientItemProvider implements 
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
-		boolean qualify = childFeature == DGPackage.Literals.LINEAR_GRADIENT__START || childFeature == DGPackage.Literals.LINEAR_GRADIENT__END;
-		if(qualify) {
-			return getString("_UI_CreateChild_text2", new Object[]{ getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+
+		boolean qualify =
+			childFeature == DGPackage.Literals.LINEAR_GRADIENT__START ||
+			childFeature == DGPackage.Literals.LINEAR_GRADIENT__END;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

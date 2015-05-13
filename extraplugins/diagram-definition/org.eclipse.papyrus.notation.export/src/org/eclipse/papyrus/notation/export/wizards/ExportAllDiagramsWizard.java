@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.notation.export.wizards;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.notation.export.ExportAllDiagrams;
@@ -40,6 +41,8 @@ public class ExportAllDiagramsWizard extends Wizard implements IExportWizard {
 			Object first = ((IStructuredSelection) selection).getFirstElement();
 			if (first instanceof IFile)
 				file = (IFile) first;
+			else if (first instanceof IAdaptable)
+				file = (IFile) ((IAdaptable)first).getAdapter(IFile.class);
 		}
 	}
 

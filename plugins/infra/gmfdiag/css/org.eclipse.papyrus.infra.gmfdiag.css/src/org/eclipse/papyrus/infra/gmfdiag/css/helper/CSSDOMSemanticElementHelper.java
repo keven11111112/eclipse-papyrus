@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 
@@ -15,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -35,6 +35,29 @@ import org.eclipse.gmf.runtime.notation.View;
 public class CSSDOMSemanticElementHelper {
 
 	/**
+	 * singleton instance
+	 */
+	private static CSSDOMSemanticElementHelper elementHelper;
+
+	/** Private Constructor. */
+	protected CSSDOMSemanticElementHelper() {
+
+	}
+
+	/**
+	 * Returns the singleton instance of this class
+	 *
+	 * @return the singleton instance.
+	 */
+	public static CSSDOMSemanticElementHelper getInstance() {
+		if (elementHelper == null) {
+			elementHelper = new CSSDOMSemanticElementHelper();
+		}
+		return elementHelper;
+	}
+
+
+	/**
 	 * Returns the semantic element attached to the given notation element
 	 *
 	 * The result element can also be a Diagram
@@ -42,20 +65,17 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static EObject findSemanticElement(EObject notationElement) {
+	public EObject findSemanticElement(EObject notationElement) {
+
 		if (notationElement == null) {
 			return null;
-		}
-
-		// Add diagrams to the DOM model
-		if (notationElement instanceof Diagram) {
-			return notationElement;
 		}
 
 		// Add compartments to the DOM model
 		if (notationElement instanceof BasicCompartment) {
 			return notationElement;
 		}
+
 
 		// Add floating labels to the DOM model
 		if (isFloatingLabel(notationElement)) {
@@ -69,6 +89,7 @@ public class CSSDOMSemanticElementHelper {
 			if (semanticElement != null) {
 				return semanticElement;
 			}
+
 
 			// The graphical element isn't related to a Semantic Element. The view becomes the semantic element.
 			// e.g. : Links in UML
@@ -86,13 +107,13 @@ public class CSSDOMSemanticElementHelper {
 
 		/*
 		 * Remove the warning to avoid flooding the error log.
-		 *
+		 * 
 		 * This may happen in the following cases:
-		 *
+		 * 
 		 * - The element is at the root of the Notation model and is not a Diagram (Which may happen in corrupted models,
 		 * or (maybe) non-Papyrus notation models, but shouldn't have a major impact)
 		 * - The element is contained in an EMF ChangeDescription (e.g. Create + Undo creation)
-		 *
+		 * 
 		 * See Bug 430534
 		 */
 		// Activator.log.warn("Cannot find a valid source for " + notationElement);
@@ -108,7 +129,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static View findPrimaryView(EObject notationElement) {
+	public View findPrimaryView(EObject notationElement) {
 		return findTopView(notationElement);
 	}
 
@@ -119,7 +140,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static View findTopView(EObject notationElement) {
+	public View findTopView(EObject notationElement) {
 		EObject semanticElement = findSemanticElement(notationElement);
 
 		if (semanticElement == notationElement) {
@@ -148,7 +169,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @return
 	 *         True if this is a Floating Label
 	 */
-	public static boolean isFloatingLabel(EObject notationElement) {
+	public boolean isFloatingLabel(EObject notationElement) {
 		if (!(notationElement instanceof DecorationNode)) {
 			return false;
 		}

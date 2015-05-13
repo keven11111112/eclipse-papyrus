@@ -32,6 +32,9 @@ import org.eclipse.papyrus.infra.services.controlmode.participants.IUncontrolCom
  */
 public class GMFDiagramControlParticipant implements IControlCommandParticipant, IUncontrolCommandParticipant {
 
+	/** The Constant PARTICIPANT_ID. */
+	private static final String PARTICIPANT_ID = "org.eclipse.papyrus.infra.gmfdiag.controlmode.GMFDiagramControlParticipant"; //$NON-NLS-1$
+
 	/**
 	 * Init target request to have the DIModel resource references
 	 *
@@ -58,7 +61,7 @@ public class GMFDiagramControlParticipant implements IControlCommandParticipant,
 	}
 
 	public String getID() {
-		return "org.eclipse.papyrus.infra.gmfdiag.controlmode.GMFDiagramControlParticipant";//
+		return PARTICIPANT_ID;
 	}
 
 	public ICommand getPostControlCommand(ControlModeRequest request) {

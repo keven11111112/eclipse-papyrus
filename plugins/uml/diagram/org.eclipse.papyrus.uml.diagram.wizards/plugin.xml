@@ -16,10 +16,10 @@
 	</category>
 	<wizard
          category="org.eclipse.papyrus.wizards.category"
-         class="org.eclipse.papyrus.uml.diagram.wizards.NewPapyrusProjectWizard"
+         class="org.eclipse.papyrus.uml.diagram.wizards.wizards.NewPapyrusProjectWizard"
          finalPerspective="org.eclipse.papyrus.infra.core.perspective"         
          icon="icons/papyrus/new_papyrus_project.gif"
-         id="org.eclipse.papyrus.uml.diagram.wizards.1createproject"
+         id="org.eclipse.papyrus.uml.diagram.wizards.createproject"
          name="Papyrus Project"
          project="true">
       <description>
@@ -28,7 +28,7 @@
 	</wizard>
     <wizard
          category="org.eclipse.papyrus.wizards.category"
-         class="org.eclipse.papyrus.uml.diagram.wizards.InitModelWizard"
+         class="org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard"
          finalPerspective="org.eclipse.papyrus.infra.core.perspective"
          icon="icons/papyrus/new_papyrus_model.gif"
          id="org.eclipse.papyrus.uml.diagram.wizards.createmodel"
@@ -39,7 +39,7 @@
 <extension
       point="org.eclipse.papyrus.uml.diagram.wizards.newModelStorageProviders">
    <provider
-         class="org.eclipse.papyrus.uml.diagram.wizards.WorkspaceNewModelStorageProvider"
+         class="org.eclipse.papyrus.uml.diagram.wizards.providers.WorkspaceNewModelStorageProvider"
          name="In the workspace">
       <enablement>
          <iterate>
@@ -49,6 +49,13 @@
          </iterate>
       </enablement>
    </provider>
+</extension>
+<extension
+      point="org.eclipse.help.contexts">
+   <contexts
+         file="help/helpContext.xml"
+         plugin="org.eclipse.papyrus.uml.diagram.wizards">
+   </contexts>
 </extension>
 		
 </plugin>

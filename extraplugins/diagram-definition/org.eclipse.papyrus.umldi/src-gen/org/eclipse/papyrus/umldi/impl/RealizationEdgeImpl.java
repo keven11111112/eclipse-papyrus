@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Realization Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class RealizationEdgeImpl extends AbstractionEdgeImpl implements RealizationEdge {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RealizationEdgeImpl() {
@@ -40,11 +36,11 @@ public class RealizationEdgeImpl extends AbstractionEdgeImpl implements Realizat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.REALIZATION_EDGE;
 	}
+
 } //RealizationEdgeImpl

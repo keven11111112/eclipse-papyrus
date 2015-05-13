@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.diagram.common.parser.custom;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -41,29 +42,10 @@ public class AssociationMultiplicityParser extends AbstractAssociationEndParser 
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		Property property = doAdapt(element);
-		StringBuffer displayedString = new StringBuffer();
 		if (property != null) {
-			if (property.getLower() == property.getUpper()) {
-				displayedString.append(property.getLower());
-			} else {
-				displayedString.append(validValue(property.getLower()));
-				displayedString.append("...");
-				displayedString.append(validValue(property.getUpper()));
-			}
+			return MultiplicityElementUtil.formatMultiplicity(property);
 		}
-		return displayedString.toString();
-	}
-
-	/**
-	 * Convert the int to a valid String to display. If the value is -1, then it
-	 * is converted to *
-	 *
-	 * @param val
-	 *            the int to convert to String
-	 * @return the valid string
-	 */
-	private String validValue(int val) {
-		return val == -1 ? "*" : String.valueOf(val);
+		return "";
 	}
 
 	/**

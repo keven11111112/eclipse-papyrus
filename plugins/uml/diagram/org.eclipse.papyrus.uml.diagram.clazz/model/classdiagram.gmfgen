@@ -7466,7 +7466,7 @@
           itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.18"
-          title="EnumerationLiteralCompartment"
+          title="literalsCompartment"
           node="/0/@diagram/@childNodes.29">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7964,7 +7964,7 @@
           itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.18"
-          title="EnumerationLiteralCompartment"
+          title="literalsCompartment"
           node="/0/@diagram/@topLevelNodes.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

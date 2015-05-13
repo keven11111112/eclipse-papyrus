@@ -28,6 +28,8 @@ import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRootElementPage;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.junit.Assert;
@@ -38,7 +40,7 @@ import org.junit.Test;
 
 public class TestCreateModelFromExistingModelWizard extends TestNewModelWizardBase {
 
-	//This test only covers the creation of the wizard and check if the first page contain the expected file name
+	// This test only covers the creation of the wizard and check if the first page contain the expected file name
 	private static IProject createProject;
 
 	private static IFile file, fileWithDot;
@@ -82,7 +84,7 @@ public class TestCreateModelFromExistingModelWizard extends TestNewModelWizardBa
 				isInitFromExistingDomainModel = isSupportedDomainModelResource(uri);
 				super.init(workbench, selection);
 				selectRootElementPage = createSelectRootElementPage(selection);
-				if(isCreateFromExistingDomainModel()) {
+				if (isCreateFromExistingDomainModel()) {
 					// Init Model not Create a new one
 					setWindowTitle(Messages.InitModelWizard_init_papyrus_diagram);
 				}
@@ -100,7 +102,9 @@ public class TestCreateModelFromExistingModelWizard extends TestNewModelWizardBa
 
 	@Test
 	public void testOrderOfPages() {
-		Class<?>[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramCategoryPage.class, SelectDiagramKindPage.class, SelectRootElementPage.class };
+		// actual pages: [SelectDiagramCategory -> SelectDiagramCategoryPage, SelectStorageProvider -> SelectStorageProviderPage,
+		// NewPapyrusModel -> NewModelFilePage, NewCDOModel -> NewModelPage, SelectDiagramKind -> SelectDiagramKindPage, SelectRootPage -> SelectRootElementPage]
+		Class<?>[] expectedPages = new Class[] { SelectDiagramCategoryPage.class, NewModelFilePage.class, SelectDiagramKindPage.class, SelectRootElementPage.class, };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
@@ -120,7 +124,7 @@ public class TestCreateModelFromExistingModelWizard extends TestNewModelWizardBa
 				isInitFromExistingDomainModel = isSupportedDomainModelResource(uri);
 				super.init(workbench, selection);
 				selectRootElementPage = createSelectRootElementPage(selection);
-				if(isCreateFromExistingDomainModel()) {
+				if (isCreateFromExistingDomainModel()) {
 					// Init Model not Create a new one
 					setWindowTitle(Messages.InitModelWizard_init_papyrus_diagram);
 				}
@@ -152,7 +156,7 @@ public class TestCreateModelFromExistingModelWizard extends TestNewModelWizardBa
 				isInitFromExistingDomainModel = isSupportedDomainModelResource(uri);
 				super.init(workbench, selection);
 				selectRootElementPage = createSelectRootElementPage(selection);
-				if(isCreateFromExistingDomainModel()) {
+				if (isCreateFromExistingDomainModel()) {
 					// Init Model not Create a new one
 					setWindowTitle(Messages.InitModelWizard_init_papyrus_diagram);
 				}
@@ -166,7 +170,7 @@ public class TestCreateModelFromExistingModelWizard extends TestNewModelWizardBa
 		initWizardDialog(wizard);
 		NewModelFilePage page = getPage(wizard, NewModelFilePage.class);
 		assertNotSame("model.model.di", page.getFileName());
-		//this should be fixed in the wizard to have the right name from the begining if the name contain a dot
+		// this should be fixed in the wizard to have the right name from the begining if the name contain a dot
 
 
 	}

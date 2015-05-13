@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 
 /**
  * This abstract edit part provider restricts its contribution to view that are owned by
@@ -25,7 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 public abstract class CustomAbstractEditPartProvider extends AbstractEditPartProvider {
 
 	/** The provides only provides for this diagram type */
-	protected String diagramType;
+	protected String diagramType= org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart.MODEL_ID;
 
 	/**
 	 * {@inheritDoc}

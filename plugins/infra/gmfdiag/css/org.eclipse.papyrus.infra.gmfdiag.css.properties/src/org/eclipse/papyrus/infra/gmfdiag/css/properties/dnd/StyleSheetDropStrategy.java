@@ -125,7 +125,13 @@ public class StyleSheetDropStrategy extends TransactionalDropStrategy {
 					AddCSSStyleSheetCommand command = new AddCSSStyleSheetCommand(domain, targetView,
 							CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY,
 							NotationPackage.Literals.EOBJECT_LIST_VALUE_STYLE, NotationPackage.Literals.EOBJECT_LIST_VALUE_STYLE__EOBJECT_LIST_VALUE,
-							ref);
+							ref) {
+
+						@Override
+						public String getLabel() {
+							return StyleSheetDropStrategy.this.getLabel();
+						}
+					};
 					compound.add(EMFtoGEFCommandWrapper.wrap(command));
 				}
 

@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle;
@@ -42,7 +43,7 @@ public class TableHelper {
 	 * @param configuration
 	 *            the configuration used to create the table
 	 * @return
-	 *         the table created from this configuration
+	 * 		the table created from this configuration
 	 */
 	public static final Table createTable(final TableConfiguration configuration) {
 		return createTable(configuration, null);
@@ -55,7 +56,7 @@ public class TableHelper {
 	 * @param context
 	 *            the context of the table
 	 * @return
-	 *         the table created from these parameters
+	 * 		the table created from these parameters
 	 */
 	public static final Table createTable(final TableConfiguration configuration, final EObject context) {
 		return createTable(configuration, null, null);
@@ -70,7 +71,7 @@ public class TableHelper {
 	 * @param name
 	 *            the name for the table
 	 * @return
-	 *         the table created from these parameters
+	 * 		the table created from these parameters
 	 */
 	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name) {
 		return createTable(configuration, null, null, null);
@@ -87,7 +88,7 @@ public class TableHelper {
 	 * @param description
 	 *            the description for the table
 	 * @return
-	 *         the table created from these parameters
+	 * 		the table created from these parameters
 	 */
 	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name, final String description) {
 		assert configuration != null;
@@ -124,7 +125,7 @@ public class TableHelper {
 	 * @param table
 	 *            a table
 	 * @return
-	 *         the display style to use for the table, the return value is never <code>null</code>
+	 * 		the display style to use for the table, the return value is never <code>null</code>
 	 */
 	public static final DisplayStyle getTableDisplayStyle(final Table table) {
 		TableDisplayStyle displayStyle = (TableDisplayStyle) table.getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
@@ -143,7 +144,7 @@ public class TableHelper {
 	 * @param table
 	 *            a table manager
 	 * @return
-	 *         the display style to use for the managed table, the return value is never <code>null</code>
+	 * 		the display style to use for the managed table, the return value is never <code>null</code>
 	 */
 	public static final DisplayStyle getTableDisplayStyle(final INattableModelManager tableManager) {
 		return getTableDisplayStyle(tableManager.getTable());
@@ -256,12 +257,44 @@ public class TableHelper {
 		}
 		if (container == null) {
 			return null;
-			//			throw new Exception("Table not found, this method should be completed"); //$NON-NLS-1$
+			// throw new Exception("Table not found, this method should be completed"); //$NON-NLS-1$
 		}
 
 		return (Table) container;
 	}
 
+	/**
+	 * 
+	 * @param tableManager
+	 *            a table manager
+	 * @return
+	 * 		the way to use to declare cell editor for the current table manager, according to invert axis property
+	 */
+	public static final CellEditorDeclaration getCellEditorDeclaration(final INattableModelManager tableManager) {
+		return getCellEditorDeclaration(tableManager.getTable());
+	}
 
+
+	/**
+	 * 
+	 * @param tableManager
+	 *            a table manager
+	 * @return
+	 * 		the way to use to declare cell editor for the current table, according to invert axis property
+	 */
+	public static final CellEditorDeclaration getCellEditorDeclaration(final Table table) {
+		CellEditorDeclaration declaration = table.getTableConfiguration().getCellEditorDeclaration();
+		if (table.isInvertAxis()) {
+			switch (declaration) {
+			case COLUMN:
+				return CellEditorDeclaration.ROW;
+			case ROW:
+				return CellEditorDeclaration.COLUMN;
+			default:
+				break;
+			}
+		}
+		return declaration;
+	}
 
 }

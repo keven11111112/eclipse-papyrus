@@ -78,7 +78,9 @@ public class Utils {
 	 *
 	 * @param element
 	 * @return the top-level owning package
+	 * @deprecated Use getRootPackage method in oep.uml.tools.utils.PackageUtil
 	 */
+	@Deprecated
 	public static Package getTop(Element element) {
 		while (element != null) {
 			Element owner = element.getOwner();

@@ -21,6 +21,7 @@ import org.eclipse.papyrus.FCM.util.IMappingRule;
 import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
@@ -127,7 +128,7 @@ public class PullConsumer implements IMappingRule {
 					parameter.setType(type);
 				}
 			}
-			Package model = Utils.getTop(umlPort);
+			Package model = PackageUtil.getRootPackage(umlPort);
 			Element element = Utils.getQualifiedElement(model, BOOL_QNAME);
 			Type booleanType = null;
 			if (element instanceof Type) {

@@ -51,6 +51,12 @@ public class TransformationContext {
 		return sourceRoot;
 	}
 
+	public static LazyCopier copier;
+	
+	public static LazyCopier getCopier() {
+		return copier;
+	};
+
 	public static Classifier formalParameter;
 
 	public static Classifier getFormalParameter() {

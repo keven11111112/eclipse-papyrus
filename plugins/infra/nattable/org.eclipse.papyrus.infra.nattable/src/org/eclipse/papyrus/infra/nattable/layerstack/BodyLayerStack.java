@@ -79,8 +79,7 @@ public class BodyLayerStack extends AbstractLayerTransform {
 			}
 		};
 
-		this.bodyDataLayer = new PapyrusSpanningDataLayer(TableEditingDomainUtils.
-				getTableEditingDomain(manager.getTable()), manager, spanProvider, DefaultSizeUtils.getDefaultCellWidth(), DefaultSizeUtils.getDefaultCellHeight());
+		this.bodyDataLayer = new PapyrusSpanningDataLayer(TableEditingDomainUtils.getTableContextEditingDomain(manager.getTable()), manager, spanProvider, DefaultSizeUtils.getDefaultCellWidth(), DefaultSizeUtils.getDefaultCellHeight());
 
 		this.bodyDataLayer.addConfiguration(new StyleConfiguration());
 

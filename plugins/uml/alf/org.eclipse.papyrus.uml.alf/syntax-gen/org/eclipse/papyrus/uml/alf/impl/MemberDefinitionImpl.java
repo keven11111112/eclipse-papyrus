@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.alf.QualifiedName;
 import org.eclipse.papyrus.uml.alf.StereotypeAnnotation;
 import org.eclipse.papyrus.uml.alf.UnitDefinition;
 import org.eclipse.papyrus.uml.alf.util.AlfValidator;
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade;
 
 /**
  * <!-- begin-user-doc -->
@@ -328,7 +329,8 @@ public abstract class MemberDefinitionImpl extends SyntaxElementImpl implements 
 	 */
 	public Member addToModel() {
 		// System.out.println("[addToModel] member=" + this.getName());
-		return ModelNamespaceImpl.getModelNamespace().addOwnedMember(this);
+		return ModelNamespaceFacade.getInstance().getContext(this).addOwnedMember(this);
+		//return ModelNamespaceImpl.getModelNamespace().addOwnedMember(this);
 	}
 
 	/**

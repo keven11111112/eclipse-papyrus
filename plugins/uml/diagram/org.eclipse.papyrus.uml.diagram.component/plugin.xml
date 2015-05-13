@@ -835,6 +835,7 @@
    </editpartProvider>
 </extension>
 <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+   <?gmfgen generated="true"?>
 		<diagramMappings diagramID="PapyrusUMLComponentDiagram">
 			<mapping type="PapyrusUMLComponentDiagram" humanReadableType="ComponentDiagram"/>
 			
@@ -980,8 +981,38 @@
 		humanReadableType="Name"
 		type="6025">
 	</mapping>
-
-
+			<mapping
+				humanReadableType="Floating Label"
+				type="6033">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6026">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6027">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6028">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6029">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6030">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6031">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6032">
+			</mapping>
 	</diagramMappings>
 </extension>
 
@@ -1001,6 +1032,16 @@
          id="org.eclipse.papyrus.uml.diagram.component.elementTypeSet"
          path="model/ComponentDiagram.elementtypesconfigurations">
    </elementTypeSet>
+</extension>
+
+   <extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="PapyrusUMLComponentDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilier"
+         source="undefined"
+         target="1.1.0">
+   </diagramReconciler>
 </extension>
 
 </plugin>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <!--
- Copyright (c) 2010, 2014 CEA and others.
+ Copyright (c) 2010, 2015 CEA, Christian W. Damus, and others.
 
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  Contributors:
    CEA - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
+   Christian W. Damus - bug 433206
    
 -->
 <plugin>
@@ -1427,4 +1428,70 @@
       </Priority>
    </ParserProvider>
 </extension>
+
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
+      <semanticChildrenStrategy
+            class="org.eclipse.papyrus.uml.diagram.profile.custom.canonical.ProfileDiagramSemanticChildrenStrategy">
+         <enablement>
+            <with
+                  variable="editPart">
+               <or>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileEditPartTN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileEditPartCN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPartCN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartTN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartCN"/>
+               </or>
+            </with>
+         </enablement>
+      </semanticChildrenStrategy>
+      <creationTargetStrategy
+            class="org.eclipse.papyrus.uml.diagram.profile.custom.canonical.ProfileDiagramCreationTargetStrategy">
+         <enablement>
+            <with
+                  variable="editPart">
+               <or>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeEditPartCN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassEditPartCN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationEditPartCN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeEditPartCN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PrimitiveTypeEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PrimitiveTypeEditPartCN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPartCN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartTN"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartCN"/>
+               </or>
+            </with>
+         </enablement>
+      </creationTargetStrategy>
+   </extension>
 </plugin>

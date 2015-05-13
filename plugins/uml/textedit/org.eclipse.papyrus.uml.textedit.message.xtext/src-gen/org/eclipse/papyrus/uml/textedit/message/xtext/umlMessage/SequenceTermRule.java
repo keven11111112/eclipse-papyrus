@@ -11,24 +11,24 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule#getSequencialOrder <em>Sequencial Order</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule#getSequenceName <em>Sequence Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule#getRecurrence <em>Recurrence</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage#getSequenceTermRule()
  * @model
  * @generated
  */
-public interface SequenceTermRule extends EObject
-{
+public interface SequenceTermRule extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Sequencial Order</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sequencial Order</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Sequencial Order</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -56,7 +56,8 @@ public interface SequenceTermRule extends EObject
 	 * Returns the value of the '<em><b>Sequence Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sequence Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Sequence Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -84,7 +85,8 @@ public interface SequenceTermRule extends EObject
 	 * Returns the value of the '<em><b>Recurrence</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Recurrence</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Recurrence</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

@@ -67,4 +67,45 @@
             path="elementtypes/uml-rt.umlclassdiagram.elementtypesconfigurations">
       </elementTypeSet>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.sync.triggers">
+      <syncTrigger
+            class="org.eclipse.papyrus.umlrt.internal.sync.UMLRTSyncTrigger">
+         <enablement>
+            <and>
+               <!-- Match a package that has the UML-RT profile applied -->
+               <instanceof
+                     value="org.eclipse.uml2.uml.Package"/>
+               <test
+                     property="org.eclipse.papyrus.uml.profile"
+                     value="UMLRealTime">
+               </test>
+            </and>
+         </enablement>
+      </syncTrigger>
+      <syncTrigger
+            class="org.eclipse.papyrus.umlrt.internal.sync.capsule.CapsuleSyncTrigger">
+         <enablement>
+            <and>
+               <!-- Match a Class that has the Capsule stereotype applied -->
+               <instanceof
+                     value="org.eclipse.uml2.uml.Class"/>
+               <test
+                     property="org.eclipse.papyrus.uml.stereotype"
+                     value="UMLRealTime::Capsule">
+               </test>
+            </and>
+         </enablement>
+      </syncTrigger>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.umlrt.internal.expressions.BehaviorPropertyTester"
+            id="org.eclipse.papyrus.umlrt.behaviorProperties"
+            namespace="org.eclipse.papyrus.umlrt"
+            properties="context"
+            type="org.eclipse.uml2.uml.Behavior">
+      </propertyTester>
+   </extension>
 </plugin>

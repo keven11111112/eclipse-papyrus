@@ -23,16 +23,15 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl.MessageRuleImpl#getSequenceTerm <em>Sequence Term</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl.MessageRuleImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class MessageRuleImpl extends MinimalEObjectImpl.Container implements MessageRule
-{
+public class MessageRuleImpl extends MinimalEObjectImpl.Container implements MessageRule {
 	/**
 	 * The cached value of the '{@link #getSequenceTerm() <em>Sequence Term</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -72,8 +71,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 *
 	 * @generated
 	 */
-	protected MessageRuleImpl()
-	{
+	protected MessageRuleImpl() {
 		super();
 	}
 
@@ -84,8 +82,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlMessagePackage.Literals.MESSAGE_RULE;
 	}
 
@@ -96,10 +93,8 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	public EList<SequenceTermRule> getSequenceTerm()
-	{
-		if (sequenceTerm == null)
-		{
+	public EList<SequenceTermRule> getSequenceTerm() {
+		if (sequenceTerm == null) {
 			sequenceTerm = new EObjectContainmentEList<SequenceTermRule>(SequenceTermRule.class, this, UmlMessagePackage.MESSAGE_RULE__SEQUENCE_TERM);
 		}
 		return sequenceTerm;
@@ -112,8 +107,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -124,8 +118,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired()) {
@@ -140,10 +133,8 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case UmlMessagePackage.MESSAGE_RULE__SEQUENCE_TERM:
 			return ((InternalEList<?>) getSequenceTerm()).basicRemove(otherEnd, msgs);
 		}
@@ -157,10 +148,8 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlMessagePackage.MESSAGE_RULE__SEQUENCE_TERM:
 			return getSequenceTerm();
 		case UmlMessagePackage.MESSAGE_RULE__NAME:
@@ -177,10 +166,8 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlMessagePackage.MESSAGE_RULE__SEQUENCE_TERM:
 			getSequenceTerm().clear();
 			getSequenceTerm().addAll((Collection<? extends SequenceTermRule>) newValue);
@@ -199,10 +186,8 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlMessagePackage.MESSAGE_RULE__SEQUENCE_TERM:
 			getSequenceTerm().clear();
 			return;
@@ -220,10 +205,8 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlMessagePackage.MESSAGE_RULE__SEQUENCE_TERM:
 			return sequenceTerm != null && !sequenceTerm.isEmpty();
 		case UmlMessagePackage.MESSAGE_RULE__NAME:
@@ -239,8 +222,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

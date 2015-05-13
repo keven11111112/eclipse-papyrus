@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 458685
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -22,11 +22,8 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.uml.diagram.common.commands.UnapplyAllStereotypesCommand;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * @generated
@@ -87,21 +84,6 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	 */
 	@Override
 	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated NOT handle unapply stereotypes before delete
-	 */
-	@Override
-	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
-		EObject elementToDestroy = req.getElementToDestroy();
-		if (elementToDestroy instanceof Element) {
-			UnapplyAllStereotypesCommand command = new UnapplyAllStereotypesCommand(req.getEditingDomain(), req.getLabel(), (Element) elementToDestroy);
-			if (!command.isEmpty()) {
-				return command;
-			}
-		}
 		return null;
 	}
 

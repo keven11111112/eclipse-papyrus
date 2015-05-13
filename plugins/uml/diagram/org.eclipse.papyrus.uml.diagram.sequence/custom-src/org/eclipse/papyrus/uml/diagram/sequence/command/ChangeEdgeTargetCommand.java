@@ -35,7 +35,9 @@ import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageDeleteHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -54,6 +56,8 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 	protected CreateElementAndNodeCommand createElementAndNodeCommand;
 
 	protected ConnectionViewDescriptor descriptor;
+
+	protected Edge edge;
 
 	protected String anchorId;
 
@@ -75,53 +79,77 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 		this.anchorId = anchorId;
 	}
 
+	/**
+	 *
+	 * @param editingDomain
+	 *            the editing domain.
+	 * @param createElementAndNodeCommand
+	 *            used to retrieve the target new node of the edge.
+	 * @param edge
+	 *            the edge.
+	 * @param anchorId
+	 *            the identity of the anchor which will be created to attach the edge.
+	 */
+	public ChangeEdgeTargetCommand(TransactionalEditingDomain editingDomain, CreateElementAndNodeCommand createElementAndNodeCommand, Edge edge, String anchorId) {
+		super(editingDomain, "Change message graphical target", null);
+		this.createElementAndNodeCommand = createElementAndNodeCommand;
+		this.edge = edge;
+		this.anchorId = anchorId;
+	}
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// retrieve the edge from the descriptor
-		Object obj = descriptor.getAdapter(Edge.class);
-		if (obj instanceof Edge) {
-			Edge edge = (Edge) obj;
-			View newTarget = createElementAndNodeCommand.getCreatedView();
-			edge.setTarget(newTarget);
-			IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
-			anchor.setId(anchorId);
-			edge.setTargetAnchor(anchor);
-			// reset bendpoints to target
-			Bendpoints bendpoints = edge.getBendpoints();
-			if (bendpoints instanceof RelativeBendpoints) {
-				List points = ((RelativeBendpoints) bendpoints).getPoints();
-				if (!points.isEmpty()) {
-					List<RelativeBendpoint> newPoints = new ArrayList<RelativeBendpoint>();
-					RelativeBendpoint first = (RelativeBendpoint) points.get(0);
-					RelativeBendpoint last = (RelativeBendpoint) points.get(1);
-					RelativeBendpoint rb1 = new RelativeBendpoint(first.getSourceX(), first.getSourceY(), first.getTargetX() - 8, first.getTargetY());
-					RelativeBendpoint rb2 = new RelativeBendpoint(last.getSourceX() + 8, last.getSourceY(), last.getTargetX(), 0);
-					newPoints.add(rb1);
-					for (int i = 1; i < points.size() - 1; i++) {
-						newPoints.add((RelativeBendpoint) points.get(i));
-					}
-					newPoints.add(rb2);
-					((RelativeBendpoints) bendpoints).setPoints(newPoints);
-				}
+		if (descriptor != null) {
+	 		Object obj = descriptor.getAdapter(Edge.class);
+			if (false == obj instanceof Edge) {
+				return null;
 			}
-			// Reset message end to target ExecutionSpecification, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
-			EObject edgeElement = ViewUtil.resolveSemanticElement(edge);
-			EObject targetElement = ViewUtil.resolveSemanticElement(newTarget);
-			if (edgeElement instanceof Message && MessageSort.SYNCH_CALL_LITERAL == ((Message) edgeElement).getMessageSort() && targetElement instanceof ExecutionSpecification) {
-				MessageEnd receiveEvent = ((Message) edgeElement).getReceiveEvent();
+			edge = (Edge) obj;
+		}
+		View newTarget = createElementAndNodeCommand.getCreatedView();
+		IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
+		anchor.setId(anchorId);
+		edge.setTargetAnchor(anchor);
+		// reset bendpoints to target
+		Bendpoints bendpoints = edge.getBendpoints();
+		if (bendpoints instanceof RelativeBendpoints) {
+			List points = ((RelativeBendpoints) bendpoints).getPoints();
+			if (!points.isEmpty()) {
+				List<RelativeBendpoint> newPoints = new ArrayList<RelativeBendpoint>();
+				RelativeBendpoint first = (RelativeBendpoint) points.get(0);
+				RelativeBendpoint last = (RelativeBendpoint) points.get(1);
+				RelativeBendpoint rb1 = new RelativeBendpoint(first.getSourceX(), first.getSourceY(), first.getTargetX() - 8, first.getTargetY());
+				RelativeBendpoint rb2 = new RelativeBendpoint(last.getSourceX() + 8, last.getSourceY(), last.getTargetX(), 0);
+				newPoints.add(rb1);
+				for (int i = 1; i < points.size() - 1; i++) {
+					newPoints.add((RelativeBendpoint) points.get(i));
+				}
+				newPoints.add(rb2);
+				((RelativeBendpoints) bendpoints).setPoints(newPoints);
+			}
+		}
+		// Reset message end to target ExecutionSpecification, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
+		EObject edgeElement = ViewUtil.resolveSemanticElement(edge);
+		EObject targetElement = ViewUtil.resolveSemanticElement(newTarget);
+		if (edgeElement instanceof Message && MessageSort.SYNCH_CALL_LITERAL == ((Message) edgeElement).getMessageSort() && targetElement instanceof ExecutionSpecification) {
+			MessageEnd receiveEvent = ((Message) edgeElement).getReceiveEvent();
 
-				Collection<EStructuralFeature.Setting> collection = EMFHelper.getUsages(receiveEvent);
-				for (EStructuralFeature.Setting nonNavigableInverseReference : collection) {
-					EObject eObject = nonNavigableInverseReference.getEObject();
-					if (eObject instanceof ExecutionSpecification && eObject != targetElement) {
-						if (((ExecutionSpecification) eObject).getStart() == receiveEvent) {
-							OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification) eObject, UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
-						}
+			Collection<EStructuralFeature.Setting> collection = EMFHelper.getUsages(receiveEvent);
+			for (EStructuralFeature.Setting nonNavigableInverseReference : collection) {
+				EObject eObject = nonNavigableInverseReference.getEObject();
+				if (eObject instanceof ExecutionSpecification && eObject != targetElement) {
+					if (((ExecutionSpecification) eObject).getStart() == receiveEvent) {
+						OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification) eObject, UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
 					}
 				}
-				
-				OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification) targetElement, receiveEvent);
 			}
+			
+			OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification) targetElement, receiveEvent);
+		}
+		if (edgeElement instanceof Message && MessageSort.DELETE_MESSAGE_LITERAL == ((Message) edgeElement).getMessageSort() && targetElement instanceof DestructionOccurrenceSpecification) {
+			// Set Message target to newly created DOS, destroy old MessageOccurrenceSpecification
+			LifelineMessageDeleteHelper.setMessageEndDos((Message)edgeElement, (DestructionOccurrenceSpecification)targetElement);
 		}
 		return null;
 	}

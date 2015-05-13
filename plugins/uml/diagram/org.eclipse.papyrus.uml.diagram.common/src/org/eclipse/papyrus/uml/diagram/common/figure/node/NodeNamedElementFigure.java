@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Atos Origin - Enable extending with a composite figure, by adding overrideable methods.
+ *  Mickael ADAM (ALL@TEC) mickael.adam@all4tec.net - bug 462448
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -43,7 +44,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 
-	private Label taggedLabel;
+	private PapyrusWrappingLabel taggedLabel;
 
 	/** the depth of the qualified name **/
 	private int depth = 0;
@@ -66,7 +67,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	protected Label qualifiedLabel;
 
 	/**
-	 * Added for stereptypes properties
+	 * Added for stereotypes properties
 	 */
 	private RectangleFigure stereotypePropertiesContent;
 
@@ -125,14 +126,16 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	@Override
 	public void add(IFigure figure, Object constraint, int index) {
-		if (figure instanceof AppliedStereotypeCompartmentFigure) {
-			if (stereotypePropertiesContent == null) {
-				this.createStereotypePropertiesContent();
-			}
-			stereotypePropertiesContent.add(figure);
-		} else {
+		if (figure != null) {
+			if (figure instanceof AppliedStereotypeCompartmentFigure) {
+				if (stereotypePropertiesContent == null) {
+					this.createStereotypePropertiesContent();
+				}
+				stereotypePropertiesContent.add(figure);
+			} else {
 
-			super.add(figure, constraint, index);
+				super.add(figure, constraint, index);
+			}
 		}
 	}
 
@@ -228,6 +231,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	public void restoreTaggedLabel() {
 		if (taggedLabel != null) {
 			taggedLabel.setOpaque(false);
+			taggedLabel.setAlignment(namePosition);
 			getTagLabelContainer().add(taggedLabel, getTagLabelConstraint(), 0);
 		}
 	}
@@ -543,7 +547,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * @return
 	 */
 	@Override
-	public Label getTaggedLabel() {
+	public WrappingLabel getTaggedLabel() {
 		return taggedLabel;
 	}
 
@@ -575,7 +579,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	protected void initTagLabel(String value) {
 		if (value != null && value.length() > 0) {
-			taggedLabel = new Label();
+			taggedLabel = new PapyrusWrappingLabel();
 			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
 			taggedLabel.setText(textToDisplay);
 			taggedLabel.setOpaque(false);

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2014 Atos Origin, CEA, and others.
+ * Copyright (c) 2009, 2015 Atos Origin, CEA, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *     Atos Origin - initial API and implementation
  *     Christian W. Damus (CEA) - bug 422257
+ *     Christian W. Damus - bug 465416
  *
  *******************************************************************************/
 package org.eclipse.papyrus.infra.core.log;
@@ -116,12 +117,11 @@ public class LogHelper {
 	 *
 	 * @param status
 	 */
-	private void log(IStatus status) {
+	public void log(IStatus status) {
 
 		if (activator == null) {
 			// TODO Do log with java ?
-		}
-		else {
+		} else {
 			activator.getLog().log(status);
 		}
 	}

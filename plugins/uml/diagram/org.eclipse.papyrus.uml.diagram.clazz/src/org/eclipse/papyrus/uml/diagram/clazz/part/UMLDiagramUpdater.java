@@ -156,7 +156,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
 			return getPackagePackagedelements_7010SemanticChildren(view);
 		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
-			return getEnumerationEnumerationLiteralCompartment_7031SemanticChildren(view);
+			return getEnumerationLiteralsCompartment_7031SemanticChildren(view);
 		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
 			return getInstanceSpecificationSlots_7035SemanticChildren(view);
 		case ClassAttributeCompartmentEditPart.VISUAL_ID:
@@ -196,7 +196,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			return getPackagePackagedelements_7016SemanticChildren(view);
 		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
-			return getEnumerationEnumerationLiteralCompartment_7015SemanticChildren(view);
+			return getEnumerationLiteralsCompartment_7015SemanticChildren(view);
 		case AssociationClassOperationCompartmentEditPart.VISUAL_ID:
 			return getAssociationClassOperations_7036SemanticChildren(view);
 		case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
@@ -1192,7 +1192,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getEnumerationEnumerationLiteralCompartment_7031SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getEnumerationLiteralsCompartment_7031SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -1885,7 +1885,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getEnumerationEnumerationLiteralCompartment_7015SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getEnumerationLiteralsCompartment_7015SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}

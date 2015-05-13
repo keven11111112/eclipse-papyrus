@@ -13,12 +13,20 @@ package org.eclipse.papyrus.dsml.validation.generator.xtend;
 import java.io.File;
 import java.io.IOException;
 
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.papyrus.codegen.base.ProjectBasedFileAccess;
 
 /**
@@ -29,7 +37,7 @@ public class Generate {
 	/**
 	 * 
 	 */
-	private static final String SRC = "src"; //$NON-NLS-1$
+	private static final String SRC = "src-gen"; //$NON-NLS-1$
 
 	/**
 	 * This method is used to launch the generation from a standalone application.
@@ -65,6 +73,46 @@ public class Generate {
 	}
 
 	/**
+	 * Create a folder in a given project and register it as Java source folder  
+	 * @param targetProject an existing project
+	 * @param sourceFolder the name of a folder which should become a source folder
+	 */
+	protected static void createSourceFolder(IProject targetProject, String sourceFolder) {
+		// first, create folder
+		IFolder folder = targetProject.getFolder(sourceFolder);
+		if (!folder.exists()) {
+			try {
+				folder.create(false, true, new NullProgressMonitor());
+			} catch (CoreException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		IJavaProject javaProject = JavaCore.create(targetProject);
+		IClasspathEntry[] entries;
+		try {
+			entries = javaProject.getRawClasspath();
+		
+			IPath srcPath= javaProject.getPath().append(sourceFolder);
+
+			for (IClasspathEntry entry : entries) {
+				if (entry.getPath().equals(srcPath)) {
+					// nothing to do
+					return;
+				}
+			}
+			IClasspathEntry[] newEntries = new IClasspathEntry[entries.length + 1];
+			System.arraycopy(entries, 0, newEntries, 0, entries.length);
+
+			IClasspathEntry srcEntry= JavaCore.newSourceEntry(srcPath, null);
+			newEntries[entries.length] = JavaCore.newSourceEntry(srcEntry.getPath());
+			javaProject.setRawClasspath(newEntries, null);
+		} catch (JavaModelException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
+	/**
 	 * Launches the generation described by this instance.
 	 *
 	 * @param monitor
@@ -73,6 +121,7 @@ public class Generate {
 	 *             This will be thrown if any of the output files cannot be saved to disk.
 	 */
 	public static void generateClientSelector(Resource input, IProject targetProject, IProgressMonitor monitor) throws IOException {
+		createSourceFolder(targetProject, SRC);
 		ProjectBasedFileAccess fsa = new ProjectBasedFileAccess(targetProject, SRC);
 		ClientSelectorGen.generate(input, fsa);
 	}
@@ -86,6 +135,7 @@ public class Generate {
 	 *             This will be thrown if any of the output files cannot be saved to disk.
 	 */
 	public static void generateConstraints(Resource input, IProject targetProject, IProgressMonitor monitor) throws IOException {
+		createSourceFolder(targetProject, SRC);
 		ProjectBasedFileAccess fsa = new ProjectBasedFileAccess(targetProject, SRC);
 		ConstraintGen.generate(input, fsa);
 	}
