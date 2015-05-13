@@ -39,7 +39,6 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -55,7 +54,6 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.swt.SWT;
@@ -117,9 +115,7 @@ public class CreationMenuFactory {
 				boolean result = false;
 				if (currentMenu instanceof Folder) {
 					result = populateMenu(topMenu, (Folder) currentMenu, selectedObject, topMenu.getItemCount(), adviceCache);
-				}
-
-				if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible()) {
+				} else if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible()) {
 					CreationMenu currentCreationMenu = (CreationMenu) currentMenu;
 					EReference reference = null;
 					String role = currentCreationMenu.getRole();
@@ -135,7 +131,6 @@ public class CreationMenuFactory {
 						if (currentCreationMenu.isDisplayAllRoles()) {
 							result = constructMenu(selectedObject, topMenu, currentCreationMenu, adviceCache);
 						} else {
-
 							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference, adviceCache);
 						}
 					}
@@ -237,9 +232,7 @@ public class CreationMenuFactory {
 			Menu topMenu = new Menu(menu);
 			topMenuItem.setMenu(topMenu);
 			for (EStructuralFeature eStructuralFeature : possibleEFeatures) {
-				if (!(eStructuralFeature instanceof EReference)) {
-					continue;
-				}
+
 				Command cmd = buildCommand((EReference) eStructuralFeature, target, currentCreationMenu, adviceCache);
 				if (cmd.canExecute()) {
 					MenuItem item = new MenuItem(topMenu, SWT.NONE);
@@ -428,20 +421,19 @@ public class CreationMenuFactory {
 	 * 		the creation request to use in this handler
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache) {
-		String extendedType = creationMenu.getElementTypeIdRef();
-		
+		String elementTypeId = creationMenu.getElementTypeIdRef();
 		CreateElementRequest request = null;
 		if (reference == null) {
 			if (creationMenu instanceof CreateRelationshipMenu) {
-				request = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(extendedType));
+				request = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(elementTypeId));
 			} else {
-				request = new CreateElementRequest(editingDomain, container, getElementType(extendedType));
+				request = new CreateElementRequest(editingDomain, container, getElementType(elementTypeId));
 			}
 		} else {
 			if (creationMenu instanceof CreateRelationshipMenu) {
-				request = new CreateRelationshipRequest(editingDomain, null,container,null,getElementType(extendedType),reference);
+				request = new CreateRelationshipRequest(editingDomain, null,container,null,getElementType(elementTypeId),reference);
 			} else {
-				request = new CreateElementRequest(editingDomain, container, getElementType(extendedType), reference);
+				request = new CreateElementRequest(editingDomain, container, getElementType(elementTypeId), reference);
 			}
 		}
 		request.setParameter(RequestCacheEntries.Cache_Maps, adviceCache);
