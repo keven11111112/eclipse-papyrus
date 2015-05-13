@@ -253,6 +253,22 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 *            the type
 	 */
 	public void testToCreateALink(IElementType linkType, String initialName) {
+		testCreateLink(linkType, initialName);
+
+		Assert.assertEquals("Diagram updater must detect that node children has been created", 4, getDiagramUpdater().getSemanticChildren(getRootView()).size()); //$NON-NLS-1$
+		Assert.assertEquals("Diagram updater must detect that no link has been created", 1, getDiagramUpdater().getContainedLinks(getRootView()).size()); //$NON-NLS-1$
+		Assert.assertEquals("Diagram updater must detect that no link are incoming", 0, getDiagramUpdater().getIncomingLinks((View) ((Diagram) getRootView()).getEdges().get(0)).size()); //$NON-NLS-1$
+		Assert.assertEquals("Diagram updater must detect that no link are outgoing", 0, getDiagramUpdater().getOutgoingLinks((View) ((Diagram) getRootView()).getEdges().get(0)).size()); //$NON-NLS-1$
+		Assert.assertEquals("Diagram updater must detect that no children has ben created in the new element", 0, getDiagramUpdater().getSemanticChildren(((View) ((Diagram) getRootView()).getEdges().get(0))).size()); //$NON-NLS-1$
+		Assert.assertEquals("Diagram updater must detect that no link has been created in the new element", 0, getDiagramUpdater().getContainedLinks(((View) ((Diagram) getRootView()).getEdges().get(0))).size()); //$NON-NLS-1$
+
+		Assert.assertEquals("Diagram updater must detect that no link are incoming", 1, getDiagramUpdater().getIncomingLinks(target.getNotationView()).size()); //$NON-NLS-1$
+		Assert.assertEquals("Diagram updater must detect that no link are OutgoingLinks", 0, getDiagramUpdater().getOutgoingLinks(target.getNotationView()).size()); //$NON-NLS-1$
+		Assert.assertEquals("Diagram updater must detect that no link are IncomingLinks", 0, getDiagramUpdater().getIncomingLinks(source.getNotationView()).size()); //$NON-NLS-1$
+		Assert.assertEquals("Diagram updater must detect that no link are OutgoingLinks", 1, getDiagramUpdater().getOutgoingLinks(source.getNotationView()).size()); //$NON-NLS-1$
+	}
+
+	protected void testCreateLink(IElementType linkType, String initialName) {
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 4);
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
@@ -269,20 +285,6 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(CREATION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 5);
 		ConnectionEditPart linkEditPart = (ConnectionEditPart) getDiagramEditPart().getConnections().get(0);
 		testLinkEditPart(linkEditPart, initialName);
-
-		Assert.assertEquals("Diagram updater must detect that node children has been created", 4, getDiagramUpdater().getSemanticChildren(getRootView()).size()); //$NON-NLS-1$
-		Assert.assertEquals("Diagram updater must detect that no link has been created", 1, getDiagramUpdater().getContainedLinks(getRootView()).size()); //$NON-NLS-1$
-		Assert.assertEquals("Diagram updater must detect that no link are incoming", 0, getDiagramUpdater().getIncomingLinks((View) ((Diagram) getRootView()).getEdges().get(0)).size()); //$NON-NLS-1$
-		Assert.assertEquals("Diagram updater must detect that no link are outgoing", 0, getDiagramUpdater().getOutgoingLinks((View) ((Diagram) getRootView()).getEdges().get(0)).size()); //$NON-NLS-1$
-		Assert.assertEquals("Diagram updater must detect that no children has ben created in the new element", 0, getDiagramUpdater().getSemanticChildren(((View) ((Diagram) getRootView()).getEdges().get(0))).size()); //$NON-NLS-1$
-		Assert.assertEquals("Diagram updater must detect that no link has been created in the new element", 0, getDiagramUpdater().getContainedLinks(((View) ((Diagram) getRootView()).getEdges().get(0))).size()); //$NON-NLS-1$
-
-		Assert.assertEquals("Diagram updater must detect that no link are incoming", 1, getDiagramUpdater().getIncomingLinks(target.getNotationView()).size()); //$NON-NLS-1$
-		Assert.assertEquals("Diagram updater must detect that no link are OutgoingLinks", 0, getDiagramUpdater().getOutgoingLinks(target.getNotationView()).size()); //$NON-NLS-1$
-		Assert.assertEquals("Diagram updater must detect that no link are IncomingLinks", 0, getDiagramUpdater().getIncomingLinks(source.getNotationView()).size()); //$NON-NLS-1$
-		Assert.assertEquals("Diagram updater must detect that no link are OutgoingLinks", 1, getDiagramUpdater().getOutgoingLinks(source.getNotationView()).size()); //$NON-NLS-1$
-
-
 	}
 
 	/**
