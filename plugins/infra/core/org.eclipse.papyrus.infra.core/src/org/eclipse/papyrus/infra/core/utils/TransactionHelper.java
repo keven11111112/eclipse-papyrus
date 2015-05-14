@@ -16,6 +16,7 @@
  *  Christian W. Damus - bug 461629
  *  Christian W. Damus - bug 463564
  *  Christian W. Damus - bug 466997
+ *  Christian W. Damus - bug 465416
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -31,6 +32,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionImpl;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 
@@ -339,6 +341,19 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	public static boolean isInteractive(Transaction transaction) {
 		Object value = transaction.getOptions().get(TRANSACTION_OPTION_INTERACTIVE);
 		return (value instanceof Boolean) ? (Boolean) value : true;
+	}
+
+	/**
+	 * Queries whether a {@code transaction} is one that is executing or that executed triggers, or is perhaps
+	 * the read-only post-commit transaction that tells listeners about the changes made by a trigger transaction.
+	 * 
+	 * @param transaction
+	 *            a transaction
+	 * @return whether it is a trigger transaction
+	 */
+	public static boolean isTriggerTransaction(Transaction transaction) {
+		Object value = transaction.getOptions().get(TransactionImpl.OPTION_IS_TRIGGER_TRANSACTION);
+		return (value instanceof Boolean) ? (Boolean) value : false;
 	}
 
 	/**
