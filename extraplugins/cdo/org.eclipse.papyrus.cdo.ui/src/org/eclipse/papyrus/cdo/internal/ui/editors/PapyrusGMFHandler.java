@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 422257
+ *   Christian W. Damus - Fix memory leak (and failure of the refresh throttle) exposed by the test
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.editors;
@@ -216,10 +217,8 @@ public class PapyrusGMFHandler extends DawnGMFHandler {
 
 		private void post() {
 			// don't schedule redundant refreshes for this editor
-			if (UIUtil.ensureUIThread(this)) {
-				if (pending.putIfAbsent(editor, this) == this) {
-					run();
-				}
+			if (pending.putIfAbsent(editor, this) == null) {
+				UIUtil.later(this);
 			}
 		}
 
@@ -230,7 +229,7 @@ public class PapyrusGMFHandler extends DawnGMFHandler {
 
 		@Override
 		public void run() {
-			pending.remove(editor, this);
+			pending.remove(editor);
 
 			DiagramDocumentEditor diagramEditor = getDiagramEditor(editor);
 			if (diagramEditor != null) {
