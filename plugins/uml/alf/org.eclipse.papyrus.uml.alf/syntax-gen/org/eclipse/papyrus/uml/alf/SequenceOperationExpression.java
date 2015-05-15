@@ -377,8 +377,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * parameter is given by the primary expression of a sequence operation
 	 * expression, not in its tuple).
 	 * <!-- end-model-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameters = self.InvocationExpression_parameterElements() in\n          if parameters->size() < 2 then OrderedSet(ElementReference){}\n          else parameters->subOrderedSet(2, parameters->size())\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameters = self.InvocationExpression_parameterElements() in\n          if parameters->size() < 2 then OrderedSet(ElementReference){}\n          else parameters->subOrderedSet(2, parameters->size())\n          endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parameterElements();

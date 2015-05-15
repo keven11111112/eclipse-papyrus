@@ -264,7 +264,7 @@ public interface InstanceCreationExpression extends InvocationExpression {
 	 * Returns the parameters of a constructor operation or the attributes of a
 	 * data type, or an empty set for a constructorless instance creation.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isConstructorless then Set(ElementReference){}\n        else self.InvocationExpression_parameterElements()\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isConstructorless then OrderedSet(ElementReference){}\n        else self.InvocationExpression_parameterElements()\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parameterElements();

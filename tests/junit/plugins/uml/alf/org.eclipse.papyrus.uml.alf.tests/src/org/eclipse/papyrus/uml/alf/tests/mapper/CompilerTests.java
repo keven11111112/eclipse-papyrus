@@ -153,22 +153,6 @@ public class CompilerTests {
 		}
 	}
 	
-	public static void assertMethod(Operation operation) {
-		EList<Behavior> methods = operation.getMethods();
-		assertEquals(1, methods.size());
-		assertTrue(methods.get(0) instanceof Activity);
-		
-		Activity method = (Activity)methods.get(0);
-		assertEquals(operation.getName() + "$method$1", method.getName());
-		
-		EList<Parameter> operationParameters = operation.getOwnedParameters();
-		EList<Parameter> methodParameters = method.getOwnedParameters();
-		assertEquals(operationParameters.size(), methodParameters.size());
-		for (int i = 0; i < operationParameters.size(); i++) {
-			assertParameter(operationParameters.get(i), methodParameters.get(i));
-		}
-	}
-
 	public static <T extends PackageableElement> T setupContextElement(
 			T element, String name)
 			throws ParsingError, MappingError {

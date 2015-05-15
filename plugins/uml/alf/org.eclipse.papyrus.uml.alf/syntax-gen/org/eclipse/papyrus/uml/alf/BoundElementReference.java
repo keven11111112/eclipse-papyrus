@@ -509,7 +509,7 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(\n          self.referent.ownedMembers()->reject(isTemplateParameter())\n        )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(\n          self.referent.ownedMembers()->reject(isTemplateParameter())\n        )->asOrderedSet()'"
 	 * @generated
 	 */
 	EList<ElementReference> ownedMembers();
@@ -517,7 +517,7 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(\n          self.referent.members()->reject(isTemplateParameter())\n        )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(\n          self.referent.members()->reject(isTemplateParameter())\n        )->asOrderedSet()'"
 	 * @generated
 	 */
 	EList<ElementReference> members();
@@ -541,7 +541,7 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.parameters())'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.parameters())->asOrderedSet()'"
 	 * @generated
 	 */
 	EList<ElementReference> parameters();
@@ -684,7 +684,7 @@ public interface BoundElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.parents()->asOrderedSet())'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.parents()->asOrderedSet())->asSet()'"
 	 * @generated
 	 */
 	EList<ElementReference> parents();
@@ -693,7 +693,7 @@ public interface BoundElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.allParents()->asOrderedSet())'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferencesTo(self.referent.allParents()->asOrderedSet())->asSet()'"
 	 * @generated
 	 */
 	EList<ElementReference> allParents();

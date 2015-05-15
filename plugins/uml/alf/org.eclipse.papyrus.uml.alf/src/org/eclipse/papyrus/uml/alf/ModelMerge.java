@@ -378,19 +378,6 @@ public class ModelMerge {
 		return name != null && name.matches(".+\\\\$method\\\\$[0-9]+");
 	}
 
-	protected static String nameOf(NamedElement element) {
-		String name = element.getName();
-		return isStubName(name)? name.substring(0, name.length() - 5): name;
-	}
-	
-	protected static boolean notStub(NamedElement element) {
-		return !isStubName(element.getName());
-	}
-	
-	protected static boolean isStubName(String name) {
-		return name != null && name.endsWith("$stub");
-	}
-
 	protected void clearReplacements() {
 		this.originalElements.clear();
 		this.replacementElements.clear();

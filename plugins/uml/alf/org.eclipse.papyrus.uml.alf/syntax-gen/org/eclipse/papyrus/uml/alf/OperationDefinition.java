@@ -188,7 +188,7 @@ public interface OperationDefinition extends NamespaceDefinition {
 	 * as a local name).
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" elementRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.body <> element then Set(AssignedSource){}\n        else\n          self.parameters()->collect(parameter |\n            AssignedSource{\n              name = parameter.actualName(),\n              source = if parameter.direction = \'out\' then null else parameter endif,\n              type = parameter.typePart.type,\n              upper = parameter.typePart.upper,\n              lower = parameter.typePart.lower\n            }\n          )\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.body <> element then Set(AssignedSource){}\n        else\n          self.parameters()->collect(parameter |\n            AssignedSource{\n              name = parameter.actualName(),\n              source = if parameter.direction = \'out\' then null else parameter endif,\n              type = parameter.typePart.type,\n              upper = parameter.typePart.upper,\n              lower = parameter.typePart.lower\n            }\n          )->asSet()\n        endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsBefore(SyntaxElement element);
@@ -289,7 +289,7 @@ public interface OperationDefinition extends NamespaceDefinition {
 	 * Returns the specialization referents for the owning class definition of this operation definition.
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let namespace = self.containingMember().namespace in \n          if namespace.oclIsKindOf(ClassDefinition) then \n            namespace.oclAsType(ClassDefinition).specializationReferent\n          else \n            Set{}\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let namespace = self.containingMember().namespace in \n          if namespace.oclIsKindOf(ClassDefinition) then \n            namespace.oclAsType(ClassDefinition).specializationReferent->asSet()\n          else \n            Set{}\n          endif'"
 	 * @generated
 	 */
 	EList<ElementReference> specializationReferents();
