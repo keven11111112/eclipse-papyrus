@@ -880,11 +880,13 @@ mapping ActiveClassDefinition::toClass() : Class
   if not self.isStub then {
 	  ownedReception := self.ownedMember->map toNamedElement()[Reception];
 	  ownedReception += self.ownedMember[definition.oclIsKindOf(SignalReceptionDefinition)]->map toReception();
-	  classifierBehavior := self.classifierBehavior.map toActivity();
-	  classifierBehavior.name := uniqueName(result.name + "$behavior", result);
-	  classifierBehavior.visibility := VisibilityKind::private;
-	  ownedBehavior += classifierBehavior; // Eclipse implmentation only
-	  // addDefinition(classifierBehavior.oclAsType(Activity), self.classifierBehavior.body);
+	  if self.classifierBehavior <> null then {
+		  classifierBehavior := self.classifierBehavior.map toActivity();
+		  classifierBehavior.name := uniqueName(result.name + "$behavior", result);
+		  classifierBehavior.visibility := VisibilityKind::private;
+		  ownedBehavior += classifierBehavior; // Eclipse implementation only
+		  // addDefinition(classifierBehavior.oclAsType(Activity), self.classifierBehavior.body);
+	  } endif;
   } endif;
 }
 
@@ -1072,7 +1074,7 @@ mapping PropertyDefinition::toProperty() : Property
 		if self.isComposite then AggregationKind::composite
 		else AggregationKind::none endif;
   if self.initializer <> null then {
-  	 var expression := self.initializer.map toOpaqueExpression().oclAsType(OpaqueExpression);
+  	 var expression := self.initializer.map toOpaqueExpression();
   	 defaultValue := expression;
   } endif;
 }
