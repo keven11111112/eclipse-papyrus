@@ -956,6 +956,10 @@ init {
 }
 	isActive := self.toReference().isActiveBehavior();
 	if not self.isStub then {
+	  var stub := self.stub();
+	  if stub <> null and stub.isOperation() then {
+	  	specification := stub.toUml().oclAsType(Operation);
+	  } endif;
 		self.body.map toActivity(result);
 	  if self.unit->isEmpty() then {
 	  	addDefinition(result, self.body);	

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013-2015 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  IJI - Initial implementation
+ *  Ed Seidewitz (IJI, MDS)
+ *  Jeremie Tatibouet (CEA)
  * 
  *****************************************************************************/
 
@@ -16,7 +17,6 @@ package org.eclipse.papyrus.uml.alf;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -75,16 +75,10 @@ public class ModelMerge {
 			this.updateClassifier(targetActivity, sourceActivity);
 			this.updateCollection(targetActivity.getOwnedParameters(), sourceActivity.getOwnedParameters());
 			targetActivity.setIsActive(sourceActivity.isActive());
-			
-			/*
-			 * FIXME: null test avoid the activity to be removed from the method list of an operation. The specification 
-			 * is always null when an activity playing the role of a method is compiled.
-			 * */
-			BehavioralFeature newSpecification = sourceActivity.getSpecification();			
-			if(newSpecification!=null){ 
-				sourceActivity.setSpecification(null);
-				targetActivity.setSpecification(newSpecification);
-			}
+			BehavioralFeature specification = sourceActivity.getSpecification();
+			// NOTE: Removes the source activity as a method of its former specification.
+			sourceActivity.setSpecification(null);
+			targetActivity.setSpecification(specification);
 			
 			if (notStub(sourceActivity)) {
 				// NOTE: the elements contained in the activity (i.e., nodes and edges) are not preserved between two compilations
@@ -334,7 +328,7 @@ public class ModelMerge {
 		}
 		return null;
 	}
-	
+	/*
 	protected static Operation findOwnedOperationWithName(String name, Class clazz){
 		Operation operation = null;
 		Iterator<Operation> iteratorOperation = clazz.getOwnedOperations().iterator();
@@ -347,7 +341,7 @@ public class ModelMerge {
 		return null;
 	}
 	
-	/*protected static boolean isCohesive(Operation operation, Behavior ownedBehavior){
+	protected static boolean isCohesive(Operation operation, Behavior ownedBehavior){
 		boolean cohesive = true;
 		int parameterCount = operation.getOwnedParameters().size();
 		if(parameterCount==ownedBehavior.getOwnedParameters().size()){

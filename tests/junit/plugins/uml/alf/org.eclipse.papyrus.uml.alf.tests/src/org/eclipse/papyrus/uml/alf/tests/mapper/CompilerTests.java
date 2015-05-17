@@ -19,11 +19,15 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.alf.MappingError;
 import org.eclipse.papyrus.uml.alf.Model;
 import org.eclipse.papyrus.uml.alf.ParsingError;
+import org.eclipse.papyrus.uml.alf.SyntaxElement;
 import org.eclipse.papyrus.uml.alf.tests.mapper.AlfCompiler;
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
@@ -34,6 +38,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
@@ -62,7 +67,7 @@ public class CompilerTests {
 
 	private static AlfCompiler compiler = null;
 
-	private static Model contextModel = null;
+	private static Package contextModel = null;
 	
 	@BeforeClass
 	public static void setup() throws Exception {
@@ -72,7 +77,7 @@ public class CompilerTests {
 
 	@After
 	public void clean() {
-		((Package)contextModel).getPackagedElements().clear();
+		contextModel.getPackagedElements().clear();
 	}
 
 	public static void assertTextualRepresentation(
@@ -153,21 +158,21 @@ public class CompilerTests {
 		}
 	}
 	
-	public static <T extends PackageableElement> T setupContextElement(
-			T element, String name)
-			throws ParsingError, MappingError {
-		((Package)contextModel).getPackagedElements().add(element);
-		// compiler.addTextualRepresentation(element, textualRepresentation);
-		// compiler.compile(element, textualRepresentation);
-		return element;
-	}
-
-	public static <T extends PackageableElement> T compile(
-			T element, String textualRepresentation)
-			throws ParsingError, MappingError {
-		T contextElement = setupContextElement(element, textualRepresentation);
-		compiler.compile(contextElement, textualRepresentation);
+	public static <T extends PackageableElement> T compile(T contextElement, String textualRepresentation, Namespace contextNamespace)
+		throws ParsingError, MappingError {
+		List<EObject> alf = new BasicEList<EObject>();
+		SyntaxElement element = (SyntaxElement)compiler.parse(textualRepresentation);
+		ModelNamespaceFacade.getInstance().getContext(element).setContextNamespace(contextNamespace);
+		alf.add(element);
+		compiler.map(contextElement, alf);
+		compiler.addTextualRepresentation(contextElement, textualRepresentation);
 		return contextElement;
+	}
+	
+	public static <T extends PackageableElement> T compile(T contextElement, String textualRepresentation)
+			throws ParsingError, MappingError {
+		contextModel.getPackagedElements().add(contextElement);
+		return compile(contextElement, textualRepresentation, contextModel);
 	}
 
 	public static Class compileClass(String textualRepresentation)
@@ -266,6 +271,18 @@ public class CompilerTests {
 				"a", ParameterDirectionKind.IN_LITERAL, 1, 1, false, true, "Integer");
 		assertMethod(operation);
 	}
+	
+	@Test
+	public void testMethodRecompile() throws ParsingError, MappingError {
+		Class testClass = compileTestClass();
+		Operation operation = testClass.getOwnedOperation("q", null, null);
+		Behavior method = operation.getMethods().get(0);		
+		
+		compile(method, compiler.getTextualRepresentation(method), testClass);
+		
+		assertEquals(operation, method.getSpecification());
+		assertMethod(operation);
+	}
 
 	public static String SELF_REFERENCE_TEXT = "class Test { self : Test; }";
 
@@ -291,7 +308,7 @@ public class CompilerTests {
 	}
 
 	public static final String PROPERTY_INITIALIZER_TEXT = "class Test { p : Integer = 1; }";
-	public static final String DEFAULT_VALUE_ACTIVITY_TEXT = "activity 'p$defaultValue$1'(): Integer {\n\treturn  1;\n}";
+	public static final String DEFAULT_VALUE_ACTIVITY_TEXT = "activity 'p$defaultValue$1'(): Natural {\n  return 1;\n}";
 
 	@Test
 	public void testPropertyInitializer() throws ParsingError, MappingError {
