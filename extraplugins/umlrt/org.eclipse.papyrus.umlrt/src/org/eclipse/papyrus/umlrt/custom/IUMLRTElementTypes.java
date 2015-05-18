@@ -33,8 +33,11 @@ public interface IUMLRTElementTypes {
 	
 	public static final String RT_EXCLUDED_ELEMENT_ID = "org.eclipse.papyrus.umlrt.RTRExcludedElement";//$NON-NLS-1$
 
-	public static final String RT_MESSAGE_ID = "org.eclipse.papyrus.umlrt.RTMessage";
-	public static final String RT_MESSAGE_IN_ID = "org.eclipse.papyrus.umlrt.RTMessageIn";
-	public static final String RT_MESSAGE_OUT_ID = "org.eclipse.papyrus.umlrt.RTMessageOut";
-	public static final String RT_MESSAGE_INOUT_ID = "org.eclipse.papyrus.umlrt.RTMessageInout";
+	public static final String PROTOCOL_MESSAGE_ID = "org.eclipse.papyrus.umlrt.ProtocolMessage";//$NON-NLS-1$
+	
+	public static final String PROTOCOL_MESSAGE_IN_ID = "org.eclipse.papyrus.umlrt.ProtocolMessageIn";//$NON-NLS-1$
+	
+	public static final String PROTOCOL_MESSAGE_OUT_ID = "org.eclipse.papyrus.umlrt.ProtocolMessageOut";//$NON-NLS-1$
+	
+	public static final String PROTOCOL_MESSAGE_INOUT_ID = "org.eclipse.papyrus.umlrt.ProtocolMessageInOut";//$NON-NLS-1$
 }

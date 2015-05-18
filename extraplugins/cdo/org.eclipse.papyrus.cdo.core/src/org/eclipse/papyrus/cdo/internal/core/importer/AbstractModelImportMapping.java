@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -23,7 +25,6 @@ import org.eclipse.papyrus.cdo.core.importer.IModelImportMapping;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 
 /**
@@ -59,9 +60,9 @@ abstract class AbstractModelImportMapping extends AbstractModelTransferMapping i
 	}
 
 	protected CDOView getView() {
-		IInternalPapyrusRepository repo = (IInternalPapyrusRepository) getRepository();
+		CDOCheckout checkout = getCheckout();
 
-		return (repo == null) ? null : repo.getMasterView();
+		return (checkout == null) ? null : checkout.getView();
 	}
 
 	@Override

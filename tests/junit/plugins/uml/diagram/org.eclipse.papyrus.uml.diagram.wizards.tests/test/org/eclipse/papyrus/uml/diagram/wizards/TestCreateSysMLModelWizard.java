@@ -32,7 +32,9 @@ public class TestCreateSysMLModelWizard extends TestNewModelWizardBase {
 
 	@Test
 	public void testOrderOfPages() {
-		Class<?>[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramKindPage.class, };
+		// actual pages: [SelectStorageProvider -> SelectStorageProviderPage,
+		// NewPapyrusModel -> NewModelFilePage, NewCDOModel -> NewModelPage, SelectDiagramKind -> SelectDiagramKindPage]
+		Class<?>[] expectedPages = new Class[] { NewModelFilePage.class, SelectDiagramKindPage.class };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
@@ -62,7 +64,7 @@ public class TestCreateSysMLModelWizard extends TestNewModelWizardBase {
 
 			@Override
 			protected String[] getDiagramCategoryIds() {
-				return new String[]{ CreateSysMLModelCommand.COMMAND_ID };
+				return new String[] { CreateSysMLModelCommand.COMMAND_ID };
 			}
 
 		};

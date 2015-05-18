@@ -21,6 +21,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 import org.eclipse.papyrus.uml.tools.helper.UMLDatabindingHelper;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -40,7 +41,12 @@ public class ExtendedMultiplicityObservableValue extends AbstractObservableValue
 	 */
 	private final List<IObservableValue> observableValues;
 
-
+	/**
+	 * The reference counted observable support.
+	 */
+	private final ReferenceCountedObservable.Support refCount = new ReferenceCountedObservable.Support(this);
+	
+	
 	/**
 	 * Constructor.
 	 *
@@ -80,6 +86,40 @@ public class ExtendedMultiplicityObservableValue extends AbstractObservableValue
 	@Override
 	protected Object doGetValue() {
 		return observableValues;
+	}
+	
+	/**
+	 * @see org.eclipse.core.databinding.observable.AbstractObservable#dispose()
+	 *
+	 */
+	@Override
+	public synchronized void dispose() {
+		for(IObservableValue observableValue : observableValues){
+			observableValue.dispose();
+		}
+		observableValues.clear();
+		super.dispose();
+	}
+	
+	/**
+	 * This retains the support.
+	 */
+	public void retain() {
+		refCount.retain();
+	}
+
+	/**
+	 * This releases the support.
+	 */
+	public void release() {
+		refCount.release();
+	}
+
+	/**
+	 * This auto-relreases the support.
+	 */
+	public void autorelease() {
+		refCount.autorelease();
 	}
 
 }

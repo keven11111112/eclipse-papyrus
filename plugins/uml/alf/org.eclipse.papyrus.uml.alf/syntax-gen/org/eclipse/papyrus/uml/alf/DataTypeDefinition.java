@@ -29,7 +29,6 @@ public interface DataTypeDefinition extends ClassifierDefinition {
 	 * considered as a classifier definition and the subunit is for a data type
 	 * definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" unitRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                        self.ClassifierDefinition_matchForStub(unit) and\n                        unit.definition.oclIsKindOf(DataTypeDefinition)'"
 	 * @generated
@@ -43,10 +42,8 @@ public interface DataTypeDefinition extends ClassifierDefinition {
 	 * In addition to the annotations allowed for classifiers in general, a data type
 	 * definition allows @primitive annotations plus any stereotype whose metaclass is consistent with DataType.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" annotationRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                        /* TODO: Allow data type stereotype annotations. \052/\n                        self.ClassifierDefinition_annotationAllowed(annotation) or\n                        annotation.stereotypeName.pathName = \'primitive\''"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                        /* TODO: Allow data type stereotype annotations. \052/\n                        self.ClassifierDefinition_annotationAllowed(annotation) or\n                        annotation.stereotypeName.pathName = \'primitive\''"
 	 * @generated
 	 */
 	boolean annotationAllowed(StereotypeAnnotation annotation);
@@ -58,7 +55,6 @@ public interface DataTypeDefinition extends ClassifierDefinition {
 	 * Return true if the given member is either a DataTypeDefinition or an imported member
 	 * whose referent is a DataTypeDefinition or a DataType.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" memberRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='member.isDataType()'"
 	 * @generated
@@ -71,7 +67,6 @@ public interface DataTypeDefinition extends ClassifierDefinition {
 	 * <!-- begin-model-doc -->
 	 * If a data type is primitive, then it may not have any owned members.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                      self.isPrimitive implies self.ownedMember->isEmpty()'"
 	 * @generated
 	 */
@@ -83,7 +78,6 @@ public interface DataTypeDefinition extends ClassifierDefinition {
 	 * <!-- begin-model-doc -->
 	 * The specialization referents of a data type definition must all be data types.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                      self.specializationReferent->forAll(isDataType())'"
 	 * @generated
 	 */

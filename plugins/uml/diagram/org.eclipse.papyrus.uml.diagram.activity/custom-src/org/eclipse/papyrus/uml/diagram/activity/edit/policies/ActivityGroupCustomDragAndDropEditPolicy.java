@@ -30,10 +30,10 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.ContainerNodeDescriptorRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.IContainerNodeDescriptor;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Pin;
 
 /**
  * Drag and drop policy which allow drop of objects which are not contains from a semantic point of view into a visual element such as Activity
@@ -52,7 +52,8 @@ public class ActivityGroupCustomDragAndDropEditPolicy extends CustomDiagramDragD
 	@Override
 	protected IUndoableOperation getDropObjectCommand(DropObjectsRequest dropRequest, EObject droppedObject) {
 		Point location = dropRequest.getLocation().getCopy();
-		int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart) getHost()).getNotationView(), droppedObject);
+		EditPart hostForDroppedObject = droppedObject instanceof Pin ? getHost().getParent() : getHost();
+		int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart) hostForDroppedObject).getNotationView(), droppedObject);
 		int linkVISUALID = getLinkWithClassVisualID(droppedObject);
 		if (getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
 			Command specificDropCommand = getSpecificDropCommand(dropRequest, (Element) droppedObject, nodeVISUALID, linkVISUALID);
@@ -82,16 +83,14 @@ public class ActivityGroupCustomDragAndDropEditPolicy extends CustomDiagramDragD
 			// . Take the containment relationship into consideration
 			// . Release the constraint when GraphicalParent is a diagram
 			IContainerNodeDescriptor descriptor = ContainerNodeDescriptorRegistry.getInstance().getContainerNodeDescriptor(getContainerEClass());
-			if (getHost().getModel() instanceof Diagram) {
-				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
-			} else if ((graphicalParent instanceof Element)) {
+			if ((graphicalParent instanceof Element)) {
 				if (descriptor.canIBeModelParentOf(droppedObject.eClass())) {
 					if (droppedObject.eContainer() != null && !droppedObject.eContainer().equals(getHostObject())) {
 						return UnexecutableCommand.INSTANCE;
 					}
-					return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
+					return getDefaultDropNodeCommand(hostForDroppedObject, nodeVISUALID, location, droppedObject, dropRequest);
 				} else if (descriptor.canIBeGraphicalParentOf(droppedObject.eClass())) {
-					return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
+					return getDefaultDropNodeCommand(hostForDroppedObject, nodeVISUALID, location, droppedObject, dropRequest);
 				}
 			}
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;

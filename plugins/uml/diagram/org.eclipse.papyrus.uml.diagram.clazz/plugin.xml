@@ -1919,13 +1919,15 @@
    <modelProvider
          uri="model/classdiagram.assistants"></modelProvider>
 </extension>
-
-
-
-
-
-
-
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="PapyrusUMLClassDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconcilier"
+         source="1.0.0" 
+         target="1.1.0">
+   </diagramReconciler>
+</extension>
 
 
 </plugin>

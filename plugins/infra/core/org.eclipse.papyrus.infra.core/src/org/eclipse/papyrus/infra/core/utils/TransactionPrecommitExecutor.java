@@ -43,12 +43,14 @@ class TransactionPrecommitExecutor implements Executor, TransactionalEditingDoma
 
 	private final AtomicBoolean writeActive = new AtomicBoolean();
 	private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
+	private final IExecutorPolicy policy;
 	private final Map<?, ?> options;
 
-	TransactionPrecommitExecutor(TransactionalEditingDomain domain, Executor fallback, Map<?, ?> options) {
+	TransactionPrecommitExecutor(TransactionalEditingDomain domain, Executor fallback, IExecutorPolicy policy, Map<?, ?> options) {
 		super();
 
 		this.fallback = fallback;
+		this.policy = (policy == null) ? IExecutorPolicy.NULL : policy;
 		this.options = ((options != null) && options.isEmpty()) ? null : options;
 
 		TransactionUtil.getAdapter(domain, TransactionalEditingDomain.Lifecycle.class).addTransactionalEditingDomainListener(this);
@@ -56,11 +58,15 @@ class TransactionPrecommitExecutor implements Executor, TransactionalEditingDoma
 
 	@Override
 	public void execute(Runnable command) {
-		if (writeActive.get()) {
+		if (writeActive.get() && selectSelf(command)) {
 			queue.offer(command);
 		} else {
 			fallback.execute(command);
 		}
+	}
+
+	private boolean selectSelf(Runnable task) {
+		return IExecutorPolicy.Ranking.select(policy, task, this, fallback) == this;
 	}
 
 	//

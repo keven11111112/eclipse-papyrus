@@ -68,14 +68,6 @@ public class CreateInducedRepresentationViewCommand extends RecordingCommand {
 		//compartmentViewFactory.createView(new SemanticAdapter(owner.getElement(), null), owner, visualHint, -1, true,preferenceHint );
 	}
 
-	/**
-	 * Returns <code>true</code> if the created compartment should be visible
-	 *
-	 * @return <code>true</code> if the created compartment should be visible
-	 */
-	public boolean isVisible() {
-		return isVisible;
-	}
 
 	/**
 	 * Sets the visiblity of the created compartment

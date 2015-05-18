@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.EqualityExpression#isIsNegated <em>Is Negated</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.EqualityExpression#isIsNegated <em>Is Negated</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getEqualityExpression()
@@ -35,7 +35,6 @@ public interface EqualityExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether the test is for being not equal.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Negated</em>' attribute.
 	 * @see #setIsNegated(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getEqualityExpression_IsNegated()
@@ -49,9 +48,7 @@ public interface EqualityExpression extends BinaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.EqualityExpression#isIsNegated <em>Is Negated</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Negated</em>' attribute.
+	 * @param value the new value of the '<em>Is Negated</em>' attribute.
 	 * @see #isIsNegated()
 	 * @generated
 	 */
@@ -60,7 +57,6 @@ public interface EqualityExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.booleanType()'"
 	 * @generated
 	 */
@@ -69,7 +65,6 @@ public interface EqualityExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -79,7 +74,6 @@ public interface EqualityExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -92,7 +86,6 @@ public interface EqualityExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * An equality expression is negated if its operator is "!=".
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -105,7 +98,6 @@ public interface EqualityExpression extends BinaryExpression {
 	 * An equality expression has type Boolean.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -118,7 +110,6 @@ public interface EqualityExpression extends BinaryExpression {
 	 * An equality expression has a multiplicity lower bound of 1.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -131,7 +122,6 @@ public interface EqualityExpression extends BinaryExpression {
 	 * An equality expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -143,7 +133,6 @@ public interface EqualityExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Returns false for an equality expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated

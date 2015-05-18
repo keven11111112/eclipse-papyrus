@@ -38,7 +38,7 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			}
 		}
 		ValueSpecification selector = lifeline.getSelector();
-		if(selector != null) {
+		if (selector != null) {
 			getDiagramEventBroker().addNotificationListener(selector, this);
 		}
 	}
@@ -60,7 +60,7 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			}
 		}
 		ValueSpecification selector = lifeline.getSelector();
-		if(selector != null) {
+		if (selector != null) {
 			getDiagramEventBroker().removeNotificationListener(selector, this);
 		}
 	}
@@ -72,46 +72,49 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if (object == null || getUMLElement() == null) {
 			return;
 		}
-		if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeature())) {
-			refreshDisplay();
-		} else if (UMLPackage.Literals.LIFELINE__REPRESENTS.equals(notification.getFeature())) {
-			// change represent element
-			if (notification.getNewValue() instanceof ConnectableElement) {
-				ConnectableElement ce = (ConnectableElement) notification.getNewValue();
-				getDiagramEventBroker().addNotificationListener(ce, this);
-				if (ce.getType() != null) {
-					getDiagramEventBroker().addNotificationListener(ce.getType(), this);
+		if (notification.getFeature() != null) {
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
+				refreshDisplay();
+			} else if (notification.getFeature().equals(UMLPackage.Literals.LIFELINE__REPRESENTS)) {
+				// change represent element
+				if (notification.getNewValue() instanceof ConnectableElement) {
+					ConnectableElement ce = (ConnectableElement) notification.getNewValue();
+					getDiagramEventBroker().addNotificationListener(ce, this);
+					if (ce.getType() != null) {
+						getDiagramEventBroker().addNotificationListener(ce.getType(), this);
+					}
 				}
-			}
-			if (notification.getOldValue() instanceof ConnectableElement) {
-				ConnectableElement ce = (ConnectableElement) notification.getOldValue();
-				getDiagramEventBroker().removeNotificationListener(ce, this);
-				if (ce.getType() != null) {
-					getDiagramEventBroker().removeNotificationListener(ce.getType(), this);
+				if (notification.getOldValue() instanceof ConnectableElement) {
+					ConnectableElement ce = (ConnectableElement) notification.getOldValue();
+					getDiagramEventBroker().removeNotificationListener(ce, this);
+					if (ce.getType() != null) {
+						getDiagramEventBroker().removeNotificationListener(ce.getType(), this);
+					}
 				}
+				refreshDisplay();
+
+			} else if (isMaskManagedAnnotation(object) || isRemovedMaskManagedLabelAnnotation(object, notification)) {
+				refreshDisplay();
+			} else if (object.equals(getUMLElement().getRepresents())) {
+				// change represent type
+				if (notification.getNewValue() instanceof Type && notification.getNewValue() instanceof EObject) {
+					getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
+				}
+				if (notification.getOldValue() instanceof Type && notification.getOldValue() instanceof EObject) {
+					getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
+				}
+				refreshDisplay();
+			} else if (object.equals(getUMLElement().getSelector())
+					|| notification.getFeature().equals(UMLPackage.Literals.LIFELINE__SELECTOR)) {
+				// change selector
+				if (notification.getNewValue() instanceof ValueSpecification) {
+					getDiagramEventBroker().addNotificationListener((ValueSpecification) notification.getNewValue(), this);
+				}
+				if (notification.getOldValue() instanceof ValueSpecification) {
+					getDiagramEventBroker().removeNotificationListener((ValueSpecification) notification.getOldValue(), this);
+				}
+				refreshDisplay();
 			}
-			refreshDisplay();
-		} else if (isMaskManagedAnnotation(object) || isRemovedMaskManagedLabelAnnotation(object, notification)) {
-			refreshDisplay();
-		} else if (object.equals(getUMLElement().getRepresents())) {
-			// change represent type
-			if (notification.getNewValue() instanceof Type && notification.getNewValue() instanceof EObject) {
-				getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
-			}
-			if (notification.getOldValue() instanceof Type && notification.getOldValue() instanceof EObject) {
-				getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
-			}
-			refreshDisplay();
-		} else if(object.equals(getUMLElement().getSelector())
-				|| UMLPackage.Literals.LIFELINE__SELECTOR.equals(notification.getFeature())) {
-			// change selector
-			if(notification.getNewValue() instanceof ValueSpecification) {
-				getDiagramEventBroker().addNotificationListener((ValueSpecification)notification.getNewValue(), this);
-			}
-			if(notification.getOldValue() instanceof ValueSpecification) {
-				getDiagramEventBroker().removeNotificationListener((ValueSpecification)notification.getOldValue(), this);
-			}
-			refreshDisplay();
 		}
 	}
 

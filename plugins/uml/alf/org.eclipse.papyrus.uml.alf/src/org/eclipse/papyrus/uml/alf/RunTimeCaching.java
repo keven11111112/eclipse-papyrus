@@ -34,7 +34,9 @@ public class RunTimeCaching {
 	}
 
 	public void add(SyntaxElementImpl element) {
-		this.registry.add(element);
+		if(element!=null){
+			this.registry.add(element);
+		}
 	}
 
 	public void clear() {

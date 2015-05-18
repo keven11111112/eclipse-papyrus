@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.search.internal.ui.query;
@@ -21,6 +22,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -34,8 +37,6 @@ import org.eclipse.net4j.util.collection.Pair;
 import org.eclipse.net4j.util.collection.Triplet;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.uml.search.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.uml.search.internal.ui.open.CDOOpenElementService;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -184,25 +185,25 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 
 	protected Multimap<CDOView, URI> getViews(Collection<URI> scope) {
 		Multimap<CDOView, URI> result = HashMultimap.create();
-		Map<IInternalPapyrusRepository, CDOView> views = Maps.newHashMap();
+		Map<CDOCheckout, CDOView> views = Maps.newHashMap();
 
 		try {
 			for (URI uri : scope) {
-				IInternalPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
-				if ((repo != null) && repo.isConnected()) {
-					CDOView view = views.get(repo);
+				CDOCheckout checkout = CDOExplorerUtil.getCheckout(uri);
+				if ((checkout != null) && checkout.isOpen()) {
+					CDOView view = views.get(checkout);
 					if (view == null) {
 						// no view, yet, for this repo
 
 						ServicesRegistry services = new ServicesRegistry();
 						services.add(LabelProviderService.class, 10, new LabelProviderServiceImpl());
 						services.add(OpenElementService.class, 10, new CDOOpenElementService());
-						services.add(ModelSet.class, 10, new CDOAwareModelSet(PapyrusRepositoryManager.INSTANCE));
+						services.add(ModelSet.class, 10, new CDOAwareModelSet());
 						services.startRegistry();
 
 						// create our own transaction for the model-set
-						view = repo.getCDOView(repo.createTransaction(ServiceUtils.getInstance().getModelSet(services)));
-						views.put(repo, view);
+						view = checkout.openTransaction(ServiceUtils.getInstance().getModelSet(services));
+						views.put(checkout, view);
 					}
 					result.put(view, uri);
 				}
@@ -266,7 +267,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 
 		boolean first = true;
 		for (URI uri : scope) {
-			String path = CDOURIUtil.extractResourcePath(uri);
+			String path = "/" + CDOURIUtil.extractResourcePath(uri);
 			if (uri.hasTrailingPathSeparator() && !path.endsWith("/")) { //$NON-NLS-1$
 				path = path + "/"; //$NON-NLS-1$
 			}

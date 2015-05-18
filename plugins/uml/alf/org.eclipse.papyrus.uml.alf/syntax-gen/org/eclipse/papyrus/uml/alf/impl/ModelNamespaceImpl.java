@@ -4,12 +4,12 @@ package org.eclipse.papyrus.uml.alf.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.papyrus.uml.alf.Model;
 import org.eclipse.papyrus.uml.alf.AlfFactory;
 import org.eclipse.papyrus.uml.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.ElementReference;
@@ -18,14 +18,13 @@ import org.eclipse.papyrus.uml.alf.ImportedMember;
 import org.eclipse.papyrus.uml.alf.InternalElementReference;
 import org.eclipse.papyrus.uml.alf.Member;
 import org.eclipse.papyrus.uml.alf.MemberDefinition;
+import org.eclipse.papyrus.uml.alf.Model;
 import org.eclipse.papyrus.uml.alf.ModelNamespace;
 import org.eclipse.papyrus.uml.alf.NamespaceDefinition;
 import org.eclipse.papyrus.uml.alf.PackageDefinition;
 import org.eclipse.papyrus.uml.alf.QualifiedName;
 import org.eclipse.papyrus.uml.alf.UnitDefinition;
 import org.eclipse.papyrus.uml.tools.utils.NameResolutionUtils;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -37,26 +36,10 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelNamespaceImpl() {
 		super();
-	}
-
-	private static ModelNamespaceImpl modelNamespace;
-
-	public static ModelNamespaceImpl getModelNamespace() {
-		if (modelNamespace == null) {
-			modelNamespace = (ModelNamespaceImpl) AlfFactory.eINSTANCE.createModelNamespace();
-		}
-		return modelNamespace;
-	}
-
-	public static NamespaceDefinition modelNamespaceFor(NamespaceDefinition namespace) {
-		final ModelNamespaceImpl modelNamespace = getModelNamespace();
-		modelNamespace.setModelUnit(namespace);
-		return modelNamespace;
 	}
 
 	static protected Member asMember(ElementReference reference) {
@@ -67,23 +50,6 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 		member.setVisibility("public");
 		member.setDefinition(importedMember);
 		return member;
-	}
-
-	public static EList<ElementReference> resolveInModelScope(QualifiedName qualifiedName) {
-		return getModelNamespace().resolvePathName(qualifiedName.getPathName());
-	}
-
-	public static void setContextFor(Element contextElement) {
-		setContext(!(contextElement instanceof NamedElement) ? null :
-				((NamedElement) contextElement).getNamespace());
-	}
-
-	public static void setContext(Namespace contextNamespace) {
-		getModelNamespace().setContextNamespace(contextNamespace);
-	}
-
-	public static Namespace getContext() {
-		return getModelNamespace().getContextNamespace();
 	}
 
 	private Namespace contextNamespace = null;
@@ -138,7 +104,6 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,23 +115,22 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	 * The cached invocation delegate for the '{@link #outerScope() <em>Outer Scope</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #outerScope()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate OUTER_SCOPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getModelNamespace__OuterScope()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate OUTER_SCOPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getModelNamespace__OuterScope()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference outerScope() {
 		try {
-			return (ElementReference) OUTER_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)OUTER_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -175,23 +139,22 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	 * The cached invocation delegate for the '{@link #modelScope() <em>Model Scope</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #modelScope()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate MODEL_SCOPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getModelNamespace__ModelScope()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate MODEL_SCOPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getModelNamespace__ModelScope()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference modelScope() {
 		try {
-			return (ElementReference) MODEL_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)MODEL_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -200,23 +163,22 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	 * The cached invocation delegate for the '{@link #qualifiedName() <em>Qualified Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #qualifiedName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate QUALIFIED_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getModelNamespace__QualifiedName()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate QUALIFIED_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getModelNamespace__QualifiedName()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public QualifiedName qualifiedName() {
 		try {
-			return (QualifiedName) QUALIFIED_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (QualifiedName)QUALIFIED_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -225,24 +187,23 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	 * The cached invocation delegate for the '{@link #resolveInScope(java.lang.String) <em>Resolve In Scope</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #resolveInScope(java.lang.String)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate RESOLVE_IN_SCOPE_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getModelNamespace__ResolveInScope__String()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate RESOLVE_IN_SCOPE_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getModelNamespace__ResolveInScope__String()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Member> resolveInScope(String name) {
 		try {
-			return (EList<Member>) RESOLVE_IN_SCOPE_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { name }));
-		} catch (InvocationTargetException ite) {
+			return (EList<Member>)RESOLVE_IN_SCOPE_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{name}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -268,14 +229,14 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ElementReference> appliedProfiles() {
 		try {
-			return (EList<ElementReference>) APPLIED_PROFILES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<ElementReference>)APPLIED_PROFILES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -283,13 +244,13 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference stubFor(UnitDefinition unit) {
 		try {
-			return (ElementReference) STUB_FOR_UNIT_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { unit }));
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)STUB_FOR_UNIT_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{unit}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -353,47 +314,43 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	 * The cached invocation delegate for the '{@link #resolveAssociationEnd(org.eclipse.papyrus.uml.alf.ElementReference, java.lang.String) <em>Resolve Association End</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #resolveAssociationEnd(org.eclipse.papyrus.uml.alf.ElementReference, java.lang.String)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate RESOLVE_ASSOCIATION_END_ELEMENT_REFERENCE_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getModelNamespace__ResolveAssociationEnd__ElementReference_String())
-			.getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate RESOLVE_ASSOCIATION_END_ELEMENT_REFERENCE_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getModelNamespace__ResolveAssociationEnd__ElementReference_String()).getInvocationDelegate();
 
 	/**
 	 * The cached invocation delegate for the '{@link #appliedProfiles() <em>Applied Profiles</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #appliedProfiles()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate APPLIED_PROFILES__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getModelNamespace__AppliedProfiles()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate APPLIED_PROFILES__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getModelNamespace__AppliedProfiles()).getInvocationDelegate();
 
 	/**
 	 * The cached invocation delegate for the '{@link #stubFor(org.eclipse.papyrus.uml.alf.UnitDefinition) <em>Stub For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #stubFor(org.eclipse.papyrus.uml.alf.UnitDefinition)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate STUB_FOR_UNIT_DEFINITION__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getModelNamespace__StubFor__UnitDefinition()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate STUB_FOR_UNIT_DEFINITION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getModelNamespace__StubFor__UnitDefinition()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ElementReference> resolveAssociationEnd(ElementReference oppositeEndType, String name) {
 		try {
-			return (EList<ElementReference>) RESOLVE_ASSOCIATION_END_ELEMENT_REFERENCE_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[] { oppositeEndType, name }));
-		} catch (InvocationTargetException ite) {
+			return (EList<ElementReference>)RESOLVE_ASSOCIATION_END_ELEMENT_REFERENCE_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{oppositeEndType, name}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -401,43 +358,31 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MemberDefinition.class) {
 			switch (baseOperationID) {
-			case AlfPackage.MEMBER_DEFINITION___OUTER_SCOPE:
-				return AlfPackage.MODEL_NAMESPACE___OUTER_SCOPE;
-			case AlfPackage.MEMBER_DEFINITION___QUALIFIED_NAME:
-				return AlfPackage.MODEL_NAMESPACE___QUALIFIED_NAME;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.MEMBER_DEFINITION___OUTER_SCOPE: return AlfPackage.MODEL_NAMESPACE___OUTER_SCOPE;
+				case AlfPackage.MEMBER_DEFINITION___QUALIFIED_NAME: return AlfPackage.MODEL_NAMESPACE___QUALIFIED_NAME;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		if (baseClass == NamespaceDefinition.class) {
 			switch (baseOperationID) {
-			case AlfPackage.NAMESPACE_DEFINITION___OUTER_SCOPE:
-				return AlfPackage.MODEL_NAMESPACE___OUTER_SCOPE;
-			case AlfPackage.NAMESPACE_DEFINITION___MODEL_SCOPE:
-				return AlfPackage.MODEL_NAMESPACE___MODEL_SCOPE;
-			case AlfPackage.NAMESPACE_DEFINITION___RESOLVE_IN_SCOPE__STRING:
-				return AlfPackage.MODEL_NAMESPACE___RESOLVE_IN_SCOPE__STRING;
-			case AlfPackage.NAMESPACE_DEFINITION___APPLIED_PROFILES:
-				return AlfPackage.MODEL_NAMESPACE___APPLIED_PROFILES;
-			case AlfPackage.NAMESPACE_DEFINITION___STUB_FOR__UNITDEFINITION:
-				return AlfPackage.MODEL_NAMESPACE___STUB_FOR__UNITDEFINITION;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.NAMESPACE_DEFINITION___OUTER_SCOPE: return AlfPackage.MODEL_NAMESPACE___OUTER_SCOPE;
+				case AlfPackage.NAMESPACE_DEFINITION___MODEL_SCOPE: return AlfPackage.MODEL_NAMESPACE___MODEL_SCOPE;
+				case AlfPackage.NAMESPACE_DEFINITION___RESOLVE_IN_SCOPE__STRING: return AlfPackage.MODEL_NAMESPACE___RESOLVE_IN_SCOPE__STRING;
+				case AlfPackage.NAMESPACE_DEFINITION___APPLIED_PROFILES: return AlfPackage.MODEL_NAMESPACE___APPLIED_PROFILES;
+				case AlfPackage.NAMESPACE_DEFINITION___STUB_FOR__UNITDEFINITION: return AlfPackage.MODEL_NAMESPACE___STUB_FOR__UNITDEFINITION;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		if (baseClass == PackageDefinition.class) {
 			switch (baseOperationID) {
-			case AlfPackage.PACKAGE_DEFINITION___APPLIED_PROFILES:
-				return AlfPackage.MODEL_NAMESPACE___APPLIED_PROFILES;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.PACKAGE_DEFINITION___APPLIED_PROFILES: return AlfPackage.MODEL_NAMESPACE___APPLIED_PROFILES;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -446,34 +391,33 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.MODEL_NAMESPACE___OUTER_SCOPE:
-			return outerScope();
-		case AlfPackage.MODEL_NAMESPACE___MODEL_SCOPE:
-			return modelScope();
-		case AlfPackage.MODEL_NAMESPACE___QUALIFIED_NAME:
-			return qualifiedName();
-		case AlfPackage.MODEL_NAMESPACE___RESOLVE_IN_SCOPE__STRING:
-			return resolveInScope((String) arguments.get(0));
-		case AlfPackage.MODEL_NAMESPACE___RESOLVE_IN_ROOT__STRING:
-			return resolveInRoot((String) arguments.get(0));
-		case AlfPackage.MODEL_NAMESPACE___RESOLVE_PATH_NAME__STRING:
-			return resolvePathName((String) arguments.get(0));
-		case AlfPackage.MODEL_NAMESPACE___RESOLVE_ASSOCIATION_END__ELEMENTREFERENCE_STRING:
-			return resolveAssociationEnd((ElementReference) arguments.get(0), (String) arguments.get(1));
-		case AlfPackage.MODEL_NAMESPACE___APPLIED_PROFILES:
-			return appliedProfiles();
-		case AlfPackage.MODEL_NAMESPACE___STUB_FOR__UNITDEFINITION:
-			return stubFor((UnitDefinition) arguments.get(0));
-		case AlfPackage.MODEL_NAMESPACE___MODEL_NAMESPACE_STUB_FOR__UNITDEFINITION:
-			return ModelNamespace_stubFor((UnitDefinition) arguments.get(0));
-		case AlfPackage.MODEL_NAMESPACE___MODEL_NAMESPACE_APPLIED_PROFILES:
-			return ModelNamespace_appliedProfiles();
+			case AlfPackage.MODEL_NAMESPACE___OUTER_SCOPE:
+				return outerScope();
+			case AlfPackage.MODEL_NAMESPACE___MODEL_SCOPE:
+				return modelScope();
+			case AlfPackage.MODEL_NAMESPACE___QUALIFIED_NAME:
+				return qualifiedName();
+			case AlfPackage.MODEL_NAMESPACE___RESOLVE_IN_SCOPE__STRING:
+				return resolveInScope((String)arguments.get(0));
+			case AlfPackage.MODEL_NAMESPACE___RESOLVE_IN_ROOT__STRING:
+				return resolveInRoot((String)arguments.get(0));
+			case AlfPackage.MODEL_NAMESPACE___RESOLVE_PATH_NAME__STRING:
+				return resolvePathName((String)arguments.get(0));
+			case AlfPackage.MODEL_NAMESPACE___RESOLVE_ASSOCIATION_END__ELEMENTREFERENCE_STRING:
+				return resolveAssociationEnd((ElementReference)arguments.get(0), (String)arguments.get(1));
+			case AlfPackage.MODEL_NAMESPACE___APPLIED_PROFILES:
+				return appliedProfiles();
+			case AlfPackage.MODEL_NAMESPACE___STUB_FOR__UNITDEFINITION:
+				return stubFor((UnitDefinition)arguments.get(0));
+			case AlfPackage.MODEL_NAMESPACE___MODEL_NAMESPACE_STUB_FOR__UNITDEFINITION:
+				return ModelNamespace_stubFor((UnitDefinition)arguments.get(0));
+			case AlfPackage.MODEL_NAMESPACE___MODEL_NAMESPACE_APPLIED_PROFILES:
+				return ModelNamespace_appliedProfiles();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

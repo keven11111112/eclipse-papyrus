@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.uml.alf.AlfPackage
  * @generated
  */
@@ -18,7 +17,6 @@ public interface AlfFactory extends EFactory {
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	AlfFactory eINSTANCE = org.eclipse.papyrus.uml.alf.impl.AlfFactoryImpl.init();
@@ -27,7 +25,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Assigned Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Assigned Source</em>'.
 	 * @generated
 	 */
@@ -37,7 +34,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Internal Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Internal Element Reference</em>'.
 	 * @generated
 	 */
@@ -47,7 +43,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>External Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>External Element Reference</em>'.
 	 * @generated
 	 */
@@ -57,7 +52,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>External Enumeration Literal Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>External Enumeration Literal Reference</em>'.
 	 * @generated
 	 */
@@ -67,7 +61,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Bound Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Bound Element Reference</em>'.
 	 * @generated
 	 */
@@ -77,7 +70,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Sequence Expansion Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Sequence Expansion Expression</em>'.
 	 * @generated
 	 */
@@ -87,17 +79,24 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Assignable Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Assignable Element Reference</em>'.
 	 * @generated
 	 */
 	AssignableElementReference createAssignableElementReference();
 
 	/**
+	 * Returns a new object of class '<em>Expression Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expression Reference</em>'.
+	 * @generated
+	 */
+	ExpressionReference createExpressionReference();
+
+	/**
 	 * Returns a new object of class '<em>Extent Or Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Extent Or Expression</em>'.
 	 * @generated
 	 */
@@ -107,7 +106,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Qualified Name</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Qualified Name</em>'.
 	 * @generated
 	 */
@@ -117,7 +115,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Feature Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Feature Reference</em>'.
 	 * @generated
 	 */
@@ -127,7 +124,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Name Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Name Binding</em>'.
 	 * @generated
 	 */
@@ -137,7 +133,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Named Template Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Named Template Binding</em>'.
 	 * @generated
 	 */
@@ -147,7 +142,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Template Parameter Substitution</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Template Parameter Substitution</em>'.
 	 * @generated
 	 */
@@ -157,7 +151,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Numeric Unary Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Numeric Unary Expression</em>'.
 	 * @generated
 	 */
@@ -167,7 +160,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>For All Or Exists Or One Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>For All Or Exists Or One Expression</em>'.
 	 * @generated
 	 */
@@ -177,7 +169,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Isolation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Isolation Expression</em>'.
 	 * @generated
 	 */
@@ -187,7 +178,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Boolean Unary Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Boolean Unary Expression</em>'.
 	 * @generated
 	 */
@@ -197,7 +187,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Cast Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Cast Expression</em>'.
 	 * @generated
 	 */
@@ -207,7 +196,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Positional Tuple</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Positional Tuple</em>'.
 	 * @generated
 	 */
@@ -217,7 +205,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Named Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Named Expression</em>'.
 	 * @generated
 	 */
@@ -227,7 +214,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Input Named Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Input Named Expression</em>'.
 	 * @generated
 	 */
@@ -237,7 +223,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Output Named Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Output Named Expression</em>'.
 	 * @generated
 	 */
@@ -247,7 +232,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Sequence Access Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Sequence Access Expression</em>'.
 	 * @generated
 	 */
@@ -257,7 +241,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>String Literal Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>String Literal Expression</em>'.
 	 * @generated
 	 */
@@ -267,7 +250,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Sequence Operation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Sequence Operation Expression</em>'.
 	 * @generated
 	 */
@@ -277,7 +259,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Select Or Reject Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Select Or Reject Expression</em>'.
 	 * @generated
 	 */
@@ -287,7 +268,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Class Extent Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Class Extent Expression</em>'.
 	 * @generated
 	 */
@@ -297,7 +277,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Positional Template Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Positional Template Binding</em>'.
 	 * @generated
 	 */
@@ -307,7 +286,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Conditional Logical Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Conditional Logical Expression</em>'.
 	 * @generated
 	 */
@@ -317,7 +295,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Link Operation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Link Operation Expression</em>'.
 	 * @generated
 	 */
@@ -327,7 +304,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Equality Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Equality Expression</em>'.
 	 * @generated
 	 */
@@ -337,7 +313,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Assignment Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Assignment Expression</em>'.
 	 * @generated
 	 */
@@ -347,7 +322,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Logical Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Logical Expression</em>'.
 	 * @generated
 	 */
@@ -357,7 +331,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Sequence Construction Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Sequence Construction Expression</em>'.
 	 * @generated
 	 */
@@ -367,7 +340,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Collect Or Iterate Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Collect Or Iterate Expression</em>'.
 	 * @generated
 	 */
@@ -377,7 +349,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Is Unique Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Is Unique Expression</em>'.
 	 * @generated
 	 */
@@ -387,7 +358,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Arithmetic Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Arithmetic Expression</em>'.
 	 * @generated
 	 */
@@ -397,7 +367,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Feature Left Hand Side</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Feature Left Hand Side</em>'.
 	 * @generated
 	 */
@@ -407,7 +376,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Conditional Test Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Conditional Test Expression</em>'.
 	 * @generated
 	 */
@@ -417,7 +385,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Instance Creation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Instance Creation Expression</em>'.
 	 * @generated
 	 */
@@ -427,7 +394,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Property Access Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Property Access Expression</em>'.
 	 * @generated
 	 */
@@ -437,7 +403,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Name Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Name Expression</em>'.
 	 * @generated
 	 */
@@ -447,7 +412,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Bit String Unary Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Bit String Unary Expression</em>'.
 	 * @generated
 	 */
@@ -457,7 +421,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Feature Invocation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Feature Invocation Expression</em>'.
 	 * @generated
 	 */
@@ -467,7 +430,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Behavior Invocation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Behavior Invocation Expression</em>'.
 	 * @generated
 	 */
@@ -477,7 +439,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Shift Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Shift Expression</em>'.
 	 * @generated
 	 */
@@ -487,7 +448,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Unbounded Literal Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Unbounded Literal Expression</em>'.
 	 * @generated
 	 */
@@ -497,7 +457,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>This Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>This Expression</em>'.
 	 * @generated
 	 */
@@ -507,7 +466,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Classification Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Classification Expression</em>'.
 	 * @generated
 	 */
@@ -517,7 +475,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Super Invocation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Super Invocation Expression</em>'.
 	 * @generated
 	 */
@@ -527,7 +484,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Increment Or Decrement Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Increment Or Decrement Expression</em>'.
 	 * @generated
 	 */
@@ -537,7 +493,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Boolean Literal Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Boolean Literal Expression</em>'.
 	 * @generated
 	 */
@@ -547,7 +502,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Named Tuple</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Named Tuple</em>'.
 	 * @generated
 	 */
@@ -557,7 +511,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Natural Literal Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Natural Literal Expression</em>'.
 	 * @generated
 	 */
@@ -567,7 +520,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Sequence Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Sequence Range</em>'.
 	 * @generated
 	 */
@@ -577,7 +529,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Name Left Hand Side</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Name Left Hand Side</em>'.
 	 * @generated
 	 */
@@ -587,7 +538,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Effective Left Hand Side</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Effective Left Hand Side</em>'.
 	 * @generated
 	 */
@@ -597,7 +547,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Sequence Reduction Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Sequence Reduction Expression</em>'.
 	 * @generated
 	 */
@@ -607,7 +556,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Sequence Expression List</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Sequence Expression List</em>'.
 	 * @generated
 	 */
@@ -617,7 +565,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Relational Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Relational Expression</em>'.
 	 * @generated
 	 */
@@ -627,7 +574,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Local Name Declaration Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Local Name Declaration Statement</em>'.
 	 * @generated
 	 */
@@ -637,7 +583,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Assignable Local Name Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Assignable Local Name Declaration</em>'.
 	 * @generated
 	 */
@@ -647,7 +592,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Annotation</em>'.
 	 * @generated
 	 */
@@ -657,7 +601,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Qualified Name List</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Qualified Name List</em>'.
 	 * @generated
 	 */
@@ -667,7 +610,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Non Final Clause</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Non Final Clause</em>'.
 	 * @generated
 	 */
@@ -677,7 +619,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Block</em>'.
 	 * @generated
 	 */
@@ -687,7 +628,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Block Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Block Statement</em>'.
 	 * @generated
 	 */
@@ -697,7 +637,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Do Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Do Statement</em>'.
 	 * @generated
 	 */
@@ -707,7 +646,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Concurrent Clauses</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Concurrent Clauses</em>'.
 	 * @generated
 	 */
@@ -717,7 +655,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Break Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Break Statement</em>'.
 	 * @generated
 	 */
@@ -727,7 +664,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Expression Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Expression Statement</em>'.
 	 * @generated
 	 */
@@ -737,7 +673,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Classify Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Classify Statement</em>'.
 	 * @generated
 	 */
@@ -747,7 +682,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>For Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>For Statement</em>'.
 	 * @generated
 	 */
@@ -757,7 +691,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Loop Variable Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Loop Variable Definition</em>'.
 	 * @generated
 	 */
@@ -767,7 +700,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>If Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>If Statement</em>'.
 	 * @generated
 	 */
@@ -777,7 +709,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Switch Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Switch Statement</em>'.
 	 * @generated
 	 */
@@ -787,7 +718,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Switch Clause</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Switch Clause</em>'.
 	 * @generated
 	 */
@@ -797,7 +727,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>While Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>While Statement</em>'.
 	 * @generated
 	 */
@@ -807,7 +736,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Return Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Return Statement</em>'.
 	 * @generated
 	 */
@@ -817,7 +745,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>In Line Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>In Line Statement</em>'.
 	 * @generated
 	 */
@@ -827,7 +754,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Accept Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Accept Statement</em>'.
 	 * @generated
 	 */
@@ -837,7 +763,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Accept Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Accept Block</em>'.
 	 * @generated
 	 */
@@ -847,7 +772,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Empty Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Empty Statement</em>'.
 	 * @generated
 	 */
@@ -857,7 +781,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Model Namespace</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Model Namespace</em>'.
 	 * @generated
 	 */
@@ -867,7 +790,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Namespace Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Namespace Definition</em>'.
 	 * @generated
 	 */
@@ -877,7 +799,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Stereotype Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Stereotype Annotation</em>'.
 	 * @generated
 	 */
@@ -887,7 +808,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Tagged Value List</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Tagged Value List</em>'.
 	 * @generated
 	 */
@@ -897,7 +817,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Tagged Value</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Tagged Value</em>'.
 	 * @generated
 	 */
@@ -907,7 +826,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Unit Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Unit Definition</em>'.
 	 * @generated
 	 */
@@ -917,7 +835,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Imported Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Imported Member</em>'.
 	 * @generated
 	 */
@@ -927,7 +844,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Enumeration Literal Name</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Enumeration Literal Name</em>'.
 	 * @generated
 	 */
@@ -937,7 +853,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Operation Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Operation Definition</em>'.
 	 * @generated
 	 */
@@ -947,7 +862,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Association Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Association Definition</em>'.
 	 * @generated
 	 */
@@ -957,7 +871,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Class Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Class Definition</em>'.
 	 * @generated
 	 */
@@ -967,7 +880,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Typed Element Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Typed Element Definition</em>'.
 	 * @generated
 	 */
@@ -977,7 +889,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Data Type Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Data Type Definition</em>'.
 	 * @generated
 	 */
@@ -987,7 +898,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Package Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Package Definition</em>'.
 	 * @generated
 	 */
@@ -997,7 +907,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Property Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Property Definition</em>'.
 	 * @generated
 	 */
@@ -1007,7 +916,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Signal Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Signal Definition</em>'.
 	 * @generated
 	 */
@@ -1017,7 +925,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Active Class Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Active Class Definition</em>'.
 	 * @generated
 	 */
@@ -1027,7 +934,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Activity Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Activity Definition</em>'.
 	 * @generated
 	 */
@@ -1037,7 +943,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Element Import Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Element Import Reference</em>'.
 	 * @generated
 	 */
@@ -1047,7 +952,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Signal Reception Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Signal Reception Definition</em>'.
 	 * @generated
 	 */
@@ -1057,7 +961,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Enumeration Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Enumeration Definition</em>'.
 	 * @generated
 	 */
@@ -1067,7 +970,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Package Import Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Package Import Reference</em>'.
 	 * @generated
 	 */
@@ -1077,7 +979,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Classifier Template Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Classifier Template Parameter</em>'.
 	 * @generated
 	 */
@@ -1087,7 +988,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Formal Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Formal Parameter</em>'.
 	 * @generated
 	 */
@@ -1097,7 +997,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Reception Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Reception Definition</em>'.
 	 * @generated
 	 */
@@ -1107,7 +1006,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Member</em>'.
 	 * @generated
 	 */
@@ -1117,7 +1015,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Annotated Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Annotated Statement</em>'.
 	 * @generated
 	 */
@@ -1127,7 +1024,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Bound Classifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Bound Classifier</em>'.
 	 * @generated
 	 */
@@ -1137,7 +1033,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Return Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Return Parameter</em>'.
 	 * @generated
 	 */
@@ -1147,7 +1042,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Non Return Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Non Return Parameter</em>'.
 	 * @generated
 	 */
@@ -1157,7 +1051,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns a new object of class '<em>Any Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Any Type</em>'.
 	 * @generated
 	 */
@@ -1167,7 +1060,6 @@ public interface AlfFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

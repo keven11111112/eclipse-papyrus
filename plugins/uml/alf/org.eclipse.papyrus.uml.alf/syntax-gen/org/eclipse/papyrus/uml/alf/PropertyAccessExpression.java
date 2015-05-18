@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.PropertyAccessExpression#getFeatureReference <em>Feature Reference</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.PropertyAccessExpression#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.PropertyAccessExpression#getFeatureReference <em>Feature Reference</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.PropertyAccessExpression#getFeature <em>Feature</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyAccessExpression()
@@ -37,7 +37,6 @@ public interface PropertyAccessExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * A reference to a structural feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Feature Reference</em>' containment reference.
 	 * @see #setFeatureReference(FeatureReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyAccessExpression_FeatureReference()
@@ -50,9 +49,7 @@ public interface PropertyAccessExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.PropertyAccessExpression#getFeatureReference <em>Feature Reference</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Feature Reference</em>' containment reference.
+	 * @param value the new value of the '<em>Feature Reference</em>' containment reference.
 	 * @see #getFeatureReference()
 	 * @generated
 	 */
@@ -65,13 +62,11 @@ public interface PropertyAccessExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The referenced structural feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Feature</em>' reference.
 	 * @see #setFeature(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyAccessExpression_Feature()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let referents = self.featureReference.referent->select(isProperty()) in\n          if referents->size() <> 1 then null\n          else referents->any(true)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let referents = self.featureReference.referent->select(isProperty()) in\n          if referents->size() <> 1 then null\n          else referents->any(true)\n          endif'"
 	 * @generated
 	 */
 	ElementReference getFeature();
@@ -80,9 +75,7 @@ public interface PropertyAccessExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.PropertyAccessExpression#getFeature <em>Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Feature</em>' reference.
+	 * @param value the new value of the '<em>Feature</em>' reference.
 	 * @see #getFeature()
 	 * @generated
 	 */
@@ -91,7 +84,6 @@ public interface PropertyAccessExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.feature in\n          if feature = null then null\n          else feature.type()\n          endif'"
 	 * @generated
 	 */
@@ -100,10 +92,8 @@ public interface PropertyAccessExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.feature in\n          if feature = null then 0\n          else if feature.upper() = -1 or \n            self.featureReference.expression.upper = -1 then -1\n          else feature.upper() * self.featureReference.expression.upper\n          endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.feature in\n          if feature = null then 0\n          else if feature.upper() = -1 or \n            self.featureReference.expression.upper = -1 then -1\n          else feature.upper() * self.featureReference.expression.upper\n          endif endif'"
 	 * @generated
 	 */
 	BigInteger upper();
@@ -111,7 +101,6 @@ public interface PropertyAccessExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.feature in\n          if feature = null then 0\n          else feature.lower() * self.featureReference.expression.lower\n          endif'"
 	 * @generated
@@ -125,7 +114,6 @@ public interface PropertyAccessExpression extends Expression {
 	 * The feature of a property access expression is the structural feature to
 	 * which its feature reference resolves.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -139,7 +127,6 @@ public interface PropertyAccessExpression extends Expression {
 	 * feature.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -154,7 +141,6 @@ public interface PropertyAccessExpression extends Expression {
 	 * and the target expression.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -169,7 +155,6 @@ public interface PropertyAccessExpression extends Expression {
 	 * and the target expression.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -182,7 +167,6 @@ public interface PropertyAccessExpression extends Expression {
 	 * The feature reference for a property access expression must resolve to a
 	 * single structural feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.feature <> null'"
 	 * @generated
 	 */
@@ -196,7 +180,6 @@ public interface PropertyAccessExpression extends Expression {
 	 * property access expression are the same as before the property access
 	 * expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -209,7 +192,6 @@ public interface PropertyAccessExpression extends Expression {
 	 * The assignments after a property access expression are the same as those
 	 * after the target expression of its feature reference.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.featureReference.expression.assignmentAfter'"
 	 * @generated

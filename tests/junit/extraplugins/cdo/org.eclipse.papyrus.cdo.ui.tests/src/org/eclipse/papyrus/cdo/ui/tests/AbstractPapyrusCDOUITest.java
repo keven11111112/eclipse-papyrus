@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 422257
  *   Christian W. Damus (CEA) - bug 432813
- *   
+ *   Eike Stepper (CEA) - bug 466520
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.ui.tests;
 
@@ -42,7 +43,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
 import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorManager;
-import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoriesView;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.swt.widgets.Display;
@@ -96,20 +96,20 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 
 		// ensure the Papyrus perspective
 		IPerspectiveDescriptor perspective = page.getWorkbenchWindow().getWorkbench().getPerspectiveRegistry().findPerspectiveWithId("org.eclipse.papyrus.infra.core.perspective");
-		if(!perspective.getId().equals(page.getPerspective().getId())) {
+		if (!perspective.getId().equals(page.getPerspective().getId())) {
 			page.setPerspective(perspective);
 		}
 
 		// minimize the Welcome view
-		for(IViewReference next : page.getViewReferences()) {
-			if("org.eclipse.ui.internal.introview".equals(next.getId())) {
+		for (IViewReference next : page.getViewReferences()) {
+			if ("org.eclipse.ui.internal.introview".equals(next.getId())) {
 				page.setPartState(next, IWorkbenchPage.STATE_MINIMIZED);
 				break;
 			}
 		}
 
 		// bring the Repository Explorer forward
-		IViewPart reposView = page.showView(ModelRepositoriesView.ID);
+		IViewPart reposView = page.showView("org.eclipse.emf.cdo.explorer.ui.CDORepositoriesView");
 		page.activate(reposView);
 
 		page.setEditorAreaVisible(true);
@@ -127,7 +127,7 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 		importResource(transaction, TEST_UML_NAME, TEST_UML_NAME, importMap);
 		importResource(transaction, TEST_NOTATION_NAME, TEST_NOTATION_NAME, importMap);
 
-		for(Map.Entry<Resource, Resource> next : importMap.entrySet()) {
+		for (Map.Entry<Resource, Resource> next : importMap.entrySet()) {
 			Resource xml = next.getKey();
 			Resource cdo = next.getValue();
 			ECollections.setEList(cdo.getContents(), ImmutableList.copyOf(xml.getContents()));
@@ -136,15 +136,15 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 			xml.getResourceSet().getResources().remove(xml);
 		}
 
-		getPapyrusRepository().commit(transaction.getResourceSet());
-		close(getPapyrusRepository(), transaction);
+		commit(transaction.getResourceSet());
+		close(getCheckout(), transaction);
 	}
 
 	@After
 	public void closeEditors() {
 		flushDisplayEvents();
 
-		for(IEditorPart next : openedEditors) {
+		for (IEditorPart next : openedEditors) {
 			try {
 				page.closeEditor(next, false);
 			} catch (Exception e) {
@@ -179,7 +179,7 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 	}
 
 	protected IViewPart getRepositoryExplorer() {
-		return page.findView(ModelRepositoriesView.ID);
+		return page.findView("org.eclipse.emf.cdo.explorer.ui.CDORepositoriesView");
 	}
 
 	protected IEditorPart openEditor() {
@@ -192,9 +192,9 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 
 			assertThat(result, instanceOf(IMultiDiagramEditor.class));
 
-			lastEditor = (IMultiDiagramEditor)result;
-			if(lastEditor.getActiveEditor() instanceof DiagramDocumentEditor) {
-				lastDiagramEditor = (DiagramDocumentEditor)lastEditor.getActiveEditor();
+			lastEditor = (IMultiDiagramEditor) result;
+			if (lastEditor.getActiveEditor() instanceof DiagramDocumentEditor) {
+				lastDiagramEditor = (DiagramDocumentEditor) lastEditor.getActiveEditor();
 			}
 
 			flushDisplayEvents();
@@ -222,13 +222,13 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 	}
 
 	protected void flushDisplayEvents() {
-		while(Display.getCurrent().readAndDispatch()) {
+		while (Display.getCurrent().readAndDispatch()) {
 			// pass
 		}
 	}
 
 	protected void sleep(int seconds) {
-		for(int i = 0; i < seconds; i++) {
+		for (int i = 0; i < seconds; i++) {
 			try {
 				Thread.sleep(1000);
 			} catch (Exception e) {
@@ -240,7 +240,7 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 	}
 
 	protected IDawnEditor getDawnEditor() {
-		return (IDawnEditor)lastEditor.getAdapter(IDawnEditor.class);
+		return (IDawnEditor) lastEditor.getAdapter(IDawnEditor.class);
 	}
 
 	protected IDawnEditorSupport getDawnEditorSupport() {
@@ -275,7 +275,7 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 	protected Package getUMLModel() {
 		Resource resource = getModelSet().getResource(getTestResourceURI(TEST_UML_NAME), true);
 		assertThat("UML model not found.", resource, notNullValue());
-		return (Package)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PACKAGE);
+		return (Package) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PACKAGE);
 	}
 
 	protected <N extends NamedElement> N findElement(String relativeName, Class<N> type) {
@@ -283,15 +283,15 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 		N result = null;
 		Namespace namespace = getUMLModel();
 
-		for(Iterator<String> iter = Splitter.on(NamedElement.SEPARATOR).split(relativeName).iterator(); iter.hasNext();) {
+		for (Iterator<String> iter = Splitter.on(NamedElement.SEPARATOR).split(relativeName).iterator(); iter.hasNext();) {
 
 			NamedElement next = namespace.getMember(iter.next());
-			if(next instanceof Namespace) {
-				namespace = (Namespace)next;
+			if (next instanceof Namespace) {
+				namespace = (Namespace) next;
 			}
 
-			if(!iter.hasNext()) {
-				if(type.isInstance(next)) {
+			if (!iter.hasNext()) {
+				if (type.isInstance(next)) {
 					result = type.cast(next);
 				}
 			}

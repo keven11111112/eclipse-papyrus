@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart;
@@ -17,6 +18,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
@@ -26,14 +28,15 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.internal.figures.NestedResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypePropertiesEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * this compartment is the an editpart associated to an applied stereotype
@@ -42,6 +45,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartmentEditPart {
 
 	public static String ID = "AppliedStereotypeCompartment";
+
+	private static final String NO_STEREOTYPE_COMPARTMENT = "Bad compartement stereotype";
 
 	public AppliedStereotypeCompartmentEditPart(View view) {
 		super(view);
@@ -52,20 +57,39 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 		return false;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart#refreshBounds()
+	 *
+	 */
+	@Override
+	protected void refreshBounds() {
+		// nothingToDo
+	}
+
 	@Override
 	public String getCompartmentName() {
 
-		Stereotype stereotype = UMLUtil.getStereotype(this.resolveSemanticElement());
-		if (stereotype != null) {
-			return "" + String.valueOf("\u00AB") + stereotype.getName() + String.valueOf("\u00BB");
+		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
+		String name = NO_STEREOTYPE_COMPARTMENT;
+		View compartment = (View) getModel();
+		EObject element = resolveSemanticElement();
+		if (element instanceof Stereotype) {
+			Stereotype stereotype = (Stereotype) resolveSemanticElement();
+
+			if (stereotype != null) {
+				View label = helper.getStereotypeLabel((View) compartment.eContainer(), stereotype);
+				name = StereotypeDisplayConstant.QUOTE_LEFT + helper.getStereotypeName((DecorationNode) label) + StereotypeDisplayConstant.QUOTE_RIGHT;
+			}
 		}
-		return "bad compartement stereotype";
+		return name;
 	}
 
 
+
+
 	/**
-	 * this method has bee rewritten in order to add its wn figure to ensure to mange it
-	 * in papyrus Figure.
+	 * this method has be rewritten in order to add its own figure to ensure to manage it
+	 * in Papyrus Figure.
 	 *
 	 * Adds a constrained flow layout algorithm to the content pane of compartment figure
 	 *
@@ -74,14 +98,17 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure rcf;
-		if (getParent() == getTopGraphicEditPart()) {
-			// replace ResizableCompartmentFigure by it own figure in order to manage it.
+
+
+		// If the EditPart is the direct Children
+		if ((getParent() == getTopGraphicEditPart())) {
+			// replace ResizableCompartmentFigure by its own figure in order to manage it.
 			rcf = new AppliedStereotypeCompartmentFigure(getCompartmentName(), getMapMode());
 		} else {
 			rcf = new NestedResizableCompartmentFigure(getMapMode());
-
 		}
-		if (this.getParent() instanceof AppliedStereotypesCommentEditPart) {
+
+		if (getParent() instanceof AppliedStereotypeCommentEditPart) {
 			rcf.setBorder(null);
 			if (rcf.getTextPane().getChildren().size() > 0 && rcf.getTextPane().getChildren().get(0) instanceof WrappingLabel) {
 				WrappingLabel label = (WrappingLabel) rcf.getTextPane().getChildren().get(0);
@@ -111,7 +138,6 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		installEditPolicy(AppliedStereotypePropertiesEditPolicy.APPLIED_STEREOTYPE_VISIBILITY_COMPARTMENT, new AppliedStereotypePropertiesEditPolicy());
 
 	}
 
@@ -145,15 +171,6 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 		if (resolveSemanticElement() != null) {
 			super.handleNotificationEvent(notification);
 		}
-	}
-
-	@Override
-	protected void refreshBounds() {
-		// int width = ((GraphicalEditPart)getParent()).getFigure().getBounds().getSize().width;
-		// int height = 20;
-		// Dimension size = new Dimension(width, height);
-		// Point loc = new Point(10, 10);
-		// ((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -32,6 +33,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -43,6 +45,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  *
  */
 public class StereotypePropertyParser implements IParser, ISemanticParser {
+
+	private static final String DEFAULT_VALUE = "<UNDEFINED>";
 
 	/**
 	 *
@@ -85,7 +89,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 			}
 
 		}
-		return "<UNDEFINED>";
+		return DEFAULT_VALUE;
 	}
 
 	/**
@@ -133,9 +137,6 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-
-
-
 	/**
 	 *
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
@@ -147,17 +148,16 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
+		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 		if (element instanceof IAdaptable) {
 			final Property property = ((Property) (EMFHelper.getEObject(element)));
 			final View view = ((View) element.getAdapter(View.class));
-			final EObject stereotypeApplication = ((View) view.eContainer()).getElement();
-			final Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
-			final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
-			if (stereotype != null && property != null && umlElement != null) {
-				return StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");
+
+			if (view != null && property != null) {
+				return helper.getStereotypePropertyToDisplay(view, property);
 			}
 		}
-		return "<UNDEFINED>";
+		return DEFAULT_VALUE;
 	}
 
 	/**

@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.DoStatement#getCondition <em>Condition</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.DoStatement#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.DoStatement#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.DoStatement#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getDoStatement()
@@ -37,7 +37,6 @@ public interface DoStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The expression to be evaluated to determine whether to continue looping.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Condition</em>' containment reference.
 	 * @see #setCondition(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getDoStatement_Condition()
@@ -50,9 +49,7 @@ public interface DoStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.DoStatement#getCondition <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Condition</em>' containment reference.
+	 * @param value the new value of the '<em>Condition</em>' containment reference.
 	 * @see #getCondition()
 	 * @generated
 	 */
@@ -65,7 +62,6 @@ public interface DoStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The sequence of statements to be iteratively executed.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Body</em>' containment reference.
 	 * @see #setBody(Block)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getDoStatement_Body()
@@ -78,9 +74,7 @@ public interface DoStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.DoStatement#getBody <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Body</em>' containment reference.
+	 * @param value the new value of the '<em>Body</em>' containment reference.
 	 * @see #getBody()
 	 * @generated
 	 */
@@ -89,7 +83,6 @@ public interface DoStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self'"
 	 * @generated
 	 */
@@ -98,7 +91,6 @@ public interface DoStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      if self.condition = element then self.body.assignmentAfter\n      else self.assignmentBefore\n      endif'"
 	 * @generated
@@ -108,10 +100,8 @@ public interface DoStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let assignmentsBefore = self.assignmentBefore in\n        self.condition.assignmentAfter->\n          select(isNew(assignmentsBefore)) ->\n          iterate(a, assignments : Set(AssignedSource) = assignmentsBefore |\n            AssignedSource{\n              name = a.name,\n              source = self,\n              type = a.type,\n              lower = a.lower,\n              upper = a.upper\n             }.update(assignments)\n          )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let assignmentsBefore = self.assignmentBefore in\n        self.condition.assignmentAfter->\n          select(isNew(assignmentsBefore)) ->\n          iterate(a, assignments : Set(AssignedSource) = assignmentsBefore |\n            AssignedSource{\n              name = a.name,\n              source = self,\n              type = a.type,\n              lower = a.lower,\n              upper = a.upper\n             }.update(assignments)\n          )'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsAfter();
@@ -125,7 +115,6 @@ public interface DoStatement extends Statement {
 	 * expression of a do statement are the same assignments after the block.
 	 * (See assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -141,7 +130,6 @@ public interface DoStatement extends Statement {
 	 * as before the do statement.
 	 * (See assignmentsAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -154,7 +142,6 @@ public interface DoStatement extends Statement {
 	 * The condition expression of a do statement must have type Boolean and a
 	 * multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let type = self.condition.type in\n        type <> null and self.isBooleanType(type) and condition.upper = 1'"
 	 * @generated
 	 */
@@ -168,7 +155,6 @@ public interface DoStatement extends Statement {
 	 * are the do statement.
 	 * (See SyntaxElement::enclosingStatement() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

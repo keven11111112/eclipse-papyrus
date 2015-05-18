@@ -24,10 +24,15 @@ public class CustomIODPaletteFactory extends UMLPaletteFactory {
 
 	private final static String CREATECALLBEHAVIORACTIONASCREATIONTOOL = "createCallBehaviorActionAsInteractionCreationTool"; //$NON-NLS-1$
 
+	private final static String INTERACTIONOEVERVIEW_DRAWER_NODES_INTERACTIONUSE = "interactionoverview.drawer.nodes.interactionuse"; //$NON-NLS-1$
+
 	@Override
 	public Tool createTool(final String toolId) {
 		if (toolId.equals(CREATECALLBEHAVIORACTIONASCREATIONTOOL)) {
 			return createCallBehaviorActionAsInteractionCreationTool();
+		}
+		if (INTERACTIONOEVERVIEW_DRAWER_NODES_INTERACTIONUSE.equals(toolId)) {
+			return createCallBehaviorActionAsInteractionUseCreationTool();
 		}
 		return super.createTool(toolId);
 	}
@@ -35,6 +40,13 @@ public class CustomIODPaletteFactory extends UMLPaletteFactory {
 	private static Tool createCallBehaviorActionAsInteractionCreationTool() {
 		final List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.CallBehaviorAction_5000);
+		final Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	private static Tool createCallBehaviorActionAsInteractionUseCreationTool() {
+		final List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.CallBehaviorAction_As_InteractionUse_5005);
 		final Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

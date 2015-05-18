@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.search.ui.tests;
 
@@ -62,13 +63,13 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 
 		// ensure the Papyrus perspective
 		IPerspectiveDescriptor perspective = page.getWorkbenchWindow().getWorkbench().getPerspectiveRegistry().findPerspectiveWithId("org.eclipse.papyrus.infra.core.perspective");
-		if(!perspective.getId().equals(page.getPerspective().getId())) {
+		if (!perspective.getId().equals(page.getPerspective().getId())) {
 			page.setPerspective(perspective);
 		}
 
 		// minimize the Welcome view
-		for(IViewReference next : page.getViewReferences()) {
-			if("org.eclipse.ui.internal.introview".equals(next.getId())) {
+		for (IViewReference next : page.getViewReferences()) {
+			if ("org.eclipse.ui.internal.introview".equals(next.getId())) {
 				page.setPartState(next, IWorkbenchPage.STATE_MINIMIZED);
 				break;
 			}
@@ -76,7 +77,7 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 
 		// bring the Repository Explorer forward
 		@SuppressWarnings("restriction")
-		IViewPart reposView = page.showView(org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoriesView.ID);
+		IViewPart reposView = page.showView("org.eclipse.emf.cdo.explorer.ui.CDORepositoriesView");
 		page.activate(reposView);
 
 		page.setEditorAreaVisible(true);
@@ -95,8 +96,8 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 		importModel(transaction, "tracker", "BugTracker/tracker");
 		importModel(transaction, "admin", "AdminConsole/admin");
 
-		getPapyrusRepository().commit(rset);
-		getPapyrusRepository().close(rset);
+		commit(rset);
+		close(rset);
 	}
 
 	private void importModel(CDOTransaction transaction, String name, String dstPath) {
@@ -127,13 +128,13 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 	}
 
 	protected void flushDisplayEvents() {
-		while(Display.getCurrent().readAndDispatch()) {
+		while (Display.getCurrent().readAndDispatch()) {
 			// pass
 		}
 	}
 
 	protected void sleep(int seconds) {
-		for(int i = 0; i < seconds; i++) {
+		for (int i = 0; i < seconds; i++) {
 			try {
 				Thread.sleep(1000);
 			} catch (Exception e) {
@@ -147,11 +148,11 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 	protected void assertMatched(ISearchResult searchResult, Predicate<? super EObject> predicate) {
 		boolean found = false;
 
-		AbstractTextSearchResult textResult = (AbstractTextSearchResult)searchResult;
-		for(Object element : textResult.getElements()) {
-			for(AbstractResultEntry next : Iterables.filter(Arrays.asList(textResult.getMatches(element)), AbstractResultEntry.class)) {
-				if((next instanceof ModelElementMatch) || (next instanceof AttributeMatch)) {
-					assertThat("Search result match incorrect.", predicate.apply((EObject)next.getSource()), is(true));
+		AbstractTextSearchResult textResult = (AbstractTextSearchResult) searchResult;
+		for (Object element : textResult.getElements()) {
+			for (AbstractResultEntry next : Iterables.filter(Arrays.asList(textResult.getMatches(element)), AbstractResultEntry.class)) {
+				if ((next instanceof ModelElementMatch) || (next instanceof AttributeMatch)) {
+					assertThat("Search result match incorrect.", predicate.apply((EObject) next.getSource()), is(true));
 					found = true;
 				}
 			}
@@ -163,11 +164,11 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 	protected void assertMatchedAny(ISearchResult searchResult, Predicate<? super EObject> predicate) {
 		boolean found = false;
 
-		AbstractTextSearchResult textResult = (AbstractTextSearchResult)searchResult;
-		for(Object element : textResult.getElements()) {
-			for(AbstractResultEntry next : Iterables.filter(Arrays.asList(textResult.getMatches(element)), AbstractResultEntry.class)) {
-				if((next instanceof ModelElementMatch) || (next instanceof AttributeMatch)) {
-					if(predicate.apply((EObject)next.getSource())) {
+		AbstractTextSearchResult textResult = (AbstractTextSearchResult) searchResult;
+		for (Object element : textResult.getElements()) {
+			for (AbstractResultEntry next : Iterables.filter(Arrays.asList(textResult.getMatches(element)), AbstractResultEntry.class)) {
+				if ((next instanceof ModelElementMatch) || (next instanceof AttributeMatch)) {
+					if (predicate.apply((EObject) next.getSource())) {
 						found = true;
 						break;
 					}
@@ -179,11 +180,11 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 	}
 
 	protected void assertNotMatched(ISearchResult searchResult, Predicate<? super EObject> predicate) {
-		AbstractTextSearchResult textResult = (AbstractTextSearchResult)searchResult;
-		for(Object element : textResult.getElements()) {
-			for(AbstractResultEntry next : Iterables.filter(Arrays.asList(textResult.getMatches(element)), AbstractResultEntry.class)) {
-				if((next instanceof ModelElementMatch) || (next instanceof AttributeMatch)) {
-					assertThat("Search result match incorrect.", predicate.apply((EObject)next.getSource()), is(false));
+		AbstractTextSearchResult textResult = (AbstractTextSearchResult) searchResult;
+		for (Object element : textResult.getElements()) {
+			for (AbstractResultEntry next : Iterables.filter(Arrays.asList(textResult.getMatches(element)), AbstractResultEntry.class)) {
+				if ((next instanceof ModelElementMatch) || (next instanceof AttributeMatch)) {
+					assertThat("Search result match incorrect.", predicate.apply((EObject) next.getSource()), is(false));
 				}
 			}
 		}
@@ -192,11 +193,11 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 	protected void assertNotMatchedAny(ISearchResult searchResult, Predicate<? super EObject> predicate) {
 		boolean found = false;
 
-		AbstractTextSearchResult textResult = (AbstractTextSearchResult)searchResult;
-		for(Object element : textResult.getElements()) {
-			for(AbstractResultEntry next : Iterables.filter(Arrays.asList(textResult.getMatches(element)), AbstractResultEntry.class)) {
-				if((next instanceof ModelElementMatch) || (next instanceof AttributeMatch)) {
-					if(!predicate.apply((EObject)next.getSource())) {
+		AbstractTextSearchResult textResult = (AbstractTextSearchResult) searchResult;
+		for (Object element : textResult.getElements()) {
+			for (AbstractResultEntry next : Iterables.filter(Arrays.asList(textResult.getMatches(element)), AbstractResultEntry.class)) {
+				if ((next instanceof ModelElementMatch) || (next instanceof AttributeMatch)) {
+					if (!predicate.apply((EObject) next.getSource())) {
 						found = true;
 						break;
 					}
@@ -224,8 +225,8 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 			public boolean apply(EObject input) {
 				boolean result = input instanceof NamedElement;
 
-				if(result) {
-					NamedElement element = (NamedElement)input;
+				if (result) {
+					NamedElement element = (NamedElement) input;
 					result = element.getName() != null && regex.matcher(element.getName()).matches();
 				}
 
@@ -241,12 +242,12 @@ public abstract class AbstractPapyrusCDOSearchTest extends AbstractPapyrusCDOTes
 			public boolean apply(EObject input) {
 				boolean result = false;
 
-				for(EAttribute next : input.eClass().getEAllAttributes()) {
-					if(next.getEType().getInstanceClass() == String.class) {
+				for (EAttribute next : input.eClass().getEAllAttributes()) {
+					if (next.getEType().getInstanceClass() == String.class) {
 						Object value = input.eGet(next);
-						String string = next.isMany() ? String.valueOf(value) : (String)value;
+						String string = next.isMany() ? String.valueOf(value) : (String) value;
 
-						if((string != null) && regex.matcher(string).matches()) {
+						if ((string != null) && regex.matcher(string).matches()) {
 							result = true;
 							break;
 						}

@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ConcurrentClauses#getClause <em>Clause</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ConcurrentClauses#getClause <em>Clause</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getConcurrentClauses()
@@ -36,7 +36,6 @@ public interface ConcurrentClauses extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The conditional clauses in the group.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Clause</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getConcurrentClauses_Clause()
 	 * @model containment="true" required="true" ordered="false"
@@ -52,7 +51,6 @@ public interface ConcurrentClauses extends SyntaxElement {
 	 * are the same as the assignments before the concurrent clauses.
 	 * (See the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -65,7 +63,6 @@ public interface ConcurrentClauses extends SyntaxElement {
 	 * The same name may not be assigned in more than one conditional expression
 	 * within the same concurrent set of clauses.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.clause.condition.newAssignments()->isUnique(name)'"
 	 * @generated
 	 */

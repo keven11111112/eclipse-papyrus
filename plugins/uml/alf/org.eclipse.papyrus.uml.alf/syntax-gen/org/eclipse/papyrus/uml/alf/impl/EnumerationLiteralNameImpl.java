@@ -17,7 +17,6 @@ import org.eclipse.papyrus.uml.alf.StereotypeAnnotation;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Enumeration Literal Name</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -25,7 +24,6 @@ public class EnumerationLiteralNameImpl extends MemberDefinitionImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnumerationLiteralNameImpl() {
@@ -35,7 +33,6 @@ public class EnumerationLiteralNameImpl extends MemberDefinitionImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -47,24 +44,22 @@ public class EnumerationLiteralNameImpl extends MemberDefinitionImpl implements 
 	 * The cached invocation delegate for the '{@link #annotationAllowed(org.eclipse.papyrus.uml.alf.StereotypeAnnotation) <em>Annotation Allowed</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #annotationAllowed(org.eclipse.papyrus.uml.alf.StereotypeAnnotation)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ANNOTATION_ALLOWED_STEREOTYPE_ANNOTATION__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getEnumerationLiteralName__AnnotationAllowed__StereotypeAnnotation())
-			.getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ANNOTATION_ALLOWED_STEREOTYPE_ANNOTATION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getEnumerationLiteralName__AnnotationAllowed__StereotypeAnnotation()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean annotationAllowed(StereotypeAnnotation annotation) {
 		try {
-			return (Boolean) ANNOTATION_ALLOWED_STEREOTYPE_ANNOTATION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { annotation }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)ANNOTATION_ALLOWED_STEREOTYPE_ANNOTATION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{annotation}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -72,14 +67,13 @@ public class EnumerationLiteralNameImpl extends MemberDefinitionImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.ENUMERATION_LITERAL_NAME___ANNOTATION_ALLOWED__STEREOTYPEANNOTATION:
-			return annotationAllowed((StereotypeAnnotation) arguments.get(0));
+			case AlfPackage.ENUMERATION_LITERAL_NAME___ANNOTATION_ALLOWED__STEREOTYPEANNOTATION:
+				return annotationAllowed((StereotypeAnnotation)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

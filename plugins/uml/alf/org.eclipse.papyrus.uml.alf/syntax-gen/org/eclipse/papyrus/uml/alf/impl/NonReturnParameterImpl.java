@@ -12,7 +12,6 @@ import org.eclipse.papyrus.uml.alf.NonReturnParameter;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Non Return Parameter</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -20,7 +19,6 @@ public class NonReturnParameterImpl extends FormalParameterImpl implements NonRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NonReturnParameterImpl() {
@@ -30,7 +28,6 @@ public class NonReturnParameterImpl extends FormalParameterImpl implements NonRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

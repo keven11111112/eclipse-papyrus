@@ -28,8 +28,6 @@ public class AddAllCustomStyleListValueCommand extends AbstractCustomStyleListVa
 
 	protected Collection<?> values;
 
-	protected Command command;
-
 	public AddAllCustomStyleListValueCommand(EditingDomain domain, View view, String styleName, EClass styleClass, EStructuralFeature styleFeature, Collection<?> values, int index) {
 		super(domain, view, styleName, styleClass, styleFeature);
 		this.index = index;

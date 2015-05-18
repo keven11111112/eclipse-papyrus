@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.handlers;
 
@@ -19,6 +20,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
@@ -26,9 +29,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIResourceQuery;
 import org.eclipse.papyrus.cdo.internal.ui.wizards.ModelExportWizard;
@@ -71,9 +71,9 @@ public class ExportModelHandler extends AbstractHandler {
 
 		List<DIModel> models = Lists.newArrayList();
 		for (URI next : resourceURIs) {
-			IPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(next);
-			if (repo != null) {
-				CDOView view = ((IInternalPapyrusRepository) repo).getMasterView();
+			CDOCheckout checkout = CDOExplorerUtil.getCheckout(next);
+			if (checkout != null) {
+				CDOView view = checkout.getView();
 				if (view != null) { // the repository could be disconnected by now
 					try {
 						CDOResourceNode resource = view.getResourceNode(CDOURIUtil.extractResourcePath(next));

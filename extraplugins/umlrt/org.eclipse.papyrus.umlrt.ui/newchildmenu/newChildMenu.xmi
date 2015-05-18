@@ -30,6 +30,15 @@
       label="RTMessageSet"
       elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageSet"/>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
-      label="IN RTMessage "
-      elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageIn"/>
+      label="ProtocolMessage OUT"
+      icon="platform:/plugin/org.eclipse.papyrus.umlrt.ui/icons/rt_message_out.gif"
+      elementTypeIdRef="org.eclipse.papyrus.umlrt.ProtocolMessageOut"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="ProtocolMessage INOUT"
+      icon="platform:/plugin/org.eclipse.papyrus.umlrt.ui/icons/rt_message_inout.gif"
+      elementTypeIdRef="org.eclipse.papyrus.umlrt.ProtocolMessageInOut"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="ProtocolMessage IN"
+      icon="platform:/plugin/org.eclipse.papyrus.umlrt.ui/icons/rt_message_in.gif"
+      elementTypeIdRef="org.eclipse.papyrus.umlrt.ProtocolMessageIn"/>
 </ElementCreationMenuModel:Folder>

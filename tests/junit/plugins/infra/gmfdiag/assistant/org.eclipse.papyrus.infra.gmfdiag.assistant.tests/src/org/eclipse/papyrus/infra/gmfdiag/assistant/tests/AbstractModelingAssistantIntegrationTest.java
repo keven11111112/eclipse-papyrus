@@ -155,11 +155,12 @@ public class AbstractModelingAssistantIntegrationTest {
 			this.notationElement = notationElement;
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
-		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-			return (adapter == EObject.class) ? semanticElement //
+		public <A> A getAdapter(Class<A> adapter) {
+			return (A) ((adapter == EObject.class) ? semanticElement //
 					: (adapter == View.class) ? notationElement //
-							: null;
+							: null);
 		}
 	}
 }

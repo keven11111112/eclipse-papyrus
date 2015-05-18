@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -70,19 +71,17 @@ public class PapyrusDiagramItemProvider
 	 * @generated
 	 */
 	protected void addCustomPalettePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusDiagram_customPalette_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customPalette_feature", "_UI_PapyrusDiagram_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__CUSTOM_PALETTE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusDiagram_customPalette_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customPalette_feature", "_UI_PapyrusDiagram_type"),
+				ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__CUSTOM_PALETTE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -92,19 +91,17 @@ public class PapyrusDiagramItemProvider
 	 * @generated
 	 */
 	protected void addCustomStylePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusDiagram_customStyle_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customStyle_feature", "_UI_PapyrusDiagram_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__CUSTOM_STYLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusDiagram_customStyle_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customStyle_feature", "_UI_PapyrusDiagram_type"),
+				ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__CUSTOM_STYLE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -121,6 +118,7 @@ public class PapyrusDiagramItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__CHILD_RULES);
 			childrenFeatures.add(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__PALETTE_RULES);
+			childrenFeatures.add(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__ASSISTANT_RULES);
 		}
 		return childrenFeatures;
 	}
@@ -151,6 +149,16 @@ public class PapyrusDiagramItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -172,14 +180,15 @@ public class PapyrusDiagramItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PapyrusDiagram.class)) {
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__CUSTOM_PALETTE:
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__CUSTOM_STYLE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__CHILD_RULES:
-			case ConfigurationPackage.PAPYRUS_DIAGRAM__PALETTE_RULES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ConfigurationPackage.PAPYRUS_DIAGRAM__CUSTOM_PALETTE:
+		case ConfigurationPackage.PAPYRUS_DIAGRAM__CUSTOM_STYLE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ConfigurationPackage.PAPYRUS_DIAGRAM__CHILD_RULES:
+		case ConfigurationPackage.PAPYRUS_DIAGRAM__PALETTE_RULES:
+		case ConfigurationPackage.PAPYRUS_DIAGRAM__ASSISTANT_RULES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -195,15 +204,14 @@ public class PapyrusDiagramItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__CHILD_RULES,
-				 ConfigurationFactory.eINSTANCE.createChildRule()));
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__CHILD_RULES,
+				ConfigurationFactory.eINSTANCE.createChildRule()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__PALETTE_RULES,
-				 ConfigurationFactory.eINSTANCE.createPaletteRule()));
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__PALETTE_RULES,
+				ConfigurationFactory.eINSTANCE.createPaletteRule()));
+
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.PAPYRUS_DIAGRAM__ASSISTANT_RULES,
+				ConfigurationFactory.eINSTANCE.createAssistantRule()));
 	}
 
 }

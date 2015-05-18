@@ -62,6 +62,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	/** The my allow several categories. */
 	private final boolean myAllowSeveralCategories;
 
+	private SettingsHelper settingsHelper;
+
 	/**
 	 * Instantiates a new select diagram category page.
 	 *
@@ -74,7 +76,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Instantiates a new select diagram category page.
 	 *
 	 * @param allowSeveralCategories
-	 *        the allow several categories
+	 *            the allow several categories
 	 */
 	public SelectDiagramCategoryPage(boolean allowSeveralCategories) {
 		super(PAGE_ID);
@@ -86,19 +88,25 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Sets the wizard.
 	 *
 	 * @param newWizard
-	 *        the new wizard
+	 *            the new wizard
 	 * @see org.eclipse.jface.wizard.WizardPage#setWizard(org.eclipse.jface.wizard.IWizard)
 	 */
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
-		SettingsHelper settingsHelper = new SettingsHelper(getDialogSettings());
+		settingsHelper = new SettingsHelper(getDialogSettings());
 		String[] defaultDiagramCategory = settingsHelper.getDefaultDiagramCategories();
-		if(defaultDiagramCategory != null && defaultDiagramCategory.length > 0) {
-			if(myAllowSeveralCategories) {
+		if (defaultDiagramCategory != null && defaultDiagramCategory.length > 0) {
+			if (myAllowSeveralCategories) {
 				setDefaultDiagramCategories(defaultDiagramCategory);
 			} else {
-				setDefaultDiagramCategories(new String[]{ defaultDiagramCategory[0] });
+				String previousSelection = settingsHelper.getPreviousSelection();
+				// Retrieves the previous selection or the selects the default behavior
+				if (settingsHelper.rememberCurrentSelection(getDialogSettings()) && previousSelection != null) {
+					setDefaultDiagramCategories(new String[] { previousSelection });
+				} else {
+					setDefaultDiagramCategories(new String[] { defaultDiagramCategory[0] });
+				}
 			}
 		}
 	}
@@ -107,9 +115,10 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Creates the control.
 	 *
 	 * @param parent
-	 *        the parent
+	 *            the parent
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	public void createControl(Composite parent) {
 		Composite plate = new Composite(parent, SWT.NONE);
 		plate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -143,7 +152,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Sets the default diagram categories.
 	 *
 	 * @param categories
-	 *        the new default diagram categories
+	 *            the new default diagram categories
 	 */
 	protected final void setDefaultDiagramCategories(String[] categories) {
 		mySelectedDiagramCategoryIds.clear();
@@ -164,11 +173,6 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			setErrorMessage(Messages.SelectDiagramCategoryPage_select_one_category);
 			return false;
 		}
-		for (String newCategory : categories) {
-			if (!validateCategoryExists(newCategory)) {
-				return false;
-			}
-		}
 		if (!validateFileExtension(categories)) {
 			return false;
 		}
@@ -179,37 +183,21 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Validate file extension.
 	 *
 	 * @param categories
-	 *        the categories
+	 *            the categories
 	 * @return true, if successful
 	 */
 	protected boolean validateFileExtension(String... categories) {
-		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(categories);
-		switch(status.getSeverity()) {
-		//		case Status.ERROR:
-		//			setErrorMessage(status.getMessage());
-		//			return false;
+		IStatus status = ((CreateModelWizard) getWizard()).diagramCategoryChanged(categories);
+		switch (status.getSeverity()) {
+		// case Status.ERROR:
+		// setErrorMessage(status.getMessage());
+		// return false;
 		case Status.WARNING:
 			setMessage(status.getMessage(), IMessageProvider.WARNING);
 			break;
 		case IStatus.INFO:
 			setMessage(status.getMessage(), IMessageProvider.INFORMATION);
 			break;
-		}
-		return true;
-	}
-
-	/**
-	 * Validate category exists.
-	 *
-	 * @param newCategory
-	 *        the new category
-	 * @return true, if successful
-	 */
-	protected boolean validateCategoryExists(String newCategory) {
-		DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
-		if(selected == null) {
-			setErrorMessage(Messages.bind(Messages.SelectDiagramCategoryPage_cannot_find_category, newCategory));
-			return false;
 		}
 		return true;
 	}
@@ -236,6 +224,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 			private SelectionEvent prevEvent;
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (e == prevEvent) {
 					return;
@@ -246,6 +235,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 				prevEvent = e;
 			}
 
+			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		};
@@ -262,18 +252,22 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Diagram category selected.
 	 *
 	 * @param category
-	 *        the category
+	 *            the category
 	 * @param checked
-	 *        the checked
+	 *            the checked
 	 */
 	protected void diagramCategorySelected(String category, boolean checked) {
-		if(checked) {
-			if(!mySelectedDiagramCategoryIds.contains(category)) {
+		if (checked) {
+			if (!mySelectedDiagramCategoryIds.contains(category)) {
 				mySelectedDiagramCategoryIds.add(category);
 			}
 		} else {
 			mySelectedDiagramCategoryIds.remove(category);
 		}
+
+		// Notifies the settings file that the selection has been set and to what
+		settingsHelper.saveRememberCurrentSelection(true);
+		settingsHelper.setCurrentSelection(category);
 	}
 
 	/**
@@ -287,7 +281,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Check buttons for.
 	 *
 	 * @param diagramCategories
-	 *        the diagram categories
+	 *            the diagram categories
 	 */
 	protected void checkButtonsFor(String... diagramCategories) {
 		for (Button button : myDiagramKindButtons) {
@@ -306,9 +300,9 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Creates the category button.
 	 *
 	 * @param diagramCategoryDescriptor
-	 *        the diagram category descriptor
+	 *            the diagram category descriptor
 	 * @param group
-	 *        the group
+	 *            the group
 	 * @return the button
 	 */
 	private Button createCategoryButton(DiagramCategoryDescriptor diagramCategoryDescriptor, Group group) {
@@ -327,7 +321,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * Gets the image.
 	 *
 	 * @param imageDescriptor
-	 *        the image descriptor
+	 *            the image descriptor
 	 * @return the image
 	 */
 	private static Image getImage(ImageDescriptor imageDescriptor) {

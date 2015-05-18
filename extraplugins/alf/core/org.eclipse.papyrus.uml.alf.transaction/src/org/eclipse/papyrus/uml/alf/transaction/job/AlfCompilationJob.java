@@ -22,6 +22,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.uml.alf.text.generation.DefaultEditStringRetrievalStrategy;
 import org.eclipse.papyrus.uml.alf.text.representation.AlfTextualRepresentation;
 import org.eclipse.papyrus.uml.alf.transaction.commands.AlfCommandFactory;
+import org.eclipse.uml2.uml.Activity;
 
 public class AlfCompilationJob extends AlfAbstractJob {
 
@@ -50,7 +51,10 @@ public class AlfCompilationJob extends AlfAbstractJob {
 				}
 				/* 3. Save the textual representation within the model */
 				if (jobStatus.equals(Status.OK_STATUS)) {
-					this.modelElementState.setText(new DefaultEditStringRetrievalStrategy().getGeneratedEditString(this.modelElementState.getOwner()));
+					/*NOTE: does not update textual representation after compilation (u)*/
+					if(!(this.modelElementState.getOwner() instanceof Activity)){
+						this.modelElementState.setText(new DefaultEditStringRetrievalStrategy().getGeneratedEditString(this.modelElementState.getOwner()));
+					}
 					/* 3. Execute the commands */
 					try {
 						domain.getCommandStack().execute(AlfCommandFactory.getInstance().creatSaveCommand(this.modelElementState));

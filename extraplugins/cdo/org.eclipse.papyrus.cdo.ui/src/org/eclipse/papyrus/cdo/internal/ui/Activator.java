@@ -8,8 +8,6 @@ import org.eclipse.emf.cdo.dawn.helper.DawnEditorHelper;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
-import org.eclipse.papyrus.cdo.internal.ui.util.DialogCredentialsProviderFactory;
 import org.eclipse.papyrus.cdo.internal.ui.util.UIUtil;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.IEditorPart;
@@ -79,8 +77,6 @@ public class Activator extends AbstractUIPlugin {
 		log.setPlugin(plugin);
 
 		CDOUtils.setBroadcastExecutor(UIUtil.uiSafeExecutor());
-
-		PapyrusRepositoryManager.INSTANCE.setCredentialsProviderFactory(new DialogCredentialsProviderFactory());
 	}
 
 	@Override

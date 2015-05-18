@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ActiveClassDefinition#getClassifierBehavior <em>Classifier Behavior</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ActiveClassDefinition#getClassifierBehavior <em>Classifier Behavior</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getActiveClassDefinition()
@@ -34,7 +34,6 @@ public interface ActiveClassDefinition extends ClassDefinition {
 	 * <!-- begin-model-doc -->
 	 * The definition of an activity (which may be a stub) to act as the classifier behavior of the active class.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Classifier Behavior</em>' containment reference.
 	 * @see #setClassifierBehavior(ActivityDefinition)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getActiveClassDefinition_ClassifierBehavior()
@@ -47,9 +46,7 @@ public interface ActiveClassDefinition extends ClassDefinition {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ActiveClassDefinition#getClassifierBehavior <em>Classifier Behavior</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Classifier Behavior</em>' containment reference.
+	 * @param value the new value of the '<em>Classifier Behavior</em>' containment reference.
 	 * @see #getClassifierBehavior()
 	 * @generated
 	 */
@@ -62,10 +59,8 @@ public interface ActiveClassDefinition extends ClassDefinition {
 	 * Returns true if the given unit definition matches this active class definition
 	 * considered as a class definition and the subunit is for an active class definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" unitRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                        /* NOTE: ClassDefinition::matchForStub would not allow an ActiveClassDefinition. \052/\n                        self.ClassifierDefinition_matchForStub(unit) and\n                        unit.definition.oclIsKindOf(ActiveClassDefinition)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                        /* NOTE: ClassDefinition::matchForStub would not allow an ActiveClassDefinition. \052/\n                        self.ClassifierDefinition_matchForStub(unit) and\n                        unit.definition.oclIsKindOf(ActiveClassDefinition)'"
 	 * @generated
 	 */
 	boolean matchForStub(UnitDefinition unit);
@@ -76,7 +71,6 @@ public interface ActiveClassDefinition extends ClassDefinition {
 	 * <!-- begin-model-doc -->
 	 * If an active class definition is not abstract, then it must have a classifier behavior.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                      not self.isAbstract implies self.classifierBehavior <> null'"
 	 * @generated
 	 */

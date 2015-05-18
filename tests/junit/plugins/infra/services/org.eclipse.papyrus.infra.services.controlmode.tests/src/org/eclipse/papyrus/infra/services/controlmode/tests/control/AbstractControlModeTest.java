@@ -50,7 +50,7 @@ import org.junit.Rule;
 
 public abstract class AbstractControlModeTest extends AbstractPapyrusTest {
 
-	protected static final String COMMAND_ID = "org.eclipse.papyrus.infra.services.controlmode.createsubmodel"; //$NON-NLS-1$
+	public static final String COMMAND_ID = "org.eclipse.papyrus.infra.services.controlmode.createsubmodel"; //$NON-NLS-1$
 
 	/** The house keeper. */
 	@Rule
@@ -197,7 +197,7 @@ public abstract class AbstractControlModeTest extends AbstractPapyrusTest {
 	 * The Class ControlModeRunnableAssertion.
 	 */
 	public class ControlModeAssertion {
-		private String message;
+		protected String message;
 
 		/**
 		 * Constructor.
@@ -216,10 +216,14 @@ public abstract class AbstractControlModeTest extends AbstractPapyrusTest {
 		public void testControl() {
 			selectElementToControl();
 			assertBeforeControl();
-			control(HandlerUtils.getCommand(COMMAND_ID));
+			control(HandlerUtils.getCommand(getCommandId()));
 			assertBeforeSave();
 			save();
 			assertAfterSave();
+		}
+
+		protected String getCommandId() {
+			return COMMAND_ID;
 		}
 
 		/**

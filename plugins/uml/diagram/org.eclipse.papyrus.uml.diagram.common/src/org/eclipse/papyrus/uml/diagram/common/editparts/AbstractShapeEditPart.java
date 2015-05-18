@@ -14,9 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import java.net.MalformedURLException;
-import java.util.StringTokenizer;
+import java.util.Iterator;
 
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
@@ -24,11 +23,11 @@ import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ShapeNamedElementFigure;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -38,7 +37,7 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public abstract class AbstractShapeEditPart extends UMLNodeEditPart implements IPapyrusEditPart {
 
-	private static final String SHAPE_CONSTANT = "shape";
+	private static final String SHAPE_CONSTANT = "shape";//$NON-NLS-1$
 
 	public AbstractShapeEditPart(View view) {
 		super(view);
@@ -97,6 +96,7 @@ public abstract class AbstractShapeEditPart extends UMLNodeEditPart implements I
 	@Override
 	public abstract ShapeNamedElementFigure getPrimaryShape();
 
+	@Override
 	public Element getUMLElement() {
 		return (Element) resolveSemanticElement();
 	}
@@ -113,23 +113,30 @@ public abstract class AbstractShapeEditPart extends UMLNodeEditPart implements I
 	 * refresh the icon by taking in account the type of the diagram
 	 */
 	private void refreshIcons() {
-		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getModel());
-		StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-		if (tokenizer.hasMoreTokens()) {
-			String firstStereotypeName = tokenizer.nextToken();
-			Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
-			org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(getUMLElement(), stereotype, SHAPE_CONSTANT);
-			if (icon != null) {
-				if (icon.getLocation() != "" && icon.getLocation() != null) {
+
+		Iterator<Stereotype> iter = getUMLElement().getAppliedStereotypes().iterator();
+		// FIXME For the time being the first stereotype Icon is Used. But should be improved
+		// when the user would be able to choose manually the Icon to applied.
+		Stereotype stereotype = iter.next();
+		Image icon = ElementUtil.getStereotypeImage(getUMLElement(), stereotype, SHAPE_CONSTANT);
+		if (icon != null) {
+			ShapeNamedElementFigure shape = getPrimaryShape();
+			if (shape != null) {
+				if (icon.getLocation() != null && !icon.getLocation().isEmpty()) {
 					try {
-						getPrimaryShape().setIcon(icon.getLocation());
+
+
+						shape.setIcon(icon.getLocation());
+
 					} catch (MalformedURLException e) {
-						Activator.log.error(icon.getLocation() + " " + e.getLocalizedMessage(), e);
+
+						Activator.log.error(String.format("$0 $1", icon.getLocation(), e.getLocalizedMessage()), e);
 					}
 				} else {
-					getPrimaryShape().setIcon(Activator.getShape(getUMLElement(), stereotype, false));
+					shape.setIcon(Activator.getShape(getUMLElement(), stereotype, false));
 				}
 			}
 		}
+
 	}
 }

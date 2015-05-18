@@ -82,7 +82,13 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart loopNode = createChild(LoopNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		checkListElementReferenceSemantic(loopNode, getActivityCompartmentEditPart(), UMLPackage.eINSTANCE.getActivity_StructuredNode(), UMLPackage.eINSTANCE.getActivity_Group());
 	}
-	
+
+	@Test
+	public void testFeatureSequenceNodeInActivity() {
+		IGraphicalEditPart loopNode = createChild(SequenceNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		checkListElementReferenceSemantic(loopNode, getActivityCompartmentEditPart(), UMLPackage.eINSTANCE.getActivity_StructuredNode(), UMLPackage.eINSTANCE.getActivity_Group());
+	}
+
 	@Test
 	public void testFeatureStructuredActivityNodeInActivity() {
 		IGraphicalEditPart structuredNode = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());

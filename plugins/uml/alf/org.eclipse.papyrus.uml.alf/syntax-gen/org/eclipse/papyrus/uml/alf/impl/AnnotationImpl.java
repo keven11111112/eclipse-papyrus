@@ -15,13 +15,12 @@ import org.eclipse.papyrus.uml.alf.Annotation;
  * An implementation of the model object '<em><b>Annotation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.AnnotationImpl#getText <em>Text</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.AnnotationImpl#getIdentifier <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.AnnotationImpl#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.AnnotationImpl#getText <em>Text</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.AnnotationImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.AnnotationImpl#getArgument <em>Argument</em>}</li>
  * </ul>
  *
  * @generated
@@ -30,7 +29,6 @@ public class AnnotationImpl extends SyntaxElementImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AnnotationImpl() {
@@ -40,7 +38,6 @@ public class AnnotationImpl extends SyntaxElementImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -51,17 +48,15 @@ public class AnnotationImpl extends SyntaxElementImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getText() {
-		return (String) eGet(AlfPackage.eINSTANCE.getAnnotation_Text(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getAnnotation_Text(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setText(String newText) {
@@ -71,17 +66,15 @@ public class AnnotationImpl extends SyntaxElementImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getIdentifier() {
-		return (String) eGet(AlfPackage.eINSTANCE.getAnnotation_Identifier(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getAnnotation_Identifier(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
@@ -91,12 +84,11 @@ public class AnnotationImpl extends SyntaxElementImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getArgument() {
-		return (EList<String>) eGet(AlfPackage.eINSTANCE.getAnnotation_Argument(), true);
+		return (EList<String>)eGet(AlfPackage.eINSTANCE.getAnnotation_Argument(), true);
 	}
 
 	/**
@@ -146,16 +138,15 @@ public class AnnotationImpl extends SyntaxElementImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.ANNOTATION___IDENTIFIER:
-			return identifier();
-		case AlfPackage.ANNOTATION___ARGUMENTS:
-			return arguments();
+			case AlfPackage.ANNOTATION___IDENTIFIER:
+				return identifier();
+			case AlfPackage.ANNOTATION___ARGUMENTS:
+				return arguments();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

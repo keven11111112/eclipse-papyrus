@@ -10,6 +10,13 @@
             class="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage"
             genModel="resource/elementCreationMenuModel.genmodel"/>
    </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated elementCreationMenuModel -->
+      <parser
+            type="creationmenumodel"
+            class="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.util.ElementCreationMenuModelResourceFactoryImpl"/>
+   </extension>
    
    <!-- COMPATIBILITY -->
 	<extension point="org.eclipse.emf.ecore.generated_package">
@@ -20,12 +27,6 @@
    </extension>
    
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated elementCreationMenuModel -->
-      <parser
-            type="creationmenumodel"
-            class="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.util.CustomElementCreationMenuModelResourceFactory"/>
-   </extension>
 </plugin>
 
 

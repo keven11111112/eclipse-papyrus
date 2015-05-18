@@ -54,12 +54,10 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.commands.ApplyStereotypeCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.DefferedAppliedStereotypeToDisplayCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.uml.diagram.common.ui.dialogs.PropertyEditors;
@@ -220,7 +218,7 @@ public class StereotypePostAction extends ModelPostAction {
 	/** the column for the stereotypes */
 	private TreeViewerColumn stereotypeColumn = null;
 
-	/** the column with the checkboxes for the runtime properties */
+	/** the column with the check boxes for the runtime properties */
 	private TreeViewerColumn runtimeColumn = null;
 
 	private ArrayList<Value> savedValues;
@@ -291,9 +289,6 @@ public class StereotypePostAction extends ModelPostAction {
 
 		cmd.add(new ApplyStereotypeCommand(editingDomain, request));
 
-		// 2. display stereotypes
-		cmd.add(new EMFtoGMFCommandWrapper(new DefferedAppliedStereotypeToDisplayCommand(editingDomain, viewAdapter, "")));
-
 		AbstractTransactionalCommand setPropertiesCommand = new AbstractTransactionalCommand(editingDomain, "Set stereotype values", null) {
 
 			@Override
@@ -305,8 +300,9 @@ public class StereotypePostAction extends ModelPostAction {
 					packageContainer = packageContainer.getOwner();
 				} while (!(packageContainer instanceof org.eclipse.uml2.uml.Package) && packageContainer != null);
 
-
-				config.setAppliedProfiles(((org.eclipse.uml2.uml.Package) packageContainer).getAllAppliedProfiles());
+				if (packageContainer != null) {
+					config.setAppliedProfiles(((org.eclipse.uml2.uml.Package) packageContainer).getAllAppliedProfiles());
+				}
 
 				if (config.hasRuntimeProperties()) {
 					defineRuntimeProperties(config);
@@ -631,7 +627,7 @@ public class StereotypePostAction extends ModelPostAction {
 	 * <ul>
 	 * <li>
 	 * {@link #createConfigurationComposite(Composite, PaletteEntryProxy, List)}</li>
-	 * <li> {@link #performAddButtonPressed(TreeViewer)} when we add or remove stereotypes</li>
+	 * <li>{@link #performAddButtonPressed(TreeViewer)} when we add or remove stereotypes</li>
 	 * </ul>
 	 */
 	protected void updateStereotypeViewer() {
@@ -657,8 +653,8 @@ public class StereotypePostAction extends ModelPostAction {
 	 */
 	protected void performAddButtonPressed(TreeViewer tree) {
 		TreeSelection selection = (TreeSelection) tree.getSelection();
-		Object selectedElement = selection.getFirstElement();
-		if (selection != null && selection.size() == 1 && !(selectedElement instanceof StereotypeRepresentation)) {
+		if (selection != null && selection.size() == 1) {
+			Object selectedElement = selection.getFirstElement();
 			if (selectedElement instanceof PropertyRepresentation) {
 				// We want add a value to a multi-valued property or edit a
 				// value to a mono-valued property
@@ -891,10 +887,10 @@ public class StereotypePostAction extends ModelPostAction {
 	 * Set the {@link Button#setEnabled(boolean)} parameter to true or false for
 	 * the buttons following the selected element in the {@link StereotypePostAction#stereotypeViewer}
 	 * <ul>
-	 * <li> {@link StereotypePostAction#addButton}</li>
-	 * <li> {@link StereotypePostAction#removeButton}</li>
-	 * <li> {@link StereotypePostAction#upButton}</li>
-	 * <li> {@link StereotypePostAction#downButton}</li>
+	 * <li>{@link StereotypePostAction#addButton}</li>
+	 * <li>{@link StereotypePostAction#removeButton}</li>
+	 * <li>{@link StereotypePostAction#upButton}</li>
+	 * <li>{@link StereotypePostAction#downButton}</li>
 	 * </ul>
 	 *
 	 * @param event
@@ -1085,7 +1081,8 @@ public class StereotypePostAction extends ModelPostAction {
 	 * test if all the selected element in the selection are fron the same level
 	 *
 	 * @param selection
-	 * @return <ul>
+	 * @return
+	 * 		<ul>
 	 *         <li>{@code true} if all the element are from the same level in the tree</li>
 	 *         <li>{@code false if not}</li>
 	 *         </ul>

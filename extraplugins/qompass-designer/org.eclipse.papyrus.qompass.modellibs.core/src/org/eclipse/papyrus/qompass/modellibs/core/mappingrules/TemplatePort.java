@@ -24,6 +24,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FixTemplateSync;
 import org.eclipse.papyrus.qompass.modellibs.core.Activator;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Interface;
@@ -91,7 +92,7 @@ public class TemplatePort implements ITemplateMappingRule {
 			EList<Namespace> path = TemplateUtils.relativePathWithMerge(extendedPort, pkgTemplate);
 
 			String name = pkgTemplate.getName() + "_" + type.getName(); //$NON-NLS-1$
-			Package model = Utils.getTop(port);
+			Package model = PackageUtil.getRootPackage(port);
 			Package pkg = model.getNestedPackage(name);
 			if (pkg == null) {
 				model = Utils.getFirstLevel(port); // try whether package template exists here
@@ -125,7 +126,7 @@ public class TemplatePort implements ITemplateMappingRule {
 
 		TemplateSignature signature = TemplateUtils.getSignature(extendedPort.getNearestPackage());
 		if (signature != null) {
-			Package model = Utils.getTop(port);
+			Package model = PackageUtil.getRootPackage(port);
 			try {
 				TemplateBinding binding =
 						TemplateUtils.fixedBinding(model, extendedPort, (Classifier) type);
@@ -162,7 +163,7 @@ public class TemplatePort implements ITemplateMappingRule {
 			EList<Namespace> path = TemplateUtils.relativePathWithMerge(extendedPort, pkgTemplate);
 
 			String name = pkgTemplate.getName() + "_" + type.getName(); //$NON-NLS-1$
-			Package model = Utils.getTop(port);
+			Package model = PackageUtil.getRootPackage(port);
 			Package pkg = model.getNestedPackage(name);
 			if (pkg == null) {
 				model = Utils.getFirstLevel(port); // try whether package template exists here

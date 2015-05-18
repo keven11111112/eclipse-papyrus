@@ -33,7 +33,6 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Widget;
 
 /**
@@ -242,7 +241,6 @@ public class MultiplicityDialog extends AbstractValueEditor implements Selection
 			stackLayoutComposite.layout();
 		}
 		setReadOnly(readOnly);
-		updateLabels();
 	}
 
 	/**
@@ -594,12 +592,9 @@ public class MultiplicityDialog extends AbstractValueEditor implements Selection
 	 */
 	@Override
 	public void handleChange(ChangeEvent event) {
-		// Manage the modification of observable values by runnable to not freeze the UI modification
-		Display.getDefault().asyncExec(new Runnable() {
-			@Override
-			public void run() {
-				setEditorsModelObservable(modelProperty);
-			}
-		});
+		// Only refresh the model observables and the read only value
+		setEditorsModelObservable(modelProperty);
+		setReadOnly(readOnly);
+		// The others variables (labelProviders, contentProviders, mandatory and directCreation) don't need to change
 	}
 }

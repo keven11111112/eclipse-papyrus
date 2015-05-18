@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.uml2.uml.StructuralFeature
 import org.eclipse.papyrus.qompass.designer.java.Messages
 import org.eclipse.papyrus.qompass.designer.core.extensions.IOOTrafo
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil
 
 /**
  * This class realizes the transformation from component-based to object-oriented
@@ -208,7 +209,7 @@ class JavaToOO implements IOOTrafo {
 					if (multiPort) {
 
 						// add index parameter
-						val eLong = Utils.getQualifiedElement(Utils.getTop(implementation),
+						val eLong = Utils.getQualifiedElement(PackageUtil.getRootPackage(implementation),
 							CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE)
 						if (eLong instanceof Type) {
 							op.createOwnedParameter("index", eLong as Type) 

@@ -445,13 +445,13 @@
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_UKFswON2EeSMDu6IBsn9eg"
       name="Operation (3003)"
-      identifier="org.eclipse.papyrus.umlrt.Operation_3003"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageIn_3003"
       hint="3003">
     <iconEntry
         xmi:id="_UKFsweN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageIn</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3003</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -463,13 +463,13 @@
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_iggYsON2EeSMDu6IBsn9eg"
       name="Operation (3007)"
-      identifier="org.eclipse.papyrus.umlrt.Operation_3007"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageIn_3007"
       hint="3007">
     <iconEntry
         xmi:id="_iggYseN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageIn</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3007</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -481,13 +481,13 @@
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_nR6SMON2EeSMDu6IBsn9eg"
       name="Operation (3013)"
-      identifier="org.eclipse.papyrus.umlrt.Operation_3013"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageIn_3013"
       hint="3013">
     <iconEntry
         xmi:id="_nR6SMeN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageIn</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3013</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -499,13 +499,13 @@
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_sqMlgON2EeSMDu6IBsn9eg"
       name="Operation (3019)"
-      identifier="org.eclipse.papyrus.umlrt.Operation_3019"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageIn_3019"
       hint="3019">
     <iconEntry
         xmi:id="_sqMlgeN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageIn</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3019</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -517,17 +517,197 @@
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_xQYGcON2EeSMDu6IBsn9eg"
       name="Operation (3042)"
-      identifier="org.eclipse.papyrus.umlrt.Operation_3042"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageIn_3042"
       hint="3042">
     <iconEntry
         xmi:id="_xQYGceN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageIn</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3042</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
         xmi:id="_xQYGcuN2EeSMDu6IBsn9eg">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_59GfoPlnEeSacPCZ52E8kQ"
+      name="Operation (3003)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageInOut_3003"
+      hint="3003">
+    <iconEntry
+        xmi:id="_59GfoflnEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageInOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3003</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_59GfovlnEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_59Gfo_lnEeSacPCZ52E8kQ"
+      name="Operation (3007)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageInOut_3007"
+      hint="3007">
+    <iconEntry
+        xmi:id="_59GfpPlnEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageInOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3007</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_59GfpflnEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_59GfpvlnEeSacPCZ52E8kQ"
+      name="Operation (3013)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageInOut_3013"
+      hint="3013">
+    <iconEntry
+        xmi:id="_59Gfp_lnEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageInOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3013</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_59GfqPlnEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_59GfqflnEeSacPCZ52E8kQ"
+      name="Operation (3019)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageInOut_3019"
+      hint="3019">
+    <iconEntry
+        xmi:id="_59GfqvlnEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageInOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3019</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_59Gfq_lnEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_59GfrPlnEeSacPCZ52E8kQ"
+      name="Operation (3042)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageInOut_3042"
+      hint="3042">
+    <iconEntry
+        xmi:id="_59GfrflnEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageInOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3042</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_59GfrvlnEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_Kpj14PloEeSacPCZ52E8kQ"
+      name="Operation (3003)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageOut_3003"
+      hint="3003">
+    <iconEntry
+        xmi:id="_Kpj14floEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3003</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_Kpj14vloEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_Kpj14_loEeSacPCZ52E8kQ"
+      name="Operation (3007)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageOut_3007"
+      hint="3007">
+    <iconEntry
+        xmi:id="_Kpj15PloEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3007</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_Kpj15floEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_Kpj15vloEeSacPCZ52E8kQ"
+      name="Operation (3013)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageOut_3013"
+      hint="3013">
+    <iconEntry
+        xmi:id="_Kpj15_loEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3013</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_Kpj16PloEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_Kpj16floEeSacPCZ52E8kQ"
+      name="Operation (3019)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageOut_3019"
+      hint="3019">
+    <iconEntry
+        xmi:id="_Kpj16vloEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3019</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_Kpj16_loEeSacPCZ52E8kQ">
+      <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_Kpj17PloEeSacPCZ52E8kQ"
+      name="Operation (3042)"
+      identifier="org.eclipse.papyrus.umlrt.ProtocolMessageOut_3042"
+      hint="3042">
+    <iconEntry
+        xmi:id="_Kpj17floEeSacPCZ52E8kQ"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.ProtocolMessageOut</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3042</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_Kpj17vloEeSacPCZ52E8kQ">
       <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>

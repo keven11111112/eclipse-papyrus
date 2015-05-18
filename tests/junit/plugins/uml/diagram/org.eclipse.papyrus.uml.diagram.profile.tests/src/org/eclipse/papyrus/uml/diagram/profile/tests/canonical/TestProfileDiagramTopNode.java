@@ -16,6 +16,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
@@ -30,7 +31,7 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
-	
+
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
@@ -38,7 +39,7 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return (ICreationCommand)new CreateProfileDiagramCommand();
+		return (ICreationCommand) new CreateProfileDiagramCommand();
 	}
 
 	@Override
@@ -66,6 +67,7 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 		testToManageNode(UMLElementTypes.DataType_2010, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_2007, false);
 	}
 
+	@FailingTest
 	@Test
 	public void testToManageStereoType() {
 		testToManageNode(UMLElementTypes.Stereotype_1026, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Package_2007, false);

@@ -35,8 +35,6 @@ public class CustomStyleObservableList extends EMFObservableList implements ICha
 
 	protected EClass eClass;
 
-	protected EStructuralFeature feature;
-
 	protected String styleName;
 
 	protected View view;

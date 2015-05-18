@@ -16,7 +16,6 @@ import org.eclipse.papyrus.uml.alf.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.uml.alf.AlfPackage
  * @generated
  */
@@ -25,7 +24,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected static AlfPackage modelPackage;
@@ -34,7 +32,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AlfAdapterFactory() {
@@ -48,7 +45,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -58,7 +54,7 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -67,685 +63,555 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AlfSwitch<Adapter> modelSwitch =
 			new AlfSwitch<Adapter>() {
-				@Override
-				public Adapter caseAssignedSource(AssignedSource object) {
-					return createAssignedSourceAdapter();
-				}
-
-				@Override
-				public Adapter caseSyntaxElement(SyntaxElement object) {
-					return createSyntaxElementAdapter();
-				}
-
-				@Override
-				public Adapter caseElementReference(ElementReference object) {
-					return createElementReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseInternalElementReference(InternalElementReference object) {
-					return createInternalElementReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseExternalElementReference(ExternalElementReference object) {
-					return createExternalElementReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseExternalEnumerationLiteralReference(ExternalEnumerationLiteralReference object) {
-					return createExternalEnumerationLiteralReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseBoundElementReference(BoundElementReference object) {
-					return createBoundElementReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseDocumentedElement(DocumentedElement object) {
-					return createDocumentedElementAdapter();
-				}
-
-				@Override
-				public Adapter caseSequenceExpansionExpression(SequenceExpansionExpression object) {
-					return createSequenceExpansionExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseAssignableElement(AssignableElement object) {
-					return createAssignableElementAdapter();
-				}
-
-				@Override
-				public Adapter caseAssignableElementReference(AssignableElementReference object) {
-					return createAssignableElementReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseExpression(Expression object) {
-					return createExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseExtentOrExpression(ExtentOrExpression object) {
-					return createExtentOrExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseQualifiedName(QualifiedName object) {
-					return createQualifiedNameAdapter();
-				}
-
-				@Override
-				public Adapter caseFeatureReference(FeatureReference object) {
-					return createFeatureReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseNameBinding(NameBinding object) {
-					return createNameBindingAdapter();
-				}
-
-				@Override
-				public Adapter caseTemplateBinding(TemplateBinding object) {
-					return createTemplateBindingAdapter();
-				}
-
-				@Override
-				public Adapter caseNamedTemplateBinding(NamedTemplateBinding object) {
-					return createNamedTemplateBindingAdapter();
-				}
-
-				@Override
-				public Adapter caseTemplateParameterSubstitution(TemplateParameterSubstitution object) {
-					return createTemplateParameterSubstitutionAdapter();
-				}
-
-				@Override
-				public Adapter caseNumericUnaryExpression(NumericUnaryExpression object) {
-					return createNumericUnaryExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseUnaryExpression(UnaryExpression object) {
-					return createUnaryExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseForAllOrExistsOrOneExpression(ForAllOrExistsOrOneExpression object) {
-					return createForAllOrExistsOrOneExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseIsolationExpression(IsolationExpression object) {
-					return createIsolationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseBinaryExpression(BinaryExpression object) {
-					return createBinaryExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseBooleanUnaryExpression(BooleanUnaryExpression object) {
-					return createBooleanUnaryExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseCastExpression(CastExpression object) {
-					return createCastExpressionAdapter();
-				}
-
-				@Override
-				public Adapter casePositionalTuple(PositionalTuple object) {
-					return createPositionalTupleAdapter();
-				}
-
-				@Override
-				public Adapter caseTuple(Tuple object) {
-					return createTupleAdapter();
-				}
-
-				@Override
-				public Adapter caseNamedExpression(NamedExpression object) {
-					return createNamedExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseInputNamedExpression(InputNamedExpression object) {
-					return createInputNamedExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseInvocationExpression(InvocationExpression object) {
-					return createInvocationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseOutputNamedExpression(OutputNamedExpression object) {
-					return createOutputNamedExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseLeftHandSide(LeftHandSide object) {
-					return createLeftHandSideAdapter();
-				}
-
-				@Override
-				public Adapter caseSequenceAccessExpression(SequenceAccessExpression object) {
-					return createSequenceAccessExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseStringLiteralExpression(StringLiteralExpression object) {
-					return createStringLiteralExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseLiteralExpression(LiteralExpression object) {
-					return createLiteralExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseSequenceOperationExpression(SequenceOperationExpression object) {
-					return createSequenceOperationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseSelectOrRejectExpression(SelectOrRejectExpression object) {
-					return createSelectOrRejectExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseClassExtentExpression(ClassExtentExpression object) {
-					return createClassExtentExpressionAdapter();
-				}
-
-				@Override
-				public Adapter casePositionalTemplateBinding(PositionalTemplateBinding object) {
-					return createPositionalTemplateBindingAdapter();
-				}
-
-				@Override
-				public Adapter caseConditionalLogicalExpression(ConditionalLogicalExpression object) {
-					return createConditionalLogicalExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseLinkOperationExpression(LinkOperationExpression object) {
-					return createLinkOperationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseEqualityExpression(EqualityExpression object) {
-					return createEqualityExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseAssignmentExpression(AssignmentExpression object) {
-					return createAssignmentExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseLogicalExpression(LogicalExpression object) {
-					return createLogicalExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseSequenceConstructionExpression(SequenceConstructionExpression object) {
-					return createSequenceConstructionExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseSequenceElements(SequenceElements object) {
-					return createSequenceElementsAdapter();
-				}
-
-				@Override
-				public Adapter caseCollectOrIterateExpression(CollectOrIterateExpression object) {
-					return createCollectOrIterateExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseIsUniqueExpression(IsUniqueExpression object) {
-					return createIsUniqueExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseArithmeticExpression(ArithmeticExpression object) {
-					return createArithmeticExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseFeatureLeftHandSide(FeatureLeftHandSide object) {
-					return createFeatureLeftHandSideAdapter();
-				}
-
-				@Override
-				public Adapter caseConditionalTestExpression(ConditionalTestExpression object) {
-					return createConditionalTestExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseInstanceCreationExpression(InstanceCreationExpression object) {
-					return createInstanceCreationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter casePropertyAccessExpression(PropertyAccessExpression object) {
-					return createPropertyAccessExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseNameExpression(NameExpression object) {
-					return createNameExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseBitStringUnaryExpression(BitStringUnaryExpression object) {
-					return createBitStringUnaryExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseFeatureInvocationExpression(FeatureInvocationExpression object) {
-					return createFeatureInvocationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseBehaviorInvocationExpression(BehaviorInvocationExpression object) {
-					return createBehaviorInvocationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseShiftExpression(ShiftExpression object) {
-					return createShiftExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseUnboundedLiteralExpression(UnboundedLiteralExpression object) {
-					return createUnboundedLiteralExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseThisExpression(ThisExpression object) {
-					return createThisExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseClassificationExpression(ClassificationExpression object) {
-					return createClassificationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseSuperInvocationExpression(SuperInvocationExpression object) {
-					return createSuperInvocationExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseIncrementOrDecrementExpression(IncrementOrDecrementExpression object) {
-					return createIncrementOrDecrementExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseBooleanLiteralExpression(BooleanLiteralExpression object) {
-					return createBooleanLiteralExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseNamedTuple(NamedTuple object) {
-					return createNamedTupleAdapter();
-				}
-
-				@Override
-				public Adapter caseNaturalLiteralExpression(NaturalLiteralExpression object) {
-					return createNaturalLiteralExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseSequenceRange(SequenceRange object) {
-					return createSequenceRangeAdapter();
-				}
-
-				@Override
-				public Adapter caseNameLeftHandSide(NameLeftHandSide object) {
-					return createNameLeftHandSideAdapter();
-				}
-
-				@Override
-				public Adapter caseEffectiveLeftHandSide(EffectiveLeftHandSide object) {
-					return createEffectiveLeftHandSideAdapter();
-				}
-
-				@Override
-				public Adapter caseSequenceReductionExpression(SequenceReductionExpression object) {
-					return createSequenceReductionExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseSequenceExpressionList(SequenceExpressionList object) {
-					return createSequenceExpressionListAdapter();
-				}
-
-				@Override
-				public Adapter caseRelationalExpression(RelationalExpression object) {
-					return createRelationalExpressionAdapter();
-				}
-
-				@Override
-				public Adapter caseLocalNameDeclarationStatement(LocalNameDeclarationStatement object) {
-					return createLocalNameDeclarationStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseAssignableLocalNameDeclaration(AssignableLocalNameDeclaration object) {
-					return createAssignableLocalNameDeclarationAdapter();
-				}
-
-				@Override
-				public Adapter caseStatement(Statement object) {
-					return createStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseAnnotation(Annotation object) {
-					return createAnnotationAdapter();
-				}
-
-				@Override
-				public Adapter caseQualifiedNameList(QualifiedNameList object) {
-					return createQualifiedNameListAdapter();
-				}
-
-				@Override
-				public Adapter caseNonFinalClause(NonFinalClause object) {
-					return createNonFinalClauseAdapter();
-				}
-
-				@Override
-				public Adapter caseBlock(Block object) {
-					return createBlockAdapter();
-				}
-
-				@Override
-				public Adapter caseBlockStatement(BlockStatement object) {
-					return createBlockStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseDoStatement(DoStatement object) {
-					return createDoStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseConcurrentClauses(ConcurrentClauses object) {
-					return createConcurrentClausesAdapter();
-				}
-
-				@Override
-				public Adapter caseBreakStatement(BreakStatement object) {
-					return createBreakStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseExpressionStatement(ExpressionStatement object) {
-					return createExpressionStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseClassifyStatement(ClassifyStatement object) {
-					return createClassifyStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseForStatement(ForStatement object) {
-					return createForStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseLoopVariableDefinition(LoopVariableDefinition object) {
-					return createLoopVariableDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseIfStatement(IfStatement object) {
-					return createIfStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseSwitchStatement(SwitchStatement object) {
-					return createSwitchStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseSwitchClause(SwitchClause object) {
-					return createSwitchClauseAdapter();
-				}
-
-				@Override
-				public Adapter caseWhileStatement(WhileStatement object) {
-					return createWhileStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseReturnStatement(ReturnStatement object) {
-					return createReturnStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseInLineStatement(InLineStatement object) {
-					return createInLineStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseAcceptStatement(AcceptStatement object) {
-					return createAcceptStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseAcceptBlock(AcceptBlock object) {
-					return createAcceptBlockAdapter();
-				}
-
-				@Override
-				public Adapter caseEmptyStatement(EmptyStatement object) {
-					return createEmptyStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseModelNamespace(ModelNamespace object) {
-					return createModelNamespaceAdapter();
-				}
-
-				@Override
-				public Adapter caseNamespaceDefinition(NamespaceDefinition object) {
-					return createNamespaceDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseMemberDefinition(MemberDefinition object) {
-					return createMemberDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseStereotypeAnnotation(StereotypeAnnotation object) {
-					return createStereotypeAnnotationAdapter();
-				}
-
-				@Override
-				public Adapter caseTaggedValueList(TaggedValueList object) {
-					return createTaggedValueListAdapter();
-				}
-
-				@Override
-				public Adapter caseTaggedValue(TaggedValue object) {
-					return createTaggedValueAdapter();
-				}
-
-				@Override
-				public Adapter caseUnitDefinition(UnitDefinition object) {
-					return createUnitDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseImportReference(ImportReference object) {
-					return createImportReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseImportedMember(ImportedMember object) {
-					return createImportedMemberAdapter();
-				}
-
-				@Override
-				public Adapter caseEnumerationLiteralName(EnumerationLiteralName object) {
-					return createEnumerationLiteralNameAdapter();
-				}
-
-				@Override
-				public Adapter caseOperationDefinition(OperationDefinition object) {
-					return createOperationDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseAssociationDefinition(AssociationDefinition object) {
-					return createAssociationDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseClassifierDefinition(ClassifierDefinition object) {
-					return createClassifierDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseClassDefinition(ClassDefinition object) {
-					return createClassDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseTypedElementDefinition(TypedElementDefinition object) {
-					return createTypedElementDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseDataTypeDefinition(DataTypeDefinition object) {
-					return createDataTypeDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter casePackageDefinition(PackageDefinition object) {
-					return createPackageDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter casePropertyDefinition(PropertyDefinition object) {
-					return createPropertyDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseSignalDefinition(SignalDefinition object) {
-					return createSignalDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseActiveClassDefinition(ActiveClassDefinition object) {
-					return createActiveClassDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseActivityDefinition(ActivityDefinition object) {
-					return createActivityDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseElementImportReference(ElementImportReference object) {
-					return createElementImportReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseSignalReceptionDefinition(SignalReceptionDefinition object) {
-					return createSignalReceptionDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseEnumerationDefinition(EnumerationDefinition object) {
-					return createEnumerationDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter casePackageImportReference(PackageImportReference object) {
-					return createPackageImportReferenceAdapter();
-				}
-
-				@Override
-				public Adapter caseClassifierTemplateParameter(ClassifierTemplateParameter object) {
-					return createClassifierTemplateParameterAdapter();
-				}
-
-				@Override
-				public Adapter caseFormalParameter(FormalParameter object) {
-					return createFormalParameterAdapter();
-				}
-
-				@Override
-				public Adapter caseReceptionDefinition(ReceptionDefinition object) {
-					return createReceptionDefinitionAdapter();
-				}
-
-				@Override
-				public Adapter caseMember(Member object) {
-					return createMemberAdapter();
-				}
-
-				@Override
-				public Adapter caseAnnotatedStatement(AnnotatedStatement object) {
-					return createAnnotatedStatementAdapter();
-				}
-
-				@Override
-				public Adapter caseBoundClassifier(BoundClassifier object) {
-					return createBoundClassifierAdapter();
-				}
-
-				@Override
-				public Adapter caseReturnParameter(ReturnParameter object) {
-					return createReturnParameterAdapter();
-				}
-
-				@Override
-				public Adapter caseNonReturnParameter(NonReturnParameter object) {
-					return createNonReturnParameterAdapter();
-				}
-
-				@Override
-				public Adapter caseAnyType(AnyType object) {
-					return createAnyTypeAdapter();
-				}
-
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+			@Override
+			public Adapter caseAssignedSource(AssignedSource object) {
+				return createAssignedSourceAdapter();
+			}
+			@Override
+			public Adapter caseSyntaxElement(SyntaxElement object) {
+				return createSyntaxElementAdapter();
+			}
+			@Override
+			public Adapter caseElementReference(ElementReference object) {
+				return createElementReferenceAdapter();
+			}
+			@Override
+			public Adapter caseInternalElementReference(InternalElementReference object) {
+				return createInternalElementReferenceAdapter();
+			}
+			@Override
+			public Adapter caseExternalElementReference(ExternalElementReference object) {
+				return createExternalElementReferenceAdapter();
+			}
+			@Override
+			public Adapter caseExternalEnumerationLiteralReference(ExternalEnumerationLiteralReference object) {
+				return createExternalEnumerationLiteralReferenceAdapter();
+			}
+			@Override
+			public Adapter caseBoundElementReference(BoundElementReference object) {
+				return createBoundElementReferenceAdapter();
+			}
+			@Override
+			public Adapter caseDocumentedElement(DocumentedElement object) {
+				return createDocumentedElementAdapter();
+			}
+			@Override
+			public Adapter caseSequenceExpansionExpression(SequenceExpansionExpression object) {
+				return createSequenceExpansionExpressionAdapter();
+			}
+			@Override
+			public Adapter caseAssignableElement(AssignableElement object) {
+				return createAssignableElementAdapter();
+			}
+			@Override
+			public Adapter caseAssignableElementReference(AssignableElementReference object) {
+				return createAssignableElementReferenceAdapter();
+			}
+			@Override
+			public Adapter caseExpression(Expression object) {
+				return createExpressionAdapter();
+			}
+			@Override
+			public Adapter caseExpressionReference(ExpressionReference object) {
+				return createExpressionReferenceAdapter();
+			}
+			@Override
+			public Adapter caseExtentOrExpression(ExtentOrExpression object) {
+				return createExtentOrExpressionAdapter();
+			}
+			@Override
+			public Adapter caseQualifiedName(QualifiedName object) {
+				return createQualifiedNameAdapter();
+			}
+			@Override
+			public Adapter caseFeatureReference(FeatureReference object) {
+				return createFeatureReferenceAdapter();
+			}
+			@Override
+			public Adapter caseNameBinding(NameBinding object) {
+				return createNameBindingAdapter();
+			}
+			@Override
+			public Adapter caseTemplateBinding(TemplateBinding object) {
+				return createTemplateBindingAdapter();
+			}
+			@Override
+			public Adapter caseNamedTemplateBinding(NamedTemplateBinding object) {
+				return createNamedTemplateBindingAdapter();
+			}
+			@Override
+			public Adapter caseTemplateParameterSubstitution(TemplateParameterSubstitution object) {
+				return createTemplateParameterSubstitutionAdapter();
+			}
+			@Override
+			public Adapter caseNumericUnaryExpression(NumericUnaryExpression object) {
+				return createNumericUnaryExpressionAdapter();
+			}
+			@Override
+			public Adapter caseUnaryExpression(UnaryExpression object) {
+				return createUnaryExpressionAdapter();
+			}
+			@Override
+			public Adapter caseForAllOrExistsOrOneExpression(ForAllOrExistsOrOneExpression object) {
+				return createForAllOrExistsOrOneExpressionAdapter();
+			}
+			@Override
+			public Adapter caseIsolationExpression(IsolationExpression object) {
+				return createIsolationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseBinaryExpression(BinaryExpression object) {
+				return createBinaryExpressionAdapter();
+			}
+			@Override
+			public Adapter caseBooleanUnaryExpression(BooleanUnaryExpression object) {
+				return createBooleanUnaryExpressionAdapter();
+			}
+			@Override
+			public Adapter caseCastExpression(CastExpression object) {
+				return createCastExpressionAdapter();
+			}
+			@Override
+			public Adapter casePositionalTuple(PositionalTuple object) {
+				return createPositionalTupleAdapter();
+			}
+			@Override
+			public Adapter caseTuple(Tuple object) {
+				return createTupleAdapter();
+			}
+			@Override
+			public Adapter caseNamedExpression(NamedExpression object) {
+				return createNamedExpressionAdapter();
+			}
+			@Override
+			public Adapter caseInputNamedExpression(InputNamedExpression object) {
+				return createInputNamedExpressionAdapter();
+			}
+			@Override
+			public Adapter caseInvocationExpression(InvocationExpression object) {
+				return createInvocationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseOutputNamedExpression(OutputNamedExpression object) {
+				return createOutputNamedExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLeftHandSide(LeftHandSide object) {
+				return createLeftHandSideAdapter();
+			}
+			@Override
+			public Adapter caseSequenceAccessExpression(SequenceAccessExpression object) {
+				return createSequenceAccessExpressionAdapter();
+			}
+			@Override
+			public Adapter caseStringLiteralExpression(StringLiteralExpression object) {
+				return createStringLiteralExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLiteralExpression(LiteralExpression object) {
+				return createLiteralExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSequenceOperationExpression(SequenceOperationExpression object) {
+				return createSequenceOperationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSelectOrRejectExpression(SelectOrRejectExpression object) {
+				return createSelectOrRejectExpressionAdapter();
+			}
+			@Override
+			public Adapter caseClassExtentExpression(ClassExtentExpression object) {
+				return createClassExtentExpressionAdapter();
+			}
+			@Override
+			public Adapter casePositionalTemplateBinding(PositionalTemplateBinding object) {
+				return createPositionalTemplateBindingAdapter();
+			}
+			@Override
+			public Adapter caseConditionalLogicalExpression(ConditionalLogicalExpression object) {
+				return createConditionalLogicalExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLinkOperationExpression(LinkOperationExpression object) {
+				return createLinkOperationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseEqualityExpression(EqualityExpression object) {
+				return createEqualityExpressionAdapter();
+			}
+			@Override
+			public Adapter caseAssignmentExpression(AssignmentExpression object) {
+				return createAssignmentExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLogicalExpression(LogicalExpression object) {
+				return createLogicalExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSequenceConstructionExpression(SequenceConstructionExpression object) {
+				return createSequenceConstructionExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSequenceElements(SequenceElements object) {
+				return createSequenceElementsAdapter();
+			}
+			@Override
+			public Adapter caseCollectOrIterateExpression(CollectOrIterateExpression object) {
+				return createCollectOrIterateExpressionAdapter();
+			}
+			@Override
+			public Adapter caseIsUniqueExpression(IsUniqueExpression object) {
+				return createIsUniqueExpressionAdapter();
+			}
+			@Override
+			public Adapter caseArithmeticExpression(ArithmeticExpression object) {
+				return createArithmeticExpressionAdapter();
+			}
+			@Override
+			public Adapter caseFeatureLeftHandSide(FeatureLeftHandSide object) {
+				return createFeatureLeftHandSideAdapter();
+			}
+			@Override
+			public Adapter caseConditionalTestExpression(ConditionalTestExpression object) {
+				return createConditionalTestExpressionAdapter();
+			}
+			@Override
+			public Adapter caseInstanceCreationExpression(InstanceCreationExpression object) {
+				return createInstanceCreationExpressionAdapter();
+			}
+			@Override
+			public Adapter casePropertyAccessExpression(PropertyAccessExpression object) {
+				return createPropertyAccessExpressionAdapter();
+			}
+			@Override
+			public Adapter caseNameExpression(NameExpression object) {
+				return createNameExpressionAdapter();
+			}
+			@Override
+			public Adapter caseBitStringUnaryExpression(BitStringUnaryExpression object) {
+				return createBitStringUnaryExpressionAdapter();
+			}
+			@Override
+			public Adapter caseFeatureInvocationExpression(FeatureInvocationExpression object) {
+				return createFeatureInvocationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseBehaviorInvocationExpression(BehaviorInvocationExpression object) {
+				return createBehaviorInvocationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseShiftExpression(ShiftExpression object) {
+				return createShiftExpressionAdapter();
+			}
+			@Override
+			public Adapter caseUnboundedLiteralExpression(UnboundedLiteralExpression object) {
+				return createUnboundedLiteralExpressionAdapter();
+			}
+			@Override
+			public Adapter caseThisExpression(ThisExpression object) {
+				return createThisExpressionAdapter();
+			}
+			@Override
+			public Adapter caseClassificationExpression(ClassificationExpression object) {
+				return createClassificationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSuperInvocationExpression(SuperInvocationExpression object) {
+				return createSuperInvocationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseIncrementOrDecrementExpression(IncrementOrDecrementExpression object) {
+				return createIncrementOrDecrementExpressionAdapter();
+			}
+			@Override
+			public Adapter caseBooleanLiteralExpression(BooleanLiteralExpression object) {
+				return createBooleanLiteralExpressionAdapter();
+			}
+			@Override
+			public Adapter caseNamedTuple(NamedTuple object) {
+				return createNamedTupleAdapter();
+			}
+			@Override
+			public Adapter caseNaturalLiteralExpression(NaturalLiteralExpression object) {
+				return createNaturalLiteralExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSequenceRange(SequenceRange object) {
+				return createSequenceRangeAdapter();
+			}
+			@Override
+			public Adapter caseNameLeftHandSide(NameLeftHandSide object) {
+				return createNameLeftHandSideAdapter();
+			}
+			@Override
+			public Adapter caseEffectiveLeftHandSide(EffectiveLeftHandSide object) {
+				return createEffectiveLeftHandSideAdapter();
+			}
+			@Override
+			public Adapter caseSequenceReductionExpression(SequenceReductionExpression object) {
+				return createSequenceReductionExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSequenceExpressionList(SequenceExpressionList object) {
+				return createSequenceExpressionListAdapter();
+			}
+			@Override
+			public Adapter caseRelationalExpression(RelationalExpression object) {
+				return createRelationalExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLocalNameDeclarationStatement(LocalNameDeclarationStatement object) {
+				return createLocalNameDeclarationStatementAdapter();
+			}
+			@Override
+			public Adapter caseAssignableLocalNameDeclaration(AssignableLocalNameDeclaration object) {
+				return createAssignableLocalNameDeclarationAdapter();
+			}
+			@Override
+			public Adapter caseStatement(Statement object) {
+				return createStatementAdapter();
+			}
+			@Override
+			public Adapter caseAnnotation(Annotation object) {
+				return createAnnotationAdapter();
+			}
+			@Override
+			public Adapter caseQualifiedNameList(QualifiedNameList object) {
+				return createQualifiedNameListAdapter();
+			}
+			@Override
+			public Adapter caseNonFinalClause(NonFinalClause object) {
+				return createNonFinalClauseAdapter();
+			}
+			@Override
+			public Adapter caseBlock(Block object) {
+				return createBlockAdapter();
+			}
+			@Override
+			public Adapter caseBlockStatement(BlockStatement object) {
+				return createBlockStatementAdapter();
+			}
+			@Override
+			public Adapter caseDoStatement(DoStatement object) {
+				return createDoStatementAdapter();
+			}
+			@Override
+			public Adapter caseConcurrentClauses(ConcurrentClauses object) {
+				return createConcurrentClausesAdapter();
+			}
+			@Override
+			public Adapter caseBreakStatement(BreakStatement object) {
+				return createBreakStatementAdapter();
+			}
+			@Override
+			public Adapter caseExpressionStatement(ExpressionStatement object) {
+				return createExpressionStatementAdapter();
+			}
+			@Override
+			public Adapter caseClassifyStatement(ClassifyStatement object) {
+				return createClassifyStatementAdapter();
+			}
+			@Override
+			public Adapter caseForStatement(ForStatement object) {
+				return createForStatementAdapter();
+			}
+			@Override
+			public Adapter caseLoopVariableDefinition(LoopVariableDefinition object) {
+				return createLoopVariableDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseIfStatement(IfStatement object) {
+				return createIfStatementAdapter();
+			}
+			@Override
+			public Adapter caseSwitchStatement(SwitchStatement object) {
+				return createSwitchStatementAdapter();
+			}
+			@Override
+			public Adapter caseSwitchClause(SwitchClause object) {
+				return createSwitchClauseAdapter();
+			}
+			@Override
+			public Adapter caseWhileStatement(WhileStatement object) {
+				return createWhileStatementAdapter();
+			}
+			@Override
+			public Adapter caseReturnStatement(ReturnStatement object) {
+				return createReturnStatementAdapter();
+			}
+			@Override
+			public Adapter caseInLineStatement(InLineStatement object) {
+				return createInLineStatementAdapter();
+			}
+			@Override
+			public Adapter caseAcceptStatement(AcceptStatement object) {
+				return createAcceptStatementAdapter();
+			}
+			@Override
+			public Adapter caseAcceptBlock(AcceptBlock object) {
+				return createAcceptBlockAdapter();
+			}
+			@Override
+			public Adapter caseEmptyStatement(EmptyStatement object) {
+				return createEmptyStatementAdapter();
+			}
+			@Override
+			public Adapter caseModelNamespace(ModelNamespace object) {
+				return createModelNamespaceAdapter();
+			}
+			@Override
+			public Adapter caseNamespaceDefinition(NamespaceDefinition object) {
+				return createNamespaceDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseMemberDefinition(MemberDefinition object) {
+				return createMemberDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseStereotypeAnnotation(StereotypeAnnotation object) {
+				return createStereotypeAnnotationAdapter();
+			}
+			@Override
+			public Adapter caseTaggedValueList(TaggedValueList object) {
+				return createTaggedValueListAdapter();
+			}
+			@Override
+			public Adapter caseTaggedValue(TaggedValue object) {
+				return createTaggedValueAdapter();
+			}
+			@Override
+			public Adapter caseUnitDefinition(UnitDefinition object) {
+				return createUnitDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseImportReference(ImportReference object) {
+				return createImportReferenceAdapter();
+			}
+			@Override
+			public Adapter caseImportedMember(ImportedMember object) {
+				return createImportedMemberAdapter();
+			}
+			@Override
+			public Adapter caseEnumerationLiteralName(EnumerationLiteralName object) {
+				return createEnumerationLiteralNameAdapter();
+			}
+			@Override
+			public Adapter caseOperationDefinition(OperationDefinition object) {
+				return createOperationDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseAssociationDefinition(AssociationDefinition object) {
+				return createAssociationDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseClassifierDefinition(ClassifierDefinition object) {
+				return createClassifierDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseClassDefinition(ClassDefinition object) {
+				return createClassDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseTypedElementDefinition(TypedElementDefinition object) {
+				return createTypedElementDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseDataTypeDefinition(DataTypeDefinition object) {
+				return createDataTypeDefinitionAdapter();
+			}
+			@Override
+			public Adapter casePackageDefinition(PackageDefinition object) {
+				return createPackageDefinitionAdapter();
+			}
+			@Override
+			public Adapter casePropertyDefinition(PropertyDefinition object) {
+				return createPropertyDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseSignalDefinition(SignalDefinition object) {
+				return createSignalDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseActiveClassDefinition(ActiveClassDefinition object) {
+				return createActiveClassDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseActivityDefinition(ActivityDefinition object) {
+				return createActivityDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseElementImportReference(ElementImportReference object) {
+				return createElementImportReferenceAdapter();
+			}
+			@Override
+			public Adapter caseSignalReceptionDefinition(SignalReceptionDefinition object) {
+				return createSignalReceptionDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseEnumerationDefinition(EnumerationDefinition object) {
+				return createEnumerationDefinitionAdapter();
+			}
+			@Override
+			public Adapter casePackageImportReference(PackageImportReference object) {
+				return createPackageImportReferenceAdapter();
+			}
+			@Override
+			public Adapter caseClassifierTemplateParameter(ClassifierTemplateParameter object) {
+				return createClassifierTemplateParameterAdapter();
+			}
+			@Override
+			public Adapter caseFormalParameter(FormalParameter object) {
+				return createFormalParameterAdapter();
+			}
+			@Override
+			public Adapter caseReceptionDefinition(ReceptionDefinition object) {
+				return createReceptionDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseMember(Member object) {
+				return createMemberAdapter();
+			}
+			@Override
+			public Adapter caseAnnotatedStatement(AnnotatedStatement object) {
+				return createAnnotatedStatementAdapter();
+			}
+			@Override
+			public Adapter caseBoundClassifier(BoundClassifier object) {
+				return createBoundClassifierAdapter();
+			}
+			@Override
+			public Adapter caseReturnParameter(ReturnParameter object) {
+				return createReturnParameterAdapter();
+			}
+			@Override
+			public Adapter caseNonReturnParameter(NonReturnParameter object) {
+				return createNonReturnParameterAdapter();
+			}
+			@Override
+			public Adapter caseAnyType(AnyType object) {
+				return createAnyTypeAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param target
-	 *            the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 
@@ -755,7 +621,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AssignedSource
 	 * @generated
@@ -770,7 +635,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SyntaxElement
 	 * @generated
@@ -785,7 +649,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ElementReference
 	 * @generated
@@ -800,7 +663,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.InternalElementReference
 	 * @generated
@@ -815,7 +677,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ExternalElementReference
 	 * @generated
@@ -830,7 +691,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ExternalEnumerationLiteralReference
 	 * @generated
@@ -845,7 +705,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BoundElementReference
 	 * @generated
@@ -860,7 +719,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.DocumentedElement
 	 * @generated
@@ -875,7 +733,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SequenceExpansionExpression
 	 * @generated
@@ -890,7 +747,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AssignableElement
 	 * @generated
@@ -905,7 +761,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AssignableElementReference
 	 * @generated
@@ -920,7 +775,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.Expression
 	 * @generated
@@ -930,12 +784,25 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.alf.ExpressionReference <em>Expression Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference
+	 * @generated
+	 */
+	public Adapter createExpressionReferenceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression <em>Extent Or Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ExtentOrExpression
 	 * @generated
@@ -950,7 +817,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.QualifiedName
 	 * @generated
@@ -965,7 +831,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.FeatureReference
 	 * @generated
@@ -980,7 +845,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NameBinding
 	 * @generated
@@ -995,7 +859,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.TemplateBinding
 	 * @generated
@@ -1010,7 +873,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NamedTemplateBinding
 	 * @generated
@@ -1025,7 +887,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution
 	 * @generated
@@ -1040,7 +901,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NumericUnaryExpression
 	 * @generated
@@ -1055,7 +915,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.UnaryExpression
 	 * @generated
@@ -1070,7 +929,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ForAllOrExistsOrOneExpression
 	 * @generated
@@ -1085,7 +943,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.IsolationExpression
 	 * @generated
@@ -1100,7 +957,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BinaryExpression
 	 * @generated
@@ -1115,7 +971,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BooleanUnaryExpression
 	 * @generated
@@ -1130,7 +985,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.CastExpression
 	 * @generated
@@ -1145,7 +999,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.PositionalTuple
 	 * @generated
@@ -1160,7 +1013,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.Tuple
 	 * @generated
@@ -1175,7 +1027,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NamedExpression
 	 * @generated
@@ -1190,7 +1041,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.InputNamedExpression
 	 * @generated
@@ -1205,7 +1055,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.InvocationExpression
 	 * @generated
@@ -1220,7 +1069,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.OutputNamedExpression
 	 * @generated
@@ -1235,7 +1083,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.LeftHandSide
 	 * @generated
@@ -1250,7 +1097,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SequenceAccessExpression
 	 * @generated
@@ -1265,7 +1111,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.StringLiteralExpression
 	 * @generated
@@ -1280,7 +1125,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.LiteralExpression
 	 * @generated
@@ -1295,7 +1139,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SequenceOperationExpression
 	 * @generated
@@ -1310,7 +1153,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SelectOrRejectExpression
 	 * @generated
@@ -1325,7 +1167,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ClassExtentExpression
 	 * @generated
@@ -1340,7 +1181,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.PositionalTemplateBinding
 	 * @generated
@@ -1355,7 +1195,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ConditionalLogicalExpression
 	 * @generated
@@ -1370,7 +1209,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.LinkOperationExpression
 	 * @generated
@@ -1385,7 +1223,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.EqualityExpression
 	 * @generated
@@ -1400,7 +1237,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AssignmentExpression
 	 * @generated
@@ -1415,7 +1251,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.LogicalExpression
 	 * @generated
@@ -1430,7 +1265,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SequenceConstructionExpression
 	 * @generated
@@ -1445,7 +1279,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SequenceElements
 	 * @generated
@@ -1460,7 +1293,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.CollectOrIterateExpression
 	 * @generated
@@ -1475,7 +1307,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.IsUniqueExpression
 	 * @generated
@@ -1490,7 +1321,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ArithmeticExpression
 	 * @generated
@@ -1505,7 +1335,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.FeatureLeftHandSide
 	 * @generated
@@ -1520,7 +1349,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ConditionalTestExpression
 	 * @generated
@@ -1535,7 +1363,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.InstanceCreationExpression
 	 * @generated
@@ -1550,7 +1377,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.PropertyAccessExpression
 	 * @generated
@@ -1565,7 +1391,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NameExpression
 	 * @generated
@@ -1580,7 +1405,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BitStringUnaryExpression
 	 * @generated
@@ -1595,7 +1419,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.FeatureInvocationExpression
 	 * @generated
@@ -1610,7 +1433,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BehaviorInvocationExpression
 	 * @generated
@@ -1625,7 +1447,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ShiftExpression
 	 * @generated
@@ -1640,7 +1461,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.UnboundedLiteralExpression
 	 * @generated
@@ -1655,7 +1475,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ThisExpression
 	 * @generated
@@ -1670,7 +1489,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ClassificationExpression
 	 * @generated
@@ -1685,7 +1503,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SuperInvocationExpression
 	 * @generated
@@ -1700,7 +1517,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.IncrementOrDecrementExpression
 	 * @generated
@@ -1715,7 +1531,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BooleanLiteralExpression
 	 * @generated
@@ -1730,7 +1545,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NamedTuple
 	 * @generated
@@ -1745,7 +1559,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NaturalLiteralExpression
 	 * @generated
@@ -1760,7 +1573,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SequenceRange
 	 * @generated
@@ -1775,7 +1587,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NameLeftHandSide
 	 * @generated
@@ -1790,7 +1601,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.EffectiveLeftHandSide
 	 * @generated
@@ -1805,7 +1615,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SequenceReductionExpression
 	 * @generated
@@ -1820,7 +1629,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SequenceExpressionList
 	 * @generated
@@ -1835,7 +1643,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.RelationalExpression
 	 * @generated
@@ -1850,7 +1657,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement
 	 * @generated
@@ -1865,7 +1671,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AssignableLocalNameDeclaration
 	 * @generated
@@ -1880,7 +1685,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.Statement
 	 * @generated
@@ -1895,7 +1699,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.Annotation
 	 * @generated
@@ -1910,7 +1713,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.QualifiedNameList
 	 * @generated
@@ -1925,7 +1727,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NonFinalClause
 	 * @generated
@@ -1940,7 +1741,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.Block
 	 * @generated
@@ -1955,7 +1755,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BlockStatement
 	 * @generated
@@ -1970,7 +1769,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.DoStatement
 	 * @generated
@@ -1985,7 +1783,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ConcurrentClauses
 	 * @generated
@@ -2000,7 +1797,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BreakStatement
 	 * @generated
@@ -2015,7 +1811,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ExpressionStatement
 	 * @generated
@@ -2030,7 +1825,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ClassifyStatement
 	 * @generated
@@ -2045,7 +1839,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ForStatement
 	 * @generated
@@ -2060,7 +1853,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.LoopVariableDefinition
 	 * @generated
@@ -2075,7 +1867,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.IfStatement
 	 * @generated
@@ -2090,7 +1881,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SwitchStatement
 	 * @generated
@@ -2105,7 +1895,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SwitchClause
 	 * @generated
@@ -2120,7 +1909,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.WhileStatement
 	 * @generated
@@ -2135,7 +1923,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ReturnStatement
 	 * @generated
@@ -2150,7 +1937,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.InLineStatement
 	 * @generated
@@ -2165,7 +1951,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AcceptStatement
 	 * @generated
@@ -2180,7 +1965,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AcceptBlock
 	 * @generated
@@ -2195,7 +1979,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.EmptyStatement
 	 * @generated
@@ -2210,7 +1993,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ModelNamespace
 	 * @generated
@@ -2225,7 +2007,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NamespaceDefinition
 	 * @generated
@@ -2240,7 +2021,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.MemberDefinition
 	 * @generated
@@ -2255,7 +2035,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.StereotypeAnnotation
 	 * @generated
@@ -2270,7 +2049,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.TaggedValueList
 	 * @generated
@@ -2285,7 +2063,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.TaggedValue
 	 * @generated
@@ -2300,7 +2077,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.UnitDefinition
 	 * @generated
@@ -2315,7 +2091,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ImportReference
 	 * @generated
@@ -2330,7 +2105,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ImportedMember
 	 * @generated
@@ -2345,7 +2119,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.EnumerationLiteralName
 	 * @generated
@@ -2360,7 +2133,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.OperationDefinition
 	 * @generated
@@ -2375,7 +2147,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AssociationDefinition
 	 * @generated
@@ -2390,7 +2161,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ClassifierDefinition
 	 * @generated
@@ -2405,7 +2175,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ClassDefinition
 	 * @generated
@@ -2420,7 +2189,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.TypedElementDefinition
 	 * @generated
@@ -2435,7 +2203,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.DataTypeDefinition
 	 * @generated
@@ -2450,7 +2217,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.PackageDefinition
 	 * @generated
@@ -2465,7 +2231,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.PropertyDefinition
 	 * @generated
@@ -2480,7 +2245,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SignalDefinition
 	 * @generated
@@ -2495,7 +2259,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ActiveClassDefinition
 	 * @generated
@@ -2510,7 +2273,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ActivityDefinition
 	 * @generated
@@ -2525,7 +2287,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ElementImportReference
 	 * @generated
@@ -2540,7 +2301,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.SignalReceptionDefinition
 	 * @generated
@@ -2555,7 +2315,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.EnumerationDefinition
 	 * @generated
@@ -2570,7 +2329,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.PackageImportReference
 	 * @generated
@@ -2585,7 +2343,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ClassifierTemplateParameter
 	 * @generated
@@ -2600,7 +2357,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.FormalParameter
 	 * @generated
@@ -2615,7 +2371,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ReceptionDefinition
 	 * @generated
@@ -2630,7 +2385,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.Member
 	 * @generated
@@ -2645,7 +2399,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AnnotatedStatement
 	 * @generated
@@ -2660,7 +2413,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.BoundClassifier
 	 * @generated
@@ -2675,7 +2427,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.ReturnParameter
 	 * @generated
@@ -2690,7 +2441,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.NonReturnParameter
 	 * @generated
@@ -2705,7 +2455,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.alf.AnyType
 	 * @generated
@@ -2719,7 +2468,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

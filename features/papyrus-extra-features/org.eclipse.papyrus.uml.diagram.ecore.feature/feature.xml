@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.diagram.ecore.feature"
-      label="Papyrus Ecore UML Feature"
-      version="1.1.0.qualifier">
+      label="%featureName"
+      version="0.7.0.qualifier"
+      provider-name="%providerName">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2014 CEA LIST
@@ -14,7 +15,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="%licenseURL">
-      %licenseURL
+      %license
    </license>
 
    <plugin

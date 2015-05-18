@@ -25,9 +25,7 @@ public interface ThisExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let context = self.currentScope() in\n          if context = null then \n            null\n          else if context.isOperation() or context.isMethod() then\n            context.namespace()\n          else if context.isBehavior() then\n            let activeClass = context.activeClass() in\n              if activeClass = null then context else activeClass endif\n          else if context.isClass() then\n            context\n          else\n            null\n          endif endif endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let context = self.currentScope() in\n          if context = null then \n            null\n          else if context.isOperation() or context.isMethod() then\n            context.namespace()\n          else if context.isBehavior() then\n            let activeClass = context.activeClass() in\n              if activeClass = null then context else activeClass endif\n          else if context.isClass() then\n            context\n          else\n            null\n          endif endif endif endif'"
 	 * @generated
 	 */
 	ElementReference type();
@@ -35,7 +33,6 @@ public interface ThisExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -45,7 +42,6 @@ public interface ThisExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -60,7 +56,6 @@ public interface ThisExpression extends Expression {
 	 * classifier for the context in which the this expression occurs.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -73,7 +68,6 @@ public interface ThisExpression extends Expression {
 	 * The multiplicity upper bound of a this expression is always 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -86,7 +80,6 @@ public interface ThisExpression extends Expression {
 	 * The multiplicity lower bound of a this expression is always 1.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

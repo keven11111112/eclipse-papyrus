@@ -23,11 +23,10 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>Natural Literal Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.NaturalLiteralExpressionImpl#getImage <em>Image</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.NaturalLiteralExpressionImpl#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,7 +35,6 @@ public class NaturalLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NaturalLiteralExpressionImpl() {
@@ -46,7 +44,6 @@ public class NaturalLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,17 +54,15 @@ public class NaturalLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getImage() {
-		return (String) eGet(AlfPackage.eINSTANCE.getNaturalLiteralExpression_Image(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getNaturalLiteralExpression_Image(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setImage(String newImage) {
@@ -78,23 +73,22 @@ public class NaturalLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	 * The cached invocation delegate for the '{@link #type() <em>Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #type()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getNaturalLiteralExpression__Type()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNaturalLiteralExpression__Type()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference type() {
 		try {
-			return (ElementReference) TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -102,7 +96,6 @@ public class NaturalLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean naturalLiteralExpressionTypeDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -113,12 +106,12 @@ public class NaturalLiteralExpressionImpl extends LiteralExpressionImpl implemen
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.NATURAL_LITERAL_EXPRESSION__NATURAL_LITERAL_EXPRESSION_TYPE_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "naturalLiteralExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.NATURAL_LITERAL_EXPRESSION__NATURAL_LITERAL_EXPRESSION_TYPE_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "naturalLiteralExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -128,17 +121,16 @@ public class NaturalLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.NATURAL_LITERAL_EXPRESSION___TYPE:
-			return type();
-		case AlfPackage.NATURAL_LITERAL_EXPRESSION___NATURAL_LITERAL_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return naturalLiteralExpressionTypeDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.NATURAL_LITERAL_EXPRESSION___TYPE:
+				return type();
+			case AlfPackage.NATURAL_LITERAL_EXPRESSION___NATURAL_LITERAL_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return naturalLiteralExpressionTypeDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

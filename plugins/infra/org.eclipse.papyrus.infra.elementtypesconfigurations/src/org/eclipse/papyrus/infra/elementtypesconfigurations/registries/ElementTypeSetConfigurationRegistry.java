@@ -9,6 +9,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus - bug 459174
+ *  Christian W. Damus - bug 467207
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.registries;
@@ -159,8 +160,7 @@ public class ElementTypeSetConfigurationRegistry {
 		List<SpecializationTypeConfiguration> result = new ArrayList<SpecializationTypeConfiguration>();
 		for (String specializedTypeID : specializationTypeConfiguration.getSpecializedTypesID()) {
 			SpecializationTypeConfiguration value = specializationTypeConfigurationsToRegister.get(specializedTypeID);
-			if (value != null)
-			{
+			if (value != null) {
 				result.add(value);
 			}
 		}
@@ -182,8 +182,7 @@ public class ElementTypeSetConfigurationRegistry {
 		return false;
 	}
 
-	protected boolean registerElementTypeConfiguration(ElementTypeConfiguration elementTypeConfiguration, Map<String, ElementTypeConfiguration> elementTypeConfigurationsDefinitions, IClientContext context)
-	{
+	protected boolean registerElementTypeConfiguration(ElementTypeConfiguration elementTypeConfiguration, Map<String, ElementTypeConfiguration> elementTypeConfigurationsDefinitions, IClientContext context) {
 		String elementTypeID = elementTypeConfiguration.getIdentifier();
 		if (isAlreadyRegistred(elementTypeID, context)) {
 			return true;
@@ -285,12 +284,11 @@ public class ElementTypeSetConfigurationRegistry {
 		if (elementTypeSetConfigurations == null) {
 			return;
 		}
-		ElementTypeSetConfiguration elementTypeSet = elementTypeSetConfigurations.get(identifier);
+		ElementTypeSetConfiguration elementTypeSet = elementTypeSetConfigurations.remove(identifier);
 		if (elementTypeSet == null) {
-			// there is an entry in the map for this elementType set, it should be removed...
-			elementTypeSetConfigurations.remove(identifier);
 			return;
 		}
+
 		// Remove elementTypes
 		ElementTypeRegistry registry = ElementTypeRegistry.getInstance();
 		List<IElementType> elementTypes = new ArrayList<IElementType>(elementTypeSet.getElementTypeConfigurations().size());
@@ -314,13 +312,16 @@ public class ElementTypeSetConfigurationRegistry {
 				ElementTypeRegistryUtils.removeAdviceDescriptorFromBindings(advice);
 			}
 		}
-		if (elementTypeSet.eResource() != null) {
-			elementTypeSet.eResource().unload();
-			if (elementTypeSetConfigurationResourceSet != null) {
-				elementTypeSetConfigurationResourceSet.getResources().remove(elementTypeSet.eResource());
+
+		// If I loaded this element-types configuration model, I should now unload it. Otherwise,
+		// I don't own this resource so I should not attempt to manage it
+		if (elementTypeSetConfigurationResourceSet != null) {
+			Resource resource = elementTypeSet.eResource();
+			if ((resource != null) && (resource.getResourceSet() == elementTypeSetConfigurationResourceSet)) {
+				resource.unload();
+				elementTypeSetConfigurationResourceSet.getResources().remove(resource);
 			}
 		}
-		elementTypeSetConfigurations.remove(identifier);
 	}
 
 

@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.alf.properties.xtext.sheet.ui.listeners;
 
 import org.eclipse.papyrus.uml.alf.transaction.commit.ScenarioFactory;
-import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AdvancedEditingPropertySection;
+import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AlfEditionPropertySection;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
@@ -24,9 +24,9 @@ import org.eclipse.uml2.uml.NamedElement;
 public class EditorFocusListener extends FocusAdapter {
 
 
-	private AdvancedEditingPropertySection section;
+	private AlfEditionPropertySection section;
 
-	public EditorFocusListener(AdvancedEditingPropertySection section) {
+	public EditorFocusListener(AlfEditionPropertySection section) {
 		this.section = section;
 	}
 

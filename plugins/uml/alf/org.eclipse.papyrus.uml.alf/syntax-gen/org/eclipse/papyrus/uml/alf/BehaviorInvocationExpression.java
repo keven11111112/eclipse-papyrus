@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.BehaviorInvocationExpression#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BehaviorInvocationExpression#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBehaviorInvocationExpression()
@@ -34,7 +34,6 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	 * <!-- begin-model-doc -->
 	 * The qualified name of the behavior to be invoked.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Target</em>' containment reference.
 	 * @see #setTarget(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBehaviorInvocationExpression_Target()
@@ -47,9 +46,7 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BehaviorInvocationExpression#getTarget <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Target</em>' containment reference.
+	 * @param value the new value of the '<em>Target</em>' containment reference.
 	 * @see #getTarget()
 	 * @generated
 	 */
@@ -58,10 +55,8 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" targetExpressionRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.feature <> null then false\n        else\n          let collectionFunctionAdd = self.collectionFunctionAdd() in\n            if collectionFunctionAdd = null then false\n            else\n              let parameters = collectionFunctionAdd.parameters() in\n                if parameters->isEmpty() then false\n                else\n                  collectionFunctionAdd.containedIn(self.target.referent->asBag()) and\n                  self.tuple.outputFor(parameters)->exists(\n                    name = parameters->at(1).name() and\n                    expression = targetExpression\n                  )\n                endif\n              endif\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.feature <> null then false\n        else\n          let collectionFunctionAdd = self.collectionFunctionAdd() in\n            if collectionFunctionAdd = null then false\n            else\n              let parameters = collectionFunctionAdd.parameters() in\n                if parameters->isEmpty() then false\n                else\n                  collectionFunctionAdd.containedIn(self.target.referent->asBag()) and\n                  self.tuple.outputFor(parameters)->exists(\n                    name = parameters->at(1).name() and\n                    expression = targetExpression\n                  )\n                endif\n              endif\n          endif'"
 	 * @generated
 	 */
 	boolean isAddTarget(Expression targetExpression);
@@ -69,7 +64,6 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='referent1()'"
 	 * @generated
 	 */
@@ -78,7 +72,6 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -87,9 +80,7 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.feature() in\n          if feature <> null then feature.behavioralFeatureReferent(self)\n          else\n            let referents = self.target.referent in\n              if referents->select(isBehavior())->size() = 1 then\n                let referent = referents->any(isBehavior()) in\n                  if referent.isTemplate() then \n                    self.bindTemplateImplicitArguments(referent, null)\n                  else referent\n                  endif\n              else if referents->select(isAssociationEnd())->size() = 1 then\n                referents->any(isAssociationEnd())\n              else\n                null\n              endif endif\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.feature() in\n          if feature <> null then feature.behavioralFeatureReferent(self)\n          else\n            let referents = self.target.referent in\n              if referents->select(isBehavior())->size() = 1 then\n                let referent = referents->any(isBehavior()) in\n                  if referent.isTemplate() then \n                    self.bindTemplateImplicitArguments(referent, null)\n                  else referent\n                  endif\n              else if referents->select(isAssociationEnd())->size() = 1 then\n                referents->any(isAssociationEnd())\n              else\n                null\n              endif endif\n          endif'"
 	 * @generated
 	 */
 	ElementReference BehaviorInvocation_referent();
@@ -97,7 +88,6 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.target.disambiguation'"
 	 * @generated
 	 */
@@ -114,7 +104,6 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	 * that is an association end, then the referent is that property.
 	 * (See the referent() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -128,7 +117,6 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	 * the feature of a behavior invocation expression is that feature reference.
 	 * (See the feature() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -144,9 +132,7 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	 * resolution rules, unless it is an implicit destructor call (in which case
 	 * it has no referent).
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isImplicit or \n        let referent = self.referent in\n          referent <> null and \n          -- NOTE: This check prevents the invocation from disambiguating to an \n          -- illegal constructor invocation.\n          not referent.isConstructor()'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isImplicit or \n        let referent = self.referent in\n          referent <> null and \n          -- NOTE: This check prevents the invocation from disambiguating to an \n          -- illegal constructor invocation.\n          not referent.isConstructor()'"
 	 * @generated
 	 */
 	boolean behaviorInvocationExpressionReferentConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -162,9 +148,7 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	 * argument expression for an inout parameter must be the same as the type
 	 * of that parameter.)
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        -- TODO: Handle overloading for feature invocations.\n        self.tuple.size() <= self.parameterCount() and\n        self.tuple.input->forAll(input | self.parameterIsAssignableFrom(input)) and\n        self.tuple.output->forAll(output | self.parameterIsAssignableTo(output))'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        -- TODO: Handle overloading for feature invocations.\n        self.tuple.size() <= self.parameterCount() and\n        self.tuple.input->forAll(input | self.parameterIsAssignableFrom(input)) and\n        self.tuple.output->forAll(output | self.parameterIsAssignableTo(output))'"
 	 * @generated
 	 */
 	boolean behaviorInvocationExpressionArgumentCompatibility(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -178,7 +162,6 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	 * expression is the expression of an expression statement that is the first
 	 * statement in the definition for the method of a constructor operation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.alternativeConstructorIsValid()'"
 	 * @generated
 	 */

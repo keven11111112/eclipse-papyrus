@@ -158,7 +158,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 				if (source instanceof EObject) {
 					add(new DestroyElementPapyrusCommand(new DestroyElementRequest(editingDomain, (EObject) source, false)));
 				}
-			} else {
+			} else if (owner != null) {
 				Object value = owner.eGet(structuralFeature);
 				if (value instanceof Collection<?>) {
 					List<Object> newList = new ArrayList<Object>((Collection<?>) value);
@@ -181,7 +181,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 				if (source instanceof EObject) {
 					add(new DestroyElementPapyrusCommand(new DestroyElementRequest(editingDomain, (EObject) source, false)));
 				}
-			} else {
+			} else if (owner != null) {
 				Object value = owner.eGet(structuralFeature);
 				if (value instanceof Collection<?>) {
 					List<Object> newList = new ArrayList<Object>((Collection<?>) value);

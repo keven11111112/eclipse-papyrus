@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014-2015 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,17 +8,20 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Ed Seidewitz (MDS) - Initial implementation
+ *  Ed Seidewitz (MDS)
  * 
  *****************************************************************************/
-modeltype Alf uses "http://www.omg.org/spec/ALF/20120827";
-modeltype UML uses "http://www.eclipse.org/uml2/4.0.0/UML";
+import UML2AlfLibrary;
 
-transformation UML2Alf(in uml : UML, out alf : Alf);
+modeltype Alf uses "http://www.omg.org/spec/ALF/20120827";
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation UML2Alf(in uml : UML, out alf : Alf)
+	access library UML2AlfLibrary;
 
 main() {
   var rootObjects := uml.rootObjects();
-  model := rootObjects[Model]->any(true);
+  model := rootObjects![Model];
   if model = null then
   		rootObjects[Namespace]->map toUnitDefinition()
   else
@@ -47,79 +50,6 @@ mapping NamedElement::toMember() : Member
   definition := self.map toDefinition();	
   visibility := toVisibilityString(self.visibility);
   annotation := self.getAppliedStereotypes()->toAnnotation();
-}
-
-query Stereotype::toAnnotation() : StereotypeAnnotation {
-  var qualifiedName := self.qualifiedName;
-  if qualifiedName.startsWith("StandardProfile::") then
-    qualifiedName := qualifiedName.substring(17, qualifiedName.length())
-  endif;
-  return object StereotypeAnnotation {
-    stereotypeName := qualifiedName.toAlfQualifiedName(null);
-    // TODO: Handle tagged values.
-  }
-}
-
-query NamedElement::alfQualifiedName(context : NamedElement) : QualifiedName {
-	return self.NamedElement_alfQualifiedName(context);
-}
-
-query NamedElement::NamedElement_alfQualifiedName(context : NamedElement) : QualifiedName {
-  var namespace := if context = null then null else context.namespace endif;
-  return 
-    if namespace <> null and namespace.member->includes(self) then
-    	let names = namespace.getNamesOfMember(self) in
-    	if names->isEmpty() or names->includes(self.name) then
-    	  self.name.toAlfQualifiedName(null)
-    	else
-    	  names->any(true).toAlfQualifiedName(null)
-    	endif
-    else
-      self.qualifiedName.toAlfQualifiedName(context)
-    endif;
-}
-
-query NamedElement::alfName() : String {
-	return toName(self.name);
-}
-
-query toVisibilityString(visibility : VisibilityKind) : String {
-  return
-    if visibility = null or visibility = VisibilityKind::package then null
-    else if visibility = VisibilityKind::private then "private"
-    else if visibility = VisibilityKind::protected then "protected"
-    else if visibility = VisibilityKind::public then "public"
-    endif endif endif endif
-}
-
-query String::toAlfQualifiedName(context : NamedElement) : QualifiedName {
-  var qualifiedName = object QualifiedName {
-    isAmbiguous := false;
-  };
-  var names := self.tokenize("::");
-  if names->size() > 1 and context <> null then {
-    var unqualifiedName := names->last();
-    if context.namespace <> null and
-      (context.namespace.umlQualifiedName() + "::").startsWith(
-        self.substring(1, self.length() - unqualifiedName.length())) then
-      names := Sequence{unqualifiedName}
-    else if (model <> null and names->at(1) = model.name or 
-        names->at(1) = "PrimitiveTypes") then
-      names := names->subSequence(2, names->size())
-    else if names->size() > 2 and names->at(1) = "FoundationalModelLibrary" then
-      names := names->subSequence(3, names->size())
-    else if names->size() > 3 and 
-            names->at(1) = "Alf" and names->at(2) = "Library" then
-      names := names->subSequence(4, names->size())
-    endif endif endif endif
-  } endif;
-  names->forEach (n) {
-	qualifiedName.nameBinding += 
-	  object NameBinding {
-		name := toName(n);
-	  }
-  };
-  return qualifiedName;
 }
 
 // Return the UML qualified name, but allowing for empty names.
@@ -264,43 +194,6 @@ mapping uml::ClassifierTemplateParameter::toTemplateParameter() : Member {
 }
 
 // Bound Classifiers
-
-query Classifier::alfQualifiedName(context : NamedElement) : QualifiedName {
-	var qualifiedName : QualifiedName;
-  if (self.templateBinding->isEmpty()) then {
-    qualifiedName := self.NamedElement_alfQualifiedName(context)
-  } else {
-    var templateBinding := self.templateBinding->any(true);
-    var template := templateBinding.signature.template.oclAsType(NamedElement);
-    qualifiedName := template.alfQualifiedName(context);
-    var parameterSubstitutions := templateBinding.parameterSubstitution;
-    var finalBinding := 
-      if parameterSubstitutions->size() <= 1 then
-        object PositionalTemplateBinding {
-        	argumentName := parameterSubstitutions->toArgumentName(context);
-        }
-      else
-        object NamedTemplateBinding{
-          substitution := templateBinding.parameterSubstitution->
-            toTemplateParameterSubstitution(context);
-        }
-      endif;
-    qualifiedName.nameBinding->last().binding := finalBinding;
-  } endif;
-  return qualifiedName;
-}
-
-query uml::TemplateParameterSubstitution::toTemplateParameterSubstitution(context : NamedElement) : TemplateParameterSubstitution {
-  return
-    object TemplateParameterSubstitution {
-      parameterName := self.formal.parameteredElement.oclAsType(NamedElement).alfName();
-      argumentName := self.toArgumentName(context);
-    }
-}
-
-query uml::TemplateParameterSubstitution::toArgumentName(context : NamedElement) : QualifiedName {
-	return self.actual.oclAsType(NamedElement).alfQualifiedName(context);
-}
 
 // Classes
 

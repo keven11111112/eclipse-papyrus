@@ -75,15 +75,15 @@ public class TestUtils {
 		Command command = containerEditPart.getCommand(new GroupRequest(RequestConstants.REQ_DELETE));
 
 		// if the view deletion is not allowed the command should not be executable
-		if(!isAllowed) {
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 
 		} else {
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
@@ -112,15 +112,15 @@ public class TestUtils {
 		Command command = containerEditPart.getCommand(new EditCommandRequestWrapper(destroyRequest));
 
 		// if the deletion is not allowed the command should not be executable
-		if(!isAllowed) {
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 
 		} else {
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
@@ -151,21 +151,21 @@ public class TestUtils {
 
 		// Get drop command
 		Command command = containerEditPart.getCommand(dropRequest);
-		
+
 		// if the drop is not allowed the command should not be executable
-		if(!isAllowed) {
-			
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 
 		} else {
-			if (command==null){
+			if (command == null) {
 				fail("The command is null! not normal.");
 			}
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
@@ -179,7 +179,7 @@ public class TestUtils {
 
 	public static void createNodeFromPalette(String toolId, View containerView, boolean isAllowed) throws Exception {
 
-		if(isAllowed) {
+		if (isAllowed) {
 			createNodeFromPalette(toolId, containerView, isAllowed, true);
 		} else {
 			createNodeFromPalette(toolId, containerView, isAllowed, false);
@@ -200,19 +200,19 @@ public class TestUtils {
 		Command command = containerEditPart.getCommand(createRequest);
 
 		// if the creation is not allowed the command should not be executable
-		if(!isAllowed) {
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 
 		} else {
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				if(execute) {
+				if (execute) {
 					defaultExecutionTest(command);
 				}
 
@@ -225,8 +225,8 @@ public class TestUtils {
 
 	public static Request getCreateRequest(Tool tool) throws Exception {
 
-		if(tool instanceof AspectUnspecifiedTypeCreationTool) {
-			final AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool)tool;
+		if (tool instanceof AspectUnspecifiedTypeCreationTool) {
+			final AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool) tool;
 			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
 			Display.getDefault().syncExec(new Runnable() {
 
@@ -241,8 +241,8 @@ public class TestUtils {
 
 			return creationTool.createCreateRequest();
 
-		} else if(tool instanceof AspectUnspecifiedTypeConnectionTool) {
-			final AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool)tool;
+		} else if (tool instanceof AspectUnspecifiedTypeConnectionTool) {
+			final AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool) tool;
 
 			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
 			Display.getDefault().syncExec(new Runnable() {
@@ -264,7 +264,7 @@ public class TestUtils {
 
 	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed) throws Exception {
 
-		if(isAllowed) {
+		if (isAllowed) {
 			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, true);
 		} else {
 			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, false);
@@ -276,7 +276,7 @@ public class TestUtils {
 
 		// Find palette tool to simulate element creation and prepare request
 		Tool tool = getPaletteTool(toolId);
-		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest)getCreateRequest(tool);
+		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest) getCreateRequest(tool);
 
 		// Test source creation command
 		createRequest.setSourceEditPart(getEditPart(sourceView));
@@ -284,9 +284,9 @@ public class TestUtils {
 		Command srcCommand = getEditPart(sourceView).getCommand(createRequest);
 
 		// Test source command
-		if((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
-			if(targetView == null) { // Only test behavior on source
-				if(!isAllowed) {
+		if ((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
+			if (targetView == null) { // Only test behavior on source
+				if (!isAllowed) {
 					// Current behavior matches the expected results
 					return;
 				} else {
@@ -298,8 +298,8 @@ public class TestUtils {
 			}
 
 		} else { // Executable command
-			if(targetView == null) { // Only test behavior on source
-				if(!isAllowed) {
+			if (targetView == null) { // Only test behavior on source
+				if (!isAllowed) {
 					fail("The command should not be executable.");
 				} else {
 					// Current behavior matches the expected results - no execution test.
@@ -315,8 +315,8 @@ public class TestUtils {
 				Command tgtCommand = getEditPart(targetView).getCommand(createRequest);
 
 				// Test the target command
-				if((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
-					if(!isAllowed) {
+				if ((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
+					if (!isAllowed) {
 						// Current behavior matches the expected results
 						return;
 					} else {
@@ -324,11 +324,11 @@ public class TestUtils {
 					}
 
 				} else { // Executable command
-					if(!isAllowed) {
+					if (!isAllowed) {
 						fail("The command should not be executable.");
 					} else {
 						// Current behavior matches the expected results
-						if(execute) { // Test command execution
+						if (execute) { // Test command execution
 							defaultExecutionTest(tgtCommand);
 						}
 
@@ -345,9 +345,9 @@ public class TestUtils {
 	 * Copy the list of objects into the Clipboard
 	 * 
 	 * @param objectsToCopy
-	 *        the list of objects to copy. should not be <code>null</code>, at least an empty list
+	 *            the list of objects to copy. should not be <code>null</code>, at least an empty list
 	 * @throws Exception
-	 *         exception thrown in case of problems
+	 *             exception thrown in case of problems
 	 */
 	public static void copyEditParts(List<Object> objectsToCopy) throws Exception {
 		// select elements to copy
@@ -356,19 +356,19 @@ public class TestUtils {
 		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(objectsToCopy));
 
 		ISelection selection = EditorUtils.getEditor().getSite().getSelectionProvider().getSelection();
-		Assert.assertEquals("Selection size should be " + objectsToCopy.size(), objectsToCopy.size(), ((IStructuredSelection)selection).size());
+		Assert.assertEquals("Selection size should be " + objectsToCopy.size(), objectsToCopy.size(), ((IStructuredSelection) selection).size());
 
 		// retrieve the command for copy
-		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_COPY, null);
 		org.eclipse.core.commands.Command copyCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_COPY);
-		((GlobalCopyAction)((ActionHandler)copyCommand.getHandler()).getAction()).setEnabled(true);
+		((GlobalCopyAction) ((ActionHandler) copyCommand.getHandler()).getAction()).setEnabled(true);
 		Assert.assertNotNull("Impossible to find copy command", copyCommand);
 
-		//EditorUtils.getDiagramEditor().getEditingDomain().setClipboard(objectsToCopy);
+		// EditorUtils.getDiagramEditor().getEditingDomain().setClipboard(objectsToCopy);
 
 		// retrieve handler service for the copy command
-		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 		Assert.assertNotNull("Impossible to find handler service", handlerService);
 
 		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(copyCommand, null);
@@ -386,30 +386,30 @@ public class TestUtils {
 	 * paste the list of objects into the Clipboard into the current diagram
 	 * 
 	 * @param target
-	 *        object on which content of the clipboard should be added
+	 *            object on which content of the clipboard should be added
 	 * @param executable
-	 *        indicates if the paste command should be executable.
+	 *            indicates if the paste command should be executable.
 	 * 
 	 * @throws Exception
-	 *         exception thrown in case of problems
+	 *             exception thrown in case of problems
 	 */
 	public static void pasteEditParts(Object target, boolean executable) throws Exception {
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(EditorUtils.getEditor());
 		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(target));
 
 		// retrieve the command for copy
-		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_PASTE, null);
 		org.eclipse.core.commands.Command pasteCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_PASTE);
 		Assert.assertNotNull("Impossible to find paste command", pasteCommand);
-		((GlobalAction)((ActionHandler)pasteCommand.getHandler()).getAction()).refresh();
+		((GlobalAction) ((ActionHandler) pasteCommand.getHandler()).getAction()).refresh();
 
-		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 		Assert.assertNotNull("Impossible to find handler service", handlerService);
 		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(pasteCommand, null);
 		Assert.assertEquals("Command is not executable as expected", pasteCommand.isEnabled(), executable);
 
-		if(executable) {
+		if (executable) {
 			// execute the copy command
 			handlerService.executeCommand(parameterizedCommand, null);
 		}
@@ -419,30 +419,30 @@ public class TestUtils {
 	 * paste with model element the list of objects into the Clipboard into the current diagram
 	 * 
 	 * @param target
-	 *        object on which content of the clipboard should be added
+	 *            object on which content of the clipboard should be added
 	 * @param executable
-	 *        indicates if the paste command should be executable.
+	 *            indicates if the paste command should be executable.
 	 * 
 	 * @throws Exception
-	 *         exception thrown in case of problems
+	 *             exception thrown in case of problems
 	 */
 	public static void pasteWithModelEditParts(Object target, boolean executable) throws Exception {
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(EditorUtils.getEditor());
 		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(target));
 
 		// retrieve the command for copy
-		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_PASTE, null);
 		org.eclipse.core.commands.Command pasteWithModelCommand = commandService.getCommand("org.eclipse.papyrus.uml.diagram.common.commands.PasteWithModelCommand");
 		Assert.assertNotNull("Impossible to find paste command", pasteWithModelCommand);
 		// ((GlobalAction)((AbstractHandlerWithState)pasteWithModelCommand.getHandler()).getAction()).refresh();
 
-		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 		Assert.assertNotNull("Impossible to find handler service", handlerService);
 		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(pasteWithModelCommand, null);
 		Assert.assertEquals("Command is not executable as expected", pasteWithModelCommand.isEnabled(), executable);
 
-		if(executable) {
+		if (executable) {
 			// execute the copy command
 			handlerService.executeCommand(parameterizedCommand, null);
 		}
@@ -455,14 +455,14 @@ public class TestUtils {
 	 * Test execution, undo, redo of the given command.
 	 * 
 	 * @param command
-	 *        the command to test.
+	 *            the command to test.
 	 * @throws Exception
 	 */
 	public static void defaultExecutionTest(Command command) throws Exception {
 
 		// Execution in the diagram command stack (like Papyrus usual execution for GEF commands). This is important especially for
 		// composed command like Drop links which create intermediate view during execution. With EMF command stack, the whole command
-		// tries to execute and the edit part of the intermediate created views are not created before the command ends. 
+		// tries to execute and the edit part of the intermediate created views are not created before the command ends.
 		// The diagram command stack let edit part being created after each view creation.
 
 		// The problem in using the DiagramCommandStack (vs EMF CommandStack) is that it hides any exception that can possibly occur during
@@ -485,21 +485,21 @@ public class TestUtils {
 			// Test execution
 			historyEventType = OperationHistoryEvent.DONE;
 			EditorUtils.getDiagramCommandStack().execute(command);
-			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			if (historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 				fail("Command execution failed ()");
 			}
 
 			// Test undo
 			historyEventType = OperationHistoryEvent.DONE;
 			EditorUtils.getDiagramCommandStack().undo();
-			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			if (historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 				fail("Command undo failed ()");
 			}
 
 			// Test redo
 			historyEventType = OperationHistoryEvent.DONE;
 			EditorUtils.getDiagramCommandStack().redo();
-			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			if (historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 				fail("Command redo failed ()");
 			}
 		} finally {

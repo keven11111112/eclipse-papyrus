@@ -28,6 +28,7 @@ import org.eclipse.papyrus.FCM.RuleApplication;
 import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -88,7 +89,7 @@ public class ContainerDialog extends SelectionStatusDialog {
 		} else {
 			m_component = componentOrRule;
 		}
-		m_model = Utils.getTop(componentOrRule);
+		m_model = PackageUtil.getRootPackage(componentOrRule);
 	}
 
 	/**

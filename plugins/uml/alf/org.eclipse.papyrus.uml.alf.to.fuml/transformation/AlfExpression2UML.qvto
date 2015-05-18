@@ -1,0 +1,1561 @@
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Ed Seidewitz
+ * 
+ *****************************************************************************/
+import AlfCommon2UML;
+
+modeltype Alf uses "http://www.omg.org/spec/ALF/20120827";
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation AlfExpression2UML(in alf : Alf, inout uml : UML)
+	extends transformation AlfCommon2UML(in Alf, inout UML);
+
+// ACTIVITY GRAPHS
+
+intermediate class ActivityGraph {
+	nodes : Set(ActivityNode);
+	edges : Set(ActivityEdge);
+}
+	
+helper newActivityGraph() : ActivityGraph {
+	return object ActivityGraph {};
+}
+
+helper ActivityGraph::addTo(inout activity : Activity) : ActivityGraph {
+	activity.structuredNode += self.nodes[StructuredActivityNode] ;
+	activity.ownedNode += self.nodes[not oclIsKindOf(StructuredActivityNode)];
+	activity.edge += self.edges;
+	return self;
+}
+
+helper ActivityGraph::addTo(inout graph : ActivityGraph) : ActivityGraph {
+	graph.nodes += self.nodes;
+	graph.edges += self.edges;
+	return self;
+}
+
+helper ActivityGraph::addToStructuredNode(inout graph : ActivityGraph, inout structuredNode : StructuredActivityNode) {
+	addToStructuredNode(graph, structuredNode, self.nodes, self.edges);
+}
+
+helper ActivityGraph::addStructuredActivityNodeTo(inout graph : ActivityGraph, name : String) : StructuredActivityNode {
+	return addStructuredActivityNode(graph, name, self.nodes, self.edges);
+}
+
+helper addStructuredActivityNode(inout graph : ActivityGraph, name : String, 
+	nodes : Set(ActivityNode), edges : Set(ActivityEdge)) : StructuredActivityNode {
+	graph.nodes += var structuredNode ::= new StructuredActivityNode(name);
+	addToStructuredNode(graph, structuredNode, nodes, edges);
+	return structuredNode;
+}
+
+helper addToStructuredNode(inout graph : ActivityGraph, inout structuredNode : StructuredActivityNode, 
+	nodes : Set(ActivityNode), edges : Set(ActivityEdge)) {
+	graph.edges += addToStructuredNode(structuredNode, nodes, edges);
+}
+
+helper addExpansionRegion(inout graph : ActivityGraph, name : String, mode : ExpansionKind, 
+	nodes : Set(ActivityNode), edges : Set(ActivityEdge), 
+	inputSource : ActivityNode, inputTarget : ActivityNode, resultSource : ActivityNode) : ExpansionRegion {
+	graph.nodes += var region ::= new ExpansionRegion(name, mode);
+	
+	// Add elements to the expansion region.
+	addToExpansionRegion(graph, region, nodes, edges);
+	
+	// Add an input expansion node.
+	graph.nodes += var inputNode ::= new ExpansionNode(nameOf(inputSource), region, true);
+	
+	// Connect the input source (if any) to the region input node.
+	if inputSource <> null then {
+		graph.edges += new ObjectFlow(inputSource, inputNode);
+	} endif;
+	
+	// Connect the region input node to the internal input target (if any).
+	if inputTarget <> null then {
+		region.edge += new ObjectFlow(inputNode, inputTarget);
+	} endif;
+	
+	// Connect the internal result source (if any) to a region output node.
+	if resultSource <> null then {
+		graph.nodes += var outputNode ::= new ExpansionNode(nameOf(resultSource), region, false);
+		region.edge += new ObjectFlow(resultSource, outputNode);
+	} endif;
+	
+	return region;
+}
+
+helper addToExpansionRegion(inout graph : ActivityGraph, inout region : ExpansionRegion, nodes: Set(ActivityNode), edges : Set(ActivityEdge)) {
+	var remainingEdges := addToExpansionRegion(region, nodes, edges);
+	graph.edges += remainingEdges;
+	graph.nodes += remainingEdges.source[ExpansionNode];
+}
+
+helper createDecisionGraph(
+	label : String, isObjectFlow : Boolean,
+	inputSource : ActivityNode, decisionSource : ActivityNode,
+	trueTarget : ActivityNode, falseTarget : ActivityNode
+) : ActivityGraph {
+	var graph := object ActivityGraph {};
+	
+	graph.nodes += var decisionNode ::= 
+		object DecisionNode {
+			name := "Decision(" + label + ")";
+		};
+	
+	if inputSource <> null then {
+		graph.edges += createFlow(inputSource, decisionNode, isObjectFlow, null);
+	} endif;
+	
+	if decisionSource <> null then {
+		graph.edges += decisionNode.decisionInputFlow := new ObjectFlow(decisionSource, decisionNode);
+	} endif;
+	
+	if trueTarget <> null then {
+		graph.edges += createFlow(decisionNode, trueTarget, isObjectFlow, true);
+	} endif;
+	
+	if falseTarget <> null then {
+		graph.edges += createFlow(decisionNode, falseTarget, isObjectFlow, false);
+	} endif;
+	
+	return graph;
+}
+
+helper createFlow(source : ActivityNode, target : ActivityNode, isObjectFlow : Boolean, guard : Boolean) : ActivityEdge {
+	var activityEdge :=
+		if isObjectFlow then new ObjectFlow(source, target)
+		else new ControlFlow(source, target)
+		endif;
+	if guard <> null then {
+		activityEdge.guard := object LiteralBoolean {
+			name := guard.toString();
+			value := guard;
+		};
+	} endif;
+	return activityEdge;
+}
+
+helper createObjectDecisionGraph(
+	label : String,
+	inputSource : ActivityNode, decisionSource : ActivityNode,
+	trueTarget : ActivityNode, falseTarget : ActivityNode
+) : ActivityGraph {
+	return createDecisionGraph(label, true, inputSource, decisionSource, trueTarget, falseTarget);
+}
+
+helper createControlDecisionGraph(
+	label : String,
+	inputSource : ActivityNode, decisionSource : ActivityNode,
+	trueTarget : ActivityNode, falseTarget : ActivityNode
+) : ActivityGraph {
+	return createDecisionGraph(label, false, inputSource, decisionSource, trueTarget, falseTarget);
+}
+
+// ASSIGNED SOURCES
+
+/*
+ * Returns the activity node to be used as the source of the value for a
+ * given local name that has this syntax element as its assigned source.
+*/
+query SyntaxElement::assignedValueSource(assignedName : String) : ActivityNode {
+	return null;
+}
+
+query Expression::assignedValueSource(assignedName : String) : ActivityNode {
+	// TODO: Remove this.
+	return self.map toActivityGraph().resultSource;
+}
+
+mapping AssignedSource::toActivityNode() : ActivityNode {
+init {
+	result := if self.source = null then null else self.source.assignedValueSource(self.name) endif;
+	/*
+	if result = null then {
+		var name = 
+			if self.source = null then "null"
+			else if self.source.oclIsKindOf(Member) then self.source.oclAsType(Member).definition.name
+			else if self.source.oclIsKindOf(MemberDefinition) then self.source.oclAsType(MemberDefinition).name
+			else null 
+			endif endif endif;
+		result := new ForkNode("No assigned value source! name = " + self.name + if name = null then "" else ", source = " + name endif);
+	} endif;
+	*/
+}
+}
+
+query find(assignments : Set(AssignedSource), assignedName : String) : AssignedSource {
+	return assignments![name = assignedName and source <> null];
+}
+
+helper AssignedSource::toInputPin() : InputPin {
+	return new InputPin(self.name, toType(self.type), self.lower, self.upper);
+}
+
+helper AssignedSource::toOutputPin() : OutputPin {
+	return new OutputPin(self.name, toType(self.type), self.lower, self.upper);
+}
+
+// EXPRESSIONS
+
+intermediate class ExpressionGraph extends ActivityGraph {
+	resultSource : ActivityNode;
+	indexSource : ActivityNode;
+	objectSource : ActivityNode;
+}
+
+// General
+
+mapping Expression::toActivity() : Activity {
+  ownedParameter := object Parameter {
+    direction := ParameterDirectionKind::_return;
+    type := if self.type = null then null else self.type.toUml().oclAsType(Classifier) endif;
+    lower := self.lower;
+    upper := self.upper;
+  };
+  var graph := self.map toActivityGraph();
+  graph.addTo(result);
+  var outputNode := new ActivityParameterNode(result, ownedParameter->at(1), false);
+  new ObjectFlow(result, graph.resultSource, outputNode);
+}
+
+/*
+mapping Expression::expressionToActivityGraph() : ExpressionGraph
+	disjuncts 
+		LiteralExpression::toActivityGraph,
+		NameExpression::toActivityGraph,
+		ThisExpression::toActivityGraph,
+		PropertyAccessExpression::toActivityGraph,
+		InvocationExpression::toActivityGraph,
+		ClassExtentExpression::toActivityGraph,
+		SequenceConstructionExpression::toActivityGraph,
+		SequenceAccessExpression::toActivityGraph,
+		SequenceReductionExpression::toActivityGraph,
+		SequenceExpansionExpression::toActivityGraph,
+		IncrementOrDecrementExpression::toActivityGraph,
+		UnaryExpression::toActivityGraph,
+		BinaryExpression::toActivityGraph,
+		CastExpression::toActivityGraph,
+		ConditionalTestExpression::toActivityGraph,
+		AssignmentExpression::toActivityGraph;
+*/
+
+abstract mapping Expression::toActivityGraph() : ExpressionGraph;
+
+mapping ExpressionReference::toActivityGraph() : ExpressionGraph {
+init {
+	result := self.expression.map toActivityGraph();
+}
+}
+
+mapping Expression::Dummy_toActivityGraph() : ExpressionGraph
+	inherits Expression::toActivityGraph {
+	resultSource := new ForkNode("Dummy");
+	nodes += resultSource;
+}
+
+// Literal Expressions
+
+mapping LiteralExpression::toActivityGraph() : ExpressionGraph
+	inherits Expression::toActivityGraph {
+	nodes += var valueAction ::= new ValueSpecificationAction(self.toValueSpecification());
+	resultSource := valueAction.result;
+}
+
+abstract helper LiteralExpression::toValueSpecification() : ValueSpecification;
+
+helper BooleanLiteralExpression::toValueSpecification() : ValueSpecification {
+	return new LiteralBoolean(self.image = "true", self.type.toType());
+}
+
+helper NaturalLiteralExpression::toValueSpecification() : ValueSpecification {
+	return new LiteralInteger(self.image.replaceAll("_", "").parseInt(), self.type.toType());
+}
+
+query String::radix() : Integer {
+	var radix := 10;
+	if self.length() > 1 and self.at(1) = "0" then {
+		var radixChar := self.at(2);
+		radix :=
+			if radixChar = "b" or radixChar = "B" then 2
+			else if radixChar = "x" or radixChar = "X" then 16
+			else 8
+			endif endif;
+	} endif;
+	return radix;
+}
+
+query String::parseInt() : Integer {
+	var value := 0;
+	var radix := self.radix();
+	if radix = 10 then {
+		value := self.toInteger();
+	} else {
+		var image = 
+			if radix = 8 then self 
+			else self.substring(3, self.length())
+			endif;
+		var digits :=
+			if radix <> 16 then image.characters().toInteger()
+			else image.characters().hexValue()
+			endif;
+		digits->forEach(d) {
+			value := value * radix + d;
+		};
+	} endif;
+	return value;
+}
+
+query String::hexValue() : Integer {
+	return 
+		if self >= "0" and self <= "9" then
+			self.toInteger()
+	  else
+			switch {
+				case (self = "a" or self = "A") 10;
+				case (self = "b" or self = "B") 11;
+				case (self = "c" or self = "C") 12;
+				case (self = "d" or self = "D") 13;
+				case (self = "e" or self = "E") 14;
+				case (self = "f" or self = "F") 15;
+			}
+		endif
+}
+
+helper UnboundedLiteralExpression::toValueSpecification() : ValueSpecification {
+	return new LiteralUnlimitedNatural(self.type.toType());
+}
+
+helper StringLiteralExpression::toValueSpecification() : ValueSpecification {
+	return new LiteralString(self.image, self.type.toType());
+}
+
+// Name Expressions
+
+mapping NameExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+init {
+	var assignment = self.assignment;
+	var enumerationLiteralReference = self.enumerationLiteral;
+	var propertyAccess = self.propertyAccess;
+	
+	if assignment <> null then {
+	  var source := assignment.map toActivityNode();
+		result := object ExpressionGraph {
+			resultSource := 
+				if not assignment.isParallelLocalName then source
+	      // If the assignment is for an @parallel local name within a for statement, then the 
+	      // assigned source node must be a fork node attached to an output expansion node for 
+	      // the expansion region mapped from the for statement. Get the expansion node as the 
+	      // result source.
+				else source.incoming->any(true).source endif;
+		};
+	} else if enumerationLiteralReference <> null then {
+		var enumerationLiteral = enumerationLiteralReference.toUml().oclAsType(EnumerationLiteral);
+		result := object ExpressionGraph {
+			nodes += var valueAction ::= new ValueSpecificationAction(new InstanceValue(enumerationLiteral));
+			resultSource := valueAction._'result';
+		};
+	} else if propertyAccess <> null then {
+		result := propertyAccess.map toActivityGraph();
+	} endif endif endif;
+}
+}
+
+// This Expressions
+
+mapping ThisExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+  nodes += var readSelfAction ::= new ReadSelfAction(self.type.toType());
+  resultSource := readSelfAction.result;
+}
+
+// Property Access Expressions
+
+mapping PropertyAccessExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+	var feature := self.feature.toUml().oclAsType(Property);
+	var graph := self.featureReference.expression.map toActivityGraph();
+	nodes += graph.nodes;
+	edges += graph.edges;
+	
+  // Add a fork node that may be used as the source of the feature
+  // expression to avoid recomputing it for inout parameters,
+  // increment or decrement expressions and compound assignments.
+  nodes += objectSource := new ForkNode(nameOf(graph.resultSource));
+  edges += new ObjectFlow(graph.resultSource, objectSource);
+  
+	var type :=
+		if self.feature.isAssociationEnd() then
+			self.feature.opposite().type()
+		else
+			self.feature.namespace()
+		endif;	
+	var readAction ::= new ReadStructuralFeatureAction(type.toType(), feature);
+
+  if self.featureReference.expression.upper = 1 then {
+  	// Single instance property access
+  	nodes += readAction;
+  	edges += new ObjectFlow(objectSource, readAction._'object');
+  	resultSource := readAction.result;
+  } else {
+  	// Sequence property access
+  	var region := addExpansionRegion(
+  		result, "Collect(" + nameOf(readAction) + ")", ExpansionKind::parallel,
+  		Set{readAction}, Set{}, objectSource, readAction._'object', readAction.result);
+  	resultSource := region.outputElement![true];
+  } endif;
+}
+
+// Invocation Actions
+
+query InvocationExpression::assignedValueSource(assignedName : String) : ActivityNode {
+	return self.tuple.assignedValueSourceMap->get(assignedName);
+}
+
+mapping InvocationExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph {
+ 	self.mapAction(result);
+}
+
+helper InvocationExpression::mapAction(inout graph : ExpressionGraph) : Action {
+	return self.InvocationExpression_mapAction(graph);
+}
+
+helper InvocationExpression::InvocationExpression_mapAction(inout graph : ExpressionGraph) : Action {
+ 	var action := self.mapTarget(graph);
+  var lhsGraph := self.mapTuple(graph, action);
+  self.mapFeature(graph, action);  
+  
+  // NOTE: Adding left-hand side elements here prevents them from being
+  // wrapped in the expansion region mapped from a sequence feature
+  // invocation.
+  lhsGraph.addTo(graph);
+    
+  return action;
+}
+
+helper InvocationExpression::mapTarget(inout graph : ExpressionGraph) : Action {
+	return self.InvocationExpression_mapTarget(graph);
+}
+
+helper InvocationExpression::InvocationExpression_mapTarget(inout graph : ExpressionGraph) : Action {
+  var action : Action;
+  if self.isImplicit then {
+  	graph.nodes += action := new DestroyObjectAction(self.feature.expression.type.toUml().oclAsType(Class));
+  } else {
+  	var element := self.referent.toUml();
+  	switch {
+  		case(element.oclIsKindOf(Operation)) {
+	  		graph.nodes += action := new CallOperationAction(element.oclAsType(Operation));
+	  		graph.resultSource := action.returnPin();
+	  	}
+	  	case(element.oclIsKindOf(Signal)) {
+	  		graph.nodes += action := new SendSignalAction(element.oclAsType(Signal));
+	  	}
+	  	case(element.oclIsKindOf(Behavior)) {
+	  		graph.nodes += action := new CallBehaviorAction(element.oclAsType(Behavior));
+	  		graph.resultSource := action.returnPin();
+	  	}
+	  	case(element.oclIsKindOf(Property)) {
+	  		graph.nodes += action := new ReadLinkAction(element.oclAsType(Property));
+	  		graph.resultSource := action._'output'->at(1);
+	  	}
+  	};
+  } endif;
+	return action;
+}
+
+helper InvocationExpression::mapTuple(inout graph : ExpressionGraph, action : Action) : ActivityGraph {
+	return self.tuple.map toActivityGraph(graph, action, null, null);
+}
+
+helper InvocationExpression::mapFeature(inout graph : ExpressionGraph, action : Action) {
+	var targetNode : ActivityNode;
+	switch {
+		case(action.oclIsKindOf(CallOperationAction)) {
+			var callAction := action.oclAsType(CallOperationAction);
+			if not self.isDestructor then {
+				targetNode := callAction.target;
+			} else {	
+				graph.nodes += targetNode := new ForkNode(nameOf(callAction.target));
+				graph.edges += new ObjectFlow(targetNode, callAction.target);
+				
+				graph.nodes += var destroyAction ::= new DestroyObjectAction(callAction.operation._'class');
+				graph.edges += new ControlFlow(action, destroyAction);
+				
+				if self.isContainedInDestructor() then {
+					self.addDestroyCheck(graph, targetNode, destroyAction.target);
+				} else {
+					graph.edges += new ObjectFlow(targetNode, destroyAction.target);
+				} endif;
+			} endif;
+		}
+		case(action.oclIsKindOf(SendSignalAction)) {
+			var sendAction := action.oclAsType(SendSignalAction);
+
+      // NOTE: The type of the target pin must be properly set to
+      // satisfy the fUML constraint that the type of this pin has a
+      // reception for the signal being sent.
+			sendAction.target.type := self.feature.expression.type.toType();
+			
+			targetNode := sendAction.target;
+		}
+		case(action.oclIsKindOf(DestroyObjectAction)) {
+			var destroyAction := action.oclAsType(DestroyObjectAction);
+			if self.isContainedInDestructor() then {
+				graph.nodes += targetNode := new ForkNode(nameOf(destroyAction.target));
+				self.addDestroyCheck(graph, targetNode, destroyAction.target);
+			} else {
+				targetNode := destroyAction.target;
+			} endif;
+		}
+	};
+	
+	var featureGraph := self.feature.expression.map toActivityGraph();
+	if self.isSequenceFeatureInvocation() then {
+		
+		// Wrap the invocation action and input arguments mapping in an expansion region.
+		var nodes := graph.nodes;
+		var edges := graph.edges;
+		graph.nodes := Set{};
+		graph.edges := Set{};
+		var region := addExpansionRegion(graph, 
+			"Collect(" + nameOf(action) + ")", ExpansionKind::parallel, nodes, edges, 
+			featureGraph.resultSource, targetNode, graph.resultSource);
+	  if graph.resultSource <> null then {
+	  	graph.resultSource := region.outputElement![incoming![true].source = graph.resultSource];
+	  } endif;
+	  
+	  // Wrap the feature expression in a structured activity node as the source of
+	  // a control flow to the expansion region.
+	  var featureNode := featureGraph.addStructuredActivityNodeTo(graph, "Feature(" + nameOf(featureGraph.resultSource) + ")");
+	  graph.edges += new ControlFlow(featureNode, region);
+
+  } else {
+		featureGraph.addTo(graph);  	
+  	if featureGraph.resultSource <> null then {
+	  	// Connect the feature mapping result source directly to the action target pin.
+	  	graph.edges += new ObjectFlow(featureGraph.resultSource, targetNode);
+  	} endif;
+	} endif;
+}
+
+// Check whether this invocation expression is contained in the body of a constructor operation.
+query InvocationExpression::isContainedInDestructor() : Boolean {
+	var namespace := self.currentScope();
+	return namespace <> null and namespace.isDestructor();
+}
+
+// Check whether this invocation expression is a sequence feature invocation.
+query InvocationExpression::isSequenceFeatureInvocation() : Boolean {
+	var feature = self.feature;
+	var primary = if feature = null then null else feature.expression endif;
+	return primary <> null and (primary.lower <> 1 or primary.upper <> 1);
+}
+
+// Add the logic to test whether the context object is the object being destroyed (from targetNode)
+// and conditioning the destroy action on that.
+helper InvocationExpression::addDestroyCheck(inout graph : ActivityGraph, targetNode : ActivityNode, targetPin : ActivityNode) {
+	graph.nodes += var readSelfAction ::= new ReadSelfAction(null);
+	graph.nodes += var testAction ::= new TestIdentityAction("self==" + nameOf(targetNode), self.booleanType().toType());
+	graph.edges += new ObjectFlow(readSelfAction.result, testAction.first);
+	graph.edges += new ObjectFlow(targetNode, testAction.second);
+	createObjectDecisionGraph("destroy check", targetNode, testAction.result, targetPin, null).addTo(graph);
+}
+
+// Tuples
+
+intermediate property _Tuple::assignedValueSourceMap : Dict(String, ActivityNode);
+
+query _Tuple::assignedValueSource(assignedName : String) : ActivityNode {
+	return self.assignedValueSourceMap->get(assignedName);
+}
+
+// Adds tuple input elements to the given graph and effective left-hand side elements to the returned graph.
+mapping _Tuple::toActivityGraph(inout graph : ExpressionGraph, action : Action, firstParameter : ElementReference, firstArgument : OutputNamedExpression) : ActivityGraph {
+	var invocation := self.invocation;
+	var parameters := invocation.parameter;
+	var inputParameters := parameters[direction() = "in" or direction() = "inout"];
+  var outputParameters := parameters[direction() = "out" or direction() = "inout"];
+  
+	var inputs := self.input;
+	var outputs := self.output;
+	if firstParameter <> null then {
+		inputParameters := inputParameters->prepend(firstParameter);
+		inputs += firstArgument;
+		if firstParameter.direction() = "inout" then {
+			outputParameters := outputParameters->prepend(firstParameter);
+			outputs += firstArgument;
+		} endif;
+	} endif;
+	
+	var objectSourceMap : Dict(String, ActivityNode);
+	var indexSourceMap : Dict(String, ActivityNode);
+	
+	if inputs->notEmpty() then {
+		var subgraph := object ActivityGraph{};
+		var i := 1;
+		inputParameters->forEach(parameter) {
+			var input := inputs![name = parameter.name()];
+			var inputGraph := input.expression.map toActivityGraph();
+			if parameter.direction() = "inout" then {
+				objectSourceMap->put(input.name, inputGraph.objectSource);
+				indexSourceMap->put(input.name, inputGraph.indexSource);
+			} endif;
+			
+	    // If the expression has type Natural, but the parameter
+	    // has type UnlimitedNatural, then a conversion is
+	    // required, because the representations are different.
+	    var expressionType := input.expression.type;
+	    var parameterType := parameter.type();
+	    
+	    if expressionType <> null and parameterType <> null and
+	    	self.isNaturalType(expressionType) and
+        // NOTE: Check for "not Integer" excludes both Integer
+        // and Natural. Checking just for "is UnlimitedNatural"
+        // wouldn't exclude Natural, since it is a specialization
+        // of UnlimitedNatural.
+	    	not self.isIntegerType(parameterType) then {
+	    		inputGraph.nodes += var callAction ::= new CallBehaviorAction(self.integerFunction("ToUnlimitedNatural"));
+	    		inputGraph.edges += new ObjectFlow(inputGraph.resultSource, callAction.argument->at(1));
+	    		inputGraph.resultSource := callAction.result->at(1);
+	    } endif;
+	    
+	    // Add collection and bit string conversions, if required.
+	    self.mapConversions(inputGraph, expressionType, input.isCollectionConversion, input.isBitStringConversion);
+	    
+	    var inputPin := action.input->at(i);
+	    edges += new ObjectFlow(inputGraph.resultSource, inputPin);
+	    
+	    // Check for an index on the argument name (as opposed to the argument expression itself).
+	    var index := input.index;
+	    if index <> null or invocation.oclIsKindOf(LinkOperationExpression) and inputPin.isOrdered then {
+	    	var indexSource : ActivityNode;
+	    	if index = null then {
+					inputGraph.nodes += var valueAction ::= new ValueSpecificationAction(self.literalUnlimited());
+					indexSource := valueAction.result;
+				} else {
+					var indexGraph := index.map toActivityGraph();
+					indexGraph.addTo(result);
+					indexSource := indexGraph.resultSource;
+					if self.isIntegerType(index.type) then {
+						inputGraph.nodes += var callAction ::= new CallBehaviorAction(self.integerFunction("ToUnlimitedNatural"));
+						inputGraph.edges += new ObjectFlow(inputGraph.resultSource, callAction.argument->at(1));
+						indexSource := callAction.result->at(1);
+					} endif;
+				} endif;
+				// NOTE: This presumes that the "insertAt" or "destroyAt" pin comes directly after
+				// the value pin in the list of input pins.
+				i := i + 1;
+				inputGraph.edges += new ObjectFlow(indexSource, action.input->at(i));
+	    } endif;
+	    
+	    inputGraph.addTo(subgraph);
+	    i := i + 1;
+		};
+		
+		if subgraph.nodes->notEmpty() then {
+			var node := subgraph.addStructuredActivityNodeTo(graph, "Tuple(" + nameOf(action) + ")");
+			graph.edges += new ControlFlow(node, action);
+		} endif;		
+	} endif;
+	
+	if outputs->notEmpty() then {
+		var i := 1;
+		var returnPin := action.returnPin();
+		outputParameters->forEach(parameter) {
+			var output := outputs![name = parameter.name()];
+			if output <> null and not output.expression.isNull() then {
+				var outputGraph := object ExpressionGraph{};
+				var lhs := output.leftHandSide;
+				var lhsGraph := lhs.map toActivityGraph(objectSourceMap->get(output.name), indexSourceMap->get(output.name), -1);
+				lhsGraph.addTo(outputGraph);
+				
+				// Skip the return pin. The return parameter never has an output argument.
+				outputGraph.resultSource := action.output->at(i);
+				if outputGraph.resultSource = returnPin then {
+					i := i + 1;
+					outputGraph.resultSource := action.output->at(i);
+				} endif;
+				
+				// Add collection and bit string conversion, if required.
+				self.mapConversions(outputGraph, parameter.type(), output.isCollectionConversion, output.isBitStringConversion);
+				
+				// NOTE: These activity edges are part of the tuple graph, NOT the LHS graph.
+				outputGraph.edges += new ObjectFlow(outputGraph.resultSource, lhsGraph.assignmentTarget);
+				
+				var controlTarget := lhsGraph.controlTarget;
+				if controlTarget <> null then {
+					outputGraph.edges += new ControlFlow(action, controlTarget);
+				} endif;
+				
+				var assignedName := lhs.assignedName();
+				if assignedName <> null then {
+					self.assignedValueSourceMap->put(assignedName, lhs.assignedValueSource(assignedName))
+				} endif;
+				
+				outputGraph.addTo(result);
+			} endif;
+			i := i + 1;
+		};
+	} endif;
+}
+
+// Behavior Invocation Expressions
+
+helper BehaviorInvocationExpression::mapAction(inout graph : ExpressionGraph) : Action {
+	var action : Action := null;
+	if not self.isAddInvocation() then {
+		action := self.InvocationExpression_mapAction(graph);
+	} else {
+		var inputs := self.tuple.input;
+	  var nameExpression := inputs![name = self.parameter->at(1).name()].expression;
+		var target := nameExpression.map toActivityGraph().resultSource;
+		
+		var expression := inputs![name = self.parameter->at(2).name()].expression;
+		var expressionGraph := expression.map toActivityGraph();
+		expressionGraph.addTo(graph);
+		graph.edges += new ObjectFlow(expressionGraph.resultSource, target);
+	} endif;
+	return action;
+}
+
+query BehaviorInvocationExpression::isAddInvocation() : Boolean {
+	var parameter := self.parameter![direction() = "inout"];
+	return parameter <> null and 
+		self.isAddTarget(self.tuple.input![name = parameter.name()].expression);
+}
+
+// Feature Invocation Expressions
+// (No specialization from default invocation expression mapping)
+
+// Super Invocation Expressions
+
+helper SuperInvocationExpression::mapTarget(inout graph : ExpressionGraph) : Action {
+	var operation := self.referent.toUml().oclAsType(Operation);
+	graph.nodes += var action ::= new CallBehaviorAction(operation.method![true]);
+	graph.resultSource := action.returnPin();
+	return action;
+}
+
+// Instance Creation Expressions
+
+helper InstanceCreationExpression::mapAction(inout graph : ExpressionGraph) : Action {
+	var action := self.InvocationExpression_mapAction(graph);
+	
+	// If creating an instance of an active class, add a start behavior action.
+	if action.oclIsKindOf(CallOperationAction) then {
+		var class_ := action.oclAsType(CallOperationAction).operation._'class';
+		if class_.isActive then {
+			var nodes := graph.nodes;
+			var edges := graph.edges;
+
+			nodes += var forkNode ::= new ForkNode(nameOf(graph.resultSource));
+			edges += new ObjectFlow(graph.resultSource, forkNode);
+			
+			nodes += var startAction ::= new StartObjectBehaviorAction(class_);
+			edges += new ObjectFlow(forkNode, startAction._'object');
+			
+			class_.allParents().oclAsType(Class)[isActive]->forEach(parent) {
+				nodes += startAction := new StartObjectBehaviorAction(parent);
+				edges += new ObjectFlow(forkNode, startAction._'object');
+			};
+			
+			graph.nodes := Set{};
+			graph.edges := Set{};
+			var node := addStructuredActivityNode(graph, "InstanceCreationExpression(" + nameOf(class_) + ")", nodes, edges);
+						
+			graph.resultSource := new OutputPin(node, "Output(" + nameOf(graph.resultSource) + ")", class_, 1, 1);
+			new ObjectFlow(node, forkNode, graph.resultSource);
+						
+			action := node;
+		} endif;
+	} endif;
+	
+	return action;
+}
+
+helper InstanceCreationExpression::mapTarget(inout graph : ExpressionGraph) : Action {
+	var action : Action;
+	
+	if not self.isObjectCreation then {
+		// Data value creation
+		var dataType := self.referent.toUml().oclAsType(DataType);
+		var subgraph := object ExpressionGraph {};
+		
+		// Create a value specification action to create an instance of the data type.
+		subgraph.nodes += var valueAction ::= new ValueSpecificationAction(new InstanceValue(dataType));
+		graph.resultSource := valueAction.result;
+		
+		// The mapping for a data value creation is placed inside a structured activity node
+		// so that the node can act as the action with input pins to which the results of the
+		// tuple mapping are connected.
+		
+		graph.nodes += var structuredNode ::= new StructuredActivityNode("Create(" + nameOf(dataType) + ")");
+		dataType.allAttributes()->forEach(attribute) {
+			var qualifiedName := attribute.qualifiedName;
+			var valuePin := new InputPin(structuredNode, 
+				structuredNode.name + ".input(" + if qualifiedName = null then "<No Name>" else qualifiedName endif + ")", 
+				attribute.type, attribute.lower, attribute.upper);
+			var assignmentGraph := self.mapPropertyAssignment(attribute, graph.resultSource, valuePin);
+			assignmentGraph.addTo(subgraph);
+			graph.resultSource := assignmentGraph.resultSource;
+		}
+		
+	} else if not self.isConstructorless then {
+		// Object creation with a constructor
+		
+		// Map the constructor call as a normal call operation action.
+		action := self.InvocationExpression_mapTarget(graph);
+		var callAction := action.oclAsType(CallOperationAction);
+		
+		// Add a create object action to provide the target input to the constructor call.
+		graph.nodes += var createAction ::= new CreateObjectAction(callAction.operation._'class');
+		graph.edges += new ObjectFlow(createAction.result, callAction.target);
+		
+	} else {
+		// Object creation without a constructor
+		graph.nodes += action := new CreateObjectAction(self.referent.toUml().oclAsType(Class));
+		graph.resultSource := action.oclAsType(CreateObjectAction).result;
+		
+	} endif endif;
+	
+	return action;
+}
+
+// Link Operation Expressions
+
+helper LinkOperationExpression::mapTarget(inout graph : ActivityGraph) : Action {
+	var association := self.referent.toUml().oclAsType(Association);
+	var unlimitedNaturalType := self.unlimitedNaturalType().toType();
+	graph.nodes += var action ::=
+		if self.isClear then new ClearAssociationAction(association)
+		else if self.isCreation then new CreateLinkAction(association, unlimitedNaturalType)
+		else new DestroyLinkAction(association, unlimitedNaturalType)
+		endif endif;
+	if self.isCreation then {
+		var endDataList := action.oclAsType(CreateLinkAction).endData.oclAsType(LinkEndCreationData)->asSequence();
+		if association.memberEnd->size() = 2 then {
+			// For a binary association, setting isReplaceAll = trure on the opposite end of an end with
+			// multiplicity upper bound of 1 ensures that the upper bound is maintained.
+			var endData1 := endDataList->at(1);
+			var endData2 := endDataList->at(2);
+			if endData1._'end'.upper = 1 then {
+				endData2.isReplaceAll := true;
+			} endif;
+			if endData2._'end'.upper = 1 then {
+				endData1.isReplaceAll := true;
+			} endif;
+	
+		} else if endDataList->exists(_'end'.upper = 1) then {
+			// For a non-binary association, specific links need to be found and destroyed to maintain
+			// any upper bound multiplicities of 1.
+			graph.nodes := graph.nodes->excluding(action);
+			graph.nodes += var node ::= new StructuredActivityNode("CreateLink(" + nameOf(association) + ")");
+			
+			var subgraph := object ActivityGraph {};
+			subgraph.nodes += action;
+			endDataList->forEach(endData) {
+				var end_ := endData._'end';
+				var inputPin := new InputPin(node, node.name + ".input(" + nameOf(end_) + ")", end_.type, end_.lower, end_.upper);
+				inputPin.isOrdered := end_.isOrdered;
+				subgraph.nodes += var forkNode ::= new ForkNode(nameOf(end_));
+				subgraph.edges += new ObjectFlow(inputPin, forkNode);
+				subgraph.edges += new ObjectFlow(forkNode, endData.value);
+				if end_.isOrdered then {
+					inputPin := new InputPin(node, node.name + ".index(" + nameOf(end_) + ")", endData.insertAt.type, 1, 1);
+					subgraph.edges += new ObjectFlow(inputPin, endData.insertAt);
+				} endif;
+			};
+			
+			var destroyGraph := object ActivityGraph {};
+			var n := endDataList->size();
+			Sequence{1..n}->forEach(i) {
+				var end_ := endDataList->at(i)._'end';
+				destroyGraph.nodes += var readAction ::= new ReadLinkAction(end_);
+				destroyGraph.nodes += var destroyAction ::= new DestroyLinkAction(association, unlimitedNaturalType);
+				destroyGraph.edges += new ObjectFlow(readAction.result, destroyAction.input->at(i));
+				var k := 1;
+				Sequence{1..n}->forEach(j) {
+					if j <> i then {
+						var inputPin := node.input->at(k);
+						var forkNode := inputPin.outgoing![true].target;
+						destroyGraph.edges += new ObjectFlow(forkNode, readAction.input->at(if j < i then j else j - 1 endif));
+						destroyGraph.edges += new ObjectFlow(forkNode, destroyAction.input->at(j));
+					} endif;
+					k := k + 1;
+					if endDataList->at(j)._'end'.isOrdered then {
+						k := k + 1
+					} endif;
+				}
+			};
+			var destroyNode := destroyGraph.addStructuredActivityNodeTo(subgraph, "DestroyLinks");
+			subgraph.edges += new ControlFlow(destroyNode, action);
+			subgraph.addToStructuredNode(graph, node);
+			action := node;
+		} endif endif;
+	} endif;
+	return action;
+}
+
+// Read Extent Expressions
+
+mapping ClassExtentExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+	nodes += var action ::= new ReadExtentAction(self.type.toType().oclAsType(Class));
+	resultSource := action.result;
+}
+
+// Sequence Construction Expressions
+
+mapping SequenceConstructionExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::Dummy_toActivityGraph  {
+	// TODO
+}
+
+abstract mapping SequenceElements::toActivityGraph(out nodes : Set(ActivityNode), out edges : Set(ActivityEdge));
+
+mapping SequenceExpressionList::toActivityGraph(out nodes : Set(ActivityNode), out edges : Set(ActivityEdge))
+ 	inherits SequenceElements::toActivityGraph;
+
+mapping SequenceRange::toActivityGraph(out nodes : Set(ActivityNode), out edges : Set(ActivityEdge))
+ 	inherits SequenceElements::toActivityGraph;
+
+mapping SequenceAccessExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::Dummy_toActivityGraph  {
+	// TODO
+}
+
+helper mapSequenceRangeLoop(
+	inout nodes : Set(ActivityNode), inout edges : Set(ActivityEdge),
+	resultSource1 : ActivityNode, resultSource2 : ActivityNode,
+	label : String) : ActivityNode {
+	// TODO
+	return resultSource1;
+}
+
+// Sequence Operation Expressions
+
+helper SequenceOperationExpression::mapTuple(inout graph : ExpressionGraph, action : Action) : ActivityGraph {
+	return self.tuple.map toActivityGraph(graph, action, self.firstParameter(), self.firstArgument());
+}
+
+// Sequence Reduction Expressions
+
+mapping SequenceReductionExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+	var expressionGraph := self.primary.expression.map toActivityGraph();
+	expressionGraph.addTo(result);
+	var behavior := self.referent.toUml().oclAsType(Behavior);
+	nodes += var reduceAction ::= new ReduceAction(behavior, toType(self.type), self.isOrdered);	
+	edges += new ObjectFlow(expressionGraph.resultSource, reduceAction.collection);
+	resultSource := reduceAction.result;
+}
+
+// Sequence Expansion Expressions
+
+mapping ExtentOrExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::Dummy_toActivityGraph  {
+	// TODO
+}
+
+abstract mapping SequenceExpansionExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::Dummy_toActivityGraph;
+
+mapping SelectOrRejectExpression::toActivityGraph() : ExpressionGraph
+ 	inherits SequenceExpansionExpression::toActivityGraph  {
+	// TODO
+}
+
+mapping CollectOrIterateExpression::toActivityGraph() : ExpressionGraph
+ 	inherits SequenceExpansionExpression::toActivityGraph  {
+	// TODO
+}
+
+mapping ForAllOrExistsOrOneExpression::toActivityGraph() : ExpressionGraph
+ 	inherits SequenceExpansionExpression::toActivityGraph  {
+	// TODO
+}
+
+mapping IsUniqueExpression::toActivityGraph() : ExpressionGraph
+ 	inherits SequenceExpansionExpression::toActivityGraph  {
+
+}
+
+// Increment or Decrement Expressions
+
+mapping IncrementOrDecrementExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+	var behavior := self.integerFunction("" + 
+		if self.operator = "++" then "+" else "-" endif);
+	nodes += var callAction ::= new CallBehaviorAction(behavior);
+	nodes += var valueAction ::= new ValueSpecificationAction(self.literalInteger(1));
+	edges += new ObjectFlow(valueAction.result, callAction.argument->at(2));
+	
+	var operandGraph := self.operand.expression().map toActivityGraph();
+	operandGraph.addTo(result);
+	
+	var lhsGraph := self.operand.map toActivityGraph(
+		operandGraph.objectSource, operandGraph.indexSource, 1);
+	lhsGraph.addTo(result);
+	edges += new ObjectFlow(callAction.result->at(1), lhsGraph.assignmentTarget);
+	
+	if self.isPrefix then {
+		edges += new ObjectFlow(operandGraph.resultSource, callAction.argument->at(1));
+		resultSource := lhsGraph.resultSource;
+	} else {
+		nodes += resultSource := new ForkNode(nameOf(operandGraph.resultSource) + ")");
+		edges += new ObjectFlow(operandGraph.resultSource, resultSource);
+		edges += new ObjectFlow(resultSource, callAction.argument->at(1));
+	} endif;
+}
+
+query IncrementOrDecrementExpression::assignedValueSource(assignedName : String) : ActivityNode {
+	return self.operand.assignedValueSource(assignedName);
+}
+
+// Unary Expressions
+
+mapping UnaryExpression::toActivityGraph() : ExpressionGraph {
+	var operandResultSource := self.mapOperand(result);
+	var operatorFunction := self.operatorFunction(self.operator);
+	if operatorFunction = null then {
+		resultSource := operandResultSource;
+	} else {
+		nodes += var callAction ::= 
+			new CallBehaviorAction(self.libraryFunction("PrimitiveBehaviors::" + operatorFunction));
+		edges += new ObjectFlow(operandResultSource, callAction.argument->at(1));
+		resultSource := callAction.result->at(1);
+	} endif;
+}
+
+query UnaryExpression::operatorFunction(operator : String) : String {
+	return 
+		switch {
+			case (operator = "!") "BooleanFunctions::!";
+			case (operator = "~") "BitStringFunctions::~";
+			case (operator = "-") "IntegerFunctions::Neg";
+			else null;
+		};
+}
+
+helper UnaryExpression::mapOperand(inout graph : ExpressionGraph) : ActivityNode {
+	return self.UnaryExpression_mapOperand(graph);
+}
+
+helper UnaryExpression::UnaryExpression_mapOperand(inout graph : ExpressionGraph) : ActivityNode {
+	var operandGraph := self.operand.map toActivityGraph();
+	operandGraph.addTo(graph);
+	return operandGraph.resultSource;
+}
+
+helper BitStringUnaryExpression::mapOperand(inout graph : ExpressionGraph) : ActivityNode {
+	var operandResultSource := self.UnaryExpression_mapOperand(graph);
+	if self.isBitStringConversion then {
+		graph.nodes += var callAction ::= 
+			new CallBehaviorAction(self.bitStringFunction("ToBitString"));
+		graph.edges += new ObjectFlow(operandResultSource, callAction.argument->at(1));
+		operandResultSource := callAction.result->at(1);
+	} endif;
+	return operandResultSource;
+}
+
+// Cast Expressions
+
+mapping CastExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+	// TODO: Finish this.
+	var operandGraph := self.operand.map toActivityGraph();
+	operandGraph.addTo(result);
+	resultSource := operandGraph.resultSource;
+	if resultSource.oclIsKindOf(Pin) then {
+		resultSource.oclAsType(Pin).type := self.type.toType();
+	} else if resultSource.oclIsKindOf(ExpansionNode) then {
+		resultSource.oclAsType(ExpansionNode).type := self.type.toType();
+	} endif endif;
+}
+
+// Isolation Expressions
+
+mapping IsolationExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+	var operandGraph := self.operand.map toActivityGraph();
+	var structuredNode := 
+		operandGraph.addStructuredActivityNodeTo(result, "IsolationExpression(" + nameOf(operandGraph.resultSource) + ")");
+	structuredNode.mustIsolate := true;
+	resultSource := new OutputPin(structuredNode, structuredNode.name + ".output", 
+		self.operand.type.toType(), self.operand.upper, self.operand.lower);
+	new ObjectFlow(structuredNode, operandGraph.resultSource, resultSource);
+}
+
+// Binary Expressions
+
+helper BinaryExpression::addConversion(inout graph : ActivityGraph, source : ActivityNode, function : String) : ActivityNode {
+	graph.nodes += var callAction ::= 
+		new CallBehaviorAction(self.libraryFunction("PrimitiveBehaviors::" + function));
+	graph.edges += new ObjectFlow(source, callAction.argument->at(1));
+	return callAction.result->at(1);
+}
+
+mapping BinaryExpression::toActivityGraph() : ExpressionGraph
+	inherits Expression::toActivityGraph {
+	self.mapBinaryExpression(result);
+}
+
+helper BinaryExpression::mapBinaryExpression(inout graph : ExpressionGraph) {
+	var operand1Result := self.mapOperand(graph, self.operand1);
+	var operand2Result := self.mapOperand(graph, self.operand2);
+	self.mapOperator(graph, self.operator, operand1Result, operand2Result);
+}
+
+helper BinaryExpression::mapOperand(inout graph : ActivityGraph, operand : Expression) : ActivityNode {
+	return self.BinaryExpression_mapOperand(graph, operand);
+}
+
+helper BinaryExpression::BinaryExpression_mapOperand(inout graph : ActivityGraph, operand : Expression): ActivityNode {	
+	var operandGraph := operand.map toActivityGraph();
+	operandGraph.addTo(graph);
+	return operandGraph.resultSource;
+}
+
+query RelationalExpression::mapOperand(inout graph : ActivityGraph, operand : Expression) : ActivityNode {
+	var resultSource := self.BinaryExpression_mapOperand(graph, operand);
+	return
+		if self.isUnlimitedNatural and self.isIntegerType(operand.type) then 
+			self.addConversion(graph, resultSource, "IntegerFunctions::ToUnlimitedNatural")
+		else 
+			resultSource
+		endif;
+}
+
+helper BinaryExpression::mapOperator(inout graph : ExpressionGraph, operator : String, 
+	operand1Result : ActivityNode, operand2Result : ActivityNode) {
+	self.BinaryExpression_mapOperator(graph, operator, operand1Result, operand2Result, false, false);
+}
+
+helper BinaryExpression::BinaryExpression_mapOperator(inout graph : ExpressionGraph, operator : String, 
+	operand1Result : ActivityNode, operand2Result : ActivityNode, isBitStringConversion1 : Boolean, isBitStringConversion2 : Boolean)	{
+	var functionPackage := self.functionPackage();
+	if functionPackage = null then {
+		graph.resultSource := operand1Result;
+	} else {
+		graph.nodes += var callAction ::= 
+			new CallBehaviorAction(self.primitiveBehavior(functionPackage, operator));
+		graph.edges += new ObjectFlow(
+			if isBitStringConversion1 then 
+				self.addConversion(graph, operand1Result, "BitStringFunctions::ToBitString")
+			else 
+				operand1Result 
+			endif, 
+			callAction.argument->at(1));
+		graph.edges += new ObjectFlow(
+			if isBitStringConversion2 then 
+				self.addConversion(graph, operand2Result, "BitStringFunctions::ToBitString")
+			else 
+				operand2Result 
+			endif, 
+			callAction.argument->at(2));
+		graph.resultSource := callAction.result->at(1);
+	} endif;
+}
+
+helper ShiftExpression::mapOperator(inout graph : ExpressionGraph, operator : String, 
+	operand1Result : ActivityNode, operand2Result : ActivityNode) {
+	self.BinaryExpression_mapOperator(graph, operator, operand1Result, operand2Result, self.isBitStringConversion, false);
+}
+
+helper LogicalExpression::mapOperator(inout graph : ExpressionGraph, operator : String, 
+	operand1Result : ActivityNode, operand2Result : ActivityNode) {
+	self.BinaryExpression_mapOperator(graph, operator, operand1Result, operand2Result, 
+		self.isBitStringConversion1, self.isBitStringConversion2);
+}
+
+query BinaryExpression::functionPackage() : String {
+	return null;
+}
+
+query ArithmeticExpression::functionPackage() : String {
+	return if self.isConcatenation then "StringFunctions" else "IntegerFunctions" endif;
+}
+
+query ShiftExpression::functionPackage() : String {
+	return "BitStringFunctions";
+}
+
+query RelationalExpression::functionPackage() : String {
+	return if self.isUnlimitedNatural then "UnlimitedNaturalFunctions" else "IntegerFunctions" endif;
+}
+
+query LogicalExpression::functionPackage() : String {
+	return if self.isBitWise then "BitStringFunctions" else "BooleanFunctions"endif;
+}
+
+// Classification Expressions
+
+mapping ClassificationExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+	var operandGraph := self.operand.map toActivityGraph();
+	operandGraph.addTo(result);
+	
+	var classifier := self.referent.toUml().oclAsType(Classifier);
+	nodes += var action ::= new ReadIsClassifiedObjectAction(classifier, self.isDirect, self.booleanType().toType());
+	edges += new ObjectFlow(operandGraph.resultSource, action._'object');
+	resultSource := action.result;
+}
+
+// Equality Expressions
+
+mapping EqualityExpression::toActivityGraph() : ExpressionGraph
+ 	inherits BinaryExpression::toActivityGraph  {
+	// The following optimizes the cases when one or both operands are known to be null.
+	
+	var operand1IsNull := self.operand1.isNull();
+	var operand2IsNull := self.operand2.isNull();
+	
+	if operand1IsNull and operand2IsNull then {
+		nodes += var action ::= new ValueSpecificationAction(self.literalBoolean(not self.isNegated));
+		resultSource := action.result;
+	} else if operand1IsNull or operand2IsNull then {
+		var operandResult := self.mapOperand(result,
+			if operand2IsNull then self.operand1 else self.operand2 endif);
+		var function := if self.isNegated then "NotEmpty" else "IsEmpty" endif;
+		nodes += var callAction ::= new CallBehaviorAction(self.sequenceFunction(function));
+		edges += new ObjectFlow(operandResult, callAction.argument->at(1));
+		resultSource := callAction.result->at(1);
+	} else {
+		self.mapBinaryExpression(result);
+	} endif endif;
+}
+
+helper EqualityExpression::mapOperator(inout graph : ExpressionGraph, operator : String, 
+	operand1Result : ActivityNode, operand2Result : ActivityNode) {
+	// TODO
+	self.BinaryExpression_mapOperator(graph, operator, operand1Result, operand2Result, false, false);
+}
+
+// Conditional Logical Expressions
+
+mapping ConditionalLogicalExpression::toActivityGraph() : ExpressionGraph
+ 	inherits BinaryExpression::toActivityGraph  {
+	// TODO
+}
+
+// Conditional Test Expressions
+
+mapping ConditionalTestExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::Dummy_toActivityGraph  {
+	// TODO
+}
+
+// Assignment Expressions
+
+mapping AssignmentExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph  {
+	var lhs := self.leftHandSide;
+	var rhs := self.rightHandSide;
+	
+	var rhsGraph := rhs.map toActivityGraph();
+	
+  if rhsGraph.resultSource = null then {
+  	// TODO: Set LHS to null?
+  	rhsGraph.addTo(result);
+  } else {
+		var lhsObjectSource : ActivityNode := null;
+		var lhsIndexSource : ActivityNode := null;
+					
+		if not self.isSimple then {
+			var expressionGraph := self.expression.map toActivityGraph();
+			expressionGraph.addTo(rhsGraph);
+			lhsObjectSource := expressionGraph.objectSource;
+			lhsIndexSource := expressionGraph.indexSource;
+			
+			rhsGraph.nodes += var callAction ::= new CallBehaviorAction(self.compoundExpressionBehavior());
+			rhsGraph.edges += new ObjectFlow(expressionGraph.resultSource, callAction.argument->at(1));
+			
+			// Apply Bit String conversion to the right-hand side, if necessary.
+			self.mapConversions(rhsGraph, null, false,
+				self.isIntegerType(rhs.type) and callAction.argument->at(2).type = self.bitStringType().toType());
+				
+			rhsGraph.edges += new ObjectFlow(rhsGraph.resultSource, callAction.argument->at(2));
+			rhsGraph.resultSource := callAction.result->at(1);
+		} endif;
+		
+		self.mapConversions(rhsGraph, self.type, self.isCollectionConversion, self.isBitStringConversion);
+			
+	  var lhsGraph = lhs.map toActivityGraph(lhsObjectSource, lhsIndexSource, rhs.upper);
+	  lhsGraph.addTo(result);
+	  resultSource := lhsGraph.resultSource;
+	  
+	  if lhsGraph.assignmentTarget <> null then {
+	  	edges += new ObjectFlow(rhsGraph.resultSource, lhsGraph.assignmentTarget);
+	  } endif;
+	  if rhsGraph->notEmpty() and not (lhsGraph.assignmentTarget = null and rhs.oclIsKindOf(SequenceConstructionExpression)) then {
+			var rhsNode := rhsGraph.addStructuredActivityNodeTo(result, "RighthandSide(" + nameOf(rhsGraph.resultSource) + ")");
+			if lhsGraph.controlTarget <> null then {
+	  		edges += new ControlFlow(rhsNode, lhsGraph.controlTarget);
+	  	} endif;
+	  } endif;
+	} endif;
+}
+
+helper AssignmentExpression::compoundExpressionBehavior() : Behavior {
+	var type := self.type;
+	var operator := self.operator.substring(1, self.operator.length() - 1);
+	var package :=
+	  switch {
+	  	case (self.isIntegerType(type)) "IntegerFunctions";
+	  	case (self.isBitStringType(type)) "BitStringFunctions";
+	  	case (self.isBooleanType(type)) "BooleanFunctions";
+	  	case (self.isStringType(type)) "StringFunctions";
+	  	else null;
+	  };
+	return 
+		if package = null then null 
+		else self.primitiveBehavior(package, operator) endif;
+}
+
+query AssignmentExpression::assignedValueSource(assignedName : String) : ActivityNode {
+	return self.leftHandSide.assignedValueSource(assignedName);
+}
+
+helper SyntaxElement::mapPropertyAssignment(property_ : Property, objectSource : ActivityNode, valueSource : ActivityNode): ExpressionGraph {
+	var graph = object ExpressionGraph {};
+	var featuringClassifier := property_.featuringClassifier![true];
+	var isReplaceAll := property_.lower = 1 and property_.upper = 1 ;
+	var unlimitedNaturalType = self.unlimitedNaturalType().toType();
+	
+	// Create a write action for the property.
+	graph.nodes += var writeAction ::= new AddStructuralFeatureValueAction(property_, isReplaceAll, unlimitedNaturalType);
+	
+	// For an ordered property, provide insertAt pin with a "*" input.
+	if property_.isOrdered and not isReplaceAll then {
+		graph.nodes += var valueAction ::= new ValueSpecificationAction(new LiteralUnlimitedNatural(unlimitedNaturalType));
+		graph.edges += new ObjectFlow(valueAction._'result', writeAction.insertAt);
+	} endif;
+	
+	if isReplaceAll then {
+		// If the property multiplicity is 1..1, connect the valueSource 
+		// to the write action value input pin.
+		graph.edges += new ObjectFlow(valueSource, writeAction.value);
+		
+		// Connect the action object pin to the objectSource.
+		graph.edges += new ObjectFlow(objectSource, writeAction._'object');
+		
+		graph.resultSource := writeAction._'result';
+
+  } else if not featuringClassifier.oclIsKindOf(DataType) then {
+  	// If the property is not a feature of a data type, use an iterative
+  	// expansion region to set multiple values.
+  	var region := new ExpansionRegion("Iterate(" + nameOf(writeAction) + ")", ExpansionKind::iterative);
+  	region.node := graph.nodes;
+  	region.edge := graph.edges;
+  	
+  	var objectInputPin := new InputPin(region, region.name + ".input(" + nameOf(objectSource) + ")", featuringClassifier, 1, 1);
+  	new ObjectFlow(region, objectInputPin, writeAction._'object');
+  	
+  	graph.nodes := region;
+  	graph.nodes += var inputNode ::= new ExpansionNode(nameOf(valueSource), region, true);
+  	graph.edges += new ObjectFlow(objectSource, objectInputPin);
+  	graph.edges += new ObjectFlow(valueSource, inputNode);
+  	
+  } else {
+  	// If the property is a feature of a data type, then use a loop node
+  	// to iteratively update the data value.
+  	
+  	var objectInputPin := new InputPin(nameOf(objectSource), featuringClassifier, 1, 1);
+  	var valueInputPin := new InputPin("value", property_.type, 0, -1);
+  	graph.nodes += var loopNode ::=  new LoopNode("Iterate(" + nameOf(writeAction) + "),", true, OrderedSet{objectInputPin, valueInputPin});
+  	graph.edges += new ObjectFlow(objectSource, loopNode.loopVariableInput->at(1));
+  	graph.edges += new ObjectFlow(valueSource, loopNode.loopVariableInput->at(2));
+  	
+  	loopNode.node += var valueFork ::= new ForkNode("value");
+  	loopNode.node += var value1Action ::= new ValueSpecificationAction(self.literalInteger(1));
+  	loopNode.node += var value1Fork ::= new ForkNode(nameOf(value1Action.result));
+  	loopNode.node += var getAction ::= new CallBehaviorAction(self.sequenceFunction("At"));
+  	loopNode.node += var removeAction ::= new CallBehaviorAction(self.sequenceFunction("ExcludeAt"));
+  	loopNode.edge += new ObjectFlow(loopNode.loopVariable->at(1), writeAction._'object');
+  	loopNode.edge += new ObjectFlow(loopNode.loopVariable->at(2), valueFork);
+  	loopNode.edge += new ObjectFlow(value1Action.result, value1Fork);
+  	loopNode.edge += new ObjectFlow(valueFork, getAction.argument->at(1));
+  	loopNode.edge += new ObjectFlow(value1Fork, getAction.argument->at(2));
+  	loopNode.edge += new ObjectFlow(getAction.result->at(1), writeAction.value);
+  	loopNode.edge += new ObjectFlow(valueFork, removeAction.argument->at(1));
+  	loopNode.edge += new ObjectFlow(value1Fork, removeAction.argument->at(2));
+  	
+  	loopNode.bodyPart := loopNode.node[ExecutableNode];
+  	loopNode.bodyOutput += writeAction.result;
+  	loopNode.bodyOutput += removeAction.result->at(1);
+  	
+  	loopNode.node += var testAction ::= new CallBehaviorAction(self.sequenceFunction("NotEmpty"));
+  	loopNode.edge += new ObjectFlow(valueFork, testAction.argument->at(1));
+  	
+  	loopNode.test += testAction;
+  	loopNode.decider := testAction.result->at(1);
+  	
+  	graph.resultSource := loopNode.result->at(1);
+  		
+  } endif endif;
+	
+	return graph;
+}
+
+helper SyntaxElement::mapConversions(
+	inout graph : ExpressionGraph, rhsType : ElementReference,
+	isCollectionConversion : Boolean, isBitStringConversion : Boolean) {
+	if graph.resultSource <> null then {
+		if isCollectionConversion then {
+			var toSequenceOperation := rhsType._'resolve'("toSequence")![
+				isOperation() and parameters()->size() = 0 and returnParameter() <> null
+			].toUml().oclAsType(Operation);
+      graph.nodes += var callAction ::= new CallOperationAction(toSequenceOperation);
+      graph.edges += new ObjectFlow(graph.resultSource, callAction.target);
+      graph.resultSource := callAction.result->at(1);
+		} endif;
+		
+		if isBitStringConversion then {
+			graph.nodes += var callAction ::= new CallBehaviorAction(self.bitStringFunction("ToBitString"));
+			graph.edges += new ObjectFlow(graph.resultSource, callAction.argument->at(1));
+			graph.resultSource := callAction.result->at(1);
+		} endif;
+	} endif;
+	
+}
+
+intermediate class LhsGraph extends ActivityGraph {
+	resultSource : ForkNode;
+	assignmentTarget : ActivityNode;
+	controlTarget : ActivityNode;
+}
+
+mapping LeftHandSide::toActivityGraph(objectSource : ActivityNode, indexSource : ActivityNode, rhsUpper : Integer) : LhsGraph
+	disjuncts
+		NameLeftHandSide::toActivityGraph,
+		FeatureLeftHandSide::toActivityGraph;
+
+intermediate property LeftHandSide::assignedValueSource : ActivityNode;
+
+query LeftHandSide::assignedValueSource(assignedName : String) : ActivityNode {
+	return self.assignedValueSource;
+}
+
+mapping NameLeftHandSide::toActivityGraph(objectSource : ActivityNode, indexSource : ActivityNode, rhsUpper : Integer) : LhsGraph {
+	if self.feature() <> null then {
+		self.mapFeatureLeftHandSide(result, objectSource, indexSource, rhsUpper);
+	} else {
+		var pathName := self.target().pathName;
+		if self.index = null then {
+			nodes += self.assignedValueSource := resultSource := new ForkNode(pathName);
+		} else {
+			nodes += resultSource := new ForkNode("LeftHandSide(" + pathName + ")");
+			var indexResultSource := indexSource;
+			if indexSource = null then {
+				var indexGraph := self.index.map toActivityGraph();
+				controlTarget := indexGraph.addStructuredActivityNodeTo(result, "Index(LeftHandSide(" + pathName + "))");
+				indexResultSource := indexGraph.resultSource;
+			} endif;
+			var targetName := self.target.unqualifiedName.toName();
+			var assignment := self.assignmentBefore![name = targetName];
+			if assignment <> null then {
+				var activityNode := assignment.map toActivityNode();
+				nodes += var callAction ::= new CallBehaviorAction(self.sequenceFunction("ReplacingAt"));
+				edges += new ObjectFlow(activityNode, callAction.argument->at(1));
+				edges += new ObjectFlow(indexResultSource, callAction.argument->at(2));
+				edges += new ObjectFlow(resultSource, callAction.argument->at(3));
+				
+				nodes += self.assignedValueSource := new ForkNode(pathName);
+				edges += new ObjectFlow(callAction.result->at(1), self.assignedValueSource);
+			} endif;
+		} endif;
+		assignmentTarget := resultSource;
+	} endif;
+}
+
+mapping FeatureLeftHandSide::toActivityGraph(objectSource : ActivityNode, indexSource : ActivityNode, rhsUpper : Integer) : LhsGraph {
+	self.mapFeatureLeftHandSide(result, objectSource, indexSource, rhsUpper);
+}
+	
+helper LeftHandSide::mapFeatureLeftHandSide(inout graph : LhsGraph, objectSource : ActivityNode, indexSource : ActivityNode, rhsUpper : Integer) {
+	var feature := self.feature();
+	if feature <> null then {
+		var property_ := self.referent.toUml().oclAsType(Property);
+		var objectResultSource := objectSource;
+		if objectResultSource = null then {
+			var expressionGraph := feature.expression.map toActivityGraph();
+			objectResultSource := expressionGraph.resultSource;
+			graph.controlTarget := expressionGraph.addStructuredActivityNodeTo(graph, "Expression(LeftHandSide(" + nameOf(objectResultSource) + "))");
+		} endif;
+		var index := self.index();
+		var resultNode : ActivityNode;
+		if index = null then {
+			graph.nodes += var clearAction ::= new ClearStructuralFeatureAction(property_);
+			graph.edges += new ObjectFlow(objectResultSource, clearAction._'object');
+			if graph.controlTarget = null then {
+				graph.controlTarget := clearAction;
+			} endif;
+			if rhsUpper = 0 then {
+				resultNode := clearAction.result;
+			} else {
+				graph.nodes += graph.resultSource := new ForkNode("LeftHandSide(" + nameOf(objectResultSource) + ")");
+				graph.assignmentTarget := graph.resultSource;
+				
+				// Place the property assignment mapping in a structured activity node to insure
+				// the isEmpty test within it does not start executing too soon.
+				graph.nodes += var structuredNode ::= new StructuredActivityNode("WriteAll(" + property_.qualifiedName + ")");
+				var valuePin := new InputPin(structuredNode, structuredNode.name + ".input", 
+					property_.type, property_.lower, property_.upper);
+				graph.edges += new ObjectFlow(graph.resultSource, valuePin);
+				
+				var subgraph := self.mapPropertyAssignment(property_, clearAction.result, valuePin);
+				subgraph.addToStructuredNode(graph, structuredNode);
+				resultNode := subgraph.resultSource;
+			} endif;
+		} else {
+			var indexResultSource := indexSource;
+			if indexResultSource = null then {
+				var indexGraph := index.map toActivityGraph();
+				var indexNode := indexGraph.addStructuredActivityNodeTo(graph, "Index(LeftHandSide(" + nameOf(objectResultSource) + ")");
+				if graph.controlTarget = null then {
+					graph.controlTarget := indexNode;
+				} else {
+					graph.edges += new ControlFlow(graph.controlTarget, indexNode);
+				} endif;
+				indexResultSource := indexGraph.resultSource;
+			} endif;
+			
+			if self.isIntegerType(index.type) then {
+				graph.nodes += var indexConversionAction ::= new CallBehaviorAction(self.integerFunction("ToUnlimitedNatural"));
+				graph.edges += new ObjectFlow(indexResultSource, indexConversionAction.argument->at(1));
+				indexResultSource := indexConversionAction.result->at(1);
+			} endif;
+			
+			var unlimitedNaturalType := self.unlimitedNaturalType().toType();
+			graph.nodes += var removeAction ::= new RemoveStructuralFeatureValueAction(property_, false, unlimitedNaturalType);
+			graph.edges += new ObjectFlow(objectResultSource, removeAction._'object');
+		  if rhsUpper = 0 then {
+				graph.edges += new ObjectFlow(indexResultSource, removeAction.removeAt);
+			} else {
+				graph.nodes += var indexFork ::= new ForkNode(nameOf(indexResultSource));
+				graph.edges += new ObjectFlow(indexResultSource, indexFork);
+				graph.edges += new ObjectFlow(indexFork, removeAction.removeAt);
+				
+				graph.nodes += var writeAction ::= new AddStructuralFeatureValueAction(property_, false, unlimitedNaturalType);
+				graph.nodes += graph.assignmentTarget := graph.resultSource := new ForkNode("LeftHandSide(" + nameOf(objectResultSource) + ")");
+				graph.edges += new ObjectFlow(removeAction.result, writeAction._'object');
+				graph.edges += new ObjectFlow(graph.resultSource, writeAction.value);
+				resultNode := writeAction.result;
+			} endif;
+		} endif;
+		if self.isDataValueUpdate() then {
+			graph.nodes += self.assignedValueSource := new ForkNode(nameOf(resultNode));
+			graph.edges += new ObjectFlow(resultNode, self.assignedValueSource);
+		} endif;
+	} endif;
+}

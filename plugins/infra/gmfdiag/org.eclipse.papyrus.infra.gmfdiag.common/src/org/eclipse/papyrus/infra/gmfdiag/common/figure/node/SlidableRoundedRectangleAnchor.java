@@ -61,16 +61,22 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected Rectangle getBox() {
 		PrecisionRectangle rBox = null;
 		Object figure = getFigure();
 		if (figure instanceof IRoundedRectangleFigure) {
 			rBox = new PrecisionRectangle(((IRoundedRectangleFigure) ((IFigure) figure)).getRoundedRectangleBounds());
 		} else if (figure instanceof IFigure) {
-			rBox = new PrecisionRectangle(((IFigure) getOwner()).getBounds());
+			rBox = new PrecisionRectangle(getOwner().getBounds());
 		}
-		((IFigure) figure).translateToAbsolute(rBox);
-		return rBox.expand(offset.width, offset.height);
+
+		if (rBox != null) {
+			((IFigure) figure).translateToAbsolute(rBox);
+			return rBox.expand(offset.width, offset.height);
+		}
+
+		return null;
 	}
 
 	/**
@@ -128,6 +134,7 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected PointList getIntersectionPoints(final Point ownReference, final Point foreignReference) {
 
 		PointList pointList = null;
@@ -278,6 +285,7 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 
 	// get the location on the border with a specific ownReference point
 	// Used for the PortEditPart
+	@Override
 	public Point getLocation(Point refParent, Point refPort) {
 		return super.getLocation(refParent, refPort);
 	}

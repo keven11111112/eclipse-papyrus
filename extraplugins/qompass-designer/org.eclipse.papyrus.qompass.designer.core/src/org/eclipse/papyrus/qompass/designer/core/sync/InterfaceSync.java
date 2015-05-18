@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.qompass.designer.core.OperationUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Generalization;
@@ -103,7 +104,7 @@ public class InterfaceSync {
 
 	public static void syncGenericSignalReceptionSupport(Interface intf) {
 
-		NamedElement genericReceptionNE = Utils.getQualifiedElement(Utils.getTop(intf), SIGNAL_RECEPTION_QN);
+		NamedElement genericReceptionNE = Utils.getQualifiedElement(PackageUtil.getRootPackage(intf), SIGNAL_RECEPTION_QN);
 		if (genericReceptionNE instanceof Interface) {
 			Interface genericReceptionIntf = (Interface) genericReceptionNE;
 			if (intf.getOwnedReceptions().size() > 0) {

@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 
@@ -35,6 +36,29 @@ import org.eclipse.gmf.runtime.notation.View;
 public class CSSDOMSemanticElementHelper {
 
 	/**
+	 * singleton instance
+	 */
+	private static CSSDOMSemanticElementHelper elementHelper;
+
+	/** Private Constructor. */
+	protected CSSDOMSemanticElementHelper() {
+
+	}
+
+	/**
+	 * Returns the singleton instance of this class
+	 *
+	 * @return the singleton instance.
+	 */
+	public static CSSDOMSemanticElementHelper getInstance() {
+		if (elementHelper == null) {
+			elementHelper = new CSSDOMSemanticElementHelper();
+		}
+		return elementHelper;
+	}
+
+
+	/**
 	 * Returns the semantic element attached to the given notation element
 	 *
 	 * The result element can also be a Diagram
@@ -42,7 +66,8 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static EObject findSemanticElement(EObject notationElement) {
+	public EObject findSemanticElement(EObject notationElement) {
+
 		if (notationElement == null) {
 			return null;
 		}
@@ -57,6 +82,7 @@ public class CSSDOMSemanticElementHelper {
 			return notationElement;
 		}
 
+
 		// Add floating labels to the DOM model
 		if (isFloatingLabel(notationElement)) {
 			return notationElement;
@@ -69,6 +95,7 @@ public class CSSDOMSemanticElementHelper {
 			if (semanticElement != null) {
 				return semanticElement;
 			}
+
 
 			// The graphical element isn't related to a Semantic Element. The view becomes the semantic element.
 			// e.g. : Links in UML
@@ -108,7 +135,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static View findPrimaryView(EObject notationElement) {
+	public View findPrimaryView(EObject notationElement) {
 		return findTopView(notationElement);
 	}
 
@@ -119,7 +146,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static View findTopView(EObject notationElement) {
+	public View findTopView(EObject notationElement) {
 		EObject semanticElement = findSemanticElement(notationElement);
 
 		if (semanticElement == notationElement) {
@@ -146,9 +173,9 @@ public class CSSDOMSemanticElementHelper {
 	 *
 	 * @param view
 	 * @return
-	 *         True if this is a Floating Label
+	 * 		True if this is a Floating Label
 	 */
-	public static boolean isFloatingLabel(EObject notationElement) {
+	public boolean isFloatingLabel(EObject notationElement) {
 		if (!(notationElement instanceof DecorationNode)) {
 			return false;
 		}

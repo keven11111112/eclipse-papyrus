@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.util;
 
@@ -84,116 +85,196 @@ public class ConfigurationSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ConfigurationPackage.PAPYRUS_CONFIGURATION: {
-				PapyrusConfiguration papyrusConfiguration = (PapyrusConfiguration)theEObject;
-				T result = casePapyrusConfiguration(papyrusConfiguration);
-				if (result == null) result = caseArchitectureFramework(papyrusConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+		case ConfigurationPackage.PAPYRUS_CONFIGURATION: {
+			PapyrusConfiguration papyrusConfiguration = (PapyrusConfiguration) theEObject;
+			T result = casePapyrusConfiguration(papyrusConfiguration);
+			if (result == null) {
+				result = caseArchitectureFramework(papyrusConfiguration);
 			}
-			case ConfigurationPackage.PAPYRUS_VIEWPOINT: {
-				PapyrusViewpoint papyrusViewpoint = (PapyrusViewpoint)theEObject;
-				T result = casePapyrusViewpoint(papyrusViewpoint);
-				if (result == null) result = caseArchitectureViewpoint(papyrusViewpoint);
-				if (result == null) result = caseADElement(papyrusViewpoint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case ConfigurationPackage.PAPYRUS_VIEW: {
-				PapyrusView papyrusView = (PapyrusView)theEObject;
-				T result = casePapyrusView(papyrusView);
-				if (result == null) result = caseModelKind(papyrusView);
-				if (result == null) result = caseADElement(papyrusView);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case ConfigurationPackage.PAPYRUS_VIEWPOINT: {
+			PapyrusViewpoint papyrusViewpoint = (PapyrusViewpoint) theEObject;
+			T result = casePapyrusViewpoint(papyrusViewpoint);
+			if (result == null) {
+				result = caseArchitectureViewpoint(papyrusViewpoint);
 			}
-			case ConfigurationPackage.PAPYRUS_DIAGRAM: {
-				PapyrusDiagram papyrusDiagram = (PapyrusDiagram)theEObject;
-				T result = casePapyrusDiagram(papyrusDiagram);
-				if (result == null) result = casePapyrusView(papyrusDiagram);
-				if (result == null) result = caseModelKind(papyrusDiagram);
-				if (result == null) result = caseADElement(papyrusDiagram);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = caseADElement(papyrusViewpoint);
 			}
-			case ConfigurationPackage.PAPYRUS_SYNC_TABLE: {
-				PapyrusSyncTable papyrusSyncTable = (PapyrusSyncTable)theEObject;
-				T result = casePapyrusSyncTable(papyrusSyncTable);
-				if (result == null) result = casePapyrusView(papyrusSyncTable);
-				if (result == null) result = caseModelKind(papyrusSyncTable);
-				if (result == null) result = caseADElement(papyrusSyncTable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case ConfigurationPackage.PAPYRUS_TABLE: {
-				PapyrusTable papyrusTable = (PapyrusTable)theEObject;
-				T result = casePapyrusTable(papyrusTable);
-				if (result == null) result = casePapyrusView(papyrusTable);
-				if (result == null) result = caseModelKind(papyrusTable);
-				if (result == null) result = caseADElement(papyrusTable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case ConfigurationPackage.PAPYRUS_VIEW: {
+			PapyrusView papyrusView = (PapyrusView) theEObject;
+			T result = casePapyrusView(papyrusView);
+			if (result == null) {
+				result = caseModelKind(papyrusView);
 			}
-			case ConfigurationPackage.RULE: {
-				Rule rule = (Rule)theEObject;
-				T result = caseRule(rule);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = caseADElement(papyrusView);
 			}
-			case ConfigurationPackage.MODEL_RULE: {
-				ModelRule modelRule = (ModelRule)theEObject;
-				T result = caseModelRule(modelRule);
-				if (result == null) result = caseRule(modelRule);
-				if (result == null) result = caseDisplayUnit(modelRule);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case ConfigurationPackage.OWNING_RULE: {
-				OwningRule owningRule = (OwningRule)theEObject;
-				T result = caseOwningRule(owningRule);
-				if (result == null) result = caseRule(owningRule);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case ConfigurationPackage.PAPYRUS_DIAGRAM: {
+			PapyrusDiagram papyrusDiagram = (PapyrusDiagram) theEObject;
+			T result = casePapyrusDiagram(papyrusDiagram);
+			if (result == null) {
+				result = casePapyrusView(papyrusDiagram);
 			}
-			case ConfigurationPackage.CHILD_RULE: {
-				ChildRule childRule = (ChildRule)theEObject;
-				T result = caseChildRule(childRule);
-				if (result == null) result = caseRule(childRule);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = caseModelKind(papyrusDiagram);
 			}
-			case ConfigurationPackage.PALETTE_RULE: {
-				PaletteRule paletteRule = (PaletteRule)theEObject;
-				T result = casePaletteRule(paletteRule);
-				if (result == null) result = caseRule(paletteRule);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = caseADElement(papyrusDiagram);
 			}
-			case ConfigurationPackage.PATH_ELEMENT: {
-				PathElement pathElement = (PathElement)theEObject;
-				T result = casePathElement(pathElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case ConfigurationPackage.CATEGORY: {
-				Category category = (Category)theEObject;
-				T result = caseCategory(category);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case ConfigurationPackage.PAPYRUS_SYNC_TABLE: {
+			PapyrusSyncTable papyrusSyncTable = (PapyrusSyncTable) theEObject;
+			T result = casePapyrusSyncTable(papyrusSyncTable);
+			if (result == null) {
+				result = casePapyrusView(papyrusSyncTable);
 			}
-			case ConfigurationPackage.MODEL_AUTO_CREATE: {
-				ModelAutoCreate modelAutoCreate = (ModelAutoCreate)theEObject;
-				T result = caseModelAutoCreate(modelAutoCreate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = caseModelKind(papyrusSyncTable);
 			}
-			case ConfigurationPackage.ROOT_AUTO_SELECT: {
-				RootAutoSelect rootAutoSelect = (RootAutoSelect)theEObject;
-				T result = caseRootAutoSelect(rootAutoSelect);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = caseADElement(papyrusSyncTable);
 			}
-			default: return defaultCase(theEObject);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.PAPYRUS_TABLE: {
+			PapyrusTable papyrusTable = (PapyrusTable) theEObject;
+			T result = casePapyrusTable(papyrusTable);
+			if (result == null) {
+				result = casePapyrusView(papyrusTable);
+			}
+			if (result == null) {
+				result = caseModelKind(papyrusTable);
+			}
+			if (result == null) {
+				result = caseADElement(papyrusTable);
+			}
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.RULE: {
+			Rule rule = (Rule) theEObject;
+			T result = caseRule(rule);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.MODEL_RULE: {
+			ModelRule modelRule = (ModelRule) theEObject;
+			T result = caseModelRule(modelRule);
+			if (result == null) {
+				result = caseRule(modelRule);
+			}
+			if (result == null) {
+				result = caseDisplayUnit(modelRule);
+			}
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.OWNING_RULE: {
+			OwningRule owningRule = (OwningRule) theEObject;
+			T result = caseOwningRule(owningRule);
+			if (result == null) {
+				result = caseRule(owningRule);
+			}
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.CHILD_RULE: {
+			ChildRule childRule = (ChildRule) theEObject;
+			T result = caseChildRule(childRule);
+			if (result == null) {
+				result = caseRule(childRule);
+			}
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.PALETTE_RULE: {
+			PaletteRule paletteRule = (PaletteRule) theEObject;
+			T result = casePaletteRule(paletteRule);
+			if (result == null) {
+				result = caseRule(paletteRule);
+			}
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.PATH_ELEMENT: {
+			PathElement pathElement = (PathElement) theEObject;
+			T result = casePathElement(pathElement);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.CATEGORY: {
+			Category category = (Category) theEObject;
+			T result = caseCategory(category);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.MODEL_AUTO_CREATE: {
+			ModelAutoCreate modelAutoCreate = (ModelAutoCreate) theEObject;
+			T result = caseModelAutoCreate(modelAutoCreate);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.ROOT_AUTO_SELECT: {
+			RootAutoSelect rootAutoSelect = (RootAutoSelect) theEObject;
+			T result = caseRootAutoSelect(rootAutoSelect);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ConfigurationPackage.ASSISTANT_RULE: {
+			AssistantRule assistantRule = (AssistantRule) theEObject;
+			T result = caseAssistantRule(assistantRule);
+			if (result == null) {
+				result = caseRule(assistantRule);
+			}
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -419,6 +500,21 @@ public class ConfigurationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRootAutoSelect(RootAutoSelect object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Assistant Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Assistant Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssistantRule(AssistantRule object) {
 		return null;
 	}
 

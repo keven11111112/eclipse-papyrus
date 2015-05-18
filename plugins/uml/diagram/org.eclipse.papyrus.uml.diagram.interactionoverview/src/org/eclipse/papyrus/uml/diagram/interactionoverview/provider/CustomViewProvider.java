@@ -16,14 +16,20 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionFloatingNameEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomInteractionUseEditPartCN;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil.CallBehaviorActionType;
 import org.eclipse.uml2.uml.CallBehaviorAction;
@@ -58,6 +64,11 @@ public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.p
 				return true;
 			}
 		}
+		if (elementType == UMLElementTypes.CallBehaviorAction_As_InteractionUse_5005) {
+			if (ElementTypes.ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_CONTENT_HINT.equals(containerGraphicalType)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -71,8 +82,11 @@ public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.p
 			visualID = UMLVisualIDRegistry.getVisualID(semanticHint);
 		}
 		switch (visualID) {
-		case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+		case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
 			return createCallBehaviorAction_5000(domainElement, containerView, index, persisted, preferencesHint);
+		case CallBehaviorActionEditPart.VISUAL_ID:
+		case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:
+			return createCallBehaviorAction_As_InteractionUse_5005(domainElement, containerView, index, persisted, preferencesHint);
 			// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		}
 		return null;
@@ -82,7 +96,7 @@ public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.p
 	public Node createCallBehaviorAction_5000(final EObject domainElement, final View containerView, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
 		final Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionAsInteractionEditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		CallBehaviorUtil.setCallBehaviorActionType((CallBehaviorAction) domainElement, CallBehaviorActionType.snapshot);
@@ -93,5 +107,34 @@ public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.p
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CallBehaviorAction");
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "CallBehaviorAction");
 		return node;
+	}
+
+	public Node createCallBehaviorAction_As_InteractionUse_5005(final EObject domainElement, final View containerView, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
+		final Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		CallBehaviorUtil.setCallBehaviorActionType((CallBehaviorAction) domainElement, CallBehaviorActionType.use);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "CallBehaviorAction");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CallBehaviorAction");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CallBehaviorAction");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "CallBehaviorAction");
+		createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionNameEditPart.VISUAL_ID));
+		Node label6020 = createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionFloatingNameEditPart.VISUAL_ID));
+		label6020.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6020 = (Location) label6020.getLayoutConstraint();
+		location6020.setX(0);
+		location6020.setY(5);
+		return node;
+	}
+	
+	protected Node createLabel(View owner, String hint) {
+		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
+		rv.setType(hint);
+		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
+		return rv;
 	}
 }

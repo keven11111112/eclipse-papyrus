@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.reconciler;
 
+import java.util.StringTokenizer;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
@@ -22,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * This class provide several convenience methods to tag a diagram with a version number
@@ -33,7 +36,7 @@ public class DiagramVersioningUtils {
 	 * Returns the "current" diagram version. Diagrams with this version don't require the reconciliation until the Papyrus version updates in such a
 	 * way that some diagram needs reconciliation.
 	 * <p/>
-	 * The current value returned by this method is "1.0.0".
+	 * The current value returned by this method is "1.1.0".
 	 * <p/>
 	 * The value itself, howewer, should NOT be used outside of this package to avoid weird dependency issues. Instead, external code should use {@link DiagramVersioningUtils#stampCurrentVersion(Diagram)} and
 	 * {@link DiagramVersioningUtils#createStampCurrentVersionCommand(Diagram)}.
@@ -41,7 +44,7 @@ public class DiagramVersioningUtils {
 	 * This method is intentinally NOT a constant but indeed the method. This method is intentionally private and should NOT be made public.
 	 */
 	private static String CURRENT_DIAGRAM_VERSION() {
-		return "1.0.0";
+		return "1.1.0";
 	}
 
 	/**
@@ -87,6 +90,8 @@ public class DiagramVersioningUtils {
 	 * It may be assumed that these diagrams had been created before Papyrus 1.0.
 	 */
 	public static final String UNDEFINED_VERSION = "undefined";
+
+	private static final String DELIM_VERSION = ".";//$NON-NLS-1$
 
 	/**
 	 * Get the diagram compatibility version.
@@ -152,6 +157,44 @@ public class DiagramVersioningUtils {
 		return CURRENT_DIAGRAM_VERSION().equals(version);
 	}
 
+	/**
+	 * Compare to version number.
+	 * The test is done only on the first 2 segments of a version.
+	 * The two String should have the same number of segments (i.e: 0.9.2 and 1.1.0).
+	 * 
+	 * @param referenceVersion
+	 *            Version that is the reference for the test
+	 * @param testedVersion
+	 *            the version that is compare to the reference.
+	 * @return true if the tested Version is before the reference Version .
+	 *         false by default.
+	 */
+	public static boolean isBeforeVersion(String referenceVersion, String testedVersion) {
+		boolean before = false;
+
+		StringTokenizer targetVersionTokenizer = new StringTokenizer(referenceVersion, DELIM_VERSION);
+		StringTokenizer sourceVersionTokenizer = new StringTokenizer(testedVersion, DELIM_VERSION);
+		try {
+			if (targetVersionTokenizer.countTokens() == sourceVersionTokenizer.countTokens()) {// Check if the format is the same for the 2 Strings
+				int targetMainVersion = Integer.parseInt(targetVersionTokenizer.nextToken());// get the first number
+				int sourceMainVersion = Integer.parseInt(sourceVersionTokenizer.nextToken());
+				if (targetMainVersion == sourceMainVersion) {// if main versions are the same check the intermediate version
+					int targetIntermediateVersion = Integer.parseInt(targetVersionTokenizer.nextToken());// get the second number
+					int sourceIntermediateVersion = Integer.parseInt(sourceVersionTokenizer.nextToken());
+					before = (targetIntermediateVersion > sourceIntermediateVersion);
+
+
+				} else {
+					before = (targetMainVersion > sourceMainVersion);
+				}
+			}
+
+		} catch (NumberFormatException e) {
+			Activator.log.error(e);
+		}
+
+		return before;
+	}
 
 
 }

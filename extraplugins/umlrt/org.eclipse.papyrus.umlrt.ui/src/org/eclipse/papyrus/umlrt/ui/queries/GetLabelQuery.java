@@ -14,23 +14,26 @@ package org.eclipse.papyrus.umlrt.ui.queries;
 
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
-import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.papyrus.uml.modelexplorer.queries.GetComplexName;
+import org.eclipse.papyrus.umlrt.ui.provider.UMLRTFilteredLabelProvider;
+import org.eclipse.uml2.uml.NamedElement;
 
-public class GetLabelQuery implements IJavaQuery2<Element, String> {
+public class GetLabelQuery extends GetComplexName {
 	
-	private static final UMLLabelProvider UML_LABEL_PROVIDER= new UMLLabelProvider();
+	private static final UMLRTFilteredLabelProvider UML_LABEL_PROVIDER = new UMLRTFilteredLabelProvider();
 	
 	/**
 	 * {@inheritDoc}
 	 */
-	public String evaluate(final Element context, 
+	public String evaluate(final NamedElement context,
 			final IParameterValueList2 parameterValues,
 			final IFacetManager facetManager)
 			throws DerivedTypedElementException {
+		if (UML_LABEL_PROVIDER.accept(context)) {
+			return UML_LABEL_PROVIDER.getText(context);
+		}
+		return super.evaluate(context, parameterValues, facetManager);
 		
-		return "RT_"+UML_LABEL_PROVIDER.getText(context);
 	}
 }

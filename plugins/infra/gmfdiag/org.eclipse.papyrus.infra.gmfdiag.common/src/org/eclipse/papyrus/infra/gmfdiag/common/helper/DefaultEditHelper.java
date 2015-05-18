@@ -25,11 +25,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
+import org.eclipse.gmf.runtime.emf.type.core.IEditHelperContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -37,6 +39,8 @@ import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.emf.commands.UnsetValueCommand;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
+import org.eclipse.papyrus.infra.services.edit.utils.CacheRegistry;
+import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 
 /**
  * <pre>
@@ -63,17 +67,84 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementC
 public class DefaultEditHelper extends AbstractEditHelper {
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Cache_Maps = "Cache_Maps";//$NON-NLS-1$
+	public static final String Cache_Maps = IRequestCacheEntries.Cache_Maps;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Element_Type = "Element_Type";//$NON-NLS-1$	
+	public static final String Element_Type = IRequestCacheEntries.Element_Type;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Checked_Elements = "Checked_Elements";//$NON-NLS-1$	
+	public static final String Checked_Elements = IRequestCacheEntries.Checked_Elements;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String EditHelper_Advice = "EditHelper_Advice";//$NON-NLS-1$
+	public static final String EditHelper_Advice = IRequestCacheEntries.EditHelper_Advice;
 
+	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
+	public static final String Client_Context = IRequestCacheEntries.Client_Context;
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean approveRequest(IEditCommandRequest request) {
+		if (request instanceof CreateRelationshipRequest) {
+			// specific case for relationship should be handled
+			return super.approveRequest(request);
+		} else if (request instanceof CreateElementRequest) {
+			// check the containment feature.
+			Object context = request.getEditHelperContext();
+			if (context instanceof EObject) {
+				EObject owner = (EObject) context;
+				EReference reference = getContainmentFeature((CreateElementRequest) request);
+				// The context may not have this reference if some intermediate
+				// container is to be created by the edit-helper.
+				// But, then, we can only optimistically report that we can create
+				// the child
+				if ((reference != null) && (owner.eClass().getEAllContainments().contains(reference))) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+		return super.approveRequest(request);
+	}
+
+	/**
+	 * @return
+	 */
+	protected EReference getContainmentFeature(CreateElementRequest request) {
+		EReference containmentFeature = request.getContainmentFeature();
+		if (containmentFeature != null) {
+			return containmentFeature;
+		}
+
+		containmentFeature = computeContainmentFeature(request);
+		request.initializeContainmentFeature(containmentFeature);
+		return containmentFeature;
+	}
+
+	/**
+	 * Gets the EClass of the element to be edited.
+	 * 
+	 * @return the EClass
+	 */
+	protected EClass getEClassToEdit(CreateElementRequest request) {
+
+		Object context = request.getEditHelperContext();
+
+		if (context instanceof EObject) {
+			return ((EObject) context).eClass();
+
+		} else {
+			IElementType type = ElementTypeRegistry.getInstance()
+					.getElementType(context);
+
+			if (type != null) {
+				return type.getEClass();
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -237,22 +308,55 @@ public class DefaultEditHelper extends AbstractEditHelper {
 	protected IEditHelperAdvice[] getEditHelperAdvice(IEditCommandRequest req) {
 		IEditHelperAdvice[] advices = null;
 		Object editHelperContext = req.getEditHelperContext();
+		if (editHelperContext == null) {
+			return null;
+		}
+
 		Map cacheMaps = (Map) req.getParameter(Cache_Maps);
 		if (cacheMaps != null) {
-			Map contextMap = (Map) cacheMaps.get(editHelperContext);
-			if (contextMap != null) {
-				advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+			if (editHelperContext instanceof IEditHelperContext) {
+				IElementType type = ((IEditHelperContext) editHelperContext).getElementType();
+				if (type != null) {
+					Map contextMap = (Map) cacheMaps.get(type);
+					if (contextMap != null) {
+						advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+					}
+				} else {
+					// get Type from the eobject
+					EObject contextObject = ((IEditHelperContext) editHelperContext).getEObject();
+					Map contextMap = (Map) cacheMaps.get(contextObject);
+					if (contextMap != null) {
+						advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+					}
+
+				}
+
+			} else {
+				Map contextMap = (Map) cacheMaps.get(editHelperContext);
+				if (contextMap != null) {
+					advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+				}
 			}
+
 		}
 
 		if (advices == null) {
 
 			if (editHelperContext instanceof EObject) {
+				// IElementType type = ElementTypeRegistry.getInstance().getElementType((EObject) editHelperContext, req.getClientContext());
+				// advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
 
 			} else if (editHelperContext instanceof IElementType) {
-				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((IElementType) editHelperContext, req.getClientContext());
+				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), ((IElementType) editHelperContext));
 
+			} else if (editHelperContext instanceof IEditHelperContext) {
+				IElementType type = ((IEditHelperContext) editHelperContext).getElementType();
+				if (type != null) {
+					advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
+				} else {
+					advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
+				}
 			} else {
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
 			}
@@ -289,9 +393,9 @@ public class DefaultEditHelper extends AbstractEditHelper {
 		return result;
 	}
 
-
-	protected boolean initializeWithThisSpecializationType(ISpecializationType specializationType, CreateElementRequest req) {
+	protected EReference getContainmentFeatureFromSpecializationType(ISpecializationType specializationType, CreateElementRequest req) {
 		if (specializationType != null) {
+
 			IContainerDescriptor containerDescriptor = specializationType.getEContainerDescriptor();
 
 			if (containerDescriptor != null) {
@@ -316,12 +420,20 @@ public class DefaultEditHelper extends AbstractEditHelper {
 
 						if (eClass != null && eClass.getEAllReferences().contains(features[i])) {
 							// Use the first feature
-							req.initializeContainmentFeature((features[i]));
-							return true;
+							return features[i];
 						}
 					}
 				}
 			}
+		}
+		return null;
+	}
+
+	protected boolean initializeWithThisSpecializationType(ISpecializationType specializationType, CreateElementRequest req) {
+		EReference containmentFeature = getContainmentFeatureFromSpecializationType(specializationType, req);
+		if (containmentFeature != null) {
+			req.initializeContainmentFeature(containmentFeature);
+			return true;
 		}
 		return false;
 	}
@@ -348,45 +460,57 @@ public class DefaultEditHelper extends AbstractEditHelper {
 	public void initializeDefaultFeature(CreateElementRequest req) {
 
 		if (req.getContainmentFeature() == null) {
+			EReference containmentFeature = computeContainmentFeature(req);
+			if (containmentFeature != null) {
+				req.initializeContainmentFeature(containmentFeature);
+			}
+		}
+	}
 
-			// First, try to find the feature from the element type
-			ISpecializationType specializationType = (ISpecializationType) req.getElementType().getAdapter(ISpecializationType.class);
 
-			if (specializationType != null) {
+	protected EReference computeContainmentFeature(CreateElementRequest request) {
+		// First, try to find the feature from the element type
+		ISpecializationType specializationType = (ISpecializationType) request.getElementType().getAdapter(ISpecializationType.class);
 
-				boolean initialized = initializeWithThisSpecializationType(specializationType, req);
-				IElementType[] superTypes = specializationType.getAllSuperTypes();
+		if (specializationType != null) {
 
-				// Try to initialize with the superTypes if not already initialized
-				for (int i = 0; i < superTypes.length && !initialized; i++) {
-					IElementType superElementType = superTypes[i];
+			EReference reference = getContainmentFeatureFromSpecializationType(specializationType, request);
+			if (reference != null) {
+				return reference;
+			}
 
-					if (superElementType instanceof ISpecializationType) {
-						initialized = initializeWithThisSpecializationType((ISpecializationType) superElementType, req);
+			IElementType[] superTypes = specializationType.getAllSuperTypes();
 
-						if (initialized) {
-							return;
-						}
+			// Try to initialize with the superTypes if not already initialized
+			for (int i = 0; i < superTypes.length; i++) {
+				IElementType superElementType = superTypes[i];
+
+				if (superElementType instanceof ISpecializationType) {
+					reference = getContainmentFeatureFromSpecializationType((ISpecializationType) superElementType, request);
+					if (reference != null) {
+						return reference;
 					}
 				}
 			}
+		}
 
-			EClass eClass = req.getElementType().getEClass();
+		// reference has not been found from element types ==> return from default containment feature for EClass
+		EClass eClass = request.getElementType().getEClass();
 
-			if (eClass != null) {
-				// Next, try to get a default feature
-				EReference defaultFeature = getDefaultContainmentFeature(eClass);
-				if (defaultFeature != null) {
-					req.initializeContainmentFeature(defaultFeature);
-					return;
-				}
+		if (eClass != null) {
+			// Next, try to get a default feature
+			EReference defaultFeature = getDefaultContainmentFeature(eClass);
+			if (defaultFeature != null) {
+				return defaultFeature;
+			}
 
-				// Compute default container (the first feature of container that can contain the new element's type)
-				EReference defaultEReference = findDefaultContainmentFeature(req.getContainer().eClass(), eClass);
-				if (defaultEReference != null) {
-					req.initializeContainmentFeature(defaultEReference);
-				}
+			// Compute default container (the first feature of container that can contain the new element's type)
+			EReference defaultEReference = findDefaultContainmentFeature(request.getContainer().eClass(), eClass);
+			if (defaultEReference != null) {
+				return defaultEReference;
 			}
 		}
+		// should never happen
+		return null;
 	}
 }

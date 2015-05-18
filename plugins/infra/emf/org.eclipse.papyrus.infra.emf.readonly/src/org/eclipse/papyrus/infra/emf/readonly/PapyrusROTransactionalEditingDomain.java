@@ -16,6 +16,7 @@
  *  Christian W. Damus (CEA) - bug 415639
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 461629
+ *  Christian W. Damus - bug 465416
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -51,7 +52,6 @@ import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.InternalTransaction;
 import org.eclipse.emf.transaction.impl.TransactionChangeRecorder;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
@@ -60,12 +60,13 @@ import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.core.resource.RollbackStatus;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
+import org.eclipse.papyrus.infra.emf.edit.domain.PapyrusTransactionalEditingDomain;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
 
 
-public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDomainImpl {
+public class PapyrusROTransactionalEditingDomain extends PapyrusTransactionalEditingDomain {
 
 	public PapyrusROTransactionalEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack, ResourceSet resourceSet) {
 		super(adapterFactory, stack, resourceSet);
@@ -263,8 +264,7 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 			tx = startTransaction(true, null);
 		}
 
-		final RunnableWithResult<?> rwr = (read instanceof RunnableWithResult) ?
-				(RunnableWithResult<?>) read : null;
+		final RunnableWithResult<?> rwr = (read instanceof RunnableWithResult) ? (RunnableWithResult<?>) read : null;
 
 		try {
 			read.run();

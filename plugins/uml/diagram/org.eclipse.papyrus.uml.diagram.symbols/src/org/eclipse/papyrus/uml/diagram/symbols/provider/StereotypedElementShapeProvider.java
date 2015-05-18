@@ -15,13 +15,11 @@ package org.eclipse.papyrus.uml.diagram.symbols.provider;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
@@ -30,8 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.symbols.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
@@ -59,21 +56,22 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 			List<RenderedImage> images = new ArrayList<RenderedImage>();
 			// it has already been checked that
 
-			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) view);
-			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-			while (tokenizer.hasMoreTokens()) {
+			Iterator<Stereotype> appliedStereotypes = ((Element) element).getAppliedStereotypes().iterator();
+			while (appliedStereotypes.hasNext()) {
 				try {
-					String stereotypeName = tokenizer.nextToken();
-					Stereotype stereotype = ((Element) element).getAppliedStereotype(stereotypeName);
-					org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), stereotype, SHAPE_CONSTANT);
-					if (icon != null) {
-						if (!"".equals(icon.getLocation()) && icon.getLocation() != null) {
-							SVGDocument document = getSVGDocument(icon.getLocation());
-							if (document != null) {
-								images.add(renderSVGDocument(view, document));
-							} else {
-								URL url = new URL(icon.getLocation());
-								images.add(RenderedImageFactory.getInstance(url));
+					Stereotype appliedStereotype = appliedStereotypes.next();
+					View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(((View) view), appliedStereotype);
+					if (stereotypeLabel != null && stereotypeLabel.isVisible()) {
+						org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), appliedStereotype, SHAPE_CONSTANT);
+						if (icon != null) {
+							if (!"".equals(icon.getLocation()) && icon.getLocation() != null) {
+								SVGDocument document = getSVGDocument(icon.getLocation());
+								if (document != null) {
+									images.add(renderSVGDocument(view, document));
+								} else {
+									URL url = new URL(icon.getLocation());
+									images.add(RenderedImageFactory.getInstance(url));
+								}
 							}
 						}
 					}
@@ -101,18 +99,23 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 		if (element instanceof Element) {
 
 			// This is an element. does it have stereotypes ? If yes, do the stereotypes have shapes associated ?
-			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) view);
-			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-			if (tokenizer.hasMoreTokens()) {
-				String firstStereotypeName = tokenizer.nextToken();
-				Stereotype stereotype = ((Element) element).getAppliedStereotype(firstStereotypeName);
-				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), stereotype, SHAPE_CONSTANT);
-				if (icon != null) {
-					if (icon.getLocation() != "" && icon.getLocation() != null) {
-						return true;
+			Iterator<Stereotype> appliedStereotypes = ((Element) element).getAppliedStereotypes().iterator();
+			while (appliedStereotypes.hasNext()) {
+
+				Stereotype appliedStereotype = appliedStereotypes.next();
+				View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(((View) view), appliedStereotype);
+				if (stereotypeLabel != null && stereotypeLabel.isVisible()) {
+					org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), appliedStereotype, SHAPE_CONSTANT);
+
+					if (icon != null) {
+						if (icon.getLocation() != "" && icon.getLocation() != null) {
+							return true;
+						}
 					}
 				}
 			}
+
+
 		}
 
 		return false;
@@ -131,17 +134,19 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 		if (element instanceof Element) {
 			List<SVGDocument> images = new ArrayList<SVGDocument>();
 			// it has already been checked that
-			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) view);
-			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-			while (tokenizer.hasMoreTokens()) {
-				String stereotypeName = tokenizer.nextToken();
-				Stereotype stereotype = ((Element) element).getAppliedStereotype(stereotypeName);
-				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), stereotype, SHAPE_CONSTANT);
-				if (icon != null) {
-					if (icon.getLocation() != "" && icon.getLocation() != null) {
-						SVGDocument document = getSVGDocument(icon.getLocation());
-						if (document != null) {
-							images.add(document);
+			Iterator<Stereotype> appliedStereotypes = ((Element) element).getAppliedStereotypes().iterator();
+			while (appliedStereotypes.hasNext()) {
+
+				Stereotype appliedStereotype = appliedStereotypes.next();
+				View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(((View) view), appliedStereotype);
+				if (stereotypeLabel != null && stereotypeLabel.isVisible()) {
+					org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), appliedStereotype, SHAPE_CONSTANT);
+					if (icon != null) {
+						if (icon.getLocation() != "" && icon.getLocation() != null) {
+							SVGDocument document = getSVGDocument(icon.getLocation());
+							if (document != null) {
+								images.add(document);
+							}
 						}
 					}
 				}
@@ -209,21 +214,16 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 		}
 
 		/**
-		 * {@inheritDoc}
+		 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
+		 *
+		 * @param notification
 		 */
 		@Override
 		public void notifyChanged(Notification notification) {
-			if (listener == null) {
-				return;
-			}
-			if (EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(notification.getFeature())) {
-				Object newValue = notification.getNewValue();
-				if (newValue instanceof EAnnotation && UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION.equals(((EAnnotation) newValue).getSource())) {
-					// the stereotype annotation was modified => refresh
-					listener.notifyChanged(notification);
-				}
-			}
+			// TODO
+
 		}
+
 
 
 	}

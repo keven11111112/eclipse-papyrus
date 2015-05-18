@@ -2479,16 +2479,6 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_X7E5oOgtEeSUQvXhEVQh8w"
-      name="PartAssociation_2015"
-      description="Create an Part Association in a UML Class Diagram"
-      identifier="org.eclipse.papyrus.sysML.PartAssociation_2015"
-      hint="2015">
-    <specializedTypesID>org.eclipse.papyrus.SysML14.PartAssociation</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_2015</specializedTypesID>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_nJF78OgtEeSUQvXhEVQh8w"
       name="PartAssociation_4001"
       description="Create an Part Association in a UML Class Diagram"
@@ -2496,16 +2486,6 @@
       hint="4001">
     <specializedTypesID>org.eclipse.papyrus.SysML14.PartAssociation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4001</specializedTypesID>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_oAQ0gOgtEeSUQvXhEVQh8w"
-      name="PartAssociation_4019"
-      description="Create an Part Association in a UML Class Diagram"
-      identifier="org.eclipse.papyrus.sysML.PartAssociation_4019"
-      hint="4019">
-    <specializedTypesID>org.eclipse.papyrus.SysML14.PartAssociation</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4019</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -2571,5 +2551,15 @@
         matcherClassName="">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
     </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_9ZVkEPJjEeSpV8ZeWOq13Q"
+      name="SharedAssociation_4001"
+      description="Create an Part Association in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.SharedAssociation_4001"
+      hint="4001">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.SharedAssociation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4001</specializedTypesID>
   </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

@@ -102,7 +102,7 @@ public class ReferenceCombo extends AbstractValueEditor { // implements Selectio
 		viewer = new ComboViewer(combo);
 
 		// unset = new Button(this, SWT.PUSH);
-		//		unset.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
+		// unset.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
 		// unset.setToolTipText("Unset the current value");
 		// unset.addSelectionListener(this);
 
@@ -159,7 +159,10 @@ public class ReferenceCombo extends AbstractValueEditor { // implements Selectio
 			return;
 		}
 
-		setWidgetObservable(getObservableValue(), true);
+		if (widgetObservable == null) {
+			setWidgetObservable(getObservableValue(), true);
+		}
+
 		if (modelProperty instanceof AggregatedObservable) {
 			if (((AggregatedObservable) modelProperty).hasDifferentValues()) {
 				contentProvider.addTemporaryElement(UnchangedObject.instance);
@@ -187,7 +190,7 @@ public class ReferenceCombo extends AbstractValueEditor { // implements Selectio
 	 * Retrieves the ComboViewer associated to this Editor
 	 *
 	 * @return
-	 *         The ComboViewer associated to this editor
+	 * 		The ComboViewer associated to this editor
 	 */
 	public ComboViewer getViewer() {
 		return viewer;

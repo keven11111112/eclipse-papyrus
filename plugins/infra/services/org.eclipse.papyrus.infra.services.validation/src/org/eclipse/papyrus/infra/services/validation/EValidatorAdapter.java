@@ -9,6 +9,7 @@
  *   IBM - Initial API and implementation
  *   Christian W. Damus (CEA) - Target EObject must be the diagnostic's first data element
  *   Benoit Maggi (CEA LIST)  - Add an unique id as source for diagnostic
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 446865
  *****************************************************************************/
 
 
@@ -33,6 +34,9 @@ import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.uml2.uml.LiteralInteger;
+import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
+import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.util.UMLValidator;
 
 
@@ -95,6 +99,7 @@ public class EValidatorAdapter
 			// externally). If there is no context map, then we can't
 			// help it
 			if (!hasProcessed(eObject, context)) {
+
 				status = batchValidator.validate(
 						eObject,
 						new NullProgressMonitor());
@@ -116,6 +121,40 @@ public class EValidatorAdapter
 	public boolean validate(EDataType eDataType, Object value,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return super.validate(eDataType, value, diagnostics, context);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.uml2.uml.util.UMLValidator#validateMultiplicityElement_validateUpperGeLower(org.eclipse.uml2.uml.MultiplicityElement, org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 */
+	@Override
+	public boolean validateMultiplicityElement_validateUpperGeLower(MultiplicityElement multiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = false;
+		if (canCompareUpperGeLower(multiplicityElement)) {
+			result = super.validateMultiplicityElement_validateUpperGeLower(multiplicityElement, diagnostics, context);
+		}
+
+		return result;
+	}
+
+	/**
+	 * This allows to define if the multiplicity element can compare the lower and the upper values (depending to the type of ValueSpecifications).
+	 * 
+	 * @param eObject
+	 *            The {@link EObject} to check.
+	 * @return <code>true</code> if the lower and upper can be compared (or if this is not a MultiplicityElement), <code>false</code> otherwise.
+	 */
+	protected boolean canCompareUpperGeLower(final EObject eObject) {
+		boolean result = true;
+		if (eObject instanceof MultiplicityElement) {
+			final MultiplicityElement multiplicityElement = (MultiplicityElement) eObject;
+			if ((!((multiplicityElement.getLowerValue() instanceof LiteralInteger || multiplicityElement.getLowerValue() instanceof LiteralUnlimitedNatural)
+					&& (multiplicityElement.getUpperValue() instanceof LiteralInteger || multiplicityElement.getUpperValue() instanceof LiteralUnlimitedNatural)))) {
+				result = false;
+			}
+		}
+		return result;
 	}
 
 	/**

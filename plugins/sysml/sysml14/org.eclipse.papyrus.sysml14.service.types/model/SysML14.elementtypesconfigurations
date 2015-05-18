@@ -1257,6 +1257,10 @@
       name="Unit"
       identifier="org.eclipse.papyrus.SysML14.Unit"
       hint="UML::InstanceSpecification">
+    <iconEntry
+        xmi:id="_Fh6LgPJVEeSpV8ZeWOq13Q"
+        iconPath="/icons/full/obj16/InstanceSpecification.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_o8jhkOjFEeSUQvXhEVQh8w"
@@ -1286,6 +1290,10 @@
       description="Create a PartAssociation"
       identifier="org.eclipse.papyrus.SysML14.PartAssociation"
       hint="UML::Association">
+    <iconEntry
+        xmi:id="_JEGsoPJlEeSpV8ZeWOq13Q"
+        iconPath="icons/full/obj16/Association_composite.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Association</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_a6mbQOgsEeSUQvXhEVQh8w"
@@ -1293,6 +1301,40 @@
         description=""
         identifier="org.eclipse.papyrus.sysml14.service.types.advice.PartAssociationEditHelperAdvice"
         editHelperAdviceClassName="org.eclipse.papyrus.sysml14.service.types.advice.PartAssociationEditHelperAdvice"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_FZJTQPJkEeSpV8ZeWOq13Q"
+      name="PartAssociation"
+      description="Create a PartAssociation"
+      identifier="org.eclipse.papyrus.SysML14.SharedAssociation"
+      hint="UML::Association">
+    <iconEntry
+        xmi:id="_9DokYPJkEeSpV8ZeWOq13Q"
+        iconPath="icons/full/obj16/Association_shared.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Association</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_FZJTQfJkEeSpV8ZeWOq13Q"
+        name="org.eclipse.papyrus.sysml14.service.types.advice.SharedAssociationEditHelperAdvice"
+        description=""
+        identifier="org.eclipse.papyrus.sysml14.service.types.advice.SharedAssociationEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.sysml14.service.types.advice.SharedAssociationEditHelperAdvice"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_IEEsMPe5EeSxkueHcFw1lw"
+      name="ConstraintProperty"
+      description="Create a constraint Property"
+      identifier="org.eclipse.papyrus.SysML14.ConstraintProperty"
+      hint="UML::Property">
+    <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_9KeL8PflEeSxkueHcFw1lw"
+        name="org.eclipse.papyrus.sysml14.service.types.advice.ConstraintPropertyEditHelperAdvice"
+        description=""
+        identifier="org.eclipse.papyrus.sysml14.service.types.advice.ConstraintPropertyEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.sysml14.service.types.advice.ConstraintPropertyEditHelperAdvice"/>
   </elementTypeConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
@@ -1952,8 +1994,7 @@
       target="_k4SnF7wFEeSwNLK2W02HwA">
     <stereotypesToApply
         xmi:id="_k4Sn1rwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::ConstraintBlocks::ConstraintBlock"
-        updateName="true">
+        stereotypeQualifiedName="SysML::ConstraintBlocks::ConstraintBlock">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>

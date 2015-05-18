@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCommentEditPart;
 
 /**
  * Ordering fragments after creation.
@@ -57,7 +57,7 @@ public class InteractionFragmentsCreationEditPolicy extends PapyrusCreationEditP
 	 */
 	@Override
 	protected ICommand getReparentViewCommand(IGraphicalEditPart gep) {
-		if (gep instanceof AppliedStereotypesCommentEditPart) {
+		if (gep instanceof AppliedStereotypeCommentEditPart) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getReparentViewCommand(gep);

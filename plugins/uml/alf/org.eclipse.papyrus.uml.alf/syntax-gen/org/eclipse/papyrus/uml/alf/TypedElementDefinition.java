@@ -21,15 +21,15 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getLowerBound <em>Lower Bound</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getUpperBound <em>Upper Bound</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsOrdered <em>Is Ordered</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsNonunique <em>Is Nonunique</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsSequence <em>Is Sequence</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getTypeName <em>Type Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getActualType <em>Actual Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsAny <em>Is Any</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsMultiplicity <em>Is Multiplicity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getLowerBound <em>Lower Bound</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getUpperBound <em>Upper Bound</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsOrdered <em>Is Ordered</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsNonunique <em>Is Nonunique</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsSequence <em>Is Sequence</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getActualType <em>Actual Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsAny <em>Is Any</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsMultiplicity <em>Is Multiplicity</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition()
@@ -45,7 +45,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * The string image of the literal given to specify the lower bound of the
 	 * multiplicity of the element being defined.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Lower Bound</em>' attribute.
 	 * @see #setLowerBound(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_LowerBound()
@@ -58,9 +57,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getLowerBound <em>Lower Bound</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Lower Bound</em>' attribute.
+	 * @param value the new value of the '<em>Lower Bound</em>' attribute.
 	 * @see #getLowerBound()
 	 * @generated
 	 */
@@ -75,7 +72,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * The string image of the literal given to specify the upper bound of the
 	 * multiplicity of the element being defined.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Upper Bound</em>' attribute.
 	 * @see #setUpperBound(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_UpperBound()
@@ -88,9 +84,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getUpperBound <em>Upper Bound</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Upper Bound</em>' attribute.
+	 * @param value the new value of the '<em>Upper Bound</em>' attribute.
 	 * @see #getUpperBound()
 	 * @generated
 	 */
@@ -104,7 +98,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * <!-- begin-model-doc -->
 	 * Whether the element being defined is ordered.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Ordered</em>' attribute.
 	 * @see #setIsOrdered(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_IsOrdered()
@@ -117,9 +110,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsOrdered <em>Is Ordered</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Ordered</em>' attribute.
+	 * @param value the new value of the '<em>Is Ordered</em>' attribute.
 	 * @see #isIsOrdered()
 	 * @generated
 	 */
@@ -133,7 +124,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * <!-- begin-model-doc -->
 	 * Whether the element being defined is non-unique.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Nonunique</em>' attribute.
 	 * @see #setIsNonunique(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_IsNonunique()
@@ -146,9 +136,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsNonunique <em>Is Nonunique</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Nonunique</em>' attribute.
+	 * @param value the new value of the '<em>Is Nonunique</em>' attribute.
 	 * @see #isIsNonunique()
 	 * @generated
 	 */
@@ -161,7 +149,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * <!-- begin-model-doc -->
 	 * The name of the type of the element being defined.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type Name</em>' containment reference.
 	 * @see #setTypeName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_TypeName()
@@ -174,9 +161,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getTypeName <em>Type Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type Name</em>' containment reference.
+	 * @param value the new value of the '<em>Type Name</em>' containment reference.
 	 * @see #getTypeName()
 	 * @generated
 	 */
@@ -189,7 +174,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * If the meaning of the '<em>Actual Type</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Actual Type</em>' reference.
 	 * @see #setActualType(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_ActualType()
@@ -202,9 +186,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#getActualType <em>Actual Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Actual Type</em>' reference.
+	 * @param value the new value of the '<em>Actual Type</em>' reference.
 	 * @see #getActualType()
 	 * @generated
 	 */
@@ -217,7 +199,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * <!-- begin-model-doc -->
 	 * Whether the element being defined has an empty type.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Any</em>' attribute.
 	 * @see #setIsAny(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_IsAny()
@@ -230,9 +211,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsAny <em>Is Any</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Any</em>' attribute.
+	 * @param value the new value of the '<em>Is Any</em>' attribute.
 	 * @see #isIsAny()
 	 * @generated
 	 */
@@ -247,7 +226,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Whether the element being defined is a sequence (and hence both ordered
 	 * and non-unique).
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Sequence</em>' attribute.
 	 * @see #setIsSequence(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_IsSequence()
@@ -260,9 +238,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsSequence <em>Is Sequence</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Sequence</em>' attribute.
+	 * @param value the new value of the '<em>Is Sequence</em>' attribute.
 	 * @see #isIsSequence()
 	 * @generated
 	 */
@@ -276,7 +252,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Whether the element being defined has multiplicity specified as 0..*
 	 * using the shortand multiplicity indicator "[]".
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Multiplicity</em>' attribute.
 	 * @see #setIsMultiplicity(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTypedElementDefinition_IsMultiplicity()
@@ -289,9 +264,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TypedElementDefinition#isIsMultiplicity <em>Is Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Multiplicity</em>' attribute.
+	 * @param value the new value of the '<em>Is Multiplicity</em>' attribute.
 	 * @see #isIsMultiplicity()
 	 * @generated
 	 */
@@ -300,7 +273,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.isOrdered or self.isSequence'"
 	 * @generated
@@ -310,7 +282,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.isNonunique or self.isSequence'"
 	 * @generated
@@ -326,7 +297,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * Otherwise the lower bound is equal to the upper bound, unless the upper bound
 	 * is unbounded, in which case the lower bound is 0.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -339,7 +309,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * The unlimited natural upper bound value is the unlimited natural value of
 	 * the upper bound string (with "*" representing the unbounded value).
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -352,7 +321,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * The type of a typed element definition is the single classifier referent
 	 * of the type name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -365,7 +333,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	 * The type name of a typed element definition must have a single classifier
 	 * referent. This referent may not be a template.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    self.typeName = null or self.type <> null and not self.type.isTemplate()'"
 	 * @generated
 	 */
@@ -374,9 +341,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    if self.actualType <> null then\n      self.actualType\n    else if self.typeName = null then\n      null\n    else\n      let types = self.typeName.referent->select(isClassifier()) in \n        if types->size() <> 1 then\n          null\n        else\n          types->any(true)\n        endif\n    endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    if self.actualType <> null then\n      self.actualType\n    else if self.typeName = null then\n      null\n    else\n      let types = self.typeName.referent->select(isClassifier()) in \n        if types->size() <> 1 then\n          null\n        else\n          types->any(true)\n        endif\n    endif endif'"
 	 * @generated
 	 */
 	ElementReference type();
@@ -384,9 +349,7 @@ public interface TypedElementDefinition extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    if self.lowerBound <> null then\n      self.lowerBound.toInteger()\n    else if self.isMultiplicity or self.upperBound = \'*\' then\n      0\n    else\n      self.upper\n    endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    if self.lowerBound <> null then\n      self.lowerBound.toInteger()\n    else if self.isMultiplicity or self.upperBound = \'*\' then\n      0\n    else\n      self.upper\n    endif endif'"
 	 * @generated
 	 */
 	BigInteger lower();
@@ -394,7 +357,6 @@ public interface TypedElementDefinition extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n    if self.isMultiplicity or self.upperBound = \'*\' then\n      -1\n    else \n      self.upperBound.toInteger()\n    endif'"
 	 * @generated
 	 */

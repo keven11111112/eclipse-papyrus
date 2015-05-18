@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
@@ -37,7 +38,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PathElement;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Child Rule</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  * <p>
  * The following features are implemented:
  * </p>
@@ -117,11 +117,12 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	 */
 	public EClass getElement() {
 		if (element != null && element.eIsProxy()) {
-			InternalEObject oldElement = (InternalEObject)element;
-			element = (EClass)eResolveProxy(oldElement);
+			InternalEObject oldElement = (InternalEObject) element;
+			element = (EClass) eResolveProxy(oldElement);
 			if (element != oldElement) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConfigurationPackage.CHILD_RULE__ELEMENT, oldElement, element));
+				}
 			}
 		}
 		return element;
@@ -144,8 +145,9 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	public void setElement(EClass newElement) {
 		EClass oldElement = element;
 		element = newElement;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.CHILD_RULE__ELEMENT, oldElement, element));
+		}
 	}
 
 	/**
@@ -167,11 +169,12 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	 */
 	public EClass getOrigin() {
 		if (origin != null && origin.eIsProxy()) {
-			InternalEObject oldOrigin = (InternalEObject)origin;
-			origin = (EClass)eResolveProxy(oldOrigin);
+			InternalEObject oldOrigin = (InternalEObject) origin;
+			origin = (EClass) eResolveProxy(oldOrigin);
 			if (origin != oldOrigin) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConfigurationPackage.CHILD_RULE__ORIGIN, oldOrigin, origin));
+				}
 			}
 		}
 		return origin;
@@ -194,8 +197,9 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	public void setOrigin(EClass newOrigin) {
 		EClass oldOrigin = origin;
 		origin = newOrigin;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.CHILD_RULE__ORIGIN, oldOrigin, origin));
+		}
 	}
 
 	/**
@@ -218,8 +222,8 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
-				return ((InternalEList<?>)getInsertionPath()).basicRemove(otherEnd, msgs);
+		case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
+			return ((InternalEList<?>) getInsertionPath()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -232,16 +236,20 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigurationPackage.CHILD_RULE__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
-			case ConfigurationPackage.CHILD_RULE__STEREOTYPES:
-				return getStereotypes();
-			case ConfigurationPackage.CHILD_RULE__ORIGIN:
-				if (resolve) return getOrigin();
-				return basicGetOrigin();
-			case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
-				return getInsertionPath();
+		case ConfigurationPackage.CHILD_RULE__ELEMENT:
+			if (resolve) {
+				return getElement();
+			}
+			return basicGetElement();
+		case ConfigurationPackage.CHILD_RULE__STEREOTYPES:
+			return getStereotypes();
+		case ConfigurationPackage.CHILD_RULE__ORIGIN:
+			if (resolve) {
+				return getOrigin();
+			}
+			return basicGetOrigin();
+		case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
+			return getInsertionPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -255,20 +263,20 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigurationPackage.CHILD_RULE__ELEMENT:
-				setElement((EClass)newValue);
-				return;
-			case ConfigurationPackage.CHILD_RULE__STEREOTYPES:
-				getStereotypes().clear();
-				getStereotypes().addAll((Collection<? extends EClass>)newValue);
-				return;
-			case ConfigurationPackage.CHILD_RULE__ORIGIN:
-				setOrigin((EClass)newValue);
-				return;
-			case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
-				getInsertionPath().clear();
-				getInsertionPath().addAll((Collection<? extends PathElement>)newValue);
-				return;
+		case ConfigurationPackage.CHILD_RULE__ELEMENT:
+			setElement((EClass) newValue);
+			return;
+		case ConfigurationPackage.CHILD_RULE__STEREOTYPES:
+			getStereotypes().clear();
+			getStereotypes().addAll((Collection<? extends EClass>) newValue);
+			return;
+		case ConfigurationPackage.CHILD_RULE__ORIGIN:
+			setOrigin((EClass) newValue);
+			return;
+		case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
+			getInsertionPath().clear();
+			getInsertionPath().addAll((Collection<? extends PathElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -281,18 +289,18 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.CHILD_RULE__ELEMENT:
-				setElement((EClass)null);
-				return;
-			case ConfigurationPackage.CHILD_RULE__STEREOTYPES:
-				getStereotypes().clear();
-				return;
-			case ConfigurationPackage.CHILD_RULE__ORIGIN:
-				setOrigin((EClass)null);
-				return;
-			case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
-				getInsertionPath().clear();
-				return;
+		case ConfigurationPackage.CHILD_RULE__ELEMENT:
+			setElement((EClass) null);
+			return;
+		case ConfigurationPackage.CHILD_RULE__STEREOTYPES:
+			getStereotypes().clear();
+			return;
+		case ConfigurationPackage.CHILD_RULE__ORIGIN:
+			setOrigin((EClass) null);
+			return;
+		case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
+			getInsertionPath().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -305,14 +313,14 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.CHILD_RULE__ELEMENT:
-				return element != null;
-			case ConfigurationPackage.CHILD_RULE__STEREOTYPES:
-				return stereotypes != null && !stereotypes.isEmpty();
-			case ConfigurationPackage.CHILD_RULE__ORIGIN:
-				return origin != null;
-			case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
-				return insertionPath != null && !insertionPath.isEmpty();
+		case ConfigurationPackage.CHILD_RULE__ELEMENT:
+			return element != null;
+		case ConfigurationPackage.CHILD_RULE__STEREOTYPES:
+			return stereotypes != null && !stereotypes.isEmpty();
+		case ConfigurationPackage.CHILD_RULE__ORIGIN:
+			return origin != null;
+		case ConfigurationPackage.CHILD_RULE__INSERTION_PATH:
+			return insertionPath != null && !insertionPath.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

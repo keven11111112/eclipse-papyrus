@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013, 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.exporter.tests;
 
@@ -22,6 +22,7 @@ import static org.junit.Assume.assumeThat;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
@@ -58,34 +59,34 @@ public abstract class AbstractModelExportTest extends AbstractPapyrusCDOTest {
 	protected static final String DEPENDENCY_MODEL_DI = "dependency.di";
 
 	protected void createModels() throws Exception {
-		ServicesRegistry[] services = { null };
-
 		// create the model that the other model depends on
-		ModelSet modelSet = createModelSet(DEPENDENCY_MODEL_NAME, services);
+		ServicesRegistry[] services1 = { null };
+		ModelSet modelSet1 = createModelSet(DEPENDENCY_MODEL_NAME, services1);
 
-		UmlModel uml = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
-		Model model = (Model)uml.lookupRoot();
-		model.createOwnedClass("Superclass", false);
+		UmlModel uml1 = (UmlModel) modelSet1.getModel(UmlModel.MODEL_ID);
+		Model model1 = (Model) uml1.lookupRoot();
+		model1.createOwnedClass("Superclass", false);
 
-		modelSet.save(new NullProgressMonitor());
-
-		services[0].disposeRegistry();
+		modelSet1.save(new NullProgressMonitor());
 
 		// create the model that depends on the first one
-		modelSet = createModelSet(DEPENDENT_MODEL_NAME, services);
+		ServicesRegistry[] services2 = { null };
+		ModelSet modelSet2 = createModelSet(DEPENDENT_MODEL_NAME, services2);
 
-		uml = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
-		model = (Model)uml.lookupRoot();
-		Class subclass = model.createOwnedClass("Subclass", false);
+		UmlModel uml2 = (UmlModel) modelSet2.getModel(UmlModel.MODEL_ID);
+		Model model2 = (Model) uml2.lookupRoot();
+		Class subclass = model2.createOwnedClass("Subclass", false);
 
 		// add the dependency
-		Model dependency = UML2Util.load(modelSet, getTestResourceURI(DEPENDENCY_MODEL_NAME), UMLPackage.Literals.MODEL);
-		model.createPackageImport(dependency);
-		subclass.createGeneralization((Class)dependency.getOwnedType("Superclass"));
+		Model dependency = UML2Util.load(modelSet2, getTestResourceURI(DEPENDENCY_MODEL_NAME), UMLPackage.Literals.MODEL);
+		model2.createPackageImport(dependency);
+		subclass.createGeneralization((Class) dependency.getOwnedType("Superclass"));
 
-		modelSet.save(new NullProgressMonitor());
+		modelSet2.save(new NullProgressMonitor());
 
-		services[0].disposeRegistry();
+		// dispose
+		services1[0].disposeRegistry();
+		services2[0].disposeRegistry();
 	}
 
 	protected ModelSet createModelSet(String name, ServicesRegistry[] outServices) throws Exception {
@@ -96,7 +97,7 @@ public abstract class AbstractModelExportTest extends AbstractPapyrusCDOTest {
 			// start the ModelSet and its dependencies
 			outServices[0].startServicesByClassKeys(ModelSet.class);
 		} catch (ServiceMultiException e) {
-			for(ServiceNotFoundException next : Iterables.filter(e.getExceptions(), ServiceNotFoundException.class)) {
+			for (ServiceNotFoundException next : Iterables.filter(e.getExceptions(), ServiceNotFoundException.class)) {
 				assertThat(next.getLocalizedMessage(), not(containsString("ModelSet")));
 			}
 		}
@@ -108,9 +109,9 @@ public abstract class AbstractModelExportTest extends AbstractPapyrusCDOTest {
 		result.createModels(getTestResourceURI(name));
 
 		// load blank model
-		Resource uml = ((AbstractBaseModel)result.getModel(UmlModel.MODEL_ID)).getResource();
-		Resource notation = ((AbstractBaseModel)result.getModel(NotationModel.MODEL_ID)).getResource();
-		Resource di = ((AbstractBaseModel)result.getModel(DiModel.DI_MODEL_ID)).getResource();
+		Resource uml = ((AbstractBaseModel) result.getModel(UmlModel.MODEL_ID)).getResource();
+		Resource notation = ((AbstractBaseModel) result.getModel(NotationModel.MODEL_ID)).getResource();
+		Resource di = ((AbstractBaseModel) result.getModel(DiModel.DI_MODEL_ID)).getResource();
 		loadTemplate("empty", "model", uml, notation, di);
 
 		return result;
@@ -119,7 +120,7 @@ public abstract class AbstractModelExportTest extends AbstractPapyrusCDOTest {
 	protected IModelTransferNode getNode(IModelTransferConfiguration config, URI uri) {
 		IModelTransferNode result = null;
 
-		for(IModelTransferNode next : config.getModelsToTransfer()) {
+		for (IModelTransferNode next : config.getModelsToTransfer()) {
 			if(next.getPrimaryResourceURI().equals(uri)) {
 				result = next;
 				break;

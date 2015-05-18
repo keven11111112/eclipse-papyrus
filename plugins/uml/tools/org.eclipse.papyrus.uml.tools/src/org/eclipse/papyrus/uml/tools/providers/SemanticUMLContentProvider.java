@@ -88,7 +88,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	protected static EObject[] getRoots(ResourceSet root) {
 		if (root == null) {
-			throw new IllegalArgumentException("Cannot retrieve the roots of the Model without a ResourceSet");
+			return new EObject[0];
 		}
 
 		EObject rootElement = null;
@@ -368,6 +368,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 				needsRefresh = true;
 				viewer.getControl().getDisplay().asyncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						if (!needsRefresh || viewer == null || viewer.getControl() == null || viewer.getControl().isDisposed()) {
 							return;

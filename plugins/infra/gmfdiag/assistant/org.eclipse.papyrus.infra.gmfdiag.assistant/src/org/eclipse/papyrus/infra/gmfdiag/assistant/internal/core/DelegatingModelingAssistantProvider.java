@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -23,6 +24,10 @@ import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
 import org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 
 import com.google.common.collect.Lists;
 
@@ -94,7 +99,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 		}
 		currentProviders.get().clear();
 
-		return result;
+		return filterViewpointExclusions(data, result);
 	}
 
 	@Override
@@ -107,7 +112,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 		}
 		currentProviders.get().clear();
 
-		return result;
+		return filterViewpointExclusions(source, result);
 	}
 
 	@Override
@@ -120,7 +125,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 		}
 		currentProviders.get().clear();
 
-		return result;
+		return filterViewpointExclusions(target, result);
 	}
 
 	@Override
@@ -133,7 +138,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 		}
 		currentProviders.get().clear();
 
-		return result;
+		return filterViewpointExclusions(source, result);
 	}
 
 	@Override
@@ -145,7 +150,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 			result.addAll(next.getRelTypesForSREOnSource(source));
 		}
 
-		return result;
+		return filterViewpointExclusions(source, result);
 	}
 
 	@Override
@@ -158,7 +163,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 		}
 		currentProviders.get().clear();
 
-		return result;
+		return filterViewpointExclusions(target, result);
 	}
 
 	@Override
@@ -171,7 +176,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 		}
 		currentProviders.get().clear();
 
-		return result;
+		return filterViewpointExclusions(target, result);
 	}
 
 	@Override
@@ -184,7 +189,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 		}
 		currentProviders.get().clear();
 
-		return result;
+		return filterViewpointExclusions(source, result);
 	}
 
 	@Override
@@ -227,7 +232,21 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 		}
 		currentProviders.get().clear();
 
-		return result;
+		return filterViewpointExclusions(host, result);
 	}
 
+	protected List<? extends IElementType> filterViewpointExclusions(IAdaptable context, List<? extends IElementType> elementTypes) {
+		View view = (context == null) ? null : context.getAdapter(View.class);
+		Diagram diagram = (view == null) ? null : DiagramUtils.getContainingDiagram(view);
+
+		if (diagram != null) {
+			for (Iterator<? extends IElementType> iter = elementTypes.iterator(); iter.hasNext();) {
+				if (!PolicyChecker.getCurrent().isInModelingAssistants(diagram, iter.next())) {
+					iter.remove();
+				}
+			}
+		} // No diagram context? Nothing to filter
+
+		return elementTypes;
+	}
 }

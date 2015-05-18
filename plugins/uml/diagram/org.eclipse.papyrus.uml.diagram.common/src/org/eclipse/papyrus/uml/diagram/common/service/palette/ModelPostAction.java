@@ -284,14 +284,14 @@ public abstract class ModelPostAction implements IPostAction {
 			// FIXME: #setServicesRegistry() is not always properly called.
 			// Workaround: We rely on the ActiveEditor to retrieve the services registry, which is dangerous
 			// The initial Palette Customization wizard knows the customization context, but it is lost way before the PostAction is created
-			if (registry == null) {
+			// if (registry == null) {
 				try {
 					registry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
 				} catch (ServiceException ex) {
 					Activator.log.error(ex);
 					return null;
 				}
-			}
+			// }
 		}
 
 		return registry;

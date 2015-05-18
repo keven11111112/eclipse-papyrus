@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -70,19 +71,17 @@ public class PapyrusViewpointItemProvider
 	 * @generated
 	 */
 	protected void addParentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusViewpoint_parent_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusViewpoint_parent_feature", "_UI_PapyrusViewpoint_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_VIEWPOINT__PARENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusViewpoint_parent_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusViewpoint_parent_feature", "_UI_PapyrusViewpoint_type"),
+				ConfigurationPackage.Literals.PAPYRUS_VIEWPOINT__PARENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -95,6 +94,16 @@ public class PapyrusViewpointItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/PapyrusViewpoint.png"));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -129,18 +138,12 @@ public class PapyrusViewpointItemProvider
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		newChildDescriptors.add
-				(createChildParameter
-				(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
-						ConfigurationFactory.eINSTANCE.createPapyrusDiagram()));
-		newChildDescriptors.add
-				(createChildParameter
-				(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
-						ConfigurationFactory.eINSTANCE.createPapyrusTable()));
-		newChildDescriptors.add
-				(createChildParameter
-				(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
-						ConfigurationFactory.eINSTANCE.createPapyrusSyncTable()));
+		newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
+				ConfigurationFactory.eINSTANCE.createPapyrusDiagram()));
+		newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
+				ConfigurationFactory.eINSTANCE.createPapyrusTable()));
+		newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
+				ConfigurationFactory.eINSTANCE.createPapyrusSyncTable()));
 	}
 
 	/**
@@ -151,7 +154,7 @@ public class PapyrusViewpointItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

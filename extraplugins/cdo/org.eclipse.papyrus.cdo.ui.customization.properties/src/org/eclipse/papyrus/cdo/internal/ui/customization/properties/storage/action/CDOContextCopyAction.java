@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 422257
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.action;
@@ -33,8 +34,13 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.cdo.common.lob.CDOClob;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOTextResource;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckoutManager;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
+import org.eclipse.emf.cdo.util.CDOUtil;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -44,15 +50,11 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.messages.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.CDOTextURIHandler;
-import org.eclipse.papyrus.cdo.internal.ui.dialogs.RepositorySelectionDialog;
+import org.eclipse.papyrus.cdo.internal.ui.dialogs.CheckoutSelectionDialog;
 import org.eclipse.papyrus.customization.properties.storage.actions.ContextStorageActionUtil;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextCopyAction;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -84,13 +86,13 @@ public class CDOContextCopyAction extends AbstractCDOContextAction implements IC
 
 	@Override
 	public Context copy(Context source, String targetName, IProgressMonitor monitor) throws CoreException {
-		IInternalPapyrusRepository repository = selectRepository(source);
-		if (repository == null) {
+		CDOCheckout checkout = selectCheckout(source);
+		if (checkout == null) {
 			// user cancelled
 			return null;
 		}
 
-		CDOTransaction transaction = (CDOTransaction) repository.getCDOView(repository.createTransaction(new ResourceSetImpl()));
+		CDOTransaction transaction = checkout.openTransaction(new ResourceSetImpl());
 
 		SubMonitor sub = SubMonitor.convert(monitor);
 
@@ -129,11 +131,12 @@ public class CDOContextCopyAction extends AbstractCDOContextAction implements IC
 				long commitTime = System.currentTimeMillis();
 				transaction.commit();
 
-				ResourceSet mainResourceSet = source.eResource().getResourceSet();
-				repository.getCDOView(mainResourceSet).waitForUpdate(commitTime, 30000L);
+				CDOView sourceView = CDOUtil.getCDOObject(source).cdoView();
+				sourceView.waitForUpdate(commitTime, 30000L);
 
 				// load the new instance in the shared resource set
-				result = (Context) EMFHelper.loadEMFModel(mainResourceSet, targetModelURI);
+				ResourceSet sourceResourceSet = sourceView.getResourceSet();
+				result = (Context) EMFHelper.loadEMFModel(sourceResourceSet, targetModelURI);
 			} else if (copyResult.getSeverity() != IStatus.CANCEL) {
 				throw new CoreException(copyResult);
 			}
@@ -149,22 +152,23 @@ public class CDOContextCopyAction extends AbstractCDOContextAction implements IC
 		return result;
 	}
 
-	protected IInternalPapyrusRepository selectRepository(Context context) {
-		final IPapyrusRepositoryManager mgr = PapyrusRepositoryManager.INSTANCE;
-		IPapyrusRepository result = null;
+	protected CDOCheckout selectCheckout(Context context) {
+		CDOCheckout result = null;
+		CDOCheckoutManager mgr = CDOExplorerUtil.getCheckoutManager();
+		CDOCheckout[] checkouts = mgr.getCheckouts();
 
 		// default selection is the repository containing the context to be copied,
 		// if it is in a repository
-		IPapyrusRepository initialSelection = null;
+		CDOCheckout initialSelection = null;
 		URI uri = context.eResource().getURI();
 		if (CDOUtils.isCDOURI(uri)) {
-			initialSelection = mgr.getRepositoryForURI(uri);
+			initialSelection = CDOExplorerUtil.getCheckout(uri);
 		}
 
 		// otherwise, look for the first open repository
 		if (initialSelection == null) {
-			for (IPapyrusRepository next : mgr.getRepositories()) {
-				if (next.isConnected()) {
+			for (CDOCheckout next : checkouts) {
+				if (next.isOpen()) {
 					initialSelection = next;
 					break;
 				}
@@ -173,14 +177,14 @@ public class CDOContextCopyAction extends AbstractCDOContextAction implements IC
 
 		result = initialSelection;
 
-		if (mgr.getRepositories().size() > 1) {
-			final IPapyrusRepository[] innerResult = { initialSelection };
+		if (checkouts.length > 1) {
+			final CDOCheckout[] innerResult = { initialSelection };
 			Display.getDefault().syncExec(new Runnable() {
 
 				@Override
 				public void run() {
 					Shell active = Display.getDefault().getActiveShell();
-					RepositorySelectionDialog dlg = new RepositorySelectionDialog(active, mgr, innerResult[0], new Supplier<IRunnableContext>() {
+					CheckoutSelectionDialog dlg = new CheckoutSelectionDialog(active, innerResult[0], new Supplier<IRunnableContext>() {
 
 						@Override
 						public IRunnableContext get() {
@@ -199,7 +203,7 @@ public class CDOContextCopyAction extends AbstractCDOContextAction implements IC
 			result = innerResult[0];
 		}
 
-		return (IInternalPapyrusRepository) result;
+		return (CDOCheckout) result;
 	}
 
 	private IStatus copyAll(Context source, CDOTextResource target, IProgressMonitor monitor) {

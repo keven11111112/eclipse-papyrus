@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.dnd;
 
@@ -26,6 +27,8 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -36,11 +39,8 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.util.CDOFunctions;
 import org.eclipse.papyrus.cdo.core.util.CDOPredicates;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.handlers.ImportModelsHandler;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
@@ -71,7 +71,7 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 
 	private static final Transfer[] TRANSFERS = { ResourceTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), PluginTransfer.getInstance() };
 
-	private final Predicate<Object> validDropTarget = Predicates.or(CDOPredicates.adaptsTo(CDOResourceFolder.class), CDOPredicates.adaptsTo(IPapyrusRepository.class));
+	private final Predicate<Object> validDropTarget = Predicates.or(CDOPredicates.adaptsTo(CDOResourceFolder.class), CDOPredicates.adaptsTo(CDOCheckout.class));
 
 	private final Function<Object, CDOResourceNode> asNode = CDOFunctions.adapt(CDOResourceNode.class);
 
@@ -178,8 +178,8 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 
 		if (window != null) {
 			URI uri = dropTarget.getURI();
-			IPapyrusRepository repository = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
-			if (repository != null) {
+			CDOCheckout checkout = CDOExplorerUtil.getCheckout(uri);
+			if (checkout != null) {
 				List<IPapyrusFile> papyrusFiles = Lists.newArrayList();
 				for (IFile next : diFiles) {
 					IPapyrusFile papyrusFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(next);
@@ -190,7 +190,7 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 
 				if (!papyrusFiles.isEmpty()) {
 					result = true;
-					ImportModelsHandler.importModels(window, new StructuredSelection(papyrusFiles), repository);
+					ImportModelsHandler.importModels(window, new StructuredSelection(papyrusFiles), checkout);
 				}
 			}
 		}
@@ -304,8 +304,8 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 		CDOResourceNode result = CDOFunctions.adapt(CDOResourceNode.class).apply(dropTarget);
 
 		if (result == null) {
-			// must be a repository
-			CDOView view = ((IInternalPapyrusRepository) dropTarget).getMasterView();
+			// must be a checkout
+			CDOView view = ((CDOCheckout) dropTarget).getView();
 			if (view != null) {
 				result = view.getRootResource();
 			}
@@ -338,9 +338,9 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 		List<Object> result = Lists.newArrayList();
 
 		for (URI next : uris) {
-			IPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(next);
-			if (repo != null) {
-				CDOView view = ((IInternalPapyrusRepository) repo).getMasterView();
+			CDOCheckout checkout = CDOExplorerUtil.getCheckout(next);
+			if (checkout != null) {
+				CDOView view = checkout.getView();
 				if (view != null) { // the repository could be disconnected by now
 					String path = CDOURIUtil.extractResourcePath(next);
 					try {

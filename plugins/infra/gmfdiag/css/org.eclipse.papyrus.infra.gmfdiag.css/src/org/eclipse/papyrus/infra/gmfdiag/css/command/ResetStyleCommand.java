@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net	- Bug 455311
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.command;
 
@@ -28,6 +29,8 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusC
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 
 
 public class ResetStyleCommand extends RecordingCommand {
@@ -39,12 +42,22 @@ public class ResetStyleCommand extends RecordingCommand {
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.SHADOWFIGURE);
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.QUALIFIED_NAME);
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
+		papyrusStyleAnnotations.add(StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH);
 	}
 
 	private Iterator<?> iterator;
+	private TransactionalEditingDomain domain;
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param domain
+	 * @param iterator
+	 */
 	public ResetStyleCommand(TransactionalEditingDomain domain, Iterator<?> iterator) {
 		super(domain);
+		this.domain = domain;
 		this.iterator = iterator;
 	}
 
@@ -67,6 +80,11 @@ public class ResetStyleCommand extends RecordingCommand {
 		}
 	}
 
+	/**
+	 * Reset the diagram
+	 * 
+	 * @param diagram
+	 */
 	private void resetDiagram(Diagram diagram) {
 		for (Object viewObject : diagram.getChildren()) {
 			if (viewObject instanceof View) {
@@ -80,6 +98,15 @@ public class ResetStyleCommand extends RecordingCommand {
 		}
 	}
 
+
+	/**
+	 * Reset a Style and its children
+	 * 
+	 * @param view
+	 *            the view of which the style should be reset
+	 * @param recursive
+	 *            true if the children should be reset as well
+	 */
 	private void resetStyle(View view, boolean recursive) {
 		resetStyle(view);
 		if (recursive) {
@@ -91,12 +118,22 @@ public class ResetStyleCommand extends RecordingCommand {
 		}
 	}
 
+	/**
+	 * Reset the style of a view.
+	 * Delete all the custom NamedStyle
+	 * Reset EAnnotation
+	 * Reset Stereotype Styles
+	 * 
+	 * @param view
+	 *            the view to be reset
+	 */
 	private void resetStyle(View view) {
 		// Reset the view (Except for volatile/transient elements which are already derived, e.g. Stereotype compartments)
 		if (view.eContainingFeature().isTransient()) {
 			return;
 		}
 
+		// remove all the named Style of the view.
 		Iterator<?> styleIterator = view.getStyles().iterator();
 		while (styleIterator.hasNext()) {
 			Object styleObject = styleIterator.next();
@@ -132,10 +169,35 @@ public class ResetStyleCommand extends RecordingCommand {
 		// Remove the Papyrus Style EAnnotations
 		resetStyleAnnotations(view);
 
+		// Reset Stereotype Persistency
+		resetStereotypeView(view);
+
 		// Reset the visibility
 		view.eUnset(NotationPackage.eINSTANCE.getView_Visible());
 	}
 
+	/**
+	 * This method reset the style of the Stereotype Node
+	 * 
+	 * @param view
+	 *            Stereotype View
+	 */
+	private void resetStereotypeView(final View view) {
+		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
+
+		if (helper.isStereotypeView(view)) {
+			helper.unsetPersistency(domain, view);
+
+		}
+
+	}
+
+	/**
+	 * Reset a Style .
+	 * 
+	 * @param style
+	 *            the Style to reset.
+	 */
 	private void resetStyle(Style style) {
 		if (style instanceof NamedStyle) {
 			// Skip custom styles.

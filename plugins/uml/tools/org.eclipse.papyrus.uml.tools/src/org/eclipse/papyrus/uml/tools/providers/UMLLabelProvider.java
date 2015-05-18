@@ -62,10 +62,11 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
 	 *
 	 * @param element
-	 * @return <ul>
+	 * @return
+	 * 		<ul>
 	 *         <li>if stereotypes are applied on the elements : return the image corresponding to the first applied stereotype</li>
 	 *         <li>if the element is a {@link DecorationNode}, returns the image corresponding to a compartment</li>
-	 *         <li> <code>null</code> if no image was found</li>
+	 *         <li><code>null</code> if no image was found</li>
 	 *         </ul>
 	 */
 	@Override
@@ -93,7 +94,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 * @param inputElement
 	 *            The EObject for which we want to provide a label
 	 * @return
-	 *         The Base Element if the input is a StereotypeApplication ; the inputElement instead
+	 * 		The Base Element if the input is a StereotypeApplication ; the inputElement instead
 	 */
 	protected EObject resolveElement(EObject inputElement) {
 		if (inputElement == null) {
@@ -138,7 +139,8 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 *
 	 * @param element
-	 * @return <ul>
+	 * @return
+	 * 		<ul>
 	 *         <li>if element is a {@link NamedElement}, we return its name</li>
 	 *         <li>else if element is a {@link Element}, we return its type + a index</li>
 	 *         <li>else return Messages#EditorLabelProvider_No_name</li>
@@ -197,13 +199,13 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 				}
 
 				if (value != null) {
-					if (((NamedElement) element).isSetName()) {
+					if (((NamedElement) element).isSetName() && null != ((NamedElement) element).getName()) {
 						return ((NamedElement) element).getName() + "=" + value; //$NON-NLS-1$
 					} else {
 						return value;
 					}
 				} else {
-					if (((NamedElement) element).isSetName()) {
+					if (((NamedElement) element).isSetName() && null != ((NamedElement) element).getName()) {
 						return ((NamedElement) element).getName();
 					} else {
 						return ""; //$NON-NLS-1$

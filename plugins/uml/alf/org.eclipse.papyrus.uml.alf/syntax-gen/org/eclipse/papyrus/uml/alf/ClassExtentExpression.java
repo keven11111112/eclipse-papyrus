@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ClassExtentExpression#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ClassExtentExpression#getClassName <em>Class Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getClassExtentExpression()
@@ -35,7 +35,6 @@ public interface ClassExtentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The name of the class whose extent is to be obtained.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Class Name</em>' containment reference.
 	 * @see #setClassName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getClassExtentExpression_ClassName()
@@ -48,9 +47,7 @@ public interface ClassExtentExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ClassExtentExpression#getClassName <em>Class Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Class Name</em>' containment reference.
+	 * @param value the new value of the '<em>Class Name</em>' containment reference.
 	 * @see #getClassName()
 	 * @generated
 	 */
@@ -59,7 +56,6 @@ public interface ClassExtentExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referents = self.className.referent->select(isClass()) in\n          if referents->size() <> 1 then null\n          else referents->any(true)\n          endif'"
 	 * @generated
 	 */
@@ -68,7 +64,6 @@ public interface ClassExtentExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='-1'"
 	 * @generated
@@ -78,7 +73,6 @@ public interface ClassExtentExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='0'"
 	 * @generated
@@ -92,7 +86,6 @@ public interface ClassExtentExpression extends Expression {
 	 * The type of a class extent expression is the given class.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -105,7 +98,6 @@ public interface ClassExtentExpression extends Expression {
 	 * The multiplicity upper bound of a class expression is *.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -118,7 +110,6 @@ public interface ClassExtentExpression extends Expression {
 	 * The multiplicity lower bound of a class extent expression is 0.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -130,7 +121,6 @@ public interface ClassExtentExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The given type name must resolve to a non-template class.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.validateClassExtentExpressionExtentType()'"
 	 * @generated
 	 */
@@ -139,7 +129,6 @@ public interface ClassExtentExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.type <> null and not self.type.isTemplate()'"
 	 * @generated

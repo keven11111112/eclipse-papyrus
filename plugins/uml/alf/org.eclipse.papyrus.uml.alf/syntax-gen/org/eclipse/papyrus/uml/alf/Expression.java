@@ -22,8 +22,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.Expression#getAssignmentBefore <em>Assignment Before</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.Expression#getAssignmentAfter <em>Assignment After</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Expression#getAssignmentBefore <em>Assignment Before</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Expression#getAssignmentAfter <em>Assignment After</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getExpression()
@@ -40,7 +40,6 @@ public interface Expression extends AssignableElement {
 	 * The assigned sources for local names available lexically before this
 	 * expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment Before</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getExpression_AssignmentBefore()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -60,7 +59,6 @@ public interface Expression extends AssignableElement {
 	 * expression, but also any assignments that are unchanged from before the
 	 * expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment After</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getExpression_AssignmentAfter()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -72,10 +70,18 @@ public interface Expression extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='ExpressionReference{expression = self}'"
+	 * @generated
+	 */
+	ExpressionReference reference();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Get the assigned sources for assignments made within this expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignmentsBefore = self.assignmentBefore in\n          self.assignmentAfter->select(isNew(assignmentsBefore))'"
 	 * @generated
@@ -91,7 +97,6 @@ public interface Expression extends AssignableElement {
 	 * the assignments before the expression. This operation is redefined only
 	 * in subclasses of Expression for kinds of expressions that make assignments.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.Expression_updateAssignments()'"
 	 * @generated
@@ -101,7 +106,6 @@ public interface Expression extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.assignmentBefore'"
 	 * @generated
@@ -111,7 +115,6 @@ public interface Expression extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -124,10 +127,8 @@ public interface Expression extends AssignableElement {
 	 * Return the assigned source element for the given name before this
 	 * expression, if any.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model nameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignment = self.assignmentBefore->select(a | a.name = name) in\n          if assignment->isEmpty() then null\n          else assignment->any(true).source\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignment = self.assignmentBefore->select(a | a.name = name) in\n          if assignment->isEmpty() then null\n          else assignment->any(true).source\n          endif'"
 	 * @generated
 	 */
 	SyntaxElement resolve(String name);
@@ -140,7 +141,6 @@ public interface Expression extends AssignableElement {
 	 * invocation of CollectionFunctions::add. This is false by default and
 	 * is overidden for relevant invocation expressions.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" targetExpressionRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -154,7 +154,6 @@ public interface Expression extends AssignableElement {
 	 * The assignments after an expression are given by the result of the
 	 * updateAssignments helper operation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -166,7 +165,6 @@ public interface Expression extends AssignableElement {
 	 * <!-- begin-model-doc -->
 	 * No name may be assigned more than once before or after an expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.assignmentBefore->isUnique(name) and self.assignmentAfter->isUnique(name)'"
 	 * @generated
 	 */

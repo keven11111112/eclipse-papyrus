@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Require-Bundle: org.junit;bundle-version="4.10.0",
  org.eclipse.papyrus.junit.framework;bundle-version="1.1.0",
- org.eclipse.papyrus.junit.utils;bundle-version="1.1.0"
+ org.eclipse.papyrus.junit.utils;bundle-version="1.1.0",
+ org.eclipse.papyrus.infra.gmfdiag.assistant
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.common.tests,
  org.eclipse.papyrus.infra.gmfdiag.common.utils
 Bundle-Vendor: %providerName

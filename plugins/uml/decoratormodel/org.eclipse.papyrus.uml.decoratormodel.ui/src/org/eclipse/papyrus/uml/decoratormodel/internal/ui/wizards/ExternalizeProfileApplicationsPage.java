@@ -136,8 +136,15 @@ public class ExternalizeProfileApplicationsPage extends AbstractNewDecoratorMode
 			resourceName = Character.toLowerCase(resourceName.charAt(0)) + resourceName.substring(1);
 		}
 
-		IPath result = new Path(package_.eResource().getURI().toPlatformString(true)).removeLastSegments(1).append(resourceName).addFileExtension(getFileExtension());
+		String result;
+		if ((package_ == null) || (package_.eResource() == null)) {
+			// Can't infer a path without a resource
+			result = resourceName;
+		} else {
+			IPath path = new Path(package_.eResource().getURI().toPlatformString(true)).removeLastSegments(1).append(resourceName).addFileExtension(getFileExtension());
+			result = path.toString();
+		}
 
-		return result.toString();
+		return result;
 	}
 }

@@ -9,38 +9,34 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - 402525
+ *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.databinding;
 
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.DISPLAY_PLACE;
-import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.HORIZONTAL;
-import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.ICON;
-import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.SHAPE;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.STEREOTYPE_DISPLAY;
-import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.TEXT;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.TEXT_ALIGNMENT;
-import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.TEXT_AND_ICON;
-import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.VERTICAL;
 
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.internal.databinding.Util;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStyleValueCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
 import org.eclipse.papyrus.uml.properties.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * An IObservableValue for editing the Stereotype appearance properties
@@ -48,6 +44,14 @@ import org.eclipse.uml2.uml.Stereotype;
  * @author Camille Letavernier
  */
 public class StereotypeAppearanceObservableValue extends AbstractObservableValue implements IObserving {
+
+
+	/**
+	 * Default values for Observable Value.
+	 */
+	private static final String DEFAULT_DISPLAY_TYPE = "Text";//$NON-NLS-1$
+	protected final static String DEFAULT_LOCATION = "Compartment";//$NON-NLS-1$
+	protected final static String DEFAULT_ALIGNMENT = "Horizontal";//$NON-NLS-1$
 
 	/**
 	 * The name of the property being observed
@@ -145,52 +149,42 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 		return null;
 	}
 
+	/**
+	 * Get the Display Value of a View.
+	 * 
+	 * @return Shape, Icon or Text
+	 */
+
 	private String getStereotypeDisplayValue() {
-		final String stereotypePresentation = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-
-		if (stereotypePresentation != null) {
-
-			Element element = (Element) ((View) (diagramElement)).getElement();
-			// get the first displayed stereotype
-			Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, element);
-
-			boolean hasIcons = ElementUtil.hasIcons(element, stereotype);
-			boolean hasShapes = ElementUtil.hasShapes(element, stereotype);
-			if (stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
-				return ICON;
-			} else if (stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
-				return TEXT_AND_ICON;
-			} else if (stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
-				return SHAPE;
-			} else {
-				return TEXT;
-			}
-
+		if (diagramElement != null) {
+			return NotationUtils.getStringValue((View) diagramElement, StereotypeDisplayConstant.DISPLAY_ICON, DEFAULT_DISPLAY_TYPE);
 		} else {
-			return TEXT;
+			return null;
 		}
 	}
+
+	/**
+	 * Get the Alignment of the Stereotype Label.
+	 * 
+	 * @return Horizontal or Vertical
+	 */
 
 	private String getTextAlignmentValue() {
-		final String stereotypePresentation = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-
-		if (stereotypePresentation != null) {
-			if (stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION)) {
-				return HORIZONTAL;
-			} else if (stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION)) {
-				return VERTICAL;
-			} else {
-				return HORIZONTAL;
-			}
-
+		if (diagramElement != null) {
+			return NotationUtils.getStringValue((View) diagramElement, StereotypeDisplayConstant.STEREOTYPE_LABEL_ALIGNMENT, DEFAULT_ALIGNMENT);
 		} else {
-			return HORIZONTAL;
+			return null;
 		}
 	}
 
+	/**
+	 * Get the location of a Property for a View
+	 * 
+	 * @return Comment, Compartment or With Brace
+	 */
 	private String getDisplayPlaceValue() {
 		if (diagramElement != null) {
-			return AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(diagramElement);
+			return NotationUtils.getStringValue((View) diagramElement, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_LOCATION, DEFAULT_LOCATION);
 		} else {
 			return null;
 		}
@@ -229,50 +223,60 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 		}
 	}
 
+	/**
+	 * Set the Appearance user choice into a NamedStyle to be treated afterwards.
+	 * 
+	 * @param stereotypeAppearance
+	 *            Type of Appearance
+	 */
 	private void setStereotypeDisplayValue(String stereotypeAppearance) {
-		// get the first displayed stereotype
-		Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, element);
-		boolean hasIcons = ElementUtil.hasIcons(element, stereotype);
-		boolean hasShapes = ElementUtil.hasShapes(element, stereotype);
-		String appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
+		if (diagramElement instanceof View) {
 
-		if (stereotypeAppearance.equals(TEXT)) {
-			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-		} else if (stereotypeAppearance.equals(ICON) && hasIcons) {
-			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION;
-		} else if (stereotypeAppearance.equals(TEXT_AND_ICON) && hasIcons) {
-			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION;
-		} else if (stereotypeAppearance.equals(SHAPE) && hasShapes) {
-			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION;
+			Command command = new CustomStyleValueCommand((View) diagramElement, stereotypeAppearance, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(),
+					StereotypeDisplayConstant.DISPLAY_ICON);
+
+			CommandUtil.executeUnsafeCommand(command, domain);
 		}
-
-
-		String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(diagramElement);
-		RecordingCommand command = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(domain, diagramElement, stereotypetoDisplay, appliedStereotypeKind);
-		domain.getCommandStack().execute(command);
-
 	}
 
+	/**
+	 * @deprecated Not Used anymore since the new Stereotype Display Structure is in place.
+	 * @param alignment
+	 */
+	@Deprecated
 	private void setTextAlignmentValue(String alignment) {
-		String appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-		if (alignment.equals(HORIZONTAL)) {
-			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-		} else if (alignment.equals(VERTICAL)) {
-			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION;
+		if (diagramElement instanceof View) {
+
+			Command command = new CustomStyleValueCommand((View) diagramElement, alignment, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(),
+					StereotypeDisplayConstant.STEREOTYPE_LABEL_ALIGNMENT);
+
+			CommandUtil.executeUnsafeCommand(command, domain);
+
 		}
-
-
-		String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(diagramElement);
-		RecordingCommand command = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(domain, diagramElement, stereotypetoDisplay, appliedStereotypeKind);
-		domain.getCommandStack().execute(command);
-
 	}
 
-	private void setDisplayPlaceValue(String stereotypePlacePresentation) {
-		RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, diagramElement, stereotypePlacePresentation);
-		domain.getCommandStack().execute(command);
+	/**
+	 * Set the Location user choice into a NamedStyle to be treated afterwards.
+	 * 
+	 * @param stereotypePlacePresentation
+	 *            location
+	 */
+	private void setDisplayPlaceValue(final String stereotypePlacePresentation) {
+		if (diagramElement instanceof View) {
+
+			Command command = new CustomStyleValueCommand((View) diagramElement, stereotypePlacePresentation, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(),
+					StereotypeDisplayConstant.STEREOTYPE_PROPERTY_LOCATION);
+
+			CommandUtil.executeUnsafeCommand(command, domain);
+
+		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.core.databinding.observable.IObserving#getObserved()
+	 *
+	 */
 	public Object getObserved() {
 		return diagramElement;
 	}

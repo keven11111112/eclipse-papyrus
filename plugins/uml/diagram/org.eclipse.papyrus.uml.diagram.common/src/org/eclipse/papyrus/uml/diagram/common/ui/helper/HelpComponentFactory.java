@@ -10,11 +10,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.ui.helper;
 
-import java.io.IOException;
-
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
@@ -27,18 +25,8 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
  */
 public class HelpComponentFactory {
 
-	/** The image. */
-	public static final Image image = loadImage();
-
-	// Load only one time the help icon
-	private static Image loadImage() {
-		try {
-			return new Image(Display.getDefault(), Activator.getDefault().getBundle().getResource("icons/help/help_contents-1.gif").openStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+	/** The help image by its image descriptor */
+	protected final static ImageDescriptor helpImageDescriptor = Activator.imageDescriptorFromPlugin(Activator.ID, "icons/help/help_contents-1.gif"); //$NON-NLS-1$
 
 	/**
 	 * Creates help component that insert a new hyperlink icon to display
@@ -61,7 +49,7 @@ public class HelpComponentFactory {
 	 */
 	public static ImageHyperlink createHelpComponent(final Composite parent, FormToolkit toolkit, final String helpText, String pToolTip, final boolean parseTags) {
 		ImageHyperlink helpImage = toolkit.createImageHyperlink(parent, SWT.NONE);
-		helpImage.setImage(image);
+		helpImage.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(helpImageDescriptor));
 		helpImage.setBackground(null);
 		final String toolTip = (pToolTip == null) ? "Help" : pToolTip;
 		helpImage.setToolTipText(toolTip);

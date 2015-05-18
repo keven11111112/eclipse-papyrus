@@ -57,7 +57,7 @@ public class ExternalReferenceEditPolicy extends GraphicalEditPolicyEx {
 			decorationService = ServiceUtilsForEditPart.getInstance().getService(DecorationService.class, getHost());
 			refresh();
 		} catch (ServiceException ex) {
-			Activator.log.error(ex);
+			// Ignored; do nothing
 		}
 	}
 

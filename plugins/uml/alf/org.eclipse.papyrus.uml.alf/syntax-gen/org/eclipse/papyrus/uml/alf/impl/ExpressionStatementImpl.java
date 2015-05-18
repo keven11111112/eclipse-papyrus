@@ -25,11 +25,10 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>Expression Statement</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.ExpressionStatementImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.ExpressionStatementImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,7 +37,6 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ExpressionStatementImpl() {
@@ -48,7 +46,6 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,17 +56,15 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression getExpression() {
-		return (Expression) eGet(AlfPackage.eINSTANCE.getExpressionStatement_Expression(), true);
+		return (Expression)eGet(AlfPackage.eINSTANCE.getExpressionStatement_Expression(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExpression(Expression newExpression) {
@@ -80,24 +75,23 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 	 * The cached invocation delegate for the '{@link #assignmentsAfter() <em>Assignments After</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #assignmentsAfter()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ASSIGNMENTS_AFTER__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getExpressionStatement__AssignmentsAfter()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ASSIGNMENTS_AFTER__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExpressionStatement__AssignmentsAfter()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> assignmentsAfter() {
 		try {
-			return (EList<AssignedSource>) ASSIGNMENTS_AFTER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<AssignedSource>)ASSIGNMENTS_AFTER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -105,7 +99,6 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean expressionStatementAssignmentsBefore(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -116,12 +109,12 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.EXPRESSION_STATEMENT__EXPRESSION_STATEMENT_ASSIGNMENTS_BEFORE,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "expressionStatementAssignmentsBefore", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.EXPRESSION_STATEMENT__EXPRESSION_STATEMENT_ASSIGNMENTS_BEFORE,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "expressionStatementAssignmentsBefore", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -131,7 +124,6 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean expressionStatementAssignmentsAfter(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -142,12 +134,12 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.EXPRESSION_STATEMENT__EXPRESSION_STATEMENT_ASSIGNMENTS_AFTER,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "expressionStatementAssignmentsAfter", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.EXPRESSION_STATEMENT__EXPRESSION_STATEMENT_ASSIGNMENTS_AFTER,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "expressionStatementAssignmentsAfter", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -157,17 +149,14 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Statement.class) {
 			switch (baseOperationID) {
-			case AlfPackage.STATEMENT___ASSIGNMENTS_AFTER:
-				return AlfPackage.EXPRESSION_STATEMENT___ASSIGNMENTS_AFTER;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.STATEMENT___ASSIGNMENTS_AFTER: return AlfPackage.EXPRESSION_STATEMENT___ASSIGNMENTS_AFTER;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -176,19 +165,18 @@ public class ExpressionStatementImpl extends StatementImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.EXPRESSION_STATEMENT___ASSIGNMENTS_AFTER:
-			return assignmentsAfter();
-		case AlfPackage.EXPRESSION_STATEMENT___EXPRESSION_STATEMENT_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP:
-			return expressionStatementAssignmentsBefore((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.EXPRESSION_STATEMENT___EXPRESSION_STATEMENT_ASSIGNMENTS_AFTER__DIAGNOSTICCHAIN_MAP:
-			return expressionStatementAssignmentsAfter((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.EXPRESSION_STATEMENT___ASSIGNMENTS_AFTER:
+				return assignmentsAfter();
+			case AlfPackage.EXPRESSION_STATEMENT___EXPRESSION_STATEMENT_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP:
+				return expressionStatementAssignmentsBefore((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.EXPRESSION_STATEMENT___EXPRESSION_STATEMENT_ASSIGNMENTS_AFTER__DIAGNOSTICCHAIN_MAP:
+				return expressionStatementAssignmentsAfter((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

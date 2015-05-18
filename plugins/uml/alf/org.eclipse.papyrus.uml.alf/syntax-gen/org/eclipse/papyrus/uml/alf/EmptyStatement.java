@@ -27,7 +27,6 @@ public interface EmptyStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The assignments after and empty statement are the same as the assignments before the statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

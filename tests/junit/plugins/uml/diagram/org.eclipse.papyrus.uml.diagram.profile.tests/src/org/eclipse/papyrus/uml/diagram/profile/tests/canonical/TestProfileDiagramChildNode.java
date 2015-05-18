@@ -16,6 +16,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
@@ -33,6 +34,7 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
+
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
 	}
@@ -49,6 +51,7 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 		return "ProfileDiagramTest.profile.di";
 	}
 
+	@FailingTest
 	@Test
 	public void testToManageClassInPackage() {
 		testToManageNode(UMLElementTypes.Class_3010, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_2007, false);
@@ -64,6 +67,7 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 		testToManageNode(UMLElementTypes.Package_1012, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_2007, false);
 	}
 
+	@FailingTest
 	@Test
 	public void testToManageStereoTypeInPackage() {
 		testToManageNode(UMLElementTypes.Stereotype_1023, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Package_2007, false);
@@ -89,6 +93,7 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 		testToManageNode(UMLElementTypes.Package_1012, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Profile_1030, false);
 	}
 
+	@FailingTest
 	@Test
 	public void testToManageStereoTypeInProfile() {
 		testToManageNode(UMLElementTypes.Stereotype_1023, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Profile_1030, false);

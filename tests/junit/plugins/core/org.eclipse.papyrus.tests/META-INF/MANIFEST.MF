@@ -73,7 +73,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.profile.drafter;bundle-version="1.1.0",
  org.eclipse.papyrus.infra.gmfdiag.canonical.tests;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.alf.tests;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.textedit.valuespecification.tests;bundle-version="1.1.0"
+ org.eclipse.papyrus.uml.textedit.valuespecification.tests;bundle-version="1.1.0",
+ org.eclipse.papyrus.infra.viewpoints.configuration.tests;bundle-version="1.1.0",
+ org.eclipse.papyrus.infra.core.clipboard.tests;bundle-version="1.1.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.1.0.qualifier
@@ -96,6 +98,7 @@ Import-Package: org.eclipse.papyrus.infra.core.sasheditor.di.tests,
  org.eclipse.papyrus.sysml.diagram.parametric.tests.suites,
  org.eclipse.papyrus.sysml.service.types.tests.suites,
  org.eclipse.papyrus.uml.modelrepair.tests,
- org.eclipse.papyrus.uml.service.types.tests.suites
+ org.eclipse.papyrus.uml.service.types.tests.suites,
+ org.eclipse.papyrus.uml.profile.drafter.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

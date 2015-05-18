@@ -18,6 +18,8 @@ import org.eclipse.papyrus.uml.alf.text.representation.util.RepresentationParser
 import org.eclipse.papyrus.uml.alf.text.representation.util.RepresentationParsingError;
 import org.eclipse.uml2.uml.NamedElement;
 
+import static org.eclipse.papyrus.uml.alf.transaction.ActivatorTransaction.logger;
+
 public abstract class Scenario implements IScenario {
 
 	/**
@@ -41,13 +43,11 @@ public abstract class Scenario implements IScenario {
 		}
 		try {
 			this.userModelState = RepresentationParser.getInstance().parse(target);
-		} catch (RepresentationParsingError e) {
-			e.printStackTrace();
-		}
-		try {
 			this.currentModelState = RepresentationParser.getInstance().getSnapshot(target);
 		} catch (RepresentationParsingError e) {
-			e.printStackTrace();
+			logger.error("Parsing of ["+target.getName()+"]", e);
+		} catch(RuntimeException e){
+			logger.error("Serialization of ["+target.getName()+"] failed", e);
 		}
 	}
 }

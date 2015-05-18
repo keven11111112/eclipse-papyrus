@@ -73,7 +73,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
 		this.command = command;
-		setResult(CommandResult.newOKCommandResult(viewDescriptor));
+		setResult(CommandResult.newOKCommandResult());
 	}
 
 	/**
@@ -120,11 +120,11 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 		 * EditPart does not allow to get a Command for the creation of the link
 		 */
 		if (sourceEP instanceof LabelEditPart) {
-			sourceEP = findEditPartForCreation((View) sourceViewAdapter.getAdapter(View.class));
+			sourceEP = findEditPartForCreation(sourceViewAdapter.getAdapter(View.class));
 		}
 
 		if (targetEP instanceof LabelEditPart) {
-			targetEP = findEditPartForCreation((View) targetViewAdapter.getAdapter(View.class));
+			targetEP = findEditPartForCreation(targetViewAdapter.getAdapter(View.class));
 		}
 
 		return doExecuteWithResult(progressMonitor, info, sourceEP, targetEP);

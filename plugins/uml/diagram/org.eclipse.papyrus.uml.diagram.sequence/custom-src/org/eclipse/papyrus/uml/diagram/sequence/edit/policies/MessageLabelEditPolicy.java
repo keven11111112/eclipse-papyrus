@@ -194,7 +194,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 		} else if (isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
-		} else if (sig == null && object instanceof Message && UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeature())) {
+		} else if (sig == null && notification.getFeature() != null && object instanceof Message && notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
 			refreshDisplay();
 		}
 		// Try to update label when signature of message changed.

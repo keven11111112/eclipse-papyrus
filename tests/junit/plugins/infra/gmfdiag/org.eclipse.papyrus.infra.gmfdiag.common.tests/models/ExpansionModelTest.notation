@@ -24,7 +24,33 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0OW3N-KJEeSwE5hduTH6nQ"/>
     </children>
     <element xmi:type="uml:Class" href="ExpansionModelTest.uml#_0ONtQOKJEeSwE5hduTH6nQ"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0OTz4eKJEeSwE5hduTH6nQ" x="175" y="263"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0OTz4eKJEeSwE5hduTH6nQ" x="180" y="80"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_zwbhEPPMEeSh3rAaWaQzhQ" type="2008">
+    <children xmi:type="notation:DecorationNode" xmi:id="_zwgZkPPMEeSh3rAaWaQzhQ" type="5029"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_zwhAoPPMEeSh3rAaWaQzhQ" type="8510">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_zwhAofPMEeSh3rAaWaQzhQ" y="5"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_zwhnsPPMEeSh3rAaWaQzhQ" type="7017">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_zwhnsfPMEeSh3rAaWaQzhQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_zwhnsvPMEeSh3rAaWaQzhQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_zwhns_PMEeSh3rAaWaQzhQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zwhntPPMEeSh3rAaWaQzhQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_zwhntfPMEeSh3rAaWaQzhQ" type="7018">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_zwhntvPMEeSh3rAaWaQzhQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_zwhnt_PMEeSh3rAaWaQzhQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_zwhnuPPMEeSh3rAaWaQzhQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zwhnufPMEeSh3rAaWaQzhQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_zwhnuvPMEeSh3rAaWaQzhQ" type="7019">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_zwhnu_PMEeSh3rAaWaQzhQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_zwhnvPPMEeSh3rAaWaQzhQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_zwhnvfPMEeSh3rAaWaQzhQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zwhnvvPMEeSh3rAaWaQzhQ"/>
+    </children>
+    <element xmi:type="uml:Class" href="ExpansionModelTest.uml#__FNz0PMjEeSc2PGFYV7S2w"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zwbhEfPMEeSh3rAaWaQzhQ" x="460" y="80"/>
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_zW-jQeKJEeSwE5hduTH6nQ" name="diagram_compatibility_version" stringValue="1.0.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_zW-jQuKJEeSwE5hduTH6nQ"/>

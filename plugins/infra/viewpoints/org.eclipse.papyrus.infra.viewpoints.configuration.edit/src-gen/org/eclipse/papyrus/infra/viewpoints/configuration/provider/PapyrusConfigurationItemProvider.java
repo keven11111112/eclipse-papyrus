@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -75,19 +76,17 @@ public class PapyrusConfigurationItemProvider
 	 * @generated
 	 */
 	protected void addDefaultStakeholderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusConfiguration_defaultStakeholder_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusConfiguration_defaultStakeholder_feature", "_UI_PapyrusConfiguration_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_CONFIGURATION__DEFAULT_STAKEHOLDER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusConfiguration_defaultStakeholder_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusConfiguration_defaultStakeholder_feature", "_UI_PapyrusConfiguration_type"),
+				ConfigurationPackage.Literals.PAPYRUS_CONFIGURATION__DEFAULT_STAKEHOLDER,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -98,19 +97,17 @@ public class PapyrusConfigurationItemProvider
 	 * @generated NOT
 	 */
 	protected void addMetamodelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new EPackagePropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_PapyrusConfiguration_metamodel_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_PapyrusConfiguration_metamodel_feature", "_UI_PapyrusConfiguration_type"),
-								ConfigurationPackage.Literals.PAPYRUS_CONFIGURATION__METAMODEL,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new EPackagePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusConfiguration_metamodel_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusConfiguration_metamodel_feature", "_UI_PapyrusConfiguration_type"),
+				ConfigurationPackage.Literals.PAPYRUS_CONFIGURATION__METAMODEL,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -156,6 +153,16 @@ public class PapyrusConfigurationItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -181,9 +188,9 @@ public class PapyrusConfigurationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PapyrusConfiguration.class)) {
-			case ConfigurationPackage.PAPYRUS_CONFIGURATION__CATEGORIES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ConfigurationPackage.PAPYRUS_CONFIGURATION__CATEGORIES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -196,20 +203,14 @@ public class PapyrusConfigurationItemProvider
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		newChildDescriptors.add
-				(createChildParameter
-				(Iso42010Package.Literals.ARCHITECTURE_FRAMEWORK__VIEWPOINTS,
-						ConfigurationFactory.eINSTANCE.createPapyrusViewpoint()));
+		newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_FRAMEWORK__VIEWPOINTS,
+				ConfigurationFactory.eINSTANCE.createPapyrusViewpoint()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(Iso42010Package.Literals.ARCHITECTURE_FRAMEWORK__STAKEHOLDERS,
-						Iso42010Factory.eINSTANCE.createStakeholder()));
+		newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_FRAMEWORK__STAKEHOLDERS,
+				Iso42010Factory.eINSTANCE.createStakeholder()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ConfigurationPackage.Literals.PAPYRUS_CONFIGURATION__CATEGORIES,
-						ConfigurationFactory.eINSTANCE.createCategory()));
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.PAPYRUS_CONFIGURATION__CATEGORIES,
+				ConfigurationFactory.eINSTANCE.createCategory()));
 	}
 
 	/**
@@ -220,7 +221,7 @@ public class PapyrusConfigurationItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

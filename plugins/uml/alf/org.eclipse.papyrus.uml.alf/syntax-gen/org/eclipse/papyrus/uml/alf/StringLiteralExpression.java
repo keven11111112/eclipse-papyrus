@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.StringLiteralExpression#getImage <em>Image</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.StringLiteralExpression#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getStringLiteralExpression()
@@ -34,7 +34,6 @@ public interface StringLiteralExpression extends LiteralExpression {
 	 * <!-- begin-model-doc -->
 	 * The textual image of the literal token for this expression, with quote characters removed and escaped sequences resolved to the denoted special character.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Image</em>' attribute.
 	 * @see #setImage(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getStringLiteralExpression_Image()
@@ -47,9 +46,7 @@ public interface StringLiteralExpression extends LiteralExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.StringLiteralExpression#getImage <em>Image</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Image</em>' attribute.
+	 * @param value the new value of the '<em>Image</em>' attribute.
 	 * @see #getImage()
 	 * @generated
 	 */
@@ -58,7 +55,6 @@ public interface StringLiteralExpression extends LiteralExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.stringType()'"
 	 * @generated
 	 */
@@ -71,7 +67,6 @@ public interface StringLiteralExpression extends LiteralExpression {
 	 * The type of a string literal expression is String.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

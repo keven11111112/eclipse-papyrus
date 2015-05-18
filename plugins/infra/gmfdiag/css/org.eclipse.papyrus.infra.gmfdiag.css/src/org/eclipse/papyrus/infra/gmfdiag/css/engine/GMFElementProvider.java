@@ -11,10 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
-import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSDOMSemanticElementHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.provider.IPapyrusElementProvider;
 import org.w3c.dom.Element;
 
 /**
@@ -23,7 +25,7 @@ import org.w3c.dom.Element;
  * @author Camille Letavernier
  */
 @SuppressWarnings("restriction")
-public class GMFElementProvider implements IElementProvider {
+public class GMFElementProvider implements IPapyrusElementProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -45,6 +47,19 @@ public class GMFElementProvider implements IElementProvider {
 		}
 
 		return new GMFElementAdapter((View) element, (ExtendedCSSEngine) engine);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.provider.IPapyrusElementProvider#getPrimaryView(org.eclipse.emf.ecore.EObject)
+	 *
+	 * @param notationElement
+	 * @return
+	 */
+	@Override
+	public View getPrimaryView(EObject notationElement) {
+
+		View canonicalNotationElement = CSSDOMSemanticElementHelper.getInstance().findPrimaryView(notationElement);
+		return canonicalNotationElement;
 	}
 
 }

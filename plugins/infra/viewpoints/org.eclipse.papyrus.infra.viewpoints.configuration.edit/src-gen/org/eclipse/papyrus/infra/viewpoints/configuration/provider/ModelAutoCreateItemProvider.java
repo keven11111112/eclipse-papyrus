@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *
  */
@@ -88,19 +89,17 @@ public class ModelAutoCreateItemProvider
 	 * @generated NOT
 	 */
 	protected void addFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new EReferencePropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_ModelAutoCreate_feature_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_feature_feature", "_UI_ModelAutoCreate_type"),
-								ConfigurationPackage.Literals.MODEL_AUTO_CREATE__FEATURE,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new EReferencePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelAutoCreate_feature_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_feature_feature", "_UI_ModelAutoCreate_type"),
+				ConfigurationPackage.Literals.MODEL_AUTO_CREATE__FEATURE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -110,19 +109,17 @@ public class ModelAutoCreateItemProvider
 	 * @generated
 	 */
 	protected void addOriginPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelAutoCreate_origin_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_origin_feature", "_UI_ModelAutoCreate_type"),
-				 ConfigurationPackage.Literals.MODEL_AUTO_CREATE__ORIGIN,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelAutoCreate_origin_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_origin_feature", "_UI_ModelAutoCreate_type"),
+				ConfigurationPackage.Literals.MODEL_AUTO_CREATE__ORIGIN,
+				false,
+				false,
+				false,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -133,19 +130,17 @@ public class ModelAutoCreateItemProvider
 	 * @generated NOT
 	 */
 	protected void addCreationTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new ComplexTypePropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_ModelAutoCreate_creationType_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_creationType_feature", "_UI_ModelAutoCreate_type"),
-								ConfigurationPackage.Literals.MODEL_AUTO_CREATE__CREATION_TYPE,
-								true,
-								false,
-								false,
-								ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new ComplexTypePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelAutoCreate_creationType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_creationType_feature", "_UI_ModelAutoCreate_type"),
+				ConfigurationPackage.Literals.MODEL_AUTO_CREATE__CREATION_TYPE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null)));
 	}
 
 	/**
@@ -158,6 +153,16 @@ public class ModelAutoCreateItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/PathElement.png"));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -193,9 +198,9 @@ public class ModelAutoCreateItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelAutoCreate.class)) {
-			case ConfigurationPackage.MODEL_AUTO_CREATE__CREATION_TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ConfigurationPackage.MODEL_AUTO_CREATE__CREATION_TYPE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -220,7 +225,7 @@ public class ModelAutoCreateItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

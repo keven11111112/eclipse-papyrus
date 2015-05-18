@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -147,37 +148,63 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 			}
 			// get the sub list of accepted source element that match to elementType
 			for (EObject sourceElement : sourceElements) {
-				Command cmd=null;
-				int acceptedElementTypesIndex=0;
-				while (cmd==null &&acceptedElementTypesIndex<acceptedElementTypes.size()){
-					final ISpecializationType iSpecializationType = acceptedElementTypes.get(acceptedElementTypesIndex);
-					IElementMatcher matcher=iSpecializationType.getMatcher();
-					if(matcher!=null && matcher.matches(sourceElement)){
-						valuesToAdd.add(sourceElement);
-						if(DEBUG_EXPANSION){
-							Activator.log.debug(DEBUG_PREFIX+"try to drop command created for "+ sourceElement+ " "+iSpecializationType);
-						}
-						cmd= new Command() {
-							@Override
-							public void execute() {
-								if( iSpecializationType instanceof IHintedType){
-									ViewService.createNode(((GraphicalEditPart) targetEditPart).getNotationView(),valuesToAdd.get(0), ((IHintedType)iSpecializationType).getSemanticHint(), ((GraphicalEditPart) targetEditPart).getDiagramPreferencesHint());
+				//the source element must be a children of the container
+				if(sourceElement.eContainer().equals(graphicalEditPart.resolveSemanticElement())){
+					Command cmd=null;
+					int acceptedElementTypesIndex=0;
+					while (cmd==null &&acceptedElementTypesIndex<acceptedElementTypes.size()){
+						final ISpecializationType iSpecializationType = acceptedElementTypes.get(acceptedElementTypesIndex);
+						IElementMatcher matcher=iSpecializationType.getMatcher();
+						IElementType[] superElementTypes=iSpecializationType.getSpecializedTypes();
+						if( matcher==null){
+							int index=superElementTypes.length-1;
+							while(matcher==null && index >0){
+								if(superElementTypes[index] instanceof ISpecializationType){
+									matcher=((ISpecializationType)superElementTypes[index]).getMatcher();
 								}
+								index--;
 							}
+						}
+						if(matcher!=null && matcher.matches(sourceElement)){
+							cmd=addCommandDrop(targetEditPart, cc, valuesToAdd, sourceElement, iSpecializationType);
+						}
+						else if(matcher==null){
+							EClass eclass=iSpecializationType.getEClass();
+							if(eclass.isSuperTypeOf(sourceElement.eClass())){
+								cmd=addCommandDrop(targetEditPart, cc, valuesToAdd, sourceElement, iSpecializationType);
+							}
+							else{
+								acceptedElementTypesIndex++;}
+						}
+						else{
+							acceptedElementTypesIndex++;
+						}
 
-						};
-						cc.add(new CommandProxy( cmd));
-					}
-					else{
-						acceptedElementTypesIndex++;
 					}
 
 				}
-
 			}
 		}
 
 		return cc.canExecute() ? new ICommandProxy(cc.reduce()) : null;
+	}
+	protected Command addCommandDrop(final EditPart targetEditPart, CompositeCommand cc, final List<EObject> valuesToAdd, EObject sourceElement, final ISpecializationType iSpecializationType) {
+
+		valuesToAdd.add(sourceElement);
+		if(DEBUG_EXPANSION){
+			Activator.log.debug(DEBUG_PREFIX+"try to drop command created for "+ sourceElement+ " "+iSpecializationType);
+		}
+		Command cmd= new Command() {
+			@Override
+			public void execute() {
+				if( iSpecializationType instanceof IHintedType){
+					ViewService.createNode(((GraphicalEditPart) targetEditPart).getNotationView(),valuesToAdd.get(0), ((IHintedType)iSpecializationType).getSemanticHint(), ((GraphicalEditPart) targetEditPart).getDiagramPreferencesHint());
+				}
+			}
+
+		};
+		cc.add(new CommandProxy( cmd));
+		return cmd;
 	}
 
 

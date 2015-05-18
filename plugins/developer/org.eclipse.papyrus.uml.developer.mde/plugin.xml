@@ -16,13 +16,13 @@
             description="Developer Process Profile"
             name="Developer Process Profil"
             path="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </profile>
       <profile
             description="Document Profile"
             name="Document  Profil"
             path="pathmap://DEVELOPER_PROFILES/Document.profile.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </profile>
    </extension>
    <extension

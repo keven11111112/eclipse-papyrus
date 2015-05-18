@@ -166,8 +166,11 @@ public class DecoratorModelUtils {
 
 		for (ProfileApplication profileApplication : profileApplications) {
 			Resource sourceResource = profileApplication.eResource();
-			ResourceSet resourceSet = (sourceResource == null) ? null : sourceResource.getResourceSet();
+			if (sourceResource == null) {
+				continue;
+			}
 
+			ResourceSet resourceSet = sourceResource.getResourceSet();
 			Package externalPackage = profileApplication.getApplyingPackage();
 			Package applyingPackage = getUserPackage(externalPackage);
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.wizards;
@@ -19,6 +20,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -27,11 +30,9 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.exporter.IModelExporter;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
 import org.eclipse.swt.widgets.Display;
@@ -58,7 +59,7 @@ public class ModelExportWizard extends Wizard implements IWorkbenchWizard {
 
 	private IModelTransferConfiguration exportConfig;
 
-	private IPapyrusRepository repository;
+	private CDOCheckout checkout;
 
 	private IContainer initialDestination;
 
@@ -106,13 +107,13 @@ public class ModelExportWizard extends Wizard implements IWorkbenchWizard {
 				}
 
 				bus.post(exportConfig);
-				bus.post(repository);
+				bus.post(checkout);
 			}
 		});
 	}
 
 	Iterable<DIModel> getSelection() {
-		Multimap<IPapyrusRepository, DIModel> result = ArrayListMultimap.create();
+		Multimap<CDOCheckout, DIModel> result = ArrayListMultimap.create();
 
 		if (selection != null) {
 			for (Object next : selection.toList()) {
@@ -120,23 +121,23 @@ public class ModelExportWizard extends Wizard implements IWorkbenchWizard {
 
 				if (model != null) {
 					URI uri = model.getResource().getURI();
-					IPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
-					if (repository == null) {
-						repository = repo;
+					CDOCheckout checkout = CDOExplorerUtil.getCheckout(uri);
+					if (this.checkout == null) {
+						this.checkout = checkout;
 					}
 
-					if (repo != null) {
-						result.put(repo, model);
+					if (checkout != null) {
+						result.put(checkout, model);
 					}
 				}
 			}
 		}
 
 		if (result.keySet().size() > 1) {
-			MessageDialog.openInformation(getShell(), Messages.ModelExportWizard_2, NLS.bind(Messages.ModelExportWizard_3, repository.getName()));
+			MessageDialog.openInformation(getShell(), Messages.ModelExportWizard_2, NLS.bind(Messages.ModelExportWizard_3, checkout.getLabel()));
 		}
 
-		return result.get(repository);
+		return result.get(checkout);
 	}
 
 	@Override

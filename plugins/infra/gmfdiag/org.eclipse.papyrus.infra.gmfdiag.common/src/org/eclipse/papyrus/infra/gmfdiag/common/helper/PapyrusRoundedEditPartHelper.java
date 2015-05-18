@@ -14,14 +14,12 @@ package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.gef.editparts.AbstractEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ShapeDisplayCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.LineStyleEnum;
@@ -204,34 +202,6 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 		}
 	}
 
-	/**
-	 * Refresh svg original colors.
-	 *
-	 * @param editpart
-	 *            the editpart
-	 * @param defaultUseOriginalColors
-	 *            the default use original colors
-	 */
-	public static void refreshSVGOriginalColors(IPapyrusEditPart editpart, boolean defaultUseOriginalColors) {
-		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
-			if (((GraphicalEditPart) editpart).getModel() instanceof View) {
-
-				// get the CSS value if SVG use original colors
-				boolean useOriginalColors = NotationUtils.getBooleanValue((View) ((AbstractEditPart) editpart).getModel(), USE_ORIGINAL_COLORS, defaultUseOriginalColors);
-
-				if (((AbstractEditPart) editpart).getChildren() != null) {
-					for (Object object : ((AbstractEditPart) editpart).getChildren()) {
-						if (object instanceof ShapeDisplayCompartmentEditPart) {
-							ShapeDisplayCompartmentEditPart shapeCompartment = (ShapeDisplayCompartmentEditPart) object;
-							// Set useOriginalColors to the figure
-							shapeCompartment.setUseOriginalColors(useOriginalColors);
-						}
-					}
-				}
-			}
-		}
-
-	}
 
 	/**
 	 * Refresh has header.

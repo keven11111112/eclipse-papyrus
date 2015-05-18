@@ -74,7 +74,6 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  * This is a simple wizard for creating a new model file.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class ElementCreationMenuModelModelWizard extends Wizard implements INewWizard {
@@ -82,7 +81,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
@@ -92,7 +90,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * A formatted list of supported file extensions, suitable for display.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
@@ -102,7 +99,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * This caches an instance of the model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ElementCreationMenuModelPackage elementCreationMenuModelPackage = ElementCreationMenuModelPackage.eINSTANCE;
@@ -111,7 +107,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * This caches an instance of the model factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ElementCreationMenuModelFactory elementCreationMenuModelFactory = elementCreationMenuModelPackage.getElementCreationMenuModelFactory();
@@ -120,7 +115,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * This is the file creation page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ElementCreationMenuModelModelWizardNewFileCreationPage newFileCreationPage;
@@ -129,7 +123,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * This is the initial object creation page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ElementCreationMenuModelModelWizardInitialObjectCreationPage initialObjectCreationPage;
@@ -138,7 +131,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * Remember the selection during initialization for populating the default container.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected IStructuredSelection selection;
@@ -147,7 +139,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * Remember the workbench during initialization.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected IWorkbench workbench;
@@ -156,7 +147,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * Caches the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected List<String> initialObjectNames;
@@ -165,7 +155,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * This just records the information.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -180,7 +169,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * Returns the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected Collection<String> getInitialObjectNames() {
@@ -188,7 +176,7 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 			initialObjectNames = new ArrayList<String>();
 			for (EClassifier eClassifier : elementCreationMenuModelPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass) eClassifier;
+					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
 						initialObjectNames.add(eClass.getName());
 					}
@@ -203,11 +191,10 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * Create a new model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass) elementCreationMenuModelPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EClass eClass = (EClass)elementCreationMenuModelPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
 		EObject rootObject = elementCreationMenuModelFactory.create(eClass);
 		return rootObject;
 	}
@@ -216,7 +203,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * Do the work after everything is specified.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -229,43 +215,43 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 			// Do the work within an operation.
 			//
 			WorkspaceModifyOperation operation =
-					new WorkspaceModifyOperation() {
-						@Override
-						protected void execute(IProgressMonitor progressMonitor) {
-							try {
-								// Create a resource set
-								//
-								ResourceSet resourceSet = new ResourceSetImpl();
+				new WorkspaceModifyOperation() {
+					@Override
+					protected void execute(IProgressMonitor progressMonitor) {
+						try {
+							// Create a resource set
+							//
+							ResourceSet resourceSet = new ResourceSetImpl();
 
-								// Get the URI of the model file.
-								//
-								URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+							// Get the URI of the model file.
+							//
+							URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
 
-								// Create a resource for this file.
-								//
-								Resource resource = resourceSet.createResource(fileURI);
+							// Create a resource for this file.
+							//
+							Resource resource = resourceSet.createResource(fileURI);
 
-								// Add the initial model object to the contents.
-								//
-								EObject rootObject = createInitialModel();
-								if (rootObject != null) {
-									resource.getContents().add(rootObject);
-								}
-
-								// Save the contents of the resource to the file system.
-								//
-								Map<Object, Object> options = new HashMap<Object, Object>();
-								options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-								resource.save(options);
+							// Add the initial model object to the contents.
+							//
+							EObject rootObject = createInitialModel();
+							if (rootObject != null) {
+								resource.getContents().add(rootObject);
 							}
-							catch (Exception exception) {
-								ElementCreationMenuModelEditorPlugin.INSTANCE.log(exception);
-							}
-							finally {
-								progressMonitor.done();
-							}
+
+							// Save the contents of the resource to the file system.
+							//
+							Map<Object, Object> options = new HashMap<Object, Object>();
+							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+							resource.save(options);
 						}
-					};
+						catch (Exception exception) {
+							ElementCreationMenuModelEditorPlugin.INSTANCE.log(exception);
+						}
+						finally {
+							progressMonitor.done();
+						}
+					}
+				};
 
 			getContainer().run(false, false, operation);
 
@@ -277,27 +263,28 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 			if (activePart instanceof ISetSelectionTarget) {
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
-						(new Runnable() {
-							@Override
-							public void run() {
-								((ISetSelectionTarget) activePart).selectReveal(targetSelection);
-							}
-						});
+					(new Runnable() {
+						 public void run() {
+							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
+						 }
+					 });
 			}
 
 			// Open an editor on the new file.
 			//
 			try {
 				page.openEditor
-						(new FileEditorInput(modelFile),
-								workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
-			} catch (PartInitException exception) {
+					(new FileEditorInput(modelFile),
+					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
+			}
+			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			ElementCreationMenuModelEditorPlugin.INSTANCE.log(exception);
 			return false;
 		}
@@ -307,7 +294,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * This is the one page of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public class ElementCreationMenuModelModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
@@ -315,7 +301,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		public ElementCreationMenuModelModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
@@ -326,7 +311,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		 * The framework calls this to see if the file is correct.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		@Override
@@ -335,7 +319,7 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(ElementCreationMenuModelEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(ElementCreationMenuModelEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -346,7 +330,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		public IFile getModelFile() {
@@ -358,14 +341,12 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * This is the page where the type of object to create is selected.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public class ElementCreationMenuModelModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		protected Combo initialObjectField;
@@ -380,7 +361,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		protected Combo encodingField;
@@ -389,7 +369,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		public ElementCreationMenuModelModelWizardInitialObjectCreationPage(String pageId) {
@@ -399,13 +378,11 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		@Override
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE);
-			{
+			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -474,21 +451,18 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		protected ModifyListener validator =
 				new ModifyListener() {
-					@Override
-					public void modifyText(ModifyEvent e) {
-						setPageComplete(validatePage());
-					}
-				};
+				public void modifyText(ModifyEvent e) {
+					setPageComplete(validatePage());
+				}
+			};
 
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		protected boolean validatePage() {
@@ -498,7 +472,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		@Override
@@ -519,7 +492,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		public String getInitialObjectName() {
@@ -536,7 +508,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		public String getEncoding() {
@@ -547,13 +518,13 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		 * Returns the label for the specified type name.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		protected String getLabel(String typeName) {
 			try {
 				return ElementCreationMenuModelEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
-			} catch (MissingResourceException mre) {
+			}
+			catch(MissingResourceException mre) {
 				ElementCreationMenuModelEditorPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
@@ -562,13 +533,12 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -580,7 +550,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -602,7 +571,7 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 			if (selectedElement instanceof IResource) {
 				// Get the resource parent, if its a file.
 				//
-				IResource selectedResource = (IResource) selectedElement;
+				IResource selectedResource = (IResource)selectedElement;
 				if (selectedResource.getType() == IResource.FILE) {
 					selectedResource = selectedResource.getParent();
 				}
@@ -619,7 +588,7 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 					String defaultModelBaseFilename = ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_ElementCreationMenuModelEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
-					for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
+					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
 					}
 					newFileCreationPage.setFileName(modelFilename);
@@ -636,7 +605,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * Get the file from the page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public IFile getModelFile() {

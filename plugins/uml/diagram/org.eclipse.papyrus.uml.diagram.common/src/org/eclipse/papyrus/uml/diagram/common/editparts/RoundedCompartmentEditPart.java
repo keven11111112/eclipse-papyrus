@@ -92,7 +92,6 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		PapyrusRoundedEditPartHelper.refreshOval(this, getDefaultIsOvalValue());
 		PapyrusRoundedEditPartHelper.refreshFloatingName(this, getDefaultIsFloatingNameConstrained(), getDefaultFloatingLabelOffsetWidth(), getDefaultFloatingLabelOffsetHeight());
 		PapyrusRoundedEditPartHelper.refreshBorderStyle(this, getDefaultBorderStyle(), getDefaultCutomDash());
-		PapyrusRoundedEditPartHelper.refreshSVGOriginalColors(this, getDefaultUseOriginalColors());
 		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
 		PapyrusRoundedEditPartHelper.refreshShadowWidth(this, getDefaultShadowWidth());
 		PapyrusRoundedEditPartHelper.refreshPackage(this, getDefaultIsPackage());

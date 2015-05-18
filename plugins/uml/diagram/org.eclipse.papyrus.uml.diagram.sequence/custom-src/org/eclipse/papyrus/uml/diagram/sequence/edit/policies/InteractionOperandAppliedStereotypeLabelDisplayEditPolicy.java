@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
@@ -41,7 +42,7 @@ public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends A
 		}
 		GuardFigure figure = ((InteractionOperandGuardEditPart) guard).getPrimaryFigure();
 		// calculate text and icon to display
-		final String stereotypesToDisplay = stereotypesOnlyToDisplay();
+		final String stereotypesToDisplay = helper.getStereotypeTextToDisplay((View) getHost().getModel());
 		// computes the icon to be displayed
 		final Image imageToDisplay = stereotypeIconToDisplay();
 
@@ -50,9 +51,9 @@ public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends A
 		// nothing
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 		if (figure instanceof IPapyrusNodeUMLElementFigure) {
-			((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + ("".equals(stereotypesOnlyToDisplay()) ? stereotypesToDisplay : stereotypesToDisplay), imageToDisplay);
+			((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay), imageToDisplay);
 			if (figure instanceof IPapyrusNodeNamedElementFigure) {
-				refreshAppliedStereotypesProperties((IPapyrusNodeNamedElementFigure) figure);
+				refreshAppliedStereotypesPropertiesInBrace(figure);
 			}
 		}
 	}

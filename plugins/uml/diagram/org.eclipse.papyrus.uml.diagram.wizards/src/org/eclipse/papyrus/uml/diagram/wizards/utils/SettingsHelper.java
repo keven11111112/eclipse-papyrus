@@ -38,7 +38,10 @@ public class SettingsHelper {
 	private static final String SETTINGS_KEY_DIAGRAM_TEMPLATES = "DiagramTemplatesFor_"; //$NON-NLS-1$
 
 	/** The Constant LAST_SELECTED_CATEGORY. */
-	private static final String LAST_SELECTED_CATEGORY = "diagramCategory"; //$NON-NLS-1$
+	private static final String DIAGRAM_CATEGORIES = "diagramCategory"; //$NON-NLS-1$
+
+	/** The Constant used to access the last selected category */
+	private static final String SETTINGS_KEY_DIAGRAM_CATEGORY = "lastSelectedCategory"; //$NON-NLS-1$
 
 	/** The my settings. */
 	private final IDialogSettings mySettings;
@@ -59,17 +62,17 @@ public class SettingsHelper {
 	 * @return the default diagram category
 	 */
 	public String[] getDefaultDiagramCategories() {
-		return mySettings.getArray(LAST_SELECTED_CATEGORY);
+		return mySettings.getArray(DIAGRAM_CATEGORIES);
 	}
 
 	/**
 	 * Save default diagram category.
 	 *
 	 * @param categories
-	 *        the categories
+	 *            the categories
 	 */
 	public void saveDefaultDiagramCategory(String[] categories) {
-		mySettings.put(LAST_SELECTED_CATEGORY, categories);
+		mySettings.put(DIAGRAM_CATEGORIES, categories);
 	}
 
 	/**
@@ -81,7 +84,7 @@ public class SettingsHelper {
 	 */
 	public List<String> getDefaultDiagramKinds(String category) {
 		String csl = mySettings.get(getKeyForDiagramKind(category));
-		if(csl == null || csl.equals("")) { //$NON-NLS-1$
+		if (csl == null || csl.equals("")) { //$NON-NLS-1$
 			return Collections.emptyList();
 		}
 		List<String> result = new ArrayList<String>();
@@ -118,7 +121,7 @@ public class SettingsHelper {
 	 */
 	public List<String> getDefaultTemplates(String category) {
 		String csl = mySettings.get(getKeyForTemplate(category));
-		if(csl == null || csl.equals("")) { //$NON-NLS-1$
+		if (csl == null || csl.equals("")) { //$NON-NLS-1$
 			return Collections.emptyList();
 		}
 		List<String> result = new ArrayList<String>();
@@ -168,10 +171,31 @@ public class SettingsHelper {
 	}
 
 	/**
+	 * Puts the most recently selected category tag in the settings to retrieve it on the next execution
+	 * 
+	 * @param category
+	 *            The language tag
+	 */
+	public void setCurrentSelection(String category) {
+		mySettings.put(SETTINGS_KEY_DIAGRAM_CATEGORY, category);
+	}
+
+	/**
+	 * Retrieves the most recently selected category tag from the settings
+	 * 
+	 * @return
+	 * 		The category tag
+	 */
+	public String getPreviousSelection() {
+		return mySettings.get(SETTINGS_KEY_DIAGRAM_CATEGORY);
+	}
+
+
+	/**
 	 * Gets the key for diagram kind.
 	 *
 	 * @param category
-	 *        the category
+	 *            the category
 	 * @return the key for diagram kind
 	 */
 	private String getKeyForDiagramKind(String category) {
@@ -182,7 +206,7 @@ public class SettingsHelper {
 	 * Gets the key for template.
 	 *
 	 * @param category
-	 *        the category
+	 *            the category
 	 * @return the key for template
 	 */
 	private String getKeyForTemplate(String category) {

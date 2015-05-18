@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.Tuple#getInput <em>Input</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.Tuple#getInvocation <em>Invocation</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.Tuple#getOutput <em>Output</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Tuple#getInput <em>Input</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Tuple#getInvocation <em>Invocation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.Tuple#getOutput <em>Output</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTuple()
@@ -42,7 +42,6 @@ public interface Tuple extends SyntaxElement {
 	 * expression is included for any input parameter that is not explicitly
 	 * matched in the tuple.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Input</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTuple_Input()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -59,7 +58,6 @@ public interface Tuple extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The invocation expression of which this tuple is a part.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Invocation</em>' container reference.
 	 * @see #setInvocation(InvocationExpression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTuple_Invocation()
@@ -73,9 +71,7 @@ public interface Tuple extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.Tuple#getInvocation <em>Invocation</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Invocation</em>' container reference.
+	 * @param value the new value of the '<em>Invocation</em>' container reference.
 	 * @see #getInvocation()
 	 * @generated
 	 */
@@ -92,7 +88,6 @@ public interface Tuple extends SyntaxElement {
 	 * expression is included for any output parameter that is not explicitly
 	 * matched in the tuple.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Output</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTuple_Output()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -104,7 +99,6 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -113,7 +107,6 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -122,7 +115,6 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.inputFor(self.invocation.parameter)'"
 	 * @generated
@@ -132,7 +124,6 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" parametersMany="true"
 	 * @generated
 	 */
@@ -141,7 +132,6 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -150,7 +140,6 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.outputFor(self.invocation.parameter)'"
 	 * @generated
@@ -160,7 +149,6 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" parametersMany="true"
 	 * @generated
 	 */
@@ -169,10 +157,16 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @model expressionRequired="true"
+	 * @generated
+	 */
+	OutputNamedExpression outputForExpression(Expression expression);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model ordered="false" elementRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n--        let assignmentsBefore = self.assignmentsBefore() in\n--          if not element.oclIsKindOf(NameExpression) then assignmentsBefore\n--          else\n--            let outputs : Set = self.output->select(expression = element) in\n--              if outputs->isEmpty() then assignmentsBefore\n--              else self.updateFor(assignmentsBefore, \n--                outputs->any(true).oclAsType(OutputNamedExpression)\n--              )\n--              endif\n--          endif\n          self.assignmentsBefore()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n--        let assignmentsBefore = self.assignmentsBefore() in\n--          if not element.oclIsKindOf(NameExpression) then assignmentsBefore\n--          else\n--            let output = self.outputForExpression(element.oclAsType(NameExpression)) in\n--              if output = null then assignmentsBefore\n--              else self.updateFor(assignmentsBefore, output)\n--              endif\n--          endif;\n        self.assignmentsBefore()'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsBefore(SyntaxElement element);
@@ -180,10 +174,8 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignments1 = self.updateAll(\n          self.assignmentsBefore(),\n          self.input.expression->union(self.output.expression).newAssignments()->asSet()\n        ) in\n        let assignments2 = self.output->iterate(\n          output, assignments : Set(AssignedSource) = assignments1 |\n          self.updateFor(assignments, output)\n        ) in\n          self.updateAll(\n            assignments2,\n            self.output->reject(leftHandSide = null)->\n              collect(output : OutputNamedExpression | \n                assignments2->select(name = output.leftHandSide.assignedName())\n              )->\n              reject(isParallelLocalName).copy(self.invocation, null)->asSet()\n           )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignments1 = self.updateAll(\n          self.assignmentsBefore(),\n          self.input.expression->union(self.output.expression).newAssignments()->asSet()\n        ) in\n        let assignments2 = self.output->iterate(\n          output, assignments : Set(AssignedSource) = assignments1 |\n          self.updateFor(assignments, output)\n        ) in\n          self.updateAll(\n            assignments2,\n            self.output->reject(leftHandSide = null)->\n              collect(output : OutputNamedExpression | \n                assignments2->select(name = output.leftHandSide.assignedName())\n              )->\n              reject(isParallelLocalName).copy(self.invocation, null)->asSet()\n           )'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsAfter();
@@ -191,7 +183,6 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignmentsBefore = self.assignmentsBefore() in\n          self.assignmentsAfter()->select(isNew(assignmentsBefore()))'"
 	 * @generated
@@ -201,10 +192,8 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" assignmentsMany="true" assignmentsOrdered="false" outputRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameter = self.invocation.parameterNamed(output.name) in\n          if parameter = null or parameter.direction() <> \'out\' then \n            assignments\n          else\n            let lhs = output.leftHandSide in\n              if lhs = null or lhs.localName() = null or lhs.index() <> null or \n                assignments->exists(name = lhs.localName()) then \n                assignments\n              else\n                AssignedSource{\n                  name = lhs.localName(),\n                  source = self,\n                  type = parameter.type(),\n                  lower = 0,\n                  upper = if parameter.upper() = 1 then 1 else -1 endif\n                }.update(assignments)\n              endif\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameter = self.invocation.parameterNamed(output.name) in\n          if parameter = null or parameter.direction() <> \'out\' then \n            assignments\n          else\n            let lhs = output.leftHandSide in\n              if lhs = null or lhs.localName() = null or lhs.index() <> null or \n                assignments->exists(name = lhs.localName()) then \n                assignments\n              else\n                AssignedSource{\n                  name = lhs.localName(),\n                  source = self,\n                  type = parameter.type(),\n                  lower = 0,\n                  upper = if parameter.upper() = 1 then 1 else -1 endif\n                }.update(assignments)\n              endif\n          endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> updateFor(EList<AssignedSource> assignments, OutputNamedExpression output);
@@ -219,7 +208,6 @@ public interface Tuple extends SyntaxElement {
 	 * matching argument from the tuple, or an empty sequence construction
 	 * expression if there is no matching argument.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -235,7 +223,6 @@ public interface Tuple extends SyntaxElement {
 	 * matching argument from the tuple, or an empty sequence construction
 	 * expression if there is no matching argument.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -248,7 +235,6 @@ public interface Tuple extends SyntaxElement {
 	 * An input parameter may only have a null argument if it has a multiplicity
 	 * lower bound of 0.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.input->forAll(\n          expression.isNull() implies \n            self.invocation.parameterNamed(name).lower() = 0\n        )'"
 	 * @generated
 	 */
@@ -260,7 +246,6 @@ public interface Tuple extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * An output parameter may only have a null argument if it is an out parameter.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.output->forAll(\n          expression.isNull() implies \n            self.invocation.parameterNamed(name).direction() = \'out\'\n        )'"
 	 * @generated
 	 */
@@ -288,7 +273,6 @@ public interface Tuple extends SyntaxElement {
 	 * 
 	 * (See also the InvocationExpression::assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -300,7 +284,6 @@ public interface Tuple extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * A name may be assigned in at most one argument expression of a tuple.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.input.expression->union(self.output.expression).\n          newAssignments()->isUnique(name)'"
 	 * @generated
 	 */

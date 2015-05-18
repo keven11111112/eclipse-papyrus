@@ -68,10 +68,11 @@ public class FUMLElementListener extends ResourceSetListenerImpl {
 			}
 			/* 2.2. Calculate synchronization actions through a synchronization scenario */
 			ISyncScenario scenario = ScenarioFactory.getInstance().createSyncScenario();
-			for (Element key : modifications.keySet()) {
-				subCommands.append(scenario.synchronize(key, modifications.get(key)));
-			}
+			subCommands.append(scenario.synchronize(modifications));
 		}
 		return subCommands;
 	}
+	
+	
 }
+

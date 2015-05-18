@@ -23,7 +23,6 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Numeric Unary Expression</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -31,7 +30,6 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NumericUnaryExpressionImpl() {
@@ -41,7 +39,6 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,23 +50,22 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	 * The cached invocation delegate for the '{@link #type() <em>Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #type()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getNumericUnaryExpression__Type()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNumericUnaryExpression__Type()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference type() {
 		try {
-			return (ElementReference) TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -78,23 +74,22 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	 * The cached invocation delegate for the '{@link #lower() <em>Lower</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #lower()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate LOWER__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getNumericUnaryExpression__Lower()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate LOWER__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNumericUnaryExpression__Lower()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger lower() {
 		try {
-			return (BigInteger) LOWER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (BigInteger)LOWER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -103,23 +98,22 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	 * The cached invocation delegate for the '{@link #upper() <em>Upper</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #upper()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate UPPER__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getNumericUnaryExpression__Upper()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate UPPER__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNumericUnaryExpression__Upper()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger upper() {
 		try {
-			return (BigInteger) UPPER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (BigInteger)UPPER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -127,7 +121,6 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean numericUnaryExpressionTypeDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -138,12 +131,12 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.NUMERIC_UNARY_EXPRESSION__NUMERIC_UNARY_EXPRESSION_TYPE_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "numericUnaryExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.NUMERIC_UNARY_EXPRESSION__NUMERIC_UNARY_EXPRESSION_TYPE_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "numericUnaryExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -153,7 +146,6 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean numericUnaryExpressionLowerDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -164,12 +156,12 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.NUMERIC_UNARY_EXPRESSION__NUMERIC_UNARY_EXPRESSION_LOWER_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "numericUnaryExpressionLowerDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.NUMERIC_UNARY_EXPRESSION__NUMERIC_UNARY_EXPRESSION_LOWER_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "numericUnaryExpressionLowerDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -179,7 +171,6 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean numericUnaryExpressionUpperDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -190,12 +181,12 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.NUMERIC_UNARY_EXPRESSION__NUMERIC_UNARY_EXPRESSION_UPPER_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "numericUnaryExpressionUpperDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.NUMERIC_UNARY_EXPRESSION__NUMERIC_UNARY_EXPRESSION_UPPER_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "numericUnaryExpressionUpperDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -206,7 +197,6 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	 * The cached validation expression for the '{@link #numericUnaryExpressionOperand(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Numeric Unary Expression Operand</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #numericUnaryExpressionOperand(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -216,47 +206,46 @@ public class NumericUnaryExpressionImpl extends UnaryExpressionImpl implements N
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean numericUnaryExpressionOperand(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return AlfValidator.validate
+		return
+			AlfValidator.validate
 				(AlfPackage.eINSTANCE.getNumericUnaryExpression(),
-						this,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						AlfPackage.eINSTANCE.getNumericUnaryExpression__NumericUnaryExpressionOperand__DiagnosticChain_Map(),
-						NUMERIC_UNARY_EXPRESSION_OPERAND_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
-						Diagnostic.ERROR,
-						AlfValidator.DIAGNOSTIC_SOURCE,
-						AlfValidator.NUMERIC_UNARY_EXPRESSION__NUMERIC_UNARY_EXPRESSION_OPERAND);
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 AlfPackage.eINSTANCE.getNumericUnaryExpression__NumericUnaryExpressionOperand__DiagnosticChain_Map(),
+				 NUMERIC_UNARY_EXPRESSION_OPERAND_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 AlfValidator.DIAGNOSTIC_SOURCE,
+				 AlfValidator.NUMERIC_UNARY_EXPRESSION__NUMERIC_UNARY_EXPRESSION_OPERAND);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.NUMERIC_UNARY_EXPRESSION___TYPE:
-			return type();
-		case AlfPackage.NUMERIC_UNARY_EXPRESSION___LOWER:
-			return lower();
-		case AlfPackage.NUMERIC_UNARY_EXPRESSION___UPPER:
-			return upper();
-		case AlfPackage.NUMERIC_UNARY_EXPRESSION___NUMERIC_UNARY_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return numericUnaryExpressionTypeDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.NUMERIC_UNARY_EXPRESSION___NUMERIC_UNARY_EXPRESSION_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return numericUnaryExpressionLowerDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.NUMERIC_UNARY_EXPRESSION___NUMERIC_UNARY_EXPRESSION_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return numericUnaryExpressionUpperDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.NUMERIC_UNARY_EXPRESSION___NUMERIC_UNARY_EXPRESSION_OPERAND__DIAGNOSTICCHAIN_MAP:
-			return numericUnaryExpressionOperand((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.NUMERIC_UNARY_EXPRESSION___TYPE:
+				return type();
+			case AlfPackage.NUMERIC_UNARY_EXPRESSION___LOWER:
+				return lower();
+			case AlfPackage.NUMERIC_UNARY_EXPRESSION___UPPER:
+				return upper();
+			case AlfPackage.NUMERIC_UNARY_EXPRESSION___NUMERIC_UNARY_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return numericUnaryExpressionTypeDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.NUMERIC_UNARY_EXPRESSION___NUMERIC_UNARY_EXPRESSION_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return numericUnaryExpressionLowerDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.NUMERIC_UNARY_EXPRESSION___NUMERIC_UNARY_EXPRESSION_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return numericUnaryExpressionUpperDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.NUMERIC_UNARY_EXPRESSION___NUMERIC_UNARY_EXPRESSION_OPERAND__DIAGNOSTICCHAIN_MAP:
+				return numericUnaryExpressionOperand((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

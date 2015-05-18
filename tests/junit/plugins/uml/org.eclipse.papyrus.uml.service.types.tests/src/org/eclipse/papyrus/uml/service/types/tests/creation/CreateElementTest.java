@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.tests.creation;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -27,13 +28,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -42,6 +43,7 @@ import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
@@ -57,7 +59,7 @@ public class CreateElementTest extends AbstractPapyrusTest {
 
 	@ClassRule
 	public static final HouseKeeper.Static houseKeeper = new HouseKeeper.Static();
-	
+
 	private static IProject createProject;
 
 	private static IFile copyPapyrusModel;
@@ -99,14 +101,14 @@ public class CreateElementTest extends AbstractPapyrusTest {
 		// open project
 		openPapyrusEditor = houseKeeper.openPapyrusEditor(copyPapyrusModel);
 
-		transactionalEditingDomain = (TransactionalEditingDomain)openPapyrusEditor.getAdapter(TransactionalEditingDomain.class);
+		transactionalEditingDomain = (TransactionalEditingDomain) openPapyrusEditor.getAdapter(TransactionalEditingDomain.class);
 		assertTrue("Impossible to init editing domain", transactionalEditingDomain instanceof TransactionalEditingDomain);
 
 		// retrieve UML model from this editor
 		try {
 			modelset = ModelUtils.getModelSetChecked(openPapyrusEditor.getServicesRegistry());
 			umlIModel = UmlUtils.getUmlModel(modelset);
-			rootModel = (Model)umlIModel.lookupRoot();
+			rootModel = (Model) umlIModel.lookupRoot();
 		} catch (ServiceException e) {
 			fail(e.getMessage());
 		} catch (NotFoundException e) {
@@ -120,6 +122,16 @@ public class CreateElementTest extends AbstractPapyrusTest {
 			fail(e.getMessage());
 		}
 
+		// force load of the element type registry. Will need to load in in UI thread because of some advice in communication diag: see org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages
+		Display.getDefault().syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				ElementTypeSetConfigurationRegistry registry = ElementTypeSetConfigurationRegistry.getInstance();
+				Assert.assertNotNull("registry should not be null after init", registry);
+				Assert.assertNotNull("element type should not be null", UMLElementTypes.CLASS);
+			}
+		});
 	}
 
 	/**
@@ -127,9 +139,9 @@ public class CreateElementTest extends AbstractPapyrusTest {
 	 */
 	private static void initExistingElements() throws Exception {
 		// existing test activity
-		testActivity = (Activity)rootModel.getOwnedMember("TestActivity");
-		testClass = (Class)rootModel.getOwnedMember("TestClass");
-		testActivityWithNode = (Activity)rootModel.getOwnedMember("TestActivityWithNode");
+		testActivity = (Activity) rootModel.getOwnedMember("TestActivity");
+		testClass = (Class) rootModel.getOwnedMember("TestClass");
+		testActivityWithNode = (Activity) rootModel.getOwnedMember("TestActivityWithNode");
 	}
 
 
@@ -202,7 +214,7 @@ public class CreateElementTest extends AbstractPapyrusTest {
 		Command command = getCreateChildCommand(owner, hintedType, canCreate);
 
 		// command has been tested when created. Runs the test if it is possible
-		if(canCreate) {
+		if (command != null && canCreate) {
 			transactionalEditingDomain.getCommandStack().execute(command);
 			transactionalEditingDomain.getCommandStack().undo();
 			Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
@@ -218,31 +230,28 @@ public class CreateElementTest extends AbstractPapyrusTest {
 	 * Creates the element in the given owner element, undo and redo the action
 	 *
 	 * @param owner
-	 *        owner of the new element
+	 *            owner of the new element
 	 * @param hintedType
-	 *        type of the new element
+	 *            type of the new element
 	 * @param canCreate
-	 *        <code>true</code> if new element can be created in the specified owner
+	 *            <code>true</code> if new element can be created in the specified owner
 	 */
 	protected Command getCreateChildCommand(EObject owner, IHintedType hintedType, boolean canCreate) throws Exception {
 		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
 		ICommand command = elementEditService.getEditCommand(new CreateElementRequest(owner, hintedType));
-		assertTrue("Command should be a CreationCommand", command instanceof CreateElementCommand);
-		// test if the command is enable and compare with the canCreate parameter
-		boolean canExecute = command.canExecute();
-		if(canExecute) {
-			// executable but was expected as not executable
-			if(!canCreate) {
+
+		if (!canCreate) {
+			// command should not be executable: either it should be null or it should be not executable
+			if (command != null && command.canExecute()) {
 				fail("Creation command is executable but it was expected as not executable");
-			} else {
-				// command is executable, and it was expected to => run the creation
-				Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
-				return emfCommand;
 			}
 		} else {
-			if(canCreate) {
-				fail("Creation command is not executable but it was expected to be executable");
-			}
+			// command should be executable in this case
+			assertNotNull("Command should not be null", command);
+			assertTrue("Command should be executable", command.canExecute());
+			// command is executable, and it was expected to => run the creation
+			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
+			return emfCommand;
 		}
 		return null;
 	}
