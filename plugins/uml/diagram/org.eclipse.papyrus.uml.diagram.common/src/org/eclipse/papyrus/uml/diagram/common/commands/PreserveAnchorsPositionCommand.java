@@ -258,6 +258,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 		Rectangle figureBounds = getFigureBounds();
 
 		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(anchor.getId());
+		if(pp==null){
+			pp= new PrecisionPoint();
+		}
 
 		if (getPreserveAxis() == PRESERVE_Y || getPreserveAxis() == PRESERVE_XY) {
 			int anchorYPos = (int) Math.round(figureBounds.height * pp.preciseY());
@@ -350,6 +353,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 		}
 
 		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(anchor.getId());
+		if(pp==null){
+			pp= new PrecisionPoint();
+		}
 
 		int margin = 6;
 
