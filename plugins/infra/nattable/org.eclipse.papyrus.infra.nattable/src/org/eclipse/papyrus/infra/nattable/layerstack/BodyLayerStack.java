@@ -95,10 +95,10 @@ public class BodyLayerStack extends AbstractLayerTransform {
 		// this.columnHideShowLayer = new ColumnHideShowLayer(this.rowReoderLayer);
 
 		this.columnHideShowLayer = new ColumnHideShowLayer(this.columnReorderLayer);
-		this.selectionLayer = new PapyrusSelectionLayer(columnHideShowLayer);
-		this.rowHideShowLayer = new RowHideShowLayer(selectionLayer);
-
-		this.viewportLayer = new ViewportLayer(this.rowHideShowLayer);
+		
+		this.rowHideShowLayer = new RowHideShowLayer(columnHideShowLayer);
+		this.selectionLayer = new PapyrusSelectionLayer(rowHideShowLayer);
+		this.viewportLayer = new ViewportLayer(this.selectionLayer);
 		setUnderlyingLayer(this.viewportLayer);
 		setRegionName(GridRegion.BODY);
 	}

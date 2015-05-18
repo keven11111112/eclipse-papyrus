@@ -1108,7 +1108,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	public void copyToClipboard() {
-		this.natTable.doCommand(new CopyDataToClipboardCommand("\t", "\n", this.natTable.getConfigRegistry()));
+		this.natTable.doCommand(new CopyDataToClipboardCommand("\t", System.getProperty("line.separator"), this.natTable.getConfigRegistry())); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
