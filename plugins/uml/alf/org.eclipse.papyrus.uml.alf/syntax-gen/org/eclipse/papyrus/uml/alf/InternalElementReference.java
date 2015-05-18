@@ -646,7 +646,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isActivity() then null\n        else\n          let namespace = self.element.oclAsType(ActivityDefinition).namespaceReference() in\n            if namespace = null or \n              not self.equals(namespace.classifierBehavior()) then null\n            else namespace\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isActivity() then null\n        else\n        \tlet stub = self.stub() in\n        \tlet this = if stub = null then self else stub endif in\n          let namespace = this.namespace() in\n            if namespace = null or \n              not this.equals(namespace.classifierBehavior()) then null\n            else namespace\n            endif\n        endif'"
 	 * @generated
 	 */
 	ElementReference activeClass();

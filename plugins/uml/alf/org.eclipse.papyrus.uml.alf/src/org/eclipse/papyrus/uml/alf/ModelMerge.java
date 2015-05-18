@@ -86,7 +86,8 @@ public class ModelMerge {
 				targetActivity.getNodes().clear();
 				targetActivity.getEdges().clear();
 				/*2. Create them from the mapped specification*/
-				this.updateCollection(targetActivity.getOwnedNodes(), sourceActivity.getNodes());
+				this.updateCollection(targetActivity.getOwnedNodes(), sourceActivity.getOwnedNodes());
+				this.updateCollection(targetActivity.getStructuredNodes(), sourceActivity.getStructuredNodes());
 				this.updateCollection(targetActivity.getEdges(), sourceActivity.getEdges());
 			}
 		} else if (source instanceof Class && target instanceof Class) {

@@ -29,6 +29,7 @@ import org.eclipse.papyrus.uml.alf.SyntaxElement;
 import org.eclipse.papyrus.uml.alf.tests.mapper.AlfCompiler;
 import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallOperationAction;
@@ -49,6 +50,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -158,13 +160,19 @@ public class CompilerTests {
 		}
 	}
 	
+	public static <T extends PackageableElement> T map(T contextElement, SyntaxElement element)
+			throws MappingError {
+			List<EObject> alf = new BasicEList<EObject>();
+			alf.add(element);
+			compiler.map(contextElement, alf);
+			return contextElement;
+		}
+		
 	public static <T extends PackageableElement> T compile(T contextElement, String textualRepresentation, Namespace contextNamespace)
 		throws ParsingError, MappingError {
-		List<EObject> alf = new BasicEList<EObject>();
 		SyntaxElement element = (SyntaxElement)compiler.parse(textualRepresentation);
 		ModelNamespaceFacade.getInstance().getContext(element).setContextNamespace(contextNamespace);
-		alf.add(element);
-		compiler.map(contextElement, alf);
+		map(contextElement, element);
 		compiler.addTextualRepresentation(contextElement, textualRepresentation);
 		return contextElement;
 	}
@@ -516,5 +524,56 @@ public class CompilerTests {
 		assertProperty(signal.getOwnedAttributes().get(0),
 				VisibilityKind.PUBLIC_LITERAL, "a", 1, 1, false, true, "Integer");
 	}
+	
+	public static String TEST_CLASSIFIER_BEHAVOR_TEXT = "active class Test { public p() { } } do { this.p(); }";
+	public static String CLASSIFIER_BEHAVIOR_ACTIVITY_TEXT = "activity 'Test$behavior$1'() {\n\tthis.p();\n}";
+	
+	public static Class compileTestClassifierBehavior() throws ParsingError, MappingError {
+		return compileClass(TEST_CLASSIFIER_BEHAVOR_TEXT);
+	}
+	
+	@Test 
+	public void testNewClassifierBehavior() throws ParsingError, MappingError {
+		Class testClass = compileTestClassifierBehavior();
+		
+		assertTextualRepresentation(testClass, TEST_CLASSIFIER_BEHAVOR_TEXT);
+		
+		Behavior classifierBehavior = testClass.getClassifierBehavior();
+		assertNotNull(classifierBehavior);
+		assertEquals(testClass.getName() + "$behavior$1", classifierBehavior.getName());
+		assertTrue(classifierBehavior instanceof Activity);
+		assertTextualRepresentation(classifierBehavior, CLASSIFIER_BEHAVIOR_ACTIVITY_TEXT);
+	}
 
+	@Test
+	public void testClassifierBehaviorRecompile() throws ParsingError, MappingError {
+		Class testClass = compileTestClassifierBehavior();
+		
+		Behavior classifierBehavior = testClass.getClassifierBehavior();
+		assertNotNull(classifierBehavior);
+		assertTrue(classifierBehavior instanceof Activity);
+		Operation operation = testClass.getOperation("p", new BasicEList<String>(), new BasicEList<Type>());
+		assertNotNull(operation);
+		
+		compile(classifierBehavior, compiler.getTextualRepresentation(classifierBehavior), testClass);		
+		assertEquals(testClass.getClassifierBehavior(), classifierBehavior);
+
+		// Check that "this" is still resolved correctly.
+		Activity activity = (Activity)classifierBehavior;
+		assertEquals(1, activity.getStructuredNodes().size());
+		StructuredActivityNode body = activity.getStructuredNodes().get(0);
+		assertEquals(1, body.getNodes().size());
+		ActivityNode node = body.getNodes().get(0);
+		assertTrue(node instanceof StructuredActivityNode);
+		StructuredActivityNode statement = (StructuredActivityNode)node;
+		CallOperationAction action = null;
+		for (ActivityNode activityNode: statement.getNodes()) {
+			if (activityNode instanceof CallOperationAction) {
+				action = (CallOperationAction)activityNode;
+				break;
+			}
+		}
+		assertNotNull(action);
+		assertEquals(operation, action.getOperation());
+	}
 }

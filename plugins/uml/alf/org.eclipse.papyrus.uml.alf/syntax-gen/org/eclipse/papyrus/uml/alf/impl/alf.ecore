@@ -826,7 +826,7 @@
     </eOperations>
     <eOperations name="activeClass" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isActivity() then null&#xA;        else&#xA;          let namespace = self.element.oclAsType(ActivityDefinition).namespaceReference() in&#xA;            if namespace = null or &#xA;              not self.equals(namespace.classifierBehavior()) then null&#xA;            else namespace&#xA;            endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isActivity() then null&#xA;        else&#xA;        &#x9;let stub = self.stub() in&#xA;        &#x9;let this = if stub = null then self else stub endif in&#xA;          let namespace = this.namespace() in&#xA;            if namespace = null or &#xA;              not this.equals(namespace.classifierBehavior()) then null&#xA;            else namespace&#xA;            endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="conformsTo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
