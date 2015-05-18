@@ -541,6 +541,7 @@ public class CompilerTests {
 		Behavior classifierBehavior = testClass.getClassifierBehavior();
 		assertNotNull(classifierBehavior);
 		assertEquals(testClass.getName() + "$behavior$1", classifierBehavior.getName());
+		assertEquals(VisibilityKind.PRIVATE_LITERAL, classifierBehavior.getVisibility());
 		assertTrue(classifierBehavior instanceof Activity);
 		assertTextualRepresentation(classifierBehavior, CLASSIFIER_BEHAVIOR_ACTIVITY_TEXT);
 	}
@@ -557,6 +558,7 @@ public class CompilerTests {
 		
 		compile(classifierBehavior, compiler.getTextualRepresentation(classifierBehavior), testClass);		
 		assertEquals(testClass.getClassifierBehavior(), classifierBehavior);
+		assertEquals(VisibilityKind.PRIVATE_LITERAL, classifierBehavior.getVisibility());
 
 		// Check that "this" is still resolved correctly.
 		Activity activity = (Activity)classifierBehavior;

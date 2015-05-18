@@ -63,7 +63,9 @@ public class ModelMerge {
 			Package targetPackage = (Package) target;
 			updateStereotypes(targetPackage, sourcePackage);
 			setList(targetPackage.getOwnedComments(), sourcePackage.getOwnedComments());
-			targetPackage.setVisibility(sourcePackage.getVisibility());
+			if (sourcePackage.isSetVisibility()) {
+				targetPackage.setVisibility(sourcePackage.getVisibility());
+			}
 			targetPackage.setName(nameOf(sourcePackage));
 			if (notStub(sourcePackage)) {
 				this.updateCollection(targetPackage.getPackagedElements(), sourcePackage.getPackagedElements());
@@ -241,7 +243,9 @@ public class ModelMerge {
 		setList(target.getGeneralizations(), source.getGeneralizations());
 		setList(target.getTemplateBindings(), source.getTemplateBindings());
 		target.setName(nameOf(source));
-		target.setVisibility(source.getVisibility());
+		if (source.isSetVisibility()) {
+			target.setVisibility(source.getVisibility());
+		}
 		target.setIsAbstract(source.isAbstract());
 		target.setOwnedTemplateSignature(source.getOwnedTemplateSignature());
 		if (notStub(source)) {

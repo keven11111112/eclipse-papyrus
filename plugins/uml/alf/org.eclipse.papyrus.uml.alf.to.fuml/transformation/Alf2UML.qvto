@@ -303,7 +303,6 @@ init {
       endif endif
   endif;
   */
-  visibility := VisibilityKind::public;
   elementImport := self._import[ElementImportReference]->map toElementImport();
   packageImport := self._import[PackageImportReference]->map toPackageImport();
   if self.annotation->notEmpty() then
