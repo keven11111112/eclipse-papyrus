@@ -17,6 +17,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,7 +27,7 @@ import org.junit.Test;
  * @author Vincent Lorenzo
  *         This tests classes tests provides clipboard reading and wrintg tests into the clipboard
  */
-public class ClipboardTests {
+public class ClipboardTests extends AbstractPapyrusTest{
 
 	/**
 	 * the string used to fill the clipboard. We don't use \n or \r\n, because it seems me than the implements AWT/SWT changes them and it is not the goal of these tests
