@@ -19,11 +19,11 @@ import org.eclipse.uml2.uml.Interface;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageSet#getBase_Interface <em>Base Interface</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageSet#getRtMsgKind <em>Rt Msg Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.umlrt.UMLRealTime.UMLRealTimePackage#getRTMessageSet()
  * @model

@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.Port;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTPortImpl#isNotification <em>Is Notification</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTPortImpl#isPublish <em>Is Publish</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.uml2.uml.Port;
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTPortImpl#getRegistrationOverride <em>Registration Override</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTPortImpl#getBase_Port <em>Base Port</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

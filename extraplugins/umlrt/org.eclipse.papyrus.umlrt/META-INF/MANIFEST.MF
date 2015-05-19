@@ -34,9 +34,12 @@ Export-Package: org.eclipse.papyrus.umlrt.UMLRealTime,
  org.eclipse.papyrus.umlrt.custom.matcher,
  org.eclipse.papyrus.umlrt.custom.utils,
  org.eclipse.papyrus.umlrt.internal.expressions;x-internal:=true,
- org.eclipse.papyrus.umlrt.internal.sync;x-friends:="org.eclipse.papyrus.umlrt.ui",
- org.eclipse.papyrus.umlrt.internal.sync.capsule;x-friends:="org.eclipse.papyrus.umlrt.ui",
- org.eclipse.papyrus.umlrt.internal.sync.statemachine;x-friends:="org.eclipse.papyrus.umlrt.ui",
+ org.eclipse.papyrus.umlrt.internal.sync;
+  x-friends:="org.eclipse.papyrus.umlrt.ui",
+ org.eclipse.papyrus.umlrt.internal.sync.capsule;
+  x-friends:="org.eclipse.papyrus.umlrt.ui",
+ org.eclipse.papyrus.umlrt.internal.sync.statemachine;
+  x-friends:="org.eclipse.papyrus.umlrt.ui",
  org.eclipse.papyrus.umlrt.internals,
  org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach,
  org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl,

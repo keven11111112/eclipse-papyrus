@@ -27,10 +27,10 @@ import org.eclipse.uml2.uml.Pseudostate;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl.RTPseudostateImpl#getBase_Pseudostate <em>Base Pseudostate</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

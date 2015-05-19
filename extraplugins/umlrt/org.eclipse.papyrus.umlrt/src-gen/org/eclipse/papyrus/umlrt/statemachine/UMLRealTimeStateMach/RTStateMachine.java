@@ -22,19 +22,19 @@ import org.eclipse.uml2.uml.StateMachine;
  * not base_StateMachine.isReentrant
  * (base_StateMachine.ownedParameter->size()=0) and
  * (base_StateMachine.ownedParameterSet->size() = 0)
- * (base_StateMachine.behavioredClassifier->size()=1)
- * and (base_StateMachine.behavioredClassifier.oclIsKindOf(Class))
- * isPassive = not (base_StateMachine.behavioredClassifier.oclAsType(Class).isActive)
+ * (base_StateMachine.context->size()=1)
+ * and (base_StateMachine.context.oclIsKindOf(Class))
+ * isPassive = not (base_StateMachine.context.oclAsType(Class).isActive)
  * isPassive implies not (base_StateMachine.isReentrant)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.RTStateMachine#getBase_StateMachine <em>Base State Machine</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.RTStateMachine#isPassive <em>Is Passive</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.UMLRealTimeStateMachPackage#getRTStateMachine()
  * @model

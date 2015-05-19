@@ -564,7 +564,7 @@ public class UMLRealTimePackageImpl extends EPackageImpl implements UMLRealTimeP
 		initEEnum(portRegistrationTypeEEnum, PortRegistrationType.class, "PortRegistrationType"); //$NON-NLS-1$
 		addEEnumLiteral(portRegistrationTypeEEnum, PortRegistrationType.AUTOMATIC);
 		addEEnumLiteral(portRegistrationTypeEEnum, PortRegistrationType.APPLICATION);
-		addEEnumLiteral(portRegistrationTypeEEnum, PortRegistrationType.APPLICATION_LOCKED);
+		addEEnumLiteral(portRegistrationTypeEEnum, PortRegistrationType.AUTOMATIC_LOCKED);
 
 		initEEnum(rtMessageKindEEnum, RTMessageKind.class, "RTMessageKind"); //$NON-NLS-1$
 		addEEnumLiteral(rtMessageKindEEnum, RTMessageKind.IN);

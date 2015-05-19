@@ -27,11 +27,11 @@ import org.eclipse.uml2.uml.StateMachine;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl.RTStateMachineImpl#getBase_StateMachine <em>Base State Machine</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl.RTStateMachineImpl#isPassive <em>Is Passive</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

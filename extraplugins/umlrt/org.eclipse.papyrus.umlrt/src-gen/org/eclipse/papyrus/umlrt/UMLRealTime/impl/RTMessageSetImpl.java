@@ -28,11 +28,11 @@ import org.eclipse.uml2.uml.Interface;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTMessageSetImpl#getBase_Interface <em>Base Interface</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTMessageSetImpl#getRtMsgKind <em>Rt Msg Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
