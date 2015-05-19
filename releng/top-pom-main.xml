@@ -332,16 +332,6 @@
 		<module>../plugins/views/validation/org.eclipse.papyrus.views.validation</module>
 		<module>../plugins/team/org.eclipse.papyrus.team.svn</module>
 		<module>main</module>
-		<!-- Papyrus Sysml 1.4 -->
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14</module>
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.ui</module>
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.common</module>
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.blockdefinition</module>
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.internalblock</module>
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.parametric</module>
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.requirement</module>
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.edit</module>
-		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.service.types</module>
 		<!-- Papyrus examples -->
 		<module>../examples/core/org.eclipse.papyrus.example.core.lifecycleevents</module>
 		<module>../examples/core/org.eclipse.papyrus.example.core.sashwindows.fulleditor</module>
