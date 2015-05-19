@@ -27,10 +27,10 @@ import org.eclipse.uml2.uml.Collaboration;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.ProtocolImpl#getBase_Collaboration <em>Base Collaboration</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -52,6 +52,29 @@ public class Messages extends NLS {
 	public static String CreateOrShowExistingLinkDialog_Sources;
 
 	public static String CreateOrShowExistingLinkDialog_Targets;
+	
+	public static String CreateOrSelectTypeDialog_DialogTitle;
+
+	public static String CreateOrSelectTypeDialog_SelectionSectionTitle;
+
+	public static String CreateOrSelectTypeDialog_SelectionSectionRadioLabel;
+
+	public static String CreateOrSelectTypeDialog_CreationSectionTitle;
+
+	public static String CreateOrSelectTypeDialog_CreationSectionRadioLabel;
+
+	public static String CreateOrSelectTypeDialog_NewTypeNameLabel;
+
+	public static String CreateOrSelectTypeDialog_NewTypeContainerNameLabel;
+
+	public static String CreateOrSelectTypeDialog_SelectTypeDialogTitle;
+
+	public static String CreateOrSelectTypeDialog_SelectTypeDialogMessage;
+
+	public static String CreateOrSelectTypeDialog_SelectNewTypeContainerDialogTitle;
+
+	public static String CreateOrSelectTypeDialog_SelectNewTypeContainerDialogMessage;
+	
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

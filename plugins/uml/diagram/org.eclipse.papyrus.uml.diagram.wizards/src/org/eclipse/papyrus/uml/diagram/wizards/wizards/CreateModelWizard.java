@@ -257,7 +257,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		createAndOpenPapyrusModel(newURI, diagramCategoryId);
 
-
 		return true;
 	}
 
@@ -301,11 +300,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 			initDiagramModel(modelSet, diagramCategoryId);
 
-
-
 			initProfile(modelSet);
 			initTemplate(modelSet);
-			openDiagram(newURI);
+			// openDiagram(newURI);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 			return false;
@@ -625,6 +622,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *            the di resource set
 	 */
 	private void saveDiagram(ModelSet modelSet) {
+		// TODO verify that there are no conflicts with the existing files and the newly created one
 		try {
 			modelSet.save(new NullProgressMonitor());
 		} catch (IOException e) {
@@ -914,6 +912,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		for (int i = endProviderPageIndex; result && (i < allPages.length); i++) {
 			result = allPages[i].isPageComplete();
+		}
+
+		// This takes care of the case problems when creating a model with the same name but different case
+		for (IWizardPage page : allPages) {
+			if (page instanceof NewModelFilePage) {
+				return page.canFlipToNextPage();
+			}
 		}
 
 		return result;

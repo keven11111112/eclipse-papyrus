@@ -209,8 +209,8 @@ query sourcert::PortRegistrationType::getPapyrusType() : umlrt::PortRegistration
 			umlrt::PortRegistrationType::Automatic;
 		case (self = sourcert::PortRegistrationType::Application) 
 			umlrt::PortRegistrationType::Application;
-		else 
-			umlrt::PortRegistrationType::ApplicationLocked;
+		else
+			umlrt::PortRegistrationType::AutomaticLocked;
 	};
 }
 

@@ -150,7 +150,6 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 		PapyrusRoundedEditPartHelper.refreshOval(this, getDefaultIsOvalValue());
 		PapyrusRoundedEditPartHelper.refreshFloatingName(this, getDefaultIsFloatingNameConstrained(), getDefaultFloatingLabelOffsetWidth(), getDefaultFloatingLabelOffsetHeight());
 		PapyrusRoundedEditPartHelper.refreshBorderStyle(this, getDefaultBorderStyle(), getDefaultCutomDash());
-		PapyrusRoundedEditPartHelper.refreshSVGOriginalColors(this, getDefaultUseOriginalColors());
 		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
 		PapyrusRoundedEditPartHelper.refreshShadowColor(this, getDefaultShadowColor());
 		refreshPortPosition();

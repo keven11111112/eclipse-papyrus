@@ -27,10 +27,10 @@ import org.eclipse.uml2.uml.Connector;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTConnectorImpl#getBase_Connector <em>Base Connector</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

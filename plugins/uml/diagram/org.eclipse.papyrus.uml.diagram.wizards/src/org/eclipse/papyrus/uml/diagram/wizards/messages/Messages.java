@@ -82,6 +82,9 @@ public class Messages extends NLS {
 	/** The New model file page_page_desc. */
 	public static String NewModelFilePage_page_desc;
 
+	/** The New model file page_page_desc. */
+	public static String NewModelFilePage_page_same_case_desc;
+
 	/** The Select diagram category page_cannot_find_category. */
 	public static String SelectDiagramCategoryPage_cannot_find_category;
 

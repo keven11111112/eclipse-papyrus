@@ -19,14 +19,19 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
@@ -34,6 +39,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansion.ChildrenListRepresentation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
@@ -175,6 +184,23 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	}
 
 	/**
+	 * get the diagram type from a view.
+	 * @param currentView the current view
+	 * @return the diagram type it can be also a view point
+	 */
+	protected static String getDiagramType(View currentView) {
+		Diagram diagram=currentView.getDiagram();
+		String currentDiagramType=null;
+		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if(viewPrototype!=null){
+			currentDiagramType=viewPrototype.getLabel();
+		}
+		else{
+			currentDiagramType=diagram.getType();
+		}
+		return currentDiagramType;
+	}
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -182,17 +208,39 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType())) {
 			return this;
 		}
-		
-		//find the edipart that can respond to this request
-		List<?> subEditParts=getChildren();
-		for (Object object : subEditParts) {
-			if(object instanceof CompartmentEditPart){
-				Command cmd=((CompartmentEditPart)object).getCommand(request);
-				if (cmd!=null && cmd.canExecute()){
-					return ((CompartmentEditPart)object);
+
+		if (request instanceof CreateViewAndElementRequest) {
+			String  elementHint= ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getSemanticHint();
+			DiagramExpansionsRegistry diagramExpansionRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
+			String diagramType= getDiagramType(getNotationView());
+			String currentElementType=getNotationView().getType();
+			//there is an extension for the current diagram?
+			if(diagramExpansionRegistry.mapChildreen.get(diagramType)!=null){
+				List<String> possibleChildreenIDs=diagramExpansionRegistry.mapChildreen.get(diagramType).parentChildrenRelation.get(currentElementType);
+				//The current element has expansion, it may be compartment?
+				if (possibleChildreenIDs!=null){
+					//maybe the container can create it.
+					if (possibleChildreenIDs.contains(elementHint)){
+						return this;
+					}
+					//look for accepted element in compartments to find good compartment
+					for (String compartmentHint : possibleChildreenIDs) {
+						List<String> compartmentChildreenIDs=diagramExpansionRegistry.mapChildreen.get(diagramType).parentChildrenRelation.get(compartmentHint);
+						if( compartmentChildreenIDs.contains(elementHint)){
+							//find the edipart that can respond to this accepted hint
+							List<?> subEditParts=getChildren();
+							for (Object object : subEditParts) {
+								if(object instanceof IGraphicalEditPart){
+									if(((IGraphicalEditPart)object).getNotationView().getType().equals(compartmentHint)){
+										return ((IGraphicalEditPart)object);
+									}
+
+								}
+							}
+						}
+					}
 				}
 			}
-			
 		}
 		return super.getTargetEditPart(request);
 	}

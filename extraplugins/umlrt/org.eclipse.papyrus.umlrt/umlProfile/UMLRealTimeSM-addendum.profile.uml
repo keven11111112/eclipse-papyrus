@@ -6481,14 +6481,14 @@
       <ownedRule xmi:type="uml:Constraint" xmi:id="_IKB9EGe_EeO447LqwGjc0A" name="RT state machines must have a context and it must be a Class" constrainedElement="_xie4kFDtEeOA4ecmvfqvaw">
         <specification xmi:type="uml:OpaqueExpression" xmi:id="_Xs7DMGe_EeO447LqwGjc0A">
           <language>OCL</language>
-          <body>(base_StateMachine.behavioredClassifier->size()=1) &#xD;
-and (base_StateMachine.behavioredClassifier.oclIsKindOf(Class))</body>
+          <body>(base_StateMachine.context->size()=1) &#xD;
+and (base_StateMachine.context.oclIsKindOf(Class))</body>
         </specification>
       </ownedRule>
       <ownedRule xmi:type="uml:Constraint" xmi:id="_ZzQdkGe_EeO447LqwGjc0A" name="Passive state machine are only allowed on passive data classes" constrainedElement="_xie4kFDtEeOA4ecmvfqvaw">
         <specification xmi:type="uml:OpaqueExpression" xmi:id="_v7hfwGfAEeO447LqwGjc0A">
           <language>OCL</language>
-          <body>isPassive = not (base_StateMachine.behavioredClassifier.oclAsType(Class).isActive) </body>
+          <body>isPassive = not (base_StateMachine.context.oclAsType(Class).isActive) </body>
         </specification>
       </ownedRule>
       <ownedRule xmi:type="uml:Constraint" xmi:id="_p5jTkFqiEeS6ZrwKK5dCsw" name="Passive state machines must not be reentrant" constrainedElement="_xie4kFDtEeOA4ecmvfqvaw">
@@ -6596,4 +6596,5 @@ and (base_StateMachine.behavioredClassifier.oclIsKindOf(Class))</body>
   <PapyrusDSMLValidationRule:ValidationRule xmi:id="_thelIBMoEeSz2qq_H0HScA" base_Constraint="_dXOG4FDyEeOA4ecmvfqvaw" message="RT state machines do not support &quot;do&quot; activities" id="noDoActivity"/>
   <PapyrusDSMLValidationRule:ValidationRule xmi:id="_xP9pEBMoEeSz2qq_H0HScA" base_Constraint="_eTI8kFDyEeOA4ecmvfqvaw" message="RT state machines cannot have any deferred triggers " id="noDeferredTriggers"/>
   <PapyrusDSMLValidationRule:ValidationRule xmi:id="_1Hq6cBMoEeSz2qq_H0HScA" base_Constraint="_C1PjYFD6EeOMYqaaVdNqwA" message="RT state machines do not support concurrency or shallow history" id="noConcurrencyHistory"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_4pGYsPfIEeST74bfXTcSng" base_Constraint="_p5jTkFqiEeS6ZrwKK5dCsw" message="Passive state machines must not be reentrant" id="passiveNotReentrant"/>
 </xmi:XMI>

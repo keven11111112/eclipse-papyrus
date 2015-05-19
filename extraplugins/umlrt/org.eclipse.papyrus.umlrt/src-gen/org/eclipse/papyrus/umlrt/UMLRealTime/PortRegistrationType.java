@@ -42,17 +42,15 @@ public enum PortRegistrationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	APPLICATION(1, "Application", "Application"), //$NON-NLS-1$ //$NON-NLS-2$
-
-	/**
-	 * The '<em><b>Application Locked</b></em>' literal object.
+	APPLICATION(1, "Application", "Application"), /**
+	 * The '<em><b>Automatic Locked</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #APPLICATION_LOCKED_VALUE
+	 * @see #AUTOMATIC_LOCKED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	APPLICATION_LOCKED(2, "ApplicationLocked", "ApplicationLocked"); //$NON-NLS-1$ //$NON-NLS-2$
+	AUTOMATIC_LOCKED(2, "AutomaticLocked", "AutomaticLocked"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Automatic</b></em>' literal value.
@@ -85,19 +83,19 @@ public enum PortRegistrationType implements Enumerator {
 	public static final int APPLICATION_VALUE = 1;
 
 	/**
-	 * The '<em><b>Application Locked</b></em>' literal value.
+	 * The '<em><b>Automatic Locked</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Application Locked</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Automatic Locked</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #APPLICATION_LOCKED
-	 * @model name="ApplicationLocked"
+	 * @see #AUTOMATIC_LOCKED
+	 * @model name="AutomaticLocked"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int APPLICATION_LOCKED_VALUE = 2;
+	public static final int AUTOMATIC_LOCKED_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Port Registration Type</b></em>' enumerators.
@@ -109,7 +107,7 @@ public enum PortRegistrationType implements Enumerator {
 		new PortRegistrationType[] {
 			AUTOMATIC,
 			APPLICATION,
-			APPLICATION_LOCKED,
+			AUTOMATIC_LOCKED,
 		};
 
 	/**
@@ -168,7 +166,7 @@ public enum PortRegistrationType implements Enumerator {
 		switch (value) {
 			case AUTOMATIC_VALUE: return AUTOMATIC;
 			case APPLICATION_VALUE: return APPLICATION;
-			case APPLICATION_LOCKED_VALUE: return APPLICATION_LOCKED;
+			case AUTOMATIC_LOCKED_VALUE: return AUTOMATIC_LOCKED;
 		}
 		return null;
 	}

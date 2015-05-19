@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  * (base_Class.generalization->size()) <= 1
  * (base_Class.generalization->notEmpty()) implies (base_Class.generalization->forAll (g | g.isSubstitutable))
  * base_Class.ownedAttribute->forAll(at | at.type->size() = 1)
- * base_Class.feature->forAll (f | f.visibility <> UML::VisibilityKind::private)
  * base_Class.nestedClassifier->isEmpty()
  * base_Class.ownedOperation->notEmpty() implies
  *    (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::guarded))
@@ -30,10 +29,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.Capsule#getBase_Class <em>Base Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.umlrt.UMLRealTime.UMLRealTimePackage#getCapsule()
  * @model

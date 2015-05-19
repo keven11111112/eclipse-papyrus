@@ -151,7 +151,8 @@
 		<module>../extraplugins/papyrus4ecore/org.eclipse.papyrus.uml.diagram.ecore</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.ecore.feature</module>	
 		<!-- Papyrus 4 Education -->
-		<module>../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>	
+		<module>../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
+		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>	
 		<!-- Module EPF -->
 		<module>../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext.extension</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.extra.epf.richtext.feature</module>

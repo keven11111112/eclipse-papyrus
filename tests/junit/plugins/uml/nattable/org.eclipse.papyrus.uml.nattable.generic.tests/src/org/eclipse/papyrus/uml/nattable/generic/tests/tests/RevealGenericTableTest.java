@@ -16,8 +16,6 @@ package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -161,7 +159,7 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
 		Assert.assertEquals("number of selected rows does not match", 1, rowIndex.size()); //$NON-NLS-1$
 		Assert.assertEquals("number of selected columns does not match", 0, columnIndex.size()); //$NON-NLS-1$
-		Assert.assertEquals("index of selected row does not match", 7, rowIndex.get(0) == 7); //$NON-NLS-1$
+		Assert.assertEquals("index of selected row does not match", 7, rowIndex.get(0).intValue()); //$NON-NLS-1$
 	}
 
 	/**
@@ -241,9 +239,9 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 
 		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
 		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
-		Assert.assertEquals("number of selected rows does not match", 1, rowIndex.size()); //$NON-NLS-1$
-		Assert.assertEquals("number of selected columns does not match", 0, columnIndex.size()); //$NON-NLS-1$
-		Assert.assertEquals("index of selected row does not match", 7, rowIndex.get(0).intValue()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected rows does not match", 0, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 1, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("index of selected row does not match", 7, columnIndex.get(0).intValue()); //$NON-NLS-1$
 
 	}
 
@@ -284,11 +282,11 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 
 		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
 		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
-		Assert.assertEquals("number of selected rows does not match", 3, rowIndex.size()); //$NON-NLS-1$
-		Assert.assertEquals("number of selected columns does not match", 0, columnIndex.size()); //$NON-NLS-1$
-		Assert.assertTrue("row 2 is not in the selection", rowIndex.contains(Integer.valueOf(2))); //$NON-NLS-1$
-		Assert.assertTrue("row 3 is not in the selection", rowIndex.contains(Integer.valueOf(3))); //$NON-NLS-1$
-		Assert.assertTrue("row 5 is not in the selection", rowIndex.contains(Integer.valueOf(5))); //$NON-NLS-1$
+		Assert.assertEquals("number of selected rows does not match", 3, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 0, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertTrue("row 2 is not in the selection", columnIndex.contains(Integer.valueOf(2))); //$NON-NLS-1$
+		Assert.assertTrue("row 3 is not in the selection", columnIndex.contains(Integer.valueOf(3))); //$NON-NLS-1$
+		Assert.assertTrue("row 5 is not in the selection", columnIndex.contains(Integer.valueOf(5))); //$NON-NLS-1$
 
 	}
 
@@ -364,18 +362,12 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 
-//		Assert.assertTrue("index of rows does not match", rowSelectedPositions.length == 3); //$NON-NLS-1$
-//		Collection<?> selectedRows = Arrays.asList(rowSelectedPositions);
-//		Assert.assertTrue("the row 2 is not in the selection", selectedRows.contains(Integer.valueOf(2)));
-//		Assert.assertTrue("the row 4 is not in the selection", selectedRows.contains(Integer.valueOf(4)));
-//		Assert.assertTrue("the row 5 is not in the selection", selectedRows.contains(Integer.valueOf(5)));
-//		// Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 2); //$NON-NLS-1$
-//		// Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 4); //$NON-NLS-1$
-//		// Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 5); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions.length == 3); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 2); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 4); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 5); //$NON-NLS-1$
 //		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
 		
-		
-
 		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
 		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
 		Assert.assertEquals("number of selected rows does not match", 3, rowIndex.size()); //$NON-NLS-1$
@@ -383,7 +375,6 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		Assert.assertTrue("row 2 is not in the selection", rowIndex.contains(Integer.valueOf(2))); //$NON-NLS-1$
 		Assert.assertTrue("row 4 is not in the selection", rowIndex.contains(Integer.valueOf(4))); //$NON-NLS-1$
 		Assert.assertTrue("row 5 is not in the selection", rowIndex.contains(Integer.valueOf(5))); //$NON-NLS-1$
-
 	}
 
 

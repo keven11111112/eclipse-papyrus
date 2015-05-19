@@ -306,8 +306,14 @@
       <modelRules xmi:id="_7wM00NxhEeOqHvRyiN87hA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
+      <modelRules xmi:id="_iil5gP03EeSZct40sebKig">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+      </modelRules>
       <owningRules xmi:id="_7wM00dxhEeOqHvRyiN87hA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <owningRules xmi:id="_iinusP03EeSZct40sebKig">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </owningRules>
       <childRules xmi:id="_7wM00txhEeOqHvRyiN87hA"/>
     </modelKinds>

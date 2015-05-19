@@ -62,6 +62,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	/** The my allow several categories. */
 	private final boolean myAllowSeveralCategories;
 
+	private SettingsHelper settingsHelper;
+
 	/**
 	 * Instantiates a new select diagram category page.
 	 *
@@ -92,13 +94,19 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
-		SettingsHelper settingsHelper = new SettingsHelper(getDialogSettings());
+		settingsHelper = new SettingsHelper(getDialogSettings());
 		String[] defaultDiagramCategory = settingsHelper.getDefaultDiagramCategories();
 		if (defaultDiagramCategory != null && defaultDiagramCategory.length > 0) {
 			if (myAllowSeveralCategories) {
 				setDefaultDiagramCategories(defaultDiagramCategory);
 			} else {
-				setDefaultDiagramCategories(new String[] { defaultDiagramCategory[0] });
+				String previousSelection = settingsHelper.getPreviousSelection();
+				// Retrieves the previous selection or the selects the default behavior
+				if (settingsHelper.rememberCurrentSelection(getDialogSettings()) && previousSelection != null) {
+					setDefaultDiagramCategories(new String[] { previousSelection });
+				} else {
+					setDefaultDiagramCategories(new String[] { defaultDiagramCategory[0] });
+				}
 			}
 		}
 	}
@@ -181,9 +189,9 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	protected boolean validateFileExtension(String... categories) {
 		IStatus status = ((CreateModelWizard) getWizard()).diagramCategoryChanged(categories);
 		switch (status.getSeverity()) {
-			// case Status.ERROR:
-			// setErrorMessage(status.getMessage());
-			// return false;
+		// case Status.ERROR:
+		// setErrorMessage(status.getMessage());
+		// return false;
 		case Status.WARNING:
 			setMessage(status.getMessage(), IMessageProvider.WARNING);
 			break;
@@ -256,6 +264,10 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		} else {
 			mySelectedDiagramCategoryIds.remove(category);
 		}
+
+		// Notifies the settings file that the selection has been set and to what
+		settingsHelper.saveRememberCurrentSelection(true);
+		settingsHelper.setCurrentSelection(category);
 	}
 
 	/**

@@ -23,10 +23,10 @@ import org.eclipse.uml2.uml.Collaboration;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.Protocol#getBase_Collaboration <em>Base Collaboration</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.umlrt.UMLRealTime.UMLRealTimePackage#getProtocol()
  * @model

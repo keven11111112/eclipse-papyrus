@@ -219,6 +219,25 @@
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.FullPort_Label"/>
     </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.ConstraintBlock"
+        label="ConstraintBlock"
+        description="Create a ConstraintBlock">
+      <icon
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/constraints/ConstraintBlock.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ConstraintBlock_2008"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ConstraintBlock_3004"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ConstraintBlock_3008"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ConstraintBlock_3010"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ConstraintBlock_3014"/>
+    </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="palette.sysml.bdd.edges"
