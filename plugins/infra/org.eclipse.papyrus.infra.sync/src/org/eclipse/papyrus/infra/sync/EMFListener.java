@@ -44,6 +44,7 @@ import com.google.common.collect.Maps;
  */
 public class EMFListener implements ResourceSetListener {
 	private final ISyncService syncService = SyncService.getCurrent();
+	private TransactionalEditingDomain domain;
 
 	/**
 	 * The dispatchers by notifier and object and then feature
@@ -61,7 +62,21 @@ public class EMFListener implements ResourceSetListener {
 
 		// Synchronize objects in the order in which they are registered
 		this.dispatchers = Maps.newLinkedHashMap();
+
+		this.domain = domain;
 		domain.addResourceSetListener(this);
+	}
+
+	/**
+	 * Disposes me, forgetting all of my registered dispatchers and disconnecting me from the editing domain that I listen to.
+	 */
+	public void dispose() {
+		dispatchers.clear();
+
+		if (domain != null) {
+			domain.removeResourceSetListener(this);
+			domain = null;
+		}
 	}
 
 	/**

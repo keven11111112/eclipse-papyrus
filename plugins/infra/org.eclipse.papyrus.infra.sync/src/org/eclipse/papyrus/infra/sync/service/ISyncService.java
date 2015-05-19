@@ -18,6 +18,7 @@ import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.sync.EMFDispatch;
 import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
 import org.eclipse.papyrus.infra.sync.ISyncObject;
+import org.eclipse.papyrus.infra.sync.policy.ISyncPolicy;
 
 /**
  * A Papyrus Service providing EMF dispatch managers, synchronization registries, and other synchronization facilities.
@@ -28,4 +29,19 @@ public interface ISyncService extends ISyncObject, IService {
 	<D extends EMFDispatch> EMFDispatchManager<D> createMultipleDispatchManager();
 
 	IStatus evaluateTriggers(Object object);
+
+	/**
+	 * Obtains the sync service's current synchronization policy.
+	 * 
+	 * @return the synchronization policy. Never {@code null}
+	 */
+	ISyncPolicy getSyncPolicy();
+
+	/**
+	 * Sets the effective synchronization policy for the sync service.
+	 * 
+	 * @param syncPolicy
+	 *            the new sync policy, or {@code null} to install a non-policy (meaning that everything is always synchronized)
+	 */
+	void setSyncPolicy(ISyncPolicy syncPolicy);
 }

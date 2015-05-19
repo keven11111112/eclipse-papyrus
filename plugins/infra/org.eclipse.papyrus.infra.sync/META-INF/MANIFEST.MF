@@ -18,5 +18,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.sync,
  org.eclipse.papyrus.infra.sync.internal;x-internal:=true,
+ org.eclipse.papyrus.infra.sync.policy,
  org.eclipse.papyrus.infra.sync.service
 Bundle-Localization: plugin
