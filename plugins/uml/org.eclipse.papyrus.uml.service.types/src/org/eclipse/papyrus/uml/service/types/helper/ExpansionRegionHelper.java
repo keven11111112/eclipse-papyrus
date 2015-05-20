@@ -68,7 +68,7 @@ public class ExpansionRegionHelper extends StructuredActivityNodeHelper {
 	 *        the {@link CreateElementRequest} new {@link IElementType}
 	 */
 	protected boolean isExpansionNodeType(IElementType type) {
-		return UMLPackage.eINSTANCE.getExpansionNode().equals(type.getEClass());
+		return type != null && UMLPackage.eINSTANCE.getExpansionNode().equals(type.getEClass());
 	}
 
 	@Override
