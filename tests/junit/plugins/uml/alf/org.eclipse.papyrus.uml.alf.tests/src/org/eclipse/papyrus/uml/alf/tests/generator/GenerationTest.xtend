@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.alf.MappingError
 import org.eclipse.papyrus.uml.alf.tests.ParserTest
 import org.eclipse.xtext.junit4.XtextRunner
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -44,7 +45,7 @@ class GenerationTest extends ParserTest {
   }
 
   @Test
-  //@Ignore("Doesn't run on Maven - Bug 464026")
+  @Ignore("Doesn't run on Maven - Bug 464026")
   def void testGeneration() {
     var failures = 0;
     System.out.println("[GenerationTest] Directory " + umlDirectory + ":")
