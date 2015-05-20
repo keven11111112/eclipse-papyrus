@@ -46,6 +46,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPart
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintNameEditPartCN;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ContextLinkAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeNameEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeOperationEditPart;
@@ -870,6 +871,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser constraintContextName_8501Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintContextName_8501Parser() {
+		if (constraintContextName_8501Parser == null) {
+			constraintContextName_8501Parser = new AppliedStereotypeParser();
+		}
+		return constraintContextName_8501Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case MultiDependencyLabelEditPart.VISUAL_ID:
@@ -996,6 +1012,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 
 
+		case ContextLinkAppliedStereotypeEditPart.VISUAL_ID:
+			return getConstraintContextName_8501Parser();
 
 		}
 		return null;

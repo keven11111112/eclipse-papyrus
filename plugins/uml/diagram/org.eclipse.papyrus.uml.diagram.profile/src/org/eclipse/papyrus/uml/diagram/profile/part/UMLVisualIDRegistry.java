@@ -1010,6 +1010,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ContextLinkEditPart.VISUAL_ID:
+			if (ContextLinkAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -1066,7 +1071,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			// unrecognized id is always bad
+			//unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);

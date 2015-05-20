@@ -358,6 +358,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ContextLinkEditPart.VISUAL_ID:
 				return new ContextLinkEditPart(view);
 
+			case ContextLinkAppliedStereotypeEditPart.VISUAL_ID:
+				return new ContextLinkAppliedStereotypeEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

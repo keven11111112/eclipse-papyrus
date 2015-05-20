@@ -1321,7 +1321,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
+		Node label8501 = createLabel(edge, UMLVisualIDRegistry.getType(ContextLinkAppliedStereotypeEditPart.VISUAL_ID));
+		label8501.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location8501 = (Location) label8501.getLayoutConstraint();
+		location8501.setX(0);
+		location8501.setY(60);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Undefined");
 		return edge;
 	}
 
