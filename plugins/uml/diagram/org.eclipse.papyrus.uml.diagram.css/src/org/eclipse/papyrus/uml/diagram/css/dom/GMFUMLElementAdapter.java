@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display 
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
@@ -169,7 +169,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 	/**
 	 * Retrieve the Matching String Value for the StereotypeCompartment Element
-	 * 
+	 *
 	 * @param attr
 	 *            Attribute of the String to match with
 	 * @return The matching value for this Attribute
@@ -186,7 +186,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 	/**
 	 * Retrieve the Matching String Value for the StereotypeCompartment Element
-	 * 
+	 *
 	 * @param attr
 	 *            Attribute of the String to match with
 	 * @return The matching value for this Attribute
@@ -217,7 +217,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 	/**
 	 * Get the matching Value of the Attribute
-	 * 
+	 *
 	 * @param attr
 	 *            Attribute of the String to match with
 	 * @return The matching value for this Attribute
@@ -241,16 +241,14 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		return null;
 	}
 
-
-
 	@Override
 	protected String getCSSValue(EStructuralFeature feature, Object value) {
 		if (feature instanceof EReference && value instanceof NamedElement) {
-			return ((NamedElement) value).getName();
+			String name = ((NamedElement) value).getName();
+			return name == null || name.isEmpty() ? EMPTY_VALUE : name; // Bug 467716: Never return null or empty string if the value is not null
 		}
 		return super.getCSSValue(feature, value);
 	}
-
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter#getLocalName()

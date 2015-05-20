@@ -66,7 +66,12 @@ import org.w3c.dom.NodeList;
 public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener, StatefulView, IAdaptable {
 
 	/**
-	 * 
+	 * Non-null, non-empty string, to match "any non-null value" in attribute selectors (e.g. [type])
+	 */
+	public static final String EMPTY_VALUE = " "; // Non-null, non-empty string
+
+	/**
+	 *
 	 */
 	protected static final String KIND = "kind"; //$NON-NLS-1$
 
@@ -219,7 +224,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	/**
 	 * I provide adapters for
-	 * 
+	 *
 	 * <ul>
 	 * <li>{@link Diagram} - the diagram containing my {@linkplain #getNotationElement() notation element}</li>
 	 * </ul>
@@ -473,7 +478,8 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		}
 
 		if (feature instanceof EReference && value instanceof ENamedElement) {
-			return ((ENamedElement) value).getName();
+			String name = ((ENamedElement) value).getName();
+			return name == null || name.isEmpty() ? EMPTY_VALUE : name; // Bug 467716: Never return null if the value is not null
 		}
 
 		// Standard case. For EObject values, it might be better to return null than a random label...
@@ -546,20 +552,20 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 		/*
 		 * <--------------------
-		 * 
+		 *
 		 * //Allows both notations Class > Property and Class > Compartment > Property
-		 * 
+		 *
 		 * //FIXME: The Tree is computed through "getParentNode". "getChildren" is barely used. Moreover,
 		 * //there is a mapping between Notation element and DOM element, which makes it impossible to associate the same
 		 * //notation element to different DOM elements.
-		 * 
+		 *
 		 * // for(EObject child : notationElement.eContents()) {
 		 * // if(child instanceof BasicCompartment) {
 		 * // //Add the Compartment's children to this' children
 		 * // childList.addAll(Arrays.asList(computeChildren((View)child, engine)));
 		 * // }
 		 * // }
-		 * 
+		 *
 		 * -------------------->
 		 */
 
@@ -722,7 +728,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView#addStates(java.util.Set)
 	 */
 	@Override
@@ -735,7 +741,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView#removeStates(java.util.Set)
 	 */
 	@Override
