@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.uml.alf.properties.xtext.sheet.ui.listeners;
 
+import org.eclipse.papyrus.uml.alf.transaction.commit.CommitScenario;
 import org.eclipse.papyrus.uml.alf.transaction.commit.ScenarioFactory;
 import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AlfEditionPropertySection;
 import org.eclipse.swt.custom.StyledText;
@@ -40,7 +41,9 @@ public class CommitButtonSelectionListener extends SelectionAdapter {
 		StyledText editor = this.propertySection.getEditor();
 		/* 3. Compile without blocking URI */
 		if (semanticObject != null && editor != null) {
-			ScenarioFactory.getInstance().createCommitScenario().execute(semanticObject, editor.getText());
+			CommitScenario commitScenario = (CommitScenario) ScenarioFactory.getInstance().createCommitScenario();
+			commitScenario.bindView(editor);
+			commitScenario.execute(semanticObject, editor.getText());
 		}
 	}
 }

@@ -237,6 +237,22 @@ public class ModelMerge {
 		}
 	}
 
+	private void updateComments(List<Comment> targetComments, List<Comment> sourceComments){
+		Comment targetSpecification = getTextualRepresentation(targetComments);
+		Comment sourceSpecification = getTextualRepresentation(sourceComments);
+		if(targetSpecification!=null){
+			if(sourceSpecification==null){
+				targetComments.remove(targetSpecification);
+				setList(targetComments, sourceComments);
+				targetComments.add(targetSpecification);
+			}else{
+				setList(targetComments, sourceComments);
+			}
+		}else{
+			setList(targetComments, sourceComments);
+		}
+	}
+	
 	protected void updateClassifier(Classifier target, Classifier source) {
 		this.addReplacement(source, target);
 		updateStereotypes(target, source);
@@ -249,7 +265,8 @@ public class ModelMerge {
 		target.setIsAbstract(source.isAbstract());
 		target.setOwnedTemplateSignature(source.getOwnedTemplateSignature());
 		if (notStub(source)) {
-			setList(target.getOwnedComments(), source.getOwnedComments());
+			//setList(target.getOwnedComments(), source.getOwnedComments());
+			this.updateComments(target.getOwnedComments(), source.getOwnedComments());
 		} else {
 			List<Comment> targetComments = target.getOwnedComments();
 			List<Comment> sourceComments = source.getOwnedComments();
