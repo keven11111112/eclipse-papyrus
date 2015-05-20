@@ -85,6 +85,22 @@
                serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
          </dependsOn>
       </service>
+      <service
+            classname="org.eclipse.papyrus.uml.tools.service.ProfileDefinitionService"
+            id="org.eclipse.papyrus.uml.tools.service.IProfileDefinitionService"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
+         </dependsOn>
+      </service>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.decoration.decorationSpecificFunctions">
+      <client
+            class="org.eclipse.papyrus.uml.tools.decoration.UndefinedProfileDecoration"
+            decorationType="org.eclipse.papyrus.uml.tools.decoration.undefinedprofile">
+      </client>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.core.language">

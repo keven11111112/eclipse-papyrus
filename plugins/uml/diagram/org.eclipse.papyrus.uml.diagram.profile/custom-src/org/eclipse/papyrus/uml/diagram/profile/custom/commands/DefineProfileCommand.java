@@ -12,6 +12,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 451613
+ *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 447665
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.commands;
@@ -168,6 +169,7 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		cleanUndefineTag();
 
 		List<EPackage> profileDefinitions = defineProfiles(rootProfile, saveConstraint);
 
@@ -250,5 +252,12 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	public List<IFile> getAffectedFiles() {
 		IFile f = WorkspaceSynchronizer.getFile(rootProfile.eResource());
 		return f != null ? Collections.<IFile> singletonList(f) : Collections.<IFile> emptyList();
+	}
+	
+	/**
+	 * Clean undefine tag.
+	 */
+	private void cleanUndefineTag() {
+		ProfileRedefinition.removeUndefinedVersion(rootProfile);
 	}
 }

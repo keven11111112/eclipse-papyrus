@@ -18,6 +18,7 @@ package org.eclipse.papyrus.uml.tools.profile.definition;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -57,7 +59,7 @@ import org.eclipse.uml2.uml.Profile;
 public class ProfileRedefinition {
 
 	/**
-	 * this method is used to redefine profile even if it contains subpackages
+	 * This method is used to redefine profile even if it contains subpackages
 	 * or subprofiles
 	 *
 	 * @param thepackage
@@ -67,55 +69,52 @@ public class ProfileRedefinition {
 	 *            annotation
 	 */
 	public static void redefineProfile(Package thepackage, PapyrusDefinitionAnnotation definitionAnnotation) {
-		// he wants to define
+		// Handle Profile element
 		if (thepackage instanceof Profile) {
 			Profile profile = (Profile) thepackage;
-			// get profile definition
-			EPackage profileDefinition = profile.getDefinition();
-			// collect all EClassifier of the definition
-			ArrayList<EClassifier> tempList = new ArrayList<EClassifier>();
-			for (int i = 0; i < profileDefinition.getEClassifiers().size(); i++) {
-				tempList.add(profileDefinition.getEClassifiers().get(i));
-			}
 
-			// for all EClass
-			Iterator<EClassifier> eClassIter = tempList.iterator();
-			while (eClassIter.hasNext()) {
-				EClassifier eclassifier = eClassIter.next();
+			// Get profile definition
+			EPackage profileDefinition = profile.getDefinition();
+
+			Iterator<EClassifier> definitionClassifiersIterator = profileDefinition.getEClassifiers().iterator();
+			while (definitionClassifiersIterator.hasNext()) {
+				EClassifier eclassifier = definitionClassifiersIterator.next();
 				if (eclassifier instanceof EClass) {
-					// redefine Eclass
+					// Redefine Eclass
 					redefineEclass((EClass) eclassifier);
 				}
 			}
 
-			// add profile definition annotation
+			// Add profile definition annotation
 			if (definitionAnnotation != null) {
 				profile.getDefinition().getEAnnotations().add(definitionAnnotation.convertToEAnnotation());
 			}
 		}
-		Iterator<Package> it = thepackage.getNestedPackages().iterator();
-		while (it.hasNext()) {
-			Package p = it.next();
-			ProfileRedefinition.redefineProfile(p, definitionAnnotation);
+
+		// Explore all nested packages
+		Iterator<Package> nestedPackagesIterator = thepackage.getNestedPackages().iterator();
+		while (nestedPackagesIterator.hasNext()) {
+			Package nextPackage = nestedPackagesIterator.next();
+			ProfileRedefinition.redefineProfile(nextPackage, definitionAnnotation);
 		}
 	}
 
 	/**
-	 * redefine only real definition or do nothing
+	 * Redefine only real definition or do nothing
 	 *
 	 * @param eclass
 	 *            the given eclass that we want to redefine
 	 */
 	public static void redefineEclass(EClass eclass) {
 		if (isADirectDefinition(eclass)) {
+
 			// 1. redefine inheritances
 			EList<EClass> eSuperTypes = eclass.getESuperTypes();
 
 			/* copy in order to avoid concurrent access */
-			ArrayList<EClass> superTypesList = new ArrayList<EClass>();
-			for (int j = 0; j < eSuperTypes.size(); j++) {
-				superTypesList.add(eSuperTypes.get(j));
-			}
+			List<EClass> superTypesList = new ArrayList<EClass>();
+			superTypesList.addAll(eSuperTypes);
+
 			// for each super types :we test if this is a direct definition
 			// if not we remove the local copy and replace by direct definition
 			Iterator<EClass> superIter = superTypesList.iterator();
@@ -127,17 +126,11 @@ public class ProfileRedefinition {
 					eclass.getESuperTypes().add(directSuperClass);
 				}
 			}
+
 			// 2.redefine eReferences
-			// temp copy of the list
-			Iterator<EReference> iterReference = eclass.getEReferences().iterator();
-			ArrayList<EReference> referenceList = new ArrayList<EReference>();
-			while (iterReference.hasNext()) {
-				referenceList.add(iterReference.next());
-			}
-			// for each reference of the EClass
-			Iterator<EReference> refIterator = referenceList.iterator();
-			while (refIterator.hasNext()) {
-				redefineEReference(refIterator.next(), eclass.getEPackage());
+			Iterator<EReference> referencesIterator = eclass.getEReferences().iterator();
+			while (referencesIterator.hasNext()) {
+				redefineEReference(referencesIterator.next(), eclass.getEPackage());
 			}
 
 		}
@@ -175,7 +168,7 @@ public class ProfileRedefinition {
 	 */
 	public static boolean isADirectDefinition(EClass eclass) {
 		if (eclass.getEAnnotations().size() > 0) {
-			EAnnotation eAnnotation = eclass.getEAnnotations().get(0);
+			EAnnotation eAnnotation = eclass.getEAnnotation(UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI);
 			if (eAnnotation.getReferences().size() > 0) {
 				if (!(eAnnotation.getReferences().get(0) instanceof org.eclipse.uml2.uml.Classifier)) {
 					String errMsg = "Problem because of the definition of " + eclass.getName() + " in " + eclass.getEPackage().getNsURI();
@@ -254,7 +247,7 @@ public class ProfileRedefinition {
 			EPackage profileDefinition = profile.getDefinition();
 
 			// collect all EClassifier of the definition
-			ArrayList<EClassifier> tempList = new ArrayList<EClassifier>();
+			List<EClassifier> tempList = new ArrayList<EClassifier>();
 			for (int i = 0; i < profileDefinition.getEClassifiers().size(); i++) {
 				tempList.add(profileDefinition.getEClassifiers().get(i));
 			}
@@ -328,5 +321,28 @@ public class ProfileRedefinition {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Removes the undefined version.
+	 *
+	 * @param profile
+	 *            The profile.
+	 * @since 4.1
+	 */
+	public static void removeUndefinedVersion(Package packageElement) {
+		if (packageElement instanceof Profile) {
+			EAnnotation umlAnnotation = ((Profile) packageElement).getEAnnotation(UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI);
+			if (null != umlAnnotation) {
+				EAnnotation firstAnnotation = umlAnnotation.getEAnnotation(IPapyrusVersionConstants.PAPYRUS_EANNOTATION_SOURCE);
+				if (null != firstAnnotation ) {
+					PapyrusDefinitionAnnotation tagVersion = PapyrusDefinitionAnnotation.parseEAnnotation(firstAnnotation);
+					if (PapyrusDefinitionAnnotation.UNDEFINED_ANNOTATION.equals(tagVersion)) {
+						umlAnnotation.getEAnnotations().remove(firstAnnotation);
+					}
+				}
+			}
+		}
+
 	}
 }
