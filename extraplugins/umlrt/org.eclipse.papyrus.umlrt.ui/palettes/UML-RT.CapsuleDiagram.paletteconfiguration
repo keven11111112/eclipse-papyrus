@@ -2,7 +2,7 @@
 <paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7" id="palettemodel" label="UMLRealTime">
   <drawerConfigurations id="UML-RT" label="UML-RT" description="UML-RT">
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.Capsule" label="Capsule" description="Create a Capsule">
-      <icon pluginID="" iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"/>
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Class.gif"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Capsule_2008"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Capsule_3004"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Capsule_3008"/>
@@ -10,27 +10,13 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Capsule_3014"/>
     </ownedConfigurations>
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.CapsulePart" label="CapsulePart" description="Create a CapsulePart">
-      <icon iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"/>
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Property.gif"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.CapsulePart_3002"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.CapsulePart_3005"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.CapsulePart_3006"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.CapsulePart_3012"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.CapsulePart_3018"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.CapsulePart_3041"/>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.ProtocolContainer" label="ProtocolContainer" description="Create a ProtocolContainer">
-      <icon iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_2007"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_3009"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_PapyrusUMLClassDiagram"/>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.RTMessageSet" label="RTMessageSet" description="Create a RTMessageSet">
-      <icon iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_2004"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3023"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3036"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3037"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3038"/>
     </ownedConfigurations>
   </drawerConfigurations>
   <requiredProfiles>UMLRealTime</requiredProfiles>
