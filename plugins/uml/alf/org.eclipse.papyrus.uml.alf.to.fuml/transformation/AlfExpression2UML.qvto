@@ -917,8 +917,23 @@ mapping ClassExtentExpression::toActivityGraph() : ExpressionGraph
 // Sequence Construction Expressions
 
 mapping SequenceConstructionExpression::toActivityGraph() : ExpressionGraph
- 	inherits Expression::Dummy_toActivityGraph  {
-	// TODO
+ 	inherits Expression::toActivityGraph  {
+ 	if not self.hasMultiplicity then {
+ 		// TODO: Mapping collection class instance creation.
+		nodes += resultSource := new ForkNode("Dummy");
+	} else if self.elements = null or self.elements.isEmpty() then {
+		// Mapping for a "null" literal.
+		nodes += var valueAction ::= new ValueSpecificationAction(new LiteralNull());
+		resultSource := valueAction.result;
+	} else {
+		// TODO: Mapping sequence construction.
+		nodes += resultSource := new ForkNode("Dummy");
+	} endif endif;
+
+}
+
+query SequenceElements::isEmpty() : Boolean {
+	return self.oclIsKindOf(SequenceExpressionList) and self.oclAsType(SequenceExpressionList).element->isEmpty();
 }
 
 abstract mapping SequenceElements::toActivityGraph(out nodes : Set(ActivityNode), out edges : Set(ActivityEdge));
