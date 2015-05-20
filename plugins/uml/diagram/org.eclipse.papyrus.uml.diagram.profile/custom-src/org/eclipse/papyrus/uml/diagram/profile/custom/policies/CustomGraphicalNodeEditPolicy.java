@@ -13,16 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
@@ -32,7 +30,7 @@ import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
  *
  * @author Patrick Tessier
  */
-public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
+public class CustomGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPolicy {
 
 	/**
 	 * The ID for the additional parameter SOURCE_PARENT used in creation request
@@ -73,15 +71,6 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			}
 		}
 		return super.getCommand(request);
-	}
-
-	/**
-	 * used to obtain the transactional edit domain
-	 *
-	 * @return the current transactional edit domain
-	 */
-	private TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
 	}
 
 	@Override

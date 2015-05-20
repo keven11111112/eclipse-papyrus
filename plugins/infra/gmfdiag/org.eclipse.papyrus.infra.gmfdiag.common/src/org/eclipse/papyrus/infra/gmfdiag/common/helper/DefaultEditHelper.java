@@ -87,8 +87,7 @@ public class DefaultEditHelper extends AbstractEditHelper {
 	@Override
 	protected boolean approveRequest(IEditCommandRequest request) {
 		if (request instanceof CreateRelationshipRequest) {
-			// specific case for relationship should be handled
-			return super.approveRequest(request);
+			return defaultApproveCreateRelationshipRequest((CreateRelationshipRequest) request);
 		} else if (request instanceof CreateElementRequest) {
 			// check the containment feature.
 			Object context = request.getEditHelperContext();
@@ -107,6 +106,10 @@ public class DefaultEditHelper extends AbstractEditHelper {
 			}
 		}
 		return super.approveRequest(request);
+	}
+
+	protected boolean defaultApproveCreateRelationshipRequest(CreateRelationshipRequest request) {
+		return true;
 	}
 
 	/**

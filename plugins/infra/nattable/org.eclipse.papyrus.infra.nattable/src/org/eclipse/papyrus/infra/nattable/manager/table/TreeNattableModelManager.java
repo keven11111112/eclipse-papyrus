@@ -379,6 +379,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		final List<IAxis> iAxis = getHorizontalAxisProvider().getAxis();
 
 		if (iAxis != null) {
+			//see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
 			// we need to remove the children which are not serialized from the root of the table, to be able to reopen
 			Runnable runnable = new Runnable() {
 
