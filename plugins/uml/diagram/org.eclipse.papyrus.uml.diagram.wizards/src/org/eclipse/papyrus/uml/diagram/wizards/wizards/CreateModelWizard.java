@@ -302,7 +302,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 			initProfile(modelSet);
 			initTemplate(modelSet);
-			// openDiagram(newURI);
+			openDiagram(newURI);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 			return false;
