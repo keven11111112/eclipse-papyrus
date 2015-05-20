@@ -987,7 +987,7 @@ mapping ForAllOrExistsOrOneExpression::toActivityGraph() : ExpressionGraph
 
 mapping IsUniqueExpression::toActivityGraph() : ExpressionGraph
  	inherits SequenceExpansionExpression::toActivityGraph  {
-
+	// TODO
 }
 
 // Increment or Decrement Expressions
@@ -1072,16 +1072,173 @@ helper BitStringUnaryExpression::mapOperand(inout graph : ExpressionGraph) : Act
 
 mapping CastExpression::toActivityGraph() : ExpressionGraph
  	inherits Expression::toActivityGraph  {
-	// TODO: Finish this.
+  var type = self.type;
+  var operandType = self.operand.type;
 	var operandGraph := self.operand.map toActivityGraph();
 	operandGraph.addTo(result);
-	resultSource := operandGraph.resultSource;
-	if resultSource.oclIsKindOf(Pin) then {
-		resultSource.oclAsType(Pin).type := self.type.toType();
-	} else if resultSource.oclIsKindOf(ExpansionNode) then {
-		resultSource.oclAsType(ExpansionNode).type := self.type.toType();
-	} endif endif;
+	if type = null or 
+                    
+		operandType <> null and operandType.conformsTo(self.type) and
+    // The following condition is to treat up-casting of
+    // naturals to unlimited naturals as a real conversion, 
+    // because naturals are represented as integers.
+	 	not(self.isNaturalType(operandType) and self.isUnlimitedNaturalType(type)) or
+	 	
+    // The following condition is an optimization to avoid 
+    // generating an expansion region when the operand is known
+    // to be null.
+		self.operand.isNull() then {
+			
+		// Up-cast, no conversion is necessary.
+		resultSource := operandGraph.resultSource;
+		if resultSource.oclIsKindOf(Pin) then {
+			resultSource.oclAsType(Pin).type := self.type.toType();
+		} else if resultSource.oclIsKindOf(ExpansionNode) then {
+			resultSource.oclAsType(ExpansionNode).type := self.type.toType();
+		} endif endif;
+
+	} else {
+		// Filter and convert (as necessary).	
+		var label := "Cast(" + if self.type = null then "any" else self.type.name() endif + ")";
+		
+		var nestedGraph := object ExpressionGraph{};
+		var inputTarget := self.mapNestedGraph(nestedGraph, label);
+		
+		var region := addExpansionRegion(result, label, ExpansionKind::parallel, 
+			nestedGraph.nodes, nestedGraph.edges, operandGraph.resultSource, inputTarget, nestedGraph.resultSource);
+		region.inputElement![true].type := toType(operandType);
+		region.outputElement![true].type := toType(type);
+		
+		resultSource := region.outputElement![true];
+	} endif;
 }
+
+helper CastExpression::mapNestedGraph(inout nestedGraph : ExpressionGraph, label : String) : ActivityNode {
+	var source : ActivityNode := null;
+	nestedGraph.nodes += nestedGraph.resultSource := 
+		var target : ActivityNode ::= new MergeNode(label + ".operand");
+	
+	var type := self.type;
+	var operandType := self.operand.type;
+	
+	if type <> null then {
+
+    // Add type classification tests and special conversion for
+    // numeric and BitString types.
+    // NOTE: The classification tests will actually be executed in the
+    // reverse order to that in which they are added using
+    // addClassificationDecision.
+    
+    if self.isIntegerType(type) then {
+    	// For downcast to Natural (other than from UnlimitedNatural), ass a check that
+    	// the operand is greater than or equal to zero.
+    	if self.isNaturalType(type) and not self.isUnlimitedNaturalType(operandType) then {
+    		target := self.addNaturalCheck(nestedGraph);
+    		if self.isIntegerType(operandType) then {
+    			// If the operand type is Integer, then the bounds check is all that is needed.
+    			source := target;
+    		} endif;
+    	} endif;
+    	
+    	if source = null then {
+	      // NOTE: For Integer, the test for an UnlimitedNatural operand
+	      // must come after the test of for an Integer operand
+	      // in order to properly handle Natural values. Even though 
+	      // Natural is a subtype of both Integer and UnlimitedNatural, 
+	      // Natural values are represented as integers.
+	      if operandType = null or self.isUnlimitedNaturalType(operandType) then {
+	      	source := self.addClassificationDecision(
+	      		nestedGraph, self.unlimitedNaturalType().toType(), target, source, 
+	      		self.functionUnlimitedNaturalToInteger());
+	      } endif;
+	      if operandType = null or self.isBitStringType(operandType) then {
+	      	source := self.addClassificationDecision(
+	      		nestedGraph, self.bitStringType().toType(), target, source, 
+	      		self.functionBitStringToInteger());
+	      } endif;
+	      if operandType = null or 
+	      		not self.isUnlimitedNaturalType(operandType) and not self.isBitStringType(operandType) then {
+	      	source := self.addClassificationDecision(
+	      		nestedGraph, toType(type), target, source, null);
+	      } endif;
+    	} endif;
+    	
+  	} else if self.isUnlimitedNaturalType(type) then {
+        // NOTE: For UnlimitedNatural, the test for an Integer operand
+        // must come before the test of for an UnlimitedNatural operand
+        // in order to properly handle Natural values. Even though 
+        // Natural is a subtype of both Integer and UnlimitedNatural, 
+        // Natural values are represented as integers.
+	      if operandType = null or not self.isIntegerType(operandType) then {
+	      	source := self.addClassificationDecision(
+	      		nestedGraph, toType(type), target, source, null);
+	      } endif;
+        if operandType = null or self.isIntegerType(operandType) then {
+	      	source := self.addClassificationDecision(
+	      		nestedGraph, self.integerType().toType(), target, source, 
+	      		self.functionIntegerToUnlimitedNatural());
+	      } endif;
+  		
+  	} else if self.isBitStringType(type) then {
+	      if operandType = null or self.isIntegerType(operandType) then {
+	      	source := self.addClassificationDecision(
+	      		nestedGraph, self.integerType().toType(), target, source, 
+	      		self.functionIntegerToBitString());
+	      } endif;
+	      if operandType = null or not self.isIntegerType(operandType) then {
+	      	source := self.addClassificationDecision(
+	      		nestedGraph, toType(type), target, source, null);
+	      } endif;
+	      
+    } else {
+    	// This is the general case.
+    	source := self.addClassificationDecision(nestedGraph, toType(self.type), target, null, null);
+    } endif endif endif;
+    
+	} endif;
+	
+	return source;
+}
+
+helper CastExpression::addClassificationDecision(
+	inout graph : ActivityGraph,
+	type : Type, trueTarget : ActivityNode, falseTarget : ActivityNode,
+	conversionFunction : Behavior) : ActivityNode {
+	
+	graph.nodes += var isClassifiedAction ::= 
+		new ReadIsClassifiedObjectAction(type.oclAsType(Classifier), false, self.booleanType().toType());
+		
+	graph.nodes += var forkNode ::= new ForkNode(isClassifiedAction._'object'.name);
+	graph.edges += new ObjectFlow(forkNode, isClassifiedAction._'object');
+	
+	var trueTarget1 := trueTarget;
+	if conversionFunction <> null then {
+		graph.nodes += var callAction ::= new CallBehaviorAction(conversionFunction);
+		graph.edges += new ObjectFlow(callAction.result->at(1), trueTarget);
+		trueTarget1 := callAction.argument->at(1);
+	} endif;
+	
+	createObjectDecisionGraph(
+		isClassifiedAction.result.name, forkNode, isClassifiedAction.result, trueTarget1, falseTarget
+	).addTo(graph);
+	
+	return forkNode;
+}
+
+helper CastExpression::addNaturalCheck(inout graph : ExpressionGraph) : ActivityNode {
+	graph.nodes += var valueAction ::= new ValueSpecificationAction(self.literalNatural(0));
+	graph.nodes += var callAction ::= new CallBehaviorAction(self.functionGreaterThanOrEqual());
+	graph.edges += new ObjectFlow(valueAction.result, callAction.argument->at(1));
+	
+	graph.nodes += var forkNode ::= new ForkNode(callAction.argument->at(1).name);
+	graph.edges += new ObjectFlow(forkNode, callAction.argument->at(1));
+	
+	createObjectDecisionGraph(
+		callAction.result->at(1).name, forkNode, callAction.result->at(1), graph.resultSource, null);
+	
+	return forkNode;
+}
+
 
 // Isolation Expressions
 

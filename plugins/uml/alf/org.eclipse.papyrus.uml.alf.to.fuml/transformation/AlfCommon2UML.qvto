@@ -60,26 +60,6 @@ helper SyntaxElement::sequenceFunction(function : String) : Behavior {
 	return self.primitiveBehavior("SequenceFunctions", function);
 }
 
-query SyntaxElement::literalBoolean(b : Boolean) : LiteralBoolean {
-	return new LiteralBoolean(b, self.booleanType().toType());
-}
-
-query SyntaxElement::literalNatural(n : Integer) : LiteralInteger {
-	return new LiteralInteger(n, self.naturalType().toType());
-}
-
-query SyntaxElement::literalInteger(i : Integer) : LiteralInteger {
-	return new LiteralInteger(i, self.naturalType().toType());
-}
-
-query SyntaxElement::literalString(s : String) : LiteralString {
-	return new LiteralString(s, self.stringType().toType());
-}
-
-query SyntaxElement::literalUnlimited() : LiteralUnlimitedNatural {
-	return new LiteralUnlimitedNatural(self.unlimitedNaturalType().toType());
-}
-
 helper SyntaxElement::functionSize() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Size");
 }
@@ -100,8 +80,48 @@ helper SyntaxElement::functionLessThanOrEqual() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::IntegerFunctions::<=");
 }
 
+helper SyntaxElement::functionGreaterThanOrEqual() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::IntegerFunctions::>=");
+}
+
 helper SyntaxElement::functionOr() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::BooleanFunctions::|");
+}
+
+helper SyntaxElement::functionUnlimitedNaturalToInteger() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::UnlimitedNaturalFunctions::ToInteger");
+}
+
+helper SyntaxElement::functionBitStringToInteger() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::BitStringFunctions::ToInteger");
+}
+
+helper SyntaxElement::functionIntegerToUnlimitedNatural() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::IntegerFunctions::ToUnlimitedNatural");
+}
+
+helper SyntaxElement::functionIntegerToBitString() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::BitStringFunctions::ToBitString");
+}
+
+helper SyntaxElement::literalBoolean(b : Boolean) : LiteralBoolean {
+	return new LiteralBoolean(b, self.booleanType().toType());
+}
+
+helper SyntaxElement::literalNatural(n : Integer) : LiteralInteger {
+	return new LiteralInteger(n, self.naturalType().toType());
+}
+
+helper SyntaxElement::literalInteger(i : Integer) : LiteralInteger {
+	return new LiteralInteger(i, self.naturalType().toType());
+}
+
+helper SyntaxElement::literalString(s : String) : LiteralString {
+	return new LiteralString(s, self.stringType().toType());
+}
+
+helper SyntaxElement::literalUnlimited() : LiteralUnlimitedNatural {
+	return new LiteralUnlimitedNatural(self.unlimitedNaturalType().toType());
 }
 
 // Documented Elements
@@ -228,6 +248,20 @@ constructor ForkNode::ForkNode(owner : Activity, sourceName : String) {
 constructor ForkNode::ForkNode(structuredNode : StructuredActivityNode, sourceName : String) {
 	inStructuredNode := structuredNode;
 	name := "Fork(" + sourceName + ")";
+}
+
+constructor MergeNode::MergeNode(sourceName : String) {
+	name := "Merge(" + sourceName + ")";
+}
+
+constructor MergeNode::MergeNode(owner : Activity, sourceName : String) {
+	activity := owner;
+	name := "Merge(" + sourceName + ")";
+}
+
+constructor MergeNode::MergeNode(structuredNode : StructuredActivityNode, sourceName : String) {
+	inStructuredNode := structuredNode;
+	name := "Merge(" + sourceName + ")";
 }
 
 constructor ActivityFinalNode::ActivityFinalNode(containerName : String) {
