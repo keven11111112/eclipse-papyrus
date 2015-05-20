@@ -153,24 +153,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if (elementType != null) {
-				if (elementType instanceof IExtendedHintedElementType) {
-					if (domainElement != null) {
-						if (!UMLVisualIDRegistry.checkNodeVisualID(op.getContainerView(), domainElement, visualID)) {
-							return false;
-						}
-					}
-				} else {
-					if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
-						return false; // foreign element type
-					}
+				
+				if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+					return false; // foreign element type
 				}
+				
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				if (domainElement != null && visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-					return false; // visual id for node EClass should match visual id from element type
-				}
+				//if (domainElement != null && visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
+				//	return false; // visual id for node EClass should match visual id from element type
+				//}
 			} else {
 				if (!ProfileDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
@@ -215,15 +209,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return DependencyNodeEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || StereotypeEditPart.VISUAL_ID == visualID || ClassEditPart.VISUAL_ID == visualID || MetaclassEditPart.VISUAL_ID == visualID
-				|| CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || ProfileEditPartTN.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID
-				|| EnumerationEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID
-				|| DataTypeOperationEditPart.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || DataTypePropertyEditPart.VISUAL_ID == visualID || ClassPropertyEditPart.VISUAL_ID == visualID
-				|| ClassOperationEditPart.VISUAL_ID == visualID || StereotypeEditPartCN.VISUAL_ID == visualID || ClassEditPartCN.VISUAL_ID == visualID || MetaclassEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID
-				|| ModelEditPartCN.VISUAL_ID == visualID || ProfileEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID
-				|| DataTypeEditPartCN.VISUAL_ID == visualID;
-
-
+		
+		return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
 	}
 
 	/**
@@ -250,11 +237,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
-		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		if (domainElement != null && visualID != UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
-			return false; // visual id for link EClass should match visual id from element type
-		}
+		//int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
+		//EObject domainElement = getSemanticElement(op.getSemanticAdapter());
+		//if (domainElement != null && visualID != UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
+		//	return false; // visual id for link EClass should match visual id from element type
+		//}
 		return true;
 	}
 

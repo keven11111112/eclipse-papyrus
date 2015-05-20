@@ -95,14 +95,9 @@ public class BodyLayerStack extends AbstractLayerTransform {
 		// this.columnHideShowLayer = new ColumnHideShowLayer(this.rowReoderLayer);
 
 		this.columnHideShowLayer = new ColumnHideShowLayer(this.columnReorderLayer);
+		
 		this.rowHideShowLayer = new RowHideShowLayer(columnHideShowLayer);
-
-		// /this.selectionLayer = new PapyrusSelectionLayer(this.columnHideShowLayer);
 		this.selectionLayer = new PapyrusSelectionLayer(rowHideShowLayer);
-		// CopyDataCommandHandler handler = new CopyDataCommandHandler(this.selectionLayer);
-		// // handler.setCopyFormattedText(true);//to do the paste using the label provider
-		// this.selectionLayer.registerCommandHandler(handler);
-
 		this.viewportLayer = new ViewportLayer(this.selectionLayer);
 		setUnderlyingLayer(this.viewportLayer);
 		setRegionName(GridRegion.BODY);

@@ -33,12 +33,12 @@
     <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
   </genAnnotations>
   <foreignModel>uml-rt.profile.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="UMLRealTime" basePackage="org.eclipse.papyrus.umlrt" disposableProviderFactory="true"
-      ecorePackage="UMLRealTime.ecore#/">
+  <genPackages xsi:type="genmodel:GenPackage" prefix="UMLRealTime" basePackage="org.eclipse.papyrus.umlrt"
+      disposableProviderFactory="true" ecorePackage="UMLRealTime.ecore#/">
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="UMLRealTime.ecore#//PortRegistrationType">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLRealTime.ecore#//PortRegistrationType/Automatic"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLRealTime.ecore#//PortRegistrationType/Application"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLRealTime.ecore#//PortRegistrationType/ApplicationLocked"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLRealTime.ecore#//PortRegistrationType/AutomaticLocked"/>
     </genEnums>
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="UMLRealTime.ecore#//RTMessageKind">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLRealTime.ecore#//RTMessageKind/in"/>

@@ -18,8 +18,10 @@ import static org.hamcrest.CoreMatchers.either;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.junit.framework.runner.Scenario;
 import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
@@ -48,6 +50,8 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 	private org.eclipse.uml2.uml.Package root;
 
 	private org.eclipse.uml2.uml.Class foo;
+	private Property foo_ok;
+	private Property foo_bar;
 	private Operation foo_doit;
 	private org.eclipse.uml2.uml.Class bar;
 	private org.eclipse.uml2.uml.Class super_;
@@ -287,6 +291,39 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 		}
 	}
 
+	@Scenario({ "execute", "undo", "redo" })
+	public void reorderPropertiesInClass_bug420549() {
+		IGraphicalEditPart attributes = getClassAttributeCompartment(requireEditPart(foo));
+
+		// Move 'bar' ahead of 'ok'
+		execute(MoveCommand.create(editor.getEditingDomain(), foo, UMLPackage.Literals.STRUCTURED_CLASSIFIER__OWNED_ATTRIBUTE, foo_bar, 0));
+
+		if (verificationPoint()) {
+			IGraphicalEditPart okEditPart = getEditPart(foo_ok, attributes);
+			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
+			assertThat(attributes.getChildren().indexOf(barEditPart), is(0));
+			assertThat(attributes.getChildren().indexOf(okEditPart), is(1));
+		}
+
+		undo();
+
+		if (verificationPoint()) {
+			IGraphicalEditPart okEditPart = getEditPart(foo_ok, attributes);
+			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
+			assertThat(attributes.getChildren().indexOf(barEditPart), is(1));
+			assertThat(attributes.getChildren().indexOf(okEditPart), is(0));
+		}
+
+		redo();
+
+		if (verificationPoint()) {
+			IGraphicalEditPart okEditPart = getEditPart(foo_ok, attributes);
+			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
+			assertThat(attributes.getChildren().indexOf(barEditPart), is(0));
+			assertThat(attributes.getChildren().indexOf(okEditPart), is(1));
+		}
+	}
+
 
 	//
 	// Test framework
@@ -297,6 +334,8 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 		root = editor.getModel();
 
 		foo = (org.eclipse.uml2.uml.Class) root.getOwnedType("Foo");
+		foo_ok = foo.getOwnedAttribute("ok", null);
+		foo_bar = foo.getOwnedAttribute("bar", null);
 		foo_doit = foo.getOwnedOperation("doIt", null, null);
 		bar = (org.eclipse.uml2.uml.Class) root.getOwnedType("Bar");
 		super_ = (org.eclipse.uml2.uml.Class) root.getOwnedType("Super");

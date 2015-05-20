@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,20 +8,34 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;
 
-import static org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper.adapt;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.cdo.CDOElement;
+import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
+import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
-import org.eclipse.emf.cdo.util.CDOURIUtil;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.explorer.ui.checkouts.CDOCheckoutContentProvider;
 import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -29,23 +43,19 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoryItemProvider;
 import org.eclipse.papyrus.cdo.uml.diagram.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 
 import com.google.common.base.Strings;
 import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
 
 /**
  * This is the NewModelPage type. Enjoy.
@@ -54,86 +64,84 @@ public class NewModelPage extends WizardPage {
 
 	public static final String PAGE_ID = "NewCDOModel"; //$NON-NLS-1$
 
+	private String resourceType = "model";
+
 	private Text folderText;
 
-	private TreeViewer foldersTree;
+	private TreeViewer folderViewer;
 
 	private Text nameText;
 
-	private IPapyrusRepository repository;
-
-	private CDOResourceNode selectedNode;
-
 	private boolean synchronizingFolderSelection;
 
-	public NewModelPage(IStructuredSelection selection, EventBus bus, String modelKindName) {
+	private Object selectedElement;
 
+	private boolean selectedElementRevealed;
+
+	private URI newModelResourceURI;
+
+	public NewModelPage(IStructuredSelection selection, EventBus bus, String modelKindName) {
 		super(PAGE_ID);
 
 		setTitle(NLS.bind(Messages.NewModelPage_0, modelKindName));
 		setDescription(NLS.bind(Messages.NewModelPage_1, modelKindName));
-
-		if (!selection.isEmpty()) {
-			selectedNode = adapt(selection.getFirstElement(), CDOResourceNode.class);
-			if ((selectedNode != null) && !(selectedNode instanceof CDOResourceFolder)) {
-				selectedNode = selectedNode.getFolder();
-			}
-		}
+		setSelection(selection);
 
 		bus.register(this);
 	}
 
 	@Override
-	public void createControl(Composite parent) {
-		Composite myComposite = new Composite(parent, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(myComposite);
-		myComposite.setLayout(new GridLayout(2, false));
+	public void createControl(Composite parentControl) {
+		Composite container = new Composite(parentControl, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(container);
+		container.setLayout(new GridLayout(2, false));
 
-		Label label = new Label(myComposite, SWT.NONE);
+		Label label = new Label(container, SWT.NONE);
 		label.setText(Messages.NewModelPage_2);
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(label);
 
-		folderText = new Text(myComposite, SWT.BORDER);
+		folderText = new Text(container, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).applyTo(folderText);
-		updateFolderSelection();
+		updateFolderText();
 
-		foldersTree = new TreeViewer(myComposite, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
-		GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(foldersTree.getControl());
-		ModelRepositoryItemProvider itemProvider = new ModelRepositoryItemProvider(null);
-		foldersTree.setContentProvider(itemProvider);
-		foldersTree.setLabelProvider(new DecoratingLabelProvider(itemProvider, PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator()));
-		foldersTree.setSorter(itemProvider);
-		if (getRepository() != null) {
-			foldersTree.setInput(getRepository());
-		}
-		if (selectedNode != null) {
-			foldersTree.setSelection(new StructuredSelection(selectedNode));
-		}
+		folderViewer = CDOCheckoutContentProvider.createTreeViewer(container);
+		folderViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		folderViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				if (selectedElementRevealed) {
+					IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+					setSelection(selection);
+				}
 
-		new Label(myComposite, SWT.NONE).setText(Messages.NewModelPage_3);
+				validatePage();
+			}
+		});
 
-		nameText = new Text(myComposite, SWT.BORDER);
+		new Label(container, SWT.NONE).setText(Messages.NewModelPage_3);
+
+		nameText = new Text(container, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(nameText);
-		nameText.setText(suggestName("model", "di")); //$NON-NLS-1$ //$NON-NLS-2$
+		nameText.setText(getUniqueName("di")); //$NON-NLS-1$
 
-		setControl(myComposite);
+		setControl(container);
 
 		folderText.addModifyListener(new ModifyListener() {
 
 			@Override
 			public void modifyText(ModifyEvent e) {
-				findFolderSelection();
+				// TODO: set parent then revealParent()
 				validatePage();
 			}
 		});
 
-		foldersTree.addSelectionChangedListener(new ISelectionChangedListener() {
+		folderViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-				selectedNode = selection.isEmpty() ? null : adapt(selection.getFirstElement(), CDOResourceNode.class);
-				updateFolderSelection();
+				setSelection(selection);
+				updateFolderText();
 				validatePage();
 			}
 		});
@@ -146,161 +154,35 @@ public class NewModelPage extends WizardPage {
 			}
 		});
 
-		validatePage();
-	}
-
-	@Subscribe
-	public void setRepository(IPapyrusRepository repository) {
-		this.repository = repository;
-
-		if (foldersTree != null) {
-			foldersTree.setInput(repository);
-		}
-
-		validatePage();
-	}
-
-	private IInternalPapyrusRepository getRepository() {
-		return ((IInternalPapyrusRepository) repository);
-	}
-
-	CDOView getView() {
-		IInternalPapyrusRepository repo = getRepository();
-		return (repo == null) ? null : repo.getMasterView();
-	}
-
-	String getSelectedFolderPath() {
-		return folderText.getText().trim();
-	}
-
-	void updateFolderSelection() {
-		whileSynchronizingFolderSelection(new Runnable() {
-
+		parentControl.getShell().getDisplay().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				CDOResourceFolder selected = null;
-				if (selectedNode instanceof CDOResourceFolder) {
-					selected = (CDOResourceFolder) selectedNode;
-				} else if (selectedNode != null) {
-					// will be null if the selectedNode is contained by the root
-					// resource
-					selected = selectedNode.getFolder();
-				}
-
-				if (selected == null) {
-					folderText.setText(""); //$NON-NLS-1$
-				} else {
-					folderText.setText(selected.getPath());
-				}
+				revealSelectedElement();
+				validatePage();
 			}
 		});
 	}
 
-	void findFolderSelection() {
-		whileSynchronizingFolderSelection(new Runnable() {
-
-			@Override
-			public void run() {
-				String folder = folderText.getText().trim();
-				CDOView view = getView();
-				if (view != null) {
-					if (folder.equals("")) { //$NON-NLS-1$
-						foldersTree.setSelection(StructuredSelection.EMPTY);
-					} else {
-						try {
-							foldersTree.setSelection(new StructuredSelection(view.getResourceNode(folder)));
-						} catch (Exception e) {
-							// normal occurrence when the folder doesn't exist
-						}
-					}
-				}
-			}
-		});
-	}
-
-	private void whileSynchronizingFolderSelection(Runnable runnable) {
-		if (!synchronizingFolderSelection) {
-			synchronizingFolderSelection = true;
-
-			try {
-				runnable.run();
-			} finally {
-				synchronizingFolderSelection = false;
-			}
-		}
-	}
-
-	String suggestName(String baseName, String extension) {
-		String result = String.format("%s.%s", baseName, extension); //$NON-NLS-1$
-		CDOView view = getView();
-
-		if (view != null) {
-			for (int i = 1;; i++) {
-				if (!view.hasResource(getNewResourcePath(result))) {
-					break;
-				} else {
-					// use %s instead of %d to avoid any thousands separators
-					// (hah! that there should be so many models)
-					result = String.format("%s%s.%s", baseName, i, extension); //$NON-NLS-1$
-				}
-			}
-		}
-
-		return result;
-	}
-
-	String getNewResourcePath(String name) {
-		String result = null;
-		String path = getSelectedFolderPath();
-
-		if (path.equals("")) { //$NON-NLS-1$
-			// it's a resource in the root
-			result = "/" + name; //$NON-NLS-1$
-		} else {
-			StringBuilder buf = new StringBuilder();
-
-			if (!path.startsWith("/")) { //$NON-NLS-1$
-				buf.append("/"); //$NON-NLS-1$
-			}
-			buf.append(path);
-			if (!path.endsWith("/")) { //$NON-NLS-1$
-				buf.append("/"); //$NON-NLS-1$
-			}
-			buf.append(name);
-
-			result = buf.toString();
-		}
-
-		return result;
-	}
-
-	String getNewResourceName() {
+	public String getNewResourceName() {
 		return (nameText == null) ? null : nameText.getText().trim();
 	}
 
-	void setNewResourceName(String newName) {
-		nameText.setText(newName.trim());
-	}
-
 	public URI createNewModelResourceURI() {
-		return CDOURIUtil.createResourceURI(getView(), getNewResourcePath(getNewResourceName()));
+		return newModelResourceURI;
 	}
 
-	private String getExtension() {
-		String result = null;
-		String name = getNewResourceName();
-
-		if (name != null) {
-			// the proper extension is whatever follows the *last* '.',
-			// but for our purposes we need e.g. "profile.uml" to be
-			// an extension
-			int dot = name.indexOf('.');
-			if (dot >= 0) {
-				result = name.substring(dot + 1);
-			}
+	public URI createSelectedElementURI() {
+		if (selectedElement instanceof CDOCheckout) {
+			CDOCheckout checkout = (CDOCheckout) selectedElement;
+			return checkout.createResourceURI(null);
 		}
 
-		return result;
+		if (selectedElement instanceof CDOResourceNode) {
+			CDOResourceNode resourceNode = (CDOResourceNode) selectedElement;
+			return resourceNode.getURI();
+		}
+
+		return null;
 	}
 
 	/**
@@ -320,7 +202,7 @@ public class NewModelPage extends WizardPage {
 				// take one off for the '.'
 				base = base.substring(0, base.length() - currentExtension.length() - 1);
 			}
-			String newFileName = suggestName(base, newExtension);
+			String newFileName = getUniqueName(newExtension);
 
 			setNewResourceName(newFileName);
 
@@ -338,31 +220,259 @@ public class NewModelPage extends WizardPage {
 		return Status.OK_STATUS;
 	}
 
+	void setNewResourceName(String newName) {
+		nameText.setText(newName.trim());
+	}
+
 	void validatePage() {
+		newModelResourceURI = null;
 		setMessage(null, NONE);
 		setPageComplete(true);
 
-		String name = getNewResourceName();
-		if (getView() == null) {
-			setMessage(Messages.NewModelPage_16, ERROR);
+		String folder = folderText.getText().trim();
+		if (Strings.isNullOrEmpty(folder)) {
 			setPageComplete(false);
-		} else if (Strings.isNullOrEmpty(name)) {
+			return;
+		}
+
+		String[] segments = getSegments(folder);
+		CDOCheckout checkout = CDOExplorerUtil.getCheckoutManager().getCheckoutByLabel(segments[0]);
+		if (checkout == null) {
+			setMessage(NLS.bind(Messages.NewModelPage_16, segments[0]), ERROR);
+			setPageComplete(false);
+			return;
+		}
+
+		CDOView view = checkout.getView();
+		String path = "";
+		SegmentType segmentType = SegmentType.FOLDER; // The checkout is treated like a folder.
+
+		for (int i = 1; i < segments.length; i++) {
+			String segment = segments[i];
+			path += "/";
+			path += segment;
+
+			segmentType = SegmentType.of(view, path);
+			if (segmentType == SegmentType.OTHER) {
+				setMessage(Messages.NewModelPage_20, ERROR);
+				setPageComplete(false);
+				return;
+			}
+		}
+
+		String name = getNewResourceName();
+		if (Strings.isNullOrEmpty(name)) {
 			setMessage(Messages.NewModelPage_17, ERROR);
 			setPageComplete(false);
-		} else {
-			String path = getNewResourcePath(name);
-			if (getView().hasResource(path)) {
-				setMessage(NLS.bind(Messages.NewModelPage_18, path), ERROR);
+			return;
+		}
+
+		if (segmentType != SegmentType.MISSING) {
+			String fullPath = path + "/" + name;
+			if (SegmentType.of(view, fullPath) != SegmentType.MISSING) {
+				setMessage(NLS.bind(Messages.NewModelPage_18, fullPath), ERROR);
 				setPageComplete(false);
-			} else {
-				// check existence of folder (if any)
-				String folderPath = getSelectedFolderPath();
-				if (!Strings.isNullOrEmpty(folderPath)) {
-					if (!getView().hasResource(folderPath)) {
-						setMessage(Messages.NewModelPage_19, WARNING);
-					}
+				return;
+			}
+		}
+
+		newModelResourceURI = checkout.createResourceURI(path).appendSegment(name);
+
+		if (segmentType == SegmentType.MISSING) {
+			setMessage(Messages.NewModelPage_19, WARNING);
+		}
+	}
+
+	private String[] getSegments(String folder) {
+		while (folder.startsWith("/")) {
+			folder = folder.substring(1);
+		}
+
+		while (folder.endsWith("/")) {
+			folder = folder.substring(0, folder.length() - 1);
+		}
+
+		return folder.split("/");
+	}
+
+	private String getExtension() {
+		String result = null;
+		String name = getNewResourceName();
+
+		if (name != null) {
+			// the proper extension is whatever follows the *last* '.',
+			// but for our purposes we need e.g. "profile.uml" to be
+			// an extension
+			int dot = name.indexOf('.');
+			if (dot >= 0) {
+				result = name.substring(dot + 1);
+			}
+		}
+
+		return result;
+	}
+
+	private void setSelection(IStructuredSelection selection) {
+		selectedElement = null;
+
+		if (!selection.isEmpty()) {
+			Object element = selection.getFirstElement();
+			if (element instanceof CDOElement) {
+				element = ((CDOElement) element).getDelegate();
+			}
+
+			if (element instanceof CDOCheckout) {
+				selectedElement = element;
+			} else if (element instanceof CDOResourceLeaf) {
+				selectedElement = ((CDOResourceLeaf) element).getFolder();
+			} else if (element instanceof CDOResourceFolder) {
+				selectedElement = (CDOResourceFolder) element;
+			} else if (element instanceof EObject) {
+				Resource resource = ((EObject) element).eResource();
+				if (resource instanceof CDOResource) {
+					selectedElement = ((CDOResource) resource).getFolder();
 				}
 			}
+		}
+	}
+
+	private void updateFolderText() {
+		if (!synchronizingFolderSelection) {
+			synchronizingFolderSelection = true;
+
+			try {
+				if (selectedElement == null) {
+					folderText.setText(""); //$NON-NLS-1$
+				} else {
+					StringBuilder builder = new StringBuilder();
+					for (Object node : getSelectedSegments()) {
+						builder.append('/');
+						builder.append(CDOExplorerUtil.getName(node));
+					}
+
+					String path = builder.toString();
+					folderText.setText(path);
+				}
+			} finally {
+				synchronizingFolderSelection = false;
+			}
+		}
+	}
+
+	private void revealSelectedElement() {
+		if (selectedElement != null) {
+			List<Object> segments = getSelectedSegments();
+			for (int i = 0; i < segments.size() - 1; i++) {
+				Object segment = segments.get(i);
+				folderViewer.setExpandedState(segment, true);
+			}
+
+			selectedElementRevealed = true;
+			folderViewer.setSelection(new StructuredSelection(selectedElement), true);
+		}
+	}
+
+	private List<Object> getSelectedSegments() {
+		List<Object> segments = new ArrayList<Object>();
+		fillSegments(segments, selectedElement);
+		return segments;
+	}
+
+	private void fillSegments(List<Object> segments, Object element) {
+		if (element instanceof CDOCheckout) {
+			segments.add(element);
+			return;
+		}
+
+		if (element instanceof CDOResourceFolder) {
+			CDOResourceFolder folder = (CDOResourceFolder) element;
+
+			Adapter adapter = EcoreUtil.getAdapter(folder.eAdapters(), CDOCheckout.class);
+			if (adapter != null) {
+				fillSegments(segments, adapter);
+			} else {
+				Object parent = folder.getFolder();
+				if (parent == null) {
+					parent = EcoreUtil.getAdapter(folder.cdoView().getRootResource().eAdapters(), CDOCheckout.class);
+				}
+
+				fillSegments(segments, parent);
+			}
+		}
+
+		segments.add(element);
+	}
+
+	private EList<EObject> getChildrenOfSelectedElement() {
+		if (selectedElement instanceof CDOCheckout) {
+			CDOCheckout checkout = (CDOCheckout) selectedElement;
+			return checkout.getRootObject().eContents();
+		}
+
+		if (selectedElement instanceof CDOResourceFolder) {
+			CDOResourceFolder folder = (CDOResourceFolder) selectedElement;
+			return folder.eContents();
+		}
+
+		return ECollections.emptyEList();
+	}
+
+	private String getUniqueName(String extension) {
+		Set<String> names = new HashSet<String>();
+		for (EObject eObject : getChildrenOfSelectedElement()) {
+			if (eObject instanceof CDOResourceNode) {
+				CDOResourceNode node = (CDOResourceNode) eObject;
+				String name = node.getName();
+				if (name.startsWith(resourceType)) {
+					names.add(name);
+				}
+			}
+		}
+
+		for (int i = 1; i < Integer.MAX_VALUE; i++) {
+			String name = resourceType + (i > 1 ? i : "") + "." + extension;
+			if (!names.contains(name)) {
+				return name;
+			}
+		}
+
+		throw new IllegalStateException("Too many children");
+	}
+
+	/**
+	 * @author Stepper
+	 */
+	private enum SegmentType {
+		MISSING, FOLDER, OTHER;
+
+		public static SegmentType of(CDOView view, String path) {
+			CDOResourceNode resourceNode;
+			try {
+				resourceNode = view.getResourceNode(path);
+				if (resourceNode != null) {
+					if (resourceNode instanceof CDOResourceFolder) {
+						return SegmentType.FOLDER;
+					}
+
+					return SegmentType.OTHER;
+				}
+			} catch (Exception ex) {
+				//$FALL-THROUGH$
+			}
+
+			return SegmentType.MISSING;
+		}
+
+		private static SegmentType of(CDOResourceNode resourceNode) {
+			if (resourceNode == null) {
+				return SegmentType.MISSING;
+			}
+
+			if (resourceNode instanceof CDOResourceFolder) {
+				return SegmentType.FOLDER;
+			}
+
+			return SegmentType.OTHER;
 		}
 	}
 }

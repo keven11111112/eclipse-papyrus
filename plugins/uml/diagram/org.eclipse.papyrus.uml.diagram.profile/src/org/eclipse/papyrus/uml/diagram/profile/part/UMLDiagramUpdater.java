@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
@@ -257,6 +258,17 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == CommentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		Resource resource = modelElement.eResource();
+		for (Iterator<EObject> it = getPhantomNodesIterator(resource); it.hasNext();) {
+			EObject childElement = it.next();
+			if (childElement == modelElement) {
+				continue;
+			}
+			if (UMLVisualIDRegistry.getNodeVisualID(view, childElement) == ShortCutDiagramEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, ShortCutDiagramEditPart.VISUAL_ID));
 				continue;
 			}
 		}
@@ -1048,6 +1060,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Iterator<EObject> getPhantomNodesIterator(Resource resource) {
+		return resource.getAllContents();
 	}
 
 	/**

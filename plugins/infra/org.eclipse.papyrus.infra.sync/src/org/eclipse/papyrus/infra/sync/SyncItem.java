@@ -69,7 +69,7 @@ public abstract class SyncItem<M, T> extends SyncObject {
 	 * @return whether my {@link #getBackend() backend} is non-{@code null}
 	 */
 	@Override
-	public final boolean isActive() {
+	public boolean isActive() {
 		return backend.get() != null;
 	}
 }

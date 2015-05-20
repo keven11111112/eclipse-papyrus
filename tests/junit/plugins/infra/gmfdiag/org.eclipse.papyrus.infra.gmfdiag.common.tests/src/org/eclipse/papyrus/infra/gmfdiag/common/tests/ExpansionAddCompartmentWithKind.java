@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.ChildrenListRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
@@ -37,7 +36,7 @@ import org.osgi.framework.Bundle;
 
 /**
  * this Test is used to test if it is possible to add compartment
- * see #Test T002-Add a compartment
+ * see #Test T006-Add Compartment with Kind
  * 
  *
  */
@@ -93,7 +92,6 @@ public class ExpansionAddCompartmentWithKind extends AbstractEditorTest{
 		try {
 			initModel("ExpansionModelProject", "ExpansionModelTest", getBundle());
 			openDiagram(editor, "NewDiagram");
-			SynchronizableGmfDiagramEditor	diagramEditor = (SynchronizableGmfDiagramEditor)editor.getActiveEditor();
 			DiagramEditPart diagramEditPart = (DiagramEditPart)editor.getAdapter(DiagramEditPart.class);
 			Assert.assertNotNull("The diagram must be opened", diagramEditPart);
 			IGraphicalEditPart classEditPart =(IGraphicalEditPart)diagramEditPart.getChildren().get(0);

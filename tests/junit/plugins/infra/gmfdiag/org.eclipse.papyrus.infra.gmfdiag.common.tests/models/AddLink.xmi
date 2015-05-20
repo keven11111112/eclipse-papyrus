@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expansionmodel:DiagramExpansion
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:expansionmodel="http:///expansionmodel.ecore"
+    xmi:id="_BOX98NnkEeSFtu511b-yaw"
+    ID="test new link">
+  <usages diagramType="Class Diagram"
+      representations="//@libraries.0/@representations.0"
+      name="Add link on class of papyrus"/>
+  <libraries
+      name="library">
+    <representations
+        xsi:type="expansionmodel:Representation"
+        editPartQualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart"
+        name="NewDependency"
+        viewFactory="org.eclipse.gmf.runtime.diagram.ui.view.factories.optimal.ConnectorViewFactory"
+        graphicalElementType="org.eclipse.papyrus.uml.diagram.testexpansion.Dependency_Link"/>
+  </libraries>
+</expansionmodel:DiagramExpansion>

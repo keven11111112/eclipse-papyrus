@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 422257
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.wizards;
@@ -18,16 +19,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.CDOProxyResolvingResourceSet;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -41,7 +41,7 @@ import com.google.common.collect.Maps;
  */
 public class LocalRepositoryView {
 
-	private final Map<IPapyrusRepository, CDOView> localViews = Maps.newHashMap();
+	private final Map<CDOCheckout, CDOView> localViews = Maps.newHashMap();
 
 	private ResourceSet rset = null;
 
@@ -53,14 +53,14 @@ public class LocalRepositoryView {
 	 * Disposes of all of the local {@link CDOView}s that I have cached.
 	 */
 	public void dispose() {
-		for (Map.Entry<IPapyrusRepository, CDOView> next : localViews.entrySet()) {
+		for (Map.Entry<CDOCheckout, CDOView> next : localViews.entrySet()) {
 			CDOView view = next.getValue();
 			try {
 				CDOUtils.unload(view);
 			} catch (Exception e) {
 				Activator.error("Exception in unloading CDO repository view.", e); //$NON-NLS-1$
 			} finally {
-				next.getKey().close(view.getResourceSet());
+				view.close();
 			}
 		}
 
@@ -130,11 +130,11 @@ public class LocalRepositoryView {
 			if (view == null) {
 				result = object;
 			} else {
-				IInternalPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepository(view);
-				CDOView localView = localViews.get(repo);
+				CDOCheckout checkout = CDOExplorerUtil.getCheckout(view);
+				CDOView localView = localViews.get(checkout);
 				if (localView == null) {
-					localView = repo.getCDOView(repo.createReadOnlyView(getResourceSet()));
-					localViews.put(repo, localView);
+					localView = checkout.openView(true, getResourceSet());
+					localViews.put(checkout, localView);
 				}
 
 				result = localView.getObject(object);

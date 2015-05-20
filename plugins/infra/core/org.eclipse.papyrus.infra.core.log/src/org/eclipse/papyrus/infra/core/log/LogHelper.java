@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.infra.core.log;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -35,7 +37,8 @@ public class LogHelper {
 	/** The plugin related to that helper. */
 	private Plugin activator;
 
-
+	private boolean tracing;
+	private Map<String, Boolean> traceOptions;
 
 	/**
 	 * Default Constructor.
@@ -64,6 +67,11 @@ public class LogHelper {
 	public void setPlugin(Plugin activator) {
 		this.pluginId = activator.getBundle().getSymbolicName();
 		this.activator = activator;
+
+		this.tracing = Boolean.valueOf(Platform.getDebugOption(String.format("%s/debug", pluginId))); //$NON-NLS-1$
+		if (tracing) {
+			this.traceOptions = new ConcurrentHashMap<String, Boolean>(32, 0.75f, 4);
+		}
 	}
 
 	/**
@@ -99,6 +107,51 @@ public class LogHelper {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Queries whether the specified tracing {@code option} is enabled by the user.
+	 * 
+	 * @param option
+	 *            a tracing option, without the <tt>{@literal <bundle-id>/debug/}</tt> path prefix
+	 * 
+	 * @return whether the tracing {@code option} is enabled
+	 * 
+	 * @see #trace(String, String)
+	 */
+	public boolean isTraceEnabled(String option) {
+		if (tracing) {
+			final String key = String.format("%s/debug/%s", pluginId, option); //$NON-NLS-1$
+			Boolean result;
+
+			synchronized (traceOptions) {
+				result = traceOptions.get(key);
+				if (result == null) {
+					result = Boolean.valueOf(Platform.getDebugOption(key));
+					traceOptions.put(key, result);
+				}
+			}
+
+			return result;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Prints the specified trace {@code message}, if the {@code option} is enabled by the user.
+	 * 
+	 * @param option
+	 *            the tracing option, without the <tt>{@literal <bundle-id>/debug/}</tt> path prefix
+	 * @param message
+	 *            the message to print
+	 * 
+	 * @see #isTraceEnabled(String)
+	 */
+	public void trace(String option, String message) {
+		if (isTraceEnabled(option)) {
+			System.out.printf("[TRACE:%s] %s%n", option, message); //$NON-NLS-1$
+		}
 	}
 
 	/**

@@ -55,6 +55,8 @@ public class MessageSetEditHelperAdvice extends AbstractEditHelperAdvice {
 	 */
 	@Override
 	protected ICommand getAfterMoveCommand(final MoveRequest request) {
+		ICommand result = null;
+		
 		CompositeCommand compositeMoveCommand = new CompositeCommand("Composite Move Command");
 		
 		Map<?, ?> elementsToMove = request.getElementsToMove();
@@ -72,10 +74,12 @@ public class MessageSetEditHelperAdvice extends AbstractEditHelperAdvice {
 		}
 		
 		if (compositeMoveCommand.isEmpty()) {
-			compositeMoveCommand.add(super.getAfterMoveCommand(request));
-		} 
+			result = super.getAfterMoveCommand(request);
+		} else {
+			result = compositeMoveCommand;
+		}
 		
-		return compositeMoveCommand;
+		return result;
 	}
 
 	/**

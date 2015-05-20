@@ -87,7 +87,7 @@ public class RunGenerateFactoryTest extends AbstractMokaTest {
 		for(Iterator<Behavior> i = class4Factory.getOwnedBehaviors().iterator(); i.hasNext() && testCaseActivity == null;) {
 			Behavior cddFactory = i.next();
 			String cddName = cddFactory.getName() == null ? "" : cddFactory.getName();
-			if(cddFactory instanceof Activity && cddName.equals(class4Factory.getName() + "_Factory")) {
+			if(cddFactory instanceof Activity && cddName.equals(this.ACTIVITY_NAME)) {
 				testCaseActivity = (Activity)cddFactory;
 			}
 		}

@@ -33,4 +33,5 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3038"/>
     </ownedConfigurations>
   </drawerConfigurations>
+  <requiredProfiles>UMLRealTime</requiredProfiles>
 </paletteconfiguration:PaletteConfiguration>

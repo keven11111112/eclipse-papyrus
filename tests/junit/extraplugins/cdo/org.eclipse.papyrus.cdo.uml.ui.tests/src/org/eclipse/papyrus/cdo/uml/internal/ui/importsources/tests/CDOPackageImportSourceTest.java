@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.internal.ui.importsources.tests;
 
@@ -86,15 +87,15 @@ public class CDOPackageImportSourceTest extends AbstractPapyrusCDOUITest {
 		DIModel model = getDIModel();
 		CDOResourceFolder folder = model.getResource().getFolder();
 
-		ITreeContentProvider treeContent = (ITreeContentProvider)provider;
+		ITreeContentProvider treeContent = (ITreeContentProvider) provider;
 
 		// trigger the asynchronous DIResourceQuery and wait for it to finish
-		treeContent.getChildren(getInternalPapyrusRepository());
-		DIResourceQuery.waitFor(getInternalPapyrusRepository().getMasterView(), 10, TimeUnit.SECONDS);
+		treeContent.getChildren(getInternalCheckout());
+		DIResourceQuery.waitFor(getInternalCheckout().getView(), 10, TimeUnit.SECONDS);
 
 		Object[] children = treeContent.getChildren(folder);
-		assertThat(Arrays.asList(children), hasItem((Object)model));
-		assertThat(treeContent.getParent(model), sameInstance((Object)model.getResource().getFolder()));
+		assertThat(Arrays.asList(children), hasItem((Object) model));
+		assertThat(treeContent.getParent(model), sameInstance((Object) model.getResource().getFolder()));
 		assertThat(treeContent.hasChildren(model.getResource().getFolder()), is(true));
 	}
 
@@ -142,13 +143,13 @@ public class CDOPackageImportSourceTest extends AbstractPapyrusCDOUITest {
 	@Before
 	public void createTestFixture() throws Exception {
 		openEditor();
-		model = (Model)getUMLModel();
+		model = (Model) getUMLModel();
 
 		fixture = new TestFixture();
 		fixture.initialize(singleton(model));
 
-		ModelSet modelSet = (ModelSet)model.eResource().getResourceSet();
-		diModel = (SashWindowsMngr)EcoreUtil.getObjectByType(((AbstractBaseModel)modelSet.getModel(SashModel.MODEL_ID)).getResource().getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+		ModelSet modelSet = (ModelSet) model.eResource().getResourceSet();
+		diModel = (SashWindowsMngr) EcoreUtil.getObjectByType(((AbstractBaseModel) modelSet.getModel(SashModel.MODEL_ID)).getResource().getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
 	}
 
 	@After
@@ -158,7 +159,7 @@ public class CDOPackageImportSourceTest extends AbstractPapyrusCDOUITest {
 
 	protected DIModel getDIModel() {
 		// get the resource in the read-only view that corresponds to our DI model
-		CDOResource resource = getMasterViewObject((CDOResource)diModel.eResource());
+		CDOResource resource = getMasterViewObject((CDOResource) diModel.eResource());
 
 		return DIModel.getInstance(resource, true);
 	}

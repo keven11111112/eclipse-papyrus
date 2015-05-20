@@ -26,13 +26,10 @@ import org.eclipse.papyrus.uml.service.types.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.TemplateSignature;
 
-// TODO: Auto-generated Javadoc
 /**
  * this class is used to select parameterable element by taking account the kind of the paramter.
  */
@@ -122,7 +119,6 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 	 */
 	@Override
 	protected void createContents() {
-		// TODO Auto-generated method stub
 		super.createContents();
 		getParameteredElementContent().setText(""); //$NON-NLS-1$
 		getDefaultElementContent().setText(""); //$NON-NLS-1$
@@ -130,7 +126,6 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 		try {
 			registry = ServiceUtilsForResource.getInstance().getServiceRegistry(templatesignature.eResource());
 			LabelProviderService labelProviderService = registry.getService(LabelProviderService.class);
-			ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(), labelProviderService.getLabelProvider());
 			final ILabelProvider labelProvider = labelProviderService.getLabelProvider();
 			getChoosePararameteredElementButton().addMouseListener(new MouseListener() {
 

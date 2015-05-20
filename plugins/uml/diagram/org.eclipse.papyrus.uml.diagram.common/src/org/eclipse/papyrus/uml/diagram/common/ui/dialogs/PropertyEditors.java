@@ -278,7 +278,7 @@ public class PropertyEditors {
 		ComboInputDialog dialog = new ComboInputDialog(new Shell(), BooleanEditor_Title, Choice, initialValue, listOfChoice);
 		if (dialog.open() != Window.CANCEL) {
 			int selection = dialog.getIndexOfSelection();
-			if (listOfChoice[selection] != "") { //$NON-NLS-1$
+			if (!"".equals(listOfChoice[selection])) { //$NON-NLS-1$
 				value = listOfChoice[selection];
 			}
 		} else if (oldValue != null) {
@@ -320,7 +320,7 @@ public class PropertyEditors {
 		ComboInputDialog dialog = new ComboInputDialog(new Shell(), EnumerationLiteralEditor_Title, Choice, initialValue, listOfChoice);
 		if (dialog.open() != Window.CANCEL) {
 			int selection = dialog.getIndexOfSelection();
-			if (listOfChoice[selection] != "") { //$NON-NLS-1$
+			if (!"".equals(listOfChoice[selection])) { //$NON-NLS-1$
 				value = listOfChoice[selection].toString();
 			}
 		} else if (oldValue != null) {
@@ -399,7 +399,7 @@ public class PropertyEditors {
 			ComboDialogWithMessage dialog = new ComboDialogWithMessage(new Shell(), StereotypeEditor_Title, Choice, initialValue, proposals, StereotypeEditor_WarningMessage);
 			if (dialog.open() != Window.CANCEL) {
 				int selection = dialog.getIndexOfSelection();
-				if (proposals[selection] != "") { //$NON-NLS-1$
+				if (!"".equals(proposals[selection])) { //$NON-NLS-1$
 					returnedValue = dialog.getValue();
 				}
 
@@ -490,7 +490,7 @@ public class PropertyEditors {
 			ComboDialogWithMessage dialog = new ComboDialogWithMessage(new Shell(), MetaclassEditor_Title, Choice, initialValue, proposals, MetaclassEditor_WarningMessage);
 			if (dialog.open() != Window.CANCEL) {
 				int selection = dialog.getIndexOfSelection();
-				if (proposals[selection] != "") { //$NON-NLS-1$
+				if (!"".equals(proposals[selection])) { //$NON-NLS-1$
 
 					returnedValue = dialog.getValue();
 				}

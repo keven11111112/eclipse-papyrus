@@ -57,11 +57,13 @@ public class DefaultDiagramCopyCommand extends AbstractOverrideableCommand imple
 		EcoreUtil.Copier copier = new EcoreUtil.Copier(Boolean.TRUE, keepReferences);
 		List<EObject> objectToCopy = new ArrayList<EObject>();
 
-		for (IGraphicalEditPart iGraphicalEditPart : pObjectsToPutInClipboard) {
-			View notationView = iGraphicalEditPart.getNotationView();
-			EObject element = notationView.getElement();
-			objectToCopy.add(notationView);
-			objectToCopy.add(element);
+		if (pObjectsToPutInClipboard != null) {
+			for (IGraphicalEditPart iGraphicalEditPart : pObjectsToPutInClipboard) {
+				View notationView = iGraphicalEditPart.getNotationView();
+				EObject element = notationView.getElement();
+				objectToCopy.add(notationView);
+				objectToCopy.add(element);
+			}
 		}
 
 		List<EObject> filterDescendants = EcoreUtil.filterDescendants(objectToCopy);

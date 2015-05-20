@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -71,6 +72,11 @@ public class CSSDOMSemanticElementHelper {
 			return null;
 		}
 
+		// Add diagrams to the DOM model
+		if (notationElement instanceof Diagram) {
+			return notationElement;
+		}
+
 		// Add compartments to the DOM model
 		if (notationElement instanceof BasicCompartment) {
 			return notationElement;
@@ -107,13 +113,13 @@ public class CSSDOMSemanticElementHelper {
 
 		/*
 		 * Remove the warning to avoid flooding the error log.
-		 * 
+		 *
 		 * This may happen in the following cases:
-		 * 
+		 *
 		 * - The element is at the root of the Notation model and is not a Diagram (Which may happen in corrupted models,
 		 * or (maybe) non-Papyrus notation models, but shouldn't have a major impact)
 		 * - The element is contained in an EMF ChangeDescription (e.g. Create + Undo creation)
-		 * 
+		 *
 		 * See Bug 430534
 		 */
 		// Activator.log.warn("Cannot find a valid source for " + notationElement);
@@ -167,7 +173,7 @@ public class CSSDOMSemanticElementHelper {
 	 *
 	 * @param view
 	 * @return
-	 *         True if this is a Floating Label
+	 * 		True if this is a Floating Label
 	 */
 	public boolean isFloatingLabel(EObject notationElement) {
 		if (!(notationElement instanceof DecorationNode)) {

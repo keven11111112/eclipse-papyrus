@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.common.tests;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;

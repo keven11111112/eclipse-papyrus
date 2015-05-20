@@ -6,4 +6,6 @@
   <mapping sourceURI="http://www.eclipse.org/papyrus/profile/umlrt" targetURI="platform:/resource/org.eclipse.papyrus.migration.rsa/model/PapyrusRT.ecore"/>
   <mapping sourceURI="http://www.eclipse.org/papyrus/profile/default" targetURI="platform:/resource/org.eclipse.papyrus.migration.rsa/model/PapyrusDefault.ecore"/>
   <mapping sourceURI="http://www.eclipse.org/papyrus/profile/profilebase" targetURI="platform:/resource/org.eclipse.papyrus.migration.rsa/model/PapyrusProfileBase.ecore"/>
+  <mapping sourceURI="http://www.eclipse.org/papyrus/umlrt" targetURI="platform:/resource/org.eclipse.papyrus.umlrt/umlProfile/UMLRealTime.ecore"/>
+  <mapping sourceURI="http://www.eclipse.org/papyrus/umlrt/statemachine" targetURI="platform:/resource/org.eclipse.papyrus.umlrt/umlProfile/UMLRealTimeStateMach.ecore"/>
 </uriMap:MappingContainer>

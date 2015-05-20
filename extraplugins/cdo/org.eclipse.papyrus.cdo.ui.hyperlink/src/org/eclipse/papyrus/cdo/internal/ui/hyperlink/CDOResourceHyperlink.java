@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST and others.
+ * Copyright (c) 2009, 2015 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - adapted for CDO repository resource hyperlinks
  *  Christian W. Damus (CEA) - adapt to source-incompatible API change in CDO Luna M6
+ *  Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.hyperlink;
@@ -21,27 +22,25 @@ import org.eclipse.emf.cdo.eresource.CDOFileResource;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.explorer.ui.checkouts.CDOCheckoutContentProvider;
+import org.eclipse.emf.cdo.explorer.ui.checkouts.actions.OpenWithActionProvider;
 import org.eclipse.emf.cdo.ui.CDOEditorUtil;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.net4j.util.ui.UIUtil;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
-import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorManager;
+import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorOpener;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIResourceQuery;
-import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoriesView;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * The hyperlink abstraction for links to documents in CDO repositories.
@@ -73,19 +72,19 @@ public class CDOResourceHyperlink extends HyperLinkObject {
 			// open the appropriate editor
 			URI uri = getHyperlink();
 
-			IInternalPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri, false);
-			if (repo == null) {
+			CDOCheckout checkout = CDOExplorerUtil.getCheckout(uri);
+			if (checkout == null) {
 				MessageDialog.openError(UIUtil.getActiveWorkbenchWindow().getShell(), Messages.CDOResourceHyperlink_openError, Messages.CDOResourceHyperlink_notConnected);
-			} else if (!repo.isConnected()) {
-				repo.connect();
-				if (!repo.isConnected()) {
+			} else if (!checkout.isOpen()) {
+				checkout.open();
+				if (!checkout.isOpen()) {
 					MessageDialog.openError(UIUtil.getActiveWorkbenchWindow().getShell(), Messages.CDOResourceHyperlink_openError, Messages.CDOResourceHyperlink_notConnected);
 				}
 			}
 
 			// we may have connected a previously disconnected repo, above
-			if ((repo != null) && repo.isConnected()) {
-				CDOView master = repo.getMasterView();
+			if ((checkout != null) && checkout.isOpen()) {
+				CDOView master = checkout.getView();
 
 				String path = CDOURIUtil.extractResourcePath(uri);
 				if (!master.hasResource(path)) {
@@ -114,25 +113,24 @@ public class CDOResourceHyperlink extends HyperLinkObject {
 
 			@Override
 			public Void caseCDOResource(CDOResource object) {
-				try {
-					if (object.isRoot()) {
-						// the root resource is a proxy for the repository
-						IInternalPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(object.getURI());
-						ModelRepositoriesView reposView = (ModelRepositoriesView) page.showView(ModelRepositoriesView.ID);
-						reposView.selectReveal(new StructuredSelection(repo));
-					} else {
-						CDOResource diResource = DIResourceQuery.getAffiliateResource(object);
-
-						if (diResource == null) {
-							// open regular CDO model resource
-							CDOEditorUtil.openEditor(page, object);
-						} else {
-							// open Papyrus model
-							PapyrusCDOEditorManager.INSTANCE.openEditor(page, diResource);
-						}
+				if (object.isRoot()) {
+					// the root resource is a proxy for the repository
+					CDOCheckout checkout = CDOExplorerUtil.getCheckout(object.getURI());
+					CDOCheckoutContentProvider contentProvider = CDOCheckoutContentProvider.getInstance(CDOCheckoutContentProvider.PROJECT_EXPLORER_ID);
+					if (contentProvider != null) {
+						// TODO Open project explorer on demand.
+						contentProvider.selectObjects(checkout);
 					}
-				} catch (PartInitException e) {
-					StatusManager.getManager().handle(e.getStatus(), StatusManager.SHOW);
+				} else {
+					CDOResource diResource = DIResourceQuery.getAffiliateResource(object);
+
+					if (diResource == null) {
+						// open regular CDO model resource
+						OpenWithActionProvider.openEditor(page, null, object, null);
+					} else {
+						// open Papyrus model
+						OpenWithActionProvider.openEditor(page, null, diResource, PapyrusCDOEditorOpener.ID);
+					}
 				}
 
 				return null;

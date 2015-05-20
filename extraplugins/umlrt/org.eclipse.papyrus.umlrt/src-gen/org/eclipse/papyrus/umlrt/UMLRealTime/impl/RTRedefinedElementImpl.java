@@ -27,11 +27,11 @@ import org.eclipse.uml2.uml.RedefinableElement;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTRedefinedElementImpl#getBase_RedefinableElement <em>Base Redefinable Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.RTRedefinedElementImpl#getRootFragment <em>Root Fragment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

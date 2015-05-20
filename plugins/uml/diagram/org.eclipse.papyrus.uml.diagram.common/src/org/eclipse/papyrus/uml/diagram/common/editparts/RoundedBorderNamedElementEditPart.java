@@ -150,7 +150,6 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 		PapyrusRoundedEditPartHelper.refreshOval(this, getDefaultIsOvalValue());
 		PapyrusRoundedEditPartHelper.refreshFloatingName(this, getDefaultIsFloatingNameConstrained(), getDefaultFloatingLabelOffsetWidth(), getDefaultFloatingLabelOffsetHeight());
 		PapyrusRoundedEditPartHelper.refreshBorderStyle(this, getDefaultBorderStyle(), getDefaultCutomDash());
-		PapyrusRoundedEditPartHelper.refreshSVGOriginalColors(this, getDefaultUseOriginalColors());
 		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
 		PapyrusRoundedEditPartHelper.refreshShadowColor(this, getDefaultShadowColor());
 		refreshPortPosition();
@@ -173,11 +172,15 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	private void refreshPortPosition() {
 		if (getPrimaryShape() instanceof IRoundedRectangleFigure) {
 			if (getModel() instanceof View) {
-				Object constraint = ((AbstractBorderedShapeEditPart) getParent()).getBorderedFigure().getBorderItemContainer().getLayoutManager().getConstraint(getFigure());
-				if (constraint instanceof PortPositionLocator) {
-					PortPositionLocator portLocator = (PortPositionLocator) constraint;
-					String position = NotationUtils.getStringValue((View) getModel(), NamedStyleProperties.PORT_POSITION, getDefaultPortPosition());
-					portLocator.setPortPosition(position);
+				if (getParent() instanceof AbstractBorderedShapeEditPart) {
+
+					Object constraint = ((AbstractBorderedShapeEditPart) getParent()).getBorderedFigure().getBorderItemContainer().getLayoutManager().getConstraint(getFigure());
+
+					if (constraint instanceof PortPositionLocator) {
+						PortPositionLocator portLocator = (PortPositionLocator) constraint;
+						String position = NotationUtils.getStringValue((View) getModel(), NamedStyleProperties.PORT_POSITION, getDefaultPortPosition());
+						portLocator.setPortPosition(position);
+					}
 				}
 			}
 		}

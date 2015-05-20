@@ -15,17 +15,18 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -34,10 +35,14 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropO
 import org.eclipse.papyrus.infra.sync.EStructuralFeatureSyncFeature;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncItem;
+import org.eclipse.papyrus.infra.sync.SyncRegistry;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.swt.widgets.Control;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.MapMaker;
 
 /**
@@ -47,10 +52,14 @@ import com.google.common.collect.MapMaker;
  *
  * @param <M>
  *            The type of the underlying model element common to all synchronized items in a single bucket
+ * @param <N>
+ *            The type of the model element visualized by the nested diagram views that I synchronize
  * @param <T>
  *            The type of the backend element to synchronize
  */
-public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T extends EditPart> extends EStructuralFeatureSyncFeature<M, T> {
+public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N extends EObject, T extends EditPart> extends EStructuralFeatureSyncFeature<M, T> {
+	private final SyncRegistry<N, T, Notification> nestedRegistry;
+
 	private Map<EObject, EObject> lastKnownElements = new MapMaker().weakKeys().weakValues().makeMap();
 
 	/**
@@ -66,8 +75,15 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 	 */
 	public AbstractNestedDiagramViewsSyncFeature(SyncBucket<M, T, Notification> bucket, EReference reference, EReference... more) {
 		super(bucket, reference, more);
+
+		nestedRegistry = getSyncRegistry(getNestedSyncRegistryType());
 	}
 
+	protected abstract Class<? extends SyncRegistry<N, T, Notification>> getNestedSyncRegistryType();
+
+	protected SyncRegistry<N, T, Notification> getNestedSyncRegistry() {
+		return nestedRegistry;
+	}
 
 	/**
 	 * Gets the edit part that shall be observed and modified from the specified one
@@ -78,8 +94,35 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 	 */
 	protected abstract EditPart getEffectiveEditPart(EditPart parent);
 
+	@Override
+	protected final Iterable<? extends T> getContents(T backend) {
+		return filterContents(basicGetContents(backend));
+	}
+
 	/**
-	 * Override this one because we need to execute post-actions asynchronously.
+	 * Gets an unfiltered view of the nested edit-parts with the specified {@code backend} edit-part, which depends
+	 * on the kind of edit-part that it is.
+	 * 
+	 * @param backend
+	 *            a back-end edit-part
+	 * @return the raw view of its children, either nested nodes or contained/attached connections, as appropriate
+	 */
+	abstract Iterable<? extends T> basicGetContents(T backend);
+
+	protected Iterable<? extends T> filterContents(Iterable<? extends T> rawContents) {
+		return Iterables.filter(rawContents, new Predicate<T>() {
+			private final Class<? extends N> nestedType = nestedRegistry.getModelType();
+
+			@Override
+			public boolean apply(T input) {
+				View view = TypeUtils.as(input.getModel(), View.class);
+				return (view != null) && nestedType.isInstance(view.getElement());
+			}
+		});
+	}
+
+	/**
+	 * Override this one because we need to execute certain post-actions asynchronously.
 	 */
 	@Override
 	protected Command getAddCommand(final SyncItem<M, T> from, final SyncItem<M, T> to, final EObject newModel) {
@@ -138,7 +181,10 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 			@Override
 			public void undo() {
 				if (child != null) {
-					onTargetRemoved(to, child);
+					Command additional = onTargetRemoved(to, child);
+					if (additional != null) {
+						additional.execute();
+					}
 				}
 				getDropCommand().undo();
 			}
@@ -155,7 +201,10 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 					public T run(ISyncService syncService) {
 						child = retrieveChild(to.getBackend(), getTargetModel(from, to, objectToDrop));
 						if (child != null) {
-							onTargetAdded(from, newModel, to, child);
+							Command additional = onTargetAdded(from, newModel, to, child);
+							if (additional != null) {
+								syncService.execute(additional);
+							}
 						}
 						return child;
 					}
@@ -181,9 +230,9 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 		if (parent == null || model == null) {
 			return null;
 		}
-		List<? extends T> children = getContents(parent);
-		for (int i = 0; i < children.size(); i++) {
-			T child = children.get(i);
+		Iterable<? extends T> children = getContents(parent);
+		for (Iterator<? extends T> iter = children.iterator(); iter.hasNext();) {
+			T child = iter.next();
 			if (model == getModelOf(child)) {
 				return child;
 			}
@@ -191,9 +240,69 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, T
 		return null;
 	}
 
+	/**
+	 * Override this one because we need to execute certain post-actions asynchronously.
+	 */
+	@Override
+	protected Command getRemoveCommand(final SyncItem<M, T> from, final EObject oldSource, final SyncItem<M, T> to, T _oldTarget) {
+		final View oldView = (View) _oldTarget.getModel();
+
+		return new CommandWrapper(doGetRemoveCommand(from, oldSource, to, _oldTarget)) {
+			private T oldTarget;
+
+			@Override
+			public void execute() {
+				updateOldTarget();
+				super.execute();
+				onDo();
+			}
+
+			private void updateOldTarget() {
+				Object editPart = to.getBackend().getViewer().getEditPartRegistry().get(oldView);
+				oldTarget = AbstractNestedDiagramViewsSyncFeature.this.getNestedSyncRegistry().getBackendType().cast(editPart);
+			}
+
+			@Override
+			public void undo() {
+				super.undo();
+
+				// Only notify of add if we had done that in the first place (this is not an initial sync that is being undone)
+				if (oldSource != null) {
+					UISyncUtils.asyncExec(AbstractNestedDiagramViewsSyncFeature.this, new SyncServiceRunnable.Safe<Command>() {
+						@Override
+						public Command run(ISyncService syncService) {
+							// A new edit-part is always created when a deleted view is restored, so find it.
+							updateOldTarget();
+
+							Command additional = onTargetAdded(from, oldSource, to, oldTarget);
+							if (additional != null) {
+								syncService.execute(additional);
+							}
+							return additional;
+						}
+					});
+				}
+			}
+
+			@Override
+			public void redo() {
+				updateOldTarget();
+				super.redo();
+				onDo();
+			}
+
+			private void onDo() {
+				Command additional = onTargetRemoved(to, oldTarget);
+				if (additional != null) {
+					additional.execute();
+				}
+			}
+		};
+	}
+
 	@Override
 	protected Command doGetRemoveCommand(final SyncItem<M, T> from, final EObject oldSource, final SyncItem<M, T> to, final T oldTarget) {
-		return RemoveCommand.create(getEditingDomain(), oldTarget.getModel());
+		return DeleteCommand.create(getEditingDomain(), oldTarget.getModel());
 	}
 
 	@Override

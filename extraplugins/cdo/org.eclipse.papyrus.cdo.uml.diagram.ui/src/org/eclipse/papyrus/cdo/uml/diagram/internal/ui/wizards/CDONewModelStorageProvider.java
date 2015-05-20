@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;
@@ -23,21 +24,22 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
-import org.eclipse.papyrus.uml.diagram.wizards.AbstractNewModelStorageProvider;
+import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorInput;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.providers.AbstractNewModelStorageProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorInput;
 
-import com.google.common.base.Supplier;
 import com.google.common.eventbus.EventBus;
 
 /**
@@ -49,9 +51,11 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 
 	private CreateModelWizard wizard;
 
-	private RepositorySelectionPart selectProviderPart;
+	private SelectDiagramCategoryPage newDiagramCategoryPage;
 
 	private NewModelPage newModelPage;
+
+	private IStructuredSelection selection;
 
 	public CDONewModelStorageProvider() {
 		super();
@@ -59,16 +63,17 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 
 	@Override
 	public boolean canHandle(IStructuredSelection initialSelection) {
-		boolean result = false;
-
 		for (Object next : initialSelection.toList()) {
 			if (CDOUtils.isCDOObject(adapt(next, EObject.class))) {
-				result = true;
-				break;
+				return true;
+			}
+
+			if (adapt(next, CDOCheckout.class) != null) {
+				return true;
 			}
 		}
 
-		return result;
+		return false;
 	}
 
 	@Override
@@ -76,13 +81,16 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 		super.init(wizard, selection);
 
 		this.wizard = wizard;
+		this.selection = selection;
 		newModelPage = createNewModelPage(selection);
 		createSelectProviderPart();
 
-		IPapyrusRepository repo = getRepository(selection);
-		if (repo != null) {
-			bus.post(repo);
+		CDOCheckout checkout = getRepository(selection);
+		if (checkout != null) {
+			bus.post(checkout);
 		}
+
+		newDiagramCategoryPage = createNewDiagramCategoryPage(selection);
 	}
 
 	/**
@@ -93,11 +101,11 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 	 *
 	 * @return the repository that is or contains the {@code selection}
 	 */
-	static IPapyrusRepository getRepository(IStructuredSelection selection) {
-		IPapyrusRepository result = null;
+	static CDOCheckout getRepository(IStructuredSelection selection) {
+		CDOCheckout result = null;
 
 		if (!selection.isEmpty()) {
-			result = adapt(selection.getFirstElement(), IPapyrusRepository.class);
+			result = adapt(selection.getFirstElement(), CDOCheckout.class);
 			if (result == null) {
 				CDOResourceNode node = adapt(selection.getFirstElement(), CDOResourceNode.class);
 				if (node == null) {
@@ -111,7 +119,7 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 				}
 
 				if (node != null) {
-					result = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(node.getURI());
+					result = CDOExplorerUtil.getCheckout(node.getURI());
 				}
 			}
 		}
@@ -121,16 +129,21 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 
 	@Override
 	public List<? extends IWizardPage> createPages() {
-		if (newModelPage == null) {
+		if (newModelPage == null && newDiagramCategoryPage == null) {
 			return Collections.emptyList();
 		}
 
-		return Arrays.asList(newModelPage);
+		return Arrays.asList(newDiagramCategoryPage, newModelPage);
+	}
+
+	@Override
+	public SelectDiagramCategoryPage getDiagramCategoryPage() {
+		return newDiagramCategoryPage;
 	}
 
 	@Override
 	public IStatus validateDiagramCategories(String... newCategories) {
-		if (newModelPage != null) {
+		if (newModelPage != null && newModelPage.getNewResourceName() != null) {
 			String firstCategory = newCategories.length > 0 ? newCategories[0] : null;
 			if (newCategories.length > 0) {
 				// 316943 - [Wizard] Wrong suffix for file name when creating a
@@ -177,19 +190,18 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 	}
 
 	@Override
-	public ISelectProviderPart createSelectProviderPart() {
-		if (selectProviderPart == null) {
-			selectProviderPart = new RepositorySelectionPart(PapyrusRepositoryManager.INSTANCE, bus, new Supplier<IRunnableContext>() {
+	public IEditorInput createEditorInput(URI uri) {
+		return new PapyrusCDOEditorInput(uri, uri.trimFileExtension().lastSegment());
+	}
 
-				@Override
-				public IRunnableContext get() {
-					return wizard.getContainer();
-				}
-			});
+	private SelectDiagramCategoryPage createNewDiagramCategoryPage(IStructuredSelection selection) {
+		if (wizard.isCreateProjectWizard() || wizard.isCreateMultipleModelsWizard() || !wizard.isPapyrusRootWizard()) {
+			return null;
 		}
 
-		return selectProviderPart;
+		return new SelectDiagramCategoryPage();
 	}
+
 
 	//
 	// Nested types

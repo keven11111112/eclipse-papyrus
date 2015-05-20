@@ -17,8 +17,10 @@ import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.sync.SyncItem;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * A specialized {@link SyncItem} that synchronizes objects with {@link EditPart}s in GMF diagrams.
@@ -47,6 +49,22 @@ public class EditPartSyncItem<M, T extends EditPart> extends SyncItem<M, T> {
 		} else if ((lastKnownModel == null) || (lastKnownModel.get() != result)) {
 			// Refresh the cache
 			lastKnownModel = new WeakReference<M>(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isActive() {
+		boolean result = super.isActive();
+
+		if (result) {
+			EditPart editPart = getBackend();
+
+			// Detached edit-parts do not synchronize
+			EditPartViewer viewer = (editPart == null) ? null : editPart.getViewer();
+			Control control = (viewer == null) ? null : viewer.getControl();
+			result = (control != null) && !control.isDisposed();
 		}
 
 		return result;

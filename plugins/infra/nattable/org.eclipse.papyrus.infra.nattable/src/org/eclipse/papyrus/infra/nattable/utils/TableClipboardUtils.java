@@ -13,12 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
-
-import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.swt.dnd.Clipboard;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.widgets.Display;
 
 
 
@@ -71,7 +68,7 @@ public class TableClipboardUtils {
 	/**
 	 *
 	 * @return
-	 *         the rows as string extractzed from the clipboad
+	 *         the rows as string extractzed from the clipboard
 	 */
 	@Deprecated
 	// use PasteHelper
@@ -86,7 +83,7 @@ public class TableClipboardUtils {
 	/**
 	 *
 	 * @return
-	 *         the columns as string extractzed from the clipboad
+	 *         the columns as string extractzed from the clipboard
 	 */
 	@Deprecated
 	// use PasteHelper
@@ -105,32 +102,34 @@ public class TableClipboardUtils {
 	 *         the clipboard contents used to build the command
 	 */
 	private static final String getClipboardContents() {
-		// examine system clipboard
-		String bufferSystem = null;
+		// examine system clipboard with AWT
+//		String bufferSystem = null;
+//
+//
+//		java.awt.datatransfer.Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+//
+//		if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
+//			try {
+//				bufferSystem = clipboard.getData(DataFlavor.stringFlavor).toString();
+//			} catch (UnsupportedFlavorException e) {
+//				Activator.log.error(e);
+//			} catch (IOException e) {
+//				Activator.log.error(e);
+//			}
+//		}
+//
+//		return bufferSystem;
 
-
-		java.awt.datatransfer.Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-
-		if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
-			try {
-				bufferSystem = clipboard.getData(DataFlavor.stringFlavor).toString();
-			} catch (UnsupportedFlavorException e) {
-				Activator.log.error(e);
-			} catch (IOException e) {
-				Activator.log.error(e);
-			}
-		}
-
-		// using SWT
-		// final Display display = Display.getCurrent();
-		// final Clipboard cb = new Clipboard(display);
-		// //we use the text transfert
-		// final TextTransfer transfer = TextTransfer.getInstance();
-		//
+//		 using SWT
+		 final Display display = Display.getCurrent();
+		 final Clipboard cb = new Clipboard(display);
+		 // we use the text transfert
+		 final TextTransfer transfer = TextTransfer.getInstance();
+		
 		// final Clipboard cb = new Clipboard(clipboard);
-		// final String contents = (String)cb.getContents(transfer);
-
-		return bufferSystem;
+		 final String contents = (String) cb.getContents(transfer);
+		
+		 return contents;
 	}
 
 	/**

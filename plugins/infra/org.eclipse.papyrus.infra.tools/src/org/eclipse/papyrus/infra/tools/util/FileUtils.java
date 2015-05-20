@@ -49,6 +49,7 @@ public class FileUtils {
 
 	/**
 	 * this method read a file and return a string, the line separator used will we System.getProperty("line.separator")
+	 * 
 	 * @param pluginName
 	 *            the name of the plugin owning the file
 	 * @param filePath
@@ -98,11 +99,14 @@ public class FileUtils {
 			url = new URL(pathBuilder.toString());
 			InputStream inputStream = url.openConnection().getInputStream();
 			BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-			String inputLine;
+			String inputLine = in.readLine();
 
-			while ((inputLine = in.readLine()) != null) {
+			while (inputLine != null) {
 				builder.append(inputLine);
-				builder.append(lineSeparator); //$NON-NLS-1$
+				inputLine = in.readLine();
+				if (inputLine != null) {
+					builder.append(lineSeparator); // $NON-NLS-1$
+				}
 			}
 
 			in.close();

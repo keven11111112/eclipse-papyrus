@@ -3,31 +3,20 @@
 
 <!--
  Copyright (c) 2013, 2014 CEA LIST and others.
- 
+
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
  which accompanies this distribution, and is available at
  http://www.eclipse.org/legal/epl-v10.html
- 
+
  Contributors:
    CEA LIST - Initial API and implementation
    Christian W. Damus (CEA) - bug 386118
- 
+
 -->
 
 <plugin>
    <extension-point id="repositoryFilters" name="%repoFiltersExtPt.name" schema="schema/repositoryFilters.exsd"/>
-   <extension
-         point="org.eclipse.ui.views">
-      <view
-            category="org.eclipse.papyrus.views.category"
-            class="org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoriesView"
-            icon="$nl$/icons/full/view16/model_repositories.gif"
-            id="org.eclipse.papyrus.cdo.ui.ModelRepositoriesView"
-            name="%reposView.name"
-            restorable="true">
-      </view>
-   </extension>
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <serviceFactory
@@ -39,27 +28,7 @@
       </serviceFactory>
    </extension>
    <extension
-         point="org.eclipse.ui.propertyPages">
-      <page
-            class="org.eclipse.papyrus.cdo.internal.ui.properties.RepositoryPropertyPage"
-            id="org.eclipse.papyrus.cdo.ui.repositoryProperties"
-            name="%repoPropertyPage.name">
-         <enabledWhen>
-            <adapt
-                  type="org.eclipse.papyrus.cdo.core.IPapyrusRepository">
-            </adapt>
-         </enabledWhen>
-      </page>
-   </extension>
-   <extension
          point="org.eclipse.core.runtime.adapters">
-      <factory
-            adaptableType="org.eclipse.papyrus.cdo.core.IPapyrusRepository"
-            class="org.eclipse.papyrus.cdo.internal.ui.adapters.PapyrusRepositoryWorkbenchAdapter$Factory">
-         <adapter
-               type="org.eclipse.ui.model.IWorkbenchAdapter">
-         </adapter>
-      </factory>
       <factory
             adaptableType="org.eclipse.ui.IEditorPart"
             class="org.eclipse.papyrus.cdo.internal.ui.adapters.EditorAdapterFactory">
@@ -73,10 +42,10 @@
       <perspectiveExtension
             targetID="org.eclipse.papyrus.infra.core.perspective">
          <viewShortcut
-               id="org.eclipse.papyrus.cdo.ui.ModelRepositoriesView">
+               id="org.eclipse.emf.cdo.explorer.ui.CDORepositoriesView">
          </viewShortcut>
          <view
-               id="org.eclipse.papyrus.cdo.ui.ModelRepositoriesView"
+               id="org.eclipse.emf.cdo.explorer.ui.CDORepositoriesView"
                minimized="false"
                relationship="stack"
                relative="org.eclipse.ui.navigator.ProjectExplorer">
@@ -91,7 +60,7 @@
             priority="2 - Low">
       </DawnElementStylizerFactory>
    </extension>
-   
+
    <extension
          point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <decoratorProvider
@@ -101,7 +70,7 @@
          </Priority>
       </decoratorProvider>
    </extension>
-   
+
    <extension
          point="org.eclipse.ui.decorators">
       <decorator
@@ -124,7 +93,7 @@
          </enablement>
       </decorator>
    </extension>
-   
+
    <extension
         point="org.eclipse.ui.menus">
       <menuContribution
@@ -141,7 +110,7 @@
                      </equals>
                   </with>
                   <with variable="selection">
-                     <iterate ifEmpty="false" operator="and"> 
+                     <iterate ifEmpty="false" operator="and">
                         <adapt type="org.eclipse.emf.cdo.CDOObject" />
                      </iterate>
                   </with>
@@ -283,6 +252,7 @@
            </iterate>
          </enabledWhen>
       </handler>
+      <!--
       <handler
             class="org.eclipse.papyrus.cdo.internal.ui.handlers.OpenInModelRepositoriesViewHandler"
             commandId="org.eclipse.papyrus.cdo.ui.commands.openInModelRepositories">
@@ -299,8 +269,9 @@
            </with>
          </enabledWhen>
       </handler>
+      -->
    </extension>
-   
+
    <extension
          point="org.eclipse.core.runtime.adapters">
       <factory
@@ -309,12 +280,18 @@
          <adapter
                type="org.eclipse.emf.cdo.CDOObject">
          </adapter>
+         <adapter
+               type="org.eclipse.emf.cdo.view.CDOView">
+         </adapter>
       </factory>
       <factory
             adaptableType="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement"
             class="org.eclipse.papyrus.cdo.internal.ui.adapters.CDOAdapterFactory">
          <adapter
                type="org.eclipse.emf.cdo.CDOObject">
+         </adapter>
+         <adapter
+               type="org.eclipse.emf.cdo.view.CDOView">
          </adapter>
       </factory>
    </extension>
@@ -328,7 +305,7 @@
             type="org.eclipse.emf.cdo.CDOObject">
       </propertyTester>
    </extension>
-   
+
    <extension
          point="org.eclipse.papyrus.infra.services.markerlistener.markerproviders">
       <provider
@@ -342,7 +319,7 @@
       <monitor class="org.eclipse.papyrus.cdo.internal.ui.markers.CDOMarkerMonitor">
       </monitor>
    </extension>
-   
+
    <extension
          point="org.eclipse.ui.dropActions">
       <action
@@ -413,5 +390,15 @@
             location="model/DND.ecore"
             uri="http://www.eclipse.org/papyrus/1.0.0/cdo/private/dnd">
       </resource>
+   </extension>
+   <extension
+         point="org.eclipse.emf.cdo.explorer.ui.editorOpeners">
+      <editorOpener
+            class="org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorOpener"
+            icon="icons/full/obj16/papyrus_model.gif"
+            id="org.eclipse.papyrus.cdo.ui.editors.PapyrusCDOEditorOpener"
+            name="Papyrus Core Editor"
+            regex="cdo\.checkout://.*\.di">
+      </editorOpener>
    </extension>
 </plugin>

@@ -12,9 +12,11 @@
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
 
-import java.util.Iterator;
+import static org.eclipse.papyrus.uml.modelrepair.Activator.TRACE_EXECUTOR;
+
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.AbstractExecutorService;
 import java.util.concurrent.ExecutorService;
@@ -31,6 +33,7 @@ import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.modelrepair.service.IStereotypeRepairService;
 import org.eclipse.swt.widgets.Display;
 
@@ -46,11 +49,13 @@ public class StereotypeRepairService implements IStereotypeRepairService, IServi
 
 	private static final Lock lock = new ReentrantLock();
 
-	private static final Condition finishedRepairCond = lock.newCondition();
+	private static final Condition executorsReady = lock.newCondition();
+
+	private static final Queue<PostRepairExecutor> ready = Lists.newLinkedList();
 
 	private static final Map<ModelSet, Set<Resource>> modelSetsInRepair = Maps.newIdentityHashMap();
 
-	private static final Set<PostRepairExecutor> pending = Sets.newLinkedHashSet();
+	private static final Map<ModelSet, PostRepairExecutor> pending = Maps.newIdentityHashMap();
 
 	private static ExecutorService pendingExecutor;
 
@@ -135,7 +140,14 @@ public class StereotypeRepairService implements IStereotypeRepairService, IServi
 				resources.remove(resource);
 				if (resources.isEmpty()) {
 					modelSetsInRepair.remove(modelSet);
-					finishedRepairCond.signalAll();
+					Activator.log.trace(TRACE_EXECUTOR, "Model Repair completed"); //$NON-NLS-1$
+
+					PostRepairExecutor executor = pending.remove(modelSet);
+					if (executor != null) {
+						ready.offer(executor);
+						executorsReady.signalAll();
+						Activator.log.trace(TRACE_EXECUTOR, "Pending post-repair executor ready"); //$NON-NLS-1$
+					}
 				}
 			}
 		} finally {
@@ -146,11 +158,13 @@ public class StereotypeRepairService implements IStereotypeRepairService, IServi
 	private static void pending(PostRepairExecutor executor) {
 		lock.lock();
 		try {
-			pending.add(executor);
+			pending.put(executor.getModelSet(), executor);
+			Activator.log.trace(TRACE_EXECUTOR, "Post-repair executor pending"); //$NON-NLS-1$
 
-			if (pendingExecutor == null) {
+			if ((pendingExecutor == null) || pendingExecutor.isShutdown()) {
 				pendingExecutor = Executors.newSingleThreadExecutor();
 				start(pendingExecutor);
+				Activator.log.trace(TRACE_EXECUTOR, "Post-repair scheduling executor started"); //$NON-NLS-1$
 			}
 		} finally {
 			lock.unlock();
@@ -165,20 +179,31 @@ public class StereotypeRepairService implements IStereotypeRepairService, IServi
 				public void run() {
 					lock.lock();
 					try {
-						try {
-							finishedRepairCond.await();
-						} catch (InterruptedException e) {
-							// Doesn't matter. We'll just re-schedule. But, who would interrupt me?
-						}
-
-						for (Iterator<PostRepairExecutor> iter = pending.iterator(); iter.hasNext();) {
-							if (iter.next().processPending()) {
-								iter.remove();
+						while (ready.isEmpty()) {
+							try {
+								executorsReady.await();
+							} catch (InterruptedException e) {
+								Activator.log.error("Model repair post-repair executor thread interrupt ignored.", e); //$NON-NLS-1$
 							}
 						}
 
-						// Re-schedule me
-						executor.execute(this);
+						for (PostRepairExecutor next = ready.poll(); next != null; next = ready.poll()) {
+							Activator.log.trace(TRACE_EXECUTOR, "Post-repair executor dequeued"); //$NON-NLS-1$
+							if (!next.processPending()) {
+								// Add it back to the pending set to await repair completion again
+								Activator.log.trace(TRACE_EXECUTOR, "Post-repair executor canceled; repair still in progress"); //$NON-NLS-1$
+								pending(next);
+							}
+						}
+
+						// Any still pending?
+						if (!pending.isEmpty()) {
+							executor.submit(this);
+							Activator.log.trace(TRACE_EXECUTOR, "Re-scheduling for pending post-repair executors"); //$NON-NLS-1$
+						} else {
+							executor.shutdown();
+							Activator.log.trace(TRACE_EXECUTOR, "No more pending post-repair executors; shutting down"); //$NON-NLS-1$
+						}
 					} finally {
 						lock.unlock();
 					}
@@ -224,7 +249,7 @@ public class StereotypeRepairService implements IStereotypeRepairService, IServi
 				try {
 					pending.add(command);
 
-					// Add me to the list for processing when some repair operation finishes
+					// Add me to the list for processing when the repair operation finishes
 					pending(this);
 				} finally {
 					lock.unlock();
@@ -265,6 +290,10 @@ public class StereotypeRepairService implements IStereotypeRepairService, IServi
 
 		public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
 			return delegate.awaitTermination(timeout, unit);
+		}
+
+		ModelSet getModelSet() {
+			return modelSet;
 		}
 
 		boolean processPending() {

@@ -29,10 +29,6 @@ public class RegionSyncRegistry extends UMLSyncRegistry<Region> {
 
 	@Override
 	public Region getModelOf(EObject backend) {
-		return getRedefinedRegion(backend);
-	}
-
-	public static Region getRedefinedRegion(EObject region) {
-		return (region instanceof Region) ? CapsuleUtils.getSuperRegion((Region) region) : null;
+		return (backend instanceof Region) ? CapsuleUtils.getSuperRegion((Region) backend) : null;
 	}
 }

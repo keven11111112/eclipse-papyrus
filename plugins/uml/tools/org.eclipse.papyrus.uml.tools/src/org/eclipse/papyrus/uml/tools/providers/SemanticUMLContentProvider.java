@@ -88,7 +88,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	protected static EObject[] getRoots(ResourceSet root) {
 		if (root == null) {
-			throw new IllegalArgumentException("Cannot retrieve the roots of the Model without a ResourceSet");
+			return new EObject[0];
 		}
 
 		EObject rootElement = null;
@@ -200,6 +200,14 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			}
 			return res;
 		}
+		else if (metaclass instanceof EClass) {
+			EClass metaEClass = (EClass) metaclass;
+			for (EObject stereotypeApplication : semanticElement.getStereotypeApplications()) {
+				if (metaEClass.isSuperTypeOf(stereotypeApplication.eClass())) {
+					return true;
+				}
+			}
+		}
 
 		// TODO : We should use super.isCompatibleMetaclass(), but the super-implementation
 		// may not be compatible with our implementation of getAdaptedValue()
@@ -245,6 +253,15 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 					if (stereotypeApplication != null) {
 						return stereotypeApplication;
+					}
+				}
+				else if (metaclassWanted instanceof EClass) {
+					// new check based on EClass (stereotype definition)
+					EClass metaEClassWanted = (EClass) metaclassWanted;
+					for (EObject stereotypeApplication : element.getStereotypeApplications()) {
+						if (metaEClassWanted.isSuperTypeOf(stereotypeApplication.eClass())) {
+							return stereotypeApplication;
+						}
 					}
 				}
 			}
@@ -368,6 +385,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 				needsRefresh = true;
 				viewer.getControl().getDisplay().asyncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						if (!needsRefresh || viewer == null || viewer.getControl() == null || viewer.getControl().isDisposed()) {
 							return;

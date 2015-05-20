@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.tools.providers;
 
 import java.util.Collections;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -34,9 +35,7 @@ import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;
-import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.uml2.uml.InstanceValue;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -184,9 +183,15 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 		}
 
 		if (UMLUtil.getBaseElement(source) != null) {
-			Property umlReference = ProfileUtil.findStereotypedProperty(stereotype, feature.getName());
-			if (umlReference != null) {
-				return getStereotypedReferenceContentProvider(source, feature, (Stereotype) umlReference.getType());
+			if (feature.getEType() instanceof EClass) {
+				return getStereotypedReferenceContentProvider(source, feature, (EClass) feature.getEType());
+			}
+		}
+		else {
+			// handle attributes of a stereotype nested in datatypes (see bug 427419 - Problems with DataTypes whose properties are typed by Stereotypes)
+			EObject sourceCont = source.eContainer();
+			if ((sourceCont != null) && (UMLUtil.getBaseElement(sourceCont) != null) && feature.getEType() instanceof EClass) {
+				return getStereotypedReferenceContentProvider(sourceCont, source, feature, (EClass) feature.getEType());
 			}
 		}
 
@@ -212,8 +217,9 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 	/**
 	 * Uses the content provider for reference properties typed by a stereotype
 	 *
-	 * @param propertyPath
-	 *            The name of the property being edited
+	 * @param source The source element. Used to find base model (resource)
+	 * @param feature A feature referencing the element
+	 * @param type a stereotype (we want to filter for 
 	 * @return
 	 *         The Content Provider for properties typed by a stereotype
 	 */
@@ -221,6 +227,39 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 		ResourceSet root = UMLUtil.getBaseElement(source).eResource().getResourceSet();
 
 		ServiceEditFilteredContentProvider contentProvider = new ServiceEditFilteredContentProvider(source, feature, root);
+		contentProvider.setWantedMetaclasses(Collections.singletonList(type));
+
+		return contentProvider;
+	}
+	
+	/**
+	 * Uses the content provider for reference properties typed by a stereotype (provided in form of the EClass of its definition)
+	 *
+	 * @param source The source element. Used to find base model (resource)
+	 * @param feature A feature of the source element
+	 * @param type The EClass of the feature (stereotype definition)
+	 * @return
+	 *         The Content Provider for properties typed by a stereotype
+	 */
+	protected IHierarchicContentProvider getStereotypedReferenceContentProvider(EObject source, EStructuralFeature feature, EClass type) {
+		return getStereotypedReferenceContentProvider(source, source, feature, type);
+	}
+	
+	/**
+	 * Uses the content provider for reference properties typed by a stereotype (provided in form of the EClass of its definition)
+	 *
+	 * @param source The source element. Used to find base model (resource)
+	 * @param subSource The subelement within the source. This can occur, if an attribute of the stereotype is not primitive, but
+	 * 		a datatype with sub-feature
+	 * @param feature A feature (within subSource, if subsource != source)
+	 * @param type The EClass of the feature (stereotype definition)
+	 * @return
+	 *         The Content Provider for properties typed by a stereotype
+	 */
+	protected IHierarchicContentProvider getStereotypedReferenceContentProvider(EObject source, EObject subSource, EStructuralFeature feature, EClass type) {
+		ResourceSet root = UMLUtil.getBaseElement(source).eResource().getResourceSet();
+
+		ServiceEditFilteredContentProvider contentProvider = new ServiceEditFilteredContentProvider(subSource, feature, root);
 		contentProvider.setWantedMetaclasses(Collections.singletonList(type));
 
 		return contentProvider;

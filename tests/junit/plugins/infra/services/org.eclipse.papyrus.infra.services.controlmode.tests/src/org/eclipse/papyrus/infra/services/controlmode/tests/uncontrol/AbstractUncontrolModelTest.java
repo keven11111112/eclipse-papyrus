@@ -45,7 +45,7 @@ import org.junit.Rule;
  */
 public abstract class AbstractUncontrolModelTest extends AbstractPapyrusTest {
 
-	protected static final String COMMAND_ID = "org.eclipse.papyrus.infra.services.controlmode.reintegratesubmodel"; //$NON-NLS-1$
+	public static final String COMMAND_ID = "org.eclipse.papyrus.infra.services.controlmode.reintegratesubmodel"; //$NON-NLS-1$
 
 	protected static ModelExplorerView view;
 

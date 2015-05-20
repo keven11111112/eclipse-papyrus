@@ -14,14 +14,21 @@
 package org.eclipse.papyrus.infra.sync.internal;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.InternalTransaction;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -31,6 +38,9 @@ import org.eclipse.papyrus.infra.sync.EMFDispatch;
 import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
 import org.eclipse.papyrus.infra.sync.EMFListener;
 import org.eclipse.papyrus.infra.sync.SyncRegistry;
+import org.eclipse.papyrus.infra.sync.policy.DefaultSyncPolicy;
+import org.eclipse.papyrus.infra.sync.policy.ISyncPolicy;
+import org.eclipse.papyrus.infra.sync.policy.SyncPolicyDelegate;
 import org.eclipse.papyrus.infra.sync.service.ISyncAction;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.ISyncTrigger;
@@ -54,6 +64,10 @@ public class SyncService implements ISyncService {
 
 	private EMFListener emfListener;
 
+	private SyncPolicyDelegateRegistryImpl policyDelegates;
+
+	private ISyncPolicy policy;
+
 	private final Map<Class<? extends SyncRegistry<?, ?, ?>>, SyncRegistry<?, ?, ?>> syncRegistries = Maps.newHashMap();
 
 	public SyncService() {
@@ -72,6 +86,15 @@ public class SyncService implements ISyncService {
 	@Override
 	public void startService() throws ServiceException {
 		editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(services);
+
+		policy = new SyncServiceOperation<ISyncPolicy>(this) {
+			@Override
+			protected ISyncPolicy doCall() throws Exception {
+				policyDelegates = new SyncPolicyDelegateRegistryImpl(editingDomain);
+				return new DefaultSyncPolicy(policyDelegates);
+			}
+		}.safeCall(ServiceException.class);
+
 		rootTrigger.install(editingDomain);
 	}
 
@@ -80,8 +103,15 @@ public class SyncService implements ISyncService {
 		// No disposal protocol for these
 		syncRegistries.clear();
 
+		policy = null;
+
+		if (policyDelegates != null) {
+			policyDelegates.dispose();
+			policyDelegates = null;
+		}
+
 		if (emfListener != null) {
-			editingDomain.removeResourceSetListener(emfListener);
+			emfListener.dispose();
 			emfListener = null;
 		}
 
@@ -214,6 +244,86 @@ public class SyncService implements ISyncService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public void execute(Command command) {
+		if (!command.canExecute()) {
+			throw new IllegalArgumentException("unexecutable command"); //$NON-NLS-1$
+		}
+
+		if (command instanceof IdentityCommand) {
+			return;
+		}
+
+		InternalTransactionalEditingDomain domain = TypeUtils.as(editingDomain, InternalTransactionalEditingDomain.class);
+		if (domain == null) {
+			// Easy
+			command.execute();
+		} else {
+			Transaction active = domain.getActiveTransaction();
+			if ((active == null) || active.isReadOnly()) {
+				try {
+					// Need to execute an unprotected write
+					InternalTransaction transaction = domain.startTransaction(false, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, true));
+					try {
+						command.execute();
+					} finally {
+						transaction.commit();
+					}
+				} catch (InterruptedException e) {
+					// This would be weird
+					Activator.log.error(e);
+				} catch (RollbackException e) {
+					// The only thing that can cause an unprotected write to roll back is a run-time exception
+					Activator.log.error("Unprotected synchronization update rolled back. See next log entry for the cause.", null); //$NON-NLS-1$
+					Activator.log.log(e.getStatus());
+				}
+			} else if (Boolean.TRUE.equals(active.getOptions().get(Transaction.OPTION_UNPROTECTED))) {
+				// Already in an unprotected context? Just execute the command
+				command.execute();
+			} else {
+				// Papyrus uses a nesting command stack, so just execute the command and it will happen in a nested transaction
+				domain.getCommandStack().execute(command);
+			}
+		}
+	}
+
+	@Override
+	public ISyncPolicy getSyncPolicy() {
+		return policy;
+	}
+
+	@Override
+	public void setSyncPolicy(ISyncPolicy syncPolicy) {
+		this.policy = (syncPolicy == null) ? new NullSyncPolicy() : syncPolicy;
+	}
+
+	/**
+	 * Registers a synchronization policy delegate with me.
+	 * 
+	 * @param policyDelegate
+	 *            the policy delegate to register
+	 * @param featureType
+	 *            the feature type on which to register it
+	 * 
+	 * @return the listener on which the policy delegate must attach dispatchers for reacting to changes in the synchronized feature(s)
+	 */
+	public EMFListener register(SyncPolicyDelegate<?, ?> policyDelegate, Class<?> featureType) {
+		policyDelegates.register(policyDelegate, featureType);
+		return policyDelegates.getEMFListener();
+	}
+
+	/**
+	 * De-registers a former synchronization policy delegate.
+	 * 
+	 * @param policyDelegate
+	 *            the policy delegate to de-register
+	 * @param featureType
+	 *            the feature type from which to de-register it
+	 */
+	public void deregister(SyncPolicyDelegate<?, ?> policyDelegate, Class<?> featureType) {
+		policyDelegates.deregister(policyDelegate, featureType);
 	}
 
 	//

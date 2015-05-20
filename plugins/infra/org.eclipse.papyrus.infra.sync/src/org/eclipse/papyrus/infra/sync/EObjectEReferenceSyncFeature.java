@@ -95,7 +95,7 @@ public abstract class EObjectEReferenceSyncFeature<M extends EObject> extends ES
 				? createDeleteCommand(oldTarget)
 				: reference.isMany()
 						? RemoveCommand.create(getEditingDomain(), to.getBackend(), reference, oldTarget)
-						: SetCommand.create(getEditingDomain(), to.getBackend(), reference, null);
+						: SetCommand.create(getEditingDomain(), to.getBackend(), reference, SetCommand.UNSET_VALUE);
 	}
 
 	protected Command createDeleteCommand(EObject object) {

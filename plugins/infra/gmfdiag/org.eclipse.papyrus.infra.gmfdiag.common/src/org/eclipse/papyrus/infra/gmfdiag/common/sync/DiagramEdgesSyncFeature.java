@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
 
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
@@ -29,7 +27,7 @@ import org.eclipse.papyrus.infra.sync.SyncBucket;
  * Synchronization feature for the edges in a diagram. It is generally a good idea to add edge features to a bucket
  * only after all of the node features, so that nodes are synchronized before the edges that connect them.
  */
-public class DiagramEdgesSyncFeature<M extends EObject, T extends EditPart> extends AbstractNestedDiagramViewsSyncFeature<M, T> {
+public abstract class DiagramEdgesSyncFeature<M extends EObject, N extends EObject, T extends EditPart> extends AbstractNestedDiagramViewsSyncFeature<M, N, T> {
 	/**
 	 * Initializes me with my controlling bucket.
 	 *
@@ -52,8 +50,9 @@ public class DiagramEdgesSyncFeature<M extends EObject, T extends EditPart> exte
 		return DiagramEditPartsUtil.getDiagramEditPart(parent);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	protected List<? extends T> getContents(T backend) {
+	Iterable<? extends T> basicGetContents(T backend) {
 		return getEffectiveEditPart(backend).getConnections();
 	}
 

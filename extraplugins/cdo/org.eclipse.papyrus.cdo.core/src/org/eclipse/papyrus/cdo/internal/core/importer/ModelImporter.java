@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
  *   Christian W. Damus (CEA) - bug 422257
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
@@ -21,6 +22,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -40,7 +42,6 @@ import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOControlModeParticipant;
 import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.core.resource.CDOSashModelProvider;
@@ -102,9 +103,9 @@ public class ModelImporter implements IModelImporter {
 		// 1 for each transaction commit, 1 for saving affected non-imported models, and 1 for clean-up
 		SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelImporter_4, configuration.getModelsToTransfer().size() + 4);
 
-		IInternalPapyrusRepository repository = (IInternalPapyrusRepository) mapping.getRepository();
-		ResourceSet destination = repository.createTransaction(new ResourceSetImpl());
-		CDOTransaction transaction = (CDOTransaction) repository.getCDOView(destination);
+		CDOCheckout checkout = mapping.getCheckout();
+		CDOTransaction transaction = checkout.openTransaction(new ResourceSetImpl());
+		ResourceSet destination = transaction.getResourceSet();
 
 		try {
 			for (IModelTransferNode model : configuration.getModelsToTransfer()) {
@@ -150,8 +151,8 @@ public class ModelImporter implements IModelImporter {
 			}
 		} finally {
 			EMFHelper.unload(configuration.getResourceSet());
-			CDOUtils.unload(repository.getCDOView(destination));
-			repository.close(destination);
+			CDOUtils.unload(transaction);
+			transaction.close();
 			EMFHelper.unload(destination);
 			sub.worked(1);
 		}

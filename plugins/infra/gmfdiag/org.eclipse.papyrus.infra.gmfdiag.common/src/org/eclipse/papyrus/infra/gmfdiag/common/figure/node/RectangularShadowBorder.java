@@ -42,7 +42,7 @@ public class RectangularShadowBorder extends LineBorder {
 	 * Method for determining the inset the border will take up on the shape.
 	 * 
 	 * @param figure
-	 *        Figure that will be inset from the border
+	 *            Figure that will be inset from the border
 	 * @return Insets the Insets for the border on the given figure.
 	 */
 	@Override
@@ -64,14 +64,14 @@ public class RectangularShadowBorder extends LineBorder {
 		// draw the normal line border
 		tempRect.setBounds(getPaintRectangle(figure, insets));
 
-		if(getWidth() % 2 == 1) {
+		if ((getWidth() % 2) != 0) {
 			tempRect.width--;
 			tempRect.height--;
 		}
 
 		tempRect.shrink(getWidth() / 2, getWidth() / 2);
 		graphics.setLineWidth(getWidth());
-		if(getColor() != null)
+		if (getColor() != null)
 			graphics.setForegroundColor(getColor());
 		graphics.drawRectangle(tempRect);
 
@@ -90,7 +90,7 @@ public class RectangularShadowBorder extends LineBorder {
 		plt.addPoint(tempRect.x + tempRect.width + borderwidth, tempRect.y + tempRect.height + borderwidth);
 		plt.addPoint(tempRect.x + tempRect.width + borderwidth, tempRect.y + borderwidth);
 		plt.addPoint(tempRect.x + tempRect.width, tempRect.y + borderwidth);
-		if(getColor() != null) {
+		if (getColor() != null) {
 			graphics.setBackgroundColor(getColor());
 		} else {
 			graphics.setBackgroundColor(ColorConstants.black);

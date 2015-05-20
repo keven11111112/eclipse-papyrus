@@ -27,10 +27,10 @@ import org.eclipse.uml2.uml.Property;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.impl.CapsulePartImpl#getBase_Property <em>Base Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

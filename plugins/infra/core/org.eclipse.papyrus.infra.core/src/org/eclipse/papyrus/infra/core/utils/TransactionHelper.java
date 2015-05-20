@@ -15,6 +15,8 @@
  *  Christian W. Damus - bug 457560
  *  Christian W. Damus - bug 461629
  *  Christian W. Damus - bug 463564
+ *  Christian W. Damus - bug 466997
+ *  Christian W. Damus - bug 465416
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -30,6 +32,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionImpl;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 
@@ -341,6 +344,19 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	}
 
 	/**
+	 * Queries whether a {@code transaction} is one that is executing or that executed triggers, or is perhaps
+	 * the read-only post-commit transaction that tells listeners about the changes made by a trigger transaction.
+	 * 
+	 * @param transaction
+	 *            a transaction
+	 * @return whether it is a trigger transaction
+	 */
+	public static boolean isTriggerTransaction(Transaction transaction) {
+		Object value = transaction.getOptions().get(TransactionImpl.OPTION_IS_TRIGGER_TRANSACTION);
+		return (value instanceof Boolean) ? (Boolean) value : false;
+	}
+
+	/**
 	 * Create a privileged runnable with progress, which is like a regular {@linkplain TransactionalEditingDomain#createPrivilegedRunnable(Runnable)
 	 * privileged runnable} except that it is given a progress monitor for progress reporting.
 	 * This enables execution of monitored runnables on the modal-context thread using the transaction borrowed from the UI thread.
@@ -403,7 +419,28 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	 *            write transaction open. May not be {@code null}
 	 */
 	public static Executor createTransactionExecutor(TransactionalEditingDomain domain, Executor fallback) {
-		return createTransactionExecutor(domain, fallback, null);
+		return createTransactionExecutor(domain, fallback, null, null);
+	}
+
+	/**
+	 * Creates an {@link Executor} that executes {@link Runnable}s at the pre-commit phase of the active write
+	 * transaction of the specified editing {@code domain} or at some other time if no write transaction is active.
+	 * The specified {@code policy}, if any, may determine whether for some task the {@code fallback} should be preferred
+	 * over the transaction executor or vice-versa (such as to handle special requirements like tasks needing to run
+	 * on the UI thread).
+	 * 
+	 * @param domain
+	 *            a transactional editing domain. May not be {@code null}
+	 * @param fallback
+	 *            an executor to use for scheduling tasks when the {@code domain} does not have a
+	 *            write transaction open. May not be {@code null}
+	 * @param policy
+	 *            an optional executor selection policy (may be {@code null}). The policy is queried for ranking of both
+	 *            the transaction executor and the {@code fallback}, unless there is no transaction active, which always excludes the
+	 *            transaction executor. In the event of a tie, the transaction executor is always selected
+	 */
+	public static Executor createTransactionExecutor(TransactionalEditingDomain domain, Executor fallback, IExecutorPolicy policy) {
+		return createTransactionExecutor(domain, fallback, policy, null);
 	}
 
 	/**
@@ -419,10 +456,33 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	 *            a map of options to apply to the nested transaction in which tasks are executed. May be {@code null} if not needed
 	 */
 	public static Executor createTransactionExecutor(TransactionalEditingDomain domain, Executor fallback, Map<?, ?> options) {
+		return createTransactionExecutor(domain, fallback, null, options);
+	}
+
+	/**
+	 * Creates an {@link Executor} that executes {@link Runnable}s at the pre-commit phase of the active write
+	 * transaction of the specified editing {@code domain} or at some other time if no write transaction is active.
+	 * The specified {@code policy}, if any, may determine whether for some task the {@code fallback} should be preferred
+	 * over the transaction executor or vice-versa (such as to handle special requirements like tasks needing to run
+	 * on the UI thread).
+	 * 
+	 * @param domain
+	 *            a transactional editing domain. May not be {@code null}
+	 * @param fallback
+	 *            an executor to use for scheduling tasks when the {@code domain} does not have a
+	 *            write transaction open. May not be {@code null}
+	 * @param policy
+	 *            an optional executor selection policy (may be {@code null}). The policy is queried for ranking of both
+	 *            the transaction executor and the {@code fallback}, unless there is no transaction active, which always excludes the
+	 *            transaction executor. In the event of a tie, the transaction executor is always selected
+	 * @param options
+	 *            a map of options to apply to the nested transaction in which tasks are executed. May be {@code null} if not needed
+	 */
+	public static Executor createTransactionExecutor(TransactionalEditingDomain domain, Executor fallback, IExecutorPolicy policy, Map<?, ?> options) {
 		if ((domain == null) || (fallback == null)) {
 			throw new NullPointerException();
 		}
 
-		return new TransactionPrecommitExecutor(domain, fallback, options);
+		return new TransactionPrecommitExecutor(domain, fallback, policy, options);
 	}
 }

@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.Port;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTPort#isNotification <em>Is Notification</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTPort#isPublish <em>Is Publish</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.uml2.uml.Port;
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTPort#getRegistrationOverride <em>Registration Override</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTPort#getBase_Port <em>Base Port</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.umlrt.UMLRealTime.UMLRealTimePackage#getRTPort()
  * @model

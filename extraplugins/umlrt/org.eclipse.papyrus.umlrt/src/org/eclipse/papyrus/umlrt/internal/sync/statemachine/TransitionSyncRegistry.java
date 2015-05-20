@@ -29,10 +29,6 @@ public class TransitionSyncRegistry extends UMLSyncRegistry<Transition> {
 
 	@Override
 	public Transition getModelOf(EObject backend) {
-		return getRedefinedTransition(backend);
-	}
-
-	public static Transition getRedefinedTransition(EObject transition) {
-		return (transition instanceof Transition) ? CapsuleUtils.getSuperTransition((Transition) transition) : null;
+		return (backend instanceof Transition) ? CapsuleUtils.getSuperTransition((Transition) backend) : null;
 	}
 }

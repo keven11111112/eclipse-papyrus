@@ -71,7 +71,7 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 
 			markerToPseudoSelectorMappingService = servicesRegistry.getService(MarkerToPseudoSelectorMappingService.class);
 		} catch (Exception e) {
-			Activator.log.error(e);
+			// Ignored; do nothing
 		}
 		getHost().addEditPartListener(this);
 	}

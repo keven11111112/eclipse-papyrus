@@ -9,6 +9,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 420549
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy;
@@ -25,6 +26,7 @@ import java.util.concurrent.Callable;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -34,6 +36,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IResizableCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.TopGraphicEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
@@ -45,8 +48,11 @@ import org.eclipse.gmf.runtime.notation.CanonicalStyle;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Sorting;
+import org.eclipse.gmf.runtime.notation.SortingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.util.CommandTreeIterator;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GEFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.internal.Activator;
@@ -59,9 +65,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.RollingDeferre
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IPapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -424,6 +432,21 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		}
 	}
 
+	@Override
+	protected boolean shouldHandleNotificationEvent(Notification event) {
+		boolean result = super.shouldHandleNotificationEvent(event);
+
+		if (!result && isManagedListCompartment()) {
+			// Also handle move events for reordering of semantic elements
+			Object element = event.getNotifier();
+			if ((element instanceof EObject) && !(element instanceof View)) {
+				result = event.getEventType() == Notification.MOVE;
+			}
+		}
+
+		return result;
+	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy#refreshSemantic()
 	 *      In order to connect the drop mechanism this method has be overloaded
@@ -479,7 +502,8 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 
 		// current views
 		List<View> viewChildren = getViewChildren(kind);
-		List<EObject> semanticChildren = new ArrayList<EObject>(getSemanticChildrenList(kind));
+		List<EObject> allSemanticChildren = getSemanticChildrenList(kind);
+		List<EObject> semanticChildren = new ArrayList<EObject>(allSemanticChildren);
 
 		boolean changed = false;
 
@@ -506,6 +530,14 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		if (isInState(State.ACTIVE)) {
 			if (!semanticChildren.isEmpty()) {
 				createdViews = createViews(semanticChildren);
+			}
+
+			if (isManagedListCompartment()) {
+				// Compute re-ordering, if necessary to match the semantics
+				List<? extends View> newViewOrder = matchCanonicalOrdering(viewChildren, allSemanticChildren);
+				if (newViewOrder != null) {
+					setViewOrder(newViewOrder);
+				}
 			}
 		}
 
@@ -713,6 +745,50 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		}
 
 		return views;
+	}
+
+	protected boolean isManagedListCompartment() {
+		// If the notation view is a ListCompartment, then we should rely on its SortingStyle to present
+		// its contents in the appropriate order if it has sorting kind different from 'none'
+		boolean result = false;
+
+		if (host() instanceof ListCompartmentEditPart) {
+			SortingStyle style = (SortingStyle) host().getNotationView().getStyle(NotationPackage.Literals.SORTING_STYLE);
+			result = (style == null) || (style.getSorting() == Sorting.NONE_LITERAL);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Computes, if necessary, a new ordering of the {@code viewChildren} to match the ordering of the {@code semanticChildren}.
+	 * 
+	 * @param viewChildren
+	 *            the existing view children in the order in which they are currently presented
+	 * @param semanticChildren
+	 *            the semantic children that are now presented (we may have already created views for some)
+	 * 
+	 * @return a new list presenting the {@code viewChildren} in semantic order, or {@code null} if no ordering changes are required
+	 */
+	protected List<? extends View> matchCanonicalOrdering(List<? extends View> viewChildren, final List<EObject> semanticChildren) {
+		List<? extends View> result = Ordering.natural().onResultOf(new Function<View, Integer>() {
+			@Override
+			public Integer apply(View input) {
+				return semanticChildren.indexOf(input.getElement());
+			}
+		}).sortedCopy(viewChildren);
+
+		if (result.equals(viewChildren)) {
+			// If the order is not different, don't try to change anything
+			result = null;
+		}
+
+		return result;
+	}
+
+	protected void setViewOrder(List<? extends View> childViews) {
+		final IGraphicalEditPart host = host();
+		executeCommand(EMFtoGEFCommandWrapper.wrap(SetCommand.create(host.getEditingDomain(), host.getNotationView(), NotationPackage.Literals.VIEW__PERSISTED_CHILDREN, childViews)));
 	}
 
 	//

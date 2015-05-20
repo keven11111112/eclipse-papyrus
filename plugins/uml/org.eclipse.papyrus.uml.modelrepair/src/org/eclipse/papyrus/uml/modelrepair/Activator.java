@@ -23,6 +23,9 @@ public class Activator extends AbstractUIPlugin {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.modelrepair"; //$NON-NLS-1$
 
+	/** Post-repair executors tracing option. */
+	public static final String TRACE_EXECUTOR = "executor"; //$NON-NLS-1$
+
 	// The shared instance
 	private static Activator plugin;
 

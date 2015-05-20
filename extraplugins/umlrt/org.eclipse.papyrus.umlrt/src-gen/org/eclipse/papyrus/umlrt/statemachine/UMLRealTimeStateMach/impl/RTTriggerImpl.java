@@ -27,10 +27,10 @@ import org.eclipse.uml2.uml.Operation;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl.RTTriggerImpl#getBase_Operation <em>Base Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

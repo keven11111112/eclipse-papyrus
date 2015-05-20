@@ -219,7 +219,7 @@ public class ViewInfoRegistry {
 	}
 
 	protected boolean addKnownTypesViewInfo(RootViewInfo rootViewInfo) {
-		if (rootViewInfo.headViewInfo == null || rootViewInfo == null || rootViewInfo.BaseViewInfo == null || rootViewInfo.BaseViewInfo.size() <= 0) {
+		if (rootViewInfo == null || rootViewInfo.headViewInfo == null || rootViewInfo.BaseViewInfo == null || rootViewInfo.BaseViewInfo.size() <= 0) {
 			return false;
 		}
 		ViewInfo headViewInfo = rootViewInfo.headViewInfo;

@@ -42,6 +42,8 @@ public class CDOSashModelProvider extends AbstractSashModelProvider {
 		CDOView view = CDOUtils.getView(modelSet);
 		if (view != null) { // Model probably is in the workspace if null
 			initialize(view);
+		} else {
+			indexFolder = SASH_MODEL_STORAGE_ROOT;
 		}
 	}
 

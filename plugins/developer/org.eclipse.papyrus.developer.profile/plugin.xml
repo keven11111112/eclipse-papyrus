@@ -16,7 +16,7 @@
             description="Developer profile"
             name="Developer profile"
             path="pathmap://DEVELOPER_PROFILES/CommentProfile.profile.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </profile>
    </extension>
 </plugin>

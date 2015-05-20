@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,8 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 422257
- *   
+ *   Eike Stepper (CEA) - bug 466520
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.exporter.tests;
 
@@ -73,7 +74,7 @@ public class ModelExporterTest extends AbstractModelExportTest {
 		config.addModelToTransfer(uri2);
 
 		IModelExportMapping mapping = IModelExportMapping.Factory.DEFAULT.create(config);
-		mapping.setRepository(getPapyrusRepository());
+		mapping.setCheckout(getCheckout());
 		mapping.mapTo(getNode(uri1), new Path("/has_dependencies/exported.di"));
 		mapping.mapTo(getNode(uri2), new Path("/has_dependents/exported.di"));
 
@@ -96,7 +97,7 @@ public class ModelExporterTest extends AbstractModelExportTest {
 
 	@Before
 	public void createTestFixture() throws Exception {
-		ResourceSet rset = getInternalPapyrusRepository().getMasterView().getResourceSet();
+		ResourceSet rset = getInternalCheckout().getView().getResourceSet();
 		createModels();
 
 		config = IModelTransferConfiguration.Factory.EXPORT.create(new IModelTransferOperation.Context() {
@@ -121,7 +122,7 @@ public class ModelExporterTest extends AbstractModelExportTest {
 
 	void assertResource(IPath path, final String metamodel) {
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-		assertThat(file.exists(), is(true));
+		assertThat("Does not exist: " + file.getLocation(), file.exists(), is(true));
 
 		File osFile = new File(file.getLocationURI());
 		assertThat(osFile.length() > 0L, is(true));
@@ -136,7 +137,7 @@ public class ModelExporterTest extends AbstractModelExportTest {
 				public boolean apply(EObject input) {
 					boolean result = false;
 
-					if(input != null) {
+					if (input != null) {
 						EPackage epackage = input.eClass().getEPackage();
 						result = epackage.getName().equalsIgnoreCase(metamodel);
 					}

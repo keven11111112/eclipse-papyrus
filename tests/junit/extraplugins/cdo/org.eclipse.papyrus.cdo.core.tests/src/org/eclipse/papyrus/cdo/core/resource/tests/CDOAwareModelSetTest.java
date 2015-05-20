@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,8 @@
  *   Christian W. Damus (CEA) - bug 429826
  *   Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *   Christian W. Damus (CEA) - bug 422257
- *   
+ *   Eike Stepper (CEA) - bug 466520
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource.tests;
 
@@ -47,7 +48,6 @@ import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareTransactionalEditingDomain;
 import org.eclipse.papyrus.cdo.core.resource.PapyrusCDOResourceFactory;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
@@ -124,12 +124,12 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		CDOTransaction transaction = getTransaction(fixture);
 
 		Resource resource = transaction.getOrCreateResource(getResourcePath(MODEL_FILENAME));
-		assertThat(fixture.getReadOnlyHandler().anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ resource.getURI() }), is(Optional.of(false)));
+		assertThat(fixture.getReadOnlyHandler().anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[] { resource.getURI() }), is(Optional.of(false)));
 	}
 
 	@Test
 	public void getEObject() throws Exception {
-		ResourceSet other = getPapyrusRepository().createTransaction(houseKeeper.createResourceSet());
+		ResourceSet other = createTransaction(houseKeeper.createResourceSet());
 
 		Resource resource = getTransaction(other).getOrCreateResource(getResourcePath("other.uml"));
 
@@ -137,13 +137,13 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		model.setName("test");
 		resource.getContents().add(model);
 
-		getPapyrusRepository().commit(other);
+		commit(other);
 
 		// must get the URI *after* commit, because the fragment of a
 		// persisted object is different than that of a transient object
 		URI uri = EcoreUtil.getURI(model);
 
-		getPapyrusRepository().close(other);
+		close(other);
 
 		EObject retrieved = fixture.getEObject(uri, true);
 		model = cast(retrieved, Model.class);
@@ -152,7 +152,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 
 	@Test
 	public void resolveProxy() throws Exception {
-		ResourceSet other = getPapyrusRepository().createTransaction(houseKeeper.createResourceSet());
+		ResourceSet other = createTransaction(houseKeeper.createResourceSet());
 
 		Resource resource1 = getTransaction(other).getOrCreateResource(getResourcePath(MODEL_FILENAME));
 		Model model1 = UMLFactory.eINSTANCE.createModel();
@@ -167,11 +167,11 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 
 		URI uri = resource2.getURI();
 
-		getPapyrusRepository().commit(other);
-		getPapyrusRepository().close(other);
+		commit(other);
+		close(other);
 
 		Resource resource = fixture.getResource(uri, true);
-		Model referencer = (Model)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.MODEL);
+		Model referencer = (Model) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.MODEL);
 		assertThat(referencer.getImportedPackages(), CoreMatchers.<Package> hasItem(CoreMatchers.anything()));
 		Package imported = referencer.getImportedPackages().get(0);
 		assertThat(imported.eIsProxy(), is(false));
@@ -278,7 +278,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		assertThat("EMF resource not created", model.getResource().getContents().isEmpty(), is(false));
 		assertThat("EMF resource not created", res2.getContents().isEmpty(), is(false));
 
-		// Change the referenced resource's URI.  This should make the resource and its dependents dirty
+		// Change the referenced resource's URI. This should make the resource and its dependents dirty
 		final URI modelURI2New = modelURI2.trimSegments(1).appendSegment("library1").appendFileExtension(model.getModelFileExtension());
 		res2.setURI(modelURI2New);
 
@@ -308,12 +308,12 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 
 		try {
 			// Ensure that the CDOAwareModelSet is the ModelSet service implementation
-			services.add(ModelSet.class, Integer.MAX_VALUE, new CDOAwareModelSet(PapyrusRepositoryManager.INSTANCE));
+			services.add(ModelSet.class, Integer.MAX_VALUE, new CDOAwareModelSet());
 
 			// start the ModelSet and its dependencies
 			services.startServicesByClassKeys(ModelSet.class, TransactionalEditingDomain.class);
 		} catch (ServiceMultiException e) {
-			for(ServiceNotFoundException next : Iterables.filter(e.getExceptions(), ServiceNotFoundException.class)) {
+			for (ServiceNotFoundException next : Iterables.filter(e.getExceptions(), ServiceNotFoundException.class)) {
 				assertThat(next.getLocalizedMessage(), not(containsString("ModelSet")));
 			}
 		}
@@ -326,8 +326,9 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 
 		assumeThat(fixture, instanceOf(CDOAwareModelSet.class));
 
-		fixture.createModels(getTestResourceURI(MODEL_FILENAME));
-		getPapyrusRepository().commit(fixture);
+		URI testResourceURI = getTestResourceURI(MODEL_FILENAME);
+		fixture.createModels(testResourceURI);
+		commit(fixture);
 	}
 
 	@After
@@ -335,7 +336,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		try {
 			services.disposeRegistry();
 		} catch (ServiceMultiException e) {
-			if(Iterables.any(Iterables.transform(e.getExceptions(), new Function<Throwable, Throwable>() {
+			if (Iterables.any(Iterables.transform(e.getExceptions(), new Function<Throwable, Throwable>() {
 
 				@Override
 				public Throwable apply(Throwable input) {

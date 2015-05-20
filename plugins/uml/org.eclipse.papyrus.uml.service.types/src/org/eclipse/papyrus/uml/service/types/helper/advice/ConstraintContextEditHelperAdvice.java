@@ -10,7 +10,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.papyrus.uml.service.types.command.ConstraintContextCreateCommand;
 import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Namespace;
 
 public class ConstraintContextEditHelperAdvice extends AbstractEditHelperAdvice {
 
@@ -28,11 +28,20 @@ public class ConstraintContextEditHelperAdvice extends AbstractEditHelperAdvice 
 		if ((source != null) && !(source instanceof Constraint)) {
 			return false;
 		}
-
-		if ((target != null) && !(target instanceof Element)) {
+		if ((target != null) && !(target instanceof Namespace)) {
 			return false;
 		}
-
+		if (source == null) {
+			return true;
+		}
+		if (source != null) {
+			if (((Constraint) source).getContext() != null) {
+				return false;
+			}
+		}
+		if (target != null && (((Namespace) target).getOwnedRules().contains(target))) {
+			return false;
+		}
 		return true;
 	}
 

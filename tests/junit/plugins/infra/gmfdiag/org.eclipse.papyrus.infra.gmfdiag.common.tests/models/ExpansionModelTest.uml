@@ -3,5 +3,8 @@
   <packageImport xmi:type="uml:PackageImport" xmi:id="_zV8ogeKJEeSwE5hduTH6nQ">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_0ONtQOKJEeSwE5hduTH6nQ" name="MyClass"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_0ONtQOKJEeSwE5hduTH6nQ" name="MyClass">
+    <nestedClassifier xmi:type="uml:Interface" xmi:id="_DpZwsPMkEeSc2PGFYV7S2w" name="MyNestedInterface"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="__FNz0PMjEeSc2PGFYV7S2w" name="MyOtherClass"/>
 </uml:Model>

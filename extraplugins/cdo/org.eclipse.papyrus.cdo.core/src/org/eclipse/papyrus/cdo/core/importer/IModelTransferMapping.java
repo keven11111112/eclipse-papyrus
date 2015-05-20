@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,13 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.importer;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 
 /**
  * This is the IModelTransferMapping type. Enjoy.
@@ -26,9 +27,9 @@ public interface IModelTransferMapping {
 
 	IPath getMapping(IModelTransferNode node);
 
-	IPapyrusRepository getRepository();
+	CDOCheckout getCheckout();
 
-	void setRepository(IPapyrusRepository repository);
+	void setCheckout(CDOCheckout checkout);
 
 	Diagnostic validate();
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,16 +9,21 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 443830
- *   
+ *   Eike Stepper (CEA) - bug 466520
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOTextResource;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckoutManager;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
@@ -26,14 +31,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.core.RepositoryManagerEventAdapter;
+import org.eclipse.net4j.util.event.IEvent;
+import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.papyrus.cdo.core.util.CDOFunctions;
 import org.eclipse.papyrus.cdo.core.util.CDOPredicates;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepositoryManager;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.storage.AbstractContextStorageProvider;
@@ -56,15 +58,84 @@ public class CDOContextStorageProvider extends AbstractContextStorageProvider {
 
 	public static final String CONTEXT_EXTENSION = "ctx"; //$NON-NLS-1$
 
-	private final IInternalPapyrusRepositoryManager repoMan = PapyrusRepositoryManager.INSTANCE;
-
 	private ResourceSet resourceSet;
 
 	private CDOTextURIHandler uriHandler;
 
-	private RepositoryManagerEventAdapter repositoryAdapter;
+	private final IListener repositoryAdapter = new IListener() {
 
-	private final Multimap<IPapyrusRepository, Context> contexts = HashMultimap.create();
+		@Override
+		public void notifyEvent(IEvent event) {
+			if (event instanceof CDOCheckoutManager.CheckoutStateEvent) {
+				CDOCheckoutManager.CheckoutStateEvent e = (CDOCheckoutManager.CheckoutStateEvent) event;
+				CDOCheckout checkout = e.getCheckout();
+
+				switch (e.getNewState()) {
+				case Opening:
+					break;
+
+				case Open:
+					CDOView view = checkout.openView(true, resourceSet);
+					view.addListener(this);
+
+					Collection<? extends Context> added = ImmutableList.copyOf(getContexts(checkout));
+					if (!added.isEmpty()) {
+						fireContextsAdded(added);
+					}
+					break;
+
+				case Closing:
+					break;
+
+				case Closed:
+					Collection<? extends Context> removed = ImmutableList.copyOf(contexts.get(checkout));
+					if (!removed.isEmpty()) {
+						contexts.removeAll(checkout);
+						fireContextsRemoved(removed);
+					}
+					break;
+
+				default:
+					break;
+				}
+			} else if (event instanceof CDOViewInvalidationEvent) {
+				CDOViewInvalidationEvent e = (CDOViewInvalidationEvent) event;
+				CDOView view = e.getSource();
+
+				if (view.hasResource(CONTEXTS_PATH)) {
+					CDOResourceFolder folder = view.getResourceFolder(CONTEXTS_PATH);
+					URI prefix = folder.getURI();
+					if (!prefix.isPrefix()) {
+						prefix = prefix.appendSegment(""); // add a trailing slash
+					}
+
+					// usually, it is XWT resources that change, so we have to find the contexts that own them
+					Collection<CDOTextResource> contextResources = Lists.newArrayList();
+					Iterable<CDOTextResource> textResources = Iterables.filter(Iterables.filter(e.getDirtyObjects(), CDOTextResource.class), CDOPredicates.hasURIPrefix(prefix));
+					for (CDOTextResource next : textResources) {
+						// get the context resource
+						URI relative = next.getURI().deresolve(prefix);
+						URI contextURI = prefix.appendSegment(relative.segment(0)).appendSegment(relative.segment(0)).appendFileExtension(CONTEXT_EXTENSION);
+						String path = CDOURIUtil.extractResourcePath(contextURI);
+						if (view.hasResource(path)) {
+							try {
+								contextResources.add(view.getTextResource(path));
+							} catch (Exception ex) {
+								// it's not a text resource. OK, there's something going on that we don't understand
+							}
+						}
+					}
+
+					Collection<Context> changed = ImmutableList.copyOf(getContexts(contextResources));
+					if (!changed.isEmpty()) {
+						fireContextsChanged(changed);
+					}
+				}
+			}
+		}
+	};
+
+	private final Multimap<CDOCheckout, Context> contexts = HashMultimap.create();
 
 	public CDOContextStorageProvider() {
 		super();
@@ -77,20 +148,17 @@ public class CDOContextStorageProvider extends AbstractContextStorageProvider {
 		uriHandler = CDOTextURIHandler.install(resourceSet);
 		resourceSet.getURIConverter().getURIHandlers().add(uriHandler);
 
-		repositoryAdapter = new RepositoryAdapter().install(repoMan);
+		CDOExplorerUtil.getCheckoutManager().addListener(repositoryAdapter);
 	}
 
 	@Override
 	public void dispose() {
-		if (repositoryAdapter != null) {
-			repositoryAdapter.uninstall(repoMan);
-			repositoryAdapter = null;
+		CDOExplorerUtil.getCheckoutManager().removeListener(repositoryAdapter);
 
-			uriHandler.uninstall();
-			uriHandler = null;
+		uriHandler.uninstall();
+		uriHandler = null;
 
-			resourceSet = null;
-		}
+		resourceSet = null;
 
 		super.dispose();
 	}
@@ -106,30 +174,30 @@ public class CDOContextStorageProvider extends AbstractContextStorageProvider {
 		return ImmutableList.copyOf(Iterables.concat(Iterables.transform(getRepositories(), getContexts())));
 	}
 
-	Iterable<? extends IInternalPapyrusRepository> getRepositories() {
-		return Iterables.filter(repoMan.getRepositories(), IInternalPapyrusRepository.class);
+	Iterable<? extends CDOCheckout> getRepositories() {
+		return Arrays.asList(CDOExplorerUtil.getCheckoutManager().getCheckouts());
 	}
 
-	Function<IInternalPapyrusRepository, Iterable<? extends Context>> getContexts() {
-		return new Function<IInternalPapyrusRepository, Iterable<? extends Context>>() {
+	Function<CDOCheckout, Iterable<? extends Context>> getContexts() {
+		return new Function<CDOCheckout, Iterable<? extends Context>>() {
 
 			@Override
-			public Iterable<? extends Context> apply(IInternalPapyrusRepository input) {
+			public Iterable<? extends Context> apply(CDOCheckout input) {
 				return getContexts(input);
 			}
 		};
 	}
 
-	Iterable<? extends Context> getContexts(IInternalPapyrusRepository repository) {
+	Iterable<? extends Context> getContexts(CDOCheckout checkout) {
 		Iterable<? extends Context> result;
 
-		if (!repository.isConnected()) {
+		if (!checkout.isOpen()) {
 			result = Collections.emptyList();
 		} else {
 			CDOResourceFolder folder = null;
 
 			try {
-				folder = repository.getMasterView().getResourceFolder(CONTEXTS_PATH);
+				folder = checkout.getView().getResourceFolder(CONTEXTS_PATH);
 			} catch (Exception e) {
 				// normal consequence when the folder doesn't exist
 			}
@@ -141,7 +209,7 @@ public class CDOContextStorageProvider extends AbstractContextStorageProvider {
 
 				result = getContexts(textNodes);
 
-				contexts.replaceValues(repository, result);
+				contexts.replaceValues(checkout, result);
 			}
 		}
 
@@ -172,71 +240,5 @@ public class CDOContextStorageProvider extends AbstractContextStorageProvider {
 	@Override
 	public void refreshContext(Context context) throws CoreException {
 		// nothing to do
-	}
-
-	//
-	// Nested types
-	//
-
-	private class RepositoryAdapter extends RepositoryManagerEventAdapter {
-
-		RepositoryAdapter() {
-			super(resourceSet);
-		}
-
-		@Override
-		protected void onConnected(IPapyrusRepository repository) {
-			if (repository instanceof IInternalPapyrusRepository) {
-				// attach a view on this repository to the resource set
-				repository.createReadOnlyView(resourceSet);
-
-				Collection<? extends Context> added = ImmutableList.copyOf(getContexts((IInternalPapyrusRepository) repository));
-				if (!added.isEmpty()) {
-					fireContextsAdded(added);
-				}
-			}
-		}
-
-		@Override
-		protected void onDisconnected(IPapyrusRepository repository) {
-			Collection<? extends Context> removed = ImmutableList.copyOf(contexts.get(repository));
-			if (!removed.isEmpty()) {
-				contexts.removeAll(repository);
-				fireContextsRemoved(removed);
-			}
-		}
-
-		@Override
-		protected void onInvalidation(IPapyrusRepository repository, CDOView view, CDOViewInvalidationEvent event) {
-			if (view.hasResource(CONTEXTS_PATH)) {
-				CDOResourceFolder folder = view.getResourceFolder(CONTEXTS_PATH);
-				URI prefix = folder.getURI();
-				if (!prefix.isPrefix()) {
-					prefix = prefix.appendSegment(""); // add a trailing slash
-				}
-
-				// usually, it is XWT resources that change, so we have to find the contexts that own them
-				Collection<CDOTextResource> contextResources = Lists.newArrayList();
-				Iterable<CDOTextResource> textResources = Iterables.filter(Iterables.filter(event.getDirtyObjects(), CDOTextResource.class), CDOPredicates.hasURIPrefix(prefix));
-				for (CDOTextResource next : textResources) {
-					// get the context resource
-					URI relative = next.getURI().deresolve(prefix);
-					URI contextURI = prefix.appendSegment(relative.segment(0)).appendSegment(relative.segment(0)).appendFileExtension(CONTEXT_EXTENSION);
-					String path = CDOURIUtil.extractResourcePath(contextURI);
-					if (view.hasResource(path)) {
-						try {
-							contextResources.add(view.getTextResource(path));
-						} catch (Exception e) {
-							// it's not a text resource. OK, there's something going on that we don't understand
-						}
-					}
-				}
-
-				Collection<Context> changed = ImmutableList.copyOf(getContexts(contextResources));
-				if (!changed.isEmpty()) {
-					fireContextsChanged(changed);
-				}
-			}
-		}
 	}
 }

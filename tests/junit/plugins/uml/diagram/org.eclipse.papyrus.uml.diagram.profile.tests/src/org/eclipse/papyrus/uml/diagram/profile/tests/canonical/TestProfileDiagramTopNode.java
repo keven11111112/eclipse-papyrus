@@ -30,7 +30,7 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
-	
+
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
@@ -38,7 +38,7 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return (ICreationCommand)new CreateProfileDiagramCommand();
+		return (ICreationCommand) new CreateProfileDiagramCommand();
 	}
 
 	@Override

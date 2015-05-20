@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFig
 public class RoundedRectangleLabelPositionLocator extends ExternalLabelPositionLocator {
 
 	/** the figure around which this label appears. */
-	protected IFigure parentFigure = null;
+	// protected IFigure parentFigure = null;
 
 	/** The border item offset. */
 	private Dimension borderItemOffset = new Dimension(1, 1);
@@ -62,7 +62,7 @@ public class RoundedRectangleLabelPositionLocator extends ExternalLabelPositionL
 		super(parentFigure);
 		Assert.isTrue(interval > 0);
 		Assert.isNotNull(parentFigure);
-		this.parentFigure = parentFigure;
+		// this.parentFigure = parentFigure;
 		this.interval = interval;
 	}
 

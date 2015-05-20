@@ -27,10 +27,10 @@ import org.eclipse.uml2.uml.State;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl.RTStateImpl#getBase_State <em>Base State</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

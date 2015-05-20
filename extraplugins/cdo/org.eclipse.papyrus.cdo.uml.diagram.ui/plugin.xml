@@ -19,7 +19,7 @@
                         type="org.eclipse.emf.cdo.eresource.CDOResourceNode">
                   </adapt>
                   <adapt
-                        type="org.eclipse.papyrus.cdo.core.IPapyrusRepository">
+                        type="org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout">
                   </adapt>
                </or>
             </iterate>
@@ -58,11 +58,28 @@
                        type="org.eclipse.emf.cdo.eresource.CDOResourceNode">
                  </adapt>
                  <adapt
-                       type="org.eclipse.papyrus.cdo.core.IPapyrusRepository">
+                       type="org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout">
                  </adapt>
               </or>
            </iterate>
          </enabledWhen>
       </handler>
    </extension>
+
+  <extension point="org.eclipse.ui.navigator.navigatorContent">
+         <commonWizard
+               associatedExtensionId="org.eclipse.emf.cdo.explorer.ui.CDOCheckouts"
+               type="new"
+               wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+            <enablement>
+              <or>
+                <and>
+                  <instanceof value="org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout"/>
+                  <test property="org.eclipse.emf.cdo.explorer.checkout.canContainResources" value="true"/>
+                </and>
+                <adapt type="org.eclipse.emf.cdo.eresource.CDOResourceFolder"/>
+              </or>
+           </enablement>
+         </commonWizard>
+  </extension>
 </plugin>

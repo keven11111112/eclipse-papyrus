@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.infra.sync;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.sync.internal.SyncService;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
@@ -56,5 +57,10 @@ public abstract class SyncObject implements ISyncObject {
 	@Override
 	public <M, T, X, R extends SyncRegistry<M, T, X>> R getSyncRegistry(Class<R> registryType) {
 		return getSyncService().getSyncRegistry(registryType);
+	}
+
+	@Override
+	public void execute(Command command) {
+		getSyncService().execute(command);
 	}
 }

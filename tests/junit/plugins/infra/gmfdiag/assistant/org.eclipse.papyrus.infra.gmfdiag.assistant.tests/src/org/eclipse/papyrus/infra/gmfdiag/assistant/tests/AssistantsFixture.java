@@ -14,15 +14,20 @@
 package org.eclipse.papyrus.infra.gmfdiag.assistant.tests;
 
 import java.net.URL;
+import java.util.Collections;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.core.IModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.DefaultModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.ModelingAssistantModelRegistry;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.osgi.framework.Bundle;
@@ -40,6 +45,8 @@ public class AssistantsFixture extends TestWatcher {
 
 	private IModelingAssistantModelProvider assistantModelProvider;
 
+	private String elementTypesID;
+
 	public AssistantsFixture(String assistantsModelPath) {
 		super();
 
@@ -50,13 +57,24 @@ public class AssistantsFixture extends TestWatcher {
 	protected void starting(Description description) {
 		URI assistantsModelURI = getModelURI(assistantsModelPath, description);
 
+		// Load the corresponding element types, if they are a custom set
+		URI elementTypesModelURI = getModelURI(assistantsModelPath.replaceFirst("\\.assistants$", ".elementtypesconfigurations"), description);
+		if (elementTypesModelURI != null) {
+			ElementTypeSetConfiguration elementTypes = UMLUtil.load(resourceSet, elementTypesModelURI, ElementtypesconfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
+			ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfigurations(Collections.singleton(elementTypes));
+
+			elementTypesID = JUnitUtils.getTestClass(description).getName();
+			ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().put(elementTypesID, elementTypes);
+		}
+
+		// And then the assistants that reference them
 		assistantModelProvider = registerAssistants(assistantsModelURI);
 	}
 
 	protected URI getModelURI(String path, Description testDescription) {
 		Bundle testBundle = FrameworkUtil.getBundle(JUnitUtils.getTestClass(testDescription));
 		URL url = testBundle.getEntry(path);
-		return URI.createURI(url.toExternalForm(), true);
+		return (url == null) ? null : URI.createURI(url.toExternalForm(), true);
 	}
 
 	protected IModelingAssistantModelProvider registerAssistants(URI assistantsModelURI) {
@@ -68,6 +86,11 @@ public class AssistantsFixture extends TestWatcher {
 	@Override
 	protected void finished(Description description) {
 		ModelingAssistantModelRegistry.getInstance().unloadModels(assistantModelProvider);
+		assistantModelProvider = null;
+
+		if (elementTypesID != null) {
+			ElementTypeSetConfigurationRegistry.getInstance().unload(elementTypesID);
+		}
 
 		EMFHelper.unload(resourceSet);
 	}

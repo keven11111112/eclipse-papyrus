@@ -74,12 +74,26 @@ public abstract class AbstractStereotypedElementEditHelperAdvice extends Abstrac
 					}
 					// do not try to get the Profile, as this can be time consuming and dependent on the size of the model
 					boolean requiredProfileApplied = false;
-					URI requiredProfileURI = EcoreUtil.getURI(requiredProfile);
+					URI requiredProfileURI = null;
+					try {
+						requiredProfileURI = EcoreUtil.getURI(requiredProfile);
+					} catch (Exception e) {
+						Activator.log.debug("Impossible to find URI for this profile");
+						return true;
+					}
+
 					for (Profile profile : profileApplicationContext.getAllAppliedProfiles()) {
 						EPackage definition = profile.getDefinition();
 						// compare definition & requireProfiles
-						URI appliedProfileURI = EcoreUtil.getURI(definition);
-						if (requiredProfileURI.equals(appliedProfileURI)) {
+
+						URI appliedProfileURI = null;
+						try {
+							appliedProfileURI = EcoreUtil.getURI(definition);
+						} catch (Exception e) {
+							Activator.log.debug("Impossible to find URI for this profile");
+						}
+
+						if (requiredProfileURI != null && requiredProfileURI.equals(appliedProfileURI)) {
 							requiredProfileApplied = true;
 							break; // this required profile has been found, accept this one
 						}

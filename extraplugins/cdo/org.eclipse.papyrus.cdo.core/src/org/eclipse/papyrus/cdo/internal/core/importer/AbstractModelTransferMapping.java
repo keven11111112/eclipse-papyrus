@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
@@ -16,11 +17,11 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferListener;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferMapping;
@@ -43,7 +44,7 @@ public abstract class AbstractModelTransferMapping implements IModelTransferMapp
 
 	private final Map<IModelTransferNode, IPath> mappings = Maps.newHashMap();
 
-	private IPapyrusRepository repository;
+	private CDOCheckout checkout;
 
 	private final CopyOnWriteArrayList<IModelTransferMappingListener> listeners = new CopyOnWriteArrayList<IModelTransferMappingListener>();
 
@@ -75,16 +76,16 @@ public abstract class AbstractModelTransferMapping implements IModelTransferMapp
 	}
 
 	@Override
-	public IPapyrusRepository getRepository() {
-		return repository;
+	public CDOCheckout getCheckout() {
+		return checkout;
 	}
 
 	@Override
-	public void setRepository(IPapyrusRepository repository) {
-		if (repository != this.repository) {
-			this.repository = repository;
+	public void setCheckout(CDOCheckout checkout) {
+		if (checkout != this.checkout) {
+			this.checkout = checkout;
 
-			fireRepositoryChanged();
+			fireCheckoutChanged();
 		}
 	}
 
@@ -123,11 +124,11 @@ public abstract class AbstractModelTransferMapping implements IModelTransferMapp
 	protected boolean validateRepository(DiagnosticChain diagnostics) {
 		boolean result = true;
 
-		if (getRepository() == null) {
+		if (getCheckout() == null) {
 			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, Messages.AbstractModelTransferMapping_1, null));
 			result = false;
-		} else if (!getRepository().isConnected()) {
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, NLS.bind(Messages.AbstractModelTransferMapping_2, getRepository().getName()), new Object[] { getRepository() }));
+		} else if (!getCheckout().isOpen()) {
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, NLS.bind(Messages.AbstractModelTransferMapping_2, getCheckout().getLabel()), new Object[] { getCheckout() }));
 			result = false;
 		}
 
@@ -166,7 +167,7 @@ public abstract class AbstractModelTransferMapping implements IModelTransferMapp
 		}
 	}
 
-	protected void fireRepositoryChanged() {
+	protected void fireCheckoutChanged() {
 		for (IModelTransferMappingListener next : listeners) {
 			try {
 				next.modelTransferRepositoryChanged(this);

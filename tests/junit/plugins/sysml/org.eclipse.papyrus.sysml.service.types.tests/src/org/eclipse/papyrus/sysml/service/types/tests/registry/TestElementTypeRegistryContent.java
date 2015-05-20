@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -22,6 +23,8 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -34,6 +37,14 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 	private static final String PAPYRUS_ELEMENT_TYPE_PREFIX = "org.eclipse.papyrus.sysml."; //$NON-NLS-1$
 
 	private static final String PAPYRUS_ST_APPLICATION_TYPE_PREFIX = "org.eclipse.papyrus.sysml.stereotype."; //$NON-NLS-1$
+
+	@BeforeClass
+	public static void before() {
+		ElementTypeSetConfigurationRegistry registry = ElementTypeSetConfigurationRegistry.getInstance();
+		Assert.assertNotNull("registry should not be null after init", registry);
+		Assert.assertNotNull("element type should not be null", SysMLElementTypes.BLOCK);
+	}
+
 
 	@Test
 	public void testRegistryContentForSysMLModelElements() {

@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -86,17 +87,35 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 
 		List<Resource> resources = set.getResources();
 
-		for(Resource current : resources) {
-			if(current.getURI().lastSegment().equals("modelUMLClass.uml")) { //$NON-NLS-1$
+		for (Resource current : resources) {
+			if (current.getURI().lastSegment().equals("modelUMLClass.uml")) { //$NON-NLS-1$
 				this.uml = current;
-			} else if(current.getURI().lastSegment().equals("modelUMLClass.notation")) { //$NON-NLS-1$
+			} else if (current.getURI().lastSegment().equals("modelUMLClass.notation")) { //$NON-NLS-1$
 				this.notation = current;
-			} else if(current.getURI().lastSegment().equals("modelUMLClass.di")) { //$NON-NLS-1$
+			} else if (current.getURI().lastSegment().equals("modelUMLClass.di")) { //$NON-NLS-1$
 				this.di = current;
 			}
 		}
 
-		this.rootModel = (Model)this.uml.getContents().get(0);
+		this.rootModel = (Model) this.uml.getContents().get(0);
+	}
+
+	protected List<Integer> convertRowPositionToRowIndex(int[] rowPosition, SelectionLayer layer) {
+		List<Integer> rowIndex = new ArrayList<Integer>();
+		for (int i = 0; i < rowPosition.length; i++) {
+			Integer index = Integer.valueOf(layer.getRowIndexByPosition(rowPosition[i]));
+			rowIndex.add(index);
+		}
+		return rowIndex;
+	}
+
+	protected List<Integer> convertColumnPositionToColumnIndex(int[] columnPosition, SelectionLayer layer) {
+		List<Integer> columnIndex = new ArrayList<Integer>();
+		for (int i = 0; i < columnPosition.length; i++) {
+			Integer index = Integer.valueOf(layer.getColumnIndexByPosition((columnPosition[i])));
+			columnIndex.add(index);
+		}
+		return columnIndex;
 	}
 
 	/**
@@ -106,10 +125,10 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	@Test
 	public void test1_SelectElement() {
 		// select the element
-		this.classTest = (Class)this.rootModel.getMember("Class3"); //$NON-NLS-1$
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
+		this.classTest = (Class) this.rootModel.getMember("Class3"); //$NON-NLS-1$
+		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
 		// verify that the axis is not inverted
-		if(manager.getTable().isInvertAxis()) {
+		if (manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
@@ -117,12 +136,12 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 
 		Assert.assertTrue(editor.getActiveEditor() instanceof NavigationTarget);
 		// spoofs the behavior when the link with editor button is activated
-		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.classTest);
+		((NavigationTarget) this.editor.getActiveEditor()).revealElement(this.classTest);
 		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
+		Object currentAxisObject = ((IStructuredSelection) selection).getFirstElement();
 		Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 		// verify that the same element has been selected on both sides
 		Assert.assertTrue("failed to match the selection with: " + this.classTest.getName(), this.classTest.equals(currentRealObject)); //$NON-NLS-1$
@@ -130,10 +149,17 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
-		// verify that the line selected is indeed the line corresponding to the element selected in the model explorer
-		Assert.assertTrue("index of row does not match: " + rowSelectedPositions[0], rowSelectedPositions[0] == 7); //$NON-NLS-1$
-		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
 
+
+		// verify that the line selected is indeed the line corresponding to the element selected in the model explorer
+		// Assert.assertTrue("index of row does not match: " + rowSelectedPositions[0], rowSelectedPositions[0] == 7); //$NON-NLS-1$
+		// Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
+
+		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
+		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
+		Assert.assertEquals("number of selected rows does not match", 1, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 0, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("index of selected row does not match", 7, rowIndex.get(0).intValue()); //$NON-NLS-1$
 	}
 
 	/**
@@ -143,19 +169,19 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	@Test
 	public void test2_SelectMultipleElements() {
 		this.elementListTest = (this.rootModel.getMember("Package1").getOwnedElements()); //$NON-NLS-1$
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
-		if(manager.getTable().isInvertAxis()) {
+		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		if (manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
 		Assert.assertTrue(editor.getActiveEditor() instanceof NavigationTarget);
-		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.elementListTest);
+		((NavigationTarget) this.editor.getActiveEditor()).revealElement(this.elementListTest);
 		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		List<?> selectedRowElements = ((IStructuredSelection)selection).toList();
-		for(int index = 0; index < selectedRowElements.size(); index++) {
+		List<?> selectedRowElements = ((IStructuredSelection) selection).toList();
+		for (int index = 0; index < selectedRowElements.size(); index++) {
 			Object currentAxisObject = selectedRowElements.get(index);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			Assert.assertTrue("failed to match the selection", this.elementListTest.contains(currentRealObject)); //$NON-NLS-1$
@@ -165,11 +191,19 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 
-		Assert.assertTrue("index of row does not match", rowSelectedPositions.length == 3); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 5); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 2); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 3); //$NON-NLS-1$
-		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
+		// Assert.assertTrue("index of row does not match", rowSelectedPositions.length == 3); //$NON-NLS-1$
+		// Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 5); //$NON-NLS-1$
+		// Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 2); //$NON-NLS-1$
+		// Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 3); //$NON-NLS-1$
+		// Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
+
+		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
+		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
+		Assert.assertEquals("number of selected rows does not match", 3, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 0, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertTrue("row 2 is not in the selection", rowIndex.contains(Integer.valueOf(2))); //$NON-NLS-1$
+		Assert.assertTrue("row 3 is not in the selection", rowIndex.contains(Integer.valueOf(3))); //$NON-NLS-1$
+		Assert.assertTrue("row 5 is not in the selection", rowIndex.contains(Integer.valueOf(5))); //$NON-NLS-1$
 
 	}
 
@@ -179,29 +213,35 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	 */
 	@Test
 	public void test3_SelectElementInvertAxis() {
-		this.classTest = (Class)this.rootModel.getMember("Class3"); //$NON-NLS-1$
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
-		if(!manager.getTable().isInvertAxis()) {
+		this.classTest = (Class) this.rootModel.getMember("Class3"); //$NON-NLS-1$
+		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		if (!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
 		Assert.assertTrue("failed to find: " + this.classTest.getName(), this.classTest.getName().equals("Class3")); //$NON-NLS-1$//$NON-NLS-2$
 
 		Assert.assertTrue(editor.getActiveEditor() instanceof NavigationTarget);
-		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.classTest);
+		((NavigationTarget) this.editor.getActiveEditor()).revealElement(this.classTest);
 		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
+		Object currentAxisObject = ((IStructuredSelection) selection).getFirstElement();
 		Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 		Assert.assertTrue("failed to match the selection with: " + this.classTest.getName(), this.classTest.equals(currentRealObject)); //$NON-NLS-1$
 
 		SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
-		Assert.assertTrue("index of row does not match: " + columnSelectedPositions[0], columnSelectedPositions[0] == 7); //$NON-NLS-1$
-		Assert.assertTrue("number of selected columns does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
+		// Assert.assertTrue("index of row does not match: " + columnSelectedPositions[0], columnSelectedPositions[0] == 7); //$NON-NLS-1$
+		// Assert.assertTrue("number of selected columns does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
+
+		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
+		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
+		Assert.assertEquals("number of selected rows does not match", 0, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 1, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("index of selected row does not match", 7, columnIndex.get(0).intValue()); //$NON-NLS-1$
 
 	}
 
@@ -212,19 +252,19 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	@Test
 	public void test4_SelectMultipleElementsInvertAxis() {
 		this.elementListTest = (this.rootModel.getMember("Package1").getOwnedElements()); //$NON-NLS-1$
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
-		if(!manager.getTable().isInvertAxis()) {
+		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		if (!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
 		Assert.assertTrue(editor.getActiveEditor() instanceof NavigationTarget);
-		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.elementListTest);
+		((NavigationTarget) this.editor.getActiveEditor()).revealElement(this.elementListTest);
 		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		List<?> selectedRowElements = ((IStructuredSelection)selection).toList();
-		for(int index = 0; index < selectedRowElements.size(); index++) {
+		List<?> selectedRowElements = ((IStructuredSelection) selection).toList();
+		for (int index = 0; index < selectedRowElements.size(); index++) {
 			Object currentAxisObject = selectedRowElements.get(index);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			Assert.assertTrue("failed to match the selection", this.elementListTest.contains(currentRealObject)); //$NON-NLS-1$
@@ -234,11 +274,19 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 
-		Assert.assertTrue("index of column does not match", columnSelectedPositions.length == 3); //$NON-NLS-1$
-		Assert.assertTrue("index of column does not match", columnSelectedPositions[0] == 2); //$NON-NLS-1$
-		Assert.assertTrue("index of column does not match", columnSelectedPositions[1] == 3); //$NON-NLS-1$
-		Assert.assertTrue("index of column does not match", columnSelectedPositions[2] == 5); //$NON-NLS-1$
-		Assert.assertTrue("number of selected rows does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
+		// Assert.assertTrue("index of column does not match", columnSelectedPositions.length == 3); //$NON-NLS-1$
+		// Assert.assertTrue("index of column does not match", columnSelectedPositions[0] == 2); //$NON-NLS-1$
+		// Assert.assertTrue("index of column does not match", columnSelectedPositions[1] == 3); //$NON-NLS-1$
+		// Assert.assertTrue("index of column does not match", columnSelectedPositions[2] == 5); //$NON-NLS-1$
+		// Assert.assertTrue("number of selected rows does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
+
+		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
+		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
+		Assert.assertEquals("number of selected rows does not match", 3, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 0, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertTrue("row 2 is not in the selection", columnIndex.contains(Integer.valueOf(2))); //$NON-NLS-1$
+		Assert.assertTrue("row 3 is not in the selection", columnIndex.contains(Integer.valueOf(3))); //$NON-NLS-1$
+		Assert.assertTrue("row 5 is not in the selection", columnIndex.contains(Integer.valueOf(5))); //$NON-NLS-1$
 
 	}
 
@@ -249,9 +297,9 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	 */
 	@Test
 	public void test5_SelectSortedElement() {
-		this.classTest = (Class)this.rootModel.getMember("Class3"); //$NON-NLS-1$
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
-		if(manager.getTable().isInvertAxis()) {
+		this.classTest = (Class) this.rootModel.getMember("Class3"); //$NON-NLS-1$
+		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		if (manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 		manager.sortRowsByName(true);
@@ -259,20 +307,28 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		Assert.assertTrue("failed to find: " + this.classTest.getName(), this.classTest.getName().equals("Class3")); //$NON-NLS-1$//$NON-NLS-2$
 
 		Assert.assertTrue(editor.getActiveEditor() instanceof NavigationTarget);
-		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.classTest);
+		((NavigationTarget) this.editor.getActiveEditor()).revealElement(this.classTest);
 		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
+		Object currentAxisObject = ((IStructuredSelection) selection).getFirstElement();
 		Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 		Assert.assertTrue("failed to match the selection with: " + this.classTest.getName(), this.classTest.equals(currentRealObject)); //$NON-NLS-1$
 
 		SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
-		Assert.assertTrue("index of row does not match: " + rowSelectedPositions[0], rowSelectedPositions[0] == 6); //$NON-NLS-1$
-		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match: " + rowSelectedPositions[0], rowSelectedPositions[0] == 6); //$NON-NLS-1$
+//		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
+
+
+		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
+		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
+		Assert.assertEquals("number of selected rows does not match", 1, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 0, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("index of selected row does not match", 6, rowIndex.get(0).intValue()); //$NON-NLS-1$
+
 
 	}
 
@@ -283,20 +339,20 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	@Test
 	public void test6_SelectMultipleSortedElements() {
 		this.elementListTest = (this.rootModel.getMember("Package1").getOwnedElements()); //$NON-NLS-1$
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
-		if(manager.getTable().isInvertAxis()) {
+		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		if (manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 		manager.sortRowsByName(true);
 
 		Assert.assertTrue(editor.getActiveEditor() instanceof NavigationTarget);
-		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.elementListTest);
+		((NavigationTarget) this.editor.getActiveEditor()).revealElement(this.elementListTest);
 		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		List<?> selectedRowElements = ((IStructuredSelection)selection).toList();
-		for(int index = 0; index < selectedRowElements.size(); index++) {
+		List<?> selectedRowElements = ((IStructuredSelection) selection).toList();
+		for (int index = 0; index < selectedRowElements.size(); index++) {
 			Object currentAxisObject = selectedRowElements.get(index);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			Assert.assertTrue("failed to match the selection", this.elementListTest.contains(currentRealObject)); //$NON-NLS-1$
@@ -306,11 +362,19 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 
-		Assert.assertTrue("index of row does not match", rowSelectedPositions.length == 3); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 2); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 4); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 5); //$NON-NLS-1$
-		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions.length == 3); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 2); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 4); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 5); //$NON-NLS-1$
+//		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
+		
+		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
+		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
+		Assert.assertEquals("number of selected rows does not match", 3, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 0, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertTrue("row 2 is not in the selection", rowIndex.contains(Integer.valueOf(2))); //$NON-NLS-1$
+		Assert.assertTrue("row 4 is not in the selection", rowIndex.contains(Integer.valueOf(4))); //$NON-NLS-1$
+		Assert.assertTrue("row 5 is not in the selection", rowIndex.contains(Integer.valueOf(5))); //$NON-NLS-1$
 	}
 
 
@@ -322,9 +386,9 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	@Ignore
 	// sortColumns/Rows is not yet supported with invertAxis
 	public void test7_SelectSortedElementInvertAxis() {
-		this.classTest = (Class)this.rootModel.getMember("Class3"); //$NON-NLS-1$
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
-		if(!manager.getTable().isInvertAxis()) {
+		this.classTest = (Class) this.rootModel.getMember("Class3"); //$NON-NLS-1$
+		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		if (!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 		manager.sortColumnsByName(true);
@@ -332,21 +396,26 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		Assert.assertTrue("failed to find: " + this.classTest.getName(), this.classTest.getName().equals("Class3")); //$NON-NLS-1$//$NON-NLS-2$
 
 		Assert.assertTrue(editor.getActiveEditor() instanceof IRevealSemanticElement);
-		((IRevealSemanticElement)this.editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(this.classTest));
+		((IRevealSemanticElement) this.editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(this.classTest));
 		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
+		Object currentAxisObject = ((IStructuredSelection) selection).getFirstElement();
 		Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 		Assert.assertTrue("failed to match the selection with: " + this.classTest.getName(), this.classTest.equals(currentRealObject)); //$NON-NLS-1$
 
 		SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
 		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
-		Assert.assertTrue("index of row does not match: " + columnSelectedPositions[0], columnSelectedPositions[0] == 6); //$NON-NLS-1$
-		Assert.assertTrue("number of selected columns does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
+//		Assert.assertTrue("index of row does not match: " + columnSelectedPositions[0], columnSelectedPositions[0] == 6); //$NON-NLS-1$
+//		Assert.assertTrue("number of selected columns does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
 
+		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
+		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
+		Assert.assertEquals("number of selected rows does not match", 0, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 1, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("index of selected column does not match", 6, columnIndex.get(0).intValue()); //$NON-NLS-1$
 	}
 
 	/**
@@ -358,20 +427,20 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	// sortColumns/Rows is not yet supported with invertAxis
 	public void test8_SelectMultipleSortedElementsInvertAxis() {
 		this.elementListTest = (this.rootModel.getMember("Package1").getOwnedElements()); //$NON-NLS-1$
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
-		if(!manager.getTable().isInvertAxis()) {
+		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		if (!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 		manager.sortColumnsByName(true);
 
 		Assert.assertTrue(editor.getActiveEditor() instanceof IRevealSemanticElement);
-		((IRevealSemanticElement)this.editor.getActiveEditor()).revealSemanticElement(this.elementListTest);
+		((IRevealSemanticElement) this.editor.getActiveEditor()).revealSemanticElement(this.elementListTest);
 		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		List<?> selectedRowElements = ((IStructuredSelection)selection).toList();
-		for(int index = 0; index < selectedRowElements.size(); index++) {
+		List<?> selectedRowElements = ((IStructuredSelection) selection).toList();
+		for (int index = 0; index < selectedRowElements.size(); index++) {
 			Object currentAxisObject = selectedRowElements.get(index);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			Assert.assertTrue("failed to match the selection", this.elementListTest.contains(currentRealObject)); //$NON-NLS-1$
@@ -386,6 +455,15 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		Assert.assertTrue("index of column does not match", columnSelectedPositions[1] == 4); //$NON-NLS-1$
 		Assert.assertTrue("index of column does not match", columnSelectedPositions[2] == 5); //$NON-NLS-1$
 		Assert.assertTrue("number of selected rows does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
+		
+		
+		List<Integer> rowIndex = convertRowPositionToRowIndex(rowSelectedPositions, layer);
+		List<Integer> columnIndex = convertColumnPositionToColumnIndex(columnSelectedPositions, layer);
+		Assert.assertEquals("number of selected rows does not match", 0, rowIndex.size()); //$NON-NLS-1$
+		Assert.assertEquals("number of selected columns does not match", 3, columnIndex.size()); //$NON-NLS-1$
+		Assert.assertTrue("column 2 is not in the selection", columnIndex.contains(Integer.valueOf(2))); //$NON-NLS-1$
+		Assert.assertTrue("column 4 is not in the selection", columnIndex.contains(Integer.valueOf(4))); //$NON-NLS-1$
+		Assert.assertTrue("column 5 is not in the selection", columnIndex.contains(Integer.valueOf(5))); //$NON-NLS-1$
 
 	}
 
@@ -403,8 +481,8 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 	protected void selectTablePage(int index) {
 		try {
 			Object tablePage = getPageManager().allPages().get(index);
-			//			getPageManager().closeAllOpenedPages();
-			//			getPageManager().openPage(tablePage);
+			// getPageManager().closeAllOpenedPages();
+			// getPageManager().openPage(tablePage);
 			getPageManager().selectPage(tablePage);
 		} catch (ServiceException e) {
 			Activator.log.error(e);

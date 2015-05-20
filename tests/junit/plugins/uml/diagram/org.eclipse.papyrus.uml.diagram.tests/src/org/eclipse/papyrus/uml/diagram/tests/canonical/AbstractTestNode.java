@@ -237,7 +237,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 	 *            the type
 	 * @param containerType
 	 *            the container type
-	 * @deprecated, @use {@link AbstractTestNode#testToManageNode(IElementType, EClass, IElementType, boolean)}
+	 * 			@deprecated, @use {@link AbstractTestNode#testToManageNode(IElementType, EClass, IElementType, boolean)}
 	 */
 	@Deprecated
 	public void testToManageChildNode(IElementType type, EClass eClass, IElementType containerType, boolean containerMove, boolean maskmanaged, int numberSemanticChildreen) {
@@ -296,11 +296,24 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 	 * @param currentEditPart
 	 */
 	protected void testEnableForDeleteFromModel(EditPart currentEditPart) {
+
+		//////////////
+
+		// It seems difficult to ensure that the selection is properly considered as the active Eclipse Selection
+		// Depending on which view/editor has the focus, Eclipse may consider that another selection is active
+		// This is a little bit brute-force but seems necessary to ensure that all tests succeed, independently
+		// of the initial Eclipse state (e.g. if another test suite has opened/enabled some different views)
+		// Also, simply calling setSelection() is not sufficient; it seems that "some things" happen asynchronously
+		// afterwards, so we need to flush events several times
 		diagramEditor.setFocus();
 		DisplayUtils.flushEventLoop();
 
 		diagramEditor.getSite().getSelectionProvider().setSelection(new StructuredSelection(currentEditPart));
 		DisplayUtils.flushEventLoop();
+
+		diagramEditor.setFocus();
+		DisplayUtils.flushEventLoop();
+		//////////////
 
 		ICommandService commandService = PlatformUI.getWorkbench().getService(ICommandService.class);
 		org.eclipse.core.commands.Command cmd = commandService.getCommand("org.eclipse.ui.edit.delete"); //$NON-NLS-1$
@@ -473,7 +486,8 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 			Assert.assertEquals("Diagram updater must detect that no link are incoming", 0, getDiagramUpdater().getIncomingLinks((View) getRootView().getChildren().get(expectedGraphicalChildren + addedGraphicalChildren - 1)).size()); //$NON-NLS-1$
 			Assert.assertEquals("Diagram updater must detect that no link are outgoing", 0, getDiagramUpdater().getOutgoingLinks((View) getRootView().getChildren().get(expectedGraphicalChildren + addedGraphicalChildren - 1)).size()); //$NON-NLS-1$
 			Assert.assertEquals(
-					"Diagram updater must detect that no children has ben created in the new element", numberSemanticChildreen, getDiagramUpdater().getSemanticChildren((View) getRootView().getChildren().get(expectedGraphicalChildren + addedGraphicalChildren - 1)).size()); //$NON-NLS-1$
+					"Diagram updater must detect that no children has ben created in the new element", numberSemanticChildreen, //$NON-NLS-1$
+					getDiagramUpdater().getSemanticChildren((View) getRootView().getChildren().get(expectedGraphicalChildren + addedGraphicalChildren - 1)).size());
 			Assert.assertEquals("Diagram updater must detect that no link has been created in the new element", 0, getDiagramUpdater().getContainedLinks((View) getRootView().getChildren().get(expectedGraphicalChildren + addedGraphicalChildren - 1)).size()); //$NON-NLS-1$
 		}
 		createdEditPart.getChildren();
@@ -519,16 +533,15 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 			if (!(((View) namedEditPart.getModel()).getElement() instanceof Pseudostate)) {
 				if (name.length() < ((ITextAwareEditPart) namedEditPart).getEditText().length()) {
 					Assert.assertEquals(" the name must contain the name of the metaclass", name, ((ITextAwareEditPart) namedEditPart).getEditText().substring(0, name.length())); //$NON-NLS-1$
-				}
-				else {
+				} else {
 					// not the same it sure but display the mistake is important
 					Assert.assertEquals(" the name must contain the name of the metaclass", name, ((ITextAwareEditPart) namedEditPart).getEditText()); //$NON-NLS-1$
 				}
 			}
 			if (namedEditPart instanceof CompartmentEditPart) {
 				Assert.assertTrue("the primary editpart must be the namelabelEditpart", namedEditPart instanceof CompartmentEditPart); //$NON-NLS-1$
-				Assert.assertTrue("namelabelEditpart must be editable", ((CompartmentEditPart) namedEditPart).isEditModeEnabled());} //$NON-NLS-1$
-			else {
+				Assert.assertTrue("namelabelEditpart must be editable", ((CompartmentEditPart) namedEditPart).isEditModeEnabled()); //$NON-NLS-1$
+			} else {
 				Assert.assertTrue("the primary editpart must be the namelabelEditpart", namedEditPart instanceof LabelEditPart); //$NON-NLS-1$
 
 			}

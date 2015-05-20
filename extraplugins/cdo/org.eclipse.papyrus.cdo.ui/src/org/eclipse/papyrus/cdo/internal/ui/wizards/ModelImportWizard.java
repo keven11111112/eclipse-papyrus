@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.wizards;
@@ -20,12 +21,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.importer.IModelImporter;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
@@ -45,7 +46,7 @@ public class ModelImportWizard extends Wizard implements IWorkbenchWizard {
 
 	private ModelReferencesPage referencesPage;
 
-	private RepositorySelectionPage repositoryPage;
+	private CheckoutSelectionPage checkoutPage;
 
 	private ModelMappingsPage mappingsPage;
 
@@ -53,7 +54,7 @@ public class ModelImportWizard extends Wizard implements IWorkbenchWizard {
 
 	private IModelTransferConfiguration importConfig;
 
-	private IPapyrusRepository repository;
+	private CDOCheckout checkout;
 
 	public ModelImportWizard() {
 		super();
@@ -71,8 +72,8 @@ public class ModelImportWizard extends Wizard implements IWorkbenchWizard {
 	/**
 	 * Set the initial selection of the repository to import into.
 	 */
-	public void setRepository(IPapyrusRepository repository) {
-		this.repository = repository;
+	public void setRepository(CDOCheckout checkout) {
+		this.checkout = checkout;
 	}
 
 	@Override
@@ -84,8 +85,8 @@ public class ModelImportWizard extends Wizard implements IWorkbenchWizard {
 		referencesPage = new ModelReferencesPage(bus, true);
 		addPage(referencesPage);
 
-		repositoryPage = new RepositorySelectionPage(bus);
-		addPage(repositoryPage);
+		checkoutPage = new CheckoutSelectionPage(bus);
+		addPage(checkoutPage);
 
 		mappingsPage = new ModelMappingsPage(bus);
 		addPage(mappingsPage);
@@ -102,8 +103,8 @@ public class ModelImportWizard extends Wizard implements IWorkbenchWizard {
 
 				bus.post(importConfig);
 
-				if (repository != null) {
-					bus.post(repository);
+				if (checkout != null) {
+					bus.post(checkout);
 				}
 			}
 		});

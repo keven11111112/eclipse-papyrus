@@ -17850,7 +17850,7 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_hcMIwEhNEeO0lv5O1DTHOQ" name="Capsule">
-      <ownedRule xmi:type="uml:Constraint" xmi:id="_-g8psEhTEeO0lv5O1DTHOQ" name="Capsules are always active" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_-g8psEhTEeO0lv5O1DTHOQ" name="Capsules are always active classifiers" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
         <specification xmi:type="uml:OpaqueExpression" xmi:id="_TF_bEEhUEeO0lv5O1DTHOQ">
           <language>OCL</language>
           <body>base_Class.isActive</body>
@@ -17880,16 +17880,10 @@
           <body>(base_Class.generalization->notEmpty()) implies (base_Class.generalization->forAll (g | g.isSubstitutable))</body>
         </specification>
       </ownedRule>
-      <ownedRule xmi:type="uml:Constraint" xmi:id="_7I_kgEhVEeO0lv5O1DTHOQ" name="All attributes of a capsule class have exactly one type" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_7I_kgEhVEeO0lv5O1DTHOQ" name="All attributes of a capsule class can have at most one type" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
         <specification xmi:type="uml:OpaqueExpression" xmi:id="_KrqoMEhWEeO0lv5O1DTHOQ">
           <language>OCL</language>
           <body>base_Class.ownedAttribute->forAll(at | at.type->size() = 1)</body>
-        </specification>
-      </ownedRule>
-      <ownedRule xmi:type="uml:Constraint" xmi:id="_RXUA0EhWEeO0lv5O1DTHOQ" name="Private visibility is not supported on capsule features" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="_huBJgEhWEeO0lv5O1DTHOQ">
-          <language>OCL</language>
-          <body>base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)</body>
         </specification>
       </ownedRule>
       <ownedRule xmi:type="uml:Constraint" xmi:id="_DoUvAEhbEeO0lv5O1DTHOQ" name="A capsule class cannot have nested classifiers" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
@@ -17992,7 +17986,7 @@
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_t8sxEEhPEeO0lv5O1DTHOQ" name="PortRegistrationType">
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_xZXFMEhPEeO0lv5O1DTHOQ" name="Automatic"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_yiLHYEhPEeO0lv5O1DTHOQ" name="Application"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_0DSU0EhPEeO0lv5O1DTHOQ" name="ApplicationLocked"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_0DSU0EhPEeO0lv5O1DTHOQ" name="AutomaticLocked"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_Tv_-MEhQEeO0lv5O1DTHOQ" name="RTConnector">
       <ownedRule xmi:type="uml:Constraint" xmi:id="_CIqywEheEeO0lv5O1DTHOQ" name="Only binary connectors are allowed" constrainedElement="_Tv_-MEhQEeO0lv5O1DTHOQ">
@@ -18069,20 +18063,19 @@
       <appliedProfile xmi:type="uml:Profile" href="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#__sUW0OhNEeCjcc2EgK3Uwg"/>
     </profileApplication>
   </uml:Profile>
-  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_TaoU4BMkEeSz2qq_H0HScA" base_Constraint="_-g8psEhTEeO0lv5O1DTHOQ" message="Capsules are always active entities" id="isActiveEntity"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_iq9EUBMkEeSz2qq_H0HScA" base_Constraint="_t6v3AEhUEeO0lv5O1DTHOQ" message="A capsule cannot have features that are receptions" id="hasNoReception"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_nq7lUBMkEeSz2qq_H0HScA" base_Constraint="_8k0ewEhUEeO0lv5O1DTHOQ" message="Capsules can always be subclassed" id="isNotFinal"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_s0oDABMkEeSz2qq_H0HScA" base_Constraint="_I1oJEEhVEeO0lv5O1DTHOQ" message="Capsules can have at most one superclass" id="noMultipleInheritance"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_yhjwoBMkEeSz2qq_H0HScA" base_Constraint="_fuuAsEhVEeO0lv5O1DTHOQ" message="Capsule classes are always substitutable" id="isSubstitutable"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_7WCeABMkEeSz2qq_H0HScA" base_Constraint="_7I_kgEhVEeO0lv5O1DTHOQ" message="All atributes of a capsule class must have exactly one type" id="exactlyOneType"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_3NnaoBMlEeSz2qq_H0HScA" base_Constraint="_DoUvAEhbEeO0lv5O1DTHOQ" message="A capsule class cannot have nested classifiers" id="hasNoNestedClassifier"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_GkTQwBMmEeSz2qq_H0HScA" base_Constraint="_EBz7IEhdEeO0lv5O1DTHOQ" message="All operations of a capsule are sequential" id="allOperationsSequential"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_QF-bUBMmEeSz2qq_H0HScA" base_Constraint="_RXUA0EhWEeO0lv5O1DTHOQ" message="No feature of a capsule can have private visibility" id="featuresAreNotProtected"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_hIResBMmEeSz2qq_H0HScA" base_Constraint="_CIqywEheEeO0lv5O1DTHOQ" message="Only binary connectors allowed" id="onlyBinaryConnectors"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_0z-0UBMmEeSz2qq_H0HScA" base_Constraint="_IQKCgAbZEeSFB8mUNT_s_w" message="Protocol classes can have at most one generalization" id="atMostOneGeneralization"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_8pP1gBMoEeSz2qq_H0HScA" base_Constraint="_Cvp-EGfKEeO447LqwGjc0A" message="Exclusion can only be applied to some UML-RT model elements" id="exclusionOnlyOnUmlrt"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_Kuob0BMpEeSz2qq_H0HScA" base_Constraint="_1UM30GfEEeO447LqwGjc0A" message="A wired port cannot publish its name" id="noPublishName"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_PlakkBMpEeSz2qq_H0HScA" base_Constraint="_2UsEcGfEEeO447LqwGjc0A" message="A public port must be defined as a service port" id="publicPortIsService"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_ZPy_MBMpEeSz2qq_H0HScA" base_Constraint="_3Xp9UGfEEeO447LqwGjc0A" message="A SAP (unwired &amp; unpublished) must have protected visibility " id="hasProtectedVisibility"/>
-    <PapyrusDSMLValidationRule:ValidationRule xmi:id="_fa4BYBMpEeSz2qq_H0HScA" base_Constraint="_QJC94GfGEeO447LqwGjc0A" message="An SPP (unwired and published) must have public visibility" id="havePublicVisibility"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_TaoU4BMkEeSz2qq_H0HScA" base_Constraint="_-g8psEhTEeO0lv5O1DTHOQ" message="Capsules are always active classifiers" id="isActiveEntity"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_iq9EUBMkEeSz2qq_H0HScA" base_Constraint="_t6v3AEhUEeO0lv5O1DTHOQ" message="A capsule cannot have Reception features " id="hasNoReception"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_nq7lUBMkEeSz2qq_H0HScA" base_Constraint="_8k0ewEhUEeO0lv5O1DTHOQ" message="A capsules class can always be subclassed" id="isNotFinal"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_s0oDABMkEeSz2qq_H0HScA" base_Constraint="_I1oJEEhVEeO0lv5O1DTHOQ" message="A capsule can have at most one superclass" id="noMultipleInheritance"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_yhjwoBMkEeSz2qq_H0HScA" base_Constraint="_fuuAsEhVEeO0lv5O1DTHOQ" message="Capsule classes are always substitutable" id="isSubstitutable"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_7WCeABMkEeSz2qq_H0HScA" base_Constraint="_7I_kgEhVEeO0lv5O1DTHOQ" message="All atributes of a capsule class must have at most one type" id="exactlyOneType"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_3NnaoBMlEeSz2qq_H0HScA" base_Constraint="_DoUvAEhbEeO0lv5O1DTHOQ" message="A capsule class cannot have nested classifiers" id="hasNoNestedClassifier"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_GkTQwBMmEeSz2qq_H0HScA" base_Constraint="_EBz7IEhdEeO0lv5O1DTHOQ" message="All operations of a capsule are guarded" id="allOperationsSequential"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_hIResBMmEeSz2qq_H0HScA" base_Constraint="_CIqywEheEeO0lv5O1DTHOQ" message="Only binary connectors allowed" id="onlyBinaryConnectors"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_0z-0UBMmEeSz2qq_H0HScA" base_Constraint="_IQKCgAbZEeSFB8mUNT_s_w" message="Protocols can have at most one generalization" id="atMostOneGeneralization"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_8pP1gBMoEeSz2qq_H0HScA" base_Constraint="_Cvp-EGfKEeO447LqwGjc0A" message="Exclusion can only be applied to some UML-RT model elements" id="exclusionOnlyOnUmlrt"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_Kuob0BMpEeSz2qq_H0HScA" base_Constraint="_1UM30GfEEeO447LqwGjc0A" message="A wired port cannot publish its name" id="noPublishName"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_PlakkBMpEeSz2qq_H0HScA" base_Constraint="_2UsEcGfEEeO447LqwGjc0A" message="A public port must be defined as a service port" id="publicPortIsService"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_ZPy_MBMpEeSz2qq_H0HScA" base_Constraint="_3Xp9UGfEEeO447LqwGjc0A" message="A SAP (unwired &amp; unpublished) must have protected visibility " id="hasProtectedVisibility"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_fa4BYBMpEeSz2qq_H0HScA" base_Constraint="_QJC94GfGEeO447LqwGjc0A" message="An SPP (unwired and published) must have public visibility" id="havePublicVisibility"/>
 </xmi:XMI>

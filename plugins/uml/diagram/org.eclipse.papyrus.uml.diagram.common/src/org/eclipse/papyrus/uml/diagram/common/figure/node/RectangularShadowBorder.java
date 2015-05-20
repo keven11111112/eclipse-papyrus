@@ -64,13 +64,14 @@ public class RectangularShadowBorder extends LineBorder {
 		// draw the normal line border
 		tempRect.setBounds(getPaintRectangle(figure, insets));
 
-		if (getWidth() % 2 == 1) {
+		int width = getWidth();
+		if ((width > 0) && (width % 2 == 1)) {
 			tempRect.width--;
 			tempRect.height--;
 		}
 
-		tempRect.shrink(getWidth() / 2, getWidth() / 2);
-		graphics.setLineWidth(getWidth());
+		tempRect.shrink(width / 2, width / 2);
+		graphics.setLineWidth(width);
 		if (getColor() != null) {
 			graphics.setForegroundColor(getColor());
 		}

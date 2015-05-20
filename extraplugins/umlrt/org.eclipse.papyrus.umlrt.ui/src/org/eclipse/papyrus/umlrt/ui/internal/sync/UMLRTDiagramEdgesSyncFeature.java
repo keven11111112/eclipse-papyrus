@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.umlrt.ui.internal.sync;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -21,19 +23,26 @@ import org.eclipse.papyrus.infra.gmfdiag.common.sync.DiagramEdgesSyncFeature;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncItem;
 
+import com.google.common.collect.MapMaker;
+
 /**
  * Synchronization feature for the edit-parts visualizing connections in an UML-RT diagram.
  */
-public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends EObject> extends DiagramEdgesSyncFeature<M, EditPart> {
-	private final UMLRTSyncRegistry<N> nestedRegistry;
+public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends EObject> extends DiagramEdgesSyncFeature<M, N, EditPart> {
+	private final Map<N, N> lastKnownMatch = new MapMaker().weakKeys().weakValues().makeMap();
 
 	public UMLRTDiagramEdgesSyncFeature(SyncBucket<M, EditPart, Notification> bucket) {
 		super(bucket);
-
-		nestedRegistry = getSyncRegistry(getNestedSyncRegistryType());
 	}
 
+	@Override
 	protected abstract Class<? extends UMLRTSyncRegistry<N>> getNestedSyncRegistryType();
+
+	@Override
+	protected UMLRTSyncRegistry<N> getNestedSyncRegistry() {
+		// This cast is safe because we narrowed the result type of the getNestedSyncRegistryType() method
+		return (UMLRTSyncRegistry<N>) super.getNestedSyncRegistry();
+	}
 
 	protected abstract SyncBucket<N, EditPart, Notification> createNestedSyncBucket(N model, EditPart editPart);
 
@@ -41,8 +50,13 @@ public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends 
 
 	@Override
 	protected boolean match(EObject sourceModel, EObject targetModel) {
-		// Is the source object redefined by the target object?
-		return nestedRegistry.getRedefinedElement(nestedRegistry.getModelType().cast(targetModel)) == sourceModel;
+		final UMLRTSyncRegistry<N> nestedRegistry = getNestedSyncRegistry();
+
+		// Is the source object redefined by the target object? Or was it when last the source model was attached?
+		N matched = nestedRegistry.getRedefinedElement(nestedRegistry.getModelType().cast(targetModel));
+		return (sourceModel.eResource() == null)
+				? lastKnownMatch.get(targetModel) == sourceModel
+				: matched == sourceModel;
 	}
 
 	/**
@@ -57,6 +71,7 @@ public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends 
 	 *            an object added to the {@link SyncItem#getModel() model} of the {@code from} item
 	 * @return the corresponding object in the {@code model} of the {@code to} item
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected EObject getTargetModel(SyncItem<M, EditPart> from, SyncItem<M, EditPart> to, EObject sourceModel) {
 		EObject result = sourceModel;
@@ -73,6 +88,8 @@ public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends 
 
 	@Override
 	protected Command onTargetAdded(SyncItem<M, EditPart> from, EObject source, SyncItem<M, EditPart> to, EditPart target) {
+		final UMLRTSyncRegistry<N> nestedRegistry = getNestedSyncRegistry();
+
 		N nested = nestedRegistry.getModelOf(target);
 		N masterNested = (nested == null) ? null : nestedRegistry.getRedefinedElement(nested);
 
@@ -81,6 +98,9 @@ public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends 
 			for (EditPart next : getContents(master.getBackend())) {
 				N matchNested = nestedRegistry.getModelOf(next);
 				if (matchNested == masterNested) {
+					// Remember this pairing in case the underlying model elements are later deleted
+					lastKnownMatch.put(nested, masterNested);
+
 					// Synchronize our new child with this master edit-part
 					SyncBucket<N, EditPart, Notification> bucket = nestedRegistry.getBucket(masterNested);
 					if (bucket == null) {
@@ -98,6 +118,8 @@ public abstract class UMLRTDiagramEdgesSyncFeature<M extends EObject, N extends 
 
 	@Override
 	protected Command onTargetRemoved(SyncItem<M, EditPart> to, EditPart target) {
+		final UMLRTSyncRegistry<N> nestedRegistry = getNestedSyncRegistry();
+
 		N nested = nestedRegistry.getModelOf(target);
 		N masterNested = (nested == null) ? null : nestedRegistry.getRedefinedElement(nested);
 

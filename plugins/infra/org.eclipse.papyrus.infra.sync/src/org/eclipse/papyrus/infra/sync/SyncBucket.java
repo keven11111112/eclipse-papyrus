@@ -285,8 +285,11 @@ public abstract class SyncBucket<M, T, X> extends SyncObject {
 	 *            The request to execute
 	 */
 	private void executeCurrentRequest() {
-		for (SyncItem<M, T> to : items) {
-			currentRequest.getFeature().synchronize(currentRequest.getOrigin(), to, currentRequest.getMessage());
+		final SyncItem<M, T> from = currentRequest.getOrigin();
+		final SyncFeature<M, T, X> feature = currentRequest.getFeature();
+
+		for (SyncItem<M, T> to : getSyncService().getSyncPolicy().filter(from, getItems(), feature)) {
+			feature.synchronize(from, to, currentRequest.getMessage());
 		}
 	}
 

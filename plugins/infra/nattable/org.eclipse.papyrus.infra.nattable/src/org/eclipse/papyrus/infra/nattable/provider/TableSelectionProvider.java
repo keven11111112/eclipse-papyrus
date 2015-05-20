@@ -174,20 +174,22 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 
 			final List<Integer> selectedRowsIndexes = new ArrayList<Integer>();
 			for (int i : this.selectionLayer.getFullySelectedRowPositions()) {
-				selectedRowsIndexes.add(new Integer(i));
-				Object el = this.manager.getRowElement(i);
+				int rowIndex = this.selectionLayer.getRowIndexByPosition(i);
+				selectedRowsIndexes.add(new Integer(rowIndex));
+				Object el = this.manager.getRowElement(rowIndex);
 				if (el != null) {
-					fullySelectedRows.put(Integer.valueOf(i), el);
+					fullySelectedRows.put(Integer.valueOf(rowIndex), el);
 					el = AxisUtils.getRepresentedElement(el);
 					selection.add(el);
 				}
 			}
 			final List<Integer> selectedColumnsIndexes = new ArrayList<Integer>();
 			for (int i : this.selectionLayer.getFullySelectedColumnPositions()) {
-				selectedColumnsIndexes.add(new Integer(i));
-				Object el = this.manager.getColumnElement(i);
+				int columnIndex= this.selectionLayer.getColumnIndexByPosition(i);
+				selectedColumnsIndexes.add(new Integer(columnIndex));
+				Object el = this.manager.getColumnElement(columnIndex);
 				if (el != null) {
-					fullySelectedColumns.put(Integer.valueOf(i), el);
+					fullySelectedColumns.put(Integer.valueOf(columnIndex), el);
 					el = AxisUtils.getRepresentedElement(el);
 					selection.add(el);
 				}
@@ -196,7 +198,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 			for (final PositionCoordinate cellLocation : selectedCells) {
 				final int colPos = cellLocation.getColumnPosition();
 				final int rowPos = cellLocation.getRowPosition();
-				if (!selectedColumnsIndexes.contains(new Integer(colPos)) && !selectedRowsIndexes.contains(new Integer(rowPos))) {
+				if (!selectedColumnsIndexes.contains(new Integer(this.selectionLayer.getColumnIndexByPosition(colPos))) && !selectedRowsIndexes.contains(new Integer(this.selectionLayer.getRowIndexByPosition(rowPos)))) {
 					final ILayerCell cell = this.selectionLayer.getCellByPosition(colPos, rowPos);
 					if (cell != null) {
 						final Object value = cell.getDataValue();

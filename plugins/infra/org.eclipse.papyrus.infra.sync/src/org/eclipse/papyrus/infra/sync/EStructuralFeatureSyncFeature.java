@@ -20,15 +20,14 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.ObjectArrays;
 
 /**
@@ -139,7 +138,7 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 		}
 	}
 
-	protected abstract List<? extends T> getContents(T backend);
+	protected abstract Iterable<? extends T> getContents(T backend);
 
 	protected boolean match(EObject sourceModel, EObject targetModel) {
 		return sourceModel == targetModel;
@@ -154,8 +153,8 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 	 *            The target item
 	 */
 	private void synchronizeInit(SyncItem<M, T> from, SyncItem<M, T> to) {
-		List<? extends T> childrenFrom = getContents(from.getBackend());
-		List<? extends T> childrenTo = new ArrayList<T>(getContents(to.getBackend()));
+		Iterable<? extends T> childrenFrom = getContents(from.getBackend());
+		List<? extends T> childrenTo = Lists.newArrayList(getContents(to.getBackend()));
 		List<EObject> toAdd = new ArrayList<EObject>();
 
 		Command additionalCommand = null;
@@ -206,9 +205,7 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 		}
 
 		if (command != null) {
-			// get the command stack and execute
-			CommandStack stack = TransactionUtil.getEditingDomain(to.getModel()).getCommandStack();
-			stack.execute(command);
+			execute(command);
 		}
 	}
 
@@ -392,7 +389,7 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 	 * 
 	 * @return the wrapper command (never {@code null})
 	 */
-	protected <N> Command synchronizingWrapper(final SyncRegistry<N, ? super T, Notification> registry, final T backend, Command command) {
+	protected Command synchronizingWrapper(final SyncRegistry<?, ? super T, Notification> registry, final T backend, Command command) {
 		class Wrapper extends CommandWrapper {
 			Wrapper() {
 				super();
@@ -479,9 +476,9 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 			boolean result = true; // In case the target has no children at all, yet
 
 			EObject model = getModelOf(object);
-			List<? extends T> children = getContents(to.getBackend());
-			for (int i = 0; !result && (i < children.size()); i++) {
-				T potential = children.get(i);
+			Iterable<? extends T> children = getContents(to.getBackend());
+			for (Iterator<? extends T> iter = children.iterator(); !result && iter.hasNext();) {
+				T potential = iter.next();
 				result = !match(model, EStructuralFeatureSyncFeature.this.getModelOf(potential));
 			}
 
@@ -496,9 +493,9 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 			boolean result = false;
 
 			EObject model = getModelOf(object);
-			List<? extends T> children = getContents(to.getBackend());
-			for (int i = 0; !result && (i < children.size()); i++) {
-				T potential = children.get(i);
+			Iterable<? extends T> children = getContents(to.getBackend());
+			for (Iterator<? extends T> iter = children.iterator(); !result && iter.hasNext();) {
+				T potential = iter.next();
 				result = match(model, EStructuralFeatureSyncFeature.this.getModelOf(potential));
 				if (result) {
 					react(getRemoveCommand(from, model, to, potential));

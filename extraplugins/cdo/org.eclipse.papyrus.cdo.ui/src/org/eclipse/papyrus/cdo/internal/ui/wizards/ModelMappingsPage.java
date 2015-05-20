@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.wizards;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -25,7 +27,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.importer.IModelImportMapping;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferListener;
@@ -53,7 +54,7 @@ import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
 /**
- * This is the RepositorySelectionPage type. Enjoy.
+ * This is the CheckoutSelectionPage type. Enjoy.
  */
 public class ModelMappingsPage extends ModelImportWizardPage {
 
@@ -63,7 +64,7 @@ public class ModelMappingsPage extends ModelImportWizardPage {
 
 	private IModelTransferListener importConfigListener;
 
-	private IPapyrusRepository repository;
+	private CDOCheckout checkout;
 
 	private IModelImportMapping manyToOne;
 
@@ -245,7 +246,7 @@ public class ModelMappingsPage extends ModelImportWizardPage {
 
 		if (manyToOne != null) {
 			manyToOne.addModelTransferMappingListener(getManyToOneListener());
-			manyToOne.setRepository(repository);
+			manyToOne.setCheckout(checkout);
 			if (manyToOneRadio != null) {
 				manyToOneRadio.setData(manyToOne);
 				if (manyToOneRadio.getSelection()) {
@@ -293,7 +294,7 @@ public class ModelMappingsPage extends ModelImportWizardPage {
 
 		if (oneToOne != null) {
 			oneToOne.addModelTransferMappingListener(getOneToOneListener());
-			oneToOne.setRepository(repository);
+			oneToOne.setCheckout(checkout);
 			if (oneToOneRadio != null) {
 				oneToOneRadio.setData(oneToOne);
 				if (oneToOneRadio.getSelection()) {
@@ -321,14 +322,14 @@ public class ModelMappingsPage extends ModelImportWizardPage {
 	}
 
 	@Subscribe
-	public void setRepository(IPapyrusRepository repository) {
-		this.repository = repository;
+	public void setRepository(CDOCheckout checkout) {
+		this.checkout = checkout;
 
 		if (manyToOne != null) {
-			manyToOne.setRepository(repository);
+			manyToOne.setCheckout(checkout);
 		}
 		if (oneToOne != null) {
-			oneToOne.setRepository(repository);
+			oneToOne.setCheckout(checkout);
 		}
 
 		validatePage();
