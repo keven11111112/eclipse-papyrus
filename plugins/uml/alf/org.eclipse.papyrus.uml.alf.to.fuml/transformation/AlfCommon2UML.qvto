@@ -64,6 +64,10 @@ helper SyntaxElement::functionSize() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Size");
 }
 
+helper SyntaxElement::functionNotEmpty() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::NotEmpty");
+}
+
 helper SyntaxElement::functionAt() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::At");
 }
@@ -82,6 +86,10 @@ helper SyntaxElement::functionLessThanOrEqual() : Behavior {
 
 helper SyntaxElement::functionGreaterThanOrEqual() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::IntegerFunctions::>=");
+}
+
+helper SyntaxElement::functionNot() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::BooleanFunctions::!");
 }
 
 helper SyntaxElement::functionOr() : Behavior {
