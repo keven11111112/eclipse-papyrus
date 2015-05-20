@@ -490,6 +490,7 @@
             uri="http:///expansionmodel.ecore">
       </factory>
    </extension>
+   
    <extension
          point="org.eclipse.papyrus.infra.sync.triggers">
       <syncTrigger
@@ -500,6 +501,19 @@
             </instanceof>
          </enablement>
       </syncTrigger>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.gmfdiag.common.internal.sync.UISyncServiceInitializer"
+            description="UI-specific initializer of the synchronization service"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.internal.sync.UISyncServiceInitializer"
+            priority="10"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.sync.service.ISyncService">
+         </dependsOn>
+      </service>
    </extension>
 
 </plugin>

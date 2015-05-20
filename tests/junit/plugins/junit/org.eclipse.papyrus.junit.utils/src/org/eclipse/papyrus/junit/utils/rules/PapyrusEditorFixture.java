@@ -9,11 +9,13 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 433206
+ *   Christian W. Damus - bug 465416
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
@@ -23,12 +25,20 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.operations.IOperationHistoryListener;
+import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.e4.ui.model.application.ui.MUIElement;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPlaceholder;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -36,15 +46,22 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPartSashContainerElement;
 import org.eclipse.e4.ui.model.application.ui.basic.MPartStack;
 import org.eclipse.e4.ui.model.application.ui.basic.MStackElement;
 import org.eclipse.e4.ui.workbench.modeling.EModelService;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IDiagramPreferenceSupport;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
@@ -66,6 +83,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
@@ -165,6 +183,24 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		}
 
 		super.starting(description);
+
+		// Ensure consistency of undo/redo with EMF operations
+		final IWorkspaceCommandStack stack = (IWorkspaceCommandStack) getEditingDomain().getCommandStack();
+		final IUndoContext emfContext = stack.getDefaultUndoContext();
+		stack.getOperationHistory().addOperationHistoryListener(new IOperationHistoryListener() {
+			@Override
+			public void historyNotification(OperationHistoryEvent event) {
+				if ((event.getEventType() == OperationHistoryEvent.DONE) && (activeDiagramEditor != null)) {
+					IUndoContext diagramContext = activeDiagramEditor.getDiagramEditDomain().getDiagramCommandStack().getUndoContext();
+					if (diagramContext != null) {
+						IUndoableOperation undo = event.getOperation();
+						if ((undo != null) && !undo.hasContext(emfContext)) {
+							undo.addContext(emfContext);
+						}
+					}
+				}
+			}
+		});
 	}
 
 	@Override
@@ -455,7 +491,46 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			public void accept(IEditorPage page) {
 				if (name.equals(page.getPageTitle()) && (page.getIEditorPart() instanceof DiagramEditorWithFlyOutPalette)) {
 					select[0] = page;
-					activeDiagramEditor = (DiagramEditorWithFlyOutPalette) page.getIEditorPart();
+					setActiveDiagramEditor((DiagramEditorWithFlyOutPalette) page.getIEditorPart());
+				}
+			}
+
+			@Override
+			public void accept(IComponentPage page) {
+				// Pass
+			}
+		});
+
+		if (select[0] != null) {
+			sashContainer.selectPage(select[0]);
+			flushDisplayEvents();
+		}
+
+		return this;
+	}
+
+	private void setActiveDiagramEditor(DiagramEditorWithFlyOutPalette editor) {
+		activeDiagramEditor = editor;
+	}
+
+	public PapyrusEditorFixture activateDiagram(DiagramEditPart diagram) {
+		return activateDiagram(editor, diagram);
+	}
+
+	public PapyrusEditorFixture activateDiagram(IMultiDiagramEditor editor, final DiagramEditPart diagram) {
+		activate(editor);
+
+		final ISashWindowsContainer sashContainer = AdapterUtils.adapt(editor, ISashWindowsContainer.class, null);
+		final org.eclipse.papyrus.infra.core.sasheditor.editor.IPage[] select = { null };
+
+		sashContainer.visit(new IPageVisitor() {
+
+			@Override
+			public void accept(IEditorPage page) {
+				DiagramEditorWithFlyOutPalette nested = TypeUtils.as(page.getIEditorPart(), DiagramEditorWithFlyOutPalette.class);
+				if ((nested != null) && (nested.getDiagramEditPart() == diagram)) {
+					select[0] = page;
+					setActiveDiagramEditor(nested);
 				}
 			}
 
@@ -486,6 +561,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			Diagram diagram = notation.getDiagram(name);
 			ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry()).openPage(diagram);
 			flushDisplayEvents();
+
+			activateDiagram(editor, name);
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot initialize test", e);
 		}
@@ -530,6 +607,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 				activeEditor = ((IMultiDiagramEditor) activeEditor).getActiveEditor();
 				if (activeEditor instanceof DiagramEditorWithFlyOutPalette) {
 					result = (DiagramEditorWithFlyOutPalette) activeEditor;
+					setActiveDiagramEditor(result);
 				}
 			}
 		}
@@ -537,6 +615,38 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		assertThat("No diagram active", result, notNullValue());
 
 		return result;
+	}
+
+	public DiagramEditPart getActiveDiagram() {
+		return getActiveDiagramEditor().getDiagramEditPart();
+	}
+
+	public DiagramEditPart getDiagram(String name) {
+		return getDiagram(editor, name);
+	}
+
+	public DiagramEditPart getDiagram(IMultiDiagramEditor editor, final String name) {
+		final ISashWindowsContainer sashContainer = AdapterUtils.adapt(editor, ISashWindowsContainer.class, null);
+		final org.eclipse.papyrus.infra.core.sasheditor.editor.IPage[] matchedPage = { null };
+
+		sashContainer.visit(new IPageVisitor() {
+
+			@Override
+			public void accept(IEditorPage page) {
+				if (name.equals(page.getPageTitle()) && (page.getIEditorPart() instanceof DiagramEditorWithFlyOutPalette)) {
+					matchedPage[0] = page;
+				}
+			}
+
+			@Override
+			public void accept(IComponentPage page) {
+				// Pass
+			}
+		});
+
+		IEditorPage editorPage = TypeUtils.as(matchedPage[0], IEditorPage.class);
+		IDiagramWorkbenchPart diagramPart = (editorPage == null) ? null : TypeUtils.as(editorPage.getIEditorPart(), IDiagramWorkbenchPart.class);
+		return (diagramPart == null) ? null : diagramPart.getDiagramEditPart();
 	}
 
 	public EditPart findEditPart(EObject modelElement) {
@@ -602,26 +712,85 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	}
 
-	private EditPart findEditPart(EditPart editPart, EObject modelElement) {
+	/**
+	 * Find an edit-part for a model element in a particular {@code scope}.
+	 * 
+	 * @param scope
+	 *            an edit part in which to search (its children) for an edit-part
+	 * @param modelElement
+	 *            the model element visualized by the edit-part to search for
+	 * 
+	 * @return the matching edit-part, or {@code null} if none is found in the {@code scope}
+	 */
+	public EditPart findEditPart(EditPart scope, EObject modelElement) {
 		EditPart result = null;
 
-		Optional<View> view = AdapterUtils.adapt(editPart, View.class);
+		Optional<View> view = AdapterUtils.adapt(scope, View.class);
 		if (view.isPresent() && (view.get().getElement() == modelElement)) {
-			result = editPart;
+			result = scope;
 		}
 
 		if (result == null) {
 			// Search children
-			for (Iterator<?> iter = editPart.getChildren().iterator(); (result == null) && iter.hasNext();) {
+			for (Iterator<?> iter = scope.getChildren().iterator(); (result == null) && iter.hasNext();) {
 				result = findEditPart((EditPart) iter.next(), modelElement);
 			}
 		}
 
-		if ((result == null) && (editPart instanceof GraphicalEditPart)) {
+		if ((result == null) && (scope instanceof GraphicalEditPart)) {
 			// Search edges
-			for (Iterator<?> iter = ((GraphicalEditPart) editPart).getSourceConnections().iterator(); (result == null) && iter.hasNext();) {
+			for (Iterator<?> iter = ((GraphicalEditPart) scope).getSourceConnections().iterator(); (result == null) && iter.hasNext();) {
 				result = findEditPart((EditPart) iter.next(), modelElement);
 			}
+			if (result == null) {
+				for (Iterator<?> iter = ((GraphicalEditPart) scope).getTargetConnections().iterator(); (result == null) && iter.hasNext();) {
+					result = findEditPart((EditPart) iter.next(), modelElement);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Require an edit-part for a model element in a particular {@code scope}.
+	 * 
+	 * @param scope
+	 *            an edit part in which to search (its children) for an edit-part
+	 * @param modelElement
+	 *            the model element visualized by the edit-part to search for
+	 * 
+	 * @return the matching edit-part
+	 * 
+	 * @throws AssertionError
+	 *             if the required edit-part is found in the {@code scope}
+	 */
+	public EditPart requireEditPart(EditPart scope, EObject modelElement) {
+		EditPart result = findEditPart(scope, modelElement);
+		if (result == null) {
+			String label = getLabel(modelElement);
+			fail(String.format("No edit-part found for \"%s\" in %s", label, scope));
+		}
+		return result;
+	}
+
+	public String getLabel(EObject object) {
+		String result = null;
+
+		try {
+			EditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(editor.getServicesRegistry());
+			if (domain instanceof AdapterFactoryEditingDomain) {
+				IItemLabelProvider labels = (IItemLabelProvider) ((AdapterFactoryEditingDomain) domain).getAdapterFactory().adapt(object, IItemLabelProvider.class);
+				if (labels != null) {
+					result = labels.getText(object);
+				}
+			}
+		} catch (ServiceException e) {
+			// Doesn't matter
+		}
+
+		if (result == null) {
+			result = String.valueOf(object);
 		}
 
 		return result;
@@ -658,6 +827,45 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	public void deselect(EditPart editPart) {
 		editPart.getViewer().getSelectionManager().deselect(editPart);
+	}
+
+	public void move(EditPart editPart, Point newLocation) {
+		execute(new ICommandProxy(new SetBoundsCommand(getEditingDomain(), "Move Node", editPart, newLocation)));
+	}
+
+	public void resize(EditPart editPart, Dimension newSize) {
+		execute(new ICommandProxy(new SetBoundsCommand(getEditingDomain(), "Resize Node", editPart, newSize)));
+	}
+
+	public void execute(org.eclipse.gef.commands.Command command) {
+		assertThat("Command not executable", command.canExecute(), is(true));
+		getActiveDiagramEditor().getDiagramEditDomain().getDiagramCommandStack().execute(command);
+		flushDisplayEvents();
+	}
+
+	@Override
+	public void execute(Command command) {
+		super.execute(command);
+		flushDisplayEvents();
+	}
+
+	@Override
+	public IStatus execute(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) {
+		IStatus result = super.execute(operation, monitor, info);
+		flushDisplayEvents();
+		return result;
+	}
+
+	@Override
+	public void undo() {
+		super.undo();
+		flushDisplayEvents();
+	}
+
+	@Override
+	public void redo() {
+		super.redo();
+		flushDisplayEvents();
 	}
 
 	public PaletteViewer getPalette() {

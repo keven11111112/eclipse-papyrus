@@ -21,12 +21,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.RequestConstants;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Size;
-import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.sync.EMFDispatch;
 import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
@@ -108,11 +107,7 @@ public class NodeSizeSyncFeature<M extends EObject, T extends EditPart> extends 
 
 		if (!sizeFrom.equals(sizeTo)) {
 			// compute the reaction command
-			ChangeBoundsRequest request = new ChangeBoundsRequest();
-			request.setType(RequestConstants.REQ_RESIZE);
-			request.setEditParts(toEditPart);
-			request.setSizeDelta(sizeFrom.getShrinked(sizeTo));
-			Command reaction = GEFtoEMFCommandWrapper.wrap(toEditPart.getCommand(request));
+			Command reaction = GMFtoEMFCommandWrapper.wrap(new SetBoundsCommand(getEditingDomain(), "Synchronize Node Size", toEditPart, sizeFrom));
 
 			// dispatch the reaction
 			if (message == null) {

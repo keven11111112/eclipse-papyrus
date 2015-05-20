@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.sync.internal;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
@@ -33,6 +35,7 @@ import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.sync.Activator;
 import org.eclipse.papyrus.infra.sync.EMFDispatch;
 import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
@@ -48,6 +51,8 @@ import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
 import com.google.common.collect.Maps;
+import com.google.common.util.concurrent.CheckedFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * Default implementation of the synchronization service.
@@ -68,6 +73,8 @@ public class SyncService implements ISyncService {
 
 	private ISyncPolicy policy;
 
+	private Executor executor;
+
 	private final Map<Class<? extends SyncRegistry<?, ?, ?>>, SyncRegistry<?, ?, ?>> syncRegistries = Maps.newHashMap();
 
 	public SyncService() {
@@ -86,6 +93,8 @@ public class SyncService implements ISyncService {
 	@Override
 	public void startService() throws ServiceException {
 		editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(services);
+
+		setAsyncExecutor(TransactionHelper.createTransactionExecutor(editingDomain, MoreExecutors.sameThreadExecutor()));
 
 		policy = new SyncServiceOperation<ISyncPolicy>(this) {
 			@Override
@@ -119,6 +128,12 @@ public class SyncService implements ISyncService {
 			rootTrigger.uninstall(editingDomain);
 		}
 		editingDomain = null;
+
+		if (executor instanceof ExecutorService) {
+			// No sense in running any pending operations because the whole editing environment is gone
+			((ExecutorService) executor).shutdownNow();
+		}
+		executor = null;
 	}
 
 	@Override
@@ -324,6 +339,32 @@ public class SyncService implements ISyncService {
 	 */
 	public void deregister(SyncPolicyDelegate<?, ?> policyDelegate, Class<?> featureType) {
 		policyDelegates.deregister(policyDelegate, featureType);
+	}
+
+	@Override
+	public synchronized Executor getAsyncExecutor() {
+		return executor;
+	}
+
+	@Override
+	public synchronized void setAsyncExecutor(Executor executor) {
+		if (executor == null) {
+			throw new IllegalArgumentException("null executor");
+		}
+
+		if (executor != this.executor) {
+			if (this.executor instanceof ExecutorService) {
+				((ExecutorService) this.executor).shutdown();
+			}
+			this.executor = executor;
+		}
+	}
+
+	@Override
+	public <V, X extends Exception> CheckedFuture<V, X> runAsync(SyncServiceRunnable<V, X> operation) {
+		CheckedFuture<V, X> result = operation.asFuture(this);
+		getAsyncExecutor().execute((Runnable) result);
+		return result;
 	}
 
 	//
