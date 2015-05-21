@@ -2734,6 +2734,31 @@
       </stream>
       <description></description>
     </project>
+    <project
+        name="sysml14"
+        label="SysML 1.4">
+      <setupTask
+          xsi:type="setup:VariableTask"
+          name="papyrus.extraplugins.folder"
+          value="sysml14"/>
+      <stream
+          name="master"
+          label="master (Mars/1.1)">
+        <setupTask
+            xsi:type="setup:VariableTask"
+            name="papyrus.bugzilla.version"
+            value="1.0.0&amp;version=1.0.1&amp;version=1.0.2&amp;version=1.1.0"/>
+      </stream>
+      <stream
+          name="streams/1.0-maintenance"
+          label="streams/1.0-maintenance (Luna/1.0.x)">
+        <setupTask
+            xsi:type="setup:VariableTask"
+            name="papyrus.bugzilla.version"
+            value="1.0.0&amp;version=1.0.1&amp;version=1.0.2"/>
+      </stream>
+      <description></description>
+    </project>
     <description>Select sub-projects to import dependencies and sources for Papyrus extra components.</description>
   </project>
   <project name="dev"
