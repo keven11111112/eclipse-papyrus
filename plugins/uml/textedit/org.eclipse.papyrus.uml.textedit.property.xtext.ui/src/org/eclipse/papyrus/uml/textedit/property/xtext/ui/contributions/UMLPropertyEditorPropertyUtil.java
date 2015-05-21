@@ -47,7 +47,7 @@ public class UMLPropertyEditorPropertyUtil extends PropertyUtil {
 		}
 
 		// multiplicity -> do not display [1]
-		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
+		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property, true);
 		if (!multiplicity.trim().equals("[1]")) {
 			buffer.append(multiplicity);
 		}

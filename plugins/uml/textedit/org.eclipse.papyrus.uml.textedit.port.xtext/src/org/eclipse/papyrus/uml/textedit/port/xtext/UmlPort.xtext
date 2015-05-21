@@ -46,14 +46,14 @@ QualifiedName :
 	path=[uml::Namespace]'::' (remaining=QualifiedName)? ; 
 	
 MultiplicityRule:
-	"[" bounds+=BoundSpecification ('..' bounds+=BoundSpecification)? "]" ;
+	"[" (bounds+=BoundSpecification '..')? bounds+=BoundSpecification "]" ;
 
 BoundSpecification:
-	value = UnlimitedLiteral ;
-
+	value = (UnlimitedLiteral | StringLiteral) ;
 
 UnlimitedLiteral : INT |'*';
 
+StringLiteral : STRING;
 
 ModifiersRule:
 	{ModifiersRule}'{' (values += ModifierSpecification (',' values += ModifierSpecification)*)? '}';
