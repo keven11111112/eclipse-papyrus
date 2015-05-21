@@ -87,7 +87,10 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 				} else {
 					IResource[] members = null;
 					if (inputElement instanceof IContainer) {
-						members = ((IContainer) inputElement).members();
+						IContainer container = (IContainer) inputElement;
+						if (container.isAccessible()) {
+							members = container.members();
+						}
 					}
 					if (members != null) {
 						for (IResource r : members) {
