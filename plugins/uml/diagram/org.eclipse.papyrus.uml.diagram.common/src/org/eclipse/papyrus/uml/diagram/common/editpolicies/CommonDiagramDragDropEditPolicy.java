@@ -297,7 +297,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 			// . Release the constraint when GraphicalParent is a diagram
 			if (isParentDiagram) {
 				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
-			} else if (isDropNonCanvasNodeAllowed(parent, droppedObject)) {
+			} else if (((graphicalParent instanceof Element) && ((Element) graphicalParent).getOwnedElements().contains(droppedObject)) && isDropNonCanvasNodeAllowed(parent, droppedObject)) {
 				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
 			}
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
@@ -330,14 +330,6 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		if (isListCompartmentContainsDroppedObject(parent, droppedObject)) {
 			return false;
 		}
-
-		/*
-		 * XXX(bug 450944): This is too restrictive. Many diagrams visualize non-contained elements as child views
-		 * (e.g., parts and ports of the class type of a part in a composite structure) and some diagrams support
-		 * dropping a non-owned relationship-like element on an end shape to create a new connection attached to it.
-		 */
-		// EObject semanticParent = parent.resolveSemanticElement();
-		// return (semanticParent instanceof Element) && ((Element) semanticParent).getOwnedElements().contains(droppedObject);
 		return true;
 	}
 
