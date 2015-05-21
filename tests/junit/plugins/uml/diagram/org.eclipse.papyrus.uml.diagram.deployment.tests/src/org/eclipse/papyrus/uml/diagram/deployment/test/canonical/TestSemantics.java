@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPartACN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPartCN;
@@ -208,7 +207,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testExecEnvirCNInExecEnvir() {
 		IGraphicalEditPart execEnvirEP = createChild(ExecutionEnvironmentEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart execEnvirCompEP = findChildBySemanticHint(execEnvirEP, ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID);
@@ -227,7 +225,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testExecEnvirCNInDevice() {
 		IGraphicalEditPart deviceEP = createChild(DeviceEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart deviceCompEP = findChildBySemanticHint(deviceEP, DeviceCompositeCompartmentEditPart.VISUAL_ID);
@@ -237,7 +234,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testDeviceCNInDevice() {
 		IGraphicalEditPart deviceEP = createChild(DeviceEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart deviceCompEP = findChildBySemanticHint(deviceEP, DeviceCompositeCompartmentEditPart.VISUAL_ID);
@@ -247,7 +243,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testNodeCNInDevice() {
 		IGraphicalEditPart deviceEP = createChild(DeviceEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart deviceCompEP = findChildBySemanticHint(deviceEP, DeviceCompositeCompartmentEditPart.VISUAL_ID);
@@ -266,7 +261,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testExecEnvirCNInNode() {
 		IGraphicalEditPart nodeEP = createChild(NodeEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart nodeCompEP = findChildBySemanticHint(nodeEP, NodeCompositeCompartmentEditPart.VISUAL_ID);
@@ -276,7 +270,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testDeviceCNInNode() {
 		IGraphicalEditPart nodeEP = createChild(NodeEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart nodeCompEP = findChildBySemanticHint(nodeEP, NodeCompositeCompartmentEditPart.VISUAL_ID);
@@ -286,7 +279,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testNodeCNInNode() {
 		IGraphicalEditPart nodeEP = createChild(NodeEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart nodeCompEP = findChildBySemanticHint(nodeEP, NodeCompositeCompartmentEditPart.VISUAL_ID);
@@ -470,7 +462,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testExecEnvirCNInNestedDeviceCN() {
 		IGraphicalEditPart packageEP = createChild(PackageEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart packageCompEP = findChildBySemanticHint(packageEP, PackagePackageableElementCompartmentEditPart.VISUAL_ID);
@@ -482,7 +473,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testDeviceCNInNestedDeviceCN() {
 		IGraphicalEditPart packageEP = createChild(PackageEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart packageCompEP = findChildBySemanticHint(packageEP, PackagePackageableElementCompartmentEditPart.VISUAL_ID);
@@ -494,7 +484,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testNodeCNInNestedDeviceCN() {
 		IGraphicalEditPart packageEP = createChild(PackageEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart packageCompEP = findChildBySemanticHint(packageEP, PackagePackageableElementCompartmentEditPart.VISUAL_ID);
@@ -506,7 +495,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testExecEnvirCNInNestedExecEnvirCN() {
 		IGraphicalEditPart packageEP = createChild(PackageEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart packageCompEP = findChildBySemanticHint(packageEP, PackagePackageableElementCompartmentEditPart.VISUAL_ID);
@@ -551,7 +539,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testExecEnvirCNInNestedNodeCN() {
 		IGraphicalEditPart packageEP = createChild(PackageEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart packageCompEP = findChildBySemanticHint(packageEP, PackagePackageableElementCompartmentEditPart.VISUAL_ID);
@@ -563,7 +550,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testDeviceCNInNestedNodeCN() {
 		IGraphicalEditPart packageEP = createChild(PackageEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart packageCompEP = findChildBySemanticHint(packageEP, PackagePackageableElementCompartmentEditPart.VISUAL_ID);
@@ -575,7 +561,6 @@ public class TestSemantics extends AbstractPapyrusTestCase {
 	}
 
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testNodeCNInNestedNodeCN() {
 		IGraphicalEditPart packageEP = createChild(PackageEditPart.VISUAL_ID, getDiagramEditPart());
 		IGraphicalEditPart packageCompEP = findChildBySemanticHint(packageEP, PackagePackageableElementCompartmentEditPart.VISUAL_ID);

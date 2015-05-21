@@ -189,7 +189,7 @@
         xmi:id="_gv-d4f8PEeS2nvlxgM4H8g"
         iconPath="/icons/full/obj16/Device.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Device</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.um.Device_As_UML::Node::nestedNode</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -225,7 +225,7 @@
         xmi:id="_gv_sAf8PEeS2nvlxgM4H8g"
         iconPath="/icons/full/obj16/ExecutionEnvironment.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.ExecutionEnvironment</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.um.ExecutionEnvironment_As_UML::Node::nestedNode</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -309,7 +309,7 @@
         xmi:id="_gwATEf8PEeS2nvlxgM4H8g"
         iconPath="/icons/full/obj16/Node.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Node</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.um.Node_As_UML::Node::nestedNode</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"

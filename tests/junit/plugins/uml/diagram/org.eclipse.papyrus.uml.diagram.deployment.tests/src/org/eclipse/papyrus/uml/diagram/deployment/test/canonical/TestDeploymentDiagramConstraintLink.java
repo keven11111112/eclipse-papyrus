@@ -14,7 +14,6 @@ package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
 
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
@@ -47,7 +46,6 @@ public class TestDeploymentDiagramConstraintLink extends TestConstraintLink {
 	 * Test to manage Constraint
 	 */
 	@Test
-	@FailingTest("Elementtypes migration")
 	public void testToManageConstraint() {
 		testToManageLink(UMLElementTypes.Constraint_2005, UMLElementTypes.Package_2009, UMLElementTypes.ConstraintConstrainedElement_4009, UMLElementTypes.Package_2009, true);
 	}
