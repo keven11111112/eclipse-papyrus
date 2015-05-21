@@ -89,11 +89,13 @@ public class IAxisFactory {
 		if(object instanceof String) {
 			FeatureIdAxis axis = NattableaxisFactory.eINSTANCE.createFeatureIdAxis();
 			axis.setElement((String)object);
+			axis.setAlias(alias);
 			return axis;
 		}
 		if(object instanceof EStructuralFeature) {
 			EStructuralFeatureAxis axis = NattableaxisFactory.eINSTANCE.createEStructuralFeatureAxis();
 			axis.setElement((EStructuralFeature)object);
+			axis.setAlias(alias);
 			return axis;
 		}
 		throw new UnsupportedOperationException(NLS.bind("The creation for {0} is not yet implemented", object)); //$NON-NLS-1$
