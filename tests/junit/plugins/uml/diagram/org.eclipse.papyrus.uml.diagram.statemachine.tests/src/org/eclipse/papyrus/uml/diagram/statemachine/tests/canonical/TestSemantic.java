@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.statemachine.tests.canonical;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -50,11 +49,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentE
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.Comment;
-import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.PseudostateKind;
@@ -72,12 +67,9 @@ public class TestSemantic extends BaseTestCase {
 	public void testCommentInRegion() {
 		IGraphicalEditPart commentEP = createChild(CommentEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		
-		Comment comment = (Comment) commentEP.resolveSemanticElement();
-		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
-		
 		EReference expectedFeature = UMLPackage.eINSTANCE.getElement_OwnedComment();
 		
-		checkContainsChildren(region, comment, expectedFeature);
+		checkListElementReferenceSemantic(commentEP, getRegionCompartmentEditPart(), expectedFeature);
 	}
 
 	@Test
@@ -88,9 +80,7 @@ public class TestSemantic extends BaseTestCase {
 		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
 		Package packageElement = region.getNearestPackage();
 		
-		EReference expectedFeature = UMLPackage.eINSTANCE.getPackage_PackagedElement();
-		
-		checkContainsChildren(packageElement, constraint, expectedFeature);
+		Assert.assertTrue("Package shoud contain constraint as packageableElement",packageElement.getPackagedElements().contains(constraint));
 	}
 
 	@Test
@@ -106,11 +96,10 @@ public class TestSemantic extends BaseTestCase {
 		executeOnUIThread(new GMFtoGEFCommandWrapper(setValueCmd));
 		
 		IGraphicalEditPart connectionPointReferenceEP = createChild(ConnectionPointReferenceEditPart.VISUAL_ID, stateEP);
-		ConnectionPointReference point = (ConnectionPointReference) connectionPointReferenceEP.resolveSemanticElement();
 		
 		EReference expectedFeature = UMLPackage.eINSTANCE.getState_Connection();
 		
-		checkContainsChildren(state, point, expectedFeature);
+		checkListElementReferenceSemantic(connectionPointReferenceEP, stateEP, expectedFeature);
 	}
 
 	@Test
@@ -131,12 +120,9 @@ public class TestSemantic extends BaseTestCase {
 		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		IGraphicalEditPart doActivityEP = createChild(DoActivityStateBehaviorStateEditPart.VISUAL_ID, stateEP);
 		
-		Behavior doActivity = (Behavior) doActivityEP.resolveSemanticElement();
-		State state = (State) stateEP.resolveSemanticElement();
-		
 		EReference expectedFeature = UMLPackage.eINSTANCE.getState_DoActivity();
 		
-		checkContainChild(state, doActivity, expectedFeature);
+		checkOneElementReferenceSemantic(doActivityEP, stateEP, expectedFeature);
 	}
 
 	@Test
@@ -145,12 +131,9 @@ public class TestSemantic extends BaseTestCase {
 		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		IGraphicalEditPart entryEP = createChild(EntryStateBehaviorEditPart.VISUAL_ID, stateEP);
 
-		Behavior entry = (Behavior) entryEP.resolveSemanticElement();
-		State state = (State) stateEP.resolveSemanticElement();
-
 		EReference expectedFeature = UMLPackage.eINSTANCE.getState_Entry();
 
-		checkContainChild(state, entry, expectedFeature);
+		checkOneElementReferenceSemantic(entryEP, stateEP, expectedFeature);
 	}
 
 	@Test
@@ -159,24 +142,18 @@ public class TestSemantic extends BaseTestCase {
 		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		IGraphicalEditPart exitEP = createChild(ExitStateBehaviorEditPart.VISUAL_ID, stateEP);
 
-		Behavior exit = (Behavior) exitEP.resolveSemanticElement();
-		State state = (State) stateEP.resolveSemanticElement();
-
 		EReference expectedFeature = UMLPackage.eINSTANCE.getState_Exit();
 
-		checkContainChild(state, exit, expectedFeature);
+		checkOneElementReferenceSemantic(exitEP, stateEP, expectedFeature);
 	}
 
 	@Test
 	public void testFinalStateInRegino() {
 		IGraphicalEditPart finalStateEP = createChild(FinalStateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 
-		FinalState state = (FinalState) finalStateEP.resolveSemanticElement();
-		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
-		
 		EReference expectedFeature = UMLPackage.eINSTANCE.getRegion_Subvertex();
 
-		checkContainsChildren(region, state, expectedFeature);
+		checkListElementReferenceSemantic(finalStateEP, getRegionCompartmentEditPart(), expectedFeature);
 	}
 
 	@Test
@@ -222,10 +199,7 @@ public class TestSemantic extends BaseTestCase {
 	public void checkPseudostate(int VID) {
 		IGraphicalEditPart stateEP = createChild(VID, getRegionCompartmentEditPart());
 
-		Pseudostate pseudostate = (Pseudostate) stateEP.resolveSemanticElement();
-		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
-
-		checkContainsChildren(region, pseudostate, UMLPackage.eINSTANCE.getRegion_Subvertex());
+		checkListElementReferenceSemantic(stateEP, getRegionCompartmentEditPart(), UMLPackage.eINSTANCE.getRegion_Subvertex());
 	}
 
 	@Test
@@ -299,10 +273,7 @@ public class TestSemantic extends BaseTestCase {
 		IGraphicalEditPart stateMachineEP = findChildBySemanticHint(getDiagramEditPart(), StateMachineEditPart.VISUAL_ID);
 		IGraphicalEditPart pseudostateEP = createChild(VID, stateMachineEP);
 
-		Pseudostate pseudostate = (Pseudostate) pseudostateEP.resolveSemanticElement();
-		StateMachine stateMachine = (StateMachine) stateMachineEP.resolveSemanticElement();
-
-		checkContainsChildren(stateMachine, pseudostate, UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
+		checkListElementReferenceSemantic(pseudostateEP, stateMachineEP, UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
 	}
 	
 	@Test
@@ -324,10 +295,7 @@ public class TestSemantic extends BaseTestCase {
 		IGraphicalEditPart stateMachineEP = findChildBySemanticHint(getDiagramEditPart(), StateMachineEditPart.VISUAL_ID);
 		IGraphicalEditPart pseudostateEP = findChildBySemanticHint(stateMachineEP, VID);
 		
-		StateMachine stateMachine = (StateMachine) stateMachineEP.resolveSemanticElement();
-		Pseudostate pseudostate = (Pseudostate) pseudostateEP.resolveSemanticElement();
-
-		checkContainsChildren(stateMachine, pseudostate, UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
+		checkListElementReferenceSemantic(pseudostateEP, stateMachineEP, UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
 	}
 	
 	@Test
@@ -344,13 +312,8 @@ public class TestSemantic extends BaseTestCase {
 		
 		Assert.assertNotEquals(firstRegionEP, secondRegionEP);
 		
-		StateMachine stateMachine = (StateMachine)getRegionCompartmentEditPart().resolveSemanticElement().eContainer();
-		
-		Region region_1 = (Region) firstRegionEP.resolveSemanticElement();
-		Region region_2 = (Region) secondRegionEP.resolveSemanticElement();
-		
-		checkContainsChildren(stateMachine, region_1, UMLPackage.eINSTANCE.getStateMachine_Region());
-		checkContainsChildren(stateMachine, region_2, UMLPackage.eINSTANCE.getStateMachine_Region());
+		checkListElementReferenceSemantic(firstRegionEP, stateMachineComp, UMLPackage.eINSTANCE.getStateMachine_Region());
+		checkListElementReferenceSemantic(secondRegionEP, stateMachineComp, UMLPackage.eINSTANCE.getStateMachine_Region());
 	}
 
 	@Test
@@ -358,10 +321,7 @@ public class TestSemantic extends BaseTestCase {
 		IGraphicalEditPart stateMachineComp = (IGraphicalEditPart)getRegionCompartmentEditPart().getParent().getParent();
 		IGraphicalEditPart regionEP = createChild(RegionEditPart.VISUAL_ID, stateMachineComp);
 		
-		StateMachine stateMachine = (StateMachine)stateMachineComp.resolveSemanticElement();
-		Region region = (Region) regionEP.resolveSemanticElement();
-		
-		checkContainsChildren(stateMachine, region, UMLPackage.eINSTANCE.getStateMachine_Region());
+		checkListElementReferenceSemantic(regionEP, stateMachineComp, UMLPackage.eINSTANCE.getStateMachine_Region());
 	}
 
 	@Test
@@ -369,10 +329,7 @@ public class TestSemantic extends BaseTestCase {
 		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		IGraphicalEditPart regionEP = createChild(RegionEditPart.VISUAL_ID, stateEP);
 		
-		State stateMachine = (State)stateEP.resolveSemanticElement();
-		Region region = (Region) regionEP.resolveSemanticElement();
-		
-		checkContainsChildren(stateMachine, region, UMLPackage.eINSTANCE.getState_Region());
+		checkListElementReferenceSemantic(regionEP, stateEP, UMLPackage.eINSTANCE.getState_Region());
 	}
 
 	@Test
@@ -381,20 +338,14 @@ public class TestSemantic extends BaseTestCase {
 		IGraphicalEditPart stateComp = findChildBySemanticHint(stateEP, StateCompartmentEditPart.VISUAL_ID);
 		IGraphicalEditPart regionEP = createChild(RegionEditPart.VISUAL_ID, stateComp);
 		
-		State state = (State)stateEP.resolveSemanticElement();
-		Region region = (Region) regionEP.resolveSemanticElement();
-		
-		checkContainsChildren(state, region, UMLPackage.eINSTANCE.getState_Region());
+		checkListElementReferenceSemantic(regionEP, stateEP, UMLPackage.eINSTANCE.getState_Region());
 	}
 
 	@Test
 	public void testStateInRegion() {
 		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		
-		State state = (State)stateEP.resolveSemanticElement();
-		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
-		
-		checkContainsChildren(region, state, UMLPackage.eINSTANCE.getRegion_Subvertex());
+		checkListElementReferenceSemantic(stateEP, getRegionCompartmentEditPart(), UMLPackage.eINSTANCE.getRegion_Subvertex());
 	}
 
 	protected Request createUnspecifiedToolRequest(int VID) {
@@ -405,17 +356,5 @@ public class TestSemantic extends BaseTestCase {
 		AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest req =
 				new AspectUnspecifiedTypeCreationTool(types).new CreateAspectUnspecifiedTypeRequest(types, getRegionCompartmentEditPart().getDiagramPreferencesHint());
 		return req;
-	}
-
-	protected void checkContainsChildren(EObject parent, EObject child, EReference feature) {
-		List<?> containmentList = (List<?>)parent.eGet(feature);
-		String message = "Element [" + parent + "] don't contain [" + child +"] whith feature:" + feature.getName();
-		Assert.assertTrue(message, containmentList.contains(child));
-	}
-	
-	protected void checkContainChild(EObject parent, EObject child, EReference feature) {
-		Object containmentElement = parent.eGet(feature);
-		String message = "Element [" + parent + "] don't contain [" + child +"] whith feature:" + feature.getName();
-		Assert.assertTrue(message, child.equals(containmentElement));
 	}
 }

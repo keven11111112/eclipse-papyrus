@@ -13,12 +13,7 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
@@ -1215,34 +1210,5 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	public void assertValuePinType(IGraphicalEditPart pinEP) {
 		EObject valuePin = getSemanticElement(pinEP);
 		Assert.assertSame(valuePin.eClass(), UMLPackage.eINSTANCE.getValuePin());
-	}
-
-	public void checkListElementReferenceSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP, EReference... expectedFeature) {
-		EObject child = getSemanticElement(childEP);
-		EObject parent = getSemanticElement(parentEP);
-		for (EReference feature: expectedFeature) {
-			Object objectList = parent.eGet(feature);
-			Assert.assertTrue("Feature result should be list", objectList instanceof List<?>);
-			List<?> children = (List<?>) objectList;
-			Assert.assertTrue(getAssertMasageForContainChild(parent, child, feature), children.contains(child));
-		}
-	}
-	
-	public void checkOneElementReferenceSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP, EReference feature) {
-		EObject child = getSemanticElement(childEP);
-		EObject parent = getSemanticElement(parentEP);
-
-		Object objectChildElement = parent.eGet(feature);
-		Assert.assertEquals(getAssertMasageForContainChild(child, parent, feature), child, objectChildElement);
-	}
-	
-	protected EObject getSemanticElement(IGraphicalEditPart ep) {
-		EObject activityNode = ep.resolveSemanticElement();
-		assertNotNull("Primary view of " + ep.getNotationView() + " must have EObject element", activityNode);
-		return activityNode;
-	}
-	
-	private String getAssertMasageForContainChild(EObject child, EObject parent, EReference feature) {
-		return "Element:" + parent.getClass().getSimpleName() +  "should contein child:" + child.getClass().getSimpleName()  + " in feature: " + feature.getName();
 	}
 }
