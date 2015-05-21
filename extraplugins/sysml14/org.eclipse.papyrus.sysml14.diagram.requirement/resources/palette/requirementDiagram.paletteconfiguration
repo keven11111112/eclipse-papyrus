@@ -10,6 +10,34 @@
       description="Nodes">
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Comment"
+        label="Comment"
+        description="Create a comment">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Comment.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Comment_2012"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Comment_3028"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Constraint"
+        label="Constraint"
+        description="Create a constraint">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Constraint.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Constraint_2011"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Constraint_3029"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Constraint_Label"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.Package"
         label="Package"
         description="Create a package">
@@ -20,6 +48,19 @@
           elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Package_2007"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Package_3009"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Problem"
+        label="Problem"
+        description="Create a Problem">
+      <icon
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/modelelements/Problem.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Problem_2012"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Problem_3028"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
@@ -39,19 +80,6 @@
           elementTypeId="org.eclipse.papyrus.sysML.Requirement_3010"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.Requirement_3014"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Problem"
-        label="Problem"
-        description="Create a Problem">
-      <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/modelelements/Problem.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Problem_2012"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Problem_3028"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
