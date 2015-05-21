@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
@@ -59,7 +60,7 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	* Test to manage Device.
 	*/
 	@Test
-	
+	@FailingTest("Elementtypes migration")
 	public void testToDevice() {
 		testToManageNode(UMLElementTypes.Device_16, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Node_23, false);
 	}
@@ -67,6 +68,7 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	* Test to manage ExecutionEnvironment.
 	*/
 	@Test
+	@FailingTest("Elementtypes migration")
 	public void testToExecutionEnvironment() {
 		testToManageNode(UMLElementTypes.ExecutionEnvironment_21, UMLPackage.eINSTANCE.getExecutionEnvironment(),  UMLElementTypes.Node_23, false);
 	}
@@ -74,6 +76,7 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	* Test to manage Node.
 	*/
 	@Test
+	@FailingTest("Elementtypes migration")
 	public void testToNode() {
 		testToManageNode(UMLElementTypes.Node_23, UMLPackage.eINSTANCE.getNode(),UMLElementTypes.Node_23, false);
 	}

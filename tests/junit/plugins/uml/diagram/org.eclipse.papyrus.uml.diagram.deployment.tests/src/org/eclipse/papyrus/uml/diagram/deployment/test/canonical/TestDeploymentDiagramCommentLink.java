@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
 
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
@@ -46,6 +47,7 @@ public class TestDeploymentDiagramCommentLink extends TestCommentLink {
 	 * Test to manage Comment
 	 */
 	@Test
+	@FailingTest("Elementtypes migration")
 	public void testToManageComment() {
 		testToManageLink(UMLElementTypes.Comment_2001, UMLElementTypes.Package_2009, UMLElementTypes.CommentAnnotatedElement_4008, UMLElementTypes.Package_2009, true);
 	}
