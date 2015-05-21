@@ -126,6 +126,7 @@ public class CSSCanonicalStateInClassDiagramTest extends AbstractCSSCanonicalTes
 	}
 
 	@StylesheetRef("canonical_styles")
+	@NeedsUIEvents
 	@Scenario({ "execute", "undo", "redo" })
 	public void addStyleClass() {
 		addStyleClass(requireView(types), "synch");
@@ -163,6 +164,7 @@ public class CSSCanonicalStateInClassDiagramTest extends AbstractCSSCanonicalTes
 	}
 
 	@StylesheetRef("canonical_styles")
+	@NeedsUIEvents
 	@Test
 	public void overrideSelectorRule() {
 		// Override the canonical style
@@ -178,6 +180,7 @@ public class CSSCanonicalStateInClassDiagramTest extends AbstractCSSCanonicalTes
 	}
 
 	@StylesheetRef("canonical_styles")
+	@NeedsUIEvents
 	@Test
 	public void overrideExplicitClassRule() {
 		addStyleClass(requireView(types), "synch");
