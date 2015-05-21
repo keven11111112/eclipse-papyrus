@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 450944
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.clazz.test.canonical;
 
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassOperationCompartmentEditPart;
@@ -236,6 +238,7 @@ public class TestListCompartmentNodesChildDuplicates extends AbstractPapyrusTest
 		getHelper().checkDuplicate(InterfaceEditPart.VISUAL_ID, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, NestedEnumerationForInterfaceEditPart.VISUAL_ID);
 	}
 
+	@FailingTest("Nested interfaces are not removed from the list compartment when they are dragged onto the diagram surface.")
 	@Test
 	public void testInterfaceVsInterface() throws Exception {
 		getHelper().checkDuplicate(InterfaceEditPart.VISUAL_ID, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, NestedInterfaceForInterfaceEditPart.VISUAL_ID);

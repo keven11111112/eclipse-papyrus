@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST and others.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,6 +13,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - add the line 	ViewServiceUtil.forceLoad();
  *  Christian W. Damus (CEA) - bug 430726
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - bug 450341 
+ *  Christian W. Damus - bug 450944
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -263,8 +264,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		int nodeVISUALID = getNodeVisualID(parent.getNotationView(), droppedObject);
 		int linkVISUALID = getLinkWithClassVisualID(droppedObject);
 		if (getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
-			if (!isParentDiagram && !isDropNonCanvasNodeAllowed(parent, droppedObject))
-			{
+			if (!isParentDiagram && !isDropNonCanvasNodeAllowed(parent, droppedObject)) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}
 			Command specificDropCommand = getSpecificDropCommand(dropRequest, (Element) droppedObject, nodeVISUALID, linkVISUALID);
@@ -330,8 +330,15 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		if (isListCompartmentContainsDroppedObject(parent, droppedObject)) {
 			return false;
 		}
-		EObject semanticParent = parent.resolveSemanticElement();
-		return (semanticParent instanceof Element) && ((Element) semanticParent).getOwnedElements().contains(droppedObject);
+
+		/*
+		 * XXX(bug 450944): This is too restrictive. Many diagrams visualize non-contained elements as child views
+		 * (e.g., parts and ports of the class type of a part in a composite structure) and some diagrams support
+		 * dropping a non-owned relationship-like element on an end shape to create a new connection attached to it.
+		 */
+		// EObject semanticParent = parent.resolveSemanticElement();
+		// return (semanticParent instanceof Element) && ((Element) semanticParent).getOwnedElements().contains(droppedObject);
+		return true;
 	}
 
 	private boolean isListCompartmentContainsDroppedObject(IGraphicalEditPart parent, EObject droppedObject) {
