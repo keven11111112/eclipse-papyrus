@@ -29,7 +29,7 @@ public interface PackageImportReference extends ImportReference {
 	 * Return the visible members of the referent package.
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                       if self.referent = null then Set(Member){}\n                       else self.referent.visibleMembers()->collect(m | \n                         Member{\n                           visibility = self.visibility,\n                           definition = ImportedMember{name = m.name(), referent = m}\n                         }\n                       )\n                      endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                       if self.referent = null then Set(Member){}\n                       else self.referent.visibleMembers()->collect(m | \n                         Member{\n                           visibility = self.visibility,\n                           definition = ImportedMember{name = m.name(), referent = m}\n                         }\n                       )->asSet()\n                      endif'"
 	 * @generated
 	 */
 	EList<Member> importedMembers();

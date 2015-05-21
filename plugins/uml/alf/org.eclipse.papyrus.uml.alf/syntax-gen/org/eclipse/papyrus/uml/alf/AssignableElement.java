@@ -183,7 +183,7 @@ public interface AssignableElement extends SyntaxElement {
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let targetType = self.type in\n          -- Untyped target is conformant with anything.\n          targetType = null or\n          \n          -- Untyped source is only assignable to untyped target.\n          sourceType <> null and (\n            \n          -- Basic type conformance.\n          sourceType.conformsTo(targetType) or\n          \n          -- Bit string conversion.\n          self.isIntegerType(sourceType) and self.isBitStringType(targetType)\n          )'"
 	 * @generated
 	 */
-	void isConformantWithType(ElementReference sourceType);
+	boolean isConformantWithType(ElementReference sourceType);
 
 	/**
 	 * <!-- begin-user-doc -->

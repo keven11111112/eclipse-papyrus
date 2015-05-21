@@ -488,7 +488,7 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then OrderedSet(ElementReference){}\n        else\n          let namespace = self.element.oclAsType(UML::Namespace) in\n          let members = \n            if self.isEnumeration() then\n              self.enumerationMembers()\n            else\n            namespace.member-> \n              collect(m | \n                let names = namespace.getNamesOfMember(m) in\n                  if names->isEmpty() then\n                    Bag{ExternalElementReference{element = m}}\n                  else\n                    names->collect(name | \n                      ExternalElementReference{alias = name, element = m}\n                    )\n                  endif\n              )->asOrderedSet()\n              endif\n          in\n          let additionalMembers = self.additionalMembers() in\n            additionalMembers->includingAll(members)->\n              includingAll(self.templateParameters())\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then OrderedSet(ElementReference){}\n        else\n          let namespace = self.element.oclAsType(UML::Namespace) in\n          let members = \n            if self.isEnumeration() then\n              self.enumerationMembers()\n            else\n\t            namespace.member-> \n\t              collect(m | \n\t                let names = namespace.getNamesOfMember(m) in\n\t                  if names->isEmpty() then\n\t                    Bag{ExternalElementReference{element = m}}\n\t                  else\n\t                    names->collect(name | \n\t                      ExternalElementReference{alias = name, element = m}\n\t                    )\n\t                  endif\n\t              )\n            endif->asOrderedSet() in\n          let additionalMembers = self.additionalMembers() in\n            additionalMembers->appendAll(members)->\n              appendAll(self.templateParameters())\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> members();
@@ -513,7 +513,7 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isClassifier() then OrderedSet(ElementReference){}\n        else if self.isAssociation() then\n        -- NOTE: This is to ensure proper ordering.\n          self.memberEnds()->includingAll(self.parents().properties())\n        else\n          self.element.oclAsType(UML::Classifier).allAttributes()->\n            collect(a | ExternalElementReference{element = a})->\n            asOrderedSet()\n        endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isClassifier() then OrderedSet(ElementReference){}\n        else if self.isAssociation() then\n        -- NOTE: This is to ensure proper ordering.\n          self.memberEnds()->appendAll(self.parents().properties()->asOrderedSet())\n        else\n          self.element.oclAsType(UML::Classifier).allAttributes()->\n            collect(a | ExternalElementReference{element = a})->\n            asOrderedSet()\n        endif endif'"
 	 * @generated
 	 */
 	EList<ElementReference> properties();
@@ -529,7 +529,7 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        -- NOTE: This is to ensure proper ordering.\n        self.ownedEnds()->includingAll(self.parents().associationEnds())'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        -- NOTE: This is to ensure proper ordering.\n        self.ownedEnds()->appendAll(self.parents().associationEnds()->asOrderedSet())'"
 	 * @generated
 	 */
 	EList<ElementReference> associationEnds();
@@ -569,7 +569,8 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.parameters()\n          else if self.isBehavior() then\n            self.element.oclAsType(UML::Behavior).ownedParameter\n          else if self.isOperation() then\n            self.element.oclAsType(UML::Operation).ownedParameter\n          else\n            OrderedSet{}\n          endif endif endif'"
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isBehavior() then\n          self.element.oclAsType(UML::Behavior).ownedParameter.oclAsType(ecore::EObject)\n        else if self.isOperation() then\n          self.element.oclAsType(UML::Operation).ownedParameter.oclAsType(ecore::EObject)\n        else\n          Sequence(ecore::EObject){}\n        endif endif'"
 	 * @generated
 	 */
 	EList<EObject> ownedParameters();
@@ -602,7 +603,7 @@ public interface ExternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isOperation() then Set(ElementReference){}\n        else\n          self.element.oclAsType(UML::Operation).redefinedOperation->\n            collect(op | ExternalElementReference{element = op})\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isOperation() then Set(ElementReference){}\n        else\n          self.element.oclAsType(UML::Operation).redefinedOperation->\n            collect(op | ExternalElementReference{element = op})->asSet()\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> redefinedOperations();
@@ -618,7 +619,7 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.element.oclIsKindOf(UML::TemplateableElement) then\n          let templateBindings = \n            self.element.oclAsType(UML::TemplateableElement).templateBinding \n          in\n            if templateBindings->notEmpty() then\n              templateBindings->any(true)\n            else if self.element.oclIsKindOf(UML::NamedElement) then\n              let templateBindings =\n                self.element.oclAsType(UML::NamedElement).clientDependency->select(\n                    oclIsKindOf(UML::Realization) and\n                    supplier->size() = 1 and\n                    supplier->forAll(oclIsKindOf(UML::TemplateableElement))\n                  )->collect(\n                    supplier.oclAsType(UML::TemplateableElement).templateBinding\n                  )\n              in\n                if templateBindings->isEmpty() then\n                  null\n                else\n                  templateBindings->any(true)\n                endif\n            else\n              null\n            endif endif\n        else\n          null\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.element.oclIsKindOf(UML::TemplateableElement) then\n          let templateBindings = \n            self.element.oclAsType(UML::TemplateableElement).templateBinding \n          in\n            if templateBindings->notEmpty() then\n              templateBindings->any(true).oclAsType(ecore::EObject)\n            else if self.element.oclIsKindOf(UML::NamedElement) then\n              let templateBindings =\n                self.element.oclAsType(UML::NamedElement).clientDependency->select(\n                    oclIsKindOf(UML::Realization) and\n                    supplier->size() = 1 and\n                    supplier->forAll(oclIsKindOf(UML::TemplateableElement))\n                  )->collect(\n                    supplier.oclAsType(UML::TemplateableElement).templateBinding\n                  )\n              in\n                if templateBindings->isEmpty() then\n                  null\n                else\n                  templateBindings->any(true).oclAsType(ecore::EObject)\n                endif\n            else\n              null\n            endif endif\n        else\n          null\n        endif'"
 	 * @generated
 	 */
 	EObject umlTemplateBinding();
@@ -658,7 +659,7 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isProperty() then null\n        -- Note: Only owned ends are treated as association ends.\n        else self.element.oclAsType(UML::Property).owningAssociation\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isAssociationEnd() then null\n        -- Note: Only owned ends are treated as association ends.\n        else ExternalElementReference{element = self.element.oclAsType(UML::Property).owningAssociation}\n        endif'"
 	 * @generated
 	 */
 	ElementReference association();
@@ -684,7 +685,7 @@ public interface ExternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.element.oclIsKindOf(UML::MultiplicityElement) then\n          self.element.oclAsType(UML::MultiplicityElement).upper\n        else\n          1\n       endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.element.oclIsKindOf(UML::MultiplicityElement) then\n          self.element.oclAsType(UML::MultiplicityElement).upper.oclAsType(Integer)\n        else\n          1\n       endif'"
 	 * @generated
 	 */
 	BigInteger upper();
@@ -737,7 +738,7 @@ public interface ExternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then Set(ecore::EObject){}\n        else\n          self.element.oclAsType(UML::Namespace).getNearestPackage().\n            getAllAppliedProfiles()->\n            collect(e | ExternalElementReference{element = e})\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then Set(ElementReference){}\n        else\n          self.element.oclAsType(UML::Namespace).getNearestPackage().\n            getAllAppliedProfiles()->\n            collect(e | ExternalElementReference{element = e})->asSet()\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> appliedProfiles();
@@ -809,7 +810,7 @@ public interface ExternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false" nameRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(name() = name)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(name() = name)->asSet()'"
 	 * @generated
 	 */
 	EList<ElementReference> resolveInScope(String name);

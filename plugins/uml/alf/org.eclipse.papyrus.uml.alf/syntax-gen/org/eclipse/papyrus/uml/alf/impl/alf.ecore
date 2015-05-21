@@ -325,7 +325,7 @@
     <eOperations name="members" upperBound="-1" eType="#//ElementReference"/>
     <eOperations name="visibleMembers" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.members()->select(visibility() = null or visibility() = 'public')"/>
+        <details key="body" value="self.members()->select(visibility() = null or visibility() = 'public')->asSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="properties" upperBound="-1" eType="#//ElementReference">
@@ -341,7 +341,7 @@
     <eOperations name="opposite" eType="#//ElementReference"/>
     <eOperations name="receptions" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.members()->select(isReception())"/>
+        <details key="body" value="self.members()->select(isReception())->asSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="signal" eType="#//ElementReference"/>
@@ -460,7 +460,7 @@
     </eOperations>
     <eOperations name="resolveAssociationEnd" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let referents = self.members()->&#xA;          -- Note: Only association-owned ends are considered as association ends.&#xA;          select(isAssociation() and (properties()->size() = 2)).associationEnds()->&#xA;          select(associationEnd |&#xA;              let opposite = associationEnd.opposite() in&#xA;                opposite &lt;> null and&#xA;                oppositeEndType.conformsTo(opposite.type()) and&#xA;                  name = associationEnd.name()&#xA;          )&#xA;        in&#xA;          let outerScope = self.namespace() in&#xA;            if outerScope = null then referents&#xA;            else&#xA;              let hiddenNames = referents.name() in&#xA;                referents->union(&#xA;                  outerScope.resolveAssociationEnd(oppositeEndType, name)->&#xA;                  reject(outerReferent | hiddenNames->includes(outerReferent.name()))&#xA;              )&#xA;            endif"/>
+        <details key="body" value="&#xA;        let referents = self.members()->&#xA;          -- Note: Only association-owned ends are considered as association ends.&#xA;          select(isAssociation() and (properties()->size() = 2)).associationEnds()->&#xA;          select(associationEnd |&#xA;              let opposite = associationEnd.opposite() in&#xA;                opposite &lt;> null and&#xA;                oppositeEndType.conformsTo(opposite.type()) and&#xA;                  name = associationEnd.name()&#xA;          )->asSet()&#xA;        in&#xA;          let outerScope = self.namespace() in&#xA;            if outerScope = null then referents&#xA;            else&#xA;              let hiddenNames = referents.name() in&#xA;                referents->union(&#xA;                  outerScope.resolveAssociationEnd(oppositeEndType, name)->&#xA;                  reject(outerReferent | hiddenNames->includes(outerReferent.name()))&#xA;              )&#xA;            endif"/>
       </eAnnotations>
       <eParameters name="oppositeEndType" lowerBound="1" eType="#//ElementReference"/>
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -756,7 +756,7 @@
     </eOperations>
     <eOperations name="templateParameters" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isTemplate() then&#xA;          self.element.oclAsType(ClassifierDefinition).templateParameters().toReference()&#xA;        else&#xA;          OrderedSet(ElementReference){}&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isTemplate() then&#xA;          self.element.oclAsType(ClassifierDefinition).templateParameters().toReference()->asOrderedSet()&#xA;        else&#xA;          OrderedSet(ElementReference){}&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="parameteredElements" upperBound="-1" eType="#//ElementReference">
@@ -806,7 +806,7 @@
     </eOperations>
     <eOperations name="parents" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isClassifier() then&#xA;          self.element.oclAsType(ClassifierDefinition).specializationReferent&#xA;        else&#xA;          Set(ElementReference){}&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isClassifier() then&#xA;          self.element.oclAsType(ClassifierDefinition).specializationReferent->asSet()&#xA;        else&#xA;          Set(ElementReference){}&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="allParents" ordered="false" upperBound="-1" eType="#//ElementReference">
@@ -821,12 +821,12 @@
     </eOperations>
     <eOperations name="appliedProfiles" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isNamespace() then Set(ecore::EObject){}&#xA;        else self.element.oclAsType(NamespaceDefinition).appliedProfiles()&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isNamespace() then Set(ElementReference){}&#xA;        else self.element.oclAsType(NamespaceDefinition).appliedProfiles()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="activeClass" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isActivity() then null&#xA;        else&#xA;          let namespace = self.element.oclAsType(ActivityDefinition).namespaceReference() in&#xA;            if namespace = null or &#xA;              not self.equals(namespace.classifierBehavior()) then null&#xA;            else namespace&#xA;            endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isActivity() then null&#xA;        else&#xA;        &#x9;let stub = self.stub() in&#xA;        &#x9;let this = if stub = null then self else stub endif in&#xA;          let namespace = this.namespace() in&#xA;            if namespace = null or &#xA;              not this.equals(namespace.classifierBehavior()) then null&#xA;            else namespace&#xA;            endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="conformsTo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -859,7 +859,7 @@
     </eOperations>
     <eOperations name="resolveInScope" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let template = self.template() in&#xA;          if template &lt;> null then&#xA;            template.resolveInScope(name)&#xA;          else if not self.isNamespace() then Set(ElementReference){}&#xA;          else &#xA;            self.element.oclAsType(NamespaceDefinition).resolveInScope(name).&#xA;              toReference()&#xA;          endif endif"/>
+        <details key="body" value="&#xA;        let template = self.template() in&#xA;          if template &lt;> null then&#xA;            template.resolveInScope(name)&#xA;          else if not self.isNamespace() then Set(ElementReference){}&#xA;          else &#xA;            self.element.oclAsType(NamespaceDefinition).resolveInScope(name).&#xA;              toReference()->asSet()&#xA;          endif endif"/>
       </eAnnotations>
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -1109,7 +1109,7 @@
     <eOperations name="enumerationMembers" ordered="false" upperBound="-1" eType="#//ElementReference"/>
     <eOperations name="members" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isNamespace() then OrderedSet(ElementReference){}&#xA;        else&#xA;          let namespace = self.element.oclAsType(UML::Namespace) in&#xA;          let members = &#xA;            if self.isEnumeration() then&#xA;              self.enumerationMembers()&#xA;            else&#xA;            namespace.member-> &#xA;              collect(m | &#xA;                let names = namespace.getNamesOfMember(m) in&#xA;                  if names->isEmpty() then&#xA;                    Bag{ExternalElementReference{element = m}}&#xA;                  else&#xA;                    names->collect(name | &#xA;                      ExternalElementReference{alias = name, element = m}&#xA;                    )&#xA;                  endif&#xA;              )->asOrderedSet()&#xA;              endif&#xA;          in&#xA;          let additionalMembers = self.additionalMembers() in&#xA;            additionalMembers->includingAll(members)->&#xA;              includingAll(self.templateParameters())&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isNamespace() then OrderedSet(ElementReference){}&#xA;        else&#xA;          let namespace = self.element.oclAsType(UML::Namespace) in&#xA;          let members = &#xA;            if self.isEnumeration() then&#xA;              self.enumerationMembers()&#xA;            else&#xA;&#x9;            namespace.member-> &#xA;&#x9;              collect(m | &#xA;&#x9;                let names = namespace.getNamesOfMember(m) in&#xA;&#x9;                  if names->isEmpty() then&#xA;&#x9;                    Bag{ExternalElementReference{element = m}}&#xA;&#x9;                  else&#xA;&#x9;                    names->collect(name | &#xA;&#x9;                      ExternalElementReference{alias = name, element = m}&#xA;&#x9;                    )&#xA;&#x9;                  endif&#xA;&#x9;              )&#xA;            endif->asOrderedSet() in&#xA;          let additionalMembers = self.additionalMembers() in&#xA;            additionalMembers->appendAll(members)->&#xA;              appendAll(self.templateParameters())&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="additionalMembers" upperBound="-1" eType="#//ElementReference">
@@ -1125,7 +1125,7 @@
     </eOperations>
     <eOperations name="properties" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isClassifier() then OrderedSet(ElementReference){}&#xA;        else if self.isAssociation() then&#xA;        -- NOTE: This is to ensure proper ordering.&#xA;          self.memberEnds()->includingAll(self.parents().properties())&#xA;        else&#xA;          self.element.oclAsType(UML::Classifier).allAttributes()->&#xA;            collect(a | ExternalElementReference{element = a})->&#xA;            asOrderedSet()&#xA;        endif endif"/>
+        <details key="body" value="&#xA;        if not self.isClassifier() then OrderedSet(ElementReference){}&#xA;        else if self.isAssociation() then&#xA;        -- NOTE: This is to ensure proper ordering.&#xA;          self.memberEnds()->appendAll(self.parents().properties()->asOrderedSet())&#xA;        else&#xA;          self.element.oclAsType(UML::Classifier).allAttributes()->&#xA;            collect(a | ExternalElementReference{element = a})->&#xA;            asOrderedSet()&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="memberEnds" upperBound="-1" eType="#//ElementReference">
@@ -1135,7 +1135,7 @@
     </eOperations>
     <eOperations name="associationEnds" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        -- NOTE: This is to ensure proper ordering.&#xA;        self.ownedEnds()->includingAll(self.parents().associationEnds())"/>
+        <details key="body" value="&#xA;        -- NOTE: This is to ensure proper ordering.&#xA;        self.ownedEnds()->appendAll(self.parents().associationEnds()->asOrderedSet())"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="ownedEnds" upperBound="-1" eType="#//ElementReference">
@@ -1158,9 +1158,9 @@
         <details key="body" value="&#xA;        if self.isParameteredElement() then&#xA;          ExternalElementReference{&#xA;            element = self.element.oclAsType(UML::ParameterableElement).&#xA;                        templateParameter.signature.template&#xA;          }&#xA;        else if self.element.oclIsKindOf(UML::NamedElement) then&#xA;          let namespace = self.element.oclAsType(UML::NamedElement).namespace in&#xA;            if namespace = null then&#xA;              null&#xA;            else&#xA;              ExternalElementReference{element = namespace}&#xA;            endif&#xA;        else&#xA;          null&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="ownedParameters" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+    <eOperations name="ownedParameters" unique="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let template = self.template() in&#xA;          if template &lt;> null then&#xA;            template.parameters()&#xA;          else if self.isBehavior() then&#xA;            self.element.oclAsType(UML::Behavior).ownedParameter&#xA;          else if self.isOperation() then&#xA;            self.element.oclAsType(UML::Operation).ownedParameter&#xA;          else&#xA;            OrderedSet{}&#xA;          endif endif endif"/>
+        <details key="body" value="&#xA;        if self.isBehavior() then&#xA;          self.element.oclAsType(UML::Behavior).ownedParameter.oclAsType(ecore::EObject)&#xA;        else if self.isOperation() then&#xA;          self.element.oclAsType(UML::Operation).ownedParameter.oclAsType(ecore::EObject)&#xA;        else&#xA;          Sequence(ecore::EObject){}&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="parameters" upperBound="-1" eType="#//ElementReference">
@@ -1180,7 +1180,7 @@
     </eOperations>
     <eOperations name="redefinedOperations" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isOperation() then Set(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(UML::Operation).redefinedOperation->&#xA;            collect(op | ExternalElementReference{element = op})&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isOperation() then Set(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(UML::Operation).redefinedOperation->&#xA;            collect(op | ExternalElementReference{element = op})->asSet()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="template" eType="#//ElementReference">
@@ -1190,7 +1190,7 @@
     </eOperations>
     <eOperations name="umlTemplateBinding" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::TemplateableElement) then&#xA;          let templateBindings = &#xA;            self.element.oclAsType(UML::TemplateableElement).templateBinding &#xA;          in&#xA;            if templateBindings->notEmpty() then&#xA;              templateBindings->any(true)&#xA;            else if self.element.oclIsKindOf(UML::NamedElement) then&#xA;              let templateBindings =&#xA;                self.element.oclAsType(UML::NamedElement).clientDependency->select(&#xA;                    oclIsKindOf(UML::Realization) and&#xA;                    supplier->size() = 1 and&#xA;                    supplier->forAll(oclIsKindOf(UML::TemplateableElement))&#xA;                  )->collect(&#xA;                    supplier.oclAsType(UML::TemplateableElement).templateBinding&#xA;                  )&#xA;              in&#xA;                if templateBindings->isEmpty() then&#xA;                  null&#xA;                else&#xA;                  templateBindings->any(true)&#xA;                endif&#xA;            else&#xA;              null&#xA;            endif endif&#xA;        else&#xA;          null&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::TemplateableElement) then&#xA;          let templateBindings = &#xA;            self.element.oclAsType(UML::TemplateableElement).templateBinding &#xA;          in&#xA;            if templateBindings->notEmpty() then&#xA;              templateBindings->any(true).oclAsType(ecore::EObject)&#xA;            else if self.element.oclIsKindOf(UML::NamedElement) then&#xA;              let templateBindings =&#xA;                self.element.oclAsType(UML::NamedElement).clientDependency->select(&#xA;                    oclIsKindOf(UML::Realization) and&#xA;                    supplier->size() = 1 and&#xA;                    supplier->forAll(oclIsKindOf(UML::TemplateableElement))&#xA;                  )->collect(&#xA;                    supplier.oclAsType(UML::TemplateableElement).templateBinding&#xA;                  )&#xA;              in&#xA;                if templateBindings->isEmpty() then&#xA;                  null&#xA;                else&#xA;                  templateBindings->any(true).oclAsType(ecore::EObject)&#xA;                endif&#xA;            else&#xA;              null&#xA;            endif endif&#xA;        else&#xA;          null&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="templateParameters" upperBound="-1" eType="#//ElementReference">
@@ -1215,7 +1215,7 @@
     </eOperations>
     <eOperations name="association" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isProperty() then null&#xA;        -- Note: Only owned ends are treated as association ends.&#xA;        else self.element.oclAsType(UML::Property).owningAssociation&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isAssociationEnd() then null&#xA;        -- Note: Only owned ends are treated as association ends.&#xA;        else ExternalElementReference{element = self.element.oclAsType(UML::Property).owningAssociation}&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="type" eType="#//ElementReference">
@@ -1230,7 +1230,7 @@
     </eOperations>
     <eOperations name="upper" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::MultiplicityElement) then&#xA;          self.element.oclAsType(UML::MultiplicityElement).upper&#xA;        else&#xA;          1&#xA;       endif"/>
+        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::MultiplicityElement) then&#xA;          self.element.oclAsType(UML::MultiplicityElement).upper.oclAsType(Integer)&#xA;        else&#xA;          1&#xA;       endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isOrdered" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1260,7 +1260,7 @@
     </eOperations>
     <eOperations name="appliedProfiles" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isNamespace() then Set(ecore::EObject){}&#xA;        else&#xA;          self.element.oclAsType(UML::Namespace).getNearestPackage().&#xA;            getAllAppliedProfiles()->&#xA;            collect(e | ExternalElementReference{element = e})&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isNamespace() then Set(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(UML::Namespace).getNearestPackage().&#xA;            getAllAppliedProfiles()->&#xA;            collect(e | ExternalElementReference{element = e})->asSet()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="activeClass" eType="#//ElementReference">
@@ -1302,7 +1302,7 @@
     </eOperations>
     <eOperations name="resolveInScope" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.members()->select(name() = name)"/>
+        <details key="body" value="self.members()->select(name() = name)->asSet()"/>
       </eAnnotations>
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -1594,12 +1594,12 @@
     </eOperations>
     <eOperations name="ownedMembers" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.boundReferencesTo(&#xA;          self.referent.ownedMembers()->reject(isTemplateParameter())&#xA;        )"/>
+        <details key="body" value="&#xA;        self.boundReferencesTo(&#xA;          self.referent.ownedMembers()->reject(isTemplateParameter())&#xA;        )->asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="members" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.boundReferencesTo(&#xA;          self.referent.members()->reject(isTemplateParameter())&#xA;        )"/>
+        <details key="body" value="&#xA;        self.boundReferencesTo(&#xA;          self.referent.members()->reject(isTemplateParameter())&#xA;        )->asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="opposite" eType="#//ElementReference">
@@ -1614,7 +1614,7 @@
     </eOperations>
     <eOperations name="parameters" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.boundReferencesTo(self.referent.parameters())"/>
+        <details key="body" value="&#xA;        self.boundReferencesTo(self.referent.parameters())->asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="returnParameter" eType="#//ElementReference">
@@ -1699,12 +1699,12 @@
     </eOperations>
     <eOperations name="parents" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.boundReferencesTo(self.referent.parents()->asOrderedSet())"/>
+        <details key="body" value="&#xA;        self.boundReferencesTo(self.referent.parents()->asOrderedSet())->asSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="allParents" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.boundReferencesTo(self.referent.allParents()->asOrderedSet())"/>
+        <details key="body" value="&#xA;        self.boundReferencesTo(self.referent.allParents()->asOrderedSet())->asSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="classifierBehavior" eType="#//ElementReference">
@@ -2123,7 +2123,7 @@
       </eAnnotations>
       <eParameters name="source" lowerBound="1" eType="#//AssignableElement"/>
     </eOperations>
-    <eOperations name="isConformantWithType">
+    <eOperations name="isConformantWithType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;        let targetType = self.type in&#xA;          -- Untyped target is conformant with anything.&#xA;          targetType = null or&#xA;          &#xA;          -- Untyped source is only assignable to untyped target.&#xA;          sourceType &lt;> null and (&#xA;            &#xA;          -- Basic type conformance.&#xA;          sourceType.conformsTo(targetType) or&#xA;          &#xA;          -- Bit string conversion.&#xA;          self.isIntegerType(sourceType) and self.isBitStringType(targetType)&#xA;          )"/>
       </eAnnotations>
@@ -3911,7 +3911,7 @@
         <details key="body" value="&#xA;        let expression = self.primary.expression in&#xA;        let firstParameter = self.firstParameter() in&#xA;        let assignments1 =&#xA;          if expression = null then self.assignmentBefore&#xA;          else expression.assignmentAfter&#xA;          endif&#xA;        in&#xA;        let assignments2 =&#xA;          self.updateAll(assignments1, self.tuple.assignmentsAfter())&#xA;        in&#xA;          if firstParameter = null or firstParameter.direction() &lt;> 'inout' then&#xA;            assignments2&#xA;          else&#xA;            let oldAssignment = self.assignmentBefore->&#xA;              select(name = self.leftHandSide.assignedName())&#xA;            in&#xA;              if oldAssignment->isEmpty() or oldAssignment->forAll(isParallelLocalName) then&#xA;                assignments2&#xA;              else&#xA;                oldAssignment->any(true).copy(self, null).update(assignments2)&#xA;              endif&#xA;          endif"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="parameterElements" lowerBound="1" upperBound="-1" eType="#//ElementReference">
+    <eOperations name="parameterElements" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;        let parameters = self.InvocationExpression_parameterElements() in&#xA;          if parameters->size() &lt; 2 then OrderedSet(ElementReference){}&#xA;          else parameters->subOrderedSet(2, parameters->size())&#xA;          endif"/>
       </eAnnotations>
@@ -4218,9 +4218,9 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="parameterElements" lowerBound="1" upperBound="-1" eType="#//ElementReference">
+    <eOperations name="parameterElements" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isClear then&#xA;          OrderedSet(ElementReference){&#xA;          FormalParameter{&#xA;            direction = 'in',&#xA;            typePart = TypedElementDefinition{&#xA;              lowerBound = '1',&#xA;              upperBound = '1'&#xA;            }&#xA;          }.toReference()&#xA;         }&#xA;        else&#xA;          let referent = self.referent in&#xA;            if referent = null then OrderedSet(ElementReference){}&#xA;            else&#xA;              self.referent.properties()->collect(property | &#xA;                -- NOTE: Arguments for a link operation have multiplicity 1..1.&#xA;                parameterFromPropertyWithMultiplicity(property, '1', '1')&#xA;              )&#xA;            endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isClear then&#xA;          OrderedSet(ElementReference){&#xA;          FormalParameter{&#xA;            direction = 'in',&#xA;            typePart = TypedElementDefinition{&#xA;              lowerBound = '1',&#xA;              upperBound = '1'&#xA;            }&#xA;          }.toReference()&#xA;         }&#xA;        else&#xA;          let referent = self.referent in&#xA;            if referent = null then OrderedSet(ElementReference){}&#xA;            else&#xA;              self.referent.properties()->collect(property | &#xA;                -- NOTE: Arguments for a link operation have multiplicity 1..1.&#xA;                parameterFromPropertyWithMultiplicity(property, '1', '1')&#xA;              )->asOrderedSet()&#xA;            endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" lowerBound="1"
@@ -5324,7 +5324,7 @@
     </eOperations>
     <eOperations name="parameterElements" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isConstructorless then Set(ElementReference){}&#xA;        else self.InvocationExpression_parameterElements()&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isConstructorless then OrderedSet(ElementReference){}&#xA;        else self.InvocationExpression_parameterElements()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isConstructorless" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -7041,7 +7041,7 @@
     <eOperations name="assignmentsAfterCached" ordered="false" upperBound="-1" eType="#//AssignedSource"/>
     <eOperations name="mergeAssignments" ordered="false" upperBound="-1" eType="#//AssignedSource">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;             let newAssignments : Set(AssignedSource) = blocks->collect(b | &#xA;               if b = null then Set(AssignedSource){}&#xA;               else b.assignmentAfter->select(isNew(b.assignmentBefore))&#xA;               endif&#xA;             ) in&#xA;               newAssignments.name->asSet()->collect(n | &#xA;                 self.merge(n, newAssignments->select(name = n))&#xA;               )->asSet()"/>
+        <details key="body" value="&#xA;             let newAssignments = blocks->collect(b | &#xA;               if b = null then Set(AssignedSource){}&#xA;               else b.assignmentAfter->select(isNew(b.assignmentBefore))&#xA;               endif&#xA;             )->asSet() in&#xA;               newAssignments.name->asSet()->collect(n | &#xA;                 self.merge(n, newAssignments->select(name = n))&#xA;               )->asSet()"/>
       </eAnnotations>
       <eParameters name="blocks" ordered="false" unique="false" upperBound="-1" eType="#//Block"/>
     </eOperations>
@@ -8509,7 +8509,7 @@
     </eOperations>
     <eOperations name="resolveInScope" ordered="false" upperBound="-1" eType="#//Member">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.member->select(m | m.definition.actualName() = name)"/>
+        <details key="body" value="&#xA;        self.member->select(m | m.definition.actualName() = name)->asSet()"/>
       </eAnnotations>
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -8558,7 +8558,7 @@
     </eOperations>
     <eOperations name="templateParameters" upperBound="-1" eType="#//ClassifierTemplateParameter">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;            self.ownedMember.definition->select(oclIsKindOf(ClassifierTemplateParameter)).&#xA;              oclAsType(ClassifierTemplateParameter)"/>
+        <details key="body" value="&#xA;            self.ownedMember.definition->select(oclIsKindOf(ClassifierTemplateParameter)).&#xA;              oclAsType(ClassifierTemplateParameter)->asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="membersCached" upperBound="-1" eType="#//Member"/>
@@ -9159,7 +9159,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="OperationDefinition" eSuperTypes="#//NamespaceDefinition">
     <eOperations name="assignmentsBefore" ordered="false" upperBound="-1" eType="#//AssignedSource">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.body &lt;> element then Set(AssignedSource){}&#xA;        else&#xA;          self.parameters()->collect(parameter |&#xA;            AssignedSource{&#xA;              name = parameter.actualName(),&#xA;              source = if parameter.direction = 'out' then null else parameter endif,&#xA;              type = parameter.typePart.type,&#xA;              upper = parameter.typePart.upper,&#xA;              lower = parameter.typePart.lower&#xA;            }&#xA;          )&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.body &lt;> element then Set(AssignedSource){}&#xA;        else&#xA;          self.parameters()->collect(parameter |&#xA;            AssignedSource{&#xA;              name = parameter.actualName(),&#xA;              source = if parameter.direction = 'out' then null else parameter endif,&#xA;              type = parameter.typePart.type,&#xA;              upper = parameter.typePart.upper,&#xA;              lower = parameter.typePart.lower&#xA;            }&#xA;          )->asSet()&#xA;        endif"/>
       </eAnnotations>
       <eParameters name="element" lowerBound="1" eType="#//SyntaxElement"/>
     </eOperations>
@@ -9200,7 +9200,7 @@
     </eOperations>
     <eOperations name="specializationReferents" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let namespace = self.containingMember().namespace in &#xA;          if namespace.oclIsKindOf(ClassDefinition) then &#xA;            namespace.oclAsType(ClassDefinition).specializationReferent&#xA;          else &#xA;            Set{}&#xA;          endif"/>
+        <details key="body" value="&#xA;        let namespace = self.containingMember().namespace in &#xA;          if namespace.oclIsKindOf(ClassDefinition) then &#xA;            namespace.oclAsType(ClassDefinition).specializationReferent->asSet()&#xA;          else &#xA;            Set{}&#xA;          endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="operationDefinitionNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -9827,7 +9827,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ActivityDefinition" eSuperTypes="#//ClassifierDefinition">
     <eOperations name="assignmentsBefore" ordered="false" upperBound="-1" eType="#//AssignedSource">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.body &lt;> element then Set(AssignedSource){}&#xA;        else&#xA;          self.parameters()->collect(parameter |&#xA;            AssignedSource{&#xA;              name = parameter.actualName(),&#xA;              source = if parameter.direction = 'out' then null else parameter endif,&#xA;              type = parameter.typePart.type,&#xA;              upper = parameter.typePart.upper,&#xA;              lower = parameter.typePart.lower&#xA;            }&#xA;          )&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.body &lt;> element then Set(AssignedSource){}&#xA;        else&#xA;          self.parameters()->collect(parameter |&#xA;            AssignedSource{&#xA;              name = parameter.actualName(),&#xA;              source = if parameter.direction = 'out' then null else parameter endif,&#xA;              type = parameter.typePart.type,&#xA;              upper = parameter.typePart.upper,&#xA;              lower = parameter.typePart.lower&#xA;            }&#xA;          )->asSet()&#xA;        endif"/>
       </eAnnotations>
       <eParameters name="element" lowerBound="1" eType="#//SyntaxElement"/>
     </eOperations>
@@ -9952,7 +9952,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PackageImportReference" eSuperTypes="#//ImportReference">
     <eOperations name="importedMembers" ordered="false" upperBound="-1" eType="#//Member">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;                       if self.referent = null then Set(Member){}&#xA;                       else self.referent.visibleMembers()->collect(m | &#xA;                         Member{&#xA;                           visibility = self.visibility,&#xA;                           definition = ImportedMember{name = m.name(), referent = m}&#xA;                         }&#xA;                       )&#xA;                      endif"/>
+        <details key="body" value="&#xA;                       if self.referent = null then Set(Member){}&#xA;                       else self.referent.visibleMembers()->collect(m | &#xA;                         Member{&#xA;                           visibility = self.visibility,&#xA;                           definition = ImportedMember{name = m.name(), referent = m}&#xA;                         }&#xA;                       )->asSet()&#xA;                      endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="packageImportReferenceReferent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">

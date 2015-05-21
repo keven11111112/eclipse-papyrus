@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf.transaction.commit;
 
-import static org.eclipse.papyrus.uml.alf.transaction.ActivatorTransaction.logger;
+//import static org.eclipse.papyrus.uml.alf.transaction.ActivatorTransaction.logger;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -95,6 +95,6 @@ public class SaveScenario extends ChangeScenario {
 	 * This method is automatically called after the job scheduled by this scenario terminates.
 	 */
 	public void after() {
-		logger.info("Save Job Done");
+		//logger.info("Save Job Done");
 	}
 }
