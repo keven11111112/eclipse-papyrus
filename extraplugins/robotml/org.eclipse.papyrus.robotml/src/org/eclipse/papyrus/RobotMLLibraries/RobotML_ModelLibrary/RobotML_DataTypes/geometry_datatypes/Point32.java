@@ -31,12 +31,12 @@ public interface Point32 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>X</em>' attribute.
-	 * @see #setX(float)
+	 * @see #setX(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getPoint32_X()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getX();
+	Object getX();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Point32#getX <em>X</em>}' attribute.
@@ -46,7 +46,7 @@ public interface Point32 extends EObject {
 	 * @see #getX()
 	 * @generated
 	 */
-	void setX(float value);
+	void setX(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Y</b></em>' attribute.
@@ -56,12 +56,12 @@ public interface Point32 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Y</em>' attribute.
-	 * @see #setY(float)
+	 * @see #setY(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getPoint32_Y()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getY();
+	Object getY();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Point32#getY <em>Y</em>}' attribute.
@@ -71,7 +71,7 @@ public interface Point32 extends EObject {
 	 * @see #getY()
 	 * @generated
 	 */
-	void setY(float value);
+	void setY(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Z</b></em>' attribute.
@@ -81,12 +81,12 @@ public interface Point32 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Z</em>' attribute.
-	 * @see #setZ(float)
+	 * @see #setZ(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getPoint32_Z()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getZ();
+	Object getZ();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Point32#getZ <em>Z</em>}' attribute.
@@ -96,6 +96,6 @@ public interface Point32 extends EObject {
 	 * @see #getZ()
 	 * @generated
 	 */
-	void setZ(float value);
+	void setZ(Object value);
 
 } // Point32

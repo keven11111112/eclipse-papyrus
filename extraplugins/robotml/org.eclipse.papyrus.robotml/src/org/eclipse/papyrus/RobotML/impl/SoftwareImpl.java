@@ -15,7 +15,7 @@ import org.eclipse.papyrus.RobotML.Software;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.RobotML.impl.SoftwareImpl#isIsPeriodic <em>Is Periodic</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.SoftwareImpl#isPeriodic <em>Is Periodic</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.SoftwareImpl#getPeriod <em>Period</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.SoftwareImpl#getPriority <em>Priority</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.SoftwareImpl#getDeadline <em>Deadline</em>}</li>
@@ -27,20 +27,20 @@ import org.eclipse.papyrus.RobotML.Software;
  */
 public class SoftwareImpl extends SystemImpl implements Software {
 	/**
-	 * The default value of the '{@link #isIsPeriodic() <em>Is Periodic</em>}' attribute.
+	 * The default value of the '{@link #isPeriodic() <em>Is Periodic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsPeriodic()
+	 * @see #isPeriodic()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_PERIODIC_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsPeriodic() <em>Is Periodic</em>}' attribute.
+	 * The cached value of the '{@link #isPeriodic() <em>Is Periodic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsPeriodic()
+	 * @see #isPeriodic()
 	 * @generated
 	 * @ordered
 	 */
@@ -54,7 +54,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float PERIOD_EDEFAULT = 0.0F;
+	protected static final Object PERIOD_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getPeriod() <em>Period</em>}' attribute.
@@ -64,7 +64,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * @generated
 	 * @ordered
 	 */
-	protected float period = PERIOD_EDEFAULT;
+	protected Object period = PERIOD_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -74,7 +74,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char PRIORITY_EDEFAULT = '\u0000';
+	protected static final Object PRIORITY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -84,7 +84,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * @generated
 	 * @ordered
 	 */
-	protected char priority = PRIORITY_EDEFAULT;
+	protected Object priority = PRIORITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDeadline() <em>Deadline</em>}' attribute.
@@ -94,7 +94,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float DEADLINE_EDEFAULT = 0.0F;
+	protected static final Object DEADLINE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getDeadline() <em>Deadline</em>}' attribute.
@@ -104,7 +104,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * @generated
 	 * @ordered
 	 */
-	protected float deadline = DEADLINE_EDEFAULT;
+	protected Object deadline = DEADLINE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWcet() <em>Wcet</em>}' attribute.
@@ -114,7 +114,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WCET_EDEFAULT = 0.0F;
+	protected static final Object WCET_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWcet() <em>Wcet</em>}' attribute.
@@ -124,7 +124,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * @generated
 	 * @ordered
 	 */
-	protected float wcet = WCET_EDEFAULT;
+	protected Object wcet = WCET_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,7 +150,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsPeriodic() {
+	public boolean isPeriodic() {
 		return isPeriodic;
 	}
 
@@ -171,7 +171,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getPeriod() {
+	public Object getPeriod() {
 		return period;
 	}
 
@@ -180,8 +180,8 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPeriod(float newPeriod) {
-		float oldPeriod = period;
+	public void setPeriod(Object newPeriod) {
+		Object oldPeriod = period;
 		period = newPeriod;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.SOFTWARE__PERIOD, oldPeriod, period));
@@ -192,7 +192,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getPriority() {
+	public Object getPriority() {
 		return priority;
 	}
 
@@ -201,8 +201,8 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPriority(char newPriority) {
-		char oldPriority = priority;
+	public void setPriority(Object newPriority) {
+		Object oldPriority = priority;
 		priority = newPriority;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.SOFTWARE__PRIORITY, oldPriority, priority));
@@ -213,7 +213,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getDeadline() {
+	public Object getDeadline() {
 		return deadline;
 	}
 
@@ -222,8 +222,8 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeadline(float newDeadline) {
-		float oldDeadline = deadline;
+	public void setDeadline(Object newDeadline) {
+		Object oldDeadline = deadline;
 		deadline = newDeadline;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.SOFTWARE__DEADLINE, oldDeadline, deadline));
@@ -234,7 +234,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWcet() {
+	public Object getWcet() {
 		return wcet;
 	}
 
@@ -243,8 +243,8 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWcet(float newWcet) {
-		float oldWcet = wcet;
+	public void setWcet(Object newWcet) {
+		Object oldWcet = wcet;
 		wcet = newWcet;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.SOFTWARE__WCET, oldWcet, wcet));
@@ -259,7 +259,7 @@ public class SoftwareImpl extends SystemImpl implements Software {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RobotMLPackage.SOFTWARE__IS_PERIODIC:
-				return isIsPeriodic();
+				return isPeriodic();
 			case RobotMLPackage.SOFTWARE__PERIOD:
 				return getPeriod();
 			case RobotMLPackage.SOFTWARE__PRIORITY:
@@ -284,16 +284,16 @@ public class SoftwareImpl extends SystemImpl implements Software {
 				setIsPeriodic((Boolean)newValue);
 				return;
 			case RobotMLPackage.SOFTWARE__PERIOD:
-				setPeriod((Float)newValue);
+				setPeriod((Object)newValue);
 				return;
 			case RobotMLPackage.SOFTWARE__PRIORITY:
-				setPriority((Character)newValue);
+				setPriority((Object)newValue);
 				return;
 			case RobotMLPackage.SOFTWARE__DEADLINE:
-				setDeadline((Float)newValue);
+				setDeadline((Object)newValue);
 				return;
 			case RobotMLPackage.SOFTWARE__WCET:
-				setWcet((Float)newValue);
+				setWcet((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -337,13 +337,13 @@ public class SoftwareImpl extends SystemImpl implements Software {
 			case RobotMLPackage.SOFTWARE__IS_PERIODIC:
 				return isPeriodic != IS_PERIODIC_EDEFAULT;
 			case RobotMLPackage.SOFTWARE__PERIOD:
-				return period != PERIOD_EDEFAULT;
+				return PERIOD_EDEFAULT == null ? period != null : !PERIOD_EDEFAULT.equals(period);
 			case RobotMLPackage.SOFTWARE__PRIORITY:
-				return priority != PRIORITY_EDEFAULT;
+				return PRIORITY_EDEFAULT == null ? priority != null : !PRIORITY_EDEFAULT.equals(priority);
 			case RobotMLPackage.SOFTWARE__DEADLINE:
-				return deadline != DEADLINE_EDEFAULT;
+				return DEADLINE_EDEFAULT == null ? deadline != null : !DEADLINE_EDEFAULT.equals(deadline);
 			case RobotMLPackage.SOFTWARE__WCET:
-				return wcet != WCET_EDEFAULT;
+				return WCET_EDEFAULT == null ? wcet != null : !WCET_EDEFAULT.equals(wcet);
 		}
 		return super.eIsSet(featureID);
 	}

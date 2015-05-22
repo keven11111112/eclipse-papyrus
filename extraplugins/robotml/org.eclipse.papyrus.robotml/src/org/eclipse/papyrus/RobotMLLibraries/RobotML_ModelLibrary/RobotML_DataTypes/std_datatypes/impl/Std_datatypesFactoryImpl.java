@@ -2,30 +2,13 @@
  */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl;
 
-import java.util.Date;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.ByteMultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.ColorRGBA;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Header;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int16MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int32MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int64MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int8MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.MultiArrayDimension;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.MultiArrayLayout;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesFactory;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UIint16MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt64MultiArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8MultiArray;
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -83,7 +66,7 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 			case Std_datatypesPackage.INT64_MULTI_ARRAY: return createInt64MultiArray();
 			case Std_datatypesPackage.FLOAT64_MULTI_ARRAY: return createFloat64MultiArray();
 			case Std_datatypesPackage.UINT64_MULTI_ARRAY: return createUInt64MultiArray();
-			case Std_datatypesPackage.UIINT16_MULTI_ARRAY: return createUIint16MultiArray();
+			case Std_datatypesPackage.UINT16_MULTI_ARRAY: return createUInt16MultiArray();
 			case Std_datatypesPackage.UINT32_MULTI_ARRAY: return createUInt32MultiArray();
 			case Std_datatypesPackage.UINT8_MULTI_ARRAY: return createUInt8MultiArray();
 			default:
@@ -306,9 +289,9 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UIint16MultiArray createUIint16MultiArray() {
-		UIint16MultiArrayImpl uIint16MultiArray = new UIint16MultiArrayImpl();
-		return uIint16MultiArray;
+	public UInt16MultiArray createUInt16MultiArray() {
+		UInt16MultiArrayImpl uInt16MultiArray = new UInt16MultiArrayImpl();
+		return uInt16MultiArray;
 	}
 
 	/**
@@ -336,8 +319,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Long createUInt32FromString(EDataType eDataType, String initialValue) {
-		return (Long)super.createFromString(eDataType, initialValue);
+	public Object createUInt32FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -354,8 +337,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date createTimeFromString(EDataType eDataType, String initialValue) {
-		return (Date)super.createFromString(eDataType, initialValue);
+	public Object createTimeFromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -372,8 +355,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String createStringFromString(EDataType eDataType, String initialValue) {
-		return (String)super.createFromString(eDataType, initialValue);
+	public Object createStringFromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -390,8 +373,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Byte createByteFromString(EDataType eDataType, String initialValue) {
-		return (Byte)super.createFromString(eDataType, initialValue);
+	public Object createByteFromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -408,8 +391,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Double createFloat64FromString(EDataType eDataType, String initialValue) {
-		return (Double)super.createFromString(eDataType, initialValue);
+	public Object createFloat64FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -426,8 +409,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Character createInt8FromString(EDataType eDataType, String initialValue) {
-		return (Character)super.createFromString(eDataType, initialValue);
+	public Object createInt8FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -444,8 +427,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Boolean createBoolFromString(EDataType eDataType, String initialValue) {
-		return (Boolean)super.createFromString(eDataType, initialValue);
+	public Object createBoolFromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -462,8 +445,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Character createUInt8FromString(EDataType eDataType, String initialValue) {
-		return (Character)super.createFromString(eDataType, initialValue);
+	public Object createUInt8FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -480,8 +463,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer createUInt16FromString(EDataType eDataType, String initialValue) {
-		return (Integer)super.createFromString(eDataType, initialValue);
+	public Object createUInt16FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -498,8 +481,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer createInt32FromString(EDataType eDataType, String initialValue) {
-		return (Integer)super.createFromString(eDataType, initialValue);
+	public Object createInt32FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -516,8 +499,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer createInt16FromString(EDataType eDataType, String initialValue) {
-		return (Integer)super.createFromString(eDataType, initialValue);
+	public Object createInt16FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -534,8 +517,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Character createCharFromString(EDataType eDataType, String initialValue) {
-		return (Character)super.createFromString(eDataType, initialValue);
+	public Object createCharFromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -552,8 +535,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Double createDurationFromString(EDataType eDataType, String initialValue) {
-		return (Double)super.createFromString(eDataType, initialValue);
+	public Object createDurationFromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -570,8 +553,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Double createInt64FromString(EDataType eDataType, String initialValue) {
-		return (Double)super.createFromString(eDataType, initialValue);
+	public Object createInt64FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -588,8 +571,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Long createUInt64FromString(EDataType eDataType, String initialValue) {
-		return (Long)super.createFromString(eDataType, initialValue);
+	public Object createUInt64FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -606,8 +589,8 @@ public class Std_datatypesFactoryImpl extends EFactoryImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Float createFloat32FromString(EDataType eDataType, String initialValue) {
-		return (Float)super.createFromString(eDataType, initialValue);
+	public Object createFloat32FromString(EDataType eDataType, String initialValue) {
+		return (Object)super.createFromString(eDataType, initialValue);
 	}
 
 	/**

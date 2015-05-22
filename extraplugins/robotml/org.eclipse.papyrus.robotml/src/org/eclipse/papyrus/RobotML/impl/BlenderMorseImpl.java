@@ -74,7 +74,7 @@ public class BlenderMorseImpl extends RoboticSimulatorImpl implements BlenderMor
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float GRAVITY_EDEFAULT = 0.0F;
+	protected static final Object GRAVITY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getGravity() <em>Gravity</em>}' attribute.
@@ -84,7 +84,7 @@ public class BlenderMorseImpl extends RoboticSimulatorImpl implements BlenderMor
 	 * @generated
 	 * @ordered
 	 */
-	protected float gravity = GRAVITY_EDEFAULT;
+	protected Object gravity = GRAVITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #get_viewport_shade() <em>viewport shade</em>}' attribute.
@@ -172,7 +172,7 @@ public class BlenderMorseImpl extends RoboticSimulatorImpl implements BlenderMor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getGravity() {
+	public Object getGravity() {
 		return gravity;
 	}
 
@@ -181,8 +181,8 @@ public class BlenderMorseImpl extends RoboticSimulatorImpl implements BlenderMor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGravity(float newGravity) {
-		float oldGravity = gravity;
+	public void setGravity(Object newGravity) {
+		Object oldGravity = gravity;
 		gravity = newGravity;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.BLENDER_MORSE__GRAVITY, oldGravity, gravity));
@@ -244,7 +244,7 @@ public class BlenderMorseImpl extends RoboticSimulatorImpl implements BlenderMor
 				setDebugDisplay((Boolean)newValue);
 				return;
 			case RobotMLPackage.BLENDER_MORSE__GRAVITY:
-				setGravity((Float)newValue);
+				setGravity((Object)newValue);
 				return;
 			case RobotMLPackage.BLENDER_MORSE__VIEWPORT_SHADE:
 				set_viewport_shade((Shade)newValue);
@@ -290,7 +290,7 @@ public class BlenderMorseImpl extends RoboticSimulatorImpl implements BlenderMor
 			case RobotMLPackage.BLENDER_MORSE__DEBUG_DISPLAY:
 				return debugDisplay != DEBUG_DISPLAY_EDEFAULT;
 			case RobotMLPackage.BLENDER_MORSE__GRAVITY:
-				return gravity != GRAVITY_EDEFAULT;
+				return GRAVITY_EDEFAULT == null ? gravity != null : !GRAVITY_EDEFAULT.equals(gravity);
 			case RobotMLPackage.BLENDER_MORSE__VIEWPORT_SHADE:
 				return _viewport_shade != _VIEWPORT_SHADE_EDEFAULT;
 		}

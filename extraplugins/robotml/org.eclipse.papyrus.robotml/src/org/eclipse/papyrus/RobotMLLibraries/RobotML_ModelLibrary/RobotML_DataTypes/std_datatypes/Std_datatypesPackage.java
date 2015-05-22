@@ -646,14 +646,14 @@ public interface Std_datatypesPackage extends EPackage {
 	int UINT64_MULTI_ARRAY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UIint16MultiArrayImpl <em>UIint16 Multi Array</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UInt16MultiArrayImpl <em>UInt16 Multi Array</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UIint16MultiArrayImpl
-	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUIint16MultiArray()
+	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UInt16MultiArrayImpl
+	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt16MultiArray()
 	 * @generated
 	 */
-	int UIINT16_MULTI_ARRAY = 12;
+	int UINT16_MULTI_ARRAY = 12;
 
 	/**
 	 * The feature id for the '<em><b>Layout</b></em>' containment reference.
@@ -662,7 +662,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UIINT16_MULTI_ARRAY__LAYOUT = 0;
+	int UINT16_MULTI_ARRAY__LAYOUT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute list.
@@ -671,25 +671,25 @@ public interface Std_datatypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UIINT16_MULTI_ARRAY__DATA = 1;
+	int UINT16_MULTI_ARRAY__DATA = 1;
 
 	/**
-	 * The number of structural features of the '<em>UIint16 Multi Array</em>' class.
+	 * The number of structural features of the '<em>UInt16 Multi Array</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UIINT16_MULTI_ARRAY_FEATURE_COUNT = 2;
+	int UINT16_MULTI_ARRAY_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>UIint16 Multi Array</em>' class.
+	 * The number of operations of the '<em>UInt16 Multi Array</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UIINT16_MULTI_ARRAY_OPERATION_COUNT = 0;
+	int UINT16_MULTI_ARRAY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UInt32MultiArrayImpl <em>UInt32 Multi Array</em>}' class.
@@ -787,6 +787,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>UInt32</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see UInt32
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt32()
 	 * @generated
 	 */
@@ -796,7 +797,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Time</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see java.util.Date
+	 * @see Time
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getTime()
 	 * @generated
 	 */
@@ -806,7 +807,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>String</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see java.lang.String
+	 * @see String
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getString()
 	 * @generated
 	 */
@@ -816,6 +817,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Byte</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Byte
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getByte()
 	 * @generated
 	 */
@@ -825,6 +827,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Float64</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Float64
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getFloat64()
 	 * @generated
 	 */
@@ -834,6 +837,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Int8</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Int8
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getInt8()
 	 * @generated
 	 */
@@ -843,6 +847,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Bool</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Bool
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getBool()
 	 * @generated
 	 */
@@ -852,6 +857,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>UInt8</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see UInt8
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt8()
 	 * @generated
 	 */
@@ -861,6 +867,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>UInt16</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see UInt16
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt16()
 	 * @generated
 	 */
@@ -870,6 +877,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Int32</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Int32
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getInt32()
 	 * @generated
 	 */
@@ -879,6 +887,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Int16</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Int16
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getInt16()
 	 * @generated
 	 */
@@ -888,6 +897,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Char</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Char
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getChar()
 	 * @generated
 	 */
@@ -897,6 +907,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Duration</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Duration
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getDuration()
 	 * @generated
 	 */
@@ -906,6 +917,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Int64</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Int64
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getInt64()
 	 * @generated
 	 */
@@ -915,6 +927,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>UInt64</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see UInt64
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt64()
 	 * @generated
 	 */
@@ -924,6 +937,7 @@ public interface Std_datatypesPackage extends EPackage {
 	 * The meta object id for the '<em>Float32</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Float32
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getFloat32()
 	 * @generated
 	 */
@@ -1359,36 +1373,36 @@ public interface Std_datatypesPackage extends EPackage {
 	EAttribute getUInt64MultiArray_Data();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UIint16MultiArray <em>UIint16 Multi Array</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16MultiArray <em>UInt16 Multi Array</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>UIint16 Multi Array</em>'.
-	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UIint16MultiArray
+	 * @return the meta object for class '<em>UInt16 Multi Array</em>'.
+	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16MultiArray
 	 * @generated
 	 */
-	EClass getUIint16MultiArray();
+	EClass getUInt16MultiArray();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UIint16MultiArray#getLayout <em>Layout</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16MultiArray#getLayout <em>Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Layout</em>'.
-	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UIint16MultiArray#getLayout()
-	 * @see #getUIint16MultiArray()
+	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16MultiArray#getLayout()
+	 * @see #getUInt16MultiArray()
 	 * @generated
 	 */
-	EReference getUIint16MultiArray_Layout();
+	EReference getUInt16MultiArray_Layout();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UIint16MultiArray#getData <em>Data</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16MultiArray#getData <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Data</em>'.
-	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UIint16MultiArray#getData()
-	 * @see #getUIint16MultiArray()
+	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16MultiArray#getData()
+	 * @see #getUInt16MultiArray()
 	 * @generated
 	 */
-	EAttribute getUIint16MultiArray_Data();
+	EAttribute getUInt16MultiArray_Data();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32MultiArray <em>UInt32 Multi Array</em>}'.
@@ -1455,163 +1469,177 @@ public interface Std_datatypesPackage extends EPackage {
 	EAttribute getUInt8MultiArray_Data();
 
 	/**
-	 * Returns the meta object for data type '<em>UInt32</em>'.
+	 * Returns the meta object for data type '{@link UInt32 <em>UInt32</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>UInt32</em>'.
-	 * @model instanceClass="long"
+	 * @see UInt32
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getUInt32();
 
 	/**
-	 * Returns the meta object for data type '{@link java.util.Date <em>Time</em>}'.
+	 * Returns the meta object for data type '{@link Time <em>Time</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Time</em>'.
-	 * @see java.util.Date
-	 * @model instanceClass="java.util.Date"
+	 * @see Time
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getTime();
 
 	/**
-	 * Returns the meta object for data type '{@link java.lang.String <em>String</em>}'.
+	 * Returns the meta object for data type '{@link String <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>String</em>'.
-	 * @see java.lang.String
-	 * @model instanceClass="java.lang.String"
+	 * @see String
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getString();
 
 	/**
-	 * Returns the meta object for data type '<em>Byte</em>'.
+	 * Returns the meta object for data type '{@link Byte <em>Byte</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Byte</em>'.
-	 * @model instanceClass="byte"
+	 * @see Byte
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getByte();
 
 	/**
-	 * Returns the meta object for data type '<em>Float64</em>'.
+	 * Returns the meta object for data type '{@link Float64 <em>Float64</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Float64</em>'.
-	 * @model instanceClass="double"
+	 * @see Float64
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getFloat64();
 
 	/**
-	 * Returns the meta object for data type '<em>Int8</em>'.
+	 * Returns the meta object for data type '{@link Int8 <em>Int8</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Int8</em>'.
-	 * @model instanceClass="char"
+	 * @see Int8
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getInt8();
 
 	/**
-	 * Returns the meta object for data type '<em>Bool</em>'.
+	 * Returns the meta object for data type '{@link Bool <em>Bool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Bool</em>'.
-	 * @model instanceClass="boolean"
+	 * @see Bool
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getBool();
 
 	/**
-	 * Returns the meta object for data type '<em>UInt8</em>'.
+	 * Returns the meta object for data type '{@link UInt8 <em>UInt8</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>UInt8</em>'.
-	 * @model instanceClass="char"
+	 * @see UInt8
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getUInt8();
 
 	/**
-	 * Returns the meta object for data type '<em>UInt16</em>'.
+	 * Returns the meta object for data type '{@link UInt16 <em>UInt16</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>UInt16</em>'.
-	 * @model instanceClass="int"
+	 * @see UInt16
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getUInt16();
 
 	/**
-	 * Returns the meta object for data type '<em>Int32</em>'.
+	 * Returns the meta object for data type '{@link Int32 <em>Int32</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Int32</em>'.
-	 * @model instanceClass="int"
+	 * @see Int32
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getInt32();
 
 	/**
-	 * Returns the meta object for data type '<em>Int16</em>'.
+	 * Returns the meta object for data type '{@link Int16 <em>Int16</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Int16</em>'.
-	 * @model instanceClass="int"
+	 * @see Int16
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getInt16();
 
 	/**
-	 * Returns the meta object for data type '<em>Char</em>'.
+	 * Returns the meta object for data type '{@link Char <em>Char</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Char</em>'.
-	 * @model instanceClass="char"
+	 * @see Char
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getChar();
 
 	/**
-	 * Returns the meta object for data type '<em>Duration</em>'.
+	 * Returns the meta object for data type '{@link Duration <em>Duration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Duration</em>'.
-	 * @model instanceClass="double"
+	 * @see Duration
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getDuration();
 
 	/**
-	 * Returns the meta object for data type '<em>Int64</em>'.
+	 * Returns the meta object for data type '{@link Int64 <em>Int64</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Int64</em>'.
-	 * @model instanceClass="double"
+	 * @see Int64
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getInt64();
 
 	/**
-	 * Returns the meta object for data type '<em>UInt64</em>'.
+	 * Returns the meta object for data type '{@link UInt64 <em>UInt64</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>UInt64</em>'.
-	 * @model instanceClass="long"
+	 * @see UInt64
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getUInt64();
 
 	/**
-	 * Returns the meta object for data type '<em>Float32</em>'.
+	 * Returns the meta object for data type '{@link Float32 <em>Float32</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Float32</em>'.
-	 * @model instanceClass="float"
+	 * @see Float32
+	 * @model instanceClass="java.lang.Object"
 	 * @generated
 	 */
 	EDataType getFloat32();
@@ -1984,14 +2012,14 @@ public interface Std_datatypesPackage extends EPackage {
 		EAttribute UINT64_MULTI_ARRAY__DATA = eINSTANCE.getUInt64MultiArray_Data();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UIint16MultiArrayImpl <em>UIint16 Multi Array</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UInt16MultiArrayImpl <em>UInt16 Multi Array</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UIint16MultiArrayImpl
-		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUIint16MultiArray()
+		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UInt16MultiArrayImpl
+		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt16MultiArray()
 		 * @generated
 		 */
-		EClass UIINT16_MULTI_ARRAY = eINSTANCE.getUIint16MultiArray();
+		EClass UINT16_MULTI_ARRAY = eINSTANCE.getUInt16MultiArray();
 
 		/**
 		 * The meta object literal for the '<em><b>Layout</b></em>' containment reference feature.
@@ -1999,7 +2027,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference UIINT16_MULTI_ARRAY__LAYOUT = eINSTANCE.getUIint16MultiArray_Layout();
+		EReference UINT16_MULTI_ARRAY__LAYOUT = eINSTANCE.getUInt16MultiArray_Layout();
 
 		/**
 		 * The meta object literal for the '<em><b>Data</b></em>' attribute list feature.
@@ -2007,7 +2035,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute UIINT16_MULTI_ARRAY__DATA = eINSTANCE.getUIint16MultiArray_Data();
+		EAttribute UINT16_MULTI_ARRAY__DATA = eINSTANCE.getUInt16MultiArray_Data();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.UInt32MultiArrayImpl <em>UInt32 Multi Array</em>}' class.
@@ -2065,6 +2093,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>UInt32</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see UInt32
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt32()
 		 * @generated
 		 */
@@ -2074,7 +2103,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Time</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see java.util.Date
+		 * @see Time
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getTime()
 		 * @generated
 		 */
@@ -2084,7 +2113,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>String</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see java.lang.String
+		 * @see String
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getString()
 		 * @generated
 		 */
@@ -2094,6 +2123,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Byte</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Byte
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getByte()
 		 * @generated
 		 */
@@ -2103,6 +2133,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Float64</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Float64
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getFloat64()
 		 * @generated
 		 */
@@ -2112,6 +2143,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Int8</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Int8
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getInt8()
 		 * @generated
 		 */
@@ -2121,6 +2153,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Bool</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Bool
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getBool()
 		 * @generated
 		 */
@@ -2130,6 +2163,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>UInt8</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see UInt8
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt8()
 		 * @generated
 		 */
@@ -2139,6 +2173,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>UInt16</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see UInt16
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt16()
 		 * @generated
 		 */
@@ -2148,6 +2183,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Int32</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Int32
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getInt32()
 		 * @generated
 		 */
@@ -2157,6 +2193,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Int16</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Int16
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getInt16()
 		 * @generated
 		 */
@@ -2166,6 +2203,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Char</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Char
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getChar()
 		 * @generated
 		 */
@@ -2175,6 +2213,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Duration</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Duration
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getDuration()
 		 * @generated
 		 */
@@ -2184,6 +2223,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Int64</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Int64
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getInt64()
 		 * @generated
 		 */
@@ -2193,6 +2233,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>UInt64</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see UInt64
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getUInt64()
 		 * @generated
 		 */
@@ -2202,6 +2243,7 @@ public interface Std_datatypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Float32</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Float32
 		 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl#getFloat32()
 		 * @generated
 		 */

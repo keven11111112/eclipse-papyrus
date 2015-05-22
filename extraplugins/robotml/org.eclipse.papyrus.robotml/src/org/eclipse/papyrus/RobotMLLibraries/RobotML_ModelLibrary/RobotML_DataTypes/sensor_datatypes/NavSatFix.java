@@ -119,12 +119,12 @@ public interface NavSatFix extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Latitude</em>' attribute.
-	 * @see #setLatitude(double)
+	 * @see #setLatitude(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getNavSatFix_Latitude()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getLatitude();
+	Object getLatitude();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.NavSatFix#getLatitude <em>Latitude</em>}' attribute.
@@ -134,7 +134,7 @@ public interface NavSatFix extends EObject {
 	 * @see #getLatitude()
 	 * @generated
 	 */
-	void setLatitude(double value);
+	void setLatitude(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Longitude</b></em>' attribute.
@@ -144,12 +144,12 @@ public interface NavSatFix extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitude</em>' attribute.
-	 * @see #setLongitude(double)
+	 * @see #setLongitude(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getNavSatFix_Longitude()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getLongitude();
+	Object getLongitude();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.NavSatFix#getLongitude <em>Longitude</em>}' attribute.
@@ -159,7 +159,7 @@ public interface NavSatFix extends EObject {
 	 * @see #getLongitude()
 	 * @generated
 	 */
-	void setLongitude(double value);
+	void setLongitude(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Altitude</b></em>' attribute.
@@ -169,12 +169,12 @@ public interface NavSatFix extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Altitude</em>' attribute.
-	 * @see #setAltitude(double)
+	 * @see #setAltitude(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getNavSatFix_Altitude()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getAltitude();
+	Object getAltitude();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.NavSatFix#getAltitude <em>Altitude</em>}' attribute.
@@ -184,11 +184,11 @@ public interface NavSatFix extends EObject {
 	 * @see #getAltitude()
 	 * @generated
 	 */
-	void setAltitude(double value);
+	void setAltitude(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Position covariance</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Position covariance</em>' attribute list isn't clear, there really should be more of a description here...
@@ -199,7 +199,7 @@ public interface NavSatFix extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" lower="9" upper="9" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getPosition_covariance();
+	EList<Object> getPosition_covariance();
 
 	/**
 	 * Returns the value of the '<em><b>Position covariance type</b></em>' attribute.

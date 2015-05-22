@@ -50,7 +50,7 @@ public class MultiArrayLayoutImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long DATA_OFFSET_EDEFAULT = 0L;
+	protected static final Object DATA_OFFSET_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getData_offset() <em>Data offset</em>}' attribute.
@@ -60,7 +60,7 @@ public class MultiArrayLayoutImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected long data_offset = DATA_OFFSET_EDEFAULT;
+	protected Object data_offset = DATA_OFFSET_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,7 +98,7 @@ public class MultiArrayLayoutImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getData_offset() {
+	public Object getData_offset() {
 		return data_offset;
 	}
 
@@ -107,8 +107,8 @@ public class MultiArrayLayoutImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setData_offset(long newData_offset) {
-		long oldData_offset = data_offset;
+	public void setData_offset(Object newData_offset) {
+		Object oldData_offset = data_offset;
 		data_offset = newData_offset;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Std_datatypesPackage.MULTI_ARRAY_LAYOUT__DATA_OFFSET, oldData_offset, data_offset));
@@ -158,7 +158,7 @@ public class MultiArrayLayoutImpl extends MinimalEObjectImpl.Container implement
 				getDim().addAll((Collection<? extends MultiArrayDimension>)newValue);
 				return;
 			case Std_datatypesPackage.MULTI_ARRAY_LAYOUT__DATA_OFFSET:
-				setData_offset((Long)newValue);
+				setData_offset((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -193,7 +193,7 @@ public class MultiArrayLayoutImpl extends MinimalEObjectImpl.Container implement
 			case Std_datatypesPackage.MULTI_ARRAY_LAYOUT__DIM:
 				return dim != null && !dim.isEmpty();
 			case Std_datatypesPackage.MULTI_ARRAY_LAYOUT__DATA_OFFSET:
-				return data_offset != DATA_OFFSET_EDEFAULT;
+				return DATA_OFFSET_EDEFAULT == null ? data_offset != null : !DATA_OFFSET_EDEFAULT.equals(data_offset);
 		}
 		return super.eIsSet(featureID);
 	}

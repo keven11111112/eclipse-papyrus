@@ -59,12 +59,12 @@ public interface DifferentialOdometry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right distance</em>' attribute.
-	 * @see #setRight_distance(double)
+	 * @see #setRight_distance(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getDifferentialOdometry_Right_distance()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getRight_distance();
+	Object getRight_distance();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.DifferentialOdometry#getRight_distance <em>Right distance</em>}' attribute.
@@ -74,7 +74,7 @@ public interface DifferentialOdometry extends EObject {
 	 * @see #getRight_distance()
 	 * @generated
 	 */
-	void setRight_distance(double value);
+	void setRight_distance(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Left distance</b></em>' attribute.
@@ -84,12 +84,12 @@ public interface DifferentialOdometry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left distance</em>' attribute.
-	 * @see #setLeft_distance(double)
+	 * @see #setLeft_distance(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getDifferentialOdometry_Left_distance()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getLeft_distance();
+	Object getLeft_distance();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.DifferentialOdometry#getLeft_distance <em>Left distance</em>}' attribute.
@@ -99,7 +99,7 @@ public interface DifferentialOdometry extends EObject {
 	 * @see #getLeft_distance()
 	 * @generated
 	 */
-	void setLeft_distance(double value);
+	void setLeft_distance(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Left velocity</b></em>' attribute.
@@ -109,12 +109,12 @@ public interface DifferentialOdometry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left velocity</em>' attribute.
-	 * @see #setLeft_velocity(double)
+	 * @see #setLeft_velocity(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getDifferentialOdometry_Left_velocity()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getLeft_velocity();
+	Object getLeft_velocity();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.DifferentialOdometry#getLeft_velocity <em>Left velocity</em>}' attribute.
@@ -124,7 +124,7 @@ public interface DifferentialOdometry extends EObject {
 	 * @see #getLeft_velocity()
 	 * @generated
 	 */
-	void setLeft_velocity(double value);
+	void setLeft_velocity(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Right velocity</b></em>' attribute.
@@ -134,12 +134,12 @@ public interface DifferentialOdometry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right velocity</em>' attribute.
-	 * @see #setRight_velocity(double)
+	 * @see #setRight_velocity(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getDifferentialOdometry_Right_velocity()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getRight_velocity();
+	Object getRight_velocity();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.DifferentialOdometry#getRight_velocity <em>Right velocity</em>}' attribute.
@@ -149,6 +149,6 @@ public interface DifferentialOdometry extends EObject {
 	 * @see #getRight_velocity()
 	 * @generated
 	 */
-	void setRight_velocity(double value);
+	void setRight_velocity(Object value);
 
 } // DifferentialOdometry

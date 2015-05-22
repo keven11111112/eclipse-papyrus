@@ -49,7 +49,7 @@ public class Float32MultiArrayImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Float> data;
+	protected EList<Object> data;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,9 +118,9 @@ public class Float32MultiArrayImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Float> getData() {
+	public EList<Object> getData() {
 		if (data == null) {
-			data = new EDataTypeUniqueEList<Float>(Float.class, this, Std_datatypesPackage.FLOAT32_MULTI_ARRAY__DATA);
+			data = new EDataTypeUniqueEList<Object>(Object.class, this, Std_datatypesPackage.FLOAT32_MULTI_ARRAY__DATA);
 		}
 		return data;
 	}
@@ -169,7 +169,7 @@ public class Float32MultiArrayImpl extends MinimalEObjectImpl.Container implemen
 				return;
 			case Std_datatypesPackage.FLOAT32_MULTI_ARRAY__DATA:
 				getData().clear();
-				getData().addAll((Collection<? extends Float>)newValue);
+				getData().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

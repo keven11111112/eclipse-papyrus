@@ -2,8 +2,6 @@
  */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes;
 
-import java.util.Date;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -33,12 +31,12 @@ public interface Header extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Seq</em>' attribute.
-	 * @see #setSeq(long)
+	 * @see #setSeq(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage#getHeader_Seq()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getSeq();
+	Object getSeq();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Header#getSeq <em>Seq</em>}' attribute.
@@ -48,7 +46,7 @@ public interface Header extends EObject {
 	 * @see #getSeq()
 	 * @generated
 	 */
-	void setSeq(long value);
+	void setSeq(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Stamp</b></em>' attribute.
@@ -58,12 +56,12 @@ public interface Header extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stamp</em>' attribute.
-	 * @see #setStamp(Date)
+	 * @see #setStamp(Time)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage#getHeader_Stamp()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Time" required="true" ordered="false"
 	 * @generated
 	 */
-	Date getStamp();
+	Object getStamp();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Header#getStamp <em>Stamp</em>}' attribute.
@@ -73,7 +71,7 @@ public interface Header extends EObject {
 	 * @see #getStamp()
 	 * @generated
 	 */
-	void setStamp(Date value);
+	void setStamp(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Frame id</b></em>' attribute.
@@ -88,7 +86,7 @@ public interface Header extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" required="true" ordered="false"
 	 * @generated
 	 */
-	String getFrame_id();
+	Object getFrame_id();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Header#getFrame_id <em>Frame id</em>}' attribute.
@@ -98,6 +96,6 @@ public interface Header extends EObject {
 	 * @see #getFrame_id()
 	 * @generated
 	 */
-	void setFrame_id(String value);
+	void setFrame_id(Object value);
 
 } // Header

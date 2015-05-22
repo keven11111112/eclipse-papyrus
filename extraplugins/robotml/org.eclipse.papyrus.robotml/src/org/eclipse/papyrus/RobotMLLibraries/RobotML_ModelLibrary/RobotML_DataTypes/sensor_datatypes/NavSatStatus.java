@@ -43,7 +43,7 @@ public interface NavSatStatus extends EObject {
 	 * @model default="-1" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int8" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
-	char getSTATUS_NO_FIX();
+	Object getSTATUS_NO_FIX();
 
 	/**
 	 * Returns the value of the '<em><b>STATUS FIX</b></em>' attribute.
@@ -58,7 +58,7 @@ public interface NavSatStatus extends EObject {
 	 * @model default="0" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int8" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
-	char getSTATUS_FIX();
+	Object getSTATUS_FIX();
 
 	/**
 	 * Returns the value of the '<em><b>STATUS SBAS FIX</b></em>' attribute.
@@ -73,7 +73,7 @@ public interface NavSatStatus extends EObject {
 	 * @model default="1" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int8" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
-	char getSTATUS_SBAS_FIX();
+	Object getSTATUS_SBAS_FIX();
 
 	/**
 	 * Returns the value of the '<em><b>STATUS GBAS FIX</b></em>' attribute.
@@ -88,7 +88,7 @@ public interface NavSatStatus extends EObject {
 	 * @model default="2" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int8" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
-	char getSTATUS_GBAS_FIX();
+	Object getSTATUS_GBAS_FIX();
 
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.
@@ -98,12 +98,12 @@ public interface NavSatStatus extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Status</em>' attribute.
-	 * @see #setStatus(char)
+	 * @see #setStatus(Int8)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getNavSatStatus_Status()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int8" required="true" ordered="false"
 	 * @generated
 	 */
-	char getStatus();
+	Object getStatus();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.NavSatStatus#getStatus <em>Status</em>}' attribute.
@@ -113,7 +113,7 @@ public interface NavSatStatus extends EObject {
 	 * @see #getStatus()
 	 * @generated
 	 */
-	void setStatus(char value);
+	void setStatus(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>SERVICE GPS</b></em>' attribute.
@@ -128,7 +128,7 @@ public interface NavSatStatus extends EObject {
 	 * @model default="1" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
-	int getSERVICE_GPS();
+	Object getSERVICE_GPS();
 
 	/**
 	 * Returns the value of the '<em><b>SERVICE GLONASS</b></em>' attribute.
@@ -143,7 +143,7 @@ public interface NavSatStatus extends EObject {
 	 * @model default="2" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
-	int getSERVICE_GLONASS();
+	Object getSERVICE_GLONASS();
 
 	/**
 	 * Returns the value of the '<em><b>SERVICE COMPASS</b></em>' attribute.
@@ -158,7 +158,7 @@ public interface NavSatStatus extends EObject {
 	 * @model default="4" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
-	int getSERVICE_COMPASS();
+	Object getSERVICE_COMPASS();
 
 	/**
 	 * Returns the value of the '<em><b>SERVICE GALILEO</b></em>' attribute.
@@ -173,7 +173,7 @@ public interface NavSatStatus extends EObject {
 	 * @model default="8" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
-	int getSERVICE_GALILEO();
+	Object getSERVICE_GALILEO();
 
 	/**
 	 * Returns the value of the '<em><b>Service</b></em>' attribute.
@@ -183,12 +183,12 @@ public interface NavSatStatus extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Service</em>' attribute.
-	 * @see #setService(int)
+	 * @see #setService(UInt16)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getNavSatStatus_Service()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16" required="true" ordered="false"
 	 * @generated
 	 */
-	int getService();
+	Object getService();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.NavSatStatus#getService <em>Service</em>}' attribute.
@@ -198,6 +198,6 @@ public interface NavSatStatus extends EObject {
 	 * @see #getService()
 	 * @generated
 	 */
-	void setService(int value);
+	void setService(Object value);
 
 } // NavSatStatus

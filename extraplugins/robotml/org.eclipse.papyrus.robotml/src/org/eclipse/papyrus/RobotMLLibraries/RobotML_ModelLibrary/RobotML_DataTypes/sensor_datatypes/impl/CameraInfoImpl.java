@@ -59,7 +59,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long HEIGHT_EDEFAULT = 0L;
+	protected static final Object HEIGHT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
@@ -69,7 +69,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected long height = HEIGHT_EDEFAULT;
+	protected Object height = HEIGHT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -79,7 +79,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long WIDTH_EDEFAULT = 0L;
+	protected static final Object WIDTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -89,7 +89,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected long width = WIDTH_EDEFAULT;
+	protected Object width = WIDTH_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDistorsion_model() <em>Distorsion model</em>}' attribute.
@@ -99,7 +99,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DISTORSION_MODEL_EDEFAULT = null;
+	protected static final Object DISTORSION_MODEL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getDistorsion_model() <em>Distorsion model</em>}' attribute.
@@ -109,7 +109,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected String distorsion_model = DISTORSION_MODEL_EDEFAULT;
+	protected Object distorsion_model = DISTORSION_MODEL_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getD() <em>D</em>}' attribute list.
@@ -119,7 +119,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> d;
+	protected EList<Object> d;
 
 	/**
 	 * The cached value of the '{@link #getK() <em>K</em>}' attribute list.
@@ -129,7 +129,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> k;
+	protected EList<Object> k;
 
 	/**
 	 * The cached value of the '{@link #getR() <em>R</em>}' attribute list.
@@ -139,7 +139,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> r;
+	protected EList<Object> r;
 
 	/**
 	 * The cached value of the '{@link #getP() <em>P</em>}' attribute list.
@@ -149,7 +149,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> p;
+	protected EList<Object> p;
 
 	/**
 	 * The default value of the '{@link #getBinning_x() <em>Binning x</em>}' attribute.
@@ -159,7 +159,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long BINNING_X_EDEFAULT = 0L;
+	protected static final Object BINNING_X_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getBinning_x() <em>Binning x</em>}' attribute.
@@ -169,7 +169,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected long binning_x = BINNING_X_EDEFAULT;
+	protected Object binning_x = BINNING_X_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getBinning_y() <em>Binning y</em>}' attribute.
@@ -179,7 +179,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long BINNING_Y_EDEFAULT = 0L;
+	protected static final Object BINNING_Y_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getBinning_y() <em>Binning y</em>}' attribute.
@@ -189,7 +189,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * @generated
 	 * @ordered
 	 */
-	protected long binning_y = BINNING_Y_EDEFAULT;
+	protected Object binning_y = BINNING_Y_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRoi() <em>Roi</em>}' containment reference.
@@ -268,7 +268,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getHeight() {
+	public Object getHeight() {
 		return height;
 	}
 
@@ -277,8 +277,8 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHeight(long newHeight) {
-		long oldHeight = height;
+	public void setHeight(Object newHeight) {
+		Object oldHeight = height;
 		height = newHeight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.CAMERA_INFO__HEIGHT, oldHeight, height));
@@ -289,7 +289,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getWidth() {
+	public Object getWidth() {
 		return width;
 	}
 
@@ -298,8 +298,8 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWidth(long newWidth) {
-		long oldWidth = width;
+	public void setWidth(Object newWidth) {
+		Object oldWidth = width;
 		width = newWidth;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.CAMERA_INFO__WIDTH, oldWidth, width));
@@ -310,7 +310,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDistorsion_model() {
+	public Object getDistorsion_model() {
 		return distorsion_model;
 	}
 
@@ -319,8 +319,8 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDistorsion_model(String newDistorsion_model) {
-		String oldDistorsion_model = distorsion_model;
+	public void setDistorsion_model(Object newDistorsion_model) {
+		Object oldDistorsion_model = distorsion_model;
 		distorsion_model = newDistorsion_model;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.CAMERA_INFO__DISTORSION_MODEL, oldDistorsion_model, distorsion_model));
@@ -331,9 +331,9 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getD() {
+	public EList<Object> getD() {
 		if (d == null) {
-			d = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.CAMERA_INFO__D);
+			d = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.CAMERA_INFO__D);
 		}
 		return d;
 	}
@@ -343,9 +343,9 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getK() {
+	public EList<Object> getK() {
 		if (k == null) {
-			k = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.CAMERA_INFO__K);
+			k = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.CAMERA_INFO__K);
 		}
 		return k;
 	}
@@ -355,9 +355,9 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getR() {
+	public EList<Object> getR() {
 		if (r == null) {
-			r = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.CAMERA_INFO__R);
+			r = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.CAMERA_INFO__R);
 		}
 		return r;
 	}
@@ -367,9 +367,9 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getP() {
+	public EList<Object> getP() {
 		if (p == null) {
-			p = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.CAMERA_INFO__P);
+			p = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.CAMERA_INFO__P);
 		}
 		return p;
 	}
@@ -379,7 +379,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getBinning_x() {
+	public Object getBinning_x() {
 		return binning_x;
 	}
 
@@ -388,8 +388,8 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBinning_x(long newBinning_x) {
-		long oldBinning_x = binning_x;
+	public void setBinning_x(Object newBinning_x) {
+		Object oldBinning_x = binning_x;
 		binning_x = newBinning_x;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.CAMERA_INFO__BINNING_X, oldBinning_x, binning_x));
@@ -400,7 +400,7 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getBinning_y() {
+	public Object getBinning_y() {
 		return binning_y;
 	}
 
@@ -409,8 +409,8 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBinning_y(long newBinning_y) {
-		long oldBinning_y = binning_y;
+	public void setBinning_y(Object newBinning_y) {
+		Object oldBinning_y = binning_y;
 		binning_y = newBinning_y;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.CAMERA_INFO__BINNING_Y, oldBinning_y, binning_y));
@@ -522,35 +522,35 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 				setHeader((Header)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__HEIGHT:
-				setHeight((Long)newValue);
+				setHeight((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__WIDTH:
-				setWidth((Long)newValue);
+				setWidth((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__DISTORSION_MODEL:
-				setDistorsion_model((String)newValue);
+				setDistorsion_model((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__D:
 				getD().clear();
-				getD().addAll((Collection<? extends Double>)newValue);
+				getD().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__K:
 				getK().clear();
-				getK().addAll((Collection<? extends Double>)newValue);
+				getK().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__R:
 				getR().clear();
-				getR().addAll((Collection<? extends Double>)newValue);
+				getR().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__P:
 				getP().clear();
-				getP().addAll((Collection<? extends Double>)newValue);
+				getP().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__BINNING_X:
-				setBinning_x((Long)newValue);
+				setBinning_x((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__BINNING_Y:
-				setBinning_y((Long)newValue);
+				setBinning_y((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.CAMERA_INFO__ROI:
 				setRoi((RegionOfInterest)newValue);
@@ -615,9 +615,9 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 			case Sensor_datatypesPackage.CAMERA_INFO__HEADER:
 				return header != null;
 			case Sensor_datatypesPackage.CAMERA_INFO__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
+				return HEIGHT_EDEFAULT == null ? height != null : !HEIGHT_EDEFAULT.equals(height);
 			case Sensor_datatypesPackage.CAMERA_INFO__WIDTH:
-				return width != WIDTH_EDEFAULT;
+				return WIDTH_EDEFAULT == null ? width != null : !WIDTH_EDEFAULT.equals(width);
 			case Sensor_datatypesPackage.CAMERA_INFO__DISTORSION_MODEL:
 				return DISTORSION_MODEL_EDEFAULT == null ? distorsion_model != null : !DISTORSION_MODEL_EDEFAULT.equals(distorsion_model);
 			case Sensor_datatypesPackage.CAMERA_INFO__D:
@@ -629,9 +629,9 @@ public class CameraInfoImpl extends MinimalEObjectImpl.Container implements Came
 			case Sensor_datatypesPackage.CAMERA_INFO__P:
 				return p != null && !p.isEmpty();
 			case Sensor_datatypesPackage.CAMERA_INFO__BINNING_X:
-				return binning_x != BINNING_X_EDEFAULT;
+				return BINNING_X_EDEFAULT == null ? binning_x != null : !BINNING_X_EDEFAULT.equals(binning_x);
 			case Sensor_datatypesPackage.CAMERA_INFO__BINNING_Y:
-				return binning_y != BINNING_Y_EDEFAULT;
+				return BINNING_Y_EDEFAULT == null ? binning_y != null : !BINNING_Y_EDEFAULT.equals(binning_y);
 			case Sensor_datatypesPackage.CAMERA_INFO__ROI:
 				return roi != null;
 		}

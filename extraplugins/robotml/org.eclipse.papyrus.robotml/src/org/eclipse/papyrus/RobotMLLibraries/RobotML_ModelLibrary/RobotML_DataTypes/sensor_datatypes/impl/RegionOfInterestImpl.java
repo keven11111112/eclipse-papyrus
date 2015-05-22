@@ -19,7 +19,7 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getX_offset <em>Xoffset</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getY_offset <em>Yoffset</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getHeight <em>Height</em>}</li>
- *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#isDo_rectify <em>Do rectify</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getDo_rectify <em>Do rectify</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getWidth <em>Width</em>}</li>
  * </ul>
  * </p>
@@ -35,7 +35,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long XOFFSET_EDEFAULT = 0L;
+	protected static final Object XOFFSET_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getX_offset() <em>Xoffset</em>}' attribute.
@@ -45,7 +45,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected long x_offset = XOFFSET_EDEFAULT;
+	protected Object x_offset = XOFFSET_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getY_offset() <em>Yoffset</em>}' attribute.
@@ -55,7 +55,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long YOFFSET_EDEFAULT = 0L;
+	protected static final Object YOFFSET_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getY_offset() <em>Yoffset</em>}' attribute.
@@ -65,7 +65,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected long y_offset = YOFFSET_EDEFAULT;
+	protected Object y_offset = YOFFSET_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
@@ -75,7 +75,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long HEIGHT_EDEFAULT = 0L;
+	protected static final Object HEIGHT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
@@ -85,27 +85,27 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected long height = HEIGHT_EDEFAULT;
+	protected Object height = HEIGHT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDo_rectify() <em>Do rectify</em>}' attribute.
+	 * The default value of the '{@link #getDo_rectify() <em>Do rectify</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDo_rectify()
+	 * @see #getDo_rectify()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DO_RECTIFY_EDEFAULT = false;
+	protected static final Object DO_RECTIFY_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #isDo_rectify() <em>Do rectify</em>}' attribute.
+	 * The cached value of the '{@link #getDo_rectify() <em>Do rectify</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDo_rectify()
+	 * @see #getDo_rectify()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean do_rectify = DO_RECTIFY_EDEFAULT;
+	protected Object do_rectify = DO_RECTIFY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -115,7 +115,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long WIDTH_EDEFAULT = 0L;
+	protected static final Object WIDTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -125,7 +125,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected long width = WIDTH_EDEFAULT;
+	protected Object width = WIDTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,7 +151,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getX_offset() {
+	public Object getX_offset() {
 		return x_offset;
 	}
 
@@ -160,8 +160,8 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setX_offset(long newX_offset) {
-		long oldX_offset = x_offset;
+	public void setX_offset(Object newX_offset) {
+		Object oldX_offset = x_offset;
 		x_offset = newX_offset;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET, oldX_offset, x_offset));
@@ -172,7 +172,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getY_offset() {
+	public Object getY_offset() {
 		return y_offset;
 	}
 
@@ -181,8 +181,8 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setY_offset(long newY_offset) {
-		long oldY_offset = y_offset;
+	public void setY_offset(Object newY_offset) {
+		Object oldY_offset = y_offset;
 		y_offset = newY_offset;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET, oldY_offset, y_offset));
@@ -193,7 +193,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getHeight() {
+	public Object getHeight() {
 		return height;
 	}
 
@@ -202,8 +202,8 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHeight(long newHeight) {
-		long oldHeight = height;
+	public void setHeight(Object newHeight) {
+		Object oldHeight = height;
 		height = newHeight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT, oldHeight, height));
@@ -214,7 +214,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDo_rectify() {
+	public Object getDo_rectify() {
 		return do_rectify;
 	}
 
@@ -223,8 +223,8 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDo_rectify(boolean newDo_rectify) {
-		boolean oldDo_rectify = do_rectify;
+	public void setDo_rectify(Object newDo_rectify) {
+		Object oldDo_rectify = do_rectify;
 		do_rectify = newDo_rectify;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY, oldDo_rectify, do_rectify));
@@ -235,7 +235,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getWidth() {
+	public Object getWidth() {
 		return width;
 	}
 
@@ -244,8 +244,8 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWidth(long newWidth) {
-		long oldWidth = width;
+	public void setWidth(Object newWidth) {
+		Object oldWidth = width;
 		width = newWidth;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH, oldWidth, width));
@@ -266,7 +266,7 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
 				return getHeight();
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
-				return isDo_rectify();
+				return getDo_rectify();
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
 				return getWidth();
 		}
@@ -282,19 +282,19 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
-				setX_offset((Long)newValue);
+				setX_offset((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
-				setY_offset((Long)newValue);
+				setY_offset((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
-				setHeight((Long)newValue);
+				setHeight((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
-				setDo_rectify((Boolean)newValue);
+				setDo_rectify((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
-				setWidth((Long)newValue);
+				setWidth((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -336,15 +336,15 @@ public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implement
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
-				return x_offset != XOFFSET_EDEFAULT;
+				return XOFFSET_EDEFAULT == null ? x_offset != null : !XOFFSET_EDEFAULT.equals(x_offset);
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
-				return y_offset != YOFFSET_EDEFAULT;
+				return YOFFSET_EDEFAULT == null ? y_offset != null : !YOFFSET_EDEFAULT.equals(y_offset);
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
+				return HEIGHT_EDEFAULT == null ? height != null : !HEIGHT_EDEFAULT.equals(height);
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
-				return do_rectify != DO_RECTIFY_EDEFAULT;
+				return DO_RECTIFY_EDEFAULT == null ? do_rectify != null : !DO_RECTIFY_EDEFAULT.equals(do_rectify);
 			case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
-				return width != WIDTH_EDEFAULT;
+				return WIDTH_EDEFAULT == null ? width != null : !WIDTH_EDEFAULT.equals(width);
 		}
 		return super.eIsSet(featureID);
 	}

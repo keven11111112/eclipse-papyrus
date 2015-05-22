@@ -53,7 +53,7 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float CELL_WIDTH_EDEFAULT = 0.0F;
+	protected static final Object CELL_WIDTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getCell_width() <em>Cell width</em>}' attribute.
@@ -63,7 +63,7 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 	 * @generated
 	 * @ordered
 	 */
-	protected float cell_width = CELL_WIDTH_EDEFAULT;
+	protected Object cell_width = CELL_WIDTH_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCell_height() <em>Cell height</em>}' attribute.
@@ -73,7 +73,7 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float CELL_HEIGHT_EDEFAULT = 0.0F;
+	protected static final Object CELL_HEIGHT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getCell_height() <em>Cell height</em>}' attribute.
@@ -83,7 +83,7 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 	 * @generated
 	 * @ordered
 	 */
-	protected float cell_height = CELL_HEIGHT_EDEFAULT;
+	protected Object cell_height = CELL_HEIGHT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getCells() <em>Cells</em>}' containment reference list.
@@ -162,7 +162,7 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCell_width() {
+	public Object getCell_width() {
 		return cell_width;
 	}
 
@@ -171,8 +171,8 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCell_width(float newCell_width) {
-		float oldCell_width = cell_width;
+	public void setCell_width(Object newCell_width) {
+		Object oldCell_width = cell_width;
 		cell_width = newCell_width;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Nav_datatypesPackage.GRID_CELLS__CELL_WIDTH, oldCell_width, cell_width));
@@ -183,7 +183,7 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getCell_height() {
+	public Object getCell_height() {
 		return cell_height;
 	}
 
@@ -192,8 +192,8 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCell_height(float newCell_height) {
-		float oldCell_height = cell_height;
+	public void setCell_height(Object newCell_height) {
+		Object oldCell_height = cell_height;
 		cell_height = newCell_height;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Nav_datatypesPackage.GRID_CELLS__CELL_HEIGHT, oldCell_height, cell_height));
@@ -260,10 +260,10 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 				setHeader((Header)newValue);
 				return;
 			case Nav_datatypesPackage.GRID_CELLS__CELL_WIDTH:
-				setCell_width((Float)newValue);
+				setCell_width((Object)newValue);
 				return;
 			case Nav_datatypesPackage.GRID_CELLS__CELL_HEIGHT:
-				setCell_height((Float)newValue);
+				setCell_height((Object)newValue);
 				return;
 			case Nav_datatypesPackage.GRID_CELLS__CELLS:
 				getCells().clear();
@@ -308,9 +308,9 @@ public class GridCellsImpl extends MinimalEObjectImpl.Container implements GridC
 			case Nav_datatypesPackage.GRID_CELLS__HEADER:
 				return header != null;
 			case Nav_datatypesPackage.GRID_CELLS__CELL_WIDTH:
-				return cell_width != CELL_WIDTH_EDEFAULT;
+				return CELL_WIDTH_EDEFAULT == null ? cell_width != null : !CELL_WIDTH_EDEFAULT.equals(cell_width);
 			case Nav_datatypesPackage.GRID_CELLS__CELL_HEIGHT:
-				return cell_height != CELL_HEIGHT_EDEFAULT;
+				return CELL_HEIGHT_EDEFAULT == null ? cell_height != null : !CELL_HEIGHT_EDEFAULT.equals(cell_height);
 			case Nav_datatypesPackage.GRID_CELLS__CELLS:
 				return cells != null && !cells.isEmpty();
 		}

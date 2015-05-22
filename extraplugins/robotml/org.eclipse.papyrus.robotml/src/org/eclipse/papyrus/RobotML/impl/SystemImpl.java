@@ -20,6 +20,7 @@ import org.eclipse.papyrus.RobotML.RobotMLPackage;
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.SystemImpl#isNative <em>Native</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.SystemImpl#getLibraryPath <em>Library Path</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.SystemImpl#getLibraryComponentName <em>Library Component Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.SystemImpl#getAlias <em>Alias</em>}</li>
  * </ul>
  * </p>
  *
@@ -95,6 +96,26 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.ecli
 	 * @ordered
 	 */
 	protected String libraryComponentName = LIBRARY_COMPONENT_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlias()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ALIAS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlias()
+	 * @generated
+	 * @ordered
+	 */
+	protected String alias = ALIAS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,6 +242,27 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.ecli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getAlias() {
+		return alias;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAlias(String newAlias) {
+		String oldAlias = alias;
+		alias = newAlias;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.SYSTEM__ALIAS, oldAlias, alias));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -233,6 +275,8 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.ecli
 				return getLibraryPath();
 			case RobotMLPackage.SYSTEM__LIBRARY_COMPONENT_NAME:
 				return getLibraryComponentName();
+			case RobotMLPackage.SYSTEM__ALIAS:
+				return getAlias();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -256,6 +300,9 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.ecli
 				return;
 			case RobotMLPackage.SYSTEM__LIBRARY_COMPONENT_NAME:
 				setLibraryComponentName((String)newValue);
+				return;
+			case RobotMLPackage.SYSTEM__ALIAS:
+				setAlias((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -281,6 +328,9 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.ecli
 			case RobotMLPackage.SYSTEM__LIBRARY_COMPONENT_NAME:
 				setLibraryComponentName(LIBRARY_COMPONENT_NAME_EDEFAULT);
 				return;
+			case RobotMLPackage.SYSTEM__ALIAS:
+				setAlias(ALIAS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -301,6 +351,8 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.ecli
 				return LIBRARY_PATH_EDEFAULT == null ? libraryPath != null : !LIBRARY_PATH_EDEFAULT.equals(libraryPath);
 			case RobotMLPackage.SYSTEM__LIBRARY_COMPONENT_NAME:
 				return LIBRARY_COMPONENT_NAME_EDEFAULT == null ? libraryComponentName != null : !LIBRARY_COMPONENT_NAME_EDEFAULT.equals(libraryComponentName);
+			case RobotMLPackage.SYSTEM__ALIAS:
+				return ALIAS_EDEFAULT == null ? alias != null : !ALIAS_EDEFAULT.equals(alias);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -321,6 +373,8 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements org.ecli
 		result.append(libraryPath);
 		result.append(", libraryComponentName: ");
 		result.append(libraryComponentName);
+		result.append(", alias: ");
+		result.append(alias);
 		result.append(')');
 		return result.toString();
 	}

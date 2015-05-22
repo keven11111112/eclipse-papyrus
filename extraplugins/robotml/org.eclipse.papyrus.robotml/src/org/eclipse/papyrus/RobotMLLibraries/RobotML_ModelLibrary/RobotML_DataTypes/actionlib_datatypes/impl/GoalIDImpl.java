@@ -2,8 +2,6 @@
  */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.impl;
 
-import java.util.Date;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -34,7 +32,7 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Date STAMP_EDEFAULT = null;
+	protected static final Object STAMP_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getStamp() <em>Stamp</em>}' attribute.
@@ -44,7 +42,7 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	 * @generated
 	 * @ordered
 	 */
-	protected Date stamp = STAMP_EDEFAULT;
+	protected Object stamp = STAMP_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -54,7 +52,7 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ID_EDEFAULT = null;
+	protected static final Object ID_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -64,7 +62,7 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	 * @generated
 	 * @ordered
 	 */
-	protected String id = ID_EDEFAULT;
+	protected Object id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -90,7 +88,7 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getStamp() {
+	public Object getStamp() {
 		return stamp;
 	}
 
@@ -99,8 +97,8 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStamp(Date newStamp) {
-		Date oldStamp = stamp;
+	public void setStamp(Object newStamp) {
+		Object oldStamp = stamp;
 		stamp = newStamp;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_ID__STAMP, oldStamp, stamp));
@@ -111,7 +109,7 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
+	public Object getId() {
 		return id;
 	}
 
@@ -120,8 +118,8 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(String newId) {
-		String oldId = id;
+	public void setId(Object newId) {
+		Object oldId = id;
 		id = newId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_ID__ID, oldId, id));
@@ -152,10 +150,10 @@ public class GoalIDImpl extends MinimalEObjectImpl.Container implements GoalID {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Actionlib_datatypesPackage.GOAL_ID__STAMP:
-				setStamp((Date)newValue);
+				setStamp((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_ID__ID:
-				setId((String)newValue);
+				setId((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -46,7 +46,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final byte OK_EDEFAULT = 0x00;
+	protected static final Object OK_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getOK() <em>OK</em>}' attribute.
@@ -56,7 +56,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected byte ok = OK_EDEFAULT;
+	protected Object ok = OK_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWARN() <em>WARN</em>}' attribute.
@@ -66,7 +66,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final byte WARN_EDEFAULT = 0x00;
+	protected static final Object WARN_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWARN() <em>WARN</em>}' attribute.
@@ -76,7 +76,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected byte warn = WARN_EDEFAULT;
+	protected Object warn = WARN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getERROR() <em>ERROR</em>}' attribute.
@@ -86,7 +86,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final byte ERROR_EDEFAULT = 0x00;
+	protected static final Object ERROR_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getERROR() <em>ERROR</em>}' attribute.
@@ -96,7 +96,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected byte error = ERROR_EDEFAULT;
+	protected Object error = ERROR_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
@@ -106,7 +106,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final byte LEVEL_EDEFAULT = 0x00;
+	protected static final Object LEVEL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
@@ -116,7 +116,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected byte level = LEVEL_EDEFAULT;
+	protected Object level = LEVEL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -126,7 +126,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final Object NAME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -136,7 +136,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected Object name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMessage() <em>Message</em>}' attribute.
@@ -146,7 +146,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MESSAGE_EDEFAULT = null;
+	protected static final Object MESSAGE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getMessage() <em>Message</em>}' attribute.
@@ -156,7 +156,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected String message = MESSAGE_EDEFAULT;
+	protected Object message = MESSAGE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getHardware_id() <em>Hardware id</em>}' attribute.
@@ -166,7 +166,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String HARDWARE_ID_EDEFAULT = null;
+	protected static final Object HARDWARE_ID_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getHardware_id() <em>Hardware id</em>}' attribute.
@@ -176,7 +176,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected String hardware_id = HARDWARE_ID_EDEFAULT;
+	protected Object hardware_id = HARDWARE_ID_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
@@ -212,7 +212,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte getOK() {
+	public Object getOK() {
 		return ok;
 	}
 
@@ -221,8 +221,8 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOK(byte newOK) {
-		byte oldOK = ok;
+	public void setOK(Object newOK) {
+		Object oldOK = ok;
 		ok = newOK;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__OK, oldOK, ok));
@@ -233,7 +233,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte getWARN() {
+	public Object getWARN() {
 		return warn;
 	}
 
@@ -242,8 +242,8 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWARN(byte newWARN) {
-		byte oldWARN = warn;
+	public void setWARN(Object newWARN) {
+		Object oldWARN = warn;
 		warn = newWARN;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__WARN, oldWARN, warn));
@@ -254,7 +254,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte getERROR() {
+	public Object getERROR() {
 		return error;
 	}
 
@@ -263,8 +263,8 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setERROR(byte newERROR) {
-		byte oldERROR = error;
+	public void setERROR(Object newERROR) {
+		Object oldERROR = error;
 		error = newERROR;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__ERROR, oldERROR, error));
@@ -275,7 +275,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte getLevel() {
+	public Object getLevel() {
 		return level;
 	}
 
@@ -284,8 +284,8 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLevel(byte newLevel) {
-		byte oldLevel = level;
+	public void setLevel(Object newLevel) {
+		Object oldLevel = level;
 		level = newLevel;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__LEVEL, oldLevel, level));
@@ -296,7 +296,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public Object getName() {
 		return name;
 	}
 
@@ -305,8 +305,8 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
+	public void setName(Object newName) {
+		Object oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__NAME, oldName, name));
@@ -317,7 +317,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getMessage() {
+	public Object getMessage() {
 		return message;
 	}
 
@@ -326,8 +326,8 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMessage(String newMessage) {
-		String oldMessage = message;
+	public void setMessage(Object newMessage) {
+		Object oldMessage = message;
 		message = newMessage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__MESSAGE, oldMessage, message));
@@ -338,7 +338,7 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getHardware_id() {
+	public Object getHardware_id() {
 		return hardware_id;
 	}
 
@@ -347,8 +347,8 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHardware_id(String newHardware_id) {
-		String oldHardware_id = hardware_id;
+	public void setHardware_id(Object newHardware_id) {
+		Object oldHardware_id = hardware_id;
 		hardware_id = newHardware_id;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__HARDWARE_ID, oldHardware_id, hardware_id));
@@ -418,25 +418,25 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__OK:
-				setOK((Byte)newValue);
+				setOK((Object)newValue);
 				return;
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__WARN:
-				setWARN((Byte)newValue);
+				setWARN((Object)newValue);
 				return;
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__ERROR:
-				setERROR((Byte)newValue);
+				setERROR((Object)newValue);
 				return;
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__LEVEL:
-				setLevel((Byte)newValue);
+				setLevel((Object)newValue);
 				return;
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__NAME:
-				setName((String)newValue);
+				setName((Object)newValue);
 				return;
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__MESSAGE:
-				setMessage((String)newValue);
+				setMessage((Object)newValue);
 				return;
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__HARDWARE_ID:
-				setHardware_id((String)newValue);
+				setHardware_id((Object)newValue);
 				return;
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__VALUES:
 				getValues().clear();
@@ -491,13 +491,13 @@ public class DiagnosticStatusImpl extends MinimalEObjectImpl.Container implement
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__OK:
-				return ok != OK_EDEFAULT;
+				return OK_EDEFAULT == null ? ok != null : !OK_EDEFAULT.equals(ok);
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__WARN:
-				return warn != WARN_EDEFAULT;
+				return WARN_EDEFAULT == null ? warn != null : !WARN_EDEFAULT.equals(warn);
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__ERROR:
-				return error != ERROR_EDEFAULT;
+				return ERROR_EDEFAULT == null ? error != null : !ERROR_EDEFAULT.equals(error);
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__LEVEL:
-				return level != LEVEL_EDEFAULT;
+				return LEVEL_EDEFAULT == null ? level != null : !LEVEL_EDEFAULT.equals(level);
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case Diagnostic_datatypesPackage.DIAGNOSTIC_STATUS__MESSAGE:

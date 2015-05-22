@@ -81,12 +81,12 @@ public interface BlenderMorse extends RoboticSimulator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gravity</em>' attribute.
-	 * @see #setGravity(float)
+	 * @see #setGravity(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getBlenderMorse_Gravity()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" ordered="false"
 	 * @generated
 	 */
-	float getGravity();
+	Object getGravity();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.BlenderMorse#getGravity <em>Gravity</em>}' attribute.
@@ -96,7 +96,7 @@ public interface BlenderMorse extends RoboticSimulator {
 	 * @see #getGravity()
 	 * @generated
 	 */
-	void setGravity(float value);
+	void setGravity(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>viewport shade</b></em>' attribute.

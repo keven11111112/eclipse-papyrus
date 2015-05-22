@@ -18,11 +18,11 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getHeight <em>Height</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getWidth <em>Width</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getFields <em>Fields</em>}</li>
- *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#isIs_bigendian <em>Is bigendian</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getIs_bigendian <em>Is bigendian</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getPoint_step <em>Point step</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getRow_step <em>Row step</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getData <em>Data</em>}</li>
- *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#isIs_dense <em>Is dense</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getIs_dense <em>Is dense</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,12 +64,12 @@ public interface PointCloud2 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
-	 * @see #setHeight(long)
+	 * @see #setHeight(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointCloud2_Height()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getHeight();
+	Object getHeight();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getHeight <em>Height</em>}' attribute.
@@ -79,7 +79,7 @@ public interface PointCloud2 extends EObject {
 	 * @see #getHeight()
 	 * @generated
 	 */
-	void setHeight(long value);
+	void setHeight(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
@@ -89,12 +89,12 @@ public interface PointCloud2 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
-	 * @see #setWidth(long)
+	 * @see #setWidth(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointCloud2_Width()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getWidth();
+	Object getWidth();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getWidth <em>Width</em>}' attribute.
@@ -104,7 +104,7 @@ public interface PointCloud2 extends EObject {
 	 * @see #getWidth()
 	 * @generated
 	 */
-	void setWidth(long value);
+	void setWidth(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Fields</b></em>' containment reference list.
@@ -125,26 +125,27 @@ public interface PointCloud2 extends EObject {
 	 * Returns the value of the '<em><b>Is bigendian</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is bigendian</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Is bigendian</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is bigendian</em>' attribute.
-	 * @see #setIs_bigendian(boolean)
+	 * @see #setIs_bigendian(Bool)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointCloud2_Is_bigendian()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Bool" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isIs_bigendian();
+	Object getIs_bigendian();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#isIs_bigendian <em>Is bigendian</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getIs_bigendian <em>Is bigendian</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is bigendian</em>' attribute.
-	 * @see #isIs_bigendian()
+	 * @see #getIs_bigendian()
 	 * @generated
 	 */
-	void setIs_bigendian(boolean value);
+	void setIs_bigendian(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Point step</b></em>' attribute.
@@ -154,12 +155,12 @@ public interface PointCloud2 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Point step</em>' attribute.
-	 * @see #setPoint_step(long)
+	 * @see #setPoint_step(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointCloud2_Point_step()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getPoint_step();
+	Object getPoint_step();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getPoint_step <em>Point step</em>}' attribute.
@@ -169,7 +170,7 @@ public interface PointCloud2 extends EObject {
 	 * @see #getPoint_step()
 	 * @generated
 	 */
-	void setPoint_step(long value);
+	void setPoint_step(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Row step</b></em>' attribute.
@@ -179,12 +180,12 @@ public interface PointCloud2 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Row step</em>' attribute.
-	 * @see #setRow_step(long)
+	 * @see #setRow_step(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointCloud2_Row_step()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getRow_step();
+	Object getRow_step();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getRow_step <em>Row step</em>}' attribute.
@@ -194,11 +195,11 @@ public interface PointCloud2 extends EObject {
 	 * @see #getRow_step()
 	 * @generated
 	 */
-	void setRow_step(long value);
+	void setRow_step(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Character}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Data</em>' attribute list isn't clear, there really should be more of a description here...
@@ -209,31 +210,32 @@ public interface PointCloud2 extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8" ordered="false"
 	 * @generated
 	 */
-	EList<Character> getData();
+	EList<Object> getData();
 
 	/**
 	 * Returns the value of the '<em><b>Is dense</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is dense</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Is dense</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is dense</em>' attribute.
-	 * @see #setIs_dense(boolean)
+	 * @see #setIs_dense(Bool)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointCloud2_Is_dense()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Bool" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isIs_dense();
+	Object getIs_dense();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#isIs_dense <em>Is dense</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getIs_dense <em>Is dense</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is dense</em>' attribute.
-	 * @see #isIs_dense()
+	 * @see #getIs_dense()
 	 * @generated
 	 */
-	void setIs_dense(boolean value);
+	void setIs_dense(Object value);
 
 } // PointCloud2

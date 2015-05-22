@@ -34,7 +34,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float R_EDEFAULT = 0.0F;
+	protected static final Object R_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getR() <em>R</em>}' attribute.
@@ -44,7 +44,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * @generated
 	 * @ordered
 	 */
-	protected float r = R_EDEFAULT;
+	protected Object r = R_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getG() <em>G</em>}' attribute.
@@ -54,7 +54,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float G_EDEFAULT = 0.0F;
+	protected static final Object G_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getG() <em>G</em>}' attribute.
@@ -64,7 +64,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * @generated
 	 * @ordered
 	 */
-	protected float g = G_EDEFAULT;
+	protected Object g = G_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getB() <em>B</em>}' attribute.
@@ -74,7 +74,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float B_EDEFAULT = 0.0F;
+	protected static final Object B_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getB() <em>B</em>}' attribute.
@@ -84,7 +84,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * @generated
 	 * @ordered
 	 */
-	protected float b = B_EDEFAULT;
+	protected Object b = B_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getA() <em>A</em>}' attribute.
@@ -94,7 +94,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float A_EDEFAULT = 0.0F;
+	protected static final Object A_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getA() <em>A</em>}' attribute.
@@ -104,7 +104,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * @generated
 	 * @ordered
 	 */
-	protected float a = A_EDEFAULT;
+	protected Object a = A_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,7 +130,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getR() {
+	public Object getR() {
 		return r;
 	}
 
@@ -139,8 +139,8 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setR(float newR) {
-		float oldR = r;
+	public void setR(Object newR) {
+		Object oldR = r;
 		r = newR;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Std_datatypesPackage.COLOR_RGBA__R, oldR, r));
@@ -151,7 +151,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getG() {
+	public Object getG() {
 		return g;
 	}
 
@@ -160,8 +160,8 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setG(float newG) {
-		float oldG = g;
+	public void setG(Object newG) {
+		Object oldG = g;
 		g = newG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Std_datatypesPackage.COLOR_RGBA__G, oldG, g));
@@ -172,7 +172,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getB() {
+	public Object getB() {
 		return b;
 	}
 
@@ -181,8 +181,8 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setB(float newB) {
-		float oldB = b;
+	public void setB(Object newB) {
+		Object oldB = b;
 		b = newB;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Std_datatypesPackage.COLOR_RGBA__B, oldB, b));
@@ -193,7 +193,7 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getA() {
+	public Object getA() {
 		return a;
 	}
 
@@ -202,8 +202,8 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setA(float newA) {
-		float oldA = a;
+	public void setA(Object newA) {
+		Object oldA = a;
 		a = newA;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Std_datatypesPackage.COLOR_RGBA__A, oldA, a));
@@ -238,16 +238,16 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Std_datatypesPackage.COLOR_RGBA__R:
-				setR((Float)newValue);
+				setR((Object)newValue);
 				return;
 			case Std_datatypesPackage.COLOR_RGBA__G:
-				setG((Float)newValue);
+				setG((Object)newValue);
 				return;
 			case Std_datatypesPackage.COLOR_RGBA__B:
-				setB((Float)newValue);
+				setB((Object)newValue);
 				return;
 			case Std_datatypesPackage.COLOR_RGBA__A:
-				setA((Float)newValue);
+				setA((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -286,13 +286,13 @@ public class ColorRGBAImpl extends MinimalEObjectImpl.Container implements Color
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Std_datatypesPackage.COLOR_RGBA__R:
-				return r != R_EDEFAULT;
+				return R_EDEFAULT == null ? r != null : !R_EDEFAULT.equals(r);
 			case Std_datatypesPackage.COLOR_RGBA__G:
-				return g != G_EDEFAULT;
+				return G_EDEFAULT == null ? g != null : !G_EDEFAULT.equals(g);
 			case Std_datatypesPackage.COLOR_RGBA__B:
-				return b != B_EDEFAULT;
+				return B_EDEFAULT == null ? b != null : !B_EDEFAULT.equals(b);
 			case Std_datatypesPackage.COLOR_RGBA__A:
-				return a != A_EDEFAULT;
+				return A_EDEFAULT == null ? a != null : !A_EDEFAULT.equals(a);
 		}
 		return super.eIsSet(featureID);
 	}

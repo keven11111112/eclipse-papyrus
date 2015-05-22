@@ -50,7 +50,7 @@ public class CompressedImageImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FORMAT_EDEFAULT = null;
+	protected static final Object FORMAT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
@@ -60,7 +60,7 @@ public class CompressedImageImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected String format = FORMAT_EDEFAULT;
+	protected Object format = FORMAT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getData() <em>Data</em>}' attribute list.
@@ -70,7 +70,7 @@ public class CompressedImageImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Character> data;
+	protected EList<Object> data;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,7 +139,7 @@ public class CompressedImageImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFormat() {
+	public Object getFormat() {
 		return format;
 	}
 
@@ -148,8 +148,8 @@ public class CompressedImageImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFormat(String newFormat) {
-		String oldFormat = format;
+	public void setFormat(Object newFormat) {
+		Object oldFormat = format;
 		format = newFormat;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.COMPRESSED_IMAGE__FORMAT, oldFormat, format));
@@ -160,9 +160,9 @@ public class CompressedImageImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Character> getData() {
+	public EList<Object> getData() {
 		if (data == null) {
-			data = new EDataTypeUniqueEList<Character>(Character.class, this, Sensor_datatypesPackage.COMPRESSED_IMAGE__DATA);
+			data = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.COMPRESSED_IMAGE__DATA);
 		}
 		return data;
 	}
@@ -212,11 +212,11 @@ public class CompressedImageImpl extends MinimalEObjectImpl.Container implements
 				setHeader((Header)newValue);
 				return;
 			case Sensor_datatypesPackage.COMPRESSED_IMAGE__FORMAT:
-				setFormat((String)newValue);
+				setFormat((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.COMPRESSED_IMAGE__DATA:
 				getData().clear();
-				getData().addAll((Collection<? extends Character>)newValue);
+				getData().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -2,8 +2,6 @@
  */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.impl;
 
-import java.util.Date;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -39,7 +37,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Date MAP_LOAD_TIME_EDEFAULT = null;
+	protected static final Object MAP_LOAD_TIME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getMap_load_time() <em>Map load time</em>}' attribute.
@@ -49,7 +47,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * @generated
 	 * @ordered
 	 */
-	protected Date map_load_time = MAP_LOAD_TIME_EDEFAULT;
+	protected Object map_load_time = MAP_LOAD_TIME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getResolution() <em>Resolution</em>}' attribute.
@@ -59,7 +57,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float RESOLUTION_EDEFAULT = 0.0F;
+	protected static final Object RESOLUTION_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}' attribute.
@@ -69,7 +67,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * @generated
 	 * @ordered
 	 */
-	protected float resolution = RESOLUTION_EDEFAULT;
+	protected Object resolution = RESOLUTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -79,7 +77,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long WIDTH_EDEFAULT = 0L;
+	protected static final Object WIDTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -89,7 +87,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * @generated
 	 * @ordered
 	 */
-	protected long width = WIDTH_EDEFAULT;
+	protected Object width = WIDTH_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOrigin() <em>Origin</em>}' containment reference.
@@ -125,7 +123,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getMap_load_time() {
+	public Object getMap_load_time() {
 		return map_load_time;
 	}
 
@@ -134,8 +132,8 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMap_load_time(Date newMap_load_time) {
-		Date oldMap_load_time = map_load_time;
+	public void setMap_load_time(Object newMap_load_time) {
+		Object oldMap_load_time = map_load_time;
 		map_load_time = newMap_load_time;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Nav_datatypesPackage.MAP_META_DATA__MAP_LOAD_TIME, oldMap_load_time, map_load_time));
@@ -146,7 +144,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getResolution() {
+	public Object getResolution() {
 		return resolution;
 	}
 
@@ -155,8 +153,8 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResolution(float newResolution) {
-		float oldResolution = resolution;
+	public void setResolution(Object newResolution) {
+		Object oldResolution = resolution;
 		resolution = newResolution;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Nav_datatypesPackage.MAP_META_DATA__RESOLUTION, oldResolution, resolution));
@@ -167,7 +165,7 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getWidth() {
+	public Object getWidth() {
 		return width;
 	}
 
@@ -176,8 +174,8 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWidth(long newWidth) {
-		long oldWidth = width;
+	public void setWidth(Object newWidth) {
+		Object oldWidth = width;
 		width = newWidth;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Nav_datatypesPackage.MAP_META_DATA__WIDTH, oldWidth, width));
@@ -269,13 +267,13 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Nav_datatypesPackage.MAP_META_DATA__MAP_LOAD_TIME:
-				setMap_load_time((Date)newValue);
+				setMap_load_time((Object)newValue);
 				return;
 			case Nav_datatypesPackage.MAP_META_DATA__RESOLUTION:
-				setResolution((Float)newValue);
+				setResolution((Object)newValue);
 				return;
 			case Nav_datatypesPackage.MAP_META_DATA__WIDTH:
-				setWidth((Long)newValue);
+				setWidth((Object)newValue);
 				return;
 			case Nav_datatypesPackage.MAP_META_DATA__ORIGIN:
 				setOrigin((Pose)newValue);
@@ -319,9 +317,9 @@ public class MapMetaDataImpl extends MinimalEObjectImpl.Container implements Map
 			case Nav_datatypesPackage.MAP_META_DATA__MAP_LOAD_TIME:
 				return MAP_LOAD_TIME_EDEFAULT == null ? map_load_time != null : !MAP_LOAD_TIME_EDEFAULT.equals(map_load_time);
 			case Nav_datatypesPackage.MAP_META_DATA__RESOLUTION:
-				return resolution != RESOLUTION_EDEFAULT;
+				return RESOLUTION_EDEFAULT == null ? resolution != null : !RESOLUTION_EDEFAULT.equals(resolution);
 			case Nav_datatypesPackage.MAP_META_DATA__WIDTH:
-				return width != WIDTH_EDEFAULT;
+				return WIDTH_EDEFAULT == null ? width != null : !WIDTH_EDEFAULT.equals(width);
 			case Nav_datatypesPackage.MAP_META_DATA__ORIGIN:
 				return origin != null;
 		}

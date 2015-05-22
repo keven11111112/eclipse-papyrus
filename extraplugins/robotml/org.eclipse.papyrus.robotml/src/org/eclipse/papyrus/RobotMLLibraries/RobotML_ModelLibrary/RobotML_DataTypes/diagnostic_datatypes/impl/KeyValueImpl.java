@@ -32,7 +32,7 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String KEY_EDEFAULT = null;
+	protected static final Object KEY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
@@ -42,7 +42,7 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	 * @generated
 	 * @ordered
 	 */
-	protected String key = KEY_EDEFAULT;
+	protected Object key = KEY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -52,7 +52,7 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALUE_EDEFAULT = null;
+	protected static final Object VALUE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -62,7 +62,7 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	 * @generated
 	 * @ordered
 	 */
-	protected String value = VALUE_EDEFAULT;
+	protected Object value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,7 +88,7 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getKey() {
+	public Object getKey() {
 		return key;
 	}
 
@@ -97,8 +97,8 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKey(String newKey) {
-		String oldKey = key;
+	public void setKey(Object newKey) {
+		Object oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.KEY_VALUE__KEY, oldKey, key));
@@ -109,7 +109,7 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
+	public Object getValue() {
 		return value;
 	}
 
@@ -118,8 +118,8 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String newValue) {
-		String oldValue = value;
+	public void setValue(Object newValue) {
+		Object oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Diagnostic_datatypesPackage.KEY_VALUE__VALUE, oldValue, value));
@@ -150,10 +150,10 @@ public class KeyValueImpl extends MinimalEObjectImpl.Container implements KeyVal
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Diagnostic_datatypesPackage.KEY_VALUE__KEY:
-				setKey((String)newValue);
+				setKey((Object)newValue);
 				return;
 			case Diagnostic_datatypesPackage.KEY_VALUE__VALUE:
-				setValue((String)newValue);
+				setValue((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

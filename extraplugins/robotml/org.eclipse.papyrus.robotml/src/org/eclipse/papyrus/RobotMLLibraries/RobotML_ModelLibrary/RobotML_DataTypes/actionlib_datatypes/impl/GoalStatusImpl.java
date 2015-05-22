@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.Actionlib_datatypesPackage;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.GoalStatus;
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesFactory;
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +44,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char PENDING_EDEFAULT = '\u0000';
+	protected static final Object PENDING_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getUInt8(), "0");
 
 	/**
 	 * The cached value of the '{@link #getPENDING() <em>PENDING</em>}' attribute.
@@ -52,7 +54,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char pending = PENDING_EDEFAULT;
+	protected Object pending = PENDING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getACTIVE() <em>ACTIVE</em>}' attribute.
@@ -62,7 +64,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char ACTIVE_EDEFAULT = '\u0001';
+	protected static final Object ACTIVE_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getUInt8(), "1");
 
 	/**
 	 * The cached value of the '{@link #getACTIVE() <em>ACTIVE</em>}' attribute.
@@ -72,7 +74,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char active = ACTIVE_EDEFAULT;
+	protected Object active = ACTIVE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPREEMPTED() <em>PREEMPTED</em>}' attribute.
@@ -82,7 +84,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char PREEMPTED_EDEFAULT = '\u0002';
+	protected static final Object PREEMPTED_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getUInt8(), "2");
 
 	/**
 	 * The cached value of the '{@link #getPREEMPTED() <em>PREEMPTED</em>}' attribute.
@@ -92,7 +94,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char preempted = PREEMPTED_EDEFAULT;
+	protected Object preempted = PREEMPTED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSUCCEEDED() <em>SUCCEEDED</em>}' attribute.
@@ -102,7 +104,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char SUCCEEDED_EDEFAULT = '\u0000';
+	protected static final Object SUCCEEDED_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSUCCEEDED() <em>SUCCEEDED</em>}' attribute.
@@ -112,7 +114,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char succeeded = SUCCEEDED_EDEFAULT;
+	protected Object succeeded = SUCCEEDED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getABORTED() <em>ABORTED</em>}' attribute.
@@ -122,7 +124,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char ABORTED_EDEFAULT = '\u0000';
+	protected static final Object ABORTED_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getABORTED() <em>ABORTED</em>}' attribute.
@@ -132,7 +134,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char aborted = ABORTED_EDEFAULT;
+	protected Object aborted = ABORTED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getREJECTED() <em>REJECTED</em>}' attribute.
@@ -142,7 +144,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char REJECTED_EDEFAULT = '\u0000';
+	protected static final Object REJECTED_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getREJECTED() <em>REJECTED</em>}' attribute.
@@ -152,7 +154,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char rejected = REJECTED_EDEFAULT;
+	protected Object rejected = REJECTED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPREEMPTING() <em>PREEMPTING</em>}' attribute.
@@ -162,7 +164,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char PREEMPTING_EDEFAULT = '\u0000';
+	protected static final Object PREEMPTING_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getPREEMPTING() <em>PREEMPTING</em>}' attribute.
@@ -172,7 +174,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char preempting = PREEMPTING_EDEFAULT;
+	protected Object preempting = PREEMPTING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRECALLING() <em>RECALLING</em>}' attribute.
@@ -182,7 +184,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char RECALLING_EDEFAULT = '\u0000';
+	protected static final Object RECALLING_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRECALLING() <em>RECALLING</em>}' attribute.
@@ -192,7 +194,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char recalling = RECALLING_EDEFAULT;
+	protected Object recalling = RECALLING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRECALLED() <em>RECALLED</em>}' attribute.
@@ -202,7 +204,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char RECALLED_EDEFAULT = '\u0000';
+	protected static final Object RECALLED_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRECALLED() <em>RECALLED</em>}' attribute.
@@ -212,7 +214,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char recalled = RECALLED_EDEFAULT;
+	protected Object recalled = RECALLED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLOST() <em>LOST</em>}' attribute.
@@ -222,7 +224,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char LOST_EDEFAULT = '\u0000';
+	protected static final Object LOST_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLOST() <em>LOST</em>}' attribute.
@@ -232,7 +234,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char lost = LOST_EDEFAULT;
+	protected Object lost = LOST_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
@@ -242,7 +244,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TEXT_EDEFAULT = null;
+	protected static final Object TEXT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
@@ -252,7 +254,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected String text = TEXT_EDEFAULT;
+	protected Object text = TEXT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
@@ -262,7 +264,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char STATUS_EDEFAULT = '\u0000';
+	protected static final Object STATUS_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
@@ -272,7 +274,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * @generated
 	 * @ordered
 	 */
-	protected char status = STATUS_EDEFAULT;
+	protected Object status = STATUS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -298,7 +300,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getPENDING() {
+	public Object getPENDING() {
 		return pending;
 	}
 
@@ -307,8 +309,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPENDING(char newPENDING) {
-		char oldPENDING = pending;
+	public void setPENDING(Object newPENDING) {
+		Object oldPENDING = pending;
 		pending = newPENDING;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__PENDING, oldPENDING, pending));
@@ -319,7 +321,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getACTIVE() {
+	public Object getACTIVE() {
 		return active;
 	}
 
@@ -328,8 +330,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setACTIVE(char newACTIVE) {
-		char oldACTIVE = active;
+	public void setACTIVE(Object newACTIVE) {
+		Object oldACTIVE = active;
 		active = newACTIVE;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__ACTIVE, oldACTIVE, active));
@@ -340,7 +342,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getPREEMPTED() {
+	public Object getPREEMPTED() {
 		return preempted;
 	}
 
@@ -349,8 +351,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPREEMPTED(char newPREEMPTED) {
-		char oldPREEMPTED = preempted;
+	public void setPREEMPTED(Object newPREEMPTED) {
+		Object oldPREEMPTED = preempted;
 		preempted = newPREEMPTED;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__PREEMPTED, oldPREEMPTED, preempted));
@@ -361,7 +363,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getSUCCEEDED() {
+	public Object getSUCCEEDED() {
 		return succeeded;
 	}
 
@@ -370,8 +372,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSUCCEEDED(char newSUCCEEDED) {
-		char oldSUCCEEDED = succeeded;
+	public void setSUCCEEDED(Object newSUCCEEDED) {
+		Object oldSUCCEEDED = succeeded;
 		succeeded = newSUCCEEDED;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__SUCCEEDED, oldSUCCEEDED, succeeded));
@@ -382,7 +384,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getABORTED() {
+	public Object getABORTED() {
 		return aborted;
 	}
 
@@ -391,8 +393,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setABORTED(char newABORTED) {
-		char oldABORTED = aborted;
+	public void setABORTED(Object newABORTED) {
+		Object oldABORTED = aborted;
 		aborted = newABORTED;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__ABORTED, oldABORTED, aborted));
@@ -403,7 +405,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getREJECTED() {
+	public Object getREJECTED() {
 		return rejected;
 	}
 
@@ -412,8 +414,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setREJECTED(char newREJECTED) {
-		char oldREJECTED = rejected;
+	public void setREJECTED(Object newREJECTED) {
+		Object oldREJECTED = rejected;
 		rejected = newREJECTED;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__REJECTED, oldREJECTED, rejected));
@@ -424,7 +426,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getPREEMPTING() {
+	public Object getPREEMPTING() {
 		return preempting;
 	}
 
@@ -433,8 +435,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPREEMPTING(char newPREEMPTING) {
-		char oldPREEMPTING = preempting;
+	public void setPREEMPTING(Object newPREEMPTING) {
+		Object oldPREEMPTING = preempting;
 		preempting = newPREEMPTING;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__PREEMPTING, oldPREEMPTING, preempting));
@@ -445,7 +447,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getRECALLING() {
+	public Object getRECALLING() {
 		return recalling;
 	}
 
@@ -454,8 +456,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRECALLING(char newRECALLING) {
-		char oldRECALLING = recalling;
+	public void setRECALLING(Object newRECALLING) {
+		Object oldRECALLING = recalling;
 		recalling = newRECALLING;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__RECALLING, oldRECALLING, recalling));
@@ -466,7 +468,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getRECALLED() {
+	public Object getRECALLED() {
 		return recalled;
 	}
 
@@ -475,8 +477,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRECALLED(char newRECALLED) {
-		char oldRECALLED = recalled;
+	public void setRECALLED(Object newRECALLED) {
+		Object oldRECALLED = recalled;
 		recalled = newRECALLED;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__RECALLED, oldRECALLED, recalled));
@@ -487,7 +489,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getLOST() {
+	public Object getLOST() {
 		return lost;
 	}
 
@@ -496,8 +498,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLOST(char newLOST) {
-		char oldLOST = lost;
+	public void setLOST(Object newLOST) {
+		Object oldLOST = lost;
 		lost = newLOST;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__LOST, oldLOST, lost));
@@ -508,7 +510,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText() {
+	public Object getText() {
 		return text;
 	}
 
@@ -517,8 +519,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setText(String newText) {
-		String oldText = text;
+	public void setText(Object newText) {
+		Object oldText = text;
 		text = newText;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__TEXT, oldText, text));
@@ -529,7 +531,7 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getStatus() {
+	public Object getStatus() {
 		return status;
 	}
 
@@ -538,8 +540,8 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatus(char newStatus) {
-		char oldStatus = status;
+	public void setStatus(Object newStatus) {
+		Object oldStatus = status;
 		status = newStatus;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS__STATUS, oldStatus, status));
@@ -590,40 +592,40 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Actionlib_datatypesPackage.GOAL_STATUS__PENDING:
-				setPENDING((Character)newValue);
+				setPENDING((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__ACTIVE:
-				setACTIVE((Character)newValue);
+				setACTIVE((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__PREEMPTED:
-				setPREEMPTED((Character)newValue);
+				setPREEMPTED((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__SUCCEEDED:
-				setSUCCEEDED((Character)newValue);
+				setSUCCEEDED((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__ABORTED:
-				setABORTED((Character)newValue);
+				setABORTED((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__REJECTED:
-				setREJECTED((Character)newValue);
+				setREJECTED((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__PREEMPTING:
-				setPREEMPTING((Character)newValue);
+				setPREEMPTING((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__RECALLING:
-				setRECALLING((Character)newValue);
+				setRECALLING((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__RECALLED:
-				setRECALLED((Character)newValue);
+				setRECALLED((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__LOST:
-				setLOST((Character)newValue);
+				setLOST((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__TEXT:
-				setText((String)newValue);
+				setText((Object)newValue);
 				return;
 			case Actionlib_datatypesPackage.GOAL_STATUS__STATUS:
-				setStatus((Character)newValue);
+				setStatus((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -686,29 +688,29 @@ public class GoalStatusImpl extends MinimalEObjectImpl.Container implements Goal
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Actionlib_datatypesPackage.GOAL_STATUS__PENDING:
-				return pending != PENDING_EDEFAULT;
+				return PENDING_EDEFAULT == null ? pending != null : !PENDING_EDEFAULT.equals(pending);
 			case Actionlib_datatypesPackage.GOAL_STATUS__ACTIVE:
-				return active != ACTIVE_EDEFAULT;
+				return ACTIVE_EDEFAULT == null ? active != null : !ACTIVE_EDEFAULT.equals(active);
 			case Actionlib_datatypesPackage.GOAL_STATUS__PREEMPTED:
-				return preempted != PREEMPTED_EDEFAULT;
+				return PREEMPTED_EDEFAULT == null ? preempted != null : !PREEMPTED_EDEFAULT.equals(preempted);
 			case Actionlib_datatypesPackage.GOAL_STATUS__SUCCEEDED:
-				return succeeded != SUCCEEDED_EDEFAULT;
+				return SUCCEEDED_EDEFAULT == null ? succeeded != null : !SUCCEEDED_EDEFAULT.equals(succeeded);
 			case Actionlib_datatypesPackage.GOAL_STATUS__ABORTED:
-				return aborted != ABORTED_EDEFAULT;
+				return ABORTED_EDEFAULT == null ? aborted != null : !ABORTED_EDEFAULT.equals(aborted);
 			case Actionlib_datatypesPackage.GOAL_STATUS__REJECTED:
-				return rejected != REJECTED_EDEFAULT;
+				return REJECTED_EDEFAULT == null ? rejected != null : !REJECTED_EDEFAULT.equals(rejected);
 			case Actionlib_datatypesPackage.GOAL_STATUS__PREEMPTING:
-				return preempting != PREEMPTING_EDEFAULT;
+				return PREEMPTING_EDEFAULT == null ? preempting != null : !PREEMPTING_EDEFAULT.equals(preempting);
 			case Actionlib_datatypesPackage.GOAL_STATUS__RECALLING:
-				return recalling != RECALLING_EDEFAULT;
+				return RECALLING_EDEFAULT == null ? recalling != null : !RECALLING_EDEFAULT.equals(recalling);
 			case Actionlib_datatypesPackage.GOAL_STATUS__RECALLED:
-				return recalled != RECALLED_EDEFAULT;
+				return RECALLED_EDEFAULT == null ? recalled != null : !RECALLED_EDEFAULT.equals(recalled);
 			case Actionlib_datatypesPackage.GOAL_STATUS__LOST:
-				return lost != LOST_EDEFAULT;
+				return LOST_EDEFAULT == null ? lost != null : !LOST_EDEFAULT.equals(lost);
 			case Actionlib_datatypesPackage.GOAL_STATUS__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
 			case Actionlib_datatypesPackage.GOAL_STATUS__STATUS:
-				return status != STATUS_EDEFAULT;
+				return STATUS_EDEFAULT == null ? status != null : !STATUS_EDEFAULT.equals(status);
 		}
 		return super.eIsSet(featureID);
 	}

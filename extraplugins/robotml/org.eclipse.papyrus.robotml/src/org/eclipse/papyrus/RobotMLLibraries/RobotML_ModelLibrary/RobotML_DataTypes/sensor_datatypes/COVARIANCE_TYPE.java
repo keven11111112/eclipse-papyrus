@@ -94,7 +94,7 @@ public enum COVARIANCE_TYPE implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #_COVARIANCE_TYPE_DIAGONAL_KNOWN
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName=' COVARIANCE_TYPE_DIAGONAL_KNOWN'"
 	 * @generated
 	 * @ordered
 	 */

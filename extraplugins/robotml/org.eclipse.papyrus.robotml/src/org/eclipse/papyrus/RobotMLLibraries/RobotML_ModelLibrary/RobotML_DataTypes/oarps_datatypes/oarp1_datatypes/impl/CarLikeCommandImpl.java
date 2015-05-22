@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.CarLikeCommand;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage;
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesFactory;
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +34,7 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double VELOCITY_EDEFAULT = 0.0;
+	protected static final Object VELOCITY_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getFloat64(), "0");
 
 	/**
 	 * The cached value of the '{@link #getVelocity() <em>Velocity</em>}' attribute.
@@ -42,7 +44,7 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected double velocity = VELOCITY_EDEFAULT;
+	protected Object velocity = VELOCITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSteeringAngle() <em>Steering Angle</em>}' attribute.
@@ -52,7 +54,7 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double STEERING_ANGLE_EDEFAULT = 0.0;
+	protected static final Object STEERING_ANGLE_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getFloat64(), "0");
 
 	/**
 	 * The cached value of the '{@link #getSteeringAngle() <em>Steering Angle</em>}' attribute.
@@ -62,7 +64,7 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected double steeringAngle = STEERING_ANGLE_EDEFAULT;
+	protected Object steeringAngle = STEERING_ANGLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,7 +90,7 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getVelocity() {
+	public Object getVelocity() {
 		return velocity;
 	}
 
@@ -97,8 +99,8 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVelocity(double newVelocity) {
-		double oldVelocity = velocity;
+	public void setVelocity(Object newVelocity) {
+		Object oldVelocity = velocity;
 		velocity = newVelocity;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Oarp1_datatypesPackage.CAR_LIKE_COMMAND__VELOCITY, oldVelocity, velocity));
@@ -109,7 +111,7 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getSteeringAngle() {
+	public Object getSteeringAngle() {
 		return steeringAngle;
 	}
 
@@ -118,8 +120,8 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSteeringAngle(double newSteeringAngle) {
-		double oldSteeringAngle = steeringAngle;
+	public void setSteeringAngle(Object newSteeringAngle) {
+		Object oldSteeringAngle = steeringAngle;
 		steeringAngle = newSteeringAngle;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Oarp1_datatypesPackage.CAR_LIKE_COMMAND__STEERING_ANGLE, oldSteeringAngle, steeringAngle));
@@ -150,10 +152,10 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Oarp1_datatypesPackage.CAR_LIKE_COMMAND__VELOCITY:
-				setVelocity((Double)newValue);
+				setVelocity((Object)newValue);
 				return;
 			case Oarp1_datatypesPackage.CAR_LIKE_COMMAND__STEERING_ANGLE:
-				setSteeringAngle((Double)newValue);
+				setSteeringAngle((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,9 +188,9 @@ public class CarLikeCommandImpl extends MinimalEObjectImpl.Container implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Oarp1_datatypesPackage.CAR_LIKE_COMMAND__VELOCITY:
-				return velocity != VELOCITY_EDEFAULT;
+				return VELOCITY_EDEFAULT == null ? velocity != null : !VELOCITY_EDEFAULT.equals(velocity);
 			case Oarp1_datatypesPackage.CAR_LIKE_COMMAND__STEERING_ANGLE:
-				return steeringAngle != STEERING_ANGLE_EDEFAULT;
+				return STEERING_ANGLE_EDEFAULT == null ? steeringAngle != null : !STEERING_ANGLE_EDEFAULT.equals(steeringAngle);
 		}
 		return super.eIsSet(featureID);
 	}

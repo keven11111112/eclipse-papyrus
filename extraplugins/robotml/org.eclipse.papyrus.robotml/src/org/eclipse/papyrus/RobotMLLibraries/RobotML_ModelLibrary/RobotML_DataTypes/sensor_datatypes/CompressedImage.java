@@ -63,7 +63,7 @@ public interface CompressedImage extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" required="true" ordered="false"
 	 * @generated
 	 */
-	String getFormat();
+	Object getFormat();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.CompressedImage#getFormat <em>Format</em>}' attribute.
@@ -73,11 +73,11 @@ public interface CompressedImage extends EObject {
 	 * @see #getFormat()
 	 * @generated
 	 */
-	void setFormat(String value);
+	void setFormat(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Character}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Data</em>' attribute list isn't clear, there really should be more of a description here...
@@ -88,6 +88,6 @@ public interface CompressedImage extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8" ordered="false"
 	 * @generated
 	 */
-	EList<Character> getData();
+	EList<Object> getData();
 
 } // CompressedImage

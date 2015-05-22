@@ -36,7 +36,7 @@ public class ChannelFloat32Impl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final Object NAME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -46,7 +46,7 @@ public class ChannelFloat32Impl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected Object name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
@@ -56,7 +56,7 @@ public class ChannelFloat32Impl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Float> values;
+	protected EList<Object> values;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,7 +82,7 @@ public class ChannelFloat32Impl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public Object getName() {
 		return name;
 	}
 
@@ -91,8 +91,8 @@ public class ChannelFloat32Impl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
+	public void setName(Object newName) {
+		Object oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME, oldName, name));
@@ -103,9 +103,9 @@ public class ChannelFloat32Impl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Float> getValues() {
+	public EList<Object> getValues() {
 		if (values == null) {
-			values = new EDataTypeUniqueEList<Float>(Float.class, this, Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES);
+			values = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES);
 		}
 		return values;
 	}
@@ -136,11 +136,11 @@ public class ChannelFloat32Impl extends MinimalEObjectImpl.Container implements 
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
-				setName((String)newValue);
+				setName((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
 				getValues().clear();
-				getValues().addAll((Collection<? extends Float>)newValue);
+				getValues().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

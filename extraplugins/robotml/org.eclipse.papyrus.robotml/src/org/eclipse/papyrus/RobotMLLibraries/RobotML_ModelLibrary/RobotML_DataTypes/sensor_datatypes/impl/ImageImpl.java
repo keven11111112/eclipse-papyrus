@@ -54,7 +54,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long HEIGHT_EDEFAULT = 0L;
+	protected static final Object HEIGHT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
@@ -64,7 +64,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected long height = HEIGHT_EDEFAULT;
+	protected Object height = HEIGHT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -74,7 +74,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long WIDTH_EDEFAULT = 0L;
+	protected static final Object WIDTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -84,7 +84,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected long width = WIDTH_EDEFAULT;
+	protected Object width = WIDTH_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getEncoding() <em>Encoding</em>}' attribute.
@@ -94,7 +94,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ENCODING_EDEFAULT = null;
+	protected static final Object ENCODING_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getEncoding() <em>Encoding</em>}' attribute.
@@ -104,7 +104,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected String encoding = ENCODING_EDEFAULT;
+	protected Object encoding = ENCODING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getIs_bigendian() <em>Is bigendian</em>}' attribute.
@@ -114,7 +114,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char IS_BIGENDIAN_EDEFAULT = '\u0000';
+	protected static final Object IS_BIGENDIAN_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getIs_bigendian() <em>Is bigendian</em>}' attribute.
@@ -124,7 +124,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected char is_bigendian = IS_BIGENDIAN_EDEFAULT;
+	protected Object is_bigendian = IS_BIGENDIAN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getStep() <em>Step</em>}' attribute.
@@ -134,7 +134,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long STEP_EDEFAULT = 0L;
+	protected static final Object STEP_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getStep() <em>Step</em>}' attribute.
@@ -144,7 +144,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected long step = STEP_EDEFAULT;
+	protected Object step = STEP_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getData() <em>Data</em>}' attribute list.
@@ -154,7 +154,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Character> data;
+	protected EList<Object> data;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -223,7 +223,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getHeight() {
+	public Object getHeight() {
 		return height;
 	}
 
@@ -232,8 +232,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHeight(long newHeight) {
-		long oldHeight = height;
+	public void setHeight(Object newHeight) {
+		Object oldHeight = height;
 		height = newHeight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.IMAGE__HEIGHT, oldHeight, height));
@@ -244,7 +244,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getWidth() {
+	public Object getWidth() {
 		return width;
 	}
 
@@ -253,8 +253,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWidth(long newWidth) {
-		long oldWidth = width;
+	public void setWidth(Object newWidth) {
+		Object oldWidth = width;
 		width = newWidth;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.IMAGE__WIDTH, oldWidth, width));
@@ -265,7 +265,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getEncoding() {
+	public Object getEncoding() {
 		return encoding;
 	}
 
@@ -274,8 +274,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEncoding(String newEncoding) {
-		String oldEncoding = encoding;
+	public void setEncoding(Object newEncoding) {
+		Object oldEncoding = encoding;
 		encoding = newEncoding;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.IMAGE__ENCODING, oldEncoding, encoding));
@@ -286,7 +286,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getIs_bigendian() {
+	public Object getIs_bigendian() {
 		return is_bigendian;
 	}
 
@@ -295,8 +295,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIs_bigendian(char newIs_bigendian) {
-		char oldIs_bigendian = is_bigendian;
+	public void setIs_bigendian(Object newIs_bigendian) {
+		Object oldIs_bigendian = is_bigendian;
 		is_bigendian = newIs_bigendian;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.IMAGE__IS_BIGENDIAN, oldIs_bigendian, is_bigendian));
@@ -307,7 +307,7 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getStep() {
+	public Object getStep() {
 		return step;
 	}
 
@@ -316,8 +316,8 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStep(long newStep) {
-		long oldStep = step;
+	public void setStep(Object newStep) {
+		Object oldStep = step;
 		step = newStep;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.IMAGE__STEP, oldStep, step));
@@ -328,9 +328,9 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Character> getData() {
+	public EList<Object> getData() {
 		if (data == null) {
-			data = new EDataTypeUniqueEList<Character>(Character.class, this, Sensor_datatypesPackage.IMAGE__DATA);
+			data = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.IMAGE__DATA);
 		}
 		return data;
 	}
@@ -388,23 +388,23 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 				setHeader((Header)newValue);
 				return;
 			case Sensor_datatypesPackage.IMAGE__HEIGHT:
-				setHeight((Long)newValue);
+				setHeight((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.IMAGE__WIDTH:
-				setWidth((Long)newValue);
+				setWidth((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.IMAGE__ENCODING:
-				setEncoding((String)newValue);
+				setEncoding((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.IMAGE__IS_BIGENDIAN:
-				setIs_bigendian((Character)newValue);
+				setIs_bigendian((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.IMAGE__STEP:
-				setStep((Long)newValue);
+				setStep((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.IMAGE__DATA:
 				getData().clear();
-				getData().addAll((Collection<? extends Character>)newValue);
+				getData().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -454,15 +454,15 @@ public class ImageImpl extends MinimalEObjectImpl.Container implements Image {
 			case Sensor_datatypesPackage.IMAGE__HEADER:
 				return header != null;
 			case Sensor_datatypesPackage.IMAGE__HEIGHT:
-				return height != HEIGHT_EDEFAULT;
+				return HEIGHT_EDEFAULT == null ? height != null : !HEIGHT_EDEFAULT.equals(height);
 			case Sensor_datatypesPackage.IMAGE__WIDTH:
-				return width != WIDTH_EDEFAULT;
+				return WIDTH_EDEFAULT == null ? width != null : !WIDTH_EDEFAULT.equals(width);
 			case Sensor_datatypesPackage.IMAGE__ENCODING:
 				return ENCODING_EDEFAULT == null ? encoding != null : !ENCODING_EDEFAULT.equals(encoding);
 			case Sensor_datatypesPackage.IMAGE__IS_BIGENDIAN:
-				return is_bigendian != IS_BIGENDIAN_EDEFAULT;
+				return IS_BIGENDIAN_EDEFAULT == null ? is_bigendian != null : !IS_BIGENDIAN_EDEFAULT.equals(is_bigendian);
 			case Sensor_datatypesPackage.IMAGE__STEP:
-				return step != STEP_EDEFAULT;
+				return STEP_EDEFAULT == null ? step != null : !STEP_EDEFAULT.equals(step);
 			case Sensor_datatypesPackage.IMAGE__DATA:
 				return data != null && !data.isEmpty();
 		}

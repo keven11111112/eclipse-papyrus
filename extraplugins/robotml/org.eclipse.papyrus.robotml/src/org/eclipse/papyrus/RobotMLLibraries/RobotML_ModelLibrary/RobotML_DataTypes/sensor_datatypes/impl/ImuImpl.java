@@ -66,7 +66,7 @@ public class ImuImpl extends MinimalEObjectImpl.Container implements Imu {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> orientation_covariance;
+	protected EList<Object> orientation_covariance;
 
 	/**
 	 * The cached value of the '{@link #getAngular_velocity() <em>Angular velocity</em>}' containment reference.
@@ -86,7 +86,7 @@ public class ImuImpl extends MinimalEObjectImpl.Container implements Imu {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> angular_velocity_covariance;
+	protected EList<Object> angular_velocity_covariance;
 
 	/**
 	 * The cached value of the '{@link #getLinear_acceleration() <em>Linear acceleration</em>}' containment reference.
@@ -106,7 +106,7 @@ public class ImuImpl extends MinimalEObjectImpl.Container implements Imu {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> linear_acceleration_covariance;
+	protected EList<Object> linear_acceleration_covariance;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,9 +218,9 @@ public class ImuImpl extends MinimalEObjectImpl.Container implements Imu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getOrientation_covariance() {
+	public EList<Object> getOrientation_covariance() {
 		if (orientation_covariance == null) {
-			orientation_covariance = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.IMU__ORIENTATION_COVARIANCE);
+			orientation_covariance = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.IMU__ORIENTATION_COVARIANCE);
 		}
 		return orientation_covariance;
 	}
@@ -273,9 +273,9 @@ public class ImuImpl extends MinimalEObjectImpl.Container implements Imu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getAngular_velocity_covariance() {
+	public EList<Object> getAngular_velocity_covariance() {
 		if (angular_velocity_covariance == null) {
-			angular_velocity_covariance = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.IMU__ANGULAR_VELOCITY_COVARIANCE);
+			angular_velocity_covariance = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.IMU__ANGULAR_VELOCITY_COVARIANCE);
 		}
 		return angular_velocity_covariance;
 	}
@@ -328,9 +328,9 @@ public class ImuImpl extends MinimalEObjectImpl.Container implements Imu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getLinear_acceleration_covariance() {
+	public EList<Object> getLinear_acceleration_covariance() {
 		if (linear_acceleration_covariance == null) {
-			linear_acceleration_covariance = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.IMU__LINEAR_ACCELERATION_COVARIANCE);
+			linear_acceleration_covariance = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.IMU__LINEAR_ACCELERATION_COVARIANCE);
 		}
 		return linear_acceleration_covariance;
 	}
@@ -398,21 +398,21 @@ public class ImuImpl extends MinimalEObjectImpl.Container implements Imu {
 				return;
 			case Sensor_datatypesPackage.IMU__ORIENTATION_COVARIANCE:
 				getOrientation_covariance().clear();
-				getOrientation_covariance().addAll((Collection<? extends Double>)newValue);
+				getOrientation_covariance().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.IMU__ANGULAR_VELOCITY:
 				setAngular_velocity((Vector3)newValue);
 				return;
 			case Sensor_datatypesPackage.IMU__ANGULAR_VELOCITY_COVARIANCE:
 				getAngular_velocity_covariance().clear();
-				getAngular_velocity_covariance().addAll((Collection<? extends Double>)newValue);
+				getAngular_velocity_covariance().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.IMU__LINEAR_ACCELERATION:
 				setLinear_acceleration((Vector3)newValue);
 				return;
 			case Sensor_datatypesPackage.IMU__LINEAR_ACCELERATION_COVARIANCE:
 				getLinear_acceleration_covariance().clear();
-				getLinear_acceleration_covariance().addAll((Collection<? extends Double>)newValue);
+				getLinear_acceleration_covariance().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

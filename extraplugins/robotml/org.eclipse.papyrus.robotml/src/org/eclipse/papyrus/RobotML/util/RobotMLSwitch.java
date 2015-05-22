@@ -183,8 +183,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 			case RobotMLPackage.ROBOT: {
 				Robot robot = (Robot)theEObject;
 				T result = caseRobot(robot);
-				if (result == null) result = caseAgent(robot);
-				if (result == null) result = casePhysicalObject(robot);
 				if (result == null) result = caseSystem(robot);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -199,29 +197,12 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				Agent agent = (Agent)theEObject;
 				T result = caseAgent(agent);
 				if (result == null) result = casePhysicalObject(agent);
-				if (result == null) result = caseSystem(agent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RobotMLPackage.PHYSICAL_OBJECT: {
 				PhysicalObject physicalObject = (PhysicalObject)theEObject;
 				T result = casePhysicalObject(physicalObject);
-				if (result == null) result = caseSystem(physicalObject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RobotMLPackage.ENVIRONMENT: {
-				Environment environment = (Environment)theEObject;
-				T result = caseEnvironment(environment);
-				if (result == null) result = caseSystem(environment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RobotMLPackage.SURFACE: {
-				Surface surface = (Surface)theEObject;
-				T result = caseSurface(surface);
-				if (result == null) result = casePhysicalObject(surface);
-				if (result == null) result = caseSystem(surface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -280,7 +261,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 			case RobotMLPackage.HARDWARE: {
 				Hardware hardware = (Hardware)theEObject;
 				T result = caseHardware(hardware);
-				if (result == null) result = casePhysicalObject(hardware);
 				if (result == null) result = caseSystem(hardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -411,11 +391,23 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case RobotMLPackage.ENVIRONMENT: {
+				Environment environment = (Environment)theEObject;
+				T result = caseEnvironment(environment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case RobotMLPackage.BUILDING: {
 				Building building = (Building)theEObject;
 				T result = caseBuilding(building);
 				if (result == null) result = casePhysicalObject(building);
-				if (result == null) result = caseSystem(building);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RobotMLPackage.SURFACE: {
+				Surface surface = (Surface)theEObject;
+				T result = caseSurface(surface);
+				if (result == null) result = casePhysicalObject(surface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -423,7 +415,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				Planet planet = (Planet)theEObject;
 				T result = casePlanet(planet);
 				if (result == null) result = casePhysicalObject(planet);
-				if (result == null) result = caseSystem(planet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -433,7 +424,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseGround(landSurface);
 				if (result == null) result = caseSurface(landSurface);
 				if (result == null) result = casePhysicalObject(landSurface);
-				if (result == null) result = caseSystem(landSurface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -442,7 +432,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				T result = caseGround(ground);
 				if (result == null) result = caseSurface(ground);
 				if (result == null) result = casePhysicalObject(ground);
-				if (result == null) result = caseSystem(ground);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -452,7 +441,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseGround(floor);
 				if (result == null) result = caseSurface(floor);
 				if (result == null) result = casePhysicalObject(floor);
-				if (result == null) result = caseSystem(floor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -461,7 +449,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				T result = caseWaterSurface(waterSurface);
 				if (result == null) result = caseSurface(waterSurface);
 				if (result == null) result = casePhysicalObject(waterSurface);
-				if (result == null) result = caseSystem(waterSurface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -470,7 +457,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				T result = caseHuman(human);
 				if (result == null) result = caseAgent(human);
 				if (result == null) result = casePhysicalObject(human);
-				if (result == null) result = caseSystem(human);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -480,7 +466,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseHuman(pedestrian);
 				if (result == null) result = caseAgent(pedestrian);
 				if (result == null) result = casePhysicalObject(pedestrian);
-				if (result == null) result = caseSystem(pedestrian);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -490,7 +475,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseGround(stairs);
 				if (result == null) result = caseSurface(stairs);
 				if (result == null) result = casePhysicalObject(stairs);
-				if (result == null) result = caseSystem(stairs);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -624,7 +608,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				T result = caseChassis(chassis);
 				if (result == null) result = caseSupportingStructure(chassis);
 				if (result == null) result = caseHardware(chassis);
-				if (result == null) result = casePhysicalObject(chassis);
 				if (result == null) result = caseSystem(chassis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -633,7 +616,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				SupportingStructure supportingStructure = (SupportingStructure)theEObject;
 				T result = caseSupportingStructure(supportingStructure);
 				if (result == null) result = caseHardware(supportingStructure);
-				if (result == null) result = casePhysicalObject(supportingStructure);
 				if (result == null) result = caseSystem(supportingStructure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -642,7 +624,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				MechanicalLinkage mechanicalLinkage = (MechanicalLinkage)theEObject;
 				T result = caseMechanicalLinkage(mechanicalLinkage);
 				if (result == null) result = caseHardware(mechanicalLinkage);
-				if (result == null) result = casePhysicalObject(mechanicalLinkage);
 				if (result == null) result = caseSystem(mechanicalLinkage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -654,7 +635,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMechanicalLinkage(leg);
 				if (result == null) result = caseActuatorHardware(leg);
 				if (result == null) result = caseHardware(leg);
-				if (result == null) result = casePhysicalObject(leg);
 				if (result == null) result = caseSystem(leg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -664,7 +644,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				T result = caseLocomotionHardware(locomotionHardware);
 				if (result == null) result = caseActuatorHardware(locomotionHardware);
 				if (result == null) result = caseHardware(locomotionHardware);
-				if (result == null) result = casePhysicalObject(locomotionHardware);
 				if (result == null) result = caseSystem(locomotionHardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -673,7 +652,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				ActuatorHardware actuatorHardware = (ActuatorHardware)theEObject;
 				T result = caseActuatorHardware(actuatorHardware);
 				if (result == null) result = caseHardware(actuatorHardware);
-				if (result == null) result = casePhysicalObject(actuatorHardware);
 				if (result == null) result = caseSystem(actuatorHardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -682,8 +660,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				MobileRobot mobileRobot = (MobileRobot)theEObject;
 				T result = caseMobileRobot(mobileRobot);
 				if (result == null) result = caseRobot(mobileRobot);
-				if (result == null) result = caseAgent(mobileRobot);
-				if (result == null) result = casePhysicalObject(mobileRobot);
 				if (result == null) result = caseSystem(mobileRobot);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -692,8 +668,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				Manipulator manipulator = (Manipulator)theEObject;
 				T result = caseManipulator(manipulator);
 				if (result == null) result = caseRobot(manipulator);
-				if (result == null) result = caseAgent(manipulator);
-				if (result == null) result = casePhysicalObject(manipulator);
 				if (result == null) result = caseSystem(manipulator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -702,8 +676,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				PilotedSystem pilotedSystem = (PilotedSystem)theEObject;
 				T result = casePilotedSystem(pilotedSystem);
 				if (result == null) result = caseRobot(pilotedSystem);
-				if (result == null) result = caseAgent(pilotedSystem);
-				if (result == null) result = casePhysicalObject(pilotedSystem);
 				if (result == null) result = caseSystem(pilotedSystem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -712,7 +684,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				PowerHardware powerHardware = (PowerHardware)theEObject;
 				T result = casePowerHardware(powerHardware);
 				if (result == null) result = caseHardware(powerHardware);
-				if (result == null) result = casePhysicalObject(powerHardware);
 				if (result == null) result = caseSystem(powerHardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -721,7 +692,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				SensorHardware sensorHardware = (SensorHardware)theEObject;
 				T result = caseSensorHardware(sensorHardware);
 				if (result == null) result = caseHardware(sensorHardware);
-				if (result == null) result = casePhysicalObject(sensorHardware);
 				if (result == null) result = caseSystem(sensorHardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -731,7 +701,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				T result = caseGraspingHardware(graspingHardware);
 				if (result == null) result = caseActuatorHardware(graspingHardware);
 				if (result == null) result = caseHardware(graspingHardware);
-				if (result == null) result = casePhysicalObject(graspingHardware);
 				if (result == null) result = caseSystem(graspingHardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -742,7 +711,6 @@ public class RobotMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLocomotionHardware(steeredWheelHardware);
 				if (result == null) result = caseActuatorHardware(steeredWheelHardware);
 				if (result == null) result = caseHardware(steeredWheelHardware);
-				if (result == null) result = casePhysicalObject(steeredWheelHardware);
 				if (result == null) result = caseSystem(steeredWheelHardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

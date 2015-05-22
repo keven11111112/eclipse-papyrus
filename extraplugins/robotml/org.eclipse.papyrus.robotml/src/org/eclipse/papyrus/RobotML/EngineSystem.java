@@ -62,12 +62,12 @@ public interface EngineSystem extends ActuatorSystem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Engine Force</em>' attribute.
-	 * @see #setMaxEngineForce(float)
+	 * @see #setMaxEngineForce(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getEngineSystem_MaxEngineForce()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getMaxEngineForce();
+	Object getMaxEngineForce();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.EngineSystem#getMaxEngineForce <em>Max Engine Force</em>}' attribute.
@@ -77,7 +77,7 @@ public interface EngineSystem extends ActuatorSystem {
 	 * @see #getMaxEngineForce()
 	 * @generated
 	 */
-	void setMaxEngineForce(float value);
+	void setMaxEngineForce(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Max Breaking Force</b></em>' attribute.
@@ -87,12 +87,12 @@ public interface EngineSystem extends ActuatorSystem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Breaking Force</em>' attribute.
-	 * @see #setMaxBreakingForce(float)
+	 * @see #setMaxBreakingForce(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getEngineSystem_MaxBreakingForce()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getMaxBreakingForce();
+	Object getMaxBreakingForce();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.EngineSystem#getMaxBreakingForce <em>Max Breaking Force</em>}' attribute.
@@ -102,7 +102,7 @@ public interface EngineSystem extends ActuatorSystem {
 	 * @see #getMaxBreakingForce()
 	 * @generated
 	 */
-	void setMaxBreakingForce(float value);
+	void setMaxBreakingForce(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Max Allowed Steering</b></em>' attribute.
@@ -112,12 +112,12 @@ public interface EngineSystem extends ActuatorSystem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Allowed Steering</em>' attribute.
-	 * @see #setMaxAllowedSteering(float)
+	 * @see #setMaxAllowedSteering(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getEngineSystem_MaxAllowedSteering()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getMaxAllowedSteering();
+	Object getMaxAllowedSteering();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.EngineSystem#getMaxAllowedSteering <em>Max Allowed Steering</em>}' attribute.
@@ -127,7 +127,7 @@ public interface EngineSystem extends ActuatorSystem {
 	 * @see #getMaxAllowedSteering()
 	 * @generated
 	 */
-	void setMaxAllowedSteering(float value);
+	void setMaxAllowedSteering(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Max Allowed Velocity</b></em>' attribute.
@@ -137,12 +137,12 @@ public interface EngineSystem extends ActuatorSystem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Allowed Velocity</em>' attribute.
-	 * @see #setMaxAllowedVelocity(float)
+	 * @see #setMaxAllowedVelocity(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getEngineSystem_MaxAllowedVelocity()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getMaxAllowedVelocity();
+	Object getMaxAllowedVelocity();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.EngineSystem#getMaxAllowedVelocity <em>Max Allowed Velocity</em>}' attribute.
@@ -152,7 +152,7 @@ public interface EngineSystem extends ActuatorSystem {
 	 * @see #getMaxAllowedVelocity()
 	 * @generated
 	 */
-	void setMaxAllowedVelocity(float value);
+	void setMaxAllowedVelocity(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Gear ration</b></em>' attribute.
@@ -162,12 +162,12 @@ public interface EngineSystem extends ActuatorSystem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gear ration</em>' attribute.
-	 * @see #setGear_ration(float)
+	 * @see #setGear_ration(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getEngineSystem_Gear_ration()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getGear_ration();
+	Object getGear_ration();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.EngineSystem#getGear_ration <em>Gear ration</em>}' attribute.
@@ -177,6 +177,6 @@ public interface EngineSystem extends ActuatorSystem {
 	 * @see #getGear_ration()
 	 * @generated
 	 */
-	void setGear_ration(float value);
+	void setGear_ration(Object value);
 
 } // EngineSystem

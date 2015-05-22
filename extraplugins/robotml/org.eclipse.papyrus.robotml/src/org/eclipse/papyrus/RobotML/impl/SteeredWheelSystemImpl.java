@@ -45,7 +45,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_RADIUS_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_RADIUS_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelRadius() <em>Wheel Radius</em>}' attribute.
@@ -55,7 +55,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelRadius = WHEEL_RADIUS_EDEFAULT;
+	protected Object wheelRadius = WHEEL_RADIUS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelWidth() <em>Wheel Width</em>}' attribute.
@@ -65,7 +65,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_WIDTH_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_WIDTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelWidth() <em>Wheel Width</em>}' attribute.
@@ -75,7 +75,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelWidth = WHEEL_WIDTH_EDEFAULT;
+	protected Object wheelWidth = WHEEL_WIDTH_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSuspensionRestLength() <em>Suspension Rest Length</em>}' attribute.
@@ -85,7 +85,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float SUSPENSION_REST_LENGTH_EDEFAULT = 0.0F;
+	protected static final Object SUSPENSION_REST_LENGTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSuspensionRestLength() <em>Suspension Rest Length</em>}' attribute.
@@ -95,7 +95,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float suspensionRestLength = SUSPENSION_REST_LENGTH_EDEFAULT;
+	protected Object suspensionRestLength = SUSPENSION_REST_LENGTH_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelConnectionHeight() <em>Wheel Connection Height</em>}' attribute.
@@ -105,7 +105,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_CONNECTION_HEIGHT_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_CONNECTION_HEIGHT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelConnectionHeight() <em>Wheel Connection Height</em>}' attribute.
@@ -115,7 +115,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelConnectionHeight = WHEEL_CONNECTION_HEIGHT_EDEFAULT;
+	protected Object wheelConnectionHeight = WHEEL_CONNECTION_HEIGHT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTypeOfWheel() <em>Type Of Wheel</em>}' attribute.
@@ -125,7 +125,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_OF_WHEEL_EDEFAULT = null;
+	protected static final Object TYPE_OF_WHEEL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTypeOfWheel() <em>Type Of Wheel</em>}' attribute.
@@ -135,7 +135,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected String typeOfWheel = TYPE_OF_WHEEL_EDEFAULT;
+	protected Object typeOfWheel = TYPE_OF_WHEEL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelVelocityPIDkp() <em>Wheel Velocity PI Dkp</em>}' attribute.
@@ -145,7 +145,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_VELOCITY_PI_DKP_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_VELOCITY_PI_DKP_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelVelocityPIDkp() <em>Wheel Velocity PI Dkp</em>}' attribute.
@@ -155,7 +155,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelVelocityPIDkp = WHEEL_VELOCITY_PI_DKP_EDEFAULT;
+	protected Object wheelVelocityPIDkp = WHEEL_VELOCITY_PI_DKP_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelVelocityPIDki() <em>Wheel Velocity PI Dki</em>}' attribute.
@@ -165,7 +165,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_VELOCITY_PI_DKI_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_VELOCITY_PI_DKI_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelVelocityPIDki() <em>Wheel Velocity PI Dki</em>}' attribute.
@@ -175,7 +175,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelVelocityPIDki = WHEEL_VELOCITY_PI_DKI_EDEFAULT;
+	protected Object wheelVelocityPIDki = WHEEL_VELOCITY_PI_DKI_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelVelocityPIDkd() <em>Wheel Velocity PI Dkd</em>}' attribute.
@@ -185,7 +185,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_VELOCITY_PI_DKD_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_VELOCITY_PI_DKD_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelVelocityPIDkd() <em>Wheel Velocity PI Dkd</em>}' attribute.
@@ -195,7 +195,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelVelocityPIDkd = WHEEL_VELOCITY_PI_DKD_EDEFAULT;
+	protected Object wheelVelocityPIDkd = WHEEL_VELOCITY_PI_DKD_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelSteeringPIDkp() <em>Wheel Steering PI Dkp</em>}' attribute.
@@ -205,7 +205,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_STEERING_PI_DKP_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_STEERING_PI_DKP_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelSteeringPIDkp() <em>Wheel Steering PI Dkp</em>}' attribute.
@@ -215,7 +215,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelSteeringPIDkp = WHEEL_STEERING_PI_DKP_EDEFAULT;
+	protected Object wheelSteeringPIDkp = WHEEL_STEERING_PI_DKP_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelSteeringPIDkd() <em>Wheel Steering PI Dkd</em>}' attribute.
@@ -225,7 +225,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_STEERING_PI_DKD_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_STEERING_PI_DKD_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelSteeringPIDkd() <em>Wheel Steering PI Dkd</em>}' attribute.
@@ -235,7 +235,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelSteeringPIDkd = WHEEL_STEERING_PI_DKD_EDEFAULT;
+	protected Object wheelSteeringPIDkd = WHEEL_STEERING_PI_DKD_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelFriction() <em>Wheel Friction</em>}' attribute.
@@ -245,7 +245,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_FRICTION_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_FRICTION_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelFriction() <em>Wheel Friction</em>}' attribute.
@@ -255,7 +255,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelFriction = WHEEL_FRICTION_EDEFAULT;
+	protected Object wheelFriction = WHEEL_FRICTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSuspensionStiffness() <em>Suspension Stiffness</em>}' attribute.
@@ -265,7 +265,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float SUSPENSION_STIFFNESS_EDEFAULT = 0.0F;
+	protected static final Object SUSPENSION_STIFFNESS_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSuspensionStiffness() <em>Suspension Stiffness</em>}' attribute.
@@ -275,7 +275,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float suspensionStiffness = SUSPENSION_STIFFNESS_EDEFAULT;
+	protected Object suspensionStiffness = SUSPENSION_STIFFNESS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSuspensionDamping() <em>Suspension Damping</em>}' attribute.
@@ -285,7 +285,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float SUSPENSION_DAMPING_EDEFAULT = 0.0F;
+	protected static final Object SUSPENSION_DAMPING_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSuspensionDamping() <em>Suspension Damping</em>}' attribute.
@@ -295,7 +295,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float suspensionDamping = SUSPENSION_DAMPING_EDEFAULT;
+	protected Object suspensionDamping = SUSPENSION_DAMPING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSuspensionCompression() <em>Suspension Compression</em>}' attribute.
@@ -305,7 +305,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float SUSPENSION_COMPRESSION_EDEFAULT = 0.0F;
+	protected static final Object SUSPENSION_COMPRESSION_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSuspensionCompression() <em>Suspension Compression</em>}' attribute.
@@ -315,7 +315,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float suspensionCompression = SUSPENSION_COMPRESSION_EDEFAULT;
+	protected Object suspensionCompression = SUSPENSION_COMPRESSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelVelocityPIDmaxSum() <em>Wheel Velocity PI Dmax Sum</em>}' attribute.
@@ -325,7 +325,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_VELOCITY_PI_DMAX_SUM_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_VELOCITY_PI_DMAX_SUM_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelVelocityPIDmaxSum() <em>Wheel Velocity PI Dmax Sum</em>}' attribute.
@@ -335,7 +335,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelVelocityPIDmaxSum = WHEEL_VELOCITY_PI_DMAX_SUM_EDEFAULT;
+	protected Object wheelVelocityPIDmaxSum = WHEEL_VELOCITY_PI_DMAX_SUM_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWheelVelocityPIDmaxVal() <em>Wheel Velocity PI Dmax Val</em>}' attribute.
@@ -345,7 +345,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WHEEL_VELOCITY_PI_DMAX_VAL_EDEFAULT = 0.0F;
+	protected static final Object WHEEL_VELOCITY_PI_DMAX_VAL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWheelVelocityPIDmaxVal() <em>Wheel Velocity PI Dmax Val</em>}' attribute.
@@ -355,7 +355,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * @generated
 	 * @ordered
 	 */
-	protected float wheelVelocityPIDmaxVal = WHEEL_VELOCITY_PI_DMAX_VAL_EDEFAULT;
+	protected Object wheelVelocityPIDmaxVal = WHEEL_VELOCITY_PI_DMAX_VAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -381,7 +381,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelRadius() {
+	public Object getWheelRadius() {
 		return wheelRadius;
 	}
 
@@ -390,8 +390,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelRadius(float newWheelRadius) {
-		float oldWheelRadius = wheelRadius;
+	public void setWheelRadius(Object newWheelRadius) {
+		Object oldWheelRadius = wheelRadius;
 		wheelRadius = newWheelRadius;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_RADIUS, oldWheelRadius, wheelRadius));
@@ -402,7 +402,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelWidth() {
+	public Object getWheelWidth() {
 		return wheelWidth;
 	}
 
@@ -411,8 +411,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelWidth(float newWheelWidth) {
-		float oldWheelWidth = wheelWidth;
+	public void setWheelWidth(Object newWheelWidth) {
+		Object oldWheelWidth = wheelWidth;
 		wheelWidth = newWheelWidth;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_WIDTH, oldWheelWidth, wheelWidth));
@@ -423,7 +423,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSuspensionRestLength() {
+	public Object getSuspensionRestLength() {
 		return suspensionRestLength;
 	}
 
@@ -432,8 +432,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSuspensionRestLength(float newSuspensionRestLength) {
-		float oldSuspensionRestLength = suspensionRestLength;
+	public void setSuspensionRestLength(Object newSuspensionRestLength) {
+		Object oldSuspensionRestLength = suspensionRestLength;
 		suspensionRestLength = newSuspensionRestLength;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_REST_LENGTH, oldSuspensionRestLength, suspensionRestLength));
@@ -444,7 +444,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelConnectionHeight() {
+	public Object getWheelConnectionHeight() {
 		return wheelConnectionHeight;
 	}
 
@@ -453,8 +453,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelConnectionHeight(float newWheelConnectionHeight) {
-		float oldWheelConnectionHeight = wheelConnectionHeight;
+	public void setWheelConnectionHeight(Object newWheelConnectionHeight) {
+		Object oldWheelConnectionHeight = wheelConnectionHeight;
 		wheelConnectionHeight = newWheelConnectionHeight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_CONNECTION_HEIGHT, oldWheelConnectionHeight, wheelConnectionHeight));
@@ -465,7 +465,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTypeOfWheel() {
+	public Object getTypeOfWheel() {
 		return typeOfWheel;
 	}
 
@@ -474,8 +474,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeOfWheel(String newTypeOfWheel) {
-		String oldTypeOfWheel = typeOfWheel;
+	public void setTypeOfWheel(Object newTypeOfWheel) {
+		Object oldTypeOfWheel = typeOfWheel;
 		typeOfWheel = newTypeOfWheel;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__TYPE_OF_WHEEL, oldTypeOfWheel, typeOfWheel));
@@ -486,7 +486,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelVelocityPIDkp() {
+	public Object getWheelVelocityPIDkp() {
 		return wheelVelocityPIDkp;
 	}
 
@@ -495,8 +495,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelVelocityPIDkp(float newWheelVelocityPIDkp) {
-		float oldWheelVelocityPIDkp = wheelVelocityPIDkp;
+	public void setWheelVelocityPIDkp(Object newWheelVelocityPIDkp) {
+		Object oldWheelVelocityPIDkp = wheelVelocityPIDkp;
 		wheelVelocityPIDkp = newWheelVelocityPIDkp;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKP, oldWheelVelocityPIDkp, wheelVelocityPIDkp));
@@ -507,7 +507,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelVelocityPIDki() {
+	public Object getWheelVelocityPIDki() {
 		return wheelVelocityPIDki;
 	}
 
@@ -516,8 +516,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelVelocityPIDki(float newWheelVelocityPIDki) {
-		float oldWheelVelocityPIDki = wheelVelocityPIDki;
+	public void setWheelVelocityPIDki(Object newWheelVelocityPIDki) {
+		Object oldWheelVelocityPIDki = wheelVelocityPIDki;
 		wheelVelocityPIDki = newWheelVelocityPIDki;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKI, oldWheelVelocityPIDki, wheelVelocityPIDki));
@@ -528,7 +528,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelVelocityPIDkd() {
+	public Object getWheelVelocityPIDkd() {
 		return wheelVelocityPIDkd;
 	}
 
@@ -537,8 +537,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelVelocityPIDkd(float newWheelVelocityPIDkd) {
-		float oldWheelVelocityPIDkd = wheelVelocityPIDkd;
+	public void setWheelVelocityPIDkd(Object newWheelVelocityPIDkd) {
+		Object oldWheelVelocityPIDkd = wheelVelocityPIDkd;
 		wheelVelocityPIDkd = newWheelVelocityPIDkd;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKD, oldWheelVelocityPIDkd, wheelVelocityPIDkd));
@@ -549,7 +549,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelSteeringPIDkp() {
+	public Object getWheelSteeringPIDkp() {
 		return wheelSteeringPIDkp;
 	}
 
@@ -558,8 +558,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelSteeringPIDkp(float newWheelSteeringPIDkp) {
-		float oldWheelSteeringPIDkp = wheelSteeringPIDkp;
+	public void setWheelSteeringPIDkp(Object newWheelSteeringPIDkp) {
+		Object oldWheelSteeringPIDkp = wheelSteeringPIDkp;
 		wheelSteeringPIDkp = newWheelSteeringPIDkp;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKP, oldWheelSteeringPIDkp, wheelSteeringPIDkp));
@@ -570,7 +570,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelSteeringPIDkd() {
+	public Object getWheelSteeringPIDkd() {
 		return wheelSteeringPIDkd;
 	}
 
@@ -579,8 +579,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelSteeringPIDkd(float newWheelSteeringPIDkd) {
-		float oldWheelSteeringPIDkd = wheelSteeringPIDkd;
+	public void setWheelSteeringPIDkd(Object newWheelSteeringPIDkd) {
+		Object oldWheelSteeringPIDkd = wheelSteeringPIDkd;
 		wheelSteeringPIDkd = newWheelSteeringPIDkd;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKD, oldWheelSteeringPIDkd, wheelSteeringPIDkd));
@@ -591,7 +591,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelFriction() {
+	public Object getWheelFriction() {
 		return wheelFriction;
 	}
 
@@ -600,8 +600,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelFriction(float newWheelFriction) {
-		float oldWheelFriction = wheelFriction;
+	public void setWheelFriction(Object newWheelFriction) {
+		Object oldWheelFriction = wheelFriction;
 		wheelFriction = newWheelFriction;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_FRICTION, oldWheelFriction, wheelFriction));
@@ -612,7 +612,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSuspensionStiffness() {
+	public Object getSuspensionStiffness() {
 		return suspensionStiffness;
 	}
 
@@ -621,8 +621,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSuspensionStiffness(float newSuspensionStiffness) {
-		float oldSuspensionStiffness = suspensionStiffness;
+	public void setSuspensionStiffness(Object newSuspensionStiffness) {
+		Object oldSuspensionStiffness = suspensionStiffness;
 		suspensionStiffness = newSuspensionStiffness;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_STIFFNESS, oldSuspensionStiffness, suspensionStiffness));
@@ -633,7 +633,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSuspensionDamping() {
+	public Object getSuspensionDamping() {
 		return suspensionDamping;
 	}
 
@@ -642,8 +642,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSuspensionDamping(float newSuspensionDamping) {
-		float oldSuspensionDamping = suspensionDamping;
+	public void setSuspensionDamping(Object newSuspensionDamping) {
+		Object oldSuspensionDamping = suspensionDamping;
 		suspensionDamping = newSuspensionDamping;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_DAMPING, oldSuspensionDamping, suspensionDamping));
@@ -654,7 +654,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSuspensionCompression() {
+	public Object getSuspensionCompression() {
 		return suspensionCompression;
 	}
 
@@ -663,8 +663,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSuspensionCompression(float newSuspensionCompression) {
-		float oldSuspensionCompression = suspensionCompression;
+	public void setSuspensionCompression(Object newSuspensionCompression) {
+		Object oldSuspensionCompression = suspensionCompression;
 		suspensionCompression = newSuspensionCompression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_COMPRESSION, oldSuspensionCompression, suspensionCompression));
@@ -675,7 +675,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelVelocityPIDmaxSum() {
+	public Object getWheelVelocityPIDmaxSum() {
 		return wheelVelocityPIDmaxSum;
 	}
 
@@ -684,8 +684,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelVelocityPIDmaxSum(float newWheelVelocityPIDmaxSum) {
-		float oldWheelVelocityPIDmaxSum = wheelVelocityPIDmaxSum;
+	public void setWheelVelocityPIDmaxSum(Object newWheelVelocityPIDmaxSum) {
+		Object oldWheelVelocityPIDmaxSum = wheelVelocityPIDmaxSum;
 		wheelVelocityPIDmaxSum = newWheelVelocityPIDmaxSum;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_SUM, oldWheelVelocityPIDmaxSum, wheelVelocityPIDmaxSum));
@@ -696,7 +696,7 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWheelVelocityPIDmaxVal() {
+	public Object getWheelVelocityPIDmaxVal() {
 		return wheelVelocityPIDmaxVal;
 	}
 
@@ -705,8 +705,8 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWheelVelocityPIDmaxVal(float newWheelVelocityPIDmaxVal) {
-		float oldWheelVelocityPIDmaxVal = wheelVelocityPIDmaxVal;
+	public void setWheelVelocityPIDmaxVal(Object newWheelVelocityPIDmaxVal) {
+		Object oldWheelVelocityPIDmaxVal = wheelVelocityPIDmaxVal;
 		wheelVelocityPIDmaxVal = newWheelVelocityPIDmaxVal;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_VAL, oldWheelVelocityPIDmaxVal, wheelVelocityPIDmaxVal));
@@ -765,52 +765,52 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_RADIUS:
-				setWheelRadius((Float)newValue);
+				setWheelRadius((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_WIDTH:
-				setWheelWidth((Float)newValue);
+				setWheelWidth((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_REST_LENGTH:
-				setSuspensionRestLength((Float)newValue);
+				setSuspensionRestLength((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_CONNECTION_HEIGHT:
-				setWheelConnectionHeight((Float)newValue);
+				setWheelConnectionHeight((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__TYPE_OF_WHEEL:
-				setTypeOfWheel((String)newValue);
+				setTypeOfWheel((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKP:
-				setWheelVelocityPIDkp((Float)newValue);
+				setWheelVelocityPIDkp((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKI:
-				setWheelVelocityPIDki((Float)newValue);
+				setWheelVelocityPIDki((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKD:
-				setWheelVelocityPIDkd((Float)newValue);
+				setWheelVelocityPIDkd((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKP:
-				setWheelSteeringPIDkp((Float)newValue);
+				setWheelSteeringPIDkp((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKD:
-				setWheelSteeringPIDkd((Float)newValue);
+				setWheelSteeringPIDkd((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_FRICTION:
-				setWheelFriction((Float)newValue);
+				setWheelFriction((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_STIFFNESS:
-				setSuspensionStiffness((Float)newValue);
+				setSuspensionStiffness((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_DAMPING:
-				setSuspensionDamping((Float)newValue);
+				setSuspensionDamping((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_COMPRESSION:
-				setSuspensionCompression((Float)newValue);
+				setSuspensionCompression((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_SUM:
-				setWheelVelocityPIDmaxSum((Float)newValue);
+				setWheelVelocityPIDmaxSum((Object)newValue);
 				return;
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_VAL:
-				setWheelVelocityPIDmaxVal((Float)newValue);
+				setWheelVelocityPIDmaxVal((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -885,37 +885,37 @@ public class SteeredWheelSystemImpl extends LocomotionSystemImpl implements Stee
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_RADIUS:
-				return wheelRadius != WHEEL_RADIUS_EDEFAULT;
+				return WHEEL_RADIUS_EDEFAULT == null ? wheelRadius != null : !WHEEL_RADIUS_EDEFAULT.equals(wheelRadius);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_WIDTH:
-				return wheelWidth != WHEEL_WIDTH_EDEFAULT;
+				return WHEEL_WIDTH_EDEFAULT == null ? wheelWidth != null : !WHEEL_WIDTH_EDEFAULT.equals(wheelWidth);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_REST_LENGTH:
-				return suspensionRestLength != SUSPENSION_REST_LENGTH_EDEFAULT;
+				return SUSPENSION_REST_LENGTH_EDEFAULT == null ? suspensionRestLength != null : !SUSPENSION_REST_LENGTH_EDEFAULT.equals(suspensionRestLength);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_CONNECTION_HEIGHT:
-				return wheelConnectionHeight != WHEEL_CONNECTION_HEIGHT_EDEFAULT;
+				return WHEEL_CONNECTION_HEIGHT_EDEFAULT == null ? wheelConnectionHeight != null : !WHEEL_CONNECTION_HEIGHT_EDEFAULT.equals(wheelConnectionHeight);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__TYPE_OF_WHEEL:
 				return TYPE_OF_WHEEL_EDEFAULT == null ? typeOfWheel != null : !TYPE_OF_WHEEL_EDEFAULT.equals(typeOfWheel);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKP:
-				return wheelVelocityPIDkp != WHEEL_VELOCITY_PI_DKP_EDEFAULT;
+				return WHEEL_VELOCITY_PI_DKP_EDEFAULT == null ? wheelVelocityPIDkp != null : !WHEEL_VELOCITY_PI_DKP_EDEFAULT.equals(wheelVelocityPIDkp);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKI:
-				return wheelVelocityPIDki != WHEEL_VELOCITY_PI_DKI_EDEFAULT;
+				return WHEEL_VELOCITY_PI_DKI_EDEFAULT == null ? wheelVelocityPIDki != null : !WHEEL_VELOCITY_PI_DKI_EDEFAULT.equals(wheelVelocityPIDki);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKD:
-				return wheelVelocityPIDkd != WHEEL_VELOCITY_PI_DKD_EDEFAULT;
+				return WHEEL_VELOCITY_PI_DKD_EDEFAULT == null ? wheelVelocityPIDkd != null : !WHEEL_VELOCITY_PI_DKD_EDEFAULT.equals(wheelVelocityPIDkd);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKP:
-				return wheelSteeringPIDkp != WHEEL_STEERING_PI_DKP_EDEFAULT;
+				return WHEEL_STEERING_PI_DKP_EDEFAULT == null ? wheelSteeringPIDkp != null : !WHEEL_STEERING_PI_DKP_EDEFAULT.equals(wheelSteeringPIDkp);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKD:
-				return wheelSteeringPIDkd != WHEEL_STEERING_PI_DKD_EDEFAULT;
+				return WHEEL_STEERING_PI_DKD_EDEFAULT == null ? wheelSteeringPIDkd != null : !WHEEL_STEERING_PI_DKD_EDEFAULT.equals(wheelSteeringPIDkd);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_FRICTION:
-				return wheelFriction != WHEEL_FRICTION_EDEFAULT;
+				return WHEEL_FRICTION_EDEFAULT == null ? wheelFriction != null : !WHEEL_FRICTION_EDEFAULT.equals(wheelFriction);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_STIFFNESS:
-				return suspensionStiffness != SUSPENSION_STIFFNESS_EDEFAULT;
+				return SUSPENSION_STIFFNESS_EDEFAULT == null ? suspensionStiffness != null : !SUSPENSION_STIFFNESS_EDEFAULT.equals(suspensionStiffness);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_DAMPING:
-				return suspensionDamping != SUSPENSION_DAMPING_EDEFAULT;
+				return SUSPENSION_DAMPING_EDEFAULT == null ? suspensionDamping != null : !SUSPENSION_DAMPING_EDEFAULT.equals(suspensionDamping);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__SUSPENSION_COMPRESSION:
-				return suspensionCompression != SUSPENSION_COMPRESSION_EDEFAULT;
+				return SUSPENSION_COMPRESSION_EDEFAULT == null ? suspensionCompression != null : !SUSPENSION_COMPRESSION_EDEFAULT.equals(suspensionCompression);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_SUM:
-				return wheelVelocityPIDmaxSum != WHEEL_VELOCITY_PI_DMAX_SUM_EDEFAULT;
+				return WHEEL_VELOCITY_PI_DMAX_SUM_EDEFAULT == null ? wheelVelocityPIDmaxSum != null : !WHEEL_VELOCITY_PI_DMAX_SUM_EDEFAULT.equals(wheelVelocityPIDmaxSum);
 			case RobotMLPackage.STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_VAL:
-				return wheelVelocityPIDmaxVal != WHEEL_VELOCITY_PI_DMAX_VAL_EDEFAULT;
+				return WHEEL_VELOCITY_PI_DMAX_VAL_EDEFAULT == null ? wheelVelocityPIDmaxVal != null : !WHEEL_VELOCITY_PI_DMAX_VAL_EDEFAULT.equals(wheelVelocityPIDmaxVal);
 		}
 		return super.eIsSet(featureID);
 	}

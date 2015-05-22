@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.NavSatStatus;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage;
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesFactory;
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +42,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char STATUS_NO_FIX_EDEFAULT = '\uffff';
+	protected static final Object STATUS_NO_FIX_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getInt8(), "-1");
 
 	/**
 	 * The cached value of the '{@link #getSTATUS_NO_FIX() <em>STATUS NO FIX</em>}' attribute.
@@ -50,7 +52,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected char statuS_NO_FIX = STATUS_NO_FIX_EDEFAULT;
+	protected Object statuS_NO_FIX = STATUS_NO_FIX_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSTATUS_FIX() <em>STATUS FIX</em>}' attribute.
@@ -60,7 +62,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char STATUS_FIX_EDEFAULT = '\u0000';
+	protected static final Object STATUS_FIX_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getInt8(), "0");
 
 	/**
 	 * The cached value of the '{@link #getSTATUS_FIX() <em>STATUS FIX</em>}' attribute.
@@ -70,7 +72,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected char statuS_FIX = STATUS_FIX_EDEFAULT;
+	protected Object statuS_FIX = STATUS_FIX_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSTATUS_SBAS_FIX() <em>STATUS SBAS FIX</em>}' attribute.
@@ -80,7 +82,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char STATUS_SBAS_FIX_EDEFAULT = '\u0001';
+	protected static final Object STATUS_SBAS_FIX_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getInt8(), "1");
 
 	/**
 	 * The cached value of the '{@link #getSTATUS_SBAS_FIX() <em>STATUS SBAS FIX</em>}' attribute.
@@ -90,7 +92,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected char statuS_SBAS_FIX = STATUS_SBAS_FIX_EDEFAULT;
+	protected Object statuS_SBAS_FIX = STATUS_SBAS_FIX_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSTATUS_GBAS_FIX() <em>STATUS GBAS FIX</em>}' attribute.
@@ -100,7 +102,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char STATUS_GBAS_FIX_EDEFAULT = '\u0002';
+	protected static final Object STATUS_GBAS_FIX_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getInt8(), "2");
 
 	/**
 	 * The cached value of the '{@link #getSTATUS_GBAS_FIX() <em>STATUS GBAS FIX</em>}' attribute.
@@ -110,7 +112,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected char statuS_GBAS_FIX = STATUS_GBAS_FIX_EDEFAULT;
+	protected Object statuS_GBAS_FIX = STATUS_GBAS_FIX_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
@@ -120,7 +122,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char STATUS_EDEFAULT = '\u0000';
+	protected static final Object STATUS_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
@@ -130,7 +132,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected char status = STATUS_EDEFAULT;
+	protected Object status = STATUS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSERVICE_GPS() <em>SERVICE GPS</em>}' attribute.
@@ -140,7 +142,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SERVICE_GPS_EDEFAULT = 1;
+	protected static final Object SERVICE_GPS_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getUInt16(), "1");
 
 	/**
 	 * The cached value of the '{@link #getSERVICE_GPS() <em>SERVICE GPS</em>}' attribute.
@@ -150,7 +152,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected int servicE_GPS = SERVICE_GPS_EDEFAULT;
+	protected Object servicE_GPS = SERVICE_GPS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSERVICE_GLONASS() <em>SERVICE GLONASS</em>}' attribute.
@@ -160,7 +162,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SERVICE_GLONASS_EDEFAULT = 2;
+	protected static final Object SERVICE_GLONASS_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getUInt16(), "2");
 
 	/**
 	 * The cached value of the '{@link #getSERVICE_GLONASS() <em>SERVICE GLONASS</em>}' attribute.
@@ -170,7 +172,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected int servicE_GLONASS = SERVICE_GLONASS_EDEFAULT;
+	protected Object servicE_GLONASS = SERVICE_GLONASS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSERVICE_COMPASS() <em>SERVICE COMPASS</em>}' attribute.
@@ -180,7 +182,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SERVICE_COMPASS_EDEFAULT = 4;
+	protected static final Object SERVICE_COMPASS_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getUInt16(), "4");
 
 	/**
 	 * The cached value of the '{@link #getSERVICE_COMPASS() <em>SERVICE COMPASS</em>}' attribute.
@@ -190,7 +192,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected int servicE_COMPASS = SERVICE_COMPASS_EDEFAULT;
+	protected Object servicE_COMPASS = SERVICE_COMPASS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSERVICE_GALILEO() <em>SERVICE GALILEO</em>}' attribute.
@@ -200,7 +202,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SERVICE_GALILEO_EDEFAULT = 8;
+	protected static final Object SERVICE_GALILEO_EDEFAULT = (Object)Std_datatypesFactory.eINSTANCE.createFromString(Std_datatypesPackage.eINSTANCE.getUInt16(), "8");
 
 	/**
 	 * The cached value of the '{@link #getSERVICE_GALILEO() <em>SERVICE GALILEO</em>}' attribute.
@@ -210,7 +212,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected int servicE_GALILEO = SERVICE_GALILEO_EDEFAULT;
+	protected Object servicE_GALILEO = SERVICE_GALILEO_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getService() <em>Service</em>}' attribute.
@@ -220,7 +222,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SERVICE_EDEFAULT = 0;
+	protected static final Object SERVICE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getService() <em>Service</em>}' attribute.
@@ -230,7 +232,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * @generated
 	 * @ordered
 	 */
-	protected int service = SERVICE_EDEFAULT;
+	protected Object service = SERVICE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -256,7 +258,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getSTATUS_NO_FIX() {
+	public Object getSTATUS_NO_FIX() {
 		return statuS_NO_FIX;
 	}
 
@@ -265,7 +267,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getSTATUS_FIX() {
+	public Object getSTATUS_FIX() {
 		return statuS_FIX;
 	}
 
@@ -274,7 +276,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getSTATUS_SBAS_FIX() {
+	public Object getSTATUS_SBAS_FIX() {
 		return statuS_SBAS_FIX;
 	}
 
@@ -283,7 +285,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getSTATUS_GBAS_FIX() {
+	public Object getSTATUS_GBAS_FIX() {
 		return statuS_GBAS_FIX;
 	}
 
@@ -292,7 +294,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getStatus() {
+	public Object getStatus() {
 		return status;
 	}
 
@@ -301,8 +303,8 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatus(char newStatus) {
-		char oldStatus = status;
+	public void setStatus(Object newStatus) {
+		Object oldStatus = status;
 		status = newStatus;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_STATUS__STATUS, oldStatus, status));
@@ -313,7 +315,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSERVICE_GPS() {
+	public Object getSERVICE_GPS() {
 		return servicE_GPS;
 	}
 
@@ -322,7 +324,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSERVICE_GLONASS() {
+	public Object getSERVICE_GLONASS() {
 		return servicE_GLONASS;
 	}
 
@@ -331,7 +333,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSERVICE_COMPASS() {
+	public Object getSERVICE_COMPASS() {
 		return servicE_COMPASS;
 	}
 
@@ -340,7 +342,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSERVICE_GALILEO() {
+	public Object getSERVICE_GALILEO() {
 		return servicE_GALILEO;
 	}
 
@@ -349,7 +351,7 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getService() {
+	public Object getService() {
 		return service;
 	}
 
@@ -358,8 +360,8 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setService(int newService) {
-		int oldService = service;
+	public void setService(Object newService) {
+		Object oldService = service;
 		service = newService;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_STATUS__SERVICE, oldService, service));
@@ -406,10 +408,10 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__STATUS:
-				setStatus((Character)newValue);
+				setStatus((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__SERVICE:
-				setService((Integer)newValue);
+				setService((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -442,25 +444,25 @@ public class NavSatStatusImpl extends MinimalEObjectImpl.Container implements Na
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__STATUS_NO_FIX:
-				return statuS_NO_FIX != STATUS_NO_FIX_EDEFAULT;
+				return STATUS_NO_FIX_EDEFAULT == null ? statuS_NO_FIX != null : !STATUS_NO_FIX_EDEFAULT.equals(statuS_NO_FIX);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__STATUS_FIX:
-				return statuS_FIX != STATUS_FIX_EDEFAULT;
+				return STATUS_FIX_EDEFAULT == null ? statuS_FIX != null : !STATUS_FIX_EDEFAULT.equals(statuS_FIX);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__STATUS_SBAS_FIX:
-				return statuS_SBAS_FIX != STATUS_SBAS_FIX_EDEFAULT;
+				return STATUS_SBAS_FIX_EDEFAULT == null ? statuS_SBAS_FIX != null : !STATUS_SBAS_FIX_EDEFAULT.equals(statuS_SBAS_FIX);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__STATUS_GBAS_FIX:
-				return statuS_GBAS_FIX != STATUS_GBAS_FIX_EDEFAULT;
+				return STATUS_GBAS_FIX_EDEFAULT == null ? statuS_GBAS_FIX != null : !STATUS_GBAS_FIX_EDEFAULT.equals(statuS_GBAS_FIX);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__STATUS:
-				return status != STATUS_EDEFAULT;
+				return STATUS_EDEFAULT == null ? status != null : !STATUS_EDEFAULT.equals(status);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__SERVICE_GPS:
-				return servicE_GPS != SERVICE_GPS_EDEFAULT;
+				return SERVICE_GPS_EDEFAULT == null ? servicE_GPS != null : !SERVICE_GPS_EDEFAULT.equals(servicE_GPS);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__SERVICE_GLONASS:
-				return servicE_GLONASS != SERVICE_GLONASS_EDEFAULT;
+				return SERVICE_GLONASS_EDEFAULT == null ? servicE_GLONASS != null : !SERVICE_GLONASS_EDEFAULT.equals(servicE_GLONASS);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__SERVICE_COMPASS:
-				return servicE_COMPASS != SERVICE_COMPASS_EDEFAULT;
+				return SERVICE_COMPASS_EDEFAULT == null ? servicE_COMPASS != null : !SERVICE_COMPASS_EDEFAULT.equals(servicE_COMPASS);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__SERVICE_GALILEO:
-				return servicE_GALILEO != SERVICE_GALILEO_EDEFAULT;
+				return SERVICE_GALILEO_EDEFAULT == null ? servicE_GALILEO != null : !SERVICE_GALILEO_EDEFAULT.equals(servicE_GALILEO);
 			case Sensor_datatypesPackage.NAV_SAT_STATUS__SERVICE:
-				return service != SERVICE_EDEFAULT;
+				return SERVICE_EDEFAULT == null ? service != null : !SERVICE_EDEFAULT.equals(service);
 		}
 		return super.eIsSet(featureID);
 	}

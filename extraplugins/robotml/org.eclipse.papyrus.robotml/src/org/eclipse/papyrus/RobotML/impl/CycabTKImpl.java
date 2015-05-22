@@ -52,7 +52,7 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float TIME_STEP_EDEFAULT = 0.0F;
+	protected static final Object TIME_STEP_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTimeStep() <em>Time Step</em>}' attribute.
@@ -62,7 +62,7 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * @generated
 	 * @ordered
 	 */
-	protected float timeStep = TIME_STEP_EDEFAULT;
+	protected Object timeStep = TIME_STEP_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTimeFactor() <em>Time Factor</em>}' attribute.
@@ -72,7 +72,7 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float TIME_FACTOR_EDEFAULT = 0.0F;
+	protected static final Object TIME_FACTOR_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTimeFactor() <em>Time Factor</em>}' attribute.
@@ -82,7 +82,7 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * @generated
 	 * @ordered
 	 */
-	protected float timeFactor = TIME_FACTOR_EDEFAULT;
+	protected Object timeFactor = TIME_FACTOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,7 +129,7 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTimeStep() {
+	public Object getTimeStep() {
 		return timeStep;
 	}
 
@@ -138,8 +138,8 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeStep(float newTimeStep) {
-		float oldTimeStep = timeStep;
+	public void setTimeStep(Object newTimeStep) {
+		Object oldTimeStep = timeStep;
 		timeStep = newTimeStep;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.CYCAB_TK__TIME_STEP, oldTimeStep, timeStep));
@@ -150,7 +150,7 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTimeFactor() {
+	public Object getTimeFactor() {
 		return timeFactor;
 	}
 
@@ -159,8 +159,8 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeFactor(float newTimeFactor) {
-		float oldTimeFactor = timeFactor;
+	public void setTimeFactor(Object newTimeFactor) {
+		Object oldTimeFactor = timeFactor;
 		timeFactor = newTimeFactor;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.CYCAB_TK__TIME_FACTOR, oldTimeFactor, timeFactor));
@@ -196,10 +196,10 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 				setUseRealTime((Boolean)newValue);
 				return;
 			case RobotMLPackage.CYCAB_TK__TIME_STEP:
-				setTimeStep((Float)newValue);
+				setTimeStep((Object)newValue);
 				return;
 			case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
-				setTimeFactor((Float)newValue);
+				setTimeFactor((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -237,9 +237,9 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 			case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
 				return useRealTime != USE_REAL_TIME_EDEFAULT;
 			case RobotMLPackage.CYCAB_TK__TIME_STEP:
-				return timeStep != TIME_STEP_EDEFAULT;
+				return TIME_STEP_EDEFAULT == null ? timeStep != null : !TIME_STEP_EDEFAULT.equals(timeStep);
 			case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
-				return timeFactor != TIME_FACTOR_EDEFAULT;
+				return TIME_FACTOR_EDEFAULT == null ? timeFactor != null : !TIME_FACTOR_EDEFAULT.equals(timeFactor);
 		}
 		return super.eIsSet(featureID);
 	}

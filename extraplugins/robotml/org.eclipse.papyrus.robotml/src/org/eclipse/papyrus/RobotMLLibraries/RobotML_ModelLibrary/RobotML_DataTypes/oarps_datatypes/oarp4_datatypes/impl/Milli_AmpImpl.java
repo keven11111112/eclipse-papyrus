@@ -31,7 +31,7 @@ public class Milli_AmpImpl extends MinimalEObjectImpl.Container implements Milli
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long VALUE_EDEFAULT = 0L;
+	protected static final Object VALUE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -41,7 +41,7 @@ public class Milli_AmpImpl extends MinimalEObjectImpl.Container implements Milli
 	 * @generated
 	 * @ordered
 	 */
-	protected long value = VALUE_EDEFAULT;
+	protected Object value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class Milli_AmpImpl extends MinimalEObjectImpl.Container implements Milli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getValue() {
+	public Object getValue() {
 		return value;
 	}
 
@@ -76,8 +76,8 @@ public class Milli_AmpImpl extends MinimalEObjectImpl.Container implements Milli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(long newValue) {
-		long oldValue = value;
+	public void setValue(Object newValue) {
+		Object oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Oarp4_datatypesPackage.MILLI_AMP__VALUE, oldValue, value));
@@ -106,7 +106,7 @@ public class Milli_AmpImpl extends MinimalEObjectImpl.Container implements Milli
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Oarp4_datatypesPackage.MILLI_AMP__VALUE:
-				setValue((Long)newValue);
+				setValue((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,7 +136,7 @@ public class Milli_AmpImpl extends MinimalEObjectImpl.Container implements Milli
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Oarp4_datatypesPackage.MILLI_AMP__VALUE:
-				return value != VALUE_EDEFAULT;
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}

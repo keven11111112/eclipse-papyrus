@@ -77,7 +77,7 @@ public interface OccupancyGrid extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Character}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Data</em>' attribute list isn't clear, there really should be more of a description here...
@@ -88,6 +88,6 @@ public interface OccupancyGrid extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int8" ordered="false"
 	 * @generated
 	 */
-	EList<Character> getData();
+	EList<Object> getData();
 
 } // OccupancyGrid

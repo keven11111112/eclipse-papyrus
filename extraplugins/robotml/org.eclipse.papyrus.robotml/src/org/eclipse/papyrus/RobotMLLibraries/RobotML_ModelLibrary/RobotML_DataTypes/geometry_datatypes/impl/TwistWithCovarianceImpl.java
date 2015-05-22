@@ -49,7 +49,7 @@ public class TwistWithCovarianceImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> covariance;
+	protected EList<Object> covariance;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,9 +118,9 @@ public class TwistWithCovarianceImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getCovariance() {
+	public EList<Object> getCovariance() {
 		if (covariance == null) {
-			covariance = new EDataTypeUniqueEList<Double>(Double.class, this, Geometry_datatypesPackage.TWIST_WITH_COVARIANCE__COVARIANCE);
+			covariance = new EDataTypeUniqueEList<Object>(Object.class, this, Geometry_datatypesPackage.TWIST_WITH_COVARIANCE__COVARIANCE);
 		}
 		return covariance;
 	}
@@ -169,7 +169,7 @@ public class TwistWithCovarianceImpl extends MinimalEObjectImpl.Container implem
 				return;
 			case Geometry_datatypesPackage.TWIST_WITH_COVARIANCE__COVARIANCE:
 				getCovariance().clear();
-				getCovariance().addAll((Collection<? extends Double>)newValue);
+				getCovariance().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

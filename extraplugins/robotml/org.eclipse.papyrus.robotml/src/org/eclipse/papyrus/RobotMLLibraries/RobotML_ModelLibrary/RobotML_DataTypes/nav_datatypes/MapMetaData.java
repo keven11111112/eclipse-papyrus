@@ -2,8 +2,6 @@
  */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes;
 
-import java.util.Date;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Pose;
 
@@ -35,12 +33,12 @@ public interface MapMetaData extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Map load time</em>' attribute.
-	 * @see #setMap_load_time(Date)
+	 * @see #setMap_load_time(Time)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage#getMapMetaData_Map_load_time()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Time" required="true" ordered="false"
 	 * @generated
 	 */
-	Date getMap_load_time();
+	Object getMap_load_time();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.MapMetaData#getMap_load_time <em>Map load time</em>}' attribute.
@@ -50,7 +48,7 @@ public interface MapMetaData extends EObject {
 	 * @see #getMap_load_time()
 	 * @generated
 	 */
-	void setMap_load_time(Date value);
+	void setMap_load_time(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Resolution</b></em>' attribute.
@@ -60,12 +58,12 @@ public interface MapMetaData extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resolution</em>' attribute.
-	 * @see #setResolution(float)
+	 * @see #setResolution(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage#getMapMetaData_Resolution()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getResolution();
+	Object getResolution();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.MapMetaData#getResolution <em>Resolution</em>}' attribute.
@@ -75,7 +73,7 @@ public interface MapMetaData extends EObject {
 	 * @see #getResolution()
 	 * @generated
 	 */
-	void setResolution(float value);
+	void setResolution(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
@@ -85,12 +83,12 @@ public interface MapMetaData extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
-	 * @see #setWidth(long)
+	 * @see #setWidth(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage#getMapMetaData_Width()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getWidth();
+	Object getWidth();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.MapMetaData#getWidth <em>Width</em>}' attribute.
@@ -100,7 +98,7 @@ public interface MapMetaData extends EObject {
 	 * @see #getWidth()
 	 * @generated
 	 */
-	void setWidth(long value);
+	void setWidth(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Origin</b></em>' containment reference.

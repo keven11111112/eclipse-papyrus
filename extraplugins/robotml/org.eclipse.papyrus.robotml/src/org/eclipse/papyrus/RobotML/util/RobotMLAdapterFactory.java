@@ -184,14 +184,6 @@ public class RobotMLAdapterFactory extends AdapterFactoryImpl {
 				return createPhysicalObjectAdapter();
 			}
 			@Override
-			public Adapter caseEnvironment(Environment object) {
-				return createEnvironmentAdapter();
-			}
-			@Override
-			public Adapter caseSurface(Surface object) {
-				return createSurfaceAdapter();
-			}
-			@Override
 			public Adapter caseDataFlowPort(DataFlowPort object) {
 				return createDataFlowPortAdapter();
 			}
@@ -276,8 +268,16 @@ public class RobotMLAdapterFactory extends AdapterFactoryImpl {
 				return createSensorDriverAdapter();
 			}
 			@Override
+			public Adapter caseEnvironment(Environment object) {
+				return createEnvironmentAdapter();
+			}
+			@Override
 			public Adapter caseBuilding(Building object) {
 				return createBuildingAdapter();
+			}
+			@Override
+			public Adapter caseSurface(Surface object) {
+				return createSurfaceAdapter();
 			}
 			@Override
 			public Adapter casePlanet(Planet object) {

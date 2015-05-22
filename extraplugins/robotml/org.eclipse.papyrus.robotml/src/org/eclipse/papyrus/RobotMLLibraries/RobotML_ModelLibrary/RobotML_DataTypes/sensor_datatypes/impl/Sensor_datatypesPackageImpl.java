@@ -1892,6 +1892,26 @@ public class Sensor_datatypesPackageImpl extends EPackageImpl implements Sensor_
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/uml2/2.0.0/UML
+		createUMLAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/uml2/2.0.0/UML</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createUMLAnnotations() {
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML";	
+		addAnnotation
+		  (covariancE_TYPEEEnum.getELiterals().get(2), 
+		   source, 
+		   new String[] {
+			 "originalName", " COVARIANCE_TYPE_DIAGONAL_KNOWN"
+		   });
 	}
 
 } // Sensor_datatypesPackageImpl

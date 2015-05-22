@@ -36,7 +36,7 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> name;
+	protected EList<Object> name;
 
 	/**
 	 * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute list.
@@ -46,7 +46,7 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> position;
+	protected EList<Object> position;
 
 	/**
 	 * The cached value of the '{@link #getVelocity() <em>Velocity</em>}' attribute list.
@@ -56,7 +56,7 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> velocity;
+	protected EList<Object> velocity;
 
 	/**
 	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute list.
@@ -66,7 +66,7 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> effort;
+	protected EList<Object> effort;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -92,9 +92,9 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getName() {
+	public EList<Object> getName() {
 		if (name == null) {
-			name = new EDataTypeUniqueEList<String>(String.class, this, Sensor_datatypesPackage.JOINT_STATE__NAME);
+			name = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOINT_STATE__NAME);
 		}
 		return name;
 	}
@@ -104,9 +104,9 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getPosition() {
+	public EList<Object> getPosition() {
 		if (position == null) {
-			position = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.JOINT_STATE__POSITION);
+			position = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOINT_STATE__POSITION);
 		}
 		return position;
 	}
@@ -116,9 +116,9 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getVelocity() {
+	public EList<Object> getVelocity() {
 		if (velocity == null) {
-			velocity = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.JOINT_STATE__VELOCITY);
+			velocity = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOINT_STATE__VELOCITY);
 		}
 		return velocity;
 	}
@@ -128,9 +128,9 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getEffort() {
+	public EList<Object> getEffort() {
 		if (effort == null) {
-			effort = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.JOINT_STATE__EFFORT);
+			effort = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOINT_STATE__EFFORT);
 		}
 		return effort;
 	}
@@ -166,19 +166,19 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 		switch (featureID) {
 			case Sensor_datatypesPackage.JOINT_STATE__NAME:
 				getName().clear();
-				getName().addAll((Collection<? extends String>)newValue);
+				getName().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.JOINT_STATE__POSITION:
 				getPosition().clear();
-				getPosition().addAll((Collection<? extends Double>)newValue);
+				getPosition().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
 				getVelocity().clear();
-				getVelocity().addAll((Collection<? extends Double>)newValue);
+				getVelocity().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
 				getEffort().clear();
-				getEffort().addAll((Collection<? extends Double>)newValue);
+				getEffort().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

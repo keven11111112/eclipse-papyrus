@@ -33,7 +33,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String LABEL_EDEFAULT = null;
+	protected static final Object LABEL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
@@ -43,7 +43,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected String label = LABEL_EDEFAULT;
+	protected Object label = LABEL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -53,7 +53,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long SIZE_EDEFAULT = 0L;
+	protected static final Object SIZE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -63,7 +63,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected long size = SIZE_EDEFAULT;
+	protected Object size = SIZE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getStride() <em>Stride</em>}' attribute.
@@ -73,7 +73,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long STRIDE_EDEFAULT = 0L;
+	protected static final Object STRIDE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getStride() <em>Stride</em>}' attribute.
@@ -83,7 +83,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected long stride = STRIDE_EDEFAULT;
+	protected Object stride = STRIDE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,7 +109,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLabel() {
+	public Object getLabel() {
 		return label;
 	}
 
@@ -118,8 +118,8 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLabel(String newLabel) {
-		String oldLabel = label;
+	public void setLabel(Object newLabel) {
+		Object oldLabel = label;
 		label = newLabel;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Std_datatypesPackage.MULTI_ARRAY_DIMENSION__LABEL, oldLabel, label));
@@ -130,7 +130,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getSize() {
+	public Object getSize() {
 		return size;
 	}
 
@@ -139,8 +139,8 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSize(long newSize) {
-		long oldSize = size;
+	public void setSize(Object newSize) {
+		Object oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Std_datatypesPackage.MULTI_ARRAY_DIMENSION__SIZE, oldSize, size));
@@ -151,7 +151,7 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getStride() {
+	public Object getStride() {
 		return stride;
 	}
 
@@ -160,8 +160,8 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStride(long newStride) {
-		long oldStride = stride;
+	public void setStride(Object newStride) {
+		Object oldStride = stride;
 		stride = newStride;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Std_datatypesPackage.MULTI_ARRAY_DIMENSION__STRIDE, oldStride, stride));
@@ -194,13 +194,13 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Std_datatypesPackage.MULTI_ARRAY_DIMENSION__LABEL:
-				setLabel((String)newValue);
+				setLabel((Object)newValue);
 				return;
 			case Std_datatypesPackage.MULTI_ARRAY_DIMENSION__SIZE:
-				setSize((Long)newValue);
+				setSize((Object)newValue);
 				return;
 			case Std_datatypesPackage.MULTI_ARRAY_DIMENSION__STRIDE:
-				setStride((Long)newValue);
+				setStride((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,9 +238,9 @@ public class MultiArrayDimensionImpl extends MinimalEObjectImpl.Container implem
 			case Std_datatypesPackage.MULTI_ARRAY_DIMENSION__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 			case Std_datatypesPackage.MULTI_ARRAY_DIMENSION__SIZE:
-				return size != SIZE_EDEFAULT;
+				return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
 			case Std_datatypesPackage.MULTI_ARRAY_DIMENSION__STRIDE:
-				return stride != STRIDE_EDEFAULT;
+				return STRIDE_EDEFAULT == null ? stride != null : !STRIDE_EDEFAULT.equals(stride);
 		}
 		return super.eIsSet(featureID);
 	}

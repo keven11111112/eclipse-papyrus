@@ -49,7 +49,7 @@ public class UInt8MultiArrayImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Character> data;
+	protected EList<Object> data;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,9 +118,9 @@ public class UInt8MultiArrayImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Character> getData() {
+	public EList<Object> getData() {
 		if (data == null) {
-			data = new EDataTypeUniqueEList<Character>(Character.class, this, Std_datatypesPackage.UINT8_MULTI_ARRAY__DATA);
+			data = new EDataTypeUniqueEList<Object>(Object.class, this, Std_datatypesPackage.UINT8_MULTI_ARRAY__DATA);
 		}
 		return data;
 	}
@@ -169,7 +169,7 @@ public class UInt8MultiArrayImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case Std_datatypesPackage.UINT8_MULTI_ARRAY__DATA:
 				getData().clear();
-				getData().addAll((Collection<? extends Character>)newValue);
+				getData().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

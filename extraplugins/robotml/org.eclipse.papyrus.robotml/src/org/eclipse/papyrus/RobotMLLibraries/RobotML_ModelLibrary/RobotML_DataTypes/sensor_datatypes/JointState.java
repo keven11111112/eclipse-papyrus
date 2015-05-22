@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface JointState extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute list isn't clear, there really should be more of a description here...
@@ -38,11 +38,11 @@ public interface JointState extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" ordered="false"
 	 * @generated
 	 */
-	EList<String> getName();
+	EList<Object> getName();
 
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Position</em>' attribute list isn't clear, there really should be more of a description here...
@@ -53,11 +53,11 @@ public interface JointState extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getPosition();
+	EList<Object> getPosition();
 
 	/**
 	 * Returns the value of the '<em><b>Velocity</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Velocity</em>' attribute list isn't clear, there really should be more of a description here...
@@ -68,11 +68,11 @@ public interface JointState extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getVelocity();
+	EList<Object> getVelocity();
 
 	/**
 	 * Returns the value of the '<em><b>Effort</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Effort</em>' attribute list isn't clear, there really should be more of a description here...
@@ -83,6 +83,6 @@ public interface JointState extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getEffort();
+	EList<Object> getEffort();
 
 } // JointState

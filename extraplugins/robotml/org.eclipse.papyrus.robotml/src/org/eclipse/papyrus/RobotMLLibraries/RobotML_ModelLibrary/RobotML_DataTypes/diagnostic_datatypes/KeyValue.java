@@ -35,7 +35,7 @@ public interface KeyValue extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" required="true" ordered="false"
 	 * @generated
 	 */
-	String getKey();
+	Object getKey();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.diagnostic_datatypes.KeyValue#getKey <em>Key</em>}' attribute.
@@ -45,7 +45,7 @@ public interface KeyValue extends EObject {
 	 * @see #getKey()
 	 * @generated
 	 */
-	void setKey(String value);
+	void setKey(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -60,7 +60,7 @@ public interface KeyValue extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" required="true" ordered="false"
 	 * @generated
 	 */
-	String getValue();
+	Object getValue();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.diagnostic_datatypes.KeyValue#getValue <em>Value</em>}' attribute.
@@ -70,6 +70,6 @@ public interface KeyValue extends EObject {
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(String value);
+	void setValue(Object value);
 
 } // KeyValue

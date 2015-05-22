@@ -33,7 +33,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double X_EDEFAULT = 0.0;
+	protected static final Object X_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getX() <em>X</em>}' attribute.
@@ -43,7 +43,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * @generated
 	 * @ordered
 	 */
-	protected double x = X_EDEFAULT;
+	protected Object x = X_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getY() <em>Y</em>}' attribute.
@@ -53,7 +53,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double Y_EDEFAULT = 0.0;
+	protected static final Object Y_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
@@ -63,7 +63,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * @generated
 	 * @ordered
 	 */
-	protected double y = Y_EDEFAULT;
+	protected Object y = Y_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTheta() <em>Theta</em>}' attribute.
@@ -73,7 +73,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double THETA_EDEFAULT = 0.0;
+	protected static final Object THETA_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTheta() <em>Theta</em>}' attribute.
@@ -83,7 +83,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * @generated
 	 * @ordered
 	 */
-	protected double theta = THETA_EDEFAULT;
+	protected Object theta = THETA_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,7 +109,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getX() {
+	public Object getX() {
 		return x;
 	}
 
@@ -118,8 +118,8 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setX(double newX) {
-		double oldX = x;
+	public void setX(Object newX) {
+		Object oldX = x;
 		x = newX;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POSE2_D__X, oldX, x));
@@ -130,7 +130,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getY() {
+	public Object getY() {
 		return y;
 	}
 
@@ -139,8 +139,8 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setY(double newY) {
-		double oldY = y;
+	public void setY(Object newY) {
+		Object oldY = y;
 		y = newY;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POSE2_D__Y, oldY, y));
@@ -151,7 +151,7 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getTheta() {
+	public Object getTheta() {
 		return theta;
 	}
 
@@ -160,8 +160,8 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTheta(double newTheta) {
-		double oldTheta = theta;
+	public void setTheta(Object newTheta) {
+		Object oldTheta = theta;
 		theta = newTheta;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POSE2_D__THETA, oldTheta, theta));
@@ -194,13 +194,13 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Geometry_datatypesPackage.POSE2_D__X:
-				setX((Double)newValue);
+				setX((Object)newValue);
 				return;
 			case Geometry_datatypesPackage.POSE2_D__Y:
-				setY((Double)newValue);
+				setY((Object)newValue);
 				return;
 			case Geometry_datatypesPackage.POSE2_D__THETA:
-				setTheta((Double)newValue);
+				setTheta((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -236,11 +236,11 @@ public class Pose2DImpl extends MinimalEObjectImpl.Container implements Pose2D {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Geometry_datatypesPackage.POSE2_D__X:
-				return x != X_EDEFAULT;
+				return X_EDEFAULT == null ? x != null : !X_EDEFAULT.equals(x);
 			case Geometry_datatypesPackage.POSE2_D__Y:
-				return y != Y_EDEFAULT;
+				return Y_EDEFAULT == null ? y != null : !Y_EDEFAULT.equals(y);
 			case Geometry_datatypesPackage.POSE2_D__THETA:
-				return theta != THETA_EDEFAULT;
+				return THETA_EDEFAULT == null ? theta != null : !THETA_EDEFAULT.equals(theta);
 		}
 		return super.eIsSet(featureID);
 	}
