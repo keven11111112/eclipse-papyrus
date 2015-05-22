@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.handler;
@@ -35,7 +36,7 @@ import org.eclipse.uml2.uml.Stereotype;
 public class GetHTMLTextHandler extends IDMAbstractHandler {
 
 	protected static final String INTERNAL_DIRECTORY_NAME = "/doc"; //$NON-NLS-1$
-	
+
 
 
 
@@ -45,11 +46,18 @@ public class GetHTMLTextHandler extends IDMAbstractHandler {
 		System.err.println(getCurrentProject().getLocationURI().getPath());
 		IDMAbstractHandler.elt2DocElt.clear();
 		IDMAbstractHandler.Toc2DocElt.clear();
-		CreateDocumentModelCommand createDocumentModelCommand = new CreateDocumentModelCommand(transactionalEditingDomain, (Model) getSelection(), getCurrentProject().getLocationURI().getPath() + INTERNAL_DIRECTORY_NAME);
-		transactionalEditingDomain.getCommandStack().execute(createDocumentModelCommand);
-		IProject project = getCurrentProject();
-		TranscriptionEngine engine = new TranscriptionEngine((Model) getSelection(), project, new HTMLTranscription());
-		engine.traduce();
+
+		try {
+			CreateDocumentModelCommand createDocumentModelCommand = new CreateDocumentModelCommand(transactionalEditingDomain, (Model) getSelection(), getCurrentProject().getLocationURI().getPath() + INTERNAL_DIRECTORY_NAME);
+			transactionalEditingDomain.getCommandStack().execute(createDocumentModelCommand);
+			IProject project = getCurrentProject();
+			TranscriptionEngine engine = new TranscriptionEngine((Model) getSelection(), project, new HTMLTranscription());
+			engine.traduce();
+		} finally {
+			IDMAbstractHandler.elt2DocElt.clear();
+			IDMAbstractHandler.Toc2DocElt.clear();
+		}
+
 		return null;
 	}
 
