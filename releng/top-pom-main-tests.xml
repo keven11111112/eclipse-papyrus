@@ -185,7 +185,7 @@
 			<id>gmf-tooling</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Tooling",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/M7</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/RC1</url>
 		</repository>
 		<repository>
 			<id>m2t-acceleo</id>
