@@ -83,7 +83,7 @@ public interface Imu extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Orientation covariance</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Orientation covariance</em>' attribute list isn't clear, there really should be more of a description here...
@@ -94,7 +94,7 @@ public interface Imu extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" lower="9" upper="9" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getOrientation_covariance();
+	EList<Object> getOrientation_covariance();
 
 	/**
 	 * Returns the value of the '<em><b>Angular velocity</b></em>' containment reference.
@@ -123,7 +123,7 @@ public interface Imu extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Angular velocity covariance</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Angular velocity covariance</em>' attribute list isn't clear, there really should be more of a description here...
@@ -134,7 +134,7 @@ public interface Imu extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" lower="9" upper="9" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getAngular_velocity_covariance();
+	EList<Object> getAngular_velocity_covariance();
 
 	/**
 	 * Returns the value of the '<em><b>Linear acceleration</b></em>' containment reference.
@@ -163,7 +163,7 @@ public interface Imu extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Linear acceleration covariance</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Linear acceleration covariance</em>' attribute list isn't clear, there really should be more of a description here...
@@ -174,6 +174,6 @@ public interface Imu extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" lower="9" upper="9" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getLinear_acceleration_covariance();
+	EList<Object> getLinear_acceleration_covariance();
 
 } // Imu

@@ -31,12 +31,12 @@ public interface Vector3 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>X</em>' attribute.
-	 * @see #setX(double)
+	 * @see #setX(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getVector3_X()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getX();
+	Object getX();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Vector3#getX <em>X</em>}' attribute.
@@ -46,7 +46,7 @@ public interface Vector3 extends EObject {
 	 * @see #getX()
 	 * @generated
 	 */
-	void setX(double value);
+	void setX(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Y</b></em>' attribute.
@@ -56,12 +56,12 @@ public interface Vector3 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Y</em>' attribute.
-	 * @see #setY(double)
+	 * @see #setY(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getVector3_Y()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getY();
+	Object getY();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Vector3#getY <em>Y</em>}' attribute.
@@ -71,7 +71,7 @@ public interface Vector3 extends EObject {
 	 * @see #getY()
 	 * @generated
 	 */
-	void setY(double value);
+	void setY(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Z</b></em>' attribute.
@@ -81,12 +81,12 @@ public interface Vector3 extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Z</em>' attribute.
-	 * @see #setZ(double)
+	 * @see #setZ(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getVector3_Z()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getZ();
+	Object getZ();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Vector3#getZ <em>Z</em>}' attribute.
@@ -96,6 +96,6 @@ public interface Vector3 extends EObject {
 	 * @see #getZ()
 	 * @generated
 	 */
-	void setZ(double value);
+	void setZ(Object value);
 
 } // Vector3

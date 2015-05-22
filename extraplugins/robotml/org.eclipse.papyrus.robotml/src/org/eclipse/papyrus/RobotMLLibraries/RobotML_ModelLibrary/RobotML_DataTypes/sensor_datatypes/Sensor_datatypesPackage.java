@@ -1672,11 +1672,11 @@ public interface Sensor_datatypesPackage extends EPackage {
 	EAttribute getRegionOfInterest_Height();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.RegionOfInterest#isDo_rectify <em>Do rectify</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.RegionOfInterest#getDo_rectify <em>Do rectify</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Do rectify</em>'.
-	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.RegionOfInterest#isDo_rectify()
+	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.RegionOfInterest#getDo_rectify()
 	 * @see #getRegionOfInterest()
 	 * @generated
 	 */
@@ -2443,11 +2443,11 @@ public interface Sensor_datatypesPackage extends EPackage {
 	EReference getPointCloud2_Fields();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#isIs_bigendian <em>Is bigendian</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getIs_bigendian <em>Is bigendian</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is bigendian</em>'.
-	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#isIs_bigendian()
+	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getIs_bigendian()
 	 * @see #getPointCloud2()
 	 * @generated
 	 */
@@ -2487,11 +2487,11 @@ public interface Sensor_datatypesPackage extends EPackage {
 	EAttribute getPointCloud2_Data();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#isIs_dense <em>Is dense</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getIs_dense <em>Is dense</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is dense</em>'.
-	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#isIs_dense()
+	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointCloud2#getIs_dense()
 	 * @see #getPointCloud2()
 	 * @generated
 	 */

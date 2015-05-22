@@ -98,7 +98,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double LATITUDE_EDEFAULT = 0.0;
+	protected static final Object LATITUDE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLatitude() <em>Latitude</em>}' attribute.
@@ -108,7 +108,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * @generated
 	 * @ordered
 	 */
-	protected double latitude = LATITUDE_EDEFAULT;
+	protected Object latitude = LATITUDE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLongitude() <em>Longitude</em>}' attribute.
@@ -118,7 +118,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double LONGITUDE_EDEFAULT = 0.0;
+	protected static final Object LONGITUDE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLongitude() <em>Longitude</em>}' attribute.
@@ -128,7 +128,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * @generated
 	 * @ordered
 	 */
-	protected double longitude = LONGITUDE_EDEFAULT;
+	protected Object longitude = LONGITUDE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getAltitude() <em>Altitude</em>}' attribute.
@@ -138,7 +138,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double ALTITUDE_EDEFAULT = 0.0;
+	protected static final Object ALTITUDE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getAltitude() <em>Altitude</em>}' attribute.
@@ -148,7 +148,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * @generated
 	 * @ordered
 	 */
-	protected double altitude = ALTITUDE_EDEFAULT;
+	protected Object altitude = ALTITUDE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getPosition_covariance() <em>Position covariance</em>}' attribute list.
@@ -158,7 +158,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> position_covariance;
+	protected EList<Object> position_covariance;
 
 	/**
 	 * The default value of the '{@link #getPosition_covariance_type() <em>Position covariance type</em>}' attribute.
@@ -289,7 +289,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getLatitude() {
+	public Object getLatitude() {
 		return latitude;
 	}
 
@@ -298,8 +298,8 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLatitude(double newLatitude) {
-		double oldLatitude = latitude;
+	public void setLatitude(Object newLatitude) {
+		Object oldLatitude = latitude;
 		latitude = newLatitude;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE, oldLatitude, latitude));
@@ -310,7 +310,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getLongitude() {
+	public Object getLongitude() {
 		return longitude;
 	}
 
@@ -319,8 +319,8 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLongitude(double newLongitude) {
-		double oldLongitude = longitude;
+	public void setLongitude(Object newLongitude) {
+		Object oldLongitude = longitude;
 		longitude = newLongitude;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE, oldLongitude, longitude));
@@ -331,7 +331,7 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getAltitude() {
+	public Object getAltitude() {
 		return altitude;
 	}
 
@@ -340,8 +340,8 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAltitude(double newAltitude) {
-		double oldAltitude = altitude;
+	public void setAltitude(Object newAltitude) {
+		Object oldAltitude = altitude;
 		altitude = newAltitude;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE, oldAltitude, altitude));
@@ -352,9 +352,9 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Double> getPosition_covariance() {
+	public EList<Object> getPosition_covariance() {
 		if (position_covariance == null) {
-			position_covariance = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE);
+			position_covariance = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE);
 		}
 		return position_covariance;
 	}
@@ -441,17 +441,17 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 				setHeader((Header)newValue);
 				return;
 			case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
-				setLatitude((Double)newValue);
+				setLatitude((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
-				setLongitude((Double)newValue);
+				setLongitude((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
-				setAltitude((Double)newValue);
+				setAltitude((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
 				getPosition_covariance().clear();
-				getPosition_covariance().addAll((Collection<? extends Double>)newValue);
+				getPosition_covariance().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
 				setPosition_covariance_type((COVARIANCE_TYPE)newValue);
@@ -511,11 +511,11 @@ public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSa
 			case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
 				return header != null;
 			case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
-				return latitude != LATITUDE_EDEFAULT;
+				return LATITUDE_EDEFAULT == null ? latitude != null : !LATITUDE_EDEFAULT.equals(latitude);
 			case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
-				return longitude != LONGITUDE_EDEFAULT;
+				return LONGITUDE_EDEFAULT == null ? longitude != null : !LONGITUDE_EDEFAULT.equals(longitude);
 			case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
-				return altitude != ALTITUDE_EDEFAULT;
+				return ALTITUDE_EDEFAULT == null ? altitude != null : !ALTITUDE_EDEFAULT.equals(altitude);
 			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
 				return position_covariance != null && !position_covariance.isEmpty();
 			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:

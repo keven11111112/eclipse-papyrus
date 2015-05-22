@@ -1095,6 +1095,9 @@ It is possible to associate more one behavior to the state. But the question is 
     <ownedAttribute xmi:type="uml:Property" xmi:id="__O6a8PcPEd-J06U5HM_o-Q" name="base_Class" association="__O6a8fcPEd-J06U5HM_o-Q">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_NQKGgACAEeW-QsjhFPC_gg" name="alias">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_nfb1cBegEeK7mbF2c-wZPA" name="native">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
     </ownedAttribute>
@@ -1838,15 +1841,6 @@ It is possible to associate more one behavior to the state. But the question is 
     </icon>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_ZUhhAEXNEeGe3M3N_846rw" name="PhysicalObject">
-    <generalization xmi:type="uml:Generalization" xmi:id="_tOL9oEXOEeGe3M3N_846rw" general="_GopFwPcJEd-J06U5HM_o-Q"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_GZ6mQEXPEeGe3M3N_846rw" name="evelovesIn" type="_D7W5IEXPEeGe3M3N_846rw" association="_GZ6mQ0XPEeGe3M3N_846rw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GZ6mQkXPEeGe3M3N_846rw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GZ6mQUXPEeGe3M3N_846rw" value="*"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_JjYp4EXVEeGe3M3N_846rw" name="hasSurface" type="_FifAQEXVEeGe3M3N_846rw" association="_JjYp40XVEeGe3M3N_846rw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JjYp4kXVEeGe3M3N_846rw" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JjYp4UXVEeGe3M3N_846rw" value="1"/>
-    </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Y6D8UE4DEeONodE93WJoVw" name="height" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="RobotMLPlatformLibraries.uml#_quXmAAH6EeC_ZLzLQhW-TQ"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aI-mgE4DEeONodE93WJoVw" value="1"/>
@@ -1863,34 +1857,23 @@ It is possible to associate more one behavior to the state. But the question is 
         <value xsi:nil="true"/>
       </defaultValue>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_1XdzEAB_EeW-QsjhFPC_gg" name="base_Class" association="_1XiEgAB_EeW-QsjhFPC_gg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_D7W5IEXPEeGe3M3N_846rw" name="Environment">
-    <generalization xmi:type="uml:Generalization" xmi:id="_FdahwEXPEeGe3M3N_846rw" general="_GopFwPcJEd-J06U5HM_o-Q"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_GZ6mQ0XPEeGe3M3N_846rw" name="evolvesIn" memberEnd="_GZ6mREXPEeGe3M3N_846rw _GZ6mQEXPEeGe3M3N_846rw">
-    <ownedEnd xmi:type="uml:Property" xmi:id="_GZ6mREXPEeGe3M3N_846rw" name="physicalObject" type="_ZUhhAEXNEeGe3M3N_846rw" association="_GZ6mQ0XPEeGe3M3N_846rw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GZ6mRkXPEeGe3M3N_846rw" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GZ6mRUXPEeGe3M3N_846rw" value="1"/>
-    </ownedEnd>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2qx1EAB_EeW-QsjhFPC_gg" name="base_Class" association="_2qzDMAB_EeW-QsjhFPC_gg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_9HClUEXREeGe3M3N_846rw" name="Building">
     <generalization xmi:type="uml:Generalization" xmi:id="_G-Ro0EXVEeGe3M3N_846rw" general="_ZUhhAEXNEeGe3M3N_846rw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_-AQsUEXREeGe3M3N_846rw" name="Agent">
     <generalization xmi:type="uml:Generalization" xmi:id="_Hu2xMEXVEeGe3M3N_846rw" general="_ZUhhAEXNEeGe3M3N_846rw"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_VIJM4EXdEeGe3M3N_846rw" name="movesOver" type="_FifAQEXVEeGe3M3N_846rw" association="_VIJM40XdEeGe3M3N_846rw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VIJM4kXdEeGe3M3N_846rw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VIJM4UXdEeGe3M3N_846rw" value="*"/>
-    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_FifAQEXVEeGe3M3N_846rw" name="Surface">
     <generalization xmi:type="uml:Generalization" xmi:id="_IsjIgEXVEeGe3M3N_846rw" general="_ZUhhAEXNEeGe3M3N_846rw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_JjYp40XVEeGe3M3N_846rw" name="physicalObject_surface_1" memberEnd="_JjYp5EXVEeGe3M3N_846rw _JjYp4EXVEeGe3M3N_846rw">
-    <ownedEnd xmi:type="uml:Property" xmi:id="_JjYp5EXVEeGe3M3N_846rw" name="physicalObject" type="_ZUhhAEXNEeGe3M3N_846rw" association="_JjYp40XVEeGe3M3N_846rw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JjYp5kXVEeGe3M3N_846rw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JjYp5UXVEeGe3M3N_846rw" value="1"/>
-    </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_lrTW0EXVEeGe3M3N_846rw" name="Planet">
     <generalization xmi:type="uml:Generalization" xmi:id="_mtUNcEXVEeGe3M3N_846rw" general="_ZUhhAEXNEeGe3M3N_846rw"/>
@@ -1909,12 +1892,6 @@ It is possible to associate more one behavior to the state. But the question is 
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_aIQisEXbEeGe3M3N_846rw" name="Pedestrian">
     <generalization xmi:type="uml:Generalization" xmi:id="_cIZ1gEXbEeGe3M3N_846rw" general="_Ysw1EEXbEeGe3M3N_846rw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_VIJM40XdEeGe3M3N_846rw" name="agent_surface_1" memberEnd="_VIJM5EXdEeGe3M3N_846rw _VIJM4EXdEeGe3M3N_846rw">
-    <ownedEnd xmi:type="uml:Property" xmi:id="_VIJM5EXdEeGe3M3N_846rw" name="agent" type="_-AQsUEXREeGe3M3N_846rw" association="_VIJM40XdEeGe3M3N_846rw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VIJM5kXdEeGe3M3N_846rw" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VIJM5UXdEeGe3M3N_846rw" value="1"/>
-    </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_l_M0IEXeEeGe3M3N_846rw" name="Stairs">
     <generalization xmi:type="uml:Generalization" xmi:id="_nLfoIEXeEeGe3M3N_846rw" general="_LDSOAEXjEeGe3M3N_846rw"/>
@@ -2228,5 +2205,11 @@ It is operated by a source of energy, usually in the form of an electric current
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_VrgmUHr2EeScUPwXziEIjA" name="E_OnVariable_Parameter1" memberEnd="_VrgmUXr2EeScUPwXziEIjA _VrexIHr2EeScUPwXziEIjA">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_VrgmUXr2EeScUPwXziEIjA" name="extension_OnVariable" type="_Sh7xcLvbEeKFjOiPICqYTA" aggregation="composite" association="_VrgmUHr2EeScUPwXziEIjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_1XiEgAB_EeW-QsjhFPC_gg" name="E_PhysicalObject_Class1" memberEnd="_1XiEgQB_EeW-QsjhFPC_gg _1XdzEAB_EeW-QsjhFPC_gg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_1XiEgQB_EeW-QsjhFPC_gg" name="extension_PhysicalObject" type="_ZUhhAEXNEeGe3M3N_846rw" aggregation="composite" association="_1XiEgAB_EeW-QsjhFPC_gg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_2qzDMAB_EeW-QsjhFPC_gg" name="E_Environment_Class1" memberEnd="_2qzDMQB_EeW-QsjhFPC_gg _2qx1EAB_EeW-QsjhFPC_gg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_2qzDMQB_EeW-QsjhFPC_gg" name="extension_Environment" type="_D7W5IEXPEeGe3M3N_846rw" aggregation="composite" association="_2qzDMAB_EeW-QsjhFPC_gg"/>
   </packagedElement>
 </uml:Profile>

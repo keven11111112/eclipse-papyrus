@@ -48,7 +48,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double RIGHT_DISTANCE_EDEFAULT = 0.0;
+	protected static final Object RIGHT_DISTANCE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRight_distance() <em>Right distance</em>}' attribute.
@@ -58,7 +58,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected double right_distance = RIGHT_DISTANCE_EDEFAULT;
+	protected Object right_distance = RIGHT_DISTANCE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLeft_distance() <em>Left distance</em>}' attribute.
@@ -68,7 +68,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double LEFT_DISTANCE_EDEFAULT = 0.0;
+	protected static final Object LEFT_DISTANCE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLeft_distance() <em>Left distance</em>}' attribute.
@@ -78,7 +78,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected double left_distance = LEFT_DISTANCE_EDEFAULT;
+	protected Object left_distance = LEFT_DISTANCE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLeft_velocity() <em>Left velocity</em>}' attribute.
@@ -88,7 +88,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double LEFT_VELOCITY_EDEFAULT = 0.0;
+	protected static final Object LEFT_VELOCITY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLeft_velocity() <em>Left velocity</em>}' attribute.
@@ -98,7 +98,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected double left_velocity = LEFT_VELOCITY_EDEFAULT;
+	protected Object left_velocity = LEFT_VELOCITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRight_velocity() <em>Right velocity</em>}' attribute.
@@ -108,7 +108,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double RIGHT_VELOCITY_EDEFAULT = 0.0;
+	protected static final Object RIGHT_VELOCITY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRight_velocity() <em>Right velocity</em>}' attribute.
@@ -118,7 +118,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected double right_velocity = RIGHT_VELOCITY_EDEFAULT;
+	protected Object right_velocity = RIGHT_VELOCITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,7 +187,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getRight_distance() {
+	public Object getRight_distance() {
 		return right_distance;
 	}
 
@@ -196,8 +196,8 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRight_distance(double newRight_distance) {
-		double oldRight_distance = right_distance;
+	public void setRight_distance(Object newRight_distance) {
+		Object oldRight_distance = right_distance;
 		right_distance = newRight_distance;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__RIGHT_DISTANCE, oldRight_distance, right_distance));
@@ -208,7 +208,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getLeft_distance() {
+	public Object getLeft_distance() {
 		return left_distance;
 	}
 
@@ -217,8 +217,8 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft_distance(double newLeft_distance) {
-		double oldLeft_distance = left_distance;
+	public void setLeft_distance(Object newLeft_distance) {
+		Object oldLeft_distance = left_distance;
 		left_distance = newLeft_distance;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__LEFT_DISTANCE, oldLeft_distance, left_distance));
@@ -229,7 +229,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getLeft_velocity() {
+	public Object getLeft_velocity() {
 		return left_velocity;
 	}
 
@@ -238,8 +238,8 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft_velocity(double newLeft_velocity) {
-		double oldLeft_velocity = left_velocity;
+	public void setLeft_velocity(Object newLeft_velocity) {
+		Object oldLeft_velocity = left_velocity;
 		left_velocity = newLeft_velocity;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__LEFT_VELOCITY, oldLeft_velocity, left_velocity));
@@ -250,7 +250,7 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getRight_velocity() {
+	public Object getRight_velocity() {
 		return right_velocity;
 	}
 
@@ -259,8 +259,8 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRight_velocity(double newRight_velocity) {
-		double oldRight_velocity = right_velocity;
+	public void setRight_velocity(Object newRight_velocity) {
+		Object oldRight_velocity = right_velocity;
 		right_velocity = newRight_velocity;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__RIGHT_VELOCITY, oldRight_velocity, right_velocity));
@@ -314,16 +314,16 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 				setHeader((Header)newValue);
 				return;
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__RIGHT_DISTANCE:
-				setRight_distance((Double)newValue);
+				setRight_distance((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__LEFT_DISTANCE:
-				setLeft_distance((Double)newValue);
+				setLeft_distance((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__LEFT_VELOCITY:
-				setLeft_velocity((Double)newValue);
+				setLeft_velocity((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__RIGHT_VELOCITY:
-				setRight_velocity((Double)newValue);
+				setRight_velocity((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -367,13 +367,13 @@ public class DifferentialOdometryImpl extends MinimalEObjectImpl.Container imple
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__HEADER:
 				return header != null;
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__RIGHT_DISTANCE:
-				return right_distance != RIGHT_DISTANCE_EDEFAULT;
+				return RIGHT_DISTANCE_EDEFAULT == null ? right_distance != null : !RIGHT_DISTANCE_EDEFAULT.equals(right_distance);
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__LEFT_DISTANCE:
-				return left_distance != LEFT_DISTANCE_EDEFAULT;
+				return LEFT_DISTANCE_EDEFAULT == null ? left_distance != null : !LEFT_DISTANCE_EDEFAULT.equals(left_distance);
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__LEFT_VELOCITY:
-				return left_velocity != LEFT_VELOCITY_EDEFAULT;
+				return LEFT_VELOCITY_EDEFAULT == null ? left_velocity != null : !LEFT_VELOCITY_EDEFAULT.equals(left_velocity);
 			case Sensor_datatypesPackage.DIFFERENTIAL_ODOMETRY__RIGHT_VELOCITY:
-				return right_velocity != RIGHT_VELOCITY_EDEFAULT;
+				return RIGHT_VELOCITY_EDEFAULT == null ? right_velocity != null : !RIGHT_VELOCITY_EDEFAULT.equals(right_velocity);
 		}
 		return super.eIsSet(featureID);
 	}

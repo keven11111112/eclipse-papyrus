@@ -66,12 +66,12 @@ public interface CameraInfo extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
-	 * @see #setHeight(long)
+	 * @see #setHeight(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getCameraInfo_Height()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getHeight();
+	Object getHeight();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.CameraInfo#getHeight <em>Height</em>}' attribute.
@@ -81,7 +81,7 @@ public interface CameraInfo extends EObject {
 	 * @see #getHeight()
 	 * @generated
 	 */
-	void setHeight(long value);
+	void setHeight(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
@@ -91,12 +91,12 @@ public interface CameraInfo extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
-	 * @see #setWidth(long)
+	 * @see #setWidth(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getCameraInfo_Width()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getWidth();
+	Object getWidth();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.CameraInfo#getWidth <em>Width</em>}' attribute.
@@ -106,7 +106,7 @@ public interface CameraInfo extends EObject {
 	 * @see #getWidth()
 	 * @generated
 	 */
-	void setWidth(long value);
+	void setWidth(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Distorsion model</b></em>' attribute.
@@ -121,7 +121,7 @@ public interface CameraInfo extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" required="true" ordered="false"
 	 * @generated
 	 */
-	String getDistorsion_model();
+	Object getDistorsion_model();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.CameraInfo#getDistorsion_model <em>Distorsion model</em>}' attribute.
@@ -131,11 +131,11 @@ public interface CameraInfo extends EObject {
 	 * @see #getDistorsion_model()
 	 * @generated
 	 */
-	void setDistorsion_model(String value);
+	void setDistorsion_model(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>D</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>D</em>' attribute list isn't clear, there really should be more of a description here...
@@ -146,11 +146,11 @@ public interface CameraInfo extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getD();
+	EList<Object> getD();
 
 	/**
 	 * Returns the value of the '<em><b>K</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>K</em>' attribute list isn't clear, there really should be more of a description here...
@@ -161,11 +161,11 @@ public interface CameraInfo extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" lower="9" upper="9" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getK();
+	EList<Object> getK();
 
 	/**
 	 * Returns the value of the '<em><b>R</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>R</em>' attribute list isn't clear, there really should be more of a description here...
@@ -176,11 +176,11 @@ public interface CameraInfo extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" lower="9" upper="9" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getR();
+	EList<Object> getR();
 
 	/**
 	 * Returns the value of the '<em><b>P</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>P</em>' attribute list isn't clear, there really should be more of a description here...
@@ -191,7 +191,7 @@ public interface CameraInfo extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" lower="12" upper="12" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getP();
+	EList<Object> getP();
 
 	/**
 	 * Returns the value of the '<em><b>Binning x</b></em>' attribute.
@@ -201,12 +201,12 @@ public interface CameraInfo extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Binning x</em>' attribute.
-	 * @see #setBinning_x(long)
+	 * @see #setBinning_x(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getCameraInfo_Binning_x()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getBinning_x();
+	Object getBinning_x();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.CameraInfo#getBinning_x <em>Binning x</em>}' attribute.
@@ -216,7 +216,7 @@ public interface CameraInfo extends EObject {
 	 * @see #getBinning_x()
 	 * @generated
 	 */
-	void setBinning_x(long value);
+	void setBinning_x(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Binning y</b></em>' attribute.
@@ -226,12 +226,12 @@ public interface CameraInfo extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Binning y</em>' attribute.
-	 * @see #setBinning_y(long)
+	 * @see #setBinning_y(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getCameraInfo_Binning_y()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getBinning_y();
+	Object getBinning_y();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.CameraInfo#getBinning_y <em>Binning y</em>}' attribute.
@@ -241,7 +241,7 @@ public interface CameraInfo extends EObject {
 	 * @see #getBinning_y()
 	 * @generated
 	 */
-	void setBinning_y(long value);
+	void setBinning_y(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Roi</b></em>' containment reference.

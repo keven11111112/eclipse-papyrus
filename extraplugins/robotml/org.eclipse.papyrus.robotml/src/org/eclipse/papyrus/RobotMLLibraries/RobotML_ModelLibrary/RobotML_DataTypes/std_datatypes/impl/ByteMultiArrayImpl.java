@@ -49,7 +49,7 @@ public class ByteMultiArrayImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Byte> data;
+	protected EList<Object> data;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,9 +118,9 @@ public class ByteMultiArrayImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Byte> getData() {
+	public EList<Object> getData() {
 		if (data == null) {
-			data = new EDataTypeUniqueEList<Byte>(Byte.class, this, Std_datatypesPackage.BYTE_MULTI_ARRAY__DATA);
+			data = new EDataTypeUniqueEList<Object>(Object.class, this, Std_datatypesPackage.BYTE_MULTI_ARRAY__DATA);
 		}
 		return data;
 	}
@@ -169,7 +169,7 @@ public class ByteMultiArrayImpl extends MinimalEObjectImpl.Container implements 
 				return;
 			case Std_datatypesPackage.BYTE_MULTI_ARRAY__DATA:
 				getData().clear();
-				getData().addAll((Collection<? extends Byte>)newValue);
+				getData().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

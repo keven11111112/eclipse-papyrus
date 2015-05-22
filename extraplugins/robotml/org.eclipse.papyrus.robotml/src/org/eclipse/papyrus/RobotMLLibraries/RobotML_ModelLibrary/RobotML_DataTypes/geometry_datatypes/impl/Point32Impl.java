@@ -33,7 +33,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float X_EDEFAULT = 0.0F;
+	protected static final Object X_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getX() <em>X</em>}' attribute.
@@ -43,7 +43,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * @generated
 	 * @ordered
 	 */
-	protected float x = X_EDEFAULT;
+	protected Object x = X_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getY() <em>Y</em>}' attribute.
@@ -53,7 +53,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float Y_EDEFAULT = 0.0F;
+	protected static final Object Y_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
@@ -63,7 +63,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * @generated
 	 * @ordered
 	 */
-	protected float y = Y_EDEFAULT;
+	protected Object y = Y_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getZ() <em>Z</em>}' attribute.
@@ -73,7 +73,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float Z_EDEFAULT = 0.0F;
+	protected static final Object Z_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getZ() <em>Z</em>}' attribute.
@@ -83,7 +83,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * @generated
 	 * @ordered
 	 */
-	protected float z = Z_EDEFAULT;
+	protected Object z = Z_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,7 +109,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getX() {
+	public Object getX() {
 		return x;
 	}
 
@@ -118,8 +118,8 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setX(float newX) {
-		float oldX = x;
+	public void setX(Object newX) {
+		Object oldX = x;
 		x = newX;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POINT32__X, oldX, x));
@@ -130,7 +130,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getY() {
+	public Object getY() {
 		return y;
 	}
 
@@ -139,8 +139,8 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setY(float newY) {
-		float oldY = y;
+	public void setY(Object newY) {
+		Object oldY = y;
 		y = newY;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POINT32__Y, oldY, y));
@@ -151,7 +151,7 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getZ() {
+	public Object getZ() {
 		return z;
 	}
 
@@ -160,8 +160,8 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setZ(float newZ) {
-		float oldZ = z;
+	public void setZ(Object newZ) {
+		Object oldZ = z;
 		z = newZ;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POINT32__Z, oldZ, z));
@@ -194,13 +194,13 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Geometry_datatypesPackage.POINT32__X:
-				setX((Float)newValue);
+				setX((Object)newValue);
 				return;
 			case Geometry_datatypesPackage.POINT32__Y:
-				setY((Float)newValue);
+				setY((Object)newValue);
 				return;
 			case Geometry_datatypesPackage.POINT32__Z:
-				setZ((Float)newValue);
+				setZ((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -236,11 +236,11 @@ public class Point32Impl extends MinimalEObjectImpl.Container implements Point32
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Geometry_datatypesPackage.POINT32__X:
-				return x != X_EDEFAULT;
+				return X_EDEFAULT == null ? x != null : !X_EDEFAULT.equals(x);
 			case Geometry_datatypesPackage.POINT32__Y:
-				return y != Y_EDEFAULT;
+				return Y_EDEFAULT == null ? y != null : !Y_EDEFAULT.equals(y);
 			case Geometry_datatypesPackage.POINT32__Z:
-				return z != Z_EDEFAULT;
+				return Z_EDEFAULT == null ? z != null : !Z_EDEFAULT.equals(z);
 		}
 		return super.eIsSet(featureID);
 	}

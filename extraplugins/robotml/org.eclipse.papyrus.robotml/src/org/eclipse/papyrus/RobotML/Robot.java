@@ -19,7 +19,7 @@ package org.eclipse.papyrus.RobotML;
  * @model
  * @generated
  */
-public interface Robot extends Agent, org.eclipse.papyrus.RobotML.System {
+public interface Robot extends org.eclipse.papyrus.RobotML.System {
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -28,12 +28,12 @@ public interface Robot extends Agent, org.eclipse.papyrus.RobotML.System {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
-	 * @see #setWidth(float)
+	 * @see #setWidth(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getRobot_Width()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getWidth();
+	Object getWidth();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.Robot#getWidth <em>Width</em>}' attribute.
@@ -43,6 +43,6 @@ public interface Robot extends Agent, org.eclipse.papyrus.RobotML.System {
 	 * @see #getWidth()
 	 * @generated
 	 */
-	void setWidth(float value);
+	void setWidth(Object value);
 
 } // Robot

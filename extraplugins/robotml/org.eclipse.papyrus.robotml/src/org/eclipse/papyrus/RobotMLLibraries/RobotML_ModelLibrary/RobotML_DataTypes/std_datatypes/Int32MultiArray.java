@@ -50,7 +50,7 @@ public interface Int32MultiArray extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Data</em>' attribute list isn't clear, there really should be more of a description here...
@@ -61,6 +61,6 @@ public interface Int32MultiArray extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int32" ordered="false"
 	 * @generated
 	 */
-	EList<Integer> getData();
+	EList<Object> getData();
 
 } // Int32MultiArray

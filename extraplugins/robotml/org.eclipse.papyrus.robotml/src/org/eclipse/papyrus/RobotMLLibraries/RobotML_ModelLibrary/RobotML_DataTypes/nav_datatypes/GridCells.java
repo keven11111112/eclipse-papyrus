@@ -60,12 +60,12 @@ public interface GridCells extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cell width</em>' attribute.
-	 * @see #setCell_width(float)
+	 * @see #setCell_width(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage#getGridCells_Cell_width()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getCell_width();
+	Object getCell_width();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.GridCells#getCell_width <em>Cell width</em>}' attribute.
@@ -75,7 +75,7 @@ public interface GridCells extends EObject {
 	 * @see #getCell_width()
 	 * @generated
 	 */
-	void setCell_width(float value);
+	void setCell_width(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Cell height</b></em>' attribute.
@@ -85,12 +85,12 @@ public interface GridCells extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cell height</em>' attribute.
-	 * @see #setCell_height(float)
+	 * @see #setCell_height(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage#getGridCells_Cell_height()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getCell_height();
+	Object getCell_height();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.GridCells#getCell_height <em>Cell height</em>}' attribute.
@@ -100,7 +100,7 @@ public interface GridCells extends EObject {
 	 * @see #getCell_height()
 	 * @generated
 	 */
-	void setCell_height(float value);
+	void setCell_height(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Cells</b></em>' containment reference list.

@@ -36,7 +36,7 @@ public interface ChannelFloat32 extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" required="true" ordered="false"
 	 * @generated
 	 */
-	String getName();
+	Object getName();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.ChannelFloat32#getName <em>Name</em>}' attribute.
@@ -46,11 +46,11 @@ public interface ChannelFloat32 extends EObject {
 	 * @see #getName()
 	 * @generated
 	 */
-	void setName(String value);
+	void setName(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Values</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Values</em>' attribute list isn't clear, there really should be more of a description here...
@@ -61,6 +61,6 @@ public interface ChannelFloat32 extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" ordered="false"
 	 * @generated
 	 */
-	EList<Float> getValues();
+	EList<Object> getValues();
 
 } // ChannelFloat32

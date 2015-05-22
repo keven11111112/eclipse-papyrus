@@ -29,12 +29,12 @@ public interface Metric extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(double)
+	 * @see #setValue(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Oarp4_datatypesPackage#getMetric_Value()
 	 * @model unique="false" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getValue();
+	Object getValue();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Metric#getValue <em>Value</em>}' attribute.
@@ -44,6 +44,6 @@ public interface Metric extends EObject {
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(double value);
+	void setValue(Object value);
 
 } // Metric

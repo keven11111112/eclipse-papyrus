@@ -65,7 +65,7 @@ public interface Odometry extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" required="true" ordered="false"
 	 * @generated
 	 */
-	String getChild_frame_id();
+	Object getChild_frame_id();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Odometry#getChild_frame_id <em>Child frame id</em>}' attribute.
@@ -75,7 +75,7 @@ public interface Odometry extends EObject {
 	 * @see #getChild_frame_id()
 	 * @generated
 	 */
-	void setChild_frame_id(String value);
+	void setChild_frame_id(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Pose</b></em>' containment reference.

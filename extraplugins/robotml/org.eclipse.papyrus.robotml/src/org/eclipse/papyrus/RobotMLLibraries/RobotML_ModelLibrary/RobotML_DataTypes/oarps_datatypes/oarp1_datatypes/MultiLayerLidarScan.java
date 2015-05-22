@@ -55,12 +55,12 @@ public interface MultiLayerLidarScan extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nb Layer</em>' attribute.
-	 * @see #setNbLayer(char)
+	 * @see #setNbLayer(UInt8)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage#getMultiLayerLidarScan_NbLayer()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8" required="true" ordered="false"
 	 * @generated
 	 */
-	char getNbLayer();
+	Object getNbLayer();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.MultiLayerLidarScan#getNbLayer <em>Nb Layer</em>}' attribute.
@@ -70,6 +70,6 @@ public interface MultiLayerLidarScan extends EObject {
 	 * @see #getNbLayer()
 	 * @generated
 	 */
-	void setNbLayer(char value);
+	void setNbLayer(Object value);
 
 } // MultiLayerLidarScan

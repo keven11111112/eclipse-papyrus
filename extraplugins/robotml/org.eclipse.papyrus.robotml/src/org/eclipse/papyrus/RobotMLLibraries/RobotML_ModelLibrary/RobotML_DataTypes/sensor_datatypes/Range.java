@@ -37,12 +37,12 @@ public interface Range extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ULTRASOUND</em>' attribute.
-	 * @see #setULTRASOUND(char)
+	 * @see #setULTRASOUND(UInt8)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getRange_ULTRASOUND()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8" required="true" ordered="false"
 	 * @generated
 	 */
-	char getULTRASOUND();
+	Object getULTRASOUND();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Range#getULTRASOUND <em>ULTRASOUND</em>}' attribute.
@@ -52,7 +52,7 @@ public interface Range extends EObject {
 	 * @see #getULTRASOUND()
 	 * @generated
 	 */
-	void setULTRASOUND(char value);
+	void setULTRASOUND(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>INFRARED</b></em>' attribute.
@@ -62,12 +62,12 @@ public interface Range extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>INFRARED</em>' attribute.
-	 * @see #setINFRARED(char)
+	 * @see #setINFRARED(UInt8)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getRange_INFRARED()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8" required="true" ordered="false"
 	 * @generated
 	 */
-	char getINFRARED();
+	Object getINFRARED();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Range#getINFRARED <em>INFRARED</em>}' attribute.
@@ -77,7 +77,7 @@ public interface Range extends EObject {
 	 * @see #getINFRARED()
 	 * @generated
 	 */
-	void setINFRARED(char value);
+	void setINFRARED(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Header</b></em>' containment reference.
@@ -112,12 +112,12 @@ public interface Range extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Radiation type</em>' attribute.
-	 * @see #setRadiation_type(char)
+	 * @see #setRadiation_type(UInt8)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getRange_Radiation_type()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8" required="true" ordered="false"
 	 * @generated
 	 */
-	char getRadiation_type();
+	Object getRadiation_type();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Range#getRadiation_type <em>Radiation type</em>}' attribute.
@@ -127,7 +127,7 @@ public interface Range extends EObject {
 	 * @see #getRadiation_type()
 	 * @generated
 	 */
-	void setRadiation_type(char value);
+	void setRadiation_type(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Field of view</b></em>' attribute.
@@ -137,12 +137,12 @@ public interface Range extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Field of view</em>' attribute.
-	 * @see #setField_of_view(float)
+	 * @see #setField_of_view(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getRange_Field_of_view()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getField_of_view();
+	Object getField_of_view();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Range#getField_of_view <em>Field of view</em>}' attribute.
@@ -152,7 +152,7 @@ public interface Range extends EObject {
 	 * @see #getField_of_view()
 	 * @generated
 	 */
-	void setField_of_view(float value);
+	void setField_of_view(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Min range</b></em>' attribute.
@@ -162,12 +162,12 @@ public interface Range extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Min range</em>' attribute.
-	 * @see #setMin_range(float)
+	 * @see #setMin_range(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getRange_Min_range()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getMin_range();
+	Object getMin_range();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Range#getMin_range <em>Min range</em>}' attribute.
@@ -177,7 +177,7 @@ public interface Range extends EObject {
 	 * @see #getMin_range()
 	 * @generated
 	 */
-	void setMin_range(float value);
+	void setMin_range(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Max range</b></em>' attribute.
@@ -187,12 +187,12 @@ public interface Range extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max range</em>' attribute.
-	 * @see #setMax_range(float)
+	 * @see #setMax_range(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getRange_Max_range()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getMax_range();
+	Object getMax_range();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Range#getMax_range <em>Max range</em>}' attribute.
@@ -202,7 +202,7 @@ public interface Range extends EObject {
 	 * @see #getMax_range()
 	 * @generated
 	 */
-	void setMax_range(float value);
+	void setMax_range(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Range</b></em>' attribute.
@@ -212,12 +212,12 @@ public interface Range extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Range</em>' attribute.
-	 * @see #setRange(float)
+	 * @see #setRange(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getRange_Range()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getRange();
+	Object getRange();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Range#getRange <em>Range</em>}' attribute.
@@ -227,6 +227,6 @@ public interface Range extends EObject {
 	 * @see #getRange()
 	 * @generated
 	 */
-	void setRange(float value);
+	void setRange(Object value);
 
 } // Range

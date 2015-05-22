@@ -34,7 +34,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double X_EDEFAULT = 0.0;
+	protected static final Object X_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getX() <em>X</em>}' attribute.
@@ -44,7 +44,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * @generated
 	 * @ordered
 	 */
-	protected double x = X_EDEFAULT;
+	protected Object x = X_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getY() <em>Y</em>}' attribute.
@@ -54,7 +54,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double Y_EDEFAULT = 0.0;
+	protected static final Object Y_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
@@ -64,7 +64,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * @generated
 	 * @ordered
 	 */
-	protected double y = Y_EDEFAULT;
+	protected Object y = Y_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getZ() <em>Z</em>}' attribute.
@@ -74,7 +74,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double Z_EDEFAULT = 0.0;
+	protected static final Object Z_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getZ() <em>Z</em>}' attribute.
@@ -84,7 +84,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * @generated
 	 * @ordered
 	 */
-	protected double z = Z_EDEFAULT;
+	protected Object z = Z_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getW() <em>W</em>}' attribute.
@@ -94,7 +94,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double W_EDEFAULT = 0.0;
+	protected static final Object W_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getW() <em>W</em>}' attribute.
@@ -104,7 +104,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * @generated
 	 * @ordered
 	 */
-	protected double w = W_EDEFAULT;
+	protected Object w = W_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,7 +130,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getX() {
+	public Object getX() {
 		return x;
 	}
 
@@ -139,8 +139,8 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setX(double newX) {
-		double oldX = x;
+	public void setX(Object newX) {
+		Object oldX = x;
 		x = newX;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.QUATERNION__X, oldX, x));
@@ -151,7 +151,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getY() {
+	public Object getY() {
 		return y;
 	}
 
@@ -160,8 +160,8 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setY(double newY) {
-		double oldY = y;
+	public void setY(Object newY) {
+		Object oldY = y;
 		y = newY;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.QUATERNION__Y, oldY, y));
@@ -172,7 +172,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getZ() {
+	public Object getZ() {
 		return z;
 	}
 
@@ -181,8 +181,8 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setZ(double newZ) {
-		double oldZ = z;
+	public void setZ(Object newZ) {
+		Object oldZ = z;
 		z = newZ;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.QUATERNION__Z, oldZ, z));
@@ -193,7 +193,7 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getW() {
+	public Object getW() {
 		return w;
 	}
 
@@ -202,8 +202,8 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setW(double newW) {
-		double oldW = w;
+	public void setW(Object newW) {
+		Object oldW = w;
 		w = newW;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.QUATERNION__W, oldW, w));
@@ -238,16 +238,16 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Geometry_datatypesPackage.QUATERNION__X:
-				setX((Double)newValue);
+				setX((Object)newValue);
 				return;
 			case Geometry_datatypesPackage.QUATERNION__Y:
-				setY((Double)newValue);
+				setY((Object)newValue);
 				return;
 			case Geometry_datatypesPackage.QUATERNION__Z:
-				setZ((Double)newValue);
+				setZ((Object)newValue);
 				return;
 			case Geometry_datatypesPackage.QUATERNION__W:
-				setW((Double)newValue);
+				setW((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -286,13 +286,13 @@ public class QuaternionImpl extends MinimalEObjectImpl.Container implements Quat
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Geometry_datatypesPackage.QUATERNION__X:
-				return x != X_EDEFAULT;
+				return X_EDEFAULT == null ? x != null : !X_EDEFAULT.equals(x);
 			case Geometry_datatypesPackage.QUATERNION__Y:
-				return y != Y_EDEFAULT;
+				return Y_EDEFAULT == null ? y != null : !Y_EDEFAULT.equals(y);
 			case Geometry_datatypesPackage.QUATERNION__Z:
-				return z != Z_EDEFAULT;
+				return Z_EDEFAULT == null ? z != null : !Z_EDEFAULT.equals(z);
 			case Geometry_datatypesPackage.QUATERNION__W:
-				return w != W_EDEFAULT;
+				return W_EDEFAULT == null ? w != null : !W_EDEFAULT.equals(w);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -52,7 +52,7 @@ public interface Joy extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Axes</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Axes</em>' attribute list isn't clear, there really should be more of a description here...
@@ -63,11 +63,11 @@ public interface Joy extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" ordered="false"
 	 * @generated
 	 */
-	EList<Float> getAxes();
+	EList<Object> getAxes();
 
 	/**
 	 * Returns the value of the '<em><b>Buttons</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Buttons</em>' attribute list isn't clear, there really should be more of a description here...
@@ -78,6 +78,6 @@ public interface Joy extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Int32" ordered="false"
 	 * @generated
 	 */
-	EList<Integer> getButtons();
+	EList<Object> getButtons();
 
 } // Joy

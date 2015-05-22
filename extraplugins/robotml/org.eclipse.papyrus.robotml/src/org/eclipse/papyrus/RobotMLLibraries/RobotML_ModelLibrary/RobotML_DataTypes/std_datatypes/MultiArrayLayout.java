@@ -46,12 +46,12 @@ public interface MultiArrayLayout extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data offset</em>' attribute.
-	 * @see #setData_offset(long)
+	 * @see #setData_offset(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage#getMultiArrayLayout_Data_offset()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getData_offset();
+	Object getData_offset();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.MultiArrayLayout#getData_offset <em>Data offset</em>}' attribute.
@@ -61,6 +61,6 @@ public interface MultiArrayLayout extends EObject {
 	 * @see #getData_offset()
 	 * @generated
 	 */
-	void setData_offset(long value);
+	void setData_offset(Object value);
 
 } // MultiArrayLayout

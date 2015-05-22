@@ -29,12 +29,12 @@ public interface Distance extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(long)
+	 * @see #setValue(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Oarp4_datatypesPackage#getDistance_Value()
 	 * @model unique="false" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getValue();
+	Object getValue();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Distance#getValue <em>Value</em>}' attribute.
@@ -44,6 +44,6 @@ public interface Distance extends EObject {
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(long value);
+	void setValue(Object value);
 
 } // Distance

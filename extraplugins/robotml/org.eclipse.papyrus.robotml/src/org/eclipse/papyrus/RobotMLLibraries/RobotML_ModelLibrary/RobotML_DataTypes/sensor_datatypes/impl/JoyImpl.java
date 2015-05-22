@@ -50,7 +50,7 @@ public class JoyImpl extends MinimalEObjectImpl.Container implements Joy {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Float> axes;
+	protected EList<Object> axes;
 
 	/**
 	 * The cached value of the '{@link #getButtons() <em>Buttons</em>}' attribute list.
@@ -60,7 +60,7 @@ public class JoyImpl extends MinimalEObjectImpl.Container implements Joy {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Integer> buttons;
+	protected EList<Object> buttons;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,9 +129,9 @@ public class JoyImpl extends MinimalEObjectImpl.Container implements Joy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Float> getAxes() {
+	public EList<Object> getAxes() {
 		if (axes == null) {
-			axes = new EDataTypeUniqueEList<Float>(Float.class, this, Sensor_datatypesPackage.JOY__AXES);
+			axes = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOY__AXES);
 		}
 		return axes;
 	}
@@ -141,9 +141,9 @@ public class JoyImpl extends MinimalEObjectImpl.Container implements Joy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Integer> getButtons() {
+	public EList<Object> getButtons() {
 		if (buttons == null) {
-			buttons = new EDataTypeUniqueEList<Integer>(Integer.class, this, Sensor_datatypesPackage.JOY__BUTTONS);
+			buttons = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOY__BUTTONS);
 		}
 		return buttons;
 	}
@@ -194,11 +194,11 @@ public class JoyImpl extends MinimalEObjectImpl.Container implements Joy {
 				return;
 			case Sensor_datatypesPackage.JOY__AXES:
 				getAxes().clear();
-				getAxes().addAll((Collection<? extends Float>)newValue);
+				getAxes().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.JOY__BUTTONS:
 				getButtons().clear();
-				getButtons().addAll((Collection<? extends Integer>)newValue);
+				getButtons().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

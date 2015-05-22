@@ -19,7 +19,7 @@ import org.eclipse.uml2.uml.Operation;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.AlgorithmImpl#getBase_Operation <em>Base Operation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.RobotML.impl.AlgorithmImpl#isIsExternal <em>Is External</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.AlgorithmImpl#isExternal <em>Is External</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.AlgorithmImpl#getExtFunctionName <em>Ext Function Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.AlgorithmImpl#getLibPath <em>Lib Path</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.AlgorithmImpl#getLibFileFormat <em>Lib File Format</em>}</li>
@@ -40,20 +40,20 @@ public class AlgorithmImpl extends MinimalEObjectImpl.Container implements Algor
 	protected Operation base_Operation;
 
 	/**
-	 * The default value of the '{@link #isIsExternal() <em>Is External</em>}' attribute.
+	 * The default value of the '{@link #isExternal() <em>Is External</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsExternal()
+	 * @see #isExternal()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_EXTERNAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsExternal() <em>Is External</em>}' attribute.
+	 * The cached value of the '{@link #isExternal() <em>Is External</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsExternal()
+	 * @see #isExternal()
 	 * @generated
 	 * @ordered
 	 */
@@ -181,7 +181,7 @@ public class AlgorithmImpl extends MinimalEObjectImpl.Container implements Algor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsExternal() {
+	public boolean isExternal() {
 		return isExternal;
 	}
 
@@ -272,7 +272,7 @@ public class AlgorithmImpl extends MinimalEObjectImpl.Container implements Algor
 				if (resolve) return getBase_Operation();
 				return basicGetBase_Operation();
 			case RobotMLPackage.ALGORITHM__IS_EXTERNAL:
-				return isIsExternal();
+				return isExternal();
 			case RobotMLPackage.ALGORITHM__EXT_FUNCTION_NAME:
 				return getExtFunctionName();
 			case RobotMLPackage.ALGORITHM__LIB_PATH:

@@ -39,7 +39,7 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.MultiArrayLayout;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesFactory;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UIint16MultiArray;
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt16MultiArray;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32MultiArray;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt64MultiArray;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8MultiArray;
@@ -141,7 +141,7 @@ public class Std_datatypesPackageImpl extends EPackageImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass uIint16MultiArrayEClass = null;
+	private EClass uInt16MultiArrayEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -723,8 +723,8 @@ public class Std_datatypesPackageImpl extends EPackageImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUIint16MultiArray() {
-		return uIint16MultiArrayEClass;
+	public EClass getUInt16MultiArray() {
+		return uInt16MultiArrayEClass;
 	}
 
 	/**
@@ -732,8 +732,8 @@ public class Std_datatypesPackageImpl extends EPackageImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUIint16MultiArray_Layout() {
-		return (EReference)uIint16MultiArrayEClass.getEStructuralFeatures().get(0);
+	public EReference getUInt16MultiArray_Layout() {
+		return (EReference)uInt16MultiArrayEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -741,8 +741,8 @@ public class Std_datatypesPackageImpl extends EPackageImpl implements Std_dataty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUIint16MultiArray_Data() {
-		return (EAttribute)uIint16MultiArrayEClass.getEStructuralFeatures().get(1);
+	public EAttribute getUInt16MultiArray_Data() {
+		return (EAttribute)uInt16MultiArrayEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1023,9 +1023,9 @@ public class Std_datatypesPackageImpl extends EPackageImpl implements Std_dataty
 		createEReference(uInt64MultiArrayEClass, UINT64_MULTI_ARRAY__LAYOUT);
 		createEAttribute(uInt64MultiArrayEClass, UINT64_MULTI_ARRAY__DATA);
 
-		uIint16MultiArrayEClass = createEClass(UIINT16_MULTI_ARRAY);
-		createEReference(uIint16MultiArrayEClass, UIINT16_MULTI_ARRAY__LAYOUT);
-		createEAttribute(uIint16MultiArrayEClass, UIINT16_MULTI_ARRAY__DATA);
+		uInt16MultiArrayEClass = createEClass(UINT16_MULTI_ARRAY);
+		createEReference(uInt16MultiArrayEClass, UINT16_MULTI_ARRAY__LAYOUT);
+		createEAttribute(uInt16MultiArrayEClass, UINT16_MULTI_ARRAY__DATA);
 
 		uInt32MultiArrayEClass = createEClass(UINT32_MULTI_ARRAY);
 		createEReference(uInt32MultiArrayEClass, UINT32_MULTI_ARRAY__LAYOUT);
@@ -1136,9 +1136,9 @@ public class Std_datatypesPackageImpl extends EPackageImpl implements Std_dataty
 		initEReference(getUInt64MultiArray_Layout(), this.getMultiArrayLayout(), null, "layout", null, 1, 1, UInt64MultiArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getUInt64MultiArray_Data(), this.getUInt64(), "data", null, 0, -1, UInt64MultiArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(uIint16MultiArrayEClass, UIint16MultiArray.class, "UIint16MultiArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUIint16MultiArray_Layout(), this.getMultiArrayLayout(), null, "layout", null, 1, 1, UIint16MultiArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getUIint16MultiArray_Data(), this.getUInt16(), "data", null, 0, -1, UIint16MultiArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(uInt16MultiArrayEClass, UInt16MultiArray.class, "UInt16MultiArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUInt16MultiArray_Layout(), this.getMultiArrayLayout(), null, "layout", null, 1, 1, UInt16MultiArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getUInt16MultiArray_Data(), this.getUInt16(), "data", null, 0, -1, UInt16MultiArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(uInt32MultiArrayEClass, UInt32MultiArray.class, "UInt32MultiArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUInt32MultiArray_Layout(), this.getMultiArrayLayout(), null, "layout", null, 1, 1, UInt32MultiArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

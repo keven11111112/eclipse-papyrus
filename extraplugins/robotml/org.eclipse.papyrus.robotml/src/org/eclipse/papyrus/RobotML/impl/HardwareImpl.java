@@ -15,7 +15,7 @@ import org.eclipse.papyrus.RobotML.RobotMLPackage;
  *
  * @generated
  */
-public class HardwareImpl extends PhysicalObjectImpl implements Hardware {
+public class HardwareImpl extends SystemImpl implements Hardware {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

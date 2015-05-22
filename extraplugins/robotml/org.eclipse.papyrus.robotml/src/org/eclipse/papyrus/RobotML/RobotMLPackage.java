@@ -389,13 +389,22 @@ public interface RobotMLPackage extends EPackage {
 	int SYSTEM__LIBRARY_COMPONENT_NAME = 3;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__ALIAS = 4;
+
+	/**
 	 * The number of structural features of the '<em>System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FEATURE_COUNT = 4;
+	int SYSTEM_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>System</em>' class.
@@ -417,96 +426,6 @@ public interface RobotMLPackage extends EPackage {
 	int PHYSICAL_OBJECT = 9;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT__BASE_CLASS = SYSTEM__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT__NATIVE = SYSTEM__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT__LIBRARY_PATH = SYSTEM__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT__EVELOVES_IN = SYSTEM_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT__HAS_SURFACE = SYSTEM_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT__HEIGHT = SYSTEM_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT__MASS = SYSTEM_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Physical Object</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT_FEATURE_COUNT = SYSTEM_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Physical Object</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_OBJECT_OPERATION_COUNT = SYSTEM_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.AgentImpl <em>Agent</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -517,13 +436,23 @@ public interface RobotMLPackage extends EPackage {
 	int AGENT = 8;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.RobotImpl <em>Robot</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRobot()
+	 * @generated
+	 */
+	int ROBOT = 6;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
+	int ROBOT__BASE_CLASS = SYSTEM__BASE_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Native</b></em>' attribute.
@@ -532,7 +461,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT__NATIVE = PHYSICAL_OBJECT__NATIVE;
+	int ROBOT__NATIVE = SYSTEM__NATIVE;
 
 	/**
 	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
@@ -541,7 +470,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT__LIBRARY_PATH = PHYSICAL_OBJECT__LIBRARY_PATH;
+	int ROBOT__LIBRARY_PATH = SYSTEM__LIBRARY_PATH;
 
 	/**
 	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
@@ -550,25 +479,88 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT__LIBRARY_COMPONENT_NAME = PHYSICAL_OBJECT__LIBRARY_COMPONENT_NAME;
+	int ROBOT__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT__EVELOVES_IN = PHYSICAL_OBJECT__EVELOVES_IN;
+	int ROBOT__ALIAS = SYSTEM__ALIAS;
 
 	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
+	int ROBOT__WIDTH = SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Robot</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOT_FEATURE_COUNT = SYSTEM_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Robot</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOT_OPERATION_COUNT = SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_OBJECT__HEIGHT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_OBJECT__MASS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_OBJECT__BASE_CLASS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Physical Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_OBJECT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Physical Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_OBJECT_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -589,13 +581,13 @@ public interface RobotMLPackage extends EPackage {
 	int AGENT__MASS = PHYSICAL_OBJECT__MASS;
 
 	/**
-	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT__MOVES_OVER = PHYSICAL_OBJECT_FEATURE_COUNT + 0;
+	int AGENT__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Agent</em>' class.
@@ -604,7 +596,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT_FEATURE_COUNT = PHYSICAL_OBJECT_FEATURE_COUNT + 1;
+	int AGENT_FEATURE_COUNT = PHYSICAL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Agent</em>' class.
@@ -616,124 +608,6 @@ public interface RobotMLPackage extends EPackage {
 	int AGENT_OPERATION_COUNT = PHYSICAL_OBJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.RobotImpl <em>Robot</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotImpl
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRobot()
-	 * @generated
-	 */
-	int ROBOT = 6;
-
-	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__BASE_CLASS = AGENT__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__NATIVE = AGENT__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__LIBRARY_PATH = AGENT__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__LIBRARY_COMPONENT_NAME = AGENT__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__EVELOVES_IN = AGENT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__HAS_SURFACE = AGENT__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__HEIGHT = AGENT__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__MASS = AGENT__MASS;
-
-	/**
-	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__MOVES_OVER = AGENT__MOVES_OVER;
-
-	/**
-	 * The feature id for the '<em><b>Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__WIDTH = AGENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Robot</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT_FEATURE_COUNT = AGENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Robot</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT_OPERATION_COUNT = AGENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.EnvironmentImpl <em>Environment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -741,61 +615,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getEnvironment()
 	 * @generated
 	 */
-	int ENVIRONMENT = 10;
-
-	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT__BASE_CLASS = SYSTEM__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT__NATIVE = SYSTEM__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT__LIBRARY_PATH = SYSTEM__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The number of structural features of the '<em>Environment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT_FEATURE_COUNT = SYSTEM_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Environment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT_OPERATION_COUNT = SYSTEM_OPERATION_COUNT + 0;
+	int ENVIRONMENT = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SurfaceImpl <em>Surface</em>}' class.
@@ -805,97 +625,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSurface()
 	 * @generated
 	 */
-	int SURFACE = 11;
-
-	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE__NATIVE = PHYSICAL_OBJECT__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE__LIBRARY_PATH = PHYSICAL_OBJECT__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE__LIBRARY_COMPONENT_NAME = PHYSICAL_OBJECT__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE__EVELOVES_IN = PHYSICAL_OBJECT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE__HEIGHT = PHYSICAL_OBJECT__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE__MASS = PHYSICAL_OBJECT__MASS;
-
-	/**
-	 * The number of structural features of the '<em>Surface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE_FEATURE_COUNT = PHYSICAL_OBJECT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Surface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURFACE_OPERATION_COUNT = PHYSICAL_OBJECT_OPERATION_COUNT + 0;
+	int SURFACE = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.PortImpl <em>Port</em>}' class.
@@ -905,7 +635,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPort()
 	 * @generated
 	 */
-	int PORT = 13;
+	int PORT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Base Port</b></em>' reference.
@@ -951,7 +681,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getDataFlowPort()
 	 * @generated
 	 */
-	int DATA_FLOW_PORT = 12;
+	int DATA_FLOW_PORT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Base Port</b></em>' reference.
@@ -1015,7 +745,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getServicePort()
 	 * @generated
 	 */
-	int SERVICE_PORT = 14;
+	int SERVICE_PORT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Base Port</b></em>' reference.
@@ -1070,7 +800,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRoboticSystem()
 	 * @generated
 	 */
-	int ROBOTIC_SYSTEM = 16;
+	int ROBOTIC_SYSTEM = 14;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1107,6 +837,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROBOTIC_SYSTEM__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_SYSTEM__ALIAS = SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -1152,7 +891,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getActuatorSystem()
 	 * @generated
 	 */
-	int ACTUATOR_SYSTEM = 15;
+	int ACTUATOR_SYSTEM = 13;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1189,6 +928,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME = ROBOTIC_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_SYSTEM__ALIAS = ROBOTIC_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -1234,7 +982,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getCyberPhysicalSystem()
 	 * @generated
 	 */
-	int CYBER_PHYSICAL_SYSTEM = 17;
+	int CYBER_PHYSICAL_SYSTEM = 15;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1273,6 +1021,15 @@ public interface RobotMLPackage extends EPackage {
 	int CYBER_PHYSICAL_SYSTEM__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CYBER_PHYSICAL_SYSTEM__ALIAS = SYSTEM__ALIAS;
+
+	/**
 	 * The number of structural features of the '<em>Cyber Physical System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1298,7 +1055,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSensorSystem()
 	 * @generated
 	 */
-	int SENSOR_SYSTEM = 18;
+	int SENSOR_SYSTEM = 16;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1335,6 +1092,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME = ROBOTIC_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_SYSTEM__ALIAS = ROBOTIC_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -1398,7 +1164,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getHardware()
 	 * @generated
 	 */
-	int HARDWARE = 19;
+	int HARDWARE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1407,7 +1173,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
+	int HARDWARE__BASE_CLASS = SYSTEM__BASE_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Native</b></em>' attribute.
@@ -1416,7 +1182,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__NATIVE = PHYSICAL_OBJECT__NATIVE;
+	int HARDWARE__NATIVE = SYSTEM__NATIVE;
 
 	/**
 	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
@@ -1425,7 +1191,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__LIBRARY_PATH = PHYSICAL_OBJECT__LIBRARY_PATH;
+	int HARDWARE__LIBRARY_PATH = SYSTEM__LIBRARY_PATH;
 
 	/**
 	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
@@ -1434,43 +1200,16 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__LIBRARY_COMPONENT_NAME = PHYSICAL_OBJECT__LIBRARY_COMPONENT_NAME;
+	int HARDWARE__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__EVELOVES_IN = PHYSICAL_OBJECT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HARDWARE__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HARDWARE__HEIGHT = PHYSICAL_OBJECT__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HARDWARE__MASS = PHYSICAL_OBJECT__MASS;
+	int HARDWARE__ALIAS = SYSTEM__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Hardware</em>' class.
@@ -1479,7 +1218,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE_FEATURE_COUNT = PHYSICAL_OBJECT_FEATURE_COUNT + 0;
+	int HARDWARE_FEATURE_COUNT = SYSTEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Hardware</em>' class.
@@ -1488,7 +1227,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE_OPERATION_COUNT = PHYSICAL_OBJECT_OPERATION_COUNT + 0;
+	int HARDWARE_OPERATION_COUNT = SYSTEM_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SoftwareImpl <em>Software</em>}' class.
@@ -1498,7 +1237,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSoftware()
 	 * @generated
 	 */
-	int SOFTWARE = 20;
+	int SOFTWARE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1535,6 +1274,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFTWARE__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE__ALIAS = SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Is Periodic</b></em>' attribute.
@@ -1607,7 +1355,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getEngineSystem()
 	 * @generated
 	 */
-	int ENGINE_SYSTEM = 21;
+	int ENGINE_SYSTEM = 19;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1644,6 +1392,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENGINE_SYSTEM__LIBRARY_COMPONENT_NAME = ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENGINE_SYSTEM__ALIAS = ACTUATOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -1743,7 +1500,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLocomotionSystem()
 	 * @generated
 	 */
-	int LOCOMOTION_SYSTEM = 23;
+	int LOCOMOTION_SYSTEM = 21;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1780,6 +1537,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCOMOTION_SYSTEM__LIBRARY_COMPONENT_NAME = ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_SYSTEM__ALIAS = ACTUATOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -1825,7 +1591,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSteeredWheelSystem()
 	 * @generated
 	 */
-	int STEERED_WHEEL_SYSTEM = 22;
+	int STEERED_WHEEL_SYSTEM = 20;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1862,6 +1628,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEERED_WHEEL_SYSTEM__LIBRARY_COMPONENT_NAME = LOCOMOTION_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_SYSTEM__ALIAS = LOCOMOTION_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -2051,7 +1826,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getImageSensorSystem()
 	 * @generated
 	 */
-	int IMAGE_SENSOR_SYSTEM = 24;
+	int IMAGE_SENSOR_SYSTEM = 22;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2088,6 +1863,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int IMAGE_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME = SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_SENSOR_SYSTEM__ALIAS = SENSOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -2151,7 +1935,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getCameraSystem()
 	 * @generated
 	 */
-	int CAMERA_SYSTEM = 25;
+	int CAMERA_SYSTEM = 23;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2188,6 +1972,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CAMERA_SYSTEM__LIBRARY_COMPONENT_NAME = IMAGE_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMERA_SYSTEM__ALIAS = IMAGE_SENSOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -2332,7 +2125,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getObjectDetectionSensorSystem()
 	 * @generated
 	 */
-	int OBJECT_DETECTION_SENSOR_SYSTEM = 26;
+	int OBJECT_DETECTION_SENSOR_SYSTEM = 24;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2369,6 +2162,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_DETECTION_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME = SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_DETECTION_SENSOR_SYSTEM__ALIAS = SENSOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -2432,7 +2234,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getObjectTrackingSensorSystem()
 	 * @generated
 	 */
-	int OBJECT_TRACKING_SENSOR_SYSTEM = 27;
+	int OBJECT_TRACKING_SENSOR_SYSTEM = 25;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2469,6 +2271,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_TRACKING_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME = SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_TRACKING_SENSOR_SYSTEM__ALIAS = SENSOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -2532,7 +2343,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLidarSystem()
 	 * @generated
 	 */
-	int LIDAR_SYSTEM = 28;
+	int LIDAR_SYSTEM = 26;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2569,6 +2380,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIDAR_SYSTEM__LIBRARY_COMPONENT_NAME = OBJECT_DETECTION_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIDAR_SYSTEM__ALIAS = OBJECT_DETECTION_SENSOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -2740,7 +2560,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLocalizationSensorSystem()
 	 * @generated
 	 */
-	int LOCALIZATION_SENSOR_SYSTEM = 29;
+	int LOCALIZATION_SENSOR_SYSTEM = 27;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2777,6 +2597,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCALIZATION_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME = SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCALIZATION_SENSOR_SYSTEM__ALIAS = SENSOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -2840,7 +2669,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getGPSSystem()
 	 * @generated
 	 */
-	int GPS_SYSTEM = 30;
+	int GPS_SYSTEM = 28;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2877,6 +2706,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int GPS_SYSTEM__LIBRARY_COMPONENT_NAME = LOCALIZATION_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GPS_SYSTEM__ALIAS = LOCALIZATION_SENSOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -2949,7 +2787,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getAlgorithmLibrary()
 	 * @generated
 	 */
-	int ALGORITHM_LIBRARY = 31;
+	int ALGORITHM_LIBRARY = 29;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2995,7 +2833,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSensorDriver()
 	 * @generated
 	 */
-	int SENSOR_DRIVER = 32;
+	int SENSOR_DRIVER = 30;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3032,6 +2870,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SENSOR_DRIVER__LIBRARY_COMPONENT_NAME = SOFTWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_DRIVER__ALIAS = SOFTWARE__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Is Periodic</b></em>' attribute.
@@ -3097,6 +2944,33 @@ public interface RobotMLPackage extends EPackage {
 	int SENSOR_DRIVER_OPERATION_COUNT = SOFTWARE_OPERATION_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT__BASE_CLASS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Environment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Environment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.BuildingImpl <em>Building</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3104,61 +2978,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getBuilding()
 	 * @generated
 	 */
-	int BUILDING = 33;
-
-	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUILDING__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUILDING__NATIVE = PHYSICAL_OBJECT__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUILDING__LIBRARY_PATH = PHYSICAL_OBJECT__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUILDING__LIBRARY_COMPONENT_NAME = PHYSICAL_OBJECT__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUILDING__EVELOVES_IN = PHYSICAL_OBJECT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUILDING__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
+	int BUILDING = 32;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -3179,6 +2999,15 @@ public interface RobotMLPackage extends EPackage {
 	int BUILDING__MASS = PHYSICAL_OBJECT__MASS;
 
 	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILDING__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
+
+	/**
 	 * The number of structural features of the '<em>Building</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3197,14 +3026,22 @@ public interface RobotMLPackage extends EPackage {
 	int BUILDING_OPERATION_COUNT = PHYSICAL_OBJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.PlanetImpl <em>Planet</em>}' class.
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotML.impl.PlanetImpl
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPlanet()
 	 * @generated
+	 * @ordered
 	 */
-	int PLANET = 34;
+	int SURFACE__HEIGHT = PHYSICAL_OBJECT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURFACE__MASS = PHYSICAL_OBJECT__MASS;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3213,52 +3050,35 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLANET__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
+	int SURFACE__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * The number of structural features of the '<em>Surface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLANET__NATIVE = PHYSICAL_OBJECT__NATIVE;
+	int SURFACE_FEATURE_COUNT = PHYSICAL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * The number of operations of the '<em>Surface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLANET__LIBRARY_PATH = PHYSICAL_OBJECT__LIBRARY_PATH;
+	int SURFACE_OPERATION_COUNT = PHYSICAL_OBJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.PlanetImpl <em>Planet</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.PlanetImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPlanet()
 	 * @generated
-	 * @ordered
 	 */
-	int PLANET__LIBRARY_COMPONENT_NAME = PHYSICAL_OBJECT__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLANET__EVELOVES_IN = PHYSICAL_OBJECT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLANET__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
+	int PLANET = 34;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -3277,6 +3097,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PLANET__MASS = PHYSICAL_OBJECT__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLANET__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Planet</em>' class.
@@ -3307,60 +3136,6 @@ public interface RobotMLPackage extends EPackage {
 	int GROUND = 36;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GROUND__BASE_CLASS = SURFACE__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GROUND__NATIVE = SURFACE__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GROUND__LIBRARY_PATH = SURFACE__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GROUND__LIBRARY_COMPONENT_NAME = SURFACE__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GROUND__EVELOVES_IN = SURFACE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GROUND__HAS_SURFACE = SURFACE__HAS_SURFACE;
-
-	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3377,6 +3152,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUND__MASS = SURFACE__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUND__BASE_CLASS = SURFACE__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Ground</em>' class.
@@ -3407,60 +3191,6 @@ public interface RobotMLPackage extends EPackage {
 	int LAND_SURFACE = 35;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAND_SURFACE__BASE_CLASS = GROUND__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAND_SURFACE__NATIVE = GROUND__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAND_SURFACE__LIBRARY_PATH = GROUND__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAND_SURFACE__LIBRARY_COMPONENT_NAME = GROUND__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAND_SURFACE__EVELOVES_IN = GROUND__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAND_SURFACE__HAS_SURFACE = GROUND__HAS_SURFACE;
-
-	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3477,6 +3207,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAND_SURFACE__MASS = GROUND__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAND_SURFACE__BASE_CLASS = GROUND__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Land Surface</em>' class.
@@ -3507,60 +3246,6 @@ public interface RobotMLPackage extends EPackage {
 	int FLOOR = 37;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOOR__BASE_CLASS = GROUND__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOOR__NATIVE = GROUND__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOOR__LIBRARY_PATH = GROUND__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOOR__LIBRARY_COMPONENT_NAME = GROUND__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOOR__EVELOVES_IN = GROUND__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOOR__HAS_SURFACE = GROUND__HAS_SURFACE;
-
-	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3577,6 +3262,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FLOOR__MASS = GROUND__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOOR__BASE_CLASS = GROUND__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Floor</em>' class.
@@ -3607,60 +3301,6 @@ public interface RobotMLPackage extends EPackage {
 	int WATER_SURFACE = 38;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WATER_SURFACE__BASE_CLASS = SURFACE__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WATER_SURFACE__NATIVE = SURFACE__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WATER_SURFACE__LIBRARY_PATH = SURFACE__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WATER_SURFACE__LIBRARY_COMPONENT_NAME = SURFACE__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WATER_SURFACE__EVELOVES_IN = SURFACE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WATER_SURFACE__HAS_SURFACE = SURFACE__HAS_SURFACE;
-
-	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3677,6 +3317,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int WATER_SURFACE__MASS = SURFACE__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WATER_SURFACE__BASE_CLASS = SURFACE__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Water Surface</em>' class.
@@ -3707,60 +3356,6 @@ public interface RobotMLPackage extends EPackage {
 	int HUMAN = 39;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HUMAN__BASE_CLASS = AGENT__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HUMAN__NATIVE = AGENT__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HUMAN__LIBRARY_PATH = AGENT__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HUMAN__LIBRARY_COMPONENT_NAME = AGENT__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HUMAN__EVELOVES_IN = AGENT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HUMAN__HAS_SURFACE = AGENT__HAS_SURFACE;
-
-	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3779,13 +3374,13 @@ public interface RobotMLPackage extends EPackage {
 	int HUMAN__MASS = AGENT__MASS;
 
 	/**
-	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HUMAN__MOVES_OVER = AGENT__MOVES_OVER;
+	int HUMAN__BASE_CLASS = AGENT__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Human</em>' class.
@@ -3816,60 +3411,6 @@ public interface RobotMLPackage extends EPackage {
 	int PEDESTRIAN = 40;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PEDESTRIAN__BASE_CLASS = HUMAN__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PEDESTRIAN__NATIVE = HUMAN__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PEDESTRIAN__LIBRARY_PATH = HUMAN__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PEDESTRIAN__LIBRARY_COMPONENT_NAME = HUMAN__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PEDESTRIAN__EVELOVES_IN = HUMAN__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PEDESTRIAN__HAS_SURFACE = HUMAN__HAS_SURFACE;
-
-	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3888,13 +3429,13 @@ public interface RobotMLPackage extends EPackage {
 	int PEDESTRIAN__MASS = HUMAN__MASS;
 
 	/**
-	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PEDESTRIAN__MOVES_OVER = HUMAN__MOVES_OVER;
+	int PEDESTRIAN__BASE_CLASS = HUMAN__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Pedestrian</em>' class.
@@ -3925,60 +3466,6 @@ public interface RobotMLPackage extends EPackage {
 	int STAIRS = 41;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STAIRS__BASE_CLASS = GROUND__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STAIRS__NATIVE = GROUND__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STAIRS__LIBRARY_PATH = GROUND__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STAIRS__LIBRARY_COMPONENT_NAME = GROUND__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STAIRS__EVELOVES_IN = GROUND__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STAIRS__HAS_SURFACE = GROUND__HAS_SURFACE;
-
-	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3995,6 +3482,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STAIRS__MASS = GROUND__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAIRS__BASE_CLASS = GROUND__BASE_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Stairs</em>' class.
@@ -4059,6 +3555,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PLATFORM__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLATFORM__ALIAS = SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
@@ -4198,6 +3703,15 @@ public interface RobotMLPackage extends EPackage {
 	int ROBOTIC_MIDDLEWARE__LIBRARY_COMPONENT_NAME = PLATFORM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_MIDDLEWARE__ALIAS = PLATFORM__ALIAS;
+
+	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4289,6 +3803,15 @@ public interface RobotMLPackage extends EPackage {
 	int ROBOTIC_SIMULATOR__LIBRARY_COMPONENT_NAME = PLATFORM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_SIMULATOR__ALIAS = PLATFORM__ALIAS;
+
+	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4369,6 +3892,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CYCAB_TK__LIBRARY_COMPONENT_NAME = ROBOTIC_SIMULATOR__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CYCAB_TK__ALIAS = ROBOTIC_SIMULATOR__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
@@ -4478,6 +4010,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLENDER_MORSE__LIBRARY_COMPONENT_NAME = ROBOTIC_SIMULATOR__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLENDER_MORSE__ALIAS = ROBOTIC_SIMULATOR__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
@@ -4681,6 +4222,15 @@ public interface RobotMLPackage extends EPackage {
 	int INERTIAL_MEASUREMENT_UNIT_SYSTEM__LIBRARY_COMPONENT_NAME = SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INERTIAL_MEASUREMENT_UNIT_SYSTEM__ALIAS = SENSOR_SYSTEM__ALIAS;
+
+	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4779,6 +4329,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INERTIAL_NAVIGATION_SYSTEM__LIBRARY_COMPONENT_NAME = GPS_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INERTIAL_NAVIGATION_SYSTEM__ALIAS = GPS_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -4890,6 +4449,15 @@ public interface RobotMLPackage extends EPackage {
 	int ODOMETRY_SYSTEM__LIBRARY_COMPONENT_NAME = LOCALIZATION_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ODOMETRY_SYSTEM__ALIAS = LOCALIZATION_SENSOR_SYSTEM__ALIAS;
+
+	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4988,6 +4556,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INFRA_RED_PROXIMETRY_SYSTEM__LIBRARY_COMPONENT_NAME = OBJECT_DETECTION_SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFRA_RED_PROXIMETRY_SYSTEM__ALIAS = OBJECT_DETECTION_SENSOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -5136,6 +4713,15 @@ public interface RobotMLPackage extends EPackage {
 	int GYROSCOPE__LIBRARY_COMPONENT_NAME = SENSOR_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GYROSCOPE__ALIAS = SENSOR_SYSTEM__ALIAS;
+
+	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5282,40 +4868,13 @@ public interface RobotMLPackage extends EPackage {
 	int SUPPORTING_STRUCTURE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPORTING_STRUCTURE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTING_STRUCTURE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTING_STRUCTURE__HEIGHT = HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTING_STRUCTURE__MASS = HARDWARE__MASS;
+	int SUPPORTING_STRUCTURE__ALIAS = HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Supporting Structure</em>' class.
@@ -5382,40 +4941,13 @@ public interface RobotMLPackage extends EPackage {
 	int CHASSIS__LIBRARY_COMPONENT_NAME = SUPPORTING_STRUCTURE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHASSIS__EVELOVES_IN = SUPPORTING_STRUCTURE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHASSIS__HAS_SURFACE = SUPPORTING_STRUCTURE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHASSIS__HEIGHT = SUPPORTING_STRUCTURE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHASSIS__MASS = SUPPORTING_STRUCTURE__MASS;
+	int CHASSIS__ALIAS = SUPPORTING_STRUCTURE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Chassis</em>' class.
@@ -5482,40 +5014,13 @@ public interface RobotMLPackage extends EPackage {
 	int MECHANICAL_LINKAGE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MECHANICAL_LINKAGE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MECHANICAL_LINKAGE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MECHANICAL_LINKAGE__HEIGHT = HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MECHANICAL_LINKAGE__MASS = HARDWARE__MASS;
+	int MECHANICAL_LINKAGE__ALIAS = HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Mechanical Linkage</em>' class.
@@ -5582,40 +5087,13 @@ public interface RobotMLPackage extends EPackage {
 	int ACTUATOR_HARDWARE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUATOR_HARDWARE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUATOR_HARDWARE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUATOR_HARDWARE__HEIGHT = HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUATOR_HARDWARE__MASS = HARDWARE__MASS;
+	int ACTUATOR_HARDWARE__ALIAS = HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Actuator Hardware</em>' class.
@@ -5682,40 +5160,13 @@ public interface RobotMLPackage extends EPackage {
 	int LOCOMOTION_HARDWARE__LIBRARY_COMPONENT_NAME = ACTUATOR_HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCOMOTION_HARDWARE__EVELOVES_IN = ACTUATOR_HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCOMOTION_HARDWARE__HAS_SURFACE = ACTUATOR_HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCOMOTION_HARDWARE__HEIGHT = ACTUATOR_HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCOMOTION_HARDWARE__MASS = ACTUATOR_HARDWARE__MASS;
+	int LOCOMOTION_HARDWARE__ALIAS = ACTUATOR_HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Locomotion Hardware</em>' class.
@@ -5782,40 +5233,13 @@ public interface RobotMLPackage extends EPackage {
 	int LEG__LIBRARY_COMPONENT_NAME = LOCOMOTION_HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEG__EVELOVES_IN = LOCOMOTION_HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEG__HAS_SURFACE = LOCOMOTION_HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEG__HEIGHT = LOCOMOTION_HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEG__MASS = LOCOMOTION_HARDWARE__MASS;
+	int LEG__ALIAS = LOCOMOTION_HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Leg</em>' class.
@@ -5882,49 +5306,13 @@ public interface RobotMLPackage extends EPackage {
 	int MOBILE_ROBOT__LIBRARY_COMPONENT_NAME = ROBOT__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MOBILE_ROBOT__EVELOVES_IN = ROBOT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MOBILE_ROBOT__HAS_SURFACE = ROBOT__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MOBILE_ROBOT__HEIGHT = ROBOT__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MOBILE_ROBOT__MASS = ROBOT__MASS;
-
-	/**
-	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MOBILE_ROBOT__MOVES_OVER = ROBOT__MOVES_OVER;
+	int MOBILE_ROBOT__ALIAS = ROBOT__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -6009,49 +5397,13 @@ public interface RobotMLPackage extends EPackage {
 	int MANIPULATOR__LIBRARY_COMPONENT_NAME = ROBOT__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MANIPULATOR__EVELOVES_IN = ROBOT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MANIPULATOR__HAS_SURFACE = ROBOT__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MANIPULATOR__HEIGHT = ROBOT__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MANIPULATOR__MASS = ROBOT__MASS;
-
-	/**
-	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MANIPULATOR__MOVES_OVER = ROBOT__MOVES_OVER;
+	int MANIPULATOR__ALIAS = ROBOT__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -6127,49 +5479,13 @@ public interface RobotMLPackage extends EPackage {
 	int PILOTED_SYSTEM__LIBRARY_COMPONENT_NAME = ROBOT__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PILOTED_SYSTEM__EVELOVES_IN = ROBOT__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PILOTED_SYSTEM__HAS_SURFACE = ROBOT__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PILOTED_SYSTEM__HEIGHT = ROBOT__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PILOTED_SYSTEM__MASS = ROBOT__MASS;
-
-	/**
-	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PILOTED_SYSTEM__MOVES_OVER = ROBOT__MOVES_OVER;
+	int PILOTED_SYSTEM__ALIAS = ROBOT__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -6245,40 +5561,13 @@ public interface RobotMLPackage extends EPackage {
 	int POWER_HARDWARE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POWER_HARDWARE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POWER_HARDWARE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POWER_HARDWARE__HEIGHT = HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POWER_HARDWARE__MASS = HARDWARE__MASS;
+	int POWER_HARDWARE__ALIAS = HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Power Hardware</em>' class.
@@ -6345,40 +5634,13 @@ public interface RobotMLPackage extends EPackage {
 	int SENSOR_HARDWARE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_HARDWARE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_HARDWARE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_HARDWARE__HEIGHT = HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_HARDWARE__MASS = HARDWARE__MASS;
+	int SENSOR_HARDWARE__ALIAS = HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Sensor Hardware</em>' class.
@@ -6445,40 +5707,13 @@ public interface RobotMLPackage extends EPackage {
 	int GRASPING_HARDWARE__LIBRARY_COMPONENT_NAME = ACTUATOR_HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRASPING_HARDWARE__EVELOVES_IN = ACTUATOR_HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRASPING_HARDWARE__HAS_SURFACE = ACTUATOR_HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRASPING_HARDWARE__HEIGHT = ACTUATOR_HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRASPING_HARDWARE__MASS = ACTUATOR_HARDWARE__MASS;
+	int GRASPING_HARDWARE__ALIAS = ACTUATOR_HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Grasping Hardware</em>' class.
@@ -6545,40 +5780,13 @@ public interface RobotMLPackage extends EPackage {
 	int STEERED_WHEEL_HARDWARE__LIBRARY_COMPONENT_NAME = LOCOMOTION_HARDWARE__LIBRARY_COMPONENT_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEERED_WHEEL_HARDWARE__EVELOVES_IN = LOCOMOTION_HARDWARE__EVELOVES_IN;
-
-	/**
-	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEERED_WHEEL_HARDWARE__HAS_SURFACE = LOCOMOTION_HARDWARE__HAS_SURFACE;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEERED_WHEEL_HARDWARE__HEIGHT = LOCOMOTION_HARDWARE__HEIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEERED_WHEEL_HARDWARE__MASS = LOCOMOTION_HARDWARE__MASS;
+	int STEERED_WHEEL_HARDWARE__ALIAS = LOCOMOTION_HARDWARE__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Steered Wheel Hardware</em>' class.
@@ -6673,6 +5881,15 @@ public interface RobotMLPackage extends EPackage {
 	int LEG_SYSTEM__LIBRARY_COMPONENT_NAME = LOCOMOTION_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM__ALIAS = LOCOMOTION_SYSTEM__ALIAS;
+
+	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6753,6 +5970,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int GRASPING_SYSTEM__LIBRARY_COMPONENT_NAME = ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM__ALIAS = ACTUATOR_SYSTEM__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -6837,6 +6063,15 @@ public interface RobotMLPackage extends EPackage {
 	int WEAPON_SYSTEM__LIBRARY_COMPONENT_NAME = ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM__ALIAS = ACTUATOR_SYSTEM__ALIAS;
+
+	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6919,6 +6154,15 @@ public interface RobotMLPackage extends EPackage {
 	int MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_COMPONENT_NAME = CYBER_PHYSICAL_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAN_MACHINE_INTERFACE_SYSTEM__ALIAS = CYBER_PHYSICAL_SYSTEM__ALIAS;
+
+	/**
 	 * The number of structural features of the '<em>Man Machine Interface System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6981,6 +6225,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLOSED_LOOP_CONTROL_SYSTEM__LIBRARY_COMPONENT_NAME = CYBER_PHYSICAL_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOSED_LOOP_CONTROL_SYSTEM__ALIAS = CYBER_PHYSICAL_SYSTEM__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Closed Loop Control System</em>' class.
@@ -7047,6 +6300,15 @@ public interface RobotMLPackage extends EPackage {
 	int OPEN_LOOP_CONTROL_SYSTEM__LIBRARY_COMPONENT_NAME = CYBER_PHYSICAL_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPEN_LOOP_CONTROL_SYSTEM__ALIAS = CYBER_PHYSICAL_SYSTEM__ALIAS;
+
+	/**
 	 * The number of structural features of the '<em>Open Loop Control System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7109,6 +6371,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROBOTIC_HEAD__LIBRARY_COMPONENT_NAME = MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_HEAD__ALIAS = MAN_MACHINE_INTERFACE_SYSTEM__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Robotic Head</em>' class.
@@ -7175,6 +6446,15 @@ public interface RobotMLPackage extends EPackage {
 	int NAVIGATION_COMMAND_SYSTEM__LIBRARY_COMPONENT_NAME = MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_COMMAND_SYSTEM__ALIAS = MAN_MACHINE_INTERFACE_SYSTEM__ALIAS;
+
+	/**
 	 * The number of structural features of the '<em>Navigation Command System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7237,6 +6517,15 @@ public interface RobotMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int JOYSTIC_NAVIGATION_SYSTEM__LIBRARY_COMPONENT_NAME = NAVIGATION_COMMAND_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOYSTIC_NAVIGATION_SYSTEM__ALIAS = NAVIGATION_COMMAND_SYSTEM__ALIAS;
 
 	/**
 	 * The number of structural features of the '<em>Joystic Navigation System</em>' class.
@@ -7392,11 +6681,11 @@ public interface RobotMLPackage extends EPackage {
 	EReference getAlgorithm_Base_Operation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.Algorithm#isIsExternal <em>Is External</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.Algorithm#isExternal <em>Is External</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is External</em>'.
-	 * @see org.eclipse.papyrus.RobotML.Algorithm#isIsExternal()
+	 * @see org.eclipse.papyrus.RobotML.Algorithm#isExternal()
 	 * @see #getAlgorithm()
 	 * @generated
 	 */
@@ -7584,6 +6873,17 @@ public interface RobotMLPackage extends EPackage {
 	EAttribute getSystem_LibraryComponentName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.System#getAlias <em>Alias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alias</em>'.
+	 * @see org.eclipse.papyrus.RobotML.System#getAlias()
+	 * @see #getSystem()
+	 * @generated
+	 */
+	EAttribute getSystem_Alias();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Agent <em>Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7594,17 +6894,6 @@ public interface RobotMLPackage extends EPackage {
 	EClass getAgent();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.RobotML.Agent#getMovesOver <em>Moves Over</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Moves Over</em>'.
-	 * @see org.eclipse.papyrus.RobotML.Agent#getMovesOver()
-	 * @see #getAgent()
-	 * @generated
-	 */
-	EReference getAgent_MovesOver();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.PhysicalObject <em>Physical Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7613,28 +6902,6 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPhysicalObject();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.RobotML.PhysicalObject#getEvelovesIn <em>Eveloves In</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Eveloves In</em>'.
-	 * @see org.eclipse.papyrus.RobotML.PhysicalObject#getEvelovesIn()
-	 * @see #getPhysicalObject()
-	 * @generated
-	 */
-	EReference getPhysicalObject_EvelovesIn();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.RobotML.PhysicalObject#getHasSurface <em>Has Surface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Has Surface</em>'.
-	 * @see org.eclipse.papyrus.RobotML.PhysicalObject#getHasSurface()
-	 * @see #getPhysicalObject()
-	 * @generated
-	 */
-	EReference getPhysicalObject_HasSurface();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.PhysicalObject#getHeight <em>Height</em>}'.
@@ -7659,6 +6926,17 @@ public interface RobotMLPackage extends EPackage {
 	EAttribute getPhysicalObject_Mass();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.RobotML.PhysicalObject#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.RobotML.PhysicalObject#getBase_Class()
+	 * @see #getPhysicalObject()
+	 * @generated
+	 */
+	EReference getPhysicalObject_Base_Class();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Environment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7667,6 +6945,17 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEnvironment();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.RobotML.Environment#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.RobotML.Environment#getBase_Class()
+	 * @see #getEnvironment()
+	 * @generated
+	 */
+	EReference getEnvironment_Base_Class();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Surface <em>Surface</em>}'.
@@ -7868,11 +7157,11 @@ public interface RobotMLPackage extends EPackage {
 	EClass getSoftware();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.Software#isIsPeriodic <em>Is Periodic</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.Software#isPeriodic <em>Is Periodic</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Periodic</em>'.
-	 * @see org.eclipse.papyrus.RobotML.Software#isIsPeriodic()
+	 * @see org.eclipse.papyrus.RobotML.Software#isPeriodic()
 	 * @see #getSoftware()
 	 * @generated
 	 */
@@ -8377,11 +7666,11 @@ public interface RobotMLPackage extends EPackage {
 	EAttribute getLidarSystem_LayerAngleStep();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.LidarSystem#isNoise <em>Noise</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.LidarSystem#getNoise <em>Noise</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Noise</em>'.
-	 * @see org.eclipse.papyrus.RobotML.LidarSystem#isNoise()
+	 * @see org.eclipse.papyrus.RobotML.LidarSystem#getNoise()
 	 * @see #getLidarSystem()
 	 * @generated
 	 */
@@ -9551,6 +8840,14 @@ public interface RobotMLPackage extends EPackage {
 		EAttribute SYSTEM__LIBRARY_COMPONENT_NAME = eINSTANCE.getSystem_LibraryComponentName();
 
 		/**
+		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM__ALIAS = eINSTANCE.getSystem_Alias();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.AgentImpl <em>Agent</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9561,14 +8858,6 @@ public interface RobotMLPackage extends EPackage {
 		EClass AGENT = eINSTANCE.getAgent();
 
 		/**
-		 * The meta object literal for the '<em><b>Moves Over</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference AGENT__MOVES_OVER = eINSTANCE.getAgent_MovesOver();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.PhysicalObjectImpl <em>Physical Object</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9577,22 +8866,6 @@ public interface RobotMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PHYSICAL_OBJECT = eINSTANCE.getPhysicalObject();
-
-		/**
-		 * The meta object literal for the '<em><b>Eveloves In</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PHYSICAL_OBJECT__EVELOVES_IN = eINSTANCE.getPhysicalObject_EvelovesIn();
-
-		/**
-		 * The meta object literal for the '<em><b>Has Surface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PHYSICAL_OBJECT__HAS_SURFACE = eINSTANCE.getPhysicalObject_HasSurface();
 
 		/**
 		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
@@ -9611,6 +8884,14 @@ public interface RobotMLPackage extends EPackage {
 		EAttribute PHYSICAL_OBJECT__MASS = eINSTANCE.getPhysicalObject_Mass();
 
 		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PHYSICAL_OBJECT__BASE_CLASS = eINSTANCE.getPhysicalObject_Base_Class();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.EnvironmentImpl <em>Environment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9619,6 +8900,14 @@ public interface RobotMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ENVIRONMENT = eINSTANCE.getEnvironment();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENVIRONMENT__BASE_CLASS = eINSTANCE.getEnvironment_Base_Class();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.SurfaceImpl <em>Surface</em>}' class.

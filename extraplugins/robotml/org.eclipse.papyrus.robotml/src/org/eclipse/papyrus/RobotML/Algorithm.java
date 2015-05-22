@@ -18,7 +18,7 @@ import org.eclipse.uml2.uml.Operation;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.RobotML.Algorithm#getBase_Operation <em>Base Operation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.RobotML.Algorithm#isIsExternal <em>Is External</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.Algorithm#isExternal <em>Is External</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.Algorithm#getExtFunctionName <em>Ext Function Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.Algorithm#getLibPath <em>Lib Path</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.Algorithm#getLibFileFormat <em>Lib File Format</em>}</li>
@@ -59,7 +59,8 @@ public interface Algorithm extends EObject {
 	 * Returns the value of the '<em><b>Is External</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is External</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Is External</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is External</em>' attribute.
@@ -68,14 +69,14 @@ public interface Algorithm extends EObject {
 	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isIsExternal();
+	boolean isExternal();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.Algorithm#isIsExternal <em>Is External</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.Algorithm#isExternal <em>Is External</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is External</em>' attribute.
-	 * @see #isIsExternal()
+	 * @see #isExternal()
 	 * @generated
 	 */
 	void setIsExternal(boolean value);

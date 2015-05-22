@@ -130,13 +130,13 @@ public interface Std_datatypesFactory extends EFactory {
 	UInt64MultiArray createUInt64MultiArray();
 
 	/**
-	 * Returns a new object of class '<em>UIint16 Multi Array</em>'.
+	 * Returns a new object of class '<em>UInt16 Multi Array</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>UIint16 Multi Array</em>'.
+	 * @return a new object of class '<em>UInt16 Multi Array</em>'.
 	 * @generated
 	 */
-	UIint16MultiArray createUIint16MultiArray();
+	UInt16MultiArray createUInt16MultiArray();
 
 	/**
 	 * Returns a new object of class '<em>UInt32 Multi Array</em>'.

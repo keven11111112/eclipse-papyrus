@@ -49,7 +49,7 @@ public class UInt32MultiArrayImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Long> data;
+	protected EList<Object> data;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,9 +118,9 @@ public class UInt32MultiArrayImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Long> getData() {
+	public EList<Object> getData() {
 		if (data == null) {
-			data = new EDataTypeUniqueEList<Long>(Long.class, this, Std_datatypesPackage.UINT32_MULTI_ARRAY__DATA);
+			data = new EDataTypeUniqueEList<Object>(Object.class, this, Std_datatypesPackage.UINT32_MULTI_ARRAY__DATA);
 		}
 		return data;
 	}
@@ -169,7 +169,7 @@ public class UInt32MultiArrayImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case Std_datatypesPackage.UINT32_MULTI_ARRAY__DATA:
 				getData().clear();
-				getData().addAll((Collection<? extends Long>)newValue);
+				getData().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

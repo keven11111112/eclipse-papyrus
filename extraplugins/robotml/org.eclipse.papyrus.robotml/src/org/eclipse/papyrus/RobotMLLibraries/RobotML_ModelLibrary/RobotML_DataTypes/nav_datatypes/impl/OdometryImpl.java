@@ -49,7 +49,7 @@ public class OdometryImpl extends MinimalEObjectImpl.Container implements Odomet
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CHILD_FRAME_ID_EDEFAULT = null;
+	protected static final Object CHILD_FRAME_ID_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getChild_frame_id() <em>Child frame id</em>}' attribute.
@@ -59,7 +59,7 @@ public class OdometryImpl extends MinimalEObjectImpl.Container implements Odomet
 	 * @generated
 	 * @ordered
 	 */
-	protected String child_frame_id = CHILD_FRAME_ID_EDEFAULT;
+	protected Object child_frame_id = CHILD_FRAME_ID_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getPose() <em>Pose</em>}' containment reference.
@@ -148,7 +148,7 @@ public class OdometryImpl extends MinimalEObjectImpl.Container implements Odomet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getChild_frame_id() {
+	public Object getChild_frame_id() {
 		return child_frame_id;
 	}
 
@@ -157,8 +157,8 @@ public class OdometryImpl extends MinimalEObjectImpl.Container implements Odomet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setChild_frame_id(String newChild_frame_id) {
-		String oldChild_frame_id = child_frame_id;
+	public void setChild_frame_id(Object newChild_frame_id) {
+		Object oldChild_frame_id = child_frame_id;
 		child_frame_id = newChild_frame_id;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Nav_datatypesPackage.ODOMETRY__CHILD_FRAME_ID, oldChild_frame_id, child_frame_id));
@@ -300,7 +300,7 @@ public class OdometryImpl extends MinimalEObjectImpl.Container implements Odomet
 				setHeader((Header)newValue);
 				return;
 			case Nav_datatypesPackage.ODOMETRY__CHILD_FRAME_ID:
-				setChild_frame_id((String)newValue);
+				setChild_frame_id((Object)newValue);
 				return;
 			case Nav_datatypesPackage.ODOMETRY__POSE:
 				setPose((PoseWithCovariance)newValue);

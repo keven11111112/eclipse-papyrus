@@ -37,7 +37,7 @@ public interface PointField extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.String" required="true" ordered="false"
 	 * @generated
 	 */
-	String getName();
+	Object getName();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointField#getName <em>Name</em>}' attribute.
@@ -47,7 +47,7 @@ public interface PointField extends EObject {
 	 * @see #getName()
 	 * @generated
 	 */
-	void setName(String value);
+	void setName(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Offset</b></em>' attribute.
@@ -57,12 +57,12 @@ public interface PointField extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Offset</em>' attribute.
-	 * @see #setOffset(long)
+	 * @see #setOffset(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointField_Offset()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getOffset();
+	Object getOffset();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointField#getOffset <em>Offset</em>}' attribute.
@@ -72,7 +72,7 @@ public interface PointField extends EObject {
 	 * @see #getOffset()
 	 * @generated
 	 */
-	void setOffset(long value);
+	void setOffset(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Datatype</b></em>' attribute.
@@ -82,12 +82,12 @@ public interface PointField extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Datatype</em>' attribute.
-	 * @see #setDatatype(char)
+	 * @see #setDatatype(UInt8)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointField_Datatype()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8" required="true" ordered="false"
 	 * @generated
 	 */
-	char getDatatype();
+	Object getDatatype();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointField#getDatatype <em>Datatype</em>}' attribute.
@@ -97,7 +97,7 @@ public interface PointField extends EObject {
 	 * @see #getDatatype()
 	 * @generated
 	 */
-	void setDatatype(char value);
+	void setDatatype(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Count</b></em>' attribute.
@@ -107,12 +107,12 @@ public interface PointField extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Count</em>' attribute.
-	 * @see #setCount(long)
+	 * @see #setCount(UInt32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getPointField_Count()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt32" required="true" ordered="false"
 	 * @generated
 	 */
-	long getCount();
+	Object getCount();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.PointField#getCount <em>Count</em>}' attribute.
@@ -122,6 +122,6 @@ public interface PointField extends EObject {
 	 * @see #getCount()
 	 * @generated
 	 */
-	void setCount(long value);
+	void setCount(Object value);
 
 } // PointField

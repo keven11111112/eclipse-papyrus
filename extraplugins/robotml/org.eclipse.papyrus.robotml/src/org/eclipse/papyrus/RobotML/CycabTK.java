@@ -55,12 +55,12 @@ public interface CycabTK extends RoboticSimulator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Step</em>' attribute.
-	 * @see #setTimeStep(float)
+	 * @see #setTimeStep(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getCycabTK_TimeStep()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" ordered="false"
 	 * @generated
 	 */
-	float getTimeStep();
+	Object getTimeStep();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.CycabTK#getTimeStep <em>Time Step</em>}' attribute.
@@ -70,7 +70,7 @@ public interface CycabTK extends RoboticSimulator {
 	 * @see #getTimeStep()
 	 * @generated
 	 */
-	void setTimeStep(float value);
+	void setTimeStep(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Time Factor</b></em>' attribute.
@@ -80,12 +80,12 @@ public interface CycabTK extends RoboticSimulator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Factor</em>' attribute.
-	 * @see #setTimeFactor(float)
+	 * @see #setTimeFactor(Float32)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getCycabTK_TimeFactor()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" ordered="false"
 	 * @generated
 	 */
-	float getTimeFactor();
+	Object getTimeFactor();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.CycabTK#getTimeFactor <em>Time Factor</em>}' attribute.
@@ -95,6 +95,6 @@ public interface CycabTK extends RoboticSimulator {
 	 * @see #getTimeFactor()
 	 * @generated
 	 */
-	void setTimeFactor(float value);
+	void setTimeFactor(Object value);
 
 } // CycabTK

@@ -18,7 +18,7 @@ import org.eclipse.papyrus.RobotML.RobotMLPackage;
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.LidarSystemImpl#getNbLayers <em>Nb Layers</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.LidarSystemImpl#getLayerAngleMin <em>Layer Angle Min</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.LidarSystemImpl#getLayerAngleStep <em>Layer Angle Step</em>}</li>
- *   <li>{@link org.eclipse.papyrus.RobotML.impl.LidarSystemImpl#isNoise <em>Noise</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.LidarSystemImpl#getNoise <em>Noise</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.LidarSystemImpl#getSigmaNoise <em>Sigma Noise</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.LidarSystemImpl#getAngle_min <em>Angle min</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.LidarSystemImpl#getAngle_max <em>Angle max</em>}</li>
@@ -41,7 +41,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long NB_LAYERS_EDEFAULT = 0L;
+	protected static final Object NB_LAYERS_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNbLayers() <em>Nb Layers</em>}' attribute.
@@ -51,7 +51,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected long nbLayers = NB_LAYERS_EDEFAULT;
+	protected Object nbLayers = NB_LAYERS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLayerAngleMin() <em>Layer Angle Min</em>}' attribute.
@@ -61,7 +61,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float LAYER_ANGLE_MIN_EDEFAULT = 0.0F;
+	protected static final Object LAYER_ANGLE_MIN_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLayerAngleMin() <em>Layer Angle Min</em>}' attribute.
@@ -71,7 +71,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float layerAngleMin = LAYER_ANGLE_MIN_EDEFAULT;
+	protected Object layerAngleMin = LAYER_ANGLE_MIN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLayerAngleStep() <em>Layer Angle Step</em>}' attribute.
@@ -81,7 +81,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float LAYER_ANGLE_STEP_EDEFAULT = 0.0F;
+	protected static final Object LAYER_ANGLE_STEP_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLayerAngleStep() <em>Layer Angle Step</em>}' attribute.
@@ -91,27 +91,27 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float layerAngleStep = LAYER_ANGLE_STEP_EDEFAULT;
+	protected Object layerAngleStep = LAYER_ANGLE_STEP_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isNoise() <em>Noise</em>}' attribute.
+	 * The default value of the '{@link #getNoise() <em>Noise</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isNoise()
+	 * @see #getNoise()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean NOISE_EDEFAULT = false;
+	protected static final Object NOISE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #isNoise() <em>Noise</em>}' attribute.
+	 * The cached value of the '{@link #getNoise() <em>Noise</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isNoise()
+	 * @see #getNoise()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean noise = NOISE_EDEFAULT;
+	protected Object noise = NOISE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSigmaNoise() <em>Sigma Noise</em>}' attribute.
@@ -121,7 +121,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float SIGMA_NOISE_EDEFAULT = 0.0F;
+	protected static final Object SIGMA_NOISE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSigmaNoise() <em>Sigma Noise</em>}' attribute.
@@ -131,7 +131,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float sigmaNoise = SIGMA_NOISE_EDEFAULT;
+	protected Object sigmaNoise = SIGMA_NOISE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getAngle_min() <em>Angle min</em>}' attribute.
@@ -141,7 +141,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float ANGLE_MIN_EDEFAULT = 0.0F;
+	protected static final Object ANGLE_MIN_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getAngle_min() <em>Angle min</em>}' attribute.
@@ -151,7 +151,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float angle_min = ANGLE_MIN_EDEFAULT;
+	protected Object angle_min = ANGLE_MIN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getAngle_max() <em>Angle max</em>}' attribute.
@@ -161,7 +161,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float ANGLE_MAX_EDEFAULT = 0.0F;
+	protected static final Object ANGLE_MAX_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getAngle_max() <em>Angle max</em>}' attribute.
@@ -171,7 +171,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float angle_max = ANGLE_MAX_EDEFAULT;
+	protected Object angle_max = ANGLE_MAX_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTime_increment() <em>Time increment</em>}' attribute.
@@ -181,7 +181,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float TIME_INCREMENT_EDEFAULT = 0.0F;
+	protected static final Object TIME_INCREMENT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTime_increment() <em>Time increment</em>}' attribute.
@@ -191,7 +191,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float time_increment = TIME_INCREMENT_EDEFAULT;
+	protected Object time_increment = TIME_INCREMENT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getScan_time() <em>Scan time</em>}' attribute.
@@ -201,7 +201,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float SCAN_TIME_EDEFAULT = 0.0F;
+	protected static final Object SCAN_TIME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getScan_time() <em>Scan time</em>}' attribute.
@@ -211,7 +211,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float scan_time = SCAN_TIME_EDEFAULT;
+	protected Object scan_time = SCAN_TIME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRange_min() <em>Range min</em>}' attribute.
@@ -221,7 +221,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float RANGE_MIN_EDEFAULT = 0.0F;
+	protected static final Object RANGE_MIN_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRange_min() <em>Range min</em>}' attribute.
@@ -231,7 +231,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float range_min = RANGE_MIN_EDEFAULT;
+	protected Object range_min = RANGE_MIN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRange_max() <em>Range max</em>}' attribute.
@@ -241,7 +241,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float RANGE_MAX_EDEFAULT = 0.0F;
+	protected static final Object RANGE_MAX_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRange_max() <em>Range max</em>}' attribute.
@@ -251,7 +251,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected float range_max = RANGE_MAX_EDEFAULT;
+	protected Object range_max = RANGE_MAX_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getNbRays() <em>Nb Rays</em>}' attribute.
@@ -261,7 +261,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long NB_RAYS_EDEFAULT = 0L;
+	protected static final Object NB_RAYS_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNbRays() <em>Nb Rays</em>}' attribute.
@@ -271,7 +271,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected long nbRays = NB_RAYS_EDEFAULT;
+	protected Object nbRays = NB_RAYS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -297,7 +297,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getNbLayers() {
+	public Object getNbLayers() {
 		return nbLayers;
 	}
 
@@ -306,8 +306,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNbLayers(long newNbLayers) {
-		long oldNbLayers = nbLayers;
+	public void setNbLayers(Object newNbLayers) {
+		Object oldNbLayers = nbLayers;
 		nbLayers = newNbLayers;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__NB_LAYERS, oldNbLayers, nbLayers));
@@ -318,7 +318,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getLayerAngleMin() {
+	public Object getLayerAngleMin() {
 		return layerAngleMin;
 	}
 
@@ -327,8 +327,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLayerAngleMin(float newLayerAngleMin) {
-		float oldLayerAngleMin = layerAngleMin;
+	public void setLayerAngleMin(Object newLayerAngleMin) {
+		Object oldLayerAngleMin = layerAngleMin;
 		layerAngleMin = newLayerAngleMin;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__LAYER_ANGLE_MIN, oldLayerAngleMin, layerAngleMin));
@@ -339,7 +339,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getLayerAngleStep() {
+	public Object getLayerAngleStep() {
 		return layerAngleStep;
 	}
 
@@ -348,8 +348,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLayerAngleStep(float newLayerAngleStep) {
-		float oldLayerAngleStep = layerAngleStep;
+	public void setLayerAngleStep(Object newLayerAngleStep) {
+		Object oldLayerAngleStep = layerAngleStep;
 		layerAngleStep = newLayerAngleStep;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__LAYER_ANGLE_STEP, oldLayerAngleStep, layerAngleStep));
@@ -360,7 +360,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isNoise() {
+	public Object getNoise() {
 		return noise;
 	}
 
@@ -369,8 +369,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNoise(boolean newNoise) {
-		boolean oldNoise = noise;
+	public void setNoise(Object newNoise) {
+		Object oldNoise = noise;
 		noise = newNoise;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__NOISE, oldNoise, noise));
@@ -381,7 +381,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getSigmaNoise() {
+	public Object getSigmaNoise() {
 		return sigmaNoise;
 	}
 
@@ -390,8 +390,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSigmaNoise(float newSigmaNoise) {
-		float oldSigmaNoise = sigmaNoise;
+	public void setSigmaNoise(Object newSigmaNoise) {
+		Object oldSigmaNoise = sigmaNoise;
 		sigmaNoise = newSigmaNoise;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__SIGMA_NOISE, oldSigmaNoise, sigmaNoise));
@@ -402,7 +402,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAngle_min() {
+	public Object getAngle_min() {
 		return angle_min;
 	}
 
@@ -411,8 +411,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAngle_min(float newAngle_min) {
-		float oldAngle_min = angle_min;
+	public void setAngle_min(Object newAngle_min) {
+		Object oldAngle_min = angle_min;
 		angle_min = newAngle_min;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__ANGLE_MIN, oldAngle_min, angle_min));
@@ -423,7 +423,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAngle_max() {
+	public Object getAngle_max() {
 		return angle_max;
 	}
 
@@ -432,8 +432,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAngle_max(float newAngle_max) {
-		float oldAngle_max = angle_max;
+	public void setAngle_max(Object newAngle_max) {
+		Object oldAngle_max = angle_max;
 		angle_max = newAngle_max;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__ANGLE_MAX, oldAngle_max, angle_max));
@@ -444,7 +444,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTime_increment() {
+	public Object getTime_increment() {
 		return time_increment;
 	}
 
@@ -453,8 +453,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTime_increment(float newTime_increment) {
-		float oldTime_increment = time_increment;
+	public void setTime_increment(Object newTime_increment) {
+		Object oldTime_increment = time_increment;
 		time_increment = newTime_increment;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__TIME_INCREMENT, oldTime_increment, time_increment));
@@ -465,7 +465,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getScan_time() {
+	public Object getScan_time() {
 		return scan_time;
 	}
 
@@ -474,8 +474,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setScan_time(float newScan_time) {
-		float oldScan_time = scan_time;
+	public void setScan_time(Object newScan_time) {
+		Object oldScan_time = scan_time;
 		scan_time = newScan_time;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__SCAN_TIME, oldScan_time, scan_time));
@@ -486,7 +486,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRange_min() {
+	public Object getRange_min() {
 		return range_min;
 	}
 
@@ -495,8 +495,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRange_min(float newRange_min) {
-		float oldRange_min = range_min;
+	public void setRange_min(Object newRange_min) {
+		Object oldRange_min = range_min;
 		range_min = newRange_min;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__RANGE_MIN, oldRange_min, range_min));
@@ -507,7 +507,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRange_max() {
+	public Object getRange_max() {
 		return range_max;
 	}
 
@@ -516,8 +516,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRange_max(float newRange_max) {
-		float oldRange_max = range_max;
+	public void setRange_max(Object newRange_max) {
+		Object oldRange_max = range_max;
 		range_max = newRange_max;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__RANGE_MAX, oldRange_max, range_max));
@@ -528,7 +528,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getNbRays() {
+	public Object getNbRays() {
 		return nbRays;
 	}
 
@@ -537,8 +537,8 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNbRays(long newNbRays) {
-		long oldNbRays = nbRays;
+	public void setNbRays(Object newNbRays) {
+		Object oldNbRays = nbRays;
 		nbRays = newNbRays;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.LIDAR_SYSTEM__NB_RAYS, oldNbRays, nbRays));
@@ -559,7 +559,7 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 			case RobotMLPackage.LIDAR_SYSTEM__LAYER_ANGLE_STEP:
 				return getLayerAngleStep();
 			case RobotMLPackage.LIDAR_SYSTEM__NOISE:
-				return isNoise();
+				return getNoise();
 			case RobotMLPackage.LIDAR_SYSTEM__SIGMA_NOISE:
 				return getSigmaNoise();
 			case RobotMLPackage.LIDAR_SYSTEM__ANGLE_MIN:
@@ -589,40 +589,40 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case RobotMLPackage.LIDAR_SYSTEM__NB_LAYERS:
-				setNbLayers((Long)newValue);
+				setNbLayers((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__LAYER_ANGLE_MIN:
-				setLayerAngleMin((Float)newValue);
+				setLayerAngleMin((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__LAYER_ANGLE_STEP:
-				setLayerAngleStep((Float)newValue);
+				setLayerAngleStep((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__NOISE:
-				setNoise((Boolean)newValue);
+				setNoise((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__SIGMA_NOISE:
-				setSigmaNoise((Float)newValue);
+				setSigmaNoise((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__ANGLE_MIN:
-				setAngle_min((Float)newValue);
+				setAngle_min((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__ANGLE_MAX:
-				setAngle_max((Float)newValue);
+				setAngle_max((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__TIME_INCREMENT:
-				setTime_increment((Float)newValue);
+				setTime_increment((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__SCAN_TIME:
-				setScan_time((Float)newValue);
+				setScan_time((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__RANGE_MIN:
-				setRange_min((Float)newValue);
+				setRange_min((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__RANGE_MAX:
-				setRange_max((Float)newValue);
+				setRange_max((Object)newValue);
 				return;
 			case RobotMLPackage.LIDAR_SYSTEM__NB_RAYS:
-				setNbRays((Long)newValue);
+				setNbRays((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -685,29 +685,29 @@ public class LidarSystemImpl extends ObjectDetectionSensorSystemImpl implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RobotMLPackage.LIDAR_SYSTEM__NB_LAYERS:
-				return nbLayers != NB_LAYERS_EDEFAULT;
+				return NB_LAYERS_EDEFAULT == null ? nbLayers != null : !NB_LAYERS_EDEFAULT.equals(nbLayers);
 			case RobotMLPackage.LIDAR_SYSTEM__LAYER_ANGLE_MIN:
-				return layerAngleMin != LAYER_ANGLE_MIN_EDEFAULT;
+				return LAYER_ANGLE_MIN_EDEFAULT == null ? layerAngleMin != null : !LAYER_ANGLE_MIN_EDEFAULT.equals(layerAngleMin);
 			case RobotMLPackage.LIDAR_SYSTEM__LAYER_ANGLE_STEP:
-				return layerAngleStep != LAYER_ANGLE_STEP_EDEFAULT;
+				return LAYER_ANGLE_STEP_EDEFAULT == null ? layerAngleStep != null : !LAYER_ANGLE_STEP_EDEFAULT.equals(layerAngleStep);
 			case RobotMLPackage.LIDAR_SYSTEM__NOISE:
-				return noise != NOISE_EDEFAULT;
+				return NOISE_EDEFAULT == null ? noise != null : !NOISE_EDEFAULT.equals(noise);
 			case RobotMLPackage.LIDAR_SYSTEM__SIGMA_NOISE:
-				return sigmaNoise != SIGMA_NOISE_EDEFAULT;
+				return SIGMA_NOISE_EDEFAULT == null ? sigmaNoise != null : !SIGMA_NOISE_EDEFAULT.equals(sigmaNoise);
 			case RobotMLPackage.LIDAR_SYSTEM__ANGLE_MIN:
-				return angle_min != ANGLE_MIN_EDEFAULT;
+				return ANGLE_MIN_EDEFAULT == null ? angle_min != null : !ANGLE_MIN_EDEFAULT.equals(angle_min);
 			case RobotMLPackage.LIDAR_SYSTEM__ANGLE_MAX:
-				return angle_max != ANGLE_MAX_EDEFAULT;
+				return ANGLE_MAX_EDEFAULT == null ? angle_max != null : !ANGLE_MAX_EDEFAULT.equals(angle_max);
 			case RobotMLPackage.LIDAR_SYSTEM__TIME_INCREMENT:
-				return time_increment != TIME_INCREMENT_EDEFAULT;
+				return TIME_INCREMENT_EDEFAULT == null ? time_increment != null : !TIME_INCREMENT_EDEFAULT.equals(time_increment);
 			case RobotMLPackage.LIDAR_SYSTEM__SCAN_TIME:
-				return scan_time != SCAN_TIME_EDEFAULT;
+				return SCAN_TIME_EDEFAULT == null ? scan_time != null : !SCAN_TIME_EDEFAULT.equals(scan_time);
 			case RobotMLPackage.LIDAR_SYSTEM__RANGE_MIN:
-				return range_min != RANGE_MIN_EDEFAULT;
+				return RANGE_MIN_EDEFAULT == null ? range_min != null : !RANGE_MIN_EDEFAULT.equals(range_min);
 			case RobotMLPackage.LIDAR_SYSTEM__RANGE_MAX:
-				return range_max != RANGE_MAX_EDEFAULT;
+				return RANGE_MAX_EDEFAULT == null ? range_max != null : !RANGE_MAX_EDEFAULT.equals(range_max);
 			case RobotMLPackage.LIDAR_SYSTEM__NB_RAYS:
-				return nbRays != NB_RAYS_EDEFAULT;
+				return NB_RAYS_EDEFAULT == null ? nbRays != null : !NB_RAYS_EDEFAULT.equals(nbRays);
 		}
 		return super.eIsSet(featureID);
 	}

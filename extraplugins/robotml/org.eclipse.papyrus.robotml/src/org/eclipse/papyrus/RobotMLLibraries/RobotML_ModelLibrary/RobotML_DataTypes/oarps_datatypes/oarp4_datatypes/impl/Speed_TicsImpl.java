@@ -31,7 +31,7 @@ public class Speed_TicsImpl extends MinimalEObjectImpl.Container implements Spee
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int VALUE_EDEFAULT = 0;
+	protected static final Object VALUE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -41,7 +41,7 @@ public class Speed_TicsImpl extends MinimalEObjectImpl.Container implements Spee
 	 * @generated
 	 * @ordered
 	 */
-	protected int value = VALUE_EDEFAULT;
+	protected Object value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class Speed_TicsImpl extends MinimalEObjectImpl.Container implements Spee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getValue() {
+	public Object getValue() {
 		return value;
 	}
 
@@ -76,8 +76,8 @@ public class Speed_TicsImpl extends MinimalEObjectImpl.Container implements Spee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(int newValue) {
-		int oldValue = value;
+	public void setValue(Object newValue) {
+		Object oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Oarp4_datatypesPackage.SPEED_TICS__VALUE, oldValue, value));
@@ -106,7 +106,7 @@ public class Speed_TicsImpl extends MinimalEObjectImpl.Container implements Spee
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Oarp4_datatypesPackage.SPEED_TICS__VALUE:
-				setValue((Integer)newValue);
+				setValue((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,7 +136,7 @@ public class Speed_TicsImpl extends MinimalEObjectImpl.Container implements Spee
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case Oarp4_datatypesPackage.SPEED_TICS__VALUE:
-				return value != VALUE_EDEFAULT;
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -21,7 +21,7 @@ import org.eclipse.papyrus.RobotML.RobotMLPackage;
  *
  * @generated
  */
-public class RobotImpl extends AgentImpl implements Robot {
+public class RobotImpl extends SystemImpl implements Robot {
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ public class RobotImpl extends AgentImpl implements Robot {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WIDTH_EDEFAULT = 0.0F;
+	protected static final Object WIDTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -40,7 +40,7 @@ public class RobotImpl extends AgentImpl implements Robot {
 	 * @generated
 	 * @ordered
 	 */
-	protected float width = WIDTH_EDEFAULT;
+	protected Object width = WIDTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class RobotImpl extends AgentImpl implements Robot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getWidth() {
+	public Object getWidth() {
 		return width;
 	}
 
@@ -75,8 +75,8 @@ public class RobotImpl extends AgentImpl implements Robot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWidth(float newWidth) {
-		float oldWidth = width;
+	public void setWidth(Object newWidth) {
+		Object oldWidth = width;
 		width = newWidth;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.ROBOT__WIDTH, oldWidth, width));
@@ -105,7 +105,7 @@ public class RobotImpl extends AgentImpl implements Robot {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case RobotMLPackage.ROBOT__WIDTH:
-				setWidth((Float)newValue);
+				setWidth((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,7 +135,7 @@ public class RobotImpl extends AgentImpl implements Robot {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RobotMLPackage.ROBOT__WIDTH:
-				return width != WIDTH_EDEFAULT;
+				return WIDTH_EDEFAULT == null ? width != null : !WIDTH_EDEFAULT.equals(width);
 		}
 		return super.eIsSet(featureID);
 	}

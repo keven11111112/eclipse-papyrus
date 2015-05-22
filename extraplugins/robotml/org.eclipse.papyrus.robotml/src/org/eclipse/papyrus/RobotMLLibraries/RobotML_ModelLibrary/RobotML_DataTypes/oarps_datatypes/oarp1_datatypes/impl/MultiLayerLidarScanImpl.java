@@ -45,7 +45,7 @@ public class MultiLayerLidarScanImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char NB_LAYER_EDEFAULT = '\u0000';
+	protected static final Object NB_LAYER_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNbLayer() <em>Nb Layer</em>}' attribute.
@@ -55,7 +55,7 @@ public class MultiLayerLidarScanImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected char nbLayer = NB_LAYER_EDEFAULT;
+	protected Object nbLayer = NB_LAYER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,7 +124,7 @@ public class MultiLayerLidarScanImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getNbLayer() {
+	public Object getNbLayer() {
 		return nbLayer;
 	}
 
@@ -133,8 +133,8 @@ public class MultiLayerLidarScanImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNbLayer(char newNbLayer) {
-		char oldNbLayer = nbLayer;
+	public void setNbLayer(Object newNbLayer) {
+		Object oldNbLayer = nbLayer;
 		nbLayer = newNbLayer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Oarp1_datatypesPackage.MULTI_LAYER_LIDAR_SCAN__NB_LAYER, oldNbLayer, nbLayer));
@@ -182,7 +182,7 @@ public class MultiLayerLidarScanImpl extends MinimalEObjectImpl.Container implem
 				setLayers((ExtentedLidarScan)newValue);
 				return;
 			case Oarp1_datatypesPackage.MULTI_LAYER_LIDAR_SCAN__NB_LAYER:
-				setNbLayer((Character)newValue);
+				setNbLayer((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -217,7 +217,7 @@ public class MultiLayerLidarScanImpl extends MinimalEObjectImpl.Container implem
 			case Oarp1_datatypesPackage.MULTI_LAYER_LIDAR_SCAN__LAYERS:
 				return layers != null;
 			case Oarp1_datatypesPackage.MULTI_LAYER_LIDAR_SCAN__NB_LAYER:
-				return nbLayer != NB_LAYER_EDEFAULT;
+				return NB_LAYER_EDEFAULT == null ? nbLayer != null : !NB_LAYER_EDEFAULT.equals(nbLayer);
 		}
 		return super.eIsSet(featureID);
 	}

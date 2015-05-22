@@ -61,7 +61,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Character> data;
+	protected EList<Object> data;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -173,9 +173,9 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Character> getData() {
+	public EList<Object> getData() {
 		if (data == null) {
-			data = new EDataTypeUniqueEList<Character>(Character.class, this, Nav_datatypesPackage.OCCUPANCY_GRID__DATA);
+			data = new EDataTypeUniqueEList<Object>(Object.class, this, Nav_datatypesPackage.OCCUPANCY_GRID__DATA);
 		}
 		return data;
 	}
@@ -231,7 +231,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 				return;
 			case Nav_datatypesPackage.OCCUPANCY_GRID__DATA:
 				getData().clear();
-				getData().addAll((Collection<? extends Character>)newValue);
+				getData().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

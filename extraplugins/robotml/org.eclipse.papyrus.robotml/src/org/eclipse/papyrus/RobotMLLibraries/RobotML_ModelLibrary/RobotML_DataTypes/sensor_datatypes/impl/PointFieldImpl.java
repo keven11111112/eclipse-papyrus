@@ -34,7 +34,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final Object NAME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -44,7 +44,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected Object name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getOffset() <em>Offset</em>}' attribute.
@@ -54,7 +54,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long OFFSET_EDEFAULT = 0L;
+	protected static final Object OFFSET_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' attribute.
@@ -64,7 +64,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * @generated
 	 * @ordered
 	 */
-	protected long offset = OFFSET_EDEFAULT;
+	protected Object offset = OFFSET_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDatatype() <em>Datatype</em>}' attribute.
@@ -74,7 +74,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char DATATYPE_EDEFAULT = '\u0000';
+	protected static final Object DATATYPE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getDatatype() <em>Datatype</em>}' attribute.
@@ -84,7 +84,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * @generated
 	 * @ordered
 	 */
-	protected char datatype = DATATYPE_EDEFAULT;
+	protected Object datatype = DATATYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCount() <em>Count</em>}' attribute.
@@ -94,7 +94,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long COUNT_EDEFAULT = 0L;
+	protected static final Object COUNT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getCount() <em>Count</em>}' attribute.
@@ -104,7 +104,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * @generated
 	 * @ordered
 	 */
-	protected long count = COUNT_EDEFAULT;
+	protected Object count = COUNT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,7 +130,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public Object getName() {
 		return name;
 	}
 
@@ -139,8 +139,8 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
+	public void setName(Object newName) {
+		Object oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.POINT_FIELD__NAME, oldName, name));
@@ -151,7 +151,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getOffset() {
+	public Object getOffset() {
 		return offset;
 	}
 
@@ -160,8 +160,8 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOffset(long newOffset) {
-		long oldOffset = offset;
+	public void setOffset(Object newOffset) {
+		Object oldOffset = offset;
 		offset = newOffset;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.POINT_FIELD__OFFSET, oldOffset, offset));
@@ -172,7 +172,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public char getDatatype() {
+	public Object getDatatype() {
 		return datatype;
 	}
 
@@ -181,8 +181,8 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDatatype(char newDatatype) {
-		char oldDatatype = datatype;
+	public void setDatatype(Object newDatatype) {
+		Object oldDatatype = datatype;
 		datatype = newDatatype;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.POINT_FIELD__DATATYPE, oldDatatype, datatype));
@@ -193,7 +193,7 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getCount() {
+	public Object getCount() {
 		return count;
 	}
 
@@ -202,8 +202,8 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCount(long newCount) {
-		long oldCount = count;
+	public void setCount(Object newCount) {
+		Object oldCount = count;
 		count = newCount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.POINT_FIELD__COUNT, oldCount, count));
@@ -238,16 +238,16 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case Sensor_datatypesPackage.POINT_FIELD__NAME:
-				setName((String)newValue);
+				setName((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.POINT_FIELD__OFFSET:
-				setOffset((Long)newValue);
+				setOffset((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.POINT_FIELD__DATATYPE:
-				setDatatype((Character)newValue);
+				setDatatype((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.POINT_FIELD__COUNT:
-				setCount((Long)newValue);
+				setCount((Object)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -288,11 +288,11 @@ public class PointFieldImpl extends MinimalEObjectImpl.Container implements Poin
 			case Sensor_datatypesPackage.POINT_FIELD__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case Sensor_datatypesPackage.POINT_FIELD__OFFSET:
-				return offset != OFFSET_EDEFAULT;
+				return OFFSET_EDEFAULT == null ? offset != null : !OFFSET_EDEFAULT.equals(offset);
 			case Sensor_datatypesPackage.POINT_FIELD__DATATYPE:
-				return datatype != DATATYPE_EDEFAULT;
+				return DATATYPE_EDEFAULT == null ? datatype != null : !DATATYPE_EDEFAULT.equals(datatype);
 			case Sensor_datatypesPackage.POINT_FIELD__COUNT:
-				return count != COUNT_EDEFAULT;
+				return COUNT_EDEFAULT == null ? count != null : !COUNT_EDEFAULT.equals(count);
 		}
 		return super.eIsSet(featureID);
 	}

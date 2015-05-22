@@ -149,8 +149,6 @@ public class RobotMLFactoryImpl extends EFactoryImpl implements RobotMLFactory {
 			case RobotMLPackage.SYSTEM: return createSystem();
 			case RobotMLPackage.AGENT: return createAgent();
 			case RobotMLPackage.PHYSICAL_OBJECT: return createPhysicalObject();
-			case RobotMLPackage.ENVIRONMENT: return createEnvironment();
-			case RobotMLPackage.SURFACE: return createSurface();
 			case RobotMLPackage.DATA_FLOW_PORT: return createDataFlowPort();
 			case RobotMLPackage.SERVICE_PORT: return createServicePort();
 			case RobotMLPackage.ACTUATOR_SYSTEM: return createActuatorSystem();
@@ -171,7 +169,9 @@ public class RobotMLFactoryImpl extends EFactoryImpl implements RobotMLFactory {
 			case RobotMLPackage.GPS_SYSTEM: return createGPSSystem();
 			case RobotMLPackage.ALGORITHM_LIBRARY: return createAlgorithmLibrary();
 			case RobotMLPackage.SENSOR_DRIVER: return createSensorDriver();
+			case RobotMLPackage.ENVIRONMENT: return createEnvironment();
 			case RobotMLPackage.BUILDING: return createBuilding();
+			case RobotMLPackage.SURFACE: return createSurface();
 			case RobotMLPackage.PLANET: return createPlanet();
 			case RobotMLPackage.LAND_SURFACE: return createLandSurface();
 			case RobotMLPackage.FLOOR: return createFloor();

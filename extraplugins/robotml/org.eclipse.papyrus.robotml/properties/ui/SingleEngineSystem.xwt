@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:j="clr-namespace:java.lang"
+<Composite
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:x="http://www.eclipse.org/xwt">
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:j="clr-namespace:java.lang">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -10,6 +11,10 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
+		<ppe:StringEditor input="{Binding}" property="RobotML:System:alias"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}" property="RobotML:System:libraryPath"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="RobotML:System:libraryComponentName"></ppe:StringEditor>
 		<ppe:StringEditor input="{Binding}"
 			property="RobotML:EngineSystem:vehicleTraction"></ppe:StringEditor>
 		<ppe:StringEditor input="{Binding}"
@@ -22,9 +27,6 @@
 			property="RobotML:EngineSystem:maxAllowedVelocity"></ppe:StringEditor>
 		<ppe:StringEditor input="{Binding}"
 			property="RobotML:EngineSystem:gear_ration"></ppe:StringEditor>
-		<ppe:StringEditor input="{Binding}" property="RobotML:System:libraryPath"></ppe:StringEditor>
-		<ppe:StringEditor input="{Binding}"
-			property="RobotML:System:libraryComponentName"></ppe:StringEditor>
 	</Composite>
 	<Composite>
 		<Composite.layout>

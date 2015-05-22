@@ -50,7 +50,7 @@ public interface PoseWithCovariance extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Covariance</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * The list contents are of type {@link java.lang.Object}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Covariance</em>' attribute list isn't clear, there really should be more of a description here...
@@ -61,6 +61,6 @@ public interface PoseWithCovariance extends EObject {
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" lower="36" upper="36" ordered="false"
 	 * @generated
 	 */
-	EList<Double> getCovariance();
+	EList<Object> getCovariance();
 
 } // PoseWithCovariance

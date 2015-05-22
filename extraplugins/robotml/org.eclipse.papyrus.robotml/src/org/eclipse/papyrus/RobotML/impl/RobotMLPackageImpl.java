@@ -1040,8 +1040,8 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAgent() {
-		return agentEClass;
+	public EAttribute getSystem_Alias() {
+		return (EAttribute)systemEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1049,8 +1049,8 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAgent_MovesOver() {
-		return (EReference)agentEClass.getEStructuralFeatures().get(0);
+	public EClass getAgent() {
+		return agentEClass;
 	}
 
 	/**
@@ -1067,26 +1067,8 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPhysicalObject_EvelovesIn() {
-		return (EReference)physicalObjectEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPhysicalObject_HasSurface() {
-		return (EReference)physicalObjectEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getPhysicalObject_Height() {
-		return (EAttribute)physicalObjectEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)physicalObjectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1095,7 +1077,16 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 	 * @generated
 	 */
 	public EAttribute getPhysicalObject_Mass() {
-		return (EAttribute)physicalObjectEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)physicalObjectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPhysicalObject_Base_Class() {
+		return (EReference)physicalObjectEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1105,6 +1096,15 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 	 */
 	public EClass getEnvironment() {
 		return environmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEnvironment_Base_Class() {
+		return (EReference)environmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2579,19 +2579,14 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 		createEAttribute(systemEClass, SYSTEM__NATIVE);
 		createEAttribute(systemEClass, SYSTEM__LIBRARY_PATH);
 		createEAttribute(systemEClass, SYSTEM__LIBRARY_COMPONENT_NAME);
+		createEAttribute(systemEClass, SYSTEM__ALIAS);
 
 		agentEClass = createEClass(AGENT);
-		createEReference(agentEClass, AGENT__MOVES_OVER);
 
 		physicalObjectEClass = createEClass(PHYSICAL_OBJECT);
-		createEReference(physicalObjectEClass, PHYSICAL_OBJECT__EVELOVES_IN);
-		createEReference(physicalObjectEClass, PHYSICAL_OBJECT__HAS_SURFACE);
 		createEAttribute(physicalObjectEClass, PHYSICAL_OBJECT__HEIGHT);
 		createEAttribute(physicalObjectEClass, PHYSICAL_OBJECT__MASS);
-
-		environmentEClass = createEClass(ENVIRONMENT);
-
-		surfaceEClass = createEClass(SURFACE);
+		createEReference(physicalObjectEClass, PHYSICAL_OBJECT__BASE_CLASS);
 
 		dataFlowPortEClass = createEClass(DATA_FLOW_PORT);
 		createEAttribute(dataFlowPortEClass, DATA_FLOW_PORT__DIRECTION);
@@ -2695,7 +2690,12 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 
 		sensorDriverEClass = createEClass(SENSOR_DRIVER);
 
+		environmentEClass = createEClass(ENVIRONMENT);
+		createEReference(environmentEClass, ENVIRONMENT__BASE_CLASS);
+
 		buildingEClass = createEClass(BUILDING);
+
+		surfaceEClass = createEClass(SURFACE);
 
 		planetEClass = createEClass(PLANET);
 
@@ -2856,12 +2856,8 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 		// Add supertypes to classes
 		actuatedJointEClass.getESuperTypes().add(this.getJoint());
 		completeBondingEClass.getESuperTypes().add(this.getJoint());
-		robotEClass.getESuperTypes().add(this.getAgent());
 		robotEClass.getESuperTypes().add(this.getSystem());
 		agentEClass.getESuperTypes().add(this.getPhysicalObject());
-		physicalObjectEClass.getESuperTypes().add(this.getSystem());
-		environmentEClass.getESuperTypes().add(this.getSystem());
-		surfaceEClass.getESuperTypes().add(this.getPhysicalObject());
 		dataFlowPortEClass.getESuperTypes().add(this.getPort());
 		servicePortEClass.getESuperTypes().add(this.getPort());
 		actuatorSystemEClass.getESuperTypes().add(this.getRoboticSystem());
@@ -2870,7 +2866,6 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 		cyberPhysicalSystemEClass.getESuperTypes().add(this.getSystem());
 		sensorSystemEClass.getESuperTypes().add(this.getRoboticSystem());
 		sensorSystemEClass.getESuperTypes().add(this.getCyberPhysicalSystem());
-		hardwareEClass.getESuperTypes().add(this.getPhysicalObject());
 		hardwareEClass.getESuperTypes().add(this.getSystem());
 		softwareEClass.getESuperTypes().add(this.getSystem());
 		engineSystemEClass.getESuperTypes().add(this.getActuatorSystem());
@@ -2886,6 +2881,7 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 		gpsSystemEClass.getESuperTypes().add(this.getLocalizationSensorSystem());
 		sensorDriverEClass.getESuperTypes().add(this.getSoftware());
 		buildingEClass.getESuperTypes().add(this.getPhysicalObject());
+		surfaceEClass.getESuperTypes().add(this.getPhysicalObject());
 		planetEClass.getESuperTypes().add(this.getPhysicalObject());
 		landSurfaceEClass.getESuperTypes().add(this.getGround());
 		groundEClass.getESuperTypes().add(this.getSurface());
@@ -2960,19 +2956,14 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 		initEAttribute(getSystem_Native(), theTypesPackage.getBoolean(), "native", null, 1, 1, org.eclipse.papyrus.RobotML.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSystem_LibraryPath(), theTypesPackage.getString(), "libraryPath", null, 1, 1, org.eclipse.papyrus.RobotML.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSystem_LibraryComponentName(), theTypesPackage.getString(), "libraryComponentName", null, 1, 1, org.eclipse.papyrus.RobotML.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSystem_Alias(), theTypesPackage.getString(), "alias", null, 1, 1, org.eclipse.papyrus.RobotML.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(agentEClass, Agent.class, "Agent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAgent_MovesOver(), this.getSurface(), null, "movesOver", null, 0, -1, Agent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(physicalObjectEClass, PhysicalObject.class, "PhysicalObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPhysicalObject_EvelovesIn(), this.getEnvironment(), null, "evelovesIn", null, 0, -1, PhysicalObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPhysicalObject_HasSurface(), this.getSurface(), null, "hasSurface", null, 1, 1, PhysicalObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getPhysicalObject_Height(), theStd_datatypesPackage.getFloat32(), "height", null, 1, 1, PhysicalObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getPhysicalObject_Mass(), theStd_datatypesPackage.getFloat32(), "mass", null, 1, 1, PhysicalObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(surfaceEClass, Surface.class, "Surface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPhysicalObject_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, PhysicalObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(dataFlowPortEClass, DataFlowPort.class, "DataFlowPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDataFlowPort_Direction(), this.getDataFlowDirectionKind(), "direction", null, 1, 1, DataFlowPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3076,7 +3067,12 @@ public class RobotMLPackageImpl extends EPackageImpl implements RobotMLPackage {
 
 		initEClass(sensorDriverEClass, SensorDriver.class, "SensorDriver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEnvironment_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
 		initEClass(buildingEClass, Building.class, "Building", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(surfaceEClass, Surface.class, "Surface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(planetEClass, Planet.class, "Planet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

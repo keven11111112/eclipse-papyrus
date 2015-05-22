@@ -57,7 +57,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float ANGLE_MIN_EDEFAULT = 0.0F;
+	protected static final Object ANGLE_MIN_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getAngle_min() <em>Angle min</em>}' attribute.
@@ -67,7 +67,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected float angle_min = ANGLE_MIN_EDEFAULT;
+	protected Object angle_min = ANGLE_MIN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getAngle_max() <em>Angle max</em>}' attribute.
@@ -77,7 +77,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float ANGLE_MAX_EDEFAULT = 0.0F;
+	protected static final Object ANGLE_MAX_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getAngle_max() <em>Angle max</em>}' attribute.
@@ -87,7 +87,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected float angle_max = ANGLE_MAX_EDEFAULT;
+	protected Object angle_max = ANGLE_MAX_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getAngle_increment() <em>Angle increment</em>}' attribute.
@@ -97,7 +97,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float ANGLE_INCREMENT_EDEFAULT = 0.0F;
+	protected static final Object ANGLE_INCREMENT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getAngle_increment() <em>Angle increment</em>}' attribute.
@@ -107,7 +107,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected float angle_increment = ANGLE_INCREMENT_EDEFAULT;
+	protected Object angle_increment = ANGLE_INCREMENT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTime_increment() <em>Time increment</em>}' attribute.
@@ -117,7 +117,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float TIME_INCREMENT_EDEFAULT = 0.0F;
+	protected static final Object TIME_INCREMENT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTime_increment() <em>Time increment</em>}' attribute.
@@ -127,7 +127,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected float time_increment = TIME_INCREMENT_EDEFAULT;
+	protected Object time_increment = TIME_INCREMENT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getScan_time() <em>Scan time</em>}' attribute.
@@ -137,7 +137,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float SCAN_TIME_EDEFAULT = 0.0F;
+	protected static final Object SCAN_TIME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getScan_time() <em>Scan time</em>}' attribute.
@@ -147,7 +147,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected float scan_time = SCAN_TIME_EDEFAULT;
+	protected Object scan_time = SCAN_TIME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRange_min() <em>Range min</em>}' attribute.
@@ -157,7 +157,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float RANGE_MIN_EDEFAULT = 0.0F;
+	protected static final Object RANGE_MIN_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRange_min() <em>Range min</em>}' attribute.
@@ -167,7 +167,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected float range_min = RANGE_MIN_EDEFAULT;
+	protected Object range_min = RANGE_MIN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRange_max() <em>Range max</em>}' attribute.
@@ -177,7 +177,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float RANGE_MAX_EDEFAULT = 0.0F;
+	protected static final Object RANGE_MAX_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRange_max() <em>Range max</em>}' attribute.
@@ -187,7 +187,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected float range_max = RANGE_MAX_EDEFAULT;
+	protected Object range_max = RANGE_MAX_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRange() <em>Range</em>}' attribute list.
@@ -197,7 +197,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Float> range;
+	protected EList<Object> range;
 
 	/**
 	 * The cached value of the '{@link #getIntensities() <em>Intensities</em>}' attribute list.
@@ -207,7 +207,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Float> intensities;
+	protected EList<Object> intensities;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -276,7 +276,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAngle_min() {
+	public Object getAngle_min() {
 		return angle_min;
 	}
 
@@ -285,8 +285,8 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAngle_min(float newAngle_min) {
-		float oldAngle_min = angle_min;
+	public void setAngle_min(Object newAngle_min) {
+		Object oldAngle_min = angle_min;
 		angle_min = newAngle_min;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.LASER_SCAN__ANGLE_MIN, oldAngle_min, angle_min));
@@ -297,7 +297,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAngle_max() {
+	public Object getAngle_max() {
 		return angle_max;
 	}
 
@@ -306,8 +306,8 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAngle_max(float newAngle_max) {
-		float oldAngle_max = angle_max;
+	public void setAngle_max(Object newAngle_max) {
+		Object oldAngle_max = angle_max;
 		angle_max = newAngle_max;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.LASER_SCAN__ANGLE_MAX, oldAngle_max, angle_max));
@@ -318,7 +318,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getAngle_increment() {
+	public Object getAngle_increment() {
 		return angle_increment;
 	}
 
@@ -327,8 +327,8 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAngle_increment(float newAngle_increment) {
-		float oldAngle_increment = angle_increment;
+	public void setAngle_increment(Object newAngle_increment) {
+		Object oldAngle_increment = angle_increment;
 		angle_increment = newAngle_increment;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.LASER_SCAN__ANGLE_INCREMENT, oldAngle_increment, angle_increment));
@@ -339,7 +339,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getTime_increment() {
+	public Object getTime_increment() {
 		return time_increment;
 	}
 
@@ -348,8 +348,8 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTime_increment(float newTime_increment) {
-		float oldTime_increment = time_increment;
+	public void setTime_increment(Object newTime_increment) {
+		Object oldTime_increment = time_increment;
 		time_increment = newTime_increment;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.LASER_SCAN__TIME_INCREMENT, oldTime_increment, time_increment));
@@ -360,7 +360,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getScan_time() {
+	public Object getScan_time() {
 		return scan_time;
 	}
 
@@ -369,8 +369,8 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setScan_time(float newScan_time) {
-		float oldScan_time = scan_time;
+	public void setScan_time(Object newScan_time) {
+		Object oldScan_time = scan_time;
 		scan_time = newScan_time;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.LASER_SCAN__SCAN_TIME, oldScan_time, scan_time));
@@ -381,7 +381,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRange_min() {
+	public Object getRange_min() {
 		return range_min;
 	}
 
@@ -390,8 +390,8 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRange_min(float newRange_min) {
-		float oldRange_min = range_min;
+	public void setRange_min(Object newRange_min) {
+		Object oldRange_min = range_min;
 		range_min = newRange_min;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.LASER_SCAN__RANGE_MIN, oldRange_min, range_min));
@@ -402,7 +402,7 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getRange_max() {
+	public Object getRange_max() {
 		return range_max;
 	}
 
@@ -411,8 +411,8 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRange_max(float newRange_max) {
-		float oldRange_max = range_max;
+	public void setRange_max(Object newRange_max) {
+		Object oldRange_max = range_max;
 		range_max = newRange_max;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.LASER_SCAN__RANGE_MAX, oldRange_max, range_max));
@@ -423,9 +423,9 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Float> getRange() {
+	public EList<Object> getRange() {
 		if (range == null) {
-			range = new EDataTypeUniqueEList<Float>(Float.class, this, Sensor_datatypesPackage.LASER_SCAN__RANGE);
+			range = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.LASER_SCAN__RANGE);
 		}
 		return range;
 	}
@@ -435,9 +435,9 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Float> getIntensities() {
+	public EList<Object> getIntensities() {
 		if (intensities == null) {
-			intensities = new EDataTypeUniqueEList<Float>(Float.class, this, Sensor_datatypesPackage.LASER_SCAN__INTENSITIES);
+			intensities = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.LASER_SCAN__INTENSITIES);
 		}
 		return intensities;
 	}
@@ -501,33 +501,33 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 				setHeader((Header)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__ANGLE_MIN:
-				setAngle_min((Float)newValue);
+				setAngle_min((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__ANGLE_MAX:
-				setAngle_max((Float)newValue);
+				setAngle_max((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__ANGLE_INCREMENT:
-				setAngle_increment((Float)newValue);
+				setAngle_increment((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__TIME_INCREMENT:
-				setTime_increment((Float)newValue);
+				setTime_increment((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__SCAN_TIME:
-				setScan_time((Float)newValue);
+				setScan_time((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__RANGE_MIN:
-				setRange_min((Float)newValue);
+				setRange_min((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__RANGE_MAX:
-				setRange_max((Float)newValue);
+				setRange_max((Object)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__RANGE:
 				getRange().clear();
-				getRange().addAll((Collection<? extends Float>)newValue);
+				getRange().addAll((Collection<? extends Object>)newValue);
 				return;
 			case Sensor_datatypesPackage.LASER_SCAN__INTENSITIES:
 				getIntensities().clear();
-				getIntensities().addAll((Collection<? extends Float>)newValue);
+				getIntensities().addAll((Collection<? extends Object>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -586,19 +586,19 @@ public class LaserScanImpl extends MinimalEObjectImpl.Container implements Laser
 			case Sensor_datatypesPackage.LASER_SCAN__HEADER:
 				return header != null;
 			case Sensor_datatypesPackage.LASER_SCAN__ANGLE_MIN:
-				return angle_min != ANGLE_MIN_EDEFAULT;
+				return ANGLE_MIN_EDEFAULT == null ? angle_min != null : !ANGLE_MIN_EDEFAULT.equals(angle_min);
 			case Sensor_datatypesPackage.LASER_SCAN__ANGLE_MAX:
-				return angle_max != ANGLE_MAX_EDEFAULT;
+				return ANGLE_MAX_EDEFAULT == null ? angle_max != null : !ANGLE_MAX_EDEFAULT.equals(angle_max);
 			case Sensor_datatypesPackage.LASER_SCAN__ANGLE_INCREMENT:
-				return angle_increment != ANGLE_INCREMENT_EDEFAULT;
+				return ANGLE_INCREMENT_EDEFAULT == null ? angle_increment != null : !ANGLE_INCREMENT_EDEFAULT.equals(angle_increment);
 			case Sensor_datatypesPackage.LASER_SCAN__TIME_INCREMENT:
-				return time_increment != TIME_INCREMENT_EDEFAULT;
+				return TIME_INCREMENT_EDEFAULT == null ? time_increment != null : !TIME_INCREMENT_EDEFAULT.equals(time_increment);
 			case Sensor_datatypesPackage.LASER_SCAN__SCAN_TIME:
-				return scan_time != SCAN_TIME_EDEFAULT;
+				return SCAN_TIME_EDEFAULT == null ? scan_time != null : !SCAN_TIME_EDEFAULT.equals(scan_time);
 			case Sensor_datatypesPackage.LASER_SCAN__RANGE_MIN:
-				return range_min != RANGE_MIN_EDEFAULT;
+				return RANGE_MIN_EDEFAULT == null ? range_min != null : !RANGE_MIN_EDEFAULT.equals(range_min);
 			case Sensor_datatypesPackage.LASER_SCAN__RANGE_MAX:
-				return range_max != RANGE_MAX_EDEFAULT;
+				return RANGE_MAX_EDEFAULT == null ? range_max != null : !RANGE_MAX_EDEFAULT.equals(range_max);
 			case Sensor_datatypesPackage.LASER_SCAN__RANGE:
 				return range != null && !range.isEmpty();
 			case Sensor_datatypesPackage.LASER_SCAN__INTENSITIES:
