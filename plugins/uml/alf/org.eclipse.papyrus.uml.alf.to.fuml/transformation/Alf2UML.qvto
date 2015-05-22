@@ -880,11 +880,17 @@ mapping ActiveClassDefinition::toClass() : Class
 	  ownedReception := self.ownedMember->map toNamedElement()[Reception];
 	  ownedReception += self.ownedMember[definition.oclIsKindOf(SignalReceptionDefinition)]->map toReception();
 	  if self.classifierBehavior <> null then {
-		  classifierBehavior := self.classifierBehavior.map toActivity();
-		  classifierBehavior.name := uniqueName(result.name + "$behavior", result);
-		  classifierBehavior.visibility := VisibilityKind::private;
-		  ownedBehavior += classifierBehavior; // Eclipse implementation only
-		  // addDefinition(classifierBehavior.oclAsType(Activity), self.classifierBehavior.body);
+	  	// NOTE: The Xtext grammar currently does not set isStub = true for a stub classifierBehavior.
+	  	if self.classifierBehavior.isStub or self.classifierBehavior.body = null then {
+	  		classifierBehavior := new Activity(Sequence{});
+	  		classifierBehavior.name := self.classifierBehavior.actualName() + "$stub";
+	  	} else {
+			  classifierBehavior := self.classifierBehavior.map toActivity();
+			  classifierBehavior.name := uniqueName(result.name + "$behavior", result);
+			  classifierBehavior.visibility := VisibilityKind::private;
+			  ownedBehavior += classifierBehavior; // Because classifierBehavior is not a member in the Ecore metamodel.
+			  // addDefinition(classifierBehavior.oclAsType(Activity), self.classifierBehavior.body);
+		  } endif;
 	  } endif;
   } endif;
 }

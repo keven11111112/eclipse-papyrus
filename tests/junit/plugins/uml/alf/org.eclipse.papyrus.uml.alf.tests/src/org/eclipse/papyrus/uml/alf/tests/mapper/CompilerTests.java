@@ -540,6 +540,7 @@ public class CompilerTests {
 		
 		Behavior classifierBehavior = testClass.getClassifierBehavior();
 		assertNotNull(classifierBehavior);
+		assertTrue(testClass.getOwnedBehaviors().contains(classifierBehavior));
 		assertEquals(testClass.getName() + "$behavior$1", classifierBehavior.getName());
 		assertEquals(VisibilityKind.PRIVATE_LITERAL, classifierBehavior.getVisibility());
 		assertTrue(classifierBehavior instanceof Activity);
@@ -577,5 +578,26 @@ public class CompilerTests {
 		}
 		assertNotNull(action);
 		assertEquals(operation, action.getOperation());
+	}
+	
+	public static String TEST_ACTIVE_CLASS_TEXT = "active class Test { public p() { } } do 'Test$behavior$1'";
+	
+	@Test
+	public void testActiveClassRecompile() throws ParsingError, MappingError {
+		Class testClass = compileTestClassifierBehavior();
+		
+		Behavior classifierBehavior = testClass.getClassifierBehavior();
+		assertTextualRepresentation(classifierBehavior, CLASSIFIER_BEHAVIOR_ACTIVITY_TEXT);
+		
+		compiler.compile(testClass, TEST_ACTIVE_CLASS_TEXT);
+
+		assertTextualRepresentation(testClass, TEST_ACTIVE_CLASS_TEXT);
+		assertEquals(classifierBehavior, testClass.getClassifierBehavior());
+		assertTrue(testClass.getOwnedBehaviors().contains(classifierBehavior));
+		assertEquals(testClass.getName() + "$behavior$1", classifierBehavior.getName());
+		assertEquals(VisibilityKind.PRIVATE_LITERAL, classifierBehavior.getVisibility());
+		assertTextualRepresentation(classifierBehavior, CLASSIFIER_BEHAVIOR_ACTIVITY_TEXT);
+		assertTrue(classifierBehavior instanceof Activity);
+		assertTrue(((Activity)classifierBehavior).getNodes().size() > 0);
 	}
 }

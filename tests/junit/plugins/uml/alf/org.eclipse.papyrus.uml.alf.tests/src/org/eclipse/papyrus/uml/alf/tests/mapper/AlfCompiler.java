@@ -60,15 +60,20 @@ public class AlfCompiler extends AlfMapper {
 			return result.getRootASTElement();
 		}
 	}
-
-	public String getTextualRepresentation(Element element) {
+	
+	public Comment getTextualRepresentationComment(Element element) {
 		for (Comment comment : element.getOwnedComments()) {
 			if (comment.isStereotypeApplied(this.textualRepresentationStereotype) &&
 					"Alf".equals(comment.getValue(this.textualRepresentationStereotype, "language"))) {
-				return comment.getBody();
+				return comment;
 			}
 		}
 		return null;
+	}
+
+	public String getTextualRepresentation(Element element) {
+		Comment comment = this.getTextualRepresentationComment(element);
+		return comment == null? null: comment.getBody();
 	}
 
 	public void addTextualRepresentation(Element element, String textualRepresentation) {
@@ -81,6 +86,15 @@ public class AlfCompiler extends AlfMapper {
 		}
 		comment.applyStereotype(this.textualRepresentationStereotype);
 		comment.setValue(this.textualRepresentationStereotype, "language", "Alf");
+	}
+	
+	public void updateTextualRepresentation(Element element, String textualRepresentation) {
+		Comment comment = this.getTextualRepresentationComment(element);
+		if (comment == null) {
+			this.addTextualRepresentation(element, textualRepresentation);
+		} else {
+			comment.setBody(textualRepresentation);
+		}
 	}
 
 	public void compile(NamedElement contextElement) throws ParsingError, MappingError {
@@ -97,7 +111,7 @@ public class AlfCompiler extends AlfMapper {
 		alf.add(this.parse(textualRepresentation));
 		this.map(contextElement, alf);
 
-		this.addTextualRepresentation(contextElement, textualRepresentation);
+		this.updateTextualRepresentation(contextElement, textualRepresentation);
 	}
 
 }
