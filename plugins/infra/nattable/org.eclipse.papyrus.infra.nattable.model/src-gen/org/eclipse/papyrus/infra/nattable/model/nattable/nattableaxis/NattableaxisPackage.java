@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory
  * @model kind="package"
  * @generated
@@ -42,7 +41,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNAME = "nattableaxis"; //$NON-NLS-1$
@@ -51,7 +49,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"; //$NON-NLS-1$
@@ -60,7 +57,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_PREFIX = "nattableaxis"; //$NON-NLS-1$
@@ -69,7 +65,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	NattableaxisPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl.init();
@@ -78,7 +73,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis <em>IAxis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getIAxis()
 	 * @generated
@@ -89,7 +83,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -99,7 +92,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -109,7 +101,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -119,7 +110,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -129,7 +119,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>IAxis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -139,7 +128,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -149,7 +137,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -159,7 +146,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -169,7 +155,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -179,7 +164,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -189,7 +173,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -199,18 +182,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>IAxis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int IAXIS_OPERATION_COUNT = NattablestylePackage.STYLED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getITreeItemAxis()
 	 * @generated
@@ -221,7 +201,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -231,7 +210,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -241,7 +219,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -251,7 +228,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -261,7 +237,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -271,7 +246,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -281,7 +255,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -291,7 +264,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>ITree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -301,7 +273,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -311,7 +282,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -321,7 +291,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -331,7 +300,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -341,7 +309,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -351,7 +318,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -361,7 +327,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>ITree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -371,7 +336,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl <em>Id Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getIdAxis()
 	 * @generated
@@ -382,7 +346,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -392,7 +355,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -402,7 +364,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -412,7 +373,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -422,7 +382,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -432,7 +391,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Id Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -442,7 +400,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -452,7 +409,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -462,7 +418,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -472,7 +427,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -482,7 +436,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -492,7 +445,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -502,18 +454,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Id Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int ID_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl
-	 * <em>Id Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl <em>Id Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getIdTreeItemAxis()
 	 * @generated
@@ -524,7 +473,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -534,7 +482,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -544,7 +491,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -554,7 +500,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -564,7 +509,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -574,7 +518,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -584,7 +527,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -594,7 +536,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -604,7 +545,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Id Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -614,7 +554,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -624,7 +563,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -634,7 +572,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -644,7 +581,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -654,7 +590,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -664,7 +599,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -674,18 +608,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Id Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int ID_TREE_ITEM_AXIS_OPERATION_COUNT = ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl <em>Object Axis</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl <em>Object Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getObjectAxis()
 	 * @generated
@@ -696,7 +627,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -706,7 +636,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -716,7 +645,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -726,7 +654,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -736,7 +663,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -746,7 +672,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Object Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -756,7 +681,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -766,7 +690,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -776,7 +699,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -786,7 +708,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -796,7 +717,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -806,7 +726,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -816,18 +735,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Object Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int OBJECT_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl <em>EObject Axis</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getEObjectAxis()
 	 * @generated
@@ -838,7 +754,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -848,7 +763,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -858,7 +772,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -868,7 +781,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -878,7 +790,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -888,7 +799,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -898,7 +808,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>EObject Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -908,7 +817,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -918,7 +826,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -928,7 +835,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -938,7 +844,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -948,7 +853,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -958,7 +862,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -968,18 +871,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>EObject Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int EOBJECT_AXIS_OPERATION_COUNT = OBJECT_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl
-	 * <em>EObject Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl <em>EObject Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getEObjectTreeItemAxis()
 	 * @generated
@@ -990,7 +890,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1000,7 +899,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1010,7 +908,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1020,7 +917,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1030,7 +926,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1040,7 +935,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1050,7 +944,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1060,7 +953,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1070,7 +962,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1080,7 +971,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>EObject Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1090,7 +980,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1100,7 +989,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1110,7 +998,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1120,7 +1007,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1130,7 +1016,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1140,7 +1025,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1150,18 +1034,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>EObject Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int EOBJECT_TREE_ITEM_AXIS_OPERATION_COUNT = EOBJECT_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl <em>Feature Axis</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl <em>Feature Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getFeatureAxis()
 	 * @generated
@@ -1172,7 +1053,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1182,7 +1062,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1192,7 +1071,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1202,7 +1080,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1212,7 +1089,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1222,7 +1098,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Feature Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1232,7 +1107,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1242,7 +1116,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1252,7 +1125,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1262,7 +1134,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1272,7 +1143,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1282,7 +1152,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1292,18 +1161,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Feature Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int FEATURE_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl
-	 * <em>Feature Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl <em>Feature Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getFeatureTreeItemAxis()
 	 * @generated
@@ -1314,7 +1180,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1324,7 +1189,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1334,7 +1198,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1344,7 +1207,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1354,7 +1216,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1364,7 +1225,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1374,7 +1234,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1384,7 +1243,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1394,7 +1252,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Feature Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1404,7 +1261,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1414,7 +1270,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1424,7 +1279,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1434,7 +1288,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1444,7 +1297,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1454,7 +1306,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1464,18 +1315,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Feature Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int FEATURE_TREE_ITEM_AXIS_OPERATION_COUNT = FEATURE_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl
-	 * <em>Object Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl <em>Object Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getObjectTreeItemAxis()
 	 * @generated
@@ -1486,7 +1334,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1496,7 +1343,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1506,7 +1352,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1516,7 +1361,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1526,7 +1370,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1536,7 +1379,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1546,7 +1388,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1556,7 +1397,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1566,7 +1406,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Object Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1576,7 +1415,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1586,7 +1424,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1596,7 +1433,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1606,7 +1442,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1616,7 +1451,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1626,7 +1460,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1636,18 +1469,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Object Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int OBJECT_TREE_ITEM_AXIS_OPERATION_COUNT = OBJECT_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl
-	 * <em>Feature Id Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl <em>Feature Id Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getFeatureIdAxis()
 	 * @generated
@@ -1658,7 +1488,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1668,7 +1497,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1678,7 +1506,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1688,7 +1515,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1698,7 +1524,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1708,7 +1533,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1718,7 +1542,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Feature Id Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1728,7 +1551,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1738,7 +1560,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1748,7 +1569,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1758,7 +1578,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1768,7 +1587,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1778,7 +1596,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1788,18 +1605,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Feature Id Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int FEATURE_ID_AXIS_OPERATION_COUNT = ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl
-	 * <em>Feature Id Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl <em>Feature Id Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getFeatureIdTreeItemAxis()
 	 * @generated
@@ -1810,7 +1624,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1820,7 +1633,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1830,7 +1642,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1840,7 +1651,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1850,7 +1660,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1860,7 +1669,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1870,7 +1678,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1880,7 +1687,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1890,7 +1696,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1900,7 +1705,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Feature Id Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1910,7 +1714,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1920,7 +1723,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1930,7 +1732,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1940,7 +1741,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1950,7 +1750,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1960,7 +1759,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -1970,18 +1768,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Feature Id Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int FEATURE_ID_TREE_ITEM_AXIS_OPERATION_COUNT = FEATURE_ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl
-	 * <em>EStructural Feature Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl <em>EStructural Feature Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getEStructuralFeatureAxis()
 	 * @generated
@@ -1992,7 +1787,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2002,7 +1796,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2012,7 +1805,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2022,7 +1814,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2032,7 +1823,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2042,7 +1832,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2052,7 +1841,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>EStructural Feature Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2062,7 +1850,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2072,7 +1859,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2082,7 +1868,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2092,7 +1877,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2102,7 +1886,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2112,7 +1895,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2122,18 +1904,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>EStructural Feature Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int ESTRUCTURAL_FEATURE_AXIS_OPERATION_COUNT = FEATURE_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl
-	 * <em>EStructural Feature Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl <em>EStructural Feature Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getEStructuralFeatureTreeItemAxis()
 	 * @generated
@@ -2144,7 +1923,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2154,7 +1932,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2164,7 +1941,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2174,7 +1950,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2184,7 +1959,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2194,7 +1968,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2204,7 +1977,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2214,7 +1986,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2224,7 +1995,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2234,7 +2004,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>EStructural Feature Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2244,7 +2013,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2254,7 +2022,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2264,7 +2031,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2274,7 +2040,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2284,7 +2049,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2294,7 +2058,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2304,18 +2067,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>EStructural Feature Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS_OPERATION_COUNT = ESTRUCTURAL_FEATURE_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl
-	 * <em>Object Id Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl <em>Object Id Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getObjectIdAxis()
 	 * @generated
@@ -2326,7 +2086,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2336,7 +2095,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2346,7 +2104,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2356,7 +2113,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2366,7 +2122,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2376,7 +2131,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2386,7 +2140,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Object Id Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2396,7 +2149,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2406,7 +2158,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2416,7 +2167,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2426,7 +2176,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2436,7 +2185,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2446,7 +2194,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2456,18 +2203,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Object Id Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int OBJECT_ID_AXIS_OPERATION_COUNT = ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl
-	 * <em>Object Id Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl <em>Object Id Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getObjectIdTreeItemAxis()
 	 * @generated
@@ -2478,7 +2222,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2488,7 +2231,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2498,7 +2240,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2508,7 +2249,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2518,7 +2258,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2528,7 +2267,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2538,7 +2276,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2548,7 +2285,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2558,7 +2294,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2568,7 +2303,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Object Id Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2578,7 +2312,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2588,7 +2321,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2598,7 +2330,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2608,7 +2339,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2618,7 +2348,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2628,7 +2357,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2638,18 +2366,15 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Object Id Tree Item Axis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int OBJECT_ID_TREE_ITEM_AXIS_OPERATION_COUNT = OBJECT_ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl <em>Axis Group</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl <em>Axis Group</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getAxisGroup()
 	 * @generated
@@ -2660,7 +2385,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2670,7 +2394,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2680,7 +2403,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2690,7 +2412,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2700,7 +2421,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The feature id for the '<em><b>Grouped Axis</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2710,7 +2430,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of structural features of the '<em>Axis Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2720,7 +2439,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2730,7 +2448,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2740,7 +2457,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2750,7 +2466,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2760,7 +2475,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2770,7 +2484,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2780,7 +2493,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * The number of operations of the '<em>Axis Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -2790,7 +2502,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis <em>IAxis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>IAxis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis
 	 * @generated
@@ -2798,11 +2509,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getIAxis();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getManager
-	 * <em>Manager</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getManager <em>Manager</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference '<em>Manager</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getManager()
 	 * @see #getIAxis()
@@ -2811,11 +2520,9 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getIAxis_Manager();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getAlias <em>Alias</em>}
-	 * '.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getAlias <em>Alias</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Alias</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getAlias()
 	 * @see #getIAxis()
@@ -2824,11 +2531,9 @@ public interface NattableaxisPackage extends EPackage {
 	EAttribute getIAxis_Alias();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getElement() <em>Get Element</em>}
-	 * ' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getElement() <em>Get Element</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the '<em>Get Element</em>' operation.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getElement()
 	 * @generated
@@ -2836,11 +2541,9 @@ public interface NattableaxisPackage extends EPackage {
 	EOperation getIAxis__GetElement();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getLocalLabelConfiguration()
-	 * <em>Get Local Label Configuration</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getLocalLabelConfiguration() <em>Get Local Label Configuration</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the '<em>Get Local Label Configuration</em>' operation.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getLocalLabelConfiguration()
 	 * @generated
@@ -2848,11 +2551,9 @@ public interface NattableaxisPackage extends EPackage {
 	EOperation getIAxis__GetLocalLabelConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis
-	 * <em>ITree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>ITree Item Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis
 	 * @generated
@@ -2860,11 +2561,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getITreeItemAxis();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent
-	 * <em>Parent</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference '<em>Parent</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent()
 	 * @see #getITreeItemAxis()
@@ -2873,11 +2572,9 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getITreeItemAxis_Parent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded
-	 * <em>Expanded</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded <em>Expanded</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Expanded</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded()
 	 * @see #getITreeItemAxis()
@@ -2886,11 +2583,9 @@ public interface NattableaxisPackage extends EPackage {
 	EAttribute getITreeItemAxis_Expanded();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren <em>Children</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference list '<em>Children</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren()
 	 * @see #getITreeItemAxis()
@@ -2902,7 +2597,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis <em>Id Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Id Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis
 	 * @generated
@@ -2910,11 +2604,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getIdAxis();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement
-	 * <em>Element</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Element</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement()
 	 * @see #getIdAxis()
@@ -2923,11 +2615,9 @@ public interface NattableaxisPackage extends EPackage {
 	EAttribute getIdAxis_Element();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis
-	 * <em>Id Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis <em>Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Id Tree Item Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis
 	 * @generated
@@ -2938,7 +2628,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis <em>EObject Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>EObject Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis
 	 * @generated
@@ -2946,11 +2635,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getEObjectAxis();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis#getElement
-	 * <em>Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis#getElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference '<em>Element</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis#getElement()
 	 * @see #getEObjectAxis()
@@ -2959,11 +2646,9 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getEObjectAxis_Element();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis
-	 * <em>EObject Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis <em>EObject Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>EObject Tree Item Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis
 	 * @generated
@@ -2974,7 +2659,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis <em>Feature Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Feature Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis
 	 * @generated
@@ -2982,12 +2666,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getFeatureAxis();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration
-	 * <em>Local Label Configuration</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference '<em>Local Label Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration()
 	 * @see #getFeatureAxis()
@@ -2996,11 +2677,9 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getFeatureAxis_LocalLabelConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis
-	 * <em>Feature Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis <em>Feature Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Feature Tree Item Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis
 	 * @generated
@@ -3011,7 +2690,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis <em>Object Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Object Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis
 	 * @generated
@@ -3019,12 +2697,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getObjectAxis();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}
-	 * '.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference '<em>Local Label Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration()
 	 * @see #getObjectAxis()
@@ -3033,11 +2708,9 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getObjectAxis_LocalLabelConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis
-	 * <em>Object Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis <em>Object Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Object Tree Item Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis
 	 * @generated
@@ -3045,11 +2718,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getObjectTreeItemAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis
-	 * <em>Feature Id Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis <em>Feature Id Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Feature Id Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis
 	 * @generated
@@ -3057,11 +2728,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getFeatureIdAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis
-	 * <em>Feature Id Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis <em>Feature Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Feature Id Tree Item Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis
 	 * @generated
@@ -3069,11 +2738,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getFeatureIdTreeItemAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis
-	 * <em>EStructural Feature Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis <em>EStructural Feature Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>EStructural Feature Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis
 	 * @generated
@@ -3081,11 +2748,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getEStructuralFeatureAxis();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference '<em>Element</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement()
 	 * @see #getEStructuralFeatureAxis()
@@ -3094,11 +2759,9 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getEStructuralFeatureAxis_Element();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis
-	 * <em>EStructural Feature Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis <em>EStructural Feature Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>EStructural Feature Tree Item Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis
 	 * @generated
@@ -3106,11 +2769,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getEStructuralFeatureTreeItemAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis <em>Object Id Axis</em>}
-	 * '.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis <em>Object Id Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Object Id Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis
 	 * @generated
@@ -3118,11 +2779,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getObjectIdAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis
-	 * <em>Object Id Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis <em>Object Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Object Id Tree Item Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis
 	 * @generated
@@ -3133,7 +2792,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup <em>Axis Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Axis Group</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup
 	 * @generated
@@ -3141,11 +2799,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getAxisGroup();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup#getGroupedAxis
-	 * <em>Grouped Axis</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup#getGroupedAxis <em>Grouped Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference list '<em>Grouped Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup#getGroupedAxis()
 	 * @see #getAxisGroup()
@@ -3157,7 +2813,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -3174,7 +2829,6 @@ public interface NattableaxisPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	interface Literals {
@@ -3183,7 +2837,6 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis <em>IAxis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getIAxis()
 		 * @generated
@@ -3194,7 +2847,6 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Manager</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference IAXIS__MANAGER = eINSTANCE.getIAxis_Manager();
@@ -3203,7 +2855,6 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute IAXIS__ALIAS = eINSTANCE.getIAxis_Alias();
@@ -3212,7 +2863,6 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Get Element</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EOperation IAXIS___GET_ELEMENT = eINSTANCE.getIAxis__GetElement();
@@ -3221,17 +2871,14 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Get Local Label Configuration</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EOperation IAXIS___GET_LOCAL_LABEL_CONFIGURATION = eINSTANCE.getIAxis__GetLocalLabelConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis
-		 * <em>ITree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getITreeItemAxis()
 		 * @generated
@@ -3242,7 +2889,6 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference ITREE_ITEM_AXIS__PARENT = eINSTANCE.getITreeItemAxis_Parent();
@@ -3251,7 +2897,6 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Expanded</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute ITREE_ITEM_AXIS__EXPANDED = eINSTANCE.getITreeItemAxis_Expanded();
@@ -3260,17 +2905,14 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Children</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference ITREE_ITEM_AXIS__CHILDREN = eINSTANCE.getITreeItemAxis_Children();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl <em>Id Axis</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl <em>Id Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getIdAxis()
 		 * @generated
@@ -3281,17 +2923,14 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute ID_AXIS__ELEMENT = eINSTANCE.getIdAxis_Element();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl
-		 * <em>Id Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl <em>Id Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getIdTreeItemAxis()
 		 * @generated
@@ -3299,11 +2938,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass ID_TREE_ITEM_AXIS = eINSTANCE.getIdTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl
-		 * <em>EObject Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getEObjectAxis()
 		 * @generated
@@ -3314,17 +2951,14 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference EOBJECT_AXIS__ELEMENT = eINSTANCE.getEObjectAxis_Element();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl
-		 * <em>EObject Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl <em>EObject Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getEObjectTreeItemAxis()
 		 * @generated
@@ -3332,11 +2966,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass EOBJECT_TREE_ITEM_AXIS = eINSTANCE.getEObjectTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl
-		 * <em>Feature Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl <em>Feature Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getFeatureAxis()
 		 * @generated
@@ -3347,17 +2979,14 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Local Label Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference FEATURE_AXIS__LOCAL_LABEL_CONFIGURATION = eINSTANCE.getFeatureAxis_LocalLabelConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl
-		 * <em>Feature Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl <em>Feature Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getFeatureTreeItemAxis()
 		 * @generated
@@ -3365,11 +2994,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass FEATURE_TREE_ITEM_AXIS = eINSTANCE.getFeatureTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl
-		 * <em>Object Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl <em>Object Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getObjectAxis()
 		 * @generated
@@ -3380,17 +3007,14 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Local Label Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION = eINSTANCE.getObjectAxis_LocalLabelConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl
-		 * <em>Object Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl <em>Object Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getObjectTreeItemAxis()
 		 * @generated
@@ -3398,11 +3022,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass OBJECT_TREE_ITEM_AXIS = eINSTANCE.getObjectTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl
-		 * <em>Feature Id Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl <em>Feature Id Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getFeatureIdAxis()
 		 * @generated
@@ -3410,11 +3032,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass FEATURE_ID_AXIS = eINSTANCE.getFeatureIdAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl
-		 * <em>Feature Id Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl <em>Feature Id Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getFeatureIdTreeItemAxis()
 		 * @generated
@@ -3422,11 +3042,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass FEATURE_ID_TREE_ITEM_AXIS = eINSTANCE.getFeatureIdTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl
-		 * <em>EStructural Feature Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl <em>EStructural Feature Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getEStructuralFeatureAxis()
 		 * @generated
@@ -3437,18 +3055,14 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference ESTRUCTURAL_FEATURE_AXIS__ELEMENT = eINSTANCE.getEStructuralFeatureAxis_Element();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl
-		 * <em>EStructural Feature Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl <em>EStructural Feature Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getEStructuralFeatureTreeItemAxis()
 		 * @generated
@@ -3456,11 +3070,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS = eINSTANCE.getEStructuralFeatureTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl
-		 * <em>Object Id Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl <em>Object Id Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getObjectIdAxis()
 		 * @generated
@@ -3468,11 +3080,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass OBJECT_ID_AXIS = eINSTANCE.getObjectIdAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl
-		 * <em>Object Id Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl <em>Object Id Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getObjectIdTreeItemAxis()
 		 * @generated
@@ -3480,11 +3090,9 @@ public interface NattableaxisPackage extends EPackage {
 		EClass OBJECT_ID_TREE_ITEM_AXIS = eINSTANCE.getObjectIdTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl
-		 * <em>Axis Group</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl <em>Axis Group</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getAxisGroup()
 		 * @generated
@@ -3495,7 +3103,6 @@ public interface NattableaxisPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Grouped Axis</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference AXIS_GROUP__GROUPED_AXIS = eINSTANCE.getAxisGroup_GroupedAxis();

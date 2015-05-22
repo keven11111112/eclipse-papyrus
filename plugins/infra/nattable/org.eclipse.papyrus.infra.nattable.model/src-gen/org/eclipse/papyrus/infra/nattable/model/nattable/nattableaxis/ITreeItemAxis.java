@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent <em>Parent</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded <em>Expanded</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren <em>Children</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren <em>Children</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getITreeItemAxis()
  * @model interface="true" abstract="true"
@@ -36,14 +36,12 @@ public interface ITreeItemAxis extends IAxis {
 
 	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren
-	 * <em>Children</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Parent</em>' reference.
 	 * @see #setParent(ITreeItemAxis)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getITreeItemAxis_Parent()
@@ -54,13 +52,10 @@ public interface ITreeItemAxis extends IAxis {
 	ITreeItemAxis getParent();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent <em>Parent</em>}'
-	 * reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent <em>Parent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Parent</em>' reference.
+	 * @param value the new value of the '<em>Parent</em>' reference.
 	 * @see #getParent()
 	 * @generated
 	 */
@@ -74,7 +69,6 @@ public interface ITreeItemAxis extends IAxis {
 	 * If the meaning of the '<em>Expanded</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Expanded</em>' attribute.
 	 * @see #setExpanded(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getITreeItemAxis_Expanded()
@@ -84,13 +78,10 @@ public interface ITreeItemAxis extends IAxis {
 	boolean isExpanded();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded <em>Expanded</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded <em>Expanded</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Expanded</em>' attribute.
+	 * @param value the new value of the '<em>Expanded</em>' attribute.
 	 * @see #isExpanded()
 	 * @generated
 	 */
@@ -99,14 +90,12 @@ public interface ITreeItemAxis extends IAxis {
 	/**
 	 * Returns the value of the '<em><b>Children</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent
-	 * <em>Parent</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Children</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Children</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getITreeItemAxis_Children()
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent

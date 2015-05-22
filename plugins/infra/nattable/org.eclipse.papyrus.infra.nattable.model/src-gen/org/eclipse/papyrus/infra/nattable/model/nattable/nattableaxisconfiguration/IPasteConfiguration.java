@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#getPostActions <em>Post Actions</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#isDetachedMode <em>Detached Mode</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#getPostActions <em>Post Actions</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#isDetachedMode <em>Detached Mode</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getIPasteConfiguration()
  * @model
@@ -43,9 +43,8 @@ public interface IPasteConfiguration extends IAxisConfiguration {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * This field references post actions, using a string to do during the paste, after the creation of the element.
+	 * This field references post actions, using a string to do during the paste, after the creation of the element. 
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Post Actions</em>' attribute list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getIPasteConfiguration_PostActions()
 	 * @model
@@ -62,7 +61,6 @@ public interface IPasteConfiguration extends IAxisConfiguration {
 	 * If true, the created elements will be added at the end of the paste and the set values
 	 * won't be do using the service edit
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Detached Mode</em>' attribute.
 	 * @see #setDetachedMode(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getIPasteConfiguration_DetachedMode()
@@ -72,13 +70,10 @@ public interface IPasteConfiguration extends IAxisConfiguration {
 	boolean isDetachedMode();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#isDetachedMode
-	 * <em>Detached Mode</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#isDetachedMode <em>Detached Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Detached Mode</em>' attribute.
+	 * @param value the new value of the '<em>Detached Mode</em>' attribute.
 	 * @see #isDetachedMode()
 	 * @generated
 	 */

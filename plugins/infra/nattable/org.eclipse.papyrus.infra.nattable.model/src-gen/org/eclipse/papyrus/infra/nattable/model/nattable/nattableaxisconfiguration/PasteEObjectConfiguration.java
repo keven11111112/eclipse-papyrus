@@ -25,14 +25,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPastedElementId <em>Pasted
- * Element Id</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPasteElementContainementFeature
- * <em>Paste Element Containement Feature</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPastedElementId <em>Pasted Element Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getPasteEObjectConfiguration()
  * @model
@@ -47,7 +44,6 @@ public interface PasteEObjectConfiguration extends IPasteConfiguration {
 	 * <!-- begin-model-doc -->
 	 * The String representing the EClass of the elements to create (see papyrus services types for further information)
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Pasted Element Id</em>' attribute.
 	 * @see #setPastedElementId(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getPasteEObjectConfiguration_PastedElementId()
@@ -57,14 +53,10 @@ public interface PasteEObjectConfiguration extends IPasteConfiguration {
 	String getPastedElementId();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPastedElementId
-	 * <em>Pasted Element Id</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPastedElementId <em>Pasted Element Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Pasted Element Id</em>' attribute.
+	 * @param value the new value of the '<em>Pasted Element Id</em>' attribute.
 	 * @see #getPastedElementId()
 	 * @generated
 	 */
@@ -77,7 +69,6 @@ public interface PasteEObjectConfiguration extends IPasteConfiguration {
 	 * <!-- begin-model-doc -->
 	 * This field references the feature of the context of the table in which the created element will be added.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Paste Element Containement Feature</em>' reference.
 	 * @see #setPasteElementContainementFeature(EStructuralFeature)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getPasteEObjectConfiguration_PasteElementContainementFeature()
@@ -87,14 +78,10 @@ public interface PasteEObjectConfiguration extends IPasteConfiguration {
 	EStructuralFeature getPasteElementContainementFeature();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPasteElementContainementFeature
-	 * <em>Paste Element Containement Feature</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Paste Element Containement Feature</em>' reference.
+	 * @param value the new value of the '<em>Paste Element Containement Feature</em>' reference.
 	 * @see #getPasteElementContainementFeature()
 	 * @generated
 	 */

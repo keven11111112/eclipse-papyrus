@@ -28,7 +28,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ProblemItemProvider extends TableNamedElementItemProvider {
@@ -36,7 +35,6 @@ public class ProblemItemProvider extends TableNamedElementItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProblemItemProvider(AdapterFactory adapterFactory) {
@@ -47,7 +45,6 @@ public class ProblemItemProvider extends TableNamedElementItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +60,6 @@ public class ProblemItemProvider extends TableNamedElementItemProvider {
 	 * This returns Problem.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,15 +71,14 @@ public class ProblemItemProvider extends TableNamedElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Problem) object).getName();
+		String label = ((Problem)object).getName();
 		return label == null || label.length() == 0 ?
-				getString("_UI_Problem_type") : //$NON-NLS-1$
-				getString("_UI_Problem_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_Problem_type") : //$NON-NLS-1$
+			getString("_UI_Problem_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -92,7 +87,6 @@ public class ProblemItemProvider extends TableNamedElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,7 +100,6 @@ public class ProblemItemProvider extends TableNamedElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,7 +111,6 @@ public class ProblemItemProvider extends TableNamedElementItemProvider {
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

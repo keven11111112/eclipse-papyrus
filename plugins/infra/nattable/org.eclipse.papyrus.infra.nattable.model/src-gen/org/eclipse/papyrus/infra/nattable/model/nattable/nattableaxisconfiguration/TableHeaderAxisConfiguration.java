@@ -25,16 +25,14 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration#getAxisManagers <em>Axis
- * Managers</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration#getAxisManagers <em>Axis Managers</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getTableHeaderAxisConfiguration()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='axisManagersIdUnique'"
- *        annotation=
- *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot axisManagersIdUnique='axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId <> am2.axisManagerId)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot axisManagersIdUnique='axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId <> am2.axisManagerId)'"
  * @generated
  */
 public interface TableHeaderAxisConfiguration extends AbstractHeaderAxisConfiguration {
@@ -47,7 +45,6 @@ public interface TableHeaderAxisConfiguration extends AbstractHeaderAxisConfigur
 	 * <!-- begin-model-doc -->
 	 * This list can't be empty. The list of the AxisManager used to fill the axis.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Axis Managers</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getTableHeaderAxisConfiguration_AxisManagers()
 	 * @model containment="true" required="true"

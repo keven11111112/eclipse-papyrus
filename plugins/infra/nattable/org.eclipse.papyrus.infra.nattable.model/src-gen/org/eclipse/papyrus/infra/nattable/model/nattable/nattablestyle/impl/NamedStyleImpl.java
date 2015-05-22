@@ -25,10 +25,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NamedStyleImpl#getName <em>Name</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NamedStyleImpl#getName <em>Name</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -38,7 +38,6 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -59,7 +57,6 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected NamedStyleImpl() {
@@ -69,7 +66,6 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -80,7 +76,6 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -91,29 +86,26 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.NAMED_STYLE__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.NAMED_STYLE__NAME:
-			return getName();
+		switch (featureID) {
+			case NattablestylePackage.NAMED_STYLE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,15 +113,14 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.NAMED_STYLE__NAME:
-			setName((String)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.NAMED_STYLE__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -137,15 +128,14 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.NAMED_STYLE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.NAMED_STYLE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,14 +143,13 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.NAMED_STYLE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		switch (featureID) {
+			case NattablestylePackage.NAMED_STYLE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -168,14 +157,12 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);

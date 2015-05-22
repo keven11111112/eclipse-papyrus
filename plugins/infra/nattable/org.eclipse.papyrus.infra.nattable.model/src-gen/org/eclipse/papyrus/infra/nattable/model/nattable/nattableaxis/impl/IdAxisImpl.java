@@ -31,12 +31,12 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl#getManager <em>Manager</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl#getAlias <em>Alias</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl#getElement <em>Element</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl#getManager <em>Manager</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl#getAlias <em>Alias</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl#getElement <em>Element</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -46,7 +46,6 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	 * The cached value of the '{@link #getManager() <em>Manager</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getManager()
 	 * @generated
 	 * @ordered
@@ -57,7 +56,6 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	 * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getAlias()
 	 * @generated
 	 * @ordered
@@ -68,7 +66,6 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	 * The cached value of the '{@link #getAlias() <em>Alias</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getAlias()
 	 * @generated
 	 * @ordered
@@ -79,7 +76,6 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	 * The default value of the '{@link #getElement() <em>Element</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getElement()
 	 * @generated
 	 * @ordered
@@ -90,7 +86,6 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	 * The cached value of the '{@link #getElement() <em>Element</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getElement()
 	 * @generated
 	 * @ordered
@@ -100,7 +95,6 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected IdAxisImpl() {
@@ -110,7 +104,6 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -121,18 +114,16 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public AxisManagerRepresentation getManager() {
-		if(manager != null && manager.eIsProxy()) {
+		if (manager != null && manager.eIsProxy()) {
 			InternalEObject oldManager = (InternalEObject)manager;
 			manager = (AxisManagerRepresentation)eResolveProxy(oldManager);
-			if(manager != oldManager) {
-				if(eNotificationRequired()) {
+			if (manager != oldManager) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisPackage.ID_AXIS__MANAGER, oldManager, manager));
-				}
 			}
 		}
 		return manager;
@@ -141,7 +132,6 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public AxisManagerRepresentation basicGetManager() {
@@ -151,22 +141,19 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setManager(AxisManagerRepresentation newManager) {
 		AxisManagerRepresentation oldManager = manager;
 		manager = newManager;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.ID_AXIS__MANAGER, oldManager, manager));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -177,22 +164,19 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setAlias(String newAlias) {
 		String oldAlias = alias;
 		alias = newAlias;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.ID_AXIS__ALIAS, oldAlias, alias));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -203,22 +187,19 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setElement(String newElement) {
 		String oldElement = element;
 		element = newElement;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.ID_AXIS__ELEMENT, oldElement, element));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -231,21 +212,18 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattableaxisPackage.ID_AXIS__MANAGER:
-			if(resolve) {
-				return getManager();
-			}
-			return basicGetManager();
-		case NattableaxisPackage.ID_AXIS__ALIAS:
-			return getAlias();
-		case NattableaxisPackage.ID_AXIS__ELEMENT:
-			return getElement();
+		switch (featureID) {
+			case NattableaxisPackage.ID_AXIS__MANAGER:
+				if (resolve) return getManager();
+				return basicGetManager();
+			case NattableaxisPackage.ID_AXIS__ALIAS:
+				return getAlias();
+			case NattableaxisPackage.ID_AXIS__ELEMENT:
+				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -253,21 +231,20 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattableaxisPackage.ID_AXIS__MANAGER:
-			setManager((AxisManagerRepresentation)newValue);
-			return;
-		case NattableaxisPackage.ID_AXIS__ALIAS:
-			setAlias((String)newValue);
-			return;
-		case NattableaxisPackage.ID_AXIS__ELEMENT:
-			setElement((String)newValue);
-			return;
+		switch (featureID) {
+			case NattableaxisPackage.ID_AXIS__MANAGER:
+				setManager((AxisManagerRepresentation)newValue);
+				return;
+			case NattableaxisPackage.ID_AXIS__ALIAS:
+				setAlias((String)newValue);
+				return;
+			case NattableaxisPackage.ID_AXIS__ELEMENT:
+				setElement((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -275,21 +252,20 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattableaxisPackage.ID_AXIS__MANAGER:
-			setManager((AxisManagerRepresentation)null);
-			return;
-		case NattableaxisPackage.ID_AXIS__ALIAS:
-			setAlias(ALIAS_EDEFAULT);
-			return;
-		case NattableaxisPackage.ID_AXIS__ELEMENT:
-			setElement(ELEMENT_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattableaxisPackage.ID_AXIS__MANAGER:
+				setManager((AxisManagerRepresentation)null);
+				return;
+			case NattableaxisPackage.ID_AXIS__ALIAS:
+				setAlias(ALIAS_EDEFAULT);
+				return;
+			case NattableaxisPackage.ID_AXIS__ELEMENT:
+				setElement(ELEMENT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -297,18 +273,17 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattableaxisPackage.ID_AXIS__MANAGER:
-			return manager != null;
-		case NattableaxisPackage.ID_AXIS__ALIAS:
-			return ALIAS_EDEFAULT == null ? alias != null : !ALIAS_EDEFAULT.equals(alias);
-		case NattableaxisPackage.ID_AXIS__ELEMENT:
-			return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
+		switch (featureID) {
+			case NattableaxisPackage.ID_AXIS__MANAGER:
+				return manager != null;
+			case NattableaxisPackage.ID_AXIS__ALIAS:
+				return ALIAS_EDEFAULT == null ? alias != null : !ALIAS_EDEFAULT.equals(alias);
+			case NattableaxisPackage.ID_AXIS__ELEMENT:
+				return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -316,14 +291,13 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch(operationID) {
-		case NattableaxisPackage.ID_AXIS___GET_LOCAL_LABEL_CONFIGURATION:
-			return getLocalLabelConfiguration();
+		switch (operationID) {
+			case NattableaxisPackage.ID_AXIS___GET_LOCAL_LABEL_CONFIGURATION:
+				return getLocalLabelConfiguration();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -331,14 +305,12 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (alias: "); //$NON-NLS-1$
 		result.append(alias);

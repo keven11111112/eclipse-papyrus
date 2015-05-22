@@ -21,8 +21,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Problem</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -31,7 +29,6 @@ public class ProblemImpl extends TableNamedElementImpl implements Problem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ProblemImpl() {
@@ -41,7 +38,6 @@ public class ProblemImpl extends TableNamedElementImpl implements Problem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

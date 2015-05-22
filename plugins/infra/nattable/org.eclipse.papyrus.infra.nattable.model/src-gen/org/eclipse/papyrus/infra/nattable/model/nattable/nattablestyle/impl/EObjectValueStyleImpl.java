@@ -26,10 +26,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectValueStyleImpl#getEObjectValue <em>EObject Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectValueStyleImpl#getEObjectValue <em>EObject Value</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -39,7 +39,6 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	 * The cached value of the '{@link #getEObjectValue() <em>EObject Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getEObjectValue()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected EObjectValueStyleImpl() {
@@ -59,7 +57,6 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -70,18 +67,16 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject getEObjectValue() {
-		if(eObjectValue != null && eObjectValue.eIsProxy()) {
+		if (eObjectValue != null && eObjectValue.eIsProxy()) {
 			InternalEObject oldEObjectValue = (InternalEObject)eObjectValue;
 			eObjectValue = eResolveProxy(oldEObjectValue);
-			if(eObjectValue != oldEObjectValue) {
-				if(eNotificationRequired()) {
+			if (eObjectValue != oldEObjectValue) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE, oldEObjectValue, eObjectValue));
-				}
 			}
 		}
 		return eObjectValue;
@@ -90,7 +85,6 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EObject basicGetEObjectValue() {
@@ -100,32 +94,27 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setEObjectValue(EObject newEObjectValue) {
 		EObject oldEObjectValue = eObjectValue;
 		eObjectValue = newEObjectValue;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE, oldEObjectValue, eObjectValue));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE:
-			if(resolve) {
-				return getEObjectValue();
-			}
-			return basicGetEObjectValue();
+		switch (featureID) {
+			case NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE:
+				if (resolve) return getEObjectValue();
+				return basicGetEObjectValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -133,15 +122,14 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE:
-			setEObjectValue((EObject)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE:
+				setEObjectValue((EObject)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -149,15 +137,14 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE:
-			setEObjectValue((EObject)null);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE:
+				setEObjectValue((EObject)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -165,14 +152,13 @@ public class EObjectValueStyleImpl extends NamedStyleImpl implements EObjectValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE:
-			return eObjectValue != null;
+		switch (featureID) {
+			case NattablestylePackage.EOBJECT_VALUE_STYLE__EOBJECT_VALUE:
+				return eObjectValue != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -23,10 +23,10 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle#getIntValue <em>Int Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle#getIntValue <em>Int Value</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getIntValueStyle()
  * @model
@@ -41,7 +41,6 @@ public interface IntValueStyle extends NamedStyle {
 	 * If the meaning of the '<em>Int Value</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Int Value</em>' attribute.
 	 * @see #setIntValue(int)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getIntValueStyle_IntValue()
@@ -51,13 +50,10 @@ public interface IntValueStyle extends NamedStyle {
 	int getIntValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle#getIntValue <em>Int Value</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle#getIntValue <em>Int Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Int Value</em>' attribute.
+	 * @param value the new value of the '<em>Int Value</em>' attribute.
 	 * @see #getIntValue()
 	 * @generated
 	 */

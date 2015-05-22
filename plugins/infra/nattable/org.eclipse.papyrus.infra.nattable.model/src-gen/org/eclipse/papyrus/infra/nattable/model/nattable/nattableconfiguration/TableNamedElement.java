@@ -25,11 +25,11 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getDescription <em>Description</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getName <em>Name</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getName <em>Name</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableNamedElement()
  * @model abstract="true"
@@ -46,7 +46,6 @@ public interface TableNamedElement extends StyledElement {
 	 * <!-- begin-model-doc -->
 	 * The description of the named element.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableNamedElement_Description()
@@ -56,13 +55,10 @@ public interface TableNamedElement extends StyledElement {
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getDescription
-	 * <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Description</em>' attribute.
+	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
 	 * @generated
 	 */
@@ -75,7 +71,6 @@ public interface TableNamedElement extends StyledElement {
 	 * <!-- begin-model-doc -->
 	 * The name of the named element.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableNamedElement_Name()
@@ -85,13 +80,10 @@ public interface TableNamedElement extends StyledElement {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getName <em>Name</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */

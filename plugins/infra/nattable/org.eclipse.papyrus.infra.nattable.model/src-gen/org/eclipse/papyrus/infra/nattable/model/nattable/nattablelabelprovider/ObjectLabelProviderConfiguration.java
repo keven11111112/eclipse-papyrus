@@ -18,22 +18,18 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * LabelProviderConfiguration for Object. In case of Object we have two display options :
- * <ul>
- * <li>display the icon of the object</li>
- * <li>display the label of the object</li>
- * </ul>
+ * LabelProviderConfiguration for Object. In case of Object we have two display options : 
+ * <ul><li>display the icon of the object</li> 
+ * <li>display the label of the object</li> </ul>
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayIcon <em>Display Icon
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayLabel <em>Display
- * Label</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayIcon <em>Display Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getObjectLabelProviderConfiguration()
  * @model
@@ -49,7 +45,6 @@ public interface ObjectLabelProviderConfiguration extends ILabelProviderConfigur
 	 * <!-- begin-model-doc -->
 	 * If true, we will display the icon of the object
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Display Icon</em>' attribute.
 	 * @see #setDisplayIcon(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getObjectLabelProviderConfiguration_DisplayIcon()
@@ -59,14 +54,10 @@ public interface ObjectLabelProviderConfiguration extends ILabelProviderConfigur
 	boolean isDisplayIcon();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayIcon
-	 * <em>Display Icon</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayIcon <em>Display Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Display Icon</em>' attribute.
+	 * @param value the new value of the '<em>Display Icon</em>' attribute.
 	 * @see #isDisplayIcon()
 	 * @generated
 	 */
@@ -80,7 +71,6 @@ public interface ObjectLabelProviderConfiguration extends ILabelProviderConfigur
 	 * <!-- begin-model-doc -->
 	 * If true, we will display the label of the object
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Display Label</em>' attribute.
 	 * @see #setDisplayLabel(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getObjectLabelProviderConfiguration_DisplayLabel()
@@ -90,14 +80,10 @@ public interface ObjectLabelProviderConfiguration extends ILabelProviderConfigur
 	boolean isDisplayLabel();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayLabel
-	 * <em>Display Label</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Display Label</em>' attribute.
+	 * @param value the new value of the '<em>Display Label</em>' attribute.
 	 * @see #isDisplayLabel()
 	 * @generated
 	 */

@@ -36,7 +36,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTree
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class NattableaxisFactoryImpl extends EFactoryImpl implements NattableaxisFactory {
@@ -45,16 +44,16 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static NattableaxisFactory init() {
 		try {
 			NattableaxisFactory theNattableaxisFactory = (NattableaxisFactory)EPackage.Registry.INSTANCE.getEFactory(NattableaxisPackage.eNS_URI);
-			if(theNattableaxisFactory != null) {
+			if (theNattableaxisFactory != null) {
 				return theNattableaxisFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NattableaxisFactoryImpl();
@@ -64,7 +63,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattableaxisFactoryImpl() {
@@ -74,45 +72,31 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case NattableaxisPackage.ID_TREE_ITEM_AXIS:
-			return createIdTreeItemAxis();
-		case NattableaxisPackage.EOBJECT_AXIS:
-			return createEObjectAxis();
-		case NattableaxisPackage.EOBJECT_TREE_ITEM_AXIS:
-			return createEObjectTreeItemAxis();
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS:
-			return createFeatureTreeItemAxis();
-		case NattableaxisPackage.OBJECT_TREE_ITEM_AXIS:
-			return createObjectTreeItemAxis();
-		case NattableaxisPackage.FEATURE_ID_AXIS:
-			return createFeatureIdAxis();
-		case NattableaxisPackage.FEATURE_ID_TREE_ITEM_AXIS:
-			return createFeatureIdTreeItemAxis();
-		case NattableaxisPackage.ESTRUCTURAL_FEATURE_AXIS:
-			return createEStructuralFeatureAxis();
-		case NattableaxisPackage.ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS:
-			return createEStructuralFeatureTreeItemAxis();
-		case NattableaxisPackage.OBJECT_ID_AXIS:
-			return createObjectIdAxis();
-		case NattableaxisPackage.OBJECT_ID_TREE_ITEM_AXIS:
-			return createObjectIdTreeItemAxis();
-		case NattableaxisPackage.AXIS_GROUP:
-			return createAxisGroup();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch (eClass.getClassifierID()) {
+			case NattableaxisPackage.ID_TREE_ITEM_AXIS: return createIdTreeItemAxis();
+			case NattableaxisPackage.EOBJECT_AXIS: return createEObjectAxis();
+			case NattableaxisPackage.EOBJECT_TREE_ITEM_AXIS: return createEObjectTreeItemAxis();
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS: return createFeatureTreeItemAxis();
+			case NattableaxisPackage.OBJECT_TREE_ITEM_AXIS: return createObjectTreeItemAxis();
+			case NattableaxisPackage.FEATURE_ID_AXIS: return createFeatureIdAxis();
+			case NattableaxisPackage.FEATURE_ID_TREE_ITEM_AXIS: return createFeatureIdTreeItemAxis();
+			case NattableaxisPackage.ESTRUCTURAL_FEATURE_AXIS: return createEStructuralFeatureAxis();
+			case NattableaxisPackage.ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS: return createEStructuralFeatureTreeItemAxis();
+			case NattableaxisPackage.OBJECT_ID_AXIS: return createObjectIdAxis();
+			case NattableaxisPackage.OBJECT_ID_TREE_ITEM_AXIS: return createObjectIdTreeItemAxis();
+			case NattableaxisPackage.AXIS_GROUP: return createAxisGroup();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -124,7 +108,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -136,7 +119,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -148,7 +130,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -160,7 +141,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -172,7 +152,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -184,7 +163,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -196,7 +174,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -208,7 +185,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -220,7 +196,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -232,7 +207,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -244,7 +218,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -256,7 +229,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -267,7 +239,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @deprecated
 	 * @generated
 	 */

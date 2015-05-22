@@ -36,7 +36,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementItemProvider {
@@ -44,7 +43,6 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractHeaderAxisConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -55,7 +53,6 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,100 +72,96 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This adds a property descriptor for the Index Style feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIndexStylePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AbstractHeaderAxisConfiguration_indexStyle_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AbstractHeaderAxisConfiguration_indexStyle_feature", "_UI_AbstractHeaderAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractHeaderAxisConfiguration_indexStyle_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractHeaderAxisConfiguration_indexStyle_feature", "_UI_AbstractHeaderAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Display Label feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDisplayLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AbstractHeaderAxisConfiguration_displayLabel_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AbstractHeaderAxisConfiguration_displayLabel_feature", "_UI_AbstractHeaderAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractHeaderAxisConfiguration_displayLabel_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractHeaderAxisConfiguration_displayLabel_feature", "_UI_AbstractHeaderAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Display Filter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDisplayFilterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AbstractHeaderAxisConfiguration_displayFilter_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AbstractHeaderAxisConfiguration_displayFilter_feature", "_UI_AbstractHeaderAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractHeaderAxisConfiguration_displayFilter_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractHeaderAxisConfiguration_displayFilter_feature", "_UI_AbstractHeaderAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Display Index feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDisplayIndexPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AbstractHeaderAxisConfiguration_displayIndex_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AbstractHeaderAxisConfiguration_displayIndex_feature", "_UI_AbstractHeaderAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractHeaderAxisConfiguration_displayIndex_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractHeaderAxisConfiguration_displayIndex_feature", "_UI_AbstractHeaderAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +177,6 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,16 +191,15 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		AxisIndexStyle labelValue = ((AbstractHeaderAxisConfiguration) object).getIndexStyle();
+		AxisIndexStyle labelValue = ((AbstractHeaderAxisConfiguration)object).getIndexStyle();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-				getString("_UI_AbstractHeaderAxisConfiguration_type") : //$NON-NLS-1$
-				getString("_UI_AbstractHeaderAxisConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_AbstractHeaderAxisConfiguration_type") : //$NON-NLS-1$
+			getString("_UI_AbstractHeaderAxisConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -217,7 +208,6 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -225,16 +215,16 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AbstractHeaderAxisConfiguration.class)) {
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -244,7 +234,6 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -252,46 +241,45 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS,
-						NattablelabelproviderFactory.eINSTANCE.createObjectLabelProviderConfiguration()));
+				 NattablelabelproviderFactory.eINSTANCE.createObjectLabelProviderConfiguration()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS,
-						NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
+				 NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS,
-						NattableaxisconfigurationFactory.eINSTANCE.createFeatureAxisConfiguration()));
+				 NattableaxisconfigurationFactory.eINSTANCE.createFeatureAxisConfiguration()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS,
-						NattableaxisconfigurationFactory.eINSTANCE.createEStructuralFeatureValueFillingConfiguration()));
+				 NattableaxisconfigurationFactory.eINSTANCE.createEStructuralFeatureValueFillingConfiguration()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS,
-						NattableaxisconfigurationFactory.eINSTANCE.createIPasteConfiguration()));
+				 NattableaxisconfigurationFactory.eINSTANCE.createIPasteConfiguration()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS,
-						NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration()));
+				 NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS,
-						NattableaxisconfigurationFactory.eINSTANCE.createTreeFillingConfiguration()));
+				 NattableaxisconfigurationFactory.eINSTANCE.createTreeFillingConfiguration()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

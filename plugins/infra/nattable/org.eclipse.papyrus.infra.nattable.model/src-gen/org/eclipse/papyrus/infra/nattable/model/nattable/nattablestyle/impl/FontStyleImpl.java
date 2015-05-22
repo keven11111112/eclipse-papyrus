@@ -25,16 +25,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#getFontColor <em>Font Color</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#getFontName <em>Font Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#getFontHeight <em>Font Height</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#isBold <em>Bold</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#isItalic <em>Italic</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#isUnderline <em>Underline</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#isStrikeThrough <em>Strike Through</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#getFontColor <em>Font Color</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#getFontName <em>Font Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#getFontHeight <em>Font Height</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#isBold <em>Bold</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#isItalic <em>Italic</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#isUnderline <em>Underline</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl#isStrikeThrough <em>Strike Through</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -44,7 +44,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The default value of the '{@link #getFontColor() <em>Font Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getFontColor()
 	 * @generated
 	 * @ordered
@@ -55,7 +54,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The cached value of the '{@link #getFontColor() <em>Font Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getFontColor()
 	 * @generated
 	 * @ordered
@@ -66,7 +64,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The default value of the '{@link #getFontName() <em>Font Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getFontName()
 	 * @generated
 	 * @ordered
@@ -77,7 +74,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The cached value of the '{@link #getFontName() <em>Font Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getFontName()
 	 * @generated
 	 * @ordered
@@ -88,7 +84,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The default value of the '{@link #getFontHeight() <em>Font Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getFontHeight()
 	 * @generated
 	 * @ordered
@@ -99,7 +94,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The cached value of the '{@link #getFontHeight() <em>Font Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getFontHeight()
 	 * @generated
 	 * @ordered
@@ -110,7 +104,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The default value of the '{@link #isBold() <em>Bold</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isBold()
 	 * @generated
 	 * @ordered
@@ -121,7 +114,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The cached value of the '{@link #isBold() <em>Bold</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isBold()
 	 * @generated
 	 * @ordered
@@ -132,7 +124,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The default value of the '{@link #isItalic() <em>Italic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isItalic()
 	 * @generated
 	 * @ordered
@@ -143,7 +134,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The cached value of the '{@link #isItalic() <em>Italic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isItalic()
 	 * @generated
 	 * @ordered
@@ -154,7 +144,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The default value of the '{@link #isUnderline() <em>Underline</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isUnderline()
 	 * @generated
 	 * @ordered
@@ -165,7 +154,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The cached value of the '{@link #isUnderline() <em>Underline</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isUnderline()
 	 * @generated
 	 * @ordered
@@ -176,7 +164,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The default value of the '{@link #isStrikeThrough() <em>Strike Through</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isStrikeThrough()
 	 * @generated
 	 * @ordered
@@ -187,7 +174,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 * The cached value of the '{@link #isStrikeThrough() <em>Strike Through</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isStrikeThrough()
 	 * @generated
 	 * @ordered
@@ -197,7 +183,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected FontStyleImpl() {
@@ -207,7 +192,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -218,7 +202,6 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -229,22 +212,19 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setFontColor(int newFontColor) {
 		int oldFontColor = fontColor;
 		fontColor = newFontColor;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__FONT_COLOR, oldFontColor, fontColor));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -255,22 +235,19 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setFontName(String newFontName) {
 		String oldFontName = fontName;
 		fontName = newFontName;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__FONT_NAME, oldFontName, fontName));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -281,22 +258,19 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setFontHeight(int newFontHeight) {
 		int oldFontHeight = fontHeight;
 		fontHeight = newFontHeight;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__FONT_HEIGHT, oldFontHeight, fontHeight));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -307,22 +281,19 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setBold(boolean newBold) {
 		boolean oldBold = bold;
 		bold = newBold;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__BOLD, oldBold, bold));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -333,22 +304,19 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setItalic(boolean newItalic) {
 		boolean oldItalic = italic;
 		italic = newItalic;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__ITALIC, oldItalic, italic));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -359,22 +327,19 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setUnderline(boolean newUnderline) {
 		boolean oldUnderline = underline;
 		underline = newUnderline;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__UNDERLINE, oldUnderline, underline));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -385,41 +350,38 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setStrikeThrough(boolean newStrikeThrough) {
 		boolean oldStrikeThrough = strikeThrough;
 		strikeThrough = newStrikeThrough;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__STRIKE_THROUGH, oldStrikeThrough, strikeThrough));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.FONT_STYLE__FONT_COLOR:
-			return getFontColor();
-		case NattablestylePackage.FONT_STYLE__FONT_NAME:
-			return getFontName();
-		case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
-			return getFontHeight();
-		case NattablestylePackage.FONT_STYLE__BOLD:
-			return isBold();
-		case NattablestylePackage.FONT_STYLE__ITALIC:
-			return isItalic();
-		case NattablestylePackage.FONT_STYLE__UNDERLINE:
-			return isUnderline();
-		case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
-			return isStrikeThrough();
+		switch (featureID) {
+			case NattablestylePackage.FONT_STYLE__FONT_COLOR:
+				return getFontColor();
+			case NattablestylePackage.FONT_STYLE__FONT_NAME:
+				return getFontName();
+			case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
+				return getFontHeight();
+			case NattablestylePackage.FONT_STYLE__BOLD:
+				return isBold();
+			case NattablestylePackage.FONT_STYLE__ITALIC:
+				return isItalic();
+			case NattablestylePackage.FONT_STYLE__UNDERLINE:
+				return isUnderline();
+			case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
+				return isStrikeThrough();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -427,33 +389,32 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.FONT_STYLE__FONT_COLOR:
-			setFontColor((Integer)newValue);
-			return;
-		case NattablestylePackage.FONT_STYLE__FONT_NAME:
-			setFontName((String)newValue);
-			return;
-		case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
-			setFontHeight((Integer)newValue);
-			return;
-		case NattablestylePackage.FONT_STYLE__BOLD:
-			setBold((Boolean)newValue);
-			return;
-		case NattablestylePackage.FONT_STYLE__ITALIC:
-			setItalic((Boolean)newValue);
-			return;
-		case NattablestylePackage.FONT_STYLE__UNDERLINE:
-			setUnderline((Boolean)newValue);
-			return;
-		case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
-			setStrikeThrough((Boolean)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.FONT_STYLE__FONT_COLOR:
+				setFontColor((Integer)newValue);
+				return;
+			case NattablestylePackage.FONT_STYLE__FONT_NAME:
+				setFontName((String)newValue);
+				return;
+			case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
+				setFontHeight((Integer)newValue);
+				return;
+			case NattablestylePackage.FONT_STYLE__BOLD:
+				setBold((Boolean)newValue);
+				return;
+			case NattablestylePackage.FONT_STYLE__ITALIC:
+				setItalic((Boolean)newValue);
+				return;
+			case NattablestylePackage.FONT_STYLE__UNDERLINE:
+				setUnderline((Boolean)newValue);
+				return;
+			case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
+				setStrikeThrough((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -461,33 +422,32 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.FONT_STYLE__FONT_COLOR:
-			setFontColor(FONT_COLOR_EDEFAULT);
-			return;
-		case NattablestylePackage.FONT_STYLE__FONT_NAME:
-			setFontName(FONT_NAME_EDEFAULT);
-			return;
-		case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
-			setFontHeight(FONT_HEIGHT_EDEFAULT);
-			return;
-		case NattablestylePackage.FONT_STYLE__BOLD:
-			setBold(BOLD_EDEFAULT);
-			return;
-		case NattablestylePackage.FONT_STYLE__ITALIC:
-			setItalic(ITALIC_EDEFAULT);
-			return;
-		case NattablestylePackage.FONT_STYLE__UNDERLINE:
-			setUnderline(UNDERLINE_EDEFAULT);
-			return;
-		case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
-			setStrikeThrough(STRIKE_THROUGH_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.FONT_STYLE__FONT_COLOR:
+				setFontColor(FONT_COLOR_EDEFAULT);
+				return;
+			case NattablestylePackage.FONT_STYLE__FONT_NAME:
+				setFontName(FONT_NAME_EDEFAULT);
+				return;
+			case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
+				setFontHeight(FONT_HEIGHT_EDEFAULT);
+				return;
+			case NattablestylePackage.FONT_STYLE__BOLD:
+				setBold(BOLD_EDEFAULT);
+				return;
+			case NattablestylePackage.FONT_STYLE__ITALIC:
+				setItalic(ITALIC_EDEFAULT);
+				return;
+			case NattablestylePackage.FONT_STYLE__UNDERLINE:
+				setUnderline(UNDERLINE_EDEFAULT);
+				return;
+			case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
+				setStrikeThrough(STRIKE_THROUGH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -495,26 +455,25 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.FONT_STYLE__FONT_COLOR:
-			return fontColor != FONT_COLOR_EDEFAULT;
-		case NattablestylePackage.FONT_STYLE__FONT_NAME:
-			return FONT_NAME_EDEFAULT == null ? fontName != null : !FONT_NAME_EDEFAULT.equals(fontName);
-		case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
-			return fontHeight != FONT_HEIGHT_EDEFAULT;
-		case NattablestylePackage.FONT_STYLE__BOLD:
-			return bold != BOLD_EDEFAULT;
-		case NattablestylePackage.FONT_STYLE__ITALIC:
-			return italic != ITALIC_EDEFAULT;
-		case NattablestylePackage.FONT_STYLE__UNDERLINE:
-			return underline != UNDERLINE_EDEFAULT;
-		case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
-			return strikeThrough != STRIKE_THROUGH_EDEFAULT;
+		switch (featureID) {
+			case NattablestylePackage.FONT_STYLE__FONT_COLOR:
+				return fontColor != FONT_COLOR_EDEFAULT;
+			case NattablestylePackage.FONT_STYLE__FONT_NAME:
+				return FONT_NAME_EDEFAULT == null ? fontName != null : !FONT_NAME_EDEFAULT.equals(fontName);
+			case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
+				return fontHeight != FONT_HEIGHT_EDEFAULT;
+			case NattablestylePackage.FONT_STYLE__BOLD:
+				return bold != BOLD_EDEFAULT;
+			case NattablestylePackage.FONT_STYLE__ITALIC:
+				return italic != ITALIC_EDEFAULT;
+			case NattablestylePackage.FONT_STYLE__UNDERLINE:
+				return underline != UNDERLINE_EDEFAULT;
+			case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
+				return strikeThrough != STRIKE_THROUGH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -522,14 +481,12 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (fontColor: "); //$NON-NLS-1$
 		result.append(fontColor);

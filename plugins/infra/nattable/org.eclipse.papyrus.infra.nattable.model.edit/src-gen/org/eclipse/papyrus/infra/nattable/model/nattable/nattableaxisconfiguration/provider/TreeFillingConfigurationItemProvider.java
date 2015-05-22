@@ -34,7 +34,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TreeFillingConfigurationItemProvider extends StyledElementItemProvider {
@@ -42,7 +41,6 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TreeFillingConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -53,7 +51,6 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,100 +70,96 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 	 * This adds a property descriptor for the Paste Configuration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addPasteConfigurationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TreeFillingConfiguration_pasteConfiguration_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TreeFillingConfiguration_pasteConfiguration_feature", "_UI_TreeFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__PASTE_CONFIGURATION,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TreeFillingConfiguration_pasteConfiguration_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TreeFillingConfiguration_pasteConfiguration_feature", "_UI_TreeFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__PASTE_CONFIGURATION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Depth feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDepthPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TreeFillingConfiguration_depth_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TreeFillingConfiguration_depth_feature", "_UI_TreeFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__DEPTH,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TreeFillingConfiguration_depth_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TreeFillingConfiguration_depth_feature", "_UI_TreeFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__DEPTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Label Provider feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addLabelProviderPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TreeFillingConfiguration_labelProvider_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TreeFillingConfiguration_labelProvider_feature", "_UI_TreeFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TreeFillingConfiguration_labelProvider_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TreeFillingConfiguration_labelProvider_feature", "_UI_TreeFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Label Provider Context feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addLabelProviderContextPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TreeFillingConfiguration_labelProviderContext_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TreeFillingConfiguration_labelProviderContext_feature", "_UI_TreeFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TreeFillingConfiguration_labelProviderContext_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TreeFillingConfiguration_labelProviderContext_feature", "_UI_TreeFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,7 +174,6 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,7 +188,6 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 	 * This returns TreeFillingConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -208,12 +199,11 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		TreeFillingConfiguration treeFillingConfiguration = (TreeFillingConfiguration) object;
+		TreeFillingConfiguration treeFillingConfiguration = (TreeFillingConfiguration)object;
 		return getString("_UI_TreeFillingConfiguration_type") + " " + treeFillingConfiguration.getDepth(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -223,7 +213,6 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -231,13 +220,13 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TreeFillingConfiguration.class)) {
-		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__DEPTH:
-		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__DEPTH:
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -247,7 +236,6 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,71 +243,70 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createIdTreeItemAxis()));
+				 NattableaxisFactory.eINSTANCE.createIdTreeItemAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createEObjectAxis()));
+				 NattableaxisFactory.eINSTANCE.createEObjectAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createEObjectTreeItemAxis()));
+				 NattableaxisFactory.eINSTANCE.createEObjectTreeItemAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createFeatureTreeItemAxis()));
+				 NattableaxisFactory.eINSTANCE.createFeatureTreeItemAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createObjectTreeItemAxis()));
+				 NattableaxisFactory.eINSTANCE.createObjectTreeItemAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createFeatureIdAxis()));
+				 NattableaxisFactory.eINSTANCE.createFeatureIdAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createFeatureIdTreeItemAxis()));
+				 NattableaxisFactory.eINSTANCE.createFeatureIdTreeItemAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createEStructuralFeatureAxis()));
+				 NattableaxisFactory.eINSTANCE.createEStructuralFeatureAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createEStructuralFeatureTreeItemAxis()));
+				 NattableaxisFactory.eINSTANCE.createEStructuralFeatureTreeItemAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createObjectIdAxis()));
+				 NattableaxisFactory.eINSTANCE.createObjectIdAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createObjectIdTreeItemAxis()));
+				 NattableaxisFactory.eINSTANCE.createObjectIdTreeItemAxis()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-						NattableaxisFactory.eINSTANCE.createAxisGroup()));
+				 NattableaxisFactory.eINSTANCE.createAxisGroup()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

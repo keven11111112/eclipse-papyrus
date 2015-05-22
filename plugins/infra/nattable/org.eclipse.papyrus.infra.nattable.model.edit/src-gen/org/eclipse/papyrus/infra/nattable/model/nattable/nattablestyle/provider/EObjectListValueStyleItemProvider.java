@@ -27,7 +27,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class EObjectListValueStyleItemProvider extends NamedStyleItemProvider {
@@ -35,7 +34,6 @@ public class EObjectListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EObjectListValueStyleItemProvider(AdapterFactory adapterFactory) {
@@ -46,7 +44,6 @@ public class EObjectListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,30 +60,28 @@ public class EObjectListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This adds a property descriptor for the EObject Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addEObjectValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EObjectListValueStyle_eObjectValue_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EObjectListValueStyle_eObjectValue_feature", "_UI_EObjectListValueStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattablestylePackage.Literals.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EObjectListValueStyle_eObjectValue_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectListValueStyle_eObjectValue_feature", "_UI_EObjectListValueStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablestylePackage.Literals.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns EObjectListValueStyle.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,15 +93,14 @@ public class EObjectListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EObjectListValueStyle) object).getName();
+		String label = ((EObjectListValueStyle)object).getName();
 		return label == null || label.length() == 0 ?
-				getString("_UI_EObjectListValueStyle_type") : //$NON-NLS-1$
-				getString("_UI_EObjectListValueStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_EObjectListValueStyle_type") : //$NON-NLS-1$
+			getString("_UI_EObjectListValueStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -115,7 +109,6 @@ public class EObjectListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +122,6 @@ public class EObjectListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

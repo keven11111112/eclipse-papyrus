@@ -28,7 +28,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DoubleListValueStyleItemProvider extends NamedStyleItemProvider {
@@ -37,7 +36,6 @@ public class DoubleListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DoubleListValueStyleItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +46,6 @@ public class DoubleListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,30 +62,28 @@ public class DoubleListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This adds a property descriptor for the Double List Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDoubleListValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DoubleListValueStyle_doubleListValue_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_DoubleListValueStyle_doubleListValue_feature", "_UI_DoubleListValueStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattablestylePackage.Literals.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DoubleListValueStyle_doubleListValue_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_DoubleListValueStyle_doubleListValue_feature", "_UI_DoubleListValueStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablestylePackage.Literals.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns DoubleListValueStyle.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,15 +95,14 @@ public class DoubleListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DoubleListValueStyle) object).getName();
+		String label = ((DoubleListValueStyle)object).getName();
 		return label == null || label.length() == 0 ?
-				getString("_UI_DoubleListValueStyle_type") : //$NON-NLS-1$
-				getString("_UI_DoubleListValueStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_DoubleListValueStyle_type") : //$NON-NLS-1$
+			getString("_UI_DoubleListValueStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -116,7 +110,6 @@ public class DoubleListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,9 +117,9 @@ public class DoubleListValueStyleItemProvider extends NamedStyleItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DoubleListValueStyle.class)) {
-		case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -136,7 +129,6 @@ public class DoubleListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

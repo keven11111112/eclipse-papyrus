@@ -23,10 +23,10 @@ import org.eclipse.emf.ecore.EModelElement;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getStyles <em>Styles</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getStyles <em>Styles</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getStyledElement()
  * @model abstract="true"
@@ -42,7 +42,6 @@ public interface StyledElement extends EModelElement {
 	 * If the meaning of the '<em>Styles</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Styles</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getStyledElement_Styles()
 	 * @model containment="true"
@@ -53,7 +52,6 @@ public interface StyledElement extends EModelElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @model
 	 * @generated
 	 */
@@ -62,7 +60,6 @@ public interface StyledElement extends EModelElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @model
 	 * @generated
 	 */
@@ -71,7 +68,6 @@ public interface StyledElement extends EModelElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @model
 	 * @generated
 	 */

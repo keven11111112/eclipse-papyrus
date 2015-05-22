@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.N
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory
  * @model kind="package"
  * @generated
@@ -42,7 +41,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNAME = "nattableaxisprovider"; //$NON-NLS-1$
@@ -51,7 +49,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"; //$NON-NLS-1$
@@ -60,7 +57,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_PREFIX = "nattableaxisprovider"; //$NON-NLS-1$
@@ -69,17 +65,14 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	NattableaxisproviderPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl
-	 * <em>Abstract Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl <em>Abstract Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getAbstractAxisProvider()
 	 * @generated
@@ -90,7 +83,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -100,7 +92,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -110,7 +101,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -120,7 +110,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -130,7 +119,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of structural features of the '<em>Abstract Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -140,7 +128,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -150,7 +137,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -160,7 +146,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -170,7 +155,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -180,7 +164,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Axis</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -190,18 +173,15 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of operations of the '<em>Abstract Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_AXIS_PROVIDER_OPERATION_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl
-	 * <em>Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl <em>Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getAxisProvider()
 	 * @generated
@@ -212,7 +192,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -222,7 +201,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -232,7 +210,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -242,7 +219,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -252,7 +228,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -262,7 +237,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of structural features of the '<em>Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -272,7 +246,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -282,7 +255,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -292,7 +264,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -302,7 +273,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -312,7 +282,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Axis</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -322,18 +291,15 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of operations of the '<em>Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int AXIS_PROVIDER_OPERATION_COUNT = ABSTRACT_AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
-	 * <em>IMaster Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getIMasterAxisProvider()
 	 * @generated
@@ -344,7 +310,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -354,7 +319,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -364,7 +328,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -374,7 +337,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -384,7 +346,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -394,7 +355,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Disconnect Slave</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -404,7 +364,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of structural features of the '<em>IMaster Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -414,7 +373,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -424,7 +382,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -434,7 +391,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -444,7 +400,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -454,7 +409,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Axis</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -464,18 +418,15 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of operations of the '<em>IMaster Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int IMASTER_AXIS_PROVIDER_OPERATION_COUNT = AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
-	 * <em>ISlave Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getISlaveAxisProvider()
 	 * @generated
@@ -486,7 +437,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -496,7 +446,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -506,7 +455,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -516,7 +464,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -526,7 +473,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -536,7 +482,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of structural features of the '<em>ISlave Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -546,7 +491,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -556,7 +500,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -566,7 +509,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -576,7 +518,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -586,7 +527,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Axis</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -596,18 +536,15 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of operations of the '<em>ISlave Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int ISLAVE_AXIS_PROVIDER_OPERATION_COUNT = AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl
-	 * <em>Slave Object Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl <em>Slave Object Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getSlaveObjectAxisProvider()
 	 * @generated
@@ -618,7 +555,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -628,7 +564,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -638,7 +573,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -648,7 +582,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -658,7 +591,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -668,7 +600,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of structural features of the '<em>Slave Object Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -678,7 +609,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -688,7 +618,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -698,7 +627,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -708,7 +636,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -718,7 +645,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Axis</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -728,18 +654,15 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of operations of the '<em>Slave Object Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int SLAVE_OBJECT_AXIS_PROVIDER_OPERATION_COUNT = ISLAVE_AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl
-	 * <em>Master Object Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl <em>Master Object Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getMasterObjectAxisProvider()
 	 * @generated
@@ -750,7 +673,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -760,7 +682,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -770,7 +691,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -780,7 +700,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -790,7 +709,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -800,7 +718,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The feature id for the '<em><b>Disconnect Slave</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -810,7 +727,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of structural features of the '<em>Master Object Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -820,7 +736,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -830,7 +745,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -840,7 +754,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -850,7 +763,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -860,7 +772,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The operation id for the '<em>Get Axis</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -870,18 +781,15 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * The number of operations of the '<em>Master Object Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int MASTER_OBJECT_AXIS_PROVIDER_OPERATION_COUNT = IMASTER_AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider
-	 * <em>Abstract Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider <em>Abstract Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Abstract Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider
 	 * @generated
@@ -889,11 +797,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getAbstractAxisProvider();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxis()
-	 * <em>Get Axis</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxis() <em>Get Axis</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the '<em>Get Axis</em>' operation.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxis()
 	 * @generated
@@ -901,11 +807,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EOperation getAbstractAxisProvider__GetAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
-	 * <em>IMaster Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>IMaster Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
 	 * @generated
@@ -913,12 +817,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getIMasterAxisProvider();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave <em>Disconnect Slave</em>}
-	 * '.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave <em>Disconnect Slave</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Disconnect Slave</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave()
 	 * @see #getIMasterAxisProvider()
@@ -927,11 +828,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EAttribute getIMasterAxisProvider_DisconnectSlave();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
-	 * <em>ISlave Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>ISlave Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
 	 * @generated
@@ -939,11 +838,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getISlaveAxisProvider();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider
-	 * <em>Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider <em>Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider
 	 * @generated
@@ -951,11 +848,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getAxisProvider();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis <em>Axis</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis <em>Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis()
 	 * @see #getAxisProvider()
@@ -964,11 +859,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EReference getAxisProvider_Axis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider
-	 * <em>Slave Object Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider <em>Slave Object Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Slave Object Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider
 	 * @generated
@@ -976,11 +869,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getSlaveObjectAxisProvider();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider
-	 * <em>Master Object Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider <em>Master Object Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Master Object Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider
 	 * @generated
@@ -991,7 +882,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -1008,18 +898,14 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl
-		 * <em>Abstract Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl <em>Abstract Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getAbstractAxisProvider()
 		 * @generated
@@ -1030,17 +916,14 @@ public interface NattableaxisproviderPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Get Axis</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EOperation ABSTRACT_AXIS_PROVIDER___GET_AXIS = eINSTANCE.getAbstractAxisProvider__GetAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
-		 * <em>IMaster Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getIMasterAxisProvider()
 		 * @generated
@@ -1051,17 +934,14 @@ public interface NattableaxisproviderPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Disconnect Slave</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE = eINSTANCE.getIMasterAxisProvider_DisconnectSlave();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
-		 * <em>ISlave Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getISlaveAxisProvider()
 		 * @generated
@@ -1069,11 +949,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EClass ISLAVE_AXIS_PROVIDER = eINSTANCE.getISlaveAxisProvider();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl
-		 * <em>Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl <em>Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getAxisProvider()
 		 * @generated
@@ -1084,18 +962,14 @@ public interface NattableaxisproviderPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Axis</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference AXIS_PROVIDER__AXIS = eINSTANCE.getAxisProvider_Axis();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl
-		 * <em>Slave Object Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl <em>Slave Object Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getSlaveObjectAxisProvider()
 		 * @generated
@@ -1103,12 +977,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EClass SLAVE_OBJECT_AXIS_PROVIDER = eINSTANCE.getSlaveObjectAxisProvider();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl
-		 * <em>Master Object Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl <em>Master Object Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getMasterObjectAxisProvider()
 		 * @generated

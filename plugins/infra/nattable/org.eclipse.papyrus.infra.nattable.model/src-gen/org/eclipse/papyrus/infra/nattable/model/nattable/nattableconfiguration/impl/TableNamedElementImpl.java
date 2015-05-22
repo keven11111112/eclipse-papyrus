@@ -25,11 +25,11 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl#getDescription <em>Description</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl#getName <em>Name</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl#getName <em>Name</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -39,7 +39,6 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -50,7 +49,6 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -61,7 +59,6 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -72,7 +69,6 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -82,7 +78,6 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected TableNamedElementImpl() {
@@ -92,7 +87,6 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -103,7 +97,6 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -114,22 +107,19 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION, oldDescription, description));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -140,31 +130,28 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION:
-			return getDescription();
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME:
-			return getName();
+		switch (featureID) {
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION:
+				return getDescription();
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -172,18 +159,17 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION:
-			setDescription((String)newValue);
-			return;
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME:
-			setName((String)newValue);
-			return;
+		switch (featureID) {
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -191,18 +177,17 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION:
-			setDescription(DESCRIPTION_EDEFAULT);
-			return;
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME:
-			setName(NAME_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -210,16 +195,15 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		switch (featureID) {
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -227,14 +211,12 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (description: "); //$NON-NLS-1$
 		result.append(description);
