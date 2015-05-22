@@ -45,8 +45,6 @@ public class DiagramExpansionsRegistry {
 	protected ArrayList<DiagramExpansion> diagramExpansions = new ArrayList<DiagramExpansion>();
 	protected HashMap<String, UseContext> usages = new HashMap<String, UseContext>();
 	public HashMap<String, ChildrenListRepresentation> mapChildreen = new HashMap<String, ChildrenListRepresentation>();
-	protected static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
-			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
 
 	/**
 	 *
@@ -85,9 +83,7 @@ public class DiagramExpansionsRegistry {
 					usages.put(usage.getDiagramType(), usage);
 					ChildrenListRepresentation childrenListRepresentation = new ChildrenListRepresentation(usage);
 					mapChildreen.put(usage.getDiagramType(), childrenListRepresentation);
-					if (DEBUG_EXPANSION) {
-						Activator.log.debug(childrenListRepresentation.toString());
-					}
+					Activator.log.trace(Activator.EXPANSION_TRACE,childrenListRepresentation.toString());
 				} else {
 					// there is two ewtension oon the smae diagram!
 					// do not load --error
