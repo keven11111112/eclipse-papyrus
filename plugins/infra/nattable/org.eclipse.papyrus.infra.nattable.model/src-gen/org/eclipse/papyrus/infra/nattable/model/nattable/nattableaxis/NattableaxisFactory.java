@@ -69,6 +69,15 @@ public interface NattableaxisFactory extends EFactory {
 	FeatureTreeItemAxis createFeatureTreeItemAxis();
 
 	/**
+	 * Returns a new object of class '<em>Operation Tree Item Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation Tree Item Axis</em>'.
+	 * @generated
+	 */
+	OperationTreeItemAxis createOperationTreeItemAxis();
+
+	/**
 	 * Returns a new object of class '<em>Object Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,6 +114,15 @@ public interface NattableaxisFactory extends EFactory {
 	EStructuralFeatureAxis createEStructuralFeatureAxis();
 
 	/**
+	 * Returns a new object of class '<em>EOperation Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EOperation Axis</em>'.
+	 * @generated
+	 */
+	EOperationAxis createEOperationAxis();
+
+	/**
 	 * Returns a new object of class '<em>EStructural Feature Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,6 +130,15 @@ public interface NattableaxisFactory extends EFactory {
 	 * @generated
 	 */
 	EStructuralFeatureTreeItemAxis createEStructuralFeatureTreeItemAxis();
+
+	/**
+	 * Returns a new object of class '<em>EOperation Tree Item Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EOperation Tree Item Axis</em>'.
+	 * @generated
+	 */
+	EOperationTreeItemAxis createEOperationTreeItemAxis();
 
 	/**
 	 * Returns a new object of class '<em>Object Id Axis</em>'.

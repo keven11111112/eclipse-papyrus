@@ -265,6 +265,11 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
+				 NattableaxisFactory.eINSTANCE.createOperationTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
 				 NattableaxisFactory.eINSTANCE.createObjectTreeItemAxis()));
 
 		newChildDescriptors.add
@@ -285,7 +290,17 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
+				 NattableaxisFactory.eINSTANCE.createEOperationAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
 				 NattableaxisFactory.eINSTANCE.createEStructuralFeatureTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
+				 NattableaxisFactory.eINSTANCE.createEOperationTreeItemAxis()));
 
 		newChildDescriptors.add
 			(createChildParameter

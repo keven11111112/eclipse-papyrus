@@ -65,6 +65,10 @@
           id="org.eclipse.papyrus.infra.emf.nattable.tree.axis.manager"
           manager="org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectTreeAxisManagerForEventList">
     </axisManager>
+    <axisManager
+          id="org.eclipse.papyrus.infra.emf.nattable.operation.axis.manager"
+          manager="org.eclipse.papyrus.infra.emf.nattable.manager.axis.EOperationAxisManager">
+    </axisManager>
  </extension>
  <extension
        point="org.eclipse.papyrus.infra.nattable.cellmanager">
@@ -72,6 +76,11 @@
           id="org.eclipse.papyrus.infra.emf.nattable.cell.manager"
           manager="org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager"
           order="1000">
+    </cellManager>
+    <cellManager
+          id="org.eclipse.papyrus.infra.emf.nattable.cell.operation.manager"
+          manager="org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFOperationValueCellManager"
+          order="1200">
     </cellManager>
  </extension>
  <extension

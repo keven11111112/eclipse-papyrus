@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.*;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis;
@@ -122,8 +123,16 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureAxisAdapter();
 			}
 			@Override
+			public Adapter caseOperationAxis(OperationAxis object) {
+				return createOperationAxisAdapter();
+			}
+			@Override
 			public Adapter caseFeatureTreeItemAxis(FeatureTreeItemAxis object) {
 				return createFeatureTreeItemAxisAdapter();
+			}
+			@Override
+			public Adapter caseOperationTreeItemAxis(OperationTreeItemAxis object) {
+				return createOperationTreeItemAxisAdapter();
 			}
 			@Override
 			public Adapter caseObjectAxis(ObjectAxis object) {
@@ -146,8 +155,16 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 				return createEStructuralFeatureAxisAdapter();
 			}
 			@Override
+			public Adapter caseEOperationAxis(EOperationAxis object) {
+				return createEOperationAxisAdapter();
+			}
+			@Override
 			public Adapter caseEStructuralFeatureTreeItemAxis(EStructuralFeatureTreeItemAxis object) {
 				return createEStructuralFeatureTreeItemAxisAdapter();
+			}
+			@Override
+			public Adapter caseEOperationTreeItemAxis(EOperationTreeItemAxis object) {
+				return createEOperationTreeItemAxisAdapter();
 			}
 			@Override
 			public Adapter caseObjectIdAxis(ObjectIdAxis object) {
@@ -287,6 +304,20 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationAxis <em>Operation Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationAxis
+	 * @generated
+	 */
+	public Adapter createOperationAxisAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis <em>Feature Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -297,6 +328,20 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFeatureTreeItemAxisAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationTreeItemAxis <em>Operation Tree Item Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationTreeItemAxis
+	 * @generated
+	 */
+	public Adapter createOperationTreeItemAxisAdapter() {
 		return null;
 	}
 
@@ -371,6 +416,20 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis <em>EOperation Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis
+	 * @generated
+	 */
+	public Adapter createEOperationAxisAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis <em>EStructural Feature Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -381,6 +440,20 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEStructuralFeatureTreeItemAxisAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationTreeItemAxis <em>EOperation Tree Item Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationTreeItemAxis
+	 * @generated
+	 */
+	public Adapter createEOperationTreeItemAxisAdapter() {
 		return null;
 	}
 

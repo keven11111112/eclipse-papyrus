@@ -195,6 +195,11 @@ public class ObjectAxisItemProvider extends StyledElementItemProvider {
 			(createChildParameter
 				(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION,
 				 NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION,
+				 NattablelabelproviderFactory.eINSTANCE.createOperationLabelProviderConfiguration()));
 	}
 
 	/**

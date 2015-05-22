@@ -126,6 +126,29 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperationLabelProviderConfigurationItemProvider operationLabelProviderConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperationLabelProviderConfigurationAdapter() {
+		if (operationLabelProviderConfigurationItemProvider == null) {
+			operationLabelProviderConfigurationItemProvider = new OperationLabelProviderConfigurationItemProvider(this);
+		}
+
+		return operationLabelProviderConfigurationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -232,6 +255,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	public void dispose() {
 		if (featureLabelProviderConfigurationItemProvider != null) featureLabelProviderConfigurationItemProvider.dispose();
 		if (objectLabelProviderConfigurationItemProvider != null) objectLabelProviderConfigurationItemProvider.dispose();
+		if (operationLabelProviderConfigurationItemProvider != null) operationLabelProviderConfigurationItemProvider.dispose();
 	}
 
 }

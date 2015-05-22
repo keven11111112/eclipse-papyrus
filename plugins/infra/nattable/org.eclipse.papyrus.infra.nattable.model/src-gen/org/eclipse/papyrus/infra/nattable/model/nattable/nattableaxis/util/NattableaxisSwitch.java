@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.*;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis;
@@ -161,6 +162,15 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case NattableaxisPackage.OPERATION_AXIS: {
+				OperationAxis operationAxis = (OperationAxis)theEObject;
+				T result = caseOperationAxis(operationAxis);
+				if (result == null) result = caseIAxis(operationAxis);
+				if (result == null) result = caseStyledElement(operationAxis);
+				if (result == null) result = caseEModelElement(operationAxis);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS: {
 				FeatureTreeItemAxis featureTreeItemAxis = (FeatureTreeItemAxis)theEObject;
 				T result = caseFeatureTreeItemAxis(featureTreeItemAxis);
@@ -169,6 +179,17 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIAxis(featureTreeItemAxis);
 				if (result == null) result = caseStyledElement(featureTreeItemAxis);
 				if (result == null) result = caseEModelElement(featureTreeItemAxis);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NattableaxisPackage.OPERATION_TREE_ITEM_AXIS: {
+				OperationTreeItemAxis operationTreeItemAxis = (OperationTreeItemAxis)theEObject;
+				T result = caseOperationTreeItemAxis(operationTreeItemAxis);
+				if (result == null) result = caseOperationAxis(operationTreeItemAxis);
+				if (result == null) result = caseITreeItemAxis(operationTreeItemAxis);
+				if (result == null) result = caseIAxis(operationTreeItemAxis);
+				if (result == null) result = caseStyledElement(operationTreeItemAxis);
+				if (result == null) result = caseEModelElement(operationTreeItemAxis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -226,6 +247,16 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case NattableaxisPackage.EOPERATION_AXIS: {
+				EOperationAxis eOperationAxis = (EOperationAxis)theEObject;
+				T result = caseEOperationAxis(eOperationAxis);
+				if (result == null) result = caseOperationAxis(eOperationAxis);
+				if (result == null) result = caseIAxis(eOperationAxis);
+				if (result == null) result = caseStyledElement(eOperationAxis);
+				if (result == null) result = caseEModelElement(eOperationAxis);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case NattableaxisPackage.ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS: {
 				EStructuralFeatureTreeItemAxis eStructuralFeatureTreeItemAxis = (EStructuralFeatureTreeItemAxis)theEObject;
 				T result = caseEStructuralFeatureTreeItemAxis(eStructuralFeatureTreeItemAxis);
@@ -235,6 +266,18 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIAxis(eStructuralFeatureTreeItemAxis);
 				if (result == null) result = caseStyledElement(eStructuralFeatureTreeItemAxis);
 				if (result == null) result = caseEModelElement(eStructuralFeatureTreeItemAxis);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NattableaxisPackage.EOPERATION_TREE_ITEM_AXIS: {
+				EOperationTreeItemAxis eOperationTreeItemAxis = (EOperationTreeItemAxis)theEObject;
+				T result = caseEOperationTreeItemAxis(eOperationTreeItemAxis);
+				if (result == null) result = caseEOperationAxis(eOperationTreeItemAxis);
+				if (result == null) result = caseITreeItemAxis(eOperationTreeItemAxis);
+				if (result == null) result = caseOperationAxis(eOperationTreeItemAxis);
+				if (result == null) result = caseIAxis(eOperationTreeItemAxis);
+				if (result == null) result = caseStyledElement(eOperationTreeItemAxis);
+				if (result == null) result = caseEModelElement(eOperationTreeItemAxis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -381,6 +424,21 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Axis</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationAxis(OperationAxis object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Feature Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -392,6 +450,21 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFeatureTreeItemAxis(FeatureTreeItemAxis object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Tree Item Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Tree Item Axis</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationTreeItemAxis(OperationTreeItemAxis object) {
 		return null;
 	}
 
@@ -471,6 +544,21 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EOperation Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EOperation Axis</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEOperationAxis(EOperationAxis object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EStructural Feature Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -482,6 +570,21 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEStructuralFeatureTreeItemAxis(EStructuralFeatureTreeItemAxis object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EOperation Tree Item Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EOperation Tree Item Axis</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEOperationTreeItemAxis(EOperationTreeItemAxis object) {
 		return null;
 	}
 

@@ -172,6 +172,29 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationTreeItemAxis} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperationTreeItemAxisItemProvider operationTreeItemAxisItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationTreeItemAxis}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperationTreeItemAxisAdapter() {
+		if (operationTreeItemAxisItemProvider == null) {
+			operationTreeItemAxisItemProvider = new OperationTreeItemAxisItemProvider(this);
+		}
+
+		return operationTreeItemAxisItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -264,6 +287,29 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EOperationAxisItemProvider eOperationAxisItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEOperationAxisAdapter() {
+		if (eOperationAxisItemProvider == null) {
+			eOperationAxisItemProvider = new EOperationAxisItemProvider(this);
+		}
+
+		return eOperationAxisItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -284,6 +330,29 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 		}
 
 		return eStructuralFeatureTreeItemAxisItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationTreeItemAxis} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EOperationTreeItemAxisItemProvider eOperationTreeItemAxisItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationTreeItemAxis}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEOperationTreeItemAxisAdapter() {
+		if (eOperationTreeItemAxisItemProvider == null) {
+			eOperationTreeItemAxisItemProvider = new EOperationTreeItemAxisItemProvider(this);
+		}
+
+		return eOperationTreeItemAxisItemProvider;
 	}
 
 	/**
@@ -464,11 +533,14 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 		if (eObjectAxisItemProvider != null) eObjectAxisItemProvider.dispose();
 		if (eObjectTreeItemAxisItemProvider != null) eObjectTreeItemAxisItemProvider.dispose();
 		if (featureTreeItemAxisItemProvider != null) featureTreeItemAxisItemProvider.dispose();
+		if (operationTreeItemAxisItemProvider != null) operationTreeItemAxisItemProvider.dispose();
 		if (objectTreeItemAxisItemProvider != null) objectTreeItemAxisItemProvider.dispose();
 		if (featureIdAxisItemProvider != null) featureIdAxisItemProvider.dispose();
 		if (featureIdTreeItemAxisItemProvider != null) featureIdTreeItemAxisItemProvider.dispose();
 		if (eStructuralFeatureAxisItemProvider != null) eStructuralFeatureAxisItemProvider.dispose();
+		if (eOperationAxisItemProvider != null) eOperationAxisItemProvider.dispose();
 		if (eStructuralFeatureTreeItemAxisItemProvider != null) eStructuralFeatureTreeItemAxisItemProvider.dispose();
+		if (eOperationTreeItemAxisItemProvider != null) eOperationTreeItemAxisItemProvider.dispose();
 		if (objectIdAxisItemProvider != null) objectIdAxisItemProvider.dispose();
 		if (objectIdTreeItemAxisItemProvider != null) objectIdTreeItemAxisItemProvider.dispose();
 		if (axisGroupItemProvider != null) axisGroupItemProvider.dispose();

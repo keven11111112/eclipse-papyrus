@@ -51,6 +51,15 @@ public interface NattablelabelproviderFactory extends EFactory {
 	ObjectLabelProviderConfiguration createObjectLabelProviderConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Operation Label Provider Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation Label Provider Configuration</em>'.
+	 * @generated
+	 */
+	OperationLabelProviderConfiguration createOperationLabelProviderConfiguration();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.*;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
@@ -69,6 +70,7 @@ public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements Na
 		switch (eClass.getClassifierID()) {
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION: return createFeatureLabelProviderConfiguration();
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION: return createObjectLabelProviderConfiguration();
+			case NattablelabelproviderPackage.OPERATION_LABEL_PROVIDER_CONFIGURATION: return createOperationLabelProviderConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -94,6 +96,16 @@ public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements Na
 	public ObjectLabelProviderConfiguration createObjectLabelProviderConfiguration() {
 		ObjectLabelProviderConfigurationImpl objectLabelProviderConfiguration = new ObjectLabelProviderConfigurationImpl();
 		return objectLabelProviderConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperationLabelProviderConfiguration createOperationLabelProviderConfiguration() {
+		OperationLabelProviderConfigurationImpl operationLabelProviderConfiguration = new OperationLabelProviderConfigurationImpl();
+		return operationLabelProviderConfiguration;
 	}
 
 	/**

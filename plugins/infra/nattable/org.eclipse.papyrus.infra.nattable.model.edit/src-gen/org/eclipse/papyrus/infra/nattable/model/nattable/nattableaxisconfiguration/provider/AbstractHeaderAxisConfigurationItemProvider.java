@@ -252,6 +252,11 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 
 		newChildDescriptors.add
 			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS,
+				 NattablelabelproviderFactory.eINSTANCE.createOperationLabelProviderConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS,
 				 NattableaxisconfigurationFactory.eINSTANCE.createFeatureAxisConfiguration()));
 

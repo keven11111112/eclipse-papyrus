@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2013 CEA LIST.
- *
- *
+ * 
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
@@ -18,27 +18,39 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationAxis;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderFactory;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.provider.StyledElementItemProvider;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
+
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationAxis} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ObjectIdAxisItemProvider extends IdAxisItemProvider {
+public class OperationAxisItemProvider extends StyledElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectIdAxisItemProvider(AdapterFactory adapterFactory) {
+	public OperationAxisItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,8 +65,54 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addManagerPropertyDescriptor(object);
+			addAliasPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Manager feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addManagerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IAxis_manager_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IAxis_manager_feature", "_UI_IAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisPackage.Literals.IAXIS__MANAGER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Alias feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAliasPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IAxis_alias_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IAxis_alias_feature", "_UI_IAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisPackage.Literals.IAXIS__ALIAS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -69,7 +127,7 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION);
+			childrenFeatures.add(NattableaxisPackage.Literals.OPERATION_AXIS__LOCAL_LABEL_CONFIGURATION);
 		}
 		return childrenFeatures;
 	}
@@ -88,17 +146,6 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider {
 	}
 
 	/**
-	 * This returns ObjectIdAxis.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ObjectIdAxis")); //$NON-NLS-1$
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,12 +153,12 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ObjectIdAxis)object).getAlias();
+		String label = ((OperationAxis)object).getAlias();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ObjectIdAxis_type") : //$NON-NLS-1$
-			getString("_UI_ObjectIdAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_OperationAxis_type") : //$NON-NLS-1$
+			getString("_UI_OperationAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
-
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -124,8 +171,11 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ObjectIdAxis.class)) {
-			case NattableaxisPackage.OBJECT_ID_AXIS__LOCAL_LABEL_CONFIGURATION:
+		switch (notification.getFeatureID(OperationAxis.class)) {
+			case NattableaxisPackage.OPERATION_AXIS__ALIAS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case NattableaxisPackage.OPERATION_AXIS__LOCAL_LABEL_CONFIGURATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -145,18 +195,19 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION,
-				 NattablelabelproviderFactory.eINSTANCE.createObjectLabelProviderConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION,
-				 NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION,
+				(NattableaxisPackage.Literals.OPERATION_AXIS__LOCAL_LABEL_CONFIGURATION,
 				 NattablelabelproviderFactory.eINSTANCE.createOperationLabelProviderConfiguration()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return NattableEditPlugin.INSTANCE;
 	}
 
 }

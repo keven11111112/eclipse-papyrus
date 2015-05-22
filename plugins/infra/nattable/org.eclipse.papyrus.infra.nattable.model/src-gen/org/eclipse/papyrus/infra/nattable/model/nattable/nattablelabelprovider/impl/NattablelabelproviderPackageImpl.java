@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.NattableproblemPackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
@@ -69,6 +70,13 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	private EClass objectLabelProviderConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operationLabelProviderConfigurationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -256,6 +264,42 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOperationLabelProviderConfiguration() {
+		return operationLabelProviderConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperationLabelProviderConfiguration_DisplayType() {
+		return (EAttribute)operationLabelProviderConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperationLabelProviderConfiguration_DisplayMultiplicity() {
+		return (EAttribute)operationLabelProviderConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperationLabelProviderConfiguration_DisplayName() {
+		return (EAttribute)operationLabelProviderConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NattablelabelproviderFactory getNattablelabelproviderFactory() {
 		return (NattablelabelproviderFactory)getEFactoryInstance();
@@ -291,6 +335,11 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		objectLabelProviderConfigurationEClass = createEClass(OBJECT_LABEL_PROVIDER_CONFIGURATION);
 		createEAttribute(objectLabelProviderConfigurationEClass, OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON);
 		createEAttribute(objectLabelProviderConfigurationEClass, OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL);
+
+		operationLabelProviderConfigurationEClass = createEClass(OPERATION_LABEL_PROVIDER_CONFIGURATION);
+		createEAttribute(operationLabelProviderConfigurationEClass, OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE);
+		createEAttribute(operationLabelProviderConfigurationEClass, OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY);
+		createEAttribute(operationLabelProviderConfigurationEClass, OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_NAME);
 	}
 
 	/**
@@ -327,6 +376,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		iLabelProviderConfigurationEClass.getESuperTypes().add(theNattablestylePackage.getStyledElement());
 		featureLabelProviderConfigurationEClass.getESuperTypes().add(this.getObjectLabelProviderConfiguration());
 		objectLabelProviderConfigurationEClass.getESuperTypes().add(this.getILabelProviderConfiguration());
+		operationLabelProviderConfigurationEClass.getESuperTypes().add(this.getObjectLabelProviderConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iLabelProviderConfigurationEClass, ILabelProviderConfiguration.class, "ILabelProviderConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -340,5 +390,10 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		initEClass(objectLabelProviderConfigurationEClass, ObjectLabelProviderConfiguration.class, "ObjectLabelProviderConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getObjectLabelProviderConfiguration_DisplayIcon(), ecorePackage.getEBoolean(), "displayIcon", "true", 1, 1, ObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getObjectLabelProviderConfiguration_DisplayLabel(), ecorePackage.getEBoolean(), "displayLabel", "true", 1, 1, ObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+
+		initEClass(operationLabelProviderConfigurationEClass, OperationLabelProviderConfiguration.class, "OperationLabelProviderConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getOperationLabelProviderConfiguration_DisplayType(), ecorePackage.getEBoolean(), "displayType", "true", 1, 1, OperationLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getOperationLabelProviderConfiguration_DisplayMultiplicity(), ecorePackage.getEBoolean(), "displayMultiplicity", "true", 1, 1, OperationLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getOperationLabelProviderConfiguration_DisplayName(), ecorePackage.getEBoolean(), "displayName", "true", 1, 1, OperationLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 } // NattablelabelproviderPackageImpl

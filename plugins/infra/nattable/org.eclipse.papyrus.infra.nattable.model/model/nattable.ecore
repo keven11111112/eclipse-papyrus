@@ -319,6 +319,21 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationLabelProviderConfiguration"
+        eSuperTypes="#//nattablelabelprovider/ObjectLabelProviderConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="LabelProviderConfiguration for Operation. In case of Operation, we have four display options : &#xD;&#xA;&lt;ul>&lt;li>display the icon of the Operation&lt;/li> &#xD;&#xA;&lt;li>display the label of the Operation&lt;/li>&#xD;&#xA;&lt;li>display the multiplicity of the Operation&lt;/li>&#xD;&#xA;&lt;li>display the type of the Operation&lt;/li>&#xD;&#xA;&lt;li>display the '/' for isDerived of the feature &lt;/li>&#xD;&#xA;&lt;li>display the name of the feature &lt;/li>&#xD;&#xA; &lt;/ul>"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayType" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayMultiplicity"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayName" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattableaxisconfiguration" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"
       nsPrefix="nattableaxisconfiguration">
@@ -661,7 +676,12 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationAxis" abstract="true" eSuperTypes="#//nattableaxis/IAxis">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="localLabelConfiguration"
+          eType="#//nattablelabelprovider/OperationLabelProviderConfiguration" containment="true"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureTreeItemAxis" eSuperTypes="#//nattableaxis/FeatureAxis #//nattableaxis/ITreeItemAxis"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationTreeItemAxis" eSuperTypes="#//nattableaxis/OperationAxis #//nattableaxis/ITreeItemAxis"/>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectAxis" abstract="true" eSuperTypes="#//nattableaxis/IAxis">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Abstract class used to reference object"/>
@@ -691,7 +711,15 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EOperationAxis" eSuperTypes="#//nattableaxis/OperationAxis">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="IAxis used to reference EMF EOperation."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="element" lowerBound="1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EOperation"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EStructuralFeatureTreeItemAxis" eSuperTypes="#//nattableaxis/EStructuralFeatureAxis #//nattableaxis/ITreeItemAxis"/>
+    <eClassifiers xsi:type="ecore:EClass" name="EOperationTreeItemAxis" eSuperTypes="#//nattableaxis/EOperationAxis #//nattableaxis/ITreeItemAxis"/>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectIdAxis" eSuperTypes="#//nattableaxis/IdAxis #//nattableaxis/ObjectAxis">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="IAxis used to represent object using a string."/>

@@ -24,6 +24,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImp
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationTreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis;
@@ -40,6 +42,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationTreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationPackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
@@ -119,7 +123,21 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass operationAxisEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass featureTreeItemAxisEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operationTreeItemAxisEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,7 +179,21 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass eOperationAxisEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass eStructuralFeatureTreeItemAxisEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eOperationTreeItemAxisEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -450,9 +482,36 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOperationAxis() {
+		return operationAxisEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperationAxis_LocalLabelConfiguration() {
+		return (EReference)operationAxisEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EClass getFeatureTreeItemAxis() {
 		return featureTreeItemAxisEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOperationTreeItemAxis() {
+		return operationTreeItemAxisEClass;
 	}
 
 	/**
@@ -530,9 +589,36 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEOperationAxis() {
+		return eOperationAxisEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEOperationAxis_Element() {
+		return (EReference)eOperationAxisEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EClass getEStructuralFeatureTreeItemAxis() {
 		return eStructuralFeatureTreeItemAxisEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEOperationTreeItemAxis() {
+		return eOperationTreeItemAxisEClass;
 	}
 
 	/**
@@ -628,7 +714,12 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		featureAxisEClass = createEClass(FEATURE_AXIS);
 		createEReference(featureAxisEClass, FEATURE_AXIS__LOCAL_LABEL_CONFIGURATION);
 
+		operationAxisEClass = createEClass(OPERATION_AXIS);
+		createEReference(operationAxisEClass, OPERATION_AXIS__LOCAL_LABEL_CONFIGURATION);
+
 		featureTreeItemAxisEClass = createEClass(FEATURE_TREE_ITEM_AXIS);
+
+		operationTreeItemAxisEClass = createEClass(OPERATION_TREE_ITEM_AXIS);
 
 		objectAxisEClass = createEClass(OBJECT_AXIS);
 		createEReference(objectAxisEClass, OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION);
@@ -642,7 +733,12 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		eStructuralFeatureAxisEClass = createEClass(ESTRUCTURAL_FEATURE_AXIS);
 		createEReference(eStructuralFeatureAxisEClass, ESTRUCTURAL_FEATURE_AXIS__ELEMENT);
 
+		eOperationAxisEClass = createEClass(EOPERATION_AXIS);
+		createEReference(eOperationAxisEClass, EOPERATION_AXIS__ELEMENT);
+
 		eStructuralFeatureTreeItemAxisEClass = createEClass(ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS);
+
+		eOperationTreeItemAxisEClass = createEClass(EOPERATION_TREE_ITEM_AXIS);
 
 		objectIdAxisEClass = createEClass(OBJECT_ID_AXIS);
 
@@ -694,8 +790,11 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		eObjectTreeItemAxisEClass.getESuperTypes().add(this.getEObjectAxis());
 		eObjectTreeItemAxisEClass.getESuperTypes().add(this.getITreeItemAxis());
 		featureAxisEClass.getESuperTypes().add(this.getIAxis());
+		operationAxisEClass.getESuperTypes().add(this.getIAxis());
 		featureTreeItemAxisEClass.getESuperTypes().add(this.getFeatureAxis());
 		featureTreeItemAxisEClass.getESuperTypes().add(this.getITreeItemAxis());
+		operationTreeItemAxisEClass.getESuperTypes().add(this.getOperationAxis());
+		operationTreeItemAxisEClass.getESuperTypes().add(this.getITreeItemAxis());
 		objectAxisEClass.getESuperTypes().add(this.getIAxis());
 		objectTreeItemAxisEClass.getESuperTypes().add(this.getObjectAxis());
 		objectTreeItemAxisEClass.getESuperTypes().add(this.getITreeItemAxis());
@@ -704,8 +803,11 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		featureIdTreeItemAxisEClass.getESuperTypes().add(this.getFeatureIdAxis());
 		featureIdTreeItemAxisEClass.getESuperTypes().add(this.getITreeItemAxis());
 		eStructuralFeatureAxisEClass.getESuperTypes().add(this.getFeatureAxis());
+		eOperationAxisEClass.getESuperTypes().add(this.getOperationAxis());
 		eStructuralFeatureTreeItemAxisEClass.getESuperTypes().add(this.getEStructuralFeatureAxis());
 		eStructuralFeatureTreeItemAxisEClass.getESuperTypes().add(this.getITreeItemAxis());
+		eOperationTreeItemAxisEClass.getESuperTypes().add(this.getEOperationAxis());
+		eOperationTreeItemAxisEClass.getESuperTypes().add(this.getITreeItemAxis());
 		objectIdAxisEClass.getESuperTypes().add(this.getIdAxis());
 		objectIdAxisEClass.getESuperTypes().add(this.getObjectAxis());
 		objectIdTreeItemAxisEClass.getESuperTypes().add(this.getObjectIdAxis());
@@ -739,7 +841,12 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		initEClass(featureAxisEClass, FeatureAxis.class, "FeatureAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getFeatureAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getFeatureLabelProviderConfiguration(), null, "localLabelConfiguration", null, 0, 1, FeatureAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(operationAxisEClass, OperationAxis.class, "OperationAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOperationAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getOperationLabelProviderConfiguration(), null, "localLabelConfiguration", null, 0, 1, OperationAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(featureTreeItemAxisEClass, FeatureTreeItemAxis.class, "FeatureTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(operationTreeItemAxisEClass, OperationTreeItemAxis.class, "OperationTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(objectAxisEClass, ObjectAxis.class, "ObjectAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getObjectAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getObjectLabelProviderConfiguration(), null, "localLabelConfiguration", null, 0, 1, ObjectAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -753,7 +860,12 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		initEClass(eStructuralFeatureAxisEClass, EStructuralFeatureAxis.class, "EStructuralFeatureAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getEStructuralFeatureAxis_Element(), ecorePackage.getEStructuralFeature(), null, "element", null, 1, 1, EStructuralFeatureAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(eOperationAxisEClass, EOperationAxis.class, "EOperationAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getEOperationAxis_Element(), ecorePackage.getEOperation(), null, "element", null, 1, 1, EOperationAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(eStructuralFeatureTreeItemAxisEClass, EStructuralFeatureTreeItemAxis.class, "EStructuralFeatureTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(eOperationTreeItemAxisEClass, EOperationTreeItemAxis.class, "EOperationTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(objectIdAxisEClass, ObjectIdAxis.class, "ObjectIdAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

@@ -386,6 +386,133 @@ public interface NattablelabelproviderPackage extends EPackage {
 	int FEATURE_LABEL_PROVIDER_CONFIGURATION_OPERATION_COUNT = OBJECT_LABEL_PROVIDER_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.OperationLabelProviderConfigurationImpl <em>Operation Label Provider Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.OperationLabelProviderConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl#getOperationLabelProviderConfiguration()
+	 * @generated
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION = 3;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION__EANNOTATIONS = OBJECT_LABEL_PROVIDER_CONFIGURATION__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION__STYLES = OBJECT_LABEL_PROVIDER_CONFIGURATION__STYLES;
+
+	/**
+	 * The feature id for the '<em><b>Display Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON = OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON;
+
+	/**
+	 * The feature id for the '<em><b>Display Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL = OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Display Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE = OBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Display Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY = OBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_NAME = OBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Operation Label Provider Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT = OBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION___GET_EANNOTATION__STRING = OBJECT_LABEL_PROVIDER_CONFIGURATION___GET_EANNOTATION__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Named Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION___GET_NAMED_STYLE__ECLASS_STRING = OBJECT_LABEL_PROVIDER_CONFIGURATION___GET_NAMED_STYLE__ECLASS_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION___GET_STYLE__ECLASS = OBJECT_LABEL_PROVIDER_CONFIGURATION___GET_STYLE__ECLASS;
+
+	/**
+	 * The operation id for the '<em>Create Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION___CREATE_STYLE__ECLASS = OBJECT_LABEL_PROVIDER_CONFIGURATION___CREATE_STYLE__ECLASS;
+
+	/**
+	 * The number of operations of the '<em>Operation Label Provider Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_LABEL_PROVIDER_CONFIGURATION_OPERATION_COUNT = OBJECT_LABEL_PROVIDER_CONFIGURATION_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration <em>ILabel Provider Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -480,6 +607,49 @@ public interface NattablelabelproviderPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getObjectLabelProviderConfiguration_DisplayLabel();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration <em>Operation Label Provider Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Operation Label Provider Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration
+	 * @generated
+	 */
+	EClass getOperationLabelProviderConfiguration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration#isDisplayType <em>Display Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Display Type</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration#isDisplayType()
+	 * @see #getOperationLabelProviderConfiguration()
+	 * @generated
+	 */
+	EAttribute getOperationLabelProviderConfiguration_DisplayType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration#isDisplayMultiplicity <em>Display Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Display Multiplicity</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration#isDisplayMultiplicity()
+	 * @see #getOperationLabelProviderConfiguration()
+	 * @generated
+	 */
+	EAttribute getOperationLabelProviderConfiguration_DisplayMultiplicity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration#isDisplayName <em>Display Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Display Name</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.OperationLabelProviderConfiguration#isDisplayName()
+	 * @see #getOperationLabelProviderConfiguration()
+	 * @generated
+	 */
+	EAttribute getOperationLabelProviderConfiguration_DisplayName();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -582,5 +752,39 @@ public interface NattablelabelproviderPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL = eINSTANCE.getObjectLabelProviderConfiguration_DisplayLabel();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.OperationLabelProviderConfigurationImpl <em>Operation Label Provider Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.OperationLabelProviderConfigurationImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl#getOperationLabelProviderConfiguration()
+		 * @generated
+		 */
+		EClass OPERATION_LABEL_PROVIDER_CONFIGURATION = eINSTANCE.getOperationLabelProviderConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Display Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE = eINSTANCE.getOperationLabelProviderConfiguration_DisplayType();
+
+		/**
+		 * The meta object literal for the '<em><b>Display Multiplicity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY = eINSTANCE.getOperationLabelProviderConfiguration_DisplayMultiplicity();
+
+		/**
+		 * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION_LABEL_PROVIDER_CONFIGURATION__DISPLAY_NAME = eINSTANCE.getOperationLabelProviderConfiguration_DisplayName();
 	}
 } // NattablelabelproviderPackage

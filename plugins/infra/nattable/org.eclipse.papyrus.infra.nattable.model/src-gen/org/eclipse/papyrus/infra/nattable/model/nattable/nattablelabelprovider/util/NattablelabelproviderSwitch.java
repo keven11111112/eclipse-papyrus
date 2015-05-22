@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.*;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
@@ -106,6 +107,16 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case NattablelabelproviderPackage.OPERATION_LABEL_PROVIDER_CONFIGURATION: {
+				OperationLabelProviderConfiguration operationLabelProviderConfiguration = (OperationLabelProviderConfiguration)theEObject;
+				T result = caseOperationLabelProviderConfiguration(operationLabelProviderConfiguration);
+				if (result == null) result = caseObjectLabelProviderConfiguration(operationLabelProviderConfiguration);
+				if (result == null) result = caseILabelProviderConfiguration(operationLabelProviderConfiguration);
+				if (result == null) result = caseStyledElement(operationLabelProviderConfiguration);
+				if (result == null) result = caseEModelElement(operationLabelProviderConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -152,6 +163,21 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseObjectLabelProviderConfiguration(ObjectLabelProviderConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Label Provider Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Label Provider Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationLabelProviderConfiguration(OperationLabelProviderConfiguration object) {
 		return null;
 	}
 
