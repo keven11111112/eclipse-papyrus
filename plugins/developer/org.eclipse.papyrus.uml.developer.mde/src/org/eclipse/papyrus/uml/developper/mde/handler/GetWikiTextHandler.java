@@ -38,8 +38,7 @@ public class GetWikiTextHandler extends IDMAbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
 		System.err.println(getCurrentProject().getLocationURI().getPath());
-		IDMAbstractHandler.elt2DocElt.clear();
-		IDMAbstractHandler.Toc2DocElt.clear();
+		IDMAbstractHandler.clear();
 
 		try {
 			CreateDocumentModelCommand createDocumentModelCommand = new CreateDocumentModelCommand(transactionalEditingDomain, (Model) getSelection(), getCurrentProject().getLocationURI().getPath() + INTERNAL_DIRECTORY_NAME);
@@ -48,8 +47,7 @@ public class GetWikiTextHandler extends IDMAbstractHandler {
 			TranscriptionEngine engine = new TranscriptionEngine((Model) getSelection(), project, new WikiTranscription());
 			engine.traduce();
 		} finally {
-			IDMAbstractHandler.elt2DocElt.clear();
-			IDMAbstractHandler.Toc2DocElt.clear();
+			IDMAbstractHandler.clear();
 		}
 
 		return null;

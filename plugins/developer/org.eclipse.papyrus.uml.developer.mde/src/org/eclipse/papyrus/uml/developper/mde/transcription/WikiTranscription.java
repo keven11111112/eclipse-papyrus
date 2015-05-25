@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,23 +9,40 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.transcription;
 
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.uml.developper.mde.I_DocumentStereotype;
+import org.eclipse.papyrus.uml.developper.mde.LinkUtil;
+import org.eclipse.papyrus.uml.developper.mde.LinkUtil.Hyperlink;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 
+import com.google.common.base.Function;
+
 /**
  * this class is a specialization to generate mediawiki files.
  *
  */
 public class WikiTranscription implements ITranscription {
+
+	private final Function<LinkUtil.Hyperlink, String> hyperlinkFunction = new Function<LinkUtil.Hyperlink, String>() {
+		@Override
+		public String apply(Hyperlink input) {
+			return String.format("[[#%s|%s]]", input.href(), input.text());
+		}
+	};
+
+	@Override
+	public Function<? super Hyperlink, String> getHyperlinkTranscoder() {
+		return hyperlinkFunction;
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingDocument(java.lang.StringBuffer)
@@ -76,13 +93,16 @@ public class WikiTranscription implements ITranscription {
 	 */
 
 	@Override
-	public void writesectionTitle(StringBuffer out, int level, Element packageableElement) {
+	public void writeSectionTitle(StringBuffer out, int level, Element packageableElement) {
 		if (level == 2) {
-			out.append("\n==<span" + getId(packageableElement) +  ">" + ((Package) packageableElement).getName() + "</span>==");} //$NON-NLS-1$ //$NON-NLS-2$
+			out.append("\n==<span" + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</span>=="); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 		if (level == 3) {
-			out.append("\n===<span" + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</span>===");} //$NON-NLS-1$ //$NON-NLS-2$
+			out.append("\n===<span" + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</span>==="); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 		if (level == 4) {
-			out.append("\n====<span" + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</span>====");} //$NON-NLS-1$ //$NON-NLS-2$
+			out.append("\n====<span" + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</span>===="); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 
 	}
 
@@ -110,7 +130,7 @@ public class WikiTranscription implements ITranscription {
 
 	@Override
 	public void writeParagraph(StringBuffer out, Element packageableElement) {
-		out.append("\n<span" + getId(packageableElement)+ ">" + ((Comment) packageableElement).getBody() + "</span>"); //$NON-NLS-1$
+		out.append("\n<span" + getId(packageableElement) + ">" + ((Comment) packageableElement).getBody() + "</span>"); //$NON-NLS-1$
 	}
 
 
@@ -119,12 +139,12 @@ public class WikiTranscription implements ITranscription {
 
 		return "DeveloperDoc.mediawiki"; //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * @return
 	 */
 	public String getId(Element packageableElement) {
-		String packageableElementtFragment = ((XMIResource)packageableElement.eResource()).getID(packageableElement);
+		String packageableElementtFragment = ((XMIResource) packageableElement.eResource()).getID(packageableElement);
 		String id = " id=\"" + packageableElementtFragment + "\"";
 		return id;
 	}
@@ -155,13 +175,13 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeLine(StringBuffer out, String uri, String requirementName, String text) {
 		if (uri.equals("")) {
-			out.append(text);		
+			out.append(text);
 		} else {
-			out.append("[[#" + uri + "|" + text + "]]");	
-		}	
-		
+			out.append("[[#" + uri + "|" + text + "]]");
+		}
+
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeNewLine(java.lang.StringBuffer)
 	 *
@@ -170,7 +190,7 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeNewLine(StringBuffer out) {
 		out.append("\n");
-		
+
 	}
 
 
@@ -193,7 +213,7 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeEndTRTag(StringBuffer out) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -227,7 +247,7 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeEndTDTag(StringBuffer out) {
 		out.append("\n");
-		
+
 	}
 
 
@@ -241,10 +261,10 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeRefContent(StringBuffer out, String uri, String requirementName, String reqID) {
 		if (uri.equals("")) {
-			out.append(reqID);	
+			out.append(reqID);
 		} else {
-			out.append("[[#" + uri + "|" + reqID + "]]");	
-		}	
+			out.append("[[#" + uri + "|" + reqID + "]]");
+		}
 	}
 
 
@@ -256,7 +276,7 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeBeginParagraph(StringBuffer out) {
 		out.append("\n<span>");
-		
+
 	}
 
 
@@ -268,7 +288,7 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeEndingParagraph(StringBuffer out) {
 		out.append("</span>\n");
-		
+
 	}
 
 
@@ -297,7 +317,7 @@ public class WikiTranscription implements ITranscription {
 	 */
 	@Override
 	public void writeTOCSubSection(StringBuffer out, String subSectionName, String uri) {
-		out.append("\n::[[#" + uri + "|" + subSectionName + "]]");	
+		out.append("\n::[[#" + uri + "|" + subSectionName + "]]");
 	}
 
 
@@ -309,7 +329,7 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeBeginTOC(StringBuffer out) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -321,7 +341,7 @@ public class WikiTranscription implements ITranscription {
 	@Override
 	public void writeEndTOC(StringBuffer out) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 

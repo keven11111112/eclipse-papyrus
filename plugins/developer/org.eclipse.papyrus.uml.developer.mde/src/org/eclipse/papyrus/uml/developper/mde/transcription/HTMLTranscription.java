@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,17 +9,22 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.transcription;
 
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.uml.developper.mde.I_DocumentStereotype;
+import org.eclipse.papyrus.uml.developper.mde.LinkUtil;
+import org.eclipse.papyrus.uml.developper.mde.LinkUtil.Hyperlink;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
+
+import com.google.common.base.Function;
 
 /**
  * this class is a specialization to generate html files.
@@ -28,6 +33,18 @@ import org.eclipse.uml2.uml.Stereotype;
  *
  */
 public class HTMLTranscription implements ITranscription {
+
+	private final Function<LinkUtil.Hyperlink, String> hyperlinkFunction = new Function<LinkUtil.Hyperlink, String>() {
+		@Override
+		public String apply(Hyperlink input) {
+			return String.format("<a href=\"#%s\" title=\"%s\">%s</a>", input.href(), input.title(), input.text());
+		}
+	};
+
+	@Override
+	public Function<? super Hyperlink, String> getHyperlinkTranscoder() {
+		return hyperlinkFunction;
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingDocument(java.lang.StringBuffer)
@@ -38,6 +55,7 @@ public class HTMLTranscription implements ITranscription {
 	@Override
 	public void writeEndingDocument(StringBuffer out) {
 		out.append("</html>"); //$NON-NLS-1$
+		out.append(System.lineSeparator());
 	}
 
 
@@ -51,7 +69,9 @@ public class HTMLTranscription implements ITranscription {
 	@Override
 	public StringBuffer writeBeginningDocument(StringBuffer out) {
 		out.append("<html>"); //$NON-NLS-1$
+		out.append(System.lineSeparator());
 		out.append("<link rel=\"stylesheet\" href=\"default.css\" type=\"text/css\">"); //$NON-NLS-1$
+		out.append(System.lineSeparator());
 		return out;
 	}
 
@@ -64,6 +84,7 @@ public class HTMLTranscription implements ITranscription {
 	@Override
 	public void writeDocumentTitle(StringBuffer out, Model documentModel) {
 		out.append("<H1>" + documentModel.getName() + "</H1>"); //$NON-NLS-1$ //$NON-NLS-2$
+		out.append(System.lineSeparator());
 	}
 
 	/**
@@ -74,8 +95,9 @@ public class HTMLTranscription implements ITranscription {
 	 * @param packageableElement
 	 */
 	@Override
-	public void writesectionTitle(StringBuffer out, int level, Element packageableElement) {
-		out.append("<H" + level + getId(packageableElement) +  ">" + ((Package) packageableElement).getName() + "</H" + level + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+	public void writeSectionTitle(StringBuffer out, int level, Element packageableElement) {
+		out.append("<H" + level + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</H" + level + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		out.append(System.lineSeparator());
 	}
 
 
@@ -92,6 +114,7 @@ public class HTMLTranscription implements ITranscription {
 		out.append("<P align=\"middle\"><img src=" + packageableElement.getValue(imgRefStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT) + " alt=" + ((Comment) packageableElement).getBody() + " ></P>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		out.append("<P align=\"middle\">" + ((Comment) packageableElement).getBody() + "</P>"); //$NON-NLS-1$ //$NON-NLS-2$
 		out.append("</BR>"); //$NON-NLS-1$
+		out.append(System.lineSeparator());
 	}
 
 
@@ -104,14 +127,15 @@ public class HTMLTranscription implements ITranscription {
 
 	@Override
 	public void writeParagraph(StringBuffer out, Element packageableElement) {
-		out.append("<pre" + getId(packageableElement)+  ">" + ((Comment) packageableElement).getBody().replaceAll("\n", "<BR/>") + "</pre>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		out.append("<pre" + getId(packageableElement) + ">" + ((Comment) packageableElement).getBody().replaceAll("\n", "<BR/>") + "</pre>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		out.append(System.lineSeparator());
 	}
 
 	/**
 	 * @return
 	 */
 	public String getId(Element packageableElement) {
-		String packageableElementtFragment = ((XMIResource)packageableElement.eResource()).getID(packageableElement);
+		String packageableElementtFragment = ((XMIResource) packageableElement.eResource()).getID(packageableElement);
 		String id = " id =\"" + packageableElementtFragment + "\"";
 		return id;
 	}
@@ -139,7 +163,7 @@ public class HTMLTranscription implements ITranscription {
 		out.append("<th style=\"border: 1px solid black\">Verify by</th>");
 		writeEndTRTag(out);
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeLine(java.lang.StringBuffer, java.lang.String, java.lang.String, java.lang.String)
@@ -149,14 +173,15 @@ public class HTMLTranscription implements ITranscription {
 	 * @param referenceName
 	 * @param text
 	 */
+	@Override
 	public void writeLine(StringBuffer out, String uri, String referenceName, String text) {
 		if (uri.equals("")) {
-			out.append(text);		
+			out.append(text);
 		} else {
-			out.append("<a href=\"#" + uri + "\" title=\"" + referenceName + "\">" + text + "</a>");	
-		}	
+			out.append("<a href=\"#" + uri + "\" title=\"" + referenceName + "\">" + text + "</a>");
+		}
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeNewLine(java.lang.StringBuffer)
 	 *
@@ -164,26 +189,28 @@ public class HTMLTranscription implements ITranscription {
 	 */
 	@Override
 	public void writeNewLine(StringBuffer out) {
-		out.append("</BR>");
-		
+		out.append("<BR/>");
+		out.append(System.lineSeparator());
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginTDTag(java.lang.StringBuffer)
 	 *
 	 * @param out
 	 */
+	@Override
 	public void writeBeginTDTag(StringBuffer out) {
 		out.append("<td style=\"border : 1px solid black\">");
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndTDTag(java.lang.StringBuffer)
 	 *
 	 * @param out
 	 */
+	@Override
 	public void writeEndTDTag(StringBuffer out) {
 		out.append("</td>");
 	}
@@ -194,6 +221,7 @@ public class HTMLTranscription implements ITranscription {
 	 *
 	 * @param out
 	 */
+	@Override
 	public void writeBeginTRTag(StringBuffer out) {
 		out.append("<tr>");
 	}
@@ -204,8 +232,10 @@ public class HTMLTranscription implements ITranscription {
 	 *
 	 * @param out
 	 */
+	@Override
 	public void writeEndTRTag(StringBuffer out) {
 		out.append("</tr>");
+		out.append(System.lineSeparator());
 	}
 
 
@@ -217,29 +247,33 @@ public class HTMLTranscription implements ITranscription {
 	@Override
 	public void writeEndingTable(StringBuffer out) {
 		out.append("</table>");
+		out.append(System.lineSeparator());
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginParagraph(java.lang.StringBuffer)
 	 *
 	 * @param out
 	 */
+	@Override
 	public void writeBeginParagraph(StringBuffer out) {
 		out.append("<pre>");
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingParagraph(java.lang.StringBuffer)
 	 *
 	 * @param out
 	 */
+	@Override
 	public void writeEndingParagraph(StringBuffer out) {
 		out.append("</pre>");
+		out.append(System.lineSeparator());
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeRefContent(java.lang.StringBuffer, java.lang.String, java.lang.String, java.lang.String)
@@ -249,12 +283,13 @@ public class HTMLTranscription implements ITranscription {
 	 * @param requirementName
 	 * @param reqID
 	 */
+	@Override
 	public void writeRefContent(StringBuffer out, String uri, String requirementName, String reqID) {
 		if (uri.equals("")) {
-			out.append(reqID);		
+			out.append(reqID);
 		} else {
-			out.append("<a href=\"#" + uri + "\" title=\"" + requirementName + "\">" + reqID + "</a>");	
-		}	
+			out.append("<a href=\"#" + uri + "\" title=\"" + requirementName + "\">" + reqID + "</a>");
+		}
 	}
 
 
@@ -268,7 +303,7 @@ public class HTMLTranscription implements ITranscription {
 	 */
 	@Override
 	public void writeTOCSection(StringBuffer out, String chapterName, String uri) {
-		out.append("<a href=\"#" + uri + "\">" + chapterName + "</a>" );
+		out.append("<a href=\"#" + uri + "\">" + chapterName + "</a>");
 	}
 
 
@@ -283,7 +318,8 @@ public class HTMLTranscription implements ITranscription {
 	 */
 	@Override
 	public void writeTOCSubSection(StringBuffer out, String subSectionName, String uri) {
-		out.append("<li><a href=\"#" + uri + "\"> " + subSectionName + "</a></li>");		
+		out.append("<li><a href=\"#" + uri + "\"> " + subSectionName + "</a></li>");
+		out.append(System.lineSeparator());
 	}
 
 
@@ -306,6 +342,7 @@ public class HTMLTranscription implements ITranscription {
 	@Override
 	public void writeEndTOC(StringBuffer out) {
 		out.append("</ul>");
+		out.append(System.lineSeparator());
 	}
 
 }

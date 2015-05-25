@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.transcription;
@@ -24,6 +25,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.uml.developper.mde.I_DocumentStereotype;
+import org.eclipse.papyrus.uml.developper.mde.LinkUtil;
 import org.eclipse.papyrus.uml.developper.mde.handler.IDMAbstractHandler;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
@@ -134,9 +136,18 @@ public class TranscriptionEngine {
 			Element packageableElement = iteComment.next();
 			if (packageableElement.getAppliedStereotype(I_DocumentStereotype.CONTENT_STEREOTYPE) != null) {
 				if (((Comment) packageableElement).getBody() != null) {
+					// Mark position
+					final int offset = out.length();
+
 					transcription.writeParagraph(out, packageableElement);
 					if (packageableElement.getOwnedComments() != null) {
-						writeRefContent(out, (Comment)packageableElement);
+						writeRefContent(out, (Comment) packageableElement);
+					}
+
+					// Expand in-line hyperlinks
+					String expanded = LinkUtil.transcodeHyperlinks(out, offset, out.length(), transcription.getHyperlinkTranscoder());
+					if (expanded != null) {
+						out.replace(offset, out.length(), expanded);
 					}
 				}
 			}
@@ -147,15 +158,15 @@ public class TranscriptionEngine {
 				}
 			}
 			if (packageableElement.getAppliedStereotype(I_DocumentStereotype.SECTION_STEREOTYPE) != null) {
-				transcription.writesectionTitle(out, level, packageableElement);
-					writeContent(out, ((Package) packageableElement), level + 1);
+				transcription.writeSectionTitle(out, level, packageableElement);
+				writeContent(out, ((Package) packageableElement), level + 1);
 			}
 			if (packageableElement.getAppliedStereotype(I_DocumentStereotype.TABLE_STEREOTYPE) != null) {
 				writeTable(out, packageableElement);
 			}
 			if (packageableElement.getAppliedStereotype(I_DocumentStereotype.TABLEOFCONTENT_STEREOTYPE) != null) {
-				transcription.writesectionTitle(out, 2, packageableElement);
-				writeTOC(out, (Package)packageableElement);
+				transcription.writeSectionTitle(out, 2, packageableElement);
+				writeTOC(out, (Package) packageableElement);
 			}
 		}
 	}
@@ -174,29 +185,29 @@ public class TranscriptionEngine {
 			Stereotype refContentStereotype = commentElement.getAppliedStereotype(I_DocumentStereotype.REF_CONTENT_STEREOTYPE);
 			if (refContentStereotype != null) {
 				Object ref = commentElement.getValue(refContentStereotype, I_DocumentStereotype.REF_CONTENT_REF_ATT);
-				
+
 				/* Get the URI of the model element */
 				if (ref instanceof NamedElement) {
-					Element referent = IDMAbstractHandler.elt2DocElt.get((NamedElement)ref);
+					Element referent = IDMAbstractHandler.getDocElement((NamedElement) ref);
 					if (referent != null) {
-						String referentURI = ((XMIResource)referent.eResource()).getID(referent);
+						String referentURI = referent.eResource().getURIFragment(referent);
 						String body = commentElement.getBody();
-						
+
 						/* Write the text */
-						if (iteComment.hasNext()) {							
+						if (iteComment.hasNext()) {
 							body = body + ", ";
 						}
-						transcription.writeRefContent(out, referentURI, ((NamedElement)ref).getName(), body);
-					}	
+						transcription.writeRefContent(out, referentURI, ((NamedElement) ref).getName(), body);
+					}
 				}
 			}
 		}
 	}
 
 	/**
-	 * Retrieves the Table of Contents "Section" Package 
+	 * Retrieves the Table of Contents "Section" Package
 	 * and iterates on it "Section" package.
-	 * For each, write it name and URI in the output file. 
+	 * For each, write it name and URI in the output file.
 	 * Then, iterates on it child
 	 * 
 	 * @param out
@@ -209,17 +220,17 @@ public class TranscriptionEngine {
 			if (sectionStereotype != null) {
 				transcription.writeBeginTOC(out);
 				Package chapter = (Package) cddPackageableElement;
-				Package chapterDocElt = IDMAbstractHandler.Toc2DocElt.get(chapter);
-				String URI = ((XMIResource)chapterDocElt.eResource()).getID(chapterDocElt);
+				Package chapterDocElt = IDMAbstractHandler.getDocPackageForTOC(chapter);
+				String URI = ((XMIResource) chapterDocElt.eResource()).getID(chapterDocElt);
 				transcription.writeTOCSection(out, chapter.getName(), URI);
-				writeSubSectionTOC(out, chapter); 
+				writeSubSectionTOC(out, chapter);
 				transcription.writeEndTOC(out);
 			}
 		}
 	}
 
 	/**
-	 * Retrieves the sub section of a "Section" package. 
+	 * Retrieves the sub section of a "Section" package.
 	 * Then for each, writes it name and URI on the output file.
 	 * It's a recursive method, so call it again with this package as argument.
 	 *
@@ -231,9 +242,9 @@ public class TranscriptionEngine {
 			Element cddSubSection = elements.next();
 			Stereotype sectionStereotype = cddSubSection.getAppliedStereotype(I_DocumentStereotype.SECTION_STEREOTYPE);
 			if (sectionStereotype != null) {
-				Package subSection = (Package)cddSubSection;
-				Package subSectionDocElt = IDMAbstractHandler.Toc2DocElt.get(subSection);
-				String URI = ((XMIResource)subSectionDocElt.eResource()).getID(subSectionDocElt);
+				Package subSection = (Package) cddSubSection;
+				Package subSectionDocElt = IDMAbstractHandler.getDocPackageForTOC(subSection);
+				String URI = ((XMIResource) subSectionDocElt.eResource()).getID(subSectionDocElt);
 				transcription.writeTOCSubSection(out, subSection.getName(), URI);
 				transcription.writeBeginTOC(out);
 				writeSubSectionTOC(out, subSection);
@@ -253,11 +264,11 @@ public class TranscriptionEngine {
 	 * @param packageableElement
 	 */
 	public void writeTable(StringBuffer out, Element packageableElement) {
-		Comment tableComment = (Comment)packageableElement;
+		Comment tableComment = (Comment) packageableElement;
 		Stereotype tableStereotype = tableComment.getAppliedStereotype(I_DocumentStereotype.TABLE_STEREOTYPE);
 
 		// Write the structure of the table and it head line
-		String tableCaption = (String) ((Comment)packageableElement).getValue(tableStereotype, I_DocumentStereotype.TABLE_CAPTION_ATT);
+		String tableCaption = (String) ((Comment) packageableElement).getValue(tableStereotype, I_DocumentStereotype.TABLE_CAPTION_ATT);
 		transcription.writeTable(out, tableCaption);
 
 		// Iterates on table ownedComments
@@ -265,7 +276,7 @@ public class TranscriptionEngine {
 			Comment lineComment = cddLineComment.next();
 			if (lineComment.getAppliedStereotype(I_DocumentStereotype.LINE_STEREOTYPE) != null) {
 				transcription.writeBeginTRTag(out);
-				// Iterates on line ownedComments 
+				// Iterates on line ownedComments
 				for (Iterator<Comment> cddCellComment = lineComment.getOwnedComments().iterator(); cddCellComment.hasNext();) {
 					Comment cellComment = cddCellComment.next();
 					if (cellComment.getAppliedStereotype(I_DocumentStereotype.CELL_STEREOTYPE) != null) {
@@ -284,15 +295,15 @@ public class TranscriptionEngine {
 								String referentURI = "";
 								String referenceName = "";
 								Object ref = refContentComment.getValue(refContentStereotype, I_DocumentStereotype.REF_CONTENT_REF_ATT);
-															
+
 								/* Get the URI of the model element */
 								if (ref instanceof NamedElement) {
 									NamedElement refElement = (NamedElement) ref;
 									referenceName = refElement.getName();
-									Element referentElement = IDMAbstractHandler.elt2DocElt.get(refElement);
+									Element referentElement = IDMAbstractHandler.getDocElement(refElement);
 									if (referentElement != null) {
-										referentURI = ((XMIResource)referentElement.eResource()).getID(referentElement);
-									}	
+										referentURI = ((XMIResource) referentElement.eResource()).getID(referentElement);
+									}
 								}
 
 								if (cellSize > 1 && cddRefContentComment.hasNext()) {
@@ -311,6 +322,6 @@ public class TranscriptionEngine {
 				transcription.writeEndTRTag(out);
 			}
 		}
-		transcription.writeEndingTable(out);		
+		transcription.writeEndingTable(out);
 	}
 }

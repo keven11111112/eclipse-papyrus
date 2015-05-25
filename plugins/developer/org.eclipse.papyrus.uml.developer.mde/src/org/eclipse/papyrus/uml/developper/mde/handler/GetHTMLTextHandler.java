@@ -14,8 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.handler;
 
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
@@ -27,7 +25,6 @@ import org.eclipse.papyrus.uml.developper.mde.command.CreateDocumentModelCommand
 import org.eclipse.papyrus.uml.developper.mde.transcription.HTMLTranscription;
 import org.eclipse.papyrus.uml.developper.mde.transcription.TranscriptionEngine;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * This class is used to create and html developper doc file.
@@ -44,8 +41,7 @@ public class GetHTMLTextHandler extends IDMAbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
 		System.err.println(getCurrentProject().getLocationURI().getPath());
-		IDMAbstractHandler.elt2DocElt.clear();
-		IDMAbstractHandler.Toc2DocElt.clear();
+		IDMAbstractHandler.clear();
 
 		try {
 			CreateDocumentModelCommand createDocumentModelCommand = new CreateDocumentModelCommand(transactionalEditingDomain, (Model) getSelection(), getCurrentProject().getLocationURI().getPath() + INTERNAL_DIRECTORY_NAME);
@@ -54,8 +50,7 @@ public class GetHTMLTextHandler extends IDMAbstractHandler {
 			TranscriptionEngine engine = new TranscriptionEngine((Model) getSelection(), project, new HTMLTranscription());
 			engine.traduce();
 		} finally {
-			IDMAbstractHandler.elt2DocElt.clear();
-			IDMAbstractHandler.Toc2DocElt.clear();
+			IDMAbstractHandler.clear();
 		}
 
 		return null;
@@ -80,8 +75,7 @@ public class GetHTMLTextHandler extends IDMAbstractHandler {
 	public boolean isEnabled() {
 		if (getSelection() instanceof Model) {
 			Model model = (Model) getSelection();
-			List<Stereotype> stereotypes = model.getAppliedStereotypes();
-			if (((Model) getSelection()).getAppliedStereotype(I_DeveloperIDMStereotype.PROJECT_STEREOTYPE) != null) {
+			if (model.getAppliedStereotype(I_DeveloperIDMStereotype.PROJECT_STEREOTYPE) != null) {
 				return true;
 			}
 
