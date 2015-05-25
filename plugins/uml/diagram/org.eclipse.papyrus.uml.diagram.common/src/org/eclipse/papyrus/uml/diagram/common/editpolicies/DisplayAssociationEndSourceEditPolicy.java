@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndSourceLabelHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
 
 /**
  * Mask Managed label edit policy for association ends (source role)
@@ -34,6 +35,15 @@ public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEnd
 	 */
 	public DisplayAssociationEndSourceEditPolicy() {
 		super();
-		propertyLabelHelper = AssociationEndSourceLabelHelper.getInstance();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndEditPolicy#createPropertyLabelHelper()
+	 *
+	 * @return
+	 */
+	@Override
+	protected PropertyLabelHelper createPropertyLabelHelper() {
+		return AssociationEndSourceLabelHelper.getInstance();
 	}
 }

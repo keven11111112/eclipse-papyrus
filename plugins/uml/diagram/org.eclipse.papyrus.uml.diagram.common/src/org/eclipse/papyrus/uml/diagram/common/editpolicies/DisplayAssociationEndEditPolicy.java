@@ -34,16 +34,17 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * I is used to display the label of an association branch
  */
-public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPolicy {
+public abstract class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/** label helper for the property */
-	protected PropertyLabelHelper propertyLabelHelper;
+	private final PropertyLabelHelper propertyLabelHelper;
 
 	/**
 	 * Creates a new PropertyLabelEditPolicy
 	 */
 	public DisplayAssociationEndEditPolicy() {
 		super();
+		propertyLabelHelper = createPropertyLabelHelper();
 	}
 
 	@Override
@@ -160,7 +161,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 			break;
 		case UMLPackage.PROPERTY__TYPE:
 			switch (notification.getEventType()) {
-			// if it is added => adds listener to the type element
+				// if it is added => adds listener to the type element
 			case Notification.ADD:
 				getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
 				refreshDisplay();
@@ -250,6 +251,9 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 			getDiagramEventBroker().removeNotificationListener(getUMLElement().getType(), this);
 		}
 	}
+
+	protected abstract PropertyLabelHelper createPropertyLabelHelper();
+
 	// /**
 	// * {@inheritDoc}
 	// */
