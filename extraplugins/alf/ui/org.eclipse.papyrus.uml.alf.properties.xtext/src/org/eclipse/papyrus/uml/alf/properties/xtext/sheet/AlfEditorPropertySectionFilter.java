@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.IFilter;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.alf.transaction.observation.listener.filter.FUMLScopeUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.papyrus.uml.alf.preferences.AlfIntegrationPreferencesUtil;
 
 /**
  * This class constrains the availability of the embedded ALF editor.
@@ -45,7 +46,8 @@ public class AlfEditorPropertySectionFilter implements IFilter {
 	public boolean select(Object toTest) {
 		Element element = this.resolveSemanticElement(toTest);
 		boolean accepted = false;
-		if(element!=null){
+		if(element!=null && 
+				AlfIntegrationPreferencesUtil.isAlfSupportEnabled()){
 			accepted = this.isValidInput(element);
 		}
 		return accepted;

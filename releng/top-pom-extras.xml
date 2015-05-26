@@ -136,6 +136,7 @@
 		<module>../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.text</module>
 		<module>../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.transaction</module>
 		<module>../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.properties.xtext</module>
+		<module>../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.preferences</module>
 		
 		<!-- Papyrus Uml Rt  -->
 		<module>../extraplugins/umlrt/org.eclipse.papyrus.umlrt</module>
