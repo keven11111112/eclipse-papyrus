@@ -80,23 +80,22 @@ public class StyleAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected StyleSwitch<Adapter> modelSwitch =
-			new StyleSwitch<Adapter>() {
-				@Override
-				public Adapter casePapyrusViewStyle(PapyrusViewStyle object) {
-					return createPapyrusViewStyleAdapter();
-				}
+	protected StyleSwitch<Adapter> modelSwitch = new StyleSwitch<Adapter>() {
+		@Override
+		public Adapter casePapyrusViewStyle(PapyrusViewStyle object) {
+			return createPapyrusViewStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseStyle(Style object) {
-					return createStyleAdapter();
-				}
+		@Override
+		public Adapter caseStyle(Style object) {
+			return createStyleAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
