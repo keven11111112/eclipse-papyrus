@@ -159,8 +159,8 @@ public class HTMLTranscription implements ITranscription {
 		out.append("<caption style=\"caption-side: bottom;\">" + tableCaption + "</caption>");
 		writeBeginTRTag(out);
 		out.append("<th style=\"border: 1px solid black\">Id</th>");
-		out.append("<th style=\"border: 1px solid black\">Satisfy by</th>");
-		out.append("<th style=\"border: 1px solid black\">Verify by</th>");
+		out.append("<th style=\"border: 1px solid black\">Satisfied by</th>");
+		out.append("<th style=\"border: 1px solid black\">Verified by</th>");
 		writeEndTRTag(out);
 	}
 

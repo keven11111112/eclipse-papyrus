@@ -160,8 +160,8 @@ public class WikiTranscription implements ITranscription {
 	public void writeTable(StringBuffer out, String tableCaption) {
 		out.append("\n{| border=\"1\" cellpadding=\"20\" cellspacing=\"0\"\n");
 		out.append("!ID\n");
-		out.append("!Satisfy by\n");
-		out.append("!Verify by");
+		out.append("!Satisfied by\n");
+		out.append("!Verified by");
 	}
 
 

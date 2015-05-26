@@ -555,30 +555,26 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		}
 		for (Iterator<Comment> iteComment = (testIN).getOwnedComments().iterator(); iteComment.hasNext();) {
 			Comment currentComment = iteComment.next();
-			createImageFromHyperLink(copyImageUtil, testModelOUT, currentComment);
 			transformToContentComment(testModelOUT, currentComment);
+			createImageFromHyperLink(copyImageUtil, testModelOUT, currentComment);
 		}
 
 		for (Iterator<PackageableElement> iterator = testIN.getPackagedElements().iterator(); iterator.hasNext();) {
 			EObject packageableElement = iterator.next();
 
 			if (packageableElement instanceof Package) {
-				Package testCaseSectionOUT = createSection(testModelOUT, ((Package) packageableElement).getName());
-				IDMAbstractHandler.putDocElement((Element) packageableElement, testCaseSectionOUT);
-				generateTests(copyImageUtil, (Package) packageableElement, testCaseSectionOUT);
-				for (Iterator<Comment> iteComment = ((Package) packageableElement).getOwnedComments().iterator(); iteComment.hasNext();) {
+				Package package_ = (Package) packageableElement;
+				Package testCaseSectionOUT = createSection(testModelOUT, title(package_));
+				IDMAbstractHandler.putDocElement(package_, testCaseSectionOUT);
+				generateTests(copyImageUtil, package_, testCaseSectionOUT);
+			} else if (packageableElement instanceof Classifier && !(packageableElement instanceof Association)) {
+				Classifier classifier = (Classifier) packageableElement;
+				Package testCaseSectionOUT = createSection(testModelOUT, title(classifier));
+				IDMAbstractHandler.putDocElement(classifier, testCaseSectionOUT);
+				for (Iterator<Comment> iteComment = classifier.getOwnedComments().iterator(); iteComment.hasNext();) {
 					Comment currentComment = iteComment.next();
-					createImageFromHyperLink(copyImageUtil, testCaseSectionOUT, currentComment);
 					transformToContentComment(testCaseSectionOUT, currentComment);
-				}
-			} else if (packageableElement instanceof Behavior || packageableElement instanceof Classifier) {
-
-				Package testCaseSectionOUT = createSection(testModelOUT, ((NamedElement) packageableElement).getName());
-				IDMAbstractHandler.putDocElement((Element) packageableElement, testCaseSectionOUT);
-				for (Iterator<Comment> iteComment = ((NamedElement) packageableElement).getOwnedComments().iterator(); iteComment.hasNext();) {
-					Comment currentComment = iteComment.next();
 					createImageFromHyperLink(copyImageUtil, testCaseSectionOUT, currentComment);
-					transformToContentComment(testCaseSectionOUT, currentComment);
 				}
 			}
 
