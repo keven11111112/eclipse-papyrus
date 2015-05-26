@@ -18,6 +18,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -74,8 +75,12 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
+import com.google.common.base.Strings;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 
 /**
  * this command transform a model to document model
@@ -100,6 +105,8 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 	private AdapterFactory adapterFactory;
 
 	private LinkUtil linkUtil;
+
+	private BiMap<Diagram, String> diagramFileNames = HashBiMap.create();
 
 	/**
 	 *
@@ -189,6 +196,8 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 
 		// Generate content of the Table of Contents package
 		generateTableOfContents(documentModel);
+
+		diagramFileNames.clear();
 	}
 
 
@@ -880,7 +889,7 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 	 * @param currentDiagram
 	 */
 	protected void generateImg(CopyToImageUtil copyImageUtil, Package currentModel, Diagram currentDiagram) {
-		Path imagePath = new Path("" + directoryPath + File.separator + "imgDOC" + File.separator + currentDiagram.getName().replaceAll(" ", "_") + ".png"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		Path imagePath = new Path("" + directoryPath + File.separator + "imgDOC" + File.separator + getDiagramImageFileName(currentDiagram)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 		try {
 
 			copyImageUtil.copyToImage(currentDiagram,
@@ -903,6 +912,21 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		}
 		commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, path);
 		commentImg.setBody(currentDiagram.getName());
+	}
+
+	protected String getDiagramImageFileName(Diagram diagram) {
+		String result = diagramFileNames.get(diagram);
+
+		if (result == null) {
+			String base = Strings.nullToEmpty(diagram.getName()).replaceAll(" ", "_");
+			result = base;
+			for (int i = 1; diagramFileNames.containsValue(result); i++) {
+				result = base + '_' + i;
+			}
+			diagramFileNames.put(diagram, result);
+		}
+
+		return result + ".png";
 	}
 
 	/**
