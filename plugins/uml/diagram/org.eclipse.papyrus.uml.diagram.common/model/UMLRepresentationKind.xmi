@@ -28,5 +28,13 @@
         editPartQualifiedName="org.eclipse.papyrus.uml.diagram.common.editparts.BorderItemNameEditPart"
         name="NameLabel for BorderItem"
         viewFactory="org.eclipse.gmf.runtime.diagram.ui.view.factories.optimal.ShapeViewFactory"/>
+    <representationkinds
+        editPartQualifiedName="org.eclipse.papyrus.uml.diagram.common.editparts.ContainerNodeEditPart"
+        name="Container as a Node"
+        viewFactory="org.eclipse.papyrus.gmf.diagram.common.factory.ShapeViewFactory"/>
+    <representationkinds
+        editPartQualifiedName="org.eclipse.papyrus.uml.diagram.common.editparts.EditableLabelForNodeEditPart"
+        name="Editable Label representing the name of a Node"
+        viewFactory="org.eclipse.papyrus.gmf.diagram.common.factory.ShapeViewFactory"/>
   </libraries>
 </expansionmodel:DiagramExpansion>
