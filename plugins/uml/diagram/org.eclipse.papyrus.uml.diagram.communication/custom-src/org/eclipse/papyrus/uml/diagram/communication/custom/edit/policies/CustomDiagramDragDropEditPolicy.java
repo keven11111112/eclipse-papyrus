@@ -10,6 +10,7 @@
  *   Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
  *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr
  *   Christian W. Damus - bug 462958
+ *   Christian W. Damus - bug 468175
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies;
@@ -21,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
@@ -28,6 +30,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
@@ -37,11 +40,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
@@ -51,6 +57,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDrop
 import org.eclipse.papyrus.uml.diagram.communication.custom.commands.CommunicationDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.communication.custom.commands.CustomMessageViewCreateCommand;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationLinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationRequestConstant;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationUtil;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.DiagramShortCutHelper;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.DurationObservationHelper;
@@ -62,9 +69,11 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPart
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.TimeObservationEditPartCN;
+import org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
@@ -143,10 +152,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			switch (nodeVISUALID) {
 			case LifelineEditPartCN.VISUAL_ID:
 				return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
-				// case CommentEditPartCN.VISUAL_ID:
-				// return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
-				// case ConstraintEditPartCN.VISUAL_ID:
-				// return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
+			// case CommentEditPartCN.VISUAL_ID:
+			// return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
+			// case ConstraintEditPartCN.VISUAL_ID:
+			// return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
 			case TimeObservationEditPartCN.VISUAL_ID:
 				return dropTimeObservation(dropRequest, (TimeObservation) semanticElement, nodeVISUALID);
 			case DurationObservationEditPartCN.VISUAL_ID:
@@ -339,7 +348,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 							}
 						}
 						// System.err.println("Messages edit parts on the link :" + messagesEP);
-						// System.err.println("Semantic messages  on the link :" + messages);
+						// System.err.println("Semantic messages on the link :" + messages);
 						// 2. Create the drop commands
 						if (messagesEP == null) {// There is no graphical connection between the two lifelines (in this diagram)
 							// create a dropMessageAsConnector Command
@@ -468,6 +477,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				// TODO: add to composite command ?
 				if (nodeVISUALID == -1 && linkVISUALID == -1 && (droppedObject instanceof Diagram)) {// if the dropped element is the diagram short cut
 					cc.add(new CommandProxy(dropShortCutDiagram(dropRequest, (Diagram) droppedObject, nodeVISUALID)));
+				} else if ((nodeVISUALID == -1) && (linkVISUALID == -1) && (droppedObject instanceof ConnectableElement)) {
+					// Bug 468175: Create lifelines for dropped connectables
+					cc.add(dropConnectableElement(dropRequest, (ConnectableElement) droppedObject));
 				} else {
 					cc.add(new CommandProxy(getSpecificDropCommand(dropRequest, (Element) droppedObject, nodeVISUALID, linkVISUALID)));
 				}
@@ -505,5 +517,25 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			}
 		}
 		return new ICommandProxy(cc);
+	}
+
+	private IUndoableOperation dropConnectableElement(DropObjectsRequest dropRequest, ConnectableElement droppedObject) {
+		// Let's actually create a lifeline representing this connectable
+		Point location = dropRequest.getLocation();
+		CreateViewRequest createShapeRequest = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Lifeline_8001, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		createShapeRequest.setLocation(location);
+		ViewDescriptor viewDescriptor = createShapeRequest.getViewDescriptors().get(0);
+		CreateElementRequestAdapter elementAdapter = (CreateElementRequestAdapter) viewDescriptor.getElementAdapter();
+		CreateElementRequest createElementRequest = (CreateElementRequest) elementAdapter.getAdapter(CreateElementRequest.class);
+
+		// Configure the lifeline creation with the connectable that it represents
+		createElementRequest.setParameter(CommunicationRequestConstant.REPRESENTS, droppedObject);
+
+		// Compute and return the drop command
+		EditPart host = getHost();
+		Command result = ((IGraphicalEditPart) host).getCommand(createShapeRequest);
+		return ((result != null) && result.canExecute())
+				? new CommandProxy(result)
+				: org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 }
