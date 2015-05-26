@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 461489: add supports of AcceptEventAction
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
@@ -29,10 +30,14 @@ import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.css.helper.CSSDOMUMLSemanticElementHelper;
+import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.TimeEvent;
+import org.eclipse.uml2.uml.Trigger;
 
 /**
  * DOM Element Adapter for UML Elements
@@ -50,11 +55,13 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 */
 	private static final String STEREOTYPE_COMMENT = "StereotypeComment"; //$NON-NLS-1$
 
-
-	// Helpers
+	/** The stereotype helper. */
 	public final StereotypeDisplayUtil stereotypeHelper = StereotypeDisplayUtil.getInstance();
 
+	/** The Constant IS_TIME_EVENT_ACTION. */
+	private static final String IS_TIME_EVENT_ACTION_PROPERTY = "isTimeEventAction"; //$NON-NLS-1$
 
+	/** The Constant APPLIED_STEREOTYPES_PROPERTY. */
 	public static final String APPLIED_STEREOTYPES_PROPERTY = "appliedStereotypes"; //$NON-NLS-1$
 
 
@@ -162,10 +169,42 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					}
 				}
 			}
+			// manage of isTimeEventAction=true attribute for AcceptEventAction
+			if (IS_TIME_EVENT_ACTION_PROPERTY.equals(attr)) {
+				if (semanticElement instanceof AcceptEventAction) {
+					return String.valueOf(isAcceptTimeEventAction((AcceptEventAction) semanticElement));
+				}
+			}
 		}
 		return null;
 	}
 
+	/**
+	 * Checks if is accept time event action.
+	 *
+	 * @param action
+	 *            the action
+	 * @return true, if is accept time event action
+	 */
+	public static boolean isAcceptTimeEventAction(AcceptEventAction action) {
+		boolean hasTimeEvent = false;
+		boolean hasOthersTriggers = false;
+		// Get triggers
+		if (action.getTriggers() != null) {
+			for (Trigger trigger : action.getTriggers()) {
+				if (trigger != null) {
+					Event event = trigger.getEvent();
+					if (event instanceof TimeEvent) {
+						hasTimeEvent = true;
+					} else {
+						hasOthersTriggers = true;
+					}
+				}
+			}
+		}
+		// only time events have been encountered.
+		return hasTimeEvent && !hasOthersTriggers;
+	}
 
 	/**
 	 * Retrieve the Matching String Value for the StereotypeCompartment Element
@@ -181,7 +220,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 			return stereotypeHelper.getName(propertyCompartment);
 
 		}
-		return "";
+		return "";//$NON-NLS-1$
 	}
 
 	/**
@@ -211,7 +250,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 			}
 
 		}
-		return "";
+		return "";//$NON-NLS-1$
 
 	}
 
