@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -116,7 +117,14 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 				return null;
 			}
 			//look for all possible children for the current target.
-			List<String>childrenList =listRepresentation.parentChildrenRelation.get(graphicalEditPart.getNotationView().getType());
+			List<String>childrenList=null;
+			if(graphicalEditPart instanceof DiagramEditPart){
+				childrenList	 =listRepresentation.parentChildrenRelation.get(diagramType);
+			}
+			else{
+				childrenList	 =listRepresentation.parentChildrenRelation.get(graphicalEditPart.getNotationView().getType());
+			}
+			
 			if(childrenList==null){
 				return null;
 			}
