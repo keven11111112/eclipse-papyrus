@@ -99,4 +99,10 @@ public interface RequestParameterConstants {
 	 */
 	public static final String TRANSACTIONAL_NESTING = "TRANSACTIONAL_NESTING"; //$NON-NLS-1$
 
+	/**
+	 * the ID to store the name to be set for the new element.
+	 */
+	public final static String NAME_TO_SET = "nameToSet";
+
+
 }
