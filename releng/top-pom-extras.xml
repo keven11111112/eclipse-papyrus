@@ -257,7 +257,7 @@
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF COMPARE",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201505180755</url>
+			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201505261421</url>
 		</repository>
 		<repository>
 			<id>emf-emf</id>
@@ -269,13 +269,13 @@
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201505190324/mwe</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.0/R201505260335/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201505190428/mwe2lang</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.0/R201505260456/mwe2lang/</url>
 		</repository>
 		<repository>
 			<id>emf-query</id>
@@ -299,7 +299,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC1-201505141000/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC2a-201505222000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -329,19 +329,19 @@
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201505131324</url>
+			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201505261509</url>
 		</repository>
 		<repository>
 			<id>m2t-xpand</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T XPAND",0) -->
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201505190330/</url>
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201505260349/</url>
 		</repository>
 		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201505181553</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201505251529</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -353,7 +353,7 @@
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201505190736</url>
+			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201505261602</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
@@ -375,13 +375,13 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/maintenance/S201505190403/</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/maintenance/S201505260429/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/S-3.7.0RC1-20150519000109/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/S-3.7.0RC2-20150526000109/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
