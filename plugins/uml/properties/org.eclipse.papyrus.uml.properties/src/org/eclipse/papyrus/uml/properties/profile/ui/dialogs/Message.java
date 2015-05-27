@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.properties.profile.ui.dialogs;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
@@ -23,7 +24,7 @@ public class Message {
 	final Shell _message;
 
 	public Message(String title, String text) {
-		_message = new Shell(new Shell(), SWT.APPLICATION_MODAL | SWT.SHELL_TRIM);
+		_message = new Shell(Display.getDefault(), SWT.APPLICATION_MODAL | SWT.SHELL_TRIM);
 		_message.setText(title);
 		_message.setSize(250, 100);
 
@@ -38,5 +39,6 @@ public class Message {
 
 	public void close() {
 		_message.close();
+		_message.dispose();
 	}
 }
