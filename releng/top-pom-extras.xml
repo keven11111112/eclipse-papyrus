@@ -136,6 +136,7 @@
 		<module>../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.text</module>
 		<module>../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.transaction</module>
 		<module>../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.properties.xtext</module>
+		<module>../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.preferences</module>
 		
 		<!-- Papyrus Uml Rt  -->
 		<module>../extraplugins/umlrt/org.eclipse.papyrus.umlrt</module>
@@ -154,10 +155,10 @@
 		<!-- Papyrus 4 Education -->
 		<module>../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>	
-		<!-- Module EPF 
+		<!-- Module EPF -->
 		<module>../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext.extension</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.extra.epf.richtext.feature</module>
-		-->
+
         <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipse.profile</module>
         <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.assistant</module>
         <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.table</module>

@@ -14,10 +14,13 @@ package org.eclipse.papyrus.uml.alf.properties.xtext.sheet;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.jface.viewers.IFilter;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.alf.transaction.observation.listener.filter.FUMLScopeUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.papyrus.uml.alf.preferences.AlfIntegrationPreferencesUtil;
 
 /**
  * This class constrains the availability of the embedded ALF editor.
@@ -43,7 +46,8 @@ public class AlfEditorPropertySectionFilter implements IFilter {
 	public boolean select(Object toTest) {
 		Element element = this.resolveSemanticElement(toTest);
 		boolean accepted = false;
-		if(element!=null){
+		if(element!=null && 
+				AlfIntegrationPreferencesUtil.isAlfSupportEnabled()){
 			accepted = this.isValidInput(element);
 		}
 		return accepted;
@@ -59,6 +63,11 @@ public class AlfEditorPropertySectionFilter implements IFilter {
 	 * @return true if element is accepted as an input false otherwise
 	 */
 	private boolean isValidInput(Element element){
+		/*1. First constraint: the element must be modifiable (i.e. not read only)*/
+		if(!this.isModifiable(element)){
+			return false;
+		}
+		/*2. It should be in the scope supported by the ALF editor*/
 		if(FUMLScopeUtil.isClass(element)){
 			return true;
 		}else if(FUMLScopeUtil.isPackage(element)){
@@ -75,6 +84,14 @@ public class AlfEditorPropertySectionFilter implements IFilter {
 			return true;
 		}else if(FUMLScopeUtil.isOperationWithImplementation(element)){
 			return true;
+		}
+		return false;
+	}
+	
+	private boolean isModifiable(Element element){
+		Resource resource = element.eResource();
+		if(resource != null ){
+			return !EMFHelper.isReadOnly(element);
 		}
 		return false;
 	}

@@ -212,7 +212,7 @@ ActiveClassDefinitionOrStub returns ActiveClassDefinition :
 ;
 
 BehaviorClause returns ActivityDefinition :
-	body = Block | name = Name // TODO: isStub = true
+	body = Block | name = Name // NOTE: Does not set isStub = true.
 ;
 
 ActiveClassMember returns Member : 
