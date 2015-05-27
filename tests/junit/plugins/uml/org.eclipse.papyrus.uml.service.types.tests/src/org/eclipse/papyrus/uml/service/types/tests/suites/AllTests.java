@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 458685
+ *   Christian W. Damus - bug 468071
  *   
  *****************************************************************************/
 
@@ -18,6 +19,8 @@ import org.eclipse.papyrus.uml.service.types.tests.creation.CreateElementTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateProfileRelationshipTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreatePureUMLElementTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateRelationshipTest;
+import org.eclipse.papyrus.uml.service.types.tests.creation.MoveElementTest;
+import org.eclipse.papyrus.uml.service.types.tests.creation.SetFeatureTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteAssociationTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteDependentWithStereotypeApplications458685;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeletePureUMLElementTest;
@@ -35,9 +38,11 @@ import org.junit.runners.Suite.SuiteClasses;
 		CreateElementTest.class,
 		CreateRelationshipTest.class,
 		CreateProfileRelationshipTest.class,
+		MoveElementTest.class,
+		SetFeatureTest.class,
 		DeletePureUMLElementTest.class,
 		DeleteAssociationTest.class,
-		DeleteDependentWithStereotypeApplications458685.class })
+		DeleteDependentWithStereotypeApplications458685.class, })
 public class AllTests {
 	// JUnit 4 Test Suite
 }

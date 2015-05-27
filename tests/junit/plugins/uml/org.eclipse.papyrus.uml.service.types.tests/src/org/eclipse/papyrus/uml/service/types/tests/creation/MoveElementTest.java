@@ -31,8 +31,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
@@ -48,19 +47,20 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.RedefinableTemplateSignature;
+import org.eclipse.uml2.uml.TemplateSignature;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 
 /**
- * Test creation of UML elements (Creation / Undo / redo)
+ * Test moving of UML elements (Move / Undo / redo)
  */
-public class CreateElementTest extends AbstractPapyrusTest {
+public class MoveElementTest extends AbstractPapyrusTest {
 
 	@ClassRule
 	public static final HouseKeeper.Static houseKeeper = new HouseKeeper.Static();
@@ -77,23 +77,21 @@ public class CreateElementTest extends AbstractPapyrusTest {
 
 	private static Model rootModel;
 
-	private static Activity testActivity;
-
 	private static TransactionalEditingDomain transactionalEditingDomain;
 
 	private static Class testClass;
-
-	private static Activity testActivityWithNode;
 
 	private static Class testClassWithOperation;
 
 	private static Operation testOperation;
 
+	private static Operation testOperation2;
+
 	/**
 	 * Init test class
 	 */
 	@BeforeClass
-	public static void initCreateElementTest() throws Exception {
+	public static void initMoveElementTest() throws Exception {
 
 		// create Project
 		createProject = houseKeeper.createProject("UMLServiceTypesTest");
@@ -147,141 +145,83 @@ public class CreateElementTest extends AbstractPapyrusTest {
 	 * Init fields corresponding to element in the test model
 	 */
 	private static void initExistingElements() throws Exception {
-		// existing test activity
-		testActivity = (Activity) rootModel.getOwnedMember("TestActivity");
 		testClass = (Class) rootModel.getOwnedMember("TestClass");
-		testActivityWithNode = (Activity) rootModel.getOwnedMember("TestActivityWithNode");
 		testClassWithOperation = (Class) rootModel.getOwnedMember("TestClassWithOperation");
 		testOperation = testClassWithOperation.getOwnedOperation("foo", null, null);
-	}
-
-
-
-	@Test
-	public void testCreateClassInModel() throws Exception {
-		runCreationTest(rootModel, UMLElementTypes.CLASS, true);
+		testOperation2 = testClassWithOperation.getOwnedOperation("bar", null, null);
 	}
 
 	@Test
-	public void testCreateModelInClass() throws Exception {
-		// runs a test to see if unexecutable commands are really unexecutable
-		runCreationTest(testClass, UMLElementTypes.MODEL, false);
-	}
-
-	@Test
-	public void testCreateCentralBufferNodeInActivity() throws Exception {
-		int initialNumberOfNodes = 0;
+	public void testCannotMoveRedefinableTemplateSignatureToOperation_bug468071() throws Exception {
 		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
-		Command command = getCreateChildCommand(testActivity, UMLElementTypes.CENTRAL_BUFFER_NODE, true);
-		Assert.assertEquals("Wrong number of nodes before creation", initialNumberOfNodes, testActivity.getNodes().size());
+		RedefinableTemplateSignature signature = (RedefinableTemplateSignature) testClassWithOperation.getOwnedTemplateSignature();
+		getMoveCommand(signature, testOperation, false);
+	}
+
+	@Test
+	public void testMoveTemplateSignatureToOperation_bug468071() throws Exception {
+		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
+		TemplateSignature signature = testOperation2.getOwnedTemplateSignature();
+
+		Command command = getMoveCommand(signature, testOperation, true);
 
 		transactionalEditingDomain.getCommandStack().execute(command);
-		Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes + 1, testActivity.getNodes().size());
-		Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes + 1, testActivity.getOwnedNodes().size());
+		assertThat("Template signature not moved", testOperation.getOwnedTemplateSignature(), notNullValue());
 
 		transactionalEditingDomain.getCommandStack().undo();
-		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
-		Assert.assertEquals("Wrong number of owned nodes after undo", initialNumberOfNodes, testActivity.getOwnedNodes().size());
-		Assert.assertEquals("Wrong number of nodes after undo", initialNumberOfNodes, testActivity.getNodes().size());
-
-		transactionalEditingDomain.getCommandStack().redo();
-		Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes + 1, testActivity.getNodes().size());
-
-		transactionalEditingDomain.getCommandStack().undo();
-		Assert.assertEquals("Wrong number of nodes after 2nd undo", initialNumberOfNodes, testActivity.getNodes().size());
-
-		// assert editor is not dirty
-		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
-	}
-
-	@Test
-	public void testCreateCentralBufferNodeInActivityWithNode() throws Exception {
-		int initialNumberOfNodes = 1;
-		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
-		Command command = getCreateChildCommand(testActivityWithNode, UMLElementTypes.CENTRAL_BUFFER_NODE, true);
-		Assert.assertEquals("Wrong number of nodes before creation", initialNumberOfNodes, testActivityWithNode.getNodes().size());
-
-		transactionalEditingDomain.getCommandStack().execute(command);
-		Assert.assertEquals("Wrong number of nodes after creation", initialNumberOfNodes + 1, testActivityWithNode.getNodes().size());
-		Assert.assertEquals("Wrong number of owned nodes after creation", initialNumberOfNodes + 1, testActivityWithNode.getOwnedNodes().size());
-
-		transactionalEditingDomain.getCommandStack().undo();
-		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
-		Assert.assertEquals("Wrong number of owned nodes after undo", initialNumberOfNodes, testActivityWithNode.getOwnedNodes().size());
-		Assert.assertEquals("Wrong number of nodes after undo", initialNumberOfNodes, testActivityWithNode.getNodes().size());
-
-		transactionalEditingDomain.getCommandStack().redo();
-		Assert.assertEquals("Wrong number of nodes after redo", initialNumberOfNodes + 1, testActivityWithNode.getNodes().size());
-
-		transactionalEditingDomain.getCommandStack().undo();
-		Assert.assertEquals("Wrong number of nodes after 2nd undo", initialNumberOfNodes, testActivityWithNode.getNodes().size());
-
-		// assert editor is not dirty
-		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
-	}
-
-	@Test
-	public void testCannotCreateOperationRedefinableTemplateSignature_bug468071() throws Exception {
-		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
-		getCreateChildCommand(testOperation, UMLElementTypes.REDEFINABLE_TEMPLATE_SIGNATURE, false);
-	}
-
-	@Test
-	public void testCreateOperationTemplateSignature_bug468071() throws Exception {
-		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
-		Command command = getCreateChildCommand(testOperation, UMLElementTypes.TEMPLATE_SIGNATURE, true);
-
-		transactionalEditingDomain.getCommandStack().execute(command);
-		assertThat("Template signature not created", testOperation.getOwnedTemplateSignature(), notNullValue());
-
-		transactionalEditingDomain.getCommandStack().undo();
-		assertThat("Template signature still exists after undo", testOperation.getOwnedTemplateSignature(), nullValue());
+		assertThat("Template signature still moved after undo", testOperation.getOwnedTemplateSignature(), nullValue());
 
 		transactionalEditingDomain.getCommandStack().redo();
 		assertThat("Template signature not restored by redo", testOperation.getOwnedTemplateSignature(), notNullValue());
 
 		transactionalEditingDomain.getCommandStack().undo();
-		assertThat("Template signature still exists after second undo", testOperation.getOwnedTemplateSignature(), nullValue());
+		assertThat("Template signature still moved after second undo", testOperation.getOwnedTemplateSignature(), nullValue());
 
 		// assert editor is not dirty
 		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
 	}
 
-	protected void runCreationTest(EObject owner, IHintedType hintedType, boolean canCreate) throws Exception {
+	@Test
+	public void testMoveRedefinableTemplateSignatureToClass_bug468071() throws Exception {
 		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
-		Command command = getCreateChildCommand(owner, hintedType, canCreate);
+		RedefinableTemplateSignature signature = (RedefinableTemplateSignature) testClassWithOperation.getOwnedTemplateSignature();
 
-		// command has been tested when created. Runs the test if it is possible
-		if (command != null && canCreate) {
-			transactionalEditingDomain.getCommandStack().execute(command);
-			transactionalEditingDomain.getCommandStack().undo();
-			Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
-			transactionalEditingDomain.getCommandStack().redo();
-			transactionalEditingDomain.getCommandStack().undo();
-			// assert editor is not dirty
-			Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
-		}
+		Command command = getMoveCommand(signature, testClass, true);
 
+		transactionalEditingDomain.getCommandStack().execute(command);
+		assertThat("Template signature not moved", testClass.getOwnedTemplateSignature(), notNullValue());
+
+		transactionalEditingDomain.getCommandStack().undo();
+		assertThat("Template signature still moved after undo", testClass.getOwnedTemplateSignature(), nullValue());
+
+		transactionalEditingDomain.getCommandStack().redo();
+		assertThat("Template signature not restored by redo", testClass.getOwnedTemplateSignature(), notNullValue());
+
+		transactionalEditingDomain.getCommandStack().undo();
+		assertThat("Template signature still moved after second undo", testClass.getOwnedTemplateSignature(), nullValue());
+
+		// assert editor is not dirty
+		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
 	}
 
 	/**
-	 * Creates the element in the given owner element, undo and redo the action
+	 * Creates a command to move the {@code element} to a new owner and asserts its executability.
 	 *
-	 * @param owner
-	 *            owner of the new element
-	 * @param hintedType
-	 *            type of the new element
-	 * @param canCreate
-	 *            <code>true</code> if new element can be created in the specified owner
+	 * @param element
+	 *            the element to move
+	 * @param newOwner
+	 *            the new owner of the moved element
+	 * @param canMove
+	 *            <code>true</code> if element can be moved to the specified owner
 	 */
-	protected Command getCreateChildCommand(EObject owner, IHintedType hintedType, boolean canCreate) throws Exception {
-		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
-		ICommand command = elementEditService.getEditCommand(new CreateElementRequest(owner, hintedType));
+	protected Command getMoveCommand(EObject element, EObject newOwner, boolean canMove) throws Exception {
+		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(element);
+		ICommand command = elementEditService.getEditCommand(new MoveRequest(newOwner, element));
 
-		if (!canCreate) {
+		if (!canMove) {
 			// command should not be executable: either it should be null or it should be not executable
 			if (command != null && command.canExecute()) {
-				fail("Creation command is executable but it was expected as not executable");
+				fail("Move command is executable but it was expected not to be");
 			}
 		} else {
 			// command should be executable in this case
