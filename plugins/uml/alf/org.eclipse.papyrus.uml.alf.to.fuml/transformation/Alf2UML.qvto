@@ -51,10 +51,12 @@ helper addAsStereotyped(inout element : Element, names : Set(String)) {
     target := element;
     stereotypeNames := names;
   };
+  /*
   var text := "target=" + element.toString() + "\nstereotypeNames=";
   names->forEach(name) {
   	text := text + name + " ";
   };
+  */
   return;
 }
 
@@ -152,11 +154,7 @@ helper applyDefinitions() {
 }
 
 helper addTextualRepresentation(inout element : Element, representation : String) {
-  var comment := object Comment {
-  	body := representation;
-  	annotatedElement := element;
-  };
-  element.ownedComment += comment;
+  element.ownedComment += var comment ::= new Comment(representation, element);
   var stereotype := 
     comment.getApplicableStereotype("ActionLanguage::TextualRepresentation");
   if stereotype <> null then {
@@ -532,7 +530,7 @@ mapping ClassDefinition::toClass() : Class
 		  if not self.ownedMember.definition[OperationDefinition]->exists(isConstructor) then {
 		  
 		    // Add default constructor.
-		  	var activity = object Activity {
+		  	ownedBehavior += var activity ::= object Activity {
 		  		name := uniqueName(self.actualName() + "$method", result);
 		      ownedParameter := object Parameter {
 		        type := result;
@@ -541,8 +539,7 @@ mapping ClassDefinition::toClass() : Class
 		        direction := ParameterDirectionKind::_'return';
 		      };
 		  	};
-		    ownedBehavior += activity;
-		    var operation := object Operation {
+		    ownedOperation += var operation ::= object Operation {
 		      name := self.actualName();
 		      method := activity;
 		      ownedParameter := object Parameter {
@@ -552,7 +549,6 @@ mapping ClassDefinition::toClass() : Class
 		      	direction := ParameterDirectionKind::_return;
 		      };
 		    };
-		  	ownedOperation += operation;
 		  	addAsStereotyped(operation, Set{"Create"});
 		  	mapDefaultConstructor(activity, result, initializationOperation);
 		  	
@@ -586,35 +582,16 @@ query uniqueName(name : String, namespace : Namespace) : String {
 }
 
 helper ClassDefinition::createInitializationMethod(class_ : Class, initializationFlag : Property, operationName: String) : Activity {
-	var method = object Activity {
+	var method := object Activity {
 	  name := operationName;
 	  visibility := VisibilityKind::protected;
 	};
 	
-	var readSelfAction := object ReadSelfAction {
-		activity := method;
-		name := "ReadSelf";
-		_'result' := object OutputPin {
-			name := "ReadSelf.result";
-			type := class_;
-			lower := 1;
-			upper := 1;
-		};
-	};
-	var selfFork := object ForkNode {
-		activity := method;
-		name := "Fork(" + readSelfAction._'result'.name + ")";
-	};
-	object ObjectFlow {
-		activity := method;
-		source := readSelfAction.result;
-		target := selfFork;
-	};
+	method.ownedNode += var readSelfAction ::= new ReadSelfAction(class_);
+	var selfFork := new ForkNode(method, readSelfAction._'result'.name);
+	new ObjectFlow(method, readSelfAction.result, selfFork);
 	
-	var initializationNode := object StructuredActivityNode {
-		activity := method;
-		name := "Initialization";
-	};
+	var initializationNode := new StructuredActivityNode(method, "Initialization");
 	
 	var previousNode : ActivityNode := null;
 	
@@ -625,29 +602,10 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
   	var superclass := referent.resolveone(Generalization).general.oclAsType(Class);
   	var initializationOperation := superclass.initializationOperation();
   	if initializationOperation <> null then {
-  		var callActionName := "Call(" + initializationOperation.name + ")";
-  		var callAction := object CallOperationAction {
-  			inStructuredNode := initializationNode;
-  			name := callActionName;
-  			operation := initializationOperation;
-  			target := object InputPin {
-  				name := callActionName + ".target";
-  				type := superclass;
-  				lower := 1;
-  				upper := 1;
-  			};
-  		};
-  		object ObjectFlow {
-  			activity := method;
-  			source := selfFork;
-  			target := callAction.target;
-  		};
+  		initializationNode.node += var callAction ::= new CallOperationAction(initializationOperation);
+  		new ObjectFlow(method, selfFork, callAction.target);
   		if previousNode <> null then {
-  			object ControlFlow {
-  				inStructuredNode := initializationNode;
-  				source := previousNode;
-  				target := callAction;
-  			};
+  			new ControlFlow(initializationNode, previousNode, callAction);
   		} endif;
   		previousNode := callAction;
   	} endif;
@@ -657,203 +615,48 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
   class_.ownedAttribute->forEach(attribute) {
   	if attribute.defaultValue <> null then {
   	  var defaultBehavior := attribute.defaultValue.oclAsType(OpaqueExpression).behavior;
-  	  var callActionName := "Call(" + defaultBehavior.name + ")";
-  	  var callAction := object CallBehaviorAction {
-  	  	inStructuredNode := initializationNode;
-  	  	name := callActionName;
-  	  	behavior := defaultBehavior;
-  	  	_'result' += object OutputPin {
-  	  		name := callActionName + ".result";
-  	  		type := attribute.type;
-  	  		lower := attribute.lower;
-  	  		upper := attribute.upper;
-  	  	};
-  	  };
+  	  initializationNode.node += var callAction ::= new CallBehaviorAction(defaultBehavior);
   	  var graph := self.mapPropertyAssignment(attribute, selfFork, callAction._'result'->at(1));
-  	  var node := object StructuredActivityNode {
-  	  	inStructuredNode := initializationNode;
-  	  	name := "Initialization(" + attribute.name + ")";
-  	  	node := graph.nodes;
-  	  };
+  	  initializationNode.node += var node ::= new StructuredActivityNode("Initialization(" + attribute.name + ")");
+  	  node.node := graph.nodes;
   	  initializationNode.edge += graph.edges;
   	  if previousNode <> null then {
-  	  	object ObjectFlow {
-  	  		inStructuredNode := initializationNode;
-  	  		source := previousNode;
-  	  		target := node;
-  	  	}
+  	  	new ObjectFlow(initializationNode, previousNode, node);
   	  } endif;
   	  previousNode := node;
   	} endif;
   };
   
   // Add action to set initialization to true.
-  var valueAction := object ValueSpecificationAction {
-  	inStructuredNode := initializationNode;
-  	name := "Value(true)";
-  	value := object LiteralBoolean {
-  		value := true;
-  	};
-  	_'result' := object OutputPin {
-  		name := "Value(true).result";
-  		type := initializationFlag.type;
-  		lower := 1;
-  		upper := 1;
-  	};
-  };
-  var writeActionName := "Write(" + initializationFlag.name + ")";
-  var writeAction := object AddStructuralFeatureValueAction {
-  	inStructuredNode := initializationNode;
-  	name := writeActionName;
-  	structuralFeature := initializationFlag;
-  	isReplaceAll := true;
-  	_'object' := object InputPin {
-  		name := writeActionName + ".object";
-  		type := class_;
-  		lower := 1;
-  		upper := 1;
-  	};
-  	value := object InputPin {
-  		name := writeActionName + ".value";
-  		type := initializationFlag.type;
-  		lower := 1;
-  		upper := 1;
-  	}
-  };
-  object ObjectFlow {
-  	activity := method;
-  	source := selfFork;
-  	target := writeAction._'object';
-  };
-  object ObjectFlow {
-  	inStructuredNode := initializationNode;
-  	source := valueAction._'result';
-  	target := writeAction.value;
-  };
+  initializationNode.node += var valueAction ::= new ValueSpecificationAction(new LiteralBoolean(true, self.booleanType().toType()));
+  initializationNode.node += var writeAction ::= new AddStructuralFeatureValueAction(initializationFlag, true, null);
+  new ObjectFlow(method, selfFork, writeAction._'object');
+  new ObjectFlow(initializationNode, valueAction.result, writeAction.value);
   if previousNode <> null then {
-  	object ControlFlow {
-  		inStructuredNode := initializationNode;
-  		source := previousNode;
-  		target := valueAction;
-  	};
+  	new ControlFlow(initializationNode, previousNode, valueAction);
   } endif;
   
   // Add decision to skip initialization if this object is already initialized.
-	var readActionName := "Read(" + initializationFlag.name + ")";
-  var readAction := object ReadStructuralFeatureAction {
-  	activity := method;
-  	name := readActionName;
-  	structuralFeature := initializationFlag;
-  	_'object' := object InputPin {
-  		name := readActionName + ".object";
-  		type := class_;
-  		lower := 1;
-  		upper := 1;
-  	};
-  	_'result' := object OutputPin {
-  		name := readActionName + ".result";
-  		type := initializationFlag.type;
-  		lower := 0;
-  		upper := 1;
-  	};
-  };
-  object ObjectFlow {
-  	activity := method;
-  	source := selfFork;
-  	target := readAction._'object';
-  };
-  
-  var sizeAction := object CallBehaviorAction {
-  	activity := method;
-  	name := "Call(Size)";
-  	behavior := self.functionSize();
-  	argument += object InputPin {
-  		name := "Call(Size).argument";
-  		lower := 0;
-  		upper := -1;
-  	};
-  	_'result' += object OutputPin {
-  		name := "Call(Size).result";
-  		type := self.integerType().toUml().oclAsType(Type);
-  		lower := 1;
-  		upper := 1;
-  	};
-  };
-  object ObjectFlow {
-  	activity := method;
-  	source := readAction._'result';
-  	target := sizeAction.argument->at(1);
-  };
+  method.ownedNode += var readAction ::= new ReadStructuralFeatureAction(class_, initializationFlag);
+  new ObjectFlow(method, selfFork, readAction._'object');
 
-  valueAction := object ValueSpecificationAction {
-  	activity := method;
-  	name := "Value(0)";
-  	value := object LiteralInteger {
-  		value := 0;
-  	};
-  	_'result' := object OutputPin {
-  		name := "Value(0).result";
-  		type := sizeAction._'result'->at(1).type;
-  		lower := 1;
-  		upper := 1;
-  	};
-  };
+	method.ownedNode += var sizeAction ::= new CallBehaviorAction(self.functionSize());
+	new ObjectFlow(method, readAction.result, sizeAction.argument->at(1));
+
+  method.ownedNode += valueAction := new ValueSpecificationAction(new LiteralInteger(0, self.integerType().toType()));  
+  method.ownedNode += var testAction ::= new TestIdentityAction("Size==0", self.booleanType().toType());
+  new ObjectFlow(method, sizeAction.result->at(1), testAction.first);
+  new ObjectFlow(method, valueAction.result, testAction.second);
   
-  var testAction := object TestIdentityAction {
-  	activity := method;
-  	name := "Test(Size==0)";
-  	first := object InputPin {
-  		name := "Test(Size==0).first";
-  		lower := 0;
-  		upper := 1;
-  	};
-  	second := object InputPin {
-  		name := "Test(Size==0).second";
-  		lower := 0;
-  		upper := 1;
-  	};
-  	_'result' := object OutputPin {
-  		name := "Test(Size==0).result";
-  		type := self.booleanType().toUml().oclAsType(Type);
-  		lower := 1;
-  		upper := 1;
-  	};
-  };
-  object ObjectFlow {
-  	activity := method;
-  	source := sizeAction._'result'->at(1);
-  	target := testAction.first;
-  };
-  object ObjectFlow {
-  	activity := method;
-  	source := valueAction._'result';
-  	target := testAction.second;
-  };
-  
-  var initialNode := object InitialNode {
-  	activity := method;
-  	name := "InitialNode";
-  };
-  var graph := createObjectDecisionGraph(
+  method.ownedNode += var initialNode ::= new InitialNode("InitialNode");
+  createObjectDecisionGraph(
   	"Test(" + initializationFlag.name + ")",
   	initialNode, testAction.result,
   	initializationNode, null
-  );
-  method.ownedNode += graph.nodes;
-  method.edge += graph.edges;
-  
+  ).addTo(method);
+
 	return method;
 }
-
-/*
-helper adjustName(qualifiedName : String) : String {
-  return qualifiedName.tokenize("::")->iterate(name; adjustedName : String = "" |
-    if adjustedName = "" then name.toName()
-    else adjustedName + "::" + name.toName()
-    endif
-  )
-}
-*/
 
 query Class::initializationOperation() : Operation {
 	var operation : Operation := null;
@@ -1129,55 +932,17 @@ helper mapDefaultConstructor(inout method : Activity, class_ : Class, initializa
 
   // Add an output parameter node.
 	var returnParameter := method.ownedParameter->at(1);
-	var outputNode := object ActivityParameterNode {
-		activity := method;
-		name := "Return";
-		parameter := returnParameter;
-	};	
+	var outputNode := new ActivityParameterNode(method, returnParameter, false);
 
   // Return context object as the constructor result.
-	var readSelfAction := object ReadSelfAction {
-		activity := method;
-		name := "ReadSelf";
-		_'result' := object OutputPin {
-			name := "ReadSelf.result";
-			type := class_;
-			lower := 1;
-			upper := 1;
-		}
-	};	
-	var fork := object ForkNode {
-		activity := method;
-		name := "Fork(" + readSelfAction._'result'.name + ")";
-	};	
-	object ObjectFlow {
-		activity := method;
-		source := readSelfAction._'result';
-		target := fork;
-	};
-	object ObjectFlow {
-		activity := method;
-		source := fork;
-		target := outputNode;
-	};
+	method.ownedNode += var readSelfAction ::= new ReadSelfAction(class_);
+	method.ownedNode += var fork := new ForkNode(readSelfAction.result.name);
+	new ObjectFlow(method, readSelfAction.result, fork);
+	new ObjectFlow(method, fork, outputNode);
 	
 	// Add call to local initialization operation.	
-	var callActionName := "Call(" + initializationOperation.name + ")";
-	var callAction := object CallOperationAction {
-		activity := method;
-		name := callActionName;
-    target := object InputPin {
-    	name := callActionName + ".target";
-    	type := readSelfAction._'result'.type;
-    	lower := 1;
-    	upper := 1;
-    }
-	};	
-	object ObjectFlow {
-		activity := method;
-		source := fork;
-		target := callAction.target;
-	};
+	method.ownedNode += var callAction ::= new CallOperationAction(initializationOperation);
+	new ObjectFlow(method, fork, callAction.target);
 	
 }
 
@@ -1190,17 +955,10 @@ helper ClassDefinition::mapDefaultDestructor(inout method : Activity, class_ : C
 		var destructorOperation := superclass.destructorOperation();
 		if destructorOperation <> null and destructorOperation.method->notEmpty() then {
 			var destructorMethod := destructorOperation.method![true];
-			var callAction := object CallBehaviorAction {
-				activity := method;
-				name := "Call(" + superclass.name + "::destroy)";
-				behavior := destructorMethod;
-			};
+			method.ownedNode += var callAction ::= new CallBehaviorAction(destructorMethod);
+			callAction.name := "Call(" + superclass.name + "::destroy)";
 			if previousNode <> null then {
-				object ControlFlow {
-					activity := method;
-					source := previousNode;
-					target := callAction;
-				};
+				new ControlFlow(method, previousNode, callAction);
 			} endif;
 			previousNode := callAction;
 		} endif;	
@@ -1212,11 +970,7 @@ helper ClassDefinition::mapDefaultDestructor(inout method : Activity, class_ : C
 		if structuredNode <> null then {
 			structuredNode.activity := method;
 			if previousNode <> null then {
-				object ControlFlow {
-					activity := method;
-					source := previousNode;
-					target := structuredNode;
-				}
+				new ControlFlow(method, previousNode, structuredNode);
 			} endif;
 			previousNode := structuredNode;
 		} endif;
@@ -1237,24 +991,13 @@ helper ClassDefinition::mapDefaultDestructor(inout method : Activity, class_ : C
 		var structuredNode = additionalNodes![true];
 		structuredNode.activity := method;
 		if previousNode <> null then {
-			object ControlFlow {
-				activity := method;
-				source := previousNode;
-				target := structuredNode;
-			}
+			new ControlFlow(method, previousNode, structuredNode);
 		} endif;
 	} else if additionalNodes->size() > 1 then {
-		var enclosingNode := object StructuredActivityNode {
-			activity := method;
-			name := "DestroyEnds";
-			node := additionalNodes;
-		};
+		var enclosingNode := new StructuredActivityNode(method, "DestroyEnds");
+		enclosingNode.node := additionalNodes;
 		if previousNode <> null then {
-			object ControlFlow {
-				activity := method;
-				source := previousNode;
-				target := enclosingNode;
-			}
+			new ControlFlow(method, previousNode, enclosingNode);
 		} endif;
 	} endif endif;
 	
@@ -1274,88 +1017,20 @@ helper Class::mapDestructionOf(property_ : Property) : StructuredActivityNode {
 		var targetClass := propertyType.oclAsType(Class);
 		var destructorOperation := targetClass.destructorOperation();
 		if destructorOperation <> null then {
-			structuredNode := object StructuredActivityNode {
-				name := "Destroy(" + property_.name + ")";
-			};
-		  var readSelfAction := object ReadSelfAction {
-		  	inStructuredNode := structuredNode;
-				name := "ReadSelf";
-				_'result' := object OutputPin {
-					name := "ReadSelf.result";
-					type := self;
-					lower := 1;
-					upper := 1;
-				}
-			};
-			var readActionName := "Read(" + property_.name + ")";
-			var readAction := object ReadStructuralFeatureAction {
-				inStructuredNode := structuredNode;
-				name := readActionName;
-				structuralFeature := property_;
-				_'object' := object InputPin {
-					name := readActionName + ".object";
-					type := self;
-					lower := 1;
-					upper := 1;
-				};
-				_'result' := object OutputPin {
-					name := readActionName + ".result";
-					type := targetClass;
-					lower := property_.lower;
-					upper := property_.upper;
-				}
-			};
-			object ObjectFlow {
-				inStructuredNode := structuredNode;
-				source := readSelfAction._'result';
-				target := readAction._'object';
-			};
-			var callActionName := "Call(" + targetClass.name + "::destroy)";
-			var callAction := object CallOperationAction {
-				inStructuredNode := structuredNode;
-				name := callActionName;
-				target := object InputPin {
-					name := callActionName + ".target";
-					type := targetClass;
-					lower := 1;
-					upper := 1;
-				}
-			};
+			structuredNode := new StructuredActivityNode("Destroy(" + property_.name + ")");
+		  structuredNode.node += var readSelfAction ::= new ReadSelfAction(self);
+			structuredNode.node += var readAction ::= new ReadStructuralFeatureAction(self, property_);
+			new ObjectFlow(structuredNode, readSelfAction.result, readAction._'object');
+			structuredNode.node += var callAction ::= new CallOperationAction(destructorOperation);
 			if property_.upper = 1 then {
-				object ObjectFlow {
-					inStructuredNode := structuredNode;
-					source := readAction._'result';
-					target := callAction.target;
-				}
+				new ObjectFlow(structuredNode, readAction.result, callAction.target);
 			} else {
-				var regionName := "DestroyAll(" + property_.name + ")";
-				var region := object ExpansionRegion {
-					inStructuredNode := structuredNode;
-					mode := ExpansionKind::iterative;
-					name := regionName;
-					node := callAction;
-				};
-				object ControlFlow {
-					inStructuredNode := structuredNode;
-					source := readAction;
-					target := region;
-				};
-				var inputNode := object ExpansionNode {
-					inStructuredNode := structuredNode;
-					regionAsInput := region;
-					name := regionName + ".inputNode";
-					type := targetClass;
-				};
-				object ObjectFlow {
-					inStructuredNode := structuredNode;
-					source := readAction._'result';
-					target := inputNode;
-				};
-				object ObjectFlow {
-					inStructuredNode := structuredNode;
-					source := inputNode;
-					target := callAction.target;
-				};
+				structuredNode.node += var region ::= new ExpansionRegion("DestroyAll(" + property_.name + ")", ExpansionKind::iterative);
+				region.node += callAction;
+				new ControlFlow(structuredNode, readAction, region);
+				structuredNode.node += var inputNode ::= new ExpansionNode(null, region, true);
+				new ObjectFlow(structuredNode, readAction.result, inputNode);
+				new ObjectFlow(structuredNode, inputNode, callAction.target);
 			} endif;
 		} endif;
 	} endif;
@@ -1382,181 +1057,52 @@ helper OperationDefinition::mapConstructor(initializationFlag : Property, initia
   var bodyNode := self.firstBodyNode(firstNode);
   
   // Return context object as the constructor result.
-  var readSelfAction := object ReadSelfAction {
-  	activity := method;
-		name := "ReadSelf";
-		_'result' := object OutputPin {
-			name := "ReadSelf.result";
-			type := operation._'class';
-			lower := 1;
-			upper := 1;
-		}
-	};
-	var selfFork := object ForkNode {
-		name := "Fork(" + readSelfAction._'result'.name + ")";
-  	activity := method;
-	};
-	object ObjectFlow {
-  	activity := method;
-		source := readSelfAction._'result';
-		target := selfFork;
-	};
+  method.ownedNode += var readSelfAction ::= new ReadSelfAction(operation._'class');
+  var selfFork := new ForkNode(method, readSelfAction.result.name);
+  new ObjectFlow(method, readSelfAction.result, selfFork);
 	
 	var returnParameter := method.ownedParameter![direction = ParameterDirectionKind::_'return'];
 	var outputNode := method.node[ActivityParameterNode]![parameter = returnParameter];
-	object ObjectFlow {
-  	activity := method;
-		source := selfFork;
-		target := outputNode;
-	};
+	new ObjectFlow(method, selfFork, outputNode);
 	
 	if not self.hasAlternativeConstructorCall() then {
 		
 		// Insert call to local initialization operation.
-		var callActionName := "Call(" + initializationOperation.name + ")";
-		var callAction := object CallOperationAction {
-	  	activity := method;
-			name := callActionName;
-	    target := object InputPin {
-	    	name := callActionName + ".target";
-	    	type := readSelfAction._'result'.type;
-	    	lower := 1;
-	    	upper := 1;
-	    }
-		};
-		object ObjectFlow {
-	  	activity := method;
-			source := selfFork;
-			target := callAction.target;
-		};
+		method.ownedNode += var callAction ::= new CallOperationAction(initializationOperation);
+		new ObjectFlow(method, selfFork, callAction.target);
 		if firstNode = null then {
 			firstNode := callAction;
 		} else if bodyNode = null then {
-			object ControlFlow {
-				activity := method;
-				source := firstNode;
-				target := callAction;
-			}
+			new ControlFlow(method, firstNode, callAction);
 		} else {
 			if bodyNode.incoming->isEmpty() then {
 				firstNode := callAction;
 		  } else {
 				var incoming := bodyNode.incoming![true];
-				object ControlFlow {
-			  	activity := method;
-					source := incoming.source;
-					target := callAction;
-				};
+				new ControlFlow(method, incoming.source, callAction);
 				incoming.source := callAction;
 			} endif;
-			object ControlFlow {
-	  		activity := method;
-				source := callAction;
-				target := bodyNode;
-			};
+			new ControlFlow(method, callAction, bodyNode);
 		} endif endif;
 		
 		// Add decision to skip constructor behavior if this object is already initialized.
-		var readActionName := "Read(" + initializationFlag.name + ")";
-		var readAction := object ReadStructuralFeatureAction {
-	  	activity := method;
-			name := readActionName;
-			structuralFeature := initializationFlag;
-			_'object' := object InputPin {
-				name := readActionName + ".object";
-				type := operation._'class';
-				lower := 1;
-				upper := 1;
-			};
-			_'result' := object OutputPin {
-				name := readActionName + ".result";
-				type := initializationFlag.type;
-				lower := 0;
-				upper := 1;
-			};
-		};
-		object ObjectFlow {
-	  	activity := method;
-			source := selfFork;
-			target := readAction._'object';
-		};
+		method.ownedNode += var readAction ::= new ReadStructuralFeatureAction(operation._'class', initializationFlag);
+		new ObjectFlow(method, selfFork, readAction._'object');
 		
 		var functionSize := self.functionSize();
-		var sizeActionName := "Call(" + functionSize.name + ")";
-		var sizeAction := object CallBehaviorAction {
-	  	activity := method;
-			name := sizeActionName;
-			argument += object InputPin {
-				name := sizeActionName + ".argument";
-				lower := 0;
-				upper := -1;
-			};
-			_'result' += object OutputPin {
-				name := sizeActionName + ".result";
-				type := self.integerType().toUml().oclAsType(Type);
-				lower := 1;
-				upper := 1;
-			};
-		};
-		object ObjectFlow {
-	  	activity := method;
-			source := readAction._'result';
-			target := sizeAction.argument->at(1);
-		};
+		method.ownedNode += var sizeAction := new CallBehaviorAction(functionSize);
+		new ObjectFlow(method, readAction.result, sizeAction.argument->at(1));
 		
-		var valueAction := object ValueSpecificationAction {
-	  	activity := method;
-			name := "Value(0)";
-			_'result' := object OutputPin {
-				name := "Value(0).result";
-				type := self.integerType().toUml().oclAsType(Type);
-				lower := 1;
-				upper := 1;
-			}
-		};
+		method.ownedNode += var valueAction ::= new ValueSpecificationAction(new LiteralInteger(0, self.integerType().toType()));
+		method.ownedNode += var testAction ::= new TestIdentityAction("Size==0", self.booleanType().toType());
+		new ObjectFlow(method, sizeAction.result->at(1), testAction.first);
+		new ObjectFlow(method, valueAction.result, testAction.second);
 		
-		var testAction := object TestIdentityAction {
-	  	activity := method;
-			name := "Test(Size==0)";
-			first := object InputPin {
-				name := "Test(Size==0).first";
-				lower := 0;
-				upper := 1;
-			};
-			second := object InputPin {
-				name := "Test(Size==0).second";
-				lower := 0;
-				upper := 1;
-			};
-			_'result' := object OutputPin {
-				name := "Test(Size==0).result";
-				type := self.booleanType().toUml().oclAsType(Type);
-				lower := 1;
-				upper := 1;
-			}
-		};
-		object ObjectFlow {
-	  	activity := method;
-			source := sizeAction._'result'->at(1);
-			target := testAction.first;
-		};
-		object ObjectFlow {
-	  	activity := method;
-			source := valueAction._'result';
-			target := testAction.second;
-		};
-		
-		var initialNode := object InitialNode {
-	  	activity := method;
-			name := "InitialNode";
-		};
-		
-		var decisionGraph := createControlDecisionGraph(
+		method.ownedNode += var initialNode ::= new InitialNode("InitialNode");
+		createControlDecisionGraph(
 			"Test(" + initializationFlag.name + ")",
 			initialNode, testAction._'result', firstNode, null
-		);
-		method.ownedNode += decisionGraph.nodes;
-		method.edge += decisionGraph.edges;
+		).addTo(method);
 		
 	} endif;
   

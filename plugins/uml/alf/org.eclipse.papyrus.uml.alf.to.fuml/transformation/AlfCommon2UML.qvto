@@ -176,6 +176,13 @@ helper BoundElementReference::toUml() : Element {
   */
 }
 
+// Constructors
+
+constructor Comment::Comment(body_ : String, element : Element) {
+	body := body_;
+	annotatedElement := element;
+}
+
 // Activities
 
 constructor Activity::Activity(ownedParameters : Sequence(Parameter)) {
@@ -211,6 +218,12 @@ constructor ObjectFlow::ObjectFlow(owner : StructuredActivityNode, sourceNode : 
 }
 
 constructor ControlFlow::ControlFlow(sourceNode : ActivityNode, targetNode : ActivityNode) {
+	source := sourceNode;
+	target := targetNode;
+}
+
+constructor ControlFlow::ControlFlow(owner : Activity, sourceNode : ActivityNode, targetNode : ActivityNode) {
+	activity := owner;
 	source := sourceNode;
 	target := targetNode;
 }
@@ -695,6 +708,31 @@ constructor InstanceValue::InstanceValue(type_ : Classifier) {
 
 constructor StructuredActivityNode::StructuredActivityNode(name_ : String) {
 	name := name_;
+}
+
+constructor StructuredActivityNode::StructuredActivityNode(owner : Activity, name_ : String) {
+	activity := owner;
+	name := name_;
+}
+
+constructor ConditionalNode::ConditionalNode(name_ : String, assured : Boolean, determinate : Boolean) {
+	name := name_;
+	isAssured := assured;
+	isDeterminate := determinate;
+}
+
+constructor Clause::Clause(
+	testNodes : Set(ExecutableNode), bodyNodes : Set(ExecutableNode), 
+	bodyOutputs : Set(OutputPin), predecessorClauses : Set(Clause)) {
+		test := testNodes;
+		body := bodyNodes;
+		bodyOutput := bodyOutputs;
+		predecessorClause := predecessorClauses;
+}
+
+constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean) {
+	name := name_;
+	isTestedFirst := testedFirst;
 }
 
 constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean, inputs : OrderedSet(InputPin)) {
