@@ -9,6 +9,7 @@
  * Contributors:
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *      Christian W. Damus - bug 458685
+ * 		Christian W. Damus - bug 467016
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -16,11 +17,15 @@ package org.eclipse.papyrus.uml.service.types.helper;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -58,4 +63,32 @@ public class ElementEditHelper extends DefaultEditHelper {
 		return super.getDefaultContainmentFeatures();
 	}
 
+	@Override
+	protected boolean approveRequest(IEditCommandRequest request) {
+		boolean result = super.approveRequest(request);
+
+		if (!result) {
+			if (request instanceof CreateElementRequest) {
+				// Bug 467016: Maybe the "containment" reference isn't actually a containment but subsets one?
+				// e.g., BehavioredClassifier::classifierBehavior subsets BehavioredClassifier::ownedBehavior
+				Object context = request.getEditHelperContext();
+				if (context instanceof EObject) {
+					EObject owner = (EObject) context;
+					EReference reference = getContainmentFeature((CreateElementRequest) request);
+					if ((reference != null) && reference.getEContainingClass().isSuperTypeOf(owner.eClass()) && !reference.isContainment()) {
+						// Look for containment superset. UML2 will do the right thing and add the new
+						// element implicitly to that superset
+						for (EReference next : UmlUtils.getSupersets(reference)) {
+							if (next.isContainment()) {
+								result = true;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return result;
+	}
 }
