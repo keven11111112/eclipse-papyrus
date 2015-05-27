@@ -6863,7 +6863,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnlimitedNatural" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.isUnlimitedNaturalType(self.operand1.type) or self.isUnlimitedNaturalType(self.operand2.type)"/>
+        <details key="derivation" value="&#xA;&#x9;&#x9;&#x9;&#x9;let type1 = self.operand1.type in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.isUnlimitedNaturalType(type1) and not self.isNaturalType(type1) or &#xA;&#x9;&#x9;&#x9;&#x9;let type2 = self.operand2.type in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.isUnlimitedNaturalType(type2) and not self.isNaturalType(type2)"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
