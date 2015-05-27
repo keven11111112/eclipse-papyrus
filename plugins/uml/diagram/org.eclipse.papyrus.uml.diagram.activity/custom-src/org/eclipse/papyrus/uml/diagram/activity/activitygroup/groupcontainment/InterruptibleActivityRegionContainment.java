@@ -55,7 +55,7 @@ public class InterruptibleActivityRegionContainment extends AbstractContainerNod
 	 */
 	@Override
 	public List<EReference> getChildrenReferences() {
-		return Collections.singletonList(UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node());
+		return Collections.emptyList();
 	}
 
 	@Override
