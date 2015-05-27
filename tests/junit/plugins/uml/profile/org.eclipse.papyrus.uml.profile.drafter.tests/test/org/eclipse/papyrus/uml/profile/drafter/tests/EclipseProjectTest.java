@@ -17,8 +17,6 @@ package org.eclipse.papyrus.uml.profile.drafter.tests;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
-import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.profile.drafter.tests.exception.ExecutionException;
 import org.junit.After;
 import org.junit.Before;
@@ -29,10 +27,9 @@ import org.junit.Test;
  * @author cedric dumoulin
  *
  */
-public class EclipseProjectTest extends AbstractPapyrusTest {
+public class EclipseProjectTest extends AbstractDrafterTest {
 
 	private static final String PROJECT_NAME = "org.eclipse.papyrus.uml.profile.drafter.teststemp";
-	private static final String FROM_BUNDLE_NAME = "org.eclipse.papyrus.uml.profile.drafter.tests";
 
 	/**
 	 * @throws java.lang.Exception
@@ -79,7 +76,6 @@ public class EclipseProjectTest extends AbstractPapyrusTest {
 	 * @throws ExecutionException
 	 */
 	@Test
-	@InvalidTest("Fails on Maven")
 	public void testCopyResource() throws ExecutionException {
 
 		String fromFile = "META-INF/MANIFEST.MF";
@@ -98,7 +94,6 @@ public class EclipseProjectTest extends AbstractPapyrusTest {
 	 * @throws ExecutionException
 	 */
 	@Test
-	@InvalidTest("Fails on Maven")
 	public void testCopyResources() throws ExecutionException {
 
 		String fromFile1 = "META-INF/MANIFEST.MF";

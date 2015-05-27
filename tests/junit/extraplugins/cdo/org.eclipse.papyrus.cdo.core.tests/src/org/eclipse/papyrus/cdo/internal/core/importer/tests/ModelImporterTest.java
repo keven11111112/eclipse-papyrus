@@ -147,7 +147,7 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		reader.close();
 
 		assertThat(text, not(containsString("href=\"../has_dependents/Datatypes.uml")));
-		assertThat(text, containsString("href=\"cdo.checkout://1/1/has_dependents/Datatypes.uml"));
+		assertThat(text, containsString("href=\"cdo.checkout://1/has_dependents/Datatypes.uml"));
 	}
 
 	//

@@ -27,7 +27,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	public static LogHelper log;
-
+	public static final String EXPANSION_TRACE="org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion";
 	/**
 	 * The constructor
 	 */

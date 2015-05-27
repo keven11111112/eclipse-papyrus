@@ -50,6 +50,10 @@ public class Messages extends NLS {
 	/** The New papyrus project wizard_papyrus_project_desc. */
 	public static String NewPapyrusProjectWizard_papyrus_project_desc;
 
+	public static String PapyrusProjectCreationPage_page_same_case_desc;
+
+	public static String PapyrusProjectCreationPage_page_incorrect_desc;
+
 	/** The Diagram category registry_bad_class_name_of_category. */
 	public static String DiagramCategoryRegistry_bad_class_name_of_category;
 

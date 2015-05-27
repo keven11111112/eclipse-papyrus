@@ -23,6 +23,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.SSLEngineResult.Status;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -39,12 +41,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -62,6 +67,7 @@ import org.eclipse.papyrus.uml.diagram.wizards.command.InitFromTemplateCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.command.NewPapyrusModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.PapyrusProjectCreationPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage.CategoryProvider;
@@ -76,6 +82,7 @@ import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.commands.RenameElementCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
+import org.eclipse.swt.SWT;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
@@ -85,6 +92,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 import org.eclipse.ui.services.IEvaluationService;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
@@ -302,10 +310,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 			initProfile(modelSet);
 			initTemplate(modelSet);
-			// openDiagram(newURI);
+			openDiagram(newURI);
+
 		} catch (ServiceException e) {
 			Activator.log.error(e);
+			this.selectDiagramKindPage.setErrorMessage(e.getMessage());
 			return false;
+
 		} finally {
 			try {
 				registry.disposeRegistry();
@@ -917,6 +928,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		// This takes care of the case problems when creating a model with the same name but different case
 		for (IWizardPage page : allPages) {
 			if (page instanceof NewModelFilePage) {
+				return page.canFlipToNextPage();
+			}
+			if (page instanceof PapyrusProjectCreationPage) {
 				return page.canFlipToNextPage();
 			}
 		}

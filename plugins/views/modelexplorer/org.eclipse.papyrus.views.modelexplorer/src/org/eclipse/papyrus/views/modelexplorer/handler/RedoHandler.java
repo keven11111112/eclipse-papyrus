@@ -16,6 +16,7 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
  * Handler for the Redo Action
@@ -35,7 +36,10 @@ public class RedoHandler extends AbstractModelExplorerHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		getEditingDomain().getCommandStack().redo();
+		EditingDomain domain = getEditingDomain();
+		if (domain != null) {
+			domain.getCommandStack().redo();
+		}
 		return null;
 	}
 
@@ -46,7 +50,12 @@ public class RedoHandler extends AbstractModelExplorerHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		setBaseEnabled(getEditingDomain().getCommandStack().canRedo());
+		EditingDomain domain = getEditingDomain();
+		if (domain != null) {
+			setBaseEnabled(domain.getCommandStack().canRedo());
+		} else {
+			setBaseEnabled(false);
+		}
 	}
 
 }

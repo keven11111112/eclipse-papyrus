@@ -9,7 +9,7 @@
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_xN-uEeOoWMUBUZPOjA" label="Deployment" elementTypeIdRef="org.eclipse.papyrus.uml.Deployment" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_xd-uEeOoWMUBUZPOjA" label="ElementImport" elementTypeIdRef="org.eclipse.papyrus.uml.ElementImport" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_xt-uEeOoWMUBUZPOjA" label="Extend" elementTypeIdRef="org.eclipse.papyrus.uml.Extend" displayAllRoles="false"/>
-  <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_1d-uEeOoWMUBUZPOjA" label="Extension" visible="false" elementTypeIdRef="org.eclipse.papyrus.uml.Extension" displayAllRoles="false"/>
+  <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_1d-uEeOoWMUBUZPOjA" label="Extension" visible="true" elementTypeIdRef="org.eclipse.papyrus.uml.Extension" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_x9-uEeOoWMUBUZPOjA" label="Generalization" elementTypeIdRef="org.eclipse.papyrus.uml.Generalization" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_yN-uEeOoWMUBUZPOjA" label="Include" elementTypeIdRef="org.eclipse.papyrus.uml.Include" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_yd-uEeOoWMUBUZPOjA" label="InformationFlow" elementTypeIdRef="org.eclipse.papyrus.uml.InformationFlow" displayAllRoles="false"/>

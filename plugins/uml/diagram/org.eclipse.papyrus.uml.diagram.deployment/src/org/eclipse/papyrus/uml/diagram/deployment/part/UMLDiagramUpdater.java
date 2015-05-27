@@ -100,7 +100,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	protected UMLDiagramUpdater() {
-		// to prevent instantiation allowing the override
+		//to prevent instantiation allowing the override
 	}
 
 	/**
@@ -955,10 +955,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getPackage_1000ContainedLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -975,10 +973,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getModel_2010ContainedLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -988,10 +984,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getPackage_2009ContainedLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -1001,8 +995,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getConstraint_2005ContainedLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
 		return result;
 	}
 
@@ -1012,8 +1005,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getComment_2001ContainedLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement));
 		return result;
 	}
 
@@ -1023,10 +1015,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getExecutionEnvironment_2002ContainedLinks(View view) {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1036,10 +1026,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDevice_2003ContainedLinks(View view) {
 		Device modelElement = (Device) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1049,10 +1037,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getArtifact_2006ContainedLinks(View view) {
 		Artifact modelElement = (Artifact) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1062,10 +1048,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getNode_2008ContainedLinks(View view) {
 		Node modelElement = (Node) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1082,10 +1066,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getModel_49ContainedLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -1095,10 +1077,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getPackage_36ContainedLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -1108,10 +1088,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDevice_16ContainedLinks(View view) {
 		Device modelElement = (Device) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1121,10 +1099,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDevice_44ContainedLinks(View view) {
 		Device modelElement = (Device) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1134,10 +1110,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getExecutionEnvironment_21ContainedLinks(View view) {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1147,10 +1121,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getExecutionEnvironment_46ContainedLinks(View view) {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1160,10 +1132,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getNode_23ContainedLinks(View view) {
 		Node modelElement = (Node) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1173,10 +1143,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getNode_42ContainedLinks(View view) {
 		Node modelElement = (Node) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1186,10 +1154,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getArtifact_25ContainedLinks(View view) {
 		Artifact modelElement = (Artifact) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1199,10 +1165,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getArtifact_28ContainedLinks(View view) {
 		Artifact modelElement = (Artifact) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1212,10 +1176,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getArtifact_40ContainedLinks(View view) {
 		Artifact modelElement = (Artifact) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003
-				(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1225,8 +1187,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getComment_54ContainedLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement));
 		return result;
 	}
 
@@ -1236,8 +1197,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getConstraint_56ContainedLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
 		return result;
 	}
 
@@ -1283,18 +1243,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Dependency modelElement = (Dependency) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1305,18 +1259,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Model modelElement = (Model) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1327,18 +1275,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Package modelElement = (Package) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1349,18 +1291,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1371,10 +1307,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1385,20 +1319,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1409,20 +1336,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Device modelElement = (Device) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1433,20 +1353,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Artifact modelElement = (Artifact) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1457,20 +1370,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Node modelElement = (Node) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1481,18 +1387,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		NamedElement modelElement = (NamedElement) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1503,18 +1403,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Model modelElement = (Model) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1525,18 +1419,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Package modelElement = (Package) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1547,20 +1435,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Device modelElement = (Device) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1571,20 +1452,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Device modelElement = (Device) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1595,20 +1469,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1619,20 +1486,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1643,20 +1503,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Node modelElement = (Node) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1667,20 +1520,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Node modelElement = (Node) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1691,20 +1537,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Artifact modelElement = (Artifact) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1715,20 +1554,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Artifact modelElement = (Artifact) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1739,20 +1571,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Artifact modelElement = (Artifact) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1763,10 +1588,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1777,18 +1600,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1799,18 +1616,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Deployment modelElement = (Deployment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1821,18 +1632,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Manifestation modelElement = (Manifestation) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1843,10 +1648,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Generalization modelElement = (Generalization) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1857,18 +1660,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Dependency modelElement = (Dependency) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1879,18 +1676,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Dependency modelElement = (Dependency) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004
-				(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010
-				(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4001(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4002(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1900,14 +1691,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDependency_2011OutgoingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -1917,14 +1704,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getModel_2010OutgoingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -1934,14 +1717,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getPackage_2009OutgoingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -1951,16 +1730,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getConstraint_2005OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -1970,8 +1744,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getComment_2001OutgoingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement));
 		return result;
 	}
 
@@ -1981,16 +1754,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getExecutionEnvironment_2002OutgoingLinks(View view) {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2000,16 +1768,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDevice_2003OutgoingLinks(View view) {
 		Device modelElement = (Device) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2019,16 +1782,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getArtifact_2006OutgoingLinks(View view) {
 		Artifact modelElement = (Artifact) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2038,16 +1796,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getNode_2008OutgoingLinks(View view) {
 		Node modelElement = (Node) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2057,14 +1810,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getNamedElement_2012OutgoingLinks(View view) {
 		NamedElement modelElement = (NamedElement) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2074,14 +1823,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getModel_49OutgoingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2091,14 +1836,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getPackage_36OutgoingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2108,16 +1849,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDevice_16OutgoingLinks(View view) {
 		Device modelElement = (Device) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2127,16 +1863,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDevice_44OutgoingLinks(View view) {
 		Device modelElement = (Device) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2146,16 +1877,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getExecutionEnvironment_21OutgoingLinks(View view) {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2165,16 +1891,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getExecutionEnvironment_46OutgoingLinks(View view) {
 		ExecutionEnvironment modelElement = (ExecutionEnvironment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2184,16 +1905,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getNode_23OutgoingLinks(View view) {
 		Node modelElement = (Node) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2203,16 +1919,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getNode_42OutgoingLinks(View view) {
 		Node modelElement = (Node) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2222,16 +1933,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getArtifact_25OutgoingLinks(View view) {
 		Artifact modelElement = (Artifact) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2241,16 +1947,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getArtifact_28OutgoingLinks(View view) {
 		Artifact modelElement = (Artifact) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2260,16 +1961,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getArtifact_40OutgoingLinks(View view) {
 		Artifact modelElement = (Artifact) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2279,8 +1975,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getComment_54OutgoingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4008
-				(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4008(modelElement));
 		return result;
 	}
 
@@ -2290,16 +1985,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getConstraint_56OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2309,14 +1999,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDeployment_4001OutgoingLinks(View view) {
 		Deployment modelElement = (Deployment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2326,14 +2012,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getManifestation_4002OutgoingLinks(View view) {
 		Manifestation modelElement = (Manifestation) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2350,14 +2032,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDependency_4004OutgoingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 
@@ -2367,14 +2045,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDependency_4010OutgoingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004
-				(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010
-				(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		return result;
 	}
 

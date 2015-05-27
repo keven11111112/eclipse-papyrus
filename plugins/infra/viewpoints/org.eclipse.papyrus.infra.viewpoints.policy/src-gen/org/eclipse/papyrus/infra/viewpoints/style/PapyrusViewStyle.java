@@ -24,11 +24,11 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle#getOwner <em>Owner</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle#getConfiguration <em>Configuration</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.viewpoints.style.StylePackage#getPapyrusViewStyle()
  * @model
@@ -74,7 +74,7 @@ public interface PapyrusViewStyle extends Style {
 	 * @return the value of the '<em>Configuration</em>' reference.
 	 * @see #setConfiguration(PapyrusView)
 	 * @see org.eclipse.papyrus.infra.viewpoints.style.StylePackage#getPapyrusViewStyle_Configuration()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	PapyrusView getConfiguration();

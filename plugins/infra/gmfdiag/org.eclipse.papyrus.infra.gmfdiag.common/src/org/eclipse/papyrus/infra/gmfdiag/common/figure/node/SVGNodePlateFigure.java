@@ -162,6 +162,10 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 			if (element != null) {
 				outlinePoints = toDraw2DPoints(((SVGPathElement) element).getPathSegList());
 				outlineDimension = getDimensionOf(outlinePoints);
+			} else {
+				// If you don't have papyrusPath
+				outlinePoints = null;
+				outlineDimension = null;
 			}
 			element = svgDocument.getElementById("PapyrusLabel");
 			if (element != null) {

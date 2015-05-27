@@ -8,9 +8,10 @@
       <owningRules xmi:id="_vZwgkUr7EeSVGbM3cmVSqQ">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
-      <categories href="../../../plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb49xhEeOqHvRyiN87hA"/>
+      <categories href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb4txhEeOqHvRyiN87hA"/>
+      <categories href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb49xhEeOqHvRyiN87hA"/>
     </modelKinds>
   </viewpoints>
-  <defaultStakeholder href="../../../plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wLmkdxhEeOqHvRyiN87hA"/>
+  <defaultStakeholder href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wLmkdxhEeOqHvRyiN87hA"/>
   <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
 </configuration:PapyrusConfiguration>

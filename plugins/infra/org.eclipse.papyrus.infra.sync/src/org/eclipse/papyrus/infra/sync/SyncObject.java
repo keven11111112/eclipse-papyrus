@@ -19,6 +19,8 @@ import org.eclipse.papyrus.infra.sync.internal.SyncService;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
 
+import com.google.common.util.concurrent.CheckedFuture;
+
 /**
  * A core synchronization framework object.
  */
@@ -62,5 +64,12 @@ public abstract class SyncObject implements ISyncObject {
 	@Override
 	public void execute(Command command) {
 		getSyncService().execute(command);
+	}
+
+	@Override
+	public <V, X extends Exception> CheckedFuture<V, X> runAsync(SyncServiceRunnable<V, X> operation) {
+		CheckedFuture<V, X> result = operation.asFuture(this);
+		getSyncService().getAsyncExecutor().execute((Runnable) result);
+		return result;
 	}
 }

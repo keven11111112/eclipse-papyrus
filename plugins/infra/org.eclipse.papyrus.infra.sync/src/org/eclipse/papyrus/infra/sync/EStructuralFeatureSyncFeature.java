@@ -196,7 +196,13 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 			}
 			// add the missing ones
 			for (int i = 0; i < toAdd.size(); i++) {
-				compound.append(getAddCommand(from, to, toAdd.get(i)));
+				EObject newSource = toAdd.get(i);
+				if (shouldAdd(from, to, newSource)) {
+					Command add = getAddCommand(from, to, newSource);
+					if (add != null) {
+						compound.append(add);
+					}
+				}
 			}
 		}
 
@@ -252,6 +258,23 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 			}
 			break;
 		}
+	}
+
+	/**
+	 * Queries whether a new source object should be added {@code to} the synchronization target in synchronization
+	 * {@code from} a synchronization source. The default implementation always adds.
+	 * 
+	 * @param from
+	 *            the source of a synchronization operation
+	 * @param to
+	 *            the target of a synchronization operation
+	 * @param newSource
+	 *            the new element added to the source
+	 * 
+	 * @return whether the new element should be synchronized to the target
+	 */
+	protected boolean shouldAdd(SyncItem<M, T> from, SyncItem<M, T> to, EObject newSource) {
+		return true;
 	}
 
 	/**
@@ -482,8 +505,11 @@ public abstract class EStructuralFeatureSyncFeature<M extends EObject, T> extend
 				result = !match(model, EStructuralFeatureSyncFeature.this.getModelOf(potential));
 			}
 
-			if (result) {
-				react(getAddCommand(from, to, model));
+			if (result && shouldAdd(from, to, model)) {
+				Command add = getAddCommand(from, to, model);
+				if (add != null) {
+					react(add);
+				}
 			}
 
 			return result;

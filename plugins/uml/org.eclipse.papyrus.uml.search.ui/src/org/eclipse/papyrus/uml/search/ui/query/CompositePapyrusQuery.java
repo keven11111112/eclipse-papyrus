@@ -158,13 +158,15 @@ public class CompositePapyrusQuery extends AbstractPapyrusQuery {
 					/** Every 100 events fired (prompting 100 results display operation),
 					* sleep 100ms so the UI doesn't get stuck
 					*/
-					adds++;
-					if (adds >= NUMBER_ADDS_BEFORE_SLEEP) {
-						adds = 0;
-						try {
-							Thread.sleep(SLEEP_MILLISECONDS);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+					if (delay) {
+						adds++;
+						if (adds >= NUMBER_ADDS_BEFORE_SLEEP) {
+							adds = 0;
+							try {
+								Thread.sleep(SLEEP_MILLISECONDS);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}

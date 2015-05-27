@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus - bug 466850
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
@@ -127,7 +128,15 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		plate.setLayout(gridLayout);
 		setControl(plate);
 		createDiagramCategoryForm(plate);
-		setPageComplete(validatePage());
+
+		// Bug(466850): Do this later because the new-file page's resource group is not yet created
+		plate.getDisplay().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				setPageComplete(validatePage());
+			}
+		});
 	}
 
 	@Override

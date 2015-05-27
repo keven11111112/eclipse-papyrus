@@ -14,14 +14,18 @@
 
 package org.eclipse.papyrus.uml.profile.drafter.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
+import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.uml.profile.drafter.exceptions.DraftProfileException;
 import org.eclipse.papyrus.uml.profile.drafter.tests.exception.ExecutionException;
 import org.eclipse.papyrus.uml.profile.drafter.tests.exception.NotFoundException;
@@ -40,8 +44,7 @@ import org.junit.Test;
  * @author cedric dumoulin
  *
  */
-@Ignore("Fails during BeforeClass with Maven - Can't be Annotated with @InvalidTest")
-public class ModelSetManagerTest {
+public class ModelSetManagerTest extends AbstractDrafterTest {
 
 	/**
 	 * Name of the project that is created.
@@ -56,12 +59,12 @@ public class ModelSetManagerTest {
 	/**
 	 * Prefix name of the resources
 	 */
-	static protected String TEST_MODEL_1 = "models/testProfile1";
+	static protected String TEST_MODEL_1 = "testProfile1";
 
 	/**
 	 * Prefix name of the resources
 	 */
-	static protected String PROFILE1_MODEL = "models/house.profile";
+	static protected String PROFILE1_MODEL = "house.profile";
 
 	/**
 	 * Full name of the di resource, in project.
@@ -69,21 +72,11 @@ public class ModelSetManagerTest {
 	static protected String MODEL_1_FULLPATH = "/" + PROJECT_NAME + "/" + TEST_MODEL_1 + ".di";
 
 	/**
-	 * Created project.
-	 */
-	static protected EclipseProject project;
-
-	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		// Copy resources from plugin to a new project
-		project = new EclipseProject(PROJECT_NAME);
-		project.copyResources(FROM_PROJECT_NAME, TEST_MODEL_1 + ".di", TEST_MODEL_1 + ".uml", TEST_MODEL_1 + ".notation");
 
-		// Copy sterotype.
-		project.copyResources(FROM_PROJECT_NAME, PROFILE1_MODEL + ".di", PROFILE1_MODEL + ".uml", PROFILE1_MODEL + ".notation");
 	}
 
 	/**
@@ -99,9 +92,6 @@ public class ModelSetManagerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		// Copy resources from plugin to a new project
-		// EclipseProject project = new EclipseProject(PROJECT_NAME);
-		// project.copyResources(FROM_PROJECT_NAME, TEST_MODEL_1 + ".di", TEST_MODEL_1 + ".uml", TEST_MODEL_1 + ".notation" );
 
 	}
 
@@ -175,15 +165,18 @@ public class ModelSetManagerTest {
 	 * 
 	 * @throws NotFoundException
 	 * @throws org.eclipse.papyrus.infra.core.resource.NotFoundException
+	 * @throws IOException 
+	 * @throws CoreException 
 	 * @throws DraftProfileException
 	 * @throws ExecutionException
 	 *
 	 */
 	@Test
-	public void testGetUmlModel() throws TestUtilsException, org.eclipse.papyrus.infra.core.resource.NotFoundException {
+	public void testGetUmlModel() throws TestUtilsException, org.eclipse.papyrus.infra.core.resource.NotFoundException, CoreException, IOException {
+		initModel(PROJECT_NAME, TEST_MODEL_1, getBundle());
 
-		EclipseProject project = new EclipseProject(PROJECT_NAME);
-		project.copyResources(FROM_PROJECT_NAME, TEST_MODEL_1 + ".di", TEST_MODEL_1 + ".uml", TEST_MODEL_1 + ".notation");
+		assertTrue("file exists", diModelFile.exists());
+
 
 		ModelSetManager modelSetManager = new ModelSetManager("/" + PROJECT_NAME + "/" + TEST_MODEL_1 + ".di");
 
@@ -200,21 +193,23 @@ public class ModelSetManagerTest {
 	 * 
 	 * @throws NotFoundException
 	 * @throws org.eclipse.papyrus.infra.core.resource.NotFoundException
+	 * @throws IOException 
+	 * @throws CoreException 
 	 * @throws DraftProfileException
 	 * @throws ExecutionException
 	 *
 	 */
 	@Test
-	public void testGetUmlModelWithIFile() throws TestUtilsException, org.eclipse.papyrus.infra.core.resource.NotFoundException {
+	public void testGetUmlModelWithIFile() throws TestUtilsException, org.eclipse.papyrus.infra.core.resource.NotFoundException, CoreException, IOException {
 
-		EclipseProject project = new EclipseProject(PROJECT_NAME);
-		project.copyResources(FROM_PROJECT_NAME, TEST_MODEL_1 + ".di", TEST_MODEL_1 + ".uml", TEST_MODEL_1 + ".notation");
+		initModel(PROJECT_NAME, TEST_MODEL_1, getBundle());
 
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".di", getBundle(), project, PROFILE1_MODEL + ".di");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".uml", getBundle(), project, PROFILE1_MODEL + ".uml");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".notation", getBundle(), project, PROFILE1_MODEL + ".notation");
 
-		IFile file = project.getProject().getFile(TEST_MODEL_1 + ".di");
-
-		assertTrue("file exists", file.exists());
-		ModelSetManager modelSetManager = new ModelSetManager(file);
+		assertTrue("file exists", diModelFile.exists());
+		ModelSetManager modelSetManager = new ModelSetManager(diModelFile);
 
 		// asserts
 		assertNotNull("object created", modelSetManager);
@@ -252,6 +247,10 @@ public class ModelSetManagerTest {
 	 * @throws TestUtilsException
 	 */
 	@Test
+	@InvalidTest 
+	//there is no code that load the profile, need to be improve
+	//need to use PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".di", getBundle(), project, PROFILE1_MODEL + ".di");
+	//but requiere a prelaoded model...
 	public void testGetNamedElementByNameWithSterotype() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
 
@@ -259,11 +258,10 @@ public class ModelSetManagerTest {
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 		assertNotNull("Class found", namedElement);
 		assertTrue("Right Class found", namedElement instanceof org.eclipse.uml2.uml.Class);
-
-		// Chack sterotype
-		List<Stereotype> stereotypes = namedElement.getAppliedStereotypes();
-		assertTrue("Stereotype applied", !stereotypes.isEmpty());
-		assertNotNull("Stereotype found", namedElement.getAppliedStereotype("house::Building"));
+		// Check stereotype
+		List<Stereotype> stereotypes = namedElement.getApplicableStereotypes();
+		assertFalse("No Stereotype applied", stereotypes.isEmpty());
+		assertNotNull("Stereotype not found", namedElement.getAppliedStereotype("house::Building"));
 	}
 
 }

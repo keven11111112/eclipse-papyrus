@@ -16,14 +16,18 @@
 
 package org.eclipse.papyrus.uml.diagram.profile.custom.helper;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
@@ -43,6 +47,34 @@ import org.eclipse.uml2.uml.Profile;
  *
  */
 public class MetaclassHelper extends ElementHelper {
+
+	/**
+	 * This parameter is for tests only.
+	 * When present in request parameters, the value for this key will be silently
+	 * returned from the code that normally opens the dialog.
+	 * It allows to emulate different user actions in tests, and should reduce the
+	 * usage of @InteractiveTest annotation.
+	 */
+	private static final String PARAM_SUPPRESS_DIALOG_WITH_VALUE = MetaclassHelper.class.getName() + ":" + "ImportElementSelectionDialogResult";
+
+	public static boolean shouldSuppressDialog(IEditCommandRequest request) {
+		return request.getParameters().containsKey(PARAM_SUPPRESS_DIALOG_WITH_VALUE);
+	}
+
+	public static boolean shouldSuppressDialog(CreateViewRequest request) {
+		return request.getExtendedData().containsKey(PARAM_SUPPRESS_DIALOG_WITH_VALUE);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<Object> getSuppressedDialogResult(IEditCommandRequest request) {
+		Object result = request.getParameter(PARAM_SUPPRESS_DIALOG_WITH_VALUE);
+		return result == null ? null : (List<Object>) result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static void setupSuppressDialogRequest(CreateViewRequest request, List<Object> importedElements) {
+		request.getExtendedData().put(PARAM_SUPPRESS_DIALOG_WITH_VALUE, importedElements);
+	}
 
 	/**
 	 *

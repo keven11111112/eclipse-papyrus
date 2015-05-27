@@ -226,7 +226,8 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 					//look for accepted element in compartments to find good compartment
 					for (String compartmentHint : possibleChildreenIDs) {
 						List<String> compartmentChildreenIDs=diagramExpansionRegistry.mapChildreen.get(diagramType).parentChildrenRelation.get(compartmentHint);
-						if( compartmentChildreenIDs.contains(elementHint)){
+						
+						if(  compartmentChildreenIDs!=null &&compartmentChildreenIDs.contains(elementHint)){
 							//find the edipart that can respond to this accepted hint
 							List<?> subEditParts=getChildren();
 							for (Object object : subEditParts) {

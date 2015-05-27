@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST)    - Bug 468026
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
 
@@ -21,7 +21,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -43,23 +42,27 @@ public class AssociationEndTargetLabelHelper extends AssociationEndPropertyLabel
 	 */
 	@Override
 	public Property getUMLElement(GraphicalEditPart editPart) {
-		if ((View) editPart.getModel() != null && ((View) editPart.getModel()).eContainer() != null) {
-			EObject container = ((View) editPart.getModel()).eContainer();
+		View model = (View) editPart.getModel();
+		if (model != null && model.eContainer() != null) {
+			EObject container = model.eContainer();
 			if (!(container instanceof Edge)) {
 				return null; // Happens e.g. when redoing the suppression of an association's end. The association is contained in a ChangeDescription
 			}
-			if (((Edge) ((View) editPart.getModel()).eContainer()).getTarget() == null) {
+			Edge eContainer = (Edge) model.eContainer();
+			View targetContainer = eContainer.getTarget();
+			if (targetContainer == null) {
 				return null;
 			}
-			Classifier target = (Classifier) ((Edge) ((View) editPart.getModel()).eContainer()).getTarget().getElement();
+			
 			Property propertyToDisplay = null;
-			if (((View) editPart.getModel()) != null && (((View) editPart.getModel()).getElement() instanceof Association)) {
+			if (model != null && (model.getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
-				Iterator<Property> propertiesIterator = ((Association) ((View) editPart.getModel()).getElement()).getMemberEnds().iterator();
+				Iterator<Property> propertiesIterator = ((Association) model.getElement()).getMemberEnds().iterator();
 				// find the last
+				EObject element = targetContainer.getElement();
 				while (propertiesIterator.hasNext()) {
 					Property currentProperty = propertiesIterator.next();
-					if (EcoreUtil.equals(currentProperty.getType(), target)) {
+					if (EcoreUtil.equals(currentProperty.getType(), element)) {
 						propertyToDisplay = currentProperty;
 					}
 				}
@@ -67,16 +70,18 @@ public class AssociationEndTargetLabelHelper extends AssociationEndPropertyLabel
 			if (propertyToDisplay != null) {
 				return propertyToDisplay;
 			}
-			// /in the case of reorient the property must be not found,
+			// in the case of reorient the property must be not found,
 			// so we have to find the property that is different from the source.
-			Classifier source = (Classifier) ((Edge) ((View) editPart.getModel()).eContainer()).getSource().getElement();
-			if (((View) editPart.getModel()) != null && (((View) editPart.getModel()).getElement() instanceof Association)) {
+			
+			if (model != null && (model.getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
-				Iterator<Property> propertiesIterator = ((Association) ((View) editPart.getModel()).getElement()).getMemberEnds().iterator();
+				Iterator<Property> propertiesIterator = ((Association) model.getElement()).getMemberEnds().iterator();
 				// find the last
+				View sourceContainer = eContainer.getSource();
+				EObject element = sourceContainer.getElement();
 				while (propertiesIterator.hasNext()) {
 					Property currentProperty = propertiesIterator.next();
-					if (!EcoreUtil.equals(currentProperty.getType(), source)) {
+					if (!EcoreUtil.equals(currentProperty.getType(), element)) {
 						propertyToDisplay = currentProperty;
 					}
 				}

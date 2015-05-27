@@ -59,7 +59,6 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	* Test to manage Device.
 	*/
 	@Test
-	
 	public void testToDevice() {
 		testToManageNode(UMLElementTypes.Device_16, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Node_23, false);
 	}

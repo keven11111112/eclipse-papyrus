@@ -1239,6 +1239,10 @@
       name="UML::ElementImport"
       identifier="org.eclipse.papyrus.uml.ElementImport"
       hint="UML::ElementImport">
+    <iconEntry
+        xmi:id="_H_ygYAOyEeWv4ca2-olBmg"
+        iconPath="/icons/full/obj16/ElementImport.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ElementImportBase</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_TB2dEJzPEeSEObywEoz_Cw"
@@ -2451,6 +2455,10 @@
       name="UML::PackageImport"
       identifier="org.eclipse.papyrus.uml.PackageImport"
       hint="UML::PackageImport">
+    <iconEntry
+        xmi:id="_WI3T4AOyEeWv4ca2-olBmg"
+        iconPath="/icons/full/obj16/PackageImport.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.PackageImportBase</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_LSLo4GN6EeSrwvaW5Is9PQ"
@@ -2477,6 +2485,10 @@
       name="UML::PackageMerge"
       identifier="org.eclipse.papyrus.uml.PackageMerge"
       hint="UML::PackageMerge">
+    <iconEntry
+        xmi:id="_697XIAOyEeWv4ca2-olBmg"
+        iconPath="/icons/full/obj16/PackageMerge.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.PackageMergeBase</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_EJxd8GOJEeSw8rz5ZQEURQ"
@@ -3650,6 +3662,10 @@
       name="UML::Trace"
       identifier="org.eclipse.papyrus.uml.Trace"
       hint="UML::Trace">
+    <iconEntry
+        xmi:id="_QcxB0AO0EeWv4ca2-olBmg"
+        iconPath="/icons/full/obj16/Abstraction.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_JPmakWskEeSELtwF_9-6fg"
@@ -3664,6 +3680,10 @@
       name="UML::Refine"
       identifier="org.eclipse.papyrus.uml.Refine"
       hint="UML::Refine">
+    <iconEntry
+        xmi:id="_N0U_8AO0EeWv4ca2-olBmg"
+        iconPath="/icons/full/obj16/Abstraction.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_UGdZ8WslEeSELtwF_9-6fg"
@@ -3854,11 +3874,11 @@
       editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.StereotypeApplicationAdvice"
       inheritance="all"
       target="_ScgUUFYCEeS0WsAAtVmToA"/>
-  <adviceBindingsConfigurations 
-      xmi:id="_HE0JMOnEEeSnv9na4RmO6Q" 
-      name="org.eclipse.papyrus.uml.advice.Extension" 
-      identifier="org.eclipse.papyrus.uml.advice.Extension" 
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ExtensionEditHelperAdvice" 
-      inheritance="all" 
+  <adviceBindingsConfigurations
+      xmi:id="_HE0JMOnEEeSnv9na4RmO6Q"
+      name="org.eclipse.papyrus.uml.advice.Extension"
+      identifier="org.eclipse.papyrus.uml.advice.Extension"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ExtensionEditHelperAdvice"
+      inheritance="all"
       target="_ScjXoVYCEeS0WsAAtVmToA"/>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

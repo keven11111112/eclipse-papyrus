@@ -58,6 +58,11 @@ public interface ICustomAppearance {
 	 * Style constant for multiplicity display in labels.
 	 */
 	public final static String DISP_MULTIPLICITY = "multiplicity";
+	
+	/**
+	 * Style constant for multiplicity display without brackets in labels.
+	 */
+	public final static String DISP_MULTIPLICITY_NO_BRACKETS = "multiplicityNoBrackets";
 
 	/**
 	 * Style constant for default value display in labels.

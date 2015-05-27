@@ -43,6 +43,8 @@ import org.eclipse.papyrus.req.reqif.assistant.CreateOrSelectProfilDialog;
 import org.eclipse.papyrus.req.reqif.assistant.SelectProfilDialog;
 import org.eclipse.papyrus.req.reqif.integration.assistant.ChooseAttributeEnumerationDialog;
 import org.eclipse.papyrus.req.reqif.preference.ReqIFPreferenceConstants;
+import org.eclipse.papyrus.req.reqif.util.BasicRequirementMerger;
+import org.eclipse.papyrus.req.reqif.util.IRequirementMerger;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
@@ -316,9 +318,9 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 		}
 		targetUMLModel=reImportModel;
 		boolean importResult= importReqIFModel ( interactive);
-		BasicRequirementMerger merger= new BasicRequirementMerger(firstVersion, targetUMLModel, I_RI.REQ_ID_ATT,null);
-		merger.merge( !I_RI.CHECK_PACKAGE_NAME, I_RI.COPY_All_PROPERTY_VALUES, I_RI.DELETE_FROM_BASE);
-
+		IRequirementMerger merger= new BasicRequirementMerger(firstVersion, targetUMLModel, I_SysMLStereotype.REQUIREMENT_ID_ATT, true, domain);
+		merger.merge();
+		firstVersion.eResource().getContents().remove(targetUMLModel);
 		return importResult;
 	}
 	/**

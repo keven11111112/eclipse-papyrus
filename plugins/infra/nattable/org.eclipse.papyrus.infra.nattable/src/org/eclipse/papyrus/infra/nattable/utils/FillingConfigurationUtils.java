@@ -137,7 +137,7 @@ public class FillingConfigurationUtils {
 		Assert.isTrue(!table.isInvertAxis(), INVERT_AXIS_CASE_NOT_YET_MANAGED_FOR_TREE_TABLE);
 		List<TreeFillingConfiguration> confs = new ArrayList<TreeFillingConfiguration>();
 		LocalTableHeaderAxisConfiguration local = table.getLocalRowHeaderAxisConfiguration();
-		if (local != null) {
+		if (local != null && !local.getAxisManagerConfigurations().isEmpty()) { //bug 467968: [Tree Table] Show Hide categories menu is not displayed after changing categories
 			for (AxisManagerConfiguration currentRep : local.getAxisManagerConfigurations()) {
 				for (final IAxisConfiguration current : currentRep.getLocalSpecificConfigurations()) {
 					if (current instanceof TreeFillingConfiguration) {

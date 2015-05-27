@@ -254,6 +254,9 @@ public class PropertyUtil {
 			// multiplicity -> do not display [1]
 			String multiplicity = getNonNullString(MultiplicityElementUtil.getMultiplicityAsString(property));
 			buffer.append(multiplicity);
+		} else if (style.contains(ICustomAppearance.DISP_MULTIPLICITY_NO_BRACKETS)) {
+			String multiplicity = getNonNullString(MultiplicityElementUtil.formatMultiplicityNoBrackets(property));
+			buffer.append(multiplicity);
 		}
 
 		if (style.contains(ICustomAppearance.DISP_DEFAULT_VALUE)) {

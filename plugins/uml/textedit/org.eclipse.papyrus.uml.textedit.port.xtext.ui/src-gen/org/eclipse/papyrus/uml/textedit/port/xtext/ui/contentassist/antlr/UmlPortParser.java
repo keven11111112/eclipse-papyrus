@@ -18,19 +18,19 @@ import com.google.inject.Inject;
 import org.eclipse.papyrus.uml.textedit.port.xtext.services.UmlPortGrammarAccess;
 
 public class UmlPortParser extends AbstractContentAssistParser {
-
+	
 	@Inject
 	private UmlPortGrammarAccess grammarAccess;
-
+	
 	private Map<AbstractElement, String> nameMappings;
-
+	
 	@Override
 	protected org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortParser createParser() {
 		org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortParser result = new org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortParser(null);
 		result.setGrammarAccess(grammarAccess);
 		return result;
 	}
-
+	
 	@Override
 	protected String getRuleName(AbstractElement element) {
 		if (nameMappings == null) {
@@ -38,6 +38,7 @@ public class UmlPortParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getPortRuleAccess().getAlternatives_3_2(), "rule__PortRule__Alternatives_3_2");
+					put(grammarAccess.getBoundSpecificationAccess().getValueAlternatives_0(), "rule__BoundSpecification__ValueAlternatives_0");
 					put(grammarAccess.getUnlimitedLiteralAccess().getAlternatives(), "rule__UnlimitedLiteral__Alternatives");
 					put(grammarAccess.getModifierSpecificationAccess().getAlternatives(), "rule__ModifierSpecification__Alternatives");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
@@ -50,7 +51,7 @@ public class UmlPortParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeRuleAccess().getGroup(), "rule__TypeRule__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getMultiplicityRuleAccess().getGroup(), "rule__MultiplicityRule__Group__0");
-					put(grammarAccess.getMultiplicityRuleAccess().getGroup_2(), "rule__MultiplicityRule__Group_2__0");
+					put(grammarAccess.getMultiplicityRuleAccess().getGroup_1(), "rule__MultiplicityRule__Group_1__0");
 					put(grammarAccess.getModifiersRuleAccess().getGroup(), "rule__ModifiersRule__Group__0");
 					put(grammarAccess.getModifiersRuleAccess().getGroup_2(), "rule__ModifiersRule__Group_2__0");
 					put(grammarAccess.getModifiersRuleAccess().getGroup_2_1(), "rule__ModifiersRule__Group_2_1__0");
@@ -76,8 +77,8 @@ public class UmlPortParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeRuleAccess().getTypeAssignment_1(), "rule__TypeRule__TypeAssignment_1");
 					put(grammarAccess.getQualifiedNameAccess().getPathAssignment_0(), "rule__QualifiedName__PathAssignment_0");
 					put(grammarAccess.getQualifiedNameAccess().getRemainingAssignment_2(), "rule__QualifiedName__RemainingAssignment_2");
-					put(grammarAccess.getMultiplicityRuleAccess().getBoundsAssignment_1(), "rule__MultiplicityRule__BoundsAssignment_1");
-					put(grammarAccess.getMultiplicityRuleAccess().getBoundsAssignment_2_1(), "rule__MultiplicityRule__BoundsAssignment_2_1");
+					put(grammarAccess.getMultiplicityRuleAccess().getBoundsAssignment_1_0(), "rule__MultiplicityRule__BoundsAssignment_1_0");
+					put(grammarAccess.getMultiplicityRuleAccess().getBoundsAssignment_2(), "rule__MultiplicityRule__BoundsAssignment_2");
 					put(grammarAccess.getBoundSpecificationAccess().getValueAssignment(), "rule__BoundSpecification__ValueAssignment");
 					put(grammarAccess.getModifiersRuleAccess().getValuesAssignment_2_0(), "rule__ModifiersRule__ValuesAssignment_2_0");
 					put(grammarAccess.getModifiersRuleAccess().getValuesAssignment_2_1_1(), "rule__ModifiersRule__ValuesAssignment_2_1_1");
@@ -99,27 +100,27 @@ public class UmlPortParser extends AbstractContentAssistParser {
 		}
 		return nameMappings.get(element);
 	}
-
+	
 	@Override
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortParser typedParser = (org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortParser) parser;
 			typedParser.entryRulePortRule();
 			return typedParser.getFollowElements();
-		} catch (RecognitionException ex) {
+		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);
-		}
+		}		
 	}
-
+	
 	@Override
 	protected String[] getInitialHiddenTokens() {
 		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
 	}
-
+	
 	public UmlPortGrammarAccess getGrammarAccess() {
 		return this.grammarAccess;
 	}
-
+	
 	public void setGrammarAccess(UmlPortGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}

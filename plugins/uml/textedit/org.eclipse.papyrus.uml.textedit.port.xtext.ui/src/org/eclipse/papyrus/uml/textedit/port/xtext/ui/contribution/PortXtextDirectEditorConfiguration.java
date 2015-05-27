@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 465198
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.port.xtext.ui.contribution;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.TypeRule;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.Value;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.util.UmlPortSwitch;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
+import org.eclipse.papyrus.uml.xtext.integration.MultiplicityXTextParserUtils;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
@@ -58,7 +60,6 @@ import com.google.inject.Injector;
  *
  */
 public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
-
 
 	@Override
 	public Injector getInjector() {
@@ -138,36 +139,8 @@ public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditor
 		}
 
 		if (portRuleObject.getMultiplicity() != null) {
-			int newLowerBound = 1;
-			int newUpperBound = 1;
-
-			if (portRuleObject.getMultiplicity().getBounds().size() == 1) {
-				String tempBound = portRuleObject.getMultiplicity().getBounds().get(0).getValue();
-				if (tempBound.equals("*")) {
-					newLowerBound = 0;
-					newUpperBound = -1;
-				} else {
-					newLowerBound = new Integer(tempBound).intValue();
-					newUpperBound = new Integer(tempBound).intValue();
-				}
-			} else { // size == 2
-				String tempBound = portRuleObject.getMultiplicity().getBounds().get(0).getValue();
-				newLowerBound = new Integer(tempBound).intValue();
-				tempBound = portRuleObject.getMultiplicity().getBounds().get(1).getValue();
-				if (tempBound.equals("*")) {
-					newUpperBound = -1;
-				} else {
-					newUpperBound = new Integer(tempBound).intValue();
-				}
-			}
-
-			SetRequest setLowerRequest = new SetRequest(property, UMLPackage.eINSTANCE.getMultiplicityElement_Lower(), newLowerBound);
-			ICommand setLowerCommand = provider.getEditCommand(setLowerRequest);
-			updateCommand.add(setLowerCommand);
-
-			SetRequest setUpperRequest = new SetRequest(property, UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), newUpperBound);
-			ICommand setUpperCommand = provider.getEditCommand(setUpperRequest);
-			updateCommand.add(setUpperCommand);
+			// Manage the lower and the upper value specifications
+			updateCommand.add(updateMultiplicityCommand(provider, property, portRuleObject));
 		}
 
 		if (portRuleObject.getDefault() != null) {
@@ -343,4 +316,24 @@ public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditor
 		return "not a Property";
 	}
 
+	/**
+	 * This allow to update the multiplicity lower and upper value specifications.
+	 * 
+	 * @param provider
+	 *            The provider.
+	 * @param eObject
+	 *            The object to update.
+	 * @param portRuleObject
+	 *            The port rule object of the xtext parsed text.
+	 * @return The command to update the multiplicity.
+	 */
+	private ICommand updateMultiplicityCommand(final IElementEditService provider, final EObject eObject, final PortRule portRuleObject) {
+		ICommand result = null;
+		if (portRuleObject.getMultiplicity().getBounds().size() == 1) {
+			result = MultiplicityXTextParserUtils.updateOneMultiplicityCommand(provider, eObject, portRuleObject.getMultiplicity().getBounds().get(0).getValue());
+		} else { // size == 2
+			result = MultiplicityXTextParserUtils.updateTwoMultiplicityCommand(provider, eObject, portRuleObject.getMultiplicity().getBounds().get(0).getValue(), portRuleObject.getMultiplicity().getBounds().get(1).getValue());
+		}
+		return result;
+	}
 }

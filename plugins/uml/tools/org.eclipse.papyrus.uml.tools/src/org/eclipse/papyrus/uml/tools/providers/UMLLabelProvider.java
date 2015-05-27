@@ -24,24 +24,34 @@ import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
+import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.ExtensionEnd;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.OperationTemplateParameter;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PackageMerge;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.edit.UMLEditPlugin;
+import org.eclipse.uml2.uml.edit.providers.MultiplicityElementItemProvider;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -130,10 +140,107 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 		if ((!(eObject instanceof Element)) && UMLUtil.getBaseElement(eObject) instanceof Comment) {
 			return getText(eObject);
 		}
+		
+		if(eObject instanceof Property){
+			return getText((Property) eObject);
+		}
 
 		return super.getText(element);
 	}
 
+	protected String getText(final Property property){
+		final StringBuffer text = new StringBuffer();
+
+		final Type type = property.getType();
+
+		if (property.isDerived()) {
+			appendString(text, "/"); //$NON-NLS-1$
+		}
+
+		final String label = property.getLabel(shouldTranslate());
+
+		if (!UML2Util.isEmpty(label)) {
+			appendString(text, label);
+		} else if (property.getAssociation() != null && type != null) {
+			final String typeName = type.getName();
+
+			if (!UML2Util.isEmpty(typeName)) {
+				if(property instanceof ExtensionEnd){
+					appendString(text, "extension_" + typeName);
+				}else{
+					appendString(text, Character.toLowerCase(typeName.charAt(0))
+						+ typeName.substring(1));
+				}
+			}
+		}
+
+		if (type != null) {
+			final String typeLabel = type.getLabel(shouldTranslate());
+
+			if (!UMLUtil.isEmpty(typeLabel)) {
+				appendString(text, ": " + typeLabel); //$NON-NLS-1$
+			}
+		}
+
+		if (property.eIsSet(UMLPackage.Literals.MULTIPLICITY_ELEMENT__LOWER)
+			|| property.eIsSet(UMLPackage.Literals.MULTIPLICITY_ELEMENT__UPPER)) {
+			final String multiplicityAsString = MultiplicityElementUtil.getMultiplicityAsString(property);
+			if(!multiplicityAsString.isEmpty()){
+				text.append(multiplicityAsString);
+			}
+		}
+		
+		return text.toString();
+	}
+	
+	protected StringBuffer appendString(StringBuffer text, String string) {
+		if (!UML2Util.isEmpty(string)) {
+			if (text.length() > 0) {
+				text.append(' ');
+			}
+			text.append(string);
+		}
+		return text;
+	}
+	
+	protected StringBuffer appendKeywords(StringBuffer text, Property property) {
+		final Iterator<Stereotype> appliedStereotypes = property
+			.getAppliedStereotypes().iterator();
+		final Iterator<String> keywords = property.getKeywords().iterator();
+
+		if (appliedStereotypes.hasNext() || keywords.hasNext()) {
+			if (text.length() > 0) {
+				text.append(' ');
+			}
+			text.append("<<"); //$NON-NLS-1$
+
+			while (appliedStereotypes.hasNext()) {
+				text.append(appliedStereotypes.next().getKeyword(
+					shouldTranslate()));
+
+				if (appliedStereotypes.hasNext() || keywords.hasNext()) {
+					text.append(", "); //$NON-NLS-1$
+				}
+			}
+
+			while (keywords.hasNext()) {
+				text.append(keywords.next());
+
+				if (keywords.hasNext()) {
+					text.append(", "); //$NON-NLS-1$
+				}
+			}
+
+			text.append(">>"); //$NON-NLS-1$
+		}
+
+		return text;
+	}
+	
+	protected boolean shouldTranslate() {
+		return UMLEditPlugin.INSTANCE.shouldTranslate();
+	}
+	
 	/**
 	 *
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)

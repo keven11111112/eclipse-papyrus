@@ -4,7 +4,7 @@
     modelDirectory="/org.eclipse.papyrus.infra.viewpoints.policy/src-gen" modelPluginID="org.eclipse.papyrus.infra.viewpoints.policy"
     modelName="Style" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    language="" usedGenPackages="../../org.eclipse.papyrus.infra.viewpoints.configuration/model/configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.viewpoints.iso42010/model/iso42010.genmodel#//iso42010 ../../org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation"
+    language="" usedGenPackages="../../org.eclipse.papyrus.infra.viewpoints.configuration/model/configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.viewpoints.iso42010/model/iso42010.genmodel#//iso42010 ../../org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints"
     operationReflection="true" importOrganizing="true">
   <foreignModel>style.ecore</foreignModel>
   <genPackages prefix="Style" basePackage="org.eclipse.papyrus.infra.viewpoints" resource="XMI"
