@@ -295,8 +295,8 @@ constructor InputPin::InputPin(pinName : String, pinType: Type, pinLower : Integ
 	upper := pinUpper;
 }
 
-constructor InputPin::InputPin(structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
-	inStructuredNode := structuredNode;
+constructor InputPin::InputPin(inout structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	structuredNode.structuredNodeInput += result;
 	name := pinName;
 	type := pinType;
 	lower := pinLower;
@@ -328,8 +328,8 @@ constructor OutputPin::OutputPin(pinName : String, pinType: Type, pinLower : Int
 	upper := pinUpper;
 }
 
-constructor OutputPin::OutputPin(structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
-	inStructuredNode := structuredNode;
+constructor OutputPin::OutputPin(inout structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	structuredNode.structuredNodeOutput += result;
 	name := pinName;
 	type := pinType;
 	lower := pinLower;
@@ -780,6 +780,17 @@ helper addToExpansionRegion(inout region : ExpansionRegion, nodes : Set(Activity
 		} endif;
 	};
 	return edges - region.edge;
+}
+
+helper createPassthruNode (sourceName : String, type : Type, lower : Integer, upper : Integer) : StructuredActivityNode {
+	var nodeName := 
+		if sourceName = null or sourceName.oclIsInvalid() then "Passthru" 
+		else "Passthru(" + sourceName + ")" endif;
+	var structuredNode := new StructuredActivityNode(nodeName);
+	var inputPin := new InputPin(structuredNode, nodeName + ".input", type, lower, upper);
+	var outputPin := new OutputPin(structuredNode, nodeName + ".output", type, lower, upper);
+	structuredNode.edge += new ObjectFlow(inputPin, outputPin);
+	return structuredNode;
 }
 
 // Other

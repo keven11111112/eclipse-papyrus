@@ -1493,18 +1493,116 @@ helper EqualityExpression::mapDoubleEmptyResult(
 	graph.resultSource := mergeNode;
 }
 
+// Conditional Expressions
+
+// Common helpers for conditional logical and conditional test expressions
+
+helper Expression::mapOperandNode(inout graph : ExpressionGraph, label : String,
+	assignedNames : OrderedSet(String), assignmentsBefore : Set(AssignedSource),
+	operand : Expression, defaultLiteral : Boolean) : StructuredActivityNode {
+	var operandGraph :=
+		if operand <> null then
+			operand.map toActivityGraph()
+		else
+			object ExpressionGraph{
+				nodes += var valueAction ::= new ValueSpecificationAction(new LiteralBoolean(defaultLiteral, self.booleanType().toType()));
+				resultSource := valueAction.result;
+			}
+		endif;
+	if operandGraph.nodes->isEmpty() then {
+    // This ensures that, even if the operand mapping is empty, there is
+    // something by which to control the flow through the operand node.
+    operandGraph.nodes += var mergeNode ::= new MergeNode(nameOf(operandGraph.resultSource));
+    operandGraph.edges += new ObjectFlow(operandGraph.resultSource, mergeNode);
+    operandGraph.resultSource := mergeNode;
+	} endif;
+	
+	var operandNode := operandGraph.addStructuredActivityNodeTo(graph, label);
+	var outputPin := new OutputPin(operandNode, label + ".result", null, 0, -1);
+	new ObjectFlow(operandNode, operandGraph.resultSource, outputPin);
+	
+	// Map local name assignments.
+	assignedNames->forEach(name) {
+		var assignmentBefore := find(assignmentsBefore, name);
+		var assignmentAfter := if operand = null then assignmentBefore else find(operand.assignmentAfter, name) endif;
+		outputPin := new OutputPin(operandNode,
+			label + ".output(" + name + ")", toType(assignmentAfter.type), assignmentAfter.lower, assignmentAfter.upper);
+		var sourceNode : ActivityNode;
+		if assignmentBefore = null or assignmentBefore.source <> assignmentAfter.source then {
+			sourceNode := assignmentAfter.map toActivityNode();
+		} else {
+			var passthruNode := createPassthruNode(name, outputPin.type, outputPin.lower, outputPin.upper);
+			graph.edges += new ObjectFlow(assignmentBefore.map toActivityNode(), passthruNode.structuredNodeInput![true]);
+			sourceNode := passthruNode.structuredNodeOutput![true];
+		} endif;
+		new ObjectFlow(operandNode, sourceNode, outputPin);
+	};
+	
+	return operandNode;
+}
+
+helper Expression::mapConditionalExpression(inout graph : ExpressionGraph, inout assignedValueSourceMap : Dict(String, ActivityNode), label : String, 
+	operand1 : Expression, operand2 : Expression, operand3 : Expression) {
+  // Create an ordered list of local names for which this expression is the source, so the ordering is consistent for the mappings of the 
+  // second and third operands.
+  var assignedNames := self.assignmentAfter[source = self].name->asOrderedSet();
+  
+  // Map the operands.
+  var operand1Graph := operand1.map toActivityGraph();
+  operand1Graph.addTo(graph);
+  
+  var operand2Node := self.mapOperandNode(graph, label + ".operand2", assignedNames, operand1.assignmentAfter, operand2, true);
+  var operand3Node := self.mapOperandNode(graph, label + ".operand3", assignedNames, operand1.assignmentAfter, operand3, false);
+  
+  // Map the decision.
+  graph.nodes += var initialNode ::= new InitialNode(label);
+  createControlDecisionGraph(label, initialNode, operand1Graph.resultSource, operand2Node, operand3Node).addTo(graph);
+  
+  // Create merge of the operand results.
+  graph.nodes += graph.resultSource := new MergeNode(label + ".result");
+  graph.edges += new ObjectFlow(operand2Node.output->at(1), graph.resultSource);
+  graph.edges += new ObjectFlow(operand3Node.output->at(1), graph.resultSource);
+  
+  // Create merge nodes as assigned value sources for names assigned in the second or third operands.
+  Sequence{1..assignedNames->size()}->forEach(i) {
+  	var name := assignedNames->at(i);
+  	graph.nodes += var mergeNode ::= new MergeNode(label + "." + name);
+  	graph.nodes += var forkNode ::= new ForkNode(mergeNode.name);
+  	graph.edges += new ObjectFlow(operand2Node.output->at(i+1), mergeNode);
+  	graph.edges += new ObjectFlow(operand3Node.output->at(i+1), mergeNode);
+  	graph.edges += new ObjectFlow(mergeNode, forkNode);
+  	assignedValueSourceMap->put(name, forkNode);
+  }
+}
+
 // Conditional Logical Expressions
 
+intermediate property ConditionalLogicalExpression::assignedValueSourceMap : Dict(String, ActivityNode);
+
+query ConditionalLogicalExpression::assignedValueSource(assignedName : String) : ActivityNode {
+	return self.assignedValueSourceMap->get(assignedName);
+}
+
 mapping ConditionalLogicalExpression::toActivityGraph() : ExpressionGraph
- 	inherits BinaryExpression::toActivityGraph  {
-	// TODO
+ 	inherits Expression::toActivityGraph  {
+	if self.operator = "&&" then {
+		self.mapConditionalExpression(result, self.assignedValueSourceMap, "ConditionalAnd", self.operand1, self.operand2, null);
+	} else {
+		self.mapConditionalExpression(result, self.assignedValueSourceMap, "ConditionalOr", self.operand1, null, self.operand2);
+	} endif;
 }
 
 // Conditional Test Expressions
 
+intermediate property ConditionalTestExpression::assignedValueSourceMap : Dict(String, ActivityNode);
+
+query ConditionalTestExpression::assignedValueSource(assignedName : String) : ActivityNode {
+	return self.assignedValueSourceMap->get(assignedName);
+}
+
 mapping ConditionalTestExpression::toActivityGraph() : ExpressionGraph
- 	inherits Expression::Dummy_toActivityGraph  {
-	// TODO
+ 	inherits Expression::toActivityGraph  {
+	self.mapConditionalExpression(result, self.assignedValueSourceMap, "ConditionalTest", self.operand1, self.operand2, self.operand3);
 }
 
 // Assignment Expressions

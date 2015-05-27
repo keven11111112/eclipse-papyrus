@@ -103,33 +103,6 @@ query ActivityNode::isContainedIn(elements : Set(Element)) : Boolean {
 	return elements[Action].allOwnedNodes()->includes(self)
 }
 
-helper createPassthruNode (sourceName : String, sourceType : Type, lowerValue : Integer, upperValue : Integer) : StructuredActivityNode {
-	var nodeName := 
-		if sourceName = null or sourceName.oclIsInvalid() then "Passthru" 
-		else "Passthru(" + sourceName + ")" endif;
-	var inputPin := object InputPin {
-		name := nodeName + ".input";
-		type := sourceType;
-		lower := lowerValue;
-		upper := upperValue;
-	};
-	var outputPin := object OutputPin {
-		name := nodeName + ".output";
-		type := sourceType;
-		lower := lowerValue;
-		upper := upperValue;
-	};
-	return object StructuredActivityNode {
-		name := nodeName;
-		structuredNodeInput += inputPin;
-		structuredNodeOutput += outputPin;
-		edge += object ObjectFlow {
-			source := inputPin;
-			target := outputPin;
-		};
-	};
-}
-
 // BLOCKS
 
 mapping Block::toActivity(inout activity : Activity) {
