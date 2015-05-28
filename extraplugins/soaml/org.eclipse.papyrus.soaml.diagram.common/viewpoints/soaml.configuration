@@ -60,7 +60,7 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
       <childRules xmi:id="_KEIqMLODEeSI8fXEtgAE5Q"/>
-      <paletteRules xmi:id="_DbOZULEOEeSHrIcATORhCQ" permit="false" element="composite.group.*"/>
+      <paletteRules xmi:id="_DbOZULEOEeSHrIcATORhCQ" permit="false" element="clazz.group.*"/>
     </modelKinds>
   </viewpoints>
   <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
