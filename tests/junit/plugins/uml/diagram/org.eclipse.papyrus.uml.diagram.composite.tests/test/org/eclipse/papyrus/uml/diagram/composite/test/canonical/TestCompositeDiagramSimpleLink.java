@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468646
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.test.canonical;
@@ -218,7 +219,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManifestation() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Manifestation_4012, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Manifestation_4012, UMLElementTypes.Package_1000, false);
 	}
 
 	/**
