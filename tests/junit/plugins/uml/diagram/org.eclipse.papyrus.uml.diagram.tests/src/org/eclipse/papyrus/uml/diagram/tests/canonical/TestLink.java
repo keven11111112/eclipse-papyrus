@@ -525,7 +525,8 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	protected void testToCreateAlinkOnTheSame(IElementType linkType, boolean allowed) {
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
-		Command command = target.getCommand(createConnectionViewRequest(linkType, source, source));
+		// Note: Must always ask the target edit-part to create the connection, and in this case the target is 'source'
+		Command command = source.getCommand(createConnectionViewRequest(linkType, source, source));
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == allowed);
 		if (allowed) {
