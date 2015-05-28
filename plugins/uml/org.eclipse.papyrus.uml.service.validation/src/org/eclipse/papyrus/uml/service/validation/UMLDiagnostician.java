@@ -60,15 +60,12 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 		return super.createDefaultDiagnostic(eObject);
 	}
 
-	@Deprecated
 	/**
-	 * Explicitly validate stereotype applications
-	 * @deprecated: Not required any more, since the UMLTraversalStrategy already assures that the
-	 *  stereotype applications associated with an element are validated. 
-	 *    
-	 * @param eObject
-	 * @param diagnostics
-	 * @param context
+	 * Explicitly validate stereotype applications.
+	 * 
+	 * @param eObject the eObject to validate
+	 * @param diagnostics the diagnostic chain
+	 * @param context the context
 	 * @return
 	 */
 	protected boolean doValidateStereotypeApplications(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -90,6 +87,15 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	protected boolean doValidateContents(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = doValidateStereotypeApplications(eObject, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= super.doValidateContents(eObject, diagnostics, context);
+		}
+		return result;
 	}
 
 	@Override
