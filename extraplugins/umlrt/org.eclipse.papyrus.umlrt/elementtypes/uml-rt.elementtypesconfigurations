@@ -362,4 +362,14 @@
         xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
         href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScaNtlYCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations
+      xmi:id="_72t-8AXkEeW5T4E9mdKXVA"
+      name="org.eclipse.papyrus.umlrt.custom.advice.OperationEditHelperAdvice"
+      identifier="org.eclipse.papyrus.umlrt.custom.advice.OperationEditHelperAdvice"
+      editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.OperationEditHelperAdvice"
+      inheritance="all">
+    <target
+        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+        href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc8ZVFYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>
