@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468646
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.test.canonical;
@@ -70,7 +71,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, false);
 	}
 
 
@@ -79,7 +80,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testClassToCollaborationGeneralization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Collaboration_2075, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Collaboration_2075, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, false);
 	}
 
 	/**
@@ -87,7 +88,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testCollaborationToClassGeneralization() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Class_2073, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Class_2073, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, false);
 	}
 
 	/**
@@ -104,7 +105,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageActivitySubstitution() {
-		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
 	}
 
 	/**
@@ -112,7 +113,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageStateMachineSubstitution() {
-		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
 	}
 
 	/**
@@ -120,7 +121,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageCollaborationSubstitution() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
 	}
 
 	/**
@@ -128,7 +129,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToSubstitution() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
 	}
 
 	/**
@@ -136,7 +137,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageClassSubstitution() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
 	}
 
 
@@ -146,7 +147,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToInterfaceRealization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Interface_2076, UMLElementTypes.InterfaceRealization_4005, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Interface_2076, UMLElementTypes.InterfaceRealization_4005, UMLElementTypes.Package_1000, false);
 	}
 
 }
