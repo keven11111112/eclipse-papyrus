@@ -10,6 +10,32 @@
       description="Nodes">
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="palettemodel.Block"
+        label="Block"
+        description="Create a Block">
+      <icon
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/blocks/Block.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.Block_3085"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.Block_2073"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="palettemodel.BoundReference"
+        label="BoundReference"
+        description="Create a BoundReference">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Property.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.BoundReference_3070"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.BoundReference_3101"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.Comment"
         label="Comment"
         description="Create a comment">
@@ -36,16 +62,49 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.BoundReference"
-        label="BoundReference"
-        description="Create a BoundReference">
+        id="palettemodel.FullPort"
+        label="Full Port"
+        description="Create a FullPort">
       <icon
           pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Property.gif"/>
+          iconPath="icons/full/obj16/Port.gif"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.BoundReference_3070"/>
+          elementTypeId="org.eclipse.papyrus.SysML14.FullPort_3069"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="palettemodel.Interface"
+        label="Interface"
+        description="Create an Interface">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Interface.gif"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.BoundReference_3101"/>
+          elementTypeId="org.eclipse.papyrus.uml.diagram.composite.Interface_3087"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.composite.Interface_2076"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="palettemodel.Port"
+        label="Port"
+        description="Create a Port">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Port.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.composite.Port_3069"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="palettemodel.ProxyPort"
+        label="Proxy Port"
+        description="Create a ProxyPort">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Port.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.ProxyPort_3069"/>
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
@@ -55,13 +114,26 @@
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
         id="palettemodel.BindingConnector"
-        label="BindingConnector"
-        description="Create a BindingConnector">
+        label="Binding Connector"
+        description="Create a BindingConnector"
+        kind="ConnectionTool">
       <icon
           pluginID="org.eclipse.uml2.uml.edit"
           iconPath="icons/full/obj16/Connector.gif"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.SysML14.BindingConnector_4013"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="palettemodel.ItemFlow"
+        label="Item Flow"
+        description="Create a ItemFlow"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/portandflows/ItemFlow.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.ItemFlow_4021"/>
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
@@ -132,19 +204,6 @@
           elementTypeId="org.eclipse.papyrus.SysML14.FlowProperty_3070"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.SysML14.FlowProperty_3101"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.Block"
-        label="Block"
-        description="Create a Block">
-      <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/blocks/Block.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Block_3085"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Block_2073"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
@@ -401,28 +460,6 @@
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.SysML14.Optional_3088"/>
     </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.FullPort"
-        label="FullPort"
-        description="Create a FullPort">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Port.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.FullPort_3069"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.ProxyPort"
-        label="ProxyPort"
-        description="Create a ProxyPort">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Port.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.ProxyPort_3069"/>
-    </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="SysML Edges"
@@ -547,18 +584,6 @@
           iconPath="icons/requirements/Satisfy.gif"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.SysML14.Satisfy_Abstraction_4007"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.ItemFlow"
-        label="ItemFlow"
-        description="Create a ItemFlow"
-        kind="ConnectionTool">
-      <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/portandflows/ItemFlow.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.ItemFlow_4021"/>
     </ownedConfigurations>
   </drawerConfigurations>
 </paletteconfiguration:PaletteConfiguration>
