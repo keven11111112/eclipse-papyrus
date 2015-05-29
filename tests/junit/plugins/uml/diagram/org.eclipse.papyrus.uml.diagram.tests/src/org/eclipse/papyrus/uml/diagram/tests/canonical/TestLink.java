@@ -316,6 +316,11 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		Assert.assertTrue("the policy of the link must be an instance of ShowHideLabelEditPolicy", policy instanceof org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy); //$NON-NLS-1$
 		// get text aware
 		ITextAwareEditPart namedEditPart = null;
+
+		// FIXME we should find here a better way to get the name label => If the name is null or empty, no edit part will match whereas one should
+		if (initialName == null || initialName.isEmpty()) {
+			return;
+		}
 		for (Iterator iteratorChildren = linkEditPart.getChildren().iterator(); iteratorChildren.hasNext();) {
 			Object children = iteratorChildren.next();
 			if (children instanceof ITextAwareEditPart && (((ITextAwareEditPart) children).getEditText() != null) && (!((ITextAwareEditPart) children).getEditText().trim().equals(""))) { //$NON-NLS-1$

@@ -43,7 +43,7 @@ public class TestProfileDiagramLink extends TestLink {
 
 	@Test
 	public void testToManageAssociationWithoutMulti() {
-		testToManageLinkWithoutMulti(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Association_4001, UMLElementTypes.Package_2007, true, "srcMulA_cla");
+		testToManageLinkWithoutMulti(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Association_4001, UMLElementTypes.Package_2007, true, null); // name of associations are not set now
 	}
 
 	@Override
