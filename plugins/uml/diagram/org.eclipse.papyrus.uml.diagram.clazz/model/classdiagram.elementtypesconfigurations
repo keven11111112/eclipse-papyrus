@@ -549,7 +549,7 @@
         xmi:id="_rWNxlXPzEeSnGJwaJWHCSg"
         iconPath="/icons/full/obj16/InstanceSpecification.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification.Link</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"

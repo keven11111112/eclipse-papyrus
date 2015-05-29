@@ -1733,7 +1733,7 @@
       name="UML::InstanceSpecification"
       identifier="org.eclipse.papyrus.uml.InstanceSpecification"
       hint="UML::InstanceSpecification"
-      editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+      editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.InstanceSpecificationEditHelper">
     <iconEntry
         xmi:id="_Scr6ilYCEeS0WsAAtVmToA"
         iconPath="/icons/full/obj16/InstanceSpecification.gif"
@@ -1750,7 +1750,8 @@
     <specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_bvHrYZXNEeSmV5hdT3HeBw"
-        editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.InstanceSpecificationEditHelperAdvice"/>
+        editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.InstanceSpecificationEditHelperAdvice"
+        inheritance="all"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
