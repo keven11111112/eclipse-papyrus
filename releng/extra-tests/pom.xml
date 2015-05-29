@@ -29,6 +29,10 @@
     <module>../../tests/junit/extraplugins/migration/org.eclipse.papyrus.migration.rsa.tests</module>
     <!-- Tests for umlrt -->
     <module>../../tests/junit/extraplugins/umlrt/org.eclipse.papyrus.umlrt.validation.tests</module>
+	
+    <!-- Tests for Sysml 1.4 -->
+    <module>../../tests/junit/extraplugins/sysml14/org.eclipse.papyrus.sysml14.diagram.common.tests</module>
+    <module>../../tests/junit/extraplugins/sysml14/org.eclipse.papyrus.sysml14.service.types.tests</module>	
   </modules>
 	<repositories>
 		<repository>
