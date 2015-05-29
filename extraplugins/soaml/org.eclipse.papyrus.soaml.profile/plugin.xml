@@ -19,7 +19,7 @@
       </mapping>
    </extension>
    <extension point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
-      <profile description="UML profile for SOA" iconpath="icons/SoaML_new_Project32x32.gif" name="SoaML" path="pathmap://SoaML_PROFILES/SoaMLProfile.profile.uml" provider="CEA List">
+      <profile description="UML profile for SOA" iconpath="icons/soaml16x16.png" name="SoaML" path="pathmap://SoaML_PROFILES/SoaMLProfile.profile.uml" provider="CEA List">
       </profile>
    </extension>
 
