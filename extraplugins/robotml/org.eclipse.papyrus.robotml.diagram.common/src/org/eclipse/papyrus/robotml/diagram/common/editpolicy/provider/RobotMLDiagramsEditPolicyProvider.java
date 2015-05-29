@@ -11,10 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.robotml.diagram.common.editpolicy.provider;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gef.EditPart;
@@ -28,11 +25,11 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvide
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.robotml.diagram.common.editpolicies.PortNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 
@@ -61,41 +58,37 @@ public class RobotMLDiagramsEditPolicyProvider extends AbstractProvider
 
 	public void createEditPolicies(EditPart editPart) {
 
-		if (editPart.getModel() instanceof View) {
-			EObject element = ((View) editPart.getModel()).getElement();
-			if (element instanceof Element) {
-				
-				Iterator<Profile> itr = ((Element) element).getNearestPackage().getAllAppliedProfiles().iterator();
-			      while(itr.hasNext()) {
-			         Profile profile = itr.next();
-			        
-			         if(profile.getName().equals(ROBOTML_ID))
-			         {
-			        
-			        		if (editPart instanceof PortEditPart) {
-								NotificationListener editPolicy = new PortNodeLabelDisplayEditPolicy();
-								editPart.installEditPolicy(
-										AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-										(EditPolicy) editPolicy);
-								Object model = editPart.getModel();
-								LayoutConstraint notifier = ((Shape) model)
-										.getLayoutConstraint();
-								if (model instanceof Shape) {
-									// to force refreshing the port icon when the
-									// diagram is opening
-									Notification notification = new ENotificationImpl(
-											(InternalEObject) notifier,
-											Notification.SET,
-											NotationPackage.eINSTANCE.getLocation_X(),
-											0, 0);
-									editPolicy.notifyChanged(notification);
-								}
-							}
-			         }
-			      }
+		if (!(editPart instanceof PortEditPart)) {
+			return;
+		}
 
+		Element umlElement = UMLUtil.resolveUMLElement(editPart);
+		if (umlElement == null) {
+			return;
+		}
+
+		for (Profile profile : umlElement.getNearestPackage().getAllAppliedProfiles()) {
+			if (ROBOTML_ID.equals(profile.getName())) {
+
+				NotificationListener editPolicy = new PortNodeLabelDisplayEditPolicy();
+				editPart.installEditPolicy(
+						AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+						(EditPolicy) editPolicy);
+
+				Object model = editPart.getModel();
+
+				if (model instanceof Shape) {
+					LayoutConstraint notifier = ((Shape) model).getLayoutConstraint();
+					// to force refreshing the port icon when the
+					// diagram is opening
+					Notification notification = new ENotificationImpl(
+							(InternalEObject) notifier,
+							Notification.SET,
+							NotationPackage.eINSTANCE.getLocation_X(),
+							0, 0);
+					editPolicy.notifyChanged(notification);
+				}
 			}
 		}
 	}
-
 }
