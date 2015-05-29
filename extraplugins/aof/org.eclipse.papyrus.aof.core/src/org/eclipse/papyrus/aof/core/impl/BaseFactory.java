@@ -10,18 +10,11 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import static org.eclipse.papyrus.aof.core.IBoxType.BAG;
-import static org.eclipse.papyrus.aof.core.IBoxType.ONE;
-import static org.eclipse.papyrus.aof.core.IBoxType.OPTION;
-import static org.eclipse.papyrus.aof.core.IBoxType.ORDERED_SET;
-import static org.eclipse.papyrus.aof.core.IBoxType.SEQUENCE;
-import static org.eclipse.papyrus.aof.core.IBoxType.SET;
-
 import java.util.Arrays;
 
 import org.eclipse.papyrus.aof.core.IBag;
 import org.eclipse.papyrus.aof.core.IBox;
-import org.eclipse.papyrus.aof.core.IConstrained;
+import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IOption;
@@ -29,92 +22,92 @@ import org.eclipse.papyrus.aof.core.IOrderedSet;
 import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.core.ISequence;
 import org.eclipse.papyrus.aof.core.ISet;
-import org.eclipse.papyrus.aof.core.impl.delegate.BaseDelegate;
-import org.eclipse.papyrus.aof.core.impl.delegate.ListDelegate;
 
 public abstract class BaseFactory implements IFactory {
 
-	public <A, B> IPair<A, B> createTuple(A first, B second) {
-		return new Pair<A, B>(first, second);
+
+	public <E> IBox<E> createBox(IConstraints constraints, BaseDelegate<E> delegate) {
+		if (!constraints.isLegal()) {
+			throw new IllegalStateException("Invalid constraints " + constraints);
+		} else {
+			Box<E> box;
+			if (constraints.matches(IConstraints.OPTION)) {
+				box = new Option<E>();
+			} else if (constraints.matches(IConstraints.ONE)) {
+				box = new One<E>();
+			} else if (constraints.matches(IConstraints.ORDERED_SET)) {
+				box = new OrderedSet<E>();
+			} else if (constraints.matches(IConstraints.SEQUENCE)) {
+				box = new Sequence<E>();
+			} else if (constraints.matches(IConstraints.SET)) {
+				box = new Set<E>();
+			} else if (constraints.matches(IConstraints.BAG)) {
+				box = new Bag<E>();
+			} else {
+				throw new IllegalStateException("Invalid constraints " + constraints);
+			}
+			box.setDelegate(delegate);
+			return box;
+		}
 	}
 
-	// A generic box constructor, used by all the following constructors
-
-	protected <A> IBox<A> createBox(IConstrained constrained, BaseDelegate<A> delegate) {
-		Box<A> box = null;
-		if (OPTION.satisfies(constrained)) {
-			box = new Option<A>();
+	@Override
+	public <E> IBox<E> createBox(IConstraints constraints, E... elements) {
+		IBox<E> box = createBox(constraints, new ListDelegate<E>());
+		if (box.matches(IConstraints.ONE)) {
+			// if elements is empty => null default value
+			// else: default value = the first of the list
+			IOne<E> one = (IOne<E>) box;
+			E defaultElement = (elements.length > 0) ? elements[0] : null;
+			one.clear(defaultElement);
 		}
-		else if (ONE.satisfies(constrained)) {
-			box = new One<A>();
-		}
-		else if (SET.satisfies(constrained)) {
-			box = new Set<A>();
-		}
-		else if (ORDERED_SET.satisfies(constrained)) {
-			box = new OrderedSet<A>();
-		}
-		else if (SEQUENCE.satisfies(constrained)) {
-			box = new Sequence<A>();
-		}
-		else /* if (BAG.satisfies(constrained)) */{
-			box = new Bag<A>();
-		}
-		box.setDelegate(delegate);
-		return box;
-	}
-
-	// Boxes independent of the model
-
-	public <A> IBox<A> createBox(IConstrained constrained) {
-		IBox<A> box = createBox(constrained, new ListDelegate<A>());
-		return box;
-	}
-
-	public <A> IBox<A> createBox(IConstrained constrained, A... elements) {
-		IBox<A> box = createBox(constrained);
 		box.assign(Arrays.asList(elements));
 		return box;
 	}
 
-	@SuppressWarnings("unchecked")
-	public <A> IOption<A> createOption() {
-		return (IOption<A>) createBox(OPTION);
+	@Override
+	public <E> IOption<E> createOption() {
+		return (IOption<E>) createBox(IConstraints.OPTION);
 	}
 
-	@SuppressWarnings("unchecked")
-	public <A> IOption<A> createOption(A element) {
-		return (IOption<A>) createBox(OPTION, element);
+	@Override
+	public <E> IOption<E> createOption(E element) {
+		return (IOption<E>) createBox(IConstraints.OPTION, element);
 	}
 
-	@SuppressWarnings("unchecked")
-	public <A> IOne<A> createOne(A defaultElement) {
-		One<A> box = (One<A>) createBox(ONE, defaultElement);
-		box.setDefaultElement(defaultElement);
-		return box;
-	}
-	
-	public <A> IOne<A> createOne(A defaultElement,A initialElement){
-		IOne<A> box = createOne(defaultElement);
-		box.append(initialElement);
-		return box;
+	@Override
+	public <E> IOne<E> createOne(E defaultElement) {
+		return (IOne<E>) createBox(IConstraints.ONE, defaultElement);
 	}
 
-	public <A> ISet<A> createSet(A... elements) {
-		return (ISet<A>) createBox(SET, elements);
+	@Override
+	public <E> IOne<E> createOne(E defaultElement, E initialAlement) {
+		return (IOne<E>) createBox(IConstraints.ONE, defaultElement, initialAlement);
 	}
 
-	public <A> IOrderedSet<A> createOrderedSet(A... elements) {
-		return (IOrderedSet<A>) createBox(ORDERED_SET, elements);
+	@Override
+	public <E> ISet<E> createSet(E... elements) {
+		return (ISet<E>) createBox(IConstraints.SET, elements);
 	}
 
-	public <A> ISequence<A> createSequence(A... elements) {
-		return (ISequence<A>) createBox(SEQUENCE, elements);
+	@Override
+	public <E> IOrderedSet<E> createOrderedSet(E... elements) {
+		return (IOrderedSet<E>) createBox(IConstraints.ORDERED_SET, elements);
 	}
 
-	public <A> IBag<A> createBag(A... elements) {
-		return (IBag<A>) createBox(BAG, elements);
+	@Override
+	public <E> ISequence<E> createSequence(E... elements) {
+		return (ISequence<E>) createBox(IConstraints.SEQUENCE, elements);
 	}
 
+	@Override
+	public <E> IBag<E> createBag(E... elements) {
+		return (IBag<E>) createBox(IConstraints.BAG, elements);
+	}
+
+	@Override
+	public <L, R> IPair<L, R> createPair(L left, R right) {
+		return new Pair<L, R>(left, right);
+	}
 
 }

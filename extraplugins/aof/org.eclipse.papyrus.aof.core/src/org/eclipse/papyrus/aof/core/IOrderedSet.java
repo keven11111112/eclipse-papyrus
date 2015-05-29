@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
+/**
+ * Represents ordered collections that never contain duplicates.
+ */
 public interface IOrderedSet<A> extends ICollection<A> {
 
 }

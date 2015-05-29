@@ -1,6 +1,0 @@
-Population.ecore: 
-	General purpose Ecore sample model, can be used for testing purpose
-
-Test.ecore: 
-	Provided for illustrating the use of multiple Ecore models within a single Eclipse plugin.
-	Requires the use of nested Ecore packages.

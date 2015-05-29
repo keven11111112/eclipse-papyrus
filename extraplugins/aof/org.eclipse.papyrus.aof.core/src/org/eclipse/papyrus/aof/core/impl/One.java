@@ -10,36 +10,65 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import org.eclipse.papyrus.aof.core.IBoxType;
+import org.eclipse.papyrus.aof.core.AOFFactory;
+import org.eclipse.papyrus.aof.core.IBox;
+import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.IOne;
 
-public class One<A> extends Singleton<A> implements IOne<A> {
-	
-	private A defaultElement;
+public class One<E> extends Singleton<E>implements IOne<E> {
 
-	public A getDefaultElement() {
+	private E defaultElement;
+
+	@Override
+	public E getDefaultElement() {
 		return defaultElement;
 	}
 
-	public void setDefaultElement(A defaultValue) {
-		this.defaultElement = defaultValue;
-	}
-	
-	public void remove(A element) {
-		if (indexOf(element) != -1) {
-			getDelegate().replace(0,defaultElement);
-		}
-	}
-	
-	public void removeAt(int index) {
-		if ((index < 0) || (index >= size())) {
-			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + size() + "[");
-		}
-		getDelegate().replace(0,defaultElement);
+	@Override
+	public void clear(E newDefaultElement) {
+		defaultElement = newDefaultElement;
+		clear();
 	}
 
-	public IBoxType getType() {
-		return IBoxType.ONE;
+	@Override
+	public void clear() {
+		add(defaultElement);
 	}
+
+	// IConstrained
+
+	@Override
+	public IConstraints getConstraints() {
+		return IConstraints.ONE;
+	}
+
+	// IWritable
+
+	@Override
+	public void remove(E element) {
+		if (!contains(element)) {
+			throw new IllegalStateException("Element " + element + " is not contained in " + this);
+		} else {
+			removeAt(0);
+		}
+	}
+
+	@Override
+	public void removeAt(int index) {
+		if (index != 0) {
+			throw new IndexOutOfBoundsException("Index " + index + " should be 0");
+		}
+		getDelegate().set(0, defaultElement);
+	}
+
+	// IBox
+
+	@Override
+	public IBox<E> snapshot() {
+		IBox<E> box = AOFFactory.INSTANCE.createOne(defaultElement);
+		box.assign(this);
+		return box;
+	}
+
 
 }

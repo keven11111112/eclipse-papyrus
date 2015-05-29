@@ -10,14 +10,19 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface IConstrained {
+/**
+ * Represents constraints relative to the contents of boxes.
+ * <p>
+ * It extends {@link org.eclipse.papyrus.aof.core.IConstraints} for facility purpose only: each method defined in
+ * {@link org.eclipse.papyrus.aof.core.IConstraints} can be invoked without invoking {@link #getConstraints()}.
+ */
+public interface IConstrained extends IConstraints {
 
-	boolean isOptional();
-
-	boolean isSingleton();
-
-	boolean isOrdered();
-
-	boolean isUnique();
+	/**
+	 * Returns the constraints associated to this constrained contents.
+	 *
+	 * @return the constraints of this constrained contents
+	 */
+	IConstraints getConstraints();
 
 }

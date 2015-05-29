@@ -10,47 +10,26 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl.utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.eclipse.papyrus.aof.core.impl.utils.cache.IBinaryCache;
+import org.eclipse.papyrus.aof.core.impl.utils.cache.IUnaryCache;
+import org.eclipse.papyrus.aof.core.impl.utils.cache.WeakKeysWeakValuesBinaryCache;
+import org.eclipse.papyrus.aof.core.impl.utils.cache.WeakKeysWeakValuesUnaryCache;
 
 public class Cache {
-
-	private List<Object> sources = new ArrayList<Object>();
-	private List<Object> links = new ArrayList<Object>();
-	private List<Object> targets = new ArrayList<Object>();
+	private IUnaryCache sourceByTarget = new WeakKeysWeakValuesUnaryCache();
+	// many sources per link, few (typically 1) links by source
+	private IBinaryCache targetByLinkAndSource = new WeakKeysWeakValuesBinaryCache();
 
 	public Object getTarget(Object source, Object link) {
-		for (int i = 0; i < sources.size(); i++) {
-			if ((sources.get(i) == source) && (links.get(i) == link)) {
-				return targets.get(i);
-			}
-		}
-		return null;
+		return targetByLinkAndSource.get(link, source);
 	}
 
 	public Object getSource(Object target) {
-		for (int i = 0; i < sources.size(); i++) {
-			if (this.targets.get(i) == target) {
-				return this.sources.get(i);
-			}
-		}
-		return null;
+		return sourceByTarget.get(target);
 	}
 
 	public void addLink(Object source, Object link, Object target) {
-		sources.add(source);
-		links.add(link);
-		targets.add(target);
+		sourceByTarget.put(target, source);
+		targetByLinkAndSource.put(link, source, target);
 	}
-
-	public void removeSource(Object source) {
-		int i = this.sources.indexOf(source);
-		while (i != -1) {
-			sources.remove(i);
-			links.remove(i);
-			targets.remove(i);
-			i = sources.indexOf(source);
-		}
-	}
-
 }

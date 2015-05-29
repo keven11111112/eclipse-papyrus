@@ -10,12 +10,59 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface IReadable<A> extends Iterable<A> {
+/**
+ * Represents the readable contents of boxex.
+ * <p>
+ * Box readings are achieved using an index-based access.
+ *
+ * @param <E>
+ *            type of the elements contained in this readable contents
+ */
+public interface IReadable<E> extends Iterable<E> {
 
-	A get(int index);
+	/**
+	 * Returns the element at the specified position in this readable contents.
+	 *
+	 * @param index
+	 *            index of the element to return
+	 * @return the element at the specified position in this readable contents
+	 * @throws <code>IndexOutOfBoundsException</code>
+	 *             if the index is out of range,
+	 *             i.e. <code>(index < 0 || index >= size())</code>
+	 */
+	E get(int index);
 
-	int size();
+	/**
+	 * Returns the number of elements in this readable contents.
+	 *
+	 * @return the number of elements in this readable contents
+	 */
+	int length();
 
-	int indexOf(A element);
+	/**
+	 * Returns the index of the first occurrence of the specified element in this readable contents,
+	 * or -1 if the contents does not contain the element.
+	 * <p>
+	 * Comparison is performed using object equality method {@link java.lang.Object#equals(Object)}, supplemented by
+	 * <code>null</code> element comparison.
+	 *
+	 * @param element
+	 *            element to search for
+	 * @return the index of the first element occurrence,
+	 *         or -1 if this readable contents does not contain the element
+	 */
+	int indexOf(E element);
+
+	/**
+	 * Returns whether this readable contents contains the specified element or not.
+	 * <p>
+	 * Comparison is performed using object equality method {@link java.lang.Object#equals(Object)}, supplemented by
+	 * <code>null</code> element comparison.
+	 *
+	 * @param element
+	 *            element to search for
+	 * @return whether this readable contents contains the element or not
+	 */
+	boolean contains(E element);
 
 }

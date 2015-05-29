@@ -11,24 +11,28 @@
 package org.eclipse.papyrus.aof.core.impl;
 
 import org.eclipse.papyrus.aof.core.IPair;
+import org.eclipse.papyrus.aof.core.impl.operation.Inspect;
+import org.eclipse.papyrus.aof.core.impl.utils.Equality;
 
-public class Pair<A, B> implements IPair<A, B> {
+public class Pair<L, R> implements IPair<L, R> {
 
-	private A first;
+	private L first;
 
-	private B second;
+	private R second;
 
-	public Pair(A first, B second) {
+	public Pair(L first, R second) {
 		super();
 		this.first = first;
 		this.second = second;
 	}
 
-	public A getFirst() {
+	@Override
+	public L getLeft() {
 		return first;
 	}
 
-	public B getSecond() {
+	@Override
+	public R getRight() {
 		return second;
 	}
 
@@ -36,15 +40,24 @@ public class Pair<A, B> implements IPair<A, B> {
 
 	@Override
 	public String toString() {
-		return "(" + first.toString() + ", " + second.toString() + ")";
+		return "(" + Inspect.toString(first, null) + ", " + Inspect.toString(second, null) + ")";
 	}
+
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof Pair<?, ?>) {
-			Pair<A, B> that = (Pair<A, B>) other;
-			return this.first.equals(that.first) && this.second.equals(that.second);
-		}
-		else
+			Pair<L, R> that = (Pair<L, R>) other;
+			return Equality.optionalEquals(this.first, that.first) && Equality.optionalEquals(this.second, that.second);
+		} else {
 			return false;
+		}
 	}
+
+	@Override
+	public int hashCode() {
+		int firstHashCode = this.first == null ? 0 : this.first.hashCode();
+		int secondHashCode = this.second == null ? 0 : this.second.hashCode();
+		return firstHashCode + secondHashCode * 67;
+	}
+
 }

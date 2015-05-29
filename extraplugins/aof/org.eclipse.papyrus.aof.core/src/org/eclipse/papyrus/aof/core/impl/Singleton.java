@@ -10,51 +10,66 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import org.eclipse.papyrus.aof.core.IBox;
-import org.eclipse.papyrus.aof.core.IOne;
+import static org.eclipse.papyrus.aof.core.impl.utils.Equality.optionalEquals;
+
 import org.eclipse.papyrus.aof.core.ISingleton;
-import org.eclipse.papyrus.aof.core.impl.operation.Times;
 
-public abstract class Singleton<A> extends Box<A> implements ISingleton<A> {
+public abstract class Singleton<E> extends Box<E>implements ISingleton<E> {
 
-	public IBox<A> times(IOne<Integer> n) {
-		return new Times<A>(this, n).getResult();
-	}
-	
-	public void add(int index, A element) {
+	// IWritable
+
+	@Override
+	public void add(int index, E element) {
 		if (index != 0) {
-			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + size() + "[");
+			throw new IndexOutOfBoundsException("Index " + index + " should be 0 for a singleton");
 		}
-		if (indexOf(element) == -1) {
-			// Testing size to avoid exception when creating a new singleton (initial size is 0)
-			// Best solution so far
-			if(getDelegate().size()>0){
-				getDelegate().replace(0,element);
-			} else {
-				getDelegate().add(0, element);
-			}
+		add(element);
+	}
+
+	@Override
+	public void add(E element) {
+		// Testing the size of the delegate for the case of an empty option
+		if (length() == 0) {
+			getDelegate().add(0, element);
+		} else if (!optionalEquals(get(0), element)) {
+			getDelegate().set(0, element);
 		}
 	}
-	
-	public void append(A element) {
-		if (indexOf(element) == -1) {
-			// Testing the size of the delegate for the case of an empty option
-			if(getDelegate().size()==0){
-				getDelegate().add(0,element);
-			} else {
-				getDelegate().replace(0,element);
-			}
+
+	@Override
+	public void set(int index, E element) {
+		if (index != 0) {
+			throw new IndexOutOfBoundsException("Index " + index + " should be 0 for a singleton");
 		}
-	}
-	
-	//FIXME does not work for empty option assignment nor assign null
-	public void assign(Iterable<A> iterable) {
-		if(iterable == null){
-			throw new NullPointerException("Collection of elements is null");
+		if (length() == 0) {
+			getDelegate().add(element);
 		} else {
-			for(A iter : iterable){
-				add(0,iter);
-			}
+			super.set(index, element);
 		}
 	}
+
+	@Override
+	public void move(int newIndex, int oldIndex) {
+		if (newIndex != 0) {
+			throw new IndexOutOfBoundsException("Index " + newIndex + " should be 0 for a singleton");
+		} else if (oldIndex != 0) {
+			throw new IndexOutOfBoundsException("Index " + oldIndex + " should be 0 for a singleton");
+		} else {
+			getDelegate().move(newIndex, oldIndex);
+		}
+		// nothing to do: moving an element from index 0 to 0 is useless
+	}
+
+	// ISingleton
+
+	@Override
+	public E get() {
+		return get(0);
+	}
+
+	@Override
+	public void set(E element) {
+		set(0, element);
+	}
+
 }

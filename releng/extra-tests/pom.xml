@@ -33,6 +33,10 @@
     <!-- Tests for Sysml 1.4 -->
     <module>../../tests/junit/extraplugins/sysml14/org.eclipse.papyrus.sysml14.diagram.common.tests</module>
     <module>../../tests/junit/extraplugins/sysml14/org.eclipse.papyrus.sysml14.service.types.tests</module>	
+    
+    <!-- Tests for AOF -->
+    <module>../../tests/junit/extraplugins/aof/org.eclipse.papyrus.aof.core.tests</module>
+    <module>../../tests/junit/extraplugins/aof/org.eclipse.papyrus.aof.emf.tests</module>	
   </modules>
 	<repositories>
 		<repository>

@@ -10,13 +10,16 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import org.eclipse.papyrus.aof.core.IBoxType;
+import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.IOption;
 
-public class Option<A> extends Singleton<A> implements IOption<A> {
+public class Option<E> extends Singleton<E>implements IOption<E> {
 
-	public IBoxType getType() {
-		return IBoxType.OPTION;
+	// IConstrained
+
+	@Override
+	public IConstraints getConstraints() {
+		return IConstraints.OPTION;
 	}
 
 }

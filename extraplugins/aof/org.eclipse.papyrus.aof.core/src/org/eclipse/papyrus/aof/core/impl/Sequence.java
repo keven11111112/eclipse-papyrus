@@ -10,13 +10,16 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import org.eclipse.papyrus.aof.core.IBoxType;
+import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.ISequence;
 
-public class Sequence<A> extends Collection<A> implements ISequence<A> {
+public class Sequence<E> extends Collection<E>implements ISequence<E> {
 
-	public IBoxType getType() {
-		return IBoxType.SEQUENCE;
+	// IConstrained
+
+	@Override
+	public IConstraints getConstraints() {
+		return IConstraints.SEQUENCE;
 	}
 
 }

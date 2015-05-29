@@ -10,7 +10,28 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface IOne<A> extends ISingleton<A> {
-	
-	public A getDefaultElement();
+/**
+ * Represents singleton boxes containing exactly one element.
+ * <p>
+ * It defines a default element that is used when clearing the box .
+ */
+public interface IOne<E> extends ISingleton<E> {
+
+	/**
+	 * Returns the default element of this one box.
+	 * <p>
+	 * For consistency reasons, the default element can only be changed when clearing the box (@see #clear(Object))
+	 *
+	 * @return the default element of this one box
+	 */
+	E getDefaultElement();
+
+	/**
+	 * Clear this one box and redefines its new default element.
+	 *
+	 * @param newDefaultElement
+	 *            the new default element of this one box
+	 */
+	void clear(E newDefaultElement);
+
 }

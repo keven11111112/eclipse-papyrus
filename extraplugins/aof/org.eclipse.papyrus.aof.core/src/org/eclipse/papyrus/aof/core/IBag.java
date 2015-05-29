@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface IBag<A> extends ICollection<A> {
-
+/**
+ * Represents unordered collections that allow duplicates.
+ */
+public interface IBag<E> extends ICollection<E> {
 }

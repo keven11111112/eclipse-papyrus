@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface ISequence<A> extends ICollection<A> {
+/**
+ * Represents ordered collections that may contain duplicates.
+ */
+public interface ISequence<E> extends ICollection<E> {
 
 }

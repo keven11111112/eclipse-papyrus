@@ -10,13 +10,16 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import org.eclipse.papyrus.aof.core.IBoxType;
 import org.eclipse.papyrus.aof.core.IBag;
+import org.eclipse.papyrus.aof.core.IConstraints;
 
-public class Bag<A> extends Collection<A> implements IBag<A> {
+public class Bag<E> extends Collection<E>implements IBag<E> {
 
-	public IBoxType getType() {
-		return IBoxType.BAG;
+	// IConstrained
+
+	@Override
+	public IConstraints getConstraints() {
+		return IConstraints.BAG;
 	}
 
 }

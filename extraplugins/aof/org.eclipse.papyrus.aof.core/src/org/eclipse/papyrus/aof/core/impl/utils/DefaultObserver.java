@@ -12,26 +12,18 @@ package org.eclipse.papyrus.aof.core.impl.utils;
 
 import org.eclipse.papyrus.aof.core.IObserver;
 
-public abstract class DefaultObserver<A> implements IObserver<A> {
+public abstract class DefaultObserver<E> implements IObserver<E> {
 
-	public void created(Iterable<A> elements) {
-		int i = 0;
-		for (A e : elements) {
-			added(i, e);
-			i++;
-		}
+	private boolean disabled;
+
+	@Override
+	public boolean isDisabled() {
+		return disabled;
 	}
 
-	public void added(int index, A element) {
-		replaced(index, element, element);
-	}
-
-	public void removed(int index, A element) {
-	}
-
-	public void replaced(int index, A previousElement, A newElement) {
-		removed(index, previousElement);
-		added(index, newElement);
+	@Override
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
 	}
 
 }

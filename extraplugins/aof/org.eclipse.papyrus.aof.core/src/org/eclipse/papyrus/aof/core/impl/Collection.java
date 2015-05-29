@@ -12,6 +12,6 @@ package org.eclipse.papyrus.aof.core.impl;
 
 import org.eclipse.papyrus.aof.core.ICollection;
 
-public abstract class Collection<A> extends Box<A> implements ICollection<A> {
+public abstract class Collection<E> extends Box<E>implements ICollection<E> {
 
 }

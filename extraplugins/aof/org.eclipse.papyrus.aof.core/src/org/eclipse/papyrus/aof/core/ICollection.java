@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface ICollection<A> extends IBox<A> {
-
+/**
+ * Represents boxes containing several elements.
+ */
+public interface ICollection<E> extends IBox<E> {
 }

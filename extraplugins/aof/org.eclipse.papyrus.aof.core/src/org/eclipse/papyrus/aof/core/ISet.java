@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface ISet<A> extends ICollection<A> {
+/**
+ * Represents unordered collections that never contain duplicates.
+ */
+public interface ISet<E> extends ICollection<E> {
 
 }

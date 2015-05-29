@@ -10,13 +10,16 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import org.eclipse.papyrus.aof.core.IBoxType;
+import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.ISet;
 
-public class Set<A> extends Collection<A> implements ISet<A> {
+public class Set<E> extends Collection<E>implements ISet<E> {
 
-	public IBoxType getType() {
-		return IBoxType.SET;
+	// IConstrained
+
+	@Override
+	public IConstraints getConstraints() {
+		return IConstraints.SET;
 	}
 
 }

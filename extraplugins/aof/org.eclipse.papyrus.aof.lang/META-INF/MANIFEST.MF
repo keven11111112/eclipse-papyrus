@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.aof.lang
+Bundle-Version: 0.7.0.qualifier
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.papyrus.aof.emf;bundle-version="0.7.0";visibility:=reexport
+Export-Package: org.eclipse.papyrus.aof.lang
+Bundle-Vendor: %providerName

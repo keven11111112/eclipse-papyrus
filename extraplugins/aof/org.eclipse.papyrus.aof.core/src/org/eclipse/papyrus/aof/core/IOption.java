@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface IOption<A> extends ISingleton<A> {
-
+/**
+ * Represents singleton boxes that can be emptied.
+ */
+public interface IOption<E> extends ISingleton<E> {
 }

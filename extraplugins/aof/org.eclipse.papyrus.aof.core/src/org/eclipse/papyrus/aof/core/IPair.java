@@ -10,10 +10,32 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
-public interface IPair<A, B> {
+/**
+ * Represents pairs of elements.
+ * <p>
+ * The first element of the pair is considered at left, and the second element is considered at right.
+ * <p>
+ * It is notably used by function {@link org.eclipse.papyrus.aof.core.IBox#zip(IBox, boolean)}.
+ *
+ * @param <L>
+ *            type of the element at left
+ * @param <R>
+ *            type of the element at right
+ */
+public interface IPair<L, R> {
 
-	A getFirst();
+	/**
+	 * Returns the element at left on this pair
+	 *
+	 * @return the element at left on this pair
+	 */
+	L getLeft();
 
-	B getSecond();
+	/**
+	 * Returns the element at right on this pair
+	 *
+	 * @return the element at right on this pair
+	 */
+	R getRight();
 
 }

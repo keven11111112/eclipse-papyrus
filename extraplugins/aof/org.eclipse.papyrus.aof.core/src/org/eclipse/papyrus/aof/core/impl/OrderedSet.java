@@ -10,13 +10,16 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import org.eclipse.papyrus.aof.core.IBoxType;
+import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.IOrderedSet;
 
-public class OrderedSet<A> extends Collection<A> implements IOrderedSet<A> {
+public class OrderedSet<E> extends Collection<E>implements IOrderedSet<E> {
 
-	public IBoxType getType() {
-		return IBoxType.ORDERED_SET;
+	// IConstrained
+
+	@Override
+	public IConstraints getConstraints() {
+		return IConstraints.ORDERED_SET;
 	}
 
 }

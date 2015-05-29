@@ -1,11 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Core
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.aof.core;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Version: 0.7.0.qualifier
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.eclipse.papyrus.aof.core,
  org.eclipse.papyrus.aof.core.impl,
- org.eclipse.papyrus.aof.core.impl.delegate,
  org.eclipse.papyrus.aof.core.impl.operation,
- org.eclipse.papyrus.aof.core.impl.utils
+ org.eclipse.papyrus.aof.core.impl.utils,
+ org.eclipse.papyrus.aof.core.impl.utils.cache,
+ org.eclipse.papyrus.aof.core.utils
+Bundle-Vendor: %providerName
