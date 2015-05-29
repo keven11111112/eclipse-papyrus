@@ -36,35 +36,35 @@ public abstract class CreateLinkOwnedBySourceFromPaletteTest extends CreateLinkF
 	 * Test to create a link.
 	 *
 	 * @param linkType
-	 *        the type
+	 *            the type
 	 */
 	@Override
 	public void testToCreateALink(IElementType linkType, String initialName) {
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 4);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 0);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 0);
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 4);
-		assertTrue(CREATION + TEST_THE_EXECUTION, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, getRootView().getChildren().size() == 4);
 		assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 4);
-		assertTrue(CREATION + TEST_THE_UNDO, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 0);
+		assertTrue(CREATION + TEST_THE_UNDO, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(CREATION + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == 1);
 		assertTrue(CREATION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 4);
-		assertTrue(CREATION + TEST_THE_REDO, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 	}
 
 	@Override
 	public void installEnvironment(IElementType sourceType, IElementType targetType) {
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
-		//create the source
+		// create the source
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(100, 100));
 		Command command = getDiagramEditPart().getCommand(requestcreation);
@@ -72,7 +72,7 @@ public abstract class CreateLinkOwnedBySourceFromPaletteTest extends CreateLinkF
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		//create the source player to test reconnect
+		// create the source player to test reconnect
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(100, 300));
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -80,7 +80,7 @@ public abstract class CreateLinkOwnedBySourceFromPaletteTest extends CreateLinkF
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		//create the target
+		// create the target
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(300, 100));
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -88,7 +88,7 @@ public abstract class CreateLinkOwnedBySourceFromPaletteTest extends CreateLinkF
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		//create the target player to test reconnect
+		// create the target player to test reconnect
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(300, 300));
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -96,10 +96,10 @@ public abstract class CreateLinkOwnedBySourceFromPaletteTest extends CreateLinkF
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		source = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
-		sourcePlayer = (GraphicalEditPart)getDiagramEditPart().getChildren().get(1);
-		target = (GraphicalEditPart)getDiagramEditPart().getChildren().get(2);
-		targetPlayer = (GraphicalEditPart)getDiagramEditPart().getChildren().get(3);
+		source = (GraphicalEditPart) getDiagramEditPart().getChildren().get(0);
+		sourcePlayer = (GraphicalEditPart) getDiagramEditPart().getChildren().get(1);
+		target = (GraphicalEditPart) getDiagramEditPart().getChildren().get(2);
+		targetPlayer = (GraphicalEditPart) getDiagramEditPart().getChildren().get(3);
 	}
 
 
@@ -111,14 +111,14 @@ public abstract class CreateLinkOwnedBySourceFromPaletteTest extends CreateLinkF
 	 */
 	@Override
 	protected void testToDropAlinkOnTheSame(IElementType linkType, boolean allowed) {
-		//DROP
-		if(allowed) {
+		// DROP
+		if (allowed) {
 			assertTrue(DROP + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 			assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 4);
-			assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 2);
+			assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 2);
 			DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 			ArrayList<Element> list = new ArrayList<Element>();
-			list.add(((Element)source.resolveSemanticElement()).getOwnedElements().get(1));
+			list.add(((Element) source.resolveSemanticElement()).getOwnedElements().get(1));
 			dropObjectsRequest.setObjects(list);
 			dropObjectsRequest.setLocation(new Point(20, 20));
 			Command command = getDiagramEditPart().getCommand(dropObjectsRequest);
@@ -128,15 +128,15 @@ public abstract class CreateLinkOwnedBySourceFromPaletteTest extends CreateLinkF
 			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 			assertTrue(DROP + TEST_THE_EXECUTION, getDiagramEditPart().getChildren().size() == 4);
 			assertTrue(DROP + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 4);
-			assertTrue(DROP + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 3);
+			assertTrue(DROP + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 3);
 			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 			assertTrue(DROP + TEST_THE_UNDO, getDiagramEditPart().getChildren().size() == 4);
 			assertTrue(DROP + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 4);
-			assertTrue(DROP + TEST_THE_UNDO, ((Diagram)getRootView()).getEdges().size() == 2);
+			assertTrue(DROP + TEST_THE_UNDO, ((Diagram) getRootView()).getEdges().size() == 2);
 			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 			assertTrue(DROP + TEST_THE_REDO, getDiagramEditPart().getChildren().size() == 4);
 			assertTrue(DROP + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 4);
-			assertTrue(DROP + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 3);
+			assertTrue(DROP + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == 3);
 		}
 	}
 
@@ -150,18 +150,19 @@ public abstract class CreateLinkOwnedBySourceFromPaletteTest extends CreateLinkF
 	protected void testToCreateAlinkOnTheSame(IElementType linkType, boolean allowed) {
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 4);
-		Command command = target.getCommand(createConnectionViewRequest(linkType, source, source));
+		// Note: Must always ask the target edit-part to create the connection, and in this case the target is 'source'
+		Command command = source.getCommand(createConnectionViewRequest(linkType, source, source));
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == allowed);
-		if(allowed) {
+		if (allowed) {
 			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-			assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 2);
+			assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 2);
 			assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 4);
 			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 			assertTrue(CREATION + TEST_THE_UNDO, getRootView().getChildren().size() == 4);
 			assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 4);
 			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-			assertTrue(CREATION + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 2);
+			assertTrue(CREATION + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == 2);
 			assertTrue(CREATION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 4);
 		}
 	}
