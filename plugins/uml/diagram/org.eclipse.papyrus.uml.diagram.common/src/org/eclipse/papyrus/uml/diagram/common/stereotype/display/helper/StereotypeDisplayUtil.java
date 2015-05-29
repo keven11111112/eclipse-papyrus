@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.UnsetPersistentViewCommand;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Display;
@@ -174,11 +175,13 @@ public class StereotypeDisplayUtil {
 
 		Iterator<?> childrenIterator = model.getChildren().iterator();
 
+		boolean displayStereotypes = NotationUtils.getBooleanValue(model, NamedElementEditPart.DISPLAY_STEREOTYPES, true);
+
 		// For all children, check if it's a StereotypeLabel and add the Name
 		while (childrenIterator.hasNext()) {
 			Object object = childrenIterator.next();
 			if (isStereotypeLabel(object)) {
-				if (((View) object).isVisible()) {
+				if (((View) object).isVisible() && displayStereotypes) {
 					if (!EMPTY_STRING.equals(textToDisplay.toString()) && (textToDisplay != null)) {
 						textToDisplay.append(StereotypeDisplayConstant.STEREOTYPE_LABEL_SEPARATOR);
 					}

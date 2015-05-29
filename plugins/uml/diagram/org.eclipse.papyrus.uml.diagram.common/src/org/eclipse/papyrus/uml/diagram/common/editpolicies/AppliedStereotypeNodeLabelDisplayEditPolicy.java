@@ -18,9 +18,6 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.swt.graphics.Image;
 
@@ -30,7 +27,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
 
-	private String EMPTY_STRING = "";
+	private String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	public AppliedStereotypeNodeLabelDisplayEditPolicy() {
 		super();
@@ -68,27 +65,10 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 		// Refresh Stereotype Label
 		figure.setStereotypeDisplay(tag + stereotypesToDisplay, imageToDisplay);
 
-		refreshAppliedStereotypesLabel(figure);
 
 	}
 
 
-	/**
-	 * Refreshes the displayed stereotypes for this edit part.
-	 */
-	protected void refreshAppliedStereotypesLabel(IPapyrusNodeUMLElementFigure figure) {
-		// If node has a Label
-		if (figure instanceof IPapyrusNodeNamedElementFigure) {
-
-			// Refresh Label
-			boolean displayStereotypes = NotationUtils.getBooleanValue(getView(), NamedElementEditPart.DISPLAY_STEREOTYPES, true);
-			if (!displayStereotypes) {
-				((IPapyrusNodeNamedElementFigure) figure).removeStereotypeLabel();
-			} else {
-				((IPapyrusNodeNamedElementFigure) figure).restoreStereotypeLabel();
-			}
-		}
-	}
 
 
 	/**
