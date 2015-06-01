@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -105,7 +106,7 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 					slotCreationCommand = ((ICommandProxy) gefCommand).getICommand();
 					slotCreationCommand = slotCreationCommand.reduce();
 				} else {
-					return CommandResult.newErrorCommandResult("Impossible to create slots");
+					slotCreationCommand = new CommandProxy(gefCommand);
 				}
 			} else { // The compartment is not visible ; only create the semantic slot
 				slotCreationCommand = new CreateElementCommand(createElementRequest);
@@ -120,8 +121,12 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 				}
 			}
 
-			// Retrieve the created slot, and update its properties (
+			// Retrieve the created slot, and update its properties
 			Slot newSlot = getNewSlot(commandResult);
+			if (newSlot == null) {
+				newSlot = getNewSlot(createElementRequest);
+			}
+
 			if (newSlot != null) {
 				updateSlotProperties(newSlot, property);
 			} else {
@@ -132,6 +137,13 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 		}
 
 		return CommandResult.newOKCommandResult();
+	}
+
+	protected Slot getNewSlot(CreateElementRequest request) {
+		if (request.getNewElement() instanceof Slot) {
+			return (Slot) request.getNewElement();
+		}
+		return null;
 	}
 
 	// Retrieves a slot from a CommandResult
