@@ -20,11 +20,11 @@ import org.eclipse.core.runtime.Platform;
 /**
  * Support for multiple target languages via the Eclipse extension mechanism
  */
-public class LanguageSupport {
+public class LanguageProjectSupport {
 
-	public static final String ILANG_SUPPORT_ID = Activator.PLUGIN_ID + ".language"; //$NON-NLS-1$
+	public static final String ILANG_SUPPORT_ID = Activator.PLUGIN_ID + ".languageProjectSupport"; //$NON-NLS-1$
 
-	public static ILangSupport getLangSupport(String language)
+	public static ILangProjectSupport getProjectSupport(String language)
 	{
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(ILANG_SUPPORT_ID);
@@ -34,8 +34,8 @@ public class LanguageSupport {
 				if (extLanguage.equals(language)) {
 					// TODO: cache returned instance (avoid creating a new instance each time => more efficient, no need for static attributes)
 					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
-					if (obj instanceof ILangSupport) {
-						return (ILangSupport) obj;
+					if (obj instanceof ILangProjectSupport) {
+						return (ILangProjectSupport) obj;
 					}
 				}
 			} catch (CoreException exception) {

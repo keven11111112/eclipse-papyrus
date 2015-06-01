@@ -30,8 +30,11 @@ import org.eclipse.papyrus.FCM.Configuration;
 import org.eclipse.papyrus.FCM.OperatingSystem;
 import org.eclipse.papyrus.FCM.Target;
 import org.eclipse.papyrus.FCM.util.MapUtil;
-import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
-import org.eclipse.papyrus.codegen.extensionpoints.LanguageSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.AbstractSettings;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageProjectSupport;
 import org.eclipse.papyrus.qompass.designer.core.EnumService;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
@@ -101,6 +104,8 @@ public class InstantiateDepPlan {
 
 	protected IProject project;
 
+	protected IProject genProject;
+	
 	protected boolean modelIsObjectOriented = true;
 
 	public void instantiate(Configuration configuration,
@@ -321,7 +326,7 @@ public class InstantiateDepPlan {
 				Messages.InstantiateDepPlan_InfoDeployingForNode,
 				node.getName()));
 
-		ILangSupport langSupport = configureLanguageSupport(mainInstance,
+		ILangProjectSupport langSupport = configureLanguageSupport(mainInstance,
 				existingModel, node);
 		if (langSupport == null) {
 			return;
@@ -348,8 +353,8 @@ public class InstantiateDepPlan {
 		destroyDeploymentPlanFolder(generatedModel);
 
 		if (generateCode) {
-			GenerateCode codeGenerator = new GenerateCode(
-					langSupport.getProject(), langSupport, genModelManagement,
+			ILangCodegen codegen = LanguageCodegen.getCodegen(DepUtils.getTargetLanguage(mainInstance));
+			GenerateCode codeGenerator = new GenerateCode(genProject, codegen, genModelManagement,
 					monitor);
 			boolean option = (generationOptions & GenerationOptions.ONLY_CHANGED) != 0;
 			codeGenerator.generate(node, DepUtils.getTargetLanguage(mainInstance),
@@ -367,24 +372,24 @@ public class InstantiateDepPlan {
 	 * @return null, if no language support is available or no project could be created.
 	 * @throws TransformationException
 	 */
-	private ILangSupport configureLanguageSupport(
+	private ILangProjectSupport configureLanguageSupport(
 			InstanceSpecification mainInstance, Model existingModel,
 			InstanceSpecification node) throws TransformationException {
-		ILangSupport langSupport = LanguageSupport.getLangSupport(DepUtils.getTargetLanguage(mainInstance));
-		langSupport.resetConfigurationData();
-
+		ILangProjectSupport langSupport = LanguageProjectSupport.getProjectSupport(DepUtils.getTargetLanguage(mainInstance));
+		AbstractSettings settings = langSupport.initialConfigurationData();
+		settings.targetOS = getTargetOS(node);
+		
 		String modelName = getModelName(existingModel, node);
-		IProject genProject = ProjectManagement.getNamedProject(modelName);
+		genProject = ProjectManagement.getNamedProject(modelName);
 		if ((genProject == null) || !genProject.exists()) {
-			genProject = langSupport.createProject(modelName, getTargetOS(node));
+			genProject = langSupport.createProject(modelName);
 			if (genProject == null) {
 				return null;
 			}
-		} else {
-			langSupport.setProject(genProject);
-			if ((generationOptions & GenerationOptions.REWRITE_SETTINGS) != 0) {
-				langSupport.setSettings(getTargetOS(node));
-			}
+			langSupport.setSettings(genProject, settings);
+		}
+		else if ((generationOptions & GenerationOptions.REWRITE_SETTINGS) != 0) {
+			langSupport.setSettings(genProject, settings);
 		}
 		return langSupport;
 	}

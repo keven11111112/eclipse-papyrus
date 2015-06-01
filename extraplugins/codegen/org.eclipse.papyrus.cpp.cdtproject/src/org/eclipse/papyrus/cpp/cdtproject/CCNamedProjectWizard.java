@@ -11,8 +11,6 @@ import org.eclipse.jface.wizard.IWizardPage;
  * would other trigger an error.
  *
  * @see org.eclipse.papyrus.cpp.cdtproject.CDTMainWizardPageV
- *
- * @author ansgar
  */
 public class CCNamedProjectWizard extends CCProjectWizard {
 

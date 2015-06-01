@@ -18,10 +18,10 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.papyrus.codegen.base.ModelElementsCreator;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
 import org.eclipse.papyrus.cpp.codegen.Constants;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
-import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.uml2.uml.Classifier;
@@ -34,6 +34,7 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class SyncModelToCDT {
 
+	private static final String CPP = "C++"; //$NON-NLS-1$
 	/**
 	 * set to true, if a synchronization from an CDT editor to the model is active
 	 */
@@ -53,10 +54,10 @@ public class SyncModelToCDT {
 		IFile cppFile = null;
 		try {
 			// get the container for the current element
-			ModelElementsCreator mec = new CppModelElementsCreator(modelProject);
-			mec.createPackageableElement(classifier, null, false); // need listener for sync in both directions!
+			ILangCodegen codegen = LanguageCodegen.getCodegen(CPP);
+			codegen.generateCode(modelProject, classifier, null); // need listener for sync in both directions!
 
-			cppFile = modelProject.getFile(new Path(mec.getFileName(classifier) + Constants.DOT + CppCodeGenUtils.getBodySuffix()));
+			cppFile = modelProject.getFile(new Path(codegen.getFileName(modelProject, classifier) + Constants.DOT + CppCodeGenUtils.getBodySuffix()));
 	
 			// IStorage storage = new TextStorage(string);
 		} finally {

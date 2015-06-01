@@ -170,7 +170,6 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 					pageMngr.openPage(editorModelFinal);
 				}
 				try {
-					// TODO Auto-generated method stub
 					// move page to the RIGHT
 					DiSashModelManager modelMngr = ServiceUtils.getInstance().getService(DiSashModelManager.class, serviceRegistry);
 					ISashWindowsContentProvider sashContentProvider = modelMngr.getISashWindowsContentProvider();

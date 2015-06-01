@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.papyrus.codegen.extensionpoints" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.codegen.extensionpoints" id="language" name="languageSupport"/>
+         <meta.schema plugin="org.eclipse.papyrus.codegen.extensionpoints" id="languageProjectSupport" name="languageProjectSupport"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -62,48 +62,10 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.codegen.extensionpoints.ILangSupport"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport"/>
                </appInfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
-
-   <annotation>
-      <appInfo>
-         <meta.section type="since"/>
-      </appInfo>
-      <documentation>
-         [Enter the first release in which this extension point appears.]
-      </documentation>
-   </annotation>
-
-   <annotation>
-      <appInfo>
-         <meta.section type="examples"/>
-      </appInfo>
-      <documentation>
-         [Enter extension point usage example here.]
-      </documentation>
-   </annotation>
-
-   <annotation>
-      <appInfo>
-         <meta.section type="apiinfo"/>
-      </appInfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
-
-   <annotation>
-      <appInfo>
-         <meta.section type="implementation"/>
-      </appInfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
-
-
-</schema>
+ </schema>

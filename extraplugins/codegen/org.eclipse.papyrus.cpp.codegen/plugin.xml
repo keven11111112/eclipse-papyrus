@@ -7,4 +7,11 @@
             class="org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenPreferenceInitializer">
       </initializer>
     </extension>
+     <extension
+         point="org.eclipse.papyrus.codegen.extensionpoints.languageCodegen">
+      <client
+            class="org.eclipse.papyrus.cpp.codegen.C_CppLangCodegen"
+            language="C++">
+      </client>
+   </extension>
 </plugin>

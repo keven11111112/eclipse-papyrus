@@ -9,11 +9,11 @@
  *     CEA LIST - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.papyrus.codegen.extensionpoints;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PackageableElement;
 
 /**
@@ -25,7 +25,7 @@ public interface ILangSupport {
 	 * Create a project for a specific language and configure it (according to gathered configuration
 	 * data before). In case of C/C++ for instance, a CDT project should be created, in case of Java,
 	 * a JDT project.
-	 * And implementation should call setProject and setSettings before returning the project
+	 * An implementation should call setProject and setSettings before returning the project
 	 *
 	 * @param projectName
 	 *            the named of the project
@@ -43,6 +43,10 @@ public interface ILangSupport {
 	 */
 	public void setProject(IProject project);
 
+	/**
+	 * Get the project information
+	 * @return the CDT project
+	 */
 	public IProject getProject();
 
 	/**
@@ -63,6 +67,17 @@ public interface ILangSupport {
 	 */
 	public void generateCode(IProgressMonitor monitor, PackageableElement element);
 
+	/**
+	 * Obtain fileName of file(s) generated for a named element. Delegates to location strategy.
+	 * Caller must eventually add extensions.
+	 * 
+	 * @param element
+	 *            a named element.
+	 * @return
+	 */
+	public String getFileName(NamedElement element);
+
+	
 	/**
 	 * Clean the code for a certain element, i.e. remove code that has previously generated for this element
 	 * This code is required for differential code generation which needs to remove elements for instance

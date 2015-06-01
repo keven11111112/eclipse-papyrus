@@ -20,29 +20,25 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.C_Cpp.ExternLibrary;
-import org.eclipse.papyrus.codegen.base.ModelElementsCreator;
-import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.AbstractSettings;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * C++ language support
- *
- * @author ansgar
+ * Supports the creation and configuration of CDT projects
  */
-public class C_CppLanguageSupport implements ILangSupport {
+public class C_CppProjectSupport implements ILangProjectSupport {
 
 	// TODO specific "root" is only required for component based code generation
 	private static final String ROOT = "root"; //$NON-NLS-1$
@@ -60,7 +56,7 @@ public class C_CppLanguageSupport implements ILangSupport {
 	 * @return
 	 */
 	@Override
-	public IProject createProject(String projectName, String targetOS)
+	public IProject createProject(String projectName)
 	{
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
@@ -96,24 +92,13 @@ public class C_CppLanguageSupport implements ILangSupport {
 		if ((project == null) || !project.exists()) {
 			throw new RuntimeException("Could not create CDT project. This might indicate that there is a problem with your CDT installation."); //$NON-NLS-1$
 		}
-		setProject(project);
-		setSettings(targetOS);
 		return project;
 	}
 
 	@Override
-	public void setProject(IProject project) {
-		m_project = project;
-	}
-
-	@Override
-	public IProject getProject() {
-		return m_project;
-	}
-
-	@Override
-	public void setSettings(String targetOS)
+	public void setSettings(IProject project, AbstractSettings abstractSettings)
 	{
+		CDTSettings settings = (CDTSettings) abstractSettings;
 		try {
 			// ((CProject) project).
 			// IProjectDescription desc = m_project.getDescription();
@@ -131,23 +116,23 @@ public class C_CppLanguageSupport implements ILangSupport {
 				ICLanguageSetting[] languageSettings = folderDescription.getLanguageSettings();
 
 				// copy string array into ICLanguageSetting array
-				ICLanguageSettingEntry[] icIncludePaths = new ICLanguageSettingEntry[includePaths.size()];
-				for (int i = 0; i < includePaths.size(); i++) {
-					icIncludePaths[i] = new CIncludePathEntry(includePaths.get(i), ICSettingEntry.VALUE_WORKSPACE_PATH);
+				ICLanguageSettingEntry[] icIncludePaths = new ICLanguageSettingEntry[settings.includePaths.size()];
+				for (int i = 0; i < settings.includePaths.size(); i++) {
+					icIncludePaths[i] = new CIncludePathEntry(settings.includePaths.get(i), ICSettingEntry.VALUE_WORKSPACE_PATH);
 				}
 
 				// define name of used operating system from model (attribute of "Target" stereotype)
 				// and add it to list of macros
-				if (targetOS != null) {
-					macros.add("OS_" + targetOS); //$NON-NLS-1$
+				if (settings.targetOS != null) {
+					settings.macros.add("OS_" + settings.targetOS); //$NON-NLS-1$
 				}
 
 				// define macros
 				EList<ICLanguageSettingEntry> icMacros =
 						new BasicEList<ICLanguageSettingEntry>();
-				for (int i = 0; i < macros.size(); i++) {
+				for (int i = 0; i < settings.macros.size(); i++) {
 					// TODO: need to define values for macros as well?
-					icMacros.add(new CMacroEntry(macros.get(i), "", 0)); //$NON-NLS-1$
+					icMacros.add(new CMacroEntry(settings.macros.get(i), "", 0)); //$NON-NLS-1$
 				}
 
 				// now set include path and preprocessor code
@@ -178,9 +163,9 @@ public class C_CppLanguageSupport implements ILangSupport {
 
 				for (IOption opt : cfTool.getOptions()) {
 					if (opt.getValueType() == IOption.LIBRARIES) {
-						main.setOption(cfTool, opt, libs.toArray(new String[0]));
+						main.setOption(cfTool, opt, settings.libs.toArray(new String[0]));
 					} else if (opt.getValueType() == IOption.LIBRARY_PATHS) {
-						main.setOption(cfTool, opt, libPaths.toArray(new String[0]));
+						main.setOption(cfTool, opt, settings.libPaths.toArray(new String[0]));
 					}
 				}
 				mngr.setProjectDescription(m_project, cdesc, true, null);
@@ -194,65 +179,46 @@ public class C_CppLanguageSupport implements ILangSupport {
 	}
 
 	@Override
-	public void generateCode(IProgressMonitor monitor, PackageableElement element)
-	{
-		creator.createPackageableElement(element, monitor);
-	}
-
-	@Override
-	public void cleanCode(IProgressMonitor monitor, PackageableElement element)
-	{
-		creator.removePackageableElement(element, monitor);
-	}
-
-	@Override
-	public void resetConfigurationData() {
-		includePaths = new UniqueEList<String>();
+	public AbstractSettings initialConfigurationData() {
+		CDTSettings settings = new CDTSettings();
+		settings.includePaths = new UniqueEList<String>();
 		// include project directory (all paths are relative to it => ".")
-		includePaths.add("."); //$NON-NLS-1$
+		settings.includePaths.add("."); //$NON-NLS-1$
 		// include also "root" (relative path)
-		includePaths.add(ROOT);
+		settings.includePaths.add(ROOT);
 
-		libs = new UniqueEList<String>();
-		libPaths = new UniqueEList<String>();
-		macros = new UniqueEList<String>();
+		settings.libs = new UniqueEList<String>();
+		settings.libPaths = new UniqueEList<String>();
+		settings.macros = new UniqueEList<String>();
+		return settings;
 	}
 
 	@Override
-	public void gatherConfigData(Class implementation) {
+	public void gatherConfigData(Class implementation, AbstractSettings abstractSettings) {
+		CDTSettings settings = (CDTSettings) abstractSettings;
 		Element owner = implementation.getOwner();
 		while (owner instanceof Package) {
 			ExternLibrary cppLibrary = UMLUtil.getStereotypeApplication(owner, ExternLibrary.class);
 			if (cppLibrary != null) {
-				includePaths.addAll(cppLibrary.getIncludes());
+				settings.includePaths.addAll(cppLibrary.getIncludes());
 				for (String libPath : cppLibrary.getLibPaths()) {
 					if (libPath.startsWith("/")) {
 						// libPaths starting with a slash are relative to workspace location
 						// TODO: need to support absolute paths (host file system?) as well?
 						// (additional prefix. Eclipse standards?) Problem: workspace_loc is added
 						// automatically for absolute includePaths
-						libPaths.add("${workspace_loc:" + libPath + "}");
+						settings.libPaths.add("${workspace_loc:" + libPath + "}");
 					} else {
 						// relative to project root, otherwise
-						libPaths.add(libPath);
+						settings.libPaths.add(libPath);
 					}
 				}
-				libs.addAll(cppLibrary.getLibs());
-				macros.addAll(cppLibrary.getMacros());
+				settings.libs.addAll(cppLibrary.getLibs());
+				settings.macros.addAll(cppLibrary.getMacros());
 			}
 			owner = owner.getOwner();
 		}
 	}
-
-	static EList<String> includePaths;
-
-	static EList<String> libs;
-
-	static EList<String> libPaths;
-
-	static EList<String> macros;
-
-	ModelElementsCreator creator;
 
 	static IProject m_project;
 }
