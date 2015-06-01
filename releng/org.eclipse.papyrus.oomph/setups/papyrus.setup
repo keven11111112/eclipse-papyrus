@@ -197,7 +197,7 @@
           </annotation>
         </repository>
         <repository
-            url="${base.downloads.url}/tools/orbit/downloads/drops/R20140525021250/repository"/>
+            url="${base.downloads.url}/tools/orbit/downloads/drops/R20150519210750/repository"/>
         <repository
             url="http://download.eclipse.org/modeling/emf/emf/updates/2.11milestones/">
           <annotation
