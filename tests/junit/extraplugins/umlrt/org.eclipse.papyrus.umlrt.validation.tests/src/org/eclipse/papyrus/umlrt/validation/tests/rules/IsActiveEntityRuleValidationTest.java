@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.umlrt.validation.tests.rules;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
@@ -21,14 +20,12 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
 import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
 import org.eclipse.papyrus.umlrt.validation.tests.Activator;
-import org.eclipse.ui.ISelectionService;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Before;
@@ -51,11 +48,52 @@ public class IsActiveEntityRuleValidationTest extends AbstractValidationEditorTe
 
 	public static final String PROJECT_NAME = "IsActiveEntityRuleValidationTest"; //$NON-NLS-1$
 
-	public final static String CAPSULE1_NAME = "Capsule1"; //$NON-NLS-1$
+	public final static String CAPSULE_NOT_ACTIVE_NAME = "CapsuleNotActive"; //$NON-NLS-1$
+
+	public final static String CAPSULE_ACTIVE_NAME = "CapsuleActive"; //$NON-NLS-1$
+
+	/** validation diagnostic */
+	protected Diagnostic globalDiagnostic;
+
+	/** root model */
+	public Model model;
+
+	/** active capsule model */
+	public Class activeCapsule;
+
+	/** not active capsule */
+	public Class notActiveCapsule;
+
+	public List<Diagnostic> isActiveDiagnostics;
 
 	@Before
-	public void initModelForCutTest() throws Exception {
+	public void initModelForValidationTest() throws Exception {
 		initModel(PROJECT_NAME, MODEL_NAME, Activator.getDefault().getBundle());
+
+		// validate the new model
+
+		Assert.assertNotNull("RootModel is null", getRootUMLModel()); //$NON-NLS-1$
+		model = (Model) getRootUMLModel();
+		notActiveCapsule = (Class) model.getPackagedElement(CAPSULE_NOT_ACTIVE_NAME);
+		Assert.assertNotNull("Impossible to find capsule " + CAPSULE_NOT_ACTIVE_NAME, notActiveCapsule);
+		activeCapsule = (Class) model.getPackagedElement(CAPSULE_ACTIVE_NAME);
+		Assert.assertNotNull("Impossible to find capsule " + CAPSULE_ACTIVE_NAME, activeCapsule);
+		final EditingDomain domain = TransactionUtil.getEditingDomain(model);
+		final ValidateModelCommand validateModelCommand = new ValidateModelCommand(model, new UMLDiagnostician());
+		Display.getDefault().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				domain.getCommandStack().execute(GMFtoEMFCommandWrapper.wrap(validateModelCommand));
+			}
+		});
+
+		// check that the constraint exist
+		ConstraintRegistry instance = ConstraintRegistry.getInstance();
+		IConstraintDescriptor descriptor = instance.getDescriptor(CONSTRAINT_PLUGIN, CONSTRAINT_ID);
+		Assert.assertNotNull("Constraint is missing", descriptor);
+
+		globalDiagnostic = validateModelCommand.getDiagnostic();
+		isActiveDiagnostics = findDiagnosticBySource(globalDiagnostic, CONSTRAINT_PLUGIN + "." + CONSTRAINT_ID);
 	}
 
 	@Override
@@ -67,44 +105,20 @@ public class IsActiveEntityRuleValidationTest extends AbstractValidationEditorTe
 	 * Simple failing validation for IsActiveEntityRule
 	 */
 	@Test
-	public void validateIsActiveEntityRule() throws Exception {
+	public void validateIsActiveEntityRule_notActiveCapsule() throws Exception {
+		// get the diagnostic and check for the given capsule
+		List<Diagnostic> diagnostics = filterDiagnosticsByElement(isActiveDiagnostics, notActiveCapsule);
+		Assert.assertEquals("The rule isActive should trigger an issue for this capsule", 1, diagnostics.size());
+	}
 
-		// get the rootModel
-		Assert.assertNotNull("RootModel is null", getRootUMLModel()); //$NON-NLS-1$
-		// get all semantic element that will handled
-		Model model = (Model) getRootUMLModel();
-
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
-		modelExplorerView = getModelExplorerView();
-		modelExplorerView.setFocus();
-		List<Object> elements = new ArrayList<Object>();
-		elements.add(getRootUMLModel());
-		modelExplorerView.revealSemanticElement(elements);
-
-		org.eclipse.uml2.uml.Class capsule1 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(CAPSULE1_NAME);
-
-		elements.clear();
-		elements.add(capsule1);
-
-		modelExplorerView.revealSemanticElement(elements);
-		Object capsule1TreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
-		Assert.assertNotNull("Capsule1 TreeElement is null", capsule1TreeObject); //$NON-NLS-1$
-
-		EditingDomain domain = TransactionUtil.getEditingDomain(capsule1);
-		ValidateModelCommand validateModelCommand = new ValidateModelCommand(getRootUMLModel(), new UMLDiagnostician());
-		domain.getCommandStack().execute(GMFtoEMFCommandWrapper.wrap(validateModelCommand));
-
-		// check that the constraint exist
-		ConstraintRegistry instance = ConstraintRegistry.getInstance();
-		IConstraintDescriptor descriptor = instance.getDescriptor(CONSTRAINT_PLUGIN, CONSTRAINT_ID);
-		Assert.assertNotNull("Constraint is missing", descriptor);
-
-		Diagnostic globalDiagnostic = validateModelCommand.getDiagnostic();
-		List<Diagnostic> findDiagnosticBySource = findDiagnosticBySource(globalDiagnostic, CONSTRAINT_PLUGIN + "." + CONSTRAINT_ID);
-		Assert.assertNotNull("Validation should have raised an error", findDiagnosticBySource); //$NON-NLS-1$
-		Assert.assertEquals("Validation should have raised an error", 1, findDiagnosticBySource.size()); //$NON-NLS-1$
-
+	/**
+	 * Simple valid validation for IsActiveEntityRule
+	 */
+	@Test
+	public void validateIsActiveEntityRule_ActiveCapsule() throws Exception {
+		// get the diagnostic and check for the given capsule
+		List<Diagnostic> diagnostics = filterDiagnosticsByElement(isActiveDiagnostics, activeCapsule);
+		Assert.assertEquals("The rule isActive should not trigger an issue for this capsule", 0, diagnostics.size());
 	}
 
 }
