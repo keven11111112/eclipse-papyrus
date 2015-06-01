@@ -25,12 +25,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.service.types.Activator;
 import org.eclipse.papyrus.uml.service.types.helper.advice.InstanceSpecificationEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.ui.AssociationSelectionDialog;
@@ -67,10 +70,7 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 		if(request.getParameter(CreateRelationshipRequest.TARGET)instanceof InstanceSpecification){
 			target=(InstanceSpecification)request.getParameter(CreateRelationshipRequest.TARGET);
 		}
-		if(request.getParameter(InstanceSpecificationEditHelperAdvice.ABOUT_UI)!=null){
-			Boolean booleanObject= Boolean.valueOf((String) request.getParameter(InstanceSpecificationEditHelperAdvice.ABOUT_UI));
-			useUI=booleanObject.booleanValue();
-		}
+		useUI=ElementTypeUtils.useGUI(request);
 	}
 
 	/**

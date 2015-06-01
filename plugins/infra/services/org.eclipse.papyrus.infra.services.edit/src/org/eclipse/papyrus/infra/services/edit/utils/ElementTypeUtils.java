@@ -20,6 +20,7 @@ import java.util.TreeSet;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.Activator;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
@@ -76,5 +77,20 @@ public class ElementTypeUtils {
 
 		return result;
 
+	}
+	
+	/**
+	 * return a boolean about the usage of a GUI for edition of an Element
+	 * @param request an edition request
+	 * @return true if the request  do not contain information about usage of GUI
+	 */
+	public static boolean useGUI(IEditCommandRequest request){
+		if(request.getParameter(RequestParameterConstants.USE_GUI)!=null){
+			if ( request.getParameter(RequestParameterConstants.USE_GUI) instanceof String){
+				Boolean booleanObject= Boolean.valueOf((String) request.getParameter(RequestParameterConstants.USE_GUI));
+				return booleanObject.booleanValue();
+			}
+		}
+		return true;
 	}
 }
