@@ -160,6 +160,10 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
 			refreshShadow();
+			// refresh root to avoid shadow artifact
+			if (AppearanceHelper.showShadow((View) getModel()) && getRoot() != null) {
+				getRoot().refresh();
+			}
 		}
 	}
 
