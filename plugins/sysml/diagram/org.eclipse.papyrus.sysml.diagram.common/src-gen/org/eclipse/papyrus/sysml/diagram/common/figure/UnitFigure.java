@@ -21,7 +21,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 public class UnitFigure extends ClassifierFigure {
 
 	public UnitFigure() {
-		super("unit"); //$NON-NLS-1$
+		super(); //$NON-NLS-1$
 	}
 
 	@Override
