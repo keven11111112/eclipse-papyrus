@@ -170,7 +170,6 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 		for (Classifier classifier : classifiers) {
 			allProperties.addAll(classifier.getAllAttributes());
 		}
-		System.out.println(allProperties);
 		return allProperties.toArray(new Property[allProperties.size()]);
 	}
 
