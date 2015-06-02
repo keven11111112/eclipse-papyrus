@@ -451,7 +451,7 @@
         <repository>
             <id>nebula-tablecombo</id>
             <layout>p2</layout>
-            <url>http://download.eclipse.org/technology/nebula/archives/Q12015/release/</url>
+            <url>http://download.eclipse.org/technology/nebula/snapshot/</url>
         </repository>
 		<repository>
 			<id>orbit</id>

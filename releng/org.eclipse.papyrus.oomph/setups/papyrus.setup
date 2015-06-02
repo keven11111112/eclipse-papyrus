@@ -921,7 +921,7 @@
             <repositoryList
                 name="Mars">
               <repository
-                  url="${base.downloads.url}/technology/nebula/archives/Q12015/release"/>
+                  url="${base.downloads.url}/technology/nebula/snapshot/"/>
             </repositoryList>
             <repositoryList
                 name="Luna"/>
