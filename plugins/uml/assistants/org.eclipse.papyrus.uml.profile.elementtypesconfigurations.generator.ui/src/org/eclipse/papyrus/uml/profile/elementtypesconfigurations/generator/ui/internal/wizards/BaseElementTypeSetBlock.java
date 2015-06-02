@@ -14,22 +14,19 @@
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.internal.wizards;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.jface.preference.JFacePreferences;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITableColorProvider;
-import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StyledString;
-import org.eclipse.nebula.jface.tablecomboviewer.TableComboViewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
@@ -37,10 +34,10 @@ import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.i
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -52,8 +49,7 @@ import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Ordering;
 
 /**
- * @author damus
- *
+ * Composable block of widgets for selection of the element types set on which to base the generated element types model.
  */
 class BaseElementTypeSetBlock {
 
@@ -62,9 +58,6 @@ class BaseElementTypeSetBlock {
 	private static final String SUPPRESS_SEMANTIC_SUPERTYPES = "suppressSemanticSupertypes"; //$NON-NLS-1$
 
 	private static final String UML_ELEMENT_TYPE_SET = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"; //$NON-NLS-1$
-
-	private static final int COLUMN_NAME = 0;
-	private static final int COLUMN_LOCATION = 1;
 
 	private final GeneratorWizardModel model;
 
@@ -80,14 +73,23 @@ class BaseElementTypeSetBlock {
 	public void createControl(Composite parent) {
 		new Label(parent, SWT.NONE).setText("Base element types set:");
 
-		// Use a two-column table because styled label providers don't work in the TableComboViewer
-		TableComboViewer combo = new TableComboViewer(parent, SWT.READ_ONLY | SWT.BORDER | SWT.V_SCROLL);
-		combo.getTableCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		combo.getTableCombo().defineColumns(2);
-		combo.getTableCombo().setDisplayColumnIndex(0);
+		ComboViewer combo = new ComboViewer(new Combo(parent, SWT.READ_ONLY | SWT.DROP_DOWN));
+		combo.setLabelProvider(new DiagramListLabelProvider(parent));
 
+		/*
+		 * FIXME(Bug 468668): Reinstate this when we can integrate a new Mars (or later) release of the TableCombo.
+		 * cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=468668
+		 *
+		 * // Use a two-column table because styled label providers don't work in the TableComboViewer
+		 * TableComboViewer combo = new TableComboViewer(parent, SWT.READ_ONLY | SWT.BORDER | SWT.V_SCROLL);
+		 * combo.getTableCombo().defineColumns(2);
+		 * combo.getTableCombo().setDisplayColumnIndex(0);
+		 * combo.setLabelProvider(new DiagramTableLabelProvider(parent));
+		 *
+		 */
+
+		combo.getControl().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		combo.setContentProvider(ArrayContentProvider.getInstance());
-		combo.setLabelProvider(new DiagramLabelProvider(parent));
 
 		// TableCombo doesn't use a ViewerComparator even when one is set
 		combo.setInput(getOrdering().sortedCopy(elementTypeSets.values()));
@@ -213,10 +215,10 @@ class BaseElementTypeSetBlock {
 	// Nested types
 	//
 
-	private static class DiagramLabelProvider extends LabelProvider implements IStyledLabelProvider, ITableLabelProvider, ITableColorProvider {
+	private static class DiagramListLabelProvider extends LabelProvider implements IStyledLabelProvider {
 		private ResourceManager images;
 
-		DiagramLabelProvider(Control owner) {
+		DiagramListLabelProvider(Control owner) {
 			super();
 
 			// Because we specify an owner, the owner will take care of clean-up, so we
@@ -226,61 +228,111 @@ class BaseElementTypeSetBlock {
 
 		@Override
 		public StyledString getStyledText(Object element) {
-			return new StyledString(getColumnText(element, COLUMN_NAME)) //
-					.append(NLS.bind(" - {0}", getColumnText(element, COLUMN_LOCATION)), StyledString.QUALIFIER_STYLER); //$NON-NLS-1$
-		}
-
-		@Override
-		public String getColumnText(Object element, int column) {
 			ElementTypeSetConfiguration elementTypeSet = (ElementTypeSetConfiguration) element;
-			String result;
-
-			switch (column) {
-			case COLUMN_NAME:
-				result = getName(elementTypeSet);
-				break;
-			case COLUMN_LOCATION:
-				result = getLocation(elementTypeSet);
-				break;
-			default:
-				throw new IllegalArgumentException("no such column: " + column); //$NON-NLS-1$
-			}
-
-			return result;
+			return new StyledString(getName(elementTypeSet)) //
+					.append(NLS.bind(" - {0}", getLocation(elementTypeSet)), StyledString.QUALIFIER_STYLER); //$NON-NLS-1$
 		}
 
 		@Override
-		public Image getColumnImage(Object element, int column) {
+		public String getText(Object element) {
+			ElementTypeSetConfiguration elementTypeSet = (ElementTypeSetConfiguration) element;
+			return NLS.bind("{0} - {1}", getName(elementTypeSet), getLocation(elementTypeSet));
+		}
+
+		@Override
+		public Image getImage(Object element) {
 			Image result = null;
 
-			if (column == COLUMN_NAME) {
-				ElementTypeSetConfiguration set = (ElementTypeSetConfiguration) element;
-				URI uri = set.eResource().getURI();
+			ElementTypeSetConfiguration set = (ElementTypeSetConfiguration) element;
+			URI uri = set.eResource().getURI();
 
-				if (uri.isPlatformPlugin()) {
-					result = (Image) images.get(Activator.getInstance().getIcon("obj16/plugin.gif")); //$NON-NLS-1$
-				} else if (uri.isPlatformResource()) {
-					result = (Image) images.get(Activator.getInstance().getIcon("obj16/project.png")); //$NON-NLS-1$
-				}
+			if (uri.isPlatformPlugin()) {
+				result = (Image) images.get(Activator.getInstance().getIcon("obj16/plugin.gif")); //$NON-NLS-1$
+			} else if (uri.isPlatformResource()) {
+				result = (Image) images.get(Activator.getInstance().getIcon("obj16/project.png")); //$NON-NLS-1$
 			}
 
 			return result;
-		}
-
-		@Override
-		public Color getForeground(Object element, int column) {
-			Color result = null;
-
-			if (column == COLUMN_LOCATION) {
-				result = JFaceResources.getColorRegistry().get(JFacePreferences.QUALIFIER_COLOR);
-			}
-
-			return result;
-		}
-
-		@Override
-		public Color getBackground(Object element, int columnIndex) {
-			return null;
 		}
 	}
+
+	/*
+	 * FIXME(Bug 468668): Reinstate this when we can integrate a new Mars (or later) release of the TableCombo.
+	 * cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=468668
+	 *
+	 * private static class DiagramTableLabelProvider extends LabelProvider implements IStyledLabelProvider, ITableLabelProvider, ITableColorProvider {
+	 * private static final int COLUMN_NAME = 0;
+	 * private static final int COLUMN_LOCATION = 1;
+	 * 
+	 * private ResourceManager images;
+	 * 
+	 * DiagramTableLabelProvider(Control owner) {
+	 * super();
+	 * 
+	 * // Because we specify an owner, the owner will take care of clean-up, so we
+	 * // don't need a dispose() method of our own
+	 * images = new LocalResourceManager(JFaceResources.getResources(), owner);
+	 * }
+	 * 
+	 * @Override
+	 * public StyledString getStyledText(Object element) {
+	 * return new StyledString(getColumnText(element, COLUMN_NAME)) //
+	 * .append(NLS.bind(" - {0}", getColumnText(element, COLUMN_LOCATION)), StyledString.QUALIFIER_STYLER); //$NON-NLS-1$
+	 * }
+	 * 
+	 * @Override
+	 * public String getColumnText(Object element, int column) {
+	 * ElementTypeSetConfiguration elementTypeSet = (ElementTypeSetConfiguration) element;
+	 * String result;
+	 * 
+	 * switch (column) {
+	 * case COLUMN_NAME:
+	 * result = getName(elementTypeSet);
+	 * break;
+	 * case COLUMN_LOCATION:
+	 * result = getLocation(elementTypeSet);
+	 * break;
+	 * default:
+	 * throw new IllegalArgumentException("no such column: " + column); //$NON-NLS-1$
+	 * }
+	 * 
+	 * return result;
+	 * }
+	 * 
+	 * @Override
+	 * public Image getColumnImage(Object element, int column) {
+	 * Image result = null;
+	 * 
+	 * if (column == COLUMN_NAME) {
+	 * ElementTypeSetConfiguration set = (ElementTypeSetConfiguration) element;
+	 * URI uri = set.eResource().getURI();
+	 * 
+	 * if (uri.isPlatformPlugin()) {
+	 * result = (Image) images.get(Activator.getInstance().getIcon("obj16/plugin.gif")); //$NON-NLS-1$
+	 * } else if (uri.isPlatformResource()) {
+	 * result = (Image) images.get(Activator.getInstance().getIcon("obj16/project.png")); //$NON-NLS-1$
+	 * }
+	 * }
+	 * 
+	 * return result;
+	 * }
+	 * 
+	 * @Override
+	 * public Color getForeground(Object element, int column) {
+	 * Color result = null;
+	 * 
+	 * if (column == COLUMN_LOCATION) {
+	 * result = JFaceResources.getColorRegistry().get(JFacePreferences.QUALIFIER_COLOR);
+	 * }
+	 * 
+	 * return result;
+	 * }
+	 * 
+	 * @Override
+	 * public Color getBackground(Object element, int columnIndex) {
+	 * return null;
+	 * }
+	 * }
+	 *
+	 */
 }
