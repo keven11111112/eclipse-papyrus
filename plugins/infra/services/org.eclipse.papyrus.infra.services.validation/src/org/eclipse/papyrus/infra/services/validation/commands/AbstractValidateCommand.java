@@ -43,6 +43,9 @@ import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
 import org.eclipse.papyrus.infra.services.validation.preferences.PreferenceUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -130,16 +133,13 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 
 		ValidationOperation runValidationWithProgress = new ValidationOperation(validateElement, this);
 
-		IRunnableWithProgress createMarkersWithProgress = new IRunnableWithProgress()
-		{
+		IRunnableWithProgress createMarkersWithProgress = new IRunnableWithProgress() {
 
-			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException
-			{
+			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException {
 				try {
 					handleDiagnostic(progressMonitor, diagnostic, validateElement, shell);
 
-				}
-				finally {
+				} finally {
 					progressMonitor.done();
 				}
 			}
@@ -167,15 +167,24 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 					// activate model view, if activated in configuration
 					// IViewRegistry viewRegistry = PlatformUI.getWorkbench().getViewRegistry();
 					// IViewDescriptor desc = viewRegistry.find(modelValidationViewID);
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(modelValidationViewID);
-					// HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().showView(modelValidationViewID);
+					if (PlatformUI.isWorkbenchRunning()) {
+						IWorkbench workbench = PlatformUI.getWorkbench();
+						if (workbench != null) {
+							IWorkbenchWindow activeWindow = workbench.getActiveWorkbenchWindow();
+							if (activeWindow != null) {
+								IWorkbenchPage activePage = activeWindow.getActivePage();
+								if (activePage != null) {
+									activePage.showView(modelValidationViewID);
+								}
+							}
+						}
+					}
 				}
 				// don't fork this dialog, i.e. run it in the UI thread. This avoids that the diagrams are constantly refreshing *while*
 				// markers/decorations are changing. This greatly enhances update performance. See also bug 400593
 				if (showUIfeedback) {
 					new ProgressMonitorDialog(shell).run(false, true, createMarkersWithProgress);
-				}
-				else {
+				} else {
 					createMarkersWithProgress.run(new NullProgressMonitor());
 				}
 			}
@@ -187,16 +196,14 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	/**
 	 * This simply executes the command.
 	 */
-	protected Diagnostic validate(IProgressMonitor progressMonitor, EObject validateElement)
-	{
+	protected Diagnostic validate(IProgressMonitor progressMonitor, EObject validateElement) {
 		int validationSteps = 0;
 		for (Iterator<?> i = validateElement.eAllContents(); i.hasNext(); i.next()) {
 			++validationSteps;
 		}
 
 		progressMonitor.beginTask("", validationSteps); //$NON-NLS-1$
-		AdapterFactory adapterFactory =
-				domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain) domain).getAdapterFactory() : null;
+		AdapterFactory adapterFactory = domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain) domain).getAdapterFactory() : null;
 		diagnostician.initialize(adapterFactory, progressMonitor);
 
 		BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(validateElement);
@@ -214,8 +221,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 
 
 
-	protected void handleDiagnostic(IProgressMonitor monitor, Diagnostic diagnostic, final EObject validateElement, final Shell shell)
-	{
+	protected void handleDiagnostic(IProgressMonitor monitor, Diagnostic diagnostic, final EObject validateElement, final Shell shell) {
 		// Do not show a dialog, as in the original version since the user sees the result directly
 		// in the model explorer
 		Resource resource = getValidationResource();
