@@ -243,6 +243,7 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 		return figureLifelineNameContainerFigure.getBounds().bottom();
 	}
 
+	@InvalidTest("Platform-specific failure")
 	@Test
 	public void testFontChanged() {
 		try {
@@ -309,28 +310,25 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 		validateAll();
 	}
 
+	@InvalidTest("Platform-specific failure")
 	@Test
-	public void testStereotypeChanged1() {
-		//Applied stereotype on lifeline1
+	public void testStereotypeChanged() {
+		// Applied stereotype on lifeline1
 		doTestDisplayStereotypeInCompartment(lifeline1, lifeline1);
 		waitForComplete();
 		validateAll();
-		
-		//Applied stereotype on lifeline3
-		doTestDisplayStereotypeInCompartment(lifeline3, lifeline3);
-		waitForComplete();
-		validateAll();
-	}
-	
-	@Test
-	public void testStereotypeChanged2() {
 
-		//Applied stereotype on lifeline2
+		// Applied stereotype on lifeline2
 		doTestDisplayStereotypeInCompartment(lifeline2, lifeline2);
 		waitForComplete();
 		validateAll();
-		
-		//Applied stereotype on lifeline4
+
+		// Applied stereotype on lifeline3
+		doTestDisplayStereotypeInCompartment(lifeline3, lifeline3);
+		waitForComplete();
+		validateAll();
+
+		// Applied stereotype on lifeline4
 		doTestDisplayStereotypeInCompartment(lifeline4, lifeline4);
 		waitForComplete();
 		validateAll();
