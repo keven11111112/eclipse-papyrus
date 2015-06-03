@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
@@ -46,11 +46,11 @@ public class ActivityParameterMaskEditPolicy extends AbstractMaskManagedEditPoli
 		if (node == null) {
 			return;
 		}
-		//add listner to parameter
+		// add listner to parameter
 		addListener(node.getParameter());
-		//add listner to type
+		// add listner to type
 		addListener(node.getType());
-		//add listner to states
+		// add listner to states
 		for (State state : node.getInStates()) {
 			addListener(state);
 		}
@@ -58,11 +58,13 @@ public class ActivityParameterMaskEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * Add this class to target's listners.
-	 * @param target may be null
+	 * 
+	 * @param target
+	 *            may be null
 	 */
 	protected void addListener(Object target) {
 		if (target instanceof EObject) {
-			getDiagramEventBroker().addNotificationListener((EObject)target, this);
+			getDiagramEventBroker().addNotificationListener((EObject) target, this);
 		}
 	}
 
@@ -256,12 +258,12 @@ public class ActivityParameterMaskEditPolicy extends AbstractMaskManagedEditPoli
 		// remove listner from type
 		removeListenerFromElement(activityParameterNode.getType());
 		// remove listner from states
-		for (State state: activityParameterNode.getInStates()) {
+		for (State state : activityParameterNode.getInStates()) {
 			removeListenerFromElement(state);
 		}
 	}
-	
-	protected void removeListenerFromElement(Object target) {	
+
+	protected void removeListenerFromElement(Object target) {
 		if (target instanceof EObject) {
 			getDiagramEventBroker().removeNotificationListener((EObject) target, this);
 		}
@@ -285,9 +287,12 @@ public class ActivityParameterMaskEditPolicy extends AbstractMaskManagedEditPoli
 	@Override
 	protected View getView() {
 		View view = super.getView();
+		if (view == null) {
+			return null;
+		}
 		if (view instanceof Shape) {
 			return view;
 		}
-		return (View)view.eContainer();
+		return (View) view.eContainer();
 	}
 }

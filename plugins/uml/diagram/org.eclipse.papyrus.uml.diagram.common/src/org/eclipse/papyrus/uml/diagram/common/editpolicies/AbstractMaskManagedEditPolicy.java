@@ -46,16 +46,22 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	protected Element hostSemanticElement;
 
 	/**
+	 * Store the view to be able to remove the listener afterwards
+	 */
+	protected View view;
+
+	/**
 	 *
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
-		View view = getView();
+		view = getView();
 		if (view == null) {
 			return;
 		}
+
 		hostSemanticElement = initSemanticElement();
 		if (hostSemanticElement != null) {
 
@@ -103,13 +109,10 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 */
 	@Override
 	public void deactivate() {
-		// retrieve the view and the element managed by the edit part
-		View view = getView();
-		if (view == null) {
-			return;
-		}
 		// remove notification on element and view
-		getDiagramEventBroker().removeNotificationListener(view, this);
+		if (view != null) {
+			getDiagramEventBroker().removeNotificationListener(view, this);
+		}
 
 		if (hostSemanticElement != null) {
 			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
@@ -118,6 +121,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
+		view = null;
 	}
 
 	/**
@@ -156,6 +160,9 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
+		if (getHost() == null) {
+			return null;
+		}
 		return (View) getHost().getModel();
 	}
 

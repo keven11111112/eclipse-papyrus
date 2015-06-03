@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -161,9 +162,16 @@ public class MaskManagedFloatingLabelEditPolicy extends AbstractMaskManagedEditP
 	 */
 	@Override
 	protected View getView() {
-		if (getHost().getModel() instanceof View) {
-			if (((View) getHost().getModel()).eContainer() instanceof View) {
-				return (View) ((View) getHost().getModel()).eContainer();
+		EditPart host = getHost();
+		if (host == null) {
+			return null;
+		}
+
+		Object hostView = host.getModel();
+		if (hostView instanceof View) {
+			Object parentView = ((View) hostView).eContainer();
+			if (parentView instanceof View) {
+				return (View) parentView;
 			}
 			return null;
 		}
