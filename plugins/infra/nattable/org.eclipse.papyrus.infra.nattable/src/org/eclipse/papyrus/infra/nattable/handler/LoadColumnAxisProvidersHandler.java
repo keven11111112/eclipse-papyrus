@@ -77,7 +77,11 @@ public class LoadColumnAxisProvidersHandler extends AbstractLoadAxisProvidersHan
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		IAxisManager columnAxisManager = this.getCurrentNattableModelManager().getColumnAxisManager();
-		setBaseEnabled(columnAxisManager.canBeSavedAsConfig());
+		if (getCurrentNattableModelManager() != null && getCurrentNattableModelManager().getColumnAxisManager() != null) {
+			IAxisManager columnAxisManager = this.getCurrentNattableModelManager().getColumnAxisManager();
+			setBaseEnabled(columnAxisManager.canBeSavedAsConfig());
+		} else {
+			setBaseEnabled(false);
+		}
 	}
 }
