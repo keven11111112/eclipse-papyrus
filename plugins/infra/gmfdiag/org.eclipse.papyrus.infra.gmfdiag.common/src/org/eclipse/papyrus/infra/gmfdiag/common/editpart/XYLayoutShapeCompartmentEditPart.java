@@ -14,9 +14,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusPopupBarEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstra
  * This class replace default editpolicy by ours 424942: [Diagram] Papyrus shall ease resizing of model elements owning children
  *
  */
-public class XYLayoutShapeCompartmentEditPart extends ShapeCompartmentEditPart {
+public class XYLayoutShapeCompartmentEditPart extends LinkLFShapeCompartmentEditPart {
 
 
 	/**
