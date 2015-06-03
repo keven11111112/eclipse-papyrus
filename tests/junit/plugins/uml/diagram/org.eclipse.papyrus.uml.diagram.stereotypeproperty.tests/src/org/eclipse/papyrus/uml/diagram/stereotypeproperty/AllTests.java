@@ -27,7 +27,8 @@ TestProfileApplication.class,
 TestStereotypeApplication.class,
 TestLayoutWithStereotype.class,
 TestUnapplyProfile2ClosedDiagComment.class,
-TestUnapplyProfile2Comment.class
+TestUnapplyProfile2Comment.class,
+TestLayoutWithStereotypeOnEclipseHIPPInstance.class
 })
 public class AllTests {
 
