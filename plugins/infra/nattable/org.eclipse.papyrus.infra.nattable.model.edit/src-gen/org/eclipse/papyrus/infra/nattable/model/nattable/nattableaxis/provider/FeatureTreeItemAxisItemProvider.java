@@ -127,17 +127,6 @@ public class FeatureTreeItemAxisItemProvider extends FeatureAxisItemProvider {
 	}
 
 	/**
-	 * This returns FeatureTreeItemAxis.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureTreeItemAxis")); //$NON-NLS-1$
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -18,20 +18,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.*;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,9 +67,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 			case NattableaxisPackage.ID_TREE_ITEM_AXIS: return createIdTreeItemAxis();
 			case NattableaxisPackage.EOBJECT_AXIS: return createEObjectAxis();
 			case NattableaxisPackage.EOBJECT_TREE_ITEM_AXIS: return createEObjectTreeItemAxis();
-			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS: return createFeatureTreeItemAxis();
-			case NattableaxisPackage.OPERATION_TREE_ITEM_AXIS: return createOperationTreeItemAxis();
-			case NattableaxisPackage.OBJECT_TREE_ITEM_AXIS: return createObjectTreeItemAxis();
 			case NattableaxisPackage.FEATURE_ID_AXIS: return createFeatureIdAxis();
 			case NattableaxisPackage.FEATURE_ID_TREE_ITEM_AXIS: return createFeatureIdTreeItemAxis();
 			case NattableaxisPackage.ESTRUCTURAL_FEATURE_AXIS: return createEStructuralFeatureAxis();
@@ -129,38 +112,6 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	public EObjectTreeItemAxis createEObjectTreeItemAxis() {
 		EObjectTreeItemAxisImpl eObjectTreeItemAxis = new EObjectTreeItemAxisImpl();
 		return eObjectTreeItemAxis;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public FeatureTreeItemAxis createFeatureTreeItemAxis() {
-		FeatureTreeItemAxisImpl featureTreeItemAxis = new FeatureTreeItemAxisImpl();
-		return featureTreeItemAxis;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperationTreeItemAxis createOperationTreeItemAxis() {
-		OperationTreeItemAxisImpl operationTreeItemAxis = new OperationTreeItemAxisImpl();
-		return operationTreeItemAxis;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ObjectTreeItemAxis createObjectTreeItemAxis() {
-		ObjectTreeItemAxisImpl objectTreeItemAxis = new ObjectTreeItemAxisImpl();
-		return objectTreeItemAxis;
 	}
 
 	/**

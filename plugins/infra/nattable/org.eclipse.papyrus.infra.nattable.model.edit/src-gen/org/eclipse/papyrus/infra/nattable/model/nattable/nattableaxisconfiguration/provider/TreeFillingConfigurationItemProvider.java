@@ -260,21 +260,6 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-				 NattableaxisFactory.eINSTANCE.createFeatureTreeItemAxis()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-				 NattableaxisFactory.eINSTANCE.createOperationTreeItemAxis()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
-				 NattableaxisFactory.eINSTANCE.createObjectTreeItemAxis()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
 				 NattableaxisFactory.eINSTANCE.createFeatureIdAxis()));
 
 		newChildDescriptors.add

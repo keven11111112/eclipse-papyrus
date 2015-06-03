@@ -75,6 +75,10 @@
             id="org.eclipse.papyrus.infra.uml.nattable.tree.axis.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.axis.UMLElementTreeAxisManagerForEventList">
       </axisManager>
+      <axisManager
+            id="org.eclipse.papyrus.uml.nattable.operation.axis.manager"
+            manager="org.eclipse.papyrus.uml.nattable.manager.axis.UMLOperationAxisManager">
+      </axisManager>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.cellmanager">

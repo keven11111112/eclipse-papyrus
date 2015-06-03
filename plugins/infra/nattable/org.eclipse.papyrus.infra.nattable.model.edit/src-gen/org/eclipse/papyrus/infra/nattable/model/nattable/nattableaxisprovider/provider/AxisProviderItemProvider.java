@@ -150,21 +150,6 @@ public class AxisProviderItemProvider extends AbstractAxisProviderItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
-				 NattableaxisFactory.eINSTANCE.createFeatureTreeItemAxis()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
-				 NattableaxisFactory.eINSTANCE.createOperationTreeItemAxis()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
-				 NattableaxisFactory.eINSTANCE.createObjectTreeItemAxis()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
 				 NattableaxisFactory.eINSTANCE.createFeatureIdAxis()));
 
 		newChildDescriptors.add

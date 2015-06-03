@@ -60,33 +60,6 @@ public interface NattableaxisFactory extends EFactory {
 	EObjectTreeItemAxis createEObjectTreeItemAxis();
 
 	/**
-	 * Returns a new object of class '<em>Feature Tree Item Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Tree Item Axis</em>'.
-	 * @generated
-	 */
-	FeatureTreeItemAxis createFeatureTreeItemAxis();
-
-	/**
-	 * Returns a new object of class '<em>Operation Tree Item Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operation Tree Item Axis</em>'.
-	 * @generated
-	 */
-	OperationTreeItemAxis createOperationTreeItemAxis();
-
-	/**
-	 * Returns a new object of class '<em>Object Tree Item Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object Tree Item Axis</em>'.
-	 * @generated
-	 */
-	ObjectTreeItemAxis createObjectTreeItemAxis();
-
-	/**
 	 * Returns a new object of class '<em>Feature Id Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

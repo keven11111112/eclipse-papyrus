@@ -844,14 +844,14 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		initEClass(operationAxisEClass, OperationAxis.class, "OperationAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getOperationAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getOperationLabelProviderConfiguration(), null, "localLabelConfiguration", null, 0, 1, OperationAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(featureTreeItemAxisEClass, FeatureTreeItemAxis.class, "FeatureTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(featureTreeItemAxisEClass, FeatureTreeItemAxis.class, "FeatureTreeItemAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(operationTreeItemAxisEClass, OperationTreeItemAxis.class, "OperationTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(operationTreeItemAxisEClass, OperationTreeItemAxis.class, "OperationTreeItemAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(objectAxisEClass, ObjectAxis.class, "ObjectAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getObjectAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getObjectLabelProviderConfiguration(), null, "localLabelConfiguration", null, 0, 1, ObjectAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(objectTreeItemAxisEClass, ObjectTreeItemAxis.class, "ObjectTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(objectTreeItemAxisEClass, ObjectTreeItemAxis.class, "ObjectTreeItemAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(featureIdAxisEClass, FeatureIdAxis.class, "FeatureIdAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

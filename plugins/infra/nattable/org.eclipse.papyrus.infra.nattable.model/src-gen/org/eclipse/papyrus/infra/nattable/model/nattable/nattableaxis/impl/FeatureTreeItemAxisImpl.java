@@ -41,7 +41,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.Nattableax
  *
  * @generated
  */
-public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureTreeItemAxis {
+public abstract class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureTreeItemAxis {
 
 	/**
 	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.

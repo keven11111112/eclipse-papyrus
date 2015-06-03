@@ -20,7 +20,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis;
  *
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getOperationTreeItemAxis()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface OperationTreeItemAxis extends OperationAxis, ITreeItemAxis {

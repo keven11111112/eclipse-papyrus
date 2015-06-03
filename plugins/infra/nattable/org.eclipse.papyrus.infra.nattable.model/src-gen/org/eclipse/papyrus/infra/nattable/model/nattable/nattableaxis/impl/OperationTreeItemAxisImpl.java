@@ -46,7 +46,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationT
  *
  * @generated
  */
-public class OperationTreeItemAxisImpl extends OperationAxisImpl implements OperationTreeItemAxis {
+public abstract class OperationTreeItemAxisImpl extends OperationAxisImpl implements OperationTreeItemAxis {
 	/**
 	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
 	 * <!-- begin-user-doc -->
