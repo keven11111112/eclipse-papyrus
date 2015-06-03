@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.Preferences#getContexts <em>Contexts</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.Preferences#getVersion <em>Version</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage#getPreferences()
  * @model
@@ -39,7 +39,7 @@ public interface Preferences extends EObject {
 	 *
 	 * @generated NOT
 	 */
-	int CURRENT_VERSION = 2;
+	int CURRENT_VERSION = 3;
 
 	/**
 	 * Returns the value of the '<em><b>Contexts</b></em>' containment reference list.

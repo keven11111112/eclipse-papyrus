@@ -81,7 +81,6 @@ public class PreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected PreferencesSwitch<Adapter> modelSwitch = new PreferencesSwitch<Adapter>() {
-
 		@Override
 		public Adapter caseContextDescriptor(ContextDescriptor object) {
 			return createContextDescriptorAdapter();
@@ -115,8 +114,7 @@ public class PreferencesAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor
-	 * <em>Context Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor <em>Context Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -131,7 +129,7 @@ public class PreferencesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.runtime.preferences.Preferences <em>Preferences</em>} '.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.runtime.preferences.Preferences <em>Preferences</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.

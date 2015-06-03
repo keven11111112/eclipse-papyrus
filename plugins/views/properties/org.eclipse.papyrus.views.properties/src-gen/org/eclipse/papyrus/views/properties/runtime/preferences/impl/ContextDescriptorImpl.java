@@ -26,13 +26,14 @@ import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPacka
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.impl.ContextDescriptorImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.impl.ContextDescriptorImpl#isApplied <em>Applied</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.impl.ContextDescriptorImpl#getPrototype <em>Prototype</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.impl.ContextDescriptorImpl#isDeleted <em>Deleted</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.impl.ContextDescriptorImpl#isAppliedByDefault <em>Applied By Default</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -114,6 +115,28 @@ public class ContextDescriptorImpl extends EObjectImpl implements ContextDescrip
 	 * @ordered
 	 */
 	protected boolean deleted = DELETED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isAppliedByDefault() <em>Applied By Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #isAppliedByDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean APPLIED_BY_DEFAULT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isAppliedByDefault() <em>Applied By Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #isAppliedByDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean appliedByDefault = APPLIED_BY_DEFAULT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -257,6 +280,30 @@ public class ContextDescriptorImpl extends EObjectImpl implements ContextDescrip
 	 *
 	 * @generated
 	 */
+	public boolean isAppliedByDefault() {
+		return appliedByDefault;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public void setAppliedByDefault(boolean newAppliedByDefault) {
+		boolean oldAppliedByDefault = appliedByDefault;
+		appliedByDefault = newAppliedByDefault;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, PreferencesPackage.CONTEXT_DESCRIPTOR__APPLIED_BY_DEFAULT, oldAppliedByDefault, appliedByDefault));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -271,6 +318,8 @@ public class ContextDescriptorImpl extends EObjectImpl implements ContextDescrip
 			return basicGetPrototype();
 		case PreferencesPackage.CONTEXT_DESCRIPTOR__DELETED:
 			return isDeleted();
+		case PreferencesPackage.CONTEXT_DESCRIPTOR__APPLIED_BY_DEFAULT:
+			return isAppliedByDefault();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -295,6 +344,9 @@ public class ContextDescriptorImpl extends EObjectImpl implements ContextDescrip
 			return;
 		case PreferencesPackage.CONTEXT_DESCRIPTOR__DELETED:
 			setDeleted((Boolean) newValue);
+			return;
+		case PreferencesPackage.CONTEXT_DESCRIPTOR__APPLIED_BY_DEFAULT:
+			setAppliedByDefault((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -321,6 +373,9 @@ public class ContextDescriptorImpl extends EObjectImpl implements ContextDescrip
 		case PreferencesPackage.CONTEXT_DESCRIPTOR__DELETED:
 			setDeleted(DELETED_EDEFAULT);
 			return;
+		case PreferencesPackage.CONTEXT_DESCRIPTOR__APPLIED_BY_DEFAULT:
+			setAppliedByDefault(APPLIED_BY_DEFAULT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -342,6 +397,8 @@ public class ContextDescriptorImpl extends EObjectImpl implements ContextDescrip
 			return prototype != null;
 		case PreferencesPackage.CONTEXT_DESCRIPTOR__DELETED:
 			return deleted != DELETED_EDEFAULT;
+		case PreferencesPackage.CONTEXT_DESCRIPTOR__APPLIED_BY_DEFAULT:
+			return appliedByDefault != APPLIED_BY_DEFAULT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -365,6 +422,8 @@ public class ContextDescriptorImpl extends EObjectImpl implements ContextDescrip
 		result.append(applied);
 		result.append(", deleted: ");
 		result.append(deleted);
+		result.append(", appliedByDefault: ");
+		result.append(appliedByDefault);
 		result.append(')');
 		return result.toString();
 	}

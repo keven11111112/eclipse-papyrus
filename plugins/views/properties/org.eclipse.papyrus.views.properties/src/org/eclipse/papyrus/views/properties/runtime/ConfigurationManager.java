@@ -359,7 +359,7 @@ public class ConfigurationManager {
 	 *
 	 * @param context
 	 * @return
-	 *         true if the given context is enabled.
+	 * 		true if the given context is enabled.
 	 *
 	 * @see Preferences
 	 */
@@ -444,25 +444,71 @@ public class ConfigurationManager {
 	}
 
 	/**
+	 * Return true if the context has a desciptor.
+	 *
+	 * @param context
+	 * @return
+	 */
+	private boolean hasDescriptor(Context context) {
+		Boolean value = false;
+
+		if ((context.getName() != null && !context.getName().equals(""))) { //$NON-NLS-1$
+
+			Iterator<ContextDescriptor> contextIterator = preferences.getContexts().iterator();
+			while (contextIterator.hasNext() && !value) {
+				if (contextIterator.next().getName().equals(context.getName())) {
+					value = true;
+				}
+			}
+		}
+		return value;
+	}
+
+	/**
 	 * Adds a context via its URI. The URI should represent a valid Context model.
 	 * The model is loaded in the ConfigurationManager's resourceSet.
 	 *
 	 * @param uri
 	 *            The context's URI
+	 * @param customizable
+	 *            if is customizable
 	 * @throws IOException
 	 *             If the model behind this URI is not a valid Context
 	 */
 	public void addContext(URI uri, boolean customizable) throws IOException {
+		addContext(uri, true, customizable);
+	}
+
+	/**
+	 * Adds a context via its URI. The URI should represent a valid Context model.
+	 * The model is loaded in the ConfigurationManager's resourceSet.
+	 *
+	 * @param uri
+	 *            The context's URI
+	 * @param appliedByDefault
+	 *            if is applied by default
+	 * @param customizable
+	 *            if is customizable
+	 * @throws IOException
+	 *             If the model behind this URI is not a valid Context
+	 */
+	public void addContext(URI uri, boolean appliedByDefault, boolean customizable) throws IOException {
 		EObject firstRootObject = loadEMFModel(uri);
 
 		if (firstRootObject != null) {
 			for (EObject rootObject : firstRootObject.eResource().getContents()) {
 				if (rootObject instanceof Context) {
 					Context context = (Context) rootObject;
-					addContext(context, findDescriptor(context).isApplied(), customizable);
+					addContext(context, hasDescriptor(context) ? findDescriptor(context).isApplied() : appliedByDefault, customizable);
+
+					findDescriptor(context).setAppliedByDefault(appliedByDefault);
 				}
 			}
 		}
+	}
+
+	public Boolean isAppliedByDefault(Context context) {
+		return findDescriptor(context).isAppliedByDefault();
 	}
 
 	/**
@@ -475,7 +521,7 @@ public class ConfigurationManager {
 	 *             If the model behind this URI is not a valid Context
 	 */
 	public void addContext(URI uri) throws IOException {
-		addContext(uri, true);
+		addContext(uri, true, true);
 	}
 
 	/**
@@ -654,7 +700,7 @@ public class ConfigurationManager {
 	 *
 	 * @param context
 	 * @return
-	 *         True if the context comes from a plugin, and is thus read-only
+	 * 		True if the context comes from a plugin, and is thus read-only
 	 */
 	public boolean isPlugin(Context context) {
 		// a missing context can't be a plug-in context because plug-ins can't go missing
@@ -680,7 +726,7 @@ public class ConfigurationManager {
 	 * @param uri
 	 *            The URI from which the Context is loaded
 	 * @return
-	 *         The loaded context
+	 * 		The loaded context
 	 * @throws IOException
 	 *             If the URI doesn't represent a valid Context model
 	 */
@@ -707,7 +753,7 @@ public class ConfigurationManager {
 
 	/**
 	 * @return
-	 *         The PropertiesRoot for the Property view framework. The PropertiesRoot contains
+	 * 		The PropertiesRoot for the Property view framework. The PropertiesRoot contains
 	 *         all registered Environments and Contexts (Whether they are enabled or disabled)
 	 */
 	public PropertiesRoot getPropertiesRoot() {
@@ -720,7 +766,7 @@ public class ConfigurationManager {
 	 * @param contextName
 	 *            The name of the context to retrieve
 	 * @return
-	 *         The context corresponding to the given name
+	 * 		The context corresponding to the given name
 	 */
 	public Context getContext(String contextName) {
 		for (Context context : getContexts()) {
@@ -888,7 +934,7 @@ public class ConfigurationManager {
 	/**
 	 * @param name
 	 * @return
-	 *         The namespace corresponding to the given name
+	 * 		The namespace corresponding to the given name
 	 */
 	public Namespace getNamespaceByName(String name) {
 		for (Environment environment : root.getEnvironments()) {
@@ -905,7 +951,7 @@ public class ConfigurationManager {
 	/**
 	 * @param property
 	 * @return
-	 *         the default PropertyEditorType for the given Property
+	 * 		the default PropertyEditorType for the given Property
 	 */
 	public PropertyEditorType getDefaultEditorType(Property property) {
 		return getDefaultEditorType(property.getType(), property.getMultiplicity() != 1);
@@ -987,7 +1033,7 @@ public class ConfigurationManager {
 	 * @param propertyPath
 	 * @param context
 	 * @return
-	 *         The property associated to the given propertyPath
+	 * 		The property associated to the given propertyPath
 	 */
 	public Property getProperty(String propertyPath, Context context) {
 		String elementName = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
@@ -1032,7 +1078,7 @@ public class ConfigurationManager {
 	 * be displayed at the same time
 	 *
 	 * @return
-	 *         The list of conflicts
+	 * 		The list of conflicts
 	 */
 	public Collection<ConfigurationConflict> checkConflicts() {
 		Map<String, List<Context>> sections = new HashMap<String, List<Context>>();
