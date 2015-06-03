@@ -425,21 +425,21 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param rowElement
 	 *            the element
 	 * @return
-	 *         a collection of all values for the intersection of the iaxis and the row element. These values are not yet filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
+	 * 		a collection of all values for the intersection of the iaxis and the row element. These values are not yet filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
 	 */
 	protected final Collection<?> getCellValueAsCollection(final Object iaxis, final Object rowElement) {
 		Object value = CellManagerFactory.INSTANCE.getCrossValue(iaxis, rowElement, this.tableManager);
-		if (value == null) {
-			return Collections.emptyList();
-		}
+		Collection<?> collection = Collections.emptyList();
+
 		if (value instanceof Collection<?>) {
-			return (Collection<?>) value;
+			collection = (Collection<?>) value;
+		} else if (value instanceof Object[]) {
+			collection = Arrays.asList(value);
+		} else if (value != null) {
+			collection = Collections.singletonList(value);
 		}
 
-		if (value instanceof Object[]) {
-			return Arrays.asList(value);
-		}
-		return Collections.emptyList();
+		return collection;
 	}
 
 	/**
@@ -447,7 +447,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param axis
 	 *            an object
 	 * @return
-	 *         the the
+	 *         the depth of the axis
 	 */
 	protected int getDepth(final ITreeItemAxis axis) {
 		final INattableModelManager manager = getTableManager();

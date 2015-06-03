@@ -67,7 +67,6 @@ public class EMFOperationValueCellManager extends AbstractCellManager {
 					return eobject.eInvoke(operation, null);
 				}
 			} catch (InvocationTargetException e) {
-
 				return NOT_IMPLEMENTED_MESSAGE;
 			}
 		}
@@ -112,7 +111,6 @@ public class EMFOperationValueCellManager extends AbstractCellManager {
 	 */
 	@Override
 	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
-
 		return false;
 	}
 
