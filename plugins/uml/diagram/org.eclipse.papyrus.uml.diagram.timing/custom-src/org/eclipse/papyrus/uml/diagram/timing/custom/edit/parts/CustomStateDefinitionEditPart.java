@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.uml.diagram.timing.custom.Messages;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.DeleteStateDefinitionCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForDo;
@@ -112,7 +113,7 @@ public class CustomStateDefinitionEditPart extends StateDefinitionEditPart {
 			}
 		};
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
 	 *
@@ -121,13 +122,13 @@ public class CustomStateDefinitionEditPart extends StateDefinitionEditPart {
 	public EObject resolveSemanticElement() {
 		return findStateInvariant();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return StateInvariant object which find by StateDefinitionEditPart ViewID
 	 */
 	private StateInvariant findStateInvariant() {
-		View stateDefView = (View)getModel();
+		View stateDefView = (View) getModel();
 		if (stateDefView == null) {
 			return null;
 		}
@@ -136,11 +137,11 @@ public class CustomStateDefinitionEditPart extends StateDefinitionEditPart {
 		if (lifeline == null) {
 			return null;
 		}
-		for (InteractionFragment fragment: lifeline.getInteraction().getFragments()) {
+		for (InteractionFragment fragment : lifeline.getInteraction().getFragments()) {
 			if (fragment instanceof StateInvariant) {
 				StateInvariant stateInvariant = (StateInvariant) fragment;
 				String stateInvariantID = StateInvariantUtils.getStateInvariantId(stateInvariant);
-				if (stateDefID.equals(stateInvariantID)) {
+				if (StringHelper.equals(stateDefID, stateInvariantID)) {
 					return stateInvariant;
 				}
 			}
