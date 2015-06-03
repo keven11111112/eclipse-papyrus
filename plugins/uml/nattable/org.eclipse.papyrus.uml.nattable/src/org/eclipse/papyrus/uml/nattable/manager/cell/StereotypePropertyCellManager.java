@@ -369,27 +369,6 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 				}
 			}
 		}
-		final Command createProblemCommand = getCreateStringResolutionProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
-		if (createProblemCommand != null) {
-			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
-		} else {
-			// we need to destroy associated cell problem
-			final Cell cell = tableManager.getCell(columnElement, rowElement);
-			StringResolutionProblem stringPb = null;// we assume that there is only one string resolution problem for a cell
-			if (cell != null && cell.getProblems().size() > 0) {
-				for (final Problem current : cell.getProblems()) {
-					if (current instanceof StringResolutionProblem) {
-						stringPb = (StringResolutionProblem) current;
-						break;
-					}
-				}
-			}
-			if (stringPb != null) {
-				final DestroyElementRequest destroyRequest = new DestroyElementRequest(domain, stringPb, false);
-				final IElementEditService commandProvider2 = ElementEditServiceUtils.getCommandProvider(stringPb);
-				cmd.add(commandProvider2.getEditCommand(destroyRequest));
-			}
-		}
 		if (cmd.isEmpty()) {
 			return null;
 		}
@@ -511,9 +490,6 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 				stereotypeApplication.eSet(steApFeature, value);
 			}
 		}
-
-		createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
-
 	}
 
 	/**

@@ -19,7 +19,9 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -248,5 +250,39 @@ public class CellHelper {
 		}
 		return null;
 	}
+
+	/**
+	 *
+	 * @param domain
+	 *            the editing domain
+	 * @param columnElement
+	 *            the column element
+	 * @param rowElement
+	 *            the row element
+	 * @param newValue
+	 *            the new value
+	 * @param tableManager
+	 *            the table manager
+	 * @return
+	 *         the command to use to destroy the string problem referenced by a cell
+	 */
+	public static final Command getDestroyStringResolutionProblemCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
+		Cell cell = tableManager.getCell(columnElement, rowElement);
+		CompoundCommand removeProblemCommand = new CompoundCommand("Destroy string problem command"); //$NON-NLS-1$
+		// we remove the problems of this cells
+		if (cell != null && !cell.getProblems().isEmpty()) {
+			for (Problem current : cell.getProblems()) {
+				if (current instanceof StringResolutionProblem) {
+					RemoveCommand rc = new RemoveCommand(domain, cell, NattablecellPackage.eINSTANCE.getCell_Problems(), current);
+					removeProblemCommand.append(rc);
+				}
+			}
+		}
+		if (!removeProblemCommand.isEmpty()) {
+			return removeProblemCommand;
+		}
+		return null;
+	}
+
 
 }
