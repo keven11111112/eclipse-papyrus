@@ -64,7 +64,10 @@ public class Activator extends AbstractUIPlugin {
 		EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry();
 
 		// FIXME Workaround for Bug 467000 (Eclipse Platform), Bug 463564 (ModelExplorer)
-		System.setProperty("eclipse.workaround.bug467000", Boolean.toString(true));
+		String workaround = "eclipse.workaround.bug467000"; //$NON-NLS-1$
+		if (System.getProperty(workaround) == null) { // Only change the value if it is not explicitly set already (Don't override user-defined value)
+			System.setProperty(workaround, Boolean.toString(true));
+		}
 	}
 
 	/**
