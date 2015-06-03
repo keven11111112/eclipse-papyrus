@@ -63,6 +63,8 @@ public class Activator extends AbstractUIPlugin {
 		log = new LogHelper(plugin);
 		EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry();
 
+		// FIXME Workaround for Bug 467000 (Eclipse Platform), Bug 463564 (ModelExplorer)
+		System.setProperty("eclipse.workaround.bug467000", Boolean.toString(true));
 	}
 
 	/**
@@ -129,7 +131,7 @@ public class Activator extends AbstractUIPlugin {
 		// loadFacetsForCustomizations(registryDefaultCustomizations, customizationManager);
 		//
 		// } catch (Throwable e) {
-		//			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
+		// Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
 		// }
 	}
 
@@ -203,7 +205,9 @@ public class Activator extends AbstractUIPlugin {
 	// return null;
 	// }
 
-	/** @return the qualified name of the given metaclass */
+	/**
+	 * @return the qualified name of the given metaclass
+	 */
 	public static String getMetaclassQualifiedName(final EClassifier eClass) {
 		final ArrayList<String> qualifiedNameParts = new ArrayList<String>();
 		final StringBuilder builder = new StringBuilder();
