@@ -118,6 +118,13 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	}
 
 	/**
+	 * Instantiates a new rounded compartment figure.
+	 */
+	public RoundedCompartmentFigure(String taggedLabel) {
+		super(taggedLabel);
+	}
+
+	/**
 	 * Constructor.
 	 *
 	 * @param compartmentFigure
@@ -711,27 +718,5 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	@Override
 	public boolean hasHeader() {
 		return hasHeader;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure#add(org.eclipse.draw2d.IFigure, java.lang.Object, int)
-	 *
-	 * @param figure
-	 * @param constraint
-	 * @param index
-	 */
-	@Override
-	public void add(IFigure figure, Object constraint, int index) {
-		// TODO Auto-generated method stub
-//		if(figure instanceof ResizableCompartmentFigure){
-//			System.err.println("Detection d'ajout de Compartiment dans Compartiment");
-//			RectangleFigure rectFigure= new RectangleFigure();
-//			rectFigure.add(figure);
-//			rectFigure.setLayoutManager(new SubCompartmentLayoutManager());
-//			super.add(rectFigure, constraint, index);
-//		}else{
-		
-			super.add(figure, constraint, index);
-//		}
 	}
 }
