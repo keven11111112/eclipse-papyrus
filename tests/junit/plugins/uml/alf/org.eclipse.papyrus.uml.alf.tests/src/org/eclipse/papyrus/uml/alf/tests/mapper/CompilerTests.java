@@ -28,6 +28,7 @@ import org.eclipse.papyrus.uml.alf.ParsingError;
 import org.eclipse.papyrus.uml.alf.SyntaxElement;
 import org.eclipse.papyrus.uml.alf.tests.mapper.AlfCompiler;
 import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade;
+import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Association;
@@ -50,7 +51,9 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.StructuredActivityNode;
+import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -599,5 +602,72 @@ public class CompilerTests {
 		assertTextualRepresentation(classifierBehavior, CLASSIFIER_BEHAVIOR_ACTIVITY_TEXT);
 		assertTrue(classifierBehavior instanceof Activity);
 		assertTrue(((Activity)classifierBehavior).getNodes().size() > 0);
+	}
+	
+	public static String TEST_SIGNAL_REFERENCE_TEXT = 
+			"package P { public signal S { } public active class A { public receive S; } do { accept(S); } }";
+	
+	public static Package compileSignalReferencePackage() throws ParsingError, MappingError {
+		return compilePackage(TEST_SIGNAL_REFERENCE_TEXT);
+	}
+	
+    public static void assertSignalReference(Class testClass, Signal signal) {
+		Behavior classifierBehavior = testClass.getClassifierBehavior();
+		assertTrue(classifierBehavior instanceof Activity);
+		
+		Activity activity = (Activity)classifierBehavior;
+		assertEquals(1, activity.getStructuredNodes().size());
+		StructuredActivityNode body = activity.getStructuredNodes().get(0);
+		assertEquals(1, body.getNodes().size());
+		ActivityNode node = body.getNodes().get(0);
+		assertTrue(node instanceof StructuredActivityNode);
+		StructuredActivityNode statement = (StructuredActivityNode)node;
+		
+		AcceptEventAction action = null;
+		for (ActivityNode activityNode: statement.getNodes()) {
+			if (activityNode instanceof AcceptEventAction) {
+				action = (AcceptEventAction)activityNode;
+				break;
+			}
+		}
+		assertNotNull(action);
+		assertEquals(1, action.getTriggers().size());
+		Trigger trigger = action.getTriggers().get(0);
+		assertTrue(trigger.getEvent() instanceof SignalEvent);
+		assertEquals(signal, ((SignalEvent)trigger.getEvent()).getSignal());		
+    }
+	
+	@Test
+	public void testSignalReference() throws ParsingError, MappingError {
+		Package testPackage = compileSignalReferencePackage();
+    	PackageableElement member = testPackage.getPackagedElement("A");
+    	assertTrue(member instanceof Class);
+    	Class testClass = (Class)member;
+    	
+		member = testPackage.getPackagedElement("S");
+		assertNotNull(member);
+		assertTrue(member instanceof Signal);
+		Signal signal = (Signal)member;
+		
+		assertSignalReference(testClass, signal);
+	}
+	
+	@Test
+	public void testSignalReferenceRecompile() throws ParsingError, MappingError {
+		Package testPackage = compileSignalReferencePackage();
+    	PackageableElement member = testPackage.getPackagedElement("A");
+    	assertTrue(member instanceof Class);
+    	Class testClass = (Class)member;
+		Behavior classifierBehavior = testClass.getClassifierBehavior();
+		assertNotNull(classifierBehavior);
+
+		compile(classifierBehavior, compiler.getTextualRepresentation(classifierBehavior), testClass);
+		
+		member = testPackage.getPackagedElement("S");
+		assertNotNull(member);
+		assertTrue(member instanceof Signal);
+		Signal signal = (Signal)member;
+		
+		assertSignalReference(testClass, signal);
 	}
 }
