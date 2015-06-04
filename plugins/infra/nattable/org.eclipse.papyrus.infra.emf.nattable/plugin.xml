@@ -50,6 +50,20 @@
                context="org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider">
          </labelProviderContext>
       </labelProvider>
+      <labelProvider
+            priority="1401"
+            provider="org.eclipse.papyrus.infra.emf.nattable.provider.EMFEOperationHeaderLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="1301"
+            provider="org.eclipse.papyrus.infra.emf.nattable.provider.TreeFillingOperationLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
    </extension>
 	<extension
        point="org.eclipse.papyrus.infra.nattable.axismanager">

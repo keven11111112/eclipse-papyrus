@@ -34,9 +34,15 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
  */
 public class EMFOperationValueCellManager extends AbstractCellManager {
 
-	private final static String NOT_IMPLEMENTED_MESSAGE = " This Operation target is not implemented "; //$NON-NLS-1$
+	/**
+	 * The not implemented message.
+	 */
+	protected final static String NOT_IMPLEMENTED_MESSAGE = " This Operation target is not implemented "; //$NON-NLS-1$
 
-	private final static String NO_PARAMETER_MESSAGE = "N/A: This operation requires some parameters"; //$NON-NLS-1$
+	/**
+	 * The no parameter message.
+	 */
+	protected final static String NO_PARAMETER_MESSAGE = "N/A: This operation requires some parameters"; //$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
@@ -61,7 +67,7 @@ public class EMFOperationValueCellManager extends AbstractCellManager {
 		final EOperation operation = (EOperation) objects.get(1);
 		if (eobject.eClass().getEAllOperations().contains(operation)) {
 			try {
-				if (operation.getEParameters().size() == 0) {
+				if (operation.getEParameters().size() != 0) {
 					return NO_PARAMETER_MESSAGE;
 				} else {
 					return eobject.eInvoke(operation, null);

@@ -8,13 +8,15 @@ import java.util.Map;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
-import org.eclipse.papyrus.infra.tools.util.SelectionHelper;
+import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
+import org.eclipse.ui.IEditorPart;
 
 /**
  * Used to get Rows in the Stereotype Display Tree Table. From the Selection.
@@ -41,24 +43,7 @@ public class TableSelectionProviderCellManager implements ICellManager {
 	 */
 	@Override
 	public Object getValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
-		IStructuredSelection selections = SelectionHelper.getCurrentStructuredSelection();
-
-		Iterator<?> selection = selections.iterator();
-		Collection<View> selectionList = new ArrayList<View>();
-		while (selection.hasNext()) {
-			Object obj = selection.next();
-			if (obj instanceof IAdaptable) {
-				View v = ((IAdaptable) obj).getAdapter(View.class);
-				if (v != null) {
-					selectionList.add(v);
-				}
-			}
-			if (obj instanceof View) {
-				selectionList.add((View) obj);
-
-			}
-		}
-		return selectionList;
+		return EMPTY_STRING;
 	}
 
 	/**

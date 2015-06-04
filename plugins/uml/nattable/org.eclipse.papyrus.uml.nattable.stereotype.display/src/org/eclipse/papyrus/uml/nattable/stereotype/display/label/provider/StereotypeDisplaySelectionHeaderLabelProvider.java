@@ -12,16 +12,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.stereotype.display.label.provider;
 
-import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.utils.StereotypeDisplayTreeTableConstants;
 
 /**
- * The label provider for the sterotype display column header.
+ * The label provider for the selection in the stereotype display tree table.
  */
-public class StereotypeDisplayHeaderLabelProvider extends EMFFeatureHeaderLabelProvider {
+public class StereotypeDisplaySelectionHeaderLabelProvider extends AbstractNattableCellLabelProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -34,9 +36,13 @@ public class StereotypeDisplayHeaderLabelProvider extends EMFFeatureHeaderLabelP
 		if (element instanceof ILabelProviderContextElementWrapper) {
 			Object wrappedElement = ((ILabelProviderContextElementWrapper) element).getObject();
 			Object object = AxisUtils.getRepresentedElement(wrappedElement);
-			if (object instanceof String) {
-				if (((String) object).startsWith(StereotypeDisplayTreeTableConstants.PREFIX)) {
-					return true;
+			if (object instanceof TreeFillingConfiguration) {
+				IAxis axis = ((TreeFillingConfiguration) object).getAxisUsedAsAxisProvider();
+				Object representedelement = AxisUtils.getRepresentedElement(axis);
+				if(representedelement instanceof String){
+					if (((String) representedelement).startsWith(StereotypeDisplayTreeTableConstants.GMF_CUSTOM_PREFIX)) {
+						return true;
+					}
 				}
 			}
 		}
@@ -52,36 +58,29 @@ public class StereotypeDisplayHeaderLabelProvider extends EMFFeatureHeaderLabelP
 	 */
 	@Override
 	public String getText(final Object element) {
-		String returnedValue = ""; //$NON-NLS-1$
+		String result = ""; //$NON-NLS-1$
 		final ILabelProviderContextElementWrapper wrapper = (ILabelProviderContextElementWrapper) element;
-
-		final Object value = getWrappedValue(wrapper);
-		if (value instanceof IAxis && !((IAxis) value).getAlias().isEmpty()) {
-			returnedValue = ((IAxis) value).getAlias();
-		} else {
-			String axisValue = (String) AxisUtils.getRepresentedElement(value);
-			String axisId = axisValue.substring(StereotypeDisplayTreeTableConstants.PREFIX.length());
-			switch (axisId) {
-			case StereotypeDisplayTreeTableConstants.IN_BRACE:
-				returnedValue = StereotypeDisplayTreeTableConstants.IN_BRACE_LABEL;
-				break;
-			case StereotypeDisplayTreeTableConstants.IN_COMMENT:
-				returnedValue = StereotypeDisplayTreeTableConstants.IN_COMMENT_LABEL;
-				break;
-			case StereotypeDisplayTreeTableConstants.IN_COMPARTMENT:
-				returnedValue = StereotypeDisplayTreeTableConstants.IN_COMPARTMENT_LABEL;
-				break;
-			case StereotypeDisplayTreeTableConstants.IS_DISPLAYED:
-				returnedValue = StereotypeDisplayTreeTableConstants.IS_DISPLAYED_LABEL;
-				break;
-			case StereotypeDisplayTreeTableConstants.NAME_DEPTH:
-				returnedValue = StereotypeDisplayTreeTableConstants.NAME_DEPTH_LABEL;
-				break;
-			default:
-				break;
+		
+		Object object = wrapper.getObject();
+		if (object instanceof ITreeItemAxis) {
+			object = AxisUtils.getRepresentedElement(object);
+			if (object instanceof TreeFillingConfiguration) {
+				IAxis axis = ((TreeFillingConfiguration) object).getAxisUsedAsAxisProvider();
+				if (axis instanceof IAxis && !((IAxis) axis).getAlias().isEmpty()) {
+					result = ((IAxis) axis).getAlias();
+				}else{
+					Object representedelement = AxisUtils.getRepresentedElement(axis);
+					if(representedelement instanceof String){
+						if (((String) representedelement).startsWith(StereotypeDisplayTreeTableConstants.GMF_CUSTOM_PREFIX) && ((String) representedelement).endsWith(StereotypeDisplayTreeTableConstants.SELECTION)){
+							result = "Selection"; //$NON-NLS-1$
+						}
+					}
+				}
+					
 			}
 		}
 
-		return returnedValue;
+		return result;
 	}
+	
 }

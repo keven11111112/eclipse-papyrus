@@ -99,7 +99,9 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	@Override
 	protected void addListeners() {
 		this.resourceSetListener = new UpdateTableContentListener(getTableManager(), this);
-		getTableEditingDomain().addResourceSetListener(this.resourceSetListener);
+		if(null != getTableEditingDomain()){
+			getTableEditingDomain().addResourceSetListener(this.resourceSetListener);
+		}
 	}
 
 
@@ -166,7 +168,9 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 */
 	@Override
 	protected void removeListeners() {
-		getTableEditingDomain().removeResourceSetListener(this.resourceSetListener);
+		if(null != getTableEditingDomain()){
+			getTableEditingDomain().removeResourceSetListener(this.resourceSetListener);
+		}
 	}
 
 	/**
@@ -814,7 +818,6 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 			}
 		}
 		// must not be done here -> to many refresh are done
-		// getTableManager().refreshNatTable();
 	}
 
 	/**

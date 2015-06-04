@@ -1,12 +1,25 @@
 
 package org.eclipse.papyrus.uml.nattable.stereotype.display.manager.axis;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectTreeAxisManagerForEventList;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
+import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
+import org.eclipse.papyrus.uml.nattable.stereotype.display.Activator;
+import org.eclipse.ui.IEditorPart;
 
 public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEventList
 		implements IAxisManagerForEventList {
@@ -55,7 +68,44 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	public void fillListWithRoots() {
+		if (null != getTableEditingDomain() && getRepresentedContentProvider().getAxis().isEmpty()) {
+			// we are creating the table and not opening an existing table!
+			IEditorPart part = WorkbenchPartHelper.getCurrentActiveEditorPart();
+			DiagramEditor editor = null;
+			if (part instanceof IAdaptable) {
+				editor = part.getAdapter(DiagramEditor.class);
+			} else if (part instanceof DiagramEditor) {
+				editor = (DiagramEditor) part;
+			}
+			Collection<Object> selectionList = new ArrayList<Object>();
+			if (editor != null && !editor.getDiagramGraphicalViewer().getSelection().isEmpty()) {
+				IStructuredSelection selection = (IStructuredSelection) editor.getDiagramGraphicalViewer().getSelection();
+				Iterator<?> iter = selection.iterator();
+				while (iter.hasNext()) {
+					Object obj = iter.next();
+					if (obj instanceof IAdaptable) {
+						View v = ((IAdaptable) obj).getAdapter(View.class);
+						if (v != null) {
+							selectionList.add(v);
+						}
+					}
+					if (obj instanceof View) {
+						selectionList.add((View) obj);
+					}
+				}
+			}
 
+			final Command cmd = getAddAxisCommand(getTableEditingDomain(), selectionList);
+			try {
+				GMFUnsafe.write(getTableEditingDomain(), cmd);
+			} catch (InterruptedException e) {
+				Activator.log.error(e);
+			} catch (RollbackException e) {
+				Activator.log.error(e);
+			}
+			// because event will be propagated and children will be setted!
+			return;
+		}
 		super.fillListWithRoots();
 	}
 

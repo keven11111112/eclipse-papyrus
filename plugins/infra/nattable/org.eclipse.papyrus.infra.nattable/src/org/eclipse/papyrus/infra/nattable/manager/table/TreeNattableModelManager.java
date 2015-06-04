@@ -18,8 +18,6 @@ import java.util.List;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.nebula.widgets.nattable.NatTable;
@@ -160,7 +158,9 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 			hideShowCategories(hiddenDepth, null);
 		}
 		this.hideShowCategoriesListener = new HideShowCategoriesTableListener(this);
-		getTableEditingDomain().addResourceSetListener(this.hideShowCategoriesListener);
+		if (null != getTableEditingDomain()) {
+			getTableEditingDomain().addResourceSetListener(this.hideShowCategoriesListener);
+		}
 		return nattable;
 	}
 
@@ -369,6 +369,28 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		CollapseExpandActionHelper.doCollapseExpandAction(actionId, selectedAxis, getTableAxisElementProvider(), this.natTable);
 	}
 
+	/**
+	 * Modify the axis when it is disposed.
+	 * 
+	 * @param iAxis
+	 *            The list of axis.
+	 */
+	private void modifyAcisDeliver(final List<IAxis> iAxis) {
+		for (IAxis axis : iAxis) {
+			if (axis instanceof ITreeItemAxis) {
+				boolean isDelivering = axis.eDeliver();
+				if (isDelivering) {
+					// I suppose than it is not necessary to send notification here
+					axis.eSetDeliver(false);
+				}
+				((ITreeItemAxis) axis).getChildren().clear();
+				if (isDelivering) {
+					// I reset the initial value, because the model can be reopened
+					axis.eSetDeliver(true);
+				}
+			}
+		}
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#dispose()
@@ -379,31 +401,21 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		final List<IAxis> iAxis = getHorizontalAxisProvider().getAxis();
 
 		if (iAxis != null) {
-			//see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
+			// see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
 			// we need to remove the children which are not serialized from the root of the table, to be able to reopen
 			Runnable runnable = new Runnable() {
 
 				@Override
 				public void run() {
-					for (IAxis axis : iAxis) {
-						if (axis instanceof ITreeItemAxis) {
-							boolean isDelivering = axis.eDeliver();
-							if (isDelivering) {
-								// I suppose than it is not necessary to send notification here
-								axis.eSetDeliver(false);
-							}
-							((ITreeItemAxis) axis).getChildren().clear();
-							if (isDelivering) {
-								// I reset the initial value, because the model can be reopened
-								axis.eSetDeliver(true);
-							}
-						}
-					}
-
+					modifyAcisDeliver(iAxis);
 				}
 			};
 			try {
-				GMFUnsafe.write(getTableEditingDomain(), runnable);
+				if (null != getTableEditingDomain()) {
+					GMFUnsafe.write(getTableEditingDomain(), runnable);
+				} else {
+					modifyAcisDeliver(iAxis);
+				}
 			} catch (InterruptedException e) {
 				Activator.log.error(e);
 			} catch (RollbackException e) {

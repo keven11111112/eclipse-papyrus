@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.stereotype.display.manager.cell;
 
 import java.util.Map;
@@ -10,14 +22,26 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.utils.StereotypeDisplayTreeTableConstants;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.utils.StereotypeDisplayTreeTableHelper;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 
+/**
+ * The stereotype display tree table cell manager.
+ */
 public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 
-
+	/**
+	 * The helper class instance.
+	 */
 	private StereotypeDisplayTreeTableHelper helper = StereotypeDisplayTreeTableHelper.getInstance();
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
+	 */
 	@Override
-	public boolean handles(Object columnElement, Object rowElement) {
+	public boolean handles(final Object columnElement, final Object rowElement) {
 		boolean handles = false;
 		Object element = AxisUtils.getRepresentedElement(columnElement);
 		if (element instanceof String) {
@@ -28,168 +52,162 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
-	 *
-	 * @param columnElement
-	 * @param rowElement
-	 * @param tableManager
-	 * @return
 	 */
 	@Override
-	public Object getValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
-
+	public Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		Object result = null;
 		Object element = AxisUtils.getRepresentedElement(columnElement);
-
+		
 		if (element instanceof String) {
 			String shortElement = StereotypeDisplayTreeTableHelper.getInstance().getShortValue(element);
 			switch (shortElement) {
-			case StereotypeDisplayTreeTableConstants.IS_DISPLAYED:
-				return Boolean.TRUE;
-			case StereotypeDisplayTreeTableConstants.IN_BRACE:
-				return helper.getBraceValue(rowElement);
-			case StereotypeDisplayTreeTableConstants.IN_COMMENT:
-			case StereotypeDisplayTreeTableConstants.IN_COMPARTMENT:
-				return Boolean.TRUE;
-			case StereotypeDisplayTreeTableConstants.NAME_DEPTH:
-
-				return "full";
-
-			default:
-				return "tadaaaaa";
-
+				case StereotypeDisplayTreeTableConstants.NAME_DEPTH:
+					result = helper.getDepthValue(rowElement);
+					break;
+				case StereotypeDisplayTreeTableConstants.IS_DISPLAYED:
+					result = helper.getDisplayedValue(rowElement);
+					break;
+				case StereotypeDisplayTreeTableConstants.IN_BRACE:
+					result = helper.getBraceValue(rowElement);
+					break;
+				case StereotypeDisplayTreeTableConstants.IN_COMMENT:
+					result = helper.getCommentValue(rowElement);
+					break;
+				case StereotypeDisplayTreeTableConstants.IN_COMPARTMENT:
+					result = helper.getCompartmentValue(rowElement);
+					break;
+				default:
+					break;
 			}
 		}
-		return null;
+		return result;
 
 
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setValue(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, java.lang.Object,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
-	 *
-	 * @param domain
-	 * @param columnElement
-	 * @param rowElement
-	 * @param newValue
-	 * @param tableManager
 	 */
 	@Override
-	public void setValue(TransactionalEditingDomain domain, Object columnElement, Object rowElement, Object newValue, INattableModelManager tableManager) {
+	public void setValue(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
 		Object element = AxisUtils.getRepresentedElement(columnElement);
 
 		if (element instanceof String) {
 			String shortElement = StereotypeDisplayTreeTableHelper.getInstance().getShortValue(element);
 			switch (shortElement) {
+			case StereotypeDisplayTreeTableConstants.NAME_DEPTH:
+				helper.setDepthValue(domain, rowElement, newValue);
+				break;
 			case StereotypeDisplayTreeTableConstants.IS_DISPLAYED:
+				helper.setDisplayedValue(domain, rowElement, newValue);
+				break;
 			case StereotypeDisplayTreeTableConstants.IN_BRACE:
 				helper.setBraceValue(domain, rowElement, newValue);
-			case StereotypeDisplayTreeTableConstants.IN_COMMENT:
-			case StereotypeDisplayTreeTableConstants.IN_COMPARTMENT:
-			case StereotypeDisplayTreeTableConstants.NAME_DEPTH:
 				break;
-
+			case StereotypeDisplayTreeTableConstants.IN_COMMENT:
+				helper.setCommentValue(domain, rowElement, newValue);
+				break;
+			case StereotypeDisplayTreeTableConstants.IN_COMPARTMENT:
+				helper.setCompartmentValue(domain, rowElement, newValue);
+				break;
 			default:
 				break;
 
 			}
 		}
-
-
-
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
-	 *
-	 * @param columnElement
-	 * @param rowElement
-	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(Object columnElement, Object rowElement) {
+	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
+		boolean result = true;
+		
+		// Disable the isVisible for the properties
+		Object column = AxisUtils.getRepresentedElement(columnElement);
+		if (column instanceof String) {
+			String shortElement = StereotypeDisplayTreeTableHelper.getInstance().getShortValue(column);
+			
+			if(StereotypeDisplayTreeTableConstants.IS_DISPLAYED.equals(shortElement)){
+				Object row = AxisUtils.getRepresentedElement(rowElement);
+				
+				if(row instanceof Property){
+					result = false;
+				}
+			}
+			
+			if(StereotypeDisplayTreeTableConstants.NAME_DEPTH.equals(shortElement)){
+				Object row = AxisUtils.getRepresentedElement(rowElement);
+				
+				if(!(row instanceof Stereotype)){
+					result = false;
+				}
+			}
+		}
 
-		return true;
+		return result;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, java.lang.Object,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
-	 *
-	 * @param domain
-	 * @param columnElement
-	 * @param rowElement
-	 * @param newValue
-	 * @param tableManager
-	 * @return
 	 */
 	@Override
-	public Command getSetValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, Object newValue, INattableModelManager tableManager) {
-
+	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
 		return null;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetStringValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, java.lang.String,
 	 *      org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
-	 *
-	 * @param domain
-	 * @param columnElement
-	 * @param rowElement
-	 * @param newValue
-	 * @param valueConverter
-	 * @param tableManager
-	 * @return
 	 */
 	@Override
-	public Command getSetStringValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, String newValue, AbstractStringValueConverter valueConverter, INattableModelManager tableManager) {
-
+	public Command getSetStringValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final String newValue, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager) {
 		return null;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map, java.lang.String)
-	 *
-	 * @param tableManager
-	 * @param existingConverters
-	 * @param multiValueSeparator
-	 * @return
 	 */
 	@Override
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator) {
-
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator) {
 		return null;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map)
-	 *
-	 * @param columnElement
-	 * @param rowElement
-	 * @param sharedMap
-	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(Object columnElement, Object rowElement, Map<?, ?> sharedMap) {
-
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
 		return false;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
-	 *
-	 * @param columnElement
-	 * @param rowElement
-	 * @param valueAsString
-	 * @param valueConverter
-	 * @param tableManager
-	 * @param sharedMap
 	 */
 	@Override
-	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueConverter, INattableModelManager tableManager, Map<?, ?> sharedMap) {
+	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager, final Map<?, ?> sharedMap) {
 		// Nothing to do
-
 	}
 
 }

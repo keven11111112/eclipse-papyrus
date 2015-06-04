@@ -466,7 +466,32 @@ public class StereotypeDisplayUtil {
 		return propertyView;
 	}
 
+	/**
+	 * Return the associated Property view of a node from the property name.
+	 * 
+	 * @param node Node on which the Stereotype Label is retrieved
+	 * @param stereotype Stereotype Application of the Label to be retrieved.
+	 * @param property Property of the stereotype
+	 * @return associated StereotypeLabel
+	 */
+	public DecorationNode getStereotypePropertyInCompartment(View node, Stereotype stereotype, Property property) {
+		DecorationNode propertyView = null;
+		if ((stereotype != null) && (property != null)) {
+			View compartment = getStereotypeCompartment(node, stereotype);
+			Object obj;
+			if (compartment != null) {
+				Iterator<?> iter = compartment.getChildren().iterator();
+				while (iter.hasNext()) {
+					obj = iter.next();
+					if (isStereotypeProperty(obj) && ((DecorationNode) obj).getElement().equals(property)) {
+						propertyView = (DecorationNode) obj;
+					}
 
+				}
+			}
+		}
+		return propertyView;
+	}
 
 	/**
 	 * Return the associated DecorationNode of a node from it's stereotypeAppplication.

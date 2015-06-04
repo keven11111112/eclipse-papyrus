@@ -127,13 +127,17 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 
 
 					try {
-						GMFUnsafe.write(getTableEditingDomain(), new Runnable() {
-
-							@Override
-							public void run() {
-								newAxis.setExpanded(true);
-							}
-						});
+						if(null != getTableEditingDomain()){
+							GMFUnsafe.write(getTableEditingDomain(), new Runnable() {
+	
+								@Override
+								public void run() {
+									newAxis.setExpanded(true);
+								}
+							});
+						}else{
+							newAxis.setExpanded(true);
+						}
 					} catch (InterruptedException e) {
 						Activator.log.error(e);
 					} catch (RollbackException e) {
@@ -145,20 +149,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 		}
 		ITreeItemAxisHelper.linkITreeItemAxisToSemanticElement(this.managedElements, newAxis);
 		EventListHelper.addToEventList(this.eventList, newAxis);
-		// seems not useful, but in doubt, I don't remove the code
 
-		// int index = ((NattableModelManager) getTableManager()).getRowElementsList().indexOf(newAxis);
-		// NatTable natTable = (NatTable) getTableManager().getAdapter(NatTable.class);
-		// if (getTableManager() != null && getTableManager().getBodyLayerStack() != null) {
-		// RowHideShowLayer rowHideLayer = getTableManager().getBodyLayerStack().getRowHideShowLayer();
-		// if (index != -1 && natTable != null && rowHideLayer != null) {
-		// // we need to notify the show hide layer than an object has been added
-		//
-		// TreeLayer treeLayer = getTreeLayer();
-		// RowInsertEvent event = new RowInsertEvent(treeLayer, index);
-		// rowHideLayer.handleLayerEvent(event);
-		// }
-		// }
 		return newAxis;
 	}
 
@@ -583,64 +574,6 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 			}
 		}
 	}
-
-	// /**
-	// *
-	// * @param axis
-	// * the axis to remove. Its children will be remove too. If its parent represents a TreeFillingConfiguration, without children, it will be removed too.
-	// */
-	// protected final void removeObject(final ITreeItemAxis axis) {
-	// Collection<ITreeItemAxis> children = new ArrayList<ITreeItemAxis>(axis.getChildren());
-	// for (ITreeItemAxis current : children) {
-	// //we must remove its children before to remove it!
-	// removeObject(current);
-	// }
-	//
-	//
-	// final ITreeItemAxis parentAxis = axis.getParent();
-	//
-	//
-	// this.alreadyExpanded.remove(axis);
-	// ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, axis);
-	//
-	//
-	// //we unset its parent
-	// ITreeItemAxisHelper.destroyITreeItemAxis(getTableEditingDomain(), axis);
-	//
-	//
-	// //we remove it from the event list
-	// EventListHelper.removeFromEventList(eventList, axis);
-	//
-	// if (parentAxis != null) {
-	// final Object representedElement = parentAxis.getElement();
-	// if (representedElement instanceof TreeFillingConfiguration && parentAxis.getChildren().size() == 0) {
-	// removeObject(parentAxis);
-	// }
-	// }
-
-
-	// V1 of the remove object method
-	// Collection<ITreeItemAxis> children = new ArrayList<ITreeItemAxis>(axis.getChildren());
-	// for (ITreeItemAxis current : children) {
-	// removeObject(current);
-	// EventListHelper.removeFromEventList(eventList, current);
-	// ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, current);
-	// ITreeItemAxisHelper.destroyITreeItemAxis(getTableEditingDomain(), current);
-	// }
-	// final ITreeItemAxis parentAxis = axis.getParent();
-	//
-	// EventListHelper.removeFromEventList(eventList, axis);
-	// this.alreadyExpanded.remove(axis);
-	// ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, axis);
-	// ITreeItemAxisHelper.destroyITreeItemAxis(getTableEditingDomain(), axis);
-	// if (parentAxis != null) {
-	// final Object representedElement = parentAxis.getElement();
-	// if (representedElement instanceof TreeFillingConfiguration && parentAxis.getChildren().size() == 0) {
-	// removeObject(parentAxis);
-	// }
-	// }
-
-	// }
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisManagerForEventList#setExpanded(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis, java.util.List, boolean)

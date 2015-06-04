@@ -38,6 +38,11 @@
             manager="org.eclipse.papyrus.uml.nattable.stereotype.display.manager.cell.StereotypeDisplayTreeTableCellManager"
             order="100">
       </cellManager>
+      <cellManager
+            id="org.eclipse.papyrus.uml.nattable.stereotype.display.properties.manager.cell.operation.extended.manager"
+            manager="org.eclipse.papyrus.uml.nattable.stereotype.display.label.provider.StereotypeDisplayEMFOperationValueCellManager"
+            order="150">
+      </cellManager>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
@@ -49,10 +54,29 @@
    <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <labelProvider
-            priority="1220"
-            provider="org.eclipse.papyrus.infra.emf.nattable.provider.TreeFillingFeatureLabelProvider">
+            priority="10"
+            provider="org.eclipse.papyrus.uml.nattable.stereotype.display.label.provider.StereotypeDisplayHeaderLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider"></labelProviderContext>
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="1"
+            provider="org.eclipse.papyrus.uml.nattable.stereotype.display.label.provider.StereotypeDisplaySelectionHeaderLabelProvider">
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="1"
+            provider="org.eclipse.papyrus.uml.nattable.stereotype.display.label.provider.StereotypeDisplayPropertyHeaderLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider">
+         </labelProviderContext>
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
          </labelProviderContext>
       </labelProvider>
    </extension>
