@@ -1068,7 +1068,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	public void setStereotypes(String stereotypes) {
 		if (stereotypes == null) {
 			// Remove label if any
-			if (this.stereotypesLabel != null) {
+			if (this.stereotypesLabel != null && getStereotypeLabelContainer().getChildren().contains(this.stereotypesLabel)) {
 				getStereotypeLabelContainer().remove(this.stereotypesLabel);
 				this.stereotypesLabel = null;
 			}
