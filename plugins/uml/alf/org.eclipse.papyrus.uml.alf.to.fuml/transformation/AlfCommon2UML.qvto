@@ -72,6 +72,10 @@ helper SyntaxElement::functionAt() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::At");
 }
 
+helper SyntaxElement::functionIncluding() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Including");
+}
+
 helper SyntaxElement::functionPlus() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::IntegerFunctions::+");
 }
@@ -121,7 +125,7 @@ helper SyntaxElement::literalNatural(n : Integer) : LiteralInteger {
 }
 
 helper SyntaxElement::literalInteger(i : Integer) : LiteralInteger {
-	return new LiteralInteger(i, self.naturalType().toType());
+	return new LiteralInteger(i, self.integerType().toType());
 }
 
 helper SyntaxElement::literalString(s : String) : LiteralString {

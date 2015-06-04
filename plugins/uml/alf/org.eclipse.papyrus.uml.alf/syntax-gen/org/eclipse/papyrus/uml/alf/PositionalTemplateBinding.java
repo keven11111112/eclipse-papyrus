@@ -44,7 +44,7 @@ public interface PositionalTemplateBinding extends TemplateBinding {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            \'<\' + \n            self.argumentName->iterate(name : QualifiedName; s : Types::String = \'\' | \n              if s = \'\' then name.pathName\n              else s + \',\' + name.pathName\n              endif\n            ) + \n            \'>\''"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            \'<\' + \n            self.argumentName->iterate(name : QualifiedName; s : String = \'\' | \n              if s = \'\' then name.pathName\n              else s + \',\' + name.pathName\n              endif\n            ) + \n            \'>\''"
 	 * @generated
 	 */
 	String toString();

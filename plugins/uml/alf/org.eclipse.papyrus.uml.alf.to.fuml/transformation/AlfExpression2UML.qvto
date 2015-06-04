@@ -478,73 +478,75 @@ helper InvocationExpression::mapTuple(inout graph : ExpressionGraph, action : Ac
 }
 
 helper InvocationExpression::mapFeature(inout graph : ExpressionGraph, action : Action) {
-	var targetNode : ActivityNode;
-	switch {
-		case(action.oclIsKindOf(CallOperationAction)) {
-			var callAction := action.oclAsType(CallOperationAction);
-			if not self.isDestructor then {
-				targetNode := callAction.target;
-			} else {	
-				graph.nodes += targetNode := new ForkNode(nameOf(callAction.target));
-				graph.edges += new ObjectFlow(targetNode, callAction.target);
+	if self.feature <> null then {
+		var targetNode : ActivityNode;
+		switch {
+			case(action.oclIsKindOf(CallOperationAction)) {
+				var callAction := action.oclAsType(CallOperationAction);
+				if not self.isDestructor then {
+					targetNode := callAction.target;
+				} else {	
+					graph.nodes += targetNode := new ForkNode(nameOf(callAction.target));
+					graph.edges += new ObjectFlow(targetNode, callAction.target);
+					
+					graph.nodes += var destroyAction ::= new DestroyObjectAction(callAction.operation._'class');
+					graph.edges += new ControlFlow(action, destroyAction);
+					
+					if self.isContainedInDestructor() then {
+						self.addDestroyCheck(graph, targetNode, destroyAction.target);
+					} else {
+						graph.edges += new ObjectFlow(targetNode, destroyAction.target);
+					} endif;
+				} endif;
+			}
+			case(action.oclIsKindOf(SendSignalAction)) {
+				var sendAction := action.oclAsType(SendSignalAction);
+	
+	      // NOTE: The type of the target pin must be properly set to
+	      // satisfy the fUML constraint that the type of this pin has a
+	      // reception for the signal being sent.
+				sendAction.target.type := self.feature.expression.type.toType();
 				
-				graph.nodes += var destroyAction ::= new DestroyObjectAction(callAction.operation._'class');
-				graph.edges += new ControlFlow(action, destroyAction);
-				
+				targetNode := sendAction.target;
+			}
+			case(action.oclIsKindOf(DestroyObjectAction)) {
+				var destroyAction := action.oclAsType(DestroyObjectAction);
 				if self.isContainedInDestructor() then {
+					graph.nodes += targetNode := new ForkNode(nameOf(destroyAction.target));
 					self.addDestroyCheck(graph, targetNode, destroyAction.target);
 				} else {
-					graph.edges += new ObjectFlow(targetNode, destroyAction.target);
+					targetNode := destroyAction.target;
 				} endif;
-			} endif;
-		}
-		case(action.oclIsKindOf(SendSignalAction)) {
-			var sendAction := action.oclAsType(SendSignalAction);
-
-      // NOTE: The type of the target pin must be properly set to
-      // satisfy the fUML constraint that the type of this pin has a
-      // reception for the signal being sent.
-			sendAction.target.type := self.feature.expression.type.toType();
-			
-			targetNode := sendAction.target;
-		}
-		case(action.oclIsKindOf(DestroyObjectAction)) {
-			var destroyAction := action.oclAsType(DestroyObjectAction);
-			if self.isContainedInDestructor() then {
-				graph.nodes += targetNode := new ForkNode(nameOf(destroyAction.target));
-				self.addDestroyCheck(graph, targetNode, destroyAction.target);
-			} else {
-				targetNode := destroyAction.target;
-			} endif;
-		}
-	};
-	
-	var featureGraph := self.feature.expression.map toActivityGraph();
-	if self.isSequenceFeatureInvocation() then {
+			}
+		};
 		
-		// Wrap the invocation action and input arguments mapping in an expansion region.
-		var nodes := graph.nodes;
-		var edges := graph.edges;
-		graph.nodes := Set{};
-		graph.edges := Set{};
-		var region := addExpansionRegion(graph, 
-			"Collect(" + nameOf(action) + ")", ExpansionKind::parallel, nodes, edges, 
-			featureGraph.resultSource, targetNode, graph.resultSource);
-	  if graph.resultSource <> null then {
-	  	graph.resultSource := region.outputElement![incoming![true].source = graph.resultSource];
-	  } endif;
-	  
-	  // Wrap the feature expression in a structured activity node as the source of
-	  // a control flow to the expansion region.
-	  var featureNode := featureGraph.addStructuredActivityNodeTo(graph, "Feature(" + nameOf(featureGraph.resultSource) + ")");
-	  graph.edges += new ControlFlow(featureNode, region);
-
-  } else {
-		featureGraph.addTo(graph);  	
-  	if featureGraph.resultSource <> null then {
-	  	// Connect the feature mapping result source directly to the action target pin.
-	  	graph.edges += new ObjectFlow(featureGraph.resultSource, targetNode);
-  	} endif;
+		var featureGraph := self.feature.expression.map toActivityGraph();
+		if self.isSequenceFeatureInvocation() then {
+			
+			// Wrap the invocation action and input arguments mapping in an expansion region.
+			var nodes := graph.nodes;
+			var edges := graph.edges;
+			graph.nodes := Set{};
+			graph.edges := Set{};
+			var region := addExpansionRegion(graph, 
+				"Collect(" + nameOf(action) + ")", ExpansionKind::parallel, nodes, edges, 
+				featureGraph.resultSource, targetNode, graph.resultSource);
+		  if graph.resultSource <> null then {
+		  	graph.resultSource := region.outputElement![incoming![true].source = graph.resultSource];
+		  } endif;
+		  
+		  // Wrap the feature expression in a structured activity node as the source of
+		  // a control flow to the expansion region.
+		  var featureNode := featureGraph.addStructuredActivityNodeTo(graph, "Feature(" + nameOf(featureGraph.resultSource) + ")");
+		  graph.edges += new ControlFlow(featureNode, region);
+	
+	  } else {
+			featureGraph.addTo(graph);  	
+	  	if featureGraph.resultSource <> null then {
+		  	// Connect the feature mapping result source directly to the action target pin.
+		  	graph.edges += new ObjectFlow(featureGraph.resultSource, targetNode);
+	  	} endif;
+		} endif;
 	} endif;
 }
 
@@ -755,32 +757,36 @@ helper InstanceCreationExpression::mapAction(inout graph : ExpressionGraph) : Ac
 	if action.oclIsKindOf(CallOperationAction) then {
 		var class_ := action.oclAsType(CallOperationAction).operation._'class';
 		if class_.isActive then {
-			var nodes := graph.nodes;
-			var edges := graph.edges;
-
-			nodes += var forkNode ::= new ForkNode(nameOf(graph.resultSource));
-			edges += new ObjectFlow(graph.resultSource, forkNode);
-			
-			nodes += var startAction ::= new StartObjectBehaviorAction(class_);
-			edges += new ObjectFlow(forkNode, startAction._'object');
-			
-			class_.allParents().oclAsType(Class)[isActive]->forEach(parent) {
-				nodes += startAction := new StartObjectBehaviorAction(parent);
-				edges += new ObjectFlow(forkNode, startAction._'object');
-			};
-			
-			graph.nodes := Set{};
-			graph.edges := Set{};
-			var node := addStructuredActivityNode(graph, "InstanceCreationExpression(" + nameOf(class_) + ")", nodes, edges);
-						
-			graph.resultSource := new OutputPin(node, "Output(" + nameOf(graph.resultSource) + ")", class_, 1, 1);
-			new ObjectFlow(node, forkNode, graph.resultSource);
-						
-			action := node;
+			action := addStartBehavior(graph, class_);
 		} endif;
 	} endif;
 	
 	return action;
+}
+
+helper addStartBehavior(inout graph : ExpressionGraph, class_ : Class) : Action {
+	var nodes := graph.nodes;
+	var edges := graph.edges;
+
+	nodes += var forkNode ::= new ForkNode(nameOf(graph.resultSource));
+	edges += new ObjectFlow(graph.resultSource, forkNode);
+	
+	nodes += var startAction ::= new StartObjectBehaviorAction(class_);
+	edges += new ObjectFlow(forkNode, startAction._'object');
+	
+	class_.allParents().oclAsType(Class)[isActive]->forEach(parent) {
+		nodes += startAction := new StartObjectBehaviorAction(parent);
+		edges += new ObjectFlow(forkNode, startAction._'object');
+	};
+	
+	graph.nodes := Set{};
+	graph.edges := Set{};
+	var node := addStructuredActivityNode(graph, "InstanceCreationExpression(" + nameOf(class_) + ")", nodes, edges);
+				
+	graph.resultSource := new OutputPin(node, "Output(" + nameOf(graph.resultSource) + ")", class_, 1, 1);
+	new ObjectFlow(node, forkNode, graph.resultSource);
+	
+	return node;			
 }
 
 helper InstanceCreationExpression::mapTarget(inout graph : ExpressionGraph) : Action {
@@ -918,43 +924,178 @@ mapping ClassExtentExpression::toActivityGraph() : ExpressionGraph
 
 mapping SequenceConstructionExpression::toActivityGraph() : ExpressionGraph
  	inherits Expression::toActivityGraph  {
- 	if not self.hasMultiplicity then {
- 		// TODO: Mapping collection class instance creation.
-		nodes += resultSource := new ForkNode("Dummy");
-	} else if self.elements = null or self.elements.isEmpty() then {
+ 	var type := toType(self.type);
+	if self.elements = null or self.elements.isEmpty() then {
 		// Mapping for a "null" literal.
 		nodes += var valueAction ::= new ValueSpecificationAction(new LiteralNull());
+		valueAction.result.type := type;
 		resultSource := valueAction.result;
 	} else {
-		// TODO: Mapping sequence construction.
-		nodes += resultSource := new ForkNode("Dummy");
-	} endif endif;
+		var elementsGraph := self.elements.map toActivityGraph();
+		var typeName := if type = null then "any" else nameOf(type) endif;
+		var structuredNode := 
+			elementsGraph.addStructuredActivityNodeTo(result, "SequenceConstructionExpression(" + typeName + "[])");
+		resultSource := 
+			new OutputPin(structuredNode, structuredNode.name + ".output", type, self.lower, self.upper);
+		elementsGraph.resultSources->forEach(elementResultSource) {
+			new ObjectFlow(structuredNode, elementResultSource, resultSource); 
+		};
+	} endif;
+	
+	if not self.hasMultiplicity then {
+		var class_ := type.oclAsType(Class);
+		var constructorOperation := self.constructorReference().toUml().oclAsType(Operation);
 
+		nodes += var createAction ::= new CreateObjectAction(class_);
+		nodes += var callAction ::= new CallOperationAction(constructorOperation);
+		
+		edges += new ControlFlow(resultSource.owner.oclAsType(ActivityNode), createAction);
+		edges += new ObjectFlow(createAction.result, callAction.target);
+		edges += new ObjectFlow(resultSource, callAction.argument->at(1));
+		
+		resultSource := callAction.result->at(1);
+		
+		if class_.isActive then {
+			addStartBehavior(result, class_);
+		} endif;
+	} endif;
 }
 
-query SequenceElements::isEmpty() : Boolean {
-	return self.oclIsKindOf(SequenceExpressionList) and self.oclAsType(SequenceExpressionList).element->isEmpty();
+abstract query SequenceElements::isEmpty() : Boolean;
+
+intermediate class ElementsGraph extends ActivityGraph {
+	resultSources : Set(ActivityNode);
 }
 
-abstract mapping SequenceElements::toActivityGraph(out nodes : Set(ActivityNode), out edges : Set(ActivityEdge));
+abstract mapping SequenceElements::toActivityGraph() : ElementsGraph;
 
-mapping SequenceExpressionList::toActivityGraph(out nodes : Set(ActivityNode), out edges : Set(ActivityEdge))
- 	inherits SequenceElements::toActivityGraph;
+mapping SequenceExpressionList::toActivityGraph() : ElementsGraph
+ 	inherits SequenceElements::toActivityGraph {
+	var previousNode : StructuredActivityNode := null;
+  var i := 1;
+  self.element->forEach(element) {
+  	var subgraph := element.map toActivityGraph();
+  	var oldResultSource := subgraph.resultSource;
+  	if subgraph.nodes->isEmpty() then {
+  		subgraph := object ExpressionGraph {
+  			nodes += var mergeNode ::= new MergeNode(nameOf(oldResultSource));
+  			edges += new ObjectFlow(oldResultSource, mergeNode);
+  			resultSource := mergeNode;
+  		};
+  	} endif;
+  	resultSources += subgraph.resultSource;
+  	if self.element->size() = 1 then {
+  		subgraph.addTo(result);
+  	} else {
+  		var node := subgraph.addStructuredActivityNodeTo(result, "SequenceExpressionList#" + i.toString());
+  		if previousNode <> null then {
+  			edges += new ControlFlow(previousNode, node);
+  		} endif;
+  		previousNode := node;
+  		i := i + 1;
+  	} endif;
+  }
+}
+ 	
+query SequenceExpressionList::isEmpty() : Boolean {
+	return self.element->isEmpty();
+}
 
-mapping SequenceRange::toActivityGraph(out nodes : Set(ActivityNode), out edges : Set(ActivityEdge))
- 	inherits SequenceElements::toActivityGraph;
+mapping SequenceRange::toActivityGraph() : ElementsGraph
+ 	inherits SequenceElements::toActivityGraph {
+ 	var rangeLowerGraph := self.rangeLower.map toActivityGraph();
+ 	rangeLowerGraph.addTo(result);
+ 	
+ 	var rangeUpperGraph := self.rangeUpper.map toActivityGraph();
+ 	rangeUpperGraph.addTo(result);
+ 	
+ 	var loopGraph := self.mapSequenceRangeLoop(
+ 		rangeLowerGraph.resultSource, rangeUpperGraph.resultSource, 
+ 		"SequenceRange(" + nameOf(rangeLowerGraph.resultSource) + ".." + nameOf(rangeUpperGraph.resultSource) + ")");
+ 	loopGraph.addTo(result);
+ 	
+ 	resultSources += loopGraph.resultSource;
+}
+
+query SequenceRange::isEmpty() : Boolean {
+	return false;
+}
+
+helper SyntaxElement::mapSequenceRangeLoop(
+	resultSource1 : ActivityNode, resultSource2 : ActivityNode,
+	label : String) : ExpressionGraph {
+	var integerType := self.integerType().toType();
+	var rangeLowerInputPin := new InputPin("rangeLower", integerType, 1, 1);
+	var rangeUpperInputPin := new InputPin("rangeUpper", integerType, 1, 1);
+	var accumulatorInputPin := new InputPin("range", integerType, 0, -1);
+	
+	var loopNode ::= new LoopNode(
+		label, true, OrderedSet{rangeLowerInputPin, rangeUpperInputPin, accumulatorInputPin});
+	
+	// Map: Test if whether the counter is still less than the range upper limit.
+	var forkNodes : Sequence(ForkNode);
+	loopNode.loopVariable->forEach(loopVariable) {
+		loopNode.node += forkNodes += var forkNode ::= new ForkNode(loopVariable.name);
+		loopNode.edge += new ObjectFlow(loopVariable, forkNode);
+	};
+	
+	loopNode.node += var testCall ::= new CallBehaviorAction(self.functionLessThanOrEqual());
+	loopNode.edge += new ObjectFlow(forkNodes->at(1), testCall.argument->at(1));
+	loopNode.edge += new ObjectFlow(forkNodes->at(2), testCall.argument->at(2));
+	
+	// Add the loop test.
+	loopNode.test += testCall;
+	loopNode.decider := testCall.result->at(1);
+	
+	// Map: Increment the counter.
+	loopNode.node += var valueOne ::= new ValueSpecificationAction(new LiteralInteger(1, integerType));
+	loopNode.node += var incrementCall ::= new CallBehaviorAction(self.functionPlus());
+	loopNode.edge += new ObjectFlow(forkNodes->at(1), incrementCall.argument->at(1));
+	loopNode.edge += new ObjectFlow(valueOne.result, incrementCall.argument->at(2));
+	
+	// Map: Preserve the range upper bound.
+	loopNode.node += var node ::= createPassthruNode(loopNode.loopVariable->at(2).name, integerType, 1, 1);
+	loopNode.edge += new ObjectFlow(forkNodes->at(2), node.structuredNodeInput![true]);
+	
+	// Map: Append the counter to the list.
+	loopNode.node += var appendCall ::= new CallBehaviorAction(self.functionIncluding());
+	loopNode.edge += new ObjectFlow(loopNode.loopVariable->at(3), appendCall.argument->at(1));
+	loopNode.edge += new ObjectFlow(forkNodes->at(1), appendCall.argument->at(2));
+	
+	// Add the loop body.
+	loopNode.bodyPart := Set{valueOne, incrementCall, node};
+	loopNode.bodyOutput += incrementCall.result->at(1);
+	loopNode.bodyOutput += node.structuredNodeOutput![true];
+	loopNode.bodyOutput += appendCall.result->at(1);
+	
+	return object ExpressionGraph {
+		nodes += loopNode;
+		edges += new ObjectFlow(resultSource1, rangeLowerInputPin);
+		edges += new ObjectFlow(resultSource2, rangeUpperInputPin);	
+		resultSource := loopNode.result->at(3);
+	};
+}
+
+// Sequence Access Expressions
 
 mapping SequenceAccessExpression::toActivityGraph() : ExpressionGraph
- 	inherits Expression::Dummy_toActivityGraph  {
-	// TODO
-}
+ 	inherits Expression::toActivityGraph  {
 
-helper mapSequenceRangeLoop(
-	inout nodes : Set(ActivityNode), inout edges : Set(ActivityEdge),
-	resultSource1 : ActivityNode, resultSource2 : ActivityNode,
-	label : String) : ActivityNode {
-	// TODO
-	return resultSource1;
+	var subgraph = self.primary.map toActivityGraph();
+	var indexGraph = self.index.map toActivityGraph();
+	indexGraph.addTo(subgraph);
+	
+	nodes += var action ::= new CallBehaviorAction(self.functionAt());
+	var tupleNode := subgraph.addStructuredActivityNodeTo(result, "Tuple(" + nameOf(action) + ")");
+	edges += new ControlFlow(tupleNode, action);	
+
+	resultSource := action.result->at(1);
+	objectSource := subgraph.objectSource;
+	nodes += indexSource := new ForkNode(nameOf(action.argument->at(2)));
+	
+	edges += new ObjectFlow(subgraph.resultSource, action.argument->at(1));
+	edges += new ObjectFlow(indexGraph.resultSource, indexSource);
+	edges += new ObjectFlow(indexSource, action.argument->at(2));
 }
 
 // Sequence Operation Expressions

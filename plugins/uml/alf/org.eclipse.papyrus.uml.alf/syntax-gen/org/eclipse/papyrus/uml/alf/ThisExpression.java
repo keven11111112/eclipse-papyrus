@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An expression comprising the keyword “this”.
+ * An expression comprising the keyword ?this?.
  * <!-- end-model-doc -->
  *
  *

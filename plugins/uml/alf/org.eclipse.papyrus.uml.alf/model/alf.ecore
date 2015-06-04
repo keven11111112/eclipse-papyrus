@@ -452,7 +452,7 @@
     </eOperations>
     <eOperations name="boundElementName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        actuals->iterate(&#xA;          actual, s : Types::String = '$$' + self.boundPathName() + '__' |&#xA;          s + if actual = null then 'any' else actual.boundPathName() endif + '_'&#xA;        ) + '_'"/>
+        <details key="body" value="&#xA;        actuals->iterate(&#xA;          actual, s : String = '$$' + self.boundPathName() + '__' |&#xA;          s + if actual = null then 'any' else actual.boundPathName() endif + '_'&#xA;        ) + '_'"/>
       </eAnnotations>
       <eParameters name="actuals" unique="false" upperBound="-1" eType="#//ElementReference"/>
     </eOperations>
@@ -547,6 +547,11 @@
     <eOperations name="stub" eType="#//ElementReference"/>
     <eOperations name="stubFor" eType="#//ElementReference">
       <eParameters name="unit" lowerBound="1" eType="#//UnitDefinition"/>
+    </eOperations>
+    <eOperations name="constructorReference" eType="#//ElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if not self.isConstructor() then null&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;          let classReferent = self.namespace() in&#xA;            if not classReferent.isAbstractClassifier() then&#xA;              self&#xA;            else&#xA;              -- Check for an &quot;Impl&quot; package.&#xA;              let namespaceReferent = classReferent.namespace() in&#xA;                if namespaceReferent = null then null&#xA;                else&#xA;                  let template = classReferent.template() in&#xA;                  let className = classReferent.name() in&#xA;                  let operationName = self.name() in&#xA;                  let implClassReferent = &#xA;                    namespaceReferent.ownedMembers()->&#xA;                    select(name() = 'Impl' and isPackage()).&#xA;                    ownedMembers()->&#xA;                    select(name() = className and isClass())&#xA;                  in&#xA;                  let boundClassReferent =&#xA;                    if classReferent.template() = null or&#xA;                      implClassReferent->exists(not isTemplate()) then &#xA;                      implClassReferent&#xA;                    else &#xA;                      -- TODO: Check that template parameters match.&#xA;                      implClassReferent.bind(&#xA;                        classReferent.templateActuals()->asSequence()&#xA;                      )&#xA;                    endif&#xA;                  in&#xA;                  let implOperationReferent =&#xA;                    boundClassReferent.ownedMembers()->&#xA;                    select(name() = operationName and isOperation())&#xA;                  in&#xA;                    if implOperationReferent->size() &lt;> 1 then null&#xA;                    else implOperationReferent->any(true)&#xA;                    endif&#xA;                endif&#xA;            endif&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InternalElementReference" eSuperTypes="#//ElementReference">
@@ -979,18 +984,18 @@
     </eOperations>
     <eOperations name="isSameKindAs" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if member.isAlf() then member.isSameKindAs(self)&#xA;        else&#xA;          let other = member.asUml().oclAsType(UML::Element) in&#xA;            self.element.oclIsKindOf(other.oclType()) or&#xA;            other.oclIsKindOf(self.element.oclType())&#xA;        endif"/>
+        <details key="body" value="&#xA;        if member.isAlf() then member.isSameKindAs(self)&#xA;        else&#xA;          let other = member.asUml().oclAsType(uml::Element) in&#xA;            self.element.oclIsKindOf(other.oclType()) or&#xA;            other.oclIsKindOf(self.element.oclType())&#xA;        endif"/>
       </eAnnotations>
       <eParameters name="member" lowerBound="1" eType="#//ElementReference"/>
     </eOperations>
     <eOperations name="isNamedElement" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::NamedElement)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::NamedElement)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isNamespace" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Namespace)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Namespace)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isNamespaceFor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1006,137 +1011,137 @@
     </eOperations>
     <eOperations name="isPackage" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Package)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Package)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isProfile" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Profile)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Profile)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isPackageableElement" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::PackageableElement)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::PackageableElement)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isClassifier" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Classifier)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Classifier)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isAbstractClassifier" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.isClassifier() and self.element.oclAsType(UML::Classifier).isAbstract"/>
+        <details key="body" value="self.isClassifier() and self.element.oclAsType(uml::Classifier).isAbstract"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isAssociation" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Association)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Association)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isDataType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::DataType)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::DataType)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isClass" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Class) and not self.element.oclIsKindOf(UML::Behavior)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Class) and not self.element.oclIsKindOf(uml::Behavior)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isActiveClass" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.isClass() and self.element.oclAsType(UML::Class).isActive"/>
+        <details key="body" value="self.isClass() and self.element.oclAsType(uml::Class).isActive"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isSignal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Signal)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Signal)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isEnumeration" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Enumeration)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Enumeration)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isBehavior" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Behavior)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Behavior)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isActivity" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Activity)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Activity)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isMethod" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.isBehavior() and&#xA;          self.element.oclAsType(UML::Behavior).specification &lt;> null"/>
+        <details key="body" value="&#xA;        self.isBehavior() and&#xA;          self.element.oclAsType(uml::Behavior).specification &lt;> null"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isPrimitiveType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::PrimitiveType)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::PrimitiveType)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isReception" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Reception)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Reception)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isOperation" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Operation)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Operation)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isConstructor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.isOperation() and &#xA;        self.element.oclAsType(UML::Element).&#xA;          getAppliedStereotype('StandardProfile::Create') &lt;> null"/>
+        <details key="body" value="&#xA;        self.isOperation() and &#xA;        self.element.oclAsType(uml::Element).&#xA;          getAppliedStereotype('StandardProfile::Create') &lt;> null"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isDestructor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.isOperation() and &#xA;        self.element.oclAsType(UML::Element).&#xA;          getAppliedStereotype('StandardProfile::Destroy') &lt;> null"/>
+        <details key="body" value="&#xA;        self.isOperation() and &#xA;        self.element.oclAsType(uml::Element).&#xA;          getAppliedStereotype('StandardProfile::Destroy') &lt;> null"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isFeature" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Feature)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Feature)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isProperty" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Property)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Property)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isAssociationEnd" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.isProperty() and &#xA;        -- Note: Only association-owned ends are considered as association ends.&#xA;        self.element.oclAsType(UML::Property).owningAssociation &lt;> null"/>
+        <details key="body" value="&#xA;        self.isProperty() and &#xA;        -- Note: Only association-owned ends are considered as association ends.&#xA;        self.element.oclAsType(uml::Property).owningAssociation &lt;> null"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isParameter" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Parameter)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Parameter)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isTemplate" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.element.oclIsKindOf(UML::TemplateableElement) and&#xA;        self.element.oclAsType(UML::TemplateableElement).isTemplate()"/>
+        <details key="body" value="&#xA;        self.element.oclIsKindOf(uml::TemplateableElement) and&#xA;        self.element.oclAsType(uml::TemplateableElement).isTemplate()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isTemplateParameter" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::TemplateParameter)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::TemplateParameter)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isClassifierTemplateParameter" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::ClassifierTemplateParameter)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::ClassifierTemplateParameter)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isParameteredElement" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.element.oclIsKindOf(UML::Classifier) and&#xA;        self.element.oclAsType(UML::Classifier).templateParameter &lt;> null"/>
+        <details key="body" value="&#xA;        self.element.oclIsKindOf(uml::Classifier) and&#xA;        self.element.oclAsType(uml::Classifier).templateParameter &lt;> null"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isTemplateBinding" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1146,12 +1151,12 @@
     </eOperations>
     <eOperations name="isStereotype" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::Stereotype)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::Stereotype)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isEnumerationLiteral" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.element.oclIsKindOf(UML::EnumerationLiteral)"/>
+        <details key="body" value="self.element.oclIsKindOf(uml::EnumerationLiteral)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isLoopVariable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1171,17 +1176,17 @@
     </eOperations>
     <eOperations name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if alias &lt;> null then&#xA;          alias&#xA;        else if self.element.oclIsKindOf(UML::NamedElement) then &#xA;          self.element.oclAsType(UML::NamedElement).name&#xA;        else if self.element.oclIsKindOf(UML::TemplateParameter) then&#xA;          let parameteredElement = &#xA;            self.element.oclAsType(UML::TemplateParameter).parameteredElement &#xA;          in&#xA;            if parameteredElement.oclIsKindOf(UML::NamedElement) then&#xA;              parameteredElement.oclAsType(UML::NamedElement).name&#xA;            else&#xA;              null&#xA;            endif&#xA;        else&#xA;          null&#xA;        endif endif endif"/>
+        <details key="body" value="&#xA;        if alias &lt;> null then&#xA;          alias&#xA;        else if self.element.oclIsKindOf(uml::NamedElement) then &#xA;          self.element.oclAsType(uml::NamedElement).name&#xA;        else if self.element.oclIsKindOf(uml::TemplateParameter) then&#xA;          let parameteredElement = &#xA;            self.element.oclAsType(uml::TemplateParameter).parameteredElement &#xA;          in&#xA;            if parameteredElement.oclIsKindOf(uml::NamedElement) then&#xA;              parameteredElement.oclAsType(uml::NamedElement).name&#xA;            else&#xA;              null&#xA;            endif&#xA;        else&#xA;          null&#xA;        endif endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="visibility" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.element.oclIsKindOf(UML::NamedElement) then ''&#xA;        else&#xA;          let visibility = self.element.oclAsType(UML::NamedElement).visibility in &#xA;            if visibility = null then null&#xA;            else if visibility = UML::VisibilityKind::public then 'public'&#xA;            else if visibility = UML::VisibilityKind::protected then 'protected'&#xA;            else if visibility = UML::VisibilityKind::private then 'private'&#xA;            else ''&#xA;            endif endif endif endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.element.oclIsKindOf(uml::NamedElement) then ''&#xA;        else&#xA;          let visibility = self.element.oclAsType(uml::NamedElement).visibility in &#xA;            if visibility = null then null&#xA;            else if visibility = uml::VisibilityKind::public then 'public'&#xA;            else if visibility = uml::VisibilityKind::protected then 'protected'&#xA;            else if visibility = uml::VisibilityKind::private then 'private'&#xA;            else ''&#xA;            endif endif endif endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="ownedMembers" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isNamespace() then OrderedSet(ElementReference){}&#xA;        else &#xA;          self.element.oclAsType(UML::Namespace).ownedMember->&#xA;            collect(m | ExternalElementReference{element = m})->asOrderedSet()&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isNamespace() then OrderedSet(ElementReference){}&#xA;        else &#xA;          self.element.oclAsType(uml::Namespace).ownedMember->&#xA;            collect(m | ExternalElementReference{element = m})->asOrderedSet()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="enumerationMembers" ordered="false" upperBound="-1" eType="#//ElementReference">
@@ -1191,7 +1196,7 @@
     </eOperations>
     <eOperations name="members" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isNamespace() then OrderedSet(ElementReference){}&#xA;        else&#xA;          let namespace = self.element.oclAsType(UML::Namespace) in&#xA;          let members = &#xA;            if self.isEnumeration() then&#xA;              self.enumerationMembers()&#xA;            else&#xA;&#x9;            namespace.member-> &#xA;&#x9;              collect(m | &#xA;&#x9;                let names = namespace.getNamesOfMember(m) in&#xA;&#x9;                  if names->isEmpty() then&#xA;&#x9;                    Bag{ExternalElementReference{element = m}}&#xA;&#x9;                  else&#xA;&#x9;                    names->collect(name | &#xA;&#x9;                      ExternalElementReference{alias = name, element = m}&#xA;&#x9;                    )&#xA;&#x9;                  endif&#xA;&#x9;              )&#xA;            endif->asOrderedSet() in&#xA;          let additionalMembers = self.additionalMembers() in&#xA;            additionalMembers->appendAll(members)->&#xA;              appendAll(self.templateParameters())&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isNamespace() then OrderedSet(ElementReference){}&#xA;        else&#xA;          let namespace = self.element.oclAsType(uml::Namespace) in&#xA;          let members = &#xA;            if self.isEnumeration() then&#xA;              self.enumerationMembers()&#xA;            else&#xA;&#x9;            namespace.member-> &#xA;&#x9;              collect(m | &#xA;&#x9;                let names = namespace.getNamesOfMember(m) in&#xA;&#x9;                  if names->isEmpty() then&#xA;&#x9;                    Bag{ExternalElementReference{element = m}}&#xA;&#x9;                  else&#xA;&#x9;                    names->collect(name | &#xA;&#x9;                      ExternalElementReference{alias = name, element = m}&#xA;&#x9;                    )&#xA;&#x9;                  endif&#xA;&#x9;              )&#xA;            endif->asOrderedSet() in&#xA;          let additionalMembers = self.additionalMembers() in&#xA;            additionalMembers->appendAll(members)->&#xA;              appendAll(self.templateParameters())&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="additionalMembers" upperBound="-1" eType="#//ElementReference">
@@ -1207,12 +1212,12 @@
     </eOperations>
     <eOperations name="properties" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isClassifier() then OrderedSet(ElementReference){}&#xA;        else if self.isAssociation() then&#xA;        -- NOTE: This is to ensure proper ordering.&#xA;          self.memberEnds()->appendAll(self.parents().properties()->asOrderedSet())&#xA;        else&#xA;          self.element.oclAsType(UML::Classifier).allAttributes()->&#xA;            collect(a | ExternalElementReference{element = a})->&#xA;            asOrderedSet()&#xA;        endif endif"/>
+        <details key="body" value="&#xA;        if not self.isClassifier() then OrderedSet(ElementReference){}&#xA;        else if self.isAssociation() then&#xA;        -- NOTE: This is to ensure proper ordering.&#xA;          self.memberEnds()->appendAll(self.parents().properties()->asOrderedSet())&#xA;        else&#xA;          self.element.oclAsType(uml::Classifier).allAttributes()->&#xA;            collect(a | ExternalElementReference{element = a})->&#xA;            asOrderedSet()&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="memberEnds" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isAssociation() then OrderedSet(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(UML::Association).memberEnd->&#xA;          collect(e | ExternalElementReference{element = e})->&#xA;          asOrderedSet()&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isAssociation() then OrderedSet(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(uml::Association).memberEnd->&#xA;          collect(e | ExternalElementReference{element = e})->&#xA;          asOrderedSet()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="associationEnds" upperBound="-1" eType="#//ElementReference">
@@ -1222,137 +1227,137 @@
     </eOperations>
     <eOperations name="ownedEnds" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isAssociation() then OrderedSet(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(UML::Association).ownedEnd->&#xA;          collect(e | ExternalElementReference{element = e})->&#xA;          asOrderedSet()&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isAssociation() then OrderedSet(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(uml::Association).ownedEnd->&#xA;          collect(e | ExternalElementReference{element = e})->&#xA;          asOrderedSet()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="opposite" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;--        if not self.isProperty() then null&#xA;--        else self.element.oclAsType(UML::Property).opposite()&#xA;--        endif;&#xA;        if not self.isAssociationEnd() then null&#xA;        else&#xA;          let property = self.element.oclAsType(UML::Property) in&#xA;            let association = property.association in&#xA;            let ends = association.memberEnd in&#xA;              if ends->size() &lt;> 2 then null&#xA;              else ExternalElementReference{element= ends->any(e | e &lt;> property)}&#xA;              endif&#xA;        endif"/>
+        <details key="body" value="&#xA;--        if not self.isProperty() then null&#xA;--        else self.element.oclAsType(uml::Property).opposite()&#xA;--        endif;&#xA;        if not self.isAssociationEnd() then null&#xA;        else&#xA;          let property = self.element.oclAsType(uml::Property) in&#xA;            let association = property.association in&#xA;            let ends = association.memberEnd in&#xA;              if ends->size() &lt;> 2 then null&#xA;              else ExternalElementReference{element= ends->any(e | e &lt;> property)}&#xA;              endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="signal" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isReception() then&#xA;          null&#xA;        else&#xA;          ExternalElementReference{&#xA;            element = self.element.oclAsType(UML::Reception).signal&#xA;          }&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isReception() then&#xA;          null&#xA;        else&#xA;          ExternalElementReference{&#xA;            element = self.element.oclAsType(uml::Reception).signal&#xA;          }&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="namespace" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isParameteredElement() then&#xA;          ExternalElementReference{&#xA;            element = self.element.oclAsType(UML::ParameterableElement).&#xA;                        templateParameter.signature.template&#xA;          }&#xA;        else if self.element.oclIsKindOf(UML::NamedElement) then&#xA;          let namespace = self.element.oclAsType(UML::NamedElement).namespace in&#xA;            if namespace = null then&#xA;              null&#xA;            else&#xA;              ExternalElementReference{element = namespace}&#xA;            endif&#xA;        else&#xA;          null&#xA;        endif endif"/>
+        <details key="body" value="&#xA;        if self.isParameteredElement() then&#xA;          ExternalElementReference{&#xA;            element = self.element.oclAsType(uml::ParameterableElement).&#xA;                        templateParameter.signature.template&#xA;          }&#xA;        else if self.element.oclIsKindOf(uml::NamedElement) then&#xA;          let namespace = self.element.oclAsType(uml::NamedElement).namespace in&#xA;            if namespace = null then&#xA;              null&#xA;            else&#xA;              ExternalElementReference{element = namespace}&#xA;            endif&#xA;        else&#xA;          null&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="ownedParameters" unique="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+    <eOperations name="ownedParameters" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isBehavior() then&#xA;          self.element.oclAsType(UML::Behavior).ownedParameter.oclAsType(ecore::EObject)&#xA;        else if self.isOperation() then&#xA;          self.element.oclAsType(UML::Operation).ownedParameter.oclAsType(ecore::EObject)&#xA;        else&#xA;          Sequence(ecore::EObject){}&#xA;        endif endif"/>
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;let ownedParameters = &#xA;&#x9;        if self.isBehavior() then&#xA;&#x9;          self.element.oclAsType(uml::Behavior).ownedParameter&#xA;&#x9;        else if self.isOperation() then&#xA;&#x9;          self.element.oclAsType(uml::Operation).ownedParameter&#xA;&#x9;        else&#xA;&#x9;          OrderedSet{}&#xA;&#x9;        endif endif&#xA;&#x9;      in&#xA;&#x9;      &#x9;ownedParameters->&#xA;&#x9;      &#x9;&#x9;collect(parameter | ExternalElementReference{element = parameter})->&#xA;&#x9;      &#x9;&#x9;asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="parameters" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.ownedParameters().oclAsType(UML::Parameter)->&#xA;          reject(direction = UML::ParameterDirectionKind::return)->&#xA;          collect(parameter |&#xA;            ExternalElementReference{element = parameter}&#xA;          )->asOrderedSet()"/>
+        <details key="body" value="&#xA;        self.ownedParameters()->reject(direction() = 'return')"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="returnParameter" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let returnParameters = self.ownedParameters().oclAsType(UML::Parameter)->&#xA;          select(direction = UML::ParameterDirectionKind::return) &#xA;        in&#xA;          if returnParameters->isEmpty() then&#xA;            null&#xA;          else&#xA;            ExternalElementReference{element = returnParameters->any(true)}&#xA;          endif"/>
+        <details key="body" value="&#xA;        let returnParameters = self.ownedParameters()->select(direction() = 'return') &#xA;        in&#xA;          if returnParameters->isEmpty() then&#xA;            null&#xA;          else&#xA;            returnParameters->any(true)&#xA;          endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="specification" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isOperation() then &#xA;          self&#xA;        else if self.isBehavior() then&#xA;          let specification = self.element.oclAsType(UML::Behavior).specification in&#xA;            if specification = null then null&#xA;            else ExternalElementReference{element = specification}&#xA;            endif&#xA;        else &#xA;          null&#xA;        endif endif"/>
+        <details key="body" value="&#xA;        if self.isOperation() then &#xA;          self&#xA;        else if self.isBehavior() then&#xA;          let specification = self.element.oclAsType(uml::Behavior).specification in&#xA;            if specification = null then null&#xA;            else ExternalElementReference{element = specification}&#xA;            endif&#xA;        else &#xA;          null&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="redefinedOperations" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isOperation() then Set(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(UML::Operation).redefinedOperation->&#xA;            collect(op | ExternalElementReference{element = op})->asSet()&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isOperation() then Set(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(uml::Operation).redefinedOperation->&#xA;            collect(op | ExternalElementReference{element = op})->asSet()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="template" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let templateBinding = self.umlTemplateBinding() in&#xA;          if templateBinding = null or &#xA;            templateBinding.oclAsType(UML::TemplateBinding).signature = null then&#xA;            null&#xA;          else&#xA;            ExternalElementReference{&#xA;              element = templateBinding.oclAsType(UML::TemplateBinding).signature.template&#xA;            }&#xA;          endif"/>
+        <details key="body" value="&#xA;        let templateBinding = self.umlTemplateBinding() in&#xA;          if templateBinding = null or &#xA;            templateBinding.asUml().oclAsType(uml::TemplateBinding).signature = null then&#xA;            null&#xA;          else&#xA;            ExternalElementReference{&#xA;              element = templateBinding.asUml().oclAsType(uml::TemplateBinding).signature.template&#xA;            }&#xA;          endif"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="umlTemplateBinding" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+    <eOperations name="umlTemplateBinding" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::TemplateableElement) then&#xA;          let templateBindings = &#xA;            self.element.oclAsType(UML::TemplateableElement).templateBinding &#xA;          in&#xA;            if templateBindings->notEmpty() then&#xA;              templateBindings->any(true).oclAsType(ecore::EObject)&#xA;            else if self.element.oclIsKindOf(UML::NamedElement) then&#xA;              let templateBindings =&#xA;                self.element.oclAsType(UML::NamedElement).clientDependency->select(&#xA;                    oclIsKindOf(UML::Realization) and&#xA;                    supplier->size() = 1 and&#xA;                    supplier->forAll(oclIsKindOf(UML::TemplateableElement))&#xA;                  )->collect(&#xA;                    supplier.oclAsType(UML::TemplateableElement).templateBinding&#xA;                  )&#xA;              in&#xA;                if templateBindings->isEmpty() then&#xA;                  null&#xA;                else&#xA;                  templateBindings->any(true).oclAsType(ecore::EObject)&#xA;                endif&#xA;            else&#xA;              null&#xA;            endif endif&#xA;        else&#xA;          null&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.element.oclIsKindOf(uml::TemplateableElement) then&#xA;          let templateBindings = &#xA;            self.element.oclAsType(uml::TemplateableElement).templateBinding &#xA;          in&#xA;            if templateBindings->notEmpty() then&#xA;              ExternalElementReference{element = templateBindings->any(true)}&#xA;            else if self.element.oclIsKindOf(uml::NamedElement) then&#xA;              let templateBindings =&#xA;                self.element.oclAsType(uml::NamedElement).clientDependency->select(&#xA;                    oclIsKindOf(uml::Realization) and&#xA;                    supplier->size() = 1 and&#xA;                    supplier->forAll(oclIsKindOf(uml::TemplateableElement))&#xA;                  )->collect(&#xA;                    supplier.oclAsType(uml::TemplateableElement).templateBinding&#xA;                  )&#xA;              in&#xA;                if templateBindings->isEmpty() then&#xA;                  null&#xA;                else&#xA;                  ExternalElementReference{element = templateBindings->any(true)}&#xA;                endif&#xA;            else&#xA;              null&#xA;            endif endif&#xA;        else&#xA;          null&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="templateParameters" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isTemplate() then&#xA;          self.element.oclAsType(UML::TemplateableElement).&#xA;            ownedTemplateSignature.parameter->&#xA;            collect(p | ExternalElementReference{element = p})->asOrderedSet()&#xA;        else&#xA;          OrderedSet(ElementReference){}&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isTemplate() then&#xA;          self.element.oclAsType(uml::TemplateableElement).&#xA;            ownedTemplateSignature.parameter->&#xA;            collect(p | ExternalElementReference{element = p})->asOrderedSet()&#xA;        else&#xA;          OrderedSet(ElementReference){}&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="parameteredElements" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isTemplate() then&#xA;          self.element.oclAsType(UML::TemplateableElement).&#xA;            ownedTemplateSignature.parameter.parameteredElement->&#xA;            collect(p | ExternalElementReference{element = p})->asOrderedSet()&#xA;        else&#xA;          OrderedSet(ElementReference){}&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isTemplate() then&#xA;          self.element.oclAsType(uml::TemplateableElement).&#xA;            ownedTemplateSignature.parameter.parameteredElement->&#xA;            collect(p | ExternalElementReference{element = p})->asOrderedSet()&#xA;        else&#xA;          OrderedSet(ElementReference){}&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="templateActuals" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let t = self.umlTemplateBinding() in&#xA;          if t = null then&#xA;            OrderedSet(ElementReference){}&#xA;          else&#xA;            let templateBinding = t.oclAsType(UML::TemplateBinding) in&#xA;            let parameterSubstitution = templateBinding.parameterSubstitution in&#xA;              templateBinding.signature.parameter->collect(parameter |&#xA;                parameterSubstitution->select(formal = parameter).actual&#xA;              )->collect(actual |&#xA;                ExternalElementReference{element = actual}&#xA;              )->asOrderedSet()&#xA;          endif"/>
+        <details key="body" value="&#xA;        let t = self.umlTemplateBinding() in&#xA;          if t = null then&#xA;            OrderedSet(ElementReference){}&#xA;          else&#xA;            let templateBinding = t.asUml().oclAsType(uml::TemplateBinding) in&#xA;            let parameterSubstitution = templateBinding.parameterSubstitution in&#xA;              templateBinding.signature.parameter->collect(parameter |&#xA;                parameterSubstitution->select(formal = parameter).actual&#xA;              )->collect(actual |&#xA;                ExternalElementReference{element = actual}&#xA;              )->asOrderedSet()&#xA;          endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="direction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isParameter() then&#xA;          let direction = self.element.oclAsType(UML::Parameter).direction in&#xA;            if direction = UML::ParameterDirectionKind::_in then 'in'&#xA;            else if direction = UML::ParameterDirectionKind::_in then 'in'&#xA;            else if direction = UML::ParameterDirectionKind::out then 'out'&#xA;            else if direction = UML::ParameterDirectionKind::inout then 'inout'&#xA;            else if direction = UML::ParameterDirectionKind::return then 'return'&#xA;            else null&#xA;            endif endif endif endif endif&#xA;        else&#xA;          null&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isParameter() then&#xA;          let direction = self.element.oclAsType(uml::Parameter).direction in&#xA;            if direction = uml::ParameterDirectionKind::_in then 'in'&#xA;            else if direction = uml::ParameterDirectionKind::_in then 'in'&#xA;            else if direction = uml::ParameterDirectionKind::out then 'out'&#xA;            else if direction = uml::ParameterDirectionKind::inout then 'inout'&#xA;            else if direction = uml::ParameterDirectionKind::return then 'return'&#xA;            else null&#xA;            endif endif endif endif endif&#xA;        else&#xA;          null&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="association" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isAssociationEnd() then null&#xA;        -- Note: Only owned ends are treated as association ends.&#xA;        else ExternalElementReference{element = self.element.oclAsType(UML::Property).owningAssociation}&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isAssociationEnd() then null&#xA;        -- Note: Only owned ends are treated as association ends.&#xA;        else ExternalElementReference{element = self.element.oclAsType(uml::Property).owningAssociation}&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="type" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isBehavior() then&#xA;            let returnParameter = self.returnParameter() in&#xA;              if returnParameter = null then null&#xA;              else returnParameter.type()&#xA;              endif&#xA;        else&#xA;          let type =&#xA;            if self.element.oclIsKindOf(UML::TypedElement) then&#xA;              self.element.oclAsType(UML::TypedElement).type&#xA;            else if self.isOperation() then&#xA;              self.element.oclAsType(UML::Operation).type&#xA;            else if self.isEnumerationLiteral() then&#xA;              self.element.oclAsType(UML::EnumerationLiteral).enumeration&#xA;            else&#xA;              null&#xA;            endif endif endif&#xA;          in&#xA;            if type = null then null &#xA;            else ExternalElementReference{element = type} endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isBehavior() then&#xA;            let returnParameter = self.returnParameter() in&#xA;              if returnParameter = null then null&#xA;              else returnParameter.type()&#xA;              endif&#xA;        else&#xA;          let type =&#xA;            if self.element.oclIsKindOf(uml::TypedElement) then&#xA;              self.element.oclAsType(uml::TypedElement).type&#xA;            else if self.isOperation() then&#xA;              self.element.oclAsType(uml::Operation).type&#xA;            else if self.isEnumerationLiteral() then&#xA;              self.element.oclAsType(uml::EnumerationLiteral).enumeration&#xA;            else&#xA;              null&#xA;            endif endif endif&#xA;          in&#xA;            if type = null then null &#xA;            else ExternalElementReference{element = type} endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="lower" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::MultiplicityElement) then&#xA;          self.element.oclAsType(UML::MultiplicityElement).lower&#xA;        else&#xA;          1&#xA;       endif"/>
+        <details key="body" value="&#xA;        if self.element.oclIsKindOf(uml::MultiplicityElement) then&#xA;          self.element.oclAsType(uml::MultiplicityElement).lower&#xA;        else&#xA;          1&#xA;       endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="upper" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::MultiplicityElement) then&#xA;          self.element.oclAsType(UML::MultiplicityElement).upper.oclAsType(Integer)&#xA;        else&#xA;          1&#xA;       endif"/>
+        <details key="body" value="&#xA;        if self.element.oclIsKindOf(uml::MultiplicityElement) then&#xA;          self.element.oclAsType(uml::MultiplicityElement).upper.oclAsType(Integer)&#xA;        else&#xA;          1&#xA;       endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isOrdered" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::MultiplicityElement) then&#xA;          self.element.oclAsType(UML::MultiplicityElement).isOrdered&#xA;        else&#xA;          false&#xA;       endif"/>
+        <details key="body" value="&#xA;        if self.element.oclIsKindOf(uml::MultiplicityElement) then&#xA;          self.element.oclAsType(uml::MultiplicityElement).isOrdered&#xA;        else&#xA;          false&#xA;       endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isNonunique" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.element.oclIsKindOf(UML::MultiplicityElement) then&#xA;          not self.element.oclAsType(UML::MultiplicityElement).isUnique&#xA;        else&#xA;          false&#xA;       endif"/>
+        <details key="body" value="&#xA;        if self.element.oclIsKindOf(uml::MultiplicityElement) then&#xA;          not self.element.oclAsType(uml::MultiplicityElement).isUnique&#xA;        else&#xA;          false&#xA;       endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="parents" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isClassifier() then&#xA;          self.element.oclAsType(UML::Classifier).general->&#xA;            collect(g | ExternalElementReference{element = g})->asSet()&#xA;        else if self.element.oclIsKindOf(UML::ClassifierTemplateParameter) then&#xA;          self.element.oclAsType(UML::ClassifierTemplateParameter).constrainingClassifier->&#xA;            collect(c | ExternalElementReference{element = c})->asSet()&#xA;        else&#xA;          Set(ElementReference){}&#xA;        endif endif"/>
+        <details key="body" value="&#xA;        if self.isClassifier() then&#xA;          self.element.oclAsType(uml::Classifier).general->&#xA;            collect(g | ExternalElementReference{element = g})->asSet()&#xA;        else if self.element.oclIsKindOf(uml::ClassifierTemplateParameter) then&#xA;          self.element.oclAsType(uml::ClassifierTemplateParameter).constrainingClassifier->&#xA;            collect(c | ExternalElementReference{element = c})->asSet()&#xA;        else&#xA;          Set(ElementReference){}&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="allParents" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let allParents = &#xA;          if self.isClassifier() then &#xA;            self.element.oclAsType(UML::Classifier).allParents()->asSet()&#xA;          else if self.element.oclIsKindOf(UML::ClassifierTemplateParameter) then&#xA;            let parents = &#xA;              self.element.oclAsType(UML::ClassifierTemplateParameter).&#xA;                constrainingClassifier &#xA;            in&#xA;              parents->union(parents.allParents())->asSet()&#xA;          else&#xA;            Set(UML::Classifier){}&#xA;          endif endif&#xA;        in&#xA;          allParents->collect(p | ExternalElementReference{element = p})->asSet()"/>
+        <details key="body" value="&#xA;        let allParents = &#xA;          if self.isClassifier() then &#xA;            self.element.oclAsType(uml::Classifier).allParents()->asSet()&#xA;          else if self.element.oclIsKindOf(uml::ClassifierTemplateParameter) then&#xA;            let parents = &#xA;              self.element.oclAsType(uml::ClassifierTemplateParameter).&#xA;                constrainingClassifier &#xA;            in&#xA;              parents->union(parents.allParents())->asSet()&#xA;          else&#xA;            Set(uml::Classifier){}&#xA;          endif endif&#xA;        in&#xA;          allParents->collect(p | ExternalElementReference{element = p})->asSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="classifierBehavior" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.element.oclIsKindOf(UML::BehavioredClassifier) then null&#xA;        else&#xA;          let classifierBehavior = &#xA;            self.element.oclAsType(UML::BehavioredClassifier).classifierBehavior in&#xA;            if classifierBehavior = null then null&#xA;            else ExternalElementReference{element = classifierBehavior}&#xA;            endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.element.oclIsKindOf(uml::BehavioredClassifier) then null&#xA;        else&#xA;          let classifierBehavior = &#xA;            self.element.oclAsType(uml::BehavioredClassifier).classifierBehavior in&#xA;            if classifierBehavior = null then null&#xA;            else ExternalElementReference{element = classifierBehavior}&#xA;            endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="appliedProfiles" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isNamespace() then Set(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(UML::Namespace).getNearestPackage().&#xA;            getAllAppliedProfiles()->&#xA;            collect(e | ExternalElementReference{element = e})->asSet()&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isNamespace() then Set(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(uml::Namespace).getNearestPackage().&#xA;            getAllAppliedProfiles()->&#xA;            collect(e | ExternalElementReference{element = e})->asSet()&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="activeClass" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isBehavior() then null&#xA;        else if self.element.oclAsType(UML::Behavior).isActive then self&#xA;        else&#xA;          let context = self.element.oclAsType(UML::Behavior).context in&#xA;            if context &lt;> null and self.element = context.classifierBehavior then&#xA;              ExternalElementReference{element = context}&#xA;            else&#xA;              null&#xA;            endif&#xA;        endif endif"/>
+        <details key="body" value="&#xA;        if not self.isBehavior() then null&#xA;        else if self.element.oclAsType(uml::Behavior).isActive then self&#xA;        else&#xA;          let context = self.element.oclAsType(uml::Behavior).context in&#xA;            if context &lt;> null and self.element = context.classifierBehavior then&#xA;              ExternalElementReference{element = context}&#xA;            else&#xA;              null&#xA;            endif&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="conformsTo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        other = null or&#xA;        self.isClassifier() and &#xA;        let otherType = other.asUml() in&#xA;          otherType &lt;> null and otherType.oclIsKindOf(UML::Type) and&#xA;          self.element.oclAsType(UML::Classifier).conformsTo(otherType.oclAsType(UML::Type))"/>
+        <details key="body" value="&#xA;        other = null or&#xA;        self.isClassifier() and &#xA;        let otherType = other.asUml() in&#xA;          otherType &lt;> null and otherType.oclIsKindOf(uml::Type) and&#xA;          self.element.oclAsType(uml::Classifier).conformsTo(otherType.oclAsType(uml::Type))"/>
       </eAnnotations>
       <eParameters name="other" eType="#//ElementReference"/>
     </eOperations>
@@ -1393,7 +1398,7 @@
     </eOperations>
     <eOperations name="resolveStereotype" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isProfile() then&#xA;          self.element.oclAsType(UML::Profile).ownedStereotype->&#xA;            select(name = stereotypeName)->&#xA;            collect(e | ExternalElementReference{element = e})->asSet()&#xA;        else&#xA;          Set(ElementReference){}&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isProfile() then&#xA;          self.element.oclAsType(uml::Profile).ownedStereotype->&#xA;            select(name = stereotypeName)->&#xA;            collect(e | ExternalElementReference{element = e})->asSet()&#xA;        else&#xA;          Set(ElementReference){}&#xA;        endif"/>
       </eAnnotations>
       <eParameters name="stereotypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -2985,7 +2990,7 @@
     </eAnnotations>
     <eOperations name="toString" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;            '&lt;' + &#xA;            self.substitution->iterate(substitution : TemplateParameterSubstitution; s : Types::String = '' | &#xA;              if s = '' then substitution.toString()&#xA;              else s + ',' + substitution.toString()&#xA;              endif&#xA;            ) + &#xA;            '>'"/>
+        <details key="body" value="&#xA;            '&lt;' + &#xA;            self.substitution->iterate(substitution : TemplateParameterSubstitution; s : String = '' | &#xA;              if s = '' then substitution.toString()&#xA;              else s + ',' + substitution.toString()&#xA;              endif&#xA;            ) + &#xA;            '>'"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="matches" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -4739,7 +4744,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="leftHandSide" eType="#//LeftHandSide"
         volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The effective left-hand side corresponding to the primary expression, if&#xA;the sequence operation is “in place” (that is, has a first parameter with&#xA;direction inout)."/>
+        <details key="documentation" value="The effective left-hand side corresponding to the primary expression, if&#xA;the sequence operation is ?in place? (that is, has a first parameter with&#xA;direction inout)."/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="derivation" value="&#xA;        let expression = self.primary.expression in&#xA;        let firstParameter = self.firstParameter() in&#xA;          if expression = null or firstParameter = null or &#xA;            firstParameter.direction() &lt;> 'inout' then&#xA;            null&#xA;          else&#xA;            EffectiveLeftHandSide{&#xA;              expression = expression,&#xA;              owner = self&#xA;            }&#xA;          endif"/>
@@ -4887,7 +4892,7 @@
     </eAnnotations>
     <eOperations name="toString" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;            '&lt;' + &#xA;            self.argumentName->iterate(name : QualifiedName; s : Types::String = '' | &#xA;              if s = '' then name.pathName&#xA;              else s + ',' + name.pathName&#xA;              endif&#xA;            ) + &#xA;            '>'"/>
+        <details key="body" value="&#xA;            '&lt;' + &#xA;            self.argumentName->iterate(name : QualifiedName; s : String = '' | &#xA;              if s = '' then name.pathName&#xA;              else s + ',' + name.pathName&#xA;              endif&#xA;            ) + &#xA;            '>'"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="matches" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -5820,6 +5825,11 @@
         <details key="body" value="&#xA;        if self.typeName &lt;> null then&#xA;          let referents = self.typeName.referent->select(isClassifier()) in&#xA;            if referents->size() &lt;> 1 then null&#xA;            else referents->any(true)&#xA;            endif&#xA;        else&#xA;          let collectionType = self.collectionType() in&#xA;            if collectionType = null then null&#xA;            else collectionType.collectionArgument()&#xA;            endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="constructorReference" eType="#//ElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if self.type = null then null&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;      let name = self.type.name() in&#xA;&#x9;&#x9;      let operationReferents = type.ownedMembers()->select(name() = name and isOperation()) in&#xA;&#x9;&#x9;        if operationReferents->size() &lt;> 1 then null&#xA;&#x9;&#x9;        else operationReferents->any(true).constructorReference()&#xA;&#x9;&#x9;        endif&#xA;&#x9;&#x9;&#x9;  endif"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="upper" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;        if not self.hasMultiplicity then 1&#xA;        else if self.elements = null then 0 &#xA;        else self.elements.upper&#xA;        endif endif"/>
@@ -6462,7 +6472,7 @@
     </eAnnotations>
     <eOperations name="referent" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.constructor = null then null&#xA;        else&#xA;          let referents = self.constructor.referent in&#xA;          let classReferents = referents->select(isClass()) in&#xA;          let dataTypeReferents = referents->select(isDataType()) in&#xA;            if dataTypeReferents->size() = 1 and classReferents->isEmpty() then&#xA;              dataTypeReferents->any(true)&#xA;            else if dataTypeReferents->notEmpty() then&#xA;              null&#xA;            else&#xA;              -- TODO: Handle operation overloading.&#xA;              let operationReferents =&#xA;                if classReferents->size() &lt;> 1 then&#xA;                  referents->select(isOperation())&#xA;                else &#xA;                  let name = self.constructor.unqualifiedName.toName() in&#xA;                    classReferents->any(true).ownedMembers()->&#xA;                      select(name() = name and isOperation())&#xA;                endif&#xA;              in&#xA;                if operationReferents->size() = 1 and&#xA;                    operationReferents->forAll(isConstructor()) then&#xA;                    let operationReferent = operationReferents->any(true) in&#xA;                    let classReferent = operationReferent.namespace() in&#xA;                      if not classReferent.isAbstractClassifier() then&#xA;                        operationReferent&#xA;                      else&#xA;                        -- Check for an &quot;Impl&quot; package.&#xA;                        let namespaceReferent = classReferent.namespace() in&#xA;                          if namespaceReferent = null then null&#xA;                          else&#xA;                            let template = classReferent.template() in&#xA;                            let className = classReferent.name() in&#xA;                            let operationName = operationReferent.name() in&#xA;                            let implClassReferent = &#xA;                              namespaceReferent.ownedMembers()->&#xA;                              select(name() = 'Impl' and isPackage()).&#xA;                              ownedMembers()->&#xA;                              select(name() = className and isClass())&#xA;                            in&#xA;                            let boundClassReferent =&#xA;                              if classReferent.template() = null or&#xA;                                implClassReferent->exists(not isTemplate()) then &#xA;                                implClassReferent&#xA;                              else &#xA;                                -- TODO: Check that template parameters match.&#xA;                                implClassReferent.bind(&#xA;                                  classReferent.templateActuals()->asSequence()&#xA;                                )&#xA;                              endif&#xA;                            in&#xA;                            let implOperationReferent =&#xA;                              boundClassReferent.ownedMembers()->&#xA;                              select(name() = operationName and isOperation())&#xA;                            in&#xA;                              if implOperationReferent->size() &lt;> 1 then null&#xA;                              else implOperationReferent->any(true)&#xA;                              endif&#xA;                          endif&#xA;                      endif&#xA;                else if classReferents->size() = 1 then&#xA;                  classReferents->any(true)&#xA;                else&#xA;                  null&#xA;                endif endif&#xA;            endif endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.constructor = null then null&#xA;        else&#xA;          let referents = self.constructor.referent in&#xA;          let classReferents = referents->select(isClass()) in&#xA;          let dataTypeReferents = referents->select(isDataType()) in&#xA;            if dataTypeReferents->size() = 1 and classReferents->isEmpty() then&#xA;              dataTypeReferents->any(true)&#xA;            else if dataTypeReferents->notEmpty() then&#xA;              null&#xA;            else&#xA;              -- TODO: Handle operation overloading.&#xA;              let operationReferents =&#xA;                if classReferents->size() &lt;> 1 then&#xA;                  referents->select(isOperation())&#xA;                else &#xA;                  let name = self.constructor.unqualifiedName.toName() in&#xA;                    classReferents->any(true).ownedMembers()->&#xA;                      select(name() = name and isOperation())&#xA;                endif&#xA;              in&#xA;                if operationReferents->size() = 1 and&#xA;                    operationReferents->forAll(isConstructor()) then&#xA;                  operationReferents->any(true).constructorReference()&#xA;                else if classReferents->size() = 1 then&#xA;                  classReferents->any(true)&#xA;                else&#xA;                  null&#xA;                endif endif&#xA;            endif endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="feature" lowerBound="1" eType="#//FeatureReference">
@@ -7330,7 +7340,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ThisExpression" eSuperTypes="#//Expression">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="An expression comprising the keyword “this”."/>
+      <details key="documentation" value="An expression comprising the keyword ?this?."/>
     </eAnnotations>
     <eOperations name="type" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -12967,7 +12977,7 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The alias to be used as the name for the imported element in the importing unit’s namespace."/>
+        <details key="documentation" value="The alias to be used as the name for the imported element in the importing unit?s namespace."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

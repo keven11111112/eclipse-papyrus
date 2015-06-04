@@ -102,7 +102,7 @@ query ActivityNode::isContainedIn(elements : Set(Element)) : Boolean {
 
 mapping Block::toActivity(inout activity : Activity) {
   var graph := mapToActivityGraph(self.statement, false);
-  createStructuredNode(graph, nameOf(activity));
+  createStructuredNode(graph, "Body");
   graph.addTo(activity);
   
   // Connect final output parameter assigned sources to corresponding 
@@ -679,8 +679,6 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
 	
 	var firstDefinition := self.variableDefinition->at(1);
 	firstDefinition.map toActivityGraph(self.isParallel, true).addTo(setupSubgraph);
-	var resultSource1 := firstDefinition.resultSource1;
-	var resultSource2 := firstDefinition.resultSource2;
 
 	var m = self.variableDefinition->size();
 	if m > 1 then {
@@ -729,6 +727,8 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     var assignedNames := self.mapAssignedValueSources(result, true);
     
     // Create a loop variable pin corresponding to each loop variable definition.
+		var resultSource1 := firstDefinition.resultSource1;
+		var resultSource2 := firstDefinition.resultSource2;
     var n = loopNode.loopVariable->size();
     setupSubgraph.nodes += var forkNode ::= new ForkNode(nameOf(resultSource1));
     self.variableDefinition->forEach(definition) {
@@ -918,19 +918,22 @@ mapping LoopVariableDefinition::toActivityGraph(isParallel : Boolean, isFirst : 
 	nodes := graph1.nodes;
 	edges := graph1.edges;
 	if self.expression2 = null then {
-		self.mapConversions(graph1, self.expression1.type, true, false);
+		self.mapConversions(graph1, self.expression1.type, self.isCollectionConversion, false);
 		self.resultSource1 := graph1.resultSource;
 	} else {
-		self.resultSource1 := graph1.resultSource;
 		var graph2 := self.expression2.map toActivityGraph();
 		nodes += graph2.nodes;
 		edges += graph2.edges;
 		if not isParallel and self.isFirst then {
+			self.resultSource1 := graph1.resultSource;
 			self.resultSource2 := graph2.resultSource;
 		} else {
-			self.resultSource1 := mapSequenceRangeLoop(
-				nodes, edges, self.resultSource1, graph2.resultSource,
+			var loopGraph := self.mapSequenceRangeLoop(
+				graph1.resultSource, graph2.resultSource,
 				"SequenceRange(LoopVariable(" + self.variable + ")");
+			nodes += loopGraph.nodes;
+			edges += loopGraph.edges;
+			self.resultSource1 := loopGraph.resultSource;
 		} endif;
 	} endif;
 }

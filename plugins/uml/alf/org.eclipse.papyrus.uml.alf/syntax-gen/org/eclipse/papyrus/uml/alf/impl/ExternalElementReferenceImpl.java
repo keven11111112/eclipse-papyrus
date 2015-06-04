@@ -1427,9 +1427,9 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<EObject> ownedParameters() {
+	public EList<ElementReference> ownedParameters() {
 		try {
-			return (EList<EObject>)OWNED_PARAMETERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<ElementReference>)OWNED_PARAMETERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1573,9 +1573,9 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject umlTemplateBinding() {
+	public ElementReference umlTemplateBinding() {
 		try {
-			return (EObject)UML_TEMPLATE_BINDING__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (ElementReference)UML_TEMPLATE_BINDING__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
