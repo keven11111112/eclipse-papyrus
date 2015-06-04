@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) CEA LIST.
+ * Copyright (c) CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,10 +9,12 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468030
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services.internal;
 
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceState;
@@ -57,6 +59,7 @@ public class LazyStartupEntry extends ServiceStartupEntry {
 				serviceEntry.startService();
 			} catch (Exception e) {
 				// There was an error. The service is in error
+				Activator.log.error("Failed to start lazy service: " + getDescriptor().getKey(), e); //$NON-NLS-1$
 				serviceEntry = new ErrorServiceTypeEntry(serviceEntry.getDescriptor());
 			}
 		}

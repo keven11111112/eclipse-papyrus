@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,11 +10,13 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
+ *  Christian W. Damus - bug 468030
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.editor;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ModelSetServiceAdapter;
@@ -46,15 +48,14 @@ public class ModelSetServiceFactory implements IServiceFactory {
 		this.serviceRegistry = servicesRegistry;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
-	 *
-	 * @throws ServiceException
-	 */
 	@Override
 	public void startService() throws ServiceException {
-		// Pass
+		// If the language service is available (optional dependency), the ModelSet will want to use it, so start it
+		try {
+			serviceRegistry.startServicesByClassKeys(ILanguageService.class);
+		} catch (ServiceException e) {
+			// It's okay: the language service is optional
+		}
 	}
 
 	/**

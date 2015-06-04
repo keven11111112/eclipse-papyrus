@@ -134,4 +134,17 @@
          </dependsOn>
       </service>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.language">
+      <provider>
+         <content-type
+               id="org.eclipse.uml2.uml">
+         </content-type>
+         <language
+               id="org.eclipse.papyrus.uml.language"
+               version="2.5"
+               name="UML">
+         </language>
+      </provider>
+   </extension>
 </plugin>

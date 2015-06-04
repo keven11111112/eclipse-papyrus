@@ -18,5 +18,21 @@
             provider="Eclipse Modeling Project">
       </library>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.language">
+      <provider>
+         <class
+               class="org.eclipse.papyrus.uml.tools.profile.index.ProfileLanguageProvider">
+            <parameter
+                  name="profile.1"
+                  value="platform:/resource/UMLLanguageProvidersTest/junk.profile.uml#_0">
+            </parameter>
+            <parameter
+                  name="language.1"
+                  value="org.eclipse.papyrus.uml.tools.tests.tests.UMLLanguageProvidersTest$JunkLanguage">
+            </parameter>
+         </class>
+      </provider>
+   </extension>
 
 </plugin>
