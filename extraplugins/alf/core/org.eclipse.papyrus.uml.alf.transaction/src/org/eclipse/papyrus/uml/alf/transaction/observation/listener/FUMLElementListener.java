@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.uml.alf.preferences.AlfIntegrationPreferencesUtil;
 import org.eclipse.papyrus.uml.alf.transaction.commit.ISyncScenario;
 import org.eclipse.papyrus.uml.alf.transaction.commit.ScenarioFactory;
 import org.eclipse.papyrus.uml.alf.transaction.observation.listener.filter.FUMLFilter;
@@ -53,6 +54,10 @@ public class FUMLElementListener extends ResourceSetListenerImpl {
 	 * Note this is not always possible (e.g. the user has ongoing changes in the text)
 	 */
 	public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
+		/* 0. If the user disabled the synchronization then we do not exploit notifications*/
+		if(!AlfIntegrationPreferencesUtil.isAlfAutoSyncEnabled()){
+			return null;
+		}
 		/* 1. Initialization */
 		CompoundCommand subCommands = new CompoundCommand("Synchronization");
 		HashMap<Element, List<Notification>> modifications = new HashMap<Element, List<Notification>>();

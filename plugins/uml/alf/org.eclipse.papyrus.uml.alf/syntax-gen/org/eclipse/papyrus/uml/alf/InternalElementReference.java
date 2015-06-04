@@ -527,7 +527,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplate() then\n          self.element.oclAsType(ClassifierDefinition).templateParameters().toReference()\n        else\n          OrderedSet(ElementReference){}\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isTemplate() then\n          self.element.oclAsType(ClassifierDefinition).templateParameters().toReference()->asOrderedSet()\n        else\n          OrderedSet(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> templateParameters();
@@ -612,7 +612,7 @@ public interface InternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isClassifier() then\n          self.element.oclAsType(ClassifierDefinition).specializationReferent\n        else\n          Set(ElementReference){}\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isClassifier() then\n          self.element.oclAsType(ClassifierDefinition).specializationReferent->asSet()\n        else\n          Set(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parents();
@@ -638,7 +638,7 @@ public interface InternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then Set(ecore::EObject){}\n        else self.element.oclAsType(NamespaceDefinition).appliedProfiles()\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isNamespace() then Set(ElementReference){}\n        else self.element.oclAsType(NamespaceDefinition).appliedProfiles()\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> appliedProfiles();
@@ -646,7 +646,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isActivity() then null\n        else\n          let namespace = self.element.oclAsType(ActivityDefinition).namespaceReference() in\n            if namespace = null or \n              not self.equals(namespace.classifierBehavior()) then null\n            else namespace\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isActivity() then null\n        else\n        \tlet stub = self.stub() in\n        \tlet this = if stub = null then self else stub endif in\n          let namespace = this.namespace() in\n            if namespace = null or \n              not this.equals(namespace.classifierBehavior()) then null\n            else namespace\n            endif\n        endif'"
 	 * @generated
 	 */
 	ElementReference activeClass();
@@ -699,7 +699,7 @@ public interface InternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false" nameRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.resolveInScope(name)\n          else if not self.isNamespace() then Set(ElementReference){}\n          else \n            self.element.oclAsType(NamespaceDefinition).resolveInScope(name).\n              toReference()\n          endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.resolveInScope(name)\n          else if not self.isNamespace() then Set(ElementReference){}\n          else \n            self.element.oclAsType(NamespaceDefinition).resolveInScope(name).\n              toReference()->asSet()\n          endif endif'"
 	 * @generated
 	 */
 	EList<ElementReference> resolveInScope(String name);

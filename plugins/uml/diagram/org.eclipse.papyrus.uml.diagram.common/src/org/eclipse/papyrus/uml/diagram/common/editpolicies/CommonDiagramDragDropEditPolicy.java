@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST and others.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,6 +13,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - add the line 	ViewServiceUtil.forceLoad();
  *  Christian W. Damus (CEA) - bug 430726
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - bug 450341 
+ *  Christian W. Damus - bug 450944
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -20,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
@@ -45,7 +45,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -58,15 +58,15 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewServiceUtil;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
-import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.Element2IAdaptableRegistryHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewServiceUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
@@ -259,10 +259,14 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 
 	protected IUndoableOperation getDropObjectCommand(DropObjectsRequest dropRequest, EObject droppedObject) {
 		Point location = dropRequest.getLocation().getCopy();
-
-		int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart) getHost()).getNotationView(), droppedObject);
+		IGraphicalEditPart parent = (IGraphicalEditPart) getHost();
+		boolean isParentDiagram = getHost().getModel() instanceof Diagram;
+		int nodeVISUALID = getNodeVisualID(parent.getNotationView(), droppedObject);
 		int linkVISUALID = getLinkWithClassVisualID(droppedObject);
 		if (getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
+			if (!isParentDiagram && !isDropNonCanvasNodeAllowed(parent, droppedObject)) {
+				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+			}
 			Command specificDropCommand = getSpecificDropCommand(dropRequest, (Element) droppedObject, nodeVISUALID, linkVISUALID);
 			CompositeCommand cc = new CompositeCommand("Drop command");
 			cc.compose(new CommandProxy(specificDropCommand));
@@ -291,9 +295,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 			// Restrict the default node creation to the following cases:
 			// . Take the containment relationship into consideration
 			// . Release the constraint when GraphicalParent is a diagram
-			if (getHost().getModel() instanceof Diagram) {
+			if (isParentDiagram) {
 				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
-			} else if ((graphicalParent instanceof Element) && ((Element) graphicalParent).getOwnedElements().contains(droppedObject)) {
+			} else if (((graphicalParent instanceof Element) && ((Element) graphicalParent).getOwnedElements().contains(droppedObject)) && isDropNonCanvasNodeAllowed(parent, droppedObject)) {
 				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
 			}
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
@@ -313,6 +317,38 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 			return cc;
 		}
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Is dropping allowed for the non-canvas parent
+	 *
+	 * @param parent
+	 * @param droppedObject
+	 * @return true or false
+	 */
+	protected boolean isDropNonCanvasNodeAllowed(IGraphicalEditPart parent, EObject droppedObject) {
+		if (isListCompartmentContainsDroppedObject(parent, droppedObject)) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isListCompartmentContainsDroppedObject(IGraphicalEditPart parent, EObject droppedObject) {
+		if (false == parent instanceof ListCompartmentEditPart) {
+			return false;
+		}
+		@SuppressWarnings("unchecked")
+		List<EditPart> childs = parent.getChildren();
+		for (EditPart nextChild : childs) {
+			if (!(nextChild instanceof GraphicalEditPart)) {
+				continue;
+			}
+			EObject nextChildSemantic = ((GraphicalEditPart) nextChild).resolveSemanticElement();
+			if (nextChildSemantic == droppedObject) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -556,7 +592,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		// set the viewdescriptor as result
 		// it then can be used as an adaptable to retrieve the View
 		ICommand result = new CommandProxyWithResult(command, descriptor);
-		if (droppedObject instanceof Element){
+		if (droppedObject instanceof Element) {
 			getElement2IAdaptableRegistryHelper().registerAdapter((Element) droppedObject, (IAdaptable) result.getCommandResult().getReturnValue());
 		}
 		return result;

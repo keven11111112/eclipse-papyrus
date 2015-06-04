@@ -18,19 +18,19 @@ import com.google.inject.Inject;
 import org.eclipse.papyrus.uml.textedit.property.xtext.services.UmlPropertyGrammarAccess;
 
 public class UmlPropertyParser extends AbstractContentAssistParser {
-
+	
 	@Inject
 	private UmlPropertyGrammarAccess grammarAccess;
-
+	
 	private Map<AbstractElement, String> nameMappings;
-
+	
 	@Override
 	protected org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr.internal.InternalUmlPropertyParser createParser() {
 		org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr.internal.InternalUmlPropertyParser result = new org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr.internal.InternalUmlPropertyParser(null);
 		result.setGrammarAccess(grammarAccess);
 		return result;
 	}
-
+	
 	@Override
 	protected String getRuleName(AbstractElement element) {
 		if (nameMappings == null) {
@@ -38,6 +38,7 @@ public class UmlPropertyParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getPropertyRuleAccess().getAlternatives_3_1(), "rule__PropertyRule__Alternatives_3_1");
+					put(grammarAccess.getBoundSpecificationAccess().getValueAlternatives_0(), "rule__BoundSpecification__ValueAlternatives_0");
 					put(grammarAccess.getUnlimitedLiteralAccess().getAlternatives(), "rule__UnlimitedLiteral__Alternatives");
 					put(grammarAccess.getModifierSpecificationAccess().getAlternatives(), "rule__ModifierSpecification__Alternatives");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
@@ -98,27 +99,27 @@ public class UmlPropertyParser extends AbstractContentAssistParser {
 		}
 		return nameMappings.get(element);
 	}
-
+	
 	@Override
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr.internal.InternalUmlPropertyParser typedParser = (org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr.internal.InternalUmlPropertyParser) parser;
 			typedParser.entryRulePropertyRule();
 			return typedParser.getFollowElements();
-		} catch (RecognitionException ex) {
+		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);
-		}
+		}		
 	}
-
+	
 	@Override
 	protected String[] getInitialHiddenTokens() {
 		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
 	}
-
+	
 	public UmlPropertyGrammarAccess getGrammarAccess() {
 		return this.grammarAccess;
 	}
-
+	
 	public void setGrammarAccess(UmlPropertyGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}

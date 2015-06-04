@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf.transaction.commit;
 
-import static org.eclipse.papyrus.uml.alf.transaction.ActivatorTransaction.logger;
+//import static org.eclipse.papyrus.uml.alf.transaction.ActivatorTransaction.logger;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -24,6 +24,8 @@ import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.papyrus.uml.alf.libraries.helper.BackupState;
 import org.eclipse.papyrus.uml.alf.libraries.helper.BackupState.EditionStatus;
 import org.eclipse.papyrus.uml.alf.transaction.job.AlfCompilationJob;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
 
 
@@ -37,12 +39,21 @@ public class CommitScenario extends ChangeScenario {
 	 * Flag use to know if the commit is required. it may change in the before method
 	 */
 	private boolean isCommitRequired;
+	
+	/**
+	 * Text editor that can be updated when the commit scenario is done
+	 */
+	private StyledText view;
 
 	public CommitScenario() {
 		super();
 		this.isCommitRequired = true;
 	}
 
+	public void bindView(StyledText view){
+		this.view = view;
+	}
+	
 	/**
 	 * Update the user model state edition status
 	 */
@@ -90,7 +101,14 @@ public class CommitScenario extends ChangeScenario {
 	 * This method is automatically called after the job scheduled by this scenario terminates.
 	 */
 	public void after() {
-		logger.info("Compilation Job Done");
+		if(this.view!=null && !this.view.isDisposed()){
+			Display.getDefault().syncExec(new Runnable() {
+				@Override
+				public void run() {
+					CommitScenario.this.view.setText(CommitScenario.this.modelStateToBeCommitted.getContent());
+				}
+			});
+		}
 	}
 
 }

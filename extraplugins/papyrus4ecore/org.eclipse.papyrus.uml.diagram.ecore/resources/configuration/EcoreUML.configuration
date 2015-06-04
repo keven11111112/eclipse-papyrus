@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration:PapyrusConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmi:id="_oa8yUBP7EeSS0oyATXohNA" defaultStakeholder="_stSKMBP7EeSS0oyATXohNA">
   <stakeholders xmi:id="_stSKMBP7EeSS0oyATXohNA" name="MetaModeler" viewpoints="_3T-cEBP7EeSS0oyATXohNA"/>
-  <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_3T-cEBP7EeSS0oyATXohNA" name="Ecore UML Viewpoint">
+  <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_3T-cEBP7EeSS0oyATXohNA" name="Conceptual Modeling">
     <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_9xMXIBP7EeSS0oyATXohNA" name="Ecore UML Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" categories="_vUL7ABP7EeSS0oyATXohNA" customPalette="platform:/plugin/org.eclipse.papyrus.uml.diagram.ecore/resources/palette/ecoreClassDiagram.palette" customStyle="platform:/plugin/org.eclipse.papyrus.uml.diagram.ecore/resources/style/ecore.css">
       <modelRules xmi:id="_Q9t2YBP8EeSS0oyATXohNA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>

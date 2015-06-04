@@ -1197,7 +1197,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		selectionLayer.clear();
 
 		for (int rowIndex = 0; rowIndex < rowObjects.size(); rowIndex++) {
-			List<?> toFind = new ArrayList<Object>(elements);
+			List<Object> toFind = new ArrayList<Object>(elements);
+			for (Object object : elements) {
+				Object realObject = AxisUtils.getRepresentedElement(object);
+				if (!realObject.equals(object)) { // getRepresentedElement can return the axis itself
+					toFind.add(realObject);
+				}
+			}
+			
 			Object currentAxisObject = rowObjects.get(rowIndex);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			if (toFind.contains(currentRealObject)) {
@@ -1213,7 +1220,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		}
 
 		for (int columnIndex = 0; columnIndex < columnObjects.size(); columnIndex++) {
-			List<?> toFind = new ArrayList<Object>(elements);
+			List<Object> toFind = new ArrayList<Object>(elements);
+			for (Object object : elements) {
+				Object realObject = AxisUtils.getRepresentedElement(object);
+				if (!realObject.equals(object)) { // getRepresentedElement can return the axis itself
+					toFind.add(realObject);
+				}
+			}
+			
 			Object currentAxisObject = columnObjects.get(columnIndex);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			if (toFind.contains(currentRealObject)) {

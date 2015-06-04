@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- * 		Patrik Nandorf (Ericsson AB) - bug 458042
+ *   Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ * 	 Patrik Nandorf (Ericsson AB) - bug 458042
+ *   Christian W. Damus - bug 459701
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -62,9 +61,9 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 	 * Test if the relationship creation is allowed.
 	 * 
 	 * @param source
-	 *        the relationship source can be null
+	 *            the relationship source can be null
 	 * @param target
-	 *        the relationship target can be null
+	 *            the relationship target can be null
 	 * @return true if the creation is allowed
 	 */
 	protected abstract boolean canCreate(EObject source, EObject target);
@@ -78,11 +77,11 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 		EObject target = req.getTarget();
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
-		if(!noSourceAndTarget && !canCreate(source, target)) {
+		if (!noSourceAndTarget && !canCreate(source, target)) {
 			// Abort creation.
 			return UnexecutableCommand.INSTANCE;
 		}
-		if(noSourceOrTarget && !noSourceAndTarget) {
+		if (noSourceOrTarget && !noSourceAndTarget) {
 			// The request isn't complete yet. Return the identity command so
 			// that the create relationship gesture is enabled.
 			return IdentityCommand.INSTANCE;
@@ -102,7 +101,7 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 			}
 
 			// If no common container is found try target nearest package
-			if (proposedContainer == null)  {
+			if (proposedContainer == null) {
 				EObject targetPackage = EMFCoreUtil.getContainer(target, UMLPackage.eINSTANCE.getPackage());
 				if (!isReadOnly(targetPackage)) {
 					proposedContainer = targetPackage;
@@ -130,9 +129,9 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 	 */
 	protected Object getSourceObject(ConfigureRequest req) {
 		Object result = null;
-		if(getSourceReference().getUpperBound() != 1) {
+		if (getSourceReference().getUpperBound() != 1) {
 			EList<EObject> objects = new BasicEList<EObject>();
-			objects.add((EObject)req.getParameter(CreateRelationshipRequest.SOURCE));
+			objects.add((EObject) req.getParameter(CreateRelationshipRequest.SOURCE));
 			result = objects;
 		} else {
 			result = req.getParameter(CreateRelationshipRequest.SOURCE);
@@ -147,9 +146,9 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 	 */
 	protected Object getTargetObject(ConfigureRequest req) {
 		Object result = null;
-		if(getTargetReference().getUpperBound() != 1) {
+		if (getTargetReference().getUpperBound() != 1) {
 			EList<EObject> objects = new BasicEList<EObject>();
-			objects.add((EObject)req.getParameter(CreateRelationshipRequest.TARGET));
+			objects.add((EObject) req.getParameter(CreateRelationshipRequest.TARGET));
 			result = objects;
 		} else {
 			result = req.getParameter(CreateRelationshipRequest.TARGET);
@@ -162,19 +161,31 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 	 */
 	@Override
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
-		ICommand configureCommand = new ConfigureElementCommand(req) {
+		return CompositeCommand.compose(getConfigureSourcesAndTargetsCommand(req), super.getConfigureCommand(req));
+	}
 
+	/**
+	 * Creates the primitive component of the overall configure command that configures sources and targets
+	 * of the new directed relationship.
+	 * 
+	 * @param req
+	 *            the configure request
+	 * @return a command to configure the new relationship's sources and targets
+	 */
+	protected ICommand getConfigureSourcesAndTargetsCommand(final ConfigureRequest req) {
+		return new ConfigureElementCommand(req) {
+
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-				DirectedRelationship element = (DirectedRelationship)req.getElementToConfigure();
-				if(req.getParameter(CreateRelationshipRequest.SOURCE) != null) {
+				DirectedRelationship element = (DirectedRelationship) req.getElementToConfigure();
+				if (req.getParameter(CreateRelationshipRequest.SOURCE) != null) {
 					element.eSet(getSourceReference(), getSourceObject(req));
 				}
-				if(req.getParameter(CreateRelationshipRequest.TARGET) != null) {
+				if (req.getParameter(CreateRelationshipRequest.TARGET) != null) {
 					element.eSet(getTargetReference(), getTargetObject(req));
 				}
 				return CommandResult.newOKCommandResult(element);
 			}
 		};
-		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
 }

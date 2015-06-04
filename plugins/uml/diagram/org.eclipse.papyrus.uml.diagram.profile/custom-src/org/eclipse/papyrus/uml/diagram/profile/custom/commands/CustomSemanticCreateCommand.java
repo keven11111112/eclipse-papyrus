@@ -31,6 +31,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -39,6 +41,7 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MetaclassHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.profile.custom.requests.CustomCreateElementRequestAdapter;
 import org.eclipse.papyrus.uml.tools.providers.UMLMetaclassContentProvider;
@@ -110,7 +113,6 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 		}
 		ILabelProvider labelProvider = serv.getLabelProvider();
 		selector.setLabelProvider(labelProvider);
-
 		// EList<PackageableElement> importedElement = profile.getImportedElements();
 		// we don't set initial selection to allows to draw new instance of imported metaclass
 		final List<EObject> alreadyImportedElement = new ArrayList<EObject>();
@@ -119,21 +121,26 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 		// alreadyImportedElement.add(current);
 		// }
 		// }
-		final MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getDefault().getActiveShell(), selector, Messages.CustomSemanticCreateCommand_SelectMetaclass, true, false, -1);
-		dialog.setContextElement(profile);
-		dialog.setLabelProvider(labelProvider);
-		dialog.setInitialElementSelections(alreadyImportedElement);
+		IEditCommandRequest request = customRequestAdapter.getRequest(0);
+		if (MetaclassHelper.shouldSuppressDialog(request)){
+			this.addedMetaclasses = MetaclassHelper.getSuppressedDialogResult(request);
+		} else {
+			final MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getDefault().getActiveShell(), selector, Messages.CustomSemanticCreateCommand_SelectMetaclass, true, false, -1);
+			dialog.setContextElement(profile);
+			dialog.setLabelProvider(labelProvider);
+			dialog.setInitialElementSelections(alreadyImportedElement);
 
-		if (dialog.open() == IStatus.OK) {
-			Object[] selectedMetaclass = dialog.getResult();
-			this.addedMetaclasses = Arrays.asList(selectedMetaclass);
-			if (!this.addedMetaclasses.isEmpty()) {
-				ICommand createElementImportCommand = getImportElementCommand();
-				if (createElementImportCommand != null) {
-					createElementImportCommand.execute(progressMonitor, info);
-				}
-				return CommandResult.newOKCommandResult();
+			if (dialog.open() == IStatus.OK) {
+				Object[] selectedMetaclass = dialog.getResult();
+				this.addedMetaclasses = Arrays.asList(selectedMetaclass);
 			}
+		}
+		if (!this.addedMetaclasses.isEmpty()) {
+			ICommand createElementImportCommand = getImportElementCommand();
+			if (createElementImportCommand != null) {
+				createElementImportCommand.execute(progressMonitor, info);
+			}
+			return CommandResult.newOKCommandResult();
 		}
 		return result;
 	}

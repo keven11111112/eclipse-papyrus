@@ -41,4 +41,8 @@
       label="ProtocolMessage IN"
       icon="platform:/plugin/org.eclipse.papyrus.umlrt.ui/icons/rt_message_in.gif"
       elementTypeIdRef="org.eclipse.papyrus.umlrt.ProtocolMessageIn"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Operation"
+      icon=""
+      elementTypeIdRef="org.eclipse.papyrus.uml.Operation"/>
 </ElementCreationMenuModel:Folder>

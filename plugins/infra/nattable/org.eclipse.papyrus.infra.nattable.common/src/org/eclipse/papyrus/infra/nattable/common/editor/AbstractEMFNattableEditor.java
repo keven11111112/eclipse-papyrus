@@ -27,6 +27,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.preference.PreferenceStore;
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.papyrus.infra.core.editor.reload.IReloadContextProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -61,7 +62,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	/**
 	 * the table manager
 	 */
-	protected final INattableModelManager tableManager;
+	protected INattableModelManager tableManager;
 
 	/**
 	 * the part name synchronizer
@@ -232,6 +233,25 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		}
 
 		return super.getAdapter(adapter);
+	}
+
+	/**
+	 * this method is used dispose the existing nattable widget and recreate a new one.
+	 * It has been created to be able to reload a table when a bug broke the table after a user action.
+	 * 
+	 * see bug 466447: [TreeTable] Missing method to reload a (hierarchic) table
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=466447
+	 */
+	public void reloadNattableModelManager() {
+		Table rawModel = this.tableManager.getTable();
+		// we dispose the previous nattable widget
+		NatTable nattable = this.tableManager.getAdapter(NatTable.class);
+		Composite parent = nattable.getParent();
+		nattable.dispose();
+		this.tableManager.dispose();
+		this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
+		nattable = this.tableManager.createNattable(parent, SWT.NONE, getSite());
+		nattable.getParent().layout();
 	}
 
 	@Override

@@ -29,7 +29,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * All tests together.
  */
 @RunWith(Suite.class)
-@SuiteClasses({ AllCanonicalTests.class, BugTests.class, BugTests2.class, BugTest_m7.class, AllTests_20130916.class })
+@SuiteClasses({ AllCanonicalTests.class, BugTests.class, BugTests2.class, BugTest_m7.class, AllTests_20130916.class, LifelineXYLayoutEditPolicyTest.class })
 public class AllTests {
 
 	@ClassRule

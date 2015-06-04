@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.RequestUtils;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.dnd.Activator;
@@ -109,7 +110,7 @@ public class ClassifierToSlotsDropStrategy extends TransactionalDropStrategy {
 		cc.add(setClassifiersCommand);
 
 		// Add slots
-		ICommand editSlotsCommand = getEditSlotsCommand(valuesToAdd, targetEditPart);
+		ICommand editSlotsCommand = getEditSlotsCommand(valuesToAdd, targetEditPart, request);
 		if (editSlotsCommand != null) {
 			cc.add(editSlotsCommand);
 		}
@@ -117,6 +118,30 @@ public class ClassifierToSlotsDropStrategy extends TransactionalDropStrategy {
 		return cc.canExecute() ? new ICommandProxy(cc.reduce()) : null;
 	}
 
+	protected ICommand getEditSlotsCommand(List<Classifier> classifiers, EditPart targetEditPart, Request request) {
+		for (Classifier classifier : classifiers) {
+			if (!classifier.getAllAttributes().isEmpty()) {
+				// FIXME: This is inconsistent with ClassifierPropertiesContentProvider,
+				// which doesn't only relies on getAllAttributes()...
+				// When a Class (without any property) implements an Interface (With at least one property),
+				// this will return a null command, while the dialog would have displayed the interface's properties
+
+				// There is at least one property
+				boolean headless = !RequestUtils.useGUI(request);
+				return new SelectAndCreateSlotsCommand(classifiers, targetEditPart, headless);
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * @deprecated Use {@link #getEditSlotsCommand(List, EditPart, Request)} instead
+	 * @param classifiers
+	 * @param targetEditPart
+	 * @return
+	 */
+	@Deprecated
 	protected ICommand getEditSlotsCommand(List<Classifier> classifiers, EditPart targetEditPart) {
 		for (Classifier classifier : classifiers) {
 			if (!classifier.getAllAttributes().isEmpty()) {

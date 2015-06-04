@@ -48,7 +48,8 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[1];
-		this.expressionBodies = new String[] { "self.name.concat(\'.file\') ", //$NON-NLS-1$
+		this.expressionBodies = new String[] {
+				"self.name.concat(\'.file\') ", //$NON-NLS-1$
 		};
 	}
 

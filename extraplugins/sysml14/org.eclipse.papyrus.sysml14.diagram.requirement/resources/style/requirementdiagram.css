@@ -1,0 +1,66 @@
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr
+ *****************************************************************************/
+Class{
+	fontName: "Segoe UI";
+	fillColor: #C3D7DD;
+	transparency: 0;
+	gradient: #FFFFFF vertical;
+	lineColor: #000000;
+	elementIcon: false;
+}
+
+Compartment {
+	visible:false;
+}
+
+Package > Compartment[kind="packagedelements"] {
+    visible:true;
+    showTitle:false;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[type=StereotypeCompartment] {
+    visible:true;
+    showTitle:true;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[type=StereotypeCompartment] > [property="derived"]{
+	visible:false;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[type=StereotypeCompartment] > [property="derivedFrom"]{
+	visible:false;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[type=StereotypeCompartment] > [property="satisfiedBy"]{
+	visible:false;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[type=StereotypeCompartment] > [property="refinedBy"]{
+	visible:false;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[type=StereotypeCompartment] > [property="tracedTo"]{
+	visible:false;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[type=StereotypeCompartment] > [property="verifiedBy"]{
+	visible:false;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[type=StereotypeCompartment] > [property="master"]{
+	visible:false;
+}
+
+Class[appliedStereotypes~="Requirement"] > Compartment[kind="operations"] {
+    visible:true;
+    showTitle:false;
+}

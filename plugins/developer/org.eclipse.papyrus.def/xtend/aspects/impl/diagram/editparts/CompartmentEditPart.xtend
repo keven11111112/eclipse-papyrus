@@ -17,6 +17,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenCompartment
 import xpt.diagram.editparts.Common
+import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
 
 //DOCUMENTATION: PapyrusGenCode
 //Overload only the creation of editPolicies in order to add the paste edit policy
@@ -48,5 +49,21 @@ import xpt.diagram.editparts.Common
 			return super.getTargetEditPart(request);
 		}
 	'''
+	
+	override createFigure(GenCompartment it) {
+		if (hasExternalSuperClass(it,'org.eclipse.papyrus.uml.diagram.activity.edit.part.ShapeCompartmentWithoutScrollbarsEditPart')) {
+			'''
+				@Override
+				public org.eclipse.draw2d.IFigure createFigure() {
+					return super.createFigure();
+				}
+			'''
+		} else {
+			super.createFigure(it);
+		}
+	}
 
+	def boolean hasExternalSuperClass(GenCompartment it, String className) {
+		return it.eResource.allContents.filter(typeof(ExtendedGenView)).filter [v |	(v.genView.contains(it) && v.superOwnedEditPart.equals(className))].size > 0;
+	}
 }

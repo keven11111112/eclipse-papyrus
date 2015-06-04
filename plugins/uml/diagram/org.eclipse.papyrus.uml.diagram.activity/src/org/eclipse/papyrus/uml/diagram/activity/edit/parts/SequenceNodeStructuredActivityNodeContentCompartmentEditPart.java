@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -22,15 +21,14 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.part.ShapeCompartmentWithoutScrollbarsEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityGroupCustomDragAndDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
@@ -39,7 +37,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class SequenceNodeStructuredActivityNodeContentCompartmentEditPart extends ShapeCompartmentEditPart {
+public class SequenceNodeStructuredActivityNodeContentCompartmentEditPart extends ShapeCompartmentWithoutScrollbarsEditPart {
 
 	/**
 	 * @generated
@@ -62,20 +60,11 @@ public class SequenceNodeStructuredActivityNodeContentCompartmentEditPart extend
 	}
 
 	/**
-	 * @generated NOT (remove the top border,hide scrollbar)
+	 * @generated
 	 */
 	@Override
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
-		result.setTitleVisibility(false);
-		// remove the top border
-		result.setBorder(null);
-		// Hide scrollBar
-		result.getScrollPane().setEnabled(false);
-		result.getScrollPane().setHorizontalScrollBar(null);
-		result.getScrollPane().setVerticalScrollBar(null);
-		result.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
-		return result;
+		return super.createFigure();
 	}
 
 	/**

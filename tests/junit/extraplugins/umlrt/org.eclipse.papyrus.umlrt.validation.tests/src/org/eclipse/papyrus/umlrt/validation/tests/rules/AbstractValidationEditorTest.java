@@ -19,10 +19,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
+import org.eclipse.uml2.uml.Element;
 
 
 /**
- * Abstract test for validation rules
+ * Abstract test for validat
+ * import org.eclipse.uml2.uml.Element;ion rules
  */
 public abstract class AbstractValidationEditorTest extends AbstractEditorTest {
 
@@ -45,6 +47,21 @@ public abstract class AbstractValidationEditorTest extends AbstractEditorTest {
 			}
 		}
 		return foundDiagnostic;
+	}
+
+	public List<Diagnostic> filterDiagnosticsByElement(List<Diagnostic> diagnostics, Element element) {
+		List<Diagnostic> filteredDiagnostics = new ArrayList<Diagnostic>();
+		for (Diagnostic diagnostic : diagnostics) {
+			List<?> datas = diagnostic.getData();
+			if (datas != null && !datas.isEmpty()) {
+				// try to get first element. According to Diagnostic#getData() documentation : The first element is typically the object that is the primary source of the problem;
+				Object o = datas.get(0);
+				if (element.equals(o)) {
+					filteredDiagnostics.add(diagnostic);
+				}
+			}
+		}
+		return filteredDiagnostics;
 	}
 
 }

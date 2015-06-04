@@ -298,9 +298,14 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		Map<DropStrategy, Command> matchingStrategies = new LinkedHashMap<DropStrategy, Command>();
 
 		for (DropStrategy strategy : DropStrategyManager.instance.getActiveStrategies()) {
-			Command command = strategy.getCommand(request, getHost());
-			if (command != null && command.canExecute()) {
-				matchingStrategies.put(strategy, command);
+			try { // Strategies are provided through extension points; we can't guarantee they won't crash
+				Command command = strategy.getCommand(request, getHost());
+				if (command != null && command.canExecute()) {
+					matchingStrategies.put(strategy, command);
+				}
+			} catch (Throwable t) {
+				String message = String.format("An error occurred when trying to execute a custom Drop strategy: %s", strategy.getLabel());
+				Activator.log.error(message, t);
 			}
 		}
 

@@ -276,11 +276,7 @@
           pluginID="org.eclipse.uml2.uml.edit"
           iconPath="/icons/full/obj16/Dependency.gif"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"/>
-      <elementDescriptors
           elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"

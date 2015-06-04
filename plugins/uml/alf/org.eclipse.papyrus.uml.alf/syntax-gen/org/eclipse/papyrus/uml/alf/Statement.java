@@ -233,7 +233,7 @@ public interface Statement extends SyntaxElement {
 	 * accept or if statement.
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" blocksUnique="false" blocksMany="true" blocksOrdered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n             let newAssignments : Set(AssignedSource) = blocks->collect(b | \n               if b = null then Set(AssignedSource){}\n               else b.assignmentAfter->select(isNew(b.assignmentBefore))\n               endif\n             ) in\n               newAssignments.name->asSet()->collect(n | \n                 self.merge(n, newAssignments->select(name = n))\n               )->asSet()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n             let newAssignments = blocks->collect(b | \n               if b = null then Set(AssignedSource){}\n               else b.assignmentAfter->select(isNew(b.assignmentBefore))\n               endif\n             )->asSet() in\n               newAssignments.name->asSet()->collect(n | \n                 self.merge(n, newAssignments->select(name = n))\n               )->asSet()'"
 	 * @generated
 	 */
 	EList<AssignedSource> mergeAssignments(EList<Block> blocks);

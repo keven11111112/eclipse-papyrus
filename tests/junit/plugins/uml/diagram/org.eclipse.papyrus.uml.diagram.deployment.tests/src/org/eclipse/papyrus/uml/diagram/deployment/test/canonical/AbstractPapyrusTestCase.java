@@ -12,17 +12,24 @@
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
 
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
+import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusSemanticTestCase;
 
 /**
  * The Class AbstractPapyrusTestCase.
  */
-public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase {
+public abstract class AbstractPapyrusTestCase extends AbstractPapyrusSemanticTestCase {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateDeploymentDiagramCommand();
 	}
 
+	@Override
+	protected IElementType getTypeByID(int vid) {
+		return UMLElementTypes.getElementType(vid);
+	}
 }

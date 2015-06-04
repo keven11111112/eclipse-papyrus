@@ -86,6 +86,21 @@ public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 		}
 	}
 
+	/**
+	 * Disposes the adapter attached to model styleSheet.
+	 *
+	 */
+	public void disposeAdapter() {
+		for (EObject eObject : model.getContents()) {
+			if (eObject instanceof ModelStyleSheets) {
+				ModelStyleSheets styleSheets = (ModelStyleSheets) eObject;
+				styleSheets.eAdapters().remove(adapter);
+				for (StyleSheet styleSheet : styleSheets.getStylesheets()) {
+					styleSheet.eAdapters().remove(adapter);
+				}
+			}
+		}
+	}
 
 	private static ExtendedCSSEngine getParentCSSEngine(Resource resource) {
 		ExtendedCSSEngine result;

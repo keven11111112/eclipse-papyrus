@@ -46,6 +46,10 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 
 	protected PropertyLabelHelper() {
 		// initialize the map
+		setupMasks(masks);
+	}
+
+	protected void setupMasks(Map<String, String> masks) {
 		masks.put(ICustomAppearance.DISP_VISIBILITY, "Visibility");
 		masks.put(ICustomAppearance.DISP_DERIVE, "Is Derived");
 		masks.put(ICustomAppearance.DISP_NAME, "Name");

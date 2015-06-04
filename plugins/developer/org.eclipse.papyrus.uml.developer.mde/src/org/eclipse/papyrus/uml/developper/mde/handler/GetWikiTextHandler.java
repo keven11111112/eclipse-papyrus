@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.handler;
@@ -37,13 +38,18 @@ public class GetWikiTextHandler extends IDMAbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
 		System.err.println(getCurrentProject().getLocationURI().getPath());
-		IDMAbstractHandler.elt2DocElt.clear();
-		IDMAbstractHandler.Toc2DocElt.clear();
-		CreateDocumentModelCommand createDocumentModelCommand = new CreateDocumentModelCommand(transactionalEditingDomain, (Model) getSelection(), getCurrentProject().getLocationURI().getPath() + INTERNAL_DIRECTORY_NAME);
-		transactionalEditingDomain.getCommandStack().execute(createDocumentModelCommand);
-		IProject project = getCurrentProject();
-		TranscriptionEngine engine = new TranscriptionEngine((Model) getSelection(), project, new WikiTranscription());
-		engine.traduce();
+		IDMAbstractHandler.clear();
+
+		try {
+			CreateDocumentModelCommand createDocumentModelCommand = new CreateDocumentModelCommand(transactionalEditingDomain, (Model) getSelection(), getCurrentProject().getLocationURI().getPath() + INTERNAL_DIRECTORY_NAME);
+			transactionalEditingDomain.getCommandStack().execute(createDocumentModelCommand);
+			IProject project = getCurrentProject();
+			TranscriptionEngine engine = new TranscriptionEngine((Model) getSelection(), project, new WikiTranscription());
+			engine.traduce();
+		} finally {
+			IDMAbstractHandler.clear();
+		}
+
 		return null;
 	}
 

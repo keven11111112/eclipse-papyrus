@@ -25,11 +25,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeUtil;
+import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.service.types.Activator;
 import org.eclipse.papyrus.uml.service.types.helper.advice.InstanceSpecificationEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.ui.AssociationSelectionDialog;
@@ -47,20 +51,26 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 
-public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
+public class InstanceSpecificationLinkCreateCommand extends ConfigureElementCommand {
 
-	protected final EObject source;
+	protected  InstanceSpecification source=null;
 
-	protected final EObject target;
+	protected  InstanceSpecification target=null;
 
 	protected HashSet<Association> commonAssociations;
+	protected boolean useUI=true;
 
 	protected static final String INSTANCE_END = "InstanceEnd";//
 
-	public InstanceSpecificationLinkCreateCommand(CreateRelationshipRequest request) {
-		super(request.getLabel(), null, request);
-		this.source = request.getSource();
-		this.target = request.getTarget();
+	public InstanceSpecificationLinkCreateCommand(ConfigureRequest request) {
+		super(request);
+		if(request.getParameter(CreateRelationshipRequest.SOURCE)instanceof InstanceSpecification){
+			source=(InstanceSpecification)request.getParameter(CreateRelationshipRequest.SOURCE);
+		}
+		if(request.getParameter(CreateRelationshipRequest.TARGET)instanceof InstanceSpecification){
+			target=(InstanceSpecification)request.getParameter(CreateRelationshipRequest.TARGET);
+		}
+		useUI=ElementTypeUtils.useGUI(request);
 	}
 
 	/**
@@ -97,7 +107,7 @@ public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * remove an end in the instancespecification link by adding a eannotation if not exist
+	 * remove an end in the instance specification link by adding a eannotation if not exist
 	 *
 	 * @param instanceLink
 	 * @param end
@@ -195,46 +205,47 @@ public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (((InstanceSpecification) source).getClassifiers().isEmpty() || ((InstanceSpecification) target).getClassifiers().isEmpty()) {
-			return CommandResult.newCancelledCommandResult();
+		if(useUI){
+			if (((InstanceSpecification) source).getClassifiers().isEmpty() || ((InstanceSpecification) target).getClassifiers().isEmpty()) {
+				return CommandResult.newOKCommandResult(getElementToEdit());
+			}
+			ServicesRegistry registry;
+			try {
+				registry = ServiceUtilsForResource.getInstance().getServiceRegistry(source.eResource());
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+				return CommandResult.newOKCommandResult(getElementToEdit());
+			}
+			AssociationSelectionDialog associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, getModelAssociations(), registry);
+			associationSelectionDialog.open();
+			Association selectedAssociation = associationSelectionDialog.getSelectedAssociation();
+			if (selectedAssociation == null && associationSelectionDialog.isCanceled()) {
+				return CommandResult.newOKCommandResult(getElementToEdit());
+			}
+			/*
+			 * Creation of the instance specification link
+			 * with a name a container, and set the source and target
+			 */
+			InstanceSpecification instanceSpecification=(InstanceSpecification)getElementToEdit();
+			Set<Classifier> sourceSpecificationClassifiersSet = getSpecificationClassifier((InstanceSpecification) source);
+			Set<Classifier> targetSpecificationClassifiersSet = getSpecificationClassifier((InstanceSpecification) target);
+			boolean revertEnds = false;
+			if (selectedAssociation != null) {
+				instanceSpecification.getClassifiers().add(selectedAssociation);
+				Type sourceType = selectedAssociation.getMemberEnds().get(0).getType();
+				revertEnds = false == sourceSpecificationClassifiersSet.contains(sourceType);
+			}
+			if (revertEnds) {
+				addEnd(instanceSpecification, ((InstanceSpecification) target));
+				addEnd(instanceSpecification, ((InstanceSpecification) source));
+			} else {
+				addEnd(instanceSpecification, ((InstanceSpecification) source));
+				addEnd(instanceSpecification, ((InstanceSpecification) target));
+			}
+			setupSlots(selectedAssociation, instanceSpecification, sourceSpecificationClassifiersSet, targetSpecificationClassifiersSet);
+			return CommandResult.newOKCommandResult(instanceSpecification);
 		}
-		ServicesRegistry registry;
-		try {
-			registry = ServiceUtilsForResource.getInstance().getServiceRegistry(source.eResource());
-		} catch (ServiceException e) {
-			Activator.log.error(e);
-			return CommandResult.newCancelledCommandResult();
-		}
-		AssociationSelectionDialog associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, getModelAssociations(), registry);
-		associationSelectionDialog.open();
-		Association selectedAssociation = associationSelectionDialog.getSelectedAssociation();
-		if (selectedAssociation == null && associationSelectionDialog.isCanceled()) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		/*
-		 * Creation of the instance specification link
-		 * with a name a container, and set the source and target
-		 */
-		InstanceSpecification instanceSpecification = UMLFactory.eINSTANCE.createInstanceSpecification();
-		((InstanceSpecification) source).getNearestPackage().getPackagedElements().add(instanceSpecification);
-		instanceSpecification.setName(NamedElementUtil.getDefaultNameWithIncrementFromBase(instanceSpecification.eClass().getName(), instanceSpecification.getOwner().eContents()));
-		Set<Classifier> sourceSpecificationClassifiersSet = getSpecificationClassifier((InstanceSpecification) source);
-		Set<Classifier> targetSpecificationClassifiersSet = getSpecificationClassifier((InstanceSpecification) target);
-		boolean revertEnds = false;
-		if (selectedAssociation != null) {
-			instanceSpecification.getClassifiers().add(selectedAssociation);
-			Type sourceType = selectedAssociation.getMemberEnds().get(0).getType();
-			revertEnds = false == sourceSpecificationClassifiersSet.contains(sourceType);
-		}
-		if (revertEnds) {
-			addEnd(instanceSpecification, ((InstanceSpecification) target));
-			addEnd(instanceSpecification, ((InstanceSpecification) source));
-		} else {
-			addEnd(instanceSpecification, ((InstanceSpecification) source));
-			addEnd(instanceSpecification, ((InstanceSpecification) target));
-		}
-		setupSlots(selectedAssociation, instanceSpecification, sourceSpecificationClassifiersSet, targetSpecificationClassifiersSet);
-		return CommandResult.newOKCommandResult(instanceSpecification);
+		return CommandResult.newOKCommandResult(getElementToEdit());
 	}
 
 	private void setupSlots(Association selectedAssociation, InstanceSpecification instanceSpecification, Set<Classifier> sourceSpecificationClassifiersSet, Set<Classifier> targetSpecificationClassifiersSet) {

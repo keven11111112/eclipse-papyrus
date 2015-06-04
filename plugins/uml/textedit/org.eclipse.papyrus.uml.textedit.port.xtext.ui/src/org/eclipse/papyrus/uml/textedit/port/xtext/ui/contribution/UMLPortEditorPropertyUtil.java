@@ -53,7 +53,7 @@ public class UMLPortEditorPropertyUtil extends PortUtil {
 		}
 
 		// multiplicity -> do not display [1]
-		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(port);
+		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(port, true);
 		if (!multiplicity.trim().equals("[1]")) {
 			buffer.append(multiplicity);
 		}

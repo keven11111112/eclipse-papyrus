@@ -12,6 +12,8 @@
 
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -31,6 +33,7 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 
 	private Listener fileNameModifyListener = new Listener() {
 
+		@Override
 		public void handleEvent(Event e) {
 			boolean valid = canFlipToNextPage();
 			setPageComplete(valid);
@@ -47,7 +50,7 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		Composite composite = (Composite)getControl();
+		Composite composite = (Composite) getControl();
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.DOWN, true, false));
 		GridLayout gridLayout = new GridLayout(1, false);
 		composite.setLayout(gridLayout);
@@ -64,9 +67,9 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 	 * Creates the group.
 	 *
 	 * @param parent
-	 *        the parent
+	 *            the parent
 	 * @param name
-	 *        the name
+	 *            the name
 	 * @return the group
 	 */
 	private static Group createGroup(Composite parent, String name) {
@@ -83,8 +86,8 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 
 	@Override
 	protected boolean validatePage() {
-		if(fileName != null) {
-			if(fileName.getText().equals("")) { //$NON-NLS-1$
+		if (fileName != null) {
+			if (fileName.getText().equals("")) { //$NON-NLS-1$
 				this.setErrorMessage(Messages.PapyrusProjectCreationPage_3);
 				return false;
 			}
@@ -97,12 +100,36 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 		return fileName.getText();
 	}
 
+	/**
+	 * This method is used to avoid case conflicts between existing and newly created projects
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 *
+	 * @return
+	 */
 	@Override
 	public boolean canFlipToNextPage() {
-		if(validatePage() && !fileName.getText().equals("")) { //$NON-NLS-1$
-			return true;
+		// retrieve the selected elements and get its children
+		boolean canFlip = true;
+
+		if (!validatePage() || fileName.getText().equals("")) { //$NON-NLS-1$
+			canFlip = false;
+			this.setErrorMessage(Messages.PapyrusProjectCreationPage_page_incorrect_desc + this.getProjectName().toLowerCase());
 		}
-		return false;
+
+		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+		if (canFlip != false) {
+			for (IProject iproject : projects) {
+				if (this.getProjectName().equalsIgnoreCase(iproject.getName())) {
+					canFlip = false;
+					this.setErrorMessage(Messages.PapyrusProjectCreationPage_page_same_case_desc + iproject.getName());
+					// A conflict has been found, no need to go further
+					break;
+				}
+			}
+		}
+
+		return canFlip;
 	}
 
 	@Override

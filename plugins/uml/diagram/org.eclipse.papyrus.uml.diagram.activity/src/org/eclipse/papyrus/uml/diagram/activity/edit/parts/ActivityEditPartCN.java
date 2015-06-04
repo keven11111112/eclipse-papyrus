@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNode
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigure;
+import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigureCN;
 import org.eclipse.papyrus.uml.diagram.activity.locator.ParameterNodeLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -140,15 +140,15 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected IFigure createNodeShape() {
-		return primaryShape = new ActivityFigure();
+		return primaryShape = new ActivityFigureCN();
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	public ActivityFigure getPrimaryShape() {
-		return (ActivityFigure) primaryShape;
+	public ActivityFigureCN getPrimaryShape() {
+		return (ActivityFigureCN) primaryShape;
 	}
 
 	/**

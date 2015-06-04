@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Mickaël Adam (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *  Mickaï¿½l Adam (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
@@ -16,17 +16,21 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
+import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
+import org.eclipse.papyrus.infra.gmfdiag.css.engine.ModelCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 
 
@@ -43,7 +47,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	private Resource notationResource;
 
 	/** The domain. */
-	private EditingDomain domain;
+	private TransactionalEditingDomain domain;
 
 	/** The listener. */
 	private CustomModelStyleSheetListener listener;
@@ -62,7 +66,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	 * @param feature
 	 *            the feature
 	 */
-	public ModelStyleSheetObservableList(Resource notationResource, List<?> wrappedList, EditingDomain domain, EObject source, EStructuralFeature feature) {
+	public ModelStyleSheetObservableList(Resource notationResource, List<?> wrappedList, TransactionalEditingDomain domain, EObject source, EStructuralFeature feature) {
 		super(wrappedList, domain, source, feature);
 		this.notationResource = notationResource;
 		this.domain = domain;
@@ -81,8 +85,69 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	@Override
 	public Command getAddAllCommand(Collection<?> values) {
 		CompoundCommand compoundCommand = new CompoundCommand();
+
+		if (source.eResource() == null) {
+			compoundCommand.append(new RecordingCommand(domain, "Create ModelStylesheet") {
+				/**
+				 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+				 *
+				 */
+				@Override
+				protected void doExecute() {
+					notationResource.getContents().add(source);
+				}
+
+			});
+
+			compoundCommand.append(new AbstractCommand("Initialize ModelCSSEngine Adapter") {
+
+				public void redo() {
+					execute();
+				}
+
+				public void execute() {
+					ExtendedCSSEngine engine = CSSNotationResource.getEngine(notationResource);
+					if (engine instanceof ModelCSSEngine) {
+						((ModelCSSEngine) engine).initAdapter();
+					}
+				}
+
+				/**
+				 * @see org.eclipse.emf.common.command.AbstractCommand#canUndo()
+				 *
+				 * @return
+				 */
+				@Override
+				public boolean canUndo() {
+					return true;
+				}
+
+				/**
+				 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
+				 *
+				 */
+				@Override
+				public void undo() {
+					ExtendedCSSEngine engine = CSSNotationResource.getEngine(notationResource);
+					if (engine instanceof ModelCSSEngine) {
+						((ModelCSSEngine) engine).disposeAdapter();
+					}
+				}
+
+				/**
+				 * @see org.eclipse.emf.common.command.AbstractCommand#prepare()
+				 *
+				 * @return
+				 */
+				@Override
+				protected boolean prepare() {
+					return true;
+				}
+			});
+		}
+
 		compoundCommand.append(super.getAddAllCommand(values));
-		compoundCommand.append(new AddAllModelStyleSheetCommand((TransactionalEditingDomain) domain, notationResource, values));
+		compoundCommand.append(new AddAllModelStyleSheetCommand(domain, notationResource, values));
 		return compoundCommand;
 	}
 
@@ -111,8 +176,8 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 						for (Object styleSheetReference : ((EObjectListValueStyle) objectFromDiagram).getEObjectListValue()) {
 							// If the current style sheet to delete from model exist on a diagram, add it on the root
 							if (value == styleSheetReference) {
-								compoundCommand.append(new RemoveObjectCommand((TransactionalEditingDomain) domain, (EObject) styleSheetReference));
-								compoundCommand.append(new AddModelStyleSheetCommand((TransactionalEditingDomain) domain, notationResource, (EObject) styleSheetReference));
+								compoundCommand.append(new RemoveObjectCommand(domain, (EObject) styleSheetReference));
+								compoundCommand.append(new AddModelStyleSheetCommand(domain, notationResource, (EObject) styleSheetReference));
 							}
 						}
 					}
@@ -132,7 +197,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	 */
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
-		return new RemoveAllModelStyleSheetValueCommand((TransactionalEditingDomain) domain, notationResource, values);
+		return new RemoveAllModelStyleSheetValueCommand(domain, notationResource, values);
 	}
 
 	/**

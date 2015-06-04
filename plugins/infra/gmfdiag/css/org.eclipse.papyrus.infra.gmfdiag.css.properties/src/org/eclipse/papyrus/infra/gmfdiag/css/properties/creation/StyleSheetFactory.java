@@ -16,7 +16,9 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.widgets.Control;
 
@@ -41,6 +43,26 @@ public class StyleSheetFactory extends EcorePropertyEditorFactory {
 		// The EObject is simply created ; it isn't stored anywhere (yet)
 		// @see #validateObjects(Collection)
 		return simpleCreateObject(widget);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.views.properties.creation.PropertyEditorFactory#getOperationExecutor(java.lang.Object)
+	 *
+	 * @param context
+	 * @return
+	 */
+	@Override
+	public IAtomicOperationExecutor getOperationExecutor(Object context) {
+		if (context instanceof StyleSheet) {
+			StyleSheet stylesheet = (StyleSheet) context;
+			if (stylesheet.eResource() == null) {
+				// Bug 468345: Use the current Notation::view instead, since we're creating the stylesheet in this object's resource
+				// Ensure that further edition occurs in a proper nested transaction
+				return super.getOperationExecutor(this.context);
+			}
+		}
+
+		return super.getOperationExecutor(context);
 	}
 
 	/**

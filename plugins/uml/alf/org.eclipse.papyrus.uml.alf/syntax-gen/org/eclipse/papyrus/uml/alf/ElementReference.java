@@ -440,7 +440,7 @@ public interface ElementReference extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(visibility() = null or visibility() = \'public\')'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(visibility() = null or visibility() = \'public\')->asSet()'"
 	 * @generated
 	 */
 	EList<ElementReference> visibleMembers();
@@ -473,7 +473,7 @@ public interface ElementReference extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(isReception())'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(isReception())->asSet()'"
 	 * @generated
 	 */
 	EList<ElementReference> receptions();
@@ -835,7 +835,7 @@ public interface ElementReference extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false" oppositeEndTypeRequired="true" nameRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referents = self.members()->\n          -- Note: Only association-owned ends are considered as association ends.\n          select(isAssociation() and (properties()->size() = 2)).associationEnds()->\n          select(associationEnd |\n              let opposite = associationEnd.opposite() in\n                opposite <> null and\n                oppositeEndType.conformsTo(opposite.type()) and\n                  name = associationEnd.name()\n          )\n        in\n          let outerScope = self.namespace() in\n            if outerScope = null then referents\n            else\n              let hiddenNames = referents.name() in\n                referents->union(\n                  outerScope.resolveAssociationEnd(oppositeEndType, name)->\n                  reject(outerReferent | hiddenNames->includes(outerReferent.name()))\n              )\n            endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referents = self.members()->\n          -- Note: Only association-owned ends are considered as association ends.\n          select(isAssociation() and (properties()->size() = 2)).associationEnds()->\n          select(associationEnd |\n              let opposite = associationEnd.opposite() in\n                opposite <> null and\n                oppositeEndType.conformsTo(opposite.type()) and\n                  name = associationEnd.name()\n          )->asSet()\n        in\n          let outerScope = self.namespace() in\n            if outerScope = null then referents\n            else\n              let hiddenNames = referents.name() in\n                referents->union(\n                  outerScope.resolveAssociationEnd(oppositeEndType, name)->\n                  reject(outerReferent | hiddenNames->includes(outerReferent.name()))\n              )\n            endif'"
 	 * @generated
 	 */
 	EList<ElementReference> resolveAssociationEnd(ElementReference oppositeEndType, String name);

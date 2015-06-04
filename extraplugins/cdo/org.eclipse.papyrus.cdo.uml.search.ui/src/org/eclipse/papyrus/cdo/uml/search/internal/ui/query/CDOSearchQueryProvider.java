@@ -267,7 +267,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 
 		boolean first = true;
 		for (URI uri : scope) {
-			String path = "/" + CDOURIUtil.extractResourcePath(uri);
+			String path = CDOURIUtil.extractResourcePath(uri);
 			if (uri.hasTrailingPathSeparator() && !path.endsWith("/")) { //$NON-NLS-1$
 				path = path + "/"; //$NON-NLS-1$
 			}

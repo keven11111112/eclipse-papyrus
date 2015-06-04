@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.uml.alf.libraries.helper.AlfUtil;
 import org.eclipse.papyrus.uml.alf.text.generation.DefaultEditStringRetrievalStrategy;
 import org.eclipse.papyrus.uml.alf.text.representation.AlfTextualRepresentation;
 import org.eclipse.papyrus.uml.alf.transaction.commands.AlfCommandFactory;
@@ -57,6 +58,9 @@ public class AlfCompilationJob extends AlfAbstractJob {
 					}
 					/* 3. Execute the commands */
 					try {
+						if(this.modelElementState.getSource()==null){
+							this.modelElementState.setSource(AlfUtil.getInstance().getTextualRepresentationComment(this.modelElementState.getOwner()));
+						}
 						domain.getCommandStack().execute(AlfCommandFactory.getInstance().creatSaveCommand(this.modelElementState));
 					} catch (Exception e) {
 						e.printStackTrace();

@@ -10,6 +10,34 @@
       description="Nodes">
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Comment"
+        label="Comment"
+        description="Create a comment">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Comment.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Comment_2012"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Comment_3028"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Constraint"
+        label="Constraint"
+        description="Create a constraint">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Constraint.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Constraint_2011"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Constraint_3029"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Constraint_Label"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.Package"
         label="Package"
         description="Create a package">
@@ -20,6 +48,19 @@
           elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Package_2007"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Package_3009"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Problem"
+        label="Problem"
+        description="Create a Problem">
+      <icon
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/modelelements/Problem.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Problem_2012"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Problem_3028"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
@@ -39,19 +80,6 @@
           elementTypeId="org.eclipse.papyrus.sysML.Requirement_3010"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.Requirement_3014"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Problem"
-        label="Problem"
-        description="Create a Problem">
-      <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/modelelements/Problem.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Problem_2012"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Problem_3028"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
@@ -104,6 +132,30 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Dependency"
+        label="Dependency"
+        description="Create a dependency"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/Dependency.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.ContainmentLink"
+        label="Containment Link"
+        description="Create a Containment Link"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.papyrus.uml.diagram.clazz"
+          iconPath="/icons/obj16/ContainmentConnection.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.ContainmentLink_4023"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.DeriveReqt_Abstraction"
         label="DeriveReqt"
         description="Create a DeriveReqt Abstraction"
@@ -116,26 +168,27 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Satisfy_Abstraction"
-        label="Satisfy"
-        description="Create a Satisfy"
+        id="org.eclipse.papyrus.sysML.Link"
+        label="Link"
+        description="Create a Link"
         kind="ConnectionTool">
       <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/requirements/Satisfy.gif"/>
+          pluginID="org.eclipse.papyrus.uml.diagram.clazz"
+          iconPath="icons/obj16/Link.gif"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Satisfy_Abstraction_4006"/>
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Link_4016"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Verify_Abstraction"
-        label="Verify"
-        description="Create a Verify">
+        id="org.eclipse.papyrus.sysML.PackageImport"
+        label="PackageImport"
+        description="Create a PackageImport"
+        kind="ConnectionTool">
       <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/requirements/Verify.gif"/>
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/PackageImport.gif"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Verify_Abstraction_4006"/>
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.PackageImport_4010"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
@@ -151,6 +204,18 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Satisfy_Abstraction"
+        label="Satisfy"
+        description="Create a Satisfy"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/requirements/Satisfy.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Satisfy_Abstraction_4006"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.Trace_Abstraction"
         label="Trace"
         description="Create a Trace"
@@ -163,15 +228,14 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Link"
-        label="Link"
-        description="Create a Link"
-        kind="ConnectionTool">
+        id="org.eclipse.papyrus.sysML.Verify_Abstraction"
+        label="Verify"
+        description="Create a Verify">
       <icon
-          pluginID="org.eclipse.papyrus.uml.diagram.clazz"
-          iconPath="icons/obj16/Link.gif"/>
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/requirements/Verify.gif"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Link_4016"/>
+          elementTypeId="org.eclipse.papyrus.sysML.Verify_Abstraction_4006"/>
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations

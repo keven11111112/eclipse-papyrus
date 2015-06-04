@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Nizar GUEDIDI (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468646
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.test.canonical;
@@ -31,6 +32,7 @@ public class TestComponentDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateComponentDiagramCommand();
@@ -45,13 +47,13 @@ public class TestComponentDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	protected String getFileName() {
 		return IComponentDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	/**
 	 * Test to manage Generalization
 	 */
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Component_2002, UMLElementTypes.Generalization_4003, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Component_2002, UMLElementTypes.Generalization_4003, UMLElementTypes.Package_3200, false);
 	}
 
 }

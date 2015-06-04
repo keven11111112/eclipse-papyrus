@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.dnd.strategy.instancespecification.command;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -27,6 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -68,25 +71,30 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 
 	protected final InstanceSpecification specification;
 
+	protected final boolean headless;
+
 	public SelectAndCreateSlotsCommand(List<Classifier> classifiers, EditPart targetEditPart) {
+		this(classifiers, targetEditPart, false);
+	}
+
+	public SelectAndCreateSlotsCommand(List<Classifier> classifiers, EditPart targetEditPart, boolean headless) {
 		super("Create slots");
 		this.classifiers = classifiers;
 		this.targetEditPart = targetEditPart;
 		specification = (InstanceSpecification) EMFHelper.getEObject(targetEditPart);
+		this.headless = headless;
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		// Open the dialog to select the slots
-		SlotSelectionDialog dialog = new SlotSelectionDialog(Display.getCurrent().getActiveShell(), specification, classifiers);
-		if (dialog.open() != Window.OK) {
+		Object[] propertiesToInstantiate = getProperties();
+
+		if (propertiesToInstantiate == null) {
 			return CommandResult.newCancelledCommandResult();
 		}
 
-		Object[] result = dialog.getResult();
-
 		// For each selected property, create the corresponding slot
-		for (Object propertyObject : result) {
+		for (Object propertyObject : propertiesToInstantiate) {
 			Property property = (Property) propertyObject;
 			// Creates the slot
 			TransactionalEditingDomain domain = (TransactionalEditingDomain) EMFHelper.resolveEditingDomain(targetEditPart);
@@ -99,13 +107,15 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 				CreateElementRequestAdapter adapter = new CreateElementRequestAdapter(createElementRequest);
 				ViewAndElementDescriptor descriptor = new ViewAndElementDescriptor(adapter, Node.class, UMLVisualIDRegistry.getType(SlotEditPart.VISUAL_ID), ((IGraphicalEditPart) targetEditPart).getDiagramPreferencesHint());
 				Request createRequest = new CreateViewAndElementRequest(descriptor);
-				Command gefCommand = targetEditPart.getCommand(createRequest);
+				EditPart realTarget = targetEditPart.getTargetEditPart(createRequest);
+
+				Command gefCommand = realTarget.getCommand(createRequest);
 
 				if (gefCommand instanceof ICommandProxy) {
 					slotCreationCommand = ((ICommandProxy) gefCommand).getICommand();
 					slotCreationCommand = slotCreationCommand.reduce();
 				} else {
-					return CommandResult.newErrorCommandResult("Impossible to create slots");
+					slotCreationCommand = new CommandProxy(gefCommand);
 				}
 			} else { // The compartment is not visible ; only create the semantic slot
 				slotCreationCommand = new CreateElementCommand(createElementRequest);
@@ -120,8 +130,12 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 				}
 			}
 
-			// Retrieve the created slot, and update its properties (
+			// Retrieve the created slot, and update its properties
 			Slot newSlot = getNewSlot(commandResult);
+			if (newSlot == null) {
+				newSlot = getNewSlot(createElementRequest);
+			}
+
 			if (newSlot != null) {
 				updateSlotProperties(newSlot, property);
 			} else {
@@ -132,6 +146,38 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 		}
 
 		return CommandResult.newOKCommandResult();
+	}
+
+	protected Object[] getProperties() {
+		// Headless
+		if (headless) {
+			return getAllProperties();
+		}
+
+		// UI
+
+		// Open the dialog to select the slots
+		SlotSelectionDialog dialog = new SlotSelectionDialog(Display.getCurrent().getActiveShell(), specification, classifiers);
+		if (dialog.open() != Window.OK) {
+			return null;
+		}
+
+		return dialog.getResult();
+	}
+
+	protected Property[] getAllProperties() {
+		Set<Property> allProperties = new HashSet<Property>();
+		for (Classifier classifier : classifiers) {
+			allProperties.addAll(classifier.getAllAttributes());
+		}
+		return allProperties.toArray(new Property[allProperties.size()]);
+	}
+
+	protected Slot getNewSlot(CreateElementRequest request) {
+		if (request.getNewElement() instanceof Slot) {
+			return (Slot) request.getNewElement();
+		}
+		return null;
 	}
 
 	// Retrieves a slot from a CommandResult

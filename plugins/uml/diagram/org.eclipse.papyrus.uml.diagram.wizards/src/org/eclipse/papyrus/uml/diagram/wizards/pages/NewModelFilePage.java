@@ -14,10 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -53,8 +53,6 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "NewPapyrusModel"; //$NON-NLS-1$
 
-	private String DefaultDescription;
-
 	/**
 	 * Instantiates a new new model file page.
 	 *
@@ -80,8 +78,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	public NewModelFilePage(String pageId, IStructuredSelection selection, String modelKindName) {
 		super(pageId, selection);
 		setTitle(NLS.bind(Messages.NewModelFilePage_3, modelKindName));
-		DefaultDescription = NLS.bind(Messages.NewModelFilePage_page_desc, modelKindName);
-		setDescription(DefaultDescription);
+		setDescription(NLS.bind(Messages.NewModelFilePage_page_desc, modelKindName));
 		setFileExtension(DEFAULT_DIAGRAM_EXTENSION);
 	}
 
@@ -233,36 +230,48 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
-		Collection<String> selectionMembers = new ArrayList<String>();
 		boolean canFlip = true;
-		// retrieve the selected elements and get its children
-		try {
-			IResource iResource = ResourcesPlugin.getWorkspace().getRoot().findMember(getContainerFullPath());
-			if (iResource != null) {
-				if (iResource instanceof IFolder) {
-					IFolder iFolder = (IFolder) iResource;
-					selectionMembers = getMembersNames(iFolder.members());
-				}
-				if (iResource instanceof IProject) {
-					IProject iProject = (IProject) iResource;
-					selectionMembers = getMembersNames(iProject.members());
-				}
-			}
-		} catch (CoreException e) {
-			Activator.log.error(e);
-		}
+		String existingModelName = "";
 
-		for (String memberName : selectionMembers) {
-			if (getFileName().equalsIgnoreCase(memberName)) {
+		for (String existingName : getExistingNames()) {
+			if (existingName.toLowerCase().equals(getFileName().toLowerCase())) {
 				canFlip = false;
-				this.setDescription(Messages.NewModelFilePage_page_same_case_desc + memberName);
+				existingModelName = existingName;
+				break;
 			}
 		}
 
-		if (canFlip) {
-			this.setDescription(DefaultDescription);
+		if (!canFlip) {
+			this.setErrorMessage(Messages.NewModelFilePage_page_same_case_desc + existingModelName);
 		}
+
 		return canFlip;
+	}
+
+	/**
+	 * This method fetches all the IFiles' name in the workspace
+	 * 
+	 * @return
+	 * 		The list of the names
+	 */
+	public Collection<String> getExistingNames() {
+		Collection<String> result = new LinkedList<String>();
+
+		try {
+			IResource rootResource = ResourcesPlugin.getWorkspace().getRoot().findMember(getContainerFullPath());
+			// Need to go through all the resources of the selected container to check if there is an homograph
+			if (rootResource.getType() == IResource.PROJECT) {
+				result.addAll(getMembersNames(((IProject) rootResource).members()));
+			}
+			if (rootResource.getType() == IResource.FOLDER) {
+				result.addAll(getMembersNames(((IFolder) rootResource).members()));
+			}
+
+		} catch (CoreException ce) {
+			Activator.log.error(ce);
+		}
+
+		return result;
 	}
 
 	/**
@@ -272,7 +281,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 * @return
 	 */
 	public Collection<String> getMembersNames(IResource[] membersArray) {
-		Collection<String> membersList = new ArrayList<String>();
+		Collection<String> membersList = new LinkedList<String>();
 		for (Iterator<IResource> arrayIter = Arrays.asList(membersArray).iterator(); arrayIter.hasNext();) {
 			IResource iResource = arrayIter.next();
 			membersList.add(iResource.getName());

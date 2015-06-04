@@ -93,6 +93,9 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	/** listener on the custom style for position */
 	private CustomIntStyleObservableValue positionObservable;
 
+	/** Store the view to be able to remove listeners in deactivate() */
+	protected View view;
+
 	/**
 	 * Creates a new <code>ShapeDecorator</code> for the decorator target
 	 * passed in.
@@ -114,7 +117,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	 * @return node Node if IDecoratorTarget can be supported, null otherwise.
 	 */
 	static public View getDecoratorTargetNode(IDecoratorTarget decoratorTarget) {
-		View node = (View) decoratorTarget.getAdapter(View.class);
+		View node = decoratorTarget.getAdapter(View.class);
 		return getDecorableNode(node);
 	}
 
@@ -194,7 +197,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	 * @return the direction to set the decorator for the node direction can be
 	 *         :
 	 *         <ul>
-	 *         <li> {@link PositionConstants#NORTH_WEST} or {@link PositionConstants#SOUTH_EAST}</li> if the node is an Affixed Child Node
+	 *         <li>{@link PositionConstants#NORTH_WEST} or {@link PositionConstants#SOUTH_EAST}</li> if the node is an Affixed Child Node
 	 *         <li>{@link PositionConstants#EAST}</li> if the node is in a compartment list
 	 *         <li>{@link PositionConstants#SOUTH_EAST}</li> in other cases
 	 *         </ul>
@@ -299,7 +302,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	 */
 	@Override
 	public void activate() {
-		View view = getView();
+		view = getView();
 		if (view == null) {
 			return;
 		}
@@ -323,7 +326,6 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	@Override
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
-		View view = getView();
 		if (view == null) {
 			return;
 		}

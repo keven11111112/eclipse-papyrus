@@ -66,12 +66,6 @@
    <feature url="features/org.eclipse.papyrus.extra.moka.feature_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.moka.feature" version="1.1.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.extra.epf.richtext.feature_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.epf.richtext.feature" version="1.1.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.epf.richtext.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.epf.richtext.feature.source" version="1.1.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature" version="1.1.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
@@ -140,8 +134,14 @@
    </feature>
    <feature url="features/org.eclipse.papyrus.sysml14.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.sysml14.feature.source" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>      
+   </feature>
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature.source" version="1.1.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.extra.soaml.feature_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.soaml.feature" version="1.1.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+    <feature url="features/org.eclipse.papyrus.extra.soaml.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.soaml.feature.source" version="1.1.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <category-def name="org.eclipse.papyrus.extra.category" label="Papyrus Extra (All - Not recommended)">

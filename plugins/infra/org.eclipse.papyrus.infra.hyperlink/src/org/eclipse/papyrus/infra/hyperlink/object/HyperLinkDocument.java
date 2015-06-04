@@ -14,11 +14,13 @@
 package org.eclipse.papyrus.infra.hyperlink.object;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.filesystem.URIUtil;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperlinkDocumentShell;
@@ -45,12 +47,26 @@ public class HyperLinkDocument extends HyperLinkObject {
 	 * Sets the hyperlink document.
 	 *
 	 * @param object
-	 *            the new hyperlink document
+	 *            the new hyperlink document as a string representing an absolute file path
 	 */
 	public void setHyperlinkDocument(String object) {
-		super.setObject(object);
+		try {
+			URI originalURI = URIUtil.toURI(object);
+			URI relativeURI = null;
+			
+			if (originalURI != null && originalURI.isAbsolute()) {
+				relativeURI = org.eclipse.core.runtime.URIUtil.makeRelative(originalURI, getBaseURI());
+			} else {
+				relativeURI = new URI(object);
+			}
+			
+			super.setObject(relativeURI.toString());
+		} catch (Exception e) {
+			Activator.log.equals(e);
+			super.setObject("");
+		}
 	}
-
+	
 	@Override
 	public void openLink() {
 		try {
@@ -60,9 +76,10 @@ public class HyperLinkDocument extends HyperLinkObject {
 			IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 			IWorkbenchPage page = window.getActivePage();
 
-			URI uri = URIUtil.toURI(fileName, true);
-
-			IFileStore fileStore = EFS.getStore(uri);
+			URI relativeURI = new URI(fileName);
+			URI absoluteURI = org.eclipse.core.runtime.URIUtil.makeAbsolute(relativeURI, getBaseURI());
+			
+			IFileStore fileStore = EFS.getStore(absoluteURI);
 
 			IDE.openEditorOnFileStore(page, fileStore); // Let eclipse determine the better editor type for our file
 		} catch (Exception e) {
@@ -84,5 +101,9 @@ public class HyperLinkDocument extends HyperLinkObject {
 	@Override
 	public boolean needsOpenCommand() {
 		return false;
+	}
+	
+	private URI getBaseURI() {
+		return ResourcesPlugin.getWorkspace().getRoot().getLocationURI();
 	}
 }

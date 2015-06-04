@@ -29,11 +29,11 @@ import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.viewpoints.style.impl.PapyrusViewStyleImpl#getOwner <em>Owner</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.viewpoints.style.impl.PapyrusViewStyleImpl#getConfiguration <em>Configuration</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

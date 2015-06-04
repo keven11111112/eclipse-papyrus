@@ -113,11 +113,11 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.extra.epf.richtext.feature"
+         id="org.eclipse.papyrus.uml.alf.extra.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.uml.alf.extra.feature"
+         id="org.eclipse.papyrus.extra.soaml.feature"
          version="0.0.0"/>
 
 </feature>

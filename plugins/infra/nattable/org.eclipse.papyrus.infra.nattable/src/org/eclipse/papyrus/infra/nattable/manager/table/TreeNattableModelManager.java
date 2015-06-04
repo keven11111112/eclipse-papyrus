@@ -18,13 +18,18 @@ import java.util.List;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.hideshow.ColumnHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiColumnHideCommand;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiColumnShowCommand;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.ShowAllColumnsCommand;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
+import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
@@ -38,6 +43,7 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
@@ -345,7 +351,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 *            the body layer stack to use
 	 * 
 	 * @return
-	 *         the row header layer stack to use
+	 * 		the row header layer stack to use
 	 */
 	protected RowHeaderLayerStack createRowHeaderLayerStack(BodyLayerStack bodyLayerStack) {
 		return new RowHeaderHierarchicalLayerStack(bodyLayerStack, this);
@@ -370,6 +376,41 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 */
 	@Override
 	public void dispose() {
+		final List<IAxis> iAxis = getHorizontalAxisProvider().getAxis();
+
+		if (iAxis != null) {
+			//see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
+			// we need to remove the children which are not serialized from the root of the table, to be able to reopen
+			Runnable runnable = new Runnable() {
+
+				@Override
+				public void run() {
+					for (IAxis axis : iAxis) {
+						if (axis instanceof ITreeItemAxis) {
+							boolean isDelivering = axis.eDeliver();
+							if (isDelivering) {
+								// I suppose than it is not necessary to send notification here
+								axis.eSetDeliver(false);
+							}
+							((ITreeItemAxis) axis).getChildren().clear();
+							if (isDelivering) {
+								// I reset the initial value, because the model can be reopened
+								axis.eSetDeliver(true);
+							}
+						}
+					}
+
+				}
+			};
+			try {
+				GMFUnsafe.write(getTableEditingDomain(), runnable);
+			} catch (InterruptedException e) {
+				Activator.log.error(e);
+			} catch (RollbackException e) {
+				Activator.log.error(e);
+			}
+
+		}
 		if (getTableEditingDomain() != null) {
 			if (this.hideShowCategoriesListener != null) {
 				getTableEditingDomain().removeResourceSetListener(this.hideShowCategoriesListener);

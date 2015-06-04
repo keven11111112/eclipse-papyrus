@@ -14,8 +14,10 @@ package org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.itemsema
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.DependencyBranchItemSemanticEditPolicy;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 
 
@@ -23,16 +25,17 @@ import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
  * this class is used to forbid the creation of a dependency branch on a dependency branch.
  *
  */
-public class CustomDependencyBranchSemanticEditPolicy extends DependencyBranchItemSemanticEditPolicy {
+public class CustomDependencyBranchSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 	@Override
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-
-		if (UMLElementTypes.Dependency_4010 == req.getElementType()) {
-			return UnexecutableCommand.INSTANCE;
+	protected Command getSemanticCommand(IEditCommandRequest request) {
+		if (request instanceof CreateRelationshipRequest) {
+			IElementType type = ((CreateRelationshipRequest) request).getElementType();
+			if (UMLElementTypes.Dependency_4010 == type) {
+				return UnexecutableCommand.INSTANCE;
+			}
 		}
-
-		return super.getStartCreateRelationshipCommand(req);
+		return super.getSemanticCommand(request);
 	}
 
 }

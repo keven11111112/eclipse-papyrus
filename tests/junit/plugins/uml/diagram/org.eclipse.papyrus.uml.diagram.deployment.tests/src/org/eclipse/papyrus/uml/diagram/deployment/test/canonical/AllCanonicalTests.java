@@ -38,7 +38,8 @@ TestDeploymentDiagramConstraintLink.class,
 TestDeploymentDiagramManifestationLink.class,
 // Others Link
 TestDeploymentDiagramLink.class,
-
+//
+TestSemantics.class
 // End
 })
 public class AllCanonicalTests {

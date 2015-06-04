@@ -18,6 +18,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
 
+import com.google.common.util.concurrent.CheckedFuture;
+
 /**
  * Common interface of objects in the synchronization framework.
  */
@@ -56,6 +58,18 @@ public interface ISyncObject {
 	 * @see SyncServiceRunnable.Safe
 	 */
 	<V, X extends Exception> V run(SyncServiceRunnable<V, X> operation) throws X;
+
+	/**
+	 * Asynchronously runs an operation in the context of the {@link ISyncService} that owns me.
+	 * The {@link SyncServiceRunnable.Safe Safe} variant does not throw a checked exception.
+	 * 
+	 * @param operation
+	 *            a sync-service operation
+	 * @return the future result of the {@code operation}
+	 * 
+	 * @see SyncServiceRunnable.Safe
+	 */
+	<V, X extends Exception> CheckedFuture<V, X> runAsync(SyncServiceRunnable<V, X> operation);
 
 	TransactionalEditingDomain getEditingDomain();
 
