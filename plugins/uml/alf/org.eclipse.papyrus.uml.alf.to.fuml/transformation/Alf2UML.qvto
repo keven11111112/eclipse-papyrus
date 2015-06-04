@@ -936,7 +936,7 @@ helper mapDefaultConstructor(inout method : Activity, class_ : Class, initializa
 
   // Return context object as the constructor result.
 	method.ownedNode += var readSelfAction ::= new ReadSelfAction(class_);
-	method.ownedNode += var fork := new ForkNode(readSelfAction.result.name);
+	method.ownedNode += var fork ::= new ForkNode(readSelfAction.result.name);
 	new ObjectFlow(method, readSelfAction.result, fork);
 	new ObjectFlow(method, fork, outputNode);
 	
@@ -1058,7 +1058,7 @@ helper OperationDefinition::mapConstructor(initializationFlag : Property, initia
   
   // Return context object as the constructor result.
   method.ownedNode += var readSelfAction ::= new ReadSelfAction(operation._'class');
-  var selfFork := new ForkNode(method, readSelfAction.result.name);
+  method.ownedNode += var selfFork ::= new ForkNode(method, readSelfAction.result.name);
   new ObjectFlow(method, readSelfAction.result, selfFork);
 	
 	var returnParameter := method.ownedParameter![direction = ParameterDirectionKind::_'return'];
@@ -1089,8 +1089,7 @@ helper OperationDefinition::mapConstructor(initializationFlag : Property, initia
 		method.ownedNode += var readAction ::= new ReadStructuralFeatureAction(operation._'class', initializationFlag);
 		new ObjectFlow(method, selfFork, readAction._'object');
 		
-		var functionSize := self.functionSize();
-		method.ownedNode += var sizeAction := new CallBehaviorAction(functionSize);
+		method.ownedNode += var sizeAction ::= new CallBehaviorAction(self.functionSize());
 		new ObjectFlow(method, readAction.result, sizeAction.argument->at(1));
 		
 		method.ownedNode += var valueAction ::= new ValueSpecificationAction(new LiteralInteger(0, self.integerType().toType()));
