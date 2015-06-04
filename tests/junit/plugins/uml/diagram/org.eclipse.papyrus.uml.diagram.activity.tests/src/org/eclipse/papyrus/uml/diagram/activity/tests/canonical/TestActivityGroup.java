@@ -322,9 +322,9 @@ public class TestActivityGroup extends AbstractPapyrusTestCase {
 		protected void checkSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP) {
 			ActivityNode activityNode = getActivityNodeSemantic(childEP);
 			if (parentEP.resolveSemanticElement() instanceof InterruptibleActivityRegion) {
-				assertEquals(activityNode.getInInterruptibleRegions().size(), 1);
+				assertEquals(1, activityNode.getInInterruptibleRegions().size());
 			} else {
-				assertEquals(activityNode.getInInterruptibleRegions().size(), 0);
+				assertEquals(0, activityNode.getInInterruptibleRegions().size());
 			}
 			assertTrue(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(activityNode.eContainer().eClass()));
 		}
@@ -340,9 +340,9 @@ public class TestActivityGroup extends AbstractPapyrusTestCase {
 		protected void checkSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP) {
 			ActivityNode activityNode = getActivityNodeSemantic(childEP);
 			if (parentEP.resolveSemanticElement() instanceof ActivityPartition) {
-				assertEquals(activityNode.getInPartitions().size(), 1);
+				assertEquals(1, activityNode.getInPartitions().size());
 			} else {
-				assertEquals(activityNode.getInPartitions().size(), 0);
+				assertEquals(0, activityNode.getInPartitions().size());
 			}
 			assertTrue(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(activityNode.eContainer().eClass()));
 		}
