@@ -105,15 +105,17 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 				// If the ration is maintained
 				ScalableCompartmentFigure scalableCompartmentFigure = FigureUtils.findParentFigureInstance(container, ScalableCompartmentFigure.class);
 
-				// Get the svg document to calculate ratio
+				// Get the document to calculate ratio
 				ScalableImageFigure scalableImage = FigureUtils.findChildFigureInstance(getParent(), ScalableImageFigure.class);
-				org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImage img = ((org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImage) scalableImage.getRenderedImage());
-				final PrecisionDimension svgDimension = getSvgDimension(img.getDocument());
+				double ratio = 1;
+				RenderedImage renderedImage = scalableImage.getRenderedImage();
+				if (renderedImage instanceof org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImage) {
+					org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImage img = (org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImage) renderedImage;
+					final PrecisionDimension svgDimension = getSvgDimension(img.getDocument());
+					ratio = svgDimension.preciseWidth() / svgDimension.preciseHeight();
+				}
 
 				Rectangle scalableCompartmentBounds = scalableCompartmentFigure != null ? scalableCompartmentBounds = scalableCompartmentFigure.getBounds() : container.getBounds();
-
-				// double scale = scalableCompartmentBounds.preciseWidth() / scalableCompartmentBounds.preciseHeight();
-				double ratio = svgDimension.preciseWidth() / svgDimension.preciseHeight();
 
 				Point center = new Point(scalableCompartmentBounds.x + scalableCompartmentBounds.width / 2, scalableCompartmentBounds.y + scalableCompartmentBounds.height / 2);
 
@@ -150,7 +152,6 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 					container.setBounds(scrollPaneFigure.getBounds());
 				}
 			}
-
 		}
 
 		/**
