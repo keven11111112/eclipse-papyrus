@@ -21,7 +21,7 @@ import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.commands.AddMarteAndFcmProfile;
 import org.eclipse.papyrus.qompass.designer.core.commands.AddQompassModelLibs;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
@@ -59,7 +59,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 				domain);
 		AddQompassModelLibs addModelLibs = new AddQompassModelLibs(selectedPkg, domain);
 
-		final ListSelectionDialog dialog = new ListSelectionDialog(new Shell(),
+		final ListSelectionDialog dialog = new ListSelectionDialog(Display.getDefault().getActiveShell(),
 				addModelLibs.getAvailableImportPackages().toArray(),
 				new ArrayContentProvider(),
 				new LabelProvider() {
@@ -84,7 +84,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 			CommandSupport.exec(addModelLibs);
 			CommandSupport.exec(addProfiles);
 			// open dialog?
-			// MessageDialog.openWarning(new Shell(),
+			// MessageDialog.openWarning(Display.getDefault().getActiveShell(),
 			//	"Warning", "The MARTE profile is not available."); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return null;

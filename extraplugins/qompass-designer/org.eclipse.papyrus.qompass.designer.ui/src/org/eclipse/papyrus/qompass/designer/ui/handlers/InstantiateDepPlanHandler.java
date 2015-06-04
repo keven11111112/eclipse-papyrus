@@ -29,7 +29,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.InstantiateDepP
 import org.eclipse.papyrus.qompass.designer.ui.dialogs.GenerationOptionsDialog;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -70,7 +70,7 @@ public class InstantiateDepPlanHandler extends CmdHandler {
 		}
 		project = ProjectManagement.getCurrentProject();
 
-		GenerationOptionsDialog optionsDialog = new GenerationOptionsDialog(new Shell());
+		GenerationOptionsDialog optionsDialog = new GenerationOptionsDialog(Display.getDefault().getActiveShell());
 		optionsDialog.open();
 		if (optionsDialog.getReturnCode() == IDialogConstants.OK_ID) {
 

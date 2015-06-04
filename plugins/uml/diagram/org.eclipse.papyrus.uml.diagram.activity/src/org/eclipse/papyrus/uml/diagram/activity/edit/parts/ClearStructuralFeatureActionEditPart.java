@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNode
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -84,12 +86,16 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ClearStructuralFeatureActionCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ClearStructuralFeatureActionCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -158,20 +164,22 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (!(notifier instanceof Edge)) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new PapyrusRoundedNodeFigure();
+		return primaryShape = new RoundedCompartmentFigure();
 	}
 
 	/**
@@ -179,8 +187,8 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 	 * 
 	 * @generated
 	 */
-	public PapyrusRoundedNodeFigure getPrimaryShape() {
-		return (PapyrusRoundedNodeFigure) primaryShape;
+	public RoundedCompartmentFigure getPrimaryShape() {
+		return (RoundedCompartmentFigure) primaryShape;
 	}
 
 	/**
@@ -191,30 +199,48 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 			((ClearStructuralFeatureActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInClearStructuralFeatureActionEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInClearStructuralFeatureActionEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -302,6 +328,7 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 	 */
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

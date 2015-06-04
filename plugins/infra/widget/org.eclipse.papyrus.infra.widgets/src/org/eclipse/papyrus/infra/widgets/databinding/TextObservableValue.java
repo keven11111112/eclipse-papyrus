@@ -58,6 +58,10 @@ public class TextObservableValue extends AbstractObservableValue implements List
 
 	@Override
 	protected Object doGetValue() {
+		if (this.text == null || this.text.isDisposed()) {
+			return null;
+		}
+
 		if (UnchangedObject.instance.toString().equals(text.getText())) {
 			return null;
 		} else {
@@ -83,6 +87,9 @@ public class TextObservableValue extends AbstractObservableValue implements List
 
 	@Override
 	public void handleEvent(Event event) {
+		if (this.text == null || this.text.isDisposed()) {
+			return;
+		}
 
 		final Object oldValue = currentValue;
 		final Object newValue = getValue();

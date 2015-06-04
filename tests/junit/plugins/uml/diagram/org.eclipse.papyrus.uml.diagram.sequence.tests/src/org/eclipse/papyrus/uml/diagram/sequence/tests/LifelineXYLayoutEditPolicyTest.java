@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
+package org.eclipse.papyrus.uml.diagram.sequence.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -20,6 +20,7 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.junit.Test;
 
 public class LifelineXYLayoutEditPolicyTest {

@@ -103,6 +103,11 @@ public interface RequestParameterConstants {
 	 * the ID to store the name to be set for the new element.
 	 */
 	public final static String NAME_TO_SET = "nameToSet";
+	
+	/**
+	 * this constant is used to precise if it is needed to launch UI during the edition of an element
+	 */
+	public static String USE_GUI= "USE_GUI";
 
 
 }

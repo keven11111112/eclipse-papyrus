@@ -32,6 +32,7 @@ import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -115,6 +116,8 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 		}
 		WeakOCLReference oclRef = oclRefMap.get(rs);
 		if ((oclRef == null) || (oclRef.get() == null)) {
+			// call init before reference creation.
+			UMLStandaloneSetup.init();
 			oclRef = new WeakOCLReference(new OCLAndQueries());
 			oclRefMap.put(rs, oclRef);
 		}

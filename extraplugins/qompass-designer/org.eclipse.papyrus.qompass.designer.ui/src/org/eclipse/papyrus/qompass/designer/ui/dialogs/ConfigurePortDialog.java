@@ -48,6 +48,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -69,7 +70,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * TODO: extend rule application to instances (problematic, since rules
  * transformation is done on type level)
  *
- * @author ansgar
  */
 public class ConfigurePortDialog extends SelectionStatusDialog {
 
@@ -204,7 +204,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 		fKindCombo = new Combo(instanceConfigurationGroup, SWT.NONE);
 		portKindList = getAvailableKinds(m_model);
 		if (portKindList.size() == 0) {
-			MessageDialog.openInformation(new Shell(), "No port kinds founds", "No port kinds are available. Please import a Qompass model library");
+			MessageDialog.openInformation(Display.getDefault().getActiveShell(), "No port kinds founds", "No port kinds are available. Please import a Qompass model library");
 		}
 		String[] portKindStrList = new String[portKindList.size() + 1];
 		portKindStrList[0] = Messages.ConfigurePortDialog_None;
@@ -253,7 +253,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// use Papyrus type selection dialog ...
-				TreeSelectorDialog tsd = new TreeSelectorDialog(new Shell());
+				TreeSelectorDialog tsd = new TreeSelectorDialog(Display.getDefault().getActiveShell());
 
 				EStructuralFeature feature = UMLPackage.eINSTANCE.getTypedElement_Type();
 				ServiceEditFilteredContentProvider contentProvider =

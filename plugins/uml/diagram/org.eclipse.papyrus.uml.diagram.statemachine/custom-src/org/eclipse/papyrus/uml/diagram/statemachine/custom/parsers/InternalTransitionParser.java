@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Transition;
 
 /**
@@ -26,6 +27,10 @@ public class InternalTransitionParser extends TransitionPropertiesParser {
 	@Override
 	protected String getValueString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
+		if (obj instanceof View) {
+			View view = (View) obj;
+			obj = view.getElement();
+		}
 		if (obj instanceof Transition) {
 			Transition tran = (Transition) obj;
 			boolean noTrigger = tran.getTriggers() == null || tran.getTriggers().size() == 0;

@@ -32,8 +32,12 @@ public class LoadRowAxisProvidersHandler extends AbstractLoadAxisProvidersHandle
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		IAxisManager rowAxisManager = this.getCurrentNattableModelManager().getRowAxisManager();
-		setBaseEnabled(rowAxisManager.canBeSavedAsConfig());
+		if (getCurrentNattableModelManager() != null && getCurrentNattableModelManager().getRowAxisManager() != null) {
+			IAxisManager columnAxisManager = this.getCurrentNattableModelManager().getRowAxisManager();
+			setBaseEnabled(columnAxisManager.canBeSavedAsConfig());
+		} else {
+			setBaseEnabled(false);
+		}
 	}
 
 	/**

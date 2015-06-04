@@ -20,6 +20,7 @@ import java.util.TreeSet;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.Activator;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
@@ -27,20 +28,20 @@ import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 /**
  * Utils class for elements types
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ElementTypeUtils {
 
 
-	private ElementTypeUtils() {
+	protected ElementTypeUtils() {
 		// to prevent instanciation
 	}
 
 	/**
 	 *
 	 * @return
-	 *         all existing elements types
+	 * 		all existing elements types
 	 */
 	public static final Collection<IElementType> getAllExistingElementTypes() {
 		IClientContext clientContext = getEditContext();
@@ -50,7 +51,7 @@ public class ElementTypeUtils {
 
 	/**
 	 * @return
-	 *         all existing element type id, sorted by alphabetical order
+	 * 		all existing element type id, sorted by alphabetical order
 	 */
 	public static final Collection<String> getAllExistingElementTypesIds() {
 		final Collection<String> ids = new TreeSet<String>();
@@ -62,7 +63,7 @@ public class ElementTypeUtils {
 
 	/**
 	 * Obtains the element type client context in which the edit service binds element types.
-	 * 
+	 *
 	 * @return the edit service's client context, or {@code null} if it is not available in the current installation
 	 */
 	public static IClientContext getEditContext() {
@@ -77,4 +78,37 @@ public class ElementTypeUtils {
 		return result;
 
 	}
+
+	/**
+	 * return a boolean about the usage of a GUI for edition of an Element
+	 *
+	 * @param request
+	 *            an edition request
+	 * @return true if the request do not contain information about usage of GUI
+	 */
+	public static boolean useGUI(IEditCommandRequest request) {
+		Object value = request.getParameter(RequestParameterConstants.USE_GUI);
+
+		if (value instanceof Boolean) {
+			return (Boolean) value;
+		} else if (value instanceof String) {
+			Boolean booleanObject = Boolean.valueOf((String) value);
+			return booleanObject.booleanValue();
+		}
+
+		return true; // Default
+	}
+
+	/**
+	 * Configure a request to specify whether the GUI should be used or not.
+	 *
+	 * If set to false, dialogs shouldn't be opened during the execution of the associated command(s)
+	 *
+	 * @param request
+	 * @param useGUI
+	 */
+	public static void setUseGUI(IEditCommandRequest request, boolean useGUI) {
+		request.setParameter(RequestParameterConstants.USE_GUI, useGUI);
+	}
+
 }

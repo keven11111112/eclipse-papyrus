@@ -55,7 +55,11 @@ public class AssociationLinkLabelSourceRoleEditPart extends AbstractElementLabel
 	 */
 	@Override
 	public EObject getParserElement() {
-		Association association = (Association) resolveSemanticElement();
+		EObject semanticElement = resolveSemanticElement();
+		if (!(semanticElement instanceof Association)) {
+			return null;
+		}
+		Association association = (Association) semanticElement;
 		if ((getNotationView() != null) && (ViewUtil.getContainerView(getNotationView()) != null)) {
 			View owner = ViewUtil.getContainerView(getNotationView());
 

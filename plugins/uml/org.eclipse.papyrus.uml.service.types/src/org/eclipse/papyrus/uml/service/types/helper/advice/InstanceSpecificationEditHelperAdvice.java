@@ -9,11 +9,6 @@ import org.eclipse.papyrus.uml.service.types.command.InstanceSpecificationLinkCr
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdvice {
-	/**
-	 * this constant is used to precise if it is needed to launch UI during the creation of instanceSpecification Link
-	 */
-	
-	public static String ABOUT_UI= "InstanceSpecification.about_UI";
 
 	public static boolean canCreate(EObject source, EObject target) {
 		/*

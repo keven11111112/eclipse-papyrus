@@ -15,6 +15,7 @@ package org.eclipse.papyrus.umlrt.custom.utils;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
+import org.eclipse.papyrus.umlrt.UMLRealTime.Capsule;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Classifier;
@@ -24,6 +25,7 @@ import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Vertex;
 import org.eclipse.uml2.uml.util.UMLSwitch;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Utilities for working with UML RealTime Capsules.
@@ -37,7 +39,7 @@ public class CapsuleUtils {
 	}
 
 	public static boolean isCapsule(Classifier classifier) {
-		return classifier.getAppliedStereotype("UMLRealTime::Capsule") != null;
+		return UMLUtil.getStereotypeApplication(classifier, Capsule.class) != null;
 	}
 
 	public static org.eclipse.uml2.uml.Class getSuperCapsule(BehavioredClassifier capsule) {

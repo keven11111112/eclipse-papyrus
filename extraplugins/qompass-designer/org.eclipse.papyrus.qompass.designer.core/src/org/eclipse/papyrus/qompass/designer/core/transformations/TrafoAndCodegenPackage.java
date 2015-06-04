@@ -222,7 +222,7 @@ public class TrafoAndCodegenPackage {
 
 				@Override
 				public void run() {
-					Shell shell = new Shell();
+					Shell shell = Display.getDefault().getActiveShell();
 					MessageDialog.openError(shell, Messages.InstantiateDepPlan_TransformationException, teFinal.getMessage());
 				}
 			});
@@ -234,7 +234,7 @@ public class TrafoAndCodegenPackage {
 
 				@Override
 				public void run() {
-					Shell shell = new Shell();
+					Shell shell = Display.getDefault().getActiveShell();
 					String msg = eFinal.toString() + "\n\n" + //$NON-NLS-1$
 							Messages.InstantiateDepPlan_ConsultConsole;
 					MessageDialog.openError(shell, Messages.InstantiateDepPlan_ErrorsDuringTransformation, msg);

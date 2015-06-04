@@ -492,7 +492,7 @@ public class InstantiateDepPlan {
 		Display.getDefault().syncExec(new Runnable() {
 			@Override
 			public void run() {
-				Shell shell = new Shell();
+				Shell shell = Display.getDefault().getActiveShell();
 				MessageDialog.openInformation(shell, title, message);
 			}
 		});
