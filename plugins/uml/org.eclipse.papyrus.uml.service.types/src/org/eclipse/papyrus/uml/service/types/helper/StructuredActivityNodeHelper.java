@@ -13,9 +13,11 @@
 
 package org.eclipse.papyrus.uml.service.types.helper;
 
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class StructuredActivityNodeHelper extends ActivityNodeHelper {
@@ -35,5 +37,16 @@ public class StructuredActivityNodeHelper extends ActivityNodeHelper {
 	
 	protected boolean isStructuredNode(IElementType type) {
 		return type.getEClass() != null && UMLPackage.eINSTANCE.getStructuredActivityNode().isSuperTypeOf(type.getEClass());
+	}
+
+	@Override
+	protected ICommand getMoveCommand(MoveRequest req) {
+		CompositeCommand cc = new CompositeCommand("Move To SctructuredNode"); //$NON-NLS-1$
+		cc.compose(super.getMoveCommand(req));
+		if (!cc.isEmpty()) {
+			cc.compose(getMoveOutFromPartitionCommand(req));
+			cc.compose(getMoveOutFromInterruptibleActivityRegionCommand(req));
+		}
+		return cc.isEmpty() ? null : cc.reduce();
 	}
 }

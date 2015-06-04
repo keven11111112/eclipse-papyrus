@@ -79,6 +79,79 @@ public class TestActivityGroup extends AbstractPapyrusTestCase {
 	}
 
 	@Test
+	//
+	public void testFromInterruptibleActivityRegionToActivityPartion() {
+		IGraphicalEditPart regionEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart regionCompartmentEP = findChildBySemanticHint(regionEP, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart partitionCompartmentEP = findChildBySemanticHint(partitionEP, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, regionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenActivityPartitionAndInterruptibleActivityRegion(regionCompartmentEP, opaqueEP, partitionCompartmentEP);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromInterruptibleActivityRegionToStructuredNode() {
+		IGraphicalEditPart regionEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart regionCompartmentEP = findChildBySemanticHint(regionEP, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart structuredNode = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart structuredNodeCompartment = findChildBySemanticHint(structuredNode, StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, regionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenInterruptibleRegionAndContainmentActivityGroup(regionCompartmentEP, opaqueEP, structuredNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromInterruptibleActivityRegionToConditionalNode() {
+		IGraphicalEditPart regionEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart regionCompartmentEP = findChildBySemanticHint(regionEP, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart conditionalNode = createChild(ConditionalNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart conditionalNodeCompartment = findChildBySemanticHint(conditionalNode, ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, regionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenInterruptibleRegionAndContainmentActivityGroup(regionCompartmentEP, opaqueEP, conditionalNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromInterruptibleActivityRegionToLoopNode() {
+		IGraphicalEditPart regionEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart regionCompartmentEP = findChildBySemanticHint(regionEP, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart loopNode = createChild(LoopNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart loopNodeCompartment = findChildBySemanticHint(loopNode, LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, regionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenInterruptibleRegionAndContainmentActivityGroup(regionCompartmentEP, opaqueEP, loopNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromInterruptibleActivityRegionToExpansionRegionNode() {
+		IGraphicalEditPart regionEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart regionCompartmentEP = findChildBySemanticHint(regionEP, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart expansionRegionNode = createChild(ExpansionRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart expansionRegionNodeCompartment = findChildBySemanticHint(expansionRegionNode, ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, regionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenInterruptibleRegionAndContainmentActivityGroup(regionCompartmentEP, opaqueEP, expansionRegionNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromInterruptibleActivityRegionToSequenceNode() {
+		IGraphicalEditPart regionEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart regionCompartmentEP = findChildBySemanticHint(regionEP, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart sequenceNode = createChild(SequenceNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart sequenceNodeCompartment = findChildBySemanticHint(sequenceNode, SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, regionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenInterruptibleRegionAndContainmentActivityGroup(regionCompartmentEP, opaqueEP, sequenceNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
 	public void testFromActivityToInterruptibleActivityRegion() {
 		IGraphicalEditPart regionEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart regionCompartmentEP = findChildBySemanticHint(regionEP, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID);
@@ -95,6 +168,90 @@ public class TestActivityGroup extends AbstractPapyrusTestCase {
 		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, partitionCompartmentEP);
 
 		DragDropSequence dd = new BeetwenPartitionAndActivity(partitionCompartmentEP, opaqueEP, getActivityCompartmentEditPart());
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromActivityPartitionToInteruptibleActivtyRegion() {
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart partitionCompartmentEP = findChildBySemanticHint(partitionEP, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart interruptibleEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart interruptibleCompartmentEP = findChildBySemanticHint(interruptibleEP, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, partitionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenActivityPartitionAndInterruptibleActivityRegion(partitionCompartmentEP, opaqueEP, interruptibleCompartmentEP);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromActivityPartitionToStructuredNode() {
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart partitionCompartmentEP = findChildBySemanticHint(partitionEP, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart structuredNode = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart structuredNodeCompartment = findChildBySemanticHint(structuredNode, StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, partitionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenPartitionAndContainmentActivityGroup(partitionCompartmentEP, opaqueEP, structuredNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromActivityPartitionToConditionalNode() {
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart partitionCompartmentEP = findChildBySemanticHint(partitionEP, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart conditionalNode = createChild(ConditionalNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart conditionalNodeCompartment = findChildBySemanticHint(conditionalNode, ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, partitionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenPartitionAndContainmentActivityGroup(partitionCompartmentEP, opaqueEP, conditionalNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromActivityPartitionToLoopNode() {
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart partitionCompartmentEP = findChildBySemanticHint(partitionEP, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart loopNode = createChild(LoopNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart loopNodeCompartment = findChildBySemanticHint(loopNode, LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, partitionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenPartitionAndContainmentActivityGroup(partitionCompartmentEP, opaqueEP, loopNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromActivityPartitionToExpansionRegionNode() {
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart partitionCompartmentEP = findChildBySemanticHint(partitionEP, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart expansionRegionNode = createChild(ExpansionRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart expansionRegionNodeCompartment = findChildBySemanticHint(expansionRegionNode, ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, partitionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenPartitionAndContainmentActivityGroup(partitionCompartmentEP, opaqueEP, expansionRegionNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void testFromActivityPartitionToSequenceNode() {
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart partitionCompartmentEP = findChildBySemanticHint(partitionEP, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart sequenceNode = createChild(SequenceNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart sequenceNodeCompartment = findChildBySemanticHint(sequenceNode, SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, partitionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenPartitionAndContainmentActivityGroup(partitionCompartmentEP, opaqueEP, sequenceNodeCompartment);
+		dd.doTest();
+	}
+
+	@Test
+	public void BeetwenNonContainmentActivityGroup() {
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart partitionCompartmentEP = findChildBySemanticHint(partitionEP, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart sequenceNode = createChild(SequenceNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart sequenceNodeCompartment = findChildBySemanticHint(sequenceNode, SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, partitionCompartmentEP);
+
+		DragDropSequence dd = new BeetwenPartitionAndContainmentActivityGroup(partitionCompartmentEP, opaqueEP, sequenceNodeCompartment);
 		dd.doTest();
 	}
 
@@ -330,6 +487,46 @@ public class TestActivityGroup extends AbstractPapyrusTestCase {
 		}
 	}
 
+	public class BeetwenActivityPartitionAndInterruptibleActivityRegion extends DragDropSequence {
+
+		public BeetwenActivityPartitionAndInterruptibleActivityRegion(IGraphicalEditPart parentEP, IGraphicalEditPart childEP, IGraphicalEditPart targetEP) {
+			super(parentEP, childEP, targetEP);
+		}
+
+		@Override
+		protected void checkSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP) {
+			ActivityNode activityNode = getActivityNodeSemantic(childEP);
+			EObject parentSemantic = parentEP.resolveSemanticElement();
+			if (parentSemantic instanceof InterruptibleActivityRegion) {
+				assertEquals(1, activityNode.getInInterruptibleRegions().size());
+				assertEquals(0, activityNode.getInPartitions().size());
+			} else if (parentSemantic instanceof Activity) {
+				assertEquals(0, activityNode.getInInterruptibleRegions().size());
+				assertEquals(1, activityNode.getInPartitions().size());
+			}
+			assertTrue(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(activityNode.eContainer().eClass()));
+		}
+	}
+
+	public class BeetwenInterruptibleRegionAndContainmentActivityGroup extends DragDropSequence {
+
+		public BeetwenInterruptibleRegionAndContainmentActivityGroup(IGraphicalEditPart parentEP, IGraphicalEditPart childEP, IGraphicalEditPart targetEP) {
+			super(parentEP, childEP, targetEP);
+		}
+
+		@Override
+		protected void checkSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP) {
+			ActivityNode activityNode = getActivityNodeSemantic(childEP);
+			if (parentEP.resolveSemanticElement() instanceof InterruptibleActivityRegion) {
+				assertEquals(1, activityNode.getInInterruptibleRegions().size());
+				assertTrue(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(activityNode.eContainer().eClass()));
+			} else {
+				assertEquals(0, activityNode.getInInterruptibleRegions().size());
+				assertEquals(parentEP.resolveSemanticElement(), activityNode.eContainer());
+			}
+		}
+	}
+
 	public class BeetwenPartitionAndActivity extends DragDropSequence {
 
 		public BeetwenPartitionAndActivity(IGraphicalEditPart parentEP, IGraphicalEditPart childEP, IGraphicalEditPart targetEP) {
@@ -345,6 +542,25 @@ public class TestActivityGroup extends AbstractPapyrusTestCase {
 				assertEquals(0, activityNode.getInPartitions().size());
 			}
 			assertTrue(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(activityNode.eContainer().eClass()));
+		}
+	}
+
+	public class BeetwenPartitionAndContainmentActivityGroup extends DragDropSequence {
+
+		public BeetwenPartitionAndContainmentActivityGroup(IGraphicalEditPart parentEP, IGraphicalEditPart childEP, IGraphicalEditPart targetEP) {
+			super(parentEP, childEP, targetEP);
+		}
+
+		@Override
+		protected void checkSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP) {
+			ActivityNode activityNode = getActivityNodeSemantic(childEP);
+			if (parentEP.resolveSemanticElement() instanceof ActivityPartition) {
+				assertEquals(1, activityNode.getInPartitions().size());
+				assertTrue(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(activityNode.eContainer().eClass()));
+			} else {
+				assertEquals(0, activityNode.getInPartitions().size());
+				assertEquals(parentEP.resolveSemanticElement(), activityNode.eContainer());
+			}
 		}
 	}
 
