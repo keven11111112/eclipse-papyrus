@@ -38,6 +38,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
@@ -296,8 +297,7 @@ public class AllocationDialog extends SelectionStatusDialog {
 		// add or update
 		if (oldNode == null) {
 			if (!AllocUtils.allocate(is, newNode)) {
-				Shell shell = new Shell();
-				if (MessageDialog.openQuestion(shell, "Error",
+				if (MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Error",
 						"Stereotype application failed. The profile MARTE::Allocation is probably not applied. Try to apply it?")) {
 					AbstractEMFOperation applyProfile = new AddMarteAndFcmProfile(PackageUtil.getRootPackage(is), AddMarteAndFcmProfile.APPLY_ALLOC, TransactionUtil.getEditingDomain(is));
 					CommandSupport.exec(applyProfile);

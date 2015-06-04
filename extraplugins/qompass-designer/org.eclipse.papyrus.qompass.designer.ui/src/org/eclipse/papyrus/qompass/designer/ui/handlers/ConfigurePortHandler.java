@@ -18,6 +18,7 @@ import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
 import org.eclipse.papyrus.qompass.designer.ui.Messages;
 import org.eclipse.papyrus.qompass.designer.ui.dialogs.ConfigurePortDialog;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.NamedElement;
@@ -53,7 +54,7 @@ public class ConfigurePortHandler extends CmdHandler {
 		}
 
 		final NamedElement element = (NamedElement) selectedEObject;
-		final Shell shell = new Shell();
+		final Shell shell = Display.getDefault().getActiveShell();
 
 		// 1. select possible connectors according to port types
 		// (only show compatible connectors check-box?)

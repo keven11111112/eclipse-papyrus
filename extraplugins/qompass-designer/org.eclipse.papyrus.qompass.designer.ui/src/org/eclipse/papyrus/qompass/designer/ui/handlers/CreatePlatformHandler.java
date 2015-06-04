@@ -24,6 +24,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -67,7 +68,7 @@ public class CreatePlatformHandler extends CmdHandler {
 
 		try {
 			if (platform.getMember(newPlatform) != null) {
-				Shell shell = new Shell();
+				Shell shell = Display.getDefault().getActiveShell();
 				MessageDialog.openInformation(shell, "Error", //$NON-NLS-1$
 						"Platform definition \"" + newPlatform + "\" exists already"); //$NON-NLS-1$ //$NON-NLS-2$
 			} else {

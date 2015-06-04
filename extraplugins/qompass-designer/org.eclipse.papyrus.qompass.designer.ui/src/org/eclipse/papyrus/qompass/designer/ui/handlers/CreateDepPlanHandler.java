@@ -29,6 +29,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationE
 import org.eclipse.papyrus.qompass.designer.ui.Messages;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -74,7 +75,7 @@ public class CreateDepPlanHandler extends CmdHandler {
 		try {
 			String name = selectedComposite.getName() + DeployConstants.DepPlanPostfix;
 			if (depPlans.getMember(name) != null) {
-				Shell shell = new Shell();
+				Shell shell = Display.getDefault().getActiveShell();
 				String dialogButtonLabels[] = new String[] {
 						Messages.CreateDepPlanHandler_Cancel,
 						Messages.CreateDepPlanHandler_Sync,
@@ -116,7 +117,8 @@ public class CreateDepPlanHandler extends CmdHandler {
 					Package cdp = depPlans.createNestedPackage(depPlanName);
 					Stereotype st = StereotypeUtil.apply(cdp, org.eclipse.papyrus.FCM.DeploymentPlan.class);
 					if (st == null) {
-						MessageDialog.openInformation(new Shell(), Messages.CreateDepPlanHandler_CannotCreateDP,
+						MessageDialog.openInformation(Display.getDefault().getActiveShell(),
+								Messages.CreateDepPlanHandler_CannotCreateDP,
 								Messages.CreateDepPlanHandler_StereoApplicationFailed);
 						return CommandResult.newErrorCommandResult(Messages.CreateDepPlanHandler_CannotCreateDP);
 					}
@@ -127,7 +129,7 @@ public class CreateDepPlanHandler extends CmdHandler {
 						return CommandResult.newOKCommandResult();
 					}
 					catch (TransformationException e) {
-						MessageDialog.openInformation(new Shell(), Messages.CreateDepPlanHandler_CannotCreateDP,
+						MessageDialog.openInformation(Display.getDefault().getActiveShell(), Messages.CreateDepPlanHandler_CannotCreateDP,
 								e.getMessage());
 						return CommandResult.newErrorCommandResult(e.getMessage());
 					}

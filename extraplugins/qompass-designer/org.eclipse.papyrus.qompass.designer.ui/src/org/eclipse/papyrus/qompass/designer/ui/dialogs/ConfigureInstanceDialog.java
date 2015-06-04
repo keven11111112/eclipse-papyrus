@@ -47,6 +47,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -217,7 +218,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		DepUtils.getAllInstances(m_model, m_instanceList, filter);
 
 		if (m_instanceList.size() == 0) {
-			Shell shell = new Shell();
+			Shell shell = Display.getDefault().getActiveShell();
 			if (DepPlanUtils.getAllDepPlans(m_model).size() == 0) {
 				MessageDialog.openInformation(shell, "Instance configuration",
 						"No deployment plans are defined. Create a deployment plan before configuring instances");

@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.qompass.designer.core.deployment.ImplementationChooser;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.NamedElement;
@@ -36,7 +36,7 @@ public class InteractiveImplementationChooser implements ImplementationChooser {
 			}
 		};
 		ElementListSelectionDialog dialog =
-				new ElementListSelectionDialog(new Shell(), ilabel);
+				new ElementListSelectionDialog(Display.getDefault().getActiveShell(), ilabel);
 
 		dialog.setTitle("Multiple implementations found");
 		dialog.setMessage("Select an implementation for component type " + componentType.getName());
