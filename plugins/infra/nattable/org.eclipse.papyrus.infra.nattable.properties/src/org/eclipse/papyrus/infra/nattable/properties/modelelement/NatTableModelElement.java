@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
@@ -76,6 +76,7 @@ import org.eclipse.papyrus.infra.nattable.properties.provider.RowElementTypeIdCo
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -147,7 +148,7 @@ public class NatTableModelElement extends EMFModelElement {
 	 * Add the listener
 	 */
 	private void init() {
-		tableModelManager = new NattableModelManager(getEditedTable());
+		tableModelManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(getEditedTable(), new EObjectSelectionExtractor());
 		this.observableValues = new HashMap<String, IObservable>();
 		this.interestingFeatures = new ArrayList<EStructuralFeature>();
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Prototype());
@@ -375,7 +376,7 @@ public class NatTableModelElement extends EMFModelElement {
 			} else
 
 			// feature row label property
-			if (Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
+				if (Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
 				value = new RowFeatureLabelDisplayIconObservableValue(table);
 			} else if (Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
 				value = new RowFeatureLabelDisplayLabelObservableValue(table);
