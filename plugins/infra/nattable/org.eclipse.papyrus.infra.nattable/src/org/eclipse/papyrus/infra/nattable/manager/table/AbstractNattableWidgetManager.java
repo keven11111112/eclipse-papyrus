@@ -251,6 +251,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	private ResourceSetListener resourceSetListener;
 
+	private IWorkbenchPartSite site;
+
+	private MenuManager menuMgr;
+
+	private Menu menu;
+
+	
 	/**
 	 * the filter configuration
 	 */
@@ -293,7 +300,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	protected final TransactionalEditingDomain getContextEditingDomain() {
 		return this.contextEditingDomain;
 	}
-
 	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#createNattable(org.eclipse.swt.widgets.Composite, int, org.eclipse.ui.IWorkbenchPartSite)
@@ -306,6 +312,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	@Override
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
 		this.bodyDataProvider = new BodyDataProvider(this);
+		this.site = site;
 
 
 		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);
@@ -391,8 +398,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 
 		if (site != null) {
-			final MenuManager menuMgr = createMenuManager(this.natTable);
-			final Menu menu = menuMgr.createContextMenu(this.natTable);
+			this.menuMgr = createMenuManager(this.natTable);
+			this.menu = menuMgr.createContextMenu(this.natTable);
 			this.natTable.setMenu(menu);
 
 			this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
@@ -606,18 +613,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @return
 	 */
 	public MenuManager createMenuManager(final NatTable natTable) {
-		final MenuManager menuManager = new MenuManager("#PopUp", "org.eclipse.papyrus.infra.nattable.widget.menu") { //$NON-NLS-1$ //$NON-NLS-2$
-
-			@Override
-			public void add(final IAction action) {
-				super.add(action);
-			}
-
-			@Override
-			public void add(final IContributionItem item) {
-				super.add(item);
-			}
-		};
+		final MenuManager menuManager = new MenuManager("#PopUp", "org.eclipse.papyrus.infra.nattable.widget.menu");
 		menuManager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 
 		menuManager.setRemoveAllWhenShown(true);
@@ -1124,19 +1120,37 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	@Override
 	public void dispose() {
+		if (this.selectionProvider != null) {
+			this.selectionProvider.dispose();
+		}
+
+		if (site != null) {
+			site.setSelectionProvider(null);
+			this.site = null;
+		}
+
+		if(this.menu!=null){
+			this.menu.dispose();
+			this.menu=null;
+		}
+		
+		if(this.menuMgr!=null){
+			this.menuMgr.dispose();
+			this.menuMgr = null;
+		}
+
 		if (this.bodyDataProvider != null) {
 			this.bodyLayerStack.removeLayerListener(resizeAxisListener);
 			this.bodyDataProvider.dispose();
 		}
 		if (this.rowHeaderDataProvider != null) {
-			this.rowHeaderLayerStack.removeLayerListener(resizeRowHeaderListener);
 			this.rowHeaderDataProvider.dispose();
 		}
+		this.rowHeaderLayerStack.removeLayerListener(resizeRowHeaderListener);
 		if (this.columnHeaderDataProvider != null) {
-			this.columnHeaderLayerStack.removeLayerListener(resizeColumnHeaderListener);
 			this.columnHeaderDataProvider.dispose();
 		}
-
+		this.columnHeaderLayerStack.removeLayerListener(resizeColumnHeaderListener);
 
 		if (this.tableEditingDomain != null && this.resourceSetListener != null) {
 			this.tableEditingDomain.removeResourceSetListener(this.resourceSetListener);
@@ -1147,6 +1161,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.tableEditingDomain = null;
 		this.contextEditingDomain = null;
 		this.tableContext = null;
+		this.natTable.dispose();
 	}
 
 	public EObject getTableContext() {

@@ -85,8 +85,12 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 	public void run(NatTable natTable, MouseEvent event) {
 		// we need to recreate the menu each time (we need to verify for each action if it is enabled or not
 		Menu menu = new Menu(natTable.getShell());
-		buildMenu(menu, natTable, event.data);
-		menu.setData(event.data);
+		
+		buildMenu(menu, natTable);
+		//menu.setData(event.data); //commented to fix the bug 469376: [Table] Memory Leak : (Tree)NattableWidgetManager, EObjectTreeItemAxis and others objects are not disposed when the table is closed
+		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=469376
+		
+		
 		// PopupMenuBuilder builder = new PopupMenuBuilder(natTable, menu).withHideRowMenuItem();
 		// builder.withShowAllRowsMenuItem();
 		menu.setVisible(true);
@@ -95,9 +99,8 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 	/**
 	 *
 	 * @param popupMenu
-	 * @param eventData
 	 */
-	private void buildMenu(final Menu popupMenu, final NatTable natTable, final Object eventData) {
+	private void buildMenu(final Menu popupMenu, final NatTable natTable) {
 		final Collection<Command> commands = EclipseCommandUtils.getAllExistingCommandsInCategory(category);
 
 		// TODO : we should use the EclipseContext to transfert the eventData from here to the handler, but currently we can't have dependency on e4 plugins
@@ -116,7 +119,7 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 
 			if (isEnabled) {
 				if (this.category.equals(Constants.ROW_HEADER_COMMANDS_CATEGORY) && TreeRowHideShowCategoryHandler.COMMAND_ID.equals(command.getId())) {
-					addShowHideCategoryCommandToMenu(popupMenu, command, natTable, eventData);
+					addShowHideCategoryCommandToMenu(popupMenu, command, natTable);
 					continue;
 				}
 				MenuItem item = new MenuItem(popupMenu, SWT.PUSH);
@@ -174,10 +177,9 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 	 * @param menu
 	 * @param command
 	 * @param natTable
-	 * @param eventData
 	 */
 	// TODO we should refactor code to create a new class PapyrusTreePopupMenu
-	private void addShowHideCategoryCommandToMenu(final Menu menu, final Command command, final NatTable natTable, final Object eventData) {
+	private void addShowHideCategoryCommandToMenu(final Menu menu, final Command command, final NatTable natTable) {
 		Table table = getTable(natTable);
 		int maxDepth = FillingConfigurationUtils.getMaxDepthForTree(table);
 		int min = 0;

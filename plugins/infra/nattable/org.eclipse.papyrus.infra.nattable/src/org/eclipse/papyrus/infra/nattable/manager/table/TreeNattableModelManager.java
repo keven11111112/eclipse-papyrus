@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.nebula.widgets.nattable.NatTable;
@@ -370,6 +371,16 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#createInvertAxisListener()
+	 *
+	 * @return
+	 */
+	@Override
+	protected Adapter createInvertAxisListener() {
+		return null;
+	}
+	
+	/**
 	 * Modify the axis when it is disposed.
 	 * 
 	 * @param iAxis
@@ -398,10 +409,13 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 */
 	@Override
 	public void dispose() {
+		if (getTableEditingDomain() != null && this.hideShowCategoriesListener != null) {
+			getTableEditingDomain().removeResourceSetListener(this.hideShowCategoriesListener);
+			this.hideShowCategoriesListener = null;
+		}
 		final List<IAxis> iAxis = getHorizontalAxisProvider().getAxis();
 
-		if (iAxis != null) {
-			// see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
+		if (iAxis != null && !iAxis.isEmpty()) {			// see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
 			// we need to remove the children which are not serialized from the root of the table, to be able to reopen
 			Runnable runnable = new Runnable() {
 
@@ -431,3 +445,4 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		super.dispose();
 	}
 }
+

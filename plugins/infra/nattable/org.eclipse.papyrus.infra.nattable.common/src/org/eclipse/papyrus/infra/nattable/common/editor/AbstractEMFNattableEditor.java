@@ -247,7 +247,6 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		// we dispose the previous nattable widget
 		NatTable nattable = this.tableManager.getAdapter(NatTable.class);
 		Composite parent = nattable.getParent();
-		nattable.dispose();
 		this.tableManager.dispose();
 		this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
 		nattable = this.tableManager.createNattable(parent, SWT.NONE, getSite());
@@ -259,6 +258,9 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		saveLocalPreferenceStoreValues();
 		this.tableManager.dispose();
 		this.synchronizer.dispose();
+		this.tableManager= null;
+		this.servicesRegistry = null;
+		this.synchronizer = null;
 		super.dispose();
 	}
 

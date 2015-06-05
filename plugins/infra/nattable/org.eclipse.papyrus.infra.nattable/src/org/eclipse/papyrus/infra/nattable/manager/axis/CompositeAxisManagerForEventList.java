@@ -99,7 +99,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	@Override
 	protected void addListeners() {
 		this.resourceSetListener = new UpdateTableContentListener(getTableManager(), this);
-		if(null != getTableEditingDomain()){
+		if (getTableEditingDomain() != null) {
 			getTableEditingDomain().addResourceSetListener(this.resourceSetListener);
 		}
 	}
@@ -152,7 +152,6 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 */
 	@Override
 	public void dispose() {
-		removeListeners();
 		super.dispose();
 		for (final IAxisManager current : this.subManagers) {
 			current.dispose();
@@ -168,9 +167,11 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 */
 	@Override
 	protected void removeListeners() {
-		if(null != getTableEditingDomain()){
+		if (getTableEditingDomain() != null && resourceSetListener != null) {
 			getTableEditingDomain().removeResourceSetListener(this.resourceSetListener);
+			this.resourceSetListener = null;
 		}
+		super.removeListeners();
 	}
 
 	/**
@@ -502,7 +503,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         the axis manager managing this axis
+	 * 		the axis manager managing this axis
 	 */
 	protected IAxisManager getAxisManager(final IAxis axis) {
 		final AxisManagerRepresentation rep = axis.getManager();
@@ -699,7 +700,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 * @param axisManagerId
 	 *            an axis
 	 * @return
-	 *         the axis manager managing it
+	 * 		the axis manager managing it
 	 */
 	protected IAxisManager findAxisManager(final IAxis axis) {
 		final String axisManagerId = axis.getManager().getAxisManagerId();
@@ -716,7 +717,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 * @param idAxis
 	 *            an idAxis
 	 * @return
-	 *         the resolved path or the {@link String} represented by the idAxis if the path can't be resolved
+	 * 		the resolved path or the {@link String} represented by the idAxis if the path can't be resolved
 	 */
 	protected Object getResolvedPath(final IdAxis idAxis) {
 		final String path = idAxis.getElement();
@@ -818,6 +819,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 			}
 		}
 		// must not be done here -> to many refresh are done
+		// getTableManager().refreshNatTable();
 	}
 
 	/**

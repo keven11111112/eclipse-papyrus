@@ -90,5 +90,14 @@ public class TableSelectionWrapper {
 	public Map<Integer, Object> getFullySelectedColumns() {
 		return this.fullySelectionColumnsObject;
 	}
+	
+	/**
+	 * this method clear the values stored in the collections and in the maps of this wrapper
+	 */
+	public void clearWrappedSelection(){
+		this.fullySelectedRowsObject.clear();
+		this.fullySelectionColumnsObject.clear();
+		this.selectedCells.clear();
+	}
 
 }

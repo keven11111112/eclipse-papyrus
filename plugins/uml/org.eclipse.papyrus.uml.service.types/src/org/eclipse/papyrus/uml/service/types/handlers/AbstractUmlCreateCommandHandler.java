@@ -18,8 +18,10 @@ import org.eclipse.papyrus.uml.service.types.filter.UmlElementCommandFilter;
 /**
  * Abstract handler for every creation command for UML elements
  * used in the ModelExplorer contextual ("Create new child") menu
- * 
+ *
+ * @deprecated since Eclipse Mars. Use AbstractCreateUmlElementCommand instead of this class
  */
+@Deprecated
 public abstract class AbstractUmlCreateCommandHandler extends AbstractCreateCommandHandler {
 
 	private static final ICommandFilter filter = UmlElementCommandFilter.INSTANCE;

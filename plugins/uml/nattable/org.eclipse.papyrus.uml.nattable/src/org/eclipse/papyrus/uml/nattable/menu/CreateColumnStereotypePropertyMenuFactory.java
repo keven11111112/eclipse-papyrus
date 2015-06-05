@@ -52,17 +52,30 @@ public class CreateColumnStereotypePropertyMenuFactory extends AbstractCreateSte
 		super(MENU_LABEL, ICON_PATH);
 	}
 
+	
 	/**
-	 *
 	 * @see org.eclipse.papyrus.uml.nattable.menu.AbstractCreateStereotypePropertyMenuFactory#fillMenu(org.eclipse.swt.widgets.Menu, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Collection, java.util.Map)
 	 *
 	 * @param menu
 	 * @param tableManager
 	 * @param initialSelection
 	 * @param nameToPropertyMap
+	 * @deprecated
 	 */
 	@Override
-	protected void fillMenu(final Menu menu, final INattableModelManager tableManager, final Collection<String> initialSelection, final Map<String, Property> nameToPropertyMap) {
+	protected void fillMenu(Menu menu, INattableModelManager tableManager, Collection<String> initialSelection, Map<String, Property> nameToPropertyMap) {
+		
+	}
+	/**
+	 *
+	 * @see org.eclipse.papyrus.uml.nattable.menu.AbstractCreateStereotypePropertyMenuFactory#fillMenu(org.eclipse.swt.widgets.Menu, java.util.Collection, java.util.Map)
+	 *
+	 * @param menu
+	 * @param initialSelection
+	 * @param nameToPropertyMap
+	 */
+	@Override
+	protected void fillMenu(final Menu menu, final Collection<String> initialSelection, final Map<String, Property> nameToPropertyMap) {
 		for (final String current : nameToPropertyMap.keySet()) {
 			final MenuItem menuItem = new MenuItem(menu, SWT.CHECK);
 			menuItem.setText(current);
@@ -76,10 +89,10 @@ public class CreateColumnStereotypePropertyMenuFactory extends AbstractCreateSte
 					final boolean toAdd = menuItem.getSelection();
 					if (toAdd) {
 						Collection<Object> toAdds = Collections.singleton((Object) nameToPropertyMap.get(current));
-						tableManager.addColumns(toAdds);
+						getTableManager().addColumns(toAdds);
 					} else {
 						Collection<Object> toRemove = Collections.singleton((Object) nameToPropertyMap.get(current));
-						tableManager.removeColumns(toRemove);
+						getTableManager().removeColumns(toRemove);
 					}
 				}
 

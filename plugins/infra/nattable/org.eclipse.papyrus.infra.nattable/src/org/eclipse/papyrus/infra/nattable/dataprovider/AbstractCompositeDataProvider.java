@@ -16,9 +16,9 @@ package org.eclipse.papyrus.infra.nattable.dataprovider;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.ui.services.IDisposable;
 
 /**
  * The Class AbstractCompositeDataProvider.
@@ -86,11 +86,12 @@ public abstract class AbstractCompositeDataProvider implements IDataProvider, ID
 		throw new UnsupportedOperationException("not yet supported"); //$NON-NLS-1$
 	}
 
+
 	/**
-	 * @see org.eclipse.emf.edit.provider.IDisposable#dispose()
+	 * 
+	 * @see org.eclipse.ui.services.IDisposable#dispose()
 	 *
 	 */
-
 	@Override
 	public void dispose() {
 		for (final IDataProvider current : this.providers) {

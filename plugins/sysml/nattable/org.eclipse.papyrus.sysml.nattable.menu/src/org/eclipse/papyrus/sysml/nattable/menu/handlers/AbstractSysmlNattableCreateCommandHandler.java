@@ -15,7 +15,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.INattableModelManagerUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.sysml.service.types.handlers.AbstractSysmlCreateCommandHandler;
+import org.eclipse.papyrus.sysml.service.types.handlers.AbstractSysmlCreateElementCommandHandler;
 import org.eclipse.papyrus.uml.nattable.menu.util.TableMenuUtils;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 
@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
  * Abstract handler for the creation commands of Sysml elements in the Nattable editor
  *
  */
-public abstract class AbstractSysmlNattableCreateCommandHandler extends AbstractSysmlCreateCommandHandler {
+public abstract class AbstractSysmlNattableCreateCommandHandler extends AbstractSysmlCreateElementCommandHandler {
 
 	/**
 	 * <pre>

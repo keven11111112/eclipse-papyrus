@@ -128,7 +128,7 @@ import ca.odell.glazedlists.event.ListEventListener;
  *
  *
  */
-public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
+public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager, FocusListener {
 
 	/**
 	 * the column manager
@@ -237,34 +237,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		this.cellsMap = HashBiMap.create();
 
-		this.invertAxisListener = new AdapterImpl() {
+		this.invertAxisListener = createInvertAxisListener();
 
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getEventType() == Notification.SET) {
-					final Object oldValue = msg.getOldValue();
-					final Object newValue = msg.getNewValue();
-					if (oldValue != null && newValue != null) {
-						if (msg.getFeature() == NattablePackage.eINSTANCE.getTable_InvertAxis()) {
-							invertJavaObject();
+		if (this.invertAxisListener != null) {
+			rawModel.eAdapters().add(this.invertAxisListener);
+		}
 
-							// use the method to refresh/merge the table using the appointed values saved in the model.notation
-							resizeAxis();
-							resizeHeader();
-							mergeTable();
-							// for the fun of it!
-							// in fact it is to fix the test org.eclipse.papyrus.sysml.nattable.requirement.tests.tests.RevealRequirementTableTest.test6SelectMultipleElementsInvertAxisAllColumns()
-							// it is a work around and not really a nice fix, because I don't understand the bug...
-							getBodyLayerStack().getRowHideShowLayer().showAllRows();
-							getBodyLayerStack().getColumnHideShowLayer().showAllColumns();
-
-						}
-					}
-				}
-			}
-		};
-
-		rawModel.eAdapters().add(this.invertAxisListener);
 		init();
 
 		changeAxisProvider = new AdapterImpl() {
@@ -320,6 +298,37 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		addListeners();
 	}
 
+	/**
+	 * create the invert axis listener, can return <code>null</code>
+	 */
+	protected Adapter createInvertAxisListener() {
+		return new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getEventType() == Notification.SET) {
+					final Object oldValue = msg.getOldValue();
+					final Object newValue = msg.getNewValue();
+					if (oldValue != null && newValue != null) {
+						if (msg.getFeature() == NattablePackage.eINSTANCE.getTable_InvertAxis()) {
+							invertJavaObject();
+
+							// use the method to refresh/merge the table using the appointed values saved in the model.notation
+							resizeAxis();
+							resizeHeader();
+							mergeTable();
+							// for the fun of it!
+							// in fact it is to fix the test org.eclipse.papyrus.sysml.nattable.requirement.tests.tests.RevealRequirementTableTest.test6SelectMultipleElementsInvertAxisAllColumns()
+							// it is a work around and not really a nice fix, because I don't undestand the bug...
+							getBodyLayerStack().getRowHideShowLayer().showAllRows();
+							getBodyLayerStack().getColumnHideShowLayer().showAllColumns();
+
+						}
+					}
+				}
+			}
+		};
+	}
 	private ListEventListener<Object> listEventListener;
 
 	/**
@@ -383,6 +392,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * 		the new list to use for vertical element
 	 */
 	protected List<Object> createVerticalElementList() {
+		// return Collections.synchronizedList(new ArrayList<Object>());
 		this.basicVerticalList = GlazedLists.eventList(new ArrayList<Object>());
 		// it required than vertical element is a filter list -> warning to invert axis?
 		this.verticalFilterList = new FilterList<Object>(this.basicVerticalList);
@@ -395,6 +405,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * 		the new list to use for horizontal element
 	 */
 	protected List<Object> createHorizontalElementList() {
+		// return Collections.synchronizedList(new ArrayList<Object>());
 		this.basicHorizontalList = GlazedLists.eventList(new ArrayList<Object>());
 		FilterList<Object> filteredList = new FilterList<Object>(this.basicHorizontalList);
 		this.horizontalFilterList = filteredList;
@@ -436,18 +447,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if (getTableEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
 			getTableEditingDomain().getCommandStack().addCommandStackListener(this.refreshListener);
 		}
-		this.focusListener = new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				// nothing to do
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				updateToggleActionState();
-			}
-		};
+		this.focusListener = this;
 		nattable.addFocusListener(this.focusListener);
 
 		this.layerListener = new ILayerListener() {
@@ -463,6 +463,17 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return nattable;
 	}
 
+	@Override
+	public void focusLost(FocusEvent e) {
+		// nothing to do
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		updateToggleActionState();
+	}
+
+	
 	/**
 	 * this command update the status of the toggle actions
 	 */
@@ -579,6 +590,18 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			command = commandService.getCommand(CommandIds.COMMAND_MERGE_SELECTED_COLUMNS);
 			updateToggleCommandState(command, getToggleStateSelectedColumns());
 
+			// the merge of all the elements in the table is not yet supported
+			// command = commandService.getCommand(CommandIds.COMMAND_MERGE_TABLE);
+			// BooleanValueStyle mergeTable = (BooleanValueStyle)getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.MERGE_TABLE);
+			// if(mergeTable != null) {
+			// updateToggleCommandState(command, mergeTable.isBooleanValue());
+			// } else {
+			// updateToggleCommandState(command, false);
+			// }
+
+
+
+
 		} else {
 			throw new RuntimeException(String.format("The Eclipse service %s has not been found", ICommandService.class)); //$NON-NLS-1$
 		}
@@ -641,6 +664,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.columnManager.setAxisComparator(null);
 
 		updateToggleActionState();
+		// configureNatTable();
 
 		configureCellAxisEditor();
 		configureFilters();
@@ -744,14 +768,23 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.columnManager.dispose();
 		this.rowManager.dispose();
 		Table table = getTable();
-		if (table != null && this.tableCellsListener != null) {
-			table.eAdapters().remove(this.tableCellsListener);
-		}
-		if (this.cellsMap != null) {
+		if (table != null) {
+
+			if (this.tableCellsListener != null) {
+				table.eAdapters().remove(this.tableCellsListener);
+			}
+			if (this.changeAxisProvider != null) {
+				table.eAdapters().remove(this.changeAxisProvider);
+			}
+			if (this.invertAxisListener != null) {
+				table.eAdapters().remove(this.invertAxisListener);
+			}
+		}		if (this.cellsMap != null) {
 			this.cellsMap.clear();
 		}
 		if (this.natTable != null) {
-			natTable.removeLayerListener(layerListener);
+			natTable.removeLayerListener(this.layerListener);
+			natTable.removeFocusListener(this.focusListener);
 		}
 
 		removeListeners();
@@ -1057,6 +1090,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	@Override
 	public List<Object> getRowElementsList() {
+		// return this.eventList;
 		return this.horizontalElements;
 	}
 
@@ -1705,6 +1739,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		};
 
+		getContextEditingDomain().addResourceSetListener(resourceSetListener);
 		if (getTableEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
 			getTableEditingDomain().addResourceSetListener(resourceSetListener);
 		}
