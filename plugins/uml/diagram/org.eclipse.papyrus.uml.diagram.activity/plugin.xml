@@ -47,7 +47,12 @@
    </extension>
    
    
-
+	<extension
+         point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.behavior.BehaviorToCallBehaviorActionDropStrategy">
+       </strategy>
+   </extension>
 
    <extension
          point="org.eclipse.papyrus.infra.core.papyrusDiagram">
