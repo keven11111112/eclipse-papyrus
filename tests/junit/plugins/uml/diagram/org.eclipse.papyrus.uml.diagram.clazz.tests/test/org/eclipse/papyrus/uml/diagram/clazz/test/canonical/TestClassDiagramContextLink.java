@@ -62,8 +62,8 @@ public class TestClassDiagramContextLink extends TestLink {
 		GraphicalEditPart class1EditPart = createNodeOnDiagram(UMLElementTypes.Class_2008, new Point(100, 100), 1);
 		GraphicalEditPart class2EditPart = createNodeOnDiagram(UMLElementTypes.Class_2008, new Point(100, 300), 2);
 		GraphicalEditPart constraintEditPart = createNodeOnDiagram(UMLElementTypes.Constraint_2011, new Point(300, 100), 3);
-		createLink(UMLElementTypes.ConstraintContext_8500, constraintEditPart, class1EditPart, true);
-		createLink(UMLElementTypes.ConstraintContext_8500, constraintEditPart, class2EditPart, false);
+		createLink(UMLElementTypes.ConstraintContext_8500, constraintEditPart, class1EditPart, false,true);
+		createLink(UMLElementTypes.ConstraintContext_8500, constraintEditPart, class2EditPart, true,false);
 	}
 
 	private GraphicalEditPart createNodeOnDiagram(IElementType nodeType, Point loc, int expectedChildsCount) {
@@ -77,8 +77,20 @@ public class TestClassDiagramContextLink extends TestLink {
 		return (GraphicalEditPart) getDiagramEditPart().getChildren().get(expectedChildsCount - 1);
 	}
 
-	private void createLink(IElementType linkType, GraphicalEditPart source, GraphicalEditPart target, boolean canExecute) {
+	/**
+	 * create a link
+	 * @param linkType
+	 * @param source
+	 * @param target
+	 * @param nullCommand if the resulted command must be null
+	 * @param canExecute true if the command must be executable - if null command is true this parameter is not tested
+	 */
+	private void createLink(IElementType linkType, GraphicalEditPart source, GraphicalEditPart target,boolean nullCommand, boolean canExecute) {
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
+		if( nullCommand){
+			org.junit.Assert.assertNull(CREATION + " must be null", command);
+			return;
+		}
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == canExecute);
 		if (canExecute) {
