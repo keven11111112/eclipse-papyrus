@@ -55,6 +55,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		OpenTableTest.class,
 		
 		SortAxisClassTreeTableTest.class,
+		EditAxisClassTreeTableTest.class,
 		
 		ContentsAndExpandWithCategories_0_1_2_Tests.class,
 		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,
