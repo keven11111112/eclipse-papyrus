@@ -19,8 +19,13 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({  Bug443814_Enumeration.class, TableCreationInSysMLModelTest.class, OpenTableTest.class, TableCreationInUMLModel.class, RevealRequirementTableTest.class,
-
+@SuiteClasses({  
+	SortAxisRequirementTableTest.class,
+	Bug443814_Enumeration.class, 
+	TableCreationInSysMLModelTest.class, 
+	OpenTableTest.class, 
+	TableCreationInUMLModel.class, 
+	RevealRequirementTableTest.class,
 })
 public class AllTests {
 
