@@ -53,6 +53,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		EditInvalidPastedText_V1_V3_V1.class,
 		OpenTableTest.class,
+		
+		SortAxisClassTreeTableTest.class,
+		
 		ContentsAndExpandWithCategories_0_1_2_Tests.class,
 		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,
 		
@@ -98,8 +101,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_V3_H1_MultiColumns_Test.class,
 
 
-		PasteWithCategories_V1_V3_V1_MultiColumns_Test.class,
-		})
+		PasteWithCategories_V1_V3_V1_MultiColumns_Test.class, 
+})
 public class AllTests {
 	// JUnit 4 test suite
 
