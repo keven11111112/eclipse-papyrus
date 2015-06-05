@@ -25,10 +25,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle#getDoubleListValue <em>Double List Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle#getDoubleListValue <em>Double List Value</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getDoubleListValueStyle()
  * @model
@@ -44,7 +44,6 @@ public interface DoubleListValueStyle extends NamedStyle {
 	 * If the meaning of the '<em>Double List Value</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Double List Value</em>' attribute list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getDoubleListValueStyle_DoubleListValue()
 	 * @model unique="false"

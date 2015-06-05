@@ -26,11 +26,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleListValueStyleImpl#getDoubleListValue <em>Double List Value
- * </em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleListValueStyleImpl#getDoubleListValue <em>Double List Value</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -40,7 +39,6 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	 * The cached value of the '{@link #getDoubleListValue() <em>Double List Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getDoubleListValue()
 	 * @generated
 	 * @ordered
@@ -50,7 +48,6 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected DoubleListValueStyleImpl() {
@@ -60,7 +57,6 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -71,12 +67,11 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<Double> getDoubleListValue() {
-		if(doubleListValue == null) {
+		if (doubleListValue == null) {
 			doubleListValue = new EDataTypeEList<Double>(Double.class, this, NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE);
 		}
 		return doubleListValue;
@@ -85,14 +80,13 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
-			return getDoubleListValue();
+		switch (featureID) {
+			case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
+				return getDoubleListValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -100,17 +94,16 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
-			getDoubleListValue().clear();
-			getDoubleListValue().addAll((Collection<? extends Double>)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
+				getDoubleListValue().clear();
+				getDoubleListValue().addAll((Collection<? extends Double>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -118,15 +111,14 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
-			getDoubleListValue().clear();
-			return;
+		switch (featureID) {
+			case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
+				getDoubleListValue().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -134,14 +126,13 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
-			return doubleListValue != null && !doubleListValue.isEmpty();
+		switch (featureID) {
+			case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE:
+				return doubleListValue != null && !doubleListValue.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -149,14 +140,12 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (doubleListValue: "); //$NON-NLS-1$
 		result.append(doubleListValue);

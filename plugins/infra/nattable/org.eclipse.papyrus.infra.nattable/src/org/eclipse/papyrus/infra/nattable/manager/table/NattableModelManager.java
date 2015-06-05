@@ -383,7 +383,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * 		the new list to use for vertical element
 	 */
 	protected List<Object> createVerticalElementList() {
-		// return Collections.synchronizedList(new ArrayList<Object>());
 		this.basicVerticalList = GlazedLists.eventList(new ArrayList<Object>());
 		// it required than vertical element is a filter list -> warning to invert axis?
 		this.verticalFilterList = new FilterList<Object>(this.basicVerticalList);
@@ -396,7 +395,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * 		the new list to use for horizontal element
 	 */
 	protected List<Object> createHorizontalElementList() {
-		// return Collections.synchronizedList(new ArrayList<Object>());
 		this.basicHorizontalList = GlazedLists.eventList(new ArrayList<Object>());
 		FilterList<Object> filteredList = new FilterList<Object>(this.basicHorizontalList);
 		this.horizontalFilterList = filteredList;
@@ -581,18 +579,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			command = commandService.getCommand(CommandIds.COMMAND_MERGE_SELECTED_COLUMNS);
 			updateToggleCommandState(command, getToggleStateSelectedColumns());
 
-			// the merge of all the elements in the table is not yet supported
-			// command = commandService.getCommand(CommandIds.COMMAND_MERGE_TABLE);
-			// BooleanValueStyle mergeTable = (BooleanValueStyle)getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.MERGE_TABLE);
-			// if(mergeTable != null) {
-			// updateToggleCommandState(command, mergeTable.isBooleanValue());
-			// } else {
-			// updateToggleCommandState(command, false);
-			// }
-
-
-
-
 		} else {
 			throw new RuntimeException(String.format("The Eclipse service %s has not been found", ICommandService.class)); //$NON-NLS-1$
 		}
@@ -655,7 +641,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.columnManager.setAxisComparator(null);
 
 		updateToggleActionState();
-		// configureNatTable();
 
 		configureCellAxisEditor();
 		configureFilters();
@@ -1072,7 +1057,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	@Override
 	public List<Object> getRowElementsList() {
-		// return this.eventList;
 		return this.horizontalElements;
 	}
 
@@ -1721,7 +1705,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		};
 
-		getContextEditingDomain().addResourceSetListener(resourceSetListener);
 		if (getTableEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
 			getTableEditingDomain().addResourceSetListener(resourceSetListener);
 		}

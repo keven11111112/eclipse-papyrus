@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AxisManagerRepresentationItemProvider extends StyledElementItemProvider {
@@ -40,7 +39,6 @@ public class AxisManagerRepresentationItemProvider extends StyledElementItemProv
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AxisManagerRepresentationItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +49,6 @@ public class AxisManagerRepresentationItemProvider extends StyledElementItemProv
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,99 +68,94 @@ public class AxisManagerRepresentationItemProvider extends StyledElementItemProv
 	 * This adds a property descriptor for the Axis Manager Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addAxisManagerIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AxisManagerRepresentation_axisManagerId_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_axisManagerId_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AxisManagerRepresentation_axisManagerId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_axisManagerId_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Label Provider Context feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addLabelProviderContextPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AxisManagerRepresentation_labelProviderContext_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_labelProviderContext_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AxisManagerRepresentation_labelProviderContext_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_labelProviderContext_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Header Label Configuration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addHeaderLabelConfigurationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AxisManagerRepresentation_headerLabelConfiguration_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_headerLabelConfiguration_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AxisManagerRepresentation_headerLabelConfiguration_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_headerLabelConfiguration_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Specific Axis Configurations feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSpecificAxisConfigurationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AxisManagerRepresentation_specificAxisConfigurations_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_specificAxisConfigurations_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AxisManagerRepresentation_specificAxisConfigurations_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_specificAxisConfigurations_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns AxisManagerRepresentation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,15 +167,14 @@ public class AxisManagerRepresentationItemProvider extends StyledElementItemProv
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AxisManagerRepresentation) object).getAxisManagerId();
+		String label = ((AxisManagerRepresentation)object).getAxisManagerId();
 		return label == null || label.length() == 0 ?
-				getString("_UI_AxisManagerRepresentation_type") : //$NON-NLS-1$
-				getString("_UI_AxisManagerRepresentation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_AxisManagerRepresentation_type") : //$NON-NLS-1$
+			getString("_UI_AxisManagerRepresentation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -192,7 +183,6 @@ public class AxisManagerRepresentationItemProvider extends StyledElementItemProv
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,10 +190,10 @@ public class AxisManagerRepresentationItemProvider extends StyledElementItemProv
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AxisManagerRepresentation.class)) {
-		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
-		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -213,7 +203,6 @@ public class AxisManagerRepresentationItemProvider extends StyledElementItemProv
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -225,7 +214,6 @@ public class AxisManagerRepresentationItemProvider extends StyledElementItemProv
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

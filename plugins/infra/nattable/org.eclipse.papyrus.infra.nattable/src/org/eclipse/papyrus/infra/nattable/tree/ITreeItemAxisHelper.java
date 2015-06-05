@@ -63,16 +63,23 @@ public class ITreeItemAxisHelper {
 		}
 
 		try {
-			GMFUnsafe.write(editingDomain, new Runnable() {
-
-				@Override
-				public void run() {
-					if (parentAxis != null) {
-						axis.setParent(parentAxis);
+			if(null != editingDomain){
+				GMFUnsafe.write(editingDomain, new Runnable() {
+	
+					@Override
+					public void run() {
+						if (parentAxis != null) {
+							axis.setParent(parentAxis);
+						}
+						axis.setManager(axisRepresentation);
 					}
-					axis.setManager(axisRepresentation);
+				});
+			}else{
+				if (parentAxis != null) {
+					axis.setParent(parentAxis);
 				}
-			});
+				axis.setManager(axisRepresentation);
+			}
 		} catch (InterruptedException e) {
 			Activator.log.error(e);
 		} catch (RollbackException e) {

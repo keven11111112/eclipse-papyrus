@@ -46,7 +46,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.util.NattableValidator;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class NattablePackageImpl extends EPackageImpl implements NattablePackage {
@@ -54,19 +53,19 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private EClass tableEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#eNS_URI
 	 * @see #init()
@@ -79,32 +78,32 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
-	 * <p>
-	 * This method is used to initialize {@link NattablePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
-	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
+	 * <p>This method is used to initialize {@link NattablePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static NattablePackage init() {
-		if(isInited) {
-			return (NattablePackage)EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI);
-		}
+		if (isInited) return (NattablePackage)EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI);
+
 		// Obtain or create and register package
 		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattablePackageImpl());
+
 		isInited = true;
+
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
 		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) : NattableconfigurationPackage.eINSTANCE);
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
@@ -115,6 +114,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) : NattablecellPackage.eINSTANCE);
 		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
 		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theNattablePackage.createPackageContents();
 		theNattableconfigurationPackage.createPackageContents();
@@ -126,6 +126,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		theNattablecellPackage.createPackageContents();
 		theNattableproblemPackage.createPackageContents();
 		theNattablestylePackage.createPackageContents();
+
 		// Initialize created meta-data
 		theNattablePackage.initializePackageContents();
 		theNattableconfigurationPackage.initializePackageContents();
@@ -137,16 +138,20 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		theNattablecellPackage.initializePackageContents();
 		theNattableproblemPackage.initializePackageContents();
 		theNattablestylePackage.initializePackageContents();
-		// Register package validator
-		EValidator.Registry.INSTANCE.put(theNattablePackage, new EValidator.Descriptor() {
 
-			@Override
-			public EValidator getEValidator() {
-				return NattableValidator.INSTANCE;
-			}
-		});
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theNattablePackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return NattableValidator.INSTANCE;
+				 }
+			 });
+
 		// Mark meta-data to indicate it can't be changed
 		theNattablePackage.freeze();
+
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattablePackage.eNS_URI, theNattablePackage);
 		return theNattablePackage;
@@ -155,7 +160,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -166,7 +170,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -177,7 +180,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -188,7 +190,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -199,7 +200,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -210,7 +210,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -221,7 +220,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -232,7 +230,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -243,7 +240,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -254,7 +250,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -265,7 +260,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -276,7 +270,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -287,7 +280,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -298,7 +290,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -309,24 +300,21 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated) {
-			return;
-		}
+		if (isCreated) return;
 		isCreated = true;
+
 		// Create classes and their features
 		tableEClass = createEClass(TABLE);
 		createEReference(tableEClass, TABLE__CONTEXT);
@@ -346,28 +334,26 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized) {
-			return;
-		}
+		if (isInitialized) return;
 		isInitialized = true;
+
 		// Initialize package
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
+
 		// Obtain other dependent packages
 		NattableconfigurationPackage theNattableconfigurationPackage = (NattableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
 		NattableaxisproviderPackage theNattableaxisproviderPackage = (NattableaxisproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI);
@@ -378,6 +364,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		NattablecellPackage theNattablecellPackage = (NattablecellPackage)EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI);
 		NattableproblemPackage theNattableproblemPackage = (NattableproblemPackage)EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI);
 		NattablestylePackage theNattablestylePackage = (NattablestylePackage)EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
+
 		// Add subpackages
 		getESubpackages().add(theNattableconfigurationPackage);
 		getESubpackages().add(theNattableaxisproviderPackage);
@@ -388,10 +375,14 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		getESubpackages().add(theNattablecellPackage);
 		getESubpackages().add(theNattableproblemPackage);
 		getESubpackages().add(theNattablestylePackage);
+
 		// Create type parameters
+
 		// Set bounds for type parameters
+
 		// Add supertypes to classes
 		tableEClass.getESuperTypes().add(theNattableconfigurationPackage.getTableNamedElement());
+
 		// Initialize classes, features, and operations; add parameters
 		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTable_Context(), ecorePackage.getEObject(), null, "context", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -406,8 +397,10 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		initEReference(getTable_CurrentRowAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "currentRowAxisProvider", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_CurrentColumnAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "currentColumnAxisProvider", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_Cells(), theNattablecellPackage.getCell(), null, "cells", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		// Create resource
 		createResource(eNS_URI);
+
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
@@ -421,44 +414,57 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void createImportAnnotations() {
-		String source = "http://www.eclipse.org/OCL/Import"; //$NON-NLS-1$
-		addAnnotation(this, source, new String[]{ "ecore", "http://www.eclipse.org/emf/2002/Ecore#/" //$NON-NLS-1$ //$NON-NLS-2$
-		});
+		String source = "http://www.eclipse.org/OCL/Import"; //$NON-NLS-1$	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "ecore", "http://www.eclipse.org/emf/2002/Ecore#/" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 
 	/**
 	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$
-		addAnnotation(this, source, new String[]{ "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
-		"settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
-		"validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
-		});
-		addAnnotation(tableEClass, source, new String[]{ "constraints", "currentRowAxisInHistory currentColumnAxisInHistory currentAxisProvidersTypes" //$NON-NLS-1$ //$NON-NLS-2$
-		});
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
+		  (tableEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "currentRowAxisInHistory currentColumnAxisInHistory currentAxisProvidersTypes" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 
 	/**
 	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$
-		addAnnotation(tableEClass, source, new String[]{ "currentRowAxisInHistory", "rowAxisProvidersHistory->includes(currentRowAxisProvider)", //$NON-NLS-1$ //$NON-NLS-2$
-		"currentColumnAxisInHistory", "columnAxisProvidersHistory->includes(currentColumnAxisProvider)", //$NON-NLS-1$ //$NON-NLS-2$
-		"currentAxisProvidersTypes", "not (currentRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and currentColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))" //$NON-NLS-1$ //$NON-NLS-2$
-		});
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$	
+		addAnnotation
+		  (tableEClass, 
+		   source, 
+		   new String[] {
+			 "currentRowAxisInHistory", "rowAxisProvidersHistory->includes(currentRowAxisProvider)", //$NON-NLS-1$ //$NON-NLS-2$
+			 "currentColumnAxisInHistory", "columnAxisProvidersHistory->includes(currentColumnAxisProvider)", //$NON-NLS-1$ //$NON-NLS-2$
+			 "currentAxisProvidersTypes", "not (currentRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and currentColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 } // NattablePackageImpl

@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Display Style</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getDisplayStyle()
  * @model
  * @generated
@@ -33,7 +32,6 @@ public enum DisplayStyle implements Enumerator {
 	 * The '<em><b>NORMAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #NORMAL_VALUE
 	 * @generated
 	 * @ordered
@@ -43,7 +41,6 @@ public enum DisplayStyle implements Enumerator {
 	 * The '<em><b>HIERARCHIC SINGLE TREE COLUMN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #HIERARCHIC_SINGLE_TREE_COLUMN_VALUE
 	 * @generated
 	 * @ordered
@@ -53,7 +50,6 @@ public enum DisplayStyle implements Enumerator {
 	 * The '<em><b>HIERARCHIC MULTI TREE COLUMN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #HIERARCHIC_MULTI_TREE_COLUMN_VALUE
 	 * @generated
 	 * @ordered
@@ -67,7 +63,6 @@ public enum DisplayStyle implements Enumerator {
 	 * If the meaning of '<em><b>NORMAL</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #NORMAL
 	 * @model
 	 * @generated
@@ -83,7 +78,6 @@ public enum DisplayStyle implements Enumerator {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #HIERARCHIC_SINGLE_TREE_COLUMN
 	 * @model
 	 * @generated
@@ -99,7 +93,6 @@ public enum DisplayStyle implements Enumerator {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #HIERARCHIC_MULTI_TREE_COLUMN
 	 * @model
 	 * @generated
@@ -111,16 +104,18 @@ public enum DisplayStyle implements Enumerator {
 	 * An array of all the '<em><b>Display Style</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	private static final DisplayStyle[] VALUES_ARRAY = new DisplayStyle[]{ NORMAL, HIERARCHIC_SINGLE_TREE_COLUMN, HIERARCHIC_MULTI_TREE_COLUMN, };
+	private static final DisplayStyle[] VALUES_ARRAY = new DisplayStyle[] {
+			NORMAL,
+			HIERARCHIC_SINGLE_TREE_COLUMN,
+			HIERARCHIC_MULTI_TREE_COLUMN,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Display Style</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static final List<DisplayStyle> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -129,13 +124,14 @@ public enum DisplayStyle implements Enumerator {
 	 * Returns the '<em><b>Display Style</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static DisplayStyle get(String literal) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			DisplayStyle result = VALUES_ARRAY[i];
-			if(result.toString().equals(literal)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -146,13 +142,14 @@ public enum DisplayStyle implements Enumerator {
 	 * Returns the '<em><b>Display Style</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static DisplayStyle getByName(String name) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			DisplayStyle result = VALUES_ARRAY[i];
-			if(result.getName().equals(name)) {
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -163,17 +160,15 @@ public enum DisplayStyle implements Enumerator {
 	 * Returns the '<em><b>Display Style</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static DisplayStyle get(int value) {
-		switch(value) {
-		case NORMAL_VALUE:
-			return NORMAL;
-		case HIERARCHIC_SINGLE_TREE_COLUMN_VALUE:
-			return HIERARCHIC_SINGLE_TREE_COLUMN;
-		case HIERARCHIC_MULTI_TREE_COLUMN_VALUE:
-			return HIERARCHIC_MULTI_TREE_COLUMN;
+		switch (value) {
+			case NORMAL_VALUE: return NORMAL;
+			case HIERARCHIC_SINGLE_TREE_COLUMN_VALUE: return HIERARCHIC_SINGLE_TREE_COLUMN;
+			case HIERARCHIC_MULTI_TREE_COLUMN_VALUE: return HIERARCHIC_MULTI_TREE_COLUMN;
 		}
 		return null;
 	}
@@ -181,7 +176,6 @@ public enum DisplayStyle implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final int value;
@@ -189,7 +183,6 @@ public enum DisplayStyle implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final String name;
@@ -197,7 +190,6 @@ public enum DisplayStyle implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final String literal;
@@ -206,7 +198,6 @@ public enum DisplayStyle implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private DisplayStyle(int value, String name, String literal) {
@@ -218,41 +209,37 @@ public enum DisplayStyle implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

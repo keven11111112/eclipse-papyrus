@@ -26,10 +26,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.CellTextStyleImpl#getAlignment <em>Alignment</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.CellTextStyleImpl#getAlignment <em>Alignment</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -39,7 +39,6 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	 * The default value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getAlignment()
 	 * @generated
 	 * @ordered
@@ -50,7 +49,6 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	 * The cached value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getAlignment()
 	 * @generated
 	 * @ordered
@@ -60,7 +58,6 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected CellTextStyleImpl() {
@@ -70,7 +67,6 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -81,7 +77,6 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -92,29 +87,26 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setAlignment(CellTextAlignment newAlignment) {
 		CellTextAlignment oldAlignment = alignment;
 		alignment = newAlignment == null ? ALIGNMENT_EDEFAULT : newAlignment;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT, oldAlignment, alignment));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT:
-			return getAlignment();
+		switch (featureID) {
+			case NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT:
+				return getAlignment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,15 +114,14 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT:
-			setAlignment((CellTextAlignment)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT:
+				setAlignment((CellTextAlignment)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -138,15 +129,14 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT:
-			setAlignment(ALIGNMENT_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT:
+				setAlignment(ALIGNMENT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -154,14 +144,13 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT:
-			return alignment != ALIGNMENT_EDEFAULT;
+		switch (featureID) {
+			case NattablestylePackage.CELL_TEXT_STYLE__ALIGNMENT:
+				return alignment != ALIGNMENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -169,14 +158,12 @@ public class CellTextStyleImpl extends EModelElementImpl implements CellTextStyl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (alignment: "); //$NON-NLS-1$
 		result.append(alignment);

@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getEStructuralFeatureAxis()
  * @model
@@ -43,7 +43,6 @@ public interface EStructuralFeatureAxis extends FeatureAxis {
 	 * <!-- begin-model-doc -->
 	 * The represented EStructuralFeature.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(EStructuralFeature)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getEStructuralFeatureAxis_Element()
@@ -54,13 +53,10 @@ public interface EStructuralFeatureAxis extends FeatureAxis {
 	EStructuralFeature getElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement
-	 * <em>Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Element</em>' reference.
+	 * @param value the new value of the '<em>Element</em>' reference.
 	 * @see #getElement()
 	 * @generated
 	 */

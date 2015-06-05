@@ -27,7 +27,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Nattablece
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class NattablecellFactoryImpl extends EFactoryImpl implements NattablecellFactory {
@@ -36,16 +35,16 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static NattablecellFactory init() {
 		try {
 			NattablecellFactory theNattablecellFactory = (NattablecellFactory)EPackage.Registry.INSTANCE.getEFactory(NattablecellPackage.eNS_URI);
-			if(theNattablecellFactory != null) {
+			if (theNattablecellFactory != null) {
 				return theNattablecellFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NattablecellFactoryImpl();
@@ -55,7 +54,6 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattablecellFactoryImpl() {
@@ -65,27 +63,22 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case NattablecellPackage.CELL:
-			return createCell();
-		case NattablecellPackage.EOBJECT_AXIS_WRAPPER:
-			return createEObjectAxisWrapper();
-		case NattablecellPackage.ID_AXIS_WRAPPER:
-			return createIdAxisWrapper();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch (eClass.getClassifierID()) {
+			case NattablecellPackage.CELL: return createCell();
+			case NattablecellPackage.EOBJECT_AXIS_WRAPPER: return createEObjectAxisWrapper();
+			case NattablecellPackage.ID_AXIS_WRAPPER: return createIdAxisWrapper();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -97,7 +90,6 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -109,7 +101,6 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -121,7 +112,6 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -132,7 +122,6 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @deprecated
 	 * @generated
 	 */

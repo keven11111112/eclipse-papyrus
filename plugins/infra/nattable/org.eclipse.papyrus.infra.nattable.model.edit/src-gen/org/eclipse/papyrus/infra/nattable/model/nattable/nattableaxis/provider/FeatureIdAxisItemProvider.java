@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.N
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
@@ -37,7 +36,6 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeatureIdAxisItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +46,6 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,11 +58,11 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -80,7 +77,6 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,7 +91,6 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 	 * This returns FeatureIdAxis.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,15 +102,14 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureIdAxis) object).getAlias();
+		String label = ((FeatureIdAxis)object).getAlias();
 		return label == null || label.length() == 0 ?
-				getString("_UI_FeatureIdAxis_type") : //$NON-NLS-1$
-				getString("_UI_FeatureIdAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_FeatureIdAxis_type") : //$NON-NLS-1$
+			getString("_UI_FeatureIdAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -124,7 +118,6 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,9 +125,9 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureIdAxis.class)) {
-		case NattableaxisPackage.FEATURE_ID_AXIS__LOCAL_LABEL_CONFIGURATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case NattableaxisPackage.FEATURE_ID_AXIS__LOCAL_LABEL_CONFIGURATION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -144,7 +137,6 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,9 +144,9 @@ public class FeatureIdAxisItemProvider extends IdAxisItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisPackage.Literals.FEATURE_AXIS__LOCAL_LABEL_CONFIGURATION,
-						NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
+				 NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
 	}
 
 }

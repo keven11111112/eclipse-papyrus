@@ -26,10 +26,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis <em>Axis</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis <em>Axis</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getAxisProvider()
  * @model abstract="true"
@@ -45,7 +45,6 @@ public interface AxisProvider extends AbstractAxisProvider {
 	 * <!-- begin-model-doc -->
 	 * IAxis owned by the AxisProvider. The list can be empty in case of synchronized table.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Axis</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getAxisProvider_Axis()
 	 * @model containment="true"

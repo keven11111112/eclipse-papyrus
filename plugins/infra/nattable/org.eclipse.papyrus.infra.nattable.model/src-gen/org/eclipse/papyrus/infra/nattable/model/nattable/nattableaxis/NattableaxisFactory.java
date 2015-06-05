@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage
  * @generated
  */
@@ -29,7 +28,6 @@ public interface NattableaxisFactory extends EFactory {
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	NattableaxisFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisFactoryImpl.init();
@@ -38,7 +36,6 @@ public interface NattableaxisFactory extends EFactory {
 	 * Returns a new object of class '<em>Id Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Id Tree Item Axis</em>'.
 	 * @generated
 	 */
@@ -48,7 +45,6 @@ public interface NattableaxisFactory extends EFactory {
 	 * Returns a new object of class '<em>EObject Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>EObject Axis</em>'.
 	 * @generated
 	 */
@@ -58,37 +54,15 @@ public interface NattableaxisFactory extends EFactory {
 	 * Returns a new object of class '<em>EObject Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>EObject Tree Item Axis</em>'.
 	 * @generated
 	 */
 	EObjectTreeItemAxis createEObjectTreeItemAxis();
 
 	/**
-	 * Returns a new object of class '<em>Feature Tree Item Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return a new object of class '<em>Feature Tree Item Axis</em>'.
-	 * @generated
-	 */
-	FeatureTreeItemAxis createFeatureTreeItemAxis();
-
-	/**
-	 * Returns a new object of class '<em>Object Tree Item Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return a new object of class '<em>Object Tree Item Axis</em>'.
-	 * @generated
-	 */
-	ObjectTreeItemAxis createObjectTreeItemAxis();
-
-	/**
 	 * Returns a new object of class '<em>Feature Id Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Feature Id Axis</em>'.
 	 * @generated
 	 */
@@ -98,7 +72,6 @@ public interface NattableaxisFactory extends EFactory {
 	 * Returns a new object of class '<em>Feature Id Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Feature Id Tree Item Axis</em>'.
 	 * @generated
 	 */
@@ -108,27 +81,42 @@ public interface NattableaxisFactory extends EFactory {
 	 * Returns a new object of class '<em>EStructural Feature Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>EStructural Feature Axis</em>'.
 	 * @generated
 	 */
 	EStructuralFeatureAxis createEStructuralFeatureAxis();
 
 	/**
+	 * Returns a new object of class '<em>EOperation Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EOperation Axis</em>'.
+	 * @generated
+	 */
+	EOperationAxis createEOperationAxis();
+
+	/**
 	 * Returns a new object of class '<em>EStructural Feature Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>EStructural Feature Tree Item Axis</em>'.
 	 * @generated
 	 */
 	EStructuralFeatureTreeItemAxis createEStructuralFeatureTreeItemAxis();
 
 	/**
+	 * Returns a new object of class '<em>EOperation Tree Item Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EOperation Tree Item Axis</em>'.
+	 * @generated
+	 */
+	EOperationTreeItemAxis createEOperationTreeItemAxis();
+
+	/**
 	 * Returns a new object of class '<em>Object Id Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Object Id Axis</em>'.
 	 * @generated
 	 */
@@ -138,7 +126,6 @@ public interface NattableaxisFactory extends EFactory {
 	 * Returns a new object of class '<em>Object Id Tree Item Axis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Object Id Tree Item Axis</em>'.
 	 * @generated
 	 */
@@ -148,7 +135,6 @@ public interface NattableaxisFactory extends EFactory {
 	 * Returns a new object of class '<em>Axis Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Axis Group</em>'.
 	 * @generated
 	 */
@@ -158,7 +144,6 @@ public interface NattableaxisFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

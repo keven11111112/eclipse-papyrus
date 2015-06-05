@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle#getEObjectValue <em>EObject Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle#getEObjectValue <em>EObject Value</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getEObjectListValueStyle()
  * @model
@@ -41,7 +41,6 @@ public interface EObjectListValueStyle extends NamedStyle {
 	 * If the meaning of the '<em>EObject Value</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>EObject Value</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getEObjectListValueStyle_EObjectValue()
 	 * @model

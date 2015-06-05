@@ -79,7 +79,6 @@ public class CompositeTreeAxisManagerForEventList extends CompositeAxisManagerFo
 	public void manageEvent(Notification notification) {
 		super.manageEvent(notification);
 		// must not be done here -> to many call to refresh
-		// getTableManager().refreshNatTable();
 	}
 
 
@@ -190,13 +189,17 @@ public class CompositeTreeAxisManagerForEventList extends CompositeAxisManagerFo
 		// we are modifying the model, so we need to do the expand is a command, but this action must not be done in the stack (and must not be available in the history)
 		final SetCommand cmd = new SetCommand(getTableEditingDomain(), element, NattableaxisPackage.eINSTANCE.getITreeItemAxis_Expanded(), expanded);
 		try {
-			GMFUnsafe.write(getTableEditingDomain(), new Runnable() {
-
-				@Override
-				public void run() {
-					cmd.execute();
-				}
-			});
+			if(null != getTableEditingDomain()){
+				GMFUnsafe.write(getTableEditingDomain(), new Runnable() {
+	
+					@Override
+					public void run() {
+						cmd.execute();
+					}
+				});
+			}else{
+				cmd.execute();
+			}
 		} catch (InterruptedException e) {
 			Activator.log.error(e);
 		} catch (RollbackException e) {

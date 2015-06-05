@@ -21,10 +21,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup#getGroupedAxis <em>Grouped Axis</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup#getGroupedAxis <em>Grouped Axis</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getAxisGroup()
  * @model
@@ -40,7 +40,6 @@ public interface AxisGroup extends IAxis {
 	 * If the meaning of the '<em>Grouped Axis</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Grouped Axis</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getAxisGroup_GroupedAxis()
 	 * @model

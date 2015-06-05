@@ -26,10 +26,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisp
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.TableDisplayStyleImpl#getDisplayStyle <em>Display Style</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.TableDisplayStyleImpl#getDisplayStyle <em>Display Style</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -39,7 +39,6 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	 * The default value of the '{@link #getDisplayStyle() <em>Display Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getDisplayStyle()
 	 * @generated
 	 * @ordered
@@ -50,7 +49,6 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	 * The cached value of the '{@link #getDisplayStyle() <em>Display Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getDisplayStyle()
 	 * @generated
 	 * @ordered
@@ -60,7 +58,6 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected TableDisplayStyleImpl() {
@@ -70,7 +67,6 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -81,7 +77,6 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -92,29 +87,26 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setDisplayStyle(DisplayStyle newDisplayStyle) {
 		DisplayStyle oldDisplayStyle = displayStyle;
 		displayStyle = newDisplayStyle == null ? DISPLAY_STYLE_EDEFAULT : newDisplayStyle;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE, oldDisplayStyle, displayStyle));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
-			return getDisplayStyle();
+		switch (featureID) {
+			case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
+				return getDisplayStyle();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,15 +114,14 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
-			setDisplayStyle((DisplayStyle)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
+				setDisplayStyle((DisplayStyle)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -138,15 +129,14 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
-			setDisplayStyle(DISPLAY_STYLE_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
+				setDisplayStyle(DISPLAY_STYLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -154,14 +144,13 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
-			return displayStyle != DISPLAY_STYLE_EDEFAULT;
+		switch (featureID) {
+			case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
+				return displayStyle != DISPLAY_STYLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -169,14 +158,12 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (displayStyle: "); //$NON-NLS-1$
 		result.append(displayStyle);

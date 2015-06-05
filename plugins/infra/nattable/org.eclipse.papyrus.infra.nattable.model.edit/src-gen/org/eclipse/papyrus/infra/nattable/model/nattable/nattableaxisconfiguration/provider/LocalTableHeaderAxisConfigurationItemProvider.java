@@ -30,7 +30,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxisConfigurationItemProvider {
@@ -38,7 +37,6 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LocalTableHeaderAxisConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -49,7 +47,6 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,11 +59,11 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +78,6 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +92,6 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 	 * This returns LocalTableHeaderAxisConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,16 +103,15 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		AxisIndexStyle labelValue = ((LocalTableHeaderAxisConfiguration) object).getIndexStyle();
+		AxisIndexStyle labelValue = ((LocalTableHeaderAxisConfiguration)object).getIndexStyle();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-				getString("_UI_LocalTableHeaderAxisConfiguration_type") : //$NON-NLS-1$
-				getString("_UI_LocalTableHeaderAxisConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_LocalTableHeaderAxisConfiguration_type") : //$NON-NLS-1$
+			getString("_UI_LocalTableHeaderAxisConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -126,7 +120,6 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,9 +127,9 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LocalTableHeaderAxisConfiguration.class)) {
-		case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -146,7 +139,6 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -154,9 +146,9 @@ public class LocalTableHeaderAxisConfigurationItemProvider extends AbstractHeade
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS,
-						NattableaxisconfigurationFactory.eINSTANCE.createAxisManagerConfiguration()));
+				 NattableaxisconfigurationFactory.eINSTANCE.createAxisManagerConfiguration()));
 	}
 
 }

@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -107,8 +108,6 @@ public final class StereotypeDisplayCommandExecution {
 	 *            True to make the Compartment visible
 	 */
 	public void setPersistency(final TransactionalEditingDomain domain, final View view, boolean inCommandStack) {
-
-
 		if (!inCommandStack) {
 
 			class SetPersistencyRunnable implements Runnable {
@@ -134,7 +133,7 @@ public final class StereotypeDisplayCommandExecution {
 	/**
 	 * @param eContainer
 	 */
-	public void makeViewPersistant(View view) {
+	public void makeViewPersistant(final View view) {
 		if (view != null) {
 			if (view.eContainer() != null && view.eContainer() instanceof View) {
 
@@ -145,10 +144,8 @@ public final class StereotypeDisplayCommandExecution {
 					((View) view.eContainer()).getPersistedChildren().add(view);
 					((View) view.eContainer()).getTransientChildren().remove(view);
 				}
-
 			}
 		}
-
 	}
 
 	/**
@@ -168,13 +165,10 @@ public final class StereotypeDisplayCommandExecution {
 		Command command = new CustomStyleValueCommand(label, depth, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(), StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH);
 
 		if (inCommandStack) {
-
-
 			CommandUtil.executeCommandInStack(command, domain);
 		} else {
 			CommandUtil.executeUnsafeCommand(command, domain);
 		}
-
 	}
 
 	/**
@@ -190,18 +184,38 @@ public final class StereotypeDisplayCommandExecution {
 	 *            True if the View has to be visible, false if the Node should be hidden
 	 *
 	 */
-	public void setUserVisibility(TransactionalEditingDomain domain, View view, boolean visible) {
+	public void setUserVisibility(final TransactionalEditingDomain domain, final View view, final boolean visible) {
 		if (view != null && domain != null) {
-
-			SetPersistentViewCommand persitence = new SetPersistentViewCommand(domain, view);
-			CommandUtil.executeCommandInStack(persitence, domain);
-			SetNodeVisibilityCommand visibility = new SetNodeVisibilityCommand(domain, view, visible);
+			final CompoundCommand compoundCommand = new CompoundCommand("Set Persistency");
+			
+			final SetPersistentViewCommand persitence = new SetPersistentViewCommand(domain, view);
+			compoundCommand.append(persitence);
+			final SetNodeVisibilityCommand visibility = new SetNodeVisibilityCommand(domain, view, visible);
+			compoundCommand.append(visibility);
+			CommandUtil.executeCommandInStack(compoundCommand, domain);
+		}
+	}
+	
+	/**
+	 * This Method is called when the user ask explicitly to display a View.
+	 * The command is put in the command Stack before to set the Visibility as wanted.
+	 * 
+	 * @param domain
+	 *            The Transactional Domain
+	 * @param view
+	 *            The View to make visible
+	 * @param visible
+	 *            True if the View has to be visible, false if the Node should be hidden
+	 *
+	 */
+	public void setUserVisibilityWithoutPersistence(final TransactionalEditingDomain domain, final View view, final boolean visible) {
+		if (view != null && domain != null) {
+			
+			final SetNodeVisibilityCommand visibility = new SetNodeVisibilityCommand(domain, view, visible);
 			CommandUtil.executeCommandInStack(visibility, domain);
-
 		}
 	}
 
-
 	/**
 	 * This Method is called when the user ask explicitly to display a View.
 	 * Then the node is first set as Persistence and the command is put in the command Stack
@@ -215,14 +229,10 @@ public final class StereotypeDisplayCommandExecution {
 	 *            True if the View has to be visible, false if the Node should be hidden
 	 *
 	 */
-	public void setUserDepth(TransactionalEditingDomain domain, Stereotype stereotype, View view, String depth) {
-
+	public void setUserDepth(final TransactionalEditingDomain domain, final Stereotype stereotype, final View view, final String depth) {
 		if (view != null && depth != null && !depth.isEmpty()) {
 			setPersistency(domain, view, true);
 			setDepth(domain, stereotype, view, depth, true);
 		}
 	}
-
-
-
 }

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage
  * @generated
  */
@@ -29,7 +28,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	NattableaxisconfigurationFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationFactoryImpl.init();
@@ -38,7 +36,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>Axis Manager Representation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Axis Manager Representation</em>'.
 	 * @generated
 	 */
@@ -48,7 +45,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>Axis Manager Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Axis Manager Configuration</em>'.
 	 * @generated
 	 */
@@ -58,7 +54,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>Table Header Axis Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Table Header Axis Configuration</em>'.
 	 * @generated
 	 */
@@ -68,7 +63,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>Local Table Header Axis Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Local Table Header Axis Configuration</em>'.
 	 * @generated
 	 */
@@ -78,7 +72,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>Feature Axis Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Feature Axis Configuration</em>'.
 	 * @generated
 	 */
@@ -88,7 +81,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>EStructural Feature Value Filling Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>EStructural Feature Value Filling Configuration</em>'.
 	 * @generated
 	 */
@@ -98,7 +90,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>IPaste Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>IPaste Configuration</em>'.
 	 * @generated
 	 */
@@ -108,7 +99,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>Paste EObject Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Paste EObject Configuration</em>'.
 	 * @generated
 	 */
@@ -118,7 +108,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns a new object of class '<em>Tree Filling Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Tree Filling Configuration</em>'.
 	 * @generated
 	 */
@@ -128,7 +117,6 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

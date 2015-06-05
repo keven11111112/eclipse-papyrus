@@ -25,13 +25,11 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayIcon <em>
- * Display Icon</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayLabel <em>
- * Display Label</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayIcon <em>Display Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -41,7 +39,6 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 * The default value of the '{@link #isDisplayIcon() <em>Display Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayIcon()
 	 * @generated
 	 * @ordered
@@ -52,7 +49,6 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 * The cached value of the '{@link #isDisplayIcon() <em>Display Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayIcon()
 	 * @generated
 	 * @ordered
@@ -63,7 +59,6 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 * The default value of the '{@link #isDisplayLabel() <em>Display Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayLabel()
 	 * @generated
 	 * @ordered
@@ -74,7 +69,6 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 * The cached value of the '{@link #isDisplayLabel() <em>Display Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayLabel()
 	 * @generated
 	 * @ordered
@@ -84,7 +78,6 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ObjectLabelProviderConfigurationImpl() {
@@ -94,7 +87,6 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -105,7 +97,6 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -116,22 +107,19 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setDisplayIcon(boolean newDisplayIcon) {
 		boolean oldDisplayIcon = displayIcon;
 		displayIcon = newDisplayIcon;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON, oldDisplayIcon, displayIcon));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -142,31 +130,28 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setDisplayLabel(boolean newDisplayLabel) {
 		boolean oldDisplayLabel = displayLabel;
 		displayLabel = newDisplayLabel;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL, oldDisplayLabel, displayLabel));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
-			return isDisplayIcon();
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
-			return isDisplayLabel();
+		switch (featureID) {
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+				return isDisplayIcon();
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+				return isDisplayLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,18 +159,17 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
-			setDisplayIcon((Boolean)newValue);
-			return;
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
-			setDisplayLabel((Boolean)newValue);
-			return;
+		switch (featureID) {
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+				setDisplayIcon((Boolean)newValue);
+				return;
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+				setDisplayLabel((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -193,18 +177,17 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
-			setDisplayIcon(DISPLAY_ICON_EDEFAULT);
-			return;
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
-			setDisplayLabel(DISPLAY_LABEL_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+				setDisplayIcon(DISPLAY_ICON_EDEFAULT);
+				return;
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+				setDisplayLabel(DISPLAY_LABEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,16 +195,15 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
-			return displayIcon != DISPLAY_ICON_EDEFAULT;
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
-			return displayLabel != DISPLAY_LABEL_EDEFAULT;
+		switch (featureID) {
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+				return displayIcon != DISPLAY_ICON_EDEFAULT;
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+				return displayLabel != DISPLAY_LABEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -229,14 +211,12 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (displayIcon: "); //$NON-NLS-1$
 		result.append(displayIcon);

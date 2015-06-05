@@ -128,10 +128,6 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 			break;
 		case Notification.UNSET:
 			break;
-		// case Notification.NO_FEATURE_ID:
-		// break;
-		// case Notification.NO_INDEX:
-		// break;
 		default:
 			break;
 		}
@@ -506,7 +502,11 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		if (!isDynamic() && elementToMove instanceof IAxis) {
 			TransactionalEditingDomain domain = getTableEditingDomain();
 			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
-			domain.getCommandStack().execute(command);
+			if(null != domain){
+				domain.getCommandStack().execute(command);
+			}else{
+				command.execute();
+			}
 		}
 	}
 

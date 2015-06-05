@@ -33,7 +33,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class CellItemProvider extends EModelElementItemProvider {
@@ -41,7 +40,6 @@ public class CellItemProvider extends EModelElementItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CellItemProvider(AdapterFactory adapterFactory) {
@@ -52,7 +50,6 @@ public class CellItemProvider extends EModelElementItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,11 +62,11 @@ public class CellItemProvider extends EModelElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,7 +83,6 @@ public class CellItemProvider extends EModelElementItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,7 +97,6 @@ public class CellItemProvider extends EModelElementItemProvider {
 	 * This returns Cell.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +108,6 @@ public class CellItemProvider extends EModelElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,7 +121,6 @@ public class CellItemProvider extends EModelElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,11 +128,11 @@ public class CellItemProvider extends EModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Cell.class)) {
-		case NattablecellPackage.CELL__COLUMN_WRAPPER:
-		case NattablecellPackage.CELL__ROW_WRAPPER:
-		case NattablecellPackage.CELL__PROBLEMS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case NattablecellPackage.CELL__COLUMN_WRAPPER:
+			case NattablecellPackage.CELL__ROW_WRAPPER:
+			case NattablecellPackage.CELL__PROBLEMS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -149,7 +142,6 @@ public class CellItemProvider extends EModelElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,41 +149,40 @@ public class CellItemProvider extends EModelElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablecellPackage.Literals.CELL__COLUMN_WRAPPER,
-						NattablecellFactory.eINSTANCE.createEObjectAxisWrapper()));
+				 NattablecellFactory.eINSTANCE.createEObjectAxisWrapper()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablecellPackage.Literals.CELL__COLUMN_WRAPPER,
-						NattablecellFactory.eINSTANCE.createIdAxisWrapper()));
+				 NattablecellFactory.eINSTANCE.createIdAxisWrapper()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablecellPackage.Literals.CELL__ROW_WRAPPER,
-						NattablecellFactory.eINSTANCE.createEObjectAxisWrapper()));
+				 NattablecellFactory.eINSTANCE.createEObjectAxisWrapper()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablecellPackage.Literals.CELL__ROW_WRAPPER,
-						NattablecellFactory.eINSTANCE.createIdAxisWrapper()));
+				 NattablecellFactory.eINSTANCE.createIdAxisWrapper()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablecellPackage.Literals.CELL__PROBLEMS,
-						NattableproblemFactory.eINSTANCE.createProblem()));
+				 NattableproblemFactory.eINSTANCE.createProblem()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablecellPackage.Literals.CELL__PROBLEMS,
-						NattableproblemFactory.eINSTANCE.createStringResolutionProblem()));
+				 NattableproblemFactory.eINSTANCE.createStringResolutionProblem()));
 	}
 
 	/**
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,12 +191,13 @@ public class CellItemProvider extends EModelElementItemProvider {
 		Object childObject = child;
 
 		boolean qualify =
-				childFeature == NattablecellPackage.Literals.CELL__COLUMN_WRAPPER ||
-						childFeature == NattablecellPackage.Literals.CELL__ROW_WRAPPER;
+			childFeature == NattablecellPackage.Literals.CELL__COLUMN_WRAPPER ||
+			childFeature == NattablecellPackage.Literals.CELL__ROW_WRAPPER;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString
+				("_UI_CreateChild_text2", //$NON-NLS-1$
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
@@ -214,7 +206,6 @@ public class CellItemProvider extends EModelElementItemProvider {
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
