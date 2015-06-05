@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 425270
+ *  Christian W. Damus - bug 469464
  *
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.tools;
@@ -42,6 +43,8 @@ public class Activator extends AbstractUIPlugin {
 	 * The plug-in ID
 	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.tools"; //$NON-NLS-1$
+
+	public static final String TRACE_LANGUAGE_PROVIDERS = "providers/language"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

@@ -13,9 +13,11 @@
 
 package org.eclipse.papyrus.uml.tools.profile.index;
 
+import static org.eclipse.papyrus.uml.tools.Activator.TRACE_LANGUAGE_PROVIDERS;
+
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,6 +31,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.language.ILanguage;
 import org.eclipse.papyrus.infra.core.language.ILanguageProvider;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.language.LanguageChangeEvent;
 import org.eclipse.papyrus.infra.core.services.BadStateException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.tools.Activator;
@@ -38,6 +41,9 @@ import org.osgi.framework.Bundle;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 /**
  * <p>
@@ -122,12 +128,10 @@ public class ProfileLanguageProvider implements ILanguageProvider, IExecutableEx
 	}
 
 	@Override
-	public Iterable<ILanguage> getLanguages(ILanguageService languageService, URI modelURI, boolean uriHasFileExtension) {
-		Set<ILanguage> result = Sets.newHashSet();
+	public Iterable<ILanguage> getLanguages(final ILanguageService languageService, final URI modelURI, final boolean uriHasFileExtension) {
+		Set<ILanguage> result = Collections.emptySet();
 
-		if (!uriHasFileExtension) {
-			modelURI = modelURI.appendFileExtension(UmlModel.UML_FILE_EXTENSION);
-		}
+		final URI uriToQuery = uriHasFileExtension ? modelURI : modelURI.appendFileExtension(UmlModel.UML_FILE_EXTENSION);
 
 		try {
 			IProfileIndex index = null;
@@ -144,16 +148,72 @@ public class ProfileLanguageProvider implements ILanguageProvider, IExecutableEx
 			}
 
 			if (index != null) {
-				Set<URI> profiles = index.getAppliedProfiles(modelURI).get(10L, TimeUnit.MINUTES);
-				for (URI next : profiles) {
-					ILanguage language = getLanguage(next);
-					if (language != null) {
-						result.add(language);
+				ListenableFuture<Set<URI>> futureProfiles = index.getAppliedProfiles(uriToQuery);
+				if (futureProfiles.isDone()) {
+					// Great. We have a result already
+
+					result = getLanguages(Futures.getUnchecked(futureProfiles));
+
+					if (Activator.log.isTraceEnabled(TRACE_LANGUAGE_PROVIDERS)) {
+						Activator.log.trace(TRACE_LANGUAGE_PROVIDERS, String.format("Languages already indexed for %s: %s", uriToQuery, result));
 					}
+				} else {
+					final Set<ILanguage> immediateLanguages = getLanguages(index.getIntrinsicAppliedProfiles(uriToQuery));
+					result = immediateLanguages;
+
+					if (!result.isEmpty() && Activator.log.isTraceEnabled(TRACE_LANGUAGE_PROVIDERS)) {
+						Activator.log.trace(TRACE_LANGUAGE_PROVIDERS, String.format("Partial result already available for %s: %s", uriToQuery, immediateLanguages));
+					}
+
+					// Post an update, later
+					Futures.addCallback(futureProfiles, new FutureCallback<Set<URI>>() {
+						@Override
+						public void onSuccess(Set<URI> result) {
+							Set<ILanguage> languages = getLanguages(result);
+							languages.removeAll(immediateLanguages); // Already reported these
+
+							if (languages.isEmpty()) {
+								if (Activator.log.isTraceEnabled(TRACE_LANGUAGE_PROVIDERS)) {
+									Activator.log.trace(TRACE_LANGUAGE_PROVIDERS, "No further languages available for " + uriToQuery);
+								}
+							} else {
+								if (Activator.log.isTraceEnabled(TRACE_LANGUAGE_PROVIDERS)) {
+									Activator.log.trace(TRACE_LANGUAGE_PROVIDERS, String.format("Remaining languages now available for %s: %s", uriToQuery, languages));
+								}
+
+								LanguageChangeEvent event = new LanguageChangeEvent(ProfileLanguageProvider.this, LanguageChangeEvent.ADDED, modelURI, uriHasFileExtension, languages);
+								languageService.languagesChanged(event);
+							}
+						}
+
+						@Override
+						public void onFailure(Throwable t) {
+							// Nothing to post
+							Activator.log.error(String.format("Failed to access profile index for resource %s", uriToQuery), t); //$NON-NLS-1$
+						}
+					});
 				}
 			}
 		} catch (Exception e) {
-			Activator.log.error(String.format("Failed to access profile index for resource %s", modelURI), e); //$NON-NLS-1$
+			Activator.log.error(String.format("Failed to access profile index for resource %s", uriToQuery), e); //$NON-NLS-1$
+		}
+
+		return result;
+	}
+
+	private Set<ILanguage> getLanguages(Set<URI> profiles) {
+		Set<ILanguage> result;
+
+		if (profiles.isEmpty()) {
+			result = Collections.emptySet();
+		} else {
+			result = Sets.newHashSet();
+			for (URI next : profiles) {
+				ILanguage language = getLanguage(next);
+				if (language != null) {
+					result.add(language);
+				}
+			}
 		}
 
 		return result;

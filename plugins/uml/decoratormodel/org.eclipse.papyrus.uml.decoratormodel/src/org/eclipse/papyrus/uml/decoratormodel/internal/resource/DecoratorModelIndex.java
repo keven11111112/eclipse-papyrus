@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.uml.decoratormodel.internal.resource;
 
+import static org.eclipse.papyrus.uml.decoratormodel.Activator.TRACE_INDEX;
+
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.Map;
@@ -26,8 +28,10 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
@@ -505,6 +509,43 @@ public class DecoratorModelIndex {
 				return (resourceToAppliedProfiles == null) ? Collections.<URI> emptySet() : ImmutableSet.copyOf(resourceToAppliedProfiles.values());
 			}
 		};
+	}
+
+	public Set<URI> getIntrinsicAppliedProfiles(URI umlResource) {
+		Set<URI> result = Collections.emptySet();
+
+		synchronized (sync) {
+			// Do we happen to have a last-known idea of this resource's internally applied profiles?
+			SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(umlResource);
+			if ((resourceToAppliedProfiles != null) && (resourceToAppliedProfiles.containsKey(umlResource))) {
+				result = ImmutableSet.copyOf(resourceToAppliedProfiles.get(umlResource));
+			}
+		}
+
+		if (!result.isEmpty() && Activator.log.isTraceEnabled(TRACE_INDEX)) {
+			Activator.log.trace(TRACE_INDEX, "Using last known intrinsically applied profiles for " + umlResource);
+		}
+
+		if (result.isEmpty() && umlResource.isPlatformResource()) {
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(umlResource.toPlatformString(true)));
+			if (file.isAccessible()) {
+				indexUserModel(file);
+
+				synchronized (sync) {
+					// Did we find any profiles applied to this resource within this resource, itself?
+					SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(umlResource);
+					if ((resourceToAppliedProfiles != null) && (resourceToAppliedProfiles.containsKey(umlResource))) {
+						result = ImmutableSet.copyOf(resourceToAppliedProfiles.get(umlResource));
+					}
+				}
+
+				if (Activator.log.isTraceEnabled(TRACE_INDEX)) {
+					Activator.log.trace(TRACE_INDEX, "Forced index of intrinsically applied profiles for " + umlResource);
+				}
+			}
+		}
+
+		return result;
 	}
 
 	<V> ListenableFuture<V> afterIndex(Callable<V> callable) {

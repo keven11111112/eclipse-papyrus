@@ -43,6 +43,11 @@ public class ProfileIndex implements IProfileIndex, IService {
 		return DecoratorModelIndex.getInstance().getAllProfilesAppliedToPackagesAsync(umlResource);
 	}
 
+	@Override
+	public Set<URI> getIntrinsicAppliedProfiles(URI umlResource) {
+		return DecoratorModelIndex.getInstance().getIntrinsicAppliedProfiles(umlResource);
+	}
+
 	//
 	// Service lifecycle API
 	//

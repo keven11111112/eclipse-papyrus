@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
  * 
  * @see ILanguage
  */
-public interface ILanguageService extends IAdaptable {
+public interface ILanguageService extends IAdaptable, ILanguageChangeListener {
 	/**
 	 * Queries the languages that are instantiated in the specified model resource.
 	 * 
@@ -45,6 +45,23 @@ public interface ILanguageService extends IAdaptable {
 	 * @return the languages instantiated in the specified resource
 	 */
 	Set<ILanguage> getLanguages(URI modelURI, boolean uriHasFileExtension);
+
+	/**
+	 * Adds a listener for language change notifications. Has no effect if the {@code listener} is already added.
+	 * 
+	 * @param listener
+	 *            the listener to add
+	 */
+	void addLanguageChangeListener(ILanguageChangeListener listener);
+
+	/**
+	 * Removes a listener that is no longer interested in language change notifications. Has no effect if the {@link listener}
+	 * is not currently added.
+	 * 
+	 * @param listener
+	 *            a listener to remove
+	 */
+	void removeLanguageChangeListener(ILanguageChangeListener listener);
 
 	/**
 	 * Registers a language {@code provider}. Has no effect if the given {@code provider} is already registered.

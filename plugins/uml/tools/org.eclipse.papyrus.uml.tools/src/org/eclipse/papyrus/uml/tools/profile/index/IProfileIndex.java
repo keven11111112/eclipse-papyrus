@@ -56,4 +56,20 @@ public interface IProfileIndex {
 	 *         there may be any number of distinct profiles in a resource
 	 */
 	ListenableFuture<Set<URI>> getAppliedProfiles(URI umlResource);
+
+	/**
+	 * Synchronously computes the profiles applied intrinsically (in the usual UML way) by packages
+	 * in a resource by scanning it on the spot, if necessary. This is as efficient as it can be (not using any
+	 * EMF mechanisms to load resources etc.) but still can be expensive for large resources. It is
+	 * recommended, if at all possible, to use the {@linkplain #getAppliedProfiles(URI) asynchronous API}
+	 * instead.
+	 * 
+	 * @param umlResource
+	 *            a resource storing UML model content
+	 * 
+	 * @return object URIs of profiles applied to packages in the resource, determined immediately by a scan if necessary
+	 * 
+	 * @see #getAppliedProfiles(URI)
+	 */
+	Set<URI> getIntrinsicAppliedProfiles(URI umlResource);
 }

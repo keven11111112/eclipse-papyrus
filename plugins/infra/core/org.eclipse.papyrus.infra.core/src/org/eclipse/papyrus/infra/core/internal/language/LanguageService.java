@@ -18,9 +18,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.language.ILanguage;
+import org.eclipse.papyrus.infra.core.language.ILanguageChangeListener;
 import org.eclipse.papyrus.infra.core.language.ILanguageProvider;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.language.LanguageChangeEvent;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -36,6 +39,8 @@ import com.google.common.collect.Sets;
 public class LanguageService extends PlatformObject implements ILanguageService, IService {
 
 	private final CopyOnWriteArrayList<ILanguageProvider> languageProviders = Lists.newCopyOnWriteArrayList();
+
+	private final CopyOnWriteArrayList<ILanguageChangeListener> languageListeners = Lists.newCopyOnWriteArrayList();
 
 	private ServicesRegistry registry;
 
@@ -55,6 +60,16 @@ public class LanguageService extends PlatformObject implements ILanguageService,
 	}
 
 	@Override
+	public void addLanguageChangeListener(ILanguageChangeListener listener) {
+		languageListeners.addIfAbsent(listener);
+	}
+
+	@Override
+	public void removeLanguageChangeListener(ILanguageChangeListener listener) {
+		languageListeners.remove(listener);
+	}
+
+	@Override
 	public void addLanguageProvider(ILanguageProvider provider) {
 		languageProviders.addIfAbsent(provider);
 	}
@@ -63,6 +78,21 @@ public class LanguageService extends PlatformObject implements ILanguageService,
 	public void removeLanguageProvider(ILanguageProvider provider) {
 		if (provider != null) {
 			languageProviders.remove(provider);
+		}
+	}
+
+	@Override
+	public void languagesChanged(LanguageChangeEvent event) {
+		if (!languageListeners.isEmpty()) {
+			// Forward to my own listeners
+			event = new LanguageChangeEvent(this, event.getType(), event.getModelURI(), event.getURIHasExtension(), event.getLanguages());
+			for (ILanguageChangeListener next : languageListeners) {
+				try {
+					next.languagesChanged(event);
+				} catch (Exception e) {
+					Activator.log.error("Uncaught exception in language change listener", e); //$NON-NLS-1$
+				}
+			}
 		}
 	}
 
@@ -104,6 +134,7 @@ public class LanguageService extends PlatformObject implements ILanguageService,
 	@Override
 	public void disposeService() throws ServiceException {
 		languageProviders.clear();
+		languageListeners.clear();
 		registry = null;
 	}
 
