@@ -21,6 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ 
 		SortAxisGenericTableTest.class,
+		InvertAxisGenericTableTest.class,
 		Bug458492_Edition_Enumeration.class, 
 		RevealGenericTableTest.class,
 		FilterStringMatcherTest.class,

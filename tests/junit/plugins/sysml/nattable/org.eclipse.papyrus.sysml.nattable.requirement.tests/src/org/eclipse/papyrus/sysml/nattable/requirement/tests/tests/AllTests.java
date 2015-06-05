@@ -21,6 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({  
 	SortAxisRequirementTableTest.class,
+	InvertAxisRequirementTableTest.class,
 	Bug443814_Enumeration.class, 
 	TableCreationInSysMLModelTest.class, 
 	OpenTableTest.class, 
