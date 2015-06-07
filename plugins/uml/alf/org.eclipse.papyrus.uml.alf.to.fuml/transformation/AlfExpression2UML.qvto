@@ -170,8 +170,7 @@ query SyntaxElement::assignedValueSource(assignedName : String) : ActivityNode {
 }
 
 query Expression::assignedValueSource(assignedName : String) : ActivityNode {
-	// TODO: Remove this.
-	return self.map toActivityGraph().resultSource;
+	return null;
 }
 
 mapping AssignedSource::toActivityNode() : ActivityNode {
@@ -226,39 +225,12 @@ mapping Expression::toActivity() : Activity {
   new ObjectFlow(result, graph.resultSource, outputNode);
 }
 
-/*
-mapping Expression::expressionToActivityGraph() : ExpressionGraph
-	disjuncts 
-		LiteralExpression::toActivityGraph,
-		NameExpression::toActivityGraph,
-		ThisExpression::toActivityGraph,
-		PropertyAccessExpression::toActivityGraph,
-		InvocationExpression::toActivityGraph,
-		ClassExtentExpression::toActivityGraph,
-		SequenceConstructionExpression::toActivityGraph,
-		SequenceAccessExpression::toActivityGraph,
-		SequenceReductionExpression::toActivityGraph,
-		SequenceExpansionExpression::toActivityGraph,
-		IncrementOrDecrementExpression::toActivityGraph,
-		UnaryExpression::toActivityGraph,
-		BinaryExpression::toActivityGraph,
-		CastExpression::toActivityGraph,
-		ConditionalTestExpression::toActivityGraph,
-		AssignmentExpression::toActivityGraph;
-*/
-
 abstract mapping Expression::toActivityGraph() : ExpressionGraph;
 
 mapping ExpressionReference::toActivityGraph() : ExpressionGraph {
 init {
 	result := self.expression.map toActivityGraph();
 }
-}
-
-mapping Expression::Dummy_toActivityGraph() : ExpressionGraph
-	inherits Expression::toActivityGraph {
-	resultSource := new ForkNode("Dummy");
-	nodes += resultSource;
 }
 
 // Literal Expressions
@@ -272,11 +244,11 @@ mapping LiteralExpression::toActivityGraph() : ExpressionGraph
 abstract helper LiteralExpression::toValueSpecification() : ValueSpecification;
 
 helper BooleanLiteralExpression::toValueSpecification() : ValueSpecification {
-	return new LiteralBoolean(self.image = "true", self.type.toType());
+	return new LiteralBoolean(self.image = "true", toType(self.type));
 }
 
 helper NaturalLiteralExpression::toValueSpecification() : ValueSpecification {
-	return new LiteralInteger(self.image.replaceAll("_", "").parseInt(), self.type.toType());
+	return new LiteralInteger(self.image.replaceAll("_", "").parseInt(), toType(self.type));
 }
 
 query String::radix() : Integer {
@@ -330,11 +302,11 @@ query String::hexValue() : Integer {
 }
 
 helper UnboundedLiteralExpression::toValueSpecification() : ValueSpecification {
-	return new LiteralUnlimitedNatural(self.type.toType());
+	return new LiteralUnlimitedNatural(toType(self.type));
 }
 
 helper StringLiteralExpression::toValueSpecification() : ValueSpecification {
-	return new LiteralString(self.image, self.type.toType());
+	return new LiteralString(self.image, toType(self.type));
 }
 
 // Name Expressions
@@ -1108,50 +1080,230 @@ helper SequenceOperationExpression::mapTuple(inout graph : ExpressionGraph, acti
 
 mapping SequenceReductionExpression::toActivityGraph() : ExpressionGraph
  	inherits Expression::toActivityGraph  {
-	var expressionGraph := self.primary.expression.map toActivityGraph();
-	expressionGraph.addTo(result);
+	var primaryGraph := self.primary.expression.map toActivityGraph();
+	primaryGraph.addTo(result);
 	var behavior := self.referent.toUml().oclAsType(Behavior);
 	nodes += var reduceAction ::= new ReduceAction(behavior, toType(self.type), self.isOrdered);	
-	edges += new ObjectFlow(expressionGraph.resultSource, reduceAction.collection);
+	edges += new ObjectFlow(primaryGraph.resultSource, reduceAction.collection);
 	resultSource := reduceAction.result;
 }
 
 // Sequence Expansion Expressions
 
-mapping ExtentOrExpression::toActivityGraph() : ExpressionGraph
- 	inherits Expression::Dummy_toActivityGraph  {
-	// TODO
+intermediate property SequenceExpansionExpression::variableAssignedValueSource : ForkNode;
+
+query SequenceExpansionExpression::assignedValueSource(assignedName : String) : ActivityNode {
+	return 
+		if assignedName = self.variable then self.variableAssignedValueSource 
+		else null endif;
 }
 
-abstract mapping SequenceExpansionExpression::toActivityGraph() : ExpressionGraph
- 	inherits Expression::Dummy_toActivityGraph;
-
-mapping SelectOrRejectExpression::toActivityGraph() : ExpressionGraph
- 	inherits SequenceExpansionExpression::toActivityGraph  {
-	// TODO
+mapping SequenceExpansionExpression::toActivityGraph() : ExpressionGraph
+ 	inherits Expression::toActivityGraph {
+ 	var primaryGraph := self.primary.expression.map toActivityGraph();
+ 		
+ 	var nestedGraph := object ExpressionGraph{};
+ 	nestedGraph.nodes += self.variableAssignedValueSource := new ForkNode(self.variable);
+ 	
+ 	var argumentGraph := self.argument.map toActivityGraph();
+ 	argumentGraph.addTo(nestedGraph);
+ 	
+ 	var region := self.mapRegion(result, nestedGraph, self.operation, 
+ 		argumentGraph.resultSource, primaryGraph.resultSource, self.variableAssignedValueSource);
+ 	region.outputElement![true].type := region.inputElement![true].type := self.primary.expression.type.toType();
+ 	
+ 	if primaryGraph.nodes->notEmpty() then {
+	 	var primaryNode := 
+	 		primaryGraph.addStructuredActivityNodeTo(result, "Primary(SequenceExpansion(" + self.variable + "))");
+	 	edges += new ControlFlow(primaryNode, region);
+ 	} endif;
 }
+
+helper SequenceExpansionExpression::mapRegion(
+	inout graph : ExpressionGraph, inout nestedGraph : ExpressionGraph, operation : String, 
+	argumentSource : ActivityNode, primarySource : ActivityNode, variableSource : ActivityNode) : ExpansionRegion {
+	self.mapNestedGraph(nestedGraph, operation, variableSource, argumentSource);
+	
+	var region := addExpansionRegion(
+		graph, "SequenceExpansionExpression(" + self.variable + ")", ExpansionKind::parallel, 
+		nestedGraph.nodes, nestedGraph.edges, primarySource, variableSource, nestedGraph.resultSource);
+		
+	graph.resultSource := region.outputElement![true];
+	
+	return region;
+}
+
+helper SequenceExpansionExpression::mapNestedGraph(
+	inout nestedGraph : ExpressionGraph, operation : String, 
+	variableSource : ActivityNode, resultNode : ActivityNode) {
+	self.SequenceExpansionExpression_mapNestedGraph(nestedGraph, operation, variableSource, resultNode);
+}
+	
+// NOTE: This default behavior is used for select, reject, forAll, exists (with modification) and
+// one expressions.
+helper SequenceExpansionExpression::SequenceExpansionExpression_mapNestedGraph(
+	inout nestedGraph : ExpressionGraph, operation : String, 
+	variableSource : ActivityNode, resultNode : ActivityNode) {
+	var isSelect := self.isSelectLike();
+	
+	// NOTE: A merge node is used here to provide a result source node for the test.
+	nestedGraph.nodes += nestedGraph.resultSource := new MergeNode(operation);
+	
+	if resultNode <> null then {
+		createObjectDecisionGraph(operation, variableSource, resultNode, 
+			if isSelect then nestedGraph.resultSource else null endif, 
+			if isSelect then null else nestedGraph.resultSource endif).
+	  addTo(nestedGraph);
+	} endif;
+}
+
+query SequenceExpansionExpression::isSelectLike() : Boolean {
+	return true;
+}
+
+helper addTermination(inout nestedGraph : ExpressionGraph) {
+	var name := nameOf(nestedGraph.resultSource);
+	nestedGraph.nodes += var forkNode ::= new ForkNode(name);
+	nestedGraph.edges += new ObjectFlow(nestedGraph.resultSource, forkNode);
+	
+  // NOTE: The use of an enclosing structured activity node here is to
+  // allow the value produced by the computation to be offered to the
+  // output expansion node before the termination of the expansion region
+  // by the activity final node.
+	var nodes := nestedGraph.nodes;
+	var edges := nestedGraph.edges;
+	nestedGraph.nodes := Set{};
+	nestedGraph.edges := Set{};
+	var structuredNode := addStructuredActivityNode(nestedGraph, "Compute(" + name + ")", nodes, edges);
+	nestedGraph.nodes += var joinNode ::= new JoinNode(name);
+	nestedGraph.nodes += var finalNode ::= new ActivityFinalNode(name);
+	nestedGraph.edges += new ObjectFlow(forkNode, joinNode);
+	nestedGraph.edges += new ControlFlow(structuredNode, joinNode);
+	
+	nestedGraph.resultSource := forkNode;
+}
+
+helper addBehavior(inout graph : ExpressionGraph, behavior : Behavior) {
+	graph.nodes += var callAction ::= new CallBehaviorAction(behavior);
+	graph.edges += new ObjectFlow(graph.resultSource, callAction.argument->at(1));
+	graph.resultSource := callAction.result->at(1);
+}
+
+// Select and Reject Expressions
+
+query SelectOrRejectExpression::isSelectLike() : Boolean {
+	return self.operation = "select";
+}
+
+// Collect and Iterate Expressions
 
 mapping CollectOrIterateExpression::toActivityGraph() : ExpressionGraph
  	inherits SequenceExpansionExpression::toActivityGraph  {
-	// TODO
+	if self.operation = "iterate" then {
+		nodes![ExpansionRegion].mode := ExpansionKind::iterative;
+	} endif;
 }
+
+helper CollectOrIterateExpression::mapNestedGraph(
+	inout nestedGraph : ExpressionGraph, operation : String, 
+	variableSource : ActivityNode, resultNode : ActivityNode) {
+	nestedGraph.resultSource := resultNode;
+}
+
+// ForAll, Exists and One Expressions
 
 mapping ForAllOrExistsOrOneExpression::toActivityGraph() : ExpressionGraph
  	inherits SequenceExpansionExpression::toActivityGraph  {
-	// TODO
+	switch {
+		case(self.operation = "forAll") {
+			addBehavior(result, self.functionIsEmpty());
+		}
+		case(self.operation = "exists") {
+			addBehavior(result, self.functionNotEmpty());
+		}
+		case(self.operation = "one") {
+			addBehavior(result, self.functionSize());
+			nodes += var valueAction ::= new ValueSpecificationAction(self.literalInteger(1));
+			nodes += var testAction ::= new TestIdentityAction("=1", self.booleanType().toType());
+			edges += new ObjectFlow(resultSource, testAction.first);
+			edges += new ObjectFlow(valueAction.result, testAction.second);
+			resultSource := testAction.result;
+		}
+	};
 }
+
+helper ForAllOrExistsOrOneExpression::mapNestedGraph(
+	inout nestedGraph : ExpressionGraph, operation : String, 
+	variableSource : ActivityNode, resultNode : ActivityNode) {
+	self.SequenceExpansionExpression_mapNestedGraph(nestedGraph, operation, variableSource, resultNode);
+	
+	if self.isTerminated() then {
+		addTermination(nestedGraph);
+	} endif;
+}
+
+query ForAllOrExistsOrOneExpression::isSelectLike() : Boolean {
+	return self.operation = "exists" or self.operation = "one";
+}
+
+query ForAllOrExistsOrOneExpression::isTerminated() : Boolean {
+	return self.operation = "forAll" or self.operation = "exists";
+}
+
+// IsUnique Expressions
 
 mapping IsUniqueExpression::toActivityGraph() : ExpressionGraph
  	inherits SequenceExpansionExpression::toActivityGraph  {
-	// TODO
+	
+  // NOTE: A structured activity node is used here as the source of a
+  // control flow to the next expansion region, in order to allow tokens
+  // to be offered on both outgoing flows of the fork node before the
+  // expansion region fires.
+	var forkNode ::= new ForkNode(nameOf(resultSource));
+	var forkStructuredNode := addStructuredActivityNode(result, "Node(" + forkNode.name + ")", Set{forkNode}, Set{});
+	edges := new ObjectFlow(resultSource, forkNode);
+	
+	// Map the test for count = 1.
+	var nestedGraph := object ExpressionGraph{};
+	nestedGraph.nodes += var variableSource ::= new ForkNode("each");
+	nestedGraph.nodes += var callAction := new CallBehaviorAction(self.functionCount());
+	nestedGraph.nodes += var valueAction := new ValueSpecificationAction(self.literalInteger(1));
+	nestedGraph.nodes += var testAction := new TestIdentityAction("=1", self.booleanType().toType());
+	nestedGraph.edges += new ObjectFlow(forkNode, callAction.argument->at(1));
+	nestedGraph.edges += new ObjectFlow(variableSource, callAction.argument->at(2));
+	nestedGraph.edges += new ObjectFlow(callAction.result->at(1), testAction.first);
+	nestedGraph.edges += new ObjectFlow(valueAction.result, testAction.second);
+	
+	self.SequenceExpansionExpression_mapNestedGraph(nestedGraph, "uniqueness", variableSource, testAction.result);
+	addTermination(nestedGraph);
+	
+  // Create the expansion region for testing the count on each element.
+  // NOTE: The object flow from forkNode to the first callAction argument will
+  // result in an input pin at the expansion region boundary.
+	var region := addExpansionRegion(result, "IsUniqueExpression(" + self.variable + ")", ExpansionKind::parallel, 
+		nestedGraph.nodes, nestedGraph.edges, forkNode, variableSource, nestedGraph.resultSource);
+	edges += new ControlFlow(forkStructuredNode, region);
+	resultSource := region.outputElement![true];
+	
+	// Add the final check that there are no elements with count <> 1;
+	addBehavior(result, self.functionIsEmpty());
+}
+
+helper IsUniqueExpression::mapNestedGraph(
+	inout nestedGraph : ExpressionGraph, operation : String, 
+	variableSource : ActivityNode, resultNode : ActivityNode) {
+	nestedGraph.resultSource := resultNode;
+}
+
+query IsUniqueExpression::isSelectLike() : Boolean {
+	return false;
 }
 
 // Increment or Decrement Expressions
 
 mapping IncrementOrDecrementExpression::toActivityGraph() : ExpressionGraph
  	inherits Expression::toActivityGraph  {
-	var behavior := self.integerFunction("" + 
-		if self.operator = "++" then "+" else "-" endif);
+	var behavior := self.integerFunction(if self.operator = "++" then "+" else "-" endif);
 	nodes += var callAction ::= new CallBehaviorAction(behavior);
 	nodes += var valueAction ::= new ValueSpecificationAction(self.literalInteger(1));
 	edges += new ObjectFlow(valueAction.result, callAction.argument->at(2));
@@ -1646,7 +1798,7 @@ helper Expression::mapOperandNode(inout graph : ExpressionGraph, label : String,
 			operand.map toActivityGraph()
 		else
 			object ExpressionGraph{
-				nodes += var valueAction ::= new ValueSpecificationAction(new LiteralBoolean(defaultLiteral, self.booleanType().toType()));
+				nodes += var valueAction ::= new ValueSpecificationAction(self.literalBoolean(defaultLiteral));
 				resultSource := valueAction.result;
 			}
 		endif;
@@ -1828,7 +1980,7 @@ helper SyntaxElement::mapPropertyAssignment(property_ : Property, objectSource :
 	
 	// For an ordered property, provide insertAt pin with a "*" input.
 	if property_.isOrdered and not isReplaceAll then {
-		graph.nodes += var valueAction ::= new ValueSpecificationAction(new LiteralUnlimitedNatural(unlimitedNaturalType));
+		graph.nodes += var valueAction ::= new ValueSpecificationAction(self.literalUnlimited());
 		graph.edges += new ObjectFlow(valueAction._'result', writeAction.insertAt);
 	} endif;
 	

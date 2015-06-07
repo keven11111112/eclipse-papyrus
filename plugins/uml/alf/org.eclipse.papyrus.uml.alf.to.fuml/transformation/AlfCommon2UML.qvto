@@ -64,8 +64,16 @@ helper SyntaxElement::functionSize() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Size");
 }
 
+helper SyntaxElement::functionIsEmpty() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::IsEmpty");
+}
+
 helper SyntaxElement::functionNotEmpty() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::NotEmpty");
+}
+
+helper SyntaxElement::functionCount() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Count");
 }
 
 helper SyntaxElement::functionAt() : Behavior {
@@ -273,6 +281,20 @@ constructor ForkNode::ForkNode(owner : Activity, sourceName : String) {
 constructor ForkNode::ForkNode(structuredNode : StructuredActivityNode, sourceName : String) {
 	inStructuredNode := structuredNode;
 	name := "Fork(" + sourceName + ")";
+}
+
+constructor JoinNode::JoinNode(sourceName : String) {
+	name := "Join(" + sourceName + ")";
+}
+
+constructor JoinNode::JoinNode(owner : Activity, sourceName : String) {
+	activity := owner;
+	name := "Join(" + sourceName + ")";
+}
+
+constructor JoinNode::JoinNode(structuredNode : StructuredActivityNode, sourceName : String) {
+	inStructuredNode := structuredNode;
+	name := "Join(" + sourceName + ")";
 }
 
 constructor MergeNode::MergeNode(sourceName : String) {
@@ -753,7 +775,7 @@ constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean, inputs : O
 
 constructor ExpansionRegion::ExpansionRegion(name_ : String, mode_ : ExpansionKind) {
 	name := name_;
-	mode := mode;
+	mode := mode_;
 }
 
 constructor ExpansionNode::ExpansionNode(sourceName : String, region : ExpansionRegion, isInput : Boolean) {
@@ -775,6 +797,16 @@ helper addEdgesToStructuredNode(inout structuredNode : StructuredActivityNode, i
 	var allOwnedNodes := structuredNode.allOwnedNodes();
 	var internalEdges := edges[allOwnedNodes->includes(source) and allOwnedNodes->includes(target)];
 	structuredNode.edge += internalEdges;
+	/*
+	edges->forEach(edge) {
+		edge.ownedComment += object Comment {
+			body := nameOf(structuredNode) + ": " +
+				if allOwnedNodes->includes(edge.source) then "source " else "" endif +
+				if allOwnedNodes->includes(edge.target) then "target " else "" endif ;
+			annotatedElement := edge;
+		}
+	};
+	*/
 	return edges - internalEdges;
 }
 
