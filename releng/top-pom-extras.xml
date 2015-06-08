@@ -32,6 +32,7 @@
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.sysml14.feature</module>
+		<module>../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo.debug</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo.ui</module>
@@ -221,6 +222,12 @@
 		<module>../extraplugins/sysml14/org.eclipse.papyrus.sysml14.edit</module>
 		<module>../extraplugins/sysml14/org.eclipse.papyrus.sysml14.service.types</module>
 		
+		<!-- Papyrus Req -->
+		<module>../extraplugins/req/org.eclipse.papyrus.req.reqif</module>
+		<module>../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
+		<module>../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
+		<module>../extraplugins/req/org.eclipse.papyrus.req.sysml.traceabilityassistant</module>
+		
 		<module>extras</module>
 	</modules>
 	<properties>
@@ -404,6 +411,12 @@
 			<layout>p2</layout>
 			<!-- manualUpdate -->
 			<url>http://download.eclipse.org/modeling/emft/eef/updates/releases/1.2/</url>
+		</repository>
+		<repository>
+			<id>RMF</id>
+			<layout>p2</layout>
+			<!-- manualUpdate -->
+			<url>http://download.eclipse.org/rmf/updates/releases</url>
 		</repository>		
 	</repositories>
 	<pluginRepositories>
