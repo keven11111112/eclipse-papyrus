@@ -168,7 +168,7 @@ To use it, create an element and change its appearance via the "Appearance" tab 
 *Properties: The graphical properties to export to the style sheet 
 *Stylesheet: The style sheet to edit<br>
 
-[[Image:images/Papyrus_CSS_Export_style.png|Create style dialog]]<br> 
+[[Image:images/Papyrus_CSS_export_style.png|Create style dialog]]<br> 
 
 In the Stylesheet tab, select your stylesheet:<br> 
 
@@ -439,7 +439,7 @@ In some other cases, however, you may want to specify manually the style that sh
     gradient:white horizontal;
 }</source> 
 
-[[Image:images/Papyrus_CSS_CustomStyle.png|Result]]<br> 
+[[Image:images/Papyrus_CSS_customStyle.png|Result]]<br> 
 
 Once a style is applied on an object, the object will be refreshed each time the style definition changes. For example, changing the style "myOwnStyle" to the following declaration:<br> 
 
