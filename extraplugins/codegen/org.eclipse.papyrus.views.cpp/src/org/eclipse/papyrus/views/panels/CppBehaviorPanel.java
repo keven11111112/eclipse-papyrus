@@ -15,7 +15,6 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.papyrus.C_Cpp.Virtual;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -40,10 +39,10 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 
 	private Behavior selectedBehavior;
 
-	private Button verifyAcceleo;
-
 	Element selectedEOwner;
 
+	protected String origBody;
+	
 	public CppBehaviorPanel(Composite parent, int style) {
 		super(parent, style);
 	}
@@ -99,14 +98,14 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 
 		docBody = createDocumentC();
 		groupBody = createGroup(
-				this
-				, "Method body"
-				, verifyAcceleo
-				, null
-				, true
-				, 0
-				, 0
-				, true);
+				this,
+				"Method body", //$NON-NLS-1$
+				buttonSave,
+				null,
+				true,
+				0,
+				0,
+				true);
 		// Use CDT CEditor coloration
 		createViewerC(docBody, groupBody);
 
@@ -134,6 +133,7 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 				public void run() {
 					// Body
 					setCppBody(selectedBehavior, docBody.get());
+					origBody = docBody.get();
 				}
 			});
 		}
@@ -208,14 +208,9 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 
 	@Override
 	public boolean checkModifications() {
-		// check if ConstInit has changed
-
-		String methodBody = getCppBody(selectedBehavior);
-
-		if (!(docBody.get().equals(methodBody))) {
+		if (!(docBody.get().equals(origBody))) {
 			return true;
 		}
-
 		return false;
 	}
 
@@ -223,9 +218,10 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 	protected void refreshPanel() {
 		if (selectedBehavior == null) {
 			/* Log.debug("resetBody : selectedOperation is null"); */
-		} else {
-
+		}
+		else {
 			String body = getCppBody(selectedBehavior);
+			origBody = body;
 			docBody.set(body);
 		}
 	}
@@ -258,7 +254,7 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 	@Override
 	protected void updateModel()
 	{
-		CommandSupport.exec("C++ operation save", new Runnable() {
+		CommandSupport.exec("C++ behavior save", new Runnable() {
 
 			@Override
 			public void run()
@@ -267,31 +263,9 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 					return;
 				}
 				if (selectedEOwner instanceof Class) {
-					// toggle Stereotypes pure virtual if element is abstract
-					if (selectedBehavior.isAbstract()) {
-						if (!StereotypeUtil.isApplied(selectedBehavior, Virtual.class)) {
-							// selectedOperation.toggleStereotype("VirtualPure", true);
-							// selectedOperation.toggleStereotype("Virtual", false);
-						} else {
-							// selectedOperation.toggleStereotype("Virtual", false);
-						}
-					}
-
-					// if element is abstract and has VirtualPure, set to Virtual only
-					if (!selectedBehavior.isAbstract()) {
-						if (StereotypeUtil.isApplied(selectedBehavior, Virtual.class)) {
-							// selectedOperation.toggleStereotype("VirtualPure", false);
-							// selectedOperation.toggleStereotype("Virtual", true);
-						} else {
-							// selectedOperation.toggleStereotype("VirtualPure", false);
-							// selectedOperation.toggleStereotype("Virtual", false);
-						}
-					}
 				}
 				else {
 					selectedBehavior.setIsAbstract(true);
-					// selectedOperation.toggleStereotype("Virtual", false);
-					// selectedOperation.toggleStereotype("VirtualPure", true);
 				}
 			}
 		});

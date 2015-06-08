@@ -80,10 +80,10 @@ public class CppOperationPanel extends CppAbstractPanel {
 
 	private Operation selectedOperation;
 
-	private Button verifyAcceleo;
-
 	Element selectedEOwner;
 
+	protected String origBody;
+	
 	public CppOperationPanel(Composite parent, int style) {
 		super(parent, style);
 	}
@@ -255,6 +255,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 
 					// Body
 					setCppBody(selectedOperation, docBody.get());
+					origBody = docBody.get();
 				}
 			});
 		}
@@ -485,9 +486,8 @@ public class CppOperationPanel extends CppAbstractPanel {
 			return true;
 		}
 
-		String methodBody = getCppBody(selectedOperation);
-
-		if (!(docBody.get().equals(methodBody))) {
+		// String methodBody = getCppBody(selectedOperation);
+		if (!(docBody.get().equals(origBody))) {
 			return true;
 		}
 
@@ -518,6 +518,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 				}
 
 				String body = getCppBody(selectedOperation);
+				origBody = body;
 				docBody.set(body);
 
 				// Combo Box
