@@ -34,7 +34,7 @@
   </columnHeaderAxisConfiguration>
   <columnAxisProviders xsi:type="nattableaxisprovider:SlaveObjectAxisProvider" description="This axis provider provides available columns according to the columns of the table ( features of the object displayed on the other axis)" name="Stereotype display properties axis provider">
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="Name Depth" element="stereotype_display_properties:/nameDepth"/>
-    <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="Display" element="stereotype_display_properties:/isDisplayed"/>
+    <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="Visible" element="stereotype_display_properties:/isDisplayed"/>
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="In Braces" element="stereotype_display_properties:/isDisplayedInBraces"/>
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="In Comment" element="stereotype_display_properties:/isDisplayedInComment"/>
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="In Compartment" element="stereotype_display_properties:/isDisplayedInCompartment"/>

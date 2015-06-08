@@ -13,7 +13,6 @@
 		<uml:NattablePropertyEditor
 			property="UMLNotation:Element:stereotypeDisplay"
 			tableURI="platform:/plugin/org.eclipse.papyrus.uml.nattable.stereotype.display/config/stereotype.nattableconfiguration"
-			rowsAxisCategoriesHide="1,2,3"
 			input="{Binding}"></uml:NattablePropertyEditor>
 		<ppe:BooleanCheckbox input="{Binding}"
 			property="UMLNotation:Element:elementIcon"></ppe:BooleanCheckbox>

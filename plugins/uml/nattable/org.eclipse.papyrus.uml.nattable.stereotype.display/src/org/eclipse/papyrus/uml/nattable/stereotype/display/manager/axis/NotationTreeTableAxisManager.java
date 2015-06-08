@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemA
 import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.Activator;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.uml2.uml.Element;
 
 public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEventList
 		implements IAxisManagerForEventList {
@@ -86,11 +87,15 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 					if (obj instanceof IAdaptable) {
 						View v = ((IAdaptable) obj).getAdapter(View.class);
 						if (v != null) {
-							selectionList.add(v);
+							if(isStereotypedElement(v)){
+								selectionList.add(v);
+							}
 						}
 					}
 					if (obj instanceof View) {
-						selectionList.add((View) obj);
+						if(isStereotypedElement((View)obj)){
+							selectionList.add((View) obj);
+						}
 					}
 				}
 			}
@@ -107,6 +112,20 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 			return;
 		}
 		super.fillListWithRoots();
+	}
+	
+	/**
+	 * Check is the element of the view is stereotyped.
+	 * 
+	 * @param view The view.
+	 * @return <code>true</code> if the element of view is stereotyped, <code>false</code> otherwise.
+	 */
+	protected boolean isStereotypedElement(final View view){
+		boolean result = false;
+		if(view.getElement() instanceof Element && !((Element)view.getElement()).getAppliedStereotypes().isEmpty()){
+			result = true;
+		}
+		return result;
 	}
 
 	/**

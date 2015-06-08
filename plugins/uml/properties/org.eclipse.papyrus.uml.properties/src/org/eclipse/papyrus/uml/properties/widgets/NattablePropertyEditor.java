@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
@@ -56,11 +58,12 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * The property editor for the nattable widget.
  */
-public class NattablePropertyEditor extends AbstractPropertyEditor{
+public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	/**
 	 * The composite.
@@ -71,16 +74,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 	 * The table configuration URI.
 	 */
 	private URI tableConfigURI = null;
-	
-	/**
-	 * The row axis categories to hide.
-	 */
-	private List<Integer> rowsAxisCategoriesHide = null;
-	
-	/**
-	 * The columns axis categories to hide.
-	 */
-	private List<Integer> columnsAxisCategoriesHide = null;
 
 	/**
 	 * Constructor.
@@ -120,65 +113,8 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 	public String getTableURI() {
 		return tableConfigURI == null ? null : tableConfigURI.toString();
 	}
-	
-	/**
-	 * Set the rows axis categories to hide.
-	 * 
-	 * @param axis
-	 *            The axis to hide represented as String (separated by ",").
-	 */
-	public void setRowsAxisCategoriesHide(final String axis) {
-		rowsAxisCategoriesHide = new ArrayList<Integer>();
-		if(! axis.isEmpty()){
-			String[] multiAxis = axis.split(","); //$NON-NLS-1$
-			for(String oneAxis : multiAxis){
-				try{
-					rowsAxisCategoriesHide.add(Integer.parseInt(oneAxis));
-				}catch(final NumberFormatException e){
-					// Do nothing
-				}
-			}
-		}
-	}
 
-	/**
-	 * Get the rows axis categories to hide.
-	 * 
-	 * @return The rows axis categories to hide.
-	 */
-	public String getRowsAxisCategoriesHide() {
-		return rowsAxisCategoriesHide == null ? null : rowsAxisCategoriesHide.toString();
-	}
-	
-	/**
-	 * Set the rows axis categories to hide.
-	 * 
-	 * @param axis
-	 *            The axis to hide represented as String (separated by ",").
-	 */
-	public void setColumnsAxisCategoriesHide(final String axis) {
-		columnsAxisCategoriesHide = new ArrayList<Integer>();
-		if(! axis.isEmpty()){
-			String[] multiAxis = axis.split(","); //$NON-NLS-1$
-			for(String oneAxis : multiAxis){
-				try{
-					columnsAxisCategoriesHide.add(Integer.parseInt(oneAxis));
-				}catch(final NumberFormatException e){
-					// Do nothing
-				}
-			}
-		}
-	}
 
-	/**
-	 * Get the rows axis categories to hide.
-	 * 
-	 * @return The rows axis categories to hide.
-	 */
-	public String getColumnsAxisCategoriesHide() {
-		return columnsAxisCategoriesHide == null ? null : columnsAxisCategoriesHide.toString();
-	}
-	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -204,15 +140,15 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 		ModelElement modelElement = input.getModelElement(propertyPath);
 
 		Table table = null;
-		if(modelElement instanceof CompositeModelElement){
-			if(!((CompositeModelElement)modelElement).getSubElements().isEmpty()){
-				if(((CompositeModelElement)modelElement).getSubElements().get(0) instanceof UMLNotationModelElement){
-					EModelElement eModelElement = ((UMLNotationModelElement) ((CompositeModelElement)modelElement).getSubElements().get(0)).getEModelElement();
+		if (modelElement instanceof CompositeModelElement) {
+			if (!((CompositeModelElement) modelElement).getSubElements().isEmpty()) {
+				if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof UMLNotationModelElement) {
+					EModelElement eModelElement = ((UMLNotationModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0)).getEModelElement();
 					// Create a list of views to determinate the axis to display (cannot be created without the table editing domain)
 					final List<Object> views = new ArrayList<Object>();
-					for(ModelElement a : ((CompositeModelElement)modelElement).getSubElements()){
-						if(a instanceof UMLNotationModelElement){
-							views.add(((UMLNotationModelElement)a).getEModelElement());
+					for (ModelElement a : ((CompositeModelElement) modelElement).getSubElements()) {
+						if (a instanceof UMLNotationModelElement) {
+							views.add(((UMLNotationModelElement) a).getEModelElement());
 						}
 					}
 					table = createTable(eModelElement, null, views);
@@ -220,11 +156,11 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 						displayError("Cannot initialize the table"); //$NON-NLS-1$
 						return;
 					}
-				} else if (((CompositeModelElement)modelElement).getSubElements().get(0) instanceof EMFModelElement) {
-					EMFModelElement emfModelElement = (EMFModelElement) ((CompositeModelElement)modelElement).getSubElements().get(0);
+				} else if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof EMFModelElement) {
+					EMFModelElement emfModelElement = (EMFModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0);
 					EObject sourceElement = emfModelElement.getSource();
 					EStructuralFeature feature = emfModelElement.getFeature(getLocalPropertyPath());
-					
+
 					table = createTable(sourceElement, feature, null);
 					if (table == null) {
 						displayError("Cannot initialize the table"); //$NON-NLS-1$
@@ -232,7 +168,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 					}
 				}
 			}
-		}else if (modelElement instanceof UMLNotationModelElement) {
+		} else if (modelElement instanceof UMLNotationModelElement) {
 			EModelElement eModelElement = ((UMLNotationModelElement) modelElement).getEModelElement();
 			// Create a list of views to determinate the axis to display (cannot be created without the table editing domain)
 			final List<Object> views = new ArrayList<Object>();
@@ -256,14 +192,12 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 			displayError("Invalid table context"); //$NON-NLS-1$
 			return;
 		}
-		
+
 		// Create the widget
 		final INattableModelManager nattableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(table, new EObjectSelectionExtractor());
 		NatTable widget = nattableManager.createNattable(self, SWT.NONE, null);
 		if (nattableManager instanceof TreeNattableModelManager) {
 			((TreeNattableModelManager) nattableManager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
-			// Hide categories
-			((TreeNattableModelManager)nattableManager).hideShowRowCategories(rowsAxisCategoriesHide, columnsAxisCategoriesHide);
 		}
 		self.addDisposeListener(new DisposeListener() {
 
@@ -329,7 +263,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 		final Table table = NattableFactory.eINSTANCE.createTable();
 
 		table.setTableConfiguration(tableConfiguration);
-		
+
 		if (property != null) {
 			String description = property.getDescription();
 			if (description != null) {
@@ -353,7 +287,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 			columnProvider = EcoreUtil.copy(columnProvider);
 		}
 
-		if(null != synchronizedFeature){
+		if (null != synchronizedFeature) {
 			TableHeaderAxisConfiguration rowHeaderAxisconfig = tableConfiguration.getRowHeaderAxisConfiguration();
 			for (IAxisConfiguration axisConfig : rowHeaderAxisconfig.getOwnedAxisConfigurations()) {
 				if (axisConfig instanceof EStructuralFeatureValueFillingConfiguration) {
@@ -364,21 +298,52 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 
 		table.setCurrentColumnAxisProvider(columnProvider);
 		table.setCurrentRowAxisProvider(rowProvider);
-		
+
 		table.setContext(sourceElement);
-		
+
+		for (final Style style : tableConfiguration.getStyles()) {
+			table.getStyles().add(EcoreUtil.copy(style));
+		}
+
 		// Manage the construction of axis here because the table editing domain is null
-		if(null != views && !views.isEmpty()){
+		if (null != views && !views.isEmpty()) {
 			final AbstractAxisProvider axisProvider = table.getCurrentRowAxisProvider();
 			TableHeaderAxisConfiguration conf = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
 			AxisManagerRepresentation rep = conf.getAxisManagers().get(0);
-			for(Object view : views){
-				IAxis a = ITreeItemAxisHelper.createITreeItemAxis(null, null, view, rep);
-				axisProvider.getAxis().add(a);
+			for (Object view : views) {
+				addTreeItemAxis(axisProvider, rep, view);
 			}
 		}
-		
+
 		return table;
+	}
+	
+	/**
+	 * This allow to add the tree item axis.
+	 * 
+	 * @param axisProvider The axis provider.
+	 * @param rep The axis manager representation.
+	 * @param object The object to add.
+	 */
+	protected void addTreeItemAxis(final AbstractAxisProvider axisProvider, final AxisManagerRepresentation rep, final Object object){
+		if(object instanceof View && isStereotypedElement((View)object)){
+			final IAxis axis = ITreeItemAxisHelper.createITreeItemAxis(null, null, object, rep);
+			axisProvider.getAxis().add(axis);
+		}
+	}
+	
+	/**
+	 * Check is the element of the view is stereotyped.
+	 * 
+	 * @param view The view.
+	 * @return <code>true</code> if the element of view is stereotyped, <code>false</code> otherwise.
+	 */
+	protected boolean isStereotypedElement(final View view){
+		boolean result = false;
+		if(view.getElement() instanceof Element && !((Element)view.getElement()).getAppliedStereotypes().isEmpty()){
+			result = true;
+		}
+		return result;
 	}
 
 	/**
@@ -398,5 +363,5 @@ public class NattablePropertyEditor extends AbstractPropertyEditor{
 
 		return null;
 	}
-	
+
 }
