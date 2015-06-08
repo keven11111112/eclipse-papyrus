@@ -127,7 +127,7 @@ public class HyperLinkPopupBarEditPolicy extends PapyrusPopupBarEditPolicy {
 			return new Command("Add Hyperlink") {
 				@Override
 				public void execute() {
-					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(), (EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
+					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(), (EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
 							((IGraphicalEditPart) getHost()).getNotationView(), hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 
