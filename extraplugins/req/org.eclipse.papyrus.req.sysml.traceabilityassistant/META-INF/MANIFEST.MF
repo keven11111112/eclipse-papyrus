@@ -18,4 +18,4 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.req.sysml.traceabilityassistant.analysis,
  org.eclipse.papyrus.req.sysml.traceabilityassistant.command
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Localization: bundle
+Bundle-Localization: plugin
