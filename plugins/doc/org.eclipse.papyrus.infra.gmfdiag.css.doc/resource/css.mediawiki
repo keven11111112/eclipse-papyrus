@@ -233,7 +233,6 @@ The simplest way to discover new style properties is to use the Appearance tab o
 
 This table lists the most common properties:
 
-
 {| class="wikitable"
 |-
 ! Property&nbsp;name !! Value&nbsp;type !! Initial&nbsp;Value !! Applies&nbsp;to !! Comment
@@ -292,7 +291,12 @@ This table lists the most common properties:
 |-
 | bottomMarginLabel || integer || 0 || Labels || Define the bottom margin of the label in pixel. This is the space between the text box and his container
 |-
-|}
+| bodyCutLength|| integer || 0 || Labels of transition || Control length of shown code in case of a transition owning an opaque behavior (use Transition > Label)
+|-
+| indicateParameters|| boolean || false || Labels of transition || if a behavior of a transition has parameters, show these instead of abbreviating with (..)
+|-
+| lineBreakBeforeEffect|| boolean || false || Labels of transition || add a linebreak between guards and transitions. May avoid large transition labels
+|-|}
 
 The following properties can be used to bypass the standard UML notation. They can typically be used for pure DSML notations:
 
@@ -336,11 +340,61 @@ The following properties can be used to bypass the standard UML notation. They c
 |-
 | textAlignment || string || left/center || Floating labels || Set the text alignment of the label. (left, center, right)
 |-
-| labelConstrained|| boolean || false || Labels of Port || Constraint the label, it will be automatic positioned at the proper position according to the position of the Port on its parents. Text alignment will be forced according to the position of its parent.The label can't be moved.
+| labelConstrained|| boolean || false || Labels of Port || Constraint the label, it will be automatic positioned at the proper position according to the position of the Port on its parents. Text alignment will be forced according to the position of its parent. The label can't be moved.
 |-
 | labelOffsetX|| integer || 0 || Labels of Port || Set the offset on X when label is constrained
 |-
 | labelOffsetY|| integer || 0 || Labels of Port || Set the offset on Y when label is constrained
+|-
+|radiusWidth ||	Integer||	0||Shapes	||Set the radius width of corners
+|-
+|radiusHeight ||	Integer||	0||Shapes	||Set the radius height of corners
+|-
+|isOval	||Boolean	||false	||Shapes	||Set to true if you want to have an oval shape
+|-
+|isFloatingLabelConstrained	||Boolean	||false 	||Shapes	||Set to true if the floating label is constrained on eight position, you can move it manually.
+|-
+|labelConstrained	||Boolean	||false	||Ports	||Forced the label to one position, by default(for port) it will placed according to the parent position.
+|-
+|position	||String	||EAST	||	||Set the forced position.
+|-
+|floatingLabelOffsetWidth||	Integer	||0	||Shapes	||Define the width offset of the label when it is not attached.
+|-
+|floatingLabelOffsetHeight	|| Integer	||0	||Shapes	||Define the height offset of the label when it is not attached.
+|-
+|maskLabel	||List of String|| name		||	||Set the mask of the floating label.
+|-
+|maxNumberOfSymbol||Integer	||10	||Shape ||Set the maximum number of of symbols to be displayed. 
+|-
+|useOriginalColors	||Boolean	||true	||Shapes	||Set if the SVG image use original colors.
+|-
+|borderStyle	||String	||solid	||Shapes	||Set the style of the border(dash, dashDot, dashDotDot, dot, solid, custom).
+|-
+|customDash	||Int[]	||[5,5]	||Shape	||Set the custom style.
+|-
+|lineLength	||int	||-1	||Compartment	||Set the top line length of the compartment. By default the length is set to the width of the compartment.
+|-
+|lineLengthRatio	||String	||“1.0”	||Compartment	||Set the top line length ratio of the compartment.
+|-
+|linePosition	||String	||“center”	||Compartment	||Set the compartment top line position.Can be left, center, right.
+|-
+|displayHeader	||Boolean	||true	||Shape	||Set to true to add a header.
+|-
+|portPosition	||String	||“onLine”	||Affixed Shape	||Set the position of the port. Can be “inside”, “ouside” or “onLine”.
+|-
+|isPackage	||Boolean	||false	||Shapes	||Set if the shape have to be displayed as a package.
+|-
+|shadowWidth ||Integer	||4	||Shapes	||Set the width of the shadow.
+|-
+|shadowColor ||String	||N/A	||Shapes	||Set the color of the shadow. By default the shadow have the same color as the border.
+|-
+|leftMarginLabel 	||integer 	||0 	||Labels 	||Define the left margin of the label in pixel. This is the space between the text box and his container
+|-
+|topMarginLabel 	||integer 	||0 	||Labels 	||Define the top margin of the label in pixel. This is the space between the text box and his container
+|-
+|rightMarginLabel 	||integer 	||0 	||Labels 	||Define the right margin of the label in pixel. This is the space between the text box and his container
+|-
+|bottomMarginLabel 	||integer 	||0 	||Labels 	||Define the bottom margin of the label in pixel. This is the space between the text box and his container 
 |-
 |}
 
@@ -428,6 +482,67 @@ Which results in:
 
 [[Image:images/Papyrus_CSS_maskLabel_result.png|Mask label result]]<br>
 
+=== Stereotype Display ===
+The Display of Stereotypes can also by driven by CSS. 
+[[https://wiki.eclipse.org/MDT/Papyrus/UserGuide/CSS/StereotypeDisplay Detailed Information ]]
+Special selectors and Styles have been implemented to allow the user to define where and how the stereotypes are displayed.
+
+==== Default CSS ====
+The following CSS rules are implemented by default for all the Diagrams:
+
+<source lang="css">
+Shape[type=StereotypeComment]{
+	visible:false;
+}
+
+Shape[type=StereotypeComment] Compartment[type=StereotypeBrace]{
+	visible:false;
+}
+
+Compartment[type=StereotypeCompartment]{
+	visible:false;
+}
+
+Compartment[type=StereotypeBrace]{
+	visible:false;
+}
+
+Label[type=StereotypeLabel]{
+	depth:"none";
+}
+
+</source>
+
+==== CSS Exemple====
+Here is some exemple of CSS to display the Stereotype:
+
+<source lang="css">
+
+Label[type=StereotypeLabel]{
+	depth:-1;
+}
+
+Compartment[type=StereotypeCompartment]{
+	visible:true;
+}
+
+Compartment[type=StereotypeCompartment]>[property="allocatedTo"]{
+	visible:false;
+}
+
+Compartment[stereotype="SysML::Blocks::Block"]{
+	visible:false;
+}
+
+Shape[type=StereotypeComment]{
+	visible:true;
+}
+
+Shape[type=StereotypeComment] Compartment[type=StereotypeBrace]{
+	visible:true;
+}
+</source>
+
 = Manipulating styles  =
 
 The computed styles will be applied automatically. For example, if your stylesheet tells that all your abstract classes must be red, the classes color will change automatically according to the value of their "isAbstract" property. 
@@ -470,8 +585,5 @@ Selectors based on user events are not yet implemented. For example, the CSS spe
 
 The following bugs have been identified:<br> 
 
-*[https://bugs.eclipse.org/bugs/show_bug.cgi?id=372322 Bug 372322]: <nowiki>[Diagram - Refresh] The refresh action is not correctly binded to F5</nowiki><br> 
 *[https://bugs.eclipse.org/bugs/show_bug.cgi?id=386574 Bug 386574]: <nowiki>[CSS - Refresh]  Only the active diagram is refresh when the stylesheets change</nowiki><br>
 *[https://bugs.eclipse.org/bugs/show_bug.cgi?id=436665 Bug 436665]: <nowiki>[CSS] Refresh issue when an element is moved to a different owner</nowiki>
-
-[[Category:Papyrus]]
