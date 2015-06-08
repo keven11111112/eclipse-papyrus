@@ -34,6 +34,12 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class CppGeneralizationPanel extends CppAbstractPanel {
 
+	private static final String PROTECTED = "protected"; //$NON-NLS-1$
+
+	private static final String PUBLIC = "public"; //$NON-NLS-1$
+
+	private static final String PRIVATE = "private"; //$NON-NLS-1$
+
 	/** Combo box to display visibility */
 	private Combo vPropCombo;
 
@@ -90,7 +96,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 
 		// Visibility properties combo box
 		vPropCombo = new Combo(qualifierGroup, SWT.DROP_DOWN | SWT.READ_ONLY);
-		String items[] = { "public", "protected", "private" };
+		String items[] = { PUBLIC, PROTECTED, PRIVATE };
 		vPropCombo.setItems(items);
 		vPropCombo.addSelectionListener(new SelectionAdapter() {
 
@@ -115,16 +121,16 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 		final String visibilityVal;
 		switch (comboSelected) {
 		case 0: /* public */
-			visibilityVal = "public";
+			visibilityVal = PUBLIC;
 			break;
 		case 1: /* protected */
-			visibilityVal = "protected";
+			visibilityVal = PROTECTED;
 			break;
 		case 2: /* private */
-			visibilityVal = "private";
+			visibilityVal = PRIVATE;
 			break;
 		default: /* public */
-			visibilityVal = "public";
+			visibilityVal = PUBLIC;
 			break;
 		}
 		final Visibility visibility = UMLUtil.getStereotypeApplication(selectedGeneralization, Visibility.class);
@@ -182,11 +188,11 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 			if (visibility != null) {
 				String vis = visibility.getValue();
 
-				if (vis.equals("public")) {
+				if (vis.equals(PUBLIC)) {
 					vPropCombo.select(0);
-				} else if (vis.equals("protected")) {
+				} else if (vis.equals(PROTECTED)) {
 					vPropCombo.select(1);
-				} else if (vis.equals("private")) {
+				} else if (vis.equals(PRIVATE)) {
 					vPropCombo.select(2);
 				} else {
 					Activator.log(new RuntimeException("Generalization: should never happen, model should be corrected before"));
@@ -215,11 +221,11 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 		if (visibility != null) {
 			String vis = visibility.getValue();
 
-			if (!(vis.equals("public")) || !(vis.equals("protected")) || !(vis.equals("private"))) {
-				return false;
+			if ((vis.equals(PUBLIC) || vis.equals(PROTECTED)) || vis.equals(PRIVATE)) {
+				return true;
 			}
 			else {
-				return true;
+				return false;
 			}
 		}
 		else {
@@ -241,13 +247,12 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 
 		final Visibility visibility = UMLUtil.getStereotypeApplication(selectedGeneralization, Visibility.class);
 		if (visibility != null) {
-			String vis = visibility.getValue();
-			if (!(vis.equals("public")) || !(vis.equals("protected")) || !(vis.equals("private"))) {
+			if (!isModelValid()) {
 				CommandSupport.exec("Correct illegal visibility value", new Runnable() {
 
 					@Override
 					public void run() {
-						visibility.setValue("public");
+						visibility.setValue(PUBLIC);
 					}
 				});
 			}

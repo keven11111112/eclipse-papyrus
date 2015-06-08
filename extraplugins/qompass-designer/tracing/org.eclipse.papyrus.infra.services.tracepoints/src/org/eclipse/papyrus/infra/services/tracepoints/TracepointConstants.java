@@ -24,6 +24,9 @@ public class TracepointConstants {
 
 	public static final String isActive = "isActive"; //$NON-NLS-1$
 
+	/**
+	 * if true, marker is a tracepoint. Otherwise it is a breakpoint.
+	 */
 	public static final String isTracepoint = "isTracepoint"; //$NON-NLS-1$
 
 	public static final String traceAction = "traceAction"; //$NON-NLS-1$

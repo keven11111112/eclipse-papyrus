@@ -199,7 +199,7 @@ public class C_CppProjectSupport implements ILangProjectSupport {
 		Element owner = implementation.getOwner();
 		while (owner instanceof Package) {
 			ExternLibrary cppLibrary = UMLUtil.getStereotypeApplication(owner, ExternLibrary.class);
-			if (cppLibrary != null) {
+			if ((cppLibrary != null) && (settings != null)) {
 				settings.includePaths.addAll(cppLibrary.getIncludes());
 				for (String libPath : cppLibrary.getLibPaths()) {
 					if (libPath.startsWith("/")) {

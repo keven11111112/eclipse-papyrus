@@ -3,6 +3,7 @@ package org.eclipse.papyrus.qompass.designer.core.templates;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.extensions.IXtend;
 import org.eclipse.papyrus.qompass.designer.core.extensions.XtendGenerator;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -43,6 +44,9 @@ public class XtendTemplateBinding {
 		String templateId = templateRef[0].trim();
 		String methodName = templateRef[1].trim();
 		IXtend generator = XtendGenerator.getXtendGenerator(templateId);
+		if (generator == null) {
+			throw new TransformationException(String.format(Messages.XtendTemplateBinding_TemplateNotFound, templateId, methodName));
+		}
 		
 		try {
 			Object result;
@@ -61,7 +65,7 @@ public class XtendTemplateBinding {
 				return result.toString();
 			}
 			else {
-				throw new TransformationException("bind template: return result is not a string");
+				throw new TransformationException(Messages.XtendTemplateBinding_TemplateResultIsNotAString);
 			}
 		} catch (SecurityException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException | NullPointerException e) {
