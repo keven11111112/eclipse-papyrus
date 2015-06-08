@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.req.reqif.doc;singleton:=true
 Bundle-Version: 1.1.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.req.reqif.doc.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.help;bundle-version="3.6.0",
@@ -12,4 +11,3 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Description: This is the plugin that present the user documentation of the ReqIF import
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7

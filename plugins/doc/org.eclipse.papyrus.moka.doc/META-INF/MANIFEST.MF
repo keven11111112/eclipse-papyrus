@@ -7,7 +7,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.1.0.qualifier
 Bundle-Name: Moka Documentation
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.moka.doc.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.moka.doc;singleton:=true
 Bundle-Description: %pluginDescription
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7

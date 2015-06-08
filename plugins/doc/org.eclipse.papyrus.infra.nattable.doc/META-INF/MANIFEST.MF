@@ -7,4 +7,3 @@ Bundle-Name: Papyrus Table Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.doc;singleton:=true
 Bundle-Description: %pluginDescription
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
