@@ -206,6 +206,12 @@
 			<!-- updateFrom("XWT",0) -->
 			<url>http://download.eclipse.org/xwt/release-1.1.0</url>
 		</repository>
+		<repository>
+			<id>RMF</id>
+			<layout>p2</layout>
+			<!-- manualUpdate -->
+			<url>http://download.eclipse.org/rmf/updates/releases</url>
+		</repository>	
 	</repositories>
 	<build>
 		<plugins>
