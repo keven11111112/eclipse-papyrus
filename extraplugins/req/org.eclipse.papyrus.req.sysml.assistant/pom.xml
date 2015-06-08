@@ -7,8 +7,7 @@
 		<version>1.1.0-SNAPSHOT</version>
 		<relativePath>../../../releng/top-pom-extras.xml</relativePath>
 	</parent>
-	<groupId>org.eclipse.papyrus</groupId>
 	<artifactId>org.eclipse.papyrus.req.sysml.assistant</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.7.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 </project>
