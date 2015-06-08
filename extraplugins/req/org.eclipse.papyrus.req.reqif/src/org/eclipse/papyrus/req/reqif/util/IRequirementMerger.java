@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.req.reqif.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.eclipse.uml2.uml.Element;
 
@@ -29,5 +30,7 @@ public interface IRequirementMerger {
 	 * @return true merge finishes successfully
 	 */
 	boolean merge();
+
+	public HashSet<Element> getModifiedElement() ;
 
 }

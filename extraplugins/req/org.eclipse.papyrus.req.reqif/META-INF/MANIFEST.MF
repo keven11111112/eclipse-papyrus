@@ -74,4 +74,7 @@ Export-Package: org.eclipse.papyrus.req.reqif;uses:="org.osgi.framework,org.ecli
    org.eclipse.uml2.uml,
    org.eclipse.rmf.reqif10,
    org.eclipse.emf.transaction",
- org.eclipse.papyrus.req.reqif.queries;uses:="org.eclipse.papyrus.emf.facet.query.java.core,org.eclipse.uml2.uml,org.eclipse.papyrus.emf.facet.efacet.core"
+ org.eclipse.papyrus.req.reqif.preference,
+ org.eclipse.papyrus.req.reqif.queries;uses:="org.eclipse.papyrus.emf.facet.query.java.core,org.eclipse.uml2.uml,org.eclipse.papyrus.emf.facet.efacet.core",
+ org.eclipse.papyrus.req.reqif.transformation,
+ org.eclipse.papyrus.req.reqif.util
