@@ -1,4 +1,4 @@
-hManifest-Version: 1.0
+Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.qompass.modellibs.tracing,
  org.eclipse.papyrus.qompass.modellibs.tracing.acceleo
 Require-Bundle: org.eclipse.papyrus.fcm.profile;bundle-version="1.1.0",
