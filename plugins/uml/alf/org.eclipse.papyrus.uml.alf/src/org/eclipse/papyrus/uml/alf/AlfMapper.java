@@ -36,6 +36,7 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
@@ -186,7 +187,7 @@ public class AlfMapper {
 				new BasicEList<PackageableElement>(model.getPackagedElements());
 		for (PackageableElement member : elements) {
 			String name = member.getName();
-			if (name != null && (name.length() < 3 || !name.substring(0, 2).equals("$$"))) {
+			if (member instanceof Namespace && name != null && (name.length() < 3 || !name.substring(0, 2).equals("$$"))) {
 				merge.update(contextElement, member);
 				elements.remove(member);
 				break;

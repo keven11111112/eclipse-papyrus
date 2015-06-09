@@ -157,6 +157,14 @@ public interface SequenceConstructionExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif self.type = null then null\n\t\t\t\telse\n\t\t      let name = self.type.name() in\n\t\t      let operationReferents = type.ownedMembers()->select(name() = name and isOperation()) in\n\t\t        if operationReferents->size() <> 1 then null\n\t\t        else operationReferents->any(true).constructorReference()\n\t\t        endif\n\t\t\t  endif'"
+	 * @generated
+	 */
+	ElementReference constructorReference();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.hasMultiplicity then 1\n        else if self.elements = null then 0 \n        else self.elements.upper\n        endif endif'"
 	 * @generated

@@ -39,7 +39,7 @@ public interface RelationalExpression extends BinaryExpression {
 	 * @see #setIsUnlimitedNatural(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getRelationalExpression_IsUnlimitedNatural()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='self.isUnlimitedNaturalType(self.operand1.type) or self.isUnlimitedNaturalType(self.operand2.type)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n\t\t\t\tlet type1 = self.operand1.type in\n\t\t\t\t\tself.isUnlimitedNaturalType(type1) and not self.isNaturalType(type1) or \n\t\t\t\tlet type2 = self.operand2.type in\n\t\t\t\t\tself.isUnlimitedNaturalType(type2) and not self.isNaturalType(type2)'"
 	 * @generated
 	 */
 	boolean isIsUnlimitedNatural();

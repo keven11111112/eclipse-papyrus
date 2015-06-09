@@ -685,7 +685,7 @@ public interface ElementReference extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" actualsUnique="false" actualsMany="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        actuals->iterate(\n          actual, s : Types::String = \'$$\' + self.boundPathName() + \'__\' |\n          s + if actual = null then \'any\' else actual.boundPathName() endif + \'_\'\n        ) + \'_\''"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        actuals->iterate(\n          actual, s : String = \'$$\' + self.boundPathName() + \'__\' |\n          s + if actual = null then \'any\' else actual.boundPathName() endif + \'_\'\n        ) + \'_\''"
 	 * @generated
 	 */
 	String boundElementName(EList<ElementReference> actuals);
@@ -873,5 +873,13 @@ public interface ElementReference extends EObject {
 	 * @generated
 	 */
 	ElementReference stubFor(UnitDefinition unit);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif not self.isConstructor() then null\n\t\t\t\telse\n          let classReferent = self.namespace() in\n            if not classReferent.isAbstractClassifier() then\n              self\n            else\n              -- Check for an \"Impl\" package.\n              let namespaceReferent = classReferent.namespace() in\n                if namespaceReferent = null then null\n                else\n                  let template = classReferent.template() in\n                  let className = classReferent.name() in\n                  let operationName = self.name() in\n                  let implClassReferent = \n                    namespaceReferent.ownedMembers()->\n                    select(name() = \'Impl\' and isPackage()).\n                    ownedMembers()->\n                    select(name() = className and isClass())\n                  in\n                  let boundClassReferent =\n                    if classReferent.template() = null or\n                      implClassReferent->exists(not isTemplate()) then \n                      implClassReferent\n                    else \n                      -- TODO: Check that template parameters match.\n                      implClassReferent.bind(\n                        classReferent.templateActuals()->asSequence()\n                      )\n                    endif\n                  in\n                  let implOperationReferent =\n                    boundClassReferent.ownedMembers()->\n                    select(name() = operationName and isOperation())\n                  in\n                    if implOperationReferent->size() <> 1 then null\n                    else implOperationReferent->any(true)\n                    endif\n                endif\n            endif\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	ElementReference constructorReference();
 
 } // ElementReference

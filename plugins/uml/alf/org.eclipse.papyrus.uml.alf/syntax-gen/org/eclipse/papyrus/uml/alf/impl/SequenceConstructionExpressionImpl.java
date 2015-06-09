@@ -188,6 +188,30 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #constructorReference() <em>Constructor Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #constructorReference()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate CONSTRUCTOR_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getSequenceConstructionExpression__ConstructorReference()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementReference constructorReference() {
+		try {
+			return (ElementReference)CONSTRUCTOR_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #upper() <em>Upper</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -468,6 +492,8 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 				return collectionType();
 			case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION___TYPE:
 				return type();
+			case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION___CONSTRUCTOR_REFERENCE:
+				return constructorReference();
 			case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION___UPPER:
 				return upper();
 			case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION___LOWER:

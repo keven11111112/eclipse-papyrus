@@ -1562,6 +1562,30 @@ public abstract class ElementReferenceImpl extends EObjectImpl implements Elemen
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #constructorReference() <em>Constructor Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #constructorReference()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate CONSTRUCTOR_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getElementReference__ConstructorReference()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementReference constructorReference() {
+		try {
+			return (ElementReference)CONSTRUCTOR_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1776,6 +1800,8 @@ public abstract class ElementReferenceImpl extends EObjectImpl implements Elemen
 				return stub();
 			case AlfPackage.ELEMENT_REFERENCE___STUB_FOR__UNITDEFINITION:
 				return stubFor((UnitDefinition)arguments.get(0));
+			case AlfPackage.ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE:
+				return constructorReference();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

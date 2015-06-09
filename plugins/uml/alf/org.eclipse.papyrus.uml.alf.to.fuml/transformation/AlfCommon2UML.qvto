@@ -64,12 +64,24 @@ helper SyntaxElement::functionSize() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Size");
 }
 
+helper SyntaxElement::functionIsEmpty() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::IsEmpty");
+}
+
 helper SyntaxElement::functionNotEmpty() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::NotEmpty");
 }
 
+helper SyntaxElement::functionCount() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Count");
+}
+
 helper SyntaxElement::functionAt() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::At");
+}
+
+helper SyntaxElement::functionIncluding() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Including");
 }
 
 helper SyntaxElement::functionPlus() : Behavior {
@@ -121,7 +133,7 @@ helper SyntaxElement::literalNatural(n : Integer) : LiteralInteger {
 }
 
 helper SyntaxElement::literalInteger(i : Integer) : LiteralInteger {
-	return new LiteralInteger(i, self.naturalType().toType());
+	return new LiteralInteger(i, self.integerType().toType());
 }
 
 helper SyntaxElement::literalString(s : String) : LiteralString {
@@ -176,6 +188,13 @@ helper BoundElementReference::toUml() : Element {
   */
 }
 
+// Constructors
+
+constructor Comment::Comment(body_ : String, element : Element) {
+	body := body_;
+	annotatedElement := element;
+}
+
 // Activities
 
 constructor Activity::Activity(ownedParameters : Sequence(Parameter)) {
@@ -211,6 +230,12 @@ constructor ObjectFlow::ObjectFlow(owner : StructuredActivityNode, sourceNode : 
 }
 
 constructor ControlFlow::ControlFlow(sourceNode : ActivityNode, targetNode : ActivityNode) {
+	source := sourceNode;
+	target := targetNode;
+}
+
+constructor ControlFlow::ControlFlow(owner : Activity, sourceNode : ActivityNode, targetNode : ActivityNode) {
+	activity := owner;
 	source := sourceNode;
 	target := targetNode;
 }
@@ -258,6 +283,20 @@ constructor ForkNode::ForkNode(structuredNode : StructuredActivityNode, sourceNa
 	name := "Fork(" + sourceName + ")";
 }
 
+constructor JoinNode::JoinNode(sourceName : String) {
+	name := "Join(" + sourceName + ")";
+}
+
+constructor JoinNode::JoinNode(owner : Activity, sourceName : String) {
+	activity := owner;
+	name := "Join(" + sourceName + ")";
+}
+
+constructor JoinNode::JoinNode(structuredNode : StructuredActivityNode, sourceName : String) {
+	inStructuredNode := structuredNode;
+	name := "Join(" + sourceName + ")";
+}
+
 constructor MergeNode::MergeNode(sourceName : String) {
 	name := "Merge(" + sourceName + ")";
 }
@@ -295,8 +334,8 @@ constructor InputPin::InputPin(pinName : String, pinType: Type, pinLower : Integ
 	upper := pinUpper;
 }
 
-constructor InputPin::InputPin(structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
-	inStructuredNode := structuredNode;
+constructor InputPin::InputPin(inout structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	structuredNode.structuredNodeInput += result;
 	name := pinName;
 	type := pinType;
 	lower := pinLower;
@@ -328,8 +367,8 @@ constructor OutputPin::OutputPin(pinName : String, pinType: Type, pinLower : Int
 	upper := pinUpper;
 }
 
-constructor OutputPin::OutputPin(structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
-	inStructuredNode := structuredNode;
+constructor OutputPin::OutputPin(inout structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	structuredNode.structuredNodeOutput += result;
 	name := pinName;
 	type := pinType;
 	lower := pinLower;
@@ -697,6 +736,31 @@ constructor StructuredActivityNode::StructuredActivityNode(name_ : String) {
 	name := name_;
 }
 
+constructor StructuredActivityNode::StructuredActivityNode(owner : Activity, name_ : String) {
+	activity := owner;
+	name := name_;
+}
+
+constructor ConditionalNode::ConditionalNode(name_ : String, assured : Boolean, determinate : Boolean) {
+	name := name_;
+	isAssured := assured;
+	isDeterminate := determinate;
+}
+
+constructor Clause::Clause(
+	testNodes : Set(ExecutableNode), bodyNodes : Set(ExecutableNode), 
+	bodyOutputs : Set(OutputPin), predecessorClauses : Set(Clause)) {
+		test := testNodes;
+		body := bodyNodes;
+		bodyOutput := bodyOutputs;
+		predecessorClause := predecessorClauses;
+}
+
+constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean) {
+	name := name_;
+	isTestedFirst := testedFirst;
+}
+
 constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean, inputs : OrderedSet(InputPin)) {
 	name := name_;
 	isTestedFirst := testedFirst;
@@ -711,7 +775,7 @@ constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean, inputs : O
 
 constructor ExpansionRegion::ExpansionRegion(name_ : String, mode_ : ExpansionKind) {
 	name := name_;
-	mode := mode;
+	mode := mode_;
 }
 
 constructor ExpansionNode::ExpansionNode(sourceName : String, region : ExpansionRegion, isInput : Boolean) {
@@ -733,6 +797,16 @@ helper addEdgesToStructuredNode(inout structuredNode : StructuredActivityNode, i
 	var allOwnedNodes := structuredNode.allOwnedNodes();
 	var internalEdges := edges[allOwnedNodes->includes(source) and allOwnedNodes->includes(target)];
 	structuredNode.edge += internalEdges;
+	/*
+	edges->forEach(edge) {
+		edge.ownedComment += object Comment {
+			body := nameOf(structuredNode) + ": " +
+				if allOwnedNodes->includes(edge.source) then "source " else "" endif +
+				if allOwnedNodes->includes(edge.target) then "target " else "" endif ;
+			annotatedElement := edge;
+		}
+	};
+	*/
 	return edges - internalEdges;
 }
 
@@ -780,6 +854,17 @@ helper addToExpansionRegion(inout region : ExpansionRegion, nodes : Set(Activity
 		} endif;
 	};
 	return edges - region.edge;
+}
+
+helper createPassthruNode (sourceName : String, type : Type, lower : Integer, upper : Integer) : StructuredActivityNode {
+	var nodeName := 
+		if sourceName = null or sourceName.oclIsInvalid() then "Passthru" 
+		else "Passthru(" + sourceName + ")" endif;
+	var structuredNode := new StructuredActivityNode(nodeName);
+	var inputPin := new InputPin(structuredNode, nodeName + ".input", type, lower, upper);
+	var outputPin := new OutputPin(structuredNode, nodeName + ".output", type, lower, upper);
+	structuredNode.edge += new ObjectFlow(inputPin, outputPin);
+	return structuredNode;
 }
 
 // Other
