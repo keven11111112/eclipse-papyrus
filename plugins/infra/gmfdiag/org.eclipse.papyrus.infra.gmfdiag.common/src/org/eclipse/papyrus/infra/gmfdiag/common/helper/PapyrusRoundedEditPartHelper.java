@@ -57,7 +57,10 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 					// convert the string style name in integer
 					if (borderValueStyle instanceof StringValueStyle) {
 						String str = ((StringValueStyle) borderValueStyle).getStringValue();
-						borderStyle = LineStyleEnum.getByLiteral(str).getLineStyle();
+						final LineStyleEnum lineStyle = LineStyleEnum.getByLiteral(str);
+						if (lineStyle != null) {
+							borderStyle = lineStyle.getLineStyle();
+						}
 					}
 				}
 			}
@@ -169,7 +172,7 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 				int shadowWidth = NotationUtils.getIntValue((View) ((GraphicalEditPart) editpart).getModel(), SHADOW_WIDTH, defaultShadowWidthValue);
 
 				// Set isOval
-				roundedRectangleFigure.setShadowWidth(shadowWidth);
+				roundedRectangleFigure.setShadowWidth(shadowWidth >= 0 ? shadowWidth : defaultShadowWidthValue);
 			}
 		}
 	}
@@ -196,11 +199,11 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 				// get CSS the value of radius Height
 				int height = NotationUtils.getIntValue((View) ((GraphicalEditPart) editpart).getModel(), RADIUS_HEIGHT, defaultCornerHeight);
 
-				// Set the corner dimension
 				roundedRectangleFigure.setCornerDimensions(new Dimension(width, height));
 			}
 		}
 	}
+
 
 
 	/**

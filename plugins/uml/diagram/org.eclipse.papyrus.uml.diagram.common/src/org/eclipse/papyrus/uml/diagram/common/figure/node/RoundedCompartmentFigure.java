@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFig
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Path;
 import org.eclipse.swt.graphics.RGB;
@@ -451,17 +452,30 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 */
 	private void setShadowBackgroundColor(Graphics graphics) {
 
-		if (shadowColor != null) {
+		Color color = null;
+		if (shadowColor != null && !"-1".equals(shadowColor)) {
 			// get the the RGBColor from string
 			RGBColor rgbColor = CSS2ColorHelper.getRGBColor(shadowColor);
+			if (rgbColor != null) {
+				// extract RGB
+				int red = Integer.parseInt(rgbColor.getRed().toString());
+				int green = Integer.parseInt(rgbColor.getGreen().toString());
+				int blue = Integer.parseInt(rgbColor.getBlue().toString());
 
-			// extract RGB
-			int red = Integer.parseInt(rgbColor.getRed().toString());
-			int green = Integer.parseInt(rgbColor.getGreen().toString());
-			int blue = Integer.parseInt(rgbColor.getBlue().toString());
+				// get the the Color from RGB
+				color = new Color(Display.getCurrent(), new RGB(red, green, blue));
+			}
 
-			// get the the Color from RGB
-			Color color = new Color(Display.getCurrent(), new RGB(red, green, blue));
+			if (color == null) {
+				try {
+					color = ColorRegistry.getInstance().getColor(Integer.valueOf(shadowColor));
+				} catch (NumberFormatException e) {
+					Activator.log.error("Shadow Color not well set", e);
+				}
+			}
+		}
+
+		if (color != null) {
 			graphics.setBackgroundColor(color);
 		} else {
 			graphics.setBackgroundColor(getForegroundColor());
@@ -548,7 +562,11 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 */
 	@Override
 	public void setCornerDimensions(Dimension cornerDimension) {
-		this.cornerDimension = cornerDimension;
+		if (cornerDimension.width == 0 || cornerDimension.height == 0) {
+			this.cornerDimension = new Dimension();
+		} else {
+			this.cornerDimension = cornerDimension;
+		}
 	}
 
 	/**

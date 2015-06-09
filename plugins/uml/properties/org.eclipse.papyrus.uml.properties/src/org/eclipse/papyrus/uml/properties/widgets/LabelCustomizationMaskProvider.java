@@ -15,7 +15,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLNotationModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.CompositeModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
@@ -70,6 +73,12 @@ public class LabelCustomizationMaskProvider implements XWTCompliantMaskProvider 
 			if (element instanceof UMLNotationModelElement) {
 				UMLNotationModelElement modelElement = (UMLNotationModelElement) element;
 				editPolicy = (IMaskManagedLabelEditPolicy) modelElement.getEditPart().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+				if (editPolicy != null) {
+					notifyListeners();
+				}
+			} else if (input.getSelection().getFirstElement() instanceof FloatingLabelEditPart) {
+				EditPart editpart = (EditPart) input.getSelection().getFirstElement();
+				editPolicy = (IMaskManagedLabelEditPolicy) editpart.getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 				if (editPolicy != null) {
 					notifyListeners();
 				}
