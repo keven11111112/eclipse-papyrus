@@ -31,7 +31,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Panel displayed when a Generalization is selected
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CppGeneralizationPanel extends CppAbstractPanel {
 
 	private static final String PROTECTED = "protected"; //$NON-NLS-1$

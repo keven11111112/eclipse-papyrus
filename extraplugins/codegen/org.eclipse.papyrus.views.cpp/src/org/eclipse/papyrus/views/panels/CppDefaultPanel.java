@@ -22,7 +22,9 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * Default panel when selection is not relevant.
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CppDefaultPanel extends CppAbstractPanel {
 
 	/** Label used to display text */

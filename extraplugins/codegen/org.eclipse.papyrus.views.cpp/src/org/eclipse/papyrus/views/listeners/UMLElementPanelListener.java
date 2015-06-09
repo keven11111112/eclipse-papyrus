@@ -19,7 +19,9 @@ import org.eclipse.papyrus.views.panels.CppAbstractPanel;
 
 /**
  * Listener for a uml element, for a given AccordCppAbstractPanel.
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class UMLElementPanelListener implements Adapter {
 
 	/** element listened */

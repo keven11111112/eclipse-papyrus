@@ -30,7 +30,9 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * Panel displayed when a Property is selected
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CppPropertyPanel extends CppAbstractPanel {
 
 	private Button isStatic;

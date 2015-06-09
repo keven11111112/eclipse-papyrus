@@ -46,7 +46,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  *
  * TODO: instead of keeping isAbstract and pureVirtual Stereotype synchronized, pure virtual
  * could be removed from the panel
+ * @deprecated This view will be replaced by a XWT view for the C++ profile
  */
+@Deprecated
 public class CppOperationPanel extends CppAbstractPanel {
 
 	@SuppressWarnings("unused")

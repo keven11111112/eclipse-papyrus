@@ -25,7 +25,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Panel displayed when a Package is selected
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CppPackagePanel extends CppAbstractPanel {
 
 	// document used by the viewer for header include
