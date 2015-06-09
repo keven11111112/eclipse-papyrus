@@ -374,7 +374,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if (needConfiguration) {
 			configureCellAxisEditor();
 			configureFilters();
-			refreshNatTable();
+			
+			//comment to fix the bug 469739: [Table] Infinite refresh in Tables
+			//https://bugs.eclipse.org/bugs/show_bug.cgi?id=469739
+			//moreover this refresh seems 
+			//refreshNatTable();
 		}
 	}
 
