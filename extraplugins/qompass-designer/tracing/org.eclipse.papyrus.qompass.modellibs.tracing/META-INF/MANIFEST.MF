@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.papyrus.fcm.profile;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.0",
  org.eclipse.papyrus.qompass.designer.ui;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.1.0",
- com.google.guava,
+ com.google.guava;bundle-version="11.0.0",
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro
