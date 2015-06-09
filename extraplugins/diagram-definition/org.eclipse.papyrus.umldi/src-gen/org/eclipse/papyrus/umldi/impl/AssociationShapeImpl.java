@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class AssociationShapeImpl extends ClassifierShapeImpl implements AssociationShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AssociationShapeImpl() {
@@ -36,11 +38,11 @@ public class AssociationShapeImpl extends ClassifierShapeImpl implements Associa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ASSOCIATION_SHAPE;
 	}
-
 } //AssociationShapeImpl

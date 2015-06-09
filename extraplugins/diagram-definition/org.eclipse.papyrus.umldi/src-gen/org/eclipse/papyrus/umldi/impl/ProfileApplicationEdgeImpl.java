@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ProfileApplicationEdgeImpl extends ElementEdgeImpl implements ProfileApplicationEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProfileApplicationEdgeImpl() {
@@ -36,11 +38,11 @@ public class ProfileApplicationEdgeImpl extends ElementEdgeImpl implements Profi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.PROFILE_APPLICATION_EDGE;
 	}
-
 } //ProfileApplicationEdgeImpl

@@ -13,11 +13,13 @@
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus (CEA) - bug 399859
  *  Christian W. Damus - bug 456934
+ *  Christian W. Damus - bug 468030
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.tests;
 
 import org.eclipse.papyrus.infra.core.contentoutline.NestedEditorDelegatedOutlinePageTest;
+import org.eclipse.papyrus.infra.core.language.LanguageServiceTest;
 import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProviderTest;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResourceTest;
 import org.eclipse.papyrus.infra.core.resource.ModelSetTest;
@@ -38,6 +40,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		// {oep.resource}
 		ModelSetTest.class, AbstractModelWithSharedResourceTest.class, NestingTransactionalCommandStackTest.class, ResourceAdapterTest.class,
+		// {oep}.core.language
+		LanguageServiceTest.class,
 		// {oep}.core.services
 		ComposedServiceTest.class, ServicesRegistryTest.class,
 		// {oep}.core.lifecycleevents

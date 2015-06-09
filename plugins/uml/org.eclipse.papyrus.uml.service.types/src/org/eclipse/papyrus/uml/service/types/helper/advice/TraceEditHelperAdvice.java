@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 467920
+ *   Christian W. Damus - bug 440263
  *   
  *****************************************************************************/
 
@@ -21,7 +22,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 import org.eclipse.uml2.uml.profile.standard.Trace;
@@ -46,11 +46,6 @@ public class TraceEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 				NamedElement element = (NamedElement) request.getElementToConfigure();
 				if (element != null) {
 					StereotypeApplicationHelper.getInstance(element).applyStereotype(element, StandardPackage.Literals.TRACE);
-
-					// Set default name
-					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementUtil.getDefaultNameWithIncrementFromBase(StandardPackage.Literals.TRACE.getName(), element.eContainer().eContents());
-					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);
 			}

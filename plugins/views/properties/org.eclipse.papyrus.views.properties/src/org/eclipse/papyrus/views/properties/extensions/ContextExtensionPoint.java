@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - adds isVisible implementation
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.extensions;
 
@@ -28,6 +30,14 @@ import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
  */
 public class ContextExtensionPoint {
 
+
+	/** The Constant IS_CUSTOMIZABLE. */
+	private static final String IS_CUSTOMIZABLE = "isCustomizable";//$NON-NLS-1$
+
+	/** The Constant IS_VISIBLE. */
+	private static final String APPLIED_BY_DEFAULT = "appliedByDefault";//$NON-NLS-1$
+
+	/** The extension id. */
 	private final String EXTENSION_ID = "org.eclipse.papyrus.views.properties.context"; //$NON-NLS-1$
 
 	/**
@@ -41,15 +51,23 @@ public class ContextExtensionPoint {
 				final String contextResource = e.getAttribute("contextModel"); //$NON-NLS-1$
 
 				final boolean isCustomizable;
-				if (Arrays.asList(e.getAttributeNames()).contains("isCustomizable")) {
-					isCustomizable = Boolean.parseBoolean(e.getAttribute("isCustomizable")); //$NON-NLS-1$
+				if (Arrays.asList(e.getAttributeNames()).contains(IS_CUSTOMIZABLE)) {
+					isCustomizable = Boolean.parseBoolean(e.getAttribute(IS_CUSTOMIZABLE));
 				} else {
 					isCustomizable = true; // Default value
 				}
-				URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource); //$NON-NLS-1$ //$NON-NLS-2$
-				//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + contextResource, true); //$NON-NLS-1$
 
-				ConfigurationManager.getInstance().addContext(uri, isCustomizable);
+				final boolean appliedByDefault;
+				if (Arrays.asList(e.getAttributeNames()).contains(APPLIED_BY_DEFAULT)) {
+					appliedByDefault = Boolean.parseBoolean(e.getAttribute(APPLIED_BY_DEFAULT));
+				} else {
+					appliedByDefault = true; // Default value
+				}
+
+				URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource); //$NON-NLS-1$ //$NON-NLS-2$
+
+				ConfigurationManager.getInstance().addContext(uri, appliedByDefault, isCustomizable);
+
 			} catch (IOException ex) {
 				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid extension for " + EXTENSION_ID, ex); //$NON-NLS-1$//$NON-NLS-2$
 			} catch (Exception ex) {

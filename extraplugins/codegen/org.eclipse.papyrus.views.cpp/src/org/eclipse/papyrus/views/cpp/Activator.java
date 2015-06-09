@@ -25,7 +25,9 @@ import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID

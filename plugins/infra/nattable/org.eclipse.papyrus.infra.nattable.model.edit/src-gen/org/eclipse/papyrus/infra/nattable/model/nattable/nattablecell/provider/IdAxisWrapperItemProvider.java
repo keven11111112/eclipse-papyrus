@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.IdAxisWrapper} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
@@ -40,7 +39,6 @@ public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IdAxisWrapperItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +49,6 @@ public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,30 +65,28 @@ public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_IdAxisWrapper_element_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_IdAxisWrapper_element_feature", "_UI_IdAxisWrapper_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattablecellPackage.Literals.ID_AXIS_WRAPPER__ELEMENT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IdAxisWrapper_element_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IdAxisWrapper_element_feature", "_UI_IdAxisWrapper_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablecellPackage.Literals.ID_AXIS_WRAPPER__ELEMENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns IdAxisWrapper.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,15 +98,14 @@ public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IdAxisWrapper) object).getElement();
+		String label = ((IdAxisWrapper)object).getElement();
 		return label == null || label.length() == 0 ?
-				getString("_UI_IdAxisWrapper_type") : //$NON-NLS-1$
-				getString("_UI_IdAxisWrapper_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_IdAxisWrapper_type") : //$NON-NLS-1$
+			getString("_UI_IdAxisWrapper_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -120,7 +114,6 @@ public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,9 +121,9 @@ public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IdAxisWrapper.class)) {
-		case NattablecellPackage.ID_AXIS_WRAPPER__ELEMENT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case NattablecellPackage.ID_AXIS_WRAPPER__ELEMENT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -140,7 +133,6 @@ public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,7 +144,6 @@ public class IdAxisWrapperItemProvider extends EModelElementItemProvider {
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

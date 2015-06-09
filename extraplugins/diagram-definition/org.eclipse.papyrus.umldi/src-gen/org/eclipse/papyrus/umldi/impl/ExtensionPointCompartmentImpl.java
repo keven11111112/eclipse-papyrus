@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UseCaseShape;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ExtensionPointCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ExtensionPointCompartmentImpl#getUseCaseShape <em>Use Case Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ExtensionPointCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ExtensionPointCompartmentImpl#getUseCaseShape <em>Use Case Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implements ExtensionPointCompartment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ExtensionPointCompartmentImpl() {
@@ -53,6 +55,7 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		UseCaseShape useCaseShape = getUseCaseShape();			
-		if (useCaseShape != null) {
+		UseCaseShape useCaseShape = getUseCaseShape();
+		if(useCaseShape != null) {
 			return useCaseShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCaseShape getUseCaseShape() {
-		if (eContainerFeatureID() != UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE)
+			return null;
 		return (UseCaseShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetUseCaseShape(UseCaseShape newUseCaseShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUseCaseShape(UseCaseShape newUseCaseShape) {
-		if (newUseCaseShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE && newUseCaseShape != null)) {
-			if (EcoreUtil.isAncestor(this, newUseCaseShape))
+		if(newUseCaseShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE && newUseCaseShape != null)) {
+			if(EcoreUtil.isAncestor(this, newUseCaseShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newUseCaseShape != null)
+			if(newUseCaseShape != null)
 				msgs = ((InternalEObject)newUseCaseShape).eInverseAdd(this, UMLDIPackage.USE_CASE_SHAPE__EXTENSION_POINT_COMPARTMENT, UseCaseShape.class, msgs);
 			msgs = basicSetUseCaseShape(newUseCaseShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE, newUseCaseShape, newUseCaseShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetUseCaseShape((UseCaseShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetUseCaseShape((UseCaseShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
-				return basicSetUseCaseShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
+			return basicSetUseCaseShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.USE_CASE_SHAPE__EXTENSION_POINT_COMPARTMENT, UseCaseShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.USE_CASE_SHAPE__EXTENSION_POINT_COMPARTMENT, UseCaseShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
-				return getUseCaseShape();
+		switch(featureID) {
+		case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
+			return getUseCaseShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
-				setUseCaseShape((UseCaseShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
+			setUseCaseShape((UseCaseShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
-				setUseCaseShape((UseCaseShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
+			setUseCaseShape((UseCaseShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
-				return getUseCaseShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE:
+			return getUseCaseShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class ExtensionPointCompartmentImpl extends ListCompartmentImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.EXTENSION_POINT_COMPARTMENT__USE_CASE_SHAPE);
 	}
-
 } //ExtensionPointCompartmentImpl

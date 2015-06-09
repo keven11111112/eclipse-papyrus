@@ -22,7 +22,7 @@
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_0N-uEeOoWMUBUZPOjA" label="Realization" elementTypeIdRef="org.eclipse.papyrus.uml.Realization" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_0d-uEeOoWMUBUZPOjA" label="Refine" elementTypeIdRef="org.eclipse.papyrus.uml.Refine" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_0t-uEeOoWMUBUZPOjA" label="Substitution" elementTypeIdRef="org.eclipse.papyrus.uml.Substitution" displayAllRoles="false"/>
-  <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_09-uEeOoWMUBUZPOjA" label="TemplateBinding" visible="false" elementTypeIdRef="org.eclipse.papyrus.uml.TemplateBinding" displayAllRoles="false"/>
+  <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_09-uEeOoWMUBUZPOjA" label="TemplateBinding" elementTypeIdRef="org.eclipse.papyrus.uml.TemplateBinding" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_1N-uEeOoWMUBUZPOjA" label="Trace" elementTypeIdRef="org.eclipse.papyrus.uml.Trace" displayAllRoles="false"/>
   <menu xsi:type="ElementCreationMenuModel:CreateRelationshipMenu" xmi:id="_SYf_1d-uEeOoWMUBUZPOjA" label="Usage" elementTypeIdRef="org.eclipse.papyrus.uml.Usage" displayAllRoles="false"/>
 </ElementCreationMenuModel:Folder>

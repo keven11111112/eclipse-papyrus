@@ -138,6 +138,21 @@
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature.source" version="1.1.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.extra.soaml.feature_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.soaml.feature" version="1.1.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.extra.soaml.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.extra.soaml.feature.source" version="1.1.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.dd.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.dd.feature" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.dd.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.notation.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.notation.feature" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.dd.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.umldi.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.umldi.feature" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.dd.category"/>
+   </feature>
    <category-def name="org.eclipse.papyrus.extra.category" label="Papyrus Extra (All - Not recommended)">
       <description>
          Papyrus Extra Category
@@ -162,6 +177,11 @@
    <category-def name="org.eclipse.papyrus.extra.qompass.category" label="Papyrus Qompass Designer">
       <description>
          Papyrus Qompass Designer Category
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.papyrus.extra.dd.category" label="Diagram Definition">
+      <description>
+         Diagram Definition Category
       </description>
    </category-def>
 </site>

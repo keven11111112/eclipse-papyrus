@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST and others.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440263
+ *  Christian W. Damus - bug 459701
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.tests.canonical;
@@ -17,6 +18,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -52,12 +57,17 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
+import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
+import org.junit.Rule;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -87,6 +97,13 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	protected GraphicalEditPart targetPlayer = null;
 
 	public abstract DiagramUpdater getDiagramUpdater();
+
+	private FixtureEditPartConfigurator sourceConfigurator;
+
+	private FixtureEditPartConfigurator targetConfigurator;
+
+	@Rule
+	public final TestRule annotationRule = new AnnotationRule();
 
 	/**
 	 * Test view deletion.
@@ -299,6 +316,11 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		Assert.assertTrue("the policy of the link must be an instance of ShowHideLabelEditPolicy", policy instanceof org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy); //$NON-NLS-1$
 		// get text aware
 		ITextAwareEditPart namedEditPart = null;
+
+		// FIXME we should find here a better way to get the name label => If the name is null or empty, no edit part will match whereas one should
+		if (initialName == null || initialName.isEmpty()) {
+			return;
+		}
 		for (Iterator iteratorChildren = linkEditPart.getChildren().iterator(); iteratorChildren.hasNext();) {
 			Object children = iteratorChildren.next();
 			if (children instanceof ITextAwareEditPart && (((ITextAwareEditPart) children).getEditText() != null) && (!((ITextAwareEditPart) children).getEditText().trim().equals(""))) { //$NON-NLS-1$
@@ -367,6 +389,8 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		sourcePlayer = (GraphicalEditPart) getDiagramEditPart().getChildren().get(1);
 		target = (GraphicalEditPart) getDiagramEditPart().getChildren().get(2);
 		targetPlayer = (GraphicalEditPart) getDiagramEditPart().getChildren().get(3);
+
+		performAdditionalEnvironmentConfiguration(sourceType, targetType);
 	}
 
 	public CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target) {
@@ -506,7 +530,8 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	protected void testToCreateAlinkOnTheSame(IElementType linkType, boolean allowed) {
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
-		Command command = target.getCommand(createConnectionViewRequest(linkType, source, source));
+		// Note: Must always ask the target edit-part to create the connection, and in this case the target is 'source'
+		Command command = source.getCommand(createConnectionViewRequest(linkType, source, source));
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == allowed);
 		if (allowed) {
@@ -538,5 +563,85 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		IHandler handler = cmd.getHandler();
 		boolean enabled = handler != null && handler.isHandled() && handler.isEnabled();
 		Assert.assertTrue("Delete from model handler must be enabled", enabled);
+	}
+
+	protected final void performAdditionalEnvironmentConfiguration(IElementType sourceType, IElementType targetType) {
+		Command additionalConfig = additionalConfig(null, source, sourceType, true);
+		additionalConfig = additionalConfig(additionalConfig, sourcePlayer, sourceType, true);
+		additionalConfig = additionalConfig(additionalConfig, target, targetType, false);
+		additionalConfig = additionalConfig(additionalConfig, targetPlayer, targetType, false);
+		if (additionalConfig != null) {
+			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(additionalConfig);
+		}
+	}
+
+	private Command additionalConfig(Command additionalConfig, IGraphicalEditPart editPart, IElementType elementType, boolean isSource) {
+		FixtureEditPartConfigurator configurator = isSource ? sourceConfigurator : targetConfigurator;
+		Command config = (configurator == null) ? null : configurator.configureFixtureEditPart(editPart, elementType, isSource);
+		return (additionalConfig == null) ? config : (config == null) ? additionalConfig : additionalConfig.chain(config);
+	}
+
+	//
+	// Nested types
+	//
+
+	/**
+	 * A configurator, declare via {@link SourceConfigurator} and/or {@link TargetConfigurator} annotation,
+	 * of the source or target (respectively) edit-part on which the test will create links.
+	 */
+	public interface FixtureEditPartConfigurator {
+		/**
+		 * Obtains a command, if necessary, to configure the source or target edit-part of the test environment.
+		 * 
+		 * @param editPart
+		 *            the source or target edit-part
+		 * @param elementType
+		 *            the element-type from which the edit-part was created
+		 * @param isSource
+		 *            whether the edit-part is the source end (not the target end) of the test environment
+		 * 
+		 * @return a command to further configure the edit-part, or {@code null} if not needed
+		 */
+		Command configureFixtureEditPart(IGraphicalEditPart editPart, IElementType elementType, boolean isSource);
+	}
+
+	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Retention(RetentionPolicy.RUNTIME)
+	public @interface SourceConfigurator {
+		Class<? extends FixtureEditPartConfigurator>value();
+	}
+
+	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Retention(RetentionPolicy.RUNTIME)
+	public @interface TargetConfigurator {
+		Class<? extends FixtureEditPartConfigurator>value();
+	}
+
+	private class AnnotationRule extends TestWatcher {
+		@Override
+		protected void starting(Description description) {
+			SourceConfigurator sourceConfiguratorDecl = JUnitUtils.getAnnotation(description, SourceConfigurator.class);
+			if (sourceConfiguratorDecl != null) {
+				try {
+					sourceConfigurator = sourceConfiguratorDecl.value().newInstance();
+				} catch (Exception e) {
+					throw new AssertionError("Bad source configurator annotation", e); //$NON-NLS-1$
+				}
+			}
+			TargetConfigurator targetConfiguratorDecl = JUnitUtils.getAnnotation(description, TargetConfigurator.class);
+			if (targetConfiguratorDecl != null) {
+				try {
+					targetConfigurator = targetConfiguratorDecl.value().newInstance();
+				} catch (Exception e) {
+					throw new AssertionError("Bad target configurator annotation", e); //$NON-NLS-1$
+				}
+			}
+		}
+
+		@Override
+		protected void finished(Description description) {
+			targetConfigurator = null;
+			sourceConfigurator = null;
+		}
 	}
 }

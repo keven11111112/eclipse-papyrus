@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.SlotCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.SlotCompartmentImpl#getInstanceSpecificationShape <em>Instance Specification Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.SlotCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.SlotCompartmentImpl#getInstanceSpecificationShape <em>Instance Specification Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotCompartment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SlotCompartmentImpl() {
@@ -53,6 +55,7 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		InstanceSpecificationShape instanceSpecificationShape = getInstanceSpecificationShape();			
-		if (instanceSpecificationShape != null) {
+		InstanceSpecificationShape instanceSpecificationShape = getInstanceSpecificationShape();
+		if(instanceSpecificationShape != null) {
 			return instanceSpecificationShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InstanceSpecificationShape getInstanceSpecificationShape() {
-		if (eContainerFeatureID() != UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE)
+			return null;
 		return (InstanceSpecificationShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInstanceSpecificationShape(InstanceSpecificationShape newInstanceSpecificationShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInstanceSpecificationShape(InstanceSpecificationShape newInstanceSpecificationShape) {
-		if (newInstanceSpecificationShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE && newInstanceSpecificationShape != null)) {
-			if (EcoreUtil.isAncestor(this, newInstanceSpecificationShape))
+		if(newInstanceSpecificationShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE && newInstanceSpecificationShape != null)) {
+			if(EcoreUtil.isAncestor(this, newInstanceSpecificationShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newInstanceSpecificationShape != null)
+			if(newInstanceSpecificationShape != null)
 				msgs = ((InternalEObject)newInstanceSpecificationShape).eInverseAdd(this, UMLDIPackage.INSTANCE_SPECIFICATION_SHAPE__SLOT_COMPARTMENT, InstanceSpecificationShape.class, msgs);
 			msgs = basicSetInstanceSpecificationShape(newInstanceSpecificationShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE, newInstanceSpecificationShape, newInstanceSpecificationShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetInstanceSpecificationShape((InstanceSpecificationShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetInstanceSpecificationShape((InstanceSpecificationShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
-				return basicSetInstanceSpecificationShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
+			return basicSetInstanceSpecificationShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.INSTANCE_SPECIFICATION_SHAPE__SLOT_COMPARTMENT, InstanceSpecificationShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.INSTANCE_SPECIFICATION_SHAPE__SLOT_COMPARTMENT, InstanceSpecificationShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
-				return getInstanceSpecificationShape();
+		switch(featureID) {
+		case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
+			return getInstanceSpecificationShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
-				setInstanceSpecificationShape((InstanceSpecificationShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
+			setInstanceSpecificationShape((InstanceSpecificationShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
-				setInstanceSpecificationShape((InstanceSpecificationShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
+			setInstanceSpecificationShape((InstanceSpecificationShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.SLOT_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
-				return getInstanceSpecificationShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.SLOT_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE:
+			return getInstanceSpecificationShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class SlotCompartmentImpl extends ListCompartmentImpl implements SlotComp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.SLOT_COMPARTMENT__INSTANCE_SPECIFICATION_SHAPE);
 	}
-
 } //SlotCompartmentImpl

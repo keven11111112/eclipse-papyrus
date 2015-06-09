@@ -13,9 +13,9 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getScan <em>Scan</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getLayerId <em>Layer Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getLayerAngle <em>Layer Angle</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getScan <em>Scan</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getLayerId <em>Layer Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getLayerAngle <em>Layer Angle</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,7 +31,6 @@ public interface ExtentedLidarScan extends EObject {
 	 * If the meaning of the '<em>Scan</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Scan</em>' containment reference.
 	 * @see #setScan(LaserScan)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage#getExtentedLidarScan_Scan()
@@ -44,9 +43,7 @@ public interface ExtentedLidarScan extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getScan <em>Scan</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Scan</em>' containment reference.
+	 * @param value the new value of the '<em>Scan</em>' containment reference.
 	 * @see #getScan()
 	 * @generated
 	 */
@@ -59,26 +56,23 @@ public interface ExtentedLidarScan extends EObject {
 	 * If the meaning of the '<em>Layer Id</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Layer Id</em>' attribute.
-	 * @see #setLayerId(char)
+	 * @see #setLayerId(UInt8)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage#getExtentedLidarScan_LayerId()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.UInt8" required="true" ordered="false"
 	 * @generated
 	 */
-	char getLayerId();
+	Object getLayerId();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getLayerId <em>Layer Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Layer Id</em>' attribute.
+	 * @param value the new value of the '<em>Layer Id</em>' attribute.
 	 * @see #getLayerId()
 	 * @generated
 	 */
-	void setLayerId(char value);
+	void setLayerId(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Layer Angle</b></em>' attribute.
@@ -87,25 +81,22 @@ public interface ExtentedLidarScan extends EObject {
 	 * If the meaning of the '<em>Layer Angle</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Layer Angle</em>' attribute.
-	 * @see #setLayerAngle(float)
+	 * @see #setLayerAngle(Float32)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage#getExtentedLidarScan_LayerAngle()
 	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
 	 * @generated
 	 */
-	float getLayerAngle();
+	Object getLayerAngle();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan#getLayerAngle <em>Layer Angle</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Layer Angle</em>' attribute.
+	 * @param value the new value of the '<em>Layer Angle</em>' attribute.
 	 * @see #getLayerAngle()
 	 * @generated
 	 */
-	void setLayerAngle(float value);
+	void setLayerAngle(Object value);
 
 } // ExtentedLidarScan

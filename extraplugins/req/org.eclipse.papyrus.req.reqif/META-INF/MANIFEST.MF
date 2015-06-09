@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.req.reqif;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.req.reqif.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
@@ -37,7 +37,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.emf.facet.efacet.metamodel,
  org.eclipse.papyrus.emf.facet.query.java.core,
  org.eclipse.papyrus.infra.widgets.toolbox
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.req.reqif;uses:="org.osgi.framework,org.eclipse.ui.plugin",
  org.eclipse.papyrus.req.reqif.assistant;
@@ -74,4 +74,8 @@ Export-Package: org.eclipse.papyrus.req.reqif;uses:="org.osgi.framework,org.ecli
    org.eclipse.uml2.uml,
    org.eclipse.rmf.reqif10,
    org.eclipse.emf.transaction",
- org.eclipse.papyrus.req.reqif.queries;uses:="org.eclipse.papyrus.emf.facet.query.java.core,org.eclipse.uml2.uml,org.eclipse.papyrus.emf.facet.efacet.core"
+ org.eclipse.papyrus.req.reqif.preference,
+ org.eclipse.papyrus.req.reqif.queries;uses:="org.eclipse.papyrus.emf.facet.query.java.core,org.eclipse.uml2.uml,org.eclipse.papyrus.emf.facet.efacet.core",
+ org.eclipse.papyrus.req.reqif.transformation,
+ org.eclipse.papyrus.req.reqif.util
+Bundle-Localization: plugin

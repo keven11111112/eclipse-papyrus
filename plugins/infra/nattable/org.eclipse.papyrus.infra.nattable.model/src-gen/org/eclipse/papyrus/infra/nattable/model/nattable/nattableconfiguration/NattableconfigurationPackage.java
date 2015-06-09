@@ -31,11 +31,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory
  * @model kind="package"
- *        annotation=
- *        "http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface NattableconfigurationPackage extends EPackage {
@@ -44,7 +42,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNAME = "nattableconfiguration"; //$NON-NLS-1$
@@ -53,7 +50,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"; //$NON-NLS-1$
@@ -62,7 +58,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_PREFIX = "nattableconfiguration"; //$NON-NLS-1$
@@ -71,17 +66,14 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	NattableconfigurationPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl
-	 * <em>Table Named Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl <em>Table Named Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableNamedElement()
 	 * @generated
@@ -92,7 +84,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -102,7 +93,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -112,7 +102,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -122,7 +111,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -132,7 +120,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Table Named Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -142,7 +129,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -152,7 +138,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -162,7 +147,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -172,7 +156,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -182,18 +165,15 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The number of operations of the '<em>Table Named Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int TABLE_NAMED_ELEMENT_OPERATION_COUNT = NattablestylePackage.STYLED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl
-	 * <em>Table Configuration</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl <em>Table Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableConfiguration()
 	 * @generated
@@ -204,7 +184,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -214,7 +193,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -224,7 +202,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -234,7 +211,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -244,7 +220,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -254,7 +229,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -264,7 +238,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Creation Tester</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -274,7 +247,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Cell Editor Declaration</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -284,7 +256,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Row Header Axis Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -294,7 +265,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Column Header Axis Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -304,7 +274,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Column Axis Providers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -314,7 +283,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Row Axis Providers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -324,7 +292,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Default Row Axis Provider</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -334,7 +301,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Default Column Axis Provider</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -344,7 +310,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Table Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -354,7 +319,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -364,7 +328,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The operation id for the '<em>Get Named Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -374,7 +337,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The operation id for the '<em>Get Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -384,7 +346,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The operation id for the '<em>Create Style</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -394,18 +355,15 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * The number of operations of the '<em>Table Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int TABLE_CONFIGURATION_OPERATION_COUNT = TABLE_NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
-	 * <em>Cell Editor Declaration</em>}' enum.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getCellEditorDeclaration()
 	 * @generated
@@ -413,11 +371,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	int CELL_EDITOR_DECLARATION = 2;
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement
-	 * <em>Table Named Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement <em>Table Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Table Named Element</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement
 	 * @generated
@@ -425,11 +381,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EClass getTableNamedElement();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getDescription()
 	 * @see #getTableNamedElement()
@@ -438,11 +392,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EAttribute getTableNamedElement_Description();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement#getName()
 	 * @see #getTableNamedElement()
@@ -451,11 +403,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EAttribute getTableNamedElement_Name();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration
-	 * <em>Table Configuration</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration <em>Table Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Table Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration
 	 * @generated
@@ -463,11 +413,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EClass getTableConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getType()
 	 * @see #getTableConfiguration()
@@ -476,11 +424,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EAttribute getTableConfiguration_Type();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getIconPath <em>Icon Path</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getIconPath <em>Icon Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Icon Path</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getIconPath()
 	 * @see #getTableConfiguration()
@@ -489,11 +435,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EAttribute getTableConfiguration_IconPath();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester <em>Creation Tester</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester <em>Creation Tester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference '<em>Creation Tester</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester()
 	 * @see #getTableConfiguration()
@@ -502,12 +446,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableConfiguration_CreationTester();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCellEditorDeclaration
-	 * <em>Cell Editor Declaration</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCellEditorDeclaration <em>Cell Editor Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Cell Editor Declaration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCellEditorDeclaration()
 	 * @see #getTableConfiguration()
@@ -516,12 +457,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EAttribute getTableConfiguration_CellEditorDeclaration();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowHeaderAxisConfiguration
-	 * <em>Row Header Axis Configuration</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowHeaderAxisConfiguration <em>Row Header Axis Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference '<em>Row Header Axis Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowHeaderAxisConfiguration()
 	 * @see #getTableConfiguration()
@@ -530,12 +468,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableConfiguration_RowHeaderAxisConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnHeaderAxisConfiguration
-	 * <em>Column Header Axis Configuration</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnHeaderAxisConfiguration <em>Column Header Axis Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference '<em>Column Header Axis Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnHeaderAxisConfiguration()
 	 * @see #getTableConfiguration()
@@ -544,12 +479,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableConfiguration_ColumnHeaderAxisConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnAxisProviders
-	 * <em>Column Axis Providers</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnAxisProviders <em>Column Axis Providers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Column Axis Providers</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnAxisProviders()
 	 * @see #getTableConfiguration()
@@ -558,12 +490,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableConfiguration_ColumnAxisProviders();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowAxisProviders
-	 * <em>Row Axis Providers</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowAxisProviders <em>Row Axis Providers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Row Axis Providers</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowAxisProviders()
 	 * @see #getTableConfiguration()
@@ -572,12 +501,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableConfiguration_RowAxisProviders();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultRowAxisProvider
-	 * <em>Default Row Axis Provider</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultRowAxisProvider <em>Default Row Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference '<em>Default Row Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultRowAxisProvider()
 	 * @see #getTableConfiguration()
@@ -586,12 +512,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableConfiguration_DefaultRowAxisProvider();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultColumnAxisProvider
-	 * <em>Default Column Axis Provider</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultColumnAxisProvider <em>Default Column Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference '<em>Default Column Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultColumnAxisProvider()
 	 * @see #getTableConfiguration()
@@ -600,11 +523,9 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableConfiguration_DefaultColumnAxisProvider();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
-	 * <em>Cell Editor Declaration</em>}'.
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for enum '<em>Cell Editor Declaration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
 	 * @generated
@@ -615,7 +536,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -632,17 +552,14 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl
-		 * <em>Table Named Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl <em>Table Named Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableNamedElement()
 		 * @generated
@@ -653,7 +570,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute TABLE_NAMED_ELEMENT__DESCRIPTION = eINSTANCE.getTableNamedElement_Description();
@@ -662,18 +578,14 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute TABLE_NAMED_ELEMENT__NAME = eINSTANCE.getTableNamedElement_Name();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl <em>Table Configuration</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl <em>Table Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableConfiguration()
 		 * @generated
@@ -684,7 +596,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute TABLE_CONFIGURATION__TYPE = eINSTANCE.getTableConfiguration_Type();
@@ -693,7 +604,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Icon Path</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute TABLE_CONFIGURATION__ICON_PATH = eINSTANCE.getTableConfiguration_IconPath();
@@ -702,7 +612,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Creation Tester</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__CREATION_TESTER = eINSTANCE.getTableConfiguration_CreationTester();
@@ -711,7 +620,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Cell Editor Declaration</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute TABLE_CONFIGURATION__CELL_EDITOR_DECLARATION = eINSTANCE.getTableConfiguration_CellEditorDeclaration();
@@ -720,7 +628,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Row Header Axis Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION = eINSTANCE.getTableConfiguration_RowHeaderAxisConfiguration();
@@ -729,7 +636,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Column Header Axis Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION = eINSTANCE.getTableConfiguration_ColumnHeaderAxisConfiguration();
@@ -738,7 +644,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Column Axis Providers</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS = eINSTANCE.getTableConfiguration_ColumnAxisProviders();
@@ -747,7 +652,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Row Axis Providers</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS = eINSTANCE.getTableConfiguration_RowAxisProviders();
@@ -756,7 +660,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Default Row Axis Provider</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER = eINSTANCE.getTableConfiguration_DefaultRowAxisProvider();
@@ -765,17 +668,14 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Default Column Axis Provider</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER = eINSTANCE.getTableConfiguration_DefaultColumnAxisProvider();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
-		 * <em>Cell Editor Declaration</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getCellEditorDeclaration()
 		 * @generated

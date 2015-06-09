@@ -52,7 +52,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * TODO: extend rule application to instances (problematic, since rules transformation
  * is done on type level)
  *
- * @author ansgar
  */
 public class ContainerDialog extends SelectionStatusDialog {
 

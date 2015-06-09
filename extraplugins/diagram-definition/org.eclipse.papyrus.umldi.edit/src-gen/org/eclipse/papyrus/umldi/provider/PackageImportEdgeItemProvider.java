@@ -16,11 +16,13 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.papyrus.umldi.PackageImportEdge;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.PackageImportEdge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PackageImportEdgeItemProvider extends ElementEdgeItemProvider {
@@ -29,6 +31,7 @@ public class PackageImportEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PackageImportEdgeItemProvider(AdapterFactory adapterFactory) {
@@ -39,13 +42,13 @@ public class PackageImportEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +57,7 @@ public class PackageImportEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns PackageImportEdge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,11 +69,13 @@ public class PackageImportEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_PackageImportEdge_type");
+		PackageImportEdge packageImportEdge = (PackageImportEdge)object;
+		return getString("_UI_PackageImportEdge_type") + " " + packageImportEdge.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class PackageImportEdgeItemProvider extends ElementEdgeItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +97,7 @@ public class PackageImportEdgeItemProvider extends ElementEdgeItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

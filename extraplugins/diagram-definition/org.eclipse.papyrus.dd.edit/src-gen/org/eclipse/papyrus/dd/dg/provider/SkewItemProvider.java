@@ -26,6 +26,7 @@ import org.eclipse.papyrus.dd.dg.Skew;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Skew} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class SkewItemProvider extends TransformItemProvider {
@@ -48,9 +49,8 @@ public class SkewItemProvider extends TransformItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 			addAngleXPropertyDescriptor(object);
 			addAngleYPropertyDescriptor(object);
 		}
@@ -64,19 +64,7 @@ public class SkewItemProvider extends TransformItemProvider {
 	 * @generated
 	 */
 	protected void addAngleXPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Skew_angleX_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Skew_angleX_feature", "_UI_Skew_type"),
-				 DGPackage.Literals.SKEW__ANGLE_X,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Skew_angleX_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Skew_angleX_feature", "_UI_Skew_type"), DGPackage.Literals.SKEW__ANGLE_X, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -86,24 +74,13 @@ public class SkewItemProvider extends TransformItemProvider {
 	 * @generated
 	 */
 	protected void addAngleYPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Skew_angleY_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Skew_angleY_feature", "_UI_Skew_type"),
-				 DGPackage.Literals.SKEW__ANGLE_Y,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Skew_angleY_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Skew_angleY_feature", "_UI_Skew_type"), DGPackage.Literals.SKEW__ANGLE_Y, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This returns Skew.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,6 +92,7 @@ public class SkewItemProvider extends TransformItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,17 +106,17 @@ public class SkewItemProvider extends TransformItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Skew.class)) {
-			case DGPackage.SKEW__ANGLE_X:
-			case DGPackage.SKEW__ANGLE_Y:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		switch(notification.getFeatureID(Skew.class)) {
+		case DGPackage.SKEW__ANGLE_X:
+		case DGPackage.SKEW__ANGLE_Y:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

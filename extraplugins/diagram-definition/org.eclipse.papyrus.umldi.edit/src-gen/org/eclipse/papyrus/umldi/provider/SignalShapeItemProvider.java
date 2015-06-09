@@ -22,6 +22,7 @@ import org.eclipse.papyrus.umldi.SignalShape;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.SignalShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SignalShapeItemProvider extends ClassifierWithAttributesShapeItemProvider {
@@ -30,6 +31,7 @@ public class SignalShapeItemProvider extends ClassifierWithAttributesShapeItemPr
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SignalShapeItemProvider(AdapterFactory adapterFactory) {
@@ -40,13 +42,13 @@ public class SignalShapeItemProvider extends ClassifierWithAttributesShapeItemPr
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -55,6 +57,7 @@ public class SignalShapeItemProvider extends ClassifierWithAttributesShapeItemPr
 	 * This returns SignalShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,12 +69,13 @@ public class SignalShapeItemProvider extends ClassifierWithAttributesShapeItemPr
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		SignalShape signalShape = (SignalShape)object;
-		return getString("_UI_SignalShape_type") + " " + signalShape.isUseClassifierNotation();
+		return getString("_UI_SignalShape_type") + " " + signalShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -79,6 +83,7 @@ public class SignalShapeItemProvider extends ClassifierWithAttributesShapeItemPr
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +97,7 @@ public class SignalShapeItemProvider extends ClassifierWithAttributesShapeItemPr
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

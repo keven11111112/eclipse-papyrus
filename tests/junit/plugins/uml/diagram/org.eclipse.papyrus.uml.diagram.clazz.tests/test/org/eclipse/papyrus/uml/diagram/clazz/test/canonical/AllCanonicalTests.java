@@ -34,6 +34,8 @@ TestClassDiagramLinkOwnedBySource.class,
 TestMultiLink.class,
 //containmentLink
 TestClassDiagramContainment.class,
+//contextLink
+TestClassDiagramContextLink.class,
 //test the order for the drop
 TestDropfunction.class,
 //test is a static operation is underlined

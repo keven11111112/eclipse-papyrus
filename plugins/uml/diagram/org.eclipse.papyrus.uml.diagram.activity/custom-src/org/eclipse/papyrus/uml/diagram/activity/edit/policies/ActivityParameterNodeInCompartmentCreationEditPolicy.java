@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Activity;
 
@@ -44,7 +43,7 @@ import org.eclipse.uml2.uml.Activity;
  * Class created from PinInCompartmentCreationEditPolicy (composite diagram)
  * TODO change extend CreationEditPolicy by CreateInReferencingGroupEditPolicy
  */
-public class ActivityParameterNodeInCompartmentCreationEditPolicy extends DefaultCreationEditPolicy {
+public class ActivityParameterNodeInCompartmentCreationEditPolicy extends ActivityCompartmentCreationEditPolicy {
 
 	@Override
 	public EditPart getTargetEditPart(Request request) {

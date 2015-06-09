@@ -19,8 +19,10 @@ import org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandl
  *
  * Abstract handler for every creation command for Sysml elements
  * used in the ModelExplorer contextual ("Create new child") menu
- *
+ * 
+ * @Deprecated since Eclipse Mars Use AbstractSysmlCreateElementCommandHandler
  */
+@Deprecated
 public abstract class AbstractSysmlCreateCommandHandler extends AbstractCreateCommandHandler {
 
 	private static final ICommandFilter filter = SysmlCommandFilter.INSTANCE;

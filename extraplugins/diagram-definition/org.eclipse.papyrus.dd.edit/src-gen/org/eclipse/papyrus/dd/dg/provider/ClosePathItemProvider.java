@@ -22,6 +22,7 @@ import org.eclipse.papyrus.dd.dg.ClosePath;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.ClosePath} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ClosePathItemProvider extends PathCommandItemProvider {
@@ -44,9 +45,8 @@ public class ClosePathItemProvider extends PathCommandItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +54,7 @@ public class ClosePathItemProvider extends PathCommandItemProvider {
 	/**
 	 * This returns ClosePath.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +66,7 @@ public class ClosePathItemProvider extends PathCommandItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,6 +80,7 @@ public class ClosePathItemProvider extends PathCommandItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

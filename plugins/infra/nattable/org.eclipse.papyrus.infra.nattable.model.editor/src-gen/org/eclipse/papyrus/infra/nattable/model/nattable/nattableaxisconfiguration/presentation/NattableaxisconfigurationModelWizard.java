@@ -75,7 +75,6 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  * This is a simple wizard for creating a new model file.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class NattableaxisconfigurationModelWizard extends Wizard implements INewWizard {
@@ -83,7 +82,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
@@ -93,7 +91,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * A formatted list of supported file extensions, suitable for display.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
@@ -103,7 +100,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This caches an instance of the model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NattableaxisconfigurationPackage nattableaxisconfigurationPackage = NattableaxisconfigurationPackage.eINSTANCE;
@@ -112,7 +108,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This caches an instance of the model factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NattableaxisconfigurationFactory nattableaxisconfigurationFactory = nattableaxisconfigurationPackage.getNattableaxisconfigurationFactory();
@@ -121,7 +116,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This is the file creation page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NattableaxisconfigurationModelWizardNewFileCreationPage newFileCreationPage;
@@ -130,7 +124,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This is the initial object creation page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NattableaxisconfigurationModelWizardInitialObjectCreationPage initialObjectCreationPage;
@@ -139,7 +132,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Remember the selection during initialization for populating the default container.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IStructuredSelection selection;
@@ -148,7 +140,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Remember the workbench during initialization.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IWorkbench workbench;
@@ -157,7 +148,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Caches the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected List<String> initialObjectNames;
@@ -166,7 +156,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This just records the information.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,7 +170,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Returns the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<String> getInitialObjectNames() {
@@ -189,7 +177,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 			initialObjectNames = new ArrayList<String>();
 			for (EClassifier eClassifier : nattableaxisconfigurationPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass) eClassifier;
+					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
 						initialObjectNames.add(eClass.getName());
 					}
@@ -204,11 +192,10 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Create a new model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass) nattableaxisconfigurationPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EClass eClass = (EClass)nattableaxisconfigurationPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
 		EObject rootObject = nattableaxisconfigurationFactory.create(eClass);
 		return rootObject;
 	}
@@ -217,7 +204,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Do the work after everything is specified.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -230,43 +216,43 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 			// Do the work within an operation.
 			//
 			WorkspaceModifyOperation operation =
-					new WorkspaceModifyOperation() {
-						@Override
-						protected void execute(IProgressMonitor progressMonitor) {
-							try {
-								// Create a resource set
-								//
-								ResourceSet resourceSet = new ResourceSetImpl();
+				new WorkspaceModifyOperation() {
+					@Override
+					protected void execute(IProgressMonitor progressMonitor) {
+						try {
+							// Create a resource set
+							//
+							ResourceSet resourceSet = new ResourceSetImpl();
 
-								// Get the URI of the model file.
-								//
-								URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+							// Get the URI of the model file.
+							//
+							URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
 
-								// Create a resource for this file.
-								//
-								Resource resource = resourceSet.createResource(fileURI);
+							// Create a resource for this file.
+							//
+							Resource resource = resourceSet.createResource(fileURI);
 
-								// Add the initial model object to the contents.
-								//
-								EObject rootObject = createInitialModel();
-								if (rootObject != null) {
-									resource.getContents().add(rootObject);
-								}
-
-								// Save the contents of the resource to the file system.
-								//
-								Map<Object, Object> options = new HashMap<Object, Object>();
-								options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-								resource.save(options);
+							// Add the initial model object to the contents.
+							//
+							EObject rootObject = createInitialModel();
+							if (rootObject != null) {
+								resource.getContents().add(rootObject);
 							}
-							catch (Exception exception) {
-								NattableEditorPlugin.INSTANCE.log(exception);
-							}
-							finally {
-								progressMonitor.done();
-							}
+
+							// Save the contents of the resource to the file system.
+							//
+							Map<Object, Object> options = new HashMap<Object, Object>();
+							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+							resource.save(options);
 						}
-					};
+						catch (Exception exception) {
+							NattableEditorPlugin.INSTANCE.log(exception);
+						}
+						finally {
+							progressMonitor.done();
+						}
+					}
+				};
 
 			getContainer().run(false, false, operation);
 
@@ -278,26 +264,28 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 			if (activePart instanceof ISetSelectionTarget) {
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
-						(new Runnable() {
-							public void run() {
-								((ISetSelectionTarget) activePart).selectReveal(targetSelection);
-							}
-						});
+					(new Runnable() {
+						 public void run() {
+							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
+						 }
+					 });
 			}
 
 			// Open an editor on the new file.
 			//
 			try {
 				page.openEditor
-						(new FileEditorInput(modelFile),
-								workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
-			} catch (PartInitException exception) {
+					(new FileEditorInput(modelFile),
+					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
+			}
+			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), NattableEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage()); //$NON-NLS-1$
 				return false;
 			}
 
 			return true;
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			NattableEditorPlugin.INSTANCE.log(exception);
 			return false;
 		}
@@ -307,7 +295,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This is the one page of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public class NattableaxisconfigurationModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
@@ -315,7 +302,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		public NattableaxisconfigurationModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
@@ -326,7 +312,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		 * The framework calls this to see if the file is correct.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		@Override
@@ -335,7 +320,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension"; //$NON-NLS-1$ //$NON-NLS-2$
-					setErrorMessage(NattableEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(NattableEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -346,7 +331,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		public IFile getModelFile() {
@@ -358,14 +342,12 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This is the page where the type of object to create is selected.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public class NattableaxisconfigurationModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		protected Combo initialObjectField;
@@ -380,7 +362,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		protected Combo encodingField;
@@ -389,7 +370,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		public NattableaxisconfigurationModelWizardInitialObjectCreationPage(String pageId) {
@@ -399,13 +379,11 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		@Override
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE);
-			{
+			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -474,20 +452,18 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		protected ModifyListener validator =
 				new ModifyListener() {
-					public void modifyText(ModifyEvent e) {
-						setPageComplete(validatePage());
-					}
-				};
+				public void modifyText(ModifyEvent e) {
+					setPageComplete(validatePage());
+				}
+			};
 
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		protected boolean validatePage() {
@@ -497,7 +473,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		@Override
@@ -518,7 +493,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		public String getInitialObjectName() {
@@ -535,7 +509,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		public String getEncoding() {
@@ -546,13 +519,13 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		 * Returns the label for the specified type name.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		protected String getLabel(String typeName) {
 			try {
 				return NattableEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
-			} catch (MissingResourceException mre) {
+			}
+			catch(MissingResourceException mre) {
 				NattableEditorPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
@@ -561,13 +534,12 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(NattableEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) //$NON-NLS-1$
+				for (StringTokenizer stringTokenizer = new StringTokenizer(NattableEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) //$NON-NLS-1$
 				{
 					encodings.add(stringTokenizer.nextToken());
 				}
@@ -580,7 +552,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -602,7 +573,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 			if (selectedElement instanceof IResource) {
 				// Get the resource parent, if its a file.
 				//
-				IResource selectedResource = (IResource) selectedElement;
+				IResource selectedResource = (IResource)selectedElement;
 				if (selectedResource.getType() == IResource.FILE) {
 					selectedResource = selectedResource.getParent();
 				}
@@ -619,7 +590,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 					String defaultModelBaseFilename = NattableEditorPlugin.INSTANCE.getString("_UI_NattableaxisconfigurationEditorFilenameDefaultBase"); //$NON-NLS-1$
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension; //$NON-NLS-1$
-					for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
+					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension; //$NON-NLS-1$
 					}
 					newFileCreationPage.setFileName(modelFilename);
@@ -636,7 +607,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Get the file from the page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IFile getModelFile() {

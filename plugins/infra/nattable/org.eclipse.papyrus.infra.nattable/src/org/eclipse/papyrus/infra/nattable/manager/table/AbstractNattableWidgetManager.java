@@ -86,8 +86,9 @@ import org.eclipse.papyrus.infra.nattable.configuration.CellEditorAxisConfigurat
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowCustomConfiguration;
-import org.eclipse.papyrus.infra.nattable.configuration.PapyrusClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusHeaderMenuConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.RowSortModelConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.TableClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractCompositeDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnIndexHeaderDataProvider;
@@ -124,7 +125,6 @@ import org.eclipse.papyrus.infra.nattable.provider.PapyrusNatTableToolTipProvide
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
-import org.eclipse.papyrus.infra.nattable.sort.ColumnSortModel;
 import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
@@ -242,7 +242,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 * the sort model used for rows
 	 */
-	private IPapyrusSortModel rowSortModel;
+	protected IPapyrusSortModel rowSortModel;
 
 	private ISelectionExtractor selectionExtractor;
 
@@ -319,7 +319,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		// this.columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
 		// this.columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
 		// this.columnHeaderLayerStack = new ColumnHeaderLayerStack(this.columnHeaderDataProvider, this.bodyLayerStack, this.bodyDataProvider, getRowSortModel());
-		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(indexColumnProvider, labelColumnProvider, this.bodyLayerStack, getRowSortModel());
+		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(this, indexColumnProvider, labelColumnProvider, this.bodyLayerStack, getRowSortModel());
 
 		this.rowHeaderLayerStack = createRowHeaderLayerStack(this.bodyLayerStack);
 		rowHeaderDataProvider = new CompositeRowHeaderDataProvider(this);
@@ -349,9 +349,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		// we register nattable configuration
 		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
-		this.natTable.addConfiguration(new PapyrusClickSortConfiguration());
+		addClickSortConfiguration(this.natTable);
 		this.natTable.addConfiguration(new FilterRowCustomConfiguration());
-
+		this.natTable.addConfiguration(new RowSortModelConfiguration(getRowSortModel()));
 
 		// we register some information in the config registry of the nattable widget
 		IConfigRegistry configRegistry = this.natTable.getConfigRegistry();
@@ -406,7 +406,16 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return this.natTable;
 	}
 
-
+	/**
+	 * Configure the row sort selecting column header
+	 * 
+	 * @param natTable
+	 *            the nattable widget
+	 */
+	protected void addClickSortConfiguration(NatTable natTable) {
+		natTable.addConfiguration(new TableClickSortConfiguration());
+	}
+	
 	/**
 	 * @return
 	 * 		the filter strategy to use
@@ -1158,17 +1167,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return this.table;
 	}
 
-	/**
-	 *
-	 * @return
-	 * 		the created sort model to use for
-	 */
-	protected IPapyrusSortModel getRowSortModel() {
-		if (this.rowSortModel == null) {
-			this.rowSortModel = new ColumnSortModel(this);
-		}
-		return this.rowSortModel;
-	}
+	protected abstract IPapyrusSortModel getRowSortModel();
 
 	/**
 	 *

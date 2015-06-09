@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class GeneralizationEdgeImpl extends ElementEdgeImpl implements GeneralizationEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GeneralizationEdgeImpl() {
@@ -36,11 +38,11 @@ public class GeneralizationEdgeImpl extends ElementEdgeImpl implements Generaliz
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.GENERALIZATION_EDGE;
 	}
-
 } //GeneralizationEdgeImpl

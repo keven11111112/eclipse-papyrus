@@ -32,8 +32,10 @@ import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * Abstract handler for commands regarding creation of elements
- * 
+ *
+ * @deprecated since Eclipse Mars. Use AbstractCreateElementCommand instead of this class
  */
+@Deprecated
 public abstract class AbstractCreateCommandHandler extends AbstractCommandHandler {
 
 	/** Current createCommand for selection (updated in {@link AbstractUmlCreateCommandHandler#isEnabled()}) */

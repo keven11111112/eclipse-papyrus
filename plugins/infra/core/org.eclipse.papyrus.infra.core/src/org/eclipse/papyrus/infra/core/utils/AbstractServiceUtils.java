@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 LIFL & CEA LIST.
+ * Copyright (c) 2010, 2015 LIFL & CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468030
  *
  *****************************************************************************/
 
@@ -143,7 +144,7 @@ public abstract class AbstractServiceUtils<T> {
 	 * @param from
 	 *            The context from which the service should be retrieved
 	 * @return
-	 *         The implementation of the requested service
+	 * 		The implementation of the requested service
 	 * @throws ServiceException
 	 *             If an error occurs (e.g. cannot find the ServicesRegistry or the Service)
 	 *
@@ -160,12 +161,37 @@ public abstract class AbstractServiceUtils<T> {
 	 * @param from
 	 *            The context from which the service should be retrieved
 	 * @return
-	 *         The implementation of the requested service
+	 * 		The implementation of the requested service
 	 * @throws ServiceException
 	 *             If an error occurs (e.g. cannot find the ServicesRegistry or the Service)
 	 *
 	 */
 	public Object getService(Object service, T from) throws ServiceException {
 		return getServiceRegistry(from).getService(service);
+	}
+
+	/**
+	 * Returns an implementation of the requested <em>optional</em> service, from the specified context, if it is available.
+	 *
+	 * @param service
+	 *            The service for which an implementation is requested
+	 * @param from
+	 *            The context from which the service should be retrieved
+	 * @param defaultImpl
+	 *            A default implementation of the requested service API to return if none is available in the registry
+	 *            or if the registered implementation could not be properly initialized. May be {@code null} if the
+	 *            service is <em>optional</em>
+	 * 
+	 * @return
+	 * 		The implementation of the requested service, or the {@code defaultImpl}
+	 */
+	public <S> S getService(Class<S> service, T from, S defaultImpl) {
+		try {
+			// Don't even attempt to get a registry from a null context
+			return (from == null) ? defaultImpl : getServiceRegistry(from).getService(service);
+		} catch (ServiceException e) {
+			// That's OK. It's optional and we have a default
+			return defaultImpl;
+		}
 	}
 }

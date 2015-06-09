@@ -39,9 +39,8 @@ public interface AbstractAxisProvider extends TableNamedElement {
 	 * This method must returns the IAxis owned by the AxisProvider.
 	 * Warning, in case of syncrhonized table, the list often will be empty. This method
 	 * only returns the IAxis serialized in the model. Displayed elements are not necessary serialized.
-	 *
+	 * 
 	 * <!-- end-model-doc -->
-	 *
 	 * @model kind="operation"
 	 * @generated
 	 */

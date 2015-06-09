@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468646
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.tests.canonical;
@@ -31,6 +32,7 @@ public class TestUseCaseLinkOwnedBySource extends TestLinkOwnedBySource {
 	public DiagramUpdater getDiagramUpdater() {
 		return org.eclipse.papyrus.uml.diagram.usecase.custom.edit.parts.CustomUMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateUseCaseDiagramCommand();
@@ -45,13 +47,10 @@ public class TestUseCaseLinkOwnedBySource extends TestLinkOwnedBySource {
 	protected String getFileName() {
 		return IUseCaseDiagramTestsConstants.FILE_NAME;
 	}
-	
-	/**
-	 * Test to manage Association.
-	 */
+
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Actor_2011, UMLElementTypes.Actor_2011, UMLElementTypes.Generalization_4010, UMLElementTypes.Package_2016, true);
+		testToManageLink(UMLElementTypes.Actor_2011, UMLElementTypes.Actor_2011, UMLElementTypes.Generalization_4010, UMLElementTypes.Package_2016, false);
 	}
 
 	@Test
@@ -66,12 +65,12 @@ public class TestUseCaseLinkOwnedBySource extends TestLinkOwnedBySource {
 
 	@Test
 	public void testToManageExtend() {
-		testToManageLink(UMLElementTypes.UseCase_2013, UMLElementTypes.UseCase_2013, UMLElementTypes.Extend_4009, UMLElementTypes.Package_2016, true);
+		testToManageLink(UMLElementTypes.UseCase_2013, UMLElementTypes.UseCase_2013, UMLElementTypes.Extend_4009, UMLElementTypes.Package_2016, false);
 	}
 
 	@Test
 	public void testToManageInclude() {
-		testToManageLink(UMLElementTypes.UseCase_2013, UMLElementTypes.UseCase_2013, UMLElementTypes.Include_4008, UMLElementTypes.Package_2016, true);
+		testToManageLink(UMLElementTypes.UseCase_2013, UMLElementTypes.UseCase_2013, UMLElementTypes.Include_4008, UMLElementTypes.Package_2016, false);
 	}
 
 }

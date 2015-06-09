@@ -37,17 +37,19 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.PropertyShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.PropertyShapeImpl#getDeployedArtifactCompartment <em>Deployed Artifact Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.PropertyShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.PropertyShapeImpl#getDeployedArtifactCompartment <em>Deployed Artifact Compartment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements PropertyShape {
+
 	/**
 	 * The cached value of the '{@link #getDeployedArtifactCompartment() <em>Deployed Artifact Compartment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDeployedArtifactCompartment()
 	 * @generated
 	 * @ordered
@@ -57,6 +59,7 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PropertyShapeImpl() {
@@ -66,6 +69,7 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,6 +80,7 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,15 +92,17 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.PROPERTY_SHAPE__MAIN_LABEL, UMLDIPackage.PROPERTY_SHAPE__INTERNAL_STRUCTURE_COMPARTMENT, UMLDIPackage.PROPERTY_SHAPE__PORT_SHAPE, UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT};
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.PROPERTY_SHAPE__STEREOTYPE_LABEL, UMLDIPackage.PROPERTY_SHAPE__MAIN_LABEL, UMLDIPackage.PROPERTY_SHAPE__STEREOTYPE_COMPARTMENT, UMLDIPackage.PROPERTY_SHAPE__STRUCTURE_COMPARTMENT, UMLDIPackage.PROPERTY_SHAPE__PORT_SHAPE, UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT };
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DeployedArtifactCompartment getDeployedArtifactCompartment() {
@@ -105,14 +112,18 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetDeployedArtifactCompartment(DeployedArtifactCompartment newDeployedArtifactCompartment, NotificationChain msgs) {
 		DeployedArtifactCompartment oldDeployedArtifactCompartment = deployedArtifactCompartment;
 		deployedArtifactCompartment = newDeployedArtifactCompartment;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT, oldDeployedArtifactCompartment, newDeployedArtifactCompartment);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -120,34 +131,36 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDeployedArtifactCompartment(DeployedArtifactCompartment newDeployedArtifactCompartment) {
-		if (newDeployedArtifactCompartment != deployedArtifactCompartment) {
+		if(newDeployedArtifactCompartment != deployedArtifactCompartment) {
 			NotificationChain msgs = null;
-			if (deployedArtifactCompartment != null)
+			if(deployedArtifactCompartment != null)
 				msgs = ((InternalEObject)deployedArtifactCompartment).eInverseRemove(this, UMLDIPackage.DEPLOYED_ARTIFACT_COMPARTMENT__DEPLOYMENT_TARGET_SHAPE, DeployedArtifactCompartment.class, msgs);
-			if (newDeployedArtifactCompartment != null)
+			if(newDeployedArtifactCompartment != null)
 				msgs = ((InternalEObject)newDeployedArtifactCompartment).eInverseAdd(this, UMLDIPackage.DEPLOYED_ARTIFACT_COMPARTMENT__DEPLOYMENT_TARGET_SHAPE, DeployedArtifactCompartment.class, msgs);
 			msgs = basicSetDeployedArtifactCompartment(newDeployedArtifactCompartment, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT, newDeployedArtifactCompartment, newDeployedArtifactCompartment));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
-				if (deployedArtifactCompartment != null)
-					msgs = ((InternalEObject)deployedArtifactCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT, null, msgs);
-				return basicSetDeployedArtifactCompartment((DeployedArtifactCompartment)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
+			if(deployedArtifactCompartment != null)
+				msgs = ((InternalEObject)deployedArtifactCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT, null, msgs);
+			return basicSetDeployedArtifactCompartment((DeployedArtifactCompartment)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -155,13 +168,14 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
-				return basicSetDeployedArtifactCompartment(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
+			return basicSetDeployedArtifactCompartment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -169,13 +183,14 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
-				return getDeployedArtifactCompartment();
+		switch(featureID) {
+		case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
+			return getDeployedArtifactCompartment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -183,14 +198,15 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
-				setDeployedArtifactCompartment((DeployedArtifactCompartment)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
+			setDeployedArtifactCompartment((DeployedArtifactCompartment)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -198,14 +214,15 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
-				setDeployedArtifactCompartment((DeployedArtifactCompartment)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
+			setDeployedArtifactCompartment((DeployedArtifactCompartment)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,15 +230,16 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.PROPERTY_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
-				return isSetOwnedUmlDiagramElement();
-			case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
-				return deployedArtifactCompartment != null;
+		switch(featureID) {
+		case UMLDIPackage.PROPERTY_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
+			return isSetOwnedUmlDiagramElement();
+		case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
+			return deployedArtifactCompartment != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -229,14 +247,17 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == DeploymentTargetShape.class) {
-			switch (derivedFeatureID) {
-				case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT: return UMLDIPackage.DEPLOYMENT_TARGET_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT;
-				default: return -1;
+		if(baseClass == DeploymentTargetShape.class) {
+			switch(derivedFeatureID) {
+			case UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
+				return UMLDIPackage.DEPLOYMENT_TARGET_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -245,14 +266,17 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == DeploymentTargetShape.class) {
-			switch (baseFeatureID) {
-				case UMLDIPackage.DEPLOYMENT_TARGET_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT: return UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT;
-				default: return -1;
+		if(baseClass == DeploymentTargetShape.class) {
+			switch(baseFeatureID) {
+			case UMLDIPackage.DEPLOYMENT_TARGET_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT:
+				return UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -261,12 +285,11 @@ public class PropertyShapeImpl extends ElementWithPortsShapeImpl implements Prop
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT);
+		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.PROPERTY_SHAPE__DEPLOYED_ARTIFACT_COMPARTMENT);
 	}
-
 } //PropertyShapeImpl

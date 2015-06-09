@@ -18,8 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.nebula.widgets.nattable.NatTable;
@@ -31,6 +30,7 @@ import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
+import org.eclipse.papyrus.infra.nattable.configuration.TreeTableClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
@@ -67,6 +67,7 @@ import org.eclipse.ui.commands.ICommandService;
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.GlazedLists;
+import ca.odell.glazedlists.SortedList;
 import ca.odell.glazedlists.TreeList;
 import ca.odell.glazedlists.TreeList.Format;
 
@@ -128,9 +129,12 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		EventList<Object> eventList = GlazedLists.eventList(new ArrayList<Object>());
 		eventList = GlazedLists.threadSafeList(eventList);
 		this.basicHorizontalList = eventList;
-		treeFormat = new DatumTreeFormat(new ColumnSortModel(this));
+		// must be created before the row sort model
+		this.rowSortedList = new SortedList<Object>(this.basicHorizontalList, null);
+		treeFormat = new DatumTreeFormat(getRowSortModel());
 		this.expansionModel = new DatumExpansionModel();
-		this.horizontalFilterList = new FilterList<Object>(this.basicHorizontalList);
+
+		this.horizontalFilterList = new FilterList<Object>(this.rowSortedList);
 		this.treeList = new TreeList(this.horizontalFilterList, treeFormat, expansionModel);
 
 		return this.treeList;
@@ -160,10 +164,23 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 			hideShowCategories(hiddenDepth, null);
 		}
 		this.hideShowCategoriesListener = new HideShowCategoriesTableListener(this);
-		getTableEditingDomain().addResourceSetListener(this.hideShowCategoriesListener);
+		if (null != getTableEditingDomain()) {
+			getTableEditingDomain().addResourceSetListener(this.hideShowCategoriesListener);
+		}
 		return nattable;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#addClickSortConfiguration(org.eclipse.nebula.widgets.nattable.NatTable)
+	 *
+	 * @param natTable
+	 */
+	@Override
+	protected void addClickSortConfiguration(NatTable natTable) {
+		natTable.addConfiguration(new TreeTableClickSortConfiguration());
+	}
+
+	
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#updateToggleActionState()
 	 *
@@ -369,6 +386,38 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		CollapseExpandActionHelper.doCollapseExpandAction(actionId, selectedAxis, getTableAxisElementProvider(), this.natTable);
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#createInvertAxisListener()
+	 *
+	 * @return
+	 */
+	@Override
+	protected Adapter createInvertAxisListener() {
+		return null;
+	}
+
+	/**
+	 * Modify the axis when it is disposed.
+	 * 
+	 * @param iAxis
+	 *            The list of axis.
+	 */
+	private void modifyAcisDeliver(final List<IAxis> iAxis) {
+		for (IAxis axis : iAxis) {
+			if (axis instanceof ITreeItemAxis) {
+				boolean isDelivering = axis.eDeliver();
+				if (isDelivering) {
+					// I suppose than it is not necessary to send notification here
+					axis.eSetDeliver(false);
+				}
+				((ITreeItemAxis) axis).getChildren().clear();
+				if (isDelivering) {
+					// I reset the initial value, because the model can be reopened
+					axis.eSetDeliver(true);
+				}
+			}
+		}
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#dispose()
@@ -376,34 +425,27 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 */
 	@Override
 	public void dispose() {
+		if (getTableEditingDomain() != null && this.hideShowCategoriesListener != null) {
+			getTableEditingDomain().removeResourceSetListener(this.hideShowCategoriesListener);
+			this.hideShowCategoriesListener = null;
+		}
 		final List<IAxis> iAxis = getHorizontalAxisProvider().getAxis();
 
-		if (iAxis != null) {
-			//see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
+		if (iAxis != null && !iAxis.isEmpty()) { // see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
 			// we need to remove the children which are not serialized from the root of the table, to be able to reopen
 			Runnable runnable = new Runnable() {
 
 				@Override
 				public void run() {
-					for (IAxis axis : iAxis) {
-						if (axis instanceof ITreeItemAxis) {
-							boolean isDelivering = axis.eDeliver();
-							if (isDelivering) {
-								// I suppose than it is not necessary to send notification here
-								axis.eSetDeliver(false);
-							}
-							((ITreeItemAxis) axis).getChildren().clear();
-							if (isDelivering) {
-								// I reset the initial value, because the model can be reopened
-								axis.eSetDeliver(true);
-							}
-						}
-					}
-
+					modifyAcisDeliver(iAxis);
 				}
 			};
 			try {
-				GMFUnsafe.write(getTableEditingDomain(), runnable);
+				if (null != getTableEditingDomain()) {
+					GMFUnsafe.write(getTableEditingDomain(), runnable);
+				} else {
+					modifyAcisDeliver(iAxis);
+				}
 			} catch (InterruptedException e) {
 				Activator.log.error(e);
 			} catch (RollbackException e) {
@@ -419,3 +461,4 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		super.dispose();
 	}
 }
+

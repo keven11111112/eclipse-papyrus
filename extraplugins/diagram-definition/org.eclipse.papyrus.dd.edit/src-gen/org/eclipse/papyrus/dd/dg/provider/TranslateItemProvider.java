@@ -26,6 +26,7 @@ import org.eclipse.papyrus.dd.dg.Translate;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Translate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TranslateItemProvider extends TransformItemProvider {
@@ -48,9 +49,8 @@ public class TranslateItemProvider extends TransformItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 			addDeltaXPropertyDescriptor(object);
 			addDeltaYPropertyDescriptor(object);
 		}
@@ -64,19 +64,7 @@ public class TranslateItemProvider extends TransformItemProvider {
 	 * @generated
 	 */
 	protected void addDeltaXPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Translate_deltaX_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Translate_deltaX_feature", "_UI_Translate_type"),
-				 DGPackage.Literals.TRANSLATE__DELTA_X,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Translate_deltaX_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Translate_deltaX_feature", "_UI_Translate_type"), DGPackage.Literals.TRANSLATE__DELTA_X, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -86,24 +74,13 @@ public class TranslateItemProvider extends TransformItemProvider {
 	 * @generated
 	 */
 	protected void addDeltaYPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Translate_deltaY_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Translate_deltaY_feature", "_UI_Translate_type"),
-				 DGPackage.Literals.TRANSLATE__DELTA_Y,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Translate_deltaY_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Translate_deltaY_feature", "_UI_Translate_type"), DGPackage.Literals.TRANSLATE__DELTA_Y, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This returns Translate.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,6 +92,7 @@ public class TranslateItemProvider extends TransformItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,17 +106,17 @@ public class TranslateItemProvider extends TransformItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Translate.class)) {
-			case DGPackage.TRANSLATE__DELTA_X:
-			case DGPackage.TRANSLATE__DELTA_Y:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		switch(notification.getFeatureID(Translate.class)) {
+		case DGPackage.TRANSLATE__DELTA_X:
+		case DGPackage.TRANSLATE__DELTA_Y:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

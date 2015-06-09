@@ -20,8 +20,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Sl
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Slave Object Axis Provider</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -30,7 +28,6 @@ public class SlaveObjectAxisProviderImpl extends AxisProviderImpl implements Sla
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected SlaveObjectAxisProviderImpl() {
@@ -40,7 +37,6 @@ public class SlaveObjectAxisProviderImpl extends AxisProviderImpl implements Sla
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

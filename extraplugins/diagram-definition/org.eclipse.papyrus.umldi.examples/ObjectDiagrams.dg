@@ -6,14 +6,14 @@
       <member xsi:type="dg:Rectangle">
         <bounds x="29.0" y="42.0" width="231.0" height="100.0"/>
       </member>
-      <member xsi:type="dg:Text" data="InstanceSpecification7 : Node1" anchor="middle">
+      <member xsi:type="dg:Text" data="InstanceSpecification7:Node1" anchor="middle">
         <class>underlined</class>
-        <bounds x="65.0" y="45.0" width="161.0" height="13.0"/>
+        <bounds x="64.0" y="45.0" width="161.0" height="13.0"/>
       </member>
       <member xsi:type="dg:Group">
         <member xsi:type="dg:Line">
-          <start x="30.0" y="59.0"/>
-          <end x="261.0" y="59.0"/>
+          <start x="29.0" y="59.0"/>
+          <end x="260.0" y="59.0"/>
         </member>
       </member>
     </member>
@@ -42,6 +42,30 @@
         <size width="12.0" height="12.0"/>
         <reference x="12.0" y="6.0"/>
       </definition>
+      <definition xsi:type="dg:Marker" id="midSolidClosedArrow">
+        <member xsi:type="dg:Polygon">
+          <style>
+            <fill color="#000000"/>
+          </style>
+          <point x="1.0" y="1.0"/>
+          <point x="12.0" y="6.0"/>
+          <point x="1.0" y="11.0"/>
+        </member>
+        <size width="12.0" height="12.0"/>
+        <reference x="6.0" y="6.0"/>
+      </definition>
+      <definition xsi:type="dg:Marker" id="endSolidClosedArrowSmall">
+        <member xsi:type="dg:Polygon">
+          <style>
+            <fill color="#000000"/>
+          </style>
+          <point x="1.0" y="1.0"/>
+          <point x="8.0" y="4.0"/>
+          <point x="1.0" y="7.0"/>
+        </member>
+        <size width="8.0" height="8.0"/>
+        <reference x="8.0" y="4.0"/>
+      </definition>
       <definition xsi:type="dg:Marker" id="endOpenArrow">
         <member xsi:type="dg:Polyline">
           <point x="1.0" y="1.0"/>
@@ -51,6 +75,15 @@
         <size width="12.0" height="12.0"/>
         <reference x="12.0" y="6.0"/>
       </definition>
+      <definition xsi:type="dg:Marker" id="endOpenArrowSmall">
+        <member xsi:type="dg:Polyline">
+          <point x="1.0" y="1.0"/>
+          <point x="8.0" y="4.0"/>
+          <point x="1.0" y="7.0"/>
+        </member>
+        <size width="8.0" height="8.0"/>
+        <reference x="8.0" y="4.0"/>
+      </definition>
       <definition xsi:type="dg:Marker" id="endSolidCircleOpenArrow">
         <member xsi:type="dg:Circle" radius="3.0">
           <style>
@@ -59,6 +92,24 @@
           <center x="16.0" y="6.0"/>
         </member>
         <member xsi:type="dg:Polyline">
+          <point x="1.0" y="1.0"/>
+          <point x="12.0" y="6.0"/>
+          <point x="1.0" y="11.0"/>
+        </member>
+        <size width="20.0" height="12.0"/>
+        <reference x="20.0" y="6.0"/>
+      </definition>
+      <definition xsi:type="dg:Marker" id="endSolidCircleSolidClosedArrow">
+        <member xsi:type="dg:Circle" radius="3.0">
+          <style>
+            <fill color="#000000"/>
+          </style>
+          <center x="16.0" y="6.0"/>
+        </member>
+        <member xsi:type="dg:Polygon">
+          <style>
+            <fill color="#000000"/>
+          </style>
           <point x="1.0" y="1.0"/>
           <point x="12.0" y="6.0"/>
           <point x="1.0" y="11.0"/>
@@ -222,6 +273,16 @@
           <point x="19.0" y="11.0"/>
         </member>
         <size width="20.0" height="12.0"/>
+        <reference x="0.0" y="6.0"/>
+      </definition>
+      <definition xsi:type="dg:Marker" id="startSolidCircle">
+        <member xsi:type="dg:Circle" radius="3.0">
+          <style>
+            <fill color="#000000"/>
+          </style>
+          <center x="3.0" y="6.0"/>
+        </member>
+        <size width="7.0" height="12.0"/>
         <reference x="0.0" y="6.0"/>
       </definition>
       <definition xsi:type="dg:Marker" id="startSolidDiamond">
@@ -397,62 +458,18 @@
       <member xsi:type="dg:Rectangle">
         <bounds x="14.0" y="40.0" width="210.0" height="100.0"/>
       </member>
-      <member xsi:type="dg:Text" data="InstanceSpecification1 : Class1" anchor="middle">
+      <member xsi:type="dg:Text" data="InstanceSpecification1:Class1" anchor="middle">
         <class>underlined</class>
-        <bounds x="39.0" y="43.0" width="161.0" height="13.0"/>
+        <bounds x="38.0" y="43.0" width="161.0" height="13.0"/>
       </member>
       <member xsi:type="dg:Group">
         <member xsi:type="dg:Line">
-          <start x="15.0" y="57.0"/>
-          <end x="225.0" y="57.0"/>
+          <start x="14.0" y="57.0"/>
+          <end x="224.0" y="57.0"/>
         </member>
-        <member xsi:type="dg:Text" data="Attribute1 : Integer = 6">
+        <member xsi:type="dg:Text" data="Attribute1:Integer=6">
           <style fontSize="11.0" fontName="Segoe UI"/>
-          <bounds x="20.0" y="59.0" width="126.0" height="13.0"/>
-        </member>
-      </member>
-    </member>
-    <member xsi:type="dg:Group">
-      <style fontSize="11.0" fontName="Segoe UI"/>
-      <member xsi:type="dg:Rectangle">
-        <bounds x="432.0" y="38.0" width="199.0" height="100.0"/>
-      </member>
-      <member xsi:type="dg:Text" data="InstanceSpecification2 : Class2" anchor="middle">
-        <class>underlined</class>
-        <bounds x="452.0" y="41.0" width="161.0" height="13.0"/>
-      </member>
-      <member xsi:type="dg:Group">
-        <member xsi:type="dg:Line">
-          <start x="433.0" y="55.0"/>
-          <end x="632.0" y="55.0"/>
-        </member>
-        <member xsi:type="dg:Text" data="Attribute2 : String = &quot;hello&quot;">
-          <style fontSize="11.0" fontName="Segoe UI"/>
-          <bounds x="438.0" y="57.0" width="139.0" height="13.0"/>
-        </member>
-      </member>
-    </member>
-    <member xsi:type="dg:Group">
-      <style fontSize="11.0" fontName="Segoe UI"/>
-      <member xsi:type="dg:Rectangle">
-        <bounds x="14.0" y="223.0" width="236.0" height="100.0"/>
-      </member>
-      <member xsi:type="dg:Text" data="InstanceSpecification3 : Class2, Class1" anchor="middle">
-        <class>underlined</class>
-        <bounds x="31.0" y="226.0" width="203.0" height="13.0"/>
-      </member>
-      <member xsi:type="dg:Group">
-        <member xsi:type="dg:Line">
-          <start x="15.0" y="240.0"/>
-          <end x="251.0" y="240.0"/>
-        </member>
-        <member xsi:type="dg:Text" data="Attribute1 : Integer = 12">
-          <style fontSize="11.0" fontName="Segoe UI"/>
-          <bounds x="20.0" y="242.0" width="133.0" height="13.0"/>
-        </member>
-        <member xsi:type="dg:Text" data="Attribute2 : String">
-          <style fontSize="11.0" fontName="Segoe UI"/>
-          <bounds x="20.0" y="255.0" width="97.0" height="13.0"/>
+          <bounds x="19.0" y="59.0" width="126.0" height="13.0"/>
         </member>
       </member>
     </member>
@@ -461,18 +478,62 @@
       <member xsi:type="dg:Rectangle">
         <bounds x="261.0" y="223.0" width="235.0" height="100.0"/>
       </member>
-      <member xsi:type="dg:Text" data="InstanceSpecification4 : Interface1" anchor="middle">
+      <member xsi:type="dg:Text" data="InstanceSpecification4:Interface1" anchor="middle">
         <class>underlined</class>
-        <bounds x="289.0" y="226.0" width="180.0" height="13.0"/>
+        <bounds x="288.0" y="226.0" width="180.0" height="13.0"/>
       </member>
       <member xsi:type="dg:Group">
         <member xsi:type="dg:Line">
-          <start x="262.0" y="240.0"/>
-          <end x="497.0" y="240.0"/>
+          <start x="261.0" y="240.0"/>
+          <end x="496.0" y="240.0"/>
         </member>
-        <member xsi:type="dg:Text" data="Attribute3 : Boolean">
+        <member xsi:type="dg:Text" data="Attribute3:Boolean">
           <style fontSize="11.0" fontName="Segoe UI"/>
-          <bounds x="267.0" y="242.0" width="107.0" height="13.0"/>
+          <bounds x="266.0" y="242.0" width="107.0" height="13.0"/>
+        </member>
+      </member>
+    </member>
+    <member xsi:type="dg:Group">
+      <style fontSize="11.0" fontName="Segoe UI"/>
+      <member xsi:type="dg:Rectangle">
+        <bounds x="432.0" y="38.0" width="199.0" height="100.0"/>
+      </member>
+      <member xsi:type="dg:Text" data="InstanceSpecification2:Class2" anchor="middle">
+        <class>underlined</class>
+        <bounds x="451.0" y="41.0" width="161.0" height="13.0"/>
+      </member>
+      <member xsi:type="dg:Group">
+        <member xsi:type="dg:Line">
+          <start x="432.0" y="55.0"/>
+          <end x="631.0" y="55.0"/>
+        </member>
+        <member xsi:type="dg:Text" data="Attribute2:String=&quot;hello&quot;">
+          <style fontSize="11.0" fontName="Segoe UI"/>
+          <bounds x="437.0" y="57.0" width="139.0" height="13.0"/>
+        </member>
+      </member>
+    </member>
+    <member xsi:type="dg:Group">
+      <style fontSize="11.0" fontName="Segoe UI"/>
+      <member xsi:type="dg:Rectangle">
+        <bounds x="14.0" y="223.0" width="236.0" height="100.0"/>
+      </member>
+      <member xsi:type="dg:Text" data="InstanceSpecification3:Class2, Class1" anchor="middle">
+        <class>underlined</class>
+        <bounds x="30.0" y="226.0" width="203.0" height="13.0"/>
+      </member>
+      <member xsi:type="dg:Group">
+        <member xsi:type="dg:Line">
+          <start x="14.0" y="240.0"/>
+          <end x="250.0" y="240.0"/>
+        </member>
+        <member xsi:type="dg:Text" data="Attribute1:Integer=12">
+          <style fontSize="11.0" fontName="Segoe UI"/>
+          <bounds x="19.0" y="242.0" width="133.0" height="13.0"/>
+        </member>
+        <member xsi:type="dg:Text" data="Attribute2:String">
+          <style fontSize="11.0" fontName="Segoe UI"/>
+          <bounds x="19.0" y="255.0" width="97.0" height="13.0"/>
         </member>
       </member>
     </member>
@@ -483,12 +544,12 @@
       </member>
       <member xsi:type="dg:Text" data="InstanceSpecification6" anchor="middle">
         <class>underlined</class>
-        <bounds x="557.0" y="221.0" width="119.0" height="13.0"/>
+        <bounds x="556.0" y="221.0" width="119.0" height="13.0"/>
       </member>
       <member xsi:type="dg:Group">
         <member xsi:type="dg:Line">
-          <start x="523.0" y="235.0"/>
-          <end x="710.0" y="235.0"/>
+          <start x="522.0" y="235.0"/>
+          <end x="709.0" y="235.0"/>
         </member>
       </member>
     </member>
@@ -502,10 +563,10 @@
           <point x="432.0" y="88.0"/>
         </command>
       </member>
-      <member xsi:type="dg:Text" data="+ class2" anchor="middle">
+      <member xsi:type="dg:Text" data="+class2" anchor="middle">
         <bounds x="307.0" y="95.0" width="119.0" height="13.0"/>
       </member>
-      <member xsi:type="dg:Text" data="+ class1" anchor="middle">
+      <member xsi:type="dg:Text" data="+class1" anchor="middle">
         <bounds x="231.0" y="67.0" width="119.0" height="13.0"/>
       </member>
     </member>
@@ -534,6 +595,30 @@
         <size width="12.0" height="12.0"/>
         <reference x="12.0" y="6.0"/>
       </definition>
+      <definition xsi:type="dg:Marker" id="midSolidClosedArrow">
+        <member xsi:type="dg:Polygon">
+          <style>
+            <fill color="#000000"/>
+          </style>
+          <point x="1.0" y="1.0"/>
+          <point x="12.0" y="6.0"/>
+          <point x="1.0" y="11.0"/>
+        </member>
+        <size width="12.0" height="12.0"/>
+        <reference x="6.0" y="6.0"/>
+      </definition>
+      <definition xsi:type="dg:Marker" id="endSolidClosedArrowSmall">
+        <member xsi:type="dg:Polygon">
+          <style>
+            <fill color="#000000"/>
+          </style>
+          <point x="1.0" y="1.0"/>
+          <point x="8.0" y="4.0"/>
+          <point x="1.0" y="7.0"/>
+        </member>
+        <size width="8.0" height="8.0"/>
+        <reference x="8.0" y="4.0"/>
+      </definition>
       <definition xsi:type="dg:Marker" id="endOpenArrow">
         <member xsi:type="dg:Polyline">
           <point x="1.0" y="1.0"/>
@@ -543,6 +628,15 @@
         <size width="12.0" height="12.0"/>
         <reference x="12.0" y="6.0"/>
       </definition>
+      <definition xsi:type="dg:Marker" id="endOpenArrowSmall">
+        <member xsi:type="dg:Polyline">
+          <point x="1.0" y="1.0"/>
+          <point x="8.0" y="4.0"/>
+          <point x="1.0" y="7.0"/>
+        </member>
+        <size width="8.0" height="8.0"/>
+        <reference x="8.0" y="4.0"/>
+      </definition>
       <definition xsi:type="dg:Marker" id="endSolidCircleOpenArrow">
         <member xsi:type="dg:Circle" radius="3.0">
           <style>
@@ -551,6 +645,24 @@
           <center x="16.0" y="6.0"/>
         </member>
         <member xsi:type="dg:Polyline">
+          <point x="1.0" y="1.0"/>
+          <point x="12.0" y="6.0"/>
+          <point x="1.0" y="11.0"/>
+        </member>
+        <size width="20.0" height="12.0"/>
+        <reference x="20.0" y="6.0"/>
+      </definition>
+      <definition xsi:type="dg:Marker" id="endSolidCircleSolidClosedArrow">
+        <member xsi:type="dg:Circle" radius="3.0">
+          <style>
+            <fill color="#000000"/>
+          </style>
+          <center x="16.0" y="6.0"/>
+        </member>
+        <member xsi:type="dg:Polygon">
+          <style>
+            <fill color="#000000"/>
+          </style>
           <point x="1.0" y="1.0"/>
           <point x="12.0" y="6.0"/>
           <point x="1.0" y="11.0"/>
@@ -714,6 +826,16 @@
           <point x="19.0" y="11.0"/>
         </member>
         <size width="20.0" height="12.0"/>
+        <reference x="0.0" y="6.0"/>
+      </definition>
+      <definition xsi:type="dg:Marker" id="startSolidCircle">
+        <member xsi:type="dg:Circle" radius="3.0">
+          <style>
+            <fill color="#000000"/>
+          </style>
+          <center x="3.0" y="6.0"/>
+        </member>
+        <size width="7.0" height="12.0"/>
         <reference x="0.0" y="6.0"/>
       </definition>
       <definition xsi:type="dg:Marker" id="startSolidDiamond">

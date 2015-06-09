@@ -24,10 +24,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringVal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringValueStyleImpl#getStringValue <em>String Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringValueStyleImpl#getStringValue <em>String Value</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -37,7 +37,6 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	 * The default value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getStringValue()
 	 * @generated
 	 * @ordered
@@ -48,7 +47,6 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	 * The cached value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getStringValue()
 	 * @generated
 	 * @ordered
@@ -58,7 +56,6 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected StringValueStyleImpl() {
@@ -68,7 +65,6 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -79,7 +75,6 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -90,29 +85,26 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setStringValue(String newStringValue) {
 		String oldStringValue = stringValue;
 		stringValue = newStringValue;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE, oldStringValue, stringValue));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
-			return getStringValue();
+		switch (featureID) {
+			case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
+				return getStringValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,15 +112,14 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
-			setStringValue((String)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
+				setStringValue((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -136,15 +127,14 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
-			setStringValue(STRING_VALUE_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
+				setStringValue(STRING_VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,14 +142,13 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
-			return STRING_VALUE_EDEFAULT == null ? stringValue != null : !STRING_VALUE_EDEFAULT.equals(stringValue);
+		switch (featureID) {
+			case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
+				return STRING_VALUE_EDEFAULT == null ? stringValue != null : !STRING_VALUE_EDEFAULT.equals(stringValue);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -167,14 +156,12 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (stringValue: "); //$NON-NLS-1$
 		result.append(stringValue);

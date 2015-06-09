@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Weight Label</b></em>'.
@@ -21,8 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.WeightLabel#getRelationshipWithGuardEdge <em>Relationship With Guard Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.WeightLabel#getActivityEdgeEdge <em>Activity Edge Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.WeightLabel#getActivityEdgeEdge <em>Activity Edge Edge</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getWeightLabel()
@@ -30,37 +28,6 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface WeightLabel extends UmlLabel {
-	/**
-	 * Returns the value of the '<em><b>Relationship With Guard Edge</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Relationship With Guard Edge</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Relationship With Guard Edge</em>' reference.
-	 * @see #setRelationshipWithGuardEdge(RelationshipWithGuardEdge)
-	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getWeightLabel_RelationshipWithGuardEdge()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	RelationshipWithGuardEdge getRelationshipWithGuardEdge();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.WeightLabel#getRelationshipWithGuardEdge <em>Relationship With Guard Edge</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Relationship With Guard Edge</em>' reference.
-	 * @see #getRelationshipWithGuardEdge()
-	 * @generated
-	 */
-	void setRelationshipWithGuardEdge(RelationshipWithGuardEdge value);
 
 	/**
 	 * Returns the value of the '<em><b>Activity Edge Edge</b></em>' container reference.
@@ -69,14 +36,14 @@ public interface WeightLabel extends UmlLabel {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Activity Edge Edge</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Activity Edge Edge</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Activity Edge Edge</em>' container reference.
 	 * @see #setActivityEdgeEdge(ActivityEdgeEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getWeightLabel_ActivityEdgeEdge()
@@ -90,10 +57,11 @@ public interface WeightLabel extends UmlLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.WeightLabel#getActivityEdgeEdge <em>Activity Edge Edge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Activity Edge Edge</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Activity Edge Edge</em>' container reference.
 	 * @see #getActivityEdgeEdge()
 	 * @generated
 	 */
 	void setActivityEdgeEdge(ActivityEdgeEdge value);
-
 } // WeightLabel

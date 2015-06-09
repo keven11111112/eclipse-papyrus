@@ -43,7 +43,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisp
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage
  * @generated
  */
@@ -53,7 +52,6 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected static NattablestylePackage modelPackage;
@@ -62,11 +60,10 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattablestyleSwitch() {
-		if(modelPackage == null) {
+		if (modelPackage == null) {
 			modelPackage = NattablestylePackage.eINSTANCE;
 		}
 	}
@@ -75,8 +72,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -89,279 +85,149 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch(classifierID) {
-		case NattablestylePackage.STYLE:
-		{
-			Style style = (Style)theEObject;
-			T result = caseStyle(style);
-			if(result == null) {
-				result = caseEModelElement(style);
+		switch (classifierID) {
+			case NattablestylePackage.STYLE: {
+				Style style = (Style)theEObject;
+				T result = caseStyle(style);
+				if (result == null) result = caseEModelElement(style);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = defaultCase(theEObject);
+			case NattablestylePackage.NAMED_STYLE: {
+				NamedStyle namedStyle = (NamedStyle)theEObject;
+				T result = caseNamedStyle(namedStyle);
+				if (result == null) result = caseStyle(namedStyle);
+				if (result == null) result = caseEModelElement(namedStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			return result;
-		}
-		case NattablestylePackage.NAMED_STYLE:
-		{
-			NamedStyle namedStyle = (NamedStyle)theEObject;
-			T result = caseNamedStyle(namedStyle);
-			if(result == null) {
-				result = caseStyle(namedStyle);
+			case NattablestylePackage.FONT_STYLE: {
+				FontStyle fontStyle = (FontStyle)theEObject;
+				T result = caseFontStyle(fontStyle);
+				if (result == null) result = caseStyle(fontStyle);
+				if (result == null) result = caseEModelElement(fontStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = caseEModelElement(namedStyle);
+			case NattablestylePackage.CELL_TEXT_STYLE: {
+				CellTextStyle cellTextStyle = (CellTextStyle)theEObject;
+				T result = caseCellTextStyle(cellTextStyle);
+				if (result == null) result = caseStyle(cellTextStyle);
+				if (result == null) result = caseEModelElement(cellTextStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = defaultCase(theEObject);
+			case NattablestylePackage.INT_VALUE_STYLE: {
+				IntValueStyle intValueStyle = (IntValueStyle)theEObject;
+				T result = caseIntValueStyle(intValueStyle);
+				if (result == null) result = caseNamedStyle(intValueStyle);
+				if (result == null) result = caseStyle(intValueStyle);
+				if (result == null) result = caseEModelElement(intValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			return result;
-		}
-		case NattablestylePackage.FONT_STYLE:
-		{
-			FontStyle fontStyle = (FontStyle)theEObject;
-			T result = caseFontStyle(fontStyle);
-			if(result == null) {
-				result = caseStyle(fontStyle);
+			case NattablestylePackage.INT_LIST_VALUE_STYLE: {
+				IntListValueStyle intListValueStyle = (IntListValueStyle)theEObject;
+				T result = caseIntListValueStyle(intListValueStyle);
+				if (result == null) result = caseNamedStyle(intListValueStyle);
+				if (result == null) result = caseStyle(intListValueStyle);
+				if (result == null) result = caseEModelElement(intListValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = caseEModelElement(fontStyle);
+			case NattablestylePackage.BOOLEAN_VALUE_STYLE: {
+				BooleanValueStyle booleanValueStyle = (BooleanValueStyle)theEObject;
+				T result = caseBooleanValueStyle(booleanValueStyle);
+				if (result == null) result = caseNamedStyle(booleanValueStyle);
+				if (result == null) result = caseStyle(booleanValueStyle);
+				if (result == null) result = caseEModelElement(booleanValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = defaultCase(theEObject);
+			case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE: {
+				BooleanListValueStyle booleanListValueStyle = (BooleanListValueStyle)theEObject;
+				T result = caseBooleanListValueStyle(booleanListValueStyle);
+				if (result == null) result = caseNamedStyle(booleanListValueStyle);
+				if (result == null) result = caseStyle(booleanListValueStyle);
+				if (result == null) result = caseEModelElement(booleanListValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			return result;
-		}
-		case NattablestylePackage.CELL_TEXT_STYLE:
-		{
-			CellTextStyle cellTextStyle = (CellTextStyle)theEObject;
-			T result = caseCellTextStyle(cellTextStyle);
-			if(result == null) {
-				result = caseStyle(cellTextStyle);
+			case NattablestylePackage.DOUBLE_VALUE_STYLE: {
+				DoubleValueStyle doubleValueStyle = (DoubleValueStyle)theEObject;
+				T result = caseDoubleValueStyle(doubleValueStyle);
+				if (result == null) result = caseNamedStyle(doubleValueStyle);
+				if (result == null) result = caseStyle(doubleValueStyle);
+				if (result == null) result = caseEModelElement(doubleValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = caseEModelElement(cellTextStyle);
+			case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE: {
+				DoubleListValueStyle doubleListValueStyle = (DoubleListValueStyle)theEObject;
+				T result = caseDoubleListValueStyle(doubleListValueStyle);
+				if (result == null) result = caseNamedStyle(doubleListValueStyle);
+				if (result == null) result = caseStyle(doubleListValueStyle);
+				if (result == null) result = caseEModelElement(doubleListValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = defaultCase(theEObject);
+			case NattablestylePackage.STRING_VALUE_STYLE: {
+				StringValueStyle stringValueStyle = (StringValueStyle)theEObject;
+				T result = caseStringValueStyle(stringValueStyle);
+				if (result == null) result = caseNamedStyle(stringValueStyle);
+				if (result == null) result = caseStyle(stringValueStyle);
+				if (result == null) result = caseEModelElement(stringValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			return result;
-		}
-		case NattablestylePackage.INT_VALUE_STYLE:
-		{
-			IntValueStyle intValueStyle = (IntValueStyle)theEObject;
-			T result = caseIntValueStyle(intValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(intValueStyle);
+			case NattablestylePackage.STRING_LIST_VALUE_STYLE: {
+				StringListValueStyle stringListValueStyle = (StringListValueStyle)theEObject;
+				T result = caseStringListValueStyle(stringListValueStyle);
+				if (result == null) result = caseNamedStyle(stringListValueStyle);
+				if (result == null) result = caseStyle(stringListValueStyle);
+				if (result == null) result = caseEModelElement(stringListValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = caseStyle(intValueStyle);
+			case NattablestylePackage.STYLED_ELEMENT: {
+				StyledElement styledElement = (StyledElement)theEObject;
+				T result = caseStyledElement(styledElement);
+				if (result == null) result = caseEModelElement(styledElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = caseEModelElement(intValueStyle);
+			case NattablestylePackage.TABLE_DISPLAY_STYLE: {
+				TableDisplayStyle tableDisplayStyle = (TableDisplayStyle)theEObject;
+				T result = caseTableDisplayStyle(tableDisplayStyle);
+				if (result == null) result = caseStyle(tableDisplayStyle);
+				if (result == null) result = caseEModelElement(tableDisplayStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = defaultCase(theEObject);
+			case NattablestylePackage.EOBJECT_VALUE_STYLE: {
+				EObjectValueStyle eObjectValueStyle = (EObjectValueStyle)theEObject;
+				T result = caseEObjectValueStyle(eObjectValueStyle);
+				if (result == null) result = caseNamedStyle(eObjectValueStyle);
+				if (result == null) result = caseStyle(eObjectValueStyle);
+				if (result == null) result = caseEModelElement(eObjectValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			return result;
-		}
-		case NattablestylePackage.INT_LIST_VALUE_STYLE:
-		{
-			IntListValueStyle intListValueStyle = (IntListValueStyle)theEObject;
-			T result = caseIntListValueStyle(intListValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(intListValueStyle);
+			case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE: {
+				EObjectListValueStyle eObjectListValueStyle = (EObjectListValueStyle)theEObject;
+				T result = caseEObjectListValueStyle(eObjectListValueStyle);
+				if (result == null) result = caseNamedStyle(eObjectListValueStyle);
+				if (result == null) result = caseStyle(eObjectListValueStyle);
+				if (result == null) result = caseEModelElement(eObjectListValueStyle);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = caseStyle(intListValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(intListValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.BOOLEAN_VALUE_STYLE:
-		{
-			BooleanValueStyle booleanValueStyle = (BooleanValueStyle)theEObject;
-			T result = caseBooleanValueStyle(booleanValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(booleanValueStyle);
-			}
-			if(result == null) {
-				result = caseStyle(booleanValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(booleanValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE:
-		{
-			BooleanListValueStyle booleanListValueStyle = (BooleanListValueStyle)theEObject;
-			T result = caseBooleanListValueStyle(booleanListValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(booleanListValueStyle);
-			}
-			if(result == null) {
-				result = caseStyle(booleanListValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(booleanListValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.DOUBLE_VALUE_STYLE:
-		{
-			DoubleValueStyle doubleValueStyle = (DoubleValueStyle)theEObject;
-			T result = caseDoubleValueStyle(doubleValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(doubleValueStyle);
-			}
-			if(result == null) {
-				result = caseStyle(doubleValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(doubleValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE:
-		{
-			DoubleListValueStyle doubleListValueStyle = (DoubleListValueStyle)theEObject;
-			T result = caseDoubleListValueStyle(doubleListValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(doubleListValueStyle);
-			}
-			if(result == null) {
-				result = caseStyle(doubleListValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(doubleListValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.STRING_VALUE_STYLE:
-		{
-			StringValueStyle stringValueStyle = (StringValueStyle)theEObject;
-			T result = caseStringValueStyle(stringValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(stringValueStyle);
-			}
-			if(result == null) {
-				result = caseStyle(stringValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(stringValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.STRING_LIST_VALUE_STYLE:
-		{
-			StringListValueStyle stringListValueStyle = (StringListValueStyle)theEObject;
-			T result = caseStringListValueStyle(stringListValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(stringListValueStyle);
-			}
-			if(result == null) {
-				result = caseStyle(stringListValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(stringListValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.STYLED_ELEMENT:
-		{
-			StyledElement styledElement = (StyledElement)theEObject;
-			T result = caseStyledElement(styledElement);
-			if(result == null) {
-				result = caseEModelElement(styledElement);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.TABLE_DISPLAY_STYLE:
-		{
-			TableDisplayStyle tableDisplayStyle = (TableDisplayStyle)theEObject;
-			T result = caseTableDisplayStyle(tableDisplayStyle);
-			if(result == null) {
-				result = caseStyle(tableDisplayStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(tableDisplayStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.EOBJECT_VALUE_STYLE:
-		{
-			EObjectValueStyle eObjectValueStyle = (EObjectValueStyle)theEObject;
-			T result = caseEObjectValueStyle(eObjectValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(eObjectValueStyle);
-			}
-			if(result == null) {
-				result = caseStyle(eObjectValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(eObjectValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE:
-		{
-			EObjectListValueStyle eObjectListValueStyle = (EObjectListValueStyle)theEObject;
-			T result = caseEObjectListValueStyle(eObjectListValueStyle);
-			if(result == null) {
-				result = caseNamedStyle(eObjectListValueStyle);
-			}
-			if(result == null) {
-				result = caseStyle(eObjectListValueStyle);
-			}
-			if(result == null) {
-				result = caseEModelElement(eObjectListValueStyle);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -371,9 +237,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -388,9 +252,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Named Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -405,9 +267,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Font Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -422,9 +282,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Cell Text Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -439,9 +297,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Int Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -456,9 +312,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Int List Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -473,9 +327,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Boolean Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -490,9 +342,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Boolean List Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -507,9 +357,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Double Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -524,9 +372,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Double List Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -541,9 +387,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>String Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -558,9 +402,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>String List Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -575,9 +417,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Styled Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -592,9 +432,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Table Display Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -609,9 +447,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -626,9 +462,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject List Value Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -643,9 +477,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -660,9 +492,7 @@ public class NattablestyleSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

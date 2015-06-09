@@ -62,8 +62,6 @@ public class Messages extends NLS {
 	public static String GenerateCode_GeneratingCodeForNode;
 	public static String GenerateCode_GeneratingCode;
 
-	public static String LanguageSupport_LanguageNotSupported;
-
 	public static String TemplateUtils_InfoCreateBoundPackage;
 	public static String TemplateUtils_InfoGetActualFrom;
 	public static String TemplateUtils_NoTemplateSignature;
@@ -115,6 +113,10 @@ public class Messages extends NLS {
 	public static String DepPlanUtils_ConfigOfPropertyFailed;
 
 	public static String UpdateUtils_CannotApplyFCMstereo;
+
+	public static String XtendTemplateBinding_TemplateNotFound;
+
+	public static String XtendTemplateBinding_TemplateResultIsNotAString;
 
 	static {
 		// initialize resource bundle

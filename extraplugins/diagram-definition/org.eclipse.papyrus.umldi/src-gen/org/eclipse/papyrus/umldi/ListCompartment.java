@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ListCompartment#getListItemLabel <em>List Item Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ListCompartment#getListItemLabel <em>List Item Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getListCompartment()
@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ListCompartment extends UmlCompartment {
+
 	/**
 	 * Returns the value of the '<em><b>List Item Label</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.ListItemLabel}.
@@ -38,14 +39,14 @@ public interface ListCompartment extends UmlCompartment {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>List Item Label</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>List Item Label</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>List Item Label</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getListCompartment_ListItemLabel()
 	 * @see org.eclipse.papyrus.umldi.ListItemLabel#getListCompartment
@@ -53,5 +54,4 @@ public interface ListCompartment extends UmlCompartment {
 	 * @generated
 	 */
 	EList<ListItemLabel> getListItemLabel();
-
 } // ListCompartment

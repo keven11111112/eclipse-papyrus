@@ -26,10 +26,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntListValueStyleImpl#getIntListValue <em>Int List Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntListValueStyleImpl#getIntListValue <em>Int List Value</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -39,7 +39,6 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	 * The cached value of the '{@link #getIntListValue() <em>Int List Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIntListValue()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected IntListValueStyleImpl() {
@@ -59,7 +57,6 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -70,12 +67,11 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<Integer> getIntListValue() {
-		if(intListValue == null) {
+		if (intListValue == null) {
 			intListValue = new EDataTypeEList<Integer>(Integer.class, this, NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE);
 		}
 		return intListValue;
@@ -84,14 +80,13 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
-			return getIntListValue();
+		switch (featureID) {
+			case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
+				return getIntListValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -99,17 +94,16 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
-			getIntListValue().clear();
-			getIntListValue().addAll((Collection<? extends Integer>)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
+				getIntListValue().clear();
+				getIntListValue().addAll((Collection<? extends Integer>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -117,15 +111,14 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
-			getIntListValue().clear();
-			return;
+		switch (featureID) {
+			case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
+				getIntListValue().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -133,14 +126,13 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
-			return intListValue != null && !intListValue.isEmpty();
+		switch (featureID) {
+			case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
+				return intListValue != null && !intListValue.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -148,14 +140,12 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (intListValue: "); //$NON-NLS-1$
 		result.append(intListValue);

@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 
 
 /**
@@ -74,5 +75,13 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 */
 	public Command getSetNewAxisOrderCommand(final List<Object> newOrder);
 
+	/**
+	 *
+	 * @param axis
+	 *            an axis
+	 * @return
+	 *         the axis manager managing this axis
+	 */
+	public IAxisManager getSubAxisManagerFor(final IAxis axis) ;
 
 }

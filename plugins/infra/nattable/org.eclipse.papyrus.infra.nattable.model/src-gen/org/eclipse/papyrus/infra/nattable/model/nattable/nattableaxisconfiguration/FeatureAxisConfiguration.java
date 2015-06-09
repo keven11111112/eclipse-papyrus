@@ -23,11 +23,10 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurat
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration#isShowOnlyCommonFeature <em>Show
- * Only Common Feature</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration#isShowOnlyCommonFeature <em>Show Only Common Feature</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getFeatureAxisConfiguration()
  * @model
@@ -42,7 +41,6 @@ public interface FeatureAxisConfiguration extends IAxisConfiguration {
 	 * <!-- begin-model-doc -->
 	 * If true, only the common features will be displayed on the axis.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Show Only Common Feature</em>' attribute.
 	 * @see #setShowOnlyCommonFeature(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getFeatureAxisConfiguration_ShowOnlyCommonFeature()
@@ -52,14 +50,10 @@ public interface FeatureAxisConfiguration extends IAxisConfiguration {
 	boolean isShowOnlyCommonFeature();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration#isShowOnlyCommonFeature
-	 * <em>Show Only Common Feature</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration#isShowOnlyCommonFeature <em>Show Only Common Feature</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Show Only Common Feature</em>' attribute.
+	 * @param value the new value of the '<em>Show Only Common Feature</em>' attribute.
 	 * @see #isShowOnlyCommonFeature()
 	 * @generated
 	 */

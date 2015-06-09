@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.uml.decoratormodel.internal.resource;
 
-import java.io.IOException;
+import static org.eclipse.papyrus.uml.decoratormodel.Activator.TRACE_INDEX;
+
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -26,8 +28,10 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
@@ -37,8 +41,12 @@ import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexEvent;
 import org.eclipse.papyrus.uml.decoratormodel.Activator;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
 import org.eclipse.papyrus.uml.decoratormodel.internal.messages.Messages;
+import org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.ModelIndexHandler;
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.ProfileIndexHandler;
 import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.xml.sax.helpers.DefaultHandler;
 
 import com.google.common.base.Function;
 import com.google.common.collect.HashMultimap;
@@ -48,6 +56,7 @@ import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
+import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -68,6 +77,8 @@ public class DecoratorModelIndex {
 	private final Map<URI, Map<URI, Map<URI, URI>>> decoratorModelToPackageToProfileApplications = Maps.newHashMap();
 	private final Map<URI, String> decoratorModelNames = Maps.newHashMap();
 
+	private final Map<URI, SetMultimap<URI, URI>> userModelToResourceToAppliedProfiles = Maps.newHashMap();
+
 	private final WorkspaceModelIndex<DecoratorModelIndex> index;
 
 	private final CopyOnWriteArrayList<IDecoratorModelIndexListener> listeners = Lists.newCopyOnWriteArrayList();
@@ -78,7 +89,7 @@ public class DecoratorModelIndex {
 	private DecoratorModelIndex() {
 		super();
 
-		index = new WorkspaceModelIndex<DecoratorModelIndex>("decoratorModels", DecoratorModelUtils.DECORATOR_MODEL_CONTENT_TYPE.getId(), indexer(), MAX_INDEX_JOBS); //$NON-NLS-1$
+		index = new WorkspaceModelIndex<DecoratorModelIndex>("papyrusUMLProfiles", UMLPackage.eCONTENT_TYPE, indexer(), MAX_INDEX_JOBS); //$NON-NLS-1$
 		index.addListener(new WorkspaceModelIndexAdapter() {
 			@Override
 			protected void indexAboutToCalculateOrRecalculate(WorkspaceModelIndexEvent event) {
@@ -466,42 +477,110 @@ public class DecoratorModelIndex {
 		};
 	}
 
+	/**
+	 * Asynchronously queries the set of URIs of {@link Profile}s applied internally and by decorators to {@link Package}s
+	 * within the specified user model.
+	 * 
+	 * @param userModelURI
+	 *            the URI of a user model
+	 * @return a future result of the set of URIs of the profile elements applied to it
+	 */
+	public ListenableFuture<Set<URI>> getAllProfilesAppliedToPackagesAsync(URI userModelURI) {
+		return afterIndex(getAllProfilesAppliedToPackagesCallable(userModelURI));
+	}
+
+	/**
+	 * Queries the set of URIs of {@link Profile}s applied internally and by decorators to {@link Package}s
+	 * within the specified user model.
+	 * 
+	 * @param userModelURI
+	 *            the URI of a user model
+	 * @return the set of URIs of the profile elements applied to it
+	 */
+	public Set<URI> getAllProfilesAppliedToPackages(URI userModelURI) throws CoreException {
+		return sync(afterIndex(getAllProfilesAppliedToPackagesCallable(userModelURI)));
+	}
+
+	Callable<Set<URI>> getAllProfilesAppliedToPackagesCallable(final URI userModelURI) {
+		return new SyncCallable<Set<URI>>() {
+			@Override
+			protected Set<URI> doCall() {
+				SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(userModelURI);
+				return (resourceToAppliedProfiles == null) ? Collections.<URI> emptySet() : ImmutableSet.copyOf(resourceToAppliedProfiles.values());
+			}
+		};
+	}
+
+	public Set<URI> getIntrinsicAppliedProfiles(URI umlResource) {
+		Set<URI> result = Collections.emptySet();
+
+		synchronized (sync) {
+			// Do we happen to have a last-known idea of this resource's internally applied profiles?
+			SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(umlResource);
+			if ((resourceToAppliedProfiles != null) && (resourceToAppliedProfiles.containsKey(umlResource))) {
+				result = ImmutableSet.copyOf(resourceToAppliedProfiles.get(umlResource));
+			}
+		}
+
+		if (!result.isEmpty() && Activator.log.isTraceEnabled(TRACE_INDEX)) {
+			Activator.log.trace(TRACE_INDEX, "Using last known intrinsically applied profiles for " + umlResource);
+		}
+
+		if (result.isEmpty() && umlResource.isPlatformResource()) {
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(umlResource.toPlatformString(true)));
+			if (file.isAccessible()) {
+				indexUserModel(file);
+
+				synchronized (sync) {
+					// Did we find any profiles applied to this resource within this resource, itself?
+					SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(umlResource);
+					if ((resourceToAppliedProfiles != null) && (resourceToAppliedProfiles.containsKey(umlResource))) {
+						result = ImmutableSet.copyOf(resourceToAppliedProfiles.get(umlResource));
+					}
+				}
+
+				if (Activator.log.isTraceEnabled(TRACE_INDEX)) {
+					Activator.log.trace(TRACE_INDEX, "Forced index of intrinsically applied profiles for " + umlResource);
+				}
+			}
+		}
+
+		return result;
+	}
+
 	<V> ListenableFuture<V> afterIndex(Callable<V> callable) {
 		return index.afterIndex(callable);
 	}
 
-	private void index(IFile file) {
-		final URI decoratorURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
-
-		ProfileIndexHandler handler = new ProfileIndexHandler(decoratorURI);
-
-		InputStream input = null;
-
-		try {
+	private void runIndexHandler(IFile file, URI resourceURI, DefaultHandler handler) {
+		try (InputStream input = file.getContents()) {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			factory.setValidating(false);
 			factory.setNamespaceAware(true);
 			SAXParser parser = factory.newSAXParser();
 
-			input = file.getContents();
-
-			parser.parse(input, handler, decoratorURI.toString());
+			parser.parse(input, handler, resourceURI.toString());
 		} catch (Exception e) {
 			// We intentionally bomb out early with an exception
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					Activator.log.error("Could not close file after indexing.", e); //$NON-NLS-1$
-				}
-			}
 		}
+	}
+
+	private void indexDecoratorModel(IFile file) {
+		final URI decoratorURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+
+		ProfileIndexHandler handler = new ProfileIndexHandler(decoratorURI);
+
+		runIndexHandler(file, decoratorURI, handler);
 
 		synchronized (sync) {
 			// first, remove all links to the decorator model
 			for (URI next : decoratorToModels.get(decoratorURI)) {
 				modelToDecorators.remove(next, decoratorURI);
+
+				SetMultimap<URI, URI> decoratorMap = userModelToResourceToAppliedProfiles.get(next);
+				if (decoratorMap != null) {
+					decoratorMap.removeAll(decoratorURI);
+				}
 			}
 
 			// update the forward mapping
@@ -530,16 +609,37 @@ public class DecoratorModelIndex {
 
 			// and the externalization name index
 			decoratorModelNames.put(decoratorURI, handler.getExternalizationName());
+
+			// and the applied profiles by resource (external and internal)
+			Set<URI> userModelsProcessed = Sets.newHashSet();
+			for (Map.Entry<URI, Map<URI, URI>> next : handler.getPackageToProfileApplications().entrySet()) {
+				URI userModelURI = next.getKey().trimFragment();
+				if (userModelsProcessed.add(userModelURI)) {
+					SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(userModelURI);
+					if (resourceToAppliedProfiles == null) {
+						resourceToAppliedProfiles = HashMultimap.create();
+						userModelToResourceToAppliedProfiles.put(userModelURI, resourceToAppliedProfiles);
+					}
+					for (URI profileURI : next.getValue().keySet()) {
+						resourceToAppliedProfiles.put(decoratorURI, profileURI);
+					}
+				}
+			}
 		}
 	}
 
-	private void unindex(IFile file) {
+	private void unindexDecoratorModel(IFile file) {
 		final URI decoratorURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 
 		synchronized (sync) {
 			// first, remove all links to the decorator model
 			for (URI next : decoratorToModels.get(decoratorURI)) {
 				modelToDecorators.remove(next, decoratorURI);
+
+				SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(next);
+				if (resourceToAppliedProfiles != null) {
+					resourceToAppliedProfiles.removeAll(decoratorURI);
+				}
 			}
 
 			// remove the forward mapping
@@ -561,17 +661,59 @@ public class DecoratorModelIndex {
 		}
 	}
 
+	private void indexUserModel(IFile file) {
+		final URI userModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+
+		ModelIndexHandler handler = new ModelIndexHandler(userModelURI);
+
+		runIndexHandler(file, userModelURI, handler);
+
+		synchronized (sync) {
+			// remove all internal profile applications of this resource
+			SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(userModelURI);
+			if (resourceToAppliedProfiles != null) {
+				resourceToAppliedProfiles.removeAll(userModelURI);
+			}
+
+			// then add the applied profiles by resource (external and internal)
+			for (Map<URI, URI> next : handler.getProfileApplicationsByPackage().values()) {
+				if (resourceToAppliedProfiles == null) {
+					resourceToAppliedProfiles = HashMultimap.create();
+					userModelToResourceToAppliedProfiles.put(userModelURI, resourceToAppliedProfiles);
+				}
+				resourceToAppliedProfiles.putAll(userModelURI, next.keySet()); // This resource applies the profiles, itself
+			}
+		}
+	}
+
+	private void unindexUserModel(IFile file) {
+		final URI userModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+
+		synchronized (sync) {
+			// remove all internal profile applications of this resource
+			SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(userModelURI);
+			if (resourceToAppliedProfiles != null) {
+				resourceToAppliedProfiles.removeAll(userModelURI);
+			}
+		}
+	}
+
 	private IndexHandler<DecoratorModelIndex> indexer() {
 		return new IndexHandler<DecoratorModelIndex>() {
 			@Override
 			public DecoratorModelIndex index(IFile file) {
-				DecoratorModelIndex.this.index(file);
+				if (DecoratorModelUtils.isDecoratorModel(file)) {
+					DecoratorModelIndex.this.indexDecoratorModel(file);
+				} else {
+					DecoratorModelIndex.this.indexUserModel(file);
+				}
 				return DecoratorModelIndex.this;
 			}
 
 			@Override
 			public void unindex(IFile file) {
-				DecoratorModelIndex.this.unindex(file);
+				DecoratorModelIndex.this.unindexDecoratorModel(file);
+				DecoratorModelIndex.this.unindexUserModel(file);
 			}
 		};
 	}

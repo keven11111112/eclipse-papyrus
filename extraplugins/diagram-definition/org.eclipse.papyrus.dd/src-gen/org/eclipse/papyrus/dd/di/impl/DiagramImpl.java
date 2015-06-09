@@ -24,13 +24,13 @@ import org.eclipse.papyrus.dd.di.Diagram;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Diagram</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramImpl#getDocumentation <em>Documentation</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramImpl#getResolution <em>Resolution</em>}</li>
  * </ul>
- * </p>
- * 
+ *
  * @generated
  */
 public abstract class DiagramImpl extends ShapeImpl implements Diagram {

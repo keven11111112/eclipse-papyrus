@@ -19,10 +19,10 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement <em>Element</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement <em>Element</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getIdAxis()
  * @model abstract="true"
@@ -37,7 +37,6 @@ public interface IdAxis extends IAxis {
 	 * <!-- begin-model-doc -->
 	 * This obejct allows to reference an element using a string instead of referencing it directly.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Element</em>' attribute.
 	 * @see #setElement(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getIdAxis_Element()
@@ -51,9 +50,7 @@ public interface IdAxis extends IAxis {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement <em>Element</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Element</em>' attribute.
+	 * @param value the new value of the '<em>Element</em>' attribute.
 	 * @see #getElement()
 	 * @generated
 	 */

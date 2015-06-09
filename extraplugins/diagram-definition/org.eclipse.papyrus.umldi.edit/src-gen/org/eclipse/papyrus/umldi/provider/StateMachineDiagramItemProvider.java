@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -26,13 +25,16 @@ import org.eclipse.papyrus.umldi.StateMachineDiagram;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.StateMachineDiagram} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class StateMachineDiagramItemProvider extends BehaviorDiagramItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StateMachineDiagramItemProvider(AdapterFactory adapterFactory) {
@@ -43,13 +45,13 @@ public class StateMachineDiagramItemProvider extends BehaviorDiagramItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -58,6 +60,7 @@ public class StateMachineDiagramItemProvider extends BehaviorDiagramItemProvider
 	 * This returns StateMachineDiagram.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,22 +72,21 @@ public class StateMachineDiagramItemProvider extends BehaviorDiagramItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((StateMachineDiagram)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_StateMachineDiagram_type") :
-			getString("_UI_StateMachineDiagram_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_StateMachineDiagram_type") : getString("_UI_StateMachineDiagram_type") + " " + label;
 	}
-	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,11 +100,11 @@ public class StateMachineDiagramItemProvider extends BehaviorDiagramItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-
 }

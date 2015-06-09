@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Port Shape</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.PortShape#getElementWithPortsShape <em>Element With Ports Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.PortShape#getElementWithPortsShape <em>Element With Ports Shape</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPortShape()
@@ -29,6 +28,7 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface PortShape extends ElementShape {
+
 	/**
 	 * Returns the value of the '<em><b>Element With Ports Shape</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ElementWithPortsShape#getPortShape <em>Port Shape</em>}'.
@@ -36,14 +36,14 @@ public interface PortShape extends ElementShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Element With Ports Shape</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Element With Ports Shape</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Element With Ports Shape</em>' container reference.
 	 * @see #setElementWithPortsShape(ElementWithPortsShape)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPortShape_ElementWithPortsShape()
@@ -54,13 +54,15 @@ public interface PortShape extends ElementShape {
 	ElementWithPortsShape getElementWithPortsShape();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.PortShape#getElementWithPortsShape <em>Element With Ports Shape</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.PortShape#getElementWithPortsShape <em>Element With Ports Shape</em>}' container
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element With Ports Shape</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Element With Ports Shape</em>' container reference.
 	 * @see #getElementWithPortsShape()
 	 * @generated
 	 */
 	void setElementWithPortsShape(ElementWithPortsShape value);
-
 } // PortShape

@@ -25,12 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getValueAsString <em>Value As String</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getUnresolvedString <em>Unresolved String
- * </em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getValueAsString <em>Value As String</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getUnresolvedString <em>Unresolved String</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemPackage#getStringResolutionProblem()
  * @model
@@ -45,7 +44,6 @@ public interface StringResolutionProblem extends Problem {
 	 * <!-- begin-model-doc -->
 	 * The text which is the source of the problem
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Value As String</em>' attribute.
 	 * @see #setValueAsString(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemPackage#getStringResolutionProblem_ValueAsString()
@@ -55,13 +53,10 @@ public interface StringResolutionProblem extends Problem {
 	String getValueAsString();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getValueAsString
-	 * <em>Value As String</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getValueAsString <em>Value As String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Value As String</em>' attribute.
+	 * @param value the new value of the '<em>Value As String</em>' attribute.
 	 * @see #getValueAsString()
 	 * @generated
 	 */
@@ -75,7 +70,6 @@ public interface StringResolutionProblem extends Problem {
 	 * <!-- begin-model-doc -->
 	 * the text or a substring of it, which is the source of the problem
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Unresolved String</em>' attribute list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemPackage#getStringResolutionProblem_UnresolvedString()
 	 * @model required="true"

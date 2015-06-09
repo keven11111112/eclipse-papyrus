@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.Nattableax
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider {
@@ -37,7 +36,6 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeatureIdTreeItemAxisItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +46,6 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,76 +64,72 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This adds a property descriptor for the Parent feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addParentPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ITreeItemAxis_parent_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ITreeItemAxis_parent_feature", "_UI_ITreeItemAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisPackage.Literals.ITREE_ITEM_AXIS__PARENT,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ITreeItemAxis_parent_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ITreeItemAxis_parent_feature", "_UI_ITreeItemAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisPackage.Literals.ITREE_ITEM_AXIS__PARENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Expanded feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addExpandedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ITreeItemAxis_expanded_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ITreeItemAxis_expanded_feature", "_UI_ITreeItemAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisPackage.Literals.ITREE_ITEM_AXIS__EXPANDED,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ITreeItemAxis_expanded_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ITreeItemAxis_expanded_feature", "_UI_ITreeItemAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisPackage.Literals.ITREE_ITEM_AXIS__EXPANDED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Children feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addChildrenPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ITreeItemAxis_children_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ITreeItemAxis_children_feature", "_UI_ITreeItemAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisPackage.Literals.ITREE_ITEM_AXIS__CHILDREN,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ITreeItemAxis_children_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ITreeItemAxis_children_feature", "_UI_ITreeItemAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisPackage.Literals.ITREE_ITEM_AXIS__CHILDREN,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns FeatureIdTreeItemAxis.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,15 +141,14 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureIdTreeItemAxis) object).getAlias();
+		String label = ((FeatureIdTreeItemAxis)object).getAlias();
 		return label == null || label.length() == 0 ?
-				getString("_UI_FeatureIdTreeItemAxis_type") : //$NON-NLS-1$
-				getString("_UI_FeatureIdTreeItemAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_FeatureIdTreeItemAxis_type") : //$NON-NLS-1$
+			getString("_UI_FeatureIdTreeItemAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -165,7 +157,6 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,9 +164,9 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureIdTreeItemAxis.class)) {
-		case NattableaxisPackage.FEATURE_ID_TREE_ITEM_AXIS__EXPANDED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case NattableaxisPackage.FEATURE_ID_TREE_ITEM_AXIS__EXPANDED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -185,7 +176,6 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

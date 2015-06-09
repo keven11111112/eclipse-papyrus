@@ -25,11 +25,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.O
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}
- * </li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getObjectAxis()
  * @model abstract="true"
@@ -45,7 +44,6 @@ public interface ObjectAxis extends IAxis {
 	 * Returns the local label configuration to use for this IAxis. This configuration
 	 * will override the label configuration defined in the AxisManagerConfiguration.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Local Label Configuration</em>' containment reference.
 	 * @see #setLocalLabelConfiguration(ObjectLabelProviderConfiguration)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getObjectAxis_LocalLabelConfiguration()
@@ -56,13 +54,10 @@ public interface ObjectAxis extends IAxis {
 	ObjectLabelProviderConfiguration getLocalLabelConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration
-	 * <em>Local Label Configuration</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Local Label Configuration</em>' containment reference.
+	 * @param value the new value of the '<em>Local Label Configuration</em>' containment reference.
 	 * @see #getLocalLabelConfiguration()
 	 * @generated
 	 */

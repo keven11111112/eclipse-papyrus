@@ -37,17 +37,19 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.PackageShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.PackageShapeImpl#getTemplateParameterCompartment <em>Template Parameter Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.PackageShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.PackageShapeImpl#getTemplateParameterCompartment <em>Template Parameter Compartment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl implements PackageShape {
+
 	/**
 	 * The cached value of the '{@link #getTemplateParameterCompartment() <em>Template Parameter Compartment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTemplateParameterCompartment()
 	 * @generated
 	 * @ordered
@@ -57,6 +59,7 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PackageShapeImpl() {
@@ -66,6 +69,7 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,6 +80,7 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,15 +92,17 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.PACKAGE_SHAPE__MAIN_LABEL, UMLDIPackage.PACKAGE_SHAPE__PACKAGED_ELEMENT_COMPARTMENT, UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT};
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.PACKAGE_SHAPE__STEREOTYPE_LABEL, UMLDIPackage.PACKAGE_SHAPE__MAIN_LABEL, UMLDIPackage.PACKAGE_SHAPE__STEREOTYPE_COMPARTMENT, UMLDIPackage.PACKAGE_SHAPE__PACKAGED_ELEMENT_COMPARTMENT, UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT };
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TemplateParameterCompartment getTemplateParameterCompartment() {
@@ -105,14 +112,18 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTemplateParameterCompartment(TemplateParameterCompartment newTemplateParameterCompartment, NotificationChain msgs) {
 		TemplateParameterCompartment oldTemplateParameterCompartment = templateParameterCompartment;
 		templateParameterCompartment = newTemplateParameterCompartment;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, oldTemplateParameterCompartment, newTemplateParameterCompartment);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -120,34 +131,36 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTemplateParameterCompartment(TemplateParameterCompartment newTemplateParameterCompartment) {
-		if (newTemplateParameterCompartment != templateParameterCompartment) {
+		if(newTemplateParameterCompartment != templateParameterCompartment) {
 			NotificationChain msgs = null;
-			if (templateParameterCompartment != null)
+			if(templateParameterCompartment != null)
 				msgs = ((InternalEObject)templateParameterCompartment).eInverseRemove(this, UMLDIPackage.TEMPLATE_PARAMETER_COMPARTMENT__TEMPLATEABLE_ELEMENT_SHAPE, TemplateParameterCompartment.class, msgs);
-			if (newTemplateParameterCompartment != null)
+			if(newTemplateParameterCompartment != null)
 				msgs = ((InternalEObject)newTemplateParameterCompartment).eInverseAdd(this, UMLDIPackage.TEMPLATE_PARAMETER_COMPARTMENT__TEMPLATEABLE_ELEMENT_SHAPE, TemplateParameterCompartment.class, msgs);
 			msgs = basicSetTemplateParameterCompartment(newTemplateParameterCompartment, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, newTemplateParameterCompartment, newTemplateParameterCompartment));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
-				if (templateParameterCompartment != null)
-					msgs = ((InternalEObject)templateParameterCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, null, msgs);
-				return basicSetTemplateParameterCompartment((TemplateParameterCompartment)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
+			if(templateParameterCompartment != null)
+				msgs = ((InternalEObject)templateParameterCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, null, msgs);
+			return basicSetTemplateParameterCompartment((TemplateParameterCompartment)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -155,13 +168,14 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
-				return basicSetTemplateParameterCompartment(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
+			return basicSetTemplateParameterCompartment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -169,13 +183,14 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
-				return getTemplateParameterCompartment();
+		switch(featureID) {
+		case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
+			return getTemplateParameterCompartment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -183,14 +198,15 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
-				setTemplateParameterCompartment((TemplateParameterCompartment)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
+			setTemplateParameterCompartment((TemplateParameterCompartment)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -198,14 +214,15 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
-				setTemplateParameterCompartment((TemplateParameterCompartment)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
+			setTemplateParameterCompartment((TemplateParameterCompartment)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,15 +230,16 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGE_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
-				return isSetOwnedUmlDiagramElement();
-			case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
-				return templateParameterCompartment != null;
+		switch(featureID) {
+		case UMLDIPackage.PACKAGE_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
+			return isSetOwnedUmlDiagramElement();
+		case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
+			return templateParameterCompartment != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -229,14 +247,17 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == TemplateableElementShape.class) {
-			switch (derivedFeatureID) {
-				case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT: return UMLDIPackage.TEMPLATEABLE_ELEMENT_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT;
-				default: return -1;
+		if(baseClass == TemplateableElementShape.class) {
+			switch(derivedFeatureID) {
+			case UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
+				return UMLDIPackage.TEMPLATEABLE_ELEMENT_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -245,14 +266,17 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == TemplateableElementShape.class) {
-			switch (baseFeatureID) {
-				case UMLDIPackage.TEMPLATEABLE_ELEMENT_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT: return UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT;
-				default: return -1;
+		if(baseClass == TemplateableElementShape.class) {
+			switch(baseFeatureID) {
+			case UMLDIPackage.TEMPLATEABLE_ELEMENT_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT:
+				return UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -261,12 +285,11 @@ public class PackageShapeImpl extends ElementWithPackagedElementsShapeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT);
+		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.PACKAGE_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT);
 	}
-
 } //PackageShapeImpl

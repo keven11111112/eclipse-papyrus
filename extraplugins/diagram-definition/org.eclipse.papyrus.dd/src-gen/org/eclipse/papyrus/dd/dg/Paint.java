@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Paint#getColor <em>Color</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Paint#getPaintServer <em>Paint Server</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Paint#getColor <em>Color</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Paint#getPaintServer <em>Paint Server</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getPaint()
@@ -50,7 +50,9 @@ public interface Paint extends EObject {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Paint#getColor <em>Color</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Color</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Color</em>' attribute.
 	 * @see #getColor()
 	 * @generated
 	 */
@@ -73,7 +75,9 @@ public interface Paint extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Paint#getPaintServer <em>Paint Server</em>}' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Paint Server</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Paint Server</em>' reference.
 	 * @see #getPaintServer()
 	 * @generated
 	 */

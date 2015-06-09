@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 LIFL, CEA LIST, and others.
- *
+ * Copyright (c) 2008, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 410346
  *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *  Christian W. Damus (CEA) - bug 437217
+ *  Christian W. Damus - bug 469464
  *
  *****************************************************************************/
 
@@ -31,7 +31,10 @@ import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
@@ -50,10 +53,15 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.contentoutline.ContentOutlineRegistry;
+import org.eclipse.papyrus.infra.core.editor.IReloadableEditor.DirtyPolicy;
 import org.eclipse.papyrus.infra.core.editor.reload.EditorReloadEvent;
 import org.eclipse.papyrus.infra.core.editor.reload.IEditorReloadListener;
+import org.eclipse.papyrus.infra.core.language.ILanguageChangeListener;
+import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.language.LanguageChangeEvent;
 import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
@@ -95,6 +103,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.progress.UIJob;
 import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -616,7 +625,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				warnUser(e);
 			} catch (ServiceException e1) {
 				log.error(e);
-				//throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
+				// throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
 			}
 		} catch (ServiceException e) {
 			log.error(e);
@@ -632,6 +641,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 			saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 			undoContext = servicesRegistry.getService(IUndoContext.class);
+
+			servicesRegistry.getService(ILanguageService.class).addLanguageChangeListener(createLanguageChangeListener());
 		} catch (ServiceException e) {
 			log.error("A required service is missing.", e);
 			// if one of the services above fail to start, the editor can't run
@@ -644,6 +655,44 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		editorInputChangedListener = new EditorInputChangedListener(this);
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 		getLifecycleManager().firePostInit(this);
+	}
+
+	private ILanguageChangeListener createLanguageChangeListener() {
+		return new ILanguageChangeListener() {
+
+			@Override
+			public void languagesChanged(LanguageChangeEvent event) {
+				// Re-load the editor if languages changed, because new ModelSet configurations may be required
+				if (event.getType() == LanguageChangeEvent.ADDED) {
+					new UIJob(getSite().getShell().getDisplay(), NLS.bind("Reload editor {0}", getTitle())) {
+
+						@Override
+						public IStatus runInUIThread(IProgressMonitor monitor) {
+							IStatus result = Status.OK_STATUS;
+							monitor = SubMonitor.convert(monitor, IProgressMonitor.UNKNOWN);
+
+							try {
+								ISashWindowsContainer container = getISashWindowsContainer();
+								if ((container != null) && !container.isDisposed()) {
+									IReloadableEditor.ReloadReason reason = IReloadableEditor.ReloadReason.RESOURCES_CHANGED;
+
+									DirtyPolicy dirtyPolicy = DirtyPolicy.getDefault();
+									try {
+										IReloadableEditor.Adapter.getAdapter(CoreMultiDiagramEditor.this).reloadEditor(resourceSet.getResources(), reason, dirtyPolicy);
+									} catch (CoreException e) {
+										result = e.getStatus();
+									}
+								}
+							} finally {
+								monitor.done();
+							}
+
+							return result;
+						}
+					}.schedule();
+				}
+			}
+		};
 	}
 
 	private InternalEditorLifecycleManager getLifecycleManager() {

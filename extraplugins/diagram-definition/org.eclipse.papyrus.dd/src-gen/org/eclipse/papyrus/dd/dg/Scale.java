@@ -26,8 +26,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Scale#getFactorX <em>Factor X</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Scale#getFactorY <em>Factor Y</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Scale#getFactorX <em>Factor X</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Scale#getFactorY <em>Factor Y</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getScale()

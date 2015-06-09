@@ -27,4 +27,11 @@ public interface IPapyrusSortModel extends ISortModel {
 	 * remove axis which have been destroyed from the comparison
 	 */
 	public void updateSort();
+
+	/**
+	 * 
+	 * @param isInverted
+	 *            <code>true</code> when the table isInverted
+	 */
+	public void setTableInverted(boolean isInverted);
 }

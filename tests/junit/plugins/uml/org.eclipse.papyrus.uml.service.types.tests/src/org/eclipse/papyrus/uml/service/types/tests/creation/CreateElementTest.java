@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,10 +9,14 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434993
+ *  Christian W. Damus - bug 468071
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.tests.creation;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -47,6 +51,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Operation;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -80,6 +85,10 @@ public class CreateElementTest extends AbstractPapyrusTest {
 
 	private static Activity testActivityWithNode;
 
+	private static Class testClassWithOperation;
+
+	private static Operation testOperation;
+
 	/**
 	 * Init test class
 	 */
@@ -101,7 +110,7 @@ public class CreateElementTest extends AbstractPapyrusTest {
 		// open project
 		openPapyrusEditor = houseKeeper.openPapyrusEditor(copyPapyrusModel);
 
-		transactionalEditingDomain = (TransactionalEditingDomain) openPapyrusEditor.getAdapter(TransactionalEditingDomain.class);
+		transactionalEditingDomain = openPapyrusEditor.getAdapter(TransactionalEditingDomain.class);
 		assertTrue("Impossible to init editing domain", transactionalEditingDomain instanceof TransactionalEditingDomain);
 
 		// retrieve UML model from this editor
@@ -142,6 +151,8 @@ public class CreateElementTest extends AbstractPapyrusTest {
 		testActivity = (Activity) rootModel.getOwnedMember("TestActivity");
 		testClass = (Class) rootModel.getOwnedMember("TestClass");
 		testActivityWithNode = (Activity) rootModel.getOwnedMember("TestActivityWithNode");
+		testClassWithOperation = (Class) rootModel.getOwnedMember("TestClassWithOperation");
+		testOperation = testClassWithOperation.getOwnedOperation("foo", null, null);
 	}
 
 
@@ -204,6 +215,33 @@ public class CreateElementTest extends AbstractPapyrusTest {
 
 		transactionalEditingDomain.getCommandStack().undo();
 		Assert.assertEquals("Wrong number of nodes after 2nd undo", initialNumberOfNodes, testActivityWithNode.getNodes().size());
+
+		// assert editor is not dirty
+		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
+	}
+
+	@Test
+	public void testCannotCreateOperationRedefinableTemplateSignature_bug468071() throws Exception {
+		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
+		getCreateChildCommand(testOperation, UMLElementTypes.REDEFINABLE_TEMPLATE_SIGNATURE, false);
+	}
+
+	@Test
+	public void testCreateOperationTemplateSignature_bug468071() throws Exception {
+		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
+		Command command = getCreateChildCommand(testOperation, UMLElementTypes.TEMPLATE_SIGNATURE, true);
+
+		transactionalEditingDomain.getCommandStack().execute(command);
+		assertThat("Template signature not created", testOperation.getOwnedTemplateSignature(), notNullValue());
+
+		transactionalEditingDomain.getCommandStack().undo();
+		assertThat("Template signature still exists after undo", testOperation.getOwnedTemplateSignature(), nullValue());
+
+		transactionalEditingDomain.getCommandStack().redo();
+		assertThat("Template signature not restored by redo", testOperation.getOwnedTemplateSignature(), notNullValue());
+
+		transactionalEditingDomain.getCommandStack().undo();
+		assertThat("Template signature still exists after second undo", testOperation.getOwnedTemplateSignature(), nullValue());
 
 		// assert editor is not dirty
 		Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());

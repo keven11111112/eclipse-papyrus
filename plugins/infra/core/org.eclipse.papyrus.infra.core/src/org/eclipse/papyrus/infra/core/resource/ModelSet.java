@@ -20,6 +20,7 @@
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436998
  *  Christian W. Damus - bug 436998
+ *  Christian W. Damus - bug 468030
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -61,10 +62,15 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.EditingDomainManager;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
+import org.eclipse.papyrus.infra.core.language.ILanguage;
+import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 
 /**
  * This class is used to manage a set of {@link IModel}.
@@ -128,7 +134,7 @@ public class ModelSet extends ResourceSetImpl {
 	/** map of resource loaded in the resource set, with resource as the key and a boolean indicating if the resource is loaded or not has the valuer */
 	protected Map<Resource, Boolean> resourcesToLoadState = new HashMap<Resource, Boolean>();
 
-
+	private List<ILanguage> languages;
 
 	/**
 	 *
@@ -565,6 +571,8 @@ public class ModelSet extends ResourceSetImpl {
 		// Get the file name, without extension.
 		uriWithoutExtension = uri.trimFileExtension();
 
+		installLanguages();
+
 		ModelMultiException exceptions = null;
 		List<IModel> orderedModelsForLoading = getOrderedModelsForLoading();
 
@@ -995,6 +1003,8 @@ public class ModelSet extends ResourceSetImpl {
 			iter.remove();
 		}
 
+		uninstallLanguages();
+
 		// Clear the package registry (it may contain dynamic profile EPackages that we don't
 		// want to leak in BasicExtendedMetaData instances attached to static EPackages)
 		// Works around EMF bug 433108
@@ -1258,5 +1268,32 @@ public class ModelSet extends ResourceSetImpl {
 		return null;
 	}
 
+	protected void installLanguages() {
+		ILanguageService languageService = ServiceUtils.getInstance().getService(ILanguageService.class, ModelSetServiceFactory.getServiceRegistry(this), null);
+		if (languageService != null) {
+			languages = Lists.newArrayList(languageService.getLanguages(getURIWithoutExtension(), false));
 
+			for (ILanguage next : languages) {
+				try {
+					next.install(this);
+				} catch (Exception e) {
+					Activator.log.error("Uncaught exception in installation of language " + next, e); //$NON-NLS-1$
+				}
+			}
+		}
+	}
+
+	protected void uninstallLanguages() {
+		if (languages != null) {
+			for (ILanguage next : Lists.reverse(languages)) {
+				try {
+					next.uninstall(this);
+				} catch (Exception e) {
+					Activator.log.error("Uncaught exception in uninstallation of language " + next, e); //$NON-NLS-1$
+				}
+			}
+
+			languages.clear();
+		}
+	}
 }

@@ -50,6 +50,20 @@
                context="org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider">
          </labelProviderContext>
       </labelProvider>
+      <labelProvider
+            priority="1401"
+            provider="org.eclipse.papyrus.infra.emf.nattable.provider.EMFEOperationHeaderLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="1301"
+            provider="org.eclipse.papyrus.infra.emf.nattable.provider.TreeFillingOperationLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
    </extension>
 	<extension
        point="org.eclipse.papyrus.infra.nattable.axismanager">
@@ -65,6 +79,10 @@
           id="org.eclipse.papyrus.infra.emf.nattable.tree.axis.manager"
           manager="org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectTreeAxisManagerForEventList">
     </axisManager>
+    <axisManager
+          id="org.eclipse.papyrus.infra.emf.nattable.operation.axis.manager"
+          manager="org.eclipse.papyrus.infra.emf.nattable.manager.axis.EOperationAxisManager">
+    </axisManager>
  </extension>
  <extension
        point="org.eclipse.papyrus.infra.nattable.cellmanager">
@@ -72,6 +90,11 @@
           id="org.eclipse.papyrus.infra.emf.nattable.cell.manager"
           manager="org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager"
           order="1000">
+    </cellManager>
+    <cellManager
+          id="org.eclipse.papyrus.infra.emf.nattable.cell.operation.manager"
+          manager="org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFOperationValueCellManager"
+          order="1200">
     </cellManager>
  </extension>
  <extension

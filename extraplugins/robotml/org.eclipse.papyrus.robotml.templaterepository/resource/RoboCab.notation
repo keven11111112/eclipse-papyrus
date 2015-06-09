@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
-  <notation:Diagram xmi:id="_feP206k_EeCXqcRV-18f6Q" type="DatatypeDef" name="DataTypesDiagram" measurementUnit="Pixel">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:css="http://www.eclipse.org/papyrus/infra/gmfdiag/css" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <notation:Diagram xmi:id="_feP206k_EeCXqcRV-18f6Q" type="PapyrusUMLClassDiagram" name="DataTypesDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_feP21Kk_EeCXqcRV-18f6Q" type="2007" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_feP21ak_EeCXqcRV-18f6Q" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_feP21qk_EeCXqcRV-18f6Q" key="ShadowFigure_Value" value="false"/>
@@ -19,9 +19,13 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_feP23qk_EeCXqcRV-18f6Q" x="122" y="49" width="464" height="222"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP236k_EeCXqcRV-18f6Q"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_kszlgH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="ecore:EObject" href="platform:/plugin/org.eclipse.papyrus.robotml.templaterepository/resource/model.uml#_8lO84GEQEeC2Epd4sWqg4w"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWCvL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="ecore:EObject" href="platform:/plugin/org.eclipse.papyrus.robotml.templaterepository/resource/model.uml#_8lO84GEQEeC2Epd4sWqg4w"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_feP24Kk_EeCXqcRV-18f6Q" type="InterfaceDef" name="InterfacesDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_feP24Kk_EeCXqcRV-18f6Q" type="PapyrusUMLClassDiagram" name="InterfacesDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_feP24ak_EeCXqcRV-18f6Q" type="2007" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_feP24qk_EeCXqcRV-18f6Q" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_feP246k_EeCXqcRV-18f6Q" key="ShadowFigure_Value" value="false"/>
@@ -40,9 +44,13 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_feP266k_EeCXqcRV-18f6Q" x="101" y="54" width="480" height="252"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP27Kk_EeCXqcRV-18f6Q"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ks9WgH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="ecore:EObject" href="platform:/plugin/org.eclipse.papyrus.robotml.templaterepository/resource/model.uml#_CDtXwGEREeC2Epd4sWqg4w"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kz9EvL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="ecore:EObject" href="platform:/plugin/org.eclipse.papyrus.robotml.templaterepository/resource/model.uml#_CDtXwGEREeC2Epd4sWqg4w"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_feP27ak_EeCXqcRV-18f6Q" type="InterfaceDef" name="InterfacesDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_feP27ak_EeCXqcRV-18f6Q" type="PapyrusUMLClassDiagram" name="InterfacesDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_feP27qk_EeCXqcRV-18f6Q" type="2007" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_feP276k_EeCXqcRV-18f6Q" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_feP28Kk_EeCXqcRV-18f6Q" key="ShadowFigure_Value" value="false"/>
@@ -61,9 +69,13 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_feP3XKk_EeCXqcRV-18f6Q" x="50" y="55" width="561" height="330"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP3Xak_EeCXqcRV-18f6Q"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ks9WgX7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzJTKk_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kz9EvL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJTKk_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_feP3Xqk_EeCXqcRV-18f6Q" type="DatatypeDef" name="DataTypesDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_feP3Xqk_EeCXqcRV-18f6Q" type="PapyrusUMLClassDiagram" name="DataTypesDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_feP3X6k_EeCXqcRV-18f6Q" type="2007" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_feP3YKk_EeCXqcRV-18f6Q" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_feP3Yak_EeCXqcRV-18f6Q" key="ShadowFigure_Value" value="false"/>
@@ -332,9 +344,13 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_feP3wak_EeCXqcRV-18f6Q" x="50" y="50" width="929" height="539"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP3wqk_EeCXqcRV-18f6Q"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ks9Wgn7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzJQak_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWCvL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJQak_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_feP4Tak_EeCXqcRV-18f6Q" type="componentdef" name="SensorsDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_feP4Tak_EeCXqcRV-18f6Q" type="CompositeStructure" name="SensorsDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_feP4Tqk_EeCXqcRV-18f6Q" type="2073" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_feP4T6k_EeCXqcRV-18f6Q" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_feP4UKk_EeCXqcRV-18f6Q" key="ShadowFigure_Value" value="false"/>
@@ -942,9 +958,14 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yp4DcTUpEeG5pL_fpN2DgQ" x="1930" y="30" width="166" height="121"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP4-6k_EeCXqcRV-18f6Q"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_Zjqt4H7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzJWak_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWBfL_EeONXPQ2mbw9vA"/>
+    </styles>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_Zjqt4X7LEeSFyNbnLYDCkw" name="diagram_compatibility_version" stringValue="1.0.0"/>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJWak_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_feP4_Kk_EeCXqcRV-18f6Q" type="componentdef" name="ActuatorsDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_feP4_Kk_EeCXqcRV-18f6Q" type="CompositeStructure" name="ActuatorsDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_feP4_ak_EeCXqcRV-18f6Q" type="2073" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_feP4_qk_EeCXqcRV-18f6Q" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_feP4_6k_EeCXqcRV-18f6Q" key="ShadowFigure_Value" value="false"/>
@@ -1147,17 +1168,30 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KqbzER8pEeG4gPCEznVNOA" x="375" y="141" width="221" height="115"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP5bKk_EeCXqcRV-18f6Q"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ZD_IQH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzJn6k_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWBfL_EeONXPQ2mbw9vA"/>
+    </styles>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_ZD_IQX7LEeSFyNbnLYDCkw" name="diagram_compatibility_version" stringValue="1.0.0"/>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJn6k_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_feP5bak_EeCXqcRV-18f6Q" type="componentdef" name="NewDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_feP5bak_EeCXqcRV-18f6Q" type="CompositeStructure" name="NewDiagram" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP5bqk_EeCXqcRV-18f6Q"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ks9Wg37LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Class" href="RoboCab.uml#_fdzJWqk_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWBfL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="uml:Class" href="RoboCab.uml#_fdzJWqk_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_feP5b6k_EeCXqcRV-18f6Q" type="architecture" name="ArchitectureDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_feP5b6k_EeCXqcRV-18f6Q" type="CompositeStructure" name="ArchitectureDiagram" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP5cKk_EeCXqcRV-18f6Q"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ks9WhH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Class" href="RoboCab.uml#_fdzJWqk_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWAPL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="uml:Class" href="RoboCab.uml#_fdzJWqk_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_OCVFkBwAEeGa5bH_RJFzBQ" type="architecture" name="RobocabDefaultArchitecture" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_OCVFkBwAEeGa5bH_RJFzBQ" type="CompositeStructure" name="RobocabDefaultArchitecture" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_ly27gBwAEeGa5bH_RJFzBQ" type="2073" fontName="Ubuntu" fontHeight="12" bold="true" fillColor="12632256" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ly3ikBwAEeGa5bH_RJFzBQ" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ly3ikRwAEeGa5bH_RJFzBQ" key="ShadowFigure_Value" value="false"/>
@@ -1384,7 +1418,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_uTZuhhwnEeGa5bH_RJFzBQ" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_fdzLNqk_EeCXqcRV-18f6Q"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uTZHcRwnEeGa5bH_RJFzBQ" x="503" y="682"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uTZHcRwnEeGa5bH_RJFzBQ" x="503" y="667"/>
           </children>
           <children xmi:type="notation:Shape" xmi:id="_uTaVkBwnEeGa5bH_RJFzBQ" type="3069" fontName="Ubuntu" fontHeight="7" lineColor="0">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uTaVkhwnEeGa5bH_RJFzBQ" source="ShadowFigure">
@@ -1724,7 +1758,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_R--Uhh8lEeG4gPCEznVNOA" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_lpqYsKlAEeCYaYi0hzq5kg"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R-9tcR8lEeG4gPCEznVNOA" x="98" y="49"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R-9tcR8lEeG4gPCEznVNOA" x="186" y="54"/>
           </children>
           <element xmi:type="uml:Property" href="RoboCab.uml#_NJdXEB8lEeG4gPCEznVNOA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NJ2YoR8lEeG4gPCEznVNOA" x="33" y="636" width="196" height="96"/>
@@ -1842,7 +1876,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_M3EV1x9BEeGetOLfkLNwfg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_fdzJfak_EeCXqcRV-18f6Q"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M3DuwR9BEeGetOLfkLNwfg" x="106" y="34"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M3DuwR9BEeGetOLfkLNwfg" x="187" y="33"/>
           </children>
           <children xmi:type="notation:Shape" xmi:id="_M3E84B9BEeGetOLfkLNwfg" type="3069" fontName="Ubuntu" lineColor="0">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_M3E84h9BEeGetOLfkLNwfg" source="ShadowFigure">
@@ -1861,7 +1895,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_M3Fj8h9BEeGetOLfkLNwfg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_4xF7kKlLEeCYfbnxVSyZ9g"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M3E84R9BEeGetOLfkLNwfg" x="106" y="64"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M3E84R9BEeGetOLfkLNwfg" x="187" y="70"/>
           </children>
           <element xmi:type="uml:Property" href="RoboCab.uml#_KdDxgB9BEeGetOLfkLNwfg"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KdZvwR9BEeGetOLfkLNwfg" x="32" y="398" width="197" height="109"/>
@@ -1892,13 +1926,13 @@
               <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dQIO8x9BEeGetOLfkLNwfg" key="QualifiedNameDepth" value="1000"/>
             </eAnnotations>
             <children xmi:type="notation:DecorationNode" xmi:id="_dQIO9B9BEeGetOLfkLNwfg" type="5125">
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_dQIO9R9BEeGetOLfkLNwfg" x="-141" y="2"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_dQIO9R9BEeGetOLfkLNwfg" x="-219" y="-11"/>
             </children>
             <children xmi:type="notation:DecorationNode" xmi:id="_dQIO9h9BEeGetOLfkLNwfg" visible="false" type="6029">
               <layoutConstraint xmi:type="notation:Location" xmi:id="_dQIO9x9BEeGetOLfkLNwfg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_9cOsYB8oEeG4gPCEznVNOA"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dQHn4R9BEeGetOLfkLNwfg" x="99" y="46"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dQHn4R9BEeGetOLfkLNwfg" x="187" y="46"/>
           </children>
           <element xmi:type="uml:Property" href="RoboCab.uml#_YLTDIB9BEeGetOLfkLNwfg"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YLmlIR9BEeGetOLfkLNwfg" x="32" y="283" width="197" height="99"/>
@@ -1935,7 +1969,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_EOGC-B9DEeGetOLfkLNwfg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_fdzJY6k_EeCXqcRV-18f6Q"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EOFb4R9DEeGetOLfkLNwfg" x="110" y="43"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EOFb4R9DEeGetOLfkLNwfg" x="185" y="30"/>
           </children>
           <element xmi:type="uml:Property" href="RoboCab.uml#_A68QIB9DEeGetOLfkLNwfg"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_A7RAQR9DEeGetOLfkLNwfg" x="32" y="163" width="195"/>
@@ -2022,6 +2056,11 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ly27gRwAEeGa5bH_RJFzBQ" x="-1260" y="-680" width="1414" height="1063"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_OCVFkRwAEeGa5bH_RJFzBQ"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ZzItQH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzI0ak_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWAPL_EeONXPQ2mbw9vA"/>
+    </styles>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_ZzItQX7LEeSFyNbnLYDCkw" name="diagram_compatibility_version" stringValue="1.0.0"/>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzI0ak_EeCXqcRV-18f6Q"/>
     <edges xmi:type="notation:Connector" xmi:id="_k9My4B9CEeGetOLfkLNwfg" type="4013" source="_cnm3cBwBEeGa5bH_RJFzBQ" target="_uTZHcBwnEeGa5bH_RJFzBQ" lineColor="0">
       <children xmi:type="notation:DecorationNode" xmi:id="_k9NZ8B9CEeGetOLfkLNwfg" visible="false" type="6025">
@@ -2332,7 +2371,7 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3mtLkkHnEeGGXpGscpkjdg" points="[8, 2, -87, 1]$[92, 9, -3, 8]"/>
     </edges>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_glL5wBwhEeGa5bH_RJFzBQ" type="componentdef" name="SingletonComponentsDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_glL5wBwhEeGa5bH_RJFzBQ" type="CompositeStructure" name="SingletonComponentsDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_g5n4sBwhEeGa5bH_RJFzBQ" type="2073" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g5n4sRwhEeGa5bH_RJFzBQ" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g5n4shwhEeGa5bH_RJFzBQ" key="ShadowFigure_Value" value="false"/>
@@ -3131,9 +3170,13 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jPmcoUH0EeGwG_JKFhyhxw" x="3815" y="30" width="425" height="180"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_glL5wRwhEeGa5bH_RJFzBQ"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ks9WhX7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWBfL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_A0k2UB8rEeG4gPCEznVNOA" type="architecture" name="OrganizerSystemDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_A0k2UB8rEeG4gPCEznVNOA" type="CompositeStructure" name="OrganizerSystemDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_Cp71cB8rEeG4gPCEznVNOA" type="2073" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Cp71cR8rEeG4gPCEznVNOA" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Cp71ch8rEeG4gPCEznVNOA" key="ShadowFigure_Value" value="false"/>
@@ -3328,7 +3371,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_MrnY-B8vEeG4gPCEznVNOA" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_fdzK36k_EeCXqcRV-18f6Q"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Mrmx6B8vEeG4gPCEznVNOA" x="-10" y="222"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Mrmx6B8vEeG4gPCEznVNOA" x="-11" y="238" width="20" height="20"/>
           </children>
           <children xmi:type="notation:Shape" xmi:id="_MrnY-R8vEeG4gPCEznVNOA" type="3069" fontName="Ubuntu" lineColor="0">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MroAAB8vEeG4gPCEznVNOA" source="ShadowFigure">
@@ -3526,6 +3569,10 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cp71wB8rEeG4gPCEznVNOA" x="-70" y="34" width="1039" height="602"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_A0k2UR8rEeG4gPCEznVNOA"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ks9Whn7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWAPL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
     <edges xmi:type="notation:Connector" xmi:id="_cbZWcB8tEeG4gPCEznVNOA" type="4013" source="_00tgIB8sEeG4gPCEznVNOA" target="_W-8U0B8tEeG4gPCEznVNOA" lineColor="0">
       <children xmi:type="notation:DecorationNode" xmi:id="_cbZWcx8tEeG4gPCEznVNOA" visible="false" type="6025">
@@ -3664,7 +3711,7 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SZx40TUsEeG5pL_fpN2DgQ" points="[10, -8, -418, 1]$[433, 1, 5, 10]"/>
     </edges>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_O43JEB8uEeG4gPCEznVNOA" type="architecture" name="ChallengerSpaceDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_O43JEB8uEeG4gPCEznVNOA" type="CompositeStructure" name="ChallengerSpaceDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_REnO8B8uEeG4gPCEznVNOA" type="2073" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_REnO8R8uEeG4gPCEznVNOA" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_REnO8h8uEeG4gPCEznVNOA" key="ShadowFigure_Value" value="false"/>
@@ -3726,7 +3773,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_ChLOG2bUEeGGNuX1IHg1zg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_Rsb1cBwkEeGa5bH_RJFzBQ"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ChLOEWbUEeGGNuX1IHg1zg" x="-11" y="54" width="20" height="20"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ChLOEWbUEeGGNuX1IHg1zg" x="-11" y="68" width="20" height="20"/>
           </children>
           <children xmi:type="notation:Shape" xmi:id="_ChLOHGbUEeGGNuX1IHg1zg" type="3069" fontHeight="8" lineColor="0">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ChLOHmbUEeGGNuX1IHg1zg" source="ShadowFigure">
@@ -3804,7 +3851,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_HSgPG2bUEeGGNuX1IHg1zg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_fdzKI6k_EeCXqcRV-18f6Q"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HSgPEWbUEeGGNuX1IHg1zg" x="-11" y="70" width="20" height="20"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HSgPEWbUEeGGNuX1IHg1zg" x="-11" y="84" width="20" height="20"/>
           </children>
           <children xmi:type="notation:Shape" xmi:id="_HSgPHGbUEeGGNuX1IHg1zg" type="3069" fontHeight="8" lineColor="0">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HSgPHmbUEeGGNuX1IHg1zg" source="ShadowFigure">
@@ -3826,7 +3873,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_HSgPJ2bUEeGGNuX1IHg1zg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_fdzKJ6k_EeCXqcRV-18f6Q"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HSgPHWbUEeGGNuX1IHg1zg" x="-11" y="34" width="20" height="20"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HSgPHWbUEeGGNuX1IHg1zg" x="-11" y="49" width="20" height="20"/>
           </children>
           <children xmi:type="notation:Shape" xmi:id="_HSgPKGbUEeGGNuX1IHg1zg" type="3069" fontHeight="8" lineColor="0">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HSgPKmbUEeGGNuX1IHg1zg" source="ShadowFigure">
@@ -3842,7 +3889,7 @@
               <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NdYc8GbUEeGGNuX1IHg1zg" source="CustomAppearance_Annotation">
                 <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NoQ3QGbUEeGGNuX1IHg1zg" key="CustomAppearance_MaskValue" value="52"/>
               </eAnnotations>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_HSgPMWbUEeGGNuX1IHg1zg" x="-101" y="1"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_HSgPMWbUEeGGNuX1IHg1zg" x="-146" y="27"/>
             </children>
             <children xmi:type="notation:DecorationNode" xmi:id="_HSgPMmbUEeGGNuX1IHg1zg" type="6029">
               <layoutConstraint xmi:type="notation:Location" xmi:id="_HSgPM2bUEeGGNuX1IHg1zg" x="25" y="-10"/>
@@ -4076,7 +4123,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_gVY6XWbTEeGGNuX1IHg1zg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_UIObEKloEeCLku4RFrI7uw"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gVY6U2bTEeGGNuX1IHg1zg" x="-11" y="99" width="20" height="20"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gVY6U2bTEeGGNuX1IHg1zg" x="-11" y="113" width="20" height="20"/>
           </children>
           <children xmi:type="notation:Shape" xmi:id="_gVY6XmbTEeGGNuX1IHg1zg" type="3069" fontHeight="8" lineColor="0">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gVY6YGbTEeGGNuX1IHg1zg" source="ShadowFigure">
@@ -4095,7 +4142,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_gVY6aWbTEeGGNuX1IHg1zg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="RoboCab.uml#_UegmIDUrEeG5pL_fpN2DgQ"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gVY6X2bTEeGGNuX1IHg1zg" x="-11" y="29" width="20" height="20"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gVY6X2bTEeGGNuX1IHg1zg" x="-11" y="43" width="20" height="20"/>
           </children>
           <children xmi:type="notation:Shape" xmi:id="_gVY6ambTEeGGNuX1IHg1zg" type="3069" fontHeight="8" lineColor="0">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gVY6bGbTEeGGNuX1IHg1zg" source="ShadowFigure">
@@ -4179,7 +4226,7 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_REn2MR8uEeG4gPCEznVNOA" x="25" y="-10"/>
         </children>
         <element xmi:type="uml:Port" href="RoboCab.uml#_ImFDAKlnEeCLku4RFrI7uw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_REn2Mh8uEeG4gPCEznVNOA" x="1050" y="318" width="20" height="20"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_REn2Mh8uEeG4gPCEznVNOA" x="1050" y="304" width="20" height="20"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_eguZUB8vEeG4gPCEznVNOA" type="3069" fontName="Ubuntu" lineColor="0">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_egvAYB8vEeG4gPCEznVNOA" source="ShadowFigure">
@@ -4471,6 +4518,11 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_REn2Mx8uEeG4gPCEznVNOA" x="85" y="30" width="1061" height="601"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_O43JER8uEeG4gPCEznVNOA"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_Y2cbgH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWAPL_EeONXPQ2mbw9vA"/>
+    </styles>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_Y2cbgX7LEeSFyNbnLYDCkw" name="diagram_compatibility_version" stringValue="1.0.0"/>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
     <edges xmi:type="notation:Connector" xmi:id="_1ADV8GbUEeGGNuX1IHg1zg" type="4013" source="_HSgPKGbUEeGGNuX1IHg1zg" target="_gVY6OmbTEeGGNuX1IHg1zg" lineColor="0">
       <children xmi:type="notation:DecorationNode" xmi:id="_1AMf4GbUEeGGNuX1IHg1zg" type="6025">
@@ -4946,7 +4998,7 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_iXEAIm6sEeGqrd__B0yUNA" points="[63, 8, -115, -140]$[178, 8, 0, -140]$[178, 138, 0, -10]"/>
     </edges>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_v-s3YEHyEeGGXpGscpkjdg" type="architecture" name="GenerationTestModulesDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_v-s3YEHyEeGGXpGscpkjdg" type="CompositeStructure" name="GenerationTestModulesDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_UB1cgEH1EeGwG_JKFhyhxw" type="2073" fontName="Ubuntu" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UB1cgkH1EeGwG_JKFhyhxw" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_UB1cg0H1EeGwG_JKFhyhxw" key="ShadowFigure_Value" value="false"/>
@@ -5003,6 +5055,11 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hHWN4UJ8EeGaqsrav5IKYg" x="580" y="20" width="556" height="316"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_v-s3YUHyEeGGXpGscpkjdg"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ZuO_IH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWAPL_EeONXPQ2mbw9vA"/>
+    </styles>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_ZuO_IX7LEeSFyNbnLYDCkw" name="diagram_compatibility_version" stringValue="1.0.0"/>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
   <notation:Diagram xmi:id="_EKbpcEK6EeGv-54Wm4mRWQ" type="PapyrusUMLStateMachineDiagram" name="SmTestDiagram" measurementUnit="Pixel">
@@ -5569,7 +5626,7 @@
     <styles xmi:type="notation:DiagramStyle" xmi:id="_HdXyIULAEeGFx4iVEwo0kA"/>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJx6k_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_zyLisGbWEeGGNuX1IHg1zg" type="componentdef" name="TargetPlatformsDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_zyLisGbWEeGGNuX1IHg1zg" type="CompositeStructure" name="TargetPlatformsDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_v876AGbXEeGjxc8c7ZBkPQ" type="2073" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_v9FrAGbXEeGjxc8c7ZBkPQ" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v9FrAWbXEeGjxc8c7ZBkPQ" key="ShadowFigure_Value" value="false"/>
@@ -5646,9 +5703,13 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jdQbUWbZEeGTV_735pzUXQ" x="160" y="300"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_zyLisWbWEeGGNuX1IHg1zg"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ktGgcH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Package" href="RoboCab.uml#_tR1bIGbWEeGGNuX1IHg1zg"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWBfL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="uml:Package" href="RoboCab.uml#_tR1bIGbWEeGGNuX1IHg1zg"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_Cwt3MGbaEeGTV_735pzUXQ" type="architecture" name="PlatformArchitectureDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_Cwt3MGbaEeGTV_735pzUXQ" type="CompositeStructure" name="PlatformArchitectureDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_DVXcYGbaEeGTV_735pzUXQ" type="2073" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DVhNYGbaEeGTV_735pzUXQ" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DVhNYWbaEeGTV_735pzUXQ" key="ShadowFigure_Value" value="false"/>
@@ -5704,9 +5765,13 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DVXcYWbaEeGTV_735pzUXQ" x="114" y="80" width="422" height="201"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_Cwt3MWbaEeGTV_735pzUXQ"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_ktGgcX7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Package" href="RoboCab.uml#_tR1bIGbWEeGGNuX1IHg1zg"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWAPL_EeONXPQ2mbw9vA"/>
+    </styles>
     <element xmi:type="uml:Package" href="RoboCab.uml#_tR1bIGbWEeGGNuX1IHg1zg"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_-IQaMKENEeKLUqX9IJq2Gg" type="architecture" name="RoboCabEnvironmentDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_-IQaMKENEeKLUqX9IJq2Gg" type="CompositeStructure" name="RoboCabEnvironmentDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_--MjsKENEeKLUqX9IJq2Gg" type="2073" gradient="8905185, 16777215, 0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_--WUsKENEeKLUqX9IJq2Gg" source="Stereotype_Annotation">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__A4rUKENEeKLUqX9IJq2Gg" key="StereotypeWithQualifiedNameList" value=""/>
@@ -5751,6 +5816,12 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_--MjsaENEeKLUqX9IJq2Gg" x="97" y="90" width="634" height="436"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_-IQaMaENEeKLUqX9IJq2Gg"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_bEBtYH7LEeSFyNbnLYDCkw">
+      <owner xmi:type="uml:Model" href="RoboCab.uml#_fdzI0ak_EeCXqcRV-18f6Q"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kzWAPL_EeONXPQ2mbw9vA"/>
+    </styles>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_bEBtYX7LEeSFyNbnLYDCkw" name="diagram_compatibility_version" stringValue="1.0.0"/>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzI0ak_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
+  <css:ModelStyleSheets xmi:id="_1O5S4MyrEeSbw_7Zqs0KhQ"/>
 </xmi:XMI>

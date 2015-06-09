@@ -803,7 +803,7 @@ public class DGToSVGConverter extends DGSwitch<Object> implements SVGSyntax {
 		Element svg = map(object, svgDocument.getDocumentElement());
 		svg.setAttribute(XMLNS_PREFIX, SVG_NAMESPACE_URI);
 		svg.setAttribute(XMLNS_PREFIX + ":" + XLINK_PREFIX, XLINK_NAMESPACE_URI);
-		svg.setAttribute(SVG_ONLOAD_ATTRIBUTE, "validate(evt.target)");
+		svg.setAttribute(SVG_ONLOAD_ATTRIBUTE, "validate()");
 		if(object.eIsSet(DGPackage.Literals.ROOT_CANVAS__BACKGROUND_COLOR)) {
 			String background = convertColorToString(object.getBackgroundColor());
 			svg.setAttribute(SVG_BACKGROUND_COLOR_ATTRIBUTE, background);

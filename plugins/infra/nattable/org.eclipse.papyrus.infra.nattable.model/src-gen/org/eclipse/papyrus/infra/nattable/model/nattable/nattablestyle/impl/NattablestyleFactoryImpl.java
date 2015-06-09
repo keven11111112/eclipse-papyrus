@@ -41,7 +41,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisp
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class NattablestyleFactoryImpl extends EFactoryImpl implements NattablestyleFactory {
@@ -50,16 +49,16 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static NattablestyleFactory init() {
 		try {
 			NattablestyleFactory theNattablestyleFactory = (NattablestyleFactory)EPackage.Registry.INSTANCE.getEFactory(NattablestylePackage.eNS_URI);
-			if(theNattablestyleFactory != null) {
+			if (theNattablestyleFactory != null) {
 				return theNattablestyleFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NattablestyleFactoryImpl();
@@ -69,7 +68,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattablestyleFactoryImpl() {
@@ -79,85 +77,67 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case NattablestylePackage.NAMED_STYLE:
-			return createNamedStyle();
-		case NattablestylePackage.FONT_STYLE:
-			return createFontStyle();
-		case NattablestylePackage.CELL_TEXT_STYLE:
-			return createCellTextStyle();
-		case NattablestylePackage.INT_VALUE_STYLE:
-			return createIntValueStyle();
-		case NattablestylePackage.INT_LIST_VALUE_STYLE:
-			return createIntListValueStyle();
-		case NattablestylePackage.BOOLEAN_VALUE_STYLE:
-			return createBooleanValueStyle();
-		case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE:
-			return createBooleanListValueStyle();
-		case NattablestylePackage.DOUBLE_VALUE_STYLE:
-			return createDoubleValueStyle();
-		case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE:
-			return createDoubleListValueStyle();
-		case NattablestylePackage.STRING_VALUE_STYLE:
-			return createStringValueStyle();
-		case NattablestylePackage.STRING_LIST_VALUE_STYLE:
-			return createStringListValueStyle();
-		case NattablestylePackage.TABLE_DISPLAY_STYLE:
-			return createTableDisplayStyle();
-		case NattablestylePackage.EOBJECT_VALUE_STYLE:
-			return createEObjectValueStyle();
-		case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE:
-			return createEObjectListValueStyle();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch (eClass.getClassifierID()) {
+			case NattablestylePackage.NAMED_STYLE: return createNamedStyle();
+			case NattablestylePackage.FONT_STYLE: return createFontStyle();
+			case NattablestylePackage.CELL_TEXT_STYLE: return createCellTextStyle();
+			case NattablestylePackage.INT_VALUE_STYLE: return createIntValueStyle();
+			case NattablestylePackage.INT_LIST_VALUE_STYLE: return createIntListValueStyle();
+			case NattablestylePackage.BOOLEAN_VALUE_STYLE: return createBooleanValueStyle();
+			case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE: return createBooleanListValueStyle();
+			case NattablestylePackage.DOUBLE_VALUE_STYLE: return createDoubleValueStyle();
+			case NattablestylePackage.DOUBLE_LIST_VALUE_STYLE: return createDoubleListValueStyle();
+			case NattablestylePackage.STRING_VALUE_STYLE: return createStringValueStyle();
+			case NattablestylePackage.STRING_LIST_VALUE_STYLE: return createStringListValueStyle();
+			case NattablestylePackage.TABLE_DISPLAY_STYLE: return createTableDisplayStyle();
+			case NattablestylePackage.EOBJECT_VALUE_STYLE: return createEObjectValueStyle();
+			case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE: return createEObjectListValueStyle();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch(eDataType.getClassifierID()) {
-		case NattablestylePackage.CELL_TEXT_ALIGNMENT:
-			return createCellTextAlignmentFromString(eDataType, initialValue);
-		case NattablestylePackage.DISPLAY_STYLE:
-			return createDisplayStyleFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch (eDataType.getClassifierID()) {
+			case NattablestylePackage.CELL_TEXT_ALIGNMENT:
+				return createCellTextAlignmentFromString(eDataType, initialValue);
+			case NattablestylePackage.DISPLAY_STYLE:
+				return createDisplayStyleFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch(eDataType.getClassifierID()) {
-		case NattablestylePackage.CELL_TEXT_ALIGNMENT:
-			return convertCellTextAlignmentToString(eDataType, instanceValue);
-		case NattablestylePackage.DISPLAY_STYLE:
-			return convertDisplayStyleToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch (eDataType.getClassifierID()) {
+			case NattablestylePackage.CELL_TEXT_ALIGNMENT:
+				return convertCellTextAlignmentToString(eDataType, instanceValue);
+			case NattablestylePackage.DISPLAY_STYLE:
+				return convertDisplayStyleToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -169,7 +149,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -181,7 +160,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -193,7 +171,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -205,7 +182,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -217,7 +193,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -229,7 +204,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -241,7 +215,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -253,7 +226,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -265,7 +237,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -277,7 +248,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -289,7 +259,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -301,7 +270,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -313,7 +281,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -325,21 +292,17 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public CellTextAlignment createCellTextAlignmentFromString(EDataType eDataType, String initialValue) {
 		CellTextAlignment result = CellTextAlignment.get(initialValue);
-		if(result == null) {
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertCellTextAlignmentToString(EDataType eDataType, Object instanceValue) {
@@ -349,21 +312,17 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public DisplayStyle createDisplayStyleFromString(EDataType eDataType, String initialValue) {
 		DisplayStyle result = DisplayStyle.get(initialValue);
-		if(result == null) {
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertDisplayStyleToString(EDataType eDataType, Object instanceValue) {
@@ -373,7 +332,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -384,7 +342,6 @@ public class NattablestyleFactoryImpl extends EFactoryImpl implements Nattablest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @deprecated
 	 * @generated
 	 */

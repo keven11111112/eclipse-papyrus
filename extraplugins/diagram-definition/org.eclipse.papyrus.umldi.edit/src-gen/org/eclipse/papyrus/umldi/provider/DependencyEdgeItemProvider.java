@@ -26,6 +26,7 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.DependencyEdge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
@@ -34,6 +35,7 @@ public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DependencyEdgeItemProvider(AdapterFactory adapterFactory) {
@@ -44,13 +46,13 @@ public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -61,11 +63,12 @@ public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UMLDIPackage.Literals.DEPENDENCY_EDGE__ROLE_LABEL);
 		}
@@ -75,13 +78,13 @@ public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
@@ -89,6 +92,7 @@ public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns DependencyEdge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,11 +104,13 @@ public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DependencyEdge_type");
+		DependencyEdge dependencyEdge = (DependencyEdge)object;
+		return getString("_UI_DependencyEdge_type") + " " + dependencyEdge.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -112,16 +118,16 @@ public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(DependencyEdge.class)) {
-			case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(DependencyEdge.class)) {
+		case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -131,15 +137,12 @@ public class DependencyEdgeItemProvider extends ElementEdgeItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.DEPENDENCY_EDGE__ROLE_LABEL,
-				 UMLDIFactory.eINSTANCE.createRoleLabel()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.DEPENDENCY_EDGE__ROLE_LABEL, UMLDIFactory.eINSTANCE.createRoleLabel()));
 	}
 }

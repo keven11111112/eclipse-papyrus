@@ -15,8 +15,8 @@ import org.eclipse.papyrus.RobotML.SensorSystem;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotML.impl.SensorSystemImpl#getFrequency <em>Frequency</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotML.impl.SensorSystemImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.SensorSystemImpl#getFrequency <em>Frequency</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.SensorSystemImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,50 +27,45 @@ public class SensorSystemImpl extends RoboticSystemImpl implements SensorSystem 
 	 * The default value of the '{@link #getFrequency() <em>Frequency</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getFrequency()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float FREQUENCY_EDEFAULT = 0.0F;
+	protected static final Object FREQUENCY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getFrequency() <em>Frequency</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getFrequency()
 	 * @generated
 	 * @ordered
 	 */
-	protected float frequency = FREQUENCY_EDEFAULT;
+	protected Object frequency = FREQUENCY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String IDENTIFIER_EDEFAULT = null;
+	protected static final Object IDENTIFIER_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected String identifier = IDENTIFIER_EDEFAULT;
+	protected Object identifier = IDENTIFIER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected SensorSystemImpl() {
@@ -80,7 +75,6 @@ public class SensorSystemImpl extends RoboticSystemImpl implements SensorSystem 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -91,64 +85,57 @@ public class SensorSystemImpl extends RoboticSystemImpl implements SensorSystem 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public float getFrequency() {
+	public Object getFrequency() {
 		return frequency;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setFrequency(float newFrequency) {
-		float oldFrequency = frequency;
+	public void setFrequency(Object newFrequency) {
+		Object oldFrequency = frequency;
 		frequency = newFrequency;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.SENSOR_SYSTEM__FREQUENCY, oldFrequency, frequency));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public String getIdentifier() {
+	public Object getIdentifier() {
 		return identifier;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setIdentifier(String newIdentifier) {
-		String oldIdentifier = identifier;
+	public void setIdentifier(Object newIdentifier) {
+		Object oldIdentifier = identifier;
 		identifier = newIdentifier;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER, oldIdentifier, identifier));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RobotMLPackage.SENSOR_SYSTEM__FREQUENCY:
-			return getFrequency();
-		case RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER:
-			return getIdentifier();
+			case RobotMLPackage.SENSOR_SYSTEM__FREQUENCY:
+				return getFrequency();
+			case RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER:
+				return getIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,18 +143,17 @@ public class SensorSystemImpl extends RoboticSystemImpl implements SensorSystem 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RobotMLPackage.SENSOR_SYSTEM__FREQUENCY:
-			setFrequency((Float) newValue);
-			return;
-		case RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER:
-			setIdentifier((String) newValue);
-			return;
+			case RobotMLPackage.SENSOR_SYSTEM__FREQUENCY:
+				setFrequency((Object)newValue);
+				return;
+			case RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER:
+				setIdentifier((Object)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -175,18 +161,17 @@ public class SensorSystemImpl extends RoboticSystemImpl implements SensorSystem 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RobotMLPackage.SENSOR_SYSTEM__FREQUENCY:
-			setFrequency(FREQUENCY_EDEFAULT);
-			return;
-		case RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER:
-			setIdentifier(IDENTIFIER_EDEFAULT);
-			return;
+			case RobotMLPackage.SENSOR_SYSTEM__FREQUENCY:
+				setFrequency(FREQUENCY_EDEFAULT);
+				return;
+			case RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -194,16 +179,15 @@ public class SensorSystemImpl extends RoboticSystemImpl implements SensorSystem 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RobotMLPackage.SENSOR_SYSTEM__FREQUENCY:
-			return frequency != FREQUENCY_EDEFAULT;
-		case RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER:
-			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			case RobotMLPackage.SENSOR_SYSTEM__FREQUENCY:
+				return FREQUENCY_EDEFAULT == null ? frequency != null : !FREQUENCY_EDEFAULT.equals(frequency);
+			case RobotMLPackage.SENSOR_SYSTEM__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -211,14 +195,11 @@ public class SensorSystemImpl extends RoboticSystemImpl implements SensorSystem 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (frequency: ");

@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StyledElementItemProvider extends EModelElementItemProvider {
@@ -40,7 +39,6 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StyledElementItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +49,6 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,11 +61,11 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,7 +80,6 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +94,6 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,7 +106,6 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,9 +113,9 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(StyledElement.class)) {
-		case NattablestylePackage.STYLED_ELEMENT__STYLES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case NattablestylePackage.STYLED_ELEMENT__STYLES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -131,7 +125,6 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,81 +132,80 @@ public class StyledElementItemProvider extends EModelElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createNamedStyle()));
+				 NattablestyleFactory.eINSTANCE.createNamedStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createFontStyle()));
+				 NattablestyleFactory.eINSTANCE.createFontStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createCellTextStyle()));
+				 NattablestyleFactory.eINSTANCE.createCellTextStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createIntValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createIntValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createIntListValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createIntListValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createBooleanValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createBooleanValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createBooleanListValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createBooleanListValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createDoubleValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createDoubleValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createDoubleListValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createDoubleListValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createStringValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createStringValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createStringListValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createStringListValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createTableDisplayStyle()));
+				 NattablestyleFactory.eINSTANCE.createTableDisplayStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createEObjectValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createEObjectValueStyle()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES,
-						NattablestyleFactory.eINSTANCE.createEObjectListValueStyle()));
+				 NattablestyleFactory.eINSTANCE.createEObjectListValueStyle()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

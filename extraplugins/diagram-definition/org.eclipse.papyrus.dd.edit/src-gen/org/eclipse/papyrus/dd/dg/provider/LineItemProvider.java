@@ -26,6 +26,7 @@ import org.eclipse.papyrus.dd.dg.Line;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Line} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class LineItemProvider extends MarkedElementItemProvider {
@@ -48,9 +49,8 @@ public class LineItemProvider extends MarkedElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -60,11 +60,12 @@ public class LineItemProvider extends MarkedElementItemProvider {
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DGPackage.Literals.LINE__START);
 			childrenFeatures.add(DGPackage.Literals.LINE__END);
@@ -74,19 +75,20 @@ public class LineItemProvider extends MarkedElementItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
 	/**
 	 * This returns Line.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,14 +100,13 @@ public class LineItemProvider extends MarkedElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Line)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Line_type") :
-			getString("_UI_Line_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Line_type") : getString("_UI_Line_type") + " " + label;
 	}
 
 	/**
@@ -113,17 +114,17 @@ public class LineItemProvider extends MarkedElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Line.class)) {
-			case DGPackage.LINE__START:
-			case DGPackage.LINE__END:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(Line.class)) {
+		case DGPackage.LINE__START:
+		case DGPackage.LINE__END:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -138,16 +139,8 @@ public class LineItemProvider extends MarkedElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.LINE__START,
-				 DCFactory.eINSTANCE.createPoint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.LINE__END,
-				 DCFactory.eINSTANCE.createPoint()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.LINE__START, DCFactory.eINSTANCE.createPoint()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.LINE__END, DCFactory.eINSTANCE.createPoint()));
 	}
 
 	/**
@@ -160,15 +153,9 @@ public class LineItemProvider extends MarkedElementItemProvider {
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
-
-		boolean qualify =
-			childFeature == DGPackage.Literals.LINE__START ||
-			childFeature == DGPackage.Literals.LINE__END;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		boolean qualify = childFeature == DGPackage.Literals.LINE__START || childFeature == DGPackage.Literals.LINE__END;
+		if(qualify) {
+			return getString("_UI_CreateChild_text2", new Object[]{ getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

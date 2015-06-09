@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-model-doc -->
  * Alignment of the text inside its cell
  * <!-- end-model-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getCellTextAlignment()
  * @model
  * @generated
@@ -36,7 +35,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>TOP LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #TOP_LEFT_VALUE
 	 * @generated
 	 * @ordered
@@ -46,7 +44,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>TOP CENTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #TOP_CENTER_VALUE
 	 * @generated
 	 * @ordered
@@ -56,7 +53,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>TOP RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #TOP_RIGHT_VALUE
 	 * @generated
 	 * @ordered
@@ -66,7 +62,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>MIDDLE LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #MIDDLE_LEFT_VALUE
 	 * @generated
 	 * @ordered
@@ -76,7 +71,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>MIDDLE CENTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #MIDDLE_CENTER_VALUE
 	 * @generated
 	 * @ordered
@@ -86,7 +80,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>MIDDLE RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #MIDDLE_RIGHT_VALUE
 	 * @generated
 	 * @ordered
@@ -96,7 +89,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>BOTTOM LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #BOTTOM_LEFT_VALUE
 	 * @generated
 	 * @ordered
@@ -106,7 +98,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>BOTTOM CENTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #BOTTOM_CENTER_VALUE
 	 * @generated
 	 * @ordered
@@ -116,7 +107,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * The '<em><b>BOTTOM RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #BOTTOM_RIGHT_VALUE
 	 * @generated
 	 * @ordered
@@ -130,7 +120,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>TOP LEFT</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #TOP_LEFT
 	 * @model
 	 * @generated
@@ -145,7 +134,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>TOP CENTER</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #TOP_CENTER
 	 * @model
 	 * @generated
@@ -160,7 +148,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>TOP RIGHT</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #TOP_RIGHT
 	 * @model
 	 * @generated
@@ -175,7 +162,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>MIDDLE LEFT</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #MIDDLE_LEFT
 	 * @model
 	 * @generated
@@ -190,7 +176,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>MIDDLE CENTER</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #MIDDLE_CENTER
 	 * @model
 	 * @generated
@@ -205,7 +190,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>MIDDLE RIGHT</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #MIDDLE_RIGHT
 	 * @model
 	 * @generated
@@ -220,7 +204,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>BOTTOM LEFT</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #BOTTOM_LEFT
 	 * @model
 	 * @generated
@@ -235,7 +218,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>BOTTOM CENTER</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #BOTTOM_CENTER
 	 * @model
 	 * @generated
@@ -250,7 +232,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * If the meaning of '<em><b>BOTTOM RIGHT</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #BOTTOM_RIGHT
 	 * @model
 	 * @generated
@@ -262,16 +243,24 @@ public enum CellTextAlignment implements Enumerator {
 	 * An array of all the '<em><b>Cell Text Alignment</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	private static final CellTextAlignment[] VALUES_ARRAY = new CellTextAlignment[]{ TOP_LEFT, TOP_CENTER, TOP_RIGHT, MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT, BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT, };
+	private static final CellTextAlignment[] VALUES_ARRAY = new CellTextAlignment[] {
+			TOP_LEFT,
+			TOP_CENTER,
+			TOP_RIGHT,
+			MIDDLE_LEFT,
+			MIDDLE_CENTER,
+			MIDDLE_RIGHT,
+			BOTTOM_LEFT,
+			BOTTOM_CENTER,
+			BOTTOM_RIGHT,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Cell Text Alignment</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static final List<CellTextAlignment> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -280,13 +269,14 @@ public enum CellTextAlignment implements Enumerator {
 	 * Returns the '<em><b>Cell Text Alignment</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CellTextAlignment get(String literal) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CellTextAlignment result = VALUES_ARRAY[i];
-			if(result.toString().equals(literal)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -297,13 +287,14 @@ public enum CellTextAlignment implements Enumerator {
 	 * Returns the '<em><b>Cell Text Alignment</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CellTextAlignment getByName(String name) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CellTextAlignment result = VALUES_ARRAY[i];
-			if(result.getName().equals(name)) {
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -314,29 +305,21 @@ public enum CellTextAlignment implements Enumerator {
 	 * Returns the '<em><b>Cell Text Alignment</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CellTextAlignment get(int value) {
-		switch(value) {
-		case TOP_LEFT_VALUE:
-			return TOP_LEFT;
-		case TOP_CENTER_VALUE:
-			return TOP_CENTER;
-		case TOP_RIGHT_VALUE:
-			return TOP_RIGHT;
-		case MIDDLE_LEFT_VALUE:
-			return MIDDLE_LEFT;
-		case MIDDLE_CENTER_VALUE:
-			return MIDDLE_CENTER;
-		case MIDDLE_RIGHT_VALUE:
-			return MIDDLE_RIGHT;
-		case BOTTOM_LEFT_VALUE:
-			return BOTTOM_LEFT;
-		case BOTTOM_CENTER_VALUE:
-			return BOTTOM_CENTER;
-		case BOTTOM_RIGHT_VALUE:
-			return BOTTOM_RIGHT;
+		switch (value) {
+			case TOP_LEFT_VALUE: return TOP_LEFT;
+			case TOP_CENTER_VALUE: return TOP_CENTER;
+			case TOP_RIGHT_VALUE: return TOP_RIGHT;
+			case MIDDLE_LEFT_VALUE: return MIDDLE_LEFT;
+			case MIDDLE_CENTER_VALUE: return MIDDLE_CENTER;
+			case MIDDLE_RIGHT_VALUE: return MIDDLE_RIGHT;
+			case BOTTOM_LEFT_VALUE: return BOTTOM_LEFT;
+			case BOTTOM_CENTER_VALUE: return BOTTOM_CENTER;
+			case BOTTOM_RIGHT_VALUE: return BOTTOM_RIGHT;
 		}
 		return null;
 	}
@@ -344,7 +327,6 @@ public enum CellTextAlignment implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final int value;
@@ -352,7 +334,6 @@ public enum CellTextAlignment implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final String name;
@@ -360,7 +341,6 @@ public enum CellTextAlignment implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final String literal;
@@ -369,7 +349,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private CellTextAlignment(int value, String name, String literal) {
@@ -381,41 +360,37 @@ public enum CellTextAlignment implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

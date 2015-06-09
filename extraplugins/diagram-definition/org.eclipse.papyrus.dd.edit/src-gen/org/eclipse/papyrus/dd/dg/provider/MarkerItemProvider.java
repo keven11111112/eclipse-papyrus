@@ -26,6 +26,7 @@ import org.eclipse.papyrus.dd.dg.Marker;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Marker} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class MarkerItemProvider extends GroupItemProvider {
@@ -48,9 +49,8 @@ public class MarkerItemProvider extends GroupItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -60,11 +60,12 @@ public class MarkerItemProvider extends GroupItemProvider {
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DGPackage.Literals.MARKER__SIZE);
 			childrenFeatures.add(DGPackage.Literals.MARKER__REFERENCE);
@@ -74,19 +75,20 @@ public class MarkerItemProvider extends GroupItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
 	/**
 	 * This returns Marker.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,14 +100,13 @@ public class MarkerItemProvider extends GroupItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Marker)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Marker_type") :
-			getString("_UI_Marker_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Marker_type") : getString("_UI_Marker_type") + " " + label;
 	}
 
 	/**
@@ -113,17 +114,17 @@ public class MarkerItemProvider extends GroupItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Marker.class)) {
-			case DGPackage.MARKER__SIZE:
-			case DGPackage.MARKER__REFERENCE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(Marker.class)) {
+		case DGPackage.MARKER__SIZE:
+		case DGPackage.MARKER__REFERENCE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -138,15 +139,7 @@ public class MarkerItemProvider extends GroupItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.MARKER__SIZE,
-				 DCFactory.eINSTANCE.createDimension()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.MARKER__REFERENCE,
-				 DCFactory.eINSTANCE.createPoint()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.MARKER__SIZE, DCFactory.eINSTANCE.createDimension()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.MARKER__REFERENCE, DCFactory.eINSTANCE.createPoint()));
 	}
 }

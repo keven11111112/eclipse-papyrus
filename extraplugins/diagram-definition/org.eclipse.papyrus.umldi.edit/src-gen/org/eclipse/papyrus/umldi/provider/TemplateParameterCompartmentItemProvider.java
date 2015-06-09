@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.TemplateParameterCompartment} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TemplateParameterCompartmentItemProvider extends ListCompartmentItemProvider {
@@ -29,6 +30,7 @@ public class TemplateParameterCompartmentItemProvider extends ListCompartmentIte
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TemplateParameterCompartmentItemProvider(AdapterFactory adapterFactory) {
@@ -39,13 +41,13 @@ public class TemplateParameterCompartmentItemProvider extends ListCompartmentIte
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +56,7 @@ public class TemplateParameterCompartmentItemProvider extends ListCompartmentIte
 	 * This returns TemplateParameterCompartment.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +68,7 @@ public class TemplateParameterCompartmentItemProvider extends ListCompartmentIte
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,6 +81,7 @@ public class TemplateParameterCompartmentItemProvider extends ListCompartmentIte
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +95,7 @@ public class TemplateParameterCompartmentItemProvider extends ListCompartmentIte
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

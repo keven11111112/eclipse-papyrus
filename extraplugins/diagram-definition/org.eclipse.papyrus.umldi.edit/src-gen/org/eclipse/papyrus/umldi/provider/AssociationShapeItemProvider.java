@@ -22,6 +22,7 @@ import org.eclipse.papyrus.umldi.AssociationShape;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.AssociationShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AssociationShapeItemProvider extends ClassifierShapeItemProvider {
@@ -30,6 +31,7 @@ public class AssociationShapeItemProvider extends ClassifierShapeItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AssociationShapeItemProvider(AdapterFactory adapterFactory) {
@@ -40,13 +42,13 @@ public class AssociationShapeItemProvider extends ClassifierShapeItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -55,6 +57,7 @@ public class AssociationShapeItemProvider extends ClassifierShapeItemProvider {
 	 * This returns AssociationShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,12 +69,13 @@ public class AssociationShapeItemProvider extends ClassifierShapeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		AssociationShape associationShape = (AssociationShape)object;
-		return getString("_UI_AssociationShape_type") + " " + associationShape.isUseClassifierNotation();
+		return getString("_UI_AssociationShape_type") + " " + associationShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -79,6 +83,7 @@ public class AssociationShapeItemProvider extends ClassifierShapeItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +97,7 @@ public class AssociationShapeItemProvider extends ClassifierShapeItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

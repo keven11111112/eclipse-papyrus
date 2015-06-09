@@ -42,7 +42,7 @@ public class ExportAllDiagramsWizard extends Wizard implements IExportWizard {
 			if (first instanceof IFile)
 				file = (IFile) first;
 			else if (first instanceof IAdaptable)
-				file = (IFile) ((IAdaptable)first).getAdapter(IFile.class);
+				file = (IFile) ((IAdaptable) first).getAdapter(IFile.class);
 		}
 	}
 

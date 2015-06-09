@@ -13,14 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.cell;
 
-import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
 
@@ -40,17 +37,10 @@ public abstract class AbstractCellManager implements ICellManager {
 	 * @param rowElement
 	 * @param tableManager
 	 * @return
-	 *         the value for the cell. The developper must override the method doGetValue
+	 *         the value for the cell. The developer must override the method doGetValue
 	 */
 	@Override
 	public final Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
-		final Cell cell = tableManager.getCell(columnElement, rowElement);
-		if (cell != null) {
-			final Collection<Problem> problems = cell.getProblems();
-			if (problems.size() != 0) {
-				return problems;
-			}
-		}
 		return doGetValue(columnElement, rowElement, tableManager);
 	}
 

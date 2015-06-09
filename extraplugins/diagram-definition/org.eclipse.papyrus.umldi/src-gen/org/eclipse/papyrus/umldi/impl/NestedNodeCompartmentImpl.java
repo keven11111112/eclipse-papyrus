@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.NestedNodeCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.NestedNodeCompartmentImpl#getNodeShape <em>Node Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.NestedNodeCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.NestedNodeCompartmentImpl#getNodeShape <em>Node Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl implements NestedNodeCompartment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NestedNodeCompartmentImpl() {
@@ -53,6 +55,7 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		NodeShape nodeShape = getNodeShape();			
-		if (nodeShape != null) {
+		NodeShape nodeShape = getNodeShape();
+		if(nodeShape != null) {
 			return nodeShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NodeShape getNodeShape() {
-		if (eContainerFeatureID() != UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE)
+			return null;
 		return (NodeShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetNodeShape(NodeShape newNodeShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNodeShape(NodeShape newNodeShape) {
-		if (newNodeShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE && newNodeShape != null)) {
-			if (EcoreUtil.isAncestor(this, newNodeShape))
+		if(newNodeShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE && newNodeShape != null)) {
+			if(EcoreUtil.isAncestor(this, newNodeShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newNodeShape != null)
+			if(newNodeShape != null)
 				msgs = ((InternalEObject)newNodeShape).eInverseAdd(this, UMLDIPackage.NODE_SHAPE__NESTED_NODE_COMPARTMENT, NodeShape.class, msgs);
 			msgs = basicSetNodeShape(newNodeShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE, newNodeShape, newNodeShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetNodeShape((NodeShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetNodeShape((NodeShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
-				return basicSetNodeShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
+			return basicSetNodeShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.NODE_SHAPE__NESTED_NODE_COMPARTMENT, NodeShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.NODE_SHAPE__NESTED_NODE_COMPARTMENT, NodeShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
-				return getNodeShape();
+		switch(featureID) {
+		case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
+			return getNodeShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
-				setNodeShape((NodeShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
+			setNodeShape((NodeShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
-				setNodeShape((NodeShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
+			setNodeShape((NodeShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_NODE_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
-				return getNodeShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.NESTED_NODE_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE:
+			return getNodeShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class NestedNodeCompartmentImpl extends ClassifierCompartmentImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.NESTED_NODE_COMPARTMENT__NODE_SHAPE);
 	}
-
 } //NestedNodeCompartmentImpl

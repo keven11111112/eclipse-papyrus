@@ -193,6 +193,7 @@ ActivityDiagram JoinNode > Label
 ActivityDiagram SendSignalAction
 {
 	maintainSymbolRatio:false;
+	displayName:true;
 }
 
 ActivityDiagram AcceptEventAction[isTimeEventAction=true]{

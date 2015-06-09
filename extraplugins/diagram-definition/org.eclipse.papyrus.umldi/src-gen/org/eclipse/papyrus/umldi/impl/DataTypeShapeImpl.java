@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class DataTypeShapeImpl extends ClassifierWithOperationsShapeImpl implements DataTypeShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DataTypeShapeImpl() {
@@ -36,11 +38,11 @@ public class DataTypeShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DATA_TYPE_SHAPE;
 	}
-
 } //DataTypeShapeImpl

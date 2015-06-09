@@ -30,7 +30,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 public class BlockFigure extends ClassifierFigure {
 
 	public BlockFigure() {
-		super("block"); //$NON-NLS-1$
+		super(); //$NON-NLS-1$
 	}
 
 	@Override

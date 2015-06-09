@@ -26,7 +26,9 @@ import org.eclipse.uml2.uml.Element;
  * panel in the Modeling Perspective. It also implements <code>ISelectionListener</code> in order to know which element is selected
  * in the workbench. In fact, the content of the view changes depending on the
  * type of the element selected
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CppPanelView extends AbstractCppPanelView {
 
 	/**

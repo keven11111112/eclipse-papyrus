@@ -470,20 +470,20 @@
     </children>
     <children xmi:type="notation:Shape" xmi:id="_odzdEJGyEeSLHJOSU5DIPg" type="2094" fontHeight="11">
       <children xmi:type="notation:DecorationNode" xmi:id="_odzdEpGyEeSLHJOSU5DIPg" type="5142">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_odzdE5GyEeSLHJOSU5DIPg" x="25" y="3"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_odzdE5GyEeSLHJOSU5DIPg" x="-10" y="-10"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_odzdFJGyEeSLHJOSU5DIPg" type="5143">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_od0EIJGyEeSLHJOSU5DIPg" x="25" y="-10"/>
       </children>
       <element xmi:type="uml:TimeObservation" href="CompositeStructureDiagrams.uml#_odxn4JGyEeSLHJOSU5DIPg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_odzdEZGyEeSLHJOSU5DIPg" x="660" y="200" width="20" height="20"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_odzdEZGyEeSLHJOSU5DIPg" x="649" y="192" width="20" height="20"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_o-RF0JGyEeSLHJOSU5DIPg" type="2093" fontHeight="11">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xXNa0JG_EeSLHJOSU5DIPg" source="displayNameLabelIcon">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xXNa0ZG_EeSLHJOSU5DIPg" key="displayNameLabelIcon_value" value="true"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_o-Rs4JGyEeSLHJOSU5DIPg" type="5151">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_o-Rs4ZGyEeSLHJOSU5DIPg" x="25" y="3"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_o-Rs4ZGyEeSLHJOSU5DIPg" x="11" y="19"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_o-Rs4pGyEeSLHJOSU5DIPg" type="5152">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_o-Rs45GyEeSLHJOSU5DIPg" x="25" y="-10"/>
@@ -658,6 +658,8 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_9vcNsZG9EeSLHJOSU5DIPg"/>
       <element xsi:nil="true"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9vcNspG9EeSLHJOSU5DIPg" points="[-10, 1, 148, -18]$[-105, 14, 53, -5]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_68qEEAD6EeWCX4kbUF3bUg" id="(0.0,0.5)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_68qrIAD6EeWCX4kbUF3bUg" id="(1.0,0.23214285714285715)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_-rqlYJG9EeSLHJOSU5DIPg" type="4019" source="_o-RF0JGyEeSLHJOSU5DIPg" target="__PJiYJG8EeSLHJOSU5DIPg">
       <styles xmi:type="notation:FontStyle" xmi:id="_-rqlYZG9EeSLHJOSU5DIPg"/>

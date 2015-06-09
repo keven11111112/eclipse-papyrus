@@ -27,7 +27,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Panel displayed when a Class is selected
+ * @deprecated This view will be replaced by a XWT view for the C++ profile
  */
+@Deprecated
 public class CppClassPanel extends CppAbstractPanel {
 
 	// document used by the viewer for header include
@@ -49,6 +51,10 @@ public class CppClassPanel extends CppAbstractPanel {
 	// Current selection
 	private Class selectedClass;
 
+	protected String origHeader;
+	
+	protected String origBody;
+	
 	public CppClassPanel(Composite parent, int style) {
 		super(parent, style);
 	}
@@ -145,7 +151,9 @@ public class CppClassPanel extends CppAbstractPanel {
 					} else {
 						Include cppInclude = StereotypeUtil.applyApp(selectedClass, Include.class);
 						cppInclude.setHeader(headerDocument.get());
+						origHeader = headerDocument.get();
 						cppInclude.setBody(bodyDocument.get());
+						origBody = bodyDocument.get();
 					}
 				}
 			});
@@ -170,17 +178,19 @@ public class CppClassPanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		String headerInModel = "";
-		String bodyInModel = "";
+		// String headerInModel = "";
+		// String bodyInModel = "";
 
+		/*
 		Include cppInclude = UMLUtil.getStereotypeApplication(selectedClass, Include.class);
 		if (cppInclude != null) {
 			headerInModel = cppInclude.getHeader();
 			bodyInModel = cppInclude.getBody();
 		}
-
-		boolean headerChanged = !headerDocument.get().equals(headerInModel);
-		boolean bodyChanged = !bodyDocument.get().equals(bodyInModel);
+		*/
+		
+		boolean headerChanged = !headerDocument.get().equals(origHeader);
+		boolean bodyChanged = !bodyDocument.get().equals(origBody);
 
 		return (headerChanged | bodyChanged);
 	}
@@ -199,12 +209,16 @@ public class CppClassPanel extends CppAbstractPanel {
 			if (cppInclude != null) {
 				// get the text in the tagged value
 				String currentHI = cppInclude.getHeader();
+				origHeader = currentHI;
 				headerDocument.set(currentHI);
 				String currentBI = cppInclude.getBody();
+				origBody = currentBI;
 				bodyDocument.set(currentBI);
 			} else {
-				headerDocument.set("");
-				bodyDocument.set("");
+				origHeader = ""; //$NON-NLS-1$
+				headerDocument.set(""); //$NON-NLS-1$
+				origBody = ""; //$NON-NLS-1$
+				bodyDocument.set(""); //$NON-NLS-1$
 			}
 		}
 	}

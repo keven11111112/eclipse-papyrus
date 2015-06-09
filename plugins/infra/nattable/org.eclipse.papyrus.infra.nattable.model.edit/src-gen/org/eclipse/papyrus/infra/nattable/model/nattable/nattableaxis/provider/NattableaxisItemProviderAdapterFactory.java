@@ -38,7 +38,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.util.Natta
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -46,7 +45,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -55,7 +53,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -64,7 +61,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -73,7 +69,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NattableaxisItemProviderAdapterFactory() {
@@ -88,7 +83,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IdTreeItemAxisItemProvider idTreeItemAxisItemProvider;
@@ -97,7 +91,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +106,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EObjectAxisItemProvider eObjectAxisItemProvider;
@@ -122,7 +114,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,7 +129,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EObjectTreeItemAxisItemProvider eObjectTreeItemAxisItemProvider;
@@ -147,7 +137,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -160,60 +149,9 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected FeatureTreeItemAxisItemProvider featureTreeItemAxisItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createFeatureTreeItemAxisAdapter() {
-		if (featureTreeItemAxisItemProvider == null) {
-			featureTreeItemAxisItemProvider = new FeatureTreeItemAxisItemProvider(this);
-		}
-
-		return featureTreeItemAxisItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ObjectTreeItemAxisItemProvider objectTreeItemAxisItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createObjectTreeItemAxisAdapter() {
-		if (objectTreeItemAxisItemProvider == null) {
-			objectTreeItemAxisItemProvider = new ObjectTreeItemAxisItemProvider(this);
-		}
-
-		return objectTreeItemAxisItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureIdAxisItemProvider featureIdAxisItemProvider;
@@ -222,7 +160,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,7 +175,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureIdTreeItemAxisItemProvider featureIdTreeItemAxisItemProvider;
@@ -247,7 +183,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,7 +198,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EStructuralFeatureAxisItemProvider eStructuralFeatureAxisItemProvider;
@@ -272,7 +206,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,10 +218,32 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EOperationAxisItemProvider eOperationAxisItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEOperationAxisAdapter() {
+		if (eOperationAxisItemProvider == null) {
+			eOperationAxisItemProvider = new EOperationAxisItemProvider(this);
+		}
+
+		return eOperationAxisItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EStructuralFeatureTreeItemAxisItemProvider eStructuralFeatureTreeItemAxisItemProvider;
@@ -297,7 +252,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -310,10 +264,32 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationTreeItemAxis} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EOperationTreeItemAxisItemProvider eOperationTreeItemAxisItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationTreeItemAxis}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEOperationTreeItemAxisAdapter() {
+		if (eOperationTreeItemAxisItemProvider == null) {
+			eOperationTreeItemAxisItemProvider = new EOperationTreeItemAxisItemProvider(this);
+		}
+
+		return eOperationTreeItemAxisItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ObjectIdAxisItemProvider objectIdAxisItemProvider;
@@ -322,7 +298,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,7 +313,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ObjectIdTreeItemAxisItemProvider objectIdTreeItemAxisItemProvider;
@@ -347,7 +321,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -363,7 +336,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AxisGroupItemProvider axisGroupItemProvider;
@@ -372,7 +344,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -388,7 +359,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -400,7 +370,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -411,7 +380,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -423,7 +391,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -434,14 +401,13 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -453,7 +419,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -465,7 +430,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -477,7 +441,6 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -490,38 +453,25 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void dispose() {
-		if (idTreeItemAxisItemProvider != null)
-			idTreeItemAxisItemProvider.dispose();
-		if (eObjectAxisItemProvider != null)
-			eObjectAxisItemProvider.dispose();
-		if (eObjectTreeItemAxisItemProvider != null)
-			eObjectTreeItemAxisItemProvider.dispose();
-		if (featureTreeItemAxisItemProvider != null)
-			featureTreeItemAxisItemProvider.dispose();
-		if (objectTreeItemAxisItemProvider != null)
-			objectTreeItemAxisItemProvider.dispose();
-		if (featureIdAxisItemProvider != null)
-			featureIdAxisItemProvider.dispose();
-		if (featureIdTreeItemAxisItemProvider != null)
-			featureIdTreeItemAxisItemProvider.dispose();
-		if (eStructuralFeatureAxisItemProvider != null)
-			eStructuralFeatureAxisItemProvider.dispose();
-		if (eStructuralFeatureTreeItemAxisItemProvider != null)
-			eStructuralFeatureTreeItemAxisItemProvider.dispose();
-		if (objectIdAxisItemProvider != null)
-			objectIdAxisItemProvider.dispose();
-		if (objectIdTreeItemAxisItemProvider != null)
-			objectIdTreeItemAxisItemProvider.dispose();
-		if (axisGroupItemProvider != null)
-			axisGroupItemProvider.dispose();
+		if (idTreeItemAxisItemProvider != null) idTreeItemAxisItemProvider.dispose();
+		if (eObjectAxisItemProvider != null) eObjectAxisItemProvider.dispose();
+		if (eObjectTreeItemAxisItemProvider != null) eObjectTreeItemAxisItemProvider.dispose();
+		if (featureIdAxisItemProvider != null) featureIdAxisItemProvider.dispose();
+		if (featureIdTreeItemAxisItemProvider != null) featureIdTreeItemAxisItemProvider.dispose();
+		if (eStructuralFeatureAxisItemProvider != null) eStructuralFeatureAxisItemProvider.dispose();
+		if (eOperationAxisItemProvider != null) eOperationAxisItemProvider.dispose();
+		if (eStructuralFeatureTreeItemAxisItemProvider != null) eStructuralFeatureTreeItemAxisItemProvider.dispose();
+		if (eOperationTreeItemAxisItemProvider != null) eOperationTreeItemAxisItemProvider.dispose();
+		if (objectIdAxisItemProvider != null) objectIdAxisItemProvider.dispose();
+		if (objectIdTreeItemAxisItemProvider != null) objectIdTreeItemAxisItemProvider.dispose();
+		if (axisGroupItemProvider != null) axisGroupItemProvider.dispose();
 	}
 
 }

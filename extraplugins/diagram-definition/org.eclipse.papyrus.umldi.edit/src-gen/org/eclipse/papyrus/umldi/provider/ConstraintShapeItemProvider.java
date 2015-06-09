@@ -16,19 +16,22 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.papyrus.umldi.ConstraintShape;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.ConstraintShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class ConstraintShapeItemProvider extends ElementWithBodyShapeItemProvider {
+public class ConstraintShapeItemProvider extends ElementShapeItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ConstraintShapeItemProvider(AdapterFactory adapterFactory) {
@@ -39,13 +42,13 @@ public class ConstraintShapeItemProvider extends ElementWithBodyShapeItemProvide
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +57,7 @@ public class ConstraintShapeItemProvider extends ElementWithBodyShapeItemProvide
 	 * This returns ConstraintShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,11 +69,13 @@ public class ConstraintShapeItemProvider extends ElementWithBodyShapeItemProvide
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ConstraintShape_type");
+		ConstraintShape constraintShape = (ConstraintShape)object;
+		return getString("_UI_ConstraintShape_type") + " " + constraintShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class ConstraintShapeItemProvider extends ElementWithBodyShapeItemProvide
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +97,7 @@ public class ConstraintShapeItemProvider extends ElementWithBodyShapeItemProvide
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

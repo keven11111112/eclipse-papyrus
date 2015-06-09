@@ -17,6 +17,7 @@ import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
 import org.eclipse.papyrus.qompass.designer.ui.dialogs.ContainerDialog;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -60,7 +61,7 @@ public class SelectContainerHandler extends CmdHandler {
 		}
 
 		NamedElement ne = (NamedElement) selectedEObject;
-		final Shell shell = new Shell();
+		final Shell shell = Display.getDefault().getActiveShell();
 
 		if (ne instanceof Property) {
 			// treat property as the associated type

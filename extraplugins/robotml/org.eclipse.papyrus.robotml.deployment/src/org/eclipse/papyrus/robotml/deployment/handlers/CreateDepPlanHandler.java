@@ -46,7 +46,7 @@ public class CreateDepPlanHandler extends CmdHandler {
 	public boolean isEnabled() {
 		updateSelectedEObject();
 		EObject selectedObj = getSelectedEObject();
-		if ((selectedObj instanceof Class) && Utils.isCompImpl((Class) selectedObj) && isEnvironment((Class) selectedObj)) {
+		if (selectedObj instanceof Class  && isEnvironment((Class) selectedObj)) {
 			return true;
 		}
 		return false;

@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.AttributeCompartment} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AttributeCompartmentItemProvider extends ListCompartmentItemProvider {
@@ -29,6 +30,7 @@ public class AttributeCompartmentItemProvider extends ListCompartmentItemProvide
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AttributeCompartmentItemProvider(AdapterFactory adapterFactory) {
@@ -39,13 +41,13 @@ public class AttributeCompartmentItemProvider extends ListCompartmentItemProvide
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +56,7 @@ public class AttributeCompartmentItemProvider extends ListCompartmentItemProvide
 	 * This returns AttributeCompartment.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +68,7 @@ public class AttributeCompartmentItemProvider extends ListCompartmentItemProvide
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,6 +81,7 @@ public class AttributeCompartmentItemProvider extends ListCompartmentItemProvide
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +95,7 @@ public class AttributeCompartmentItemProvider extends ListCompartmentItemProvide
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

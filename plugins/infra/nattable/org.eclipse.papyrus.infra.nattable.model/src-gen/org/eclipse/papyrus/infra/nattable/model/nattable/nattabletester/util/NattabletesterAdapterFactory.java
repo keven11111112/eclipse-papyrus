@@ -27,7 +27,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Nattable
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage
  * @generated
  */
@@ -37,7 +36,6 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected static NattabletesterPackage modelPackage;
@@ -46,11 +44,10 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattabletesterAdapterFactory() {
-		if(modelPackage == null) {
+		if (modelPackage == null) {
 			modelPackage = NattabletesterPackage.eINSTANCE;
 		}
 	}
@@ -60,16 +57,15 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if(object instanceof EObject) {
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -79,44 +75,36 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected NattabletesterSwitch<Adapter> modelSwitch = new NattabletesterSwitch<Adapter>() {
-
-		@Override
-		public Adapter caseAbstractTableTester(AbstractTableTester object) {
-			return createAbstractTableTesterAdapter();
-		}
-
-		@Override
-		public Adapter caseJavaTableTester(JavaTableTester object) {
-			return createJavaTableTesterAdapter();
-		}
-
-		@Override
-		public Adapter caseEModelElement(EModelElement object) {
-			return createEModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseStyledElement(StyledElement object) {
-			return createStyledElementAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseAbstractTableTester(AbstractTableTester object) {
+				return createAbstractTableTesterAdapter();
+			}
+			@Override
+			public Adapter caseJavaTableTester(JavaTableTester object) {
+				return createJavaTableTesterAdapter();
+			}
+			@Override
+			public Adapter caseEModelElement(EModelElement object) {
+				return createEModelElementAdapter();
+			}
+			@Override
+			public Adapter caseStyledElement(StyledElement object) {
+				return createStyledElementAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param target
-	 *        the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -126,13 +114,11 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester
-	 * <em>Abstract Table Tester</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester <em>Abstract Table Tester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester
 	 * @generated
@@ -142,13 +128,11 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester
-	 * <em>Java Table Tester</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester <em>Java Table Tester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester
 	 * @generated
@@ -163,7 +147,6 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.ecore.EModelElement
 	 * @generated
@@ -173,13 +156,11 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
-	 * <em>Styled Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement <em>Styled Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
 	 * @generated
@@ -193,7 +174,6 @@ public class NattabletesterAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @generated
 	 */

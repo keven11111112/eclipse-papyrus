@@ -139,9 +139,9 @@ Projects can be shared between workspaces by using project import and export, wh
 
 {|
 |
-[[Image:images/images/ImportWiz.bmp|center|thumb|420px|Figure 9: Import wizard]]    
+[[Image:images/ImportWiz.bmp|center|thumb|420px|Figure 9: Import wizard]]    
 |
-[[Image:images/images/ExportWiz.bmp|center|thumb|538px|Figure 10: Export wizard]]
+[[Image:images/ExportWiz.bmp|center|thumb|538px|Figure 10: Export wizard]]
 |}
 
 When importing a project into the used workspace, it can be copied by checking the box ''Copy ...'' in the import wizard. If this check box is unchecked, there will just be a reference to the other workspace and when editing that project, it will be edited in its original place. Be aware of that when doing so, several instances of Eclipse may edit the same resource.

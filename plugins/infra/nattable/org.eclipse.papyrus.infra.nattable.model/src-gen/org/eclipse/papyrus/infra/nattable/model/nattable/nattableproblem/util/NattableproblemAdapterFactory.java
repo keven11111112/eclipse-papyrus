@@ -28,7 +28,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemPackage
  * @generated
  */
@@ -38,7 +37,6 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected static NattableproblemPackage modelPackage;
@@ -47,11 +45,10 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattableproblemAdapterFactory() {
-		if(modelPackage == null) {
+		if (modelPackage == null) {
 			modelPackage = NattableproblemPackage.eINSTANCE;
 		}
 	}
@@ -61,16 +58,15 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if(object instanceof EObject) {
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -80,49 +76,40 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected NattableproblemSwitch<Adapter> modelSwitch = new NattableproblemSwitch<Adapter>() {
-
-		@Override
-		public Adapter caseProblem(Problem object) {
-			return createProblemAdapter();
-		}
-
-		@Override
-		public Adapter caseStringResolutionProblem(StringResolutionProblem object) {
-			return createStringResolutionProblemAdapter();
-		}
-
-		@Override
-		public Adapter caseEModelElement(EModelElement object) {
-			return createEModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseStyledElement(StyledElement object) {
-			return createStyledElementAdapter();
-		}
-
-		@Override
-		public Adapter caseTableNamedElement(TableNamedElement object) {
-			return createTableNamedElementAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseProblem(Problem object) {
+				return createProblemAdapter();
+			}
+			@Override
+			public Adapter caseStringResolutionProblem(StringResolutionProblem object) {
+				return createStringResolutionProblemAdapter();
+			}
+			@Override
+			public Adapter caseEModelElement(EModelElement object) {
+				return createEModelElementAdapter();
+			}
+			@Override
+			public Adapter caseStyledElement(StyledElement object) {
+				return createStyledElementAdapter();
+			}
+			@Override
+			public Adapter caseTableNamedElement(TableNamedElement object) {
+				return createTableNamedElementAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param target
-	 *        the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -132,13 +119,11 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem
-	 * <em>Problem</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem <em>Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem
 	 * @generated
@@ -148,13 +133,11 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem
-	 * <em>String Resolution Problem</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem <em>String Resolution Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem
 	 * @generated
@@ -169,7 +152,6 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.ecore.EModelElement
 	 * @generated
@@ -179,13 +161,11 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
-	 * <em>Styled Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement <em>Styled Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
 	 * @generated
@@ -195,13 +175,11 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement
-	 * <em>Table Named Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement <em>Table Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement
 	 * @generated
@@ -215,7 +193,6 @@ public class NattableproblemAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @generated
 	 */

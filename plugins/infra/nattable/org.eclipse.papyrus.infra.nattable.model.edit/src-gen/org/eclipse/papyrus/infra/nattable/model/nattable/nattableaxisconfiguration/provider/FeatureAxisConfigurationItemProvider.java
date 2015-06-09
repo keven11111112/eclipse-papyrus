@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvider {
@@ -40,7 +39,6 @@ public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvi
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeatureAxisConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +49,6 @@ public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvi
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,30 +65,28 @@ public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvi
 	 * This adds a property descriptor for the Show Only Common Feature feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addShowOnlyCommonFeaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_FeatureAxisConfiguration_showOnlyCommonFeature_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_FeatureAxisConfiguration_showOnlyCommonFeature_feature", "_UI_FeatureAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableaxisconfigurationPackage.Literals.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FeatureAxisConfiguration_showOnlyCommonFeature_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureAxisConfiguration_showOnlyCommonFeature_feature", "_UI_FeatureAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns FeatureAxisConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,12 +98,11 @@ public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		FeatureAxisConfiguration featureAxisConfiguration = (FeatureAxisConfiguration) object;
+		FeatureAxisConfiguration featureAxisConfiguration = (FeatureAxisConfiguration)object;
 		return getString("_UI_FeatureAxisConfiguration_type") + " " + featureAxisConfiguration.isShowOnlyCommonFeature(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -118,7 +112,6 @@ public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvi
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,9 +119,9 @@ public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureAxisConfiguration.class)) {
-		case NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -138,7 +131,6 @@ public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvi
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,7 +142,6 @@ public class FeatureAxisConfigurationItemProvider extends StyledElementItemProvi
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

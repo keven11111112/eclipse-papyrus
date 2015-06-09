@@ -25,7 +25,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -46,8 +45,8 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.progress.UIJob;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 public class ExportAllDiagrams {
@@ -78,9 +77,9 @@ public class ExportAllDiagrams {
 			}
 
 		};
-		Job job = new Job(Messages.ExportAllDiagrams_0) {
+		UIJob job = new UIJob(Messages.ExportAllDiagrams_0) {
 			@Override
-			public IStatus run(IProgressMonitor monitor) {
+			public IStatus runInUIThread(IProgressMonitor monitor) {
 				try {
 					op.run(monitor);
 				} catch (InvocationTargetException e) {
@@ -107,22 +106,26 @@ public class ExportAllDiagrams {
 				modelSet.loadModels(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
 				registry.startRegistry();
 			} catch (Exception e) {
-				/*ignore exceptions since some services may not have been started */
+				/* ignore exceptions since some services may not have been started */
 			}
-			TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
-			List<Diagram> diagrams = new ArrayList<Diagram>();
-			if (newMonitor.isCanceled()) {
+
+			if (modelSet == null)
 				return;
-			}
+			if (newMonitor.isCanceled())
+				return;
+
+			List<Diagram> diagrams = new ArrayList<Diagram>();
+			TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
 			for (Iterator<Notifier> i = modelSet.getAllContents(); i.hasNext();) {
 				Notifier n = i.next();
 				if (n instanceof Diagram) {
 					diagrams.add((Diagram) n);
 				}
 			}
-			if (newMonitor.isCanceled()) {
+
+			if (newMonitor.isCanceled())
 				return;
-			}
+
 			newMonitor.worked(2);
 			export(new SubProgressMonitor(newMonitor, 8), diagrams);
 			unload(modelSet);
@@ -130,7 +133,7 @@ public class ExportAllDiagrams {
 		}
 		newMonitor.done();
 	}
-	
+
 	private void unload(ResourceSet resourceSet) {
 		for (Resource next : resourceSet.getResources()) {
 			next.unload();
@@ -148,11 +151,7 @@ public class ExportAllDiagrams {
 			Activator.getDefault().getLog().log(status);
 			StatusManager.getManager().handle(status, StatusManager.BLOCK);
 		} else {
-			Display.getDefault().syncExec(new Runnable() {
-				public void run() {
-					MessageDialog.openInformation(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_5, Messages.ExportAllDiagrams_5);
-				}
-			});
+			MessageDialog.openInformation(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_5, Messages.ExportAllDiagrams_5);
 		}
 
 	}
@@ -175,11 +174,7 @@ public class ExportAllDiagrams {
 		final TransformationExecutor executor = new TransformationExecutor(transformationURI);
 
 		final ExecutionDiagnostic result[] = new ExecutionDiagnostic[1];
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				result[0] = executor.execute(context, input, output);
-			}
-		});
+		result[0] = executor.execute(context, input, output);
 
 		if (result[0] != null && result[0].getSeverity() != Diagnostic.OK)
 			return BasicDiagnostic.toIStatus(result[0]);

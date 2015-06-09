@@ -8,7 +8,7 @@
             file="resource/RoboCab.uml"
             id="org.eclipse.papyrus.templaterepository.ModelWithChallenge1BasicArchitecture"
             language="robotML"
-            name="A RobotML Model with Challenge1 basic architecture"
+            name="A RobotML Model with RoboCab basic architecture"
             notation_file="resource/RoboCab.notation"
             >
       </template>
@@ -17,7 +17,7 @@
             file="resource/YouthChallenge.uml"
             id="org.eclipse.papyrus.templaterepository.ModelWithChallenge1BasicArchitecture"
             language="robotML"
-            name="A RobotML Model with YouthChallenge basic architecture"
+            name="A RobotML Model with Wifibot basic architecture"
             notation_file="resource/YouthChallenge.notation"
             >
       </template>

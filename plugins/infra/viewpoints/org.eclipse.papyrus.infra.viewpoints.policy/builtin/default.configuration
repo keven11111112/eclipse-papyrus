@@ -64,13 +64,13 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
       </owningRules>
       <owningRules xmi:id="_7wMNo9xhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wMNpNxhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
         </newModelPath>
       </owningRules>
       <owningRules xmi:id="_7wMNpdxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wMNptxhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
         </newModelPath>
@@ -100,13 +100,13 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
       </owningRules>
       <owningRules xmi:id="_7wMNsdxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wMNstxhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
         </newModelPath>
       </owningRules>
       <owningRules xmi:id="_7wMNs9xhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wMNtNxhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
         </newModelPath>
@@ -180,27 +180,15 @@
     </modelKinds>
     <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wMNztxhEeOqHvRyiN87hA" implementationID="CompositeStructure" categories="_7wNb4txhEeOqHvRyiN87hA">
       <modelRules xmi:id="_7wMNz9xhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuredClassifier"/>
       </modelRules>
       <owningRules xmi:id="_7wMN0NxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuredClassifier"/>
       </owningRules>
       <owningRules xmi:id="_7wMN0dxhEeOqHvRyiN87hA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
       <childRules xmi:id="_7wMN0txhEeOqHvRyiN87hA"/>
-    </modelKinds>
-    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wMN09xhEeOqHvRyiN87hA" implementationID="CompositeStructure" categories="_7wNb4txhEeOqHvRyiN87hA">
-      <modelRules xmi:id="_7wMN1NxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Collaboration"/>
-      </modelRules>
-      <owningRules xmi:id="_7wMN1dxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Collaboration"/>
-      </owningRules>
-      <owningRules xmi:id="_7wMN1txhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-      </owningRules>
-      <childRules xmi:id="_7wMN19xhEeOqHvRyiN87hA"/>
     </modelKinds>
     <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wMN2NxhEeOqHvRyiN87hA" implementationID="PapyrusUMLDeploymentDiagram" categories="_7wNb4txhEeOqHvRyiN87hA">
       <modelRules xmi:id="_7wMN2dxhEeOqHvRyiN87hA">
@@ -235,13 +223,13 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
       </owningRules>
       <owningRules xmi:id="_7wM0utxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wM0u9xhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
         </newModelPath>
       </owningRules>
       <owningRules xmi:id="_7wM0vNxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wM0vdxhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.Interaction">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
         </newModelPath>
@@ -268,13 +256,13 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
       </owningRules>
       <owningRules xmi:id="_7wM0xNxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wM0xdxhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.StateMachine">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
         </newModelPath>
       </owningRules>
       <owningRules xmi:id="_7wM0xtxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wM0x9xhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.StateMachine">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
         </newModelPath>
@@ -325,13 +313,13 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
       </owningRules>
       <owningRules xmi:id="_7wM01txhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wM019xhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
         </newModelPath>
       </owningRules>
       <owningRules xmi:id="_7wM02NxhEeOqHvRyiN87hA">
-        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
         <newModelPath xmi:id="_7wM02dxhEeOqHvRyiN87hA" creationType="org.eclipse.papyrus.uml.Activity">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
         </newModelPath>

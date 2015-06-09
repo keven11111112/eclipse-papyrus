@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ControlFlowEdgeImpl extends ActivityEdgeEdgeImpl implements ControlFlowEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ControlFlowEdgeImpl() {
@@ -36,11 +38,11 @@ public class ControlFlowEdgeImpl extends ActivityEdgeEdgeImpl implements Control
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.CONTROL_FLOW_EDGE;
 	}
-
 } //ControlFlowEdgeImpl

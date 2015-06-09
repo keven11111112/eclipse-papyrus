@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
+import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -44,10 +45,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  */
 public class ResolvedProblemHandler extends AbstractTableHandler {
 
-	/**
-	 * the problem to destroy
-	 */
-	private Problem problemToDestroy;
+
 
 	/**
 	 *
@@ -60,6 +58,8 @@ public class ResolvedProblemHandler extends AbstractTableHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final TransactionalEditingDomain domain = getTableEditingDomain();
+		
+		Problem problemToDestroy = getProblemToDestroy(event);
 		DestroyElementRequest request = new DestroyElementRequest(domain, problemToDestroy, false);
 		final Cell cell = (Cell) problemToDestroy.eContainer();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cell);
@@ -115,7 +115,19 @@ public class ResolvedProblemHandler extends AbstractTableHandler {
 	@Override
 	public void setEnabled(Object evaluationContext) {
 		super.setEnabled(evaluationContext);
-		problemToDestroy = null;
+		if (isEnabled()) {
+			setBaseEnabled(getProblemToDestroy(evaluationContext) != null);
+		}
+	}
+
+	/**
+	 * 
+	 * @param evaluationContextOrExecutionEvent
+	 * an evaluation context (coming from setEnable(Object evaluationContext) or an ExecutionEvent (coming from execute(ExecutionEvent e)
+	 * @return
+	 */
+	private Problem getProblemToDestroy(Object evaluationContextOrExecutionEvent) {
+		TableSelectionWrapper wrapper = getTableSelectionWrapper(evaluationContextOrExecutionEvent);
 		if (isEnabled() && wrapper != null) {
 			Collection<PositionCoordinate> selectionCells = wrapper.getSelectedCells();
 			if (selectionCells.size() == 1) {
@@ -135,12 +147,12 @@ public class ResolvedProblemHandler extends AbstractTableHandler {
 				if (cell != null) {
 					final Collection<Problem> problems = cell.getProblems();
 					if (problems.size() == 1) {
-						problemToDestroy = problems.iterator().next();
+						return problems.iterator().next();
 					}
 				}
 			}
 		}
-		setBaseEnabled(problemToDestroy != null);
+		return null;
 	}
 
 }

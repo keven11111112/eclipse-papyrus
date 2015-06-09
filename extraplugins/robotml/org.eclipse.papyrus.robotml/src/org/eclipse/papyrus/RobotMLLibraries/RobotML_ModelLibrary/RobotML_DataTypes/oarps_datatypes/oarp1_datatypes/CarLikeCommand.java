@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.CarLikeCommand#getVelocity <em>Velocity</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.CarLikeCommand#getSteeringAngle <em>Steering Angle</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.CarLikeCommand#getVelocity <em>Velocity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.CarLikeCommand#getSteeringAngle <em>Steering Angle</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,26 +30,23 @@ public interface CarLikeCommand extends EObject {
 	 * If the meaning of the '<em>Velocity</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Velocity</em>' attribute.
-	 * @see #setVelocity(double)
+	 * @see #setVelocity(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage#getCarLikeCommand_Velocity()
 	 * @model default="0" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getVelocity();
+	Object getVelocity();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.CarLikeCommand#getVelocity <em>Velocity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Velocity</em>' attribute.
+	 * @param value the new value of the '<em>Velocity</em>' attribute.
 	 * @see #getVelocity()
 	 * @generated
 	 */
-	void setVelocity(double value);
+	void setVelocity(Object value);
 
 	/**
 	 * Returns the value of the '<em><b>Steering Angle</b></em>' attribute.
@@ -59,25 +56,22 @@ public interface CarLikeCommand extends EObject {
 	 * If the meaning of the '<em>Steering Angle</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Steering Angle</em>' attribute.
-	 * @see #setSteeringAngle(double)
+	 * @see #setSteeringAngle(Float64)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage#getCarLikeCommand_SteeringAngle()
 	 * @model default="0" dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float64" required="true" ordered="false"
 	 * @generated
 	 */
-	double getSteeringAngle();
+	Object getSteeringAngle();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.CarLikeCommand#getSteeringAngle <em>Steering Angle</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Steering Angle</em>' attribute.
+	 * @param value the new value of the '<em>Steering Angle</em>' attribute.
 	 * @see #getSteeringAngle()
 	 * @generated
 	 */
-	void setSteeringAngle(double value);
+	void setSteeringAngle(Object value);
 
 } // CarLikeCommand

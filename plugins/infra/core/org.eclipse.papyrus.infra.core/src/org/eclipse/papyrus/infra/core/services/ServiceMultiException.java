@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 LIFL and others.
+ * Copyright (c) 2011, 2015 LIFL, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 468030
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services;
@@ -149,4 +150,21 @@ public class ServiceMultiException extends ServiceException {
 		serviceIdentifiers.addAll(serviceIdentifiers);
 	}
 
+	@Override
+	public ServiceException chain(Throwable next) {
+		if (next instanceof ServiceMultiException) {
+			addAll((ServiceMultiException) next);
+		} else if (next != null) {
+			addException(next);
+		}
+		return this;
+	}
+
+	@Override
+	public ServiceException chain(String identifier, Throwable next) {
+		if (next != null) {
+			addException(identifier, next);
+		}
+		return this;
+	}
 }

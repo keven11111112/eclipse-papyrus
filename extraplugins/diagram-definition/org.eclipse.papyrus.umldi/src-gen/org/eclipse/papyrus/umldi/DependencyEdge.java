@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Dependency Edge</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.DependencyEdge#getRoleLabel <em>Role Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.DependencyEdge#getRoleLabel <em>Role Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getDependencyEdge()
@@ -29,6 +28,7 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface DependencyEdge extends ElementEdge {
+
 	/**
 	 * Returns the value of the '<em><b>Role Label</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.RoleLabel#getRoleBindingEdge <em>Role Binding Edge</em>}'.
@@ -36,14 +36,14 @@ public interface DependencyEdge extends ElementEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Role Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Role Label</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Role Label</em>' containment reference.
 	 * @see #setRoleLabel(RoleLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getDependencyEdge_RoleLabel()
@@ -57,10 +57,11 @@ public interface DependencyEdge extends ElementEdge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.DependencyEdge#getRoleLabel <em>Role Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Role Label</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Role Label</em>' containment reference.
 	 * @see #getRoleLabel()
 	 * @generated
 	 */
 	void setRoleLabel(RoleLabel value);
-
 } // DependencyEdge

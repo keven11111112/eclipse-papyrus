@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ActivityDiagramImpl extends BehaviorDiagramImpl implements ActivityDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActivityDiagramImpl() {
@@ -36,11 +38,11 @@ public class ActivityDiagramImpl extends BehaviorDiagramImpl implements Activity
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ACTIVITY_DIAGRAM;
 	}
-
 } //ActivityDiagramImpl

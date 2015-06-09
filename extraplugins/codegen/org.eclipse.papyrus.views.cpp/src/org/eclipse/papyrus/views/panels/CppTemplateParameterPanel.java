@@ -25,7 +25,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Panel displayed when a TemplateParameter is selected
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CppTemplateParameterPanel extends CppAbstractPanel {
 
 	private TemplateParameter selectedTP;

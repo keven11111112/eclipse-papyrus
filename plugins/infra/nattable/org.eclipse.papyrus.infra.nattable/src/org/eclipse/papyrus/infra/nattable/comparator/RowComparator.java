@@ -29,6 +29,9 @@ import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementW
  */
 public class RowComparator extends AbstractAxisComparator {
 
+	private LabelProviderCellContextElementWrapper wrapper1;
+
+	private LabelProviderCellContextElementWrapper wrapper2;
 
 	/**
 	 *
@@ -43,6 +46,10 @@ public class RowComparator extends AbstractAxisComparator {
 	 */
 	public RowComparator(final Object selectedColumn, final SortDirectionEnum direction, final INattableModelManager tableManager) {
 		super(selectedColumn, direction, tableManager);
+		wrapper1 = new LabelProviderCellContextElementWrapper();
+		wrapper2 = new LabelProviderCellContextElementWrapper();
+		wrapper1.setConfigRegistry(configRegistry);
+		wrapper2.setConfigRegistry(configRegistry);
 	}
 
 	/**
@@ -64,9 +71,10 @@ public class RowComparator extends AbstractAxisComparator {
 		final ILayerCell cell_O1 = stack.getSelectionLayer().getCellByPosition(columnIndex, index_01);
 		final ILayerCell cell_O2 = stack.getSelectionLayer().getCellByPosition(columnIndex, index_02);
 
-		final LabelProviderCellContextElementWrapper wrapper1 = new LabelProviderCellContextElementWrapper(cell_O1, this.configRegistry);
-		final LabelProviderCellContextElementWrapper wrapper2 = new LabelProviderCellContextElementWrapper(cell_O2, this.configRegistry);
-
+		wrapper1.setCell(cell_O1);
+		wrapper1.setObject(cell_O1.getDataValue());
+		wrapper2.setCell(cell_O2);
+		wrapper2.setObject(cell_O2.getDataValue());
 		final String txt1 = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT).getText(wrapper1);
 		final String txt2 = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT).getText(wrapper2);
 		final int res;

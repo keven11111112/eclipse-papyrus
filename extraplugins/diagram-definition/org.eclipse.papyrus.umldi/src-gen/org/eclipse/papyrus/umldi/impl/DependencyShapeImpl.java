@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class DependencyShapeImpl extends ElementShapeImpl implements DependencyShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DependencyShapeImpl() {
@@ -36,11 +38,11 @@ public class DependencyShapeImpl extends ElementShapeImpl implements DependencyS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DEPENDENCY_SHAPE;
 	}
-
 } //DependencyShapeImpl

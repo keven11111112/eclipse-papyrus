@@ -28,6 +28,12 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.tools.comparator.CompositeComparator;
 
 
+/**
+ * @Deprecated since Eclipse Mars
+ *  @author VL222926
+ *
+ */
+@Deprecated
 public class ColumnSortModel implements IPapyrusSortModel {
 
 
@@ -247,4 +253,15 @@ public class ColumnSortModel implements IPapyrusSortModel {
 		return null;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel#setTableInverted(boolean)
+	 *
+	 * @param isInverted
+	 */
+	@Override
+	public void setTableInverted(boolean isInverted) {
+		// TODO Auto-generated method stub
+		
+	}
 }
+

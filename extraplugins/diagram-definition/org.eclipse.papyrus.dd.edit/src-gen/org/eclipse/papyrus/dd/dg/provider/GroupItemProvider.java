@@ -28,6 +28,7 @@ import org.eclipse.papyrus.dd.dg.Group;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Group} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class GroupItemProvider extends GraphicalElementItemProvider {
@@ -50,9 +51,8 @@ public class GroupItemProvider extends GraphicalElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 			addLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -62,22 +62,11 @@ public class GroupItemProvider extends GraphicalElementItemProvider {
 	 * This adds a property descriptor for the Layout feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLayoutPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Group_layout_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Group_layout_feature", "_UI_Group_type"),
-				 DGPackage.Literals.GROUP__LAYOUT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Group_layout_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Group_layout_feature", "_UI_Group_type"), DGPackage.Literals.GROUP__LAYOUT, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -85,11 +74,12 @@ public class GroupItemProvider extends GraphicalElementItemProvider {
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DGPackage.Literals.GROUP__MEMBER);
 		}
@@ -98,19 +88,20 @@ public class GroupItemProvider extends GraphicalElementItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
 	/**
 	 * This returns Group.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,19 +127,19 @@ public class GroupItemProvider extends GraphicalElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Group.class)) {
-			case DGPackage.GROUP__LAYOUT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case DGPackage.GROUP__MEMBER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(Group.class)) {
+		case DGPackage.GROUP__LAYOUT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case DGPackage.GROUP__MEMBER:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -163,80 +154,20 @@ public class GroupItemProvider extends GraphicalElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createGroup()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createCanvas()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createClipPath()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createCircle()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createEllipse()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createImage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createLine()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createMarker()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createPath()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createPolygon()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createPolyline()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createRectangle()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createRootCanvas()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createText()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.GROUP__MEMBER,
-				 DGFactory.eINSTANCE.createUse()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createGroup()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createCanvas()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createClipPath()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createCircle()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createEllipse()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createImage()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createLine()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createMarker()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createPath()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createPolygon()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createPolyline()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createRectangle()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createRootCanvas()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createText()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.GROUP__MEMBER, DGFactory.eINSTANCE.createUse()));
 	}
 }

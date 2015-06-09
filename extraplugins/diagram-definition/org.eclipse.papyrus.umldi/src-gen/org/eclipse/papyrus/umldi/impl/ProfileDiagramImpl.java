@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ProfileDiagramImpl extends StructureDiagramImpl implements ProfileDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProfileDiagramImpl() {
@@ -36,11 +38,11 @@ public class ProfileDiagramImpl extends StructureDiagramImpl implements ProfileD
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.PROFILE_DIAGRAM;
 	}
-
 } //ProfileDiagramImpl

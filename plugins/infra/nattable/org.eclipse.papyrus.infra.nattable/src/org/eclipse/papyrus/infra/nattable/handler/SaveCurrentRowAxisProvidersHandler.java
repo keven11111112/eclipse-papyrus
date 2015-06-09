@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.nattable.handler;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
@@ -64,7 +65,17 @@ public class SaveCurrentRowAxisProvidersHandler extends AbstractSaveCurrentAxisP
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		IAxisManager rowAxisManager = this.getCurrentNattableModelManager().getRowAxisManager();
+		INattableModelManager manager = this.getCurrentNattableModelManager();
+		if (manager == null) {
+			setBaseEnabled(false);
+			return;
+		}
+
+		IAxisManager rowAxisManager = manager.getRowAxisManager();
+		if (rowAxisManager == null) {
+			setBaseEnabled(false);
+			return;
+		}
 		setBaseEnabled(rowAxisManager.canBeSavedAsConfig());
 	}
 

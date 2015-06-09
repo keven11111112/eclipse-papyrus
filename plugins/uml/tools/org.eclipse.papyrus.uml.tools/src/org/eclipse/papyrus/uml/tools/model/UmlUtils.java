@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 LIFL, CEA, and others.
+ * Copyright (c) 2011, 2015 LIFL, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 431618
+ *  Christian W. Damus - bug 467016
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.model;
@@ -17,6 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -30,6 +32,9 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.tools.Activator;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * Set of utility methods linked to Trace for ControlMode
@@ -200,6 +205,36 @@ public class UmlUtils {
 					EObject next = iter.next();
 					if (next instanceof EReference) {
 						result = isSubsetOf((EReference) next, superset);
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Obtains all supersets, including transitive supersets-of-supersets, of the specified {@code subset}.
+	 * 
+	 * @param subset
+	 *            a subset reference
+	 * @return its supersets, or an empty iterable if it is not actually a subset of anything
+	 */
+	public static Iterable<EReference> getSupersets(EReference subset) {
+		List<EReference> result;
+
+		EAnnotation supersets = (subset == null) ? null : subset.getEAnnotation(ANNOTATION_SUBSETS);
+		if (supersets == null) {
+			result = Collections.emptyList();
+		} else {
+			result = Lists.newArrayListWithCapacity(supersets.getReferences().size());
+			for (EObject next : supersets.getReferences()) {
+				if (next instanceof EReference) {
+					EReference superset = (EReference) next;
+					result.add(superset);
+					if (isSubset(superset)) {
+						// Look for transitive supersets
+						Iterables.addAll(result, getSupersets(superset));
 					}
 				}
 			}

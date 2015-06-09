@@ -32,6 +32,7 @@ import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
+import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -73,6 +74,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditP
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.MultilineCellEditorLocator;
+import org.eclipse.papyrus.uml.diagram.common.parser.DefaultParserHintAdapter;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.SWT;
@@ -297,8 +299,10 @@ public class BorderItemNameEditPart extends FloatingLabelEditPart implements ITe
 
 	public IParser getParser() {
 		if(parser == null) {
-			parser = new NamedElementLabelParser();
-					
+			parser =ParserService.getInstance().getParser(new DefaultParserHintAdapter(getNotationView().getDiagram(), resolveSemanticElement(), getNotationView().getType()));
+			if(parser == null) {
+				parser = new NamedElementLabelParser();
+			}
 		}
 		return parser;
 	}

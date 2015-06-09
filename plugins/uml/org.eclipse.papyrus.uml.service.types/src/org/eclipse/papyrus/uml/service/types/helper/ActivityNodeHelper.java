@@ -14,16 +14,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InterruptibleActivityRegion;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -40,6 +48,10 @@ public class ActivityNodeHelper extends ElementEditHelper {
 	public static final String IN_PARTITION = "IN_PARTITION"; //$NON-NLS-1$
 
 	public static final String IN_INTERRUPTIBLE_ACTIVITY_REGION = "IN_INTERRUPTIBLE_ACTIVITY_REGION"; //$NON-NLS-1$
+
+	public static final String OUT_FROM_PARTITION = "OUT_FROM_PARTITION";
+
+	public static final String OUT_FROM_INTERRUPTIBLE_REGION = "OUT_FROM_REGION";
 
 	@Override
 	protected ICommand getBasicDestroyElementCommand(DestroyElementRequest req) {
@@ -89,5 +101,45 @@ public class ActivityNodeHelper extends ElementEditHelper {
 
 			super.tearDownIncomingReferences(destructee);
 		}
+	}
+
+	public static ICommand getMoveOutFromPartitionCommand(MoveRequest req) {
+		if (req.getParameter(OUT_FROM_PARTITION) != null) {
+			CompositeCommand cc = new CompositeCommand("Move Out From Parition");//$NON-NLS-1$
+			ActivityPartition outFromPartition = (ActivityPartition) req.getParameter(OUT_FROM_PARTITION);
+			for (Object elementToMove : req.getElementsToMove().keySet()) {
+				if (false == elementToMove instanceof ActivityNode) {
+					continue;
+				}
+				ActivityNode node = (ActivityNode) elementToMove;
+				List<ActivityPartition> inPartitions = new LinkedList<ActivityPartition>(node.getInPartitions());
+				if (inPartitions.contains(outFromPartition)) {
+					inPartitions.remove(outFromPartition);
+					cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InPartition(), inPartitions)));
+				}
+			}
+			return cc.isEmpty() ? null : cc.reduce();
+		}
+		return null;
+	}
+
+	public static ICommand getMoveOutFromInterruptibleActivityRegionCommand(MoveRequest req) {
+		if (req.getParameter(OUT_FROM_INTERRUPTIBLE_REGION) != null) {
+			CompositeCommand cc = new CompositeCommand("Move Out From InterruptibleActivityRegion");//$NON-NLS-1$
+			InterruptibleActivityRegion outFromRegion = (InterruptibleActivityRegion) req.getParameter(OUT_FROM_INTERRUPTIBLE_REGION);
+			for (Object elementToMove : req.getElementsToMove().keySet()) {
+				if (false == elementToMove instanceof ActivityNode) {
+					continue;
+				}
+				ActivityNode node = (ActivityNode) elementToMove;
+				List<InterruptibleActivityRegion> inRegion = new LinkedList<InterruptibleActivityRegion>(node.getInInterruptibleRegions());
+				if (inRegion.contains(outFromRegion)) {
+					inRegion.remove(outFromRegion);
+					cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), inRegion)));
+				}
+			}
+			return cc.isEmpty() ? null : cc.reduce();
+		}
+		return null;
 	}
 }

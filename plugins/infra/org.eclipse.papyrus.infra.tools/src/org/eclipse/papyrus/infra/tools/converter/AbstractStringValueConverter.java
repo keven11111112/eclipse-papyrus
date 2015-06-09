@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.tools.Activator;
 import org.eclipse.papyrus.infra.tools.messages.Messages;
 
 /**
- * Abstract class for Stringvakue Container
+ * Abstract class for String value Container
  *
  * @author VL222926
  *
@@ -39,6 +39,8 @@ public abstract class AbstractStringValueConverter implements IStringValueConver
 
 	protected static final String NO_X_REPRESENTED_BY_Y_HAVE_BEEN_FOUND = Messages.AbstractStringValueConverter_NoXReprensentedByYHaveBeenFound;
 
+	private ConvertedValueContainer<?> result;
+
 	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.tools.converter.IStringValueConverter#deduceValueFromString(java.lang.Object, java.lang.String)
@@ -48,12 +50,24 @@ public abstract class AbstractStringValueConverter implements IStringValueConver
 	 * @return
 	 */
 	public final ConvertedValueContainer<?> deduceValueFromString(final Object type, final String valueAsString) {
-		ConvertedValueContainer<?> result = doDeduceValueFromString(type, valueAsString);
+		result = doDeduceValueFromString(type, valueAsString);
 		if (result == null) {
 			final IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind(THE_STRING_VALUE_X_CANT_BE_RESOLVED, valueAsString));
 			result = new ConvertedValueContainer<Object>(null, status);
 		}
 		return result;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the converted value, you should call deduceValueFromString before to call this method
+	 */
+	public final ConvertedValueContainer<?> getConvertedValue() {
+		if (this.result == null) {
+			throw new IllegalStateException("You should call deduceValueFromString before to call this method"); //$NON-NLS-1$
+		}
+		return this.result;
 	}
 
 	/**

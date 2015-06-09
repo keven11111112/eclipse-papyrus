@@ -43,9 +43,29 @@ public class LabelProviderCellContextElementWrapper extends LabelProviderContext
 	 *            the cell for which we want the label/icon, ...
 	 * @param registry
 	 *            the registry used by nattable
+	 * @deprecated since Eclipse Mars, please use setter method
 	 */
+	@Deprecated
 	public LabelProviderCellContextElementWrapper(ILayerCell cell, final IConfigRegistry registry) {
 		this(cell, cell.getDataValue(), registry);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
+	public LabelProviderCellContextElementWrapper() {
+		super();
+	}
+
+	/**
+	 * 
+	 * @param cell
+	 *            the wrapped cell
+	 */
+	public void setCell(ILayerCell cell) {
+		this.cell = cell;
 	}
 
 	/**
@@ -58,7 +78,9 @@ public class LabelProviderCellContextElementWrapper extends LabelProviderContext
 	 *            a value
 	 * @param registry
 	 *            the registry used by nattable
+	 * @deprecated use setter instead of this constructor
 	 */
+	@Deprecated
 	public LabelProviderCellContextElementWrapper(ILayerCell cell, final Object value, final IConfigRegistry registry) {
 		super(value, registry);
 		this.cell = cell;

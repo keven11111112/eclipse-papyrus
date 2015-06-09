@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Definitions#getDefinitions <em>Definition</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Definitions#getStyleSheet <em>Style Sheet</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Definitions#getDefinitions <em>Definition</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Definitions#getStyleSheet <em>Style Sheet</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getDefinitions()
@@ -40,6 +40,7 @@ public interface Definitions extends EObject {
 	 * <!-- begin-model-doc -->
 	 * A set of clip paths that are referenced by graphical elements in the containing canvas.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Definition</em>' containment reference list.
 	 * @see org.eclipse.papyrus.dd.dg.DGPackage#getDefinitions_Definition()
 	 * @model containment="true"
@@ -65,7 +66,9 @@ public interface Definitions extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Definitions#getStyleSheet <em>Style Sheet</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Style Sheet</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Style Sheet</em>' containment reference.
 	 * @see #getStyleSheet()
 	 * @generated
 	 */

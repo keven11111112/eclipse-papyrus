@@ -93,6 +93,8 @@ public class InterruptibleActivityRegionHelper extends ActivityGroupHelper {
 				result.add(new SetValueCommand(new SetRequest(nonContainmentContainer, featureToSetReference, o)));
 			}
 		}
+		result.compose(ActivityNodeHelper.getMoveOutFromPartitionCommand(req));
+		result.compose(ActivityNodeHelper.getMoveOutFromInterruptibleActivityRegionCommand(req));
 		return result;
 	}
 

@@ -71,6 +71,17 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 		}
 
 		EditPart gep = epOperation.getEditPart();
+
+		try {
+			if (ServiceUtilsForEditPart.getInstance().getServiceRegistry(gep) == null) {
+				// Not a Papyrus element
+				return false;
+			}
+		} catch (ServiceException e) {
+			// Not a Papyrus element
+			return false;
+		}
+
 		if (!(gep instanceof AppliedStereotypeMultilinePropertyEditPart)) {
 
 			if (gep instanceof IPrimaryEditPart) {
@@ -81,14 +92,6 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 			}
 			if (gep instanceof NamedElementEditPart) {
 				return true;
-			}
-
-			try {
-				if (ServiceUtilsForEditPart.getInstance().getServiceRegistry(gep) != null) {
-					return true;
-				}
-			} catch (ServiceException e) {
-				e.printStackTrace();
 			}
 		}
 

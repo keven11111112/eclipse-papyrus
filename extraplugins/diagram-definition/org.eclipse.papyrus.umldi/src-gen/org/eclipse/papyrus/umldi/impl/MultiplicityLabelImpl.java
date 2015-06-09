@@ -36,18 +36,20 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.MultiplicityLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.MultiplicityLabelImpl#getPropertyEdge <em>Property Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.MultiplicityLabelImpl#getConnectorEdge <em>Connector Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.MultiplicityLabelImpl#getAssociationEdge <em>Association Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.MultiplicityLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.MultiplicityLabelImpl#getPropertyEdge <em>Property Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.MultiplicityLabelImpl#getConnectorEdge <em>Connector Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.MultiplicityLabelImpl#getAssociationEdge <em>Association Edge</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityLabel {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MultiplicityLabelImpl() {
@@ -57,6 +59,7 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,6 +70,7 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,20 +82,21 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		PropertyEdge propertyEdge = getPropertyEdge();			
-		if (propertyEdge != null) {
+		PropertyEdge propertyEdge = getPropertyEdge();
+		if(propertyEdge != null) {
 			return propertyEdge;
 		}
-		ConnectorEdge connectorEdge = getConnectorEdge();			
-		if (connectorEdge != null) {
+		ConnectorEdge connectorEdge = getConnectorEdge();
+		if(connectorEdge != null) {
 			return connectorEdge;
 		}
-		AssociationEdge associationEdge = getAssociationEdge();			
-		if (associationEdge != null) {
+		AssociationEdge associationEdge = getAssociationEdge();
+		if(associationEdge != null) {
 			return associationEdge;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -100,16 +105,19 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PropertyEdge getPropertyEdge() {
-		if (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE)
+			return null;
 		return (PropertyEdge)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPropertyEdge(PropertyEdge newPropertyEdge, NotificationChain msgs) {
@@ -120,37 +128,41 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPropertyEdge(PropertyEdge newPropertyEdge) {
-		if (newPropertyEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE && newPropertyEdge != null)) {
-			if (EcoreUtil.isAncestor(this, newPropertyEdge))
+		if(newPropertyEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE && newPropertyEdge != null)) {
+			if(EcoreUtil.isAncestor(this, newPropertyEdge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newPropertyEdge != null)
+			if(newPropertyEdge != null)
 				msgs = ((InternalEObject)newPropertyEdge).eInverseAdd(this, UMLDIPackage.PROPERTY_EDGE__MULTIPLICITY_LABEL, PropertyEdge.class, msgs);
 			msgs = basicSetPropertyEdge(newPropertyEdge, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE, newPropertyEdge, newPropertyEdge));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ConnectorEdge getConnectorEdge() {
-		if (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE)
+			return null;
 		return (ConnectorEdge)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetConnectorEdge(ConnectorEdge newConnectorEdge, NotificationChain msgs) {
@@ -161,37 +173,41 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setConnectorEdge(ConnectorEdge newConnectorEdge) {
-		if (newConnectorEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE && newConnectorEdge != null)) {
-			if (EcoreUtil.isAncestor(this, newConnectorEdge))
+		if(newConnectorEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE && newConnectorEdge != null)) {
+			if(EcoreUtil.isAncestor(this, newConnectorEdge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newConnectorEdge != null)
+			if(newConnectorEdge != null)
 				msgs = ((InternalEObject)newConnectorEdge).eInverseAdd(this, UMLDIPackage.CONNECTOR_EDGE__END_MULTIPLICITY_LABEL, ConnectorEdge.class, msgs);
 			msgs = basicSetConnectorEdge(newConnectorEdge, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE, newConnectorEdge, newConnectorEdge));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AssociationEdge getAssociationEdge() {
-		if (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE)
+			return null;
 		return (AssociationEdge)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAssociationEdge(AssociationEdge newAssociationEdge, NotificationChain msgs) {
@@ -202,44 +218,46 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAssociationEdge(AssociationEdge newAssociationEdge) {
-		if (newAssociationEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE && newAssociationEdge != null)) {
-			if (EcoreUtil.isAncestor(this, newAssociationEdge))
+		if(newAssociationEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE && newAssociationEdge != null)) {
+			if(EcoreUtil.isAncestor(this, newAssociationEdge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newAssociationEdge != null)
+			if(newAssociationEdge != null)
 				msgs = ((InternalEObject)newAssociationEdge).eInverseAdd(this, UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL, AssociationEdge.class, msgs);
 			msgs = basicSetAssociationEdge(newAssociationEdge, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE, newAssociationEdge, newAssociationEdge));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPropertyEdge((PropertyEdge)otherEnd, msgs);
-			case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetConnectorEdge((ConnectorEdge)otherEnd, msgs);
-			case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetAssociationEdge((AssociationEdge)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetPropertyEdge((PropertyEdge)otherEnd, msgs);
+		case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetConnectorEdge((ConnectorEdge)otherEnd, msgs);
+		case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetAssociationEdge((AssociationEdge)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -247,17 +265,18 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
-				return basicSetPropertyEdge(null, msgs);
-			case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
-				return basicSetConnectorEdge(null, msgs);
-			case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
-				return basicSetAssociationEdge(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
+			return basicSetPropertyEdge(null, msgs);
+		case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
+			return basicSetConnectorEdge(null, msgs);
+		case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
+			return basicSetAssociationEdge(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -265,17 +284,18 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.PROPERTY_EDGE__MULTIPLICITY_LABEL, PropertyEdge.class, msgs);
-			case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.CONNECTOR_EDGE__END_MULTIPLICITY_LABEL, ConnectorEdge.class, msgs);
-			case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL, AssociationEdge.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.PROPERTY_EDGE__MULTIPLICITY_LABEL, PropertyEdge.class, msgs);
+		case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.CONNECTOR_EDGE__END_MULTIPLICITY_LABEL, ConnectorEdge.class, msgs);
+		case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL, AssociationEdge.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -283,17 +303,18 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
-				return getPropertyEdge();
-			case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
-				return getConnectorEdge();
-			case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
-				return getAssociationEdge();
+		switch(featureID) {
+		case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
+			return getPropertyEdge();
+		case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
+			return getConnectorEdge();
+		case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
+			return getAssociationEdge();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -301,20 +322,21 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
-				setPropertyEdge((PropertyEdge)newValue);
-				return;
-			case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
-				setConnectorEdge((ConnectorEdge)newValue);
-				return;
-			case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
-				setAssociationEdge((AssociationEdge)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
+			setPropertyEdge((PropertyEdge)newValue);
+			return;
+		case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
+			setConnectorEdge((ConnectorEdge)newValue);
+			return;
+		case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
+			setAssociationEdge((AssociationEdge)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -322,20 +344,21 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
-				setPropertyEdge((PropertyEdge)null);
-				return;
-			case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
-				setConnectorEdge((ConnectorEdge)null);
-				return;
-			case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
-				setAssociationEdge((AssociationEdge)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
+			setPropertyEdge((PropertyEdge)null);
+			return;
+		case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
+			setConnectorEdge((ConnectorEdge)null);
+			return;
+		case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
+			setAssociationEdge((AssociationEdge)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -343,19 +366,20 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.MULTIPLICITY_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
-				return getPropertyEdge() != null;
-			case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
-				return getConnectorEdge() != null;
-			case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
-				return getAssociationEdge() != null;
+		switch(featureID) {
+		case UMLDIPackage.MULTIPLICITY_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE:
+			return getPropertyEdge() != null;
+		case UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE:
+			return getConnectorEdge() != null;
+		case UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE:
+			return getAssociationEdge() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -363,14 +387,11 @@ public class MultiplicityLabelImpl extends UmlLabelImpl implements MultiplicityL
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE)
-			|| eIsSet(UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE)
-			|| eIsSet(UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.MULTIPLICITY_LABEL__PROPERTY_EDGE) || eIsSet(UMLDIPackage.MULTIPLICITY_LABEL__CONNECTOR_EDGE) || eIsSet(UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE);
 	}
-
 } //MultiplicityLabelImpl

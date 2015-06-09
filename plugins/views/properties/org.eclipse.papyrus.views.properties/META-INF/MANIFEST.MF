@@ -11,7 +11,10 @@ Export-Package: org.eclipse.papyrus.views.properties,
  org.eclipse.papyrus.views.properties.util,
  org.eclipse.papyrus.views.properties.widgets,
  org.eclipse.papyrus.views.properties.widgets.layout,
- org.eclipse.papyrus.views.properties.xwt
+ org.eclipse.papyrus.views.properties.xwt,
+ org.eclipse.papyrus.views.properties.runtime.preferences,
+ org.eclipse.papyrus.views.properties.runtime.preferences.impl,
+ org.eclipse.papyrus.views.properties.runtime.preferences.util
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
@@ -19,7 +22,7 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf;bundle-version="2.6.0",
- org.eclipse.emf.ecore;bundle-version="2.6.0",
+ org.eclipse.emf.ecore;bundle-version="2.6.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.emf.databinding;bundle-version="1.2.0",
  org.eclipse.ui;bundle-version="3.6.0",
@@ -50,6 +53,5 @@ Bundle-Version: 1.1.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-Activator: org.eclipse.papyrus.views.properties.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=t
- rue
+Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=true
 Bundle-Description: %pluginDescription

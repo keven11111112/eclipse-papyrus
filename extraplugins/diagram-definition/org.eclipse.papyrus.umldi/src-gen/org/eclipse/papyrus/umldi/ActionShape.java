@@ -22,7 +22,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ActionShape#getPinShape <em>Pin Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ActionShape#getPinShape <em>Pin Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ActionShape#getConditionLabel <em>Condition Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActionShape()
@@ -30,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ActionShape extends ActivityNodeShape {
+
 	/**
 	 * Returns the value of the '<em><b>Pin Shape</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.PinShape}.
@@ -38,20 +40,43 @@ public interface ActionShape extends ActivityNodeShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pin Shape</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Pin Shape</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Pin Shape</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActionShape_PinShape()
 	 * @see org.eclipse.papyrus.umldi.PinShape#getActionShape
-	 * @model opposite="actionShape" containment="true" ordered="false"
+	 * @model opposite="actionShape" containment="true"
 	 * @generated
 	 */
 	EList<PinShape> getPinShape();
 
+	/**
+	 * Returns the value of the '<em><b>Condition Label</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.umldi.ConstraintLabel}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getActionShape <em>Action Shape</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Condition Label</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Condition Label</em>' containment reference list.
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActionShape_ConditionLabel()
+	 * @see org.eclipse.papyrus.umldi.ConstraintLabel#getActionShape
+	 * @model opposite="actionShape" containment="true"
+	 * @generated
+	 */
+	EList<ConstraintLabel> getConditionLabel();
 } // ActionShape
