@@ -410,7 +410,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * 		a collection with all values accepted as children of the rowElement. Returned values have been filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
 	 */
 	protected final Collection<?> getFilteredValueAsCollection(final TreeFillingConfiguration conf, final Object rowElement, final int depth) {
-		Collection<?> values = getCellValueAsCollection(conf.getAxisUsedAsAxisProvider(), rowElement);
+		Collection<?> values = CellManagerFactory.INSTANCE.getCrossValueAsCollection(conf.getAxisUsedAsAxisProvider(), rowElement, getTableManager());
 		Collection<Object> returnedValues = new ArrayList<Object>();
 		Object parent = AxisUtils.getRepresentedElement(rowElement);
 		for (Object current : values) {
