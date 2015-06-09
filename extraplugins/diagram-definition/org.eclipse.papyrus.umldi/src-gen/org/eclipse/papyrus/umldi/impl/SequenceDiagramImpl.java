@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class SequenceDiagramImpl extends InteractionDiagramImpl implements SequenceDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SequenceDiagramImpl() {
@@ -36,11 +38,11 @@ public class SequenceDiagramImpl extends InteractionDiagramImpl implements Seque
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.SEQUENCE_DIAGRAM;
 	}
-
 } //SequenceDiagramImpl

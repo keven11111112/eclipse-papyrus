@@ -22,6 +22,7 @@ import org.eclipse.papyrus.dd.dg.ClipPath;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.ClipPath} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ClipPathItemProvider extends GroupItemProvider {
@@ -44,9 +45,8 @@ public class ClipPathItemProvider extends GroupItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +54,7 @@ public class ClipPathItemProvider extends GroupItemProvider {
 	/**
 	 * This returns ClipPath.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,14 +66,13 @@ public class ClipPathItemProvider extends GroupItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ClipPath)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ClipPath_type") :
-			getString("_UI_ClipPath_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ClipPath_type") : getString("_UI_ClipPath_type") + " " + label;
 	}
 
 	/**
@@ -80,6 +80,7 @@ public class ClipPathItemProvider extends GroupItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

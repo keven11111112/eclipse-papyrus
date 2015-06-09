@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ComponentDiagramImpl extends StructureDiagramImpl implements ComponentDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComponentDiagramImpl() {
@@ -36,11 +38,11 @@ public class ComponentDiagramImpl extends StructureDiagramImpl implements Compon
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.COMPONENT_DIAGRAM;
 	}
-
 } //ComponentDiagramImpl

@@ -21,7 +21,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.umldi.ContentCompartment;
+import org.eclipse.papyrus.umldi.ActivityGroupShape;
+import org.eclipse.papyrus.umldi.ActivityNodeCompartment;
+import org.eclipse.papyrus.umldi.ElementWithActivityNodesShape;
 import org.eclipse.papyrus.umldi.StructuredActivityNodeShape;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 import org.eclipse.papyrus.umldi.UmlDiagramElement;
@@ -36,26 +38,29 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.StructuredActivityNodeShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.StructuredActivityNodeShapeImpl#getContentCompartment <em>Content Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.StructuredActivityNodeShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.StructuredActivityNodeShapeImpl#getActivityNodeCompartment <em>Activity Node Compartment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements StructuredActivityNodeShape {
+
 	/**
-	 * The cached value of the '{@link #getContentCompartment() <em>Content Compartment</em>}' containment reference.
+	 * The cached value of the '{@link #getActivityNodeCompartment() <em>Activity Node Compartment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContentCompartment()
+	 * 
+	 * @see #getActivityNodeCompartment()
 	 * @generated
 	 * @ordered
 	 */
-	protected ContentCompartment contentCompartment;
+	protected ActivityNodeCompartment activityNodeCompartment;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StructuredActivityNodeShapeImpl() {
@@ -65,6 +70,7 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +81,7 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,32 +93,38 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__MAIN_LABEL, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__PIN_SHAPE, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT};
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__STEREOTYPE_LABEL, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__MAIN_LABEL, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__STEREOTYPE_COMPARTMENT, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__PIN_SHAPE, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONDITION_LABEL, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT };
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public ContentCompartment getContentCompartment() {
-		return contentCompartment;
+	public ActivityNodeCompartment getActivityNodeCompartment() {
+		return activityNodeCompartment;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetContentCompartment(ContentCompartment newContentCompartment, NotificationChain msgs) {
-		ContentCompartment oldContentCompartment = contentCompartment;
-		contentCompartment = newContentCompartment;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT, oldContentCompartment, newContentCompartment);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public NotificationChain basicSetActivityNodeCompartment(ActivityNodeCompartment newActivityNodeCompartment, NotificationChain msgs) {
+		ActivityNodeCompartment oldActivityNodeCompartment = activityNodeCompartment;
+		activityNodeCompartment = newActivityNodeCompartment;
+		if(eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT, oldActivityNodeCompartment, newActivityNodeCompartment);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -119,34 +132,36 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setContentCompartment(ContentCompartment newContentCompartment) {
-		if (newContentCompartment != contentCompartment) {
+	public void setActivityNodeCompartment(ActivityNodeCompartment newActivityNodeCompartment) {
+		if(newActivityNodeCompartment != activityNodeCompartment) {
 			NotificationChain msgs = null;
-			if (contentCompartment != null)
-				msgs = ((InternalEObject)contentCompartment).eInverseRemove(this, UMLDIPackage.CONTENT_COMPARTMENT__STRUCTURED_ACTIVITY_NODE_SHAPE, ContentCompartment.class, msgs);
-			if (newContentCompartment != null)
-				msgs = ((InternalEObject)newContentCompartment).eInverseAdd(this, UMLDIPackage.CONTENT_COMPARTMENT__STRUCTURED_ACTIVITY_NODE_SHAPE, ContentCompartment.class, msgs);
-			msgs = basicSetContentCompartment(newContentCompartment, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT, newContentCompartment, newContentCompartment));
+			if(activityNodeCompartment != null)
+				msgs = ((InternalEObject)activityNodeCompartment).eInverseRemove(this, UMLDIPackage.ACTIVITY_NODE_COMPARTMENT__ELEMENT_WITH_ACTIVITY_NODES_SHAPE, ActivityNodeCompartment.class, msgs);
+			if(newActivityNodeCompartment != null)
+				msgs = ((InternalEObject)newActivityNodeCompartment).eInverseAdd(this, UMLDIPackage.ACTIVITY_NODE_COMPARTMENT__ELEMENT_WITH_ACTIVITY_NODES_SHAPE, ActivityNodeCompartment.class, msgs);
+			msgs = basicSetActivityNodeCompartment(newActivityNodeCompartment, msgs);
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT, newActivityNodeCompartment, newActivityNodeCompartment));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT:
-				if (contentCompartment != null)
-					msgs = ((InternalEObject)contentCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT, null, msgs);
-				return basicSetContentCompartment((ContentCompartment)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+			if(activityNodeCompartment != null)
+				msgs = ((InternalEObject)activityNodeCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT, null, msgs);
+			return basicSetActivityNodeCompartment((ActivityNodeCompartment)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -154,13 +169,14 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT:
-				return basicSetContentCompartment(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+			return basicSetActivityNodeCompartment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -168,13 +184,14 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT:
-				return getContentCompartment();
+		switch(featureID) {
+		case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+			return getActivityNodeCompartment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,14 +199,15 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT:
-				setContentCompartment((ContentCompartment)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+			setActivityNodeCompartment((ActivityNodeCompartment)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -197,14 +215,15 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT:
-				setContentCompartment((ContentCompartment)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+			setActivityNodeCompartment((ActivityNodeCompartment)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,15 +231,16 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
-				return isSetOwnedUmlDiagramElement();
-			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT:
-				return contentCompartment != null;
+		switch(featureID) {
+		case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
+			return isSetOwnedUmlDiagramElement();
+		case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+			return activityNodeCompartment != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -228,12 +248,61 @@ public class StructuredActivityNodeShapeImpl extends ActionShapeImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if(baseClass == ElementWithActivityNodesShape.class) {
+			switch(derivedFeatureID) {
+			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+				return UMLDIPackage.ELEMENT_WITH_ACTIVITY_NODES_SHAPE__ACTIVITY_NODE_COMPARTMENT;
+			default:
+				return -1;
+			}
+		}
+		if(baseClass == ActivityGroupShape.class) {
+			switch(derivedFeatureID) {
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if(baseClass == ElementWithActivityNodesShape.class) {
+			switch(baseFeatureID) {
+			case UMLDIPackage.ELEMENT_WITH_ACTIVITY_NODES_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+				return UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT;
+			default:
+				return -1;
+			}
+		}
+		if(baseClass == ActivityGroupShape.class) {
+			switch(baseFeatureID) {
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT);
+		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT);
 	}
-
 } //StructuredActivityNodeShapeImpl

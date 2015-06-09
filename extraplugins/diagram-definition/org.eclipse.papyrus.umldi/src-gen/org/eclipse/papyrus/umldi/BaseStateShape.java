@@ -22,8 +22,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.BaseStateShape#getConnectionPointShape <em>Connection Point Shape</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.BaseStateShape#getRegionCompartment <em>Region Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.BaseStateShape#getConnectionPointShape <em>Connection Point Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.BaseStateShape#getRegionCompartment <em>Region Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getBaseStateShape()
@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface BaseStateShape extends ElementShape {
+
 	/**
 	 * Returns the value of the '<em><b>Connection Point Shape</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.PseudostateShape}.
@@ -39,18 +40,19 @@ public interface BaseStateShape extends ElementShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Connection Point Shape</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Connection Point Shape</em>' containment reference list isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Connection Point Shape</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getBaseStateShape_ConnectionPointShape()
 	 * @see org.eclipse.papyrus.umldi.PseudostateShape#getBaseStateShape
-	 * @model opposite="baseStateShape" containment="true" ordered="false"
+	 * @model opposite="baseStateShape" containment="true"
 	 * @generated
 	 */
 	EList<PseudostateShape> getConnectionPointShape();
@@ -62,14 +64,14 @@ public interface BaseStateShape extends ElementShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Region Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Region Compartment</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Region Compartment</em>' containment reference.
 	 * @see #setRegionCompartment(RegionCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getBaseStateShape_RegionCompartment()
@@ -80,13 +82,15 @@ public interface BaseStateShape extends ElementShape {
 	RegionCompartment getRegionCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.BaseStateShape#getRegionCompartment <em>Region Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.BaseStateShape#getRegionCompartment <em>Region Compartment</em>}' containment
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Region Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Region Compartment</em>' containment reference.
 	 * @see #getRegionCompartment()
 	 * @generated
 	 */
 	void setRegionCompartment(RegionCompartment value);
-
 } // BaseStateShape

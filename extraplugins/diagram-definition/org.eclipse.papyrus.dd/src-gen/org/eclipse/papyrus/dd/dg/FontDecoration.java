@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-user-doc --> A representation of the literals of the enumeration ' <em><b>Font Decoration</b></em>', and utility methods for working
  * with them.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getFontDecoration()
  * @model
  * @generated
@@ -30,6 +31,7 @@ public enum FontDecoration implements Enumerator {
 	 * The '<em><b>Underline</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #UNDERLINE_VALUE
 	 * @generated
 	 * @ordered
@@ -39,6 +41,7 @@ public enum FontDecoration implements Enumerator {
 	 * The '<em><b>Overline</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #OVERLINE_VALUE
 	 * @generated
 	 * @ordered
@@ -48,6 +51,7 @@ public enum FontDecoration implements Enumerator {
 	 * The '<em><b>Line Through</b></em>' literal object.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #LINE_THROUGH_VALUE
 	 * @generated
 	 * @ordered
@@ -61,6 +65,7 @@ public enum FontDecoration implements Enumerator {
 	 * If the meaning of '<em><b>Underline</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #UNDERLINE
 	 * @model name="underline"
 	 * @generated
@@ -75,6 +80,7 @@ public enum FontDecoration implements Enumerator {
 	 * If the meaning of '<em><b>Overline</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #OVERLINE
 	 * @model name="overline"
 	 * @generated
@@ -89,6 +95,7 @@ public enum FontDecoration implements Enumerator {
 	 * If the meaning of '<em><b>Line Through</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LINE_THROUGH
 	 * @model name="lineThrough"
 	 * @generated
@@ -102,15 +109,12 @@ public enum FontDecoration implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final FontDecoration[] VALUES_ARRAY = new FontDecoration[] {
-			UNDERLINE,
-			OVERLINE,
-			LINE_THROUGH,
-		};
+	private static final FontDecoration[] VALUES_ARRAY = new FontDecoration[]{ UNDERLINE, OVERLINE, LINE_THROUGH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Font Decoration</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<FontDecoration> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -118,14 +122,16 @@ public enum FontDecoration implements Enumerator {
 	/**
 	 * Returns the '<em><b>Font Decoration</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param literal the literal.
+	 * 
+	 * @param literal
+	 *        the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static FontDecoration get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			FontDecoration result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,14 +141,16 @@ public enum FontDecoration implements Enumerator {
 	/**
 	 * Returns the '<em><b>Font Decoration</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param name the name.
+	 * 
+	 * @param name
+	 *        the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static FontDecoration getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			FontDecoration result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -152,33 +160,41 @@ public enum FontDecoration implements Enumerator {
 	/**
 	 * Returns the '<em><b>Font Decoration</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the integer value.
+	 * 
+	 * @param value
+	 *        the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static FontDecoration get(int value) {
-		switch (value) {
-			case UNDERLINE_VALUE: return UNDERLINE;
-			case OVERLINE_VALUE: return OVERLINE;
-			case LINE_THROUGH_VALUE: return LINE_THROUGH;
+		switch(value) {
+		case UNDERLINE_VALUE:
+			return UNDERLINE;
+		case OVERLINE_VALUE:
+			return OVERLINE;
+		case LINE_THROUGH_VALUE:
+			return LINE_THROUGH;
 		}
 		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -187,6 +203,7 @@ public enum FontDecoration implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private FontDecoration(int value, String name, String literal) {
@@ -197,31 +214,35 @@ public enum FontDecoration implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

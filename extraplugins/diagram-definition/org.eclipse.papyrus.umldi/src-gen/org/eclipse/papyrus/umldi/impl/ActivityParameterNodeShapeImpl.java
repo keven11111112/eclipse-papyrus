@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ActivityParameterNodeShapeImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ActivityParameterNodeShapeImpl#getActivityShape <em>Activity Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ActivityParameterNodeShapeImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ActivityParameterNodeShapeImpl#getActivityShape <em>Activity Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implements ActivityParameterNodeShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActivityParameterNodeShapeImpl() {
@@ -53,6 +55,7 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ActivityShape activityShape = getActivityShape();			
-		if (activityShape != null) {
+		ActivityShape activityShape = getActivityShape();
+		if(activityShape != null) {
 			return activityShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityShape getActivityShape() {
-		if (eContainerFeatureID() != UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE)
+			return null;
 		return (ActivityShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetActivityShape(ActivityShape newActivityShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setActivityShape(ActivityShape newActivityShape) {
-		if (newActivityShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE && newActivityShape != null)) {
-			if (EcoreUtil.isAncestor(this, newActivityShape))
+		if(newActivityShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE && newActivityShape != null)) {
+			if(EcoreUtil.isAncestor(this, newActivityShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newActivityShape != null)
+			if(newActivityShape != null)
 				msgs = ((InternalEObject)newActivityShape).eInverseAdd(this, UMLDIPackage.ACTIVITY_SHAPE__ACTIVITY_PARAMETER_NODE_SHAPE, ActivityShape.class, msgs);
 			msgs = basicSetActivityShape(newActivityShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE, newActivityShape, newActivityShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetActivityShape((ActivityShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetActivityShape((ActivityShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
-				return basicSetActivityShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
+			return basicSetActivityShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.ACTIVITY_SHAPE__ACTIVITY_PARAMETER_NODE_SHAPE, ActivityShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.ACTIVITY_SHAPE__ACTIVITY_PARAMETER_NODE_SHAPE, ActivityShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
-				return getActivityShape();
+		switch(featureID) {
+		case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
+			return getActivityShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
-				setActivityShape((ActivityShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
+			setActivityShape((ActivityShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
-				setActivityShape((ActivityShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
+			setActivityShape((ActivityShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
-				return getActivityShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE:
+			return getActivityShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class ActivityParameterNodeShapeImpl extends ObjectNodeShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.ACTIVITY_PARAMETER_NODE_SHAPE__ACTIVITY_SHAPE);
 	}
-
 } //ActivityParameterNodeShapeImpl

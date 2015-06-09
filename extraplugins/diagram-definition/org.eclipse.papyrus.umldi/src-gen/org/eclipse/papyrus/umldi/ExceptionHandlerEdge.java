@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Exception Handler Edge</b></em>'.
@@ -21,8 +20,8 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ExceptionHandlerEdge#getTypeLabel <em>Type Label</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ExceptionHandlerEdge#getIconLabel <em>Icon Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ExceptionHandlerEdge#getTypeLabel <em>Type Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ExceptionHandlerEdge#getIconLabel <em>Icon Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getExceptionHandlerEdge()
@@ -38,14 +37,14 @@ public interface ExceptionHandlerEdge extends ElementEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Type Label</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Type Label</em>' containment reference.
 	 * @see #setTypeLabel(TypeLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getExceptionHandlerEdge_TypeLabel()
@@ -59,7 +58,9 @@ public interface ExceptionHandlerEdge extends ElementEdge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ExceptionHandlerEdge#getTypeLabel <em>Type Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Label</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Type Label</em>' containment reference.
 	 * @see #getTypeLabel()
 	 * @generated
 	 */
@@ -72,14 +73,14 @@ public interface ExceptionHandlerEdge extends ElementEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Icon Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Icon Label</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Icon Label</em>' containment reference.
 	 * @see #setIconLabel(IconLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getExceptionHandlerEdge_IconLabel()
@@ -93,7 +94,9 @@ public interface ExceptionHandlerEdge extends ElementEdge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ExceptionHandlerEdge#getIconLabel <em>Icon Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Icon Label</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Icon Label</em>' containment reference.
 	 * @see #getIconLabel()
 	 * @generated
 	 */

@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Placement</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPlacement()
  * @model
  * @generated
@@ -31,36 +32,37 @@ public enum Placement implements Enumerator {
 	 * The '<em><b>Top</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #TOP_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	TOP(0, "top", "top"),
-
 	/**
 	 * The '<em><b>Right</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	RIGHT(1, "right", "right"),
-
 	/**
 	 * The '<em><b>Bottom</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #BOTTOM_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	BOTTOM(2, "bottom", "bottom"),
-
 	/**
 	 * The '<em><b>Left</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LEFT_VALUE
 	 * @generated
 	 * @ordered
@@ -71,10 +73,10 @@ public enum Placement implements Enumerator {
 	 * The '<em><b>Top</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Top</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Top</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #TOP
 	 * @model name="top"
 	 * @generated
@@ -86,10 +88,10 @@ public enum Placement implements Enumerator {
 	 * The '<em><b>Right</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Right</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Right</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #RIGHT
 	 * @model name="right"
 	 * @generated
@@ -101,10 +103,10 @@ public enum Placement implements Enumerator {
 	 * The '<em><b>Bottom</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Bottom</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Bottom</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #BOTTOM
 	 * @model name="bottom"
 	 * @generated
@@ -116,10 +118,10 @@ public enum Placement implements Enumerator {
 	 * The '<em><b>Left</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Left</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Left</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LEFT
 	 * @model name="left"
 	 * @generated
@@ -131,20 +133,16 @@ public enum Placement implements Enumerator {
 	 * An array of all the '<em><b>Placement</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final Placement[] VALUES_ARRAY =
-		new Placement[] {
-			TOP,
-			RIGHT,
-			BOTTOM,
-			LEFT,
-		};
+	private static final Placement[] VALUES_ARRAY = new Placement[]{ TOP, RIGHT, BOTTOM, LEFT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Placement</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<Placement> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -153,14 +151,16 @@ public enum Placement implements Enumerator {
 	 * Returns the '<em><b>Placement</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param literal the literal.
+	 * 
+	 * @param literal
+	 *        the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Placement get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			Placement result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -171,14 +171,16 @@ public enum Placement implements Enumerator {
 	 * Returns the '<em><b>Placement</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param name the name.
+	 * 
+	 * @param name
+	 *        the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Placement getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			Placement result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -189,16 +191,22 @@ public enum Placement implements Enumerator {
 	 * Returns the '<em><b>Placement</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the integer value.
+	 * 
+	 * @param value
+	 *        the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Placement get(int value) {
-		switch (value) {
-			case TOP_VALUE: return TOP;
-			case RIGHT_VALUE: return RIGHT;
-			case BOTTOM_VALUE: return BOTTOM;
-			case LEFT_VALUE: return LEFT;
+		switch(value) {
+		case TOP_VALUE:
+			return TOP;
+		case RIGHT_VALUE:
+			return RIGHT;
+		case BOTTOM_VALUE:
+			return BOTTOM;
+		case LEFT_VALUE:
+			return LEFT;
 		}
 		return null;
 	}
@@ -206,6 +214,7 @@ public enum Placement implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -213,6 +222,7 @@ public enum Placement implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -220,6 +230,7 @@ public enum Placement implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -228,6 +239,7 @@ public enum Placement implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private Placement(int value, String name, String literal) {
@@ -239,39 +251,42 @@ public enum Placement implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-	
 } //Placement

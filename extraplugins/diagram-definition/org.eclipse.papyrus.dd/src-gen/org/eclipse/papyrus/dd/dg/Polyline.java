@@ -26,7 +26,7 @@ import org.eclipse.papyrus.dd.dc.Point;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Polyline#getPoints <em>Point</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Polyline#getPoints <em>Point</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getPolyline()

@@ -26,9 +26,9 @@ import org.eclipse.papyrus.dd.dc.Bounds;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Text#getData <em>Data</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Text#getBounds <em>Bounds</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Text#getAnchor <em>Anchor</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Text#getData <em>Data</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Text#getBounds <em>Bounds</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Text#getAnchor <em>Anchor</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getText()
@@ -54,7 +54,9 @@ public interface Text extends GraphicalElement {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Text#getData <em>Data</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Data</em>' attribute.
 	 * @see #getData()
 	 * @generated
 	 */
@@ -67,6 +69,7 @@ public interface Text extends GraphicalElement {
 	 * <!-- begin-model-doc -->
 	 * the bounds inside which the text is rendered (possibly wrapped into multiple lines)
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Bounds</em>' containment reference.
 	 * @see #setBounds(Bounds)
 	 * @see org.eclipse.papyrus.dd.dg.DGPackage#getText_Bounds()
@@ -79,7 +82,9 @@ public interface Text extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Text#getBounds <em>Bounds</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bounds</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Bounds</em>' containment reference.
 	 * @see #getBounds()
 	 * @generated
 	 */
@@ -93,6 +98,7 @@ public interface Text extends GraphicalElement {
 	 * If the meaning of the '<em>Anchor</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Anchor</em>' attribute.
 	 * @see org.eclipse.papyrus.dd.dg.TextAnchor
 	 * @see #setAnchor(TextAnchor)
@@ -106,7 +112,9 @@ public interface Text extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Text#getAnchor <em>Anchor</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Anchor</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Anchor</em>' attribute.
 	 * @see org.eclipse.papyrus.dd.dg.TextAnchor
 	 * @see #getAnchor()
 	 * @generated

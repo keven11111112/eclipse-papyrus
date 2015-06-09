@@ -27,13 +27,13 @@ import org.eclipse.papyrus.dd.di.Edge;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Edge</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.EdgeImpl#getSourceDiagramElement <em>Source Diagram Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.EdgeImpl#getTargetDiagramElement <em>Target Diagram Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.EdgeImpl#getWaypoint <em>Waypoint</em>}</li>
  * </ul>
- * </p>
- * 
+ *
  * @generated
  */
 public abstract class EdgeImpl extends DiagramElementImpl implements Edge {

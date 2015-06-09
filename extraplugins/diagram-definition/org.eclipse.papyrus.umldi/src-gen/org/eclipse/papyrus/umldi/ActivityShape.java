@@ -13,7 +13,6 @@ package org.eclipse.papyrus.umldi;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Activity Shape</b></em>'.
@@ -23,18 +22,18 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getParameterCompartment <em>Parameter Compartment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getPostConditionCompartment <em>Post Condition Compartment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getPreConditionCompartment <em>Pre Condition Compartment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getContentCompartment <em>Content Compartment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getActivityParameterNodeShape <em>Activity Parameter Node Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getParameterCompartment <em>Parameter Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getPostConditionCompartment <em>Post Condition Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getPreConditionCompartment <em>Pre Condition Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ActivityShape#getActivityParameterNodeShape <em>Activity Parameter Node Shape</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityShape()
  * @model
  * @generated
  */
-public interface ActivityShape extends ClassShape {
+public interface ActivityShape extends ClassShape, ElementWithActivityNodesShape {
+
 	/**
 	 * Returns the value of the '<em><b>Parameter Compartment</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ParameterCompartment#getActivityShape <em>Activity Shape</em>}'.
@@ -42,14 +41,14 @@ public interface ActivityShape extends ClassShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parameter Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Parameter Compartment</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Parameter Compartment</em>' containment reference.
 	 * @see #setParameterCompartment(ParameterCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityShape_ParameterCompartment()
@@ -60,10 +59,13 @@ public interface ActivityShape extends ClassShape {
 	ParameterCompartment getParameterCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityShape#getParameterCompartment <em>Parameter Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityShape#getParameterCompartment <em>Parameter Compartment</em>}' containment
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parameter Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Parameter Compartment</em>' containment reference.
 	 * @see #getParameterCompartment()
 	 * @generated
 	 */
@@ -76,14 +78,15 @@ public interface ActivityShape extends ClassShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Post Condition Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Post Condition Compartment</em>' containment reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Post Condition Compartment</em>' containment reference.
 	 * @see #setPostConditionCompartment(PostConditionCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityShape_PostConditionCompartment()
@@ -94,10 +97,13 @@ public interface ActivityShape extends ClassShape {
 	PostConditionCompartment getPostConditionCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityShape#getPostConditionCompartment <em>Post Condition Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityShape#getPostConditionCompartment <em>Post Condition Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Post Condition Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Post Condition Compartment</em>' containment reference.
 	 * @see #getPostConditionCompartment()
 	 * @generated
 	 */
@@ -110,14 +116,15 @@ public interface ActivityShape extends ClassShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pre Condition Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Pre Condition Compartment</em>' containment reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Pre Condition Compartment</em>' containment reference.
 	 * @see #setPreConditionCompartment(PreConditionCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityShape_PreConditionCompartment()
@@ -128,71 +135,41 @@ public interface ActivityShape extends ClassShape {
 	PreConditionCompartment getPreConditionCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityShape#getPreConditionCompartment <em>Pre Condition Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityShape#getPreConditionCompartment <em>Pre Condition Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pre Condition Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Pre Condition Compartment</em>' containment reference.
 	 * @see #getPreConditionCompartment()
 	 * @generated
 	 */
 	void setPreConditionCompartment(PreConditionCompartment value);
 
 	/**
-	 * Returns the value of the '<em><b>Content Compartment</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ContentCompartment#getActivityShape <em>Activity Shape</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Content Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Content Compartment</em>' containment reference.
-	 * @see #setContentCompartment(ContentCompartment)
-	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityShape_ContentCompartment()
-	 * @see org.eclipse.papyrus.umldi.ContentCompartment#getActivityShape
-	 * @model opposite="activityShape" containment="true" ordered="false"
-	 * @generated
-	 */
-	ContentCompartment getContentCompartment();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityShape#getContentCompartment <em>Content Compartment</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Content Compartment</em>' containment reference.
-	 * @see #getContentCompartment()
-	 * @generated
-	 */
-	void setContentCompartment(ContentCompartment value);
-
-	/**
 	 * Returns the value of the '<em><b>Activity Parameter Node Shape</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.ActivityParameterNodeShape}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ActivityParameterNodeShape#getActivityShape <em>Activity Shape</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ActivityParameterNodeShape#getActivityShape <em>Activity Shape</em>}
+	 * '.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Activity Parameter Node Shape</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Activity Parameter Node Shape</em>' containment reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Activity Parameter Node Shape</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityShape_ActivityParameterNodeShape()
 	 * @see org.eclipse.papyrus.umldi.ActivityParameterNodeShape#getActivityShape
-	 * @model opposite="activityShape" containment="true" ordered="false"
+	 * @model opposite="activityShape" containment="true"
 	 * @generated
 	 */
 	EList<ActivityParameterNodeShape> getActivityParameterNodeShape();
-
 } // ActivityShape

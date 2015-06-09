@@ -17,21 +17,21 @@ import org.eclipse.papyrus.dd.dc.Point;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Edge</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <!-- begin-model-doc -->
  * Edge is a diagram element that renders as a polyline, connecting a source diagram element to a target diagram element, and is positioned relative
  * to the origin of the diagram.
  * <!-- end-model-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.dd.di.Edge#getSourceDiagramElement <em>Source Diagram Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.Edge#getWaypoint <em>Waypoint</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.Edge#getTargetDiagramElement <em>Target Diagram Element</em>}</li>
  * </ul>
- * </p>
- * 
+ *
  * @see org.eclipse.papyrus.dd.di.DIPackage#getEdge()
  * @model abstract="true"
  * @generated

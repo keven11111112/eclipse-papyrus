@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class InformationItemShapeImpl extends ClassifierShapeImpl implements InformationItemShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected InformationItemShapeImpl() {
@@ -36,11 +38,11 @@ public class InformationItemShapeImpl extends ClassifierShapeImpl implements Inf
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.INFORMATION_ITEM_SHAPE;
 	}
-
 } //InformationItemShapeImpl

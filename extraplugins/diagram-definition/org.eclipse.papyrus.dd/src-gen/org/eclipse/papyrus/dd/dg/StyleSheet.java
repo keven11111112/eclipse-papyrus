@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.StyleSheet#getRules <em>Rule</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.StyleSheet#getRules <em>Rule</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getStyleSheet()

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Definition#getId <em>Id</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Definition#getId <em>Id</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getDefinition()
@@ -48,7 +48,9 @@ public interface Definition extends EObject {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Definition#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Id</em>' attribute.
 	 * @see #getId()
 	 * @generated
 	 */

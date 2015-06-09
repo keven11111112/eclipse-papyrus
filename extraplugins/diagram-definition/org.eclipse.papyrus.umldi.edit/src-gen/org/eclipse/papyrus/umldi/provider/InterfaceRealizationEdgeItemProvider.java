@@ -16,11 +16,13 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.papyrus.umldi.InterfaceRealizationEdge;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.InterfaceRealizationEdge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InterfaceRealizationEdgeItemProvider extends RealizationEdgeItemProvider {
@@ -29,6 +31,7 @@ public class InterfaceRealizationEdgeItemProvider extends RealizationEdgeItemPro
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InterfaceRealizationEdgeItemProvider(AdapterFactory adapterFactory) {
@@ -39,13 +42,13 @@ public class InterfaceRealizationEdgeItemProvider extends RealizationEdgeItemPro
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +57,7 @@ public class InterfaceRealizationEdgeItemProvider extends RealizationEdgeItemPro
 	 * This returns InterfaceRealizationEdge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,11 +69,13 @@ public class InterfaceRealizationEdgeItemProvider extends RealizationEdgeItemPro
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_InterfaceRealizationEdge_type");
+		InterfaceRealizationEdge interfaceRealizationEdge = (InterfaceRealizationEdge)object;
+		return getString("_UI_InterfaceRealizationEdge_type") + " " + interfaceRealizationEdge.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class InterfaceRealizationEdgeItemProvider extends RealizationEdgeItemPro
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +97,7 @@ public class InterfaceRealizationEdgeItemProvider extends RealizationEdgeItemPro
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.ClassifierWithOperationsShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ClassifierWithOperationsShapeItemProvider extends ClassifierWithAttributesShapeItemProvider {
@@ -34,6 +35,7 @@ public class ClassifierWithOperationsShapeItemProvider extends ClassifierWithAtt
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClassifierWithOperationsShapeItemProvider(AdapterFactory adapterFactory) {
@@ -44,13 +46,13 @@ public class ClassifierWithOperationsShapeItemProvider extends ClassifierWithAtt
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -61,11 +63,12 @@ public class ClassifierWithOperationsShapeItemProvider extends ClassifierWithAtt
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UMLDIPackage.Literals.CLASSIFIER_WITH_OPERATIONS_SHAPE__OPERATION_COMPARTMENT);
 		}
@@ -75,13 +78,13 @@ public class ClassifierWithOperationsShapeItemProvider extends ClassifierWithAtt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
@@ -89,12 +92,13 @@ public class ClassifierWithOperationsShapeItemProvider extends ClassifierWithAtt
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		ClassifierWithOperationsShape classifierWithOperationsShape = (ClassifierWithOperationsShape)object;
-		return getString("_UI_ClassifierWithOperationsShape_type") + " " + classifierWithOperationsShape.isUseClassifierNotation();
+		return getString("_UI_ClassifierWithOperationsShape_type") + " " + classifierWithOperationsShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -102,16 +106,16 @@ public class ClassifierWithOperationsShapeItemProvider extends ClassifierWithAtt
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ClassifierWithOperationsShape.class)) {
-			case UMLDIPackage.CLASSIFIER_WITH_OPERATIONS_SHAPE__OPERATION_COMPARTMENT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(ClassifierWithOperationsShape.class)) {
+		case UMLDIPackage.CLASSIFIER_WITH_OPERATIONS_SHAPE__OPERATION_COMPARTMENT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -121,15 +125,12 @@ public class ClassifierWithOperationsShapeItemProvider extends ClassifierWithAtt
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.CLASSIFIER_WITH_OPERATIONS_SHAPE__OPERATION_COMPARTMENT,
-				 UMLDIFactory.eINSTANCE.createOperationCompartment()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.CLASSIFIER_WITH_OPERATIONS_SHAPE__OPERATION_COMPARTMENT, UMLDIFactory.eINSTANCE.createOperationCompartment()));
 	}
 }

@@ -13,11 +13,14 @@ package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.eclipse.papyrus.umldi.ObjectFlowEdge;
 import org.eclipse.papyrus.umldi.TransformationLabel;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
@@ -31,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.TransformationLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.TransformationLabelImpl#getObjectFlowEdge <em>Object Flow Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.TransformationLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.TransformationLabelImpl#getObjectFlowEdge <em>Object Flow Edge</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TransformationLabelImpl extends UmlLabelImpl implements TransformationLabel {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TransformationLabelImpl() {
@@ -50,6 +55,7 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,6 +66,7 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,12 +78,13 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ObjectFlowEdge objectFlowEdge = getObjectFlowEdge();			
-		if (objectFlowEdge != null) {
+		ObjectFlowEdge objectFlowEdge = getObjectFlowEdge();
+		if(objectFlowEdge != null) {
 			return objectFlowEdge;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -85,16 +93,19 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ObjectFlowEdge getObjectFlowEdge() {
-		if (eContainerFeatureID() != UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE)
+			return null;
 		return (ObjectFlowEdge)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetObjectFlowEdge(ObjectFlowEdge newObjectFlowEdge, NotificationChain msgs) {
@@ -105,36 +116,38 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setObjectFlowEdge(ObjectFlowEdge newObjectFlowEdge) {
-		if (newObjectFlowEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE && newObjectFlowEdge != null)) {
-			if (EcoreUtil.isAncestor(this, newObjectFlowEdge))
+		if(newObjectFlowEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE && newObjectFlowEdge != null)) {
+			if(EcoreUtil.isAncestor(this, newObjectFlowEdge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newObjectFlowEdge != null)
+			if(newObjectFlowEdge != null)
 				msgs = ((InternalEObject)newObjectFlowEdge).eInverseAdd(this, UMLDIPackage.OBJECT_FLOW_EDGE__TRANSFORMATION_LABEL, ObjectFlowEdge.class, msgs);
 			msgs = basicSetObjectFlowEdge(newObjectFlowEdge, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE, newObjectFlowEdge, newObjectFlowEdge));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetObjectFlowEdge((ObjectFlowEdge)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetObjectFlowEdge((ObjectFlowEdge)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -142,13 +155,14 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
-				return basicSetObjectFlowEdge(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
+			return basicSetObjectFlowEdge(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -156,13 +170,14 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.OBJECT_FLOW_EDGE__TRANSFORMATION_LABEL, ObjectFlowEdge.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.OBJECT_FLOW_EDGE__TRANSFORMATION_LABEL, ObjectFlowEdge.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -170,13 +185,14 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
-				return getObjectFlowEdge();
+		switch(featureID) {
+		case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
+			return getObjectFlowEdge();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,14 +200,15 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
-				setObjectFlowEdge((ObjectFlowEdge)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
+			setObjectFlowEdge((ObjectFlowEdge)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -199,14 +216,15 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
-				setObjectFlowEdge((ObjectFlowEdge)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
+			setObjectFlowEdge((ObjectFlowEdge)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,15 +232,16 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.TRANSFORMATION_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
-				return getObjectFlowEdge() != null;
+		switch(featureID) {
+		case UMLDIPackage.TRANSFORMATION_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE:
+			return getObjectFlowEdge() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -230,12 +249,11 @@ public class TransformationLabelImpl extends UmlLabelImpl implements Transformat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.TRANSFORMATION_LABEL__OBJECT_FLOW_EDGE);
 	}
-
 } //TransformationLabelImpl

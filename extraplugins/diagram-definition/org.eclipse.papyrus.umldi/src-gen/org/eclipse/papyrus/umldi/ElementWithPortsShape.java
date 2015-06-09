@@ -22,36 +22,37 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ElementWithPortsShape#getPortShape <em>Port Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ElementWithPortsShape#getPortShape <em>Port Shape</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getElementWithPortsShape()
  * @model abstract="true"
  * @generated
  */
-public interface ElementWithPortsShape extends ElementWithInternalStructureShape {
+public interface ElementWithPortsShape extends ElementWithStructureShape {
+
 	/**
 	 * Returns the value of the '<em><b>Port Shape</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.PortShape}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.PortShape#getElementWithPortsShape <em>Element With Ports Shape</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.PortShape#getElementWithPortsShape <em>Element With Ports Shape</em>}
+	 * '.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Port Shape</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Port Shape</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Port Shape</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getElementWithPortsShape_PortShape()
 	 * @see org.eclipse.papyrus.umldi.PortShape#getElementWithPortsShape
-	 * @model opposite="elementWithPortsShape" containment="true" ordered="false"
+	 * @model opposite="elementWithPortsShape" containment="true"
 	 * @generated
 	 */
 	EList<PortShape> getPortShape();
-
 } // ElementWithPortsShape

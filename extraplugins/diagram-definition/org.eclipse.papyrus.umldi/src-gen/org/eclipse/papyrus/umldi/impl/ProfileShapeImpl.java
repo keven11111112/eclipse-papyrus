@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ProfileShapeImpl extends PackageShapeImpl implements ProfileShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProfileShapeImpl() {
@@ -36,11 +38,11 @@ public class ProfileShapeImpl extends PackageShapeImpl implements ProfileShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.PROFILE_SHAPE;
 	}
-
 } //ProfileShapeImpl

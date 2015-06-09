@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class StereotypeShapeImpl extends ClassShapeImpl implements StereotypeShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StereotypeShapeImpl() {
@@ -36,11 +38,11 @@ public class StereotypeShapeImpl extends ClassShapeImpl implements StereotypeSha
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.STEREOTYPE_SHAPE;
 	}
-
 } //StereotypeShapeImpl

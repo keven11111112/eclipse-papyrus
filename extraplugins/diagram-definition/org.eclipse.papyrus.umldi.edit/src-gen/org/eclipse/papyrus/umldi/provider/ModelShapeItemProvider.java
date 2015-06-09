@@ -16,11 +16,13 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.papyrus.umldi.ModelShape;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.ModelShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ModelShapeItemProvider extends PackageShapeItemProvider {
@@ -29,6 +31,7 @@ public class ModelShapeItemProvider extends PackageShapeItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelShapeItemProvider(AdapterFactory adapterFactory) {
@@ -39,13 +42,13 @@ public class ModelShapeItemProvider extends PackageShapeItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +57,7 @@ public class ModelShapeItemProvider extends PackageShapeItemProvider {
 	 * This returns ModelShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,11 +69,13 @@ public class ModelShapeItemProvider extends PackageShapeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ModelShape_type");
+		ModelShape modelShape = (ModelShape)object;
+		return getString("_UI_ModelShape_type") + " " + modelShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class ModelShapeItemProvider extends PackageShapeItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +97,7 @@ public class ModelShapeItemProvider extends PackageShapeItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

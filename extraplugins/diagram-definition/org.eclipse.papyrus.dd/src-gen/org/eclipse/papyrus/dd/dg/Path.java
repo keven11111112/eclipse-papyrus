@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Path#getCommands <em>Command</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Path#getCommands <em>Command</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getPath()

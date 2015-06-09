@@ -180,17 +180,22 @@
         <module>../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.edit</module>
         <module>../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.editor</module>
 
+		<!-- Diagram Definition -->
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.edit</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.editor</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.qvt</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.notation.export</module>
-        <!-- Compilation failure <module>../extraplugins/diagram-definition/org.eclipse.papyrus.notation.qvt</module> -->
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.notation.qvt</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.notation2umldi</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.edit</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.editor</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi2dg</module>
+        <module>../features/papyrus-extra-features/org.eclipse.papyrus.dd.feature</module>
+		<module>../features/papyrus-extra-features/org.eclipse.papyrus.umldi.feature</module>
+		<module>../features/papyrus-extra-features/org.eclipse.papyrus.notation.feature</module>
+		
         <module>../extraplugins/facade/org.eclipse.papyrus.facade.codegen</module>
         <module>../extraplugins/facade/org.eclipse.papyrus.facade.definition.editor</module>
         <module>../extraplugins/facade/org.eclipse.papyrus.facade.edit</module>

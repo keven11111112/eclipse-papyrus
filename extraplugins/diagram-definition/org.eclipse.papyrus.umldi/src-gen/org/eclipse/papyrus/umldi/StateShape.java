@@ -22,10 +22,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.StateShape#getConnectionPointReferenceShape <em>Connection Point Reference Shape</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.StateShape#getInternalTransitionCompartment <em>Internal Transition Compartment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.StateShape#getDeferrableTriggerCompartment <em>Deferrable Trigger Compartment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.StateShape#getInternalBehaviorCompartment <em>Internal Behavior Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.StateShape#getConnectionPointReferenceShape <em>Connection Point Reference Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.StateShape#getInternalTransitionCompartment <em>Internal Transition Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.StateShape#getDeferrableTriggerCompartment <em>Deferrable Trigger Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.StateShape#getInternalBehaviorCompartment <em>Internal Behavior Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getStateShape()
@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface StateShape extends BaseStateShape {
+
 	/**
 	 * Returns the value of the '<em><b>Connection Point Reference Shape</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.ConnectionPointReferenceShape}.
@@ -41,18 +42,19 @@ public interface StateShape extends BaseStateShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Connection Point Reference Shape</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Connection Point Reference Shape</em>' containment reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Connection Point Reference Shape</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getStateShape_ConnectionPointReferenceShape()
 	 * @see org.eclipse.papyrus.umldi.ConnectionPointReferenceShape#getStateShape
-	 * @model opposite="stateShape" containment="true" ordered="false"
+	 * @model opposite="stateShape" containment="true"
 	 * @generated
 	 */
 	EList<ConnectionPointReferenceShape> getConnectionPointReferenceShape();
@@ -64,14 +66,15 @@ public interface StateShape extends BaseStateShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Internal Transition Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Internal Transition Compartment</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Internal Transition Compartment</em>' containment reference.
 	 * @see #setInternalTransitionCompartment(InternalTransitionCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getStateShape_InternalTransitionCompartment()
@@ -82,10 +85,13 @@ public interface StateShape extends BaseStateShape {
 	InternalTransitionCompartment getInternalTransitionCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.StateShape#getInternalTransitionCompartment <em>Internal Transition Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.StateShape#getInternalTransitionCompartment <em>Internal Transition Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Internal Transition Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Internal Transition Compartment</em>' containment reference.
 	 * @see #getInternalTransitionCompartment()
 	 * @generated
 	 */
@@ -98,14 +104,15 @@ public interface StateShape extends BaseStateShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Deferrable Trigger Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Deferrable Trigger Compartment</em>' containment reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Deferrable Trigger Compartment</em>' containment reference.
 	 * @see #setDeferrableTriggerCompartment(DeferrableTriggerCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getStateShape_DeferrableTriggerCompartment()
@@ -116,10 +123,13 @@ public interface StateShape extends BaseStateShape {
 	DeferrableTriggerCompartment getDeferrableTriggerCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.StateShape#getDeferrableTriggerCompartment <em>Deferrable Trigger Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.StateShape#getDeferrableTriggerCompartment <em>Deferrable Trigger Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Deferrable Trigger Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Deferrable Trigger Compartment</em>' containment reference.
 	 * @see #getDeferrableTriggerCompartment()
 	 * @generated
 	 */
@@ -132,14 +142,15 @@ public interface StateShape extends BaseStateShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Internal Behavior Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Internal Behavior Compartment</em>' containment reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Internal Behavior Compartment</em>' containment reference.
 	 * @see #setInternalBehaviorCompartment(InternalBehaviorCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getStateShape_InternalBehaviorCompartment()
@@ -150,13 +161,15 @@ public interface StateShape extends BaseStateShape {
 	InternalBehaviorCompartment getInternalBehaviorCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.StateShape#getInternalBehaviorCompartment <em>Internal Behavior Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.StateShape#getInternalBehaviorCompartment <em>Internal Behavior Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Internal Behavior Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Internal Behavior Compartment</em>' containment reference.
 	 * @see #getInternalBehaviorCompartment()
 	 * @generated
 	 */
 	void setInternalBehaviorCompartment(InternalBehaviorCompartment value);
-
 } // StateShape

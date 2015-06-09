@@ -12,10 +12,14 @@
       <transition xmi:type="uml:Transition" xmi:id="_Ry4iAKuVEeSoZaYJvZ9ajQ" source="_tqD5sKuUEeSoZaYJvZ9ajQ" target="_QSwMAKuVEeSoZaYJvZ9ajQ"/>
       <transition xmi:type="uml:Transition" xmi:id="_orXVoKuVEeSoZaYJvZ9ajQ" source="__OahQKuUEeSoZaYJvZ9ajQ" target="_mNBq8KuVEeSoZaYJvZ9ajQ"/>
       <transition xmi:type="uml:Transition" xmi:id="_StTM0K-8EeSoZaYJvZ9ajQ" guard="_F5BZcMavEeSCJJWcilYajg" source="_26l0cKuVEeSoZaYJvZ9ajQ" target="_tp9WkKuVEeSoZaYJvZ9ajQ">
-        <ownedRule xmi:type="uml:Constraint" xmi:id="_F5BZcMavEeSCJJWcilYajg" name="Yes"/>
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_F5BZcMavEeSCJJWcilYajg">
+          <specification xmi:type="uml:LiteralString" xmi:id="_1HIDUP1FEeSPFZeS1JvHcA" value="x &lt; 10"/>
+        </ownedRule>
       </transition>
       <transition xmi:type="uml:Transition" xmi:id="_TpaPwK-8EeSoZaYJvZ9ajQ" guard="_bf0iwMavEeSCJJWcilYajg" source="_26l0cKuVEeSoZaYJvZ9ajQ" target="_mNBq8KuVEeSoZaYJvZ9ajQ">
-        <ownedRule xmi:type="uml:Constraint" xmi:id="_bf0iwMavEeSCJJWcilYajg" name="No"/>
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_bf0iwMavEeSCJJWcilYajg">
+          <specification xmi:type="uml:LiteralString" xmi:id="_7KJ8wP1FEeSPFZeS1JvHcA" value="x >=10"/>
+        </ownedRule>
       </transition>
       <transition xmi:type="uml:Transition" xmi:id="_U2d4wK-8EeSoZaYJvZ9ajQ" source="_1ZTn4KuVEeSoZaYJvZ9ajQ" target="__KE-YKuVEeSoZaYJvZ9ajQ"/>
       <transition xmi:type="uml:Transition" xmi:id="_WV_x0K-8EeSoZaYJvZ9ajQ" source="__KE-YKuVEeSoZaYJvZ9ajQ" target="_4WACgKuVEeSoZaYJvZ9ajQ"/>
@@ -188,7 +192,7 @@
       <connectionPoint xmi:type="uml:Pseudostate" xmi:id="_-VJwoMa0EeSzLMMHWI25cw" name="EntryPoint1" kind="entryPoint"/>
       <connectionPoint xmi:type="uml:Pseudostate" xmi:id="_-y1yMMa0EeSzLMMHWI25cw" name="ExitPoint1" kind="exitPoint"/>
       <region xmi:type="uml:Region" xmi:id="_Zg4fMMYSEeShSbLKs-kIRw" name="Region1 - Base">
-        <transition xmi:type="uml:Transition" xmi:id="_Jhs28MYYEeShSbLKs-kIRw" guard="_qx_L4MYYEeShSbLKs-kIRw" kind="internal" source="_h68hcMYSEeShSbLKs-kIRw" target="_h68hcMYSEeShSbLKs-kIRw">
+        <transition xmi:type="uml:Transition" xmi:id="_Jhs28MYYEeShSbLKs-kIRw" guard="_qx_L4MYYEeShSbLKs-kIRw" source="_h68hcMYSEeShSbLKs-kIRw" target="_h68hcMYSEeShSbLKs-kIRw">
           <ownedRule xmi:type="uml:Constraint" xmi:id="_qx_L4MYYEeShSbLKs-kIRw" constrainedElement="_ZS3RUMYSEeShSbLKs-kIRw">
             <specification xmi:type="uml:OpaqueExpression" xmi:id="_1TrB8MYYEeShSbLKs-kIRw">
               <language>OCL</language>
@@ -198,12 +202,12 @@
           <effect xmi:type="uml:FunctionBehavior" xmi:id="_7L8c4MYYEeShSbLKs-kIRw" name="Doit"/>
           <trigger xmi:type="uml:Trigger" xmi:id="_iblhoMYYEeShSbLKs-kIRw" event="_6wJ5oLjvEeSAE9riyAcoBQ"/>
         </transition>
-        <transition xmi:type="uml:Transition" xmi:id="_k8wocMYZEeShSbLKs-kIRw" guard="_rvSFIMYZEeShSbLKs-kIRw" kind="internal" source="_h68hcMYSEeShSbLKs-kIRw" target="_h68hcMYSEeShSbLKs-kIRw">
+        <transition xmi:type="uml:Transition" xmi:id="_k8wocMYZEeShSbLKs-kIRw" guard="_rvSFIMYZEeShSbLKs-kIRw" source="_h68hcMYSEeShSbLKs-kIRw" target="_h68hcMYSEeShSbLKs-kIRw">
           <ownedRule xmi:type="uml:TimeConstraint" xmi:id="_rvSFIMYZEeShSbLKs-kIRw">
             <specification xmi:type="uml:TimeInterval" xmi:id="_chxZUMY-EeS4RfqY1Cl0NA" max="_MoW-gMYbEeShSbLKs-kIRw" min="_f34j4MYaEeShSbLKs-kIRw"/>
           </ownedRule>
           <effect xmi:type="uml:OpaqueBehavior" xmi:id="_T0kGgMYbEeShSbLKs-kIRw">
-            <language>JAVA</language>
+            <language></language>
             <body>keepDoing</body>
           </effect>
           <trigger xmi:type="uml:Trigger" xmi:id="_m0u2sMYZEeShSbLKs-kIRw" event="_JlgkULjwEeSAE9riyAcoBQ"/>

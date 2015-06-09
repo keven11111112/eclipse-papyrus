@@ -36,17 +36,19 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.DependencyEdgeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.DependencyEdgeImpl#getRoleLabel <em>Role Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.DependencyEdgeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.DependencyEdgeImpl#getRoleLabel <em>Role Label</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdge {
+
 	/**
 	 * The cached value of the '{@link #getRoleLabel() <em>Role Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRoleLabel()
 	 * @generated
 	 * @ordered
@@ -56,6 +58,7 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DependencyEdgeImpl() {
@@ -65,6 +68,7 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +79,7 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,15 +91,17 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.DEPENDENCY_EDGE__MAIN_LABEL, UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL};
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.DEPENDENCY_EDGE__STEREOTYPE_LABEL, UMLDIPackage.DEPENDENCY_EDGE__MAIN_LABEL, UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL };
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RoleLabel getRoleLabel() {
@@ -104,14 +111,18 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRoleLabel(RoleLabel newRoleLabel, NotificationChain msgs) {
 		RoleLabel oldRoleLabel = roleLabel;
 		roleLabel = newRoleLabel;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL, oldRoleLabel, newRoleLabel);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -119,34 +130,36 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRoleLabel(RoleLabel newRoleLabel) {
-		if (newRoleLabel != roleLabel) {
+		if(newRoleLabel != roleLabel) {
 			NotificationChain msgs = null;
-			if (roleLabel != null)
+			if(roleLabel != null)
 				msgs = ((InternalEObject)roleLabel).eInverseRemove(this, UMLDIPackage.ROLE_LABEL__ROLE_BINDING_EDGE, RoleLabel.class, msgs);
-			if (newRoleLabel != null)
+			if(newRoleLabel != null)
 				msgs = ((InternalEObject)newRoleLabel).eInverseAdd(this, UMLDIPackage.ROLE_LABEL__ROLE_BINDING_EDGE, RoleLabel.class, msgs);
 			msgs = basicSetRoleLabel(newRoleLabel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL, newRoleLabel, newRoleLabel));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
-				if (roleLabel != null)
-					msgs = ((InternalEObject)roleLabel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL, null, msgs);
-				return basicSetRoleLabel((RoleLabel)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
+			if(roleLabel != null)
+				msgs = ((InternalEObject)roleLabel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL, null, msgs);
+			return basicSetRoleLabel((RoleLabel)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -154,13 +167,14 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
-				return basicSetRoleLabel(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
+			return basicSetRoleLabel(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -168,13 +182,14 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
-				return getRoleLabel();
+		switch(featureID) {
+		case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
+			return getRoleLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,14 +197,15 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
-				setRoleLabel((RoleLabel)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
+			setRoleLabel((RoleLabel)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -197,14 +213,15 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
-				setRoleLabel((RoleLabel)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
+			setRoleLabel((RoleLabel)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,15 +229,16 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.DEPENDENCY_EDGE__OWNED_UML_DIAGRAM_ELEMENT:
-				return isSetOwnedUmlDiagramElement();
-			case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
-				return roleLabel != null;
+		switch(featureID) {
+		case UMLDIPackage.DEPENDENCY_EDGE__OWNED_UML_DIAGRAM_ELEMENT:
+			return isSetOwnedUmlDiagramElement();
+		case UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL:
+			return roleLabel != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -228,12 +246,11 @@ public class DependencyEdgeImpl extends ElementEdgeImpl implements DependencyEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL);
+		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.DEPENDENCY_EDGE__ROLE_LABEL);
 	}
-
 } //DependencyEdgeImpl

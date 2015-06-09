@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UseCaseDiagram;
  * @generated
  */
 public class UseCaseDiagramImpl extends BehaviorDiagramImpl implements UseCaseDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UseCaseDiagramImpl() {
@@ -36,11 +38,11 @@ public class UseCaseDiagramImpl extends BehaviorDiagramImpl implements UseCaseDi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.USE_CASE_DIAGRAM;
 	}
-
 } //UseCaseDiagramImpl

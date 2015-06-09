@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class DeploymentEdgeImpl extends DependencyEdgeImpl implements DeploymentEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DeploymentEdgeImpl() {
@@ -36,11 +38,11 @@ public class DeploymentEdgeImpl extends DependencyEdgeImpl implements Deployment
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DEPLOYMENT_EDGE;
 	}
-
 } //DeploymentEdgeImpl

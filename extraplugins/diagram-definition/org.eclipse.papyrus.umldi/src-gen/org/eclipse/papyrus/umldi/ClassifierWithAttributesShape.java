@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Classifier With Attributes Shape</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ClassifierWithAttributesShape#getAttributeCompartment <em>Attribute Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ClassifierWithAttributesShape#getAttributeCompartment <em>Attribute Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getClassifierWithAttributesShape()
@@ -29,21 +28,23 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface ClassifierWithAttributesShape extends ClassifierShape {
+
 	/**
 	 * Returns the value of the '<em><b>Attribute Compartment</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.AttributeCompartment#getClassifierWithAttributesShape <em>Classifier With Attributes Shape</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.AttributeCompartment#getClassifierWithAttributesShape
+	 * <em>Classifier With Attributes Shape</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Attribute Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Attribute Compartment</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Attribute Compartment</em>' containment reference.
 	 * @see #setAttributeCompartment(AttributeCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getClassifierWithAttributesShape_AttributeCompartment()
@@ -54,13 +55,15 @@ public interface ClassifierWithAttributesShape extends ClassifierShape {
 	AttributeCompartment getAttributeCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ClassifierWithAttributesShape#getAttributeCompartment <em>Attribute Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ClassifierWithAttributesShape#getAttributeCompartment <em>Attribute Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Attribute Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Attribute Compartment</em>' containment reference.
 	 * @see #getAttributeCompartment()
 	 * @generated
 	 */
 	void setAttributeCompartment(AttributeCompartment value);
-
 } // ClassifierWithAttributesShape

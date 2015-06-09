@@ -38,17 +38,19 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ElementWithPortsShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ElementWithPortsShapeImpl#getPortShape <em>Port Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ElementWithPortsShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ElementWithPortsShapeImpl#getPortShape <em>Port Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStructureShapeImpl implements ElementWithPortsShape {
+public abstract class ElementWithPortsShapeImpl extends ElementWithStructureShapeImpl implements ElementWithPortsShape {
+
 	/**
 	 * The cached value of the '{@link #getPortShape() <em>Port Shape</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPortShape()
 	 * @generated
 	 * @ordered
@@ -58,6 +60,7 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ElementWithPortsShapeImpl() {
@@ -67,6 +70,7 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,6 +81,7 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,19 +93,21 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__MAIN_LABEL, UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__INTERNAL_STRUCTURE_COMPARTMENT, UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE};
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__STEREOTYPE_LABEL, UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__MAIN_LABEL, UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__STEREOTYPE_COMPARTMENT, UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__STRUCTURE_COMPARTMENT, UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE };
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<PortShape> getPortShape() {
-		if (portShape == null) {
+		if(portShape == null) {
 			portShape = new EObjectContainmentWithInverseEList<PortShape>(PortShape.class, this, UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE, UMLDIPackage.PORT_SHAPE__ELEMENT_WITH_PORTS_SHAPE);
 		}
 		return portShape;
@@ -109,14 +116,15 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPortShape()).basicAdd(otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getPortShape()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -124,13 +132,14 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
-				return ((InternalEList<?>)getPortShape()).basicRemove(otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
+			return ((InternalEList<?>)getPortShape()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -138,13 +147,14 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
-				return getPortShape();
+		switch(featureID) {
+		case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
+			return getPortShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,16 +162,17 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
-				getPortShape().clear();
-				getPortShape().addAll((Collection<? extends PortShape>)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
+			getPortShape().clear();
+			getPortShape().addAll((Collection<? extends PortShape>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -169,14 +180,15 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
-				getPortShape().clear();
-				return;
+		switch(featureID) {
+		case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
+			getPortShape().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -184,15 +196,16 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
-				return isSetOwnedUmlDiagramElement();
-			case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
-				return portShape != null && !portShape.isEmpty();
+		switch(featureID) {
+		case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
+			return isSetOwnedUmlDiagramElement();
+		case UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE:
+			return portShape != null && !portShape.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -200,12 +213,11 @@ public abstract class ElementWithPortsShapeImpl extends ElementWithInternalStruc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE);
+		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.ELEMENT_WITH_PORTS_SHAPE__PORT_SHAPE);
 	}
-
 } //ElementWithPortsShapeImpl

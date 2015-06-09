@@ -22,8 +22,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.RegionShape#getPlacement <em>Placement</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.RegionShape#getSubvertexCompartment <em>Subvertex Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.RegionShape#getPlacement <em>Placement</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.RegionShape#getSubvertexCompartment <em>Subvertex Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getRegionShape()
@@ -31,16 +31,17 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface RegionShape extends ElementShape {
+
 	/**
 	 * Returns the value of the '<em><b>Placement</b></em>' attribute list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.Placement}.
 	 * The literals are from the enumeration {@link org.eclipse.papyrus.umldi.Placement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Placement</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Placement</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Placement</em>' attribute list.
 	 * @see org.eclipse.papyrus.umldi.Placement
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getRegionShape_Placement()
@@ -56,14 +57,14 @@ public interface RegionShape extends ElementShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Subvertex Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Subvertex Compartment</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Subvertex Compartment</em>' containment reference.
 	 * @see #setSubvertexCompartment(SubvertexCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getRegionShape_SubvertexCompartment()
@@ -74,13 +75,15 @@ public interface RegionShape extends ElementShape {
 	SubvertexCompartment getSubvertexCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.RegionShape#getSubvertexCompartment <em>Subvertex Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.RegionShape#getSubvertexCompartment <em>Subvertex Compartment</em>}' containment
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Subvertex Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Subvertex Compartment</em>' containment reference.
 	 * @see #getSubvertexCompartment()
 	 * @generated
 	 */
 	void setSubvertexCompartment(SubvertexCompartment value);
-
 } // RegionShape

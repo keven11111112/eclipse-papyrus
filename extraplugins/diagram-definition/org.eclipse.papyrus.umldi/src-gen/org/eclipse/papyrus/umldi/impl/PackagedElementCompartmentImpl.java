@@ -34,16 +34,19 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.PackagedElementCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.PackagedElementCompartmentImpl#getElementWithPackagedElementsShape <em>Element With Packaged Elements Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.PackagedElementCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.PackagedElementCompartmentImpl#getElementWithPackagedElementsShape <em>Element With Packaged Elements
+ * Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl implements PackagedElementCompartment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PackagedElementCompartmentImpl() {
@@ -53,6 +56,7 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +67,7 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +79,13 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ElementWithPackagedElementsShape elementWithPackagedElementsShape = getElementWithPackagedElementsShape();			
-		if (elementWithPackagedElementsShape != null) {
+		ElementWithPackagedElementsShape elementWithPackagedElementsShape = getElementWithPackagedElementsShape();
+		if(elementWithPackagedElementsShape != null) {
 			return elementWithPackagedElementsShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +94,19 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ElementWithPackagedElementsShape getElementWithPackagedElementsShape() {
-		if (eContainerFeatureID() != UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE)
+			return null;
 		return (ElementWithPackagedElementsShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetElementWithPackagedElementsShape(ElementWithPackagedElementsShape newElementWithPackagedElementsShape, NotificationChain msgs) {
@@ -108,36 +117,38 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setElementWithPackagedElementsShape(ElementWithPackagedElementsShape newElementWithPackagedElementsShape) {
-		if (newElementWithPackagedElementsShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE && newElementWithPackagedElementsShape != null)) {
-			if (EcoreUtil.isAncestor(this, newElementWithPackagedElementsShape))
+		if(newElementWithPackagedElementsShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE && newElementWithPackagedElementsShape != null)) {
+			if(EcoreUtil.isAncestor(this, newElementWithPackagedElementsShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newElementWithPackagedElementsShape != null)
+			if(newElementWithPackagedElementsShape != null)
 				msgs = ((InternalEObject)newElementWithPackagedElementsShape).eInverseAdd(this, UMLDIPackage.ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE__PACKAGED_ELEMENT_COMPARTMENT, ElementWithPackagedElementsShape.class, msgs);
 			msgs = basicSetElementWithPackagedElementsShape(newElementWithPackagedElementsShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE, newElementWithPackagedElementsShape, newElementWithPackagedElementsShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetElementWithPackagedElementsShape((ElementWithPackagedElementsShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetElementWithPackagedElementsShape((ElementWithPackagedElementsShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +156,14 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
-				return basicSetElementWithPackagedElementsShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
+			return basicSetElementWithPackagedElementsShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +171,14 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE__PACKAGED_ELEMENT_COMPARTMENT, ElementWithPackagedElementsShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE__PACKAGED_ELEMENT_COMPARTMENT, ElementWithPackagedElementsShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +186,14 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
-				return getElementWithPackagedElementsShape();
+		switch(featureID) {
+		case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
+			return getElementWithPackagedElementsShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +201,15 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
-				setElementWithPackagedElementsShape((ElementWithPackagedElementsShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
+			setElementWithPackagedElementsShape((ElementWithPackagedElementsShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +217,15 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
-				setElementWithPackagedElementsShape((ElementWithPackagedElementsShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
+			setElementWithPackagedElementsShape((ElementWithPackagedElementsShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +233,16 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
-				return getElementWithPackagedElementsShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE:
+			return getElementWithPackagedElementsShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +250,11 @@ public class PackagedElementCompartmentImpl extends DiagramCompartmentImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.PACKAGED_ELEMENT_COMPARTMENT__ELEMENT_WITH_PACKAGED_ELEMENTS_SHAPE);
 	}
-
 } //PackagedElementCompartmentImpl

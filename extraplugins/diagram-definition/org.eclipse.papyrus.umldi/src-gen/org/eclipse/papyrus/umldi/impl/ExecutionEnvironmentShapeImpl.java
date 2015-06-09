@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ExecutionEnvironmentShapeImpl extends NodeShapeImpl implements ExecutionEnvironmentShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ExecutionEnvironmentShapeImpl() {
@@ -36,11 +38,11 @@ public class ExecutionEnvironmentShapeImpl extends NodeShapeImpl implements Exec
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.EXECUTION_ENVIRONMENT_SHAPE;
 	}
-
 } //ExecutionEnvironmentShapeImpl

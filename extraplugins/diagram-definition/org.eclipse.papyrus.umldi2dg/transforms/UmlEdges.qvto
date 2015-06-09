@@ -86,14 +86,6 @@ mapping UML::Dependency::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
 	endif;
 }
 
-mapping UML::Generalization::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
-	endMarker := edge.resolveDefinitions().getMarker("endHollowClosedArrow");		
-}
-
-mapping UML::GeneralizationSet::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
-	_class := "dashed";
-}
-
 mapping UML::Element::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
 }
 
@@ -115,6 +107,26 @@ mapping UML::Extension::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
 	endMarker := edge.resolveDefinitions().getMarker("endSolidClosedArrow");		
 }
 
+mapping UML::Generalization::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
+	endMarker := edge.resolveDefinitions().getMarker("endHollowClosedArrow");		
+}
+
+mapping UML::GeneralizationSet::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
+	_class := "dashed";
+}
+
+mapping UML::GeneralOrdering::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
+	var f := edge.waypoint->first();
+	var l := edge.waypoint->last();
+	
+	command += object DG::MoveTo { point := f.clone().oclAsType(DC::Point) };
+	command +=  object DG::LineTo { point := object DC::Point { x:=(f.x+l.x)/2; y:=(f.y+l.y)/2 } };
+	command +=  object DG::LineTo { point := l.clone().oclAsType(DC::Point) };
+
+	midMarker := edge.resolveDefinitions().getMarker("midSolidClosedArrow");
+	_class := "dashed";
+}
+		
 mapping UML::Include::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
 	_class := "dashed";
 	endMarker := edge.resolveDefinitions().getMarker("endOpenArrow");		
@@ -132,6 +144,51 @@ mapping UML::InterfaceRealization::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path
 		_class := "";
 		endMarker := null;		
 	} endif;
+}
+
+mapping UML::Message::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {
+	if self.messageSort = UML::MessageSort::synchCall then { 
+		if self.messageKind = UML::MessageKind::lost then
+			endMarker := edge.resolveDefinitions().getMarker("endSolidCircleSolidClosedArrow")
+		else 		
+			endMarker := edge.resolveDefinitions().getMarker("endSolidClosedArrow")
+		endif		
+	} else if self.messageSort = UML::MessageSort::asynchCall or self.messageSort = UML::MessageSort::asynchSignal then {
+		if self.messageKind = UML::MessageKind::lost then
+			endMarker := edge.resolveDefinitions().getMarker("endSolidCircleOpenArrow")
+		else 		
+			endMarker := edge.resolveDefinitions().getMarker("endOpenArrow")
+		endif		
+	} else if self.messageSort = UML::MessageSort::reply then {
+		if self.messageKind = UML::MessageKind::lost then
+			endMarker := edge.resolveDefinitions().getMarker("endSolidCircleSolidClosedArrow")
+		else 		
+			endMarker := edge.resolveDefinitions().getMarker("endSolidClosedArrow")
+		endif;
+		_class := "dashed";
+	} else if self.messageSort = UML::MessageSort::createMessage then {
+		if self.messageKind = UML::MessageKind::lost then
+			endMarker := edge.resolveDefinitions().getMarker("endSolidCircleOpenArrow")
+		else 		
+			endMarker := edge.resolveDefinitions().getMarker("endOpenArrow")
+		endif;	
+		_class := "dashed";
+	} else if self.messageSort = UML::MessageSort::deleteMessage then {
+		if self.messageKind = UML::MessageKind::lost then
+			endMarker := edge.resolveDefinitions().getMarker("endSolidCircleSolidClosedArrow")
+		else 		
+			endMarker := edge.resolveDefinitions().getMarker("endSolidClosedArrow")
+		endif;
+	} else if self.messageSort = UML::MessageSort::deleteMessage then {
+		if self.messageKind = UML::MessageKind::lost then
+			endMarker := edge.resolveDefinitions().getMarker("endSolidCircleSolidClosedArrow")
+		else 		
+			endMarker := edge.resolveDefinitions().getMarker("endSolidClosedArrow")
+		endif;
+	} endif endif endif endif endif endif;
+	if self.messageKind = UML::MessageKind::found then
+		startMarker := edge.resolveDefinitions().getMarker("startSolidCircle")
+	endif;
 }
 
 mapping UML::PackageImport::edgeToPath(edge : UMLDI::UmlEdge) : DG::Path {

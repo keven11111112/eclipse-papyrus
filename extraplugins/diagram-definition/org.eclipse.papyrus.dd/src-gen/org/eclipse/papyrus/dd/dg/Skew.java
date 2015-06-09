@@ -22,8 +22,8 @@ package org.eclipse.papyrus.dd.dg;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Skew#getAngleX <em>Angle X</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Skew#getAngleY <em>Angle Y</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Skew#getAngleX <em>Angle X</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Skew#getAngleY <em>Angle Y</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getSkew()

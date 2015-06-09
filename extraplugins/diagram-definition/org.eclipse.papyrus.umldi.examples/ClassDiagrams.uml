@@ -237,6 +237,7 @@
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:AssociationClass" xmi:id="_sTNCME7TEeSYq8wB-dWH0g" name="AssociationClass1" memberEnd="_sTNCMU7TEeSYq8wB-dWH0g _sTIJsE7TEeSYq8wB-dWH0g">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_fB6QUAAREeWuH4RB6IXmpA" name="Attribute1"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_sTNCMU7TEeSYq8wB-dWH0g" name="class1" type="_APUtwEzkEeSEML-T-SW94A" association="_sTNCME7TEeSYq8wB-dWH0g">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sTNCMk7TEeSYq8wB-dWH0g" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sTNCM07TEeSYq8wB-dWH0g" value="1"/>

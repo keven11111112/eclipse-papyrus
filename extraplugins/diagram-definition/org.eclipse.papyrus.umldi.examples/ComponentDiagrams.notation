@@ -399,13 +399,18 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wr1zEo_REeSLHJOSU5DIPg" points="[-29, -25, 148, 131]$[-151, -162, 26, -6]"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_iX0IIJPUEeSUCa_mgXTt1Q" type="4012" source="_XeoA4I_KEeSLHJOSU5DIPg" target="_Gjfx8I_JEeSLHJOSU5DIPg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__kbE0AJ4EeWJWc7vgya8cg" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__kbE0QJ4EeWJWc7vgya8cg" key="bold" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__kbr4AJ4EeWJWc7vgya8cg" key="italic" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__keIIAJ4EeWJWc7vgya8cg" key="fontColor" value="true"/>
+      </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_iX0vMJPUEeSUCa_mgXTt1Q" type="6006">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_iX0vMZPUEeSUCa_mgXTt1Q" x="-1" y="-34"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_iX1WQJPUEeSUCa_mgXTt1Q" type="6020">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_iX1WQZPUEeSUCa_mgXTt1Q" x="9" y="-22"/>
       </children>
-      <styles xmi:type="notation:FontStyle" xmi:id="_iX0IIZPUEeSUCa_mgXTt1Q" fontHeight="11"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_iX0IIZPUEeSUCa_mgXTt1Q" fontName="Lucida Grande" fontHeight="11"/>
       <element xmi:type="uml:Substitution" href="ComponentDiagrams.uml#_iXleoJPUEeSUCa_mgXTt1Q"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_iX0IIpPUEeSUCa_mgXTt1Q" points="[-50, -6, 202, -3]$[-177, -6, 75, -3]"/>
     </edges>

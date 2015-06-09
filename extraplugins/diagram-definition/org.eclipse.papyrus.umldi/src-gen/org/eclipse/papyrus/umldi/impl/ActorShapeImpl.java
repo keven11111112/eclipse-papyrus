@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ActorShapeImpl extends BehavioredClassifierShapeImpl implements ActorShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActorShapeImpl() {
@@ -36,11 +38,11 @@ public class ActorShapeImpl extends BehavioredClassifierShapeImpl implements Act
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ACTOR_SHAPE;
 	}
-
 } //ActorShapeImpl

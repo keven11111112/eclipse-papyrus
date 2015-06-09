@@ -33,7 +33,7 @@ import org.eclipse.papyrus.dd.dg.Transform;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.impl.PaintServerImpl#getTransforms <em>Transform</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.impl.PaintServerImpl#getTransforms <em>Transform</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,6 +43,7 @@ public abstract class PaintServerImpl extends DefinitionImpl implements PaintSer
 	/**
 	 * The cached value of the '{@link #getTransforms() <em>Transform</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTransforms()
 	 * @generated
 	 * @ordered
@@ -51,6 +52,7 @@ public abstract class PaintServerImpl extends DefinitionImpl implements PaintSer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PaintServerImpl() {
@@ -59,6 +61,7 @@ public abstract class PaintServerImpl extends DefinitionImpl implements PaintSer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,10 +71,11 @@ public abstract class PaintServerImpl extends DefinitionImpl implements PaintSer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Transform> getTransforms() {
-		if (transforms == null) {
+		if(transforms == null) {
 			transforms = new EObjectContainmentEList<Transform>(Transform.class, this, DGPackage.PAINT_SERVER__TRANSFORM);
 		}
 		return transforms;
@@ -79,69 +83,74 @@ public abstract class PaintServerImpl extends DefinitionImpl implements PaintSer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DGPackage.PAINT_SERVER__TRANSFORM:
-				return ((InternalEList<?>)getTransforms()).basicRemove(otherEnd, msgs);
+		switch(featureID) {
+		case DGPackage.PAINT_SERVER__TRANSFORM:
+			return ((InternalEList<?>)getTransforms()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DGPackage.PAINT_SERVER__TRANSFORM:
-				return getTransforms();
+		switch(featureID) {
+		case DGPackage.PAINT_SERVER__TRANSFORM:
+			return getTransforms();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DGPackage.PAINT_SERVER__TRANSFORM:
-				getTransforms().clear();
-				getTransforms().addAll((Collection<? extends Transform>)newValue);
-				return;
+		switch(featureID) {
+		case DGPackage.PAINT_SERVER__TRANSFORM:
+			getTransforms().clear();
+			getTransforms().addAll((Collection<? extends Transform>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DGPackage.PAINT_SERVER__TRANSFORM:
-				getTransforms().clear();
-				return;
+		switch(featureID) {
+		case DGPackage.PAINT_SERVER__TRANSFORM:
+			getTransforms().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DGPackage.PAINT_SERVER__TRANSFORM:
-				return transforms != null && !transforms.isEmpty();
+		switch(featureID) {
+		case DGPackage.PAINT_SERVER__TRANSFORM:
+			return transforms != null && !transforms.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.dd.dg.Path;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Path} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class PathItemProvider extends MarkedElementItemProvider {
@@ -48,9 +49,8 @@ public class PathItemProvider extends MarkedElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -60,11 +60,12 @@ public class PathItemProvider extends MarkedElementItemProvider {
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DGPackage.Literals.PATH__COMMAND);
 		}
@@ -73,19 +74,20 @@ public class PathItemProvider extends MarkedElementItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
 	/**
 	 * This returns Path.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,14 +99,13 @@ public class PathItemProvider extends MarkedElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Path)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Path_type") :
-			getString("_UI_Path_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Path_type") : getString("_UI_Path_type") + " " + label;
 	}
 
 	/**
@@ -112,16 +113,16 @@ public class PathItemProvider extends MarkedElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Path.class)) {
-			case DGPackage.PATH__COMMAND:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(Path.class)) {
+		case DGPackage.PATH__COMMAND:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -136,35 +137,11 @@ public class PathItemProvider extends MarkedElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.PATH__COMMAND,
-				 DGFactory.eINSTANCE.createMoveTo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.PATH__COMMAND,
-				 DGFactory.eINSTANCE.createClosePath()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.PATH__COMMAND,
-				 DGFactory.eINSTANCE.createCubicCurveTo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.PATH__COMMAND,
-				 DGFactory.eINSTANCE.createEllipticalArcTo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.PATH__COMMAND,
-				 DGFactory.eINSTANCE.createQuadraticCurveTo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.PATH__COMMAND,
-				 DGFactory.eINSTANCE.createLineTo()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.PATH__COMMAND, DGFactory.eINSTANCE.createMoveTo()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.PATH__COMMAND, DGFactory.eINSTANCE.createClosePath()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.PATH__COMMAND, DGFactory.eINSTANCE.createCubicCurveTo()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.PATH__COMMAND, DGFactory.eINSTANCE.createEllipticalArcTo()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.PATH__COMMAND, DGFactory.eINSTANCE.createQuadraticCurveTo()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.PATH__COMMAND, DGFactory.eINSTANCE.createLineTo()));
 	}
 }

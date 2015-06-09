@@ -31,11 +31,15 @@ property interactionOverviewDiagramType = 'InteractionOverviewDiagram';
 //Shapes
 property customShapeType = "Custom";
 property roleBindingShapeType = "RoleBinding";
+property compactStateInvariantShapeType ="Compact";
+property appliedStereotypeShapeType = "AppliedStereotypesComment";
 
 //Edges
 property containmentEdgeType = "Containment";
 property attachmentEdgeType = "Attachment";
 property representationEdgeType = "Representation";
+property pathEdgeType = "Path";
+property appliedStereotypeEdgeType = "AppliedStereotypesCommentLink";
 
 //Labels
 property nameLabelType = "Name";
@@ -44,6 +48,7 @@ property stereotypeLabelType = "Stereotype";
 property aliasLabelType = "Alias";
 property templateParameterSubstitutionLabelType = "TemplateParameterSubstitution";
 property bodyLabelType = "Body";
+property expressionLabelType = "Expression";
 property sourceRoleLabelType = "SourceRole";
 property targetRoleLabelType = "TargetRole";
 property sourceMultiplicityLabelType = "SourceMultiplicity";
@@ -77,6 +82,11 @@ property subvertexCompartmentType = "Region";
 property parameterCompartmentType = "ActivityFigureParameter";
 property preConditionCompartmentType = "ActivityFigurePrecondition";
 property postConditionCompartmentType = "ActivityFigurePostCondtion";
-property contentCompartmentType = Set{"ActivityFigureContent", "StructuredActivityNodeContent"};
-property subPartitionCompartmentType = "ActivityPartitionContent";
+property activityNodeCompartmentType = Set{"ActivityFigureContent", "StructuredActivityNodeContent"};
+property subpartitionCompartmentType = "ActivityPartitionContent";
 property interruptibleActivityRegionCompartmentType = "InterruptibleActivityRegionContent";
+property subfragmentCompartmentType = Set{"Interaction", "CombinedFragment"};
+property timingCompartmentType = Set{"FullLifelineStateDefinition", "FullLifelineTimeline"};
+property stateDefinitionCompartmentType = "FullLifelineStateDefinition";
+property appliedStereotypeCompartmentType = 'AppliedStereotypeCompartment';
+

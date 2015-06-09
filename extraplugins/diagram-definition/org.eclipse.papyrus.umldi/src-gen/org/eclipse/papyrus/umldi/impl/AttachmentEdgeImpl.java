@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class AttachmentEdgeImpl extends UmlEdgeImpl implements AttachmentEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AttachmentEdgeImpl() {
@@ -36,11 +38,11 @@ public class AttachmentEdgeImpl extends UmlEdgeImpl implements AttachmentEdge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ATTACHMENT_EDGE;
 	}
-
 } //AttachmentEdgeImpl
