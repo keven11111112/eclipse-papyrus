@@ -393,7 +393,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC3-201505280700/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC4-201506032000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -411,13 +411,13 @@
 			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Runtime",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201506010456</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201506060219</url>
 		</repository>
 		<repository>
 			<id>gmf-tooling</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Tooling",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/S201506021800</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/S201506090500</url>
 		</repository>
 		<repository>
 			<id>m2t-xpand</id>
@@ -429,7 +429,7 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201506011517</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201506090403</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -441,7 +441,7 @@
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201505261602</url>
+			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201506031058</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
@@ -472,7 +472,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/S-3.7.0RC3-20150602091014/repository/</url>
+			<url>http://build.eclipse.org/webtools/committers/wtp-R3.7.0-I/20150604000109/I-3.7.0-20150604000109/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
