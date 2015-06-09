@@ -23,10 +23,10 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle#getStringValue <em>String Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle#getStringValue <em>String Value</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getStringValueStyle()
  * @model
@@ -41,7 +41,6 @@ public interface StringValueStyle extends NamedStyle {
 	 * If the meaning of the '<em>String Value</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>String Value</em>' attribute.
 	 * @see #setStringValue(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getStringValueStyle_StringValue()
@@ -51,13 +50,10 @@ public interface StringValueStyle extends NamedStyle {
 	String getStringValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle#getStringValue
-	 * <em>String Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle#getStringValue <em>String Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>String Value</em>' attribute.
+	 * @param value the new value of the '<em>String Value</em>' attribute.
 	 * @see #getStringValue()
 	 * @generated
 	 */

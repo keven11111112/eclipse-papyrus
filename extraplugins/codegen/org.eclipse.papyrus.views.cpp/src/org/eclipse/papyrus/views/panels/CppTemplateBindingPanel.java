@@ -25,7 +25,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Panel displayed when a TemplateBinding is selected
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CppTemplateBindingPanel extends CppAbstractPanel {
 
 	private TemplateBinding selectedTB;

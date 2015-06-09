@@ -23,10 +23,10 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle#getAlignment <em>Alignment</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle#getAlignment <em>Alignment</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getCellTextStyle()
  * @model
@@ -43,7 +43,6 @@ public interface CellTextStyle extends Style {
 	 * If the meaning of the '<em>Alignment</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Alignment</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment
 	 * @see #setAlignment(CellTextAlignment)
@@ -54,13 +53,10 @@ public interface CellTextStyle extends Style {
 	CellTextAlignment getAlignment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle#getAlignment <em>Alignment</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle#getAlignment <em>Alignment</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Alignment</em>' attribute.
+	 * @param value the new value of the '<em>Alignment</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment
 	 * @see #getAlignment()
 	 * @generated

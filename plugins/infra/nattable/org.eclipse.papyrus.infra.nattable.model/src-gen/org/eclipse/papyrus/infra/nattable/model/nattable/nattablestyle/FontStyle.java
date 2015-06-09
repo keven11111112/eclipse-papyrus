@@ -23,16 +23,16 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontColor <em>Font Color</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontName <em>Font Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontHeight <em>Font Height</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isBold <em>Bold</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isItalic <em>Italic</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isUnderline <em>Underline</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isStrikeThrough <em>Strike Through</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontColor <em>Font Color</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontName <em>Font Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontHeight <em>Font Height</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isBold <em>Bold</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isItalic <em>Italic</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isUnderline <em>Underline</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isStrikeThrough <em>Strike Through</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getFontStyle()
  * @model
@@ -48,7 +48,6 @@ public interface FontStyle extends Style {
 	 * If the meaning of the '<em>Font Color</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Font Color</em>' attribute.
 	 * @see #setFontColor(int)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getFontStyle_FontColor()
@@ -58,13 +57,10 @@ public interface FontStyle extends Style {
 	int getFontColor();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontColor <em>Font Color</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontColor <em>Font Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Font Color</em>' attribute.
+	 * @param value the new value of the '<em>Font Color</em>' attribute.
 	 * @see #getFontColor()
 	 * @generated
 	 */
@@ -78,7 +74,6 @@ public interface FontStyle extends Style {
 	 * If the meaning of the '<em>Font Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Font Name</em>' attribute.
 	 * @see #setFontName(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getFontStyle_FontName()
@@ -88,13 +83,10 @@ public interface FontStyle extends Style {
 	String getFontName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontName <em>Font Name</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontName <em>Font Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Font Name</em>' attribute.
+	 * @param value the new value of the '<em>Font Name</em>' attribute.
 	 * @see #getFontName()
 	 * @generated
 	 */
@@ -108,7 +100,6 @@ public interface FontStyle extends Style {
 	 * If the meaning of the '<em>Font Height</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Font Height</em>' attribute.
 	 * @see #setFontHeight(int)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getFontStyle_FontHeight()
@@ -118,13 +109,10 @@ public interface FontStyle extends Style {
 	int getFontHeight();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontHeight <em>Font Height</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontHeight <em>Font Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Font Height</em>' attribute.
+	 * @param value the new value of the '<em>Font Height</em>' attribute.
 	 * @see #getFontHeight()
 	 * @generated
 	 */
@@ -138,7 +126,6 @@ public interface FontStyle extends Style {
 	 * If the meaning of the '<em>Bold</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Bold</em>' attribute.
 	 * @see #setBold(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getFontStyle_Bold()
@@ -151,9 +138,7 @@ public interface FontStyle extends Style {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isBold <em>Bold</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Bold</em>' attribute.
+	 * @param value the new value of the '<em>Bold</em>' attribute.
 	 * @see #isBold()
 	 * @generated
 	 */
@@ -167,7 +152,6 @@ public interface FontStyle extends Style {
 	 * If the meaning of the '<em>Italic</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Italic</em>' attribute.
 	 * @see #setItalic(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getFontStyle_Italic()
@@ -180,9 +164,7 @@ public interface FontStyle extends Style {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isItalic <em>Italic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Italic</em>' attribute.
+	 * @param value the new value of the '<em>Italic</em>' attribute.
 	 * @see #isItalic()
 	 * @generated
 	 */
@@ -196,7 +178,6 @@ public interface FontStyle extends Style {
 	 * If the meaning of the '<em>Underline</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Underline</em>' attribute.
 	 * @see #setUnderline(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getFontStyle_Underline()
@@ -206,13 +187,10 @@ public interface FontStyle extends Style {
 	boolean isUnderline();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isUnderline <em>Underline</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isUnderline <em>Underline</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Underline</em>' attribute.
+	 * @param value the new value of the '<em>Underline</em>' attribute.
 	 * @see #isUnderline()
 	 * @generated
 	 */
@@ -226,7 +204,6 @@ public interface FontStyle extends Style {
 	 * If the meaning of the '<em>Strike Through</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Strike Through</em>' attribute.
 	 * @see #setStrikeThrough(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getFontStyle_StrikeThrough()
@@ -236,13 +213,10 @@ public interface FontStyle extends Style {
 	boolean isStrikeThrough();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isStrikeThrough
-	 * <em>Strike Through</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isStrikeThrough <em>Strike Through</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Strike Through</em>' attribute.
+	 * @param value the new value of the '<em>Strike Through</em>' attribute.
 	 * @see #isStrikeThrough()
 	 * @generated
 	 */

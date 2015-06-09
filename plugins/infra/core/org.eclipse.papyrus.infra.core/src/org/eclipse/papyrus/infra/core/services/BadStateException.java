@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 LIFL and others.
+ * Copyright (c) 2011, 2015 LIFL, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 468030
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services;
@@ -41,7 +42,7 @@ public class BadStateException extends ServiceException {
 	 * @param serviceDescriptor
 	 */
 	public BadStateException(String text, ServiceState state, ServiceDescriptor descriptor) {
-		super(text + " (Service= '" + descriptor.getKey() + ", state= " + state + ")");
+		super(text + " (Service= '" + descriptor.getKey() + "', state= " + state + ")");
 	}
 
 }

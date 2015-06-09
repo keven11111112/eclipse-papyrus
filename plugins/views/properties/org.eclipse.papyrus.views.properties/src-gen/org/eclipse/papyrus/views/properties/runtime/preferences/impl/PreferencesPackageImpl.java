@@ -49,11 +49,15 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 	private EClass preferencesEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage#eNS_URI
@@ -76,7 +80,9 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link PreferencesPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link PreferencesPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -164,6 +170,16 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 	 *
 	 * @generated
 	 */
+	public EAttribute getContextDescriptor_AppliedByDefault() {
+		return (EAttribute) contextDescriptorEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
 	public EClass getPreferences() {
 		return preferencesEClass;
 	}
@@ -226,6 +242,7 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 		createEAttribute(contextDescriptorEClass, CONTEXT_DESCRIPTOR__APPLIED);
 		createEReference(contextDescriptorEClass, CONTEXT_DESCRIPTOR__PROTOTYPE);
 		createEAttribute(contextDescriptorEClass, CONTEXT_DESCRIPTOR__DELETED);
+		createEAttribute(contextDescriptorEClass, CONTEXT_DESCRIPTOR__APPLIED_BY_DEFAULT);
 
 		preferencesEClass = createEClass(PREFERENCES);
 		createEReference(preferencesEClass, PREFERENCES__CONTEXTS);
@@ -269,9 +286,10 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 		initEClass(contextDescriptorEClass, ContextDescriptor.class, "ContextDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getContextDescriptor_Name(), ecorePackage.getEString(), "name", null, 1, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getContextDescriptor_Applied(), ecorePackage.getEBoolean(), "applied", "true", 1, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getContextDescriptor_Prototype(), this.getContextDescriptor(), null, "prototype", null, 0, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getContextDescriptor_Prototype(), this.getContextDescriptor(), null, "prototype", null, 0, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		initEAttribute(getContextDescriptor_Deleted(), ecorePackage.getEBoolean(), "deleted", null, 1, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContextDescriptor_AppliedByDefault(), ecorePackage.getEBoolean(), "appliedByDefault", null, 0, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(preferencesEClass, Preferences.class, "Preferences", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPreferences_Contexts(), this.getContextDescriptor(), null, "contexts", null, 0, -1, Preferences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -306,8 +306,18 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 		shellLogger.open();
 		return message;
 	}
-
-	public boolean reImportReqIFModel ( boolean interactive){
+	/**
+	 * re-import selected SpecObjectType and their instances into UML Model
+	 * @param interactive open GUI for user if true
+	 * @param matchProperty
+	 *            is the stereotype's property name used to determine if one
+	 *            element in reqif is the same than other element in imported. For
+	 *            example, "id" is a good matchProperty when comparing SysML
+	 *            Requirements
+	 *@param deleteElement indicate if element has to be deleted
+	 *@return true
+	 */
+	public boolean reImportReqIFModel ( boolean interactive, String matchProperty, boolean deleteElement ){
 		Model reImportModel=UMLFactory.eINSTANCE.createModel();
 		reImportModel.setName("Re-ImportModel"+ GregorianCalendar.getInstance().getTimeInMillis());
 		Package firstVersion= targetUMLModel;
@@ -318,9 +328,26 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 		}
 		targetUMLModel=reImportModel;
 		boolean importResult= importReqIFModel ( interactive);
-		IRequirementMerger merger= new BasicRequirementMerger(firstVersion, targetUMLModel, I_SysMLStereotype.REQUIREMENT_ID_ATT, true, domain);
+		IRequirementMerger merger= new BasicRequirementMerger(firstVersion, targetUMLModel, matchProperty, deleteElement, domain);
 		merger.merge();
 		firstVersion.eResource().getContents().remove(targetUMLModel);
+		if (interactive){
+			Comment  comment= UMLFactory.eINSTANCE.createComment();
+			String txt="AddedElements\n";
+			for (Element element : merger.getAddedElements()) {
+				txt=txt+element.toString()+"\n";
+			}
+			txt=txt+"RemovedElements\n";
+			for (Element element : merger.getElementToDelete()) {
+				txt=txt+element.toString()+"\n";
+			}
+			txt=txt+"ModifiedElements\n";
+			for (Element element : merger.getModifiedElement()) {
+				txt=txt+element.toString()+"\n";
+			}
+			comment.setBody(txt);
+			firstVersion.getOwnedComments().add(comment);
+		}
 		return importResult;
 	}
 	/**

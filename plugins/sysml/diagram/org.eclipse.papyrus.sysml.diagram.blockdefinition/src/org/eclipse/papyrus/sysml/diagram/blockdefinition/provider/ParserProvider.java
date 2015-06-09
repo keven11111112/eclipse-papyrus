@@ -28,6 +28,7 @@ import org.eclipse.papyrus.sysml.diagram.common.parser.FlowPortLabelParser;
 import org.eclipse.papyrus.sysml.diagram.common.parser.FlowPropertyLabelParser;
 import org.eclipse.papyrus.sysml.diagram.common.parser.UnitLabelParser;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.uml.diagram.common.parser.AssociationEndLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.ConstraintLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
@@ -76,8 +77,8 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_ROLE_ID, new AssociationEndLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID, new AssociationEndLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID, new AppliedStereotypeParser());
-		
-		graphicalHintToParser.put(ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint(), new SlotLabelParser());
+
+		graphicalHintToParser.put(Integer.toString(SlotEditPart.VISUAL_ID), new SlotLabelParser());
 
 		graphicalHintToParser.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, new PropertyLabelParser());
 		graphicalHintToParser.put(SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID, new FlowPortLabelParser());
@@ -86,6 +87,7 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -102,8 +104,9 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IParser getParser(IAdaptable hint) {
-		String parserHint = (String) hint.getAdapter(String.class);
+		String parserHint = hint.getAdapter(String.class);
 		if (parserHint != null) {
 			IParser parser = graphicalHintToParser.get(parserHint);
 			if (parser != null) {
@@ -111,7 +114,7 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 			}
 		}
 
-		View view = (View) hint.getAdapter(View.class);
+		View view = hint.getAdapter(View.class);
 		if (view != null) {
 			IParser parser = graphicalHintToParser.get(view.getType());
 			if (parser != null) {
@@ -123,7 +126,7 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 	}
 
 	private String getDiagramType(IAdaptable hint) {
-		Diagram diagram = (Diagram) hint.getAdapter(Diagram.class);
+		Diagram diagram = hint.getAdapter(Diagram.class);
 		if (diagram != null) {
 			return diagram.getType();
 		}

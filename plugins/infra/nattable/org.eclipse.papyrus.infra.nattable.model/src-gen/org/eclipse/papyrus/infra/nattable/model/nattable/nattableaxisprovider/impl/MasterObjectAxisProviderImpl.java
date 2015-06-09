@@ -24,11 +24,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl#isDisconnectSlave <em>
- * Disconnect Slave</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl#isDisconnectSlave <em>Disconnect Slave</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -38,7 +37,6 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	 * The default value of the '{@link #isDisconnectSlave() <em>Disconnect Slave</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisconnectSlave()
 	 * @generated
 	 * @ordered
@@ -49,7 +47,6 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	 * The cached value of the '{@link #isDisconnectSlave() <em>Disconnect Slave</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisconnectSlave()
 	 * @generated
 	 * @ordered
@@ -59,7 +56,6 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected MasterObjectAxisProviderImpl() {
@@ -69,7 +65,6 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -80,7 +75,6 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -91,29 +85,26 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setDisconnectSlave(boolean newDisconnectSlave) {
 		boolean oldDisconnectSlave = disconnectSlave;
 		disconnectSlave = newDisconnectSlave;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE, oldDisconnectSlave, disconnectSlave));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
-			return isDisconnectSlave();
+		switch (featureID) {
+			case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
+				return isDisconnectSlave();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,15 +112,14 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
-			setDisconnectSlave((Boolean)newValue);
-			return;
+		switch (featureID) {
+			case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
+				setDisconnectSlave((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -137,15 +127,14 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
-			setDisconnectSlave(DISCONNECT_SLAVE_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
+				setDisconnectSlave(DISCONNECT_SLAVE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,14 +142,13 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
-			return disconnectSlave != DISCONNECT_SLAVE_EDEFAULT;
+		switch (featureID) {
+			case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
+				return disconnectSlave != DISCONNECT_SLAVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -168,14 +156,12 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (disconnectSlave: "); //$NON-NLS-1$
 		result.append(disconnectSlave);

@@ -132,6 +132,7 @@ public abstract class AbstractLabelHeaderDataProvider extends AbstractDataProvid
 	protected void removeListeners() {
 		if (this.listenAxisConfiguration != null) {
 			this.listenAxisConfiguration.eAdapters().remove(this.axisListener);
+			this.listenAxisConfiguration = null;
 		}
 		this.manager.getTable().eAdapters().remove(this.invertedListener);
 		this.manager.getTable().eAdapters().remove(this.localHeaderConfigListener);
@@ -144,4 +145,13 @@ public abstract class AbstractLabelHeaderDataProvider extends AbstractDataProvid
 	 */
 	protected abstract AbstractHeaderAxisConfiguration getAxisConfiguration();
 
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.dataprovider.AbstractDataProvider#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		removeListeners();
+		super.dispose();
+	}
 }

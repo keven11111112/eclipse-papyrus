@@ -25,12 +25,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>
- * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration#getAxisManagerConfigurations
- * <em>Axis Manager Configurations</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration#getAxisManagerConfigurations <em>Axis Manager Configurations</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getLocalTableHeaderAxisConfiguration()
  * @model
@@ -46,7 +44,6 @@ public interface LocalTableHeaderAxisConfiguration extends AbstractHeaderAxisCon
 	 * <!-- begin-model-doc -->
 	 * This list contains the configuration of the axis managers used in the table.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Axis Manager Configurations</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getLocalTableHeaderAxisConfiguration_AxisManagerConfigurations()
 	 * @model containment="true"

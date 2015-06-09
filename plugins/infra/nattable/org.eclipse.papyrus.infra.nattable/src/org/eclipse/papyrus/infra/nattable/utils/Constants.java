@@ -53,9 +53,17 @@ public class Constants {
 	 */
 	public static final String HEADER_LABEL_PROVIDER_CONTEXT = "org.eclipse.papyrus.infra.nattable.header.labelprovider";//$NON-NLS-1$
 
+	/**
+	 * The tree filling feature configuration context.
+	 */
+	public static final String HEADER_LABEL_PROVIDER_TREE_FILLING_FEATURE_CONFIGURATION_CONTEXT = "org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider"; //$NON-NLS-1$
+	
+	/**
+	 * The tree filling operation configuration context.
+	 */
+	public static final String HEADER_LABEL_PROVIDER_TREE_FILLING_OPERATION_CONFIGURATION_CONTEXT=	"org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider"; //$NON-NLS-1$
 
-	public static final String HEADER_LABEL_PROVIDER_TREE_FILLING_CONFIGURATION_CONTEXT = "org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider"; //$NON-NLS-1$
-
+	
 	/**
 	 * the context to use to find the label provider used to display values in the body of the table
 	 */

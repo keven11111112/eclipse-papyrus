@@ -7,5 +7,4 @@ Bundle-Name: Properties view Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties.doc;singleto
  n:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

@@ -9,6 +9,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 451230
+ *   Christian W. Damus - bug 468030
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -17,7 +18,12 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
@@ -32,6 +38,8 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 
 /**
@@ -61,6 +69,78 @@ public class ProjectFixture implements TestRule {
 		return !uri.isPlatformResource() ? null : project.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
 	}
 
+	/**
+	 * Creates a new file at the specified project-relative path with the contents of a bundle resource.
+	 * 
+	 * @param relativeFilePath
+	 *            the project-relative path of the file to create
+	 * @param classFromBundle
+	 *            the bundle in which its content is to be found
+	 * @param resourcePath
+	 *            the path in the context bundle of the resource to copy
+	 * 
+	 * @return the new file
+	 * 
+	 * @throws IOException
+	 *             on any problem in creating the file
+	 */
+	public IFile createFile(String relativeFilePath, Class<?> classFromBundle, String resourcePath) throws IOException {
+		IFile result;
+
+		Bundle bundle = FrameworkUtil.getBundle(classFromBundle);
+		URL resource = (bundle == null) ? null : bundle.getResource(resourcePath);
+		if (resource == null) {
+			throw new IOException("No such bundle resource: " + resourcePath);
+		}
+
+		IPath path = new Path(relativeFilePath);
+
+		try (InputStream input = resource.openStream()) {
+			createFolders(path.removeLastSegments(1));
+			result = project.getFile(path);
+			result.create(input, false, null);
+		} catch (CoreException e) {
+			if (e.getStatus().getException() instanceof IOException) {
+				throw (IOException) e.getStatus().getException();
+			} else if (e.getCause() instanceof IOException) {
+				throw (IOException) e.getCause();
+			}
+			throw new IOException("Failed to create file", e);
+		}
+
+		return result;
+	}
+
+	private void createFolders(IPath folderPath) throws CoreException {
+		if ((folderPath.segmentCount() > 0) && !folderPath.lastSegment().isEmpty()) {
+			createFolders(folderPath.removeLastSegments(1));
+			IFolder folder = project.getFolder(folderPath);
+			if (!folder.isAccessible()) {
+				folder.create(false, true, null);
+			}
+		}
+	}
+
+	/**
+	 * Creates a new file in my project with the contents of a bundle resource.
+	 * 
+	 * @param classFromBundle
+	 *            the bundle in which its content is to be found
+	 * @param resourcePath
+	 *            the path in the context bundle of the resource to copy
+	 * 
+	 * @return the new file, which will have the same name as the bundle resource and will be at the top level of the project
+	 * 
+	 * @throws IOException
+	 *             on any problem in creating the file
+	 * 
+	 * @see #createFile(String, Class, String)
+	 */
+	public IFile createFile(Class<?> classFromBundle, String resourcePath) throws IOException {
+		return createFile(new Path(resourcePath).lastSegment(), classFromBundle, resourcePath);
+	}
+
+	@Override
 	public Statement apply(final Statement base, Description description) {
 		String name = description.getMethodName();
 		if (name == null) {
@@ -113,6 +193,7 @@ public class ProjectFixture implements TestRule {
 			// Make sure that we can delete everything
 			project.accept(new IResourceVisitor() {
 
+				@Override
 				public boolean visit(IResource resource) throws CoreException {
 					switch (resource.getType()) {
 					case IResource.FILE:

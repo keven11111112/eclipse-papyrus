@@ -16,14 +16,14 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.INattableModelManagerUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.nattable.menu.util.TableMenuUtils;
-import org.eclipse.papyrus.uml.service.types.handlers.AbstractUmlCreateCommandHandler;
+import org.eclipse.papyrus.uml.service.types.handlers.AbstractUmlCreateElementCommandHandler;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 
 /**
  * Abstract handler for the creation commands of UML elements in the Nattable editor
  *
  */
-public abstract class AbstractUmlNattableCreateCommandHandler extends AbstractUmlCreateCommandHandler {
+public abstract class AbstractUmlNattableCreateCommandHandler extends AbstractUmlCreateElementCommandHandler {
 
 
 	/**

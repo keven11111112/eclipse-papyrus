@@ -21,13 +21,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#isApplied <em>Applied</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#getPrototype <em>Prototype</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#isDeleted <em>Deleted</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#isAppliedByDefault <em>Applied By Default</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage#getContextDescriptor()
  * @model
@@ -81,8 +82,7 @@ public interface ContextDescriptor extends EObject {
 	boolean isApplied();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#isApplied <em>Applied</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#isApplied <em>Applied</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -98,8 +98,7 @@ public interface ContextDescriptor extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * References the descriptor of the context from which a context was copied. This allows the configuration manager to apply the original context
-	 * when the copy is not available. This process is recursive over a chain of missing prototypes.
+	 * References the descriptor of the context from which a context was copied. This allows the configuration manager to apply the original context when the copy is not available. This process is recursive over a chain of missing prototypes.
 	 * <!-- end-model-doc -->
 	 *
 	 * @return the value of the '<em>Prototype</em>' reference.
@@ -111,8 +110,7 @@ public interface ContextDescriptor extends EObject {
 	ContextDescriptor getPrototype();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#getPrototype <em>Prototype</em>}'
-	 * reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#getPrototype <em>Prototype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -128,8 +126,7 @@ public interface ContextDescriptor extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Whether the context was explicitly deleted by the user. If not explicitly deleted, and there isn't currently a matching context available, then
-	 * the context is deemed to be missing.
+	 * Whether the context was explicitly deleted by the user. If not explicitly deleted, and there isn't currently a matching context available, then the context is deemed to be missing.
 	 * <!-- end-model-doc -->
 	 *
 	 * @return the value of the '<em>Deleted</em>' attribute.
@@ -141,8 +138,7 @@ public interface ContextDescriptor extends EObject {
 	boolean isDeleted();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#isDeleted <em>Deleted</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#isDeleted <em>Deleted</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -152,5 +148,34 @@ public interface ContextDescriptor extends EObject {
 	 * @generated
 	 */
 	void setDeleted(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Applied By Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Applied By Default</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Applied By Default</em>' attribute.
+	 * @see #setAppliedByDefault(boolean)
+	 * @see org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage#getContextDescriptor_AppliedByDefault()
+	 * @model
+	 * @generated
+	 */
+	boolean isAppliedByDefault();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor#isAppliedByDefault <em>Applied By Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>Applied By Default</em>' attribute.
+	 * @see #isAppliedByDefault()
+	 * @generated
+	 */
+	void setAppliedByDefault(boolean value);
 
 } // ContextDescriptor

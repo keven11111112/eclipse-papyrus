@@ -23,14 +23,20 @@ import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 
 public class RowEditAliasHeaderHandler extends AbstractTableHandler {
 
-	// TODO : this attribute must be removed when we introduce the dependency on e4.
-	private NatEventData eventData;
-
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 *
+	 * @param event
+	 * @return
+	 * @throws ExecutionException
+	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		if (this.eventData != null) {
+		NatEventData eventData = getNatEventData();
+		if (eventData!=null) {
 			AbstractNattableWidgetManager manager = (AbstractNattableWidgetManager) getCurrentNattableModelManager();
-			manager.openEditRowAliasDialog(this.eventData);
+			manager.openEditRowAliasDialog(eventData);
 		}
 		return null;
 	}
@@ -43,10 +49,10 @@ public class RowEditAliasHeaderHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {// it must be the nattable selection event
-		final NatEventData eventData = getNatEventData(evaluationContext);
-		this.eventData = eventData;
+		super.setEnabled(evaluationContext);
+		final NatEventData eventData = getNatEventData();
 		final NattableModelManager manager = (NattableModelManager) getCurrentNattableModelManager();
-		if (eventData != null && manager != null) {
+		if(isEnabled() && eventData!=null && manager!=null ){
 			setBaseEnabled(manager.canEditRowHeader(eventData));
 		} else {
 			setBaseEnabled(false);

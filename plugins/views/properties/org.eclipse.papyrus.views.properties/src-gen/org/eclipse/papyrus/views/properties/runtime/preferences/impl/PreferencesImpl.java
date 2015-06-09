@@ -33,11 +33,11 @@ import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPacka
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.impl.PreferencesImpl#getContexts <em>Contexts</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.runtime.preferences.impl.PreferencesImpl#getVersion <em>Version</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

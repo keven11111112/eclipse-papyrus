@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -31,7 +32,11 @@ public class ActivityHelper extends ElementEditHelper {
 
 	@Override
 	protected ICommand getMoveCommand(MoveRequest req) {
-		return new NotContainmentMoveCommand(req);
+		CompositeCommand cc = new CompositeCommand("Move To Activity"); //$NON-NLS-1$
+		cc.compose(ActivityNodeHelper.getMoveOutFromPartitionCommand(req));
+		cc.compose(ActivityNodeHelper.getMoveOutFromInterruptibleActivityRegionCommand(req));
+		cc.compose(new NotContainmentMoveCommand(req));
+		return cc.reduce();
 	}
 
 	@Override

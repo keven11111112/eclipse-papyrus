@@ -42,7 +42,6 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleto
- n:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Description: %pluginDescription

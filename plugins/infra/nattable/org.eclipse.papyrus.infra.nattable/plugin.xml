@@ -821,6 +821,10 @@
            description="Context used to display feature referenced by TreeFillingConfiguration"
            id="org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider">
      </context>
+     <context
+           description="Context used to display operation referenced by TreeFillingConfiguration"
+           id="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
+     </context>
  </extension>
  
  <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">

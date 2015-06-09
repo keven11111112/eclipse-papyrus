@@ -10,6 +10,7 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 456934
+ *  Christian W. Damus - bug 469464
  *
  *****************************************************************************/
 
@@ -27,6 +28,8 @@ public class Activator extends Plugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.decoratormodel"; //$NON-NLS-1$
+
+	public static final String TRACE_INDEX = "index"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

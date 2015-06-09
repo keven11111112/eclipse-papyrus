@@ -38,7 +38,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.util.Natta
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -46,7 +45,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -55,7 +53,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -64,7 +61,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -73,7 +69,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NattablecellItemProviderAdapterFactory() {
@@ -88,7 +83,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CellItemProvider cellItemProvider;
@@ -97,7 +91,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +106,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.EObjectAxisWrapper} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EObjectAxisWrapperItemProvider eObjectAxisWrapperItemProvider;
@@ -122,7 +114,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.EObjectAxisWrapper}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,7 +129,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.IdAxisWrapper} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IdAxisWrapperItemProvider idAxisWrapperItemProvider;
@@ -147,7 +137,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.IdAxisWrapper}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,7 +152,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,7 +163,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +173,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,7 +184,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,14 +194,13 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -228,7 +212,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,7 +223,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -252,7 +234,6 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -265,20 +246,16 @@ public class NattablecellItemProviderAdapterFactory extends NattablecellAdapterF
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void dispose() {
-		if (cellItemProvider != null)
-			cellItemProvider.dispose();
-		if (eObjectAxisWrapperItemProvider != null)
-			eObjectAxisWrapperItemProvider.dispose();
-		if (idAxisWrapperItemProvider != null)
-			idAxisWrapperItemProvider.dispose();
+		if (cellItemProvider != null) cellItemProvider.dispose();
+		if (eObjectAxisWrapperItemProvider != null) eObjectAxisWrapperItemProvider.dispose();
+		if (idAxisWrapperItemProvider != null) idAxisWrapperItemProvider.dispose();
 	}
 
 }

@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.req.reqif.I_SysMLStereotype;
 import org.eclipse.papyrus.req.reqif.assistant.ReqIFSelectionPage;
 import org.eclipse.papyrus.req.reqif.integration.transformation.ReqIFImporterServiceEdit;
 import org.eclipse.papyrus.req.reqif.transformation.ReqIFImporter;
@@ -67,7 +68,9 @@ public class ReqIFReImportWizard extends AbstractWizardForPapyrus implements IIm
 					@Override
 					protected void doExecute() {
 						ReqIFImporter sysMLReqIFTransfomation= new ReqIFImporterServiceEdit(domain, importedReqIFModel, (Package)getSelectionSet().get(0));
-						sysMLReqIFTransfomation.reImportReqIFModel(true);
+						
+						// merge by "id" with UI and delete removed elements
+						sysMLReqIFTransfomation.reImportReqIFModel(true, I_SysMLStereotype.REQUIREMENT_ID_ATT, true);
 					}
 				};
 				domain.getCommandStack().execute(cmd);

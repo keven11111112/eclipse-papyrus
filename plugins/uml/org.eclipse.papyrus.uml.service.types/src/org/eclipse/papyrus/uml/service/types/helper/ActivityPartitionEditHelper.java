@@ -57,6 +57,10 @@ public class ActivityPartitionEditHelper extends ActivityGroupHelper {
 						result.add(createDefaultMoveCommand(req, (EObject) movedElement));
 					}
 				}
+				if (!result.isEmpty()) {
+					result.compose(ActivityNodeHelper.getMoveOutFromPartitionCommand(req));
+					result.compose(ActivityNodeHelper.getMoveOutFromInterruptibleActivityRegionCommand(req));
+				}
 				return result;
 			}
 		}

@@ -149,6 +149,9 @@ public class TableMenuUtils {
 
 					@Override
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+						//see 469376: [Table] Memory Leak : (Tree)NattableWidgetManager, EObjectTreeItemAxis and others objects are not disposed when the table is closed
+						// https://bugs.eclipse.org/bugs/show_bug.cgi?id=469376
+						final INattableModelManager nattableModelManager = INattableModelManagerUtils.getTableManagerFromWorkbenchPart(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart());
 						EObject newElement = createElementRequest.getNewElement();
 						Collection<Object> toAdd = new ArrayList<Object>();
 						toAdd.add(newElement);

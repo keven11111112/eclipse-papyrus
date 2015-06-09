@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 LIFL, CEA, and others.
+ * Copyright (c) 2011, 2015 LIFL, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
+ *  Christian W. Damus - bug 468030
  */
 package org.eclipse.papyrus.infra.core.services;
 
@@ -628,14 +629,13 @@ public class ServicesRegistry {
 		}
 		// Detect cycles
 		checkCycle(roots, map);
-		// Retain only services with startupkind == START and state ==
-		// REGISTERED
-		roots = retainsToStartServices(roots);
+		// Retain only services with state == REGISTERED
+		roots = retainUnstartedServices(roots);
 		//
 		List<ServiceStartupEntry> toStart = buildTopologicalListOfServicesToStart(roots, map);
 
 		// Remove already started services
-		toStart = retainsToStartServices(toStart);
+		toStart = retainUnstartedServices(toStart);
 
 		// if( log.isLoggable(Level.FINE))
 		// {
@@ -761,6 +761,24 @@ public class ServicesRegistry {
 		for (ServiceStartupEntry service : services) {
 			ServiceDescriptor desc = service.getDescriptor();
 			if (service.getState() == ServiceState.registered && desc.isStartAtStartup()) {
+				result.add(service);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Retains the services that are not yet started. Retains only services with state == REGISTERED
+	 *
+	 * @param services
+	 *            Collection to filter
+	 * @return a new Collection containing the registered services
+	 */
+	private List<ServiceStartupEntry> retainUnstartedServices(Collection<ServiceStartupEntry> services) {
+		List<ServiceStartupEntry> result = new ArrayList<ServiceStartupEntry>(services.size());
+		for (ServiceStartupEntry service : services) {
+			if (service.getState() == ServiceState.registered) {
 				result.add(service);
 			}
 		}

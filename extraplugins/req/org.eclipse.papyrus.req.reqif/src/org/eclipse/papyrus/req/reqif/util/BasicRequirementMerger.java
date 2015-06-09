@@ -16,7 +16,7 @@ package org.eclipse.papyrus.req.reqif.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -53,7 +53,12 @@ public class BasicRequirementMerger implements IRequirementMerger {
 	protected ArrayList<Element> elementToDelete= new ArrayList<Element>();
 	protected ArrayList<Element> addedElements= new ArrayList<Element>();
 	protected boolean deleteElements=true;
-	
+	protected HashSet<Element> modifiedElement= new HashSet<Element>();
+
+	public HashSet<Element> getModifiedElement() {
+		return modifiedElement;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.papyrus.req.reqif.transformation.IRequirementMerger#getElementToDelete()
 	 */
@@ -70,7 +75,7 @@ public class BasicRequirementMerger implements IRequirementMerger {
 		return addedElements;
 	}
 
-	
+
 	/**
 	 * Merge information from version2 into version1
 	 * 
@@ -192,7 +197,7 @@ public class BasicRequirementMerger implements IRequirementMerger {
 	 * @param matchProperty
 	 * @return true if no problems
 	 */
-	protected boolean deleteElements(List<Element> delList, Package basePk) {
+	public boolean deleteElements(List<Element> delList, Package basePk) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(basePk);
 		if(provider == null) {
 			return false;
@@ -311,7 +316,18 @@ public class BasicRequirementMerger implements IRequirementMerger {
 			Stereotype stOfExtPe, Element peInBasePk) {
 		for (Property stProperty : stOfExtPe.getAllAttributes()) {
 			if (!stProperty.isReadOnly() && !stProperty.isDerived()	&& !stProperty.getName().startsWith("base_")) {
-				peInBasePk.setValue(stOfExtPe, stProperty.getName(),peInExtPk.getValue(stOfExtPe, stProperty.getName()));
+				if(peInBasePk.getValue(stOfExtPe, stProperty.getName())!=null){
+					if(!(peInBasePk.getValue(stOfExtPe, stProperty.getName()).equals(peInExtPk.getValue(stOfExtPe, stProperty.getName()))) ){
+						modifiedElement.add(peInBasePk);
+						peInBasePk.setValue(stOfExtPe, stProperty.getName(),peInExtPk.getValue(stOfExtPe, stProperty.getName()));
+					}
+				}
+				else if(peInExtPk.getValue(stOfExtPe, stProperty.getName())!=null){
+					if(!(peInExtPk.getValue(stOfExtPe, stProperty.getName()).equals(peInBasePk.getValue(stOfExtPe, stProperty.getName()))) ){
+						modifiedElement.add(peInBasePk);
+						peInBasePk.setValue(stOfExtPe, stProperty.getName(),peInExtPk.getValue(stOfExtPe, stProperty.getName()));
+					}
+				}
 			}
 		}
 	}

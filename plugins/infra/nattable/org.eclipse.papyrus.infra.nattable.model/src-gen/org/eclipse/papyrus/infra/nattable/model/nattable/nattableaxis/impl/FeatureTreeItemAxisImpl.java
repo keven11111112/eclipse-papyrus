@@ -32,22 +32,21 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.Nattableax
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl#getParent <em>Parent</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl#isExpanded <em>Expanded</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl#getChildren <em>Children</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl#getChildren <em>Children</em>}</li>
+ * </ul>
  *
  * @generated
  */
-public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureTreeItemAxis {
+public abstract class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureTreeItemAxis {
 
 	/**
 	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getParent()
 	 * @generated
 	 * @ordered
@@ -58,7 +57,6 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	 * The default value of the '{@link #isExpanded() <em>Expanded</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isExpanded()
 	 * @generated
 	 * @ordered
@@ -69,7 +67,6 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	 * The cached value of the '{@link #isExpanded() <em>Expanded</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isExpanded()
 	 * @generated
 	 * @ordered
@@ -80,7 +77,6 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	 * The cached value of the '{@link #getChildren() <em>Children</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getChildren()
 	 * @generated
 	 * @ordered
@@ -90,7 +86,6 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected FeatureTreeItemAxisImpl() {
@@ -100,7 +95,6 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -111,18 +105,16 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public ITreeItemAxis getParent() {
-		if(parent != null && parent.eIsProxy()) {
+		if (parent != null && parent.eIsProxy()) {
 			InternalEObject oldParent = (InternalEObject)parent;
 			parent = (ITreeItemAxis)eResolveProxy(oldParent);
-			if(parent != oldParent) {
-				if(eNotificationRequired()) {
+			if (parent != oldParent) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT, oldParent, parent));
-				}
 			}
 		}
 		return parent;
@@ -131,7 +123,6 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public ITreeItemAxis basicGetParent() {
@@ -141,19 +132,14 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(ITreeItemAxis newParent, NotificationChain msgs) {
 		ITreeItemAxis oldParent = parent;
 		parent = newParent;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT, oldParent, newParent);
-			if(msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -161,32 +147,26 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setParent(ITreeItemAxis newParent) {
-		if(newParent != parent) {
+		if (newParent != parent) {
 			NotificationChain msgs = null;
-			if(parent != null) {
+			if (parent != null)
 				msgs = ((InternalEObject)parent).eInverseRemove(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
-			}
-			if(newParent != null) {
+			if (newParent != null)
 				msgs = ((InternalEObject)newParent).eInverseAdd(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
-			}
 			msgs = basicSetParent(newParent, msgs);
-			if(msgs != null) {
-				msgs.dispatch();
-			}
-		} else if(eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT, newParent, newParent));
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT, newParent, newParent));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -197,27 +177,24 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setExpanded(boolean newExpanded) {
 		boolean oldExpanded = expanded;
 		expanded = newExpanded;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED, oldExpanded, expanded));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<ITreeItemAxis> getChildren() {
-		if(children == null) {
+		if (children == null) {
 			children = new EObjectWithInverseResolvingEList<ITreeItemAxis>(ITreeItemAxis.class, this, NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN, NattableaxisPackage.ITREE_ITEM_AXIS__PARENT);
 		}
 		return children;
@@ -226,20 +203,18 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
-			if(parent != null) {
-				msgs = ((InternalEObject)parent).eInverseRemove(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
-			}
-			return basicSetParent((ITreeItemAxis)otherEnd, msgs);
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
-			return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
+		switch (featureID) {
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
+				if (parent != null)
+					msgs = ((InternalEObject)parent).eInverseRemove(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
+				return basicSetParent((ITreeItemAxis)otherEnd, msgs);
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -247,16 +222,15 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
-			return basicSetParent(null, msgs);
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
-			return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
+				return basicSetParent(null, msgs);
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
+				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -264,21 +238,18 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
-			if(resolve) {
-				return getParent();
-			}
-			return basicGetParent();
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
-			return isExpanded();
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
-			return getChildren();
+		switch (featureID) {
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
+				if (resolve) return getParent();
+				return basicGetParent();
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
+				return isExpanded();
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
+				return getChildren();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -286,23 +257,22 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
-			setParent((ITreeItemAxis)newValue);
-			return;
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
-			setExpanded((Boolean)newValue);
-			return;
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
-			getChildren().clear();
-			getChildren().addAll((Collection<? extends ITreeItemAxis>)newValue);
-			return;
+		switch (featureID) {
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
+				setParent((ITreeItemAxis)newValue);
+				return;
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
+				setExpanded((Boolean)newValue);
+				return;
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
+				getChildren().clear();
+				getChildren().addAll((Collection<? extends ITreeItemAxis>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -310,21 +280,20 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
-			setParent((ITreeItemAxis)null);
-			return;
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
-			setExpanded(EXPANDED_EDEFAULT);
-			return;
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
-			getChildren().clear();
-			return;
+		switch (featureID) {
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
+				setParent((ITreeItemAxis)null);
+				return;
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
+				setExpanded(EXPANDED_EDEFAULT);
+				return;
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
+				getChildren().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -332,18 +301,17 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
-			return parent != null;
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
-			return expanded != EXPANDED_EDEFAULT;
-		case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
-			return children != null && !children.isEmpty();
+		switch (featureID) {
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
+				return parent != null;
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
+				return expanded != EXPANDED_EDEFAULT;
+			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
+				return children != null && !children.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -351,21 +319,16 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if(baseClass == ITreeItemAxis.class) {
-			switch(derivedFeatureID) {
-			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT:
-				return NattableaxisPackage.ITREE_ITEM_AXIS__PARENT;
-			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED:
-				return NattableaxisPackage.ITREE_ITEM_AXIS__EXPANDED;
-			case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN:
-				return NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN;
-			default:
-				return -1;
+		if (baseClass == ITreeItemAxis.class) {
+			switch (derivedFeatureID) {
+				case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT: return NattableaxisPackage.ITREE_ITEM_AXIS__PARENT;
+				case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED: return NattableaxisPackage.ITREE_ITEM_AXIS__EXPANDED;
+				case NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN: return NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -374,21 +337,16 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if(baseClass == ITreeItemAxis.class) {
-			switch(baseFeatureID) {
-			case NattableaxisPackage.ITREE_ITEM_AXIS__PARENT:
-				return NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT;
-			case NattableaxisPackage.ITREE_ITEM_AXIS__EXPANDED:
-				return NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED;
-			case NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN:
-				return NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN;
-			default:
-				return -1;
+		if (baseClass == ITreeItemAxis.class) {
+			switch (baseFeatureID) {
+				case NattableaxisPackage.ITREE_ITEM_AXIS__PARENT: return NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__PARENT;
+				case NattableaxisPackage.ITREE_ITEM_AXIS__EXPANDED: return NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__EXPANDED;
+				case NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN: return NattableaxisPackage.FEATURE_TREE_ITEM_AXIS__CHILDREN;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -397,14 +355,12 @@ public class FeatureTreeItemAxisImpl extends FeatureAxisImpl implements FeatureT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (expanded: "); //$NON-NLS-1$
 		result.append(expanded);

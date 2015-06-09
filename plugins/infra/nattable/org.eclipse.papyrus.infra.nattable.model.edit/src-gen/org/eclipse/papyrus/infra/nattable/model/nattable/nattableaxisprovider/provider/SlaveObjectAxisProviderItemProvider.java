@@ -25,7 +25,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Sl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class SlaveObjectAxisProviderItemProvider extends AxisProviderItemProvider {
@@ -33,7 +32,6 @@ public class SlaveObjectAxisProviderItemProvider extends AxisProviderItemProvide
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SlaveObjectAxisProviderItemProvider(AdapterFactory adapterFactory) {
@@ -44,7 +42,6 @@ public class SlaveObjectAxisProviderItemProvider extends AxisProviderItemProvide
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +57,6 @@ public class SlaveObjectAxisProviderItemProvider extends AxisProviderItemProvide
 	 * This returns SlaveObjectAxisProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,15 +68,14 @@ public class SlaveObjectAxisProviderItemProvider extends AxisProviderItemProvide
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SlaveObjectAxisProvider) object).getName();
+		String label = ((SlaveObjectAxisProvider)object).getName();
 		return label == null || label.length() == 0 ?
-				getString("_UI_SlaveObjectAxisProvider_type") : //$NON-NLS-1$
-				getString("_UI_SlaveObjectAxisProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_SlaveObjectAxisProvider_type") : //$NON-NLS-1$
+			getString("_UI_SlaveObjectAxisProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -89,7 +84,6 @@ public class SlaveObjectAxisProviderItemProvider extends AxisProviderItemProvide
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,7 +97,6 @@ public class SlaveObjectAxisProviderItemProvider extends AxisProviderItemProvide
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

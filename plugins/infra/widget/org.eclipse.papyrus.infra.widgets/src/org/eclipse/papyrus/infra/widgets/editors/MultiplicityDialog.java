@@ -134,7 +134,32 @@ public class MultiplicityDialog extends AbstractValueEditor implements Selection
 		stackLayoutComposite.setLayoutData(getDefaultLayoutData());
 
 		// Create the string combo editor
-		stringComboEditor = new StringCombo(stackLayoutComposite, style);
+		stringComboEditor = new StringCombo(stackLayoutComposite, style) {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo#doBinding()
+			 */
+			@Override
+			protected void doBinding() {
+				setWidgetObservable(getObservableValue());
+				super.doBinding();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor#setModelObservable(org.eclipse.core.databinding.observable.value.IObservableValue)
+			 */
+			@Override
+			public void setModelObservable(IObservableValue modelProperty) {
+				this.modelProperty = modelProperty;
+				setWidgetObservable(getObservableValue());
+				super.setModelObservable(modelProperty);
+				updateControls();
+			}
+		};
 		stringComboEditor.setLayoutData(getDefaultLayoutData());
 
 		// Create the composite which contains the lower and the upper value specification editors
@@ -575,9 +600,9 @@ public class MultiplicityDialog extends AbstractValueEditor implements Selection
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor#getValue()
-	 *
-	 * @return
 	 */
 	@Override
 	public Object getValue() {
@@ -591,10 +616,11 @@ public class MultiplicityDialog extends AbstractValueEditor implements Selection
 	 * @see org.eclipse.core.databinding.observable.IChangeListener#handleChange(org.eclipse.core.databinding.observable.ChangeEvent)
 	 */
 	@Override
-	public void handleChange(ChangeEvent event) {
+	public void handleChange(final ChangeEvent event) {
 		// Only refresh the model observables and the read only value
 		setEditorsModelObservable(modelProperty);
 		setReadOnly(readOnly);
 		// The others variables (labelProviders, contentProviders, mandatory and directCreation) don't need to change
 	}
+
 }

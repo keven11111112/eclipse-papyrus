@@ -19,10 +19,10 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle#getDisplayStyle <em>Display Style</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle#getDisplayStyle <em>Display Style</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getTableDisplayStyle()
  * @model
@@ -39,7 +39,6 @@ public interface TableDisplayStyle extends Style {
 	 * If the meaning of the '<em>Display Style</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Display Style</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle
 	 * @see #setDisplayStyle(DisplayStyle)
@@ -50,13 +49,10 @@ public interface TableDisplayStyle extends Style {
 	DisplayStyle getDisplayStyle();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle#getDisplayStyle
-	 * <em>Display Style</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle#getDisplayStyle <em>Display Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Display Style</em>' attribute.
+	 * @param value the new value of the '<em>Display Style</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle
 	 * @see #getDisplayStyle()
 	 * @generated

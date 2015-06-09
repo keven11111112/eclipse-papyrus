@@ -24,10 +24,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntValueStyleImpl#getIntValue <em>Int Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntValueStyleImpl#getIntValue <em>Int Value</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -37,7 +37,6 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	 * The default value of the '{@link #getIntValue() <em>Int Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIntValue()
 	 * @generated
 	 * @ordered
@@ -48,7 +47,6 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	 * The cached value of the '{@link #getIntValue() <em>Int Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIntValue()
 	 * @generated
 	 * @ordered
@@ -58,7 +56,6 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected IntValueStyleImpl() {
@@ -68,7 +65,6 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -79,7 +75,6 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -90,29 +85,26 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setIntValue(int newIntValue) {
 		int oldIntValue = intValue;
 		intValue = newIntValue;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.INT_VALUE_STYLE__INT_VALUE, oldIntValue, intValue));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.INT_VALUE_STYLE__INT_VALUE:
-			return getIntValue();
+		switch (featureID) {
+			case NattablestylePackage.INT_VALUE_STYLE__INT_VALUE:
+				return getIntValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,15 +112,14 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.INT_VALUE_STYLE__INT_VALUE:
-			setIntValue((Integer)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.INT_VALUE_STYLE__INT_VALUE:
+				setIntValue((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -136,15 +127,14 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.INT_VALUE_STYLE__INT_VALUE:
-			setIntValue(INT_VALUE_EDEFAULT);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.INT_VALUE_STYLE__INT_VALUE:
+				setIntValue(INT_VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,14 +142,13 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.INT_VALUE_STYLE__INT_VALUE:
-			return intValue != INT_VALUE_EDEFAULT;
+		switch (featureID) {
+			case NattablestylePackage.INT_VALUE_STYLE__INT_VALUE:
+				return intValue != INT_VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -167,14 +156,12 @@ public class IntValueStyleImpl extends NamedStyleImpl implements IntValueStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (intValue: "); //$NON-NLS-1$
 		result.append(intValue);

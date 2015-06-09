@@ -143,7 +143,7 @@ public abstract class AbstractCreateStereotypePropertyMenuFactory extends Extens
 						 */
 						@Override
 						public void fill(final Menu menu, int index) {
-							fillMenu(menu, tableManager, initialSelection, nameToPropertyMap);
+							fillMenu(menu, initialSelection, nameToPropertyMap);
 						}
 					};
 
@@ -168,7 +168,19 @@ public abstract class AbstractCreateStereotypePropertyMenuFactory extends Extens
 				}
 			}
 		}
+		
 	}
+
+	/**
+	 *
+	 * @param menu
+	 *            the menu to fill
+	 * @param initialSelection
+	 *            the initial selection
+	 * @param nameToPropertyMap
+	 *            the map with the available properties
+	 */
+	protected abstract void fillMenu(final Menu menu, final Collection<String> initialSelection, final Map<String, Property> nameToPropertyMap);
 
 	/**
 	 *
@@ -179,8 +191,11 @@ public abstract class AbstractCreateStereotypePropertyMenuFactory extends Extens
 	 * @param initialSelection
 	 *            the initial selection
 	 * @param nameToPropertyMap
-	 *            the map with th available properties
+	 *            the map with the available properties
+	 * 
+	 * @Deprecated since Eclipse Mars
 	 */
+	@Deprecated
 	protected abstract void fillMenu(final Menu menu, final INattableModelManager tableManager, final Collection<String> initialSelection, final Map<String, Property> nameToPropertyMap);
 
 	/**
@@ -205,4 +220,5 @@ public abstract class AbstractCreateStereotypePropertyMenuFactory extends Extens
 		}
 		return tableManager;
 	}
+
 }

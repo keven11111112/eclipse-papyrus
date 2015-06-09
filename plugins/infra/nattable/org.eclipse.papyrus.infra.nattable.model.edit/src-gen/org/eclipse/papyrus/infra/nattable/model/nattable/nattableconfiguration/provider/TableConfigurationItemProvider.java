@@ -33,7 +33,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Nattable
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TableConfigurationItemProvider extends TableNamedElementItemProvider {
@@ -41,7 +40,6 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TableConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -52,7 +50,6 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,123 +70,118 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TableConfiguration_type_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_type_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__TYPE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableConfiguration_type_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_type_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Icon Path feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIconPathPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TableConfiguration_iconPath_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_iconPath_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ICON_PATH,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableConfiguration_iconPath_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_iconPath_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ICON_PATH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Cell Editor Declaration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addCellEditorDeclarationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TableConfiguration_cellEditorDeclaration_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_cellEditorDeclaration_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__CELL_EDITOR_DECLARATION,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableConfiguration_cellEditorDeclaration_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_cellEditorDeclaration_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__CELL_EDITOR_DECLARATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Default Row Axis Provider feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDefaultRowAxisProviderPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TableConfiguration_defaultRowAxisProvider_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_defaultRowAxisProvider_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableConfiguration_defaultRowAxisProvider_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_defaultRowAxisProvider_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Default Column Axis Provider feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDefaultColumnAxisProviderPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TableConfiguration_defaultColumnAxisProvider_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_defaultColumnAxisProvider_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableConfiguration_defaultColumnAxisProvider_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_defaultColumnAxisProvider_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -208,7 +200,6 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,7 +214,6 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This returns TableConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -235,15 +225,14 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TableConfiguration) object).getName();
+		String label = ((TableConfiguration)object).getName();
 		return label == null || label.length() == 0 ?
-				getString("_UI_TableConfiguration_type") : //$NON-NLS-1$
-				getString("_UI_TableConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_TableConfiguration_type") : //$NON-NLS-1$
+			getString("_UI_TableConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -252,7 +241,6 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,18 +248,18 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TableConfiguration.class)) {
-		case NattableconfigurationPackage.TABLE_CONFIGURATION__TYPE:
-		case NattableconfigurationPackage.TABLE_CONFIGURATION__ICON_PATH:
-		case NattableconfigurationPackage.TABLE_CONFIGURATION__CELL_EDITOR_DECLARATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER:
-		case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION:
-		case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION:
-		case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS:
-		case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__TYPE:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__ICON_PATH:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__CELL_EDITOR_DECLARATION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -281,7 +269,6 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -289,46 +276,45 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__CREATION_TESTER,
-						NattabletesterFactory.eINSTANCE.createJavaTableTester()));
+				 NattabletesterFactory.eINSTANCE.createJavaTableTester()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION,
-						NattableaxisconfigurationFactory.eINSTANCE.createTableHeaderAxisConfiguration()));
+				 NattableaxisconfigurationFactory.eINSTANCE.createTableHeaderAxisConfiguration()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION,
-						NattableaxisconfigurationFactory.eINSTANCE.createTableHeaderAxisConfiguration()));
+				 NattableaxisconfigurationFactory.eINSTANCE.createTableHeaderAxisConfiguration()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS,
-						NattableaxisproviderFactory.eINSTANCE.createSlaveObjectAxisProvider()));
+				 NattableaxisproviderFactory.eINSTANCE.createSlaveObjectAxisProvider()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS,
-						NattableaxisproviderFactory.eINSTANCE.createMasterObjectAxisProvider()));
+				 NattableaxisproviderFactory.eINSTANCE.createMasterObjectAxisProvider()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS,
-						NattableaxisproviderFactory.eINSTANCE.createSlaveObjectAxisProvider()));
+				 NattableaxisproviderFactory.eINSTANCE.createSlaveObjectAxisProvider()));
 
 		newChildDescriptors.add
-				(createChildParameter
+			(createChildParameter
 				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS,
-						NattableaxisproviderFactory.eINSTANCE.createMasterObjectAxisProvider()));
+				 NattableaxisproviderFactory.eINSTANCE.createMasterObjectAxisProvider()));
 	}
 
 	/**
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -337,14 +323,15 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 		Object childObject = child;
 
 		boolean qualify =
-				childFeature == NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION ||
-						childFeature == NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION ||
-						childFeature == NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS ||
-						childFeature == NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS;
+			childFeature == NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION ||
+			childFeature == NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION ||
+			childFeature == NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS ||
+			childFeature == NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString
+				("_UI_CreateChild_text2", //$NON-NLS-1$
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

@@ -28,7 +28,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class BooleanListValueStyleItemProvider extends NamedStyleItemProvider {
@@ -37,7 +36,6 @@ public class BooleanListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BooleanListValueStyleItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +46,6 @@ public class BooleanListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,30 +62,28 @@ public class BooleanListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This adds a property descriptor for the Boolean List Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBooleanListValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_BooleanListValueStyle_booleanListValue_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_BooleanListValueStyle_booleanListValue_feature", "_UI_BooleanListValueStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattablestylePackage.Literals.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BooleanListValueStyle_booleanListValue_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_BooleanListValueStyle_booleanListValue_feature", "_UI_BooleanListValueStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablestylePackage.Literals.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns BooleanListValueStyle.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,15 +95,14 @@ public class BooleanListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BooleanListValueStyle) object).getName();
+		String label = ((BooleanListValueStyle)object).getName();
 		return label == null || label.length() == 0 ?
-				getString("_UI_BooleanListValueStyle_type") : //$NON-NLS-1$
-				getString("_UI_BooleanListValueStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_BooleanListValueStyle_type") : //$NON-NLS-1$
+			getString("_UI_BooleanListValueStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -116,7 +110,6 @@ public class BooleanListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,9 +117,9 @@ public class BooleanListValueStyleItemProvider extends NamedStyleItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BooleanListValueStyle.class)) {
-		case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -136,7 +129,6 @@ public class BooleanListValueStyleItemProvider extends NamedStyleItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -128,7 +128,7 @@ import ca.odell.glazedlists.event.ListEventListener;
  *
  *
  */
-public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
+public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager, FocusListener {
 
 	/**
 	 * the column manager
@@ -237,34 +237,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		this.cellsMap = HashBiMap.create();
 
-		this.invertAxisListener = new AdapterImpl() {
+		this.invertAxisListener = createInvertAxisListener();
 
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getEventType() == Notification.SET) {
-					final Object oldValue = msg.getOldValue();
-					final Object newValue = msg.getNewValue();
-					if (oldValue != null && newValue != null) {
-						if (msg.getFeature() == NattablePackage.eINSTANCE.getTable_InvertAxis()) {
-							invertJavaObject();
+		if (this.invertAxisListener != null) {
+			rawModel.eAdapters().add(this.invertAxisListener);
+		}
 
-							// use the method to refresh/merge the table using the appointed values saved in the model.notation
-							resizeAxis();
-							resizeHeader();
-							mergeTable();
-							// for the fun of it!
-							// in fact it is to fix the test org.eclipse.papyrus.sysml.nattable.requirement.tests.tests.RevealRequirementTableTest.test6SelectMultipleElementsInvertAxisAllColumns()
-							// it is a work around and not really a nice fix, because I don't understand the bug...
-							getBodyLayerStack().getRowHideShowLayer().showAllRows();
-							getBodyLayerStack().getColumnHideShowLayer().showAllColumns();
-
-						}
-					}
-				}
-			}
-		};
-
-		rawModel.eAdapters().add(this.invertAxisListener);
 		init();
 
 		changeAxisProvider = new AdapterImpl() {
@@ -320,6 +298,37 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		addListeners();
 	}
 
+	/**
+	 * create the invert axis listener, can return <code>null</code>
+	 */
+	protected Adapter createInvertAxisListener() {
+		return new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (msg.getEventType() == Notification.SET) {
+					final Object oldValue = msg.getOldValue();
+					final Object newValue = msg.getNewValue();
+					if (oldValue != null && newValue != null) {
+						if (msg.getFeature() == NattablePackage.eINSTANCE.getTable_InvertAxis()) {
+							invertJavaObject();
+
+							// use the method to refresh/merge the table using the appointed values saved in the model.notation
+							resizeAxis();
+							resizeHeader();
+							mergeTable();
+							// for the fun of it!
+							// in fact it is to fix the test org.eclipse.papyrus.sysml.nattable.requirement.tests.tests.RevealRequirementTableTest.test6SelectMultipleElementsInvertAxisAllColumns()
+							// it is a work around and not really a nice fix, because I don't undestand the bug...
+							getBodyLayerStack().getRowHideShowLayer().showAllRows();
+							getBodyLayerStack().getColumnHideShowLayer().showAllColumns();
+
+						}
+					}
+				}
+			}
+		};
+	}
 	private ListEventListener<Object> listEventListener;
 
 	/**
@@ -438,18 +447,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if (getTableEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
 			getTableEditingDomain().getCommandStack().addCommandStackListener(this.refreshListener);
 		}
-		this.focusListener = new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				// nothing to do
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				updateToggleActionState();
-			}
-		};
+		this.focusListener = this;
 		nattable.addFocusListener(this.focusListener);
 
 		this.layerListener = new ILayerListener() {
@@ -465,6 +463,17 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return nattable;
 	}
 
+	@Override
+	public void focusLost(FocusEvent e) {
+		// nothing to do
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		updateToggleActionState();
+	}
+
+	
 	/**
 	 * this command update the status of the toggle actions
 	 */
@@ -759,14 +768,23 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.columnManager.dispose();
 		this.rowManager.dispose();
 		Table table = getTable();
-		if (table != null && this.tableCellsListener != null) {
-			table.eAdapters().remove(this.tableCellsListener);
-		}
-		if (this.cellsMap != null) {
+		if (table != null) {
+
+			if (this.tableCellsListener != null) {
+				table.eAdapters().remove(this.tableCellsListener);
+			}
+			if (this.changeAxisProvider != null) {
+				table.eAdapters().remove(this.changeAxisProvider);
+			}
+			if (this.invertAxisListener != null) {
+				table.eAdapters().remove(this.invertAxisListener);
+			}
+		}		if (this.cellsMap != null) {
 			this.cellsMap.clear();
 		}
 		if (this.natTable != null) {
-			natTable.removeLayerListener(layerListener);
+			natTable.removeLayerListener(this.layerListener);
+			natTable.removeFocusListener(this.focusListener);
 		}
 
 		removeListeners();

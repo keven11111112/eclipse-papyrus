@@ -2862,6 +2862,9 @@
         <targlet
             name="Papyrus Releng Tools Dependencies">
           <requirement
+              name="org.eclipse.oomph.setup.workingsets.feature.group"
+              optional="true"/>
+          <requirement
               name="org.eclipse.oomph.setup.targlets.feature.group"
               optional="true"/>
           <requirement

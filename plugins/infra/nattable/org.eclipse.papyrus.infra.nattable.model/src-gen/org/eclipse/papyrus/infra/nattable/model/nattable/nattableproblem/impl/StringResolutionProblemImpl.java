@@ -28,13 +28,11 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringR
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl#getValueAsString <em>Value As String
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl#getUnresolvedString <em>Unresolved
- * String</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl#getValueAsString <em>Value As String</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl#getUnresolvedString <em>Unresolved String</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -44,7 +42,6 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	 * The default value of the '{@link #getValueAsString() <em>Value As String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getValueAsString()
 	 * @generated
 	 * @ordered
@@ -55,7 +52,6 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	 * The cached value of the '{@link #getValueAsString() <em>Value As String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getValueAsString()
 	 * @generated
 	 * @ordered
@@ -66,7 +62,6 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	 * The cached value of the '{@link #getUnresolvedString() <em>Unresolved String</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getUnresolvedString()
 	 * @generated
 	 * @ordered
@@ -76,7 +71,6 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected StringResolutionProblemImpl() {
@@ -86,7 +80,6 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -97,7 +90,6 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -108,27 +100,24 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setValueAsString(String newValueAsString) {
 		String oldValueAsString = valueAsString;
 		valueAsString = newValueAsString;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING, oldValueAsString, valueAsString));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<String> getUnresolvedString() {
-		if(unresolvedString == null) {
+		if (unresolvedString == null) {
 			unresolvedString = new EDataTypeUniqueEList<String>(String.class, this, NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING);
 		}
 		return unresolvedString;
@@ -137,16 +126,15 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
-			return getValueAsString();
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
-			return getUnresolvedString();
+		switch (featureID) {
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
+				return getValueAsString();
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
+				return getUnresolvedString();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,20 +142,19 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
-			setValueAsString((String)newValue);
-			return;
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
-			getUnresolvedString().clear();
-			getUnresolvedString().addAll((Collection<? extends String>)newValue);
-			return;
+		switch (featureID) {
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
+				setValueAsString((String)newValue);
+				return;
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
+				getUnresolvedString().clear();
+				getUnresolvedString().addAll((Collection<? extends String>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -175,18 +162,17 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
-			setValueAsString(VALUE_AS_STRING_EDEFAULT);
-			return;
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
-			getUnresolvedString().clear();
-			return;
+		switch (featureID) {
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
+				setValueAsString(VALUE_AS_STRING_EDEFAULT);
+				return;
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
+				getUnresolvedString().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -194,16 +180,15 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
-			return VALUE_AS_STRING_EDEFAULT == null ? valueAsString != null : !VALUE_AS_STRING_EDEFAULT.equals(valueAsString);
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
-			return unresolvedString != null && !unresolvedString.isEmpty();
+		switch (featureID) {
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
+				return VALUE_AS_STRING_EDEFAULT == null ? valueAsString != null : !VALUE_AS_STRING_EDEFAULT.equals(valueAsString);
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
+				return unresolvedString != null && !unresolvedString.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -211,14 +196,12 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (valueAsString: "); //$NON-NLS-1$
 		result.append(valueAsString);

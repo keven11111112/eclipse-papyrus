@@ -13,14 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
@@ -28,6 +31,7 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
@@ -53,14 +57,12 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	/**
 	 * the event which have declenched the call to setEnable(Object evaluationContext. This event contains the location of the mouse pointer when
 	 * the popup menu for this handler have been created
+	 * 
+	 * we do a weak reference to fix the bug 469376: [Table] Memory Leak : (Tree)NattableWidgetManager, EObjectTreeItemAxis and others objects are not disposed when the table is closed
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=469376
 	 */
 	// TODO : should maybe be removed with the future usage of e4 and the Eclipse Context
-	protected NatEventData eventData;
-
-	/**
-	 * the table selection wrapper
-	 */
-	protected TableSelectionWrapper wrapper = null;
+	private WeakReference<NatEventData> eventDataWeakReference;
 
 	/**
 	 *
@@ -69,6 +71,27 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 */
 	protected IWorkbenchPart getActivePart() {
 		return WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
+	}
+
+	/**
+	 * 
+	 * @param evaluationContextOrExecutionEvent
+	 * 
+	 */
+	protected final TableSelectionWrapper getTableSelectionWrapper(Object evaluationContextOrExecutionEvent) {
+		if (evaluationContextOrExecutionEvent instanceof IEvaluationContext) {
+			Object selection = HandlerUtil.getVariable(evaluationContextOrExecutionEvent, "selection"); //$NON-NLS-1$
+			if (selection instanceof IAdaptable) {
+				return (TableSelectionWrapper) ((IAdaptable) selection).getAdapter(TableSelectionWrapper.class);
+			}
+		} else if (evaluationContextOrExecutionEvent instanceof ExecutionEvent) {
+			IWorkbenchPart p = HandlerUtil.getActivePart((ExecutionEvent) evaluationContextOrExecutionEvent);
+			ISelection selection = (ISelection) p.getAdapter(ISelection.class);
+			if (selection instanceof TableStructuredSelection) {
+				return (TableSelectionWrapper) ((TableStructuredSelection) selection).getAdapter(TableSelectionWrapper.class);
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -102,6 +125,13 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 */
 	protected TransactionalEditingDomain getContextEditingDomain() {// duplicated code from NattableModelManager
 		return TableEditingDomainUtils.getTableContextEditingDomain(getCurrentNattableModelManager().getTable());
+	}
+
+	protected NatEventData getNatEventData() {
+		if (this.eventDataWeakReference != null) {
+			return this.eventDataWeakReference.get();
+		}
+		return null;
 	}
 
 	/**
@@ -222,25 +252,22 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		this.eventData = getNatEventData(evaluationContext);
-		setBaseEnabled(getCurrentNattableModelManager() != null);
-		wrapper = null;
+		this.eventDataWeakReference = new WeakReference<NatEventData>(getNatEventData(evaluationContext));
+		boolean enabled = getCurrentNattableModelManager() != null;
+		setBaseEnabled(enabled);
+	}
 
-		if (evaluationContext instanceof IEvaluationContext) {
-			Object selection = HandlerUtil.getVariable(evaluationContext, "selection"); //$NON-NLS-1$
-			// if(selection instanceof IStructuredSelection) {
-			// Iterator<?> iter = ((IStructuredSelection)selection).iterator();
-			// while(iter.hasNext() && wrapper == null) {
-			// Object current = iter.next();
-			// if(current instanceof TableSelectionWrapper) {
-			// wrapper = (TableSelectionWrapper)current;
-			// }
-			// }
-			// }
-			if (selection instanceof IAdaptable) {
-				wrapper = (TableSelectionWrapper) ((IAdaptable) selection).getAdapter(TableSelectionWrapper.class);
-			}
+	/**
+	 * @see org.eclipse.core.commands.AbstractHandler#setBaseEnabled(boolean)
+	 *
+	 * @param state
+	 */
+	@Override
+	protected void setBaseEnabled(boolean state) {
+		if (!state) {
+			this.eventDataWeakReference = null;
 		}
+		super.setBaseEnabled(state);
 	}
 
 	/**
@@ -257,5 +284,15 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 */
 	protected final void refreshTable() {
 		((NattableModelManager) getCurrentNattableModelManager()).refreshNatTable();
+	}
+
+	/**
+	 * @see org.eclipse.core.commands.AbstractHandler#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		this.eventDataWeakReference = null;
 	}
 }

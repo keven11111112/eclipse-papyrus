@@ -130,7 +130,7 @@ public class MultiplicityDialog extends AbstractPropertyEditor {
 		final List<ReferenceValueFactory> factories = new ArrayList<ReferenceValueFactory>(NuMBER_PROPERTIES_PATH);
 		factories.add(factory);
 		factories.add(input.getValueFactory(MULTIPLICITY_LOWER_VALUE_UML_PROPERTY_PATH));
-		factories.add(input.getValueFactory(MULTIPLICITY_LOWER_VALUE_UML_PROPERTY_PATH));
+		factories.add(input.getValueFactory(MULTIPLICITY_UPPER_VALUE_UML_PROPERTY_PATH));
 		editor.setValueFactories(factories);
 	}
 

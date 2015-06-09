@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440108
  *  Christian W. Damus - bug 458197
+ *  Christian W. Damus - bug 468030
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests.tests;
@@ -21,7 +22,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ ContentProviderTest.class, UMLStereotypePropertyContentProviderTest.class, DependencyManagementTest.class,
-		NamedElementValidatorTest.class, StereotypeElementListenerTest.class, ProfileApplicationListenerTest.class, UMLReferenceConverterTest.class, UMLReferenceConverterCompletionTest.class
+		NamedElementValidatorTest.class, StereotypeElementListenerTest.class, ProfileApplicationListenerTest.class, UMLReferenceConverterTest.class, UMLReferenceConverterCompletionTest.class,
+		UMLLanguageProvidersTest.class,
 
 })
 public class AllTests {
