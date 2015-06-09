@@ -51,4 +51,25 @@
 		point="org.eclipse.help.toc">
 		<toc file="help/tocconcepts.xml"/>
 	</extension>
+  <extension
+       point="org.eclipse.papyrus.qompass.designer.core.xtendGenerator">
+    <client
+          class="org.eclipse.papyrus.qompass.modellibs.tracing.acceleo.TraceLTTng"
+          templateID="TraceLTTng">
+    </client>
+  </extension>
+  <extension
+       point="org.eclipse.papyrus.qompass.designer.core.xtendGenerator">
+    <client
+          class="org.eclipse.papyrus.qompass.modellibs.tracing.acceleo.TraceOTF"
+          templateID="TraceOTF">
+    </client>
+  </extension>
+  <extension
+       point="org.eclipse.papyrus.qompass.designer.core.xtendGenerator">
+    <client
+          class="org.eclipse.papyrus.qompass.modellibs.tracing.acceleo.TraceCout"
+          templateID="TraceCout">
+    </client>
+  </extension>
 </plugin>
