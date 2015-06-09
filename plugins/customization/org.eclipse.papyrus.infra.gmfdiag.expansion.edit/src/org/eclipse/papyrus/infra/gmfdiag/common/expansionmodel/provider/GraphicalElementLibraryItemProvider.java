@@ -36,17 +36,17 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelFactory;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpandModelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LibraryItemProvider 
+public class GraphicalElementLibraryItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -60,7 +60,7 @@ public class LibraryItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibraryItemProvider(AdapterFactory adapterFactory) {
+	public GraphicalElementLibraryItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -91,9 +91,9 @@ public class LibraryItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Library_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Library_name_feature", "_UI_Library_type"),
-				 ExpansionmodelPackage.Literals.LIBRARY__NAME,
+				 getString("_UI_GraphicalElementLibrary_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicalElementLibrary_name_feature", "_UI_GraphicalElementLibrary_type"),
+				 ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__NAME,
 				 true,
 				 false,
 				 false,
@@ -114,8 +114,8 @@ public class LibraryItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONKINDS);
-			childrenFeatures.add(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONS);
+			childrenFeatures.add(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS);
+			childrenFeatures.add(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -134,6 +134,17 @@ public class LibraryItemProvider
 	}
 
 	/**
+	 * This returns GraphicalElementLibrary.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GraphicalElementLibrary"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -141,10 +152,10 @@ public class LibraryItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Library)object).getName();
+		String label = ((GraphicalElementLibrary)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Library_type") :
-			getString("_UI_Library_type") + " " + label;
+			getString("_UI_GraphicalElementLibrary_type") :
+			getString("_UI_GraphicalElementLibrary_type") + " " + label;
 	}
 	
 
@@ -159,12 +170,12 @@ public class LibraryItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Library.class)) {
-			case ExpansionmodelPackage.LIBRARY__NAME:
+		switch (notification.getFeatureID(GraphicalElementLibrary.class)) {
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONKINDS:
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -184,23 +195,23 @@ public class LibraryItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONKINDS,
+				(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS,
 				 ExpansionmodelFactory.eINSTANCE.createRepresentationKind()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONS,
+				(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
 				 ExpansionmodelFactory.eINSTANCE.createRepresentation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONS,
+				(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
 				 ExpansionmodelFactory.eINSTANCE.createInducedRepresentation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONS,
-				 ExpansionmodelFactory.eINSTANCE.createGMFT_Based_Representation()));
+				(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
+				 ExpansionmodelFactory.eINSTANCE.createGMFT_BasedRepresentation()));
 	}
 
 	/**

@@ -25,22 +25,22 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GMFT_Based_RepresentationItemProvider extends RepresentationItemProvider {
+public class GMFT_BasedRepresentationItemProvider extends RepresentationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GMFT_Based_RepresentationItemProvider(AdapterFactory adapterFactory) {
+	public GMFT_BasedRepresentationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,8 +71,8 @@ public class GMFT_Based_RepresentationItemProvider extends RepresentationItemPro
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GMFT_Based_Representation_reusedID_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GMFT_Based_Representation_reusedID_feature", "_UI_GMFT_Based_Representation_type"),
+				 getString("_UI_GMFT_BasedRepresentation_reusedID_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GMFT_BasedRepresentation_reusedID_feature", "_UI_GMFT_BasedRepresentation_type"),
 				 ExpansionmodelPackage.Literals.GMFT_BASED_REPRESENTATION__REUSED_ID,
 				 true,
 				 false,
@@ -83,14 +83,14 @@ public class GMFT_Based_RepresentationItemProvider extends RepresentationItemPro
 	}
 
 	/**
-	 * This returns GMFT_Based_Representation.gif.
+	 * This returns GMFT_BasedRepresentation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GMFT_Based_Representation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GMFT_BasedRepresentation"));
 	}
 
 	/**
@@ -101,10 +101,10 @@ public class GMFT_Based_RepresentationItemProvider extends RepresentationItemPro
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GMFT_Based_Representation)object).getName();
+		String label = ((GMFT_BasedRepresentation)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GMFT_Based_Representation_type") :
-			getString("_UI_GMFT_Based_Representation_type") + " " + label;
+			getString("_UI_GMFT_BasedRepresentation_type") :
+			getString("_UI_GMFT_BasedRepresentation_type") + " " + label;
 	}
 	
 
@@ -119,7 +119,7 @@ public class GMFT_Based_RepresentationItemProvider extends RepresentationItemPro
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GMFT_Based_Representation.class)) {
+		switch (notification.getFeatureID(GMFT_BasedRepresentation.class)) {
 			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

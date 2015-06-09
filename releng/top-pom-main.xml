@@ -49,6 +49,8 @@
 		<module>../plugins/customization/org.eclipse.papyrus.customization.properties</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.properties.generation</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.properties.model.xwt</module>
+		<module>../plugins/customization/org.eclipse.papyrus.infra.gmfdiag.expansion.edit</module>
+		<module>../plugins/customization/org.eclipse.papyrus.infra.gmfdiag.expansion.editor</module>
 		<module>../plugins/editor/org.eclipse.papyrus.editor</module>
 		<module>../plugins/facet/org.eclipse.papyrus.emf.facet.aggregate.doc</module>
 		<module>../plugins/facet/org.eclipse.papyrus.emf.facet.common.core</module>
