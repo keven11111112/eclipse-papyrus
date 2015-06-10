@@ -1,22 +1,13 @@
 package org.eclipse.papyrus.uml.nattable.stereotype.display.manager.cell;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
-import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * Used to get Rows in the Stereotype Display Tree Table. From the Selection.
