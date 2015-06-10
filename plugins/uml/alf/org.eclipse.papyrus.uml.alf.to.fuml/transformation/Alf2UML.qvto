@@ -284,23 +284,6 @@ mapping UnitDefinition::toNamespace() : Namespace
 init {
 	result := self.definition.map toNamespace();
 }
-  // TODO: Handle namespace declarations.
-  /*
-  if self.namespace <> null then
-    let namespace =
-      if self.namespace.isUml() then
-        self.namespace.asUml().oclAsType(Namespace)
-      else
-        self.namespace.asAlf().oclAsType(NamespaceDefinition).map toNamespace()
-      endif 
-    in
-      if namespace.oclIsKindOf(Package) and result.oclIsKindOf(PackageableElement) then
-        namespace.oclAsType(Package).packagedElement += result.oclAsType(PackageableElement)
-      else if namespace.oclIsKindOf(Class) and result.oclIsKindOf(Classifier) then
-        namespace.oclAsType(Class).nestedClassifier += result.oclAsType(Classifier)
-      endif endif
-  endif;
-  */
   elementImport := self._import[ElementImportReference]->map toElementImport();
   packageImport := self._import[PackageImportReference]->map toPackageImport();
   if self.annotation->notEmpty() then
@@ -454,9 +437,9 @@ init {
   // log("template=" + template.toString());
   result := template.newInstance();
 }
-  isAbstract := self.isAbstract;
+  isAbstract := template.isAbstract;
   var templateSignature := template.ownedTemplateSignature;
-  log("signature=" + templateSignature.toString());
+  // log("signature=" + templateSignature.toString());
   if templateSignature <> null then
     templateBinding := object uml::TemplateBinding {
       signature := templateSignature;

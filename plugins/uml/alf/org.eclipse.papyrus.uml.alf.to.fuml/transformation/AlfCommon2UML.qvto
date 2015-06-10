@@ -179,13 +179,6 @@ helper toType(reference : ElementReference) : Type {
 helper BoundElementReference::toUml() : Element {
   // TODO: Handle expansion of template bindings.
   return self.referent.toUml();
-  /*
-    if self.isTemplateBinding() then
-      self.templateBinding.toUml()
-    else
-      self.referent.toUml()
-    endif;
-  */
 }
 
 // Constructors
@@ -797,16 +790,6 @@ helper addEdgesToStructuredNode(inout structuredNode : StructuredActivityNode, i
 	var allOwnedNodes := structuredNode.allOwnedNodes();
 	var internalEdges := edges[allOwnedNodes->includes(source) and allOwnedNodes->includes(target)];
 	structuredNode.edge += internalEdges;
-	/*
-	edges->forEach(edge) {
-		edge.ownedComment += object Comment {
-			body := nameOf(structuredNode) + ": " +
-				if allOwnedNodes->includes(edge.source) then "source " else "" endif +
-				if allOwnedNodes->includes(edge.target) then "target " else "" endif ;
-			annotatedElement := edge;
-		}
-	};
-	*/
 	return edges - internalEdges;
 }
 
