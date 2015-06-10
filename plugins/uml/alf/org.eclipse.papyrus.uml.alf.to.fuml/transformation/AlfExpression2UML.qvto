@@ -459,10 +459,8 @@ helper InvocationExpression::InvocationExpression_mapTarget(inout graph : Expres
 
 helper InvocationExpression::isCollectionFunctionInvocation() : Boolean {
 	var referent := self.referent;
-	var template := referent.template();
-	return referent.isTemplateBinding() and
-		template.namespace() <> null and 
-		template.namespace().equals(self.collectionFunctionsPackage());
+	return referent.isTemplateBinding() and 
+		self.collectionFunctionsPackage().equals(referent.template().namespace());
 }
 
 query InvocationExpression::sequenceFunction() : Behavior {
@@ -489,10 +487,6 @@ query InvocationExpression::sequenceFunction() : Behavior {
 	} endif;
 	
 	return behavior;
-}
-
-helper InvocationExpression::collectionFunctionsPackage() : ElementReference {
-	return self.resolveInLibrary("CollectionFunctions")![isPackage()];
 }
 
 helper InvocationExpression::mapTuple(inout graph : ExpressionGraph, action : Action) : ActivityGraph {
@@ -589,7 +583,7 @@ query InvocationExpression::isSequenceFeatureInvocation() : Boolean {
 // and conditioning the destroy action on that.
 helper InvocationExpression::addDestroyCheck(inout graph : ActivityGraph, targetNode : ActivityNode, targetPin : ActivityNode) {
 	graph.nodes += var readSelfAction ::= new ReadSelfAction(null);
-	graph.nodes += var testAction ::= new TestIdentityAction("self==" + nameOf(targetNode), self.booleanType().toType());
+	graph.nodes += var testAction ::= new TestIdentityAction("self==" + nameOf(targetNode), self.typeBoolean());
 	graph.edges += new ObjectFlow(readSelfAction.result, testAction.first);
 	graph.edges += new ObjectFlow(targetNode, testAction.second);
 	createObjectDecisionGraph("destroy check", targetNode, testAction.result, targetPin, null).addTo(graph);
@@ -872,7 +866,7 @@ helper InstanceCreationExpression::mapTarget(inout graph : ExpressionGraph) : Ac
 
 helper LinkOperationExpression::mapTarget(inout graph : ActivityGraph) : Action {
 	var association := self.referent.toUml().oclAsType(Association);
-	var unlimitedNaturalType := self.unlimitedNaturalType().toType();
+	var unlimitedNaturalType := self.typeUnlimitedNatural();
 	graph.nodes += var action ::=
 		if self.isClear then new ClearAssociationAction(association)
 		else if self.isCreation then new CreateLinkAction(association, unlimitedNaturalType)
@@ -1055,7 +1049,7 @@ query SequenceRange::isEmpty() : Boolean {
 helper SyntaxElement::mapSequenceRangeLoop(
 	resultSource1 : ActivityNode, resultSource2 : ActivityNode,
 	label : String) : ExpressionGraph {
-	var integerType := self.integerType().toType();
+	var integerType := self.typeInteger();
 	var rangeLowerInputPin := new InputPin("rangeLower", integerType, 1, 1);
 	var rangeUpperInputPin := new InputPin("rangeUpper", integerType, 1, 1);
 	var accumulatorInputPin := new InputPin("range", integerType, 0, -1);
@@ -1283,7 +1277,7 @@ mapping ForAllOrExistsOrOneExpression::toActivityGraph() : ExpressionGraph
 		case(self.operation = "one") {
 			addBehavior(result, self.functionSize());
 			nodes += var valueAction ::= new ValueSpecificationAction(self.literalInteger(1));
-			nodes += var testAction ::= new TestIdentityAction("=1", self.booleanType().toType());
+			nodes += var testAction ::= new TestIdentityAction("=1", self.typeBoolean());
 			edges += new ObjectFlow(resultSource, testAction.first);
 			edges += new ObjectFlow(valueAction.result, testAction.second);
 			resultSource := testAction.result;
@@ -1327,7 +1321,7 @@ mapping IsUniqueExpression::toActivityGraph() : ExpressionGraph
 	nestedGraph.nodes += var variableSource ::= new ForkNode("each");
 	nestedGraph.nodes += var callAction := new CallBehaviorAction(self.functionCount());
 	nestedGraph.nodes += var valueAction := new ValueSpecificationAction(self.literalInteger(1));
-	nestedGraph.nodes += var testAction := new TestIdentityAction("=1", self.booleanType().toType());
+	nestedGraph.nodes += var testAction := new TestIdentityAction("=1", self.typeBoolean());
 	nestedGraph.edges += new ObjectFlow(forkNode, callAction.argument->at(1));
 	nestedGraph.edges += new ObjectFlow(variableSource, callAction.argument->at(2));
 	nestedGraph.edges += new ObjectFlow(callAction.result->at(1), testAction.first);
@@ -1520,12 +1514,12 @@ helper CastExpression::mapNestedGraph(inout nestedGraph : ExpressionGraph, label
 	      // Natural values are represented as integers.
 	      if operandType = null or self.isUnlimitedNaturalType(operandType) then {
 	      	source := self.addClassificationDecision(
-	      		nestedGraph, self.unlimitedNaturalType().toType(), target, source, 
+	      		nestedGraph, self.typeUnlimitedNatural(), target, source, 
 	      		self.functionUnlimitedNaturalToInteger());
 	      } endif;
 	      if operandType = null or self.isBitStringType(operandType) then {
 	      	source := self.addClassificationDecision(
-	      		nestedGraph, self.bitStringType().toType(), target, source, 
+	      		nestedGraph, self.typeBitString(), target, source, 
 	      		self.functionBitStringToInteger());
 	      } endif;
 	      if operandType = null or 
@@ -1547,14 +1541,14 @@ helper CastExpression::mapNestedGraph(inout nestedGraph : ExpressionGraph, label
 	      } endif;
         if operandType = null or self.isIntegerType(operandType) then {
 	      	source := self.addClassificationDecision(
-	      		nestedGraph, self.integerType().toType(), target, source, 
+	      		nestedGraph, self.typeInteger(), target, source, 
 	      		self.functionIntegerToUnlimitedNatural());
 	      } endif;
   		
   	} else if self.isBitStringType(type) then {
 	      if operandType = null or self.isIntegerType(operandType) then {
 	      	source := self.addClassificationDecision(
-	      		nestedGraph, self.integerType().toType(), target, source, 
+	      		nestedGraph, self.typeInteger(), target, source, 
 	      		self.functionIntegerToBitString());
 	      } endif;
 	      if operandType = null or not self.isIntegerType(operandType) then {
@@ -1578,7 +1572,7 @@ helper CastExpression::addClassificationDecision(
 	conversionFunction : Behavior) : ActivityNode {
 	
 	graph.nodes += var isClassifiedAction ::= 
-		new ReadIsClassifiedObjectAction(type.oclAsType(Classifier), false, self.booleanType().toType());
+		new ReadIsClassifiedObjectAction(type.oclAsType(Classifier), false, self.typeBoolean());
 		
 	graph.nodes += var forkNode ::= new ForkNode(isClassifiedAction._'object'.name);
 	graph.edges += new ObjectFlow(forkNode, isClassifiedAction._'object');
@@ -1740,7 +1734,7 @@ mapping ClassificationExpression::toActivityGraph() : ExpressionGraph
 		resultSource := valueAction.result;
 	} else {	
 		var classifier := self.referent.toUml().oclAsType(Classifier);
-		nodes += var action ::= new ReadIsClassifiedObjectAction(classifier, self.isDirect, self.booleanType().toType());
+		nodes += var action ::= new ReadIsClassifiedObjectAction(classifier, self.isDirect, self.typeBoolean());
 		edges += new ObjectFlow(operandGraph.resultSource, action._'object');
 		resultSource := action.result;
 	} endif;
@@ -1772,7 +1766,7 @@ mapping EqualityExpression::toActivityGraph() : ExpressionGraph
 
 helper EqualityExpression::mapOperator(inout graph : ExpressionGraph, operator : String, 
 	operand1Result : ActivityNode, operand2Result : ActivityNode) {
-	graph.nodes += var testAction ::= new TestIdentityAction("==", self.booleanType().toType());
+	graph.nodes += var testAction ::= new TestIdentityAction("==", self.typeBoolean());
 	graph.resultSource := testAction.result;
 	
 	var operand1Lower := self.operand1.lower;
@@ -1995,7 +1989,7 @@ mapping AssignmentExpression::toActivityGraph() : ExpressionGraph
 			
 			// Apply Bit String conversion to the right-hand side, if necessary.
 			self.mapConversions(rhsGraph, null, false,
-				self.isIntegerType(rhs.type) and callAction.argument->at(2).type = self.bitStringType().toType());
+				self.isIntegerType(rhs.type) and callAction.argument->at(2).type = self.typeBitString());
 				
 			rhsGraph.edges += new ObjectFlow(rhsGraph.resultSource, callAction.argument->at(2));
 			rhsGraph.resultSource := callAction.result->at(1);
@@ -2043,7 +2037,7 @@ helper SyntaxElement::mapPropertyAssignment(property_ : Property, objectSource :
 	var graph = object ExpressionGraph {};
 	var featuringClassifier := property_.featuringClassifier![true];
 	var isReplaceAll := property_.lower = 1 and property_.upper = 1 ;
-	var unlimitedNaturalType = self.unlimitedNaturalType().toType();
+	var unlimitedNaturalType = self.typeUnlimitedNatural();
 	
 	// Create a write action for the property.
 	graph.nodes += var writeAction ::= new AddStructuralFeatureValueAction(property_, isReplaceAll, unlimitedNaturalType);
@@ -2249,7 +2243,7 @@ helper LeftHandSide::mapFeatureLeftHandSide(inout graph : LhsGraph, objectSource
 				indexResultSource := indexConversionAction.result->at(1);
 			} endif;
 			
-			var unlimitedNaturalType := self.unlimitedNaturalType().toType();
+			var unlimitedNaturalType := self.typeUnlimitedNatural();
 			graph.nodes += var removeAction ::= new RemoveStructuralFeatureValueAction(property_, false, unlimitedNaturalType);
 			graph.edges += new ObjectFlow(objectResultSource, removeAction._'object');
 		  if rhsUpper = 0 then {

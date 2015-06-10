@@ -884,7 +884,7 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     loopNode.bodyOutput += callAction.result->at(1);
     
     // Map the passing through of the upper bound value.
-    bodyGraph.nodes += var passthruNode ::= createPassthruNode("upper", self.integerType().toType(), 1, 1);
+    bodyGraph.nodes += var passthruNode ::= createPassthruNode("upper", self.typeInteger(), 1, 1);
     bodyGraph.edges += new ObjectFlow(upperFork, passthruNode.structuredNodeInput![true]);
     loopNode.bodyOutput += passthruNode.structuredNodeOutput![true];
     
@@ -1095,7 +1095,7 @@ mapping AcceptBlock::toActivityGraph(parent : AcceptStatement, previousNode : Ac
 			} endif;
 			signalNames := signalNames + signal.name;
 			
-			nodes += var testAction ::= new ReadIsClassifiedObjectAction(signal, false, self.booleanType().toType());
+			nodes += var testAction ::= new ReadIsClassifiedObjectAction(signal, false, self.typeBoolean());
 			edges += new ObjectFlow(parent.signalSourceNode, testAction._'object');
 			
 			var decisionGraph := createControlDecisionGraph(
