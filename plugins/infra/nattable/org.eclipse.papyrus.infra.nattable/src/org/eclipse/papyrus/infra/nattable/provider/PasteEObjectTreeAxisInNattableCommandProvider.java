@@ -94,6 +94,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.ui.progress.UIJob;
 
 /**
  * Paste command manager for the paste in the table
@@ -378,10 +379,10 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 			sharedMap.clear();
 		} else {
 			// we create a job in order to don't freeze the UI
-			final Job job = new Job(pasteJobName) {
+			final UIJob job = new UIJob(pasteJobName) {
 
 				@Override
-				protected IStatus run(IProgressMonitor monitor) {
+				public IStatus runInUIThread(IProgressMonitor monitor) {
 
 					final ICommand pasteCommand = getPasteFromStringCommandInDetachedMode(contextEditingDomain, tableEditingDomain, monitor, sharedMap);
 					if (pasteCommand == null) {
@@ -424,10 +425,10 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 			}
 		} else {
 			// we create a job in order to don't freeze the UI
-			final Job job = new Job(pasteJobName) {
+			final UIJob job = new UIJob(pasteJobName) {
 
 				@Override
-				protected IStatus run(IProgressMonitor monitor) {
+				public IStatus runInUIThread(IProgressMonitor monitor) {
 
 					final ICommand pasteCommand = getPasteFromStringCommandInAttachedMode(contextEditingDomain, tableEditingDomain, monitor);
 					if (pasteCommand == null) {
