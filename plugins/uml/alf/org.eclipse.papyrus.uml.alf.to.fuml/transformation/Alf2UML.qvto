@@ -284,23 +284,6 @@ mapping UnitDefinition::toNamespace() : Namespace
 init {
 	result := self.definition.map toNamespace();
 }
-  // TODO: Handle namespace declarations.
-  /*
-  if self.namespace <> null then
-    let namespace =
-      if self.namespace.isUml() then
-        self.namespace.asUml().oclAsType(Namespace)
-      else
-        self.namespace.asAlf().oclAsType(NamespaceDefinition).map toNamespace()
-      endif 
-    in
-      if namespace.oclIsKindOf(Package) and result.oclIsKindOf(PackageableElement) then
-        namespace.oclAsType(Package).packagedElement += result.oclAsType(PackageableElement)
-      else if namespace.oclIsKindOf(Class) and result.oclIsKindOf(Classifier) then
-        namespace.oclAsType(Class).nestedClassifier += result.oclAsType(Classifier)
-      endif endif
-  endif;
-  */
   elementImport := self._import[ElementImportReference]->map toElementImport();
   packageImport := self._import[PackageImportReference]->map toPackageImport();
   if self.annotation->notEmpty() then
@@ -454,9 +437,9 @@ init {
   // log("template=" + template.toString());
   result := template.newInstance();
 }
-  isAbstract := self.isAbstract;
+  isAbstract := template.isAbstract;
   var templateSignature := template.ownedTemplateSignature;
-  log("signature=" + templateSignature.toString());
+  // log("signature=" + templateSignature.toString());
   if templateSignature <> null then
     templateBinding := object uml::TemplateBinding {
       signature := templateSignature;
@@ -628,7 +611,7 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
   };
   
   // Add action to set initialization to true.
-  initializationNode.node += var valueAction ::= new ValueSpecificationAction(new LiteralBoolean(true, self.booleanType().toType()));
+  initializationNode.node += var valueAction ::= new ValueSpecificationAction(self.literalBoolean(true));
   initializationNode.node += var writeAction ::= new AddStructuralFeatureValueAction(initializationFlag, true, null);
   new ObjectFlow(method, selfFork, writeAction._'object');
   new ObjectFlow(initializationNode, valueAction.result, writeAction.value);
@@ -643,8 +626,8 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
 	method.ownedNode += var sizeAction ::= new CallBehaviorAction(self.functionSize());
 	new ObjectFlow(method, readAction.result, sizeAction.argument->at(1));
 
-  method.ownedNode += valueAction := new ValueSpecificationAction(new LiteralInteger(0, self.integerType().toType()));  
-  method.ownedNode += var testAction ::= new TestIdentityAction("Size==0", self.booleanType().toType());
+  method.ownedNode += valueAction := new ValueSpecificationAction(self.literalInteger(0));  
+  method.ownedNode += var testAction ::= new TestIdentityAction("Size==0", self.typeBoolean());
   new ObjectFlow(method, sizeAction.result->at(1), testAction.first);
   new ObjectFlow(method, valueAction.result, testAction.second);
   
@@ -1092,8 +1075,8 @@ helper OperationDefinition::mapConstructor(initializationFlag : Property, initia
 		method.ownedNode += var sizeAction ::= new CallBehaviorAction(self.functionSize());
 		new ObjectFlow(method, readAction.result, sizeAction.argument->at(1));
 		
-		method.ownedNode += var valueAction ::= new ValueSpecificationAction(new LiteralInteger(0, self.integerType().toType()));
-		method.ownedNode += var testAction ::= new TestIdentityAction("Size==0", self.booleanType().toType());
+		method.ownedNode += var valueAction ::= new ValueSpecificationAction(self.literalInteger(0));
+		method.ownedNode += var testAction ::= new TestIdentityAction("Size==0", self.typeBoolean());
 		new ObjectFlow(method, sizeAction.result->at(1), testAction.first);
 		new ObjectFlow(method, valueAction.result, testAction.second);
 		

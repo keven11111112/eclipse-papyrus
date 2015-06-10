@@ -20,10 +20,27 @@ transformation AlfCommon2UML(in alf : Alf, inout uml : UML);
 
 abstract mapping SyntaxElement::toUml() : Element;
 
+property libraryCache : Dict(String, ElementReference);
+
+helper SyntaxElement::libraryElement(path : String) : ElementReference {
+	var referent := libraryCache->get(path);
+	if referent = null then {
+		referent := self.resolveInLibrary(path)![true];
+		if referent <> null then {
+			libraryCache->put(path, referent);
+		} endif;
+	} endif;
+  return referent;
+}
+
+helper SyntaxElement::collectionFunctionsPackage() : ElementReference {
+	return self.libraryElement("CollectionFunctions");
+}
+
 helper SyntaxElement::libraryFunction(path : String) : Behavior {
-	var referent := self.resolveInLibrary(path)![isBehavior()];
+	var referent := self.libraryElement(path);
   return
-    if referent->isEmpty() then null
+    if referent = null then null
     else referent.toUml().oclAsType(Behavior)
     endif;
 }
@@ -124,24 +141,52 @@ helper SyntaxElement::functionIntegerToBitString() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::BitStringFunctions::ToBitString");
 }
 
+helper SyntaxElement::libraryType(name : String) : Type {
+	return self.libraryElement("PrimitiveTypes::" + name).toType();
+}
+
+helper SyntaxElement::typeBoolean() : Type {
+	return self.libraryType("Boolean");
+}
+
+helper SyntaxElement::typeNatural() : Type {
+	return self.libraryType("Natural");
+}
+
+helper SyntaxElement::typeInteger() : Type {
+	return self.libraryType("Integer");
+}
+
+helper SyntaxElement::typeString() : Type {
+	return self.libraryType("String");
+}
+
+helper SyntaxElement::typeUnlimitedNatural() : Type {
+	return self.libraryType("UnlimitedNatural");
+}
+
+helper SyntaxElement::typeBitString() : Type {
+	return self.libraryType("BitString");
+}
+
 helper SyntaxElement::literalBoolean(b : Boolean) : LiteralBoolean {
-	return new LiteralBoolean(b, self.booleanType().toType());
+	return new LiteralBoolean(b, self.typeBoolean());
 }
 
 helper SyntaxElement::literalNatural(n : Integer) : LiteralInteger {
-	return new LiteralInteger(n, self.naturalType().toType());
+	return new LiteralInteger(n, self.typeNatural());
 }
 
 helper SyntaxElement::literalInteger(i : Integer) : LiteralInteger {
-	return new LiteralInteger(i, self.integerType().toType());
+	return new LiteralInteger(i, self.typeInteger());
 }
 
 helper SyntaxElement::literalString(s : String) : LiteralString {
-	return new LiteralString(s, self.stringType().toType());
+	return new LiteralString(s, self.typeString());
 }
 
 helper SyntaxElement::literalUnlimited() : LiteralUnlimitedNatural {
-	return new LiteralUnlimitedNatural(self.unlimitedNaturalType().toType());
+	return new LiteralUnlimitedNatural(self.typeUnlimitedNatural());
 }
 
 // Documented Elements
@@ -179,13 +224,6 @@ helper toType(reference : ElementReference) : Type {
 helper BoundElementReference::toUml() : Element {
   // TODO: Handle expansion of template bindings.
   return self.referent.toUml();
-  /*
-    if self.isTemplateBinding() then
-      self.templateBinding.toUml()
-    else
-      self.referent.toUml()
-    endif;
-  */
 }
 
 // Constructors
@@ -797,16 +835,6 @@ helper addEdgesToStructuredNode(inout structuredNode : StructuredActivityNode, i
 	var allOwnedNodes := structuredNode.allOwnedNodes();
 	var internalEdges := edges[allOwnedNodes->includes(source) and allOwnedNodes->includes(target)];
 	structuredNode.edge += internalEdges;
-	/*
-	edges->forEach(edge) {
-		edge.ownedComment += object Comment {
-			body := nameOf(structuredNode) + ": " +
-				if allOwnedNodes->includes(edge.source) then "source " else "" endif +
-				if allOwnedNodes->includes(edge.target) then "target " else "" endif ;
-			annotatedElement := edge;
-		}
-	};
-	*/
 	return edges - internalEdges;
 }
 
