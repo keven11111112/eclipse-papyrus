@@ -30,28 +30,21 @@ Contributors:
    </requires>
 
    <plugin
-         id="org.eclipse.papyrus.dd"
+         id="org.eclipse.papyrus.notation.export"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.dd.edit"
+         id="org.eclipse.papyrus.notation.qvt"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.dd.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.dd.qvt"
+         id="org.eclipse.papyrus.notation2umldi"
          download-size="0"
          install-size="0"
          version="0.0.0"
