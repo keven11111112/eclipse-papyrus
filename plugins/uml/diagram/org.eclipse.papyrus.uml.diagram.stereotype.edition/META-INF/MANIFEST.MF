@@ -15,6 +15,7 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.0",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.profile;bundle-version="1.1.0",
+ org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,4.0.0)",
  org.eclipse.gmf.runtime.notation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

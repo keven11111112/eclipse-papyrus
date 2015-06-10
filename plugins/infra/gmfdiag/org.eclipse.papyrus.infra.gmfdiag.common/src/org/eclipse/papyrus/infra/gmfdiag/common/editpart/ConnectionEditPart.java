@@ -14,12 +14,12 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.IntValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.linklf.editparts.LinkLFConnectionNodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusConnectionEndEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
 
@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
 /**
  * Abstract edit part for all connection nodes.
  */
-public abstract class ConnectionEditPart extends ConnectionNodeEditPart implements IPapyrusEditPart {
+public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * CSS property for the line style
