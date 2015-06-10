@@ -12,7 +12,7 @@
  */
 package org.eclipse.papyrus.cdo.internal.ui.editors;
 
-import org.eclipse.emf.cdo.explorer.ui.checkouts.CDOCheckoutEditorOpener.Default;
+import org.eclipse.emf.cdo.ui.CDOEditorOpener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -22,7 +22,7 @@ import org.eclipse.ui.statushandlers.StatusManager;
 /**
  * @author Eike Stepper
  */
-public class PapyrusCDOEditorOpener extends Default {
+public class PapyrusCDOEditorOpener extends CDOEditorOpener.Default {
 	public static final String ID = "org.eclipse.papyrus.cdo.ui.editors.PapyrusCDOEditorOpener"; //$NON-NLS-1$
 
 	public PapyrusCDOEditorOpener() {

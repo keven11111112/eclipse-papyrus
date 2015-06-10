@@ -153,14 +153,15 @@ public class CDOContextStorageProvider extends AbstractContextStorageProvider {
 
 	@Override
 	public void dispose() {
-		CDOExplorerUtil.getCheckoutManager().removeListener(repositoryAdapter);
+		if (resourceSet != null) {
+			CDOExplorerUtil.getCheckoutManager().removeListener(repositoryAdapter);
 
-		uriHandler.uninstall();
-		uriHandler = null;
+			uriHandler.uninstall();
+			uriHandler = null;
 
-		resourceSet = null;
-
-		super.dispose();
+			resourceSet = null;
+			super.dispose();
+		}
 	}
 
 	@Override
