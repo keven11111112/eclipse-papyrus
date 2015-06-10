@@ -15,7 +15,6 @@ The following Papyrus capabilities are supported on models in CDO repositories:
 
 Some capabilities of Papyrus are not support on models in CDO repositories in this release:
 
-* compare/merge:  the **Model Repositories** view does not support branches and no "compare with each other" action is provided
 * although CSS styling of diagrams is supported, this extends only to CSS stylsheets deployed in plug-ins.  Custom stylesheets stored locally in the workspace or in a repository are not supported
 * controlled resources are not supported
 * attaching documents to model elements is not supported
