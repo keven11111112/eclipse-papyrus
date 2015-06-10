@@ -153,6 +153,15 @@
    <feature url="features/org.eclipse.papyrus.umldi.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.umldi.feature" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.dd.category"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.dd.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.dd.feature.source" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.dd.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.notation.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.notation.feature.source" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.dd.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.umldi.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.umldi.feature.source" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.dd.category"/>
+   </feature>
    <category-def name="org.eclipse.papyrus.extra.category" label="Papyrus Extra (All - Not recommended)">
       <description>
          Papyrus Extra Category
@@ -179,7 +188,7 @@
          Papyrus Qompass Designer Category
       </description>
    </category-def>
-   <category-def name="org.eclipse.papyrus.extra.dd.category" label="Diagram Definition">
+   <category-def name="org.eclipse.papyrus.extra.dd.category" label="Papyrus Diagram Definition">
       <description>
          Diagram Definition Category
       </description>
