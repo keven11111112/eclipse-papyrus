@@ -352,8 +352,8 @@
 		
 	</modules>
 	<properties>
-		<tycho-version>0.22.0</tycho-version>
-		<tychoExtrasVersion>0.22.0</tychoExtrasVersion>
+		<tycho-version>0.23.0</tycho-version>
+		<tychoExtrasVersion>0.23.0</tychoExtrasVersion>
 		<findbugs.version>2.5.3</findbugs.version>
 		<xtext.version>2.7.3</xtext.version>
 		<java.source.version>1.6</java.source.version>
