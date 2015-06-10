@@ -116,6 +116,14 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 			if (eventType == Notification.REMOVE && notification.getOldValue().equals(hostView) && object == null) {
 				executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
 			}
+
+			if (comment.getTargetEdges() != null) {
+
+				// If the Target View is null then remove the Comment View
+				if (eventType == Notification.REMOVE && notification.getOldValue().equals(hostView) && comment.getTargetEdges().size() == 0) {
+					executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
+				}
+			}
 		}
 
 

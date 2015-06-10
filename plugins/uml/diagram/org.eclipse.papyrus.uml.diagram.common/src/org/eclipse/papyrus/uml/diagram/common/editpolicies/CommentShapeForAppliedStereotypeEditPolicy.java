@@ -213,6 +213,10 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 			if (getUMLElement() == null) {
 				executeAppliedStereotypeCommentDeletion(domain, commentNode);
 			}
+
+			if (commentNode.getSourceEdges().size() == 0 && commentNode.getTargetEdges().size() == 0) {
+				executeAppliedStereotypeCommentDeletion(domain, commentNode);
+			}
 		}
 
 	}

@@ -331,7 +331,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 				if (helper.isStereotypeView(child)) {
 					if (((View) child).getElement() instanceof Stereotype) {
 						Stereotype childStereotype = (Stereotype) ((View) child).getElement();
-						if (!hostSemanticElement.isStereotypeApplied(childStereotype)) {
+						if (hostSemanticElement != null && !hostSemanticElement.isStereotypeApplied(childStereotype)) {
 							executeStereotypeViewRemove(hostEditPart, (View) child);
 						}
 					}
