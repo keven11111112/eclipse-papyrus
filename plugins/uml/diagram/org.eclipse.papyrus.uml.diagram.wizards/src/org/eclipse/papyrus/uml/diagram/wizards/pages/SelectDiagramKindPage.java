@@ -15,12 +15,22 @@ package org.eclipse.papyrus.uml.diagram.wizards.pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.infra.viewpoints.configuration.Category;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
+import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindComposite;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindLabelProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
@@ -36,6 +46,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * This WizardPage to select the kind of Papyrus Diagram. List all kind of diagrams registered with
@@ -68,6 +79,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	private final ICreationCommandRegistry myCreationCommandRegistry;
 
 	private FileChooser filechooser;
+
+	private static EObject modelRoot;
 
 	/** The Constant DEFAULT_CREATION_COMMAND_REGISTRY. */
 	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
@@ -141,7 +154,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Create the filechooser composite
-	 * 
+	 *
 	 * @param parent
 	 */
 	private void createProfileFileChooser(Composite parent) {
@@ -342,6 +355,37 @@ public class SelectDiagramKindPage extends WizardPage {
 		nameText = new Text(group, SWT.BORDER);
 		nameText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		nameText.setText(Messages.SelectDiagramKindPage_default_diagram_name);
+
+		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() > 0) {
+			IStructuredSelection sSelection = (IStructuredSelection) selection;
+			Object selectedObject = sSelection.getFirstElement();
+
+			// Should not be otherwise, but just in case
+			if (selectedObject instanceof IAdaptable) {
+				IFile selectedIFile = ((IAdaptable) selectedObject).getAdapter(IFile.class);
+				if (selectedIFile != null) {
+					try {
+						// Load the resource associated with the selected object
+						ResourceSet resourceSet = new ResourceSetImpl();
+						Resource resource = resourceSet.getResource(URI.createURI(selectedIFile.getLocationURI().toString()), true);
+						if (resource.getContents().size() > 0) {
+							modelRoot = resource.getContents().get(0);
+							if (modelRoot instanceof NamedElement) {
+								NamedElement element = (NamedElement) modelRoot;
+								nameText.setText(element.getName());
+							} else {
+								modelRoot = null;
+							}
+						}
+					} catch (Exception e) {
+						this.setErrorMessage(Messages.SelectDiagramKindPage_Set_Root_Name_Error);
+						Activator.log.error(e);
+					}
+				}
+			}
+		}
+
 		nameText.addModifyListener(new ModifyListener() {
 
 			@Override
@@ -351,6 +395,9 @@ public class SelectDiagramKindPage extends WizardPage {
 		});
 	}
 
+	public static EObject getModelRoot() {
+		return modelRoot;
+	}
 
 	/**
 	 * Validate page.
