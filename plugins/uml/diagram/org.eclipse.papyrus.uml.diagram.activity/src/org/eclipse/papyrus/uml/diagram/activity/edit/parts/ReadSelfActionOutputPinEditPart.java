@@ -191,7 +191,7 @@ public class ReadSelfActionOutputPinEditPart extends AbstractPinEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;
 	}
 
