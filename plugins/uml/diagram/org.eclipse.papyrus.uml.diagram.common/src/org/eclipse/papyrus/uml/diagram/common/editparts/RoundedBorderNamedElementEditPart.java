@@ -1,8 +1,32 @@
+/*****************************************************************************
+ * Copyright (c) 2010, 2015 CEA LIST and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *
+ *****************************************************************************/
+
+
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyleObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableList;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.PapyrusRoundedEditPartHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
@@ -12,7 +36,10 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEd
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
 
-public abstract class RoundedBorderNamedElementEditPart extends BorderNamedElementEditPart {
+/**
+ * The Class RoundedBorderNamedElementEditPart.
+ */
+public abstract class RoundedBorderNamedElementEditPart extends BorderNamedElementEditPart implements NamedStyleProperties {
 
 	/** The Constant DEFAULT_BORDER_STYLE. */
 	private static final int DEFAULT_BORDER_STYLE = Graphics.LINE_SOLID;
@@ -23,6 +50,7 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	/** The Constant DEFAULT_CORNER_WIDTH. */
 	private static final int DEFAULT_CORNER_WIDTH = 0;
 
+	/** The Constant DEFAULT_CUTOM_DASH. */
 	private static final int[] DEFAULT_CUTOM_DASH = new int[] { 5, 5 };
 
 	/** The Constant DEFAULT_FLOATING_LABEL_OFFSET_HEIGHT. */
@@ -37,16 +65,52 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	/** The Constant DEFAULT_IS_OVAL. */
 	private static final boolean DEFAULT_IS_OVAL = false;
 
+	/** The Constant DEFAULT_USE_ORIGINAL_COLORS. */
 	private static final boolean DEFAULT_USE_ORIGINAL_COLORS = true;
 
+	/** The Constant DEFAULT_HAS_HEADER. */
 	private static final boolean DEFAULT_HAS_HEADER = false;
 
+	/** The Constant DEFAULT_PORT_POSITION_VALUE. */
 	private static final String DEFAULT_PORT_POSITION_VALUE = PortPositionEnum.ONLINE.toString();
+
+	/** the namedStyle Listener */
+	IChangeListener namedStyleListener = new IChangeListener() {
+
+		@Override
+		public void handleChange(ChangeEvent event) {
+			refresh();
+
+		}
+
+	};
+
+	/** The ovalObservable */
+	private IObservableValue ovalObservable;
+
+	/** The radius height Observable */
+	private IObservableValue radiusObservableHeight;
+
+	/** The radius width Observable */
+	private IObservableValue radiusObservableWidth;
+
+	/** The customDash Observable */
+	private IObservableList customDashObservable;
+
+	/** The shadowWidth Observable */
+	private IObservableValue shadowWidthObservable;
+
+	/** The shadowColor Observable */
+	private IObservableValue shadowColorObservable;
+
+	/** The port position Observable */
+	private IObservableValue positionObservable;
 
 	/**
 	 * Constructor.
 	 *
 	 * @param view
+	 *            the view
 	 */
 	public RoundedBorderNamedElementEditPart(View view) {
 		super(view);
@@ -54,8 +118,9 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#createDefaultEditPolicies()
+	 * Creates the default edit policies.
 	 *
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#createDefaultEditPolicies()
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
@@ -92,6 +157,11 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 		return DEFAULT_CORNER_WIDTH;
 	}
 
+	/**
+	 * Gets the default cutom dash.
+	 *
+	 * @return the default cutom dash
+	 */
 	private int[] getDefaultCutomDash() {
 		return DEFAULT_CUTOM_DASH;
 	}
@@ -133,7 +203,9 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	}
 
 	/**
-	 * @return
+	 * Gets the default use original colors.
+	 *
+	 * @return the default use original colors
 	 */
 	private boolean getDefaultUseOriginalColors() {
 		return DEFAULT_USE_ORIGINAL_COLORS;
@@ -148,12 +220,59 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	protected void refreshVisuals() {
 		PapyrusRoundedEditPartHelper.refreshRadius(this, getDefaultCornerWidth(), getDefaultCornerHeight());
 		PapyrusRoundedEditPartHelper.refreshOval(this, getDefaultIsOvalValue());
-		PapyrusRoundedEditPartHelper.refreshFloatingName(this, getDefaultIsFloatingNameConstrained(), getDefaultFloatingLabelOffsetWidth(), getDefaultFloatingLabelOffsetHeight());
 		PapyrusRoundedEditPartHelper.refreshBorderStyle(this, getDefaultBorderStyle(), getDefaultCutomDash());
-		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
 		PapyrusRoundedEditPartHelper.refreshShadowColor(this, getDefaultShadowColor());
 		refreshPortPosition();
 		super.refreshVisuals();
+	}
+
+	/**
+	 * Adds listener to handle named Style modifications.
+	 */
+	@Override
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+
+		View view = (View) getModel();
+		EditingDomain domain = EMFHelper.resolveEditingDomain(view);
+
+		radiusObservableWidth = new CustomIntStyleObservableValue(view, domain, RADIUS_WIDTH);
+		radiusObservableWidth.addChangeListener(namedStyleListener);
+
+		radiusObservableHeight = new CustomIntStyleObservableValue(view, domain, RADIUS_HEIGHT);
+		radiusObservableHeight.addChangeListener(namedStyleListener);
+
+		ovalObservable = new CustomBooleanStyleObservableValue(view, domain, IS_OVAL);
+		ovalObservable.addChangeListener(namedStyleListener);
+
+		customDashObservable = new CustomStringStyleObservableList(view, domain, LINE_CUSTOM_VALUE);
+		customDashObservable.addChangeListener(namedStyleListener);
+
+		shadowWidthObservable = new CustomIntStyleObservableValue(view, domain, SHADOW_WIDTH);
+		shadowWidthObservable.addChangeListener(namedStyleListener);
+
+		shadowColorObservable = new CustomStringStyleObservableValue(view, domain, SHADOW_COLOR);
+		shadowColorObservable.addChangeListener(namedStyleListener);
+
+		positionObservable = new CustomStringStyleObservableValue(view, domain, PORT_POSITION);
+		positionObservable.addChangeListener(namedStyleListener);
+
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeNotationalListeners()
+	 *
+	 */
+	@Override
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		radiusObservableWidth.dispose();
+		radiusObservableHeight.dispose();
+		ovalObservable.dispose();
+		customDashObservable.dispose();
+		shadowWidthObservable.dispose();
+		shadowColorObservable.dispose();
+		positionObservable.dispose();
 	}
 
 	/**
@@ -167,7 +286,7 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	}
 
 	/**
-	 * Refresh the port position
+	 * Refresh the port position.
 	 */
 	private void refreshPortPosition() {
 		if (getPrimaryShape() instanceof IRoundedRectangleFigure) {
@@ -178,7 +297,7 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 
 					if (constraint instanceof PortPositionLocator) {
 						PortPositionLocator portLocator = (PortPositionLocator) constraint;
-						String position = NotationUtils.getStringValue((View) getModel(), NamedStyleProperties.PORT_POSITION, getDefaultPortPosition());
+						String position = NotationUtils.getStringValue((View) getModel(), PORT_POSITION, getDefaultPortPosition());
 						portLocator.setPortPosition(position);
 					}
 				}
@@ -188,13 +307,17 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 
 	/**
 	 * get the default Port Position(can be inside, outside or onLine).
+	 *
+	 * @return the default port position
 	 */
 	protected String getDefaultPortPosition() {
 		return DEFAULT_PORT_POSITION_VALUE;
 	}
 
 	/**
-	 * @return
+	 * Gets the default has header.
+	 *
+	 * @return the default has header
 	 */
 	protected boolean getDefaultHasHeader() {
 		return DEFAULT_HAS_HEADER;
