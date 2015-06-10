@@ -82,18 +82,10 @@ public class CDOTextURIHandler extends URIHandlerImpl {
 	}
 
 	public static CDOView getView(ResourceSet resourceSet, URI uri) {
-		CDOView result = null;
-
-		CDOViewSet viewSet = CDOUtil.getViewSet(resourceSet);
-		if (viewSet != null) {
-			if (SCHEME.equals(uri.scheme())) {
-				uri = translate(uri);
-			}
-
-			result = viewSet.resolveView(CDOURIUtil.extractRepositoryUUID(uri));
+		if (SCHEME.equals(uri.scheme())) {
+			uri = translate(uri);
 		}
-
-		return result;
+		return CDOUtil.getView(resourceSet,uri);
 	}
 
 	protected CDOView getView(URI uri) {
