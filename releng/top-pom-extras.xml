@@ -404,7 +404,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://build.eclipse.org/webtools/committers/wtp-R3.7.0-I/20150604000109/I-3.7.0-20150604000109/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/R-3.7.0-20150609111814/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>

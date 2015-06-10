@@ -197,7 +197,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://build.eclipse.org/webtools/committers/wtp-R3.7.0-I/20150604000109/I-3.7.0-20150604000109/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.7.0/R-3.7.0-20150609111814/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
