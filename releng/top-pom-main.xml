@@ -278,6 +278,7 @@
 		<module>../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.menu</module>
 		<module>../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.xtext.integration</module>
 		<module>../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.xtext.valuespecification</module>
+		<module>../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.stereotype.display</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.navigation</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.oclconstraintevaluation</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.perspective</module>
