@@ -51,6 +51,8 @@ import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
 //import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowHeaderComposite;
 import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
+import org.eclipse.nebula.widgets.nattable.formula.FormulaDataProvider;
+import org.eclipse.nebula.widgets.nattable.formula.config.FormulaStyleLabels;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.data.DefaultCornerDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
@@ -306,9 +308,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	@Override
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
 		this.bodyDataProvider = new BodyDataProvider(this);
+		FormulaDataProvider formulaProvider = new FormulaDataProvider(bodyDataProvider);
 
-
-		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);
+		this.bodyLayerStack = new BodyLayerStack(formulaProvider, this);
 
 		columnHeaderDataProvider = new CompositeColumnHeaderDataProvider(this);
 		final IDataProvider indexColumnProvider = new ColumnIndexHeaderDataProvider(this);

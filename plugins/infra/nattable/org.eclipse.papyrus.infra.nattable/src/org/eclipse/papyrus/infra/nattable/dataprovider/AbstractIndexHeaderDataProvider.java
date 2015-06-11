@@ -146,7 +146,7 @@ public abstract class AbstractIndexHeaderDataProvider extends AbstractDataProvid
 			case ALPHABETIC:
 				return IntegerAndSpreadsheetNumberConverter.toString(axisIndex + 1);
 			case NUMERIC:
-				return axisIndex;
+				return axisIndex+1;
 			}
 		}
 		return null;
