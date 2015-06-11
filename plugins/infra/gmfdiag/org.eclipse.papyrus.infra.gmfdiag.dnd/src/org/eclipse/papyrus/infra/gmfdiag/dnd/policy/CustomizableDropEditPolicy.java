@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.policy;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -44,6 +45,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropO
 import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DefaultDropStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalCommandsDropStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -52,6 +55,8 @@ import org.eclipse.ui.PlatformUI;
  * An EditPolicy to handle Drop in Papyrus diagrams.
  * This edit policy can be customized from an extension point. If a customization
  * is not available, it will delegate the behavior to the default Drop edit policy
+ * 
+ * Update: it will enable to manage multiple commands per strategy
  *
  * @author Camille Letavernier
  *
@@ -225,11 +230,22 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	 * @return
 	 */
 	protected Command getCustomCommand(Request request) {
-		final Map<DropStrategy, Command> matchingStrategies = findStrategies(request);
+		final Map<DropStrategy, List<Command>> matchingStrategies = findStrategies(request);
 
 		// Only one strategy: return the associated command
 		if (matchingStrategies.size() == 1) {
-			return matchingStrategies.values().iterator().next();
+			DropStrategy ds = matchingStrategies.keySet().iterator().next();
+			if(ds instanceof TransactionalDropStrategy){
+				//given a drop strategy, return the single associated command.
+				return matchingStrategies.get(ds).get(0);
+			}
+			else if(ds instanceof TransactionalCommandsDropStrategy){
+				//this case is not manage, the default command associated with a TransactionalCommandsDropStrategy
+				//in charge of managing multiple commands per strategy is not take into account in this version.
+				return null;
+			}
+
+
 		}
 
 		// More than one strategy
@@ -248,9 +264,19 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 			// Search for a default strategy
 			if (useDefault) {
 				DropStrategy defaultStrategy = DropStrategyManager.instance.getDefaultDropStrategy(matchingStrategies.keySet());
-				if (defaultStrategy != null) {
-					return matchingStrategies.get(defaultStrategy);
+				if (defaultStrategy != null ) {
+
+					if(defaultStrategy instanceof TransactionalDropStrategy){
+						//return the single command associated with a TransactionalDropStrategy
+						return matchingStrategies.get(defaultStrategy).iterator().next();
+					}
+					else if(defaultStrategy instanceof TransactionalCommandsDropStrategy){
+						//this case is not manage
+						return null;
+					}
+
 				}
+
 			}
 
 			// If there is no default choice, ask user (Open a choice List)
@@ -270,7 +296,16 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 				}
 			};
 
-			SelectAndExecuteCommand command = new SelectAndExecuteCommand("Select drop", shell, new LinkedList<Command>(matchingStrategies.values()), handler);
+			ArrayList<Command> proposalCommands = new ArrayList<Command>();
+			for(List<Command> cs: matchingStrategies.values()){
+				for(Command c : cs){
+					if(c!=null){
+						proposalCommands.add(c);
+					}
+				}
+			}
+			Activator.log.info("proposalCommands"+proposalCommands.size());;
+			SelectAndExecuteCommand command = new SelectAndExecuteCommand("Select drop", shell, new LinkedList<Command>(proposalCommands), handler);
 			return new ICommandProxy(command);
 		}
 
@@ -278,8 +313,8 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		return null;
 	}
 
-	private static DropStrategy findStrategy(Map<DropStrategy, Command> matchingStrategies, Command command) {
-		for (Map.Entry<DropStrategy, Command> entry : matchingStrategies.entrySet()) {
+	private static DropStrategy findStrategy(Map<DropStrategy, List<Command>> matchingStrategies, Command command) {
+		for (Map.Entry<DropStrategy, List<Command>> entry : matchingStrategies.entrySet()) {
 			if (entry.getValue() == command) {
 				return entry.getKey();
 			}
@@ -292,27 +327,39 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	 * the given request. All the returned commands are executable. The map may be empty.
 	 *
 	 * @param request
-	 * @return
+	 * @return a non null map, and foreach DropStrategy a non null List
 	 */
-	protected Map<DropStrategy, Command> findStrategies(Request request) {
-		Map<DropStrategy, Command> matchingStrategies = new LinkedHashMap<DropStrategy, Command>();
+	protected Map<DropStrategy, List<Command>> findStrategies(Request request) {
+		Map<DropStrategy, List<Command>> matchingStrategies = new LinkedHashMap<DropStrategy, List<Command>>();
 
+		//Retrieve strategies
 		for (DropStrategy strategy : DropStrategyManager.instance.getActiveStrategies()) {
-			try { // Strategies are provided through extension points; we can't guarantee they won't crash
+			ArrayList<Command> selectedCommands = new ArrayList<Command>();
+
+
+			if(strategy instanceof TransactionalCommandsDropStrategy){
+				List<Command> cs = ((TransactionalCommandsDropStrategy)strategy).getCommands(request, getHost());
+				for(Command command : cs){
+					if (command != null && command.canExecute()) {
+						selectedCommands.add(command);
+					}
+				}
+			}
+			else if(strategy instanceof TransactionalDropStrategy){
 				Command command = strategy.getCommand(request, getHost());
 				if (command != null && command.canExecute()) {
-					matchingStrategies.put(strategy, command);
+					selectedCommands.add(command);
 				}
-			} catch (Throwable t) {
-				String message = String.format("An error occurred when trying to execute a custom Drop strategy: %s", strategy.getLabel());
-				Activator.log.error(message, t);
 			}
+
+			matchingStrategies.put(strategy, selectedCommands);
+
 		}
 
-		Command command = defaultDropStrategy.getCommand(request, getHost());
-		if (command != null && command.canExecute()) {
-			matchingStrategies.put(defaultDropStrategy, command);
-		}
+		//Retrieve defaultStrategy
+		ArrayList<Command> selectedCommands = new ArrayList<Command>();
+		selectedCommands.add(defaultDropStrategy.getCommand(request, getHost()));
+		matchingStrategies.put(defaultDropStrategy, selectedCommands);
 
 		return matchingStrategies;
 	}
