@@ -316,16 +316,14 @@ public final class CellManagerFactory {
 	 */
 	public final Collection<?> getCrossValueAsCollection(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
 		Object value = CellManagerFactory.INSTANCE.getCrossValue(columnElement, rowElement, tableManager);
-		if (value == null) {
-			return Collections.emptyList();
-		}
+		Collection<?> collection = Collections.emptyList();
 		if (value instanceof Collection<?>) {
-			return (Collection<?>) value;
+			collection = (Collection<?>) value;
+		}else if (value instanceof Object[]) {
+			collection = Arrays.asList(value);
+		}else if (null != value) {
+			collection = Collections.singletonList(value);
 		}
-
-		if (value instanceof Object[]) {
-			return Arrays.asList(value);
-		}
-		return Collections.emptyList();
+		return collection;
 	}
 }
