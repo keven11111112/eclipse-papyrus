@@ -31,8 +31,8 @@
 		<module>dev</module>
 	</modules>
 	<properties>
-		<tycho-version>0.22.0</tycho-version>
-		<tychoExtrasVersion>0.22.0</tychoExtrasVersion>
+		<tycho-version>0.23.0</tycho-version>
+		<tychoExtrasVersion>0.23.0</tychoExtrasVersion>
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/mars/main</papyrus.repo.main>
 		<papyrus.repo.extra>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/mars/extra</papyrus.repo.extra>
 	</properties>

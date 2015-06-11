@@ -237,8 +237,9 @@
 		<module>extras</module>
 	</modules>
 	<properties>
-		<tycho-version>0.22.0</tycho-version>
-		<tychoExtrasVersion>0.22.0</tychoExtrasVersion>
+		<tycho-version>0.23.0</tycho-version>
+		<tychoExtrasVersion>0.23.0</tychoExtrasVersion>
+		<jarSignerVersion>1.1.2</jarSignerVersion>
 		<xtext.version>2.7.3</xtext.version>
 		<java.source.version>1.6</java.source.version>
 		<java.target.version>1.6</java.target.version>
@@ -636,7 +637,7 @@
 					<plugin>
 						<groupId>org.eclipse.cbi.maven.plugins</groupId>
 						<artifactId>eclipse-jarsigner-plugin</artifactId>
-						<version>1.0.5</version>
+						<version>${jarSignerVersion}</version>
 						<executions>
 							<execution>
 						    	<id>sign</id>

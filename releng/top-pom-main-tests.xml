@@ -106,8 +106,8 @@
 		<module>../tests/junit/plugins/uml/alf/org.eclipse.papyrus.uml.alf.tests</module>
 	</modules>
 	<properties>
-		<tycho-version>0.21.0</tycho-version>
-		<tychoExtrasVersion>0.21.0</tychoExtrasVersion>
+		<tycho-version>0.23.0</tycho-version>
+		<tychoExtrasVersion>0.23.0</tychoExtrasVersion>
 		<java.source.version>1.7</java.source.version>
 		<java.target.version>1.7</java.target.version>
 		<xtext.version>2.7.3</xtext.version>
