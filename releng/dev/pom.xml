@@ -182,7 +182,7 @@
 			<id>oomph</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Oomph",0) -->
-			<url>http://download.eclipse.org/oomph/drops/milestone/S20150603-144056-1.1.0-RC3</url>
+			<url>http://download.eclipse.org/oomph/drops/milestone/S20150610-124713-1.1.0-RC4</url>
 		</repository>		
 		<repository>
 			<id>papyrus-main</id>

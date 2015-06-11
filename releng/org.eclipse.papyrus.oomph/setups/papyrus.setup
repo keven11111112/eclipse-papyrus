@@ -1089,7 +1089,7 @@
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus CDO Dependencies">
           <requirement name="org.eclipse.emf.cdo.sdk.feature.group"/>
           <repositoryList name="Mars">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20150602-0822">
+            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/R20150610-1526">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF CDO</value>
