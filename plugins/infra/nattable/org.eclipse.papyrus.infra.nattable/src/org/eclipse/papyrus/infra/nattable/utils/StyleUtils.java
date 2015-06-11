@@ -16,10 +16,16 @@ package org.eclipse.papyrus.infra.nattable.utils;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.text.StyledDocument;
+
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement;
 
 /**
  * @author VL222926
@@ -32,7 +38,7 @@ public class StyleUtils {
 	 * @param table
 	 *            a table
 	 * @return
-	 *         a list with the hidden depth in the table. The returned values in never <code>null</code>;
+	 * 		a list with the hidden depth in the table. The returned values in never <code>null</code>;
 	 */
 	public static final List<Integer> getHiddenDepths(final Table table) {
 		IntListValueStyle style = getHiddenDepthsValueStyle(table);
@@ -47,7 +53,7 @@ public class StyleUtils {
 	 * @param table
 	 *            a table
 	 * @return
-	 *         a list with the hidden depth in the table. The returned values in never <code>null</code>;
+	 * 		a list with the hidden depth in the table. The returned values in never <code>null</code>;
 	 */
 	public static final List<Integer> getHiddenDepths(final INattableModelManager manager) {
 		return getHiddenDepths(manager.getTable());
@@ -58,7 +64,7 @@ public class StyleUtils {
 	 * @param manager
 	 *            the table
 	 * @return
-	 *         the style referencing the hidden category
+	 * 		the style referencing the hidden category
 	 */
 
 	public static final IntListValueStyle getHiddenDepthsValueStyle(final Table table) {
@@ -70,7 +76,7 @@ public class StyleUtils {
 	 * @param manager
 	 *            the table manager
 	 * @return
-	 *         the style referencing the hidden category
+	 * 		the style referencing the hidden category
 	 */
 	public static final IntListValueStyle getHiddenDepthsValueStyle(final INattableModelManager manager) {
 		return getHiddenDepthsValueStyle(manager.getTable());
@@ -102,6 +108,31 @@ public class StyleUtils {
 		List<Integer> hidden = getHiddenDepths(table);
 		if (hidden.contains(depth)) {
 			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param manager
+	 *            the table manager
+	 * @return
+	 *         <code>true</code> if at least one filter is register on the currents columns
+	 */
+	public static final boolean hasAppliedFilter(final INattableModelManager manager) {
+		for (Object current : manager.getColumnElementsList()) {
+			if (current instanceof StyledElement) {
+				StyledElement element = (StyledElement) current;
+				NamedStyle style = element.getNamedStyle(NattablestylePackage.eINSTANCE.getStringValueStyle(), NamedStyleConstants.FILTER_SYSTEM_ID);
+				if (style != null) {
+					return true;
+				}
+				style = element.getNamedStyle(NattablestylePackage.eINSTANCE.getStringValueStyle(), NamedStyleConstants.FILTER_FORCED_BY_USER_ID);
+				if (style != null) {
+					return true;
+				}
+
+			}
 		}
 		return false;
 	}

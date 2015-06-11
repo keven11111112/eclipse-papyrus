@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.Command;
@@ -51,7 +52,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Ab
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
-import org.eclipse.papyrus.infra.nattable.sort.ColumnSortModel;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.tree.DatumExpansionModel;
 import org.eclipse.papyrus.infra.nattable.tree.DatumTreeFormat;
@@ -167,6 +167,13 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		if (null != getTableEditingDomain()) {
 			getTableEditingDomain().addResourceSetListener(this.hideShowCategoriesListener);
 		}
+
+		// FIX for the bug 469284: [Tree Table] empty table when a table is loaded with applied filters
+		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=469284
+		if (StyleUtils.hasAppliedFilter(this)) {
+			doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
+		}
+
 		return nattable;
 	}
 
@@ -180,7 +187,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		natTable.addConfiguration(new TreeTableClickSortConfiguration());
 	}
 
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#updateToggleActionState()
 	 *
