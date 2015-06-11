@@ -264,6 +264,20 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Pack200 -->
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-pack200b-plugin</artifactId>
+				<version>${tychoExtrasVersion}</version>
+				<executions>
+					<execution>
+						<id>pack200-pack</id>
+						<goals>
+							<goal>pack</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-p2-plugin</artifactId>
