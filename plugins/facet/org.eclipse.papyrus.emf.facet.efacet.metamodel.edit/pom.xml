@@ -2,10 +2,10 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.eclipse.papyrus</artifactId>
+		<artifactId>org.eclipse.papyrus.releng</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
 		<version>1.1.0-SNAPSHOT</version>
-		<relativePath>../../../releng/top-pom-main.xml</relativePath>
+		<relativePath>../../../releng/main</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.emf.facet.efacet.metamodel.edit</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>

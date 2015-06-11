@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.eclipse.papyrus</groupId>
+	<artifactId>org.eclipse.papyrus.all.releng</artifactId>
+	<version>1.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<properties>
+		<tycho-version>0.23.0</tycho-version>
+		<tychoExtrasVersion>0.23.0</tychoExtrasVersion>
+		<jarSignerVersion>1.1.2</jarSignerVersion>
+		<findbugs.version>2.5.3</findbugs.version>
+		<xtext.version>2.7.3</xtext.version>
+		<java.source.version>1.7</java.source.version>
+		<java.target.version>1.7</java.target.version>
+		<papyrus.eclipse.target>mars</papyrus.eclipse.target>
+		<mylyn.wikitext.version>2.4.0-SNAPSHOT</mylyn.wikitext.version>
+	</properties>
+	
+	<modules>
+		<module>main</module>
+		<module>extra</module>
+		<module>dev</module>
+		<module>main-tests</module>
+		<module>extra-tests</module>
+	</modules>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>org.eclipse.cbi.maven.plugins</id>
+			<name>Eclipse CBI</name>
+			<url>https://repo.eclipse.org/content/repositories/cbi-releases/</url>
+			 <releases>
+		     	<enabled>true</enabled>
+		     </releases>
+		     <snapshots>
+		     	<enabled>false</enabled>
+		     </snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>eclipse.org-mylyn</id>
+			<!-- url>https://repo.eclipse.org/content/repositories/mylyn-releases/</url -->
+			<url>https://repo.eclipse.org/content/repositories/mylyn/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+</project>
