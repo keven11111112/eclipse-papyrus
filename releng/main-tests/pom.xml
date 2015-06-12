@@ -113,8 +113,8 @@
 	</modules>
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
-        <testSuitePlugin>org.eclipse.papyrus.tests</testSuitePlugin>
         <testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
+        <skipInnerTests>true</skipInnerTests>
 	</properties>
 	<repositories>
 		<repository>
@@ -371,27 +371,14 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<testSuite>${testSuitePlugin}</testSuite>
-					<testClass>${testSuiteClass}</testClass>
+					<failIfNoTests>false</failIfNoTests>
 					<useUIHarness>true</useUIHarness>
 					<useUIThread>true</useUIThread>
 					<testFailureIgnore>true</testFailureIgnore>
 					<argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=512M -XX:SoftRefLRUPolicyMSPerMB=100</argLine>
 					<appArgLine>-testConfig=${testConfig}</appArgLine>
 					<product>org.eclipse.sdk.ide</product>
-					
-					<dependencies>
-			            <dependency>
-			              <type>p2-installable-unit</type>
-			              <artifactId>org.eclipse.sdk.feature.group</artifactId>
-			              <version>0.0.0</version>
-			            </dependency>
-			            <dependency>
-			              <type>p2-installable-unit</type>
-			              <artifactId>org.eclipse.papyrus.sdk.feature.feature.group</artifactId>
-			              <version>0.0.0</version>
-			            </dependency>
-		            </dependencies>
+					<skipTests>${skipInnerTests}</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>
