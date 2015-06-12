@@ -17,6 +17,10 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
+   <includes
+         id="org.eclipse.papyrus.junit.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.papyrus.codegen"
          download-size="0"

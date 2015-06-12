@@ -34,6 +34,10 @@
 		<module>../../plugins/developer/org.eclipse.papyrus.uml.developer.mde</module>
 		<module>../../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.debug</module>
 		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.dev.feature</module>
+		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.junit.feature</module>
+		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.framework</module>
+		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.utils</module>
+		<module>../../tests/junit/plugins/developer/org.eclipse.papyrus.bundles.tests</module>
 		<module>site</module>
 	</modules>
 	<properties>

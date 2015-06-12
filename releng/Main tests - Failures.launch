@@ -9,6 +9,8 @@
 <listEntry value="papyrus.repo.main=file:/${project_loc:releng}/main/site/target/repository"/>
 <listEntry value="testConfig=FAILING_TESTS_CONFIG"/>
 <listEntry value="papyrus.repo.main.online=https://hudson.eclipse.org/papyrus/job/Papyrus-Master/lastSuccessfulBuild/artifact/releng/main/target/repository/"/>
+<listEntry value="papyrus.repo.dev.online=https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/"/>
+<listEntry value="papyrus.repo.dev=file:/${project_loc:releng}/dev/site/target/repository"/>
 </listAttribute>
 <stringAttribute key="M2_RUNTIME" value="EMBEDDED"/>
 <booleanAttribute key="M2_SKIP_TESTS" value="false"/>

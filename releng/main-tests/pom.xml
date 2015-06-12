@@ -39,7 +39,6 @@
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.elementtypesconfigurations.tests</module>
 		<module>../../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
-		<module>../../tests/junit/plugins/developer/org.eclipse.papyrus.bundles.tests</module>
         <module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.tools.tests</module>
 		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly.tests</module>
@@ -58,8 +57,6 @@
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.labelprovider.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.resourceloading.tests</module>
         <module>../../tests/junit/plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration.tests</module>
-		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.framework</module>
-		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.utils</module>
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.blockdefinition.tests</module>
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.internalblock.tests</module>
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.parametric.tests</module>
@@ -121,6 +118,11 @@
 			<id>papyrus-main</id>
 			<layout>p2</layout>
 			<url>${papyrus.repo.main}</url>
+		</repository>
+		<repository>
+			<id>papyrus-dev</id>
+			<layout>p2</layout>
+			<url>${papyrus.repo.dev}</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>

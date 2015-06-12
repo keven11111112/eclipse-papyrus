@@ -37,6 +37,11 @@
 			<layout>p2</layout>
 			<url>${papyrus.repo.main}</url>
 		</repository>
+		<repository>
+			<id>papyrus-dev</id>
+			<layout>p2</layout>
+			<url>${papyrus.repo.dev}</url>
+		</repository>
 	<!--  	<repository>
 			<id>org.eclipse.epf.richtext_1.5.1.6-update-site</id>
 			<layout>p2</layout>

@@ -10,6 +10,7 @@
 <listEntry value="papyrus.repo.extra.local=file:/${project_loc:releng}/extra/site/target/repository/"/>
 <listEntry value="papyrus.repo.main=https://hudson.eclipse.org/papyrus/job/Papyrus-Master/lastSuccessfulBuild/artifact/repository/"/>
 <listEntry value="papyrus.repo.extra=https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Extra/lastSuccessfulBuild/artifact/repository/"/>
+<listEntry value="papyrus.repo.dev=https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/"/>
 </listAttribute>
 <stringAttribute key="M2_RUNTIME" value="EMBEDDED"/>
 <booleanAttribute key="M2_SKIP_TESTS" value="false"/>

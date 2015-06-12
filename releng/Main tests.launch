@@ -8,6 +8,8 @@
 <listAttribute key="M2_PROPERTIES">
 <listEntry value="papyrus.repo.main.local=file:/${project_loc:releng}/main/site/target/repository"/>
 <listEntry value="papyrus.repo.main=https://hudson.eclipse.org/papyrus/job/Papyrus-Master/lastSuccessfulBuild/artifact/repository/"/>
+<listEntry value="papyrus.repo.dev=https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/"/>
+<listEntry value="papyrus.repo.dev.local=file:/${project_loc:releng}/dev/site/target/repository"/>
 </listAttribute>
 <stringAttribute key="M2_RUNTIME" value="EMBEDDED"/>
 <booleanAttribute key="M2_SKIP_TESTS" value="false"/>
