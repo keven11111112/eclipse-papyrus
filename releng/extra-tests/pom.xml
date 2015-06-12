@@ -300,6 +300,7 @@
 					<argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=512M</argLine>
 					<appArgLine>-testConfig=${testConfig}</appArgLine>
 					<skipTests>${skipInnerTests}</skipTests>
+					<product>org.eclipse.sdk.ide</product>
 				</configuration>
 			</plugin>
 		</plugins>

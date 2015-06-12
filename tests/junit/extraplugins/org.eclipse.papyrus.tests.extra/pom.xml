@@ -16,4 +16,34 @@
 	<properties>
 		<skipInnerTests>false</skipInnerTests>
 	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<testClass>${testSuiteClass}</testClass>
+					
+					<dependencies>
+			            <dependency>
+			              <type>p2-installable-unit</type>
+			              <artifactId>org.eclipse.sdk.feature.group</artifactId>
+			              <version>0.0.0</version>
+			            </dependency>
+			            <dependency>
+			              <type>p2-installable-unit</type>
+			              <artifactId>org.eclipse.papyrus.sdk.feature.feature.group</artifactId>
+			              <version>0.0.0</version>
+			            </dependency>
+			            <dependency>
+			              <type>p2-installable-unit</type>
+			              <artifactId>org.eclipse.papyrus.extra.feature.feature.group</artifactId>
+			              <version>0.0.0</version>
+			            </dependency>
+		            </dependencies>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
