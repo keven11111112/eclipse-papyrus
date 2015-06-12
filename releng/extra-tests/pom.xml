@@ -222,65 +222,104 @@
 		</repository>	
 	</repositories>
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<source>${java.source.version}</source>
+						<target>${java.target.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.xtend</groupId>
+					<artifactId>xtend-maven-plugin</artifactId>
+					<version>${xtext.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<optimize>true</optimize>
+						<showWarnings>true</showWarnings>
+						<!-- Tycho build using the project's JDT settings. -->
+						<useProjectSettings>true</useProjectSettings>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>target-platform-configuration</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<environments>
+							<environment>
+								<os>win32</os>
+								<ws>win32</ws>
+								<arch>x86</arch>
+							</environment>
+							<environment>
+								<os>win32</os>
+								<ws>win32</ws>
+								<arch>x86_64</arch>
+							</environment>
+							<environment>
+								<os>linux</os>
+								<ws>gtk</ws>
+								<arch>x86</arch>
+							</environment>
+							<environment>
+								<os>linux</os>
+								<ws>gtk</ws>
+								<arch>x86_64</arch>
+							</environment>
+							<environment>
+								<os>macosx</os>
+								<ws>cocoa</ws>
+								<arch>x86_64</arch>
+							</environment>
+						</environments>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-compiler-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<optimize>true</optimize>
-					<showWarnings>true</showWarnings>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<extensions>true</extensions>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					 <environments>
-						 <environment>
-							 <os>win32</os>
-							 <ws>win32</ws>
-							 <arch>x86</arch>
-						 </environment>
-						 <environment>
-							 <os>win32</os>
-							 <ws>win32</ws>
-							 <arch>x86_64</arch>
-						 </environment>
-						 <environment>
-							 <os>linux</os>
-							 <ws>gtk</ws>
-							 <arch>x86</arch>
-						 </environment>
-						 <environment>
-							 <os>linux</os>
-							 <ws>gtk</ws>
-							 <arch>x86_64</arch>
-						 </environment>
-						 <environment>
-							 <os>macosx</os>
-							 <ws>cocoa</ws>
-							 <arch>x86_64</arch>
-						 </environment>
-					 </environments>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -292,15 +331,14 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<testClass>${testSuiteClass}</testClass>
 					<failIfNoTests>false</failIfNoTests>
 					<useUIHarness>true</useUIHarness>
 					<useUIThread>true</useUIThread>
 					<testFailureIgnore>true</testFailureIgnore>
 					<argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=512M</argLine>
 					<appArgLine>-testConfig=${testConfig}</appArgLine>
-					<skipTests>${skipInnerTests}</skipTests>
 					<product>org.eclipse.sdk.ide</product>
+					<skipTests>${skipInnerTests}</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>
