@@ -47,6 +47,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.CanonicalStyle;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Sorting;
@@ -63,6 +64,7 @@ import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.IVisualChildrenStrat
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.SemanticChildrenStrategyRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropObjectsRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.RollingDeferredArrangeRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IPapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 
@@ -547,6 +549,27 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		}
 
 		return createdViews;
+	}
+
+	@Override
+	protected boolean isOrphaned(Collection<EObject> semanticChildren, View view) {
+		if (super.isOrphaned(semanticChildren, view)) {
+			return isNoSemanticConnectorOrphaned(semanticChildren, view);
+		}
+		return false;
+	}
+
+	private boolean isNoSemanticConnectorOrphaned(Collection<EObject> semanticChildren, View view) {
+		EObject element = view.getElement();
+		if (element != null || false == view instanceof Connector) {
+			return true;
+		}
+		EObject noSemanticConnector = createNoSemanticConnector((Connector) view);
+		return !semanticChildren.contains(noSemanticConnector);
+	}
+
+	private EdgeWithNoSemanticElementRepresentationImpl createNoSemanticConnector(Connector connector) {
+		return new EdgeWithNoSemanticElementRepresentationImpl(connector.getSource().getElement(), connector.getTarget().getElement(), connector.getType());
 	}
 
 	/**

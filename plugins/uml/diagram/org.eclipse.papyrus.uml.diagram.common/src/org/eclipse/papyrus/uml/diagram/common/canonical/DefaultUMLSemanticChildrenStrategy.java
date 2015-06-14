@@ -21,11 +21,13 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ISemanticChildrenStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.NamedElement;
@@ -65,13 +67,13 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 
 	@Override
 	public List<? extends EObject> getCanonicalSemanticConnections(EObject semanticFromEditPart, View viewFromEditPart) {
-		List<Element> result = null;
+		List<EObject> result = null;
 
 		if (semanticFromEditPart instanceof Element) {
 			Element element = (Element) semanticFromEditPart;
 
 			// Add relationships
-			result = Lists.<Element> newArrayList(element.getRelationships());
+			result = Lists.<EObject> newArrayList(element.getRelationships());
 
 			// And relationship-like elements
 			result = new ConnectionsSwitch(viewFromEditPart, result).doSwitch(element);
@@ -83,7 +85,7 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 
 	@Override
 	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart) {
-	Collection<Element> result = null;
+		Collection<Element> result = null;
 
 		if (semanticFromEditPart instanceof NamedElement) {
 			// Handle changes to client/supplier dependencies
@@ -114,11 +116,11 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 	// Nested types
 	//
 
-	private class ConnectionsSwitch extends UMLSwitch<List<Element>> {
+	private class ConnectionsSwitch extends UMLSwitch<List<EObject>> {
 		private final View visualContext;
-		private final List<Element> result;
+		private final List<EObject> result;
 
-		ConnectionsSwitch(View visualContext, List<Element> result) {
+		ConnectionsSwitch(View visualContext, List<EObject> result) {
 			super();
 
 			this.visualContext = visualContext;
@@ -126,14 +128,14 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 		}
 
 		@Override
-		public List<Element> doSwitch(EObject eObject) {
+		public List<EObject> doSwitch(EObject eObject) {
 			super.doSwitch(eObject);
 
 			return result;
 		}
 
 		@Override
-		public List<Element> caseConnectableElement(ConnectableElement object) {
+		public List<EObject> caseConnectableElement(ConnectableElement object) {
 			Property expectedPartWithPort = getExpectedPartWithPort(visualContext);
 
 			for (ConnectorEnd next : object.getEnds()) {
@@ -146,23 +148,39 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 		}
 
 		@Override
-		public List<Element> caseActivityNode(ActivityNode object) {
+		public List<EObject> caseActivityNode(ActivityNode object) {
 			result.addAll(object.getOutgoings());
 			result.addAll(object.getIncomings());
 			return super.caseActivityNode(object);
 		}
 
 		@Override
-		public List<Element> caseVertex(Vertex object) {
+		public List<EObject> caseVertex(Vertex object) {
 			result.addAll(object.getOutgoings());
 			result.addAll(object.getIncomings());
 			return super.caseVertex(object);
 		}
 
 		@Override
-		public List<Element> caseMessageEnd(MessageEnd object) {
+		public List<EObject> caseMessageEnd(MessageEnd object) {
 			result.add(object.getMessage());
 			return super.caseMessageEnd(object);
+		}
+
+		@Override
+		public List<EObject> caseConstraint(Constraint object) {
+			@SuppressWarnings("unchecked")
+			List<EObject> sourceEdges = visualContext.getSourceEdges();
+			for (EObject nextEdge : sourceEdges) {
+				if (false == nextEdge instanceof View) {
+					continue;
+				}
+				if (((View) nextEdge).getElement() == null) {
+					result.add(new EdgeWithNoSemanticElementRepresentationImpl(object, object.eContainer(), ((View) nextEdge).getType()));
+					break;
+				}
+			}
+			return super.caseConstraint(object);
 		}
 	}
 
