@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCompartmentCommand;
@@ -188,13 +189,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			}
 		}
 
-		// In case of Name Depth modification
-		if ((notification.getNotifier() instanceof NamedStyle)) {
-			NamedStyle style = (NamedStyle) notification.getNotifier();
-			if (StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH.equals(style.getName()) && helper.isStereotypeView(style.eContainer())) {
-				refreshHost();
-			}
-		}
+
 
 	}
 
@@ -215,8 +210,14 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	private void refreshCommentContainer() {
 		if (null != hostEditPart && null != hostEditPart.getParent()) {
-			hostEditPart.getParent().refresh();
-
+			// In case of Connection, the Comment Container is the container of the source or the target
+			if (hostEditPart instanceof ConnectionEditPart) {
+				((ConnectionEditPart) hostEditPart).getTarget().getParent().refresh();
+				((ConnectionEditPart) hostEditPart).getSource().getParent().refresh();
+			} else {
+				// otherwise this is just the direct parent.
+				hostEditPart.getParent().refresh();
+			}
 		}
 
 	}
@@ -236,6 +237,10 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			} else if (Notification.SET == notification.getEventType() && notification.getFeature() instanceof EStructuralFeature) {
 				concerned = ((EStructuralFeature) notification.getFeature()).getName().equals(VISIBLE);
 			}
+		} else if ((notification.getNotifier() instanceof NamedStyle)) {
+			NamedStyle style = (NamedStyle) notification.getNotifier();
+			concerned = (StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH.equals(style.getName()) && helper.isStereotypeView(style.eContainer()));
+
 		}
 
 

@@ -36,6 +36,11 @@ public class StereotypeDisplayTreeTableHelper {
 	 */
 	private static final String EMPTY_STRING = ""; // $NON-NLS-1$
 
+	/**
+	 * The String that represent the fact that the Value is not applicable.
+	 */
+	private static final String NA = "N/A"; // $NON-NLS-1$
+
 
 	/**
 	 * The singleton instance.
@@ -98,8 +103,10 @@ public class StereotypeDisplayTreeTableHelper {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
 
 				final View label = helper.getStereotypeLabel((View) parent, (Stereotype) row);
-				if (label instanceof DecorationNode) {
+				if (null != label) {
 					return helper.getDepth((DecorationNode) label);
+				} else {
+					return NA;
 				}
 			}
 		}
@@ -124,13 +131,16 @@ public class StereotypeDisplayTreeTableHelper {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
 			if (parent instanceof View) {
 				View label = helper.getStereotypeLabel((View) parent, (Stereotype) row);
-				if (newValue instanceof String) {
-					if (StereotypeDisplayConstant.DEFAULT_DEPTH_VALUE != (String) newValue) {
-						StereotypeDisplayCommandExecution.getInstance().setUserDepth(domain, (Stereotype) row, label, (String) newValue);
-					} else {
-						StereotypeDisplayCommandExecution.getInstance().setDepth(domain, (Stereotype) row, label, (String) newValue, true);
-						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, label, true);
+				if (null != label) {
+					if (newValue instanceof String) {
 
+						if (StereotypeDisplayConstant.DEFAULT_DEPTH_VALUE != (String) newValue) {
+							StereotypeDisplayCommandExecution.getInstance().setUserDepth(domain, (Stereotype) row, label, (String) newValue);
+						} else {
+							StereotypeDisplayCommandExecution.getInstance().setDepth(domain, (Stereotype) row, label, (String) newValue, true);
+							StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, label, true);
+
+						}
 					}
 				}
 			}
@@ -160,6 +170,8 @@ public class StereotypeDisplayTreeTableHelper {
 				View propertyLabel = helper.getStereotypeLabel((View) parent, (Stereotype) row);
 				if (null != propertyLabel) {
 					return propertyLabel.isVisible();
+				} else {
+					return NA;
 				}
 			}
 
@@ -188,9 +200,9 @@ public class StereotypeDisplayTreeTableHelper {
 		// Depth 2
 		if (row instanceof Stereotype) {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
-			if (parent instanceof View) {
-				if (newValue instanceof Boolean) {
-					View label = helper.getStereotypeLabel((View) parent, (Stereotype) row);
+			if ((parent instanceof View) && (newValue instanceof Boolean)) {
+				View label = helper.getStereotypeLabel((View) parent, (Stereotype) row);
+				if (null != label) {
 					if (!(Boolean) newValue) {
 						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, label, false);
 					} else {
@@ -199,6 +211,7 @@ public class StereotypeDisplayTreeTableHelper {
 					}
 				}
 			}
+
 		}
 	}
 
@@ -226,6 +239,8 @@ public class StereotypeDisplayTreeTableHelper {
 					View brace = helper.getStereotypeBraceCompartment((View) parent, (Stereotype) row);
 					if (null != brace) {
 						return brace.isVisible();
+					} else {
+						return NA;
 					}
 				}
 			}
@@ -239,6 +254,8 @@ public class StereotypeDisplayTreeTableHelper {
 					View brace = helper.getStereotypePropertyInBrace((View) parent, (Stereotype) stereo, (Property) row);
 					if (null != brace) {
 						return brace.isVisible();
+					} else {
+						return NA;
 					}
 				}
 			}
@@ -326,6 +343,8 @@ public class StereotypeDisplayTreeTableHelper {
 
 					if (null != comment) {
 						return comment.isVisible() && compartment.isVisible();
+					} else {
+						return NA;
 					}
 				}
 			}
@@ -335,10 +354,12 @@ public class StereotypeDisplayTreeTableHelper {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent().getParent().getParent());
 				Object stereo = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent());
 
-				if (parent instanceof View) {
+				if ((parent instanceof View) && (stereo instanceof Stereotype)) {
 					View comment = helper.getStereotypePropertyInComment((View) parent, (Stereotype) stereo, (Property) row);
 					if (null != comment) {
 						return comment.isVisible();
+					} else {
+						return NA;
 					}
 				}
 			}
@@ -363,21 +384,25 @@ public class StereotypeDisplayTreeTableHelper {
 		// Depth 2
 		if (row instanceof Stereotype) {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
-			if (parent instanceof View) {
-				if (newValue instanceof Boolean) {
-					View comment = helper.getStereotypeComment((View) parent);
-					// The comment compartment will be displayed in the same time
+			if ((parent instanceof View) && (newValue instanceof Boolean)) {
+				View comment = helper.getStereotypeComment((View) parent);
+				// The comment compartment will be displayed in the same time
+				if (null != comment) {
 					View compartment = helper.getStereotypeCompartment(comment, (Stereotype) row);
-					if ((Boolean) newValue) {
-						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, compartment, true);
-					} else {
-						StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, compartment, false, true);
-						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, compartment, false);
+					if (null != compartment) {
+						if ((Boolean) newValue) {
+							StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, compartment, true);
+						} else {
+							StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, compartment, false, true);
+							StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, compartment, false);
+						}
 					}
+
 					// Update comment visibility depending on the content
 					updateComment(domain, comment);
-
 				}
+
+
 			}
 		}
 
@@ -387,19 +412,18 @@ public class StereotypeDisplayTreeTableHelper {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent().getParent().getParent());
 			Object stereo = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent());
 
-			if (parent instanceof View) {
-				if (stereo instanceof Stereotype) {
-					if (newValue instanceof Boolean) {
-						View commentProperty = helper.getStereotypePropertyInComment((View) parent, (Stereotype) stereo, (Property) row);
-						if (!(Boolean) newValue) {
-							StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, commentProperty, false);
-						} else {
-							StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, commentProperty, true, true);
-							StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, commentProperty, false);
-						}
+			if ((parent instanceof View) && (stereo instanceof Stereotype) && (newValue instanceof Boolean)) {
 
+				View commentProperty = helper.getStereotypePropertyInComment((View) parent, (Stereotype) stereo, (Property) row);
+				if (null != commentProperty) {
+					if (!(Boolean) newValue) {
+						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, commentProperty, false);
+					} else {
+						StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, commentProperty, true, true);
+						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, commentProperty, false);
 					}
 				}
+
 			}
 		}
 	}
@@ -430,6 +454,8 @@ public class StereotypeDisplayTreeTableHelper {
 					View compartment = helper.getStereotypeCompartment((View) parent, (Stereotype) row);
 					if (null != compartment) {
 						return compartment.isVisible();
+					} else {
+						return NA;
 					}
 				}
 			}
@@ -443,6 +469,8 @@ public class StereotypeDisplayTreeTableHelper {
 					View compartment = helper.getStereotypePropertyInCompartment((View) parent, (Stereotype) stereo, (Property) row);
 					if (null != compartment) {
 						return compartment.isVisible();
+					} else {
+						return NA;
 					}
 				}
 			}
@@ -470,11 +498,13 @@ public class StereotypeDisplayTreeTableHelper {
 			if (parent instanceof View) {
 				if (newValue instanceof Boolean) {
 					View compartment = helper.getStereotypeCompartment((View) parent, (Stereotype) row);
-					if ((Boolean) newValue) {
-						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, compartment, true);
-					} else {
-						StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, compartment, false, true);
-						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, compartment, false);
+					if (null != compartment) {
+						if ((Boolean) newValue) {
+							StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, compartment, true);
+						} else {
+							StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, compartment, false, true);
+							StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, compartment, false);
+						}
 					}
 				}
 			}
@@ -489,11 +519,13 @@ public class StereotypeDisplayTreeTableHelper {
 				if (stereo instanceof Stereotype) {
 					if (newValue instanceof Boolean) {
 						View property = helper.getStereotypePropertyInCompartment((View) parent, (Stereotype) stereo, (Property) row);
-						if (!(Boolean) newValue) {
-							StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, property, false);
-						} else {
-							StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, property, true, true);
-							StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, property, false);
+						if (null != property) {
+							if (!(Boolean) newValue) {
+								StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, property, false);
+							} else {
+								StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, property, true, true);
+								StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, property, false);
+							}
 						}
 					}
 				}
