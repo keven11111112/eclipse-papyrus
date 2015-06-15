@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayCommandExecution;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -35,12 +36,12 @@ public class StereotypeDisplayTreeTableHelper {
 	 */
 	private static final String EMPTY_STRING = ""; // $NON-NLS-1$
 
-	
+
 	/**
 	 * The singleton instance.
 	 */
 	private StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
-	
+
 	/**
 	 * The stereotype display tree table helper.
 	 */
@@ -68,7 +69,8 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Get the short value (without prefix).
 	 * 
-	 * @param name The name.
+	 * @param name
+	 *            The name.
 	 * @return The short value.
 	 */
 	public String getShortValue(final Object name) {
@@ -83,7 +85,8 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Get the depth value.
 	 * 
-	 * @param rowElement The row element.
+	 * @param rowElement
+	 *            The row element.
 	 * @return The delpth value.
 	 */
 	public Object getDepthValue(final Object rowElement) {
@@ -106,9 +109,12 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Set the delpth value.
 	 * 
-	 * @param domain The transactional editing domain.
-	 * @param rowElement The row element.
-	 * @param newValue The value to set.
+	 * @param domain
+	 *            The transactional editing domain.
+	 * @param rowElement
+	 *            The row element.
+	 * @param newValue
+	 *            The value to set.
 	 */
 	public void setDepthValue(final TransactionalEditingDomain domain, final Object rowElement, final Object newValue) {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
@@ -117,8 +123,15 @@ public class StereotypeDisplayTreeTableHelper {
 		if (row instanceof Stereotype) {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
 			if (parent instanceof View) {
+				View label = helper.getStereotypeLabel((View) parent, (Stereotype) row);
 				if (newValue instanceof String) {
-					StereotypeDisplayCommandExecution.getInstance().setDepth(domain, (Stereotype) row, (View) parent, (String) newValue, true);
+					if (StereotypeDisplayConstant.DEFAULT_DEPTH_VALUE != (String) newValue) {
+						StereotypeDisplayCommandExecution.getInstance().setUserDepth(domain, (Stereotype) row, label, (String) newValue);
+					} else {
+						StereotypeDisplayCommandExecution.getInstance().setDepth(domain, (Stereotype) row, label, (String) newValue, true);
+						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, label, true);
+
+					}
 				}
 			}
 		}
@@ -127,7 +140,8 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Get the displayed value.
 	 * 
-	 * @param rowElement The row element.
+	 * @param rowElement
+	 *            The row element.
 	 * @return The displayed value.
 	 */
 	public Object getDisplayedValue(final Object rowElement) {
@@ -161,9 +175,12 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Set the displayed value.
 	 * 
-	 * @param domain The transactional editing domain.
-	 * @param rowElement The row element.
-	 * @param newValue The value to set.
+	 * @param domain
+	 *            The transactional editing domain.
+	 * @param rowElement
+	 *            The row element.
+	 * @param newValue
+	 *            The value to set.
 	 */
 	public void setDisplayedValue(final TransactionalEditingDomain domain, final Object rowElement, final Object newValue) {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
@@ -173,8 +190,13 @@ public class StereotypeDisplayTreeTableHelper {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
 			if (parent instanceof View) {
 				if (newValue instanceof Boolean) {
-					View propertyLabel = helper.getStereotypeLabel((View) parent, (Stereotype) row);
-					StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, propertyLabel, (Boolean) newValue);
+					View label = helper.getStereotypeLabel((View) parent, (Stereotype) row);
+					if (!(Boolean) newValue) {
+						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, label, false);
+					} else {
+						StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, label, true, true);
+						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, label, false);
+					}
 				}
 			}
 		}
@@ -183,7 +205,8 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Get the brace value.
 	 * 
-	 * @param rowElement The row element.
+	 * @param rowElement
+	 *            The row element.
 	 * @return The brace value.
 	 */
 	public Object getBraceValue(final Object rowElement) {
@@ -227,9 +250,12 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Set the brace value.
 	 * 
-	 * @param domain The transactional editing domain.
-	 * @param rowElement The row element.
-	 * @param newValue The value to set.
+	 * @param domain
+	 *            The transactional editing domain.
+	 * @param rowElement
+	 *            The row element.
+	 * @param newValue
+	 *            The value to set.
 	 */
 	public void setBraceValue(final TransactionalEditingDomain domain, final Object rowElement, final Object newValue) {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
@@ -240,7 +266,13 @@ public class StereotypeDisplayTreeTableHelper {
 			if (parent instanceof View) {
 				if (newValue instanceof Boolean) {
 					View brace = helper.getStereotypeBraceCompartment((View) parent, (Stereotype) row);
-					StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, brace, (Boolean) newValue);
+					if ((Boolean) newValue) {
+						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, brace, true);
+					} else {
+						StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, brace, false, true);
+						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, brace, false);
+					}
+
 				}
 			}
 		}
@@ -253,8 +285,15 @@ public class StereotypeDisplayTreeTableHelper {
 			if (parent instanceof View) {
 				if (stereo instanceof Stereotype) {
 					if (newValue instanceof Boolean) {
-						View brace = helper.getStereotypePropertyInBrace((View) parent, (Stereotype) stereo, (Property) row);
-						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, brace, (Boolean) newValue);
+
+						View braceProperty = helper.getStereotypePropertyInBrace((View) parent, (Stereotype) stereo, (Property) row);
+						if (!(Boolean) newValue) {
+							StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, braceProperty, false);
+						} else {
+							StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, braceProperty, true, true);
+							StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, braceProperty, false);
+						}
+
 					}
 				}
 			}
@@ -264,7 +303,8 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Get the comment value.
 	 * 
-	 * @param rowElement The row element.
+	 * @param rowElement
+	 *            The row element.
 	 * @return The comment value.
 	 */
 	public Object getCommentValue(final Object rowElement) {
@@ -282,8 +322,10 @@ public class StereotypeDisplayTreeTableHelper {
 				if (parent instanceof View) {
 
 					View comment = helper.getStereotypeComment((View) parent);
+					View compartment = helper.getStereotypeCompartment(comment, (Stereotype) row);
+
 					if (null != comment) {
-						return comment.isVisible();
+						return comment.isVisible() && compartment.isVisible();
 					}
 				}
 			}
@@ -308,9 +350,12 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Set the comment value.
 	 * 
-	 * @param domain The transactional editing domain.
-	 * @param rowElement The row element.
-	 * @param newValue The value to set.
+	 * @param domain
+	 *            The transactional editing domain.
+	 * @param rowElement
+	 *            The row element.
+	 * @param newValue
+	 *            The value to set.
 	 */
 	public void setCommentValue(final TransactionalEditingDomain domain, final Object rowElement, final Object newValue) {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
@@ -321,13 +366,21 @@ public class StereotypeDisplayTreeTableHelper {
 			if (parent instanceof View) {
 				if (newValue instanceof Boolean) {
 					View comment = helper.getStereotypeComment((View) parent);
-					StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, comment, (Boolean) newValue);
 					// The comment compartment will be displayed in the same time
 					View compartment = helper.getStereotypeCompartment(comment, (Stereotype) row);
-					StereotypeDisplayCommandExecution.getInstance().setUserVisibilityWithoutPersistence(domain, compartment, (Boolean) newValue);
+					if ((Boolean) newValue) {
+						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, compartment, true);
+					} else {
+						StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, compartment, false, true);
+						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, compartment, false);
+					}
+					// Update comment visibility depending on the content
+					updateComment(domain, comment);
+
 				}
 			}
 		}
+
 
 		// Depth 3
 		if (row instanceof Property) {
@@ -338,17 +391,26 @@ public class StereotypeDisplayTreeTableHelper {
 				if (stereo instanceof Stereotype) {
 					if (newValue instanceof Boolean) {
 						View commentProperty = helper.getStereotypePropertyInComment((View) parent, (Stereotype) stereo, (Property) row);
-						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, commentProperty, (Boolean) newValue);
+						if (!(Boolean) newValue) {
+							StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, commentProperty, false);
+						} else {
+							StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, commentProperty, true, true);
+							StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, commentProperty, false);
+						}
+
 					}
 				}
 			}
 		}
 	}
 
+
+
 	/**
 	 * Get the compartment value.
 	 * 
-	 * @param rowElement The row element.
+	 * @param rowElement
+	 *            The row element.
 	 * @return The compartment value.
 	 */
 	public Object getCompartmentValue(final Object rowElement) {
@@ -392,9 +454,12 @@ public class StereotypeDisplayTreeTableHelper {
 	/**
 	 * Set the compartment value.
 	 * 
-	 * @param domain The transactional editing domain.
-	 * @param rowElement The row element.
-	 * @param newValue The value to set.
+	 * @param domain
+	 *            The transactional editing domain.
+	 * @param rowElement
+	 *            The row element.
+	 * @param newValue
+	 *            The value to set.
 	 */
 	public void setCompartmentValue(final TransactionalEditingDomain domain, final Object rowElement, final Object newValue) {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
@@ -405,7 +470,12 @@ public class StereotypeDisplayTreeTableHelper {
 			if (parent instanceof View) {
 				if (newValue instanceof Boolean) {
 					View compartment = helper.getStereotypeCompartment((View) parent, (Stereotype) row);
-					StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, compartment, (Boolean) newValue);
+					if ((Boolean) newValue) {
+						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, compartment, true);
+					} else {
+						StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, compartment, false, true);
+						StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, compartment, false);
+					}
 				}
 			}
 		}
@@ -418,11 +488,34 @@ public class StereotypeDisplayTreeTableHelper {
 			if (parent instanceof View) {
 				if (stereo instanceof Stereotype) {
 					if (newValue instanceof Boolean) {
-						View compartment = helper.getStereotypePropertyInCompartment((View) parent, (Stereotype) stereo, (Property) row);
-						StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, compartment, (Boolean) newValue);
+						View property = helper.getStereotypePropertyInCompartment((View) parent, (Stereotype) stereo, (Property) row);
+						if (!(Boolean) newValue) {
+							StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, property, false);
+						} else {
+							StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, property, true, true);
+							StereotypeDisplayCommandExecution.getInstance().unsetPersistency(domain, property, false);
+						}
 					}
 				}
 			}
 		}
+	}
+
+	/**
+	 * Update the Comment visibility depending on its content.
+	 * 
+	 * @param domain
+	 *            Transactional Domain
+	 * @param comment
+	 *            the Comment notation view
+	 */
+	private void updateComment(TransactionalEditingDomain domain, View comment) {
+
+		if (!StereotypeDisplayUtil.getInstance().hasVisibleCompartment(comment)) {
+			StereotypeDisplayCommandExecution.getInstance().setVisibility(domain, comment, false, true);
+		} else {
+			StereotypeDisplayCommandExecution.getInstance().setUserVisibility(domain, comment, true);
+		}
+
 	}
 }

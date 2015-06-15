@@ -7,12 +7,12 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 public class StereotypeDisplayPropertiesAxisManager extends AbstractAxisManager {
 
 	public StereotypeDisplayPropertiesAxisManager() {
-		// CEJ Auto-generated constructor stub
+
 	}
 
 	@Override
 	public boolean isSlave() {
-		// CEJ Auto-generated method stub
+
 		return false;
 	}
 
@@ -28,9 +28,10 @@ public class StereotypeDisplayPropertiesAxisManager extends AbstractAxisManager 
 		return false;
 	}
 
+
 	@Override
 	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
-		// CEJ Auto-generated method stub
+
 		return null;
 	}
 

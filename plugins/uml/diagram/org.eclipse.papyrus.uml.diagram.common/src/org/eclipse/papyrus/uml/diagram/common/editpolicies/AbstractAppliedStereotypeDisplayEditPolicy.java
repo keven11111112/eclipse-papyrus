@@ -25,6 +25,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
@@ -33,6 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
@@ -57,6 +59,16 @@ import org.eclipse.uml2.uml.Stereotype;
  * for representing UML elements.
  */
 public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
+
+	/**
+	 * 
+	 */
+	private static final String VISIBLE = "visible";
+
+	/**
+	 * Feature Name for EANnotations
+	 */
+	private static final String E_ANNOTATIONS = "eAnnotations";
 
 	protected String EMPTY_STRING = "";//$NON-NLS-1$
 
@@ -97,7 +109,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			initialisation();
 			// getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-
+			getDiagramEventBroker().addNotificationListener(hostView, this);
 			// Create and Delete nodes if necessary
 			refreshNotationStructure();
 
@@ -117,6 +129,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		hostView = hostEditPart.getNotationView();
 		if (hostSemanticElement != null) {
 			stereotypeList = hostSemanticElement.getAppliedStereotypes();
+		} else {
+			stereotypeList = Collections.emptyList();
 		}
 	}
 
@@ -148,8 +162,14 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	@Override
 	public void notifyChanged(Notification notification) {
 
+		// initialisation
 		int eventType = notification.getEventType();
+		Node notifier = null;
+		if (notification.getNotifier() instanceof Node) {
+			notifier = (Node) notification.getNotifier();
+		}
 
+		// Case if a stereotype is applied or unapplied
 		if (eventType == StereotypeExtensionNotification.STEREOTYPE_APPLIED_TO_ELEMENT) {
 			initialisation();
 			refreshNotationStructure();
@@ -158,6 +178,68 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			initialisation();
 			refreshNotationStructure();
 		}
+
+		// Refresh editPart when concerned
+		if (isConcerned(notification)) {
+			if (helper.isInStereotypeComment(notifier)) {
+				refreshCommentContainer();
+			} else {
+				refreshHost();
+			}
+		}
+
+		// In case of Name Depth modification
+		if ((notification.getNotifier() instanceof NamedStyle)) {
+			NamedStyle style = (NamedStyle) notification.getNotifier();
+			if (StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH.equals(style.getName()) && helper.isStereotypeView(style.eContainer())) {
+				refreshHost();
+			}
+		}
+
+	}
+
+
+	/**
+	 * Refresh hostEditPart
+	 */
+	private void refreshHost() {
+		if (null != hostEditPart) {
+			hostEditPart.refresh();
+
+		}
+
+	}
+
+	/**
+	 * Refresh HostParent EditPart
+	 */
+	private void refreshCommentContainer() {
+		if (null != hostEditPart && null != hostEditPart.getParent()) {
+			hostEditPart.getParent().refresh();
+
+		}
+
+	}
+
+	/**
+	 * Defined if the notification concerned the update of the visibility of the node
+	 * 
+	 * @param notification
+	 *            The tested notification
+	 * @return true if the Notification is about the update of the visibility either through the visible feature or by adding the CSS Force Value with Eannotation.
+	 */
+	private boolean isConcerned(Notification notification) {
+		boolean concerned = false;
+		if (helper.isStereotypeView(notification.getNotifier())) {
+			if (Notification.ADD == notification.getEventType() && notification.getFeature() instanceof EStructuralFeature) {
+				concerned = ((EStructuralFeature) notification.getFeature()).getName().equals(E_ANNOTATIONS);
+			} else if (Notification.SET == notification.getEventType() && notification.getFeature() instanceof EStructuralFeature) {
+				concerned = ((EStructuralFeature) notification.getFeature()).getName().equals(VISIBLE);
+			}
+		}
+
+
+		return concerned;
 	}
 
 	/**
@@ -198,11 +280,17 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	public void refreshStereotypeBraceStructure(Stereotype stereotype) {
 		BasicCompartment compartment = helper.getStereotypeBraceCompartment(hostView, stereotype);
-		if (compartment == null) { // No Label Exist for this Stereotype
+		if (compartment == null) { // No Compartment Exists for this Stereotype
 			createAppliedStereotypeBraceCompartment(stereotype);
-			createAppliedStereotypeBraceProperties(stereotype);
+			getDiagramEventBroker().addNotificationListener(helper.getStereotypeBraceCompartment(hostView, stereotype), this);
 
 		}
+
+		createAppliedStereotypeBraceProperties(stereotype);
+
+
+
+
 
 	}
 
@@ -215,8 +303,10 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	public void refreshStereotypeLabelStructure(Stereotype stereotype) {
 
 		DecorationNode label = helper.getStereotypeLabel(hostView, stereotype);
-		if (label == null) { // No Label Exist for this Stereotype
+		if (null == label) { // No Label Exist for this Stereotype
 			createAppliedStereotypeLabel(stereotype);
+			getDiagramEventBroker().addNotificationListener(helper.getStereotypeLabel(hostView, stereotype), this);
+
 		}
 	}
 
@@ -288,6 +378,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			EList<Property> properties = stereotype.allAttributes();
 			for (Property property : properties) {
 				createAppliedStereotypeBraceProperty(compartment, property);
+				getDiagramEventBroker().addNotificationListener(helper.getStereotypePropertyInBrace(hostView, stereotype, property), this);
+
 			}
 		}
 	}
@@ -323,7 +415,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	protected void removeUnappliedStereotypes(View view) {
 
-		if (view != null) {
+		if (null != view) {
 			List<Object> children = new ArrayList<Object>(view.getChildren());
 			Iterator<Object> iter = children.iterator();
 			while (iter.hasNext()) {
@@ -393,7 +485,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
 		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (theEditingDomain != null) {
+		if (null != theEditingDomain) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -444,10 +536,17 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	@Override
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
+		removeListener();
+	}
+
+	/**
+	 * Remove Listeners added in this Edit Policy
+	 */
+	public void removeListener() {
 		View view = getView();
-		if (view != null) {
+		if (null != view) {
 			getDiagramEventBroker().removeNotificationListener(view, this);
-			if (hostSemanticElement != null) {
+			if (null != hostSemanticElement) {
 
 				// remove listeners to applied stereotyped
 				for (EObject stereotypeApplication : hostSemanticElement.getStereotypeApplications()) {
@@ -459,6 +558,34 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 				hostSemanticElement = null;
 			}
 		}
+
+		// Remove listener related to Brace and Label Views
+		if (!stereotypeList.isEmpty()) {
+			for (Stereotype stereotype : stereotypeList) {
+				// Remove label Listener
+				View label = helper.getStereotypeLabel(hostView, stereotype);
+				if (null != label) {
+					getDiagramEventBroker().removeNotificationListener(label, this);
+				}
+				// Remove Brace Compartment Listener
+				BasicCompartment compartment = helper.getStereotypeBraceCompartment(hostView, stereotype);
+				if (null != compartment) {
+					getDiagramEventBroker().addNotificationListener(helper.getStereotypeBraceCompartment(hostView, stereotype), this);
+				}
+				// Remove Brace Properties Listener
+				if (null != compartment && null != stereotype) {
+					EList<Property> properties = stereotype.allAttributes();
+					for (Property property : properties) {
+						getDiagramEventBroker().removeNotificationListener(helper.getStereotypePropertyInBrace(hostView, stereotype, property), this);
+					}
+				}
+
+			}
+		}
+
+
+
+
 	}
 
 }

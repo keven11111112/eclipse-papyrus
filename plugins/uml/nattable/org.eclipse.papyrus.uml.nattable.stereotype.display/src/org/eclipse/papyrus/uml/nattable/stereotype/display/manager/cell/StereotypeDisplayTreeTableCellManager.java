@@ -60,27 +60,27 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	public Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
 		Object result = null;
 		Object element = AxisUtils.getRepresentedElement(columnElement);
-		
+
 		if (element instanceof String) {
 			String shortElement = StereotypeDisplayTreeTableHelper.getInstance().getShortValue(element);
 			switch (shortElement) {
-				case StereotypeDisplayTreeTableConstants.NAME_DEPTH:
-					result = helper.getDepthValue(rowElement);
-					break;
-				case StereotypeDisplayTreeTableConstants.IS_DISPLAYED:
-					result = helper.getDisplayedValue(rowElement);
-					break;
-				case StereotypeDisplayTreeTableConstants.IN_BRACE:
-					result = helper.getBraceValue(rowElement);
-					break;
-				case StereotypeDisplayTreeTableConstants.IN_COMMENT:
-					result = helper.getCommentValue(rowElement);
-					break;
-				case StereotypeDisplayTreeTableConstants.IN_COMPARTMENT:
-					result = helper.getCompartmentValue(rowElement);
-					break;
-				default:
-					break;
+			case StereotypeDisplayTreeTableConstants.NAME_DEPTH:
+				result = helper.getDepthValue(rowElement);
+				break;
+			case StereotypeDisplayTreeTableConstants.IS_DISPLAYED:
+				result = helper.getDisplayedValue(rowElement);
+				break;
+			case StereotypeDisplayTreeTableConstants.IN_BRACE:
+				result = helper.getBraceValue(rowElement);
+				break;
+			case StereotypeDisplayTreeTableConstants.IN_COMMENT:
+				result = helper.getCommentValue(rowElement);
+				break;
+			case StereotypeDisplayTreeTableConstants.IN_COMPARTMENT:
+				result = helper.getCompartmentValue(rowElement);
+				break;
+			default:
+				break;
 			}
 		}
 		return result;
@@ -119,9 +119,13 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 			default:
 				break;
 
+
 			}
+
 		}
 	}
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -131,24 +135,24 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	@Override
 	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
 		boolean result = true;
-		
+
 		// Disable the isVisible for the properties
 		Object column = AxisUtils.getRepresentedElement(columnElement);
 		if (column instanceof String) {
 			String shortElement = StereotypeDisplayTreeTableHelper.getInstance().getShortValue(column);
-			
-			if(StereotypeDisplayTreeTableConstants.IS_DISPLAYED.equals(shortElement)){
+
+			if (StereotypeDisplayTreeTableConstants.IS_DISPLAYED.equals(shortElement)) {
 				Object row = AxisUtils.getRepresentedElement(rowElement);
-				
-				if(row instanceof Property){
+
+				if (row instanceof Property) {
 					result = false;
 				}
 			}
-			
-			if(StereotypeDisplayTreeTableConstants.NAME_DEPTH.equals(shortElement)){
+
+			if (StereotypeDisplayTreeTableConstants.NAME_DEPTH.equals(shortElement)) {
 				Object row = AxisUtils.getRepresentedElement(rowElement);
-				
-				if(!(row instanceof Stereotype)){
+
+				if (!(row instanceof Stereotype)) {
 					result = false;
 				}
 			}
@@ -185,7 +189,8 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map, java.lang.String)
 	 */
 	@Override
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator) {
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters,
+			final String multiValueSeparator) {
 		return null;
 	}
 
