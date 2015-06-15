@@ -530,7 +530,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a ClassifiertemplateParameter"
@@ -540,7 +540,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a comment"
@@ -550,7 +550,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a component"
@@ -560,7 +560,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a constraint"
@@ -570,7 +570,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a new DataType"
@@ -580,7 +580,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new DurationObservation"
@@ -590,7 +590,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an enumeration"
@@ -600,7 +600,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an enumeration literal"
@@ -610,7 +610,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an interface"
@@ -620,7 +620,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an InstanceSpecification"
@@ -630,7 +630,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an InformationItem"
@@ -640,7 +640,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Primitivetype"
@@ -650,7 +650,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a model"
@@ -660,7 +660,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an operation"
@@ -670,7 +670,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an OperationTemplateParameter"
@@ -680,7 +680,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Package"
@@ -690,7 +690,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a new Property"
@@ -700,7 +700,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a reception"
@@ -710,7 +710,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a RedefinableTemplateSignature"
@@ -720,7 +720,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a signal"
@@ -730,7 +730,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Slot"
@@ -740,7 +740,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a templateParameter"
@@ -750,7 +750,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a TemplateSignature"
@@ -760,7 +760,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new TimeObservation"
@@ -770,7 +770,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a ConnectableElementTemplateParameter"
@@ -780,7 +780,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Abstraction"
@@ -790,7 +790,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an association"
@@ -800,7 +800,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an association branch"
@@ -810,7 +810,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="AssociationClass"
@@ -820,7 +820,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a ContainmentLink"
@@ -830,7 +830,7 @@
 				      large_icon="icons/obj16/ContainmentConnection.gif"
 				      path=""
 				      small_icon="icons/obj16/ContainmentConnection.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Creation of a context link for a Constraint"
@@ -840,7 +840,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a dependency"
@@ -850,7 +850,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a dependency branch"
@@ -860,7 +860,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a  elementImport"
@@ -870,7 +870,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description=" Create a generalization"
@@ -880,7 +880,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="GeneralizationSet"
@@ -890,7 +890,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an InformationFlow link"
@@ -900,7 +900,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an InstanceSpecification link"
@@ -910,7 +910,7 @@
 				      large_icon="icons/obj16/InstanceLink.gif"
 				      path=""
 				      small_icon="icons/obj16/InstanceLink.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an InterfaceRealization"
@@ -920,7 +920,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Creation of a link for comment, constraint, TimeObservation, DurationObservation"
@@ -930,7 +930,7 @@
 				      large_icon="icons/obj16/Link.gif"
 				      path=""
 				      small_icon="icons/obj16/Link.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description=" Create a packageImport"
@@ -940,7 +940,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a packageMerge"
@@ -950,7 +950,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a profileApplication"
@@ -960,7 +960,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Realization"
@@ -970,7 +970,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a substitution"
@@ -980,7 +980,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a TemplateBinding"
@@ -990,7 +990,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Usage"
@@ -1000,7 +1000,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
-					</entry>
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -1301,501 +1301,306 @@
    </contributionItemProvider>
 </extension>
 
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
    <?gmfgen generated="true"?>
-		<diagramMappings diagramID="PapyrusUMLClassDiagram">
-			<mapping type="PapyrusUMLClassDiagram" humanReadableType="ClassDiagram"/>
-			
-	<mapping
-		humanReadableType="attributes"
-		type="7011">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7012">
-	</mapping>
-
-	<mapping
-		humanReadableType="nested classifiers"
-		type="7013">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7023">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7024">
-	</mapping>
-
-	<mapping
-		humanReadableType="nested classifiers"
-		type="7025">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7026">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7027">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7028">
-	</mapping>
-
-	<mapping
-		humanReadableType="nested classifiers"
-		type="7029">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7041">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7042">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7032">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7033">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7030">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7010">
-	</mapping>
-
-	<mapping
-		humanReadableType="literals"
-		type="7031">
-	</mapping>
-
-	<mapping
-		humanReadableType="slots"
-		type="7035">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7017">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7018">
-	</mapping>
-
-	<mapping
-		humanReadableType="nested classifiers"
-		type="7019">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7002">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7003">
-	</mapping>
-
-	<mapping
-		humanReadableType="nested classifiers"
-		type="7004">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7006">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7007">
-	</mapping>
-
-	<mapping
-		humanReadableType="nested classifiers"
-		type="7008">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7039">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7040">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7020">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7021">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7034">
-	</mapping>
-
-	<mapping
-		humanReadableType="slots"
-		type="7001">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7005">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7009">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7016">
-	</mapping>
-
-	<mapping
-		humanReadableType="literals"
-		type="7015">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7036">
-	</mapping>
-
-	<mapping
-		humanReadableType="nested classifiers"
-		type="7037">
-	</mapping>
-
-	<mapping
-		humanReadableType="TemplateParameter"
-		type="7014">
-	</mapping>
-
-	<mapping
-		humanReadableType="TemplateParameter"
-		type="7038">
-	</mapping>
-
-			
-	
-
-	
-
-	<mapping
-		humanReadableType="SourceRole"
-		type="6031">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="TargetRole"
-		type="6032">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6001">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Name"
-		type="6002">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="TargetRole"
-		type="6003">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="SourceRole"
-		type="6005">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="SourceMultiplicity"
-		type="6033">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="TargetMultiplicity"
-		type="6034">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="TargetRole"
-		type="6024">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="TargetMultiplicity"
-		type="6035">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6007">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6008">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Name"
-		type="6009">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6010">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Name"
-		type="6011">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6012">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Name"
-		type="6013">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Name"
-		type="6014">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6015">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Name"
-		type="6016">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6017">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Name"
-		type="6026">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6027">
-	</mapping>
-
-
-
-	
-
-	
-
-	<mapping
-		humanReadableType="Alias"
-		type="6020">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6021">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6022">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6030">
-	</mapping>
-
-
-
-	
-
-	
-
-	
-
-	
-
-	<mapping
-		humanReadableType="TemplateParameterSubstitution"
-		type="6023">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6036">
-	</mapping>
-
-
-
-	
-
-
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6037">
-	</mapping>
-
-
-
-	
-
-	<mapping
-		humanReadableType="SourceRole"
-		type="6039">
-	</mapping>
-
-
-
-	<mapping
-		humanReadableType="TargetRole"
-		type="6038">
-	</mapping>
-
-
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6041">
-	</mapping>
+   <diagramMappings diagramID="PapyrusUMLClassDiagram">
+   	<mapping type="PapyrusUMLClassDiagram" humanReadableType="ClassDiagram"/>
+			<mapping
+				humanReadableType="attributes"
+				type="7011">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7012">
+			</mapping>
+			<mapping
+				humanReadableType="nested classifiers"
+				type="7013">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7023">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7024">
+			</mapping>
+			<mapping
+				humanReadableType="nested classifiers"
+				type="7025">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7026">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7027">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7028">
+			</mapping>
+			<mapping
+				humanReadableType="nested classifiers"
+				type="7029">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7041">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7042">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7032">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7033">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7030">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7010">
+			</mapping>
+			<mapping
+				humanReadableType="literals"
+				type="7031">
+			</mapping>
+			<mapping
+				humanReadableType="slots"
+				type="7035">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7017">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7018">
+			</mapping>
+			<mapping
+				humanReadableType="nested classifiers"
+				type="7019">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7002">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7003">
+			</mapping>
+			<mapping
+				humanReadableType="nested classifiers"
+				type="7004">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7006">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7007">
+			</mapping>
+			<mapping
+				humanReadableType="nested classifiers"
+				type="7008">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7039">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7040">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7020">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7021">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7034">
+			</mapping>
+			<mapping
+				humanReadableType="slots"
+				type="7001">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7005">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7009">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7016">
+			</mapping>
+			<mapping
+				humanReadableType="literals"
+				type="7015">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7036">
+			</mapping>
+			<mapping
+				humanReadableType="nested classifiers"
+				type="7037">
+			</mapping>
+			<mapping
+				humanReadableType="TemplateParameter"
+				type="7014">
+			</mapping>
+			<mapping
+				humanReadableType="TemplateParameter"
+				type="7038">
+			</mapping>
+			<mapping
+				humanReadableType="SourceRole"
+				type="6031">
+			</mapping>
+			<mapping
+				humanReadableType="TargetRole"
+				type="6032">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6001">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6002">
+			</mapping>
+			<mapping
+				humanReadableType="TargetRole"
+				type="6003">
+			</mapping>
+			<mapping
+				humanReadableType="SourceRole"
+				type="6005">
+			</mapping>
+			<mapping
+				humanReadableType="SourceMultiplicity"
+				type="6033">
+			</mapping>
+			<mapping
+				humanReadableType="TargetMultiplicity"
+				type="6034">
+			</mapping>
+			<mapping
+				humanReadableType="TargetRole"
+				type="6024">
+			</mapping>
+			<mapping
+				humanReadableType="TargetMultiplicity"
+				type="6035">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6007">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6008">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6009">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6010">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6011">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6012">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6013">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6014">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6015">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6016">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6017">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6026">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6027">
+			</mapping>
+			<mapping
+				humanReadableType="Alias"
+				type="6020">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6021">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6022">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6030">
+			</mapping>
+			<mapping
+				humanReadableType="TemplateParameterSubstitution"
+				type="6023">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6036">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6037">
+			</mapping>
+			<mapping
+				humanReadableType="SourceRole"
+				type="6039">
+			</mapping>
+			<mapping
+				humanReadableType="TargetRole"
+				type="6038">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6041">
+			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
 				type="8501">
@@ -1892,8 +1697,8 @@
 				humanReadableType="Floating Label"
 				type="5153">
 			</mapping>
-		</diagramMappings>
-	</extension>
+   </diagramMappings>
+</extension>
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
@@ -1911,9 +1716,6 @@
          path="model/classdiagram-notation.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
-      <?gmfgen generated="true"?>
-   </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
    <modelProvider
@@ -1928,6 +1730,20 @@
          target="1.1.0">
    </diagramReconciler>
 </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.eclipse.papyrus.uml.diagram.clazz.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+
 
 
 </plugin>
