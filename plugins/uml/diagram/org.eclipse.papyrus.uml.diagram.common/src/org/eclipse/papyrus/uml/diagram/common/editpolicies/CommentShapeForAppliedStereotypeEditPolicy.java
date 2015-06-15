@@ -113,22 +113,24 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 	 *            Node of the Comment to be deleted.
 	 */
 	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
+		if (null != commentNode) {
 
-		Display.getCurrent().asyncExec(new Runnable() {
+			Display.getCurrent().asyncExec(new Runnable() {
 
-			@Override
-			public void run() {
-				// because it is asynchronous the comment node's domain maybe become null
-				if (TransactionUtil.getEditingDomain(commentNode) == domain) {
-					DeleteCommand command = new DeleteCommand(commentNode);
-					try {
-						GMFUnsafe.write(domain, command);
-					} catch (Exception e) {
-						Activator.log.error(e);
+				@Override
+				public void run() {
+					// because it is asynchronous the comment node's domain maybe become null
+					if (TransactionUtil.getEditingDomain(commentNode) == domain) {
+						DeleteCommand command = new DeleteCommand(commentNode);
+						try {
+							GMFUnsafe.write(domain, command);
+						} catch (Exception e) {
+							Activator.log.error(e);
+						}
 					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 
