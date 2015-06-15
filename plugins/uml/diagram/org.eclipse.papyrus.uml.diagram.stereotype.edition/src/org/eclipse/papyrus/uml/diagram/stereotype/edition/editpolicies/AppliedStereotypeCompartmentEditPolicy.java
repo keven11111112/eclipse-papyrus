@@ -66,6 +66,8 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		if (!stereotypeList.isEmpty()) {
 			for (Stereotype stereotype : stereotypeList) {
 				refreshStereotypeCompartmentStructure(stereotype);
+				getDiagramEventBroker().addNotificationListener(helper.getStereotypeCompartment(hostView, stereotype), this);
+
 			}
 		}
 	}
@@ -79,6 +81,30 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		// Nothing to refresh
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#removeListener()
+	 *
+	 */
+	@Override
+	public void removeListener() {
+		// Remove Listener for Compartment and properties
+		if (!stereotypeList.isEmpty()) {
+			for (Stereotype stereotype : stereotypeList) {
+				Node compartment = helper.getStereotypeCompartment(hostView, stereotype);
+
+				if (null != compartment && null != stereotype) {
+					getDiagramEventBroker().removeNotificationListener(compartment, this);
+					EList<Property> properties = stereotype.allAttributes();
+					for (Property property : properties) {
+						getDiagramEventBroker().removeNotificationListener(helper.getStereotypeProperty(hostView, stereotype, property), this);
+
+					}
+
+
+				}
+			}
+		}
+	}
 
 	/**
 	 * Refresh The StereotypeCompartment notation structure.
@@ -90,11 +116,10 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	protected void refreshStereotypeCompartmentStructure(Stereotype stereotype) {
 
 		BasicCompartment compartment = helper.getStereotypeCompartment(hostView, stereotype);
-		if (compartment == null) { // No Label Exist for this Stereotype
+		if (null == compartment) { // No Compartment Exist for this Stereotype
 			createAppliedStereotypeCompartment(stereotype);
-			createAppliedStereotypeProperties(stereotype);
-
 		}
+		createAppliedStereotypeProperties(stereotype);
 	}
 
 	/**
@@ -124,11 +149,13 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	protected void createAppliedStereotypeProperties(final Stereotype stereotype) {
 
 		Node compartment = helper.getStereotypeCompartment(hostEditPart.getNotationView(), stereotype);
-		if (compartment != null && stereotype != null) {
+		if (null != compartment && null != stereotype) {
 
 			EList<Property> properties = stereotype.allAttributes();
 			for (Property property : properties) {
 				createAppliedStereotypeProperty(compartment, property);
+				getDiagramEventBroker().addNotificationListener(helper.getStereotypeProperty(hostView, stereotype, property), this);
+
 			}
 
 
@@ -148,7 +175,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 	protected void createAppliedStereotypeProperty(Node compartment, Property property) {
 		// if stereotype is null all property of stereotype has to be removed!
-		if (property != null && !property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+		if (null != property && !property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
 			if (!helper.isPropertyExist(compartment, property)) {
 				// go through each stereotype property
 				executeAppliedStereotypePropertyViewCreation(hostEditPart, compartment, property);

@@ -98,6 +98,8 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 				refreshStereotypeCommentStructure();
 			}
 		}
+
+
 	}
 
 	/**
@@ -145,9 +147,14 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 		if (!stereotypeList.isEmpty()) {
 			comment = createCommentNode();
 			if (comment != null) {
+
 				for (Stereotype stereotype : stereotypeList) {
 					refreshStereotypeCompartmentStructure(stereotype);
+					getDiagramEventBroker().addNotificationListener(helper.getStereotypeCompartment(comment, stereotype), this);
+
 					refreshStereotypeBraceStructure(stereotype);
+					getDiagramEventBroker().addNotificationListener(helper.getStereotypeBraceCompartment(comment, stereotype), this);
+
 
 				}
 			}
@@ -155,6 +162,24 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 	}
 
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#removeListener()
+	 *
+	 */
+	@Override
+	public void removeListener() {
+
+		if (!stereotypeList.isEmpty()) {
+			if (null != comment) {
+				for (Stereotype stereotype : stereotypeList) {
+					getDiagramEventBroker().removeNotificationListener(helper.getStereotypeCompartment(comment, stereotype), this);
+					getDiagramEventBroker().removeNotificationListener(helper.getStereotypeBraceCompartment(comment, stereotype), this);
+				}
+			}
+		}
+
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy#refreshStereotypeDisplay()
@@ -220,9 +245,8 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 		BasicCompartment compartment = helper.getStereotypeCompartment(comment, stereotype);
 		if (compartment == null) { // No Compartment Exist for this Stereotype
 			createAppliedStereotypeCompartment(stereotype);
-			createAppliedStereotypeProperties(stereotype);
-
 		}
+		createAppliedStereotypeProperties(stereotype);
 	}
 
 

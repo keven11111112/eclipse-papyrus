@@ -29,6 +29,16 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 
 	private String EMPTY_STRING = ""; //$NON-NLS-1$
 
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#activate()
+	 *
+	 */
+	@Override
+	public void activate() {
+
+		super.activate();
+	}
+
 	public AppliedStereotypeNodeLabelDisplayEditPolicy() {
 		super();
 	}
