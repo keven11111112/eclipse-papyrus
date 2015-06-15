@@ -14,7 +14,6 @@
   <properties>
   	<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
    	<testSuiteClass>org.eclipse.papyrus.tests.extra.AllTests</testSuiteClass>
-  	<skipInnerTests>true</skipInnerTests>
   </properties>
   <modules>
 	<!-- Extra-tests modules -->

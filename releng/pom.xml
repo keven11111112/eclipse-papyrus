@@ -16,6 +16,8 @@
 		<java.target.version>1.7</java.target.version>
 		<papyrus.eclipse.target>mars</papyrus.eclipse.target>
 		<mylyn.wikitext.version>2.4.0-SNAPSHOT</mylyn.wikitext.version>
+		<skipAllTests>false</skipAllTests>
+		<skipInnerTests>true</skipInnerTests>
 	</properties>
 	
 	<modules>
