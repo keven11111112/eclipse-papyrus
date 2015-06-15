@@ -13,9 +13,6 @@
 	<artifactId>org.eclipse.papyrus.tests</artifactId>
 	<version>1.1.0-SNAPSHOT</version>
 	<packaging>eclipse-test-plugin</packaging>
-	<properties>
-		<skipInnerTests>false</skipInnerTests>
-	</properties>
 	<build>
 		<plugins>
 			<plugin>
@@ -23,12 +20,26 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<testClass>${testSuiteClass}</testClass>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>true</useUIThread>
+					<testFailureIgnore>true</testFailureIgnore>
+					<argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=512M -XX:SoftRefLRUPolicyMSPerMB=100</argLine>
+					<appArgLine>-testConfig=${testConfig}</appArgLine>
+					<product>org.eclipse.sdk.ide</product>
+					<skipTests>false</skipTests>
+					<testClass>org.eclipse.papyrus.tests.AllTests</testClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
 					<dependency-resolution>
 						<extraRequirements>
 							<requirement>
-								<type>eclipse-feature</type>
-								<id>org.eclipse.sdk</id>
+								<type>p2-installable-unit</type>
+								<id>org.eclipse.sdk.feature.group</id>
 								<versionRange>0.0.0</versionRange>
 							</requirement>
 							<requirement>
