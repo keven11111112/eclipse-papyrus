@@ -72,4 +72,8 @@ Require-Bundle: org.eclipse.core.runtime,
 «ENDIF»
 '''
 
+	override def executionEnvironment(GenPlugin it) '''
+		Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+	'''
+	
 }
