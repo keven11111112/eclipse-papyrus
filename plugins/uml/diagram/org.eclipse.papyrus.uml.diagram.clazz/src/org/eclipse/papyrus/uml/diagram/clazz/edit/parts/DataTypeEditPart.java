@@ -137,8 +137,7 @@ public class DataTypeEditPart extends ClassifierEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
@@ -313,8 +312,7 @@ public class DataTypeEditPart extends ClassifierEditPart {
 		if (borderItemEditPart instanceof DataTypeFloatingNameEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}

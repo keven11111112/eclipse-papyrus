@@ -140,8 +140,7 @@ public class ClassEditPartCN extends ClassEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
@@ -190,7 +189,7 @@ public class ClassEditPartCN extends ClassEditPart {
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
 			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
-				getPrimaryShape().setActive(event.getNewBooleanValue());
+				((ClassFigure) getPrimaryShape()).setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}
 		}
@@ -338,8 +337,7 @@ public class ClassEditPartCN extends ClassEditPart {
 		if (borderItemEditPart instanceof ClassFloatingNameEditPartCN) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}

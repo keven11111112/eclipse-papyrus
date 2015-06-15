@@ -137,8 +137,7 @@ public class ClassEditPart extends org.eclipse.papyrus.uml.diagram.common.editpa
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
@@ -187,7 +186,7 @@ public class ClassEditPart extends org.eclipse.papyrus.uml.diagram.common.editpa
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
 			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
-				getPrimaryShape().setActive(event.getNewBooleanValue());
+				((ClassFigure) getPrimaryShape()).setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}
 		}
@@ -335,8 +334,7 @@ public class ClassEditPart extends org.eclipse.papyrus.uml.diagram.common.editpa
 		if (borderItemEditPart instanceof ClassFloatingNameEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}

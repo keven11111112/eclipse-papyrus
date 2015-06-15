@@ -633,8 +633,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateTimeObservationEvent_4024(TimeObservation source, NamedElement target) {
 			if (source != null) {
-				if (source.getEvent()
-					!= null) {
+				if (source.getEvent() != null) {
 					return false;
 				}
 			}
@@ -650,8 +649,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if (source != null) {
 				if (source.getEvents()
 						.size() >= 2
-						||
-						source.getEvents()
+						|| source.getEvents()
 								.contains(target)) {
 					return false;
 				}
@@ -674,14 +672,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintContext_8500(Constraint source, Namespace target) {
 			if (source != null) {
-				if (source.getContext()
-					!= null) {
+				if (source.getContext() != null) {
 					return false;
 				}
 			}
 			if (target != null && (target.getOwnedRules()
-					.contains(target)
-					)) {
+					.contains(target))) {
 				return false;
 			}
 
