@@ -139,8 +139,7 @@ public class ComponentEditPartPCN extends RoundedCompartmentEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				case PortEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
@@ -300,8 +299,7 @@ public class ComponentEditPartPCN extends RoundedCompartmentEditPart {
 		if (borderItemEditPart instanceof ComponentFloatingLabelEditPartPCN) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
