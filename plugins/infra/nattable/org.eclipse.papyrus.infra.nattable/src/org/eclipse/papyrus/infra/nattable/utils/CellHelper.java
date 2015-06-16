@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Nattabl
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement;
 import org.eclipse.papyrus.infra.nattable.paste.IValueSetter;
 import org.eclipse.papyrus.infra.nattable.paste.ReferenceValueSetter;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -274,6 +275,19 @@ public class CellHelper {
 			for (Problem current : cell.getProblems()) {
 				if (current instanceof StringResolutionProblem) {
 					RemoveCommand rc = new RemoveCommand(domain, cell, NattablecellPackage.eINSTANCE.getCell_Problems(), current);
+					removeProblemCommand.append(rc);
+				}
+			}
+			// now the cell has no problem
+			if (cell.getEAnnotations().isEmpty()) {
+				if (cell instanceof StyledElement) {// currenlty it is impossible, but it could change in future version of Papyrus
+					StyledElement styledElement = (StyledElement) cell;
+					if (styledElement.getStyles().isEmpty()) {
+						RemoveCommand rc = new RemoveCommand(domain, tableManager.getTable(), NattablePackage.eINSTANCE.getTable_Cells(), cell);
+						removeProblemCommand.append(rc);
+					}
+				} else {
+					RemoveCommand rc = new RemoveCommand(domain, tableManager.getTable(), NattablePackage.eINSTANCE.getTable_Cells(), cell);
 					removeProblemCommand.append(rc);
 				}
 			}
