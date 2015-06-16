@@ -12,6 +12,7 @@
  *  C�line Janssens (ALL4TEC) - Override getDragTracker with the PapyrusRubberbandDragTracker
  *  Christian W. Damus - bug 451230
  *  Christian W. Damus - bug 461629
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - add refresh of SVGPostProcessor - Bug 467569
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
@@ -31,9 +32,16 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusPopupBarEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.selection.PapyrusRubberbandDragTracker;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.SVGPostProcessor;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.ui.IEditorPart;
 
 import com.google.common.collect.Sets;
 
@@ -68,6 +76,26 @@ public class PapyrusDiagramEditPart extends DiagramEditPart {
 				diagramEditParts.add(editPart);
 			}
 		}
+	}
+
+	/**
+	 * Refresh.
+	 *
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refresh()
+	 */
+	@Override
+	public void refresh() {
+		if (SVGPostProcessor.instance instanceof IRefreshHandlerPart) {
+			IEditorPart activeEditor = null;
+			try {
+				IMultiDiagramEditor multiDiagramEditor = ServiceUtilsForEditPart.getInstance().getService(IMultiDiagramEditor.class, this);
+				activeEditor = multiDiagramEditor.getActiveEditor();
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+			((IRefreshHandlerPart) SVGPostProcessor.instance).refresh(activeEditor);
+		}
+		super.refresh();
 	}
 
 	/**
