@@ -276,10 +276,7 @@
    </extension>
 
    
-   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
-      <?gmfgen generated="true"?>
-   </extension>
-
+   
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
       <clientContext id="org.eclipse.papyrus.uml.diagram.component.TypeContext">
@@ -371,7 +368,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Comment"
@@ -381,7 +378,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Component"
@@ -391,7 +388,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Interface"
@@ -401,7 +398,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a model"
@@ -411,7 +408,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Property"
@@ -421,7 +418,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Operation"
@@ -431,7 +428,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Package"
@@ -441,7 +438,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Port"
@@ -451,7 +448,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Reception"
@@ -461,7 +458,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Link (Comment / Constraint)"
@@ -471,7 +468,7 @@
 				      large_icon="icons/obj16/Link.gif"
 				      path=""
 				      small_icon="icons/obj16/Link.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Connector"
@@ -481,7 +478,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Dependency"
@@ -491,7 +488,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a dependency branch"
@@ -501,7 +498,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Abstraction"
@@ -511,7 +508,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Manifestation"
@@ -521,7 +518,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Generalization link"
@@ -531,7 +528,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Usage"
@@ -541,7 +538,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Substitution"
@@ -551,7 +548,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Interface Realization"
@@ -561,7 +558,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Component Realization"
@@ -571,7 +568,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif">
-					</entry>
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -834,153 +831,102 @@
       </context>
    </editpartProvider>
 </extension>
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
    <?gmfgen generated="true"?>
-		<diagramMappings diagramID="PapyrusUMLComponentDiagram">
-			<mapping type="PapyrusUMLComponentDiagram" humanReadableType="ComponentDiagram"/>
-			
-	<mapping
-		humanReadableType="packaged elements"
-		type="7001">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7006">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7002">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7007">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7005">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7003">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="7004">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7008">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7009">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7010">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7011">
-	</mapping>
-
-			
-	
-
-	
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="2">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6006">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6020">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6008">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6022">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="3">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="4">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6007">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6021">
-	</mapping>
-
-
-	
-
-	
-
-	
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6009">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6023">
-	</mapping>
-
-
-	
-
-	
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6025">
-	</mapping>
+   <diagramMappings diagramID="PapyrusUMLComponentDiagram">
+   	<mapping type="PapyrusUMLComponentDiagram" humanReadableType="ComponentDiagram"/>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7001">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7006">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7002">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7007">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7005">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7003">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="7004">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7008">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7009">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7010">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7011">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="2">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6006">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6020">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6008">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6022">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="3">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="4">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6007">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6021">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6009">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6023">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6025">
+			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6033">
@@ -1013,7 +959,7 @@
 				humanReadableType="Floating Label"
 				type="6032">
 			</mapping>
-	</diagramMappings>
+   </diagramMappings>
 </extension>
 
 <extension
