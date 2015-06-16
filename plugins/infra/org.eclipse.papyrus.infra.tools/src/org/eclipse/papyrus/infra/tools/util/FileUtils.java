@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Properties;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.papyrus.infra.tools.Activator;
@@ -43,8 +42,19 @@ public class FileUtils {
 
 	public static final String CSV_EXTENSIOn = "csv";//$NON-NLS-1$
 
+	public static final String UNDERSCORE = "_";//$NON-NLS-1$
+
+	public static final String LINE_SEPARATOR = "line.separator";//$NON-NLS-1$
+
 	private FileUtils() {
 		// to prevent instanciation
+	}
+	
+	/**
+	 * return the system property line seperator
+	 */
+	public static final String getSystemPropertyLineSeparator(){
+		return System.getProperty(LINE_SEPARATOR);
 	}
 
 	/**
