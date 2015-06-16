@@ -125,6 +125,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
+
 	}
 
 	/**
@@ -132,61 +133,61 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Tool createTool(String toolId) {
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_REGION)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_REGION)) {
 			return createRegionCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_STATE)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_STATE)) {
 			return createStateCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_INITIAL)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_INITIAL)) {
 			return createInitialCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_FINALSTATE)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_FINALSTATE)) {
 			return createFinalStateCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_SHALLOWHISTORY)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_SHALLOWHISTORY)) {
 			return createShallowHistoryCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_DEEPHISTORY)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_DEEPHISTORY)) {
 			return createDeepHistoryCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_FORK)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_FORK)) {
 			return createForkCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_JOIN)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_JOIN)) {
 			return createJoinCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_CHOICE)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_CHOICE)) {
 			return createChoiceCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_JUNCTION)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_JUNCTION)) {
 			return createJunctionCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_ENTRYPOINT)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_ENTRYPOINT)) {
 			return createEntryPointCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_EXITPOINT)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_EXITPOINT)) {
 			return createExitPointCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_TERMINATE)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_TERMINATE)) {
 			return createTerminateCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_CONNECTIONPOINTREFERENCE)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_CONNECTIONPOINTREFERENCE)) {
 			return createConnectionPointReferenceCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_COMMENT)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_COMMENT)) {
 			return createStateMachineCommentCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_CONSTRAINT)) {
+		if (toolId.equals(STATEMACHINE_CREATENODESGROUP_CONSTRAINT)) {
 			return createConstraintCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATEEDGESGROUP_TRANSITION)) {
+		if (toolId.equals(STATEMACHINE_CREATEEDGESGROUP_TRANSITION)) {
 			return createTransitionCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATEEDGESGROUP_LINK)) {
+		if (toolId.equals(STATEMACHINE_CREATEEDGESGROUP_LINK)) {
 			return createCommentlinkCreationTool();
 		}
-		if(toolId.equals(STATEMACHINE_CREATEEDGESGROUP_CONTEXTLINK)) {
+		if (toolId.equals(STATEMACHINE_CREATEEDGESGROUP_CONTEXTLINK)) {
 			return createContextLink3CreationTool();
 		}
 		// default return: null
@@ -198,6 +199,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Object getTemplate(String templateId) {
+
 		// default return: null
 		return null;
 	}
