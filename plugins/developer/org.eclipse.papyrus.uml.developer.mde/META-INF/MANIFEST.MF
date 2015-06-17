@@ -27,10 +27,7 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.developper.mde.Activator
-Bundle-Description: The goal of this plugin is to bring a template and
-  profile to document plugins development, transromation to generate d
- ocument model, and  a very simple of document generator.
 Bundle-SymbolicName: org.eclipse.papyrus.uml.developer.mde;singleton:=
  true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Description: %pluginDescription
