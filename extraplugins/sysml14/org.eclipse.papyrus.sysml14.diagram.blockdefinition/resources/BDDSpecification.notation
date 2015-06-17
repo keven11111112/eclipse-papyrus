@@ -137,5 +137,13 @@
       </axis>
     </columnAxisProvidersHistory>
     <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_FB4itegEEeSUQvXhEVQh8w" description="Provides the requirements directly owned by the context of the table" name="Requirement Axis Provider" disconnectSlave="true"/>
+    <localRowHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="_9enkgBTEEeWVdLvX1TqBVg" indexStyle="NUMERIC">
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_9etrIBTEEeWVdLvX1TqBVg" name="rowLabelWidth" intValue="345"/>
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_9gBSsBTEEeWVdLvX1TqBVg" name="rowIndexWidth" intValue="165"/>
+    </localRowHeaderAxisConfiguration>
+    <localColumnHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="_9f-PYBTEEeWVdLvX1TqBVg">
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_9f-2cBTEEeWVdLvX1TqBVg" name="columnIndexHeight" intValue="25"/>
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_9f_dgBTEEeWVdLvX1TqBVg" name="columnLabelHeight" intValue="25"/>
+    </localColumnHeaderAxisConfiguration>
   </nattable:Table>
 </xmi:XMI>
