@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -363,5 +364,32 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 			return ((NavigationTarget) tableManager).revealElement(elements);
 		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		the table model displayed by the editor
+	 */
+	public Table getTable() {
+		return tableManager.getTable();
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		the table editing domain
+	 */
+	public TransactionalEditingDomain getTableEditingDomain() {
+		return TableEditingDomainUtils.getTableEditingDomain(getTable());
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		the table context editing domain
+	 */
+	public TransactionalEditingDomain getTableContextEditingDomain() {
+		return TableEditingDomainUtils.getTableContextEditingDomain(getTable());
 	}
 }

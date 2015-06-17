@@ -18,9 +18,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
+import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
@@ -144,6 +147,36 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	@Override
 	protected boolean isModelRoot(EObject object) {
 		return object instanceof Table;
+	}
+
+	/**
+	 * Get a table by its name.
+	 *
+	 * @param tableName
+	 *            Name of the table. This is the name set by the user.
+	 * @return
+	 * @throws NotFoundException
+	 * @throws BadArgumentExcetion
+	 */
+	public Table getTable(String tableName) throws NotFoundException, BadArgumentExcetion {
+
+		if (tableName == null || tableName.length() == 0) {
+			throw new BadArgumentExcetion("Table name should not be null and size should be >0."); //$NON-NLS-1$
+		}
+
+		for (EObject element : getResource().getContents()) {
+			if (element instanceof Table) {
+				Table table = (Table) element;
+
+				if (tableName.equals(table.getName())) {
+					// Found
+					return table;
+
+				}
+			}
+		}
+		// not found
+		throw new NotFoundException(NLS.bind("No Table named '{0}' can be found in Model.", tableName)); //$NON-NLS-1$
 	}
 
 }
