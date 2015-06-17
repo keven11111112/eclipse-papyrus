@@ -67,7 +67,7 @@
 			<id>emft-emffacet</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF Facet",0) -->
-			<url>http://download.eclipse.org/facet/updates/integration/1.0.0/I201505181340/</url>
+			<url>http://download.eclipse.org/facet/updates/release/1.0.0/</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
@@ -169,13 +169,13 @@
 			<id>mdt-uml2</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT UML2",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.1milestones</url>
+			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.1</url>
 		</repository>
 		<repository>
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201506031058</url>
+			<url>http://download.eclipse.org/mmt/qvto/updates/releases/3.5.0</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
