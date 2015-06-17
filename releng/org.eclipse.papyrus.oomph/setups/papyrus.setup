@@ -148,7 +148,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201506031058">
+        <repository url="http://download.eclipse.org/mmt/qvto/updates/releases/3.5.0">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>QVT Operational</value>
@@ -169,7 +169,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1milestones">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
@@ -1124,7 +1124,7 @@
                 </detail>
               </annotation>
             </repository>
-            <repository url="http://download.eclipse.org/facet/updates/integration/1.0.0/I201505181340/">
+            <repository url="http://download.eclipse.org/facet/updates/release/1.0.0/">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF Facet</value>
