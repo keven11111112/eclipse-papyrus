@@ -169,7 +169,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1milestones">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
@@ -1469,7 +1469,7 @@
     <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.7" location="${jre.location-1.7}"/>
     <setupTask xsi:type="setup.p2:P2Task">
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
-      <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1-I-builds/"/>
+      <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1milestones-I-builds/"/>
     </setupTask>
   </stream>
   <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
