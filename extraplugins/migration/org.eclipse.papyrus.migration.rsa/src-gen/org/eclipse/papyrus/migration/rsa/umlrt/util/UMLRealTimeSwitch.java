@@ -210,6 +210,14 @@ public class UMLRealTimeSwitch<T> extends Switch<T> {
 			}
 			return result;
 		}
+		case UMLRealTimePackage.RT_MESSAGE: {
+			RTMessage rtMessage = (RTMessage) theEObject;
+			T result = caseRTMessage(rtMessage);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -450,6 +458,23 @@ public class UMLRealTimeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTrigger(Trigger object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>RT Message</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 *
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>RT Message</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRTMessage(RTMessage object) {
 		return null;
 	}
 

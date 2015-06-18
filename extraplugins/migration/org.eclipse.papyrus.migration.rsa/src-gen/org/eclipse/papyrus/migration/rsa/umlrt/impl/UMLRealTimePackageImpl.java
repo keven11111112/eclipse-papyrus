@@ -30,6 +30,7 @@ import org.eclipse.papyrus.migration.rsa.umlrt.Protocol;
 import org.eclipse.papyrus.migration.rsa.umlrt.ProtocolContainer;
 import org.eclipse.papyrus.migration.rsa.umlrt.RTConnector;
 import org.eclipse.papyrus.migration.rsa.umlrt.RTHistorystate;
+import org.eclipse.papyrus.migration.rsa.umlrt.RTMessage;
 import org.eclipse.papyrus.migration.rsa.umlrt.RTPort;
 import org.eclipse.papyrus.migration.rsa.umlrt.RTRedefinableElement;
 import org.eclipse.papyrus.migration.rsa.umlrt.RTStereotype;
@@ -165,6 +166,14 @@ public class UMLRealTimePackageImpl extends EPackageImpl implements UMLRealTimeP
 	 *
 	 * @generated
 	 */
+	private EClass rtMessageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
 	private EEnum portRegistrationTypeEEnum = null;
 
 	/**
@@ -176,10 +185,15 @@ public class UMLRealTimePackageImpl extends EPackageImpl implements UMLRealTimeP
 	private EEnum historyKindEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.migration.rsa.umlrt.UMLRealTimePackage#eNS_URI
@@ -202,7 +216,9 @@ public class UMLRealTimePackageImpl extends EPackageImpl implements UMLRealTimeP
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link UMLRealTimePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link UMLRealTimePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -596,6 +612,50 @@ public class UMLRealTimePackageImpl extends EPackageImpl implements UMLRealTimeP
 	 * @generated
 	 */
 	@Override
+	public EClass getRTMessage() {
+		return rtMessageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRTMessage_ReceivePort() {
+		return (EAttribute) rtMessageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRTMessage_SendPort() {
+		return (EAttribute) rtMessageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getRTMessage_Base_Message() {
+		return (EReference) rtMessageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EEnum getPortRegistrationType() {
 		return portRegistrationTypeEEnum;
 	}
@@ -690,6 +750,11 @@ public class UMLRealTimePackageImpl extends EPackageImpl implements UMLRealTimeP
 
 		triggerEClass = createEClass(TRIGGER);
 		createEReference(triggerEClass, TRIGGER__BASE_OPERATION);
+
+		rtMessageEClass = createEClass(RT_MESSAGE);
+		createEAttribute(rtMessageEClass, RT_MESSAGE__RECEIVE_PORT);
+		createEAttribute(rtMessageEClass, RT_MESSAGE__SEND_PORT);
+		createEReference(rtMessageEClass, RT_MESSAGE__BASE_MESSAGE);
 
 		// Create enums
 		portRegistrationTypeEEnum = createEEnum(PORT_REGISTRATION_TYPE);
@@ -789,6 +854,12 @@ public class UMLRealTimePackageImpl extends EPackageImpl implements UMLRealTimeP
 
 		initEClass(triggerEClass, Trigger.class, "Trigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTrigger_Base_Operation(), theUMLPackage.getOperation(), null, "base_Operation", null, 1, 1, Trigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(rtMessageEClass, RTMessage.class, "RTMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRTMessage_ReceivePort(), theEcorePackage.getEString(), "receivePort", null, 0, 1, RTMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRTMessage_SendPort(), theEcorePackage.getEString(), "sendPort", null, 0, 1, RTMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRTMessage_Base_Message(), theUMLPackage.getMessage(), null, "base_Message", null, 1, 1, RTMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		// Initialize enums and add enum literals
