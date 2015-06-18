@@ -48,7 +48,7 @@ public interface IFilterConfiguration extends IPapyrusNatTableConfiguration {
 	 * 
 	 * 
 	 */
-	public static final String FILTER_FORCED_BY_USER_ID = NamedStyleConstants.FILTER_VALUE_TO_MATCH;
+	public static final String FILTER_FORCED_BY_USER_ID = NamedStyleConstants.FILTER_FORCED_BY_USER_ID;
 
 	/**
 	 * the config attribute used to register the class loading and storing filter state
