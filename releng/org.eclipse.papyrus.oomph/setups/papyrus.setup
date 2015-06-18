@@ -2566,8 +2566,6 @@
           <requirement
               name="org.eclipse.cdt.feature.group"/>
           <requirement
-              name="org.eclipse.emf.facet.sdk.feature.feature.group"/>
-          <requirement
               name="org.eclipse.acceleo.feature.group"/>
           <repositoryList
               name="Neon">
@@ -2581,16 +2579,6 @@
                 </detail>
               </annotation>
             </repository>
-            <repository
-                url="http://download.eclipse.org/facet/updates/release/1.0.0/">
-              <annotation
-                  source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-                <detail
-                    key="updateFrom">
-                  <value>EMF Facet</value>
-                </detail>
-              </annotation>
-            </repository>
           </repositoryList>
           <repositoryList
               name="Mars">
@@ -2601,16 +2589,6 @@
                 <detail
                     key="updateFrom">
                   <value>CDT</value>
-                </detail>
-              </annotation>
-            </repository>
-            <repository
-                url="http://download.eclipse.org/facet/updates/release/1.0.0/">
-              <annotation
-                  source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-                <detail
-                    key="updateFrom">
-                  <value>EMF Facet</value>
                 </detail>
               </annotation>
             </repository>
@@ -2670,6 +2648,15 @@
             xsi:type="setup:VariableTask"
             name="papyrus.bugzilla.version"
             value="${papyrus.bugzver.luna}"/>
+        <setupTask
+            xsi:type="setup.targlets:TargletTask">
+          <targlet
+              name="Papyrus CPP Dependencies"
+              activeRepositoryList="${eclipse.target.platform}">
+            <requirement
+                name="org.eclipse.emf.facet.sdk.feature.feature.group"/>
+          </targlet>
+        </setupTask>
       </stream>
     </project>
     <project
