@@ -56,22 +56,16 @@
 			<url>${papyrus.repo.extra}</url>
 		</repository>
 		<repository>
-			<id>birt</id>
+			<id>ep</id>
 			<layout>p2</layout>
-			<!-- updateFrom("BIRT",0) -->
-			<url>http://download.eclipse.org/birt/update-site/mars-interim/</url>
+			<!-- updateFrom("Eclipse",0) -->
+			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC4-201506032000/</url>
 		</repository>
 		<repository>
 			<id>cdt</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDT",0) -->
 			<url>http://download.eclipse.org/tools/cdt/builds/mars/milestones</url>
-		</repository>
-		<repository>
-			<id>emft-emffacet</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF Facet",0) -->
-			<url>http://download.eclipse.org/facet/updates/release/1.0.0/</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
@@ -120,12 +114,6 @@
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
 			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201505312255</url>
-		</repository>
-		<repository>
-			<id>ep</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC4-201506032000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
