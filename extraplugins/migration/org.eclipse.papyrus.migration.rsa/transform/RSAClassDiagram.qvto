@@ -185,7 +185,8 @@ mapping UMLShape::toPapyrusShape() : Shape inherits Shape::toPapyrusShape when {
 	self.element.oclIsTypeOf(Comment)or
 	self.element.oclIsTypeOf(Diagram)or
 	self.element.oclIsTypeOf(DurationObservation)or
-	self.element.oclIsTypeOf(TimeObservation)
+	self.element.oclIsTypeOf(TimeObservation)or
+	self.element.oclIsKindOf(NamedElement)
 	)
 }{
 	
@@ -1017,6 +1018,7 @@ query View::getNodeType(element : Element) : String {
 		elif element.oclIsTypeOf(Diagram) then '2016' 
 		elif element.oclIsTypeOf(DurationObservation) then '2095' 
 		elif element.oclIsTypeOf(TimeObservation) then '2096' 
+		elif element.oclIsKindOf(NamedElement) then '2097'
 		else self.fail()
 	endif;
 }
@@ -1130,6 +1132,10 @@ query View::doGetDecorationType(element : Element) : String{
 			return switch {
 				case (self.type = 'Name') '5153';
 				
+			}
+		elif element.oclIsKindOf(NamedElement) then
+			return switch {
+				case (self.type = 'Name') '5157';
 			}
 		endif
 	} else {
