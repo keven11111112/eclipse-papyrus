@@ -50,11 +50,6 @@ public interface IPapyrusConverter extends INameResolutionHelper {
 	/**
 	 * the string used for <code>null</code> value
 	 */
-//	public static final String NULL_VALUE = "null";//$NON-NLS-1$
-	
-	/**
-	 * the string used for <code>null</code> value
-	 */
 	public static final String UNDEFINED_VALUE = "<Undefined>";//$NON-NLS-1$
 
 	/**
@@ -109,7 +104,7 @@ public interface IPapyrusConverter extends INameResolutionHelper {
 	 * @param object
 	 *            an object
 	 * @param flag
-	 *            a flag which coul be used for for the name qualification for example
+	 *            a flag which could be used for for the name qualification for example
 	 * @return
 	 *         the string to display (label) representing the object
 	 */
@@ -120,7 +115,7 @@ public interface IPapyrusConverter extends INameResolutionHelper {
 	 * @param object
 	 *            an object
 	 * @param flag
-	 *            a flag which coul be used for for the name qualification for example
+	 *            a flag which could be used for for the name qualification for example
 	 * @return
 	 *         the string to edit (label) representing the object
 	 */
@@ -131,7 +126,7 @@ public interface IPapyrusConverter extends INameResolutionHelper {
 	 * @param string
 	 *            a display string
 	 * @param flag
-	 *            a flag which coul be used for for the name qualification for example
+	 *            a flag which could be used for for the name qualification for example
 	 * @return
 	 *         the object represented by the displayed string
 	 */
@@ -142,7 +137,7 @@ public interface IPapyrusConverter extends INameResolutionHelper {
 	 * @param string
 	 *            an edited string
 	 * @param flag
-	 *            a flag which coul be used for for the name qualification for example
+	 *            a flag which could be used for for the name qualification for example
 	 * @return
 	 *         the object represented by the edited string
 	 */
