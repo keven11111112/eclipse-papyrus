@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.uml.nattable.converter;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.nebula.widgets.nattable.data.convert.ConversionFailedException;
 import org.eclipse.nebula.widgets.nattable.data.convert.DisplayConverter;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.infra.widgets.util.ISetPapyrusConverter;
@@ -60,7 +62,12 @@ public class UMLSingleReferenceDisplayConverter extends DisplayConverter impleme
 			return null;
 		}
 		Assert.isTrue(displayValue instanceof String);
-		return parser.editToCanonicalValue((String) displayValue, 0);
+		Object res = parser.editToCanonicalValue((String) displayValue, 0);
+		if (res == null) {
+			// the conversion failed. This excpetion will avoid to set a null value!
+			throw new ConversionFailedException(NLS.bind("The displayed value {0} can not be converted to a valid canonical value", displayValue)); //$NON-NLS-1$
+		}
+		return res;
 	}
 
 
