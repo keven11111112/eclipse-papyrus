@@ -61,5 +61,10 @@
     <genClasses ecoreClass="PapyrusRT.ecore#//Trigger">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PapyrusRT.ecore#//Trigger/base_Operation"/>
     </genClasses>
+    <genClasses ecoreClass="PapyrusRT.ecore#//RTMessage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PapyrusRT.ecore#//RTMessage/receivePort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PapyrusRT.ecore#//RTMessage/sendPort"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PapyrusRT.ecore#//RTMessage/base_Message"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
