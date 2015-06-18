@@ -94,20 +94,6 @@ mapping sourcert::ProtocolContainer::toMessageSets() : Interface{
 	
 	result.name := protocolName+"IO";
 	result.map createMessageSet(RTMessageKind::inOut);
-	result.map createKeyword('ProtocolRole');
-}
-
-/*
-<eAnnotations xmi:id="_6bqisD5hEeSYUNuTXCumiw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <details xmi:id="_6brJwD5hEeSYUNuTXCumiw" key="ProtocolRole"/>
-</eAnnotations>
-*/
-mapping inout Element::createKeyword(keyword : String) : EAnnotation{
-	self.eAnnotations += result;
-	result.source := 'http://www.eclipse.org/uml2/2.0.0/UML';
-	result.details += object EStringToStringMapEntry {
-		key := 'ProtocolRole';
-	}
 }
 
 query sourcert::ProtocolContainer::findInInterface() : Interface {
@@ -121,6 +107,7 @@ query sourcert::ProtocolContainer::findOutInterface() : Interface {
 mapping inout Interface::createMessageSet(direction : RTMessageKind) : RTMessageSet {
 	result.base_Interface := self;
 	result.rtMsgKind := direction;
+	self.removeKeyword("ProtocolRole");
 }
 
 mapping sourcert::Capsule::toCapsule() : umlrt::Capsule when {
