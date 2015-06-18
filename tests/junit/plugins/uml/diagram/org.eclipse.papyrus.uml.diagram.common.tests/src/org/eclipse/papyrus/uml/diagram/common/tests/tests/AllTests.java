@@ -19,13 +19,22 @@ import org.eclipse.papyrus.uml.diagram.common.tests.parser.HTMLCleanerTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.HTMLCornerBentFigureTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.MultiplicityStringFormatterTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.ValueSpecificationUtilTestCase;
+import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayStructureTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ CommonBendpointsTest.class, HTMLCleanerTestCase.class, HTMLCornerBentFigureTestCase.class, Bug431694_UndoDeleteTest.class, Bug418509_ReorientationAssociation.class, MultiplicityStringFormatterTestCase.class,
-		ValueSpecificationUtilTestCase.class })
+@SuiteClasses({
+		AppliedStereotypeDisplayStructureTest.class,
+		CommonBendpointsTest.class,
+		HTMLCleanerTestCase.class,
+		HTMLCornerBentFigureTestCase.class,
+		Bug431694_UndoDeleteTest.class,
+		Bug418509_ReorientationAssociation.class,
+		MultiplicityStringFormatterTestCase.class,
+		ValueSpecificationUtilTestCase.class
+})
 public class AllTests {
 	// JUnit 4 test suite
 }
