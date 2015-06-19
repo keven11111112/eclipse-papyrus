@@ -43,4 +43,27 @@
       </editor>
    </extension>
 
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category id="org.eclipse.papyrus.dd.examples.category"
+            name="%ExamplesCategory_name"
+            parentCategory="org.eclipse.ui.Examples"/>
+      <wizard id="org.eclipse.papyrus.dd.examples"
+            category="org.eclipse.ui.Examples/org.eclipse.papyrus.dd.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            project="true"
+            name="%Examples_name"
+            icon="icons/full/obj16/DGModelFile.gif">
+         <description>%Examples_description</description>
+      </wizard>
+   </extension>
+   <extension point="org.eclipse.emf.common.ui.examples">
+      <example id="org.eclipse.papyrus.dd.examples.project"
+            wizardID="org.eclipse.papyrus.dd.examples"
+            pageImage="icons/full/wizban/NewDG.gif">
+         <projectDescriptor name="org.eclipse.papyrus.dd.examples"
+               contentURI="examples/org.eclipse.papyrus.dd.examples/"
+               description="%Examples_description"/>
+      </example>
+   </extension>
 </plugin>
