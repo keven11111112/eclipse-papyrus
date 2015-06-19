@@ -91,6 +91,21 @@ The name in this element is never used programmtically. It is used as an informa
           <ownedComment xmi:type="uml:Comment" xmi:id="_G6I_4PiOEeSv3dqcApn3LA" annotatedElement="_CzHdsNR_EeSRNI7img_HuA">
             <body>A developper can add new nodes in the diagram that no exist in the existed diagram.</body>
           </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_R7zhQA6tEeW5sJOMCMaCHg" annotatedElement="_CzHdsNR_EeSRNI7img_HuA">
+            <body>This representation belongs to a library.&#xD;
+If this library does not exist create it.&#xD;
+&#xD;
+When  we say &quot;Add new nodes&quot;  this is create a new representation from the palette.&#xD;
+Before Add this elements, you need to meet following prerequisites:&#xD;
+- you have made an element type configuration Set.&#xD;
+- you have made an palette based on this element type.&#xD;
+&#xD;
+</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_kvhssA6yEeW5sJOMCMaCHg" annotatedElement="_CzHdsNR_EeSRNI7img_HuA">
+            <body>In this example, &#xD;
+</body>
+          </ownedComment>
         </ownedUseCase>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_G9nvQNR_EeSRNI7img_HuA" name="Add new border item" subject="_ubgMxdE7EeSLjPxDpRV9AQ">
           <ownedComment xmi:type="uml:Comment" xmi:id="_Na6lQPiOEeSv3dqcApn3LA" annotatedElement="_G9nvQNR_EeSRNI7img_HuA">
@@ -8354,4 +8369,5 @@ It remains to add a test based on links.</body>
   <Document:Section xmi:id="_isZ8MA6jEeW5sJOMCMaCHg" base_Package="_isYuEQ6jEeW5sJOMCMaCHg"/>
   <Document:Section xmi:id="_isbKUA6jEeW5sJOMCMaCHg" base_Package="_isZ8MQ6jEeW5sJOMCMaCHg"/>
   <Document:Section xmi:id="_iscYcA6jEeW5sJOMCMaCHg" base_Package="_isbKUQ6jEeW5sJOMCMaCHg"/>
+  <structure:UserDoc xmi:id="_TIJYkA6tEeW5sJOMCMaCHg" base_Comment="_R7zhQA6tEeW5sJOMCMaCHg"/>
 </xmi:XMI>
