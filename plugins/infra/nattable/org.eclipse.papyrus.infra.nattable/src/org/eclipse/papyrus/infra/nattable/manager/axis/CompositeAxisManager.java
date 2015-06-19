@@ -505,6 +505,9 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	public void moveAxis(Object elementToMove, int newIndex) {
 		if (!isDynamic() && elementToMove instanceof IAxis) {
 			TransactionalEditingDomain domain = getTableEditingDomain();
+			if (domain == null) {
+				return;
+			}
 			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
 			domain.getCommandStack().execute(command);
 		}
@@ -564,8 +567,8 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 *            an axis
 	 * @return
 	 * 		the axis manager managing this axis
-	 * 
-	 * @deprecated, use getSubAxisManagerFor
+	 *
+	 * 		@deprecated, use getSubAxisManagerFor
 	 */
 	@Deprecated
 	protected IAxisManager getAxisManager(final IAxis axis) {
@@ -583,7 +586,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         the axis manager managing this axis
+	 * 		the axis manager managing this axis
 	 */
 	@Override
 	public IAxisManager getSubAxisManagerFor(final IAxis axis) {
