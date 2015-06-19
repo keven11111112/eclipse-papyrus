@@ -7,12 +7,18 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.0",
  org.eclipse.papyrus.adl4eclipse.profile;bundle-version="1.1.0",
- org.eclipse.papyrus.osgi.profile;bundle-version="1.1.0"
+ org.eclipse.papyrus.osgi.profile;bundle-version="1.1.0",
+ org.eclipse.papyrus.infra.core.log,
+ org.eclipse.core.resources,
+ org.eclipse.papyrus.adl4eclipsetool,
+ org.eclipse.equinox.registry,
+ org.eclipse.emf.common
 Export-Package: org.eclipse.papyrus.adltool,
  org.eclipse.papyrus.adltool.command,
  org.eclipse.papyrus.adltool.designer,
- org.eclipse.papyrus.adltool.designer.bundle,
- org.eclipse.papyrus.adltool.designer.wizard
+ org.eclipse.papyrus.adltool.reversible,
+ org.eclipse.papyrus.adltool.reversible.factory,
+ org.eclipse.papyrus.adltool.reversible.project
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.1.0.qualifier
@@ -25,5 +31,6 @@ Bundle-Description: The purpose of this plugin is to model the archite
  e. More details can be found in the docs directory.
 Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool;singleton:=tr
  ue
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Description: %pluginDescription
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.eclipse.papyrus.adltool.reversible
+

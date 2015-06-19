@@ -23,6 +23,9 @@
         <children>
           <emfPageIdentifier href="adl4eclipse.profile.notation#_5XfK4NT3EeKj0Lzrn2trlQ"/>
         </children>
+        <children>
+          <emfPageIdentifier href="adl4eclipse.profile.notation#_mkLhcAkxEeWrfsZGFf1vbQ"/>
+        </children>
       </children>
     </windows>
   </sashModel>

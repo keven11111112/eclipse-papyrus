@@ -14,16 +14,16 @@
 package org.eclipse.papyrus.osgi.profile;
 
 /**
- * this class contains all string to manipulate stereotypedElement
- *
+ * This class contains all string to manipulate stereotypedElement
  */
 public interface IOSGIStereotype {
+
 	/** OSGI profile name */
 	public static final String OSGI = "OSGI";
 	/** OSGI Module layer profile name */
 	public static final String OSGI_MODULE_LAYER = "OSGI::ModuleLayer";
 	/** Qualified name of the Bundle */
-	public static final String BUNDLE_ = "OSGI::ModuleLayer::Bundle";
+	public static final String BUNDLE = "OSGI::ModuleLayer::Bundle";
 	/** name of property hasLazyActivationPolicy of the stereotype Bundle */
 	public static final String BUNDLE_HASLAZYACTIVATIONPOLICY_ATT = "hasLazyActivationPolicy";
 	/** name of property activator of the stereotype Bundle */
@@ -83,7 +83,7 @@ public interface IOSGIStereotype {
 	/** name of literal nursery of the Enumeration Bundle-Category */
 	public static final String BUNDLE_CATEGORY_NURSERY_ENUM = "nursery";
 	/** Qualified name of the VersionRange */
-	public static final String VERSIONRANGE_ = "OSGI::ModuleLayer::VersionRange";
+	public static final String VERSION_RANGE = "OSGI::ModuleLayer::VersionRange";
 	/** name of property floor of the stereotype VersionRange */
 	public static final String VERSIONRANGE_FLOOR_ATT = "floor";
 	/** name of property ceiling of the stereotype VersionRange */
@@ -95,15 +95,20 @@ public interface IOSGIStereotype {
 	/** name of property includeCeiling of the stereotype VersionRange */
 	public static final String VERSIONRANGE_INCLUDECEILING_ATT = "includeCeiling";
 	/** Qualified name of the BundleReference */
-	public static final String BUNDLEREFERENCE_ = "OSGI::ModuleLayer::BundleReference";
+	public static final String BUNDLEREFERENCE = "OSGI::ModuleLayer::BundleReference";
 	/** name of property base_Dependency of the stereotype BundleReference */
 	public static final String BUNDLEREFERENCE_BASE_DEPENDENCY_ATT = "base_Dependency";
 	/** Qualified name of the PackageReference */
-	public static final String PACKAGEREFERENCE_ = "OSGI::ModuleLayer::PackageReference";
+	public static final String PACKAGEREFERENCE = "OSGI::ModuleLayer::PackageReference";
 	/** name of property base_Dependency of the stereotype PackageReference */
 	public static final String PACKAGEREFERENCE_BASE_DEPENDENCY_ATT = "base_Dependency";
 	/** Qualified name of the ExportedPackage */
-	public static final String EXPORTEDPACKAGE_ = "OSGI::ModuleLayer::ExportedPackage";
+	public static final String EXPORTEDPACKAGE = "OSGI::ModuleLayer::ExportedPackage";
 	/** name of property base_Package of the stereotype ExportedPackage */
 	public static final String EXPORTEDPACKAGE_BASE_PACKAGE_ATT = "base_Package";
+
+	public static final String FEATURE_REFERENCE = "OSGI::ModuleLayer::FeatureReference";
+	public static final String EXTENSION_REFERENCE = "OSGI::ModuleLayer::ExtensionReference";
+	public static final String EXTENSION_POINT_REFERENCE = "OSGI::ModuleLayer::ExtensionPointReference";
+
 }
