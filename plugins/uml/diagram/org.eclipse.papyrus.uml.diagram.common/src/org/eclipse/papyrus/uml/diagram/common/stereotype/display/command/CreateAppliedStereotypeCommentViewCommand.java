@@ -80,7 +80,6 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		bounds.setY(y);
 		node.setLayoutConstraint(bounds);
 		TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
-		ts.setShowTitle(true);
 		node.getStyles().add(ts);
 		node.setElement(null);
 		node.setType(StereotypeDisplayConstant.STEREOTYPE_COMMENT_TYPE);

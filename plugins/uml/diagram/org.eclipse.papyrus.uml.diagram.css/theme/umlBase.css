@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Generic shape default value implementation. Default symbol implementation.
+ *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 471348
  *
  *****************************************************************************/
 
@@ -30,11 +31,12 @@ TimingDiagram * {
 
 StereotypeComment{
 	visible:false;
+	showTitle:true;
 }
- 
  
 Compartment[type=StereotypeCompartment]{
 	visible:false;
+	showTitle:true;
 }
  
 Compartment[type=StereotypeBrace]{

@@ -37,7 +37,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -57,12 +56,12 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 	@Override
 	protected Element getUMLElement() {
 		Element element = null;
-		if ((Element) getView().getElement() != null) {
+		if (null != (Element) getView().getElement()) {
 			element = (Element) getView().getElement();
 		} else {
 
 			EObject object = NotationUtils.getEObjectValue(getView(), StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME, null);
-			if (object != null) {
+			if (null != object) {
 				if (object instanceof Element) {
 					element = (Element) object;
 				} else {
@@ -114,22 +113,14 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 	 */
 	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
 		if (null != commentNode) {
-
-			Display.getCurrent().asyncExec(new Runnable() {
-
-				@Override
-				public void run() {
-					// because it is asynchronous the comment node's domain maybe become null
-					if (TransactionUtil.getEditingDomain(commentNode) == domain) {
-						DeleteCommand command = new DeleteCommand(commentNode);
-						try {
-							GMFUnsafe.write(domain, command);
-						} catch (Exception e) {
-							Activator.log.error(e);
-						}
-					}
+			if (null != domain && TransactionUtil.getEditingDomain(commentNode) == domain) {
+				DeleteCommand command = new DeleteCommand(commentNode);
+				try {
+					GMFUnsafe.write(domain, command);
+				} catch (Exception e) {
+					Activator.log.error(e);
 				}
-			});
+			}
 		}
 	}
 
@@ -160,7 +151,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if (view == null) {
+		if (null == view) {
 			return;
 		}
 
@@ -175,7 +166,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 	@Override
 	protected DiagramEventBroker getDiagramEventBroker() {
 		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (theEditingDomain != null) {
+		if (null != theEditingDomain) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -212,11 +203,11 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
 
 			// if Base_Element is deleted, the Comment is deleted as well
-			if (getUMLElement() == null) {
+			if (null == getUMLElement()) {
 				executeAppliedStereotypeCommentDeletion(domain, commentNode);
 			}
 
-			if (commentNode.getSourceEdges().size() == 0 && commentNode.getTargetEdges().size() == 0) {
+			if (0 == commentNode.getSourceEdges().size() && 0 == commentNode.getTargetEdges().size()) {
 				executeAppliedStereotypeCommentDeletion(domain, commentNode);
 			}
 		}

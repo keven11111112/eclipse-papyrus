@@ -247,7 +247,7 @@ public final class StereotypeDisplayCommandExecution {
 	 */
 	public void setUserVisibility(final TransactionalEditingDomain domain, final View view, final boolean visible) {
 		if (view != null && domain != null) {
-			final CompoundCommand compoundCommand = new CompoundCommand("Set Persistency");
+			final CompoundCommand compoundCommand = new CompoundCommand("Set User Visibility");
 
 			final SetPersistentViewCommand persitence = new SetPersistentViewCommand(domain, view);
 			compoundCommand.append(persitence);

@@ -62,6 +62,7 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 		super(view);
 	}
 
+
 	/** The content pane. */
 	protected IFigure contentPane;
 
@@ -96,6 +97,20 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#refreshBounds()
+	 *
+	 * 
+	 */
+	@Override
+	protected void refreshBounds() {
+		// To avoid NPE when the CommentEditPart has been removed and the getParent returns null
+		if (null != this.getParent()) {
+			super.refreshBounds();
+		}
+
 	}
 
 	/**

@@ -26,7 +26,7 @@ public class SetNodeVisibilityCommand extends RecordingCommand {
 	protected Boolean isVisible;
 
 	public SetNodeVisibilityCommand(TransactionalEditingDomain domain, View view, Boolean isVisible) {
-		super(domain);
+		super(domain, "Set Node Visibility");
 		this.view = view;
 		this.isVisible = isVisible;
 	}
@@ -42,4 +42,6 @@ public class SetNodeVisibilityCommand extends RecordingCommand {
 			}
 		}
 	}
+
+
 }
