@@ -21,8 +21,8 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -63,15 +63,12 @@ public class CreateAppliedStereotypeCompartmentCommand extends RecordingCommand 
 	@Override
 	public void doExecute() {
 
-
-
 		// Create the Graphical Compartment
 		Node compartment = NotationFactory.eINSTANCE.createBasicCompartment();
 		compartment.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 
 		// Create Title Style
 		TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
-		ts.setShowTitle(true);
 		compartment.getStyles().add(ts);
 
 		// Create Stereotype Name Style
