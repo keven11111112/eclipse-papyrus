@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 - 2013 CEA LIST.
+ * Copyright (c) 2006 - 2015 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *     CEA LIST - initial API and implementation
  *******************************************************************************/
+
 package org.eclipse.papyrus.cpp.codegen;
 
 import java.util.regex.Pattern;

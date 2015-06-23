@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <choice minOccurs="0" maxOccurs="unbounded">
-            <element ref="client"/>
+            <element ref="generator"/>
          </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,19 +47,26 @@
       </complexType>
    </element>
 
-   <element name="client">
+   <element name="generator">
       <complexType>
-         <attribute name="language" type="string" use="required">
+         <attribute name="id" type="string">
             <annotation>
                <documentation>
-                  
+					ID of a code generator                  
                </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="language" type="string" use="required">
+            <annotation>
+         	      <documentation>
+    				Programming language supported by the code generator                  
+                  </documentation>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  A class that provides access to the code generator. It must implement the ILangCodegen interface.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen"/>

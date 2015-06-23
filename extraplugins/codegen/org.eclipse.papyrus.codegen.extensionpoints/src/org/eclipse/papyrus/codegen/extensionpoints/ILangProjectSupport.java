@@ -6,7 +6,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     CEA LIST - initial API and implementation
+ *     CEA LIST - ansgar.radermacher@cea.fr   initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.papyrus.codegen.extensionpoints;

@@ -6,12 +6,13 @@
       <initializer
             class="org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenPreferenceInitializer">
       </initializer>
-    </extension>
-     <extension
+   </extension>
+   <extension
          point="org.eclipse.papyrus.codegen.extensionpoints.languageCodegen">
-      <client
-            class="org.eclipse.papyrus.cpp.codegen.C_CppLangCodegen"
-            language="C++">
-      </client>
+      <generator
+            id="Standard C++"
+            language="C++"
+            class="org.eclipse.papyrus.cpp.codegen.C_CppLangCodegen">
+      </generator>
    </extension>
 </plugin>

@@ -341,7 +341,8 @@ public class PapyrusCDTEditor extends CEditor {
 
 		URI uri = papyrusTextInstance.eResource().getURI();
 		Classifier classifier = (Classifier) papyrusTextInstance.getEditedObject();
-		srcFile = SyncModelToCDT.syncModelToCDT(classifier);
+		String generatorID = papyrusTextInstance.getGeneratorID();
+		srcFile = SyncModelToCDT.syncModelToCDT(classifier, generatorID);
 		if (srcFile == null || !srcFile.exists()) {
 			throw new PartInitException("Code generation before editing failed. Please check error log");
 		}

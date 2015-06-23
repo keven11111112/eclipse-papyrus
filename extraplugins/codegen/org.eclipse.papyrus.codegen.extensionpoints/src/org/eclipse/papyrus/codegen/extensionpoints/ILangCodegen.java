@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@ package org.eclipse.papyrus.codegen.extensionpoints;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 
 /**
@@ -21,7 +22,22 @@ import org.eclipse.uml2.uml.PackageableElement;
  * programming language
  */
 public interface ILangCodegen {
+	
+	/**
+	 * Provide a user friendly description of the generator
+	 */
+	public String getDescription();
 
+	/**
+	 * Return true, if the generator is eligible for a certain type of model. The method may check for
+	 * instance whether a certain profile (such as UML-RT) has been applied. Generators are allowed
+	 * to return true for all models, if they do not have specific (profile related) requirements.
+	 * 
+	 * @param modelRoot the root of a UML model (for which code should be generated)
+	 * @return true, iff the generator is eligible for this model
+	 */
+	public boolean isEligible(Package modelRoot);
+	
 	/**
 	 * Generate code for a specific language
 	 *

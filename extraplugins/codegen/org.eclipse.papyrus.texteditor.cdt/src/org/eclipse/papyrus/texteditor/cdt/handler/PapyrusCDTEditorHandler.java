@@ -27,6 +27,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
@@ -42,6 +44,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.texteditor.cdt.Activator;
+import org.eclipse.papyrus.texteditor.cdt.TextEditorConstants;
 import org.eclipse.papyrus.texteditor.cdt.editor.PapyrusCDTEditor;
 import org.eclipse.papyrus.texteditor.cdt.modelresource.TextEditorModelSharedResource;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
@@ -212,6 +215,8 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		editorModel.setEditedObject(classifierToEdit);
 		editorModel.setType(PapyrusCDTEditor.EDITOR_TYPE);
 		editorModel.setName("CDT " + classifierToEdit.getName()); //$NON-NLS-1$
+		ILangCodegen codegen = LanguageCodegen.chooseGenerator(TextEditorConstants.CPP, classifierToEdit);
+		editorModel.setGeneratorID(LanguageCodegen.getID(codegen));
 		TextEditorModelSharedResource model = (TextEditorModelSharedResource)
 				ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
 		model.addTextEditorModel(editorModel);

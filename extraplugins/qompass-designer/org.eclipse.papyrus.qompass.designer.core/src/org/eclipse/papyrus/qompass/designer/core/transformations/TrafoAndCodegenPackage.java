@@ -203,7 +203,7 @@ public class TrafoAndCodegenPackage {
 			ModelManagement genMM = tmpMM;
 			IProject genProject = project;
 			ILangProjectSupport projectSupport = LanguageProjectSupport.getProjectSupport(targetLanguage);
-			ILangCodegen codegen = LanguageCodegen.getCodegen(targetLanguage);
+			ILangCodegen codegen = LanguageCodegen.getGenerator(targetLanguage);
 
 			GenerateCode codeGen = new GenerateCode(genProject, codegen, genMM, monitor);
 			codeGen.generate(null, targetLanguage, false);

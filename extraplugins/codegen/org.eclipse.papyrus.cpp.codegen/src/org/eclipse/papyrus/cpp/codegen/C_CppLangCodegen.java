@@ -1,19 +1,31 @@
+/*******************************************************************************
+ * Copyright (c) 2006 - 2015 CEA LIST.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     CEA LIST - ansgar.radermacher@cea.fr   initial API and implementation
+ *******************************************************************************/
+
 package org.eclipse.papyrus.cpp.codegen;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.codegen.base.ModelElementsCreator;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 
 /**
  * C++ language support
  *
- * @author ansgar
  */
 public class C_CppLangCodegen implements ILangCodegen {
 
@@ -21,6 +33,16 @@ public class C_CppLangCodegen implements ILangCodegen {
 
 	protected IProject lastProject = null;
 
+	@Override
+	public String getDescription() {
+		return Messages.C_CppLangCodegen_GeneratorDesc; 
+	}
+
+	@Override
+	public boolean isEligible(Package modelRoot) {
+		return (modelRoot.getAppliedProfile(C_CppPackage.eINSTANCE.getName()) != null);
+	}
+	
 	@Override
 	public void generateCode(IProject project, PackageableElement element, IProgressMonitor monitor)
 	{

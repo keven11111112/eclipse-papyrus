@@ -353,7 +353,7 @@ public class InstantiateDepPlan {
 		destroyDeploymentPlanFolder(generatedModel);
 
 		if (generateCode) {
-			ILangCodegen codegen = LanguageCodegen.getCodegen(DepUtils.getTargetLanguage(mainInstance));
+			ILangCodegen codegen = LanguageCodegen.getGenerator(DepUtils.getTargetLanguage(mainInstance));
 			GenerateCode codeGenerator = new GenerateCode(genProject, codegen, genModelManagement,
 					monitor);
 			boolean option = (generationOptions & GenerationOptions.ONLY_CHANGED) != 0;
