@@ -248,9 +248,14 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 				figure.getNameLabel().setTextWrap(false);
 			}
 		}
+
+		// refresh the Label of Stereotypes according to the alignment, opacity and position
+		figure.restoreStereotypeLabel();
+
 		// Get NamedStyle display preferences
 		BooleanValueStyle displayNameStyle = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), NameDisplayEditPolicy.DISPLAY_NAME);
 		BooleanValueStyle displayTags = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_TAGS);
+
 
 
 		// Manage the display of Name Label
