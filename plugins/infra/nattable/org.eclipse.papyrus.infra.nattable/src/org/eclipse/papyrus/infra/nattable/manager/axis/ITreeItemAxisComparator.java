@@ -88,14 +88,7 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 			// depth is currently not used and has no meaning in this case
 			return compare(path1.get(indexToCompare), path2.get(indexToCompare));
 		}
-		if (path1.size() > path2.size()) {
-			List<ITreeItemAxis> tmp = path2;
-			path2 = path1;
-			path1 = tmp;
-		}
 
-		// path1 is shortest than path2
-		Collections.reverse(path1);
 		ITreeItemAxis firstCommon = null;
 		for (ITreeItemAxis current : path1) {
 			if (path2.contains(current)) {
@@ -104,7 +97,6 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 			}
 		}
 
-		Collections.reverse(path1);
 		if (firstCommon == null) {
 			Activator.log.warn("No common ITreeItemAxis found"); //$NON-NLS-1$
 			throw new UnsupportedOperationException("Not yet implemented, please submit us a bug, with your example"); //$NON-NLS-1$
