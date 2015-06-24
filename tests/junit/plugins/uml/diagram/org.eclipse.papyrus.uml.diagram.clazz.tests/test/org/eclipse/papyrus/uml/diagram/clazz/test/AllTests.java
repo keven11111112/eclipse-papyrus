@@ -33,7 +33,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestClassDiagram.class,
 		PackageDiagramLegacyTest.class,
 		Bug382954_InstanceSpecificationLink.class,
-		ConstraintPasteStrategyTest.class
+		ConstraintPasteStrategyTest.class,
+		RoundedCompartmentTest.class
 		// load
 		// LoadTests.class
 

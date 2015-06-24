@@ -30,7 +30,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		// canonical
 		AllCanonicalTests.class,
 		ExpansionRegionHelperTest.class,
-		ExpansionRegionCompartmentEPTest.class
+		ExpansionRegionCompartmentEPTest.class,
+		RoundedCompartmentTest.class,
+
 })
 @DynamicClasses("org.eclipse.papyrus.uml.diagram.activity.test.AllGenTests")
 public class AllTests {

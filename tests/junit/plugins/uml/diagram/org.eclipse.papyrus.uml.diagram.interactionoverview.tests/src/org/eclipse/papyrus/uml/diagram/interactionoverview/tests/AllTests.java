@@ -18,9 +18,11 @@ import org.junit.runners.Suite.SuiteClasses;
 //@formatter:off
 @RunWith(Suite.class)
 @SuiteClasses({
-// canonical
-AllCanonicalTests.class, })
-//@formatter:on
+		// canonical
+		AllCanonicalTests.class,
+		RoundedCompartmentTest.class,
+})
+// @formatter:on
 public class AllTests {
 	// Junit 4 test case
 }

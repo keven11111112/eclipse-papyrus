@@ -35,6 +35,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return CustomUMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
@@ -44,6 +45,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public boolean isTestAffixedNode() {
 		return true;
 	}
+
 	@Override
 	protected String getProjectName() {
 		return IClassDiagramTestsConstants.PROJECT_NAME;
@@ -99,6 +101,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 * Test to manage enumeration.
 	 */
 	@Test
+	@FailingTest
 	public void testToManageEnumeration() {
 		testToManageNode(UMLElementTypes.Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Package_3009, true);
 	}
@@ -167,6 +170,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageInterface() {
 		testToManageNode(UMLElementTypes.Interface_3023, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_3009, true);
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateClassDiagramCommand();

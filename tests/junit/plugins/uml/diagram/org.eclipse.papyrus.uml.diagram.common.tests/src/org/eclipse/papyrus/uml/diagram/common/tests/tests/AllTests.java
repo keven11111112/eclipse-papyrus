@@ -37,6 +37,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		MultiplicityStringFormatterTestCase.class,
 		ValueSpecificationUtilTestCase.class,
 		CanonicalRegressionTest.class,
+		ShapeCustomisationTest.class
 })
 public class AllTests {
 	// JUnit 4 test suite

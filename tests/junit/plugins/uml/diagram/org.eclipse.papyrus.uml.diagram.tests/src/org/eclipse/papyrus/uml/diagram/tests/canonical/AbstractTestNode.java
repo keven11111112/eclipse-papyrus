@@ -22,10 +22,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
@@ -45,14 +47,23 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
+import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
@@ -519,6 +530,44 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 			index++;
 		}
 		testNameLabel(createdEditPart, initialName);
+		testRoundedCompartmentEditPart(createdEditPart);
+	}
+
+
+	/**
+	 * Test rounded compartment edit part and rounded border named element edit part.
+	 *
+	 * @param createdEditPart
+	 *            the created edit part
+	 */
+	protected void testRoundedCompartmentEditPart(final EditPart createdEditPart) {
+
+
+		if (createdEditPart instanceof RoundedBorderNamedElementEditPart) {
+			Assert.assertTrue("RoundedBorderNamedElementEditPart must have specific locator PortPositionLocator)", ((RoundedBorderNamedElementEditPart) createdEditPart).getBorderItemLocator() instanceof PortPositionLocator);
+		}
+
+		IFigure primaryShape = ((IPapyrusEditPart) createdEditPart).getPrimaryShape();
+		if (createdEditPart instanceof RoundedCompartmentEditPart || createdEditPart instanceof RoundedBorderNamedElementEditPart) {
+
+			List<?> children = createdEditPart.getChildren();
+			for (Object child : children) {
+				if (child instanceof ResizableCompartmentEditPart) {
+					// Test if has the needed edit policy
+					EditPolicy borderDisplayeditPolicy = ((ResizableCompartmentEditPart) child).getEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY);
+					Assert.assertNotNull("Compartment " + child.getClass().toString() + " must have BorderDisplayEditPolicy", borderDisplayeditPolicy);
+					// Test if the compartment notation view is instance of BasicCompartment
+					Assert.assertTrue("Compartment view " + child.getClass().toString() + " must be instance of BasicCompartment", ((ResizableCompartmentEditPart) child).getModel() instanceof BasicCompartment);
+				}
+
+				if (child instanceof FloatingLabelEditPart) {
+					Assert.assertTrue("FloatingLabelEditPart must use specific locator RoundedRectangleLabelPositionLocator", ((FloatingLabelEditPart) child).getBorderItemLocator() instanceof RoundedRectangleLabelPositionLocator);
+				}
+			}
+
+			Assert.assertTrue("The Figure of " + createdEditPart.getClass().toString() + ") must implement IRoundedRectangleFigure", primaryShape instanceof IRoundedRectangleFigure);
+
+		}
 	}
 
 	protected void testNameLabel(EditPart createdEditPart, String initialName) {

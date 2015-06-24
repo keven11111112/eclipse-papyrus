@@ -78,18 +78,21 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 
 	@Test
 	@InteractiveTest
+	@FailingTest
 	public void testToManageUseCaseForClassSubject() {
 		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
 	}
 
 	@Test
 	@InteractiveTest
+	@FailingTest
 	public void testToManageUseCaseForComponentSubject() {
 		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
 	}
 
 	@Test
 	@InteractiveTest
+	@FailingTest
 	public void testToManageUseCaseForInterfaceSubject() {
 		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
 	}

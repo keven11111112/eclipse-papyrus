@@ -27,6 +27,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		// canonical
 		AllCanonicalTests.class,
+		RoundedCompartmentTest.class,
 
 })
 @DynamicClasses("org.eclipse.papyrus.uml.diagram.communication.test.AllGenTests")
