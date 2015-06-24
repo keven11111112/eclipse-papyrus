@@ -13,37 +13,28 @@
 
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.nebula.widgets.nattable.NatTable;
-import org.eclipse.nebula.widgets.nattable.sort.SortDirectionEnum;
-import org.eclipse.nebula.widgets.nattable.sort.action.SortColumnAction;
 import org.eclipse.nebula.widgets.nattable.sort.command.SortColumnCommand;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
-import org.eclipse.papyrus.infra.nattable.sort.PapyrusCompositeGlazedListSortModel;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
-import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.swt.widgets.Shell;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -77,14 +68,13 @@ public abstract class AbstractSortTable extends AbstractPapyrusTest {
 	 */
 	private static final String RESOURCES_PATH = "resources/sort/";//$NON-NLS-1$
 
-	public static final String NAME_ASC = "NAME_ASC";
+	public static final String NAME_ASC = "NAME_ASC";//$NON-NLS-1$
 
-	public static final String NAME_DESC = "NAME_DESC";
+	public static final String NAME_DESC = "NAME_DESC";//$NON-NLS-1$
 
+	public static final String TYPE_ASC = "TYPE_ASC"; //$NON-NLS-1$
 
-	public static final String TYPE_ASC = "TYPE_ASC";
-
-	public static final String TYPE_DESC = "TYPE_DESC";
+	public static final String TYPE_DESC = "TYPE_DESC";//$NON-NLS-1$
 
 	/**
 	 * load the table editor
@@ -92,7 +82,12 @@ public abstract class AbstractSortTable extends AbstractPapyrusTest {
 	@Before
 	public void init() {
 		// these tests works only when the sorted columns are visible (without scrollbar)!
-		Display.getDefault().getActiveShell().setMaximized(true);
+		if (Display.getDefault() != null) {
+			Shell shell = Display.getDefault().getActiveShell();
+			if(shell!=null){
+				shell.setMaximized(true);
+			}
+		}
 	}
 
 	@Test
@@ -221,7 +216,7 @@ public abstract class AbstractSortTable extends AbstractPapyrusTest {
 		URI uri = modelUri.trimFileExtension();
 
 		// we check than the className is the same than the tested file
-		Assert.assertEquals("The java class doesn't test the wanted papyrus model", className, uri.lastSegment());
+		Assert.assertEquals("The java class doesn't test the wanted papyrus model", className, uri.lastSegment()); //$NON-NLS-1$
 
 		checkFillingConfigurationAndHiddenCategoryForTestConsistency(manager.getTable(), className);
 	}
