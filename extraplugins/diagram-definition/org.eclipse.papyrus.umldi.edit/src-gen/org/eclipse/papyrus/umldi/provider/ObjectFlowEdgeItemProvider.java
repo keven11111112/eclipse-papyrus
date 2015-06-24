@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -29,13 +28,16 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.ObjectFlowEdge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ObjectFlowEdgeItemProvider extends ActivityEdgeEdgeItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ObjectFlowEdgeItemProvider(AdapterFactory adapterFactory) {
@@ -46,13 +48,13 @@ public class ObjectFlowEdgeItemProvider extends ActivityEdgeEdgeItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -63,11 +65,12 @@ public class ObjectFlowEdgeItemProvider extends ActivityEdgeEdgeItemProvider {
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UMLDIPackage.Literals.OBJECT_FLOW_EDGE__TRANSFORMATION_LABEL);
 			childrenFeatures.add(UMLDIPackage.Literals.OBJECT_FLOW_EDGE__SELECTION_LABEL);
@@ -78,13 +81,13 @@ public class ObjectFlowEdgeItemProvider extends ActivityEdgeEdgeItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
@@ -92,6 +95,7 @@ public class ObjectFlowEdgeItemProvider extends ActivityEdgeEdgeItemProvider {
 	 * This returns ObjectFlowEdge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,30 +107,31 @@ public class ObjectFlowEdgeItemProvider extends ActivityEdgeEdgeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ObjectFlowEdge_type");
+		ObjectFlowEdge objectFlowEdge = (ObjectFlowEdge)object;
+		return getString("_UI_ObjectFlowEdge_type") + " " + objectFlowEdge.isShowStereotypeAttributes();
 	}
-	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ObjectFlowEdge.class)) {
-			case UMLDIPackage.OBJECT_FLOW_EDGE__TRANSFORMATION_LABEL:
-			case UMLDIPackage.OBJECT_FLOW_EDGE__SELECTION_LABEL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(ObjectFlowEdge.class)) {
+		case UMLDIPackage.OBJECT_FLOW_EDGE__TRANSFORMATION_LABEL:
+		case UMLDIPackage.OBJECT_FLOW_EDGE__SELECTION_LABEL:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -136,21 +141,13 @@ public class ObjectFlowEdgeItemProvider extends ActivityEdgeEdgeItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.OBJECT_FLOW_EDGE__TRANSFORMATION_LABEL,
-				 UMLDIFactory.eINSTANCE.createTransformationLabel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.OBJECT_FLOW_EDGE__SELECTION_LABEL,
-				 UMLDIFactory.eINSTANCE.createSelectionLabel()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.OBJECT_FLOW_EDGE__TRANSFORMATION_LABEL, UMLDIFactory.eINSTANCE.createTransformationLabel()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.OBJECT_FLOW_EDGE__SELECTION_LABEL, UMLDIFactory.eINSTANCE.createSelectionLabel()));
 	}
-
 }

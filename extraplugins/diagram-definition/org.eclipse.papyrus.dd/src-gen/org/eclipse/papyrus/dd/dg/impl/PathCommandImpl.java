@@ -27,7 +27,7 @@ import org.eclipse.papyrus.dd.dg.PathCommand;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.impl.PathCommandImpl#isRelative <em>Is Relative</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.impl.PathCommandImpl#isRelative <em>Is Relative</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,6 +37,7 @@ public abstract class PathCommandImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * The default value of the '{@link #isRelative() <em>Is Relative</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isRelative()
 	 * @generated
 	 * @ordered
@@ -46,6 +47,7 @@ public abstract class PathCommandImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * The cached value of the '{@link #isRelative() <em>Is Relative</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isRelative()
 	 * @generated
 	 * @ordered
@@ -54,6 +56,7 @@ public abstract class PathCommandImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PathCommandImpl() {
@@ -62,6 +65,7 @@ public abstract class PathCommandImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,6 +75,7 @@ public abstract class PathCommandImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isRelative() {
@@ -79,77 +84,83 @@ public abstract class PathCommandImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsRelative(boolean newIsRelative) {
 		boolean oldIsRelative = isRelative;
 		isRelative = newIsRelative;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.PATH_COMMAND__IS_RELATIVE, oldIsRelative, isRelative));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DGPackage.PATH_COMMAND__IS_RELATIVE:
-				return isRelative();
+		switch(featureID) {
+		case DGPackage.PATH_COMMAND__IS_RELATIVE:
+			return isRelative();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DGPackage.PATH_COMMAND__IS_RELATIVE:
-				setIsRelative((Boolean)newValue);
-				return;
+		switch(featureID) {
+		case DGPackage.PATH_COMMAND__IS_RELATIVE:
+			setIsRelative((Boolean)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DGPackage.PATH_COMMAND__IS_RELATIVE:
-				setIsRelative(IS_RELATIVE_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DGPackage.PATH_COMMAND__IS_RELATIVE:
+			setIsRelative(IS_RELATIVE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DGPackage.PATH_COMMAND__IS_RELATIVE:
-				return isRelative != IS_RELATIVE_EDEFAULT;
+		switch(featureID) {
+		case DGPackage.PATH_COMMAND__IS_RELATIVE:
+			return isRelative != IS_RELATIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
+		if(eIsProxy())
+			return super.toString();
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isRelative: ");
 		result.append(isRelative);

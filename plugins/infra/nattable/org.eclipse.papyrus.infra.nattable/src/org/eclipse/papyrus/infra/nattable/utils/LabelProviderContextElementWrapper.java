@@ -34,6 +34,8 @@ public class LabelProviderContextElementWrapper implements ILabelProviderContext
 	 */
 	private Object object;
 
+
+
 	/**
 	 * *
 	 * Constructor.
@@ -42,12 +44,41 @@ public class LabelProviderContextElementWrapper implements ILabelProviderContext
 	 *            the cell for which we want the label/icon, ...
 	 * @param registry
 	 *            the registry used by nattable
+	 * 
+	 * @deprecated since Eclipse Mars, please use setter method
 	 */
+	@Deprecated
 	public LabelProviderContextElementWrapper(final Object object, final IConfigRegistry registry) {
 		this.object = object;
 		this.registry = registry;
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
+	public LabelProviderContextElementWrapper() {
+		// nothing to do
+	}
+
+	/**
+	 * 
+	 * @param configRegistry
+	 *            the config registry to use
+	 */
+	public void setConfigRegistry(IConfigRegistry configRegistry) {
+		this.registry = configRegistry;
+	}
+
+	/**
+	 * 
+	 * @param object
+	 *            the object for which we want the label/icon,....
+	 */
+	public void setObject(Object object) {
+		this.object = object;
+	}
 
 	/**
 	 *

@@ -19,6 +19,7 @@ import org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfigur
 import org.eclipse.papyrus.infra.nattable.filter.IFilterValueToMatchManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
+import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
 /**
@@ -33,13 +34,13 @@ public interface IFilterConfiguration extends IPapyrusNatTableConfiguration {
 	 * key used to save a filter configuration id state when the system use the default filter provided by the configuration
 	 * It is only used as name for a {@link StringValueStyle}
 	 */
-	public static final String FILTER_SYSTEM_ID = "filterId"; //$NON-NLS-1$
+	public static final String FILTER_SYSTEM_ID = NamedStyleConstants.FILTER_SYSTEM_ID; 
 
 	/**
 	 * key used to save filter state (the value typed by the user to filter the rows)
 	 * This key used as name for a {@link Style} without more precision
 	 */
-	public static final String FILTER_VALUE_TO_MATCH = "filterValueToMatch"; //$NON-NLS-1$
+	public static final String FILTER_VALUE_TO_MATCH = NamedStyleConstants.FILTER_VALUE_TO_MATCH;
 
 	/**
 	 * key used to save a filter configuration id state when the system use a filter choosen by the user
@@ -47,7 +48,7 @@ public interface IFilterConfiguration extends IPapyrusNatTableConfiguration {
 	 * 
 	 * 
 	 */
-	public static final String FILTER_FORCED_BY_USER_ID = "filterForcedByUserId"; //$NON-NLS-1$
+	public static final String FILTER_FORCED_BY_USER_ID = NamedStyleConstants.FILTER_FORCED_BY_USER_ID;
 
 	/**
 	 * the config attribute used to register the class loading and storing filter state

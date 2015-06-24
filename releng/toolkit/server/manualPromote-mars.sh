@@ -40,19 +40,19 @@ version=""
 updateSite=""
 sure=""
 
-echo "mainBuildNumber (the number of the \"Papyrus-Master\" Hudson build from which to publish the main Papyrus plug-ins): "
+echo "mainBuildNumber (the number of the \"Papyrus-Mars\" Hudson build from which to publish the main Papyrus plug-ins): "
 while [[ ! "$mainBuildNumber" =~ ^[0-9]+$ || "$mainBuildNumber" < 1 ]]; do
 	echo -n "? "
 	read mainBuildNumber
 done
 
-echo "extrasBuildNumber (the number of the \"Papyrus-Master-Extra\" Hudson build from which to publish the extra Papyrus plug-ins, or 0 to not publish): "
+echo "extrasBuildNumber (the number of the \"Papyrus-Mars-Extra\" Hudson build from which to publish the extra Papyrus plug-ins, or 0 to not publish): "
 while [[ ! "$extrasBuildNumber" =~ ^[0-9]+$ || "$extrasBuildNumber" < 0 ]]; do
 	echo -n "? "
 	read extrasBuildNumber
 done
 
-echo "testsBuildNumber (the number of the \"Papyrus-Master-Tests\" Hudson build from which to publish the test results, or 0 to not publish): "
+echo "testsBuildNumber (the number of the \"Papyrus-Mars-Tests\" Hudson build from which to publish the test results, or 0 to not publish): "
 while [[ ! "$testsBuildNumber" =~ ^[0-9]+$ || "$testsBuildNumber" < 0 ]]; do
 	echo -n "? "
 	read testsBuildNumber
@@ -103,7 +103,7 @@ cd "$workingDir"
 
 # ============================== PUBLISH MAIN ==============================
 nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
-hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Master/$mainBuildNumber/artifact/"
+hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Mars/$mainBuildNumber/artifact/"
 zipName="Papyrus-Main.zip"
 updateZipPrefix="Papyrus-Update"
 getZip "$zipName" "$nfsURL" "$hudsonURL"
@@ -153,7 +153,7 @@ $ADD_DOWNLOAD_STATS "$updateSiteDir/main" "main"
 # ============================== PUBLISH EXTRAS ==============================
 if [[ "$extrasBuildNumber" != "0" ]]; then
 	nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
-	hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Extra/$extrasBuildNumber/artifact/"
+	hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Mars-Extra/$extrasBuildNumber/artifact/"
 	zipName="Papyrus-Extra.zip"
 	updateZipName="Papyrus-Extra-Update.zip"
 	getZip "$zipName" "$nfsURL" "$hudsonURL"
@@ -167,7 +167,7 @@ fi
 # ============================== PUBLISH TESTS ==============================
 if [[ "$testsBuildNumber" != "0" ]]; then
 	nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
-	hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Tests/$testsBuildNumber/artifact/"
+	hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Mars-Tests/$testsBuildNumber/artifact/"
 	zipName="Papyrus-TestResults.zip"
 	getZip "$zipName" "$nfsURL" "$hudsonURL"
 	# unzips under a "testresults" folder under the main build's folder 

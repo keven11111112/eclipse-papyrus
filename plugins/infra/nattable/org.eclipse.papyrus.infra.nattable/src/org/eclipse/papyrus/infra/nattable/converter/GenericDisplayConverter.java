@@ -34,6 +34,11 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 public class GenericDisplayConverter implements IDisplayConverter {
 
 	/**
+	 * wrapper used to get the label of the element to convert
+	 */
+	private LabelProviderCellContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper();
+	
+	/**
 	 * throw new UnsupportedOperationException();
 	 *
 	 * @see org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter#canonicalToDisplayValue(java.lang.Object)
@@ -58,6 +63,7 @@ public class GenericDisplayConverter implements IDisplayConverter {
 	public Object displayToCanonicalValue(Object displayValue) {
 		return displayValue.toString();
 	}
+	
 
 	/**
 	 *
@@ -76,7 +82,9 @@ public class GenericDisplayConverter implements IDisplayConverter {
 
 		final LabelProviderService service = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		final ILabelProvider labelProvider = service.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT);
-		final ILabelProviderContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper(cell, canonicalValue, configRegistry);
+		contextElement.setConfigRegistry(configRegistry);
+		contextElement.setCell(cell);
+		contextElement.setObject(canonicalValue);
 		Assert.isNotNull(labelProvider);
 		return labelProvider.getText(contextElement);
 	}

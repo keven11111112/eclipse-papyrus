@@ -25,8 +25,8 @@ import org.eclipse.papyrus.dd.dc.Point;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.QuadraticCurveTo#getControl <em>Control</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.QuadraticCurveTo#getPoint <em>Point</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.QuadraticCurveTo#getControl <em>Control</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.QuadraticCurveTo#getPoint <em>Point</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getQuadraticCurveTo()
@@ -53,7 +53,9 @@ public interface QuadraticCurveTo extends PathCommand {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.QuadraticCurveTo#getPoint <em>Point</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Point</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Point</em>' containment reference.
 	 * @see #getPoint()
 	 * @generated
 	 */
@@ -76,7 +78,9 @@ public interface QuadraticCurveTo extends PathCommand {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.QuadraticCurveTo#getControl <em>Control</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Control</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Control</em>' containment reference.
 	 * @see #getControl()
 	 * @generated
 	 */

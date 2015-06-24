@@ -17,15 +17,16 @@ import org.eclipse.papyrus.dd.dc.Bounds;
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Pattern</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Pattern is a kind of paint server that paints a graphical element (a tile) repeatedly at fixed intervals in x and y axes to cover the areas to be filled.
+ * Pattern is a kind of paint server that paints a graphical element (a tile) repeatedly at fixed intervals in x and y axes to cover the areas to be
+ * filled.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Pattern#getBounds <em>Bounds</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Pattern#getTile <em>Tile</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Pattern#getBounds <em>Bounds</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Pattern#getTile <em>Tile</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getPattern()
@@ -51,7 +52,9 @@ public interface Pattern extends PaintServer {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Pattern#getBounds <em>Bounds</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bounds</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Bounds</em>' containment reference.
 	 * @see #getBounds()
 	 * @generated
 	 */
@@ -76,7 +79,9 @@ public interface Pattern extends PaintServer {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Pattern#getTile <em>Tile</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Tile</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Tile</em>' containment reference.
 	 * @see #getTile()
 	 * @generated
 	 */

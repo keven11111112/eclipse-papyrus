@@ -22,9 +22,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -116,7 +114,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	 * @param selector
 	 *            the reference selector
 	 * @return
-	 * 		the content provider to use for the selector
+	 *         the content provider to use for the selector
 	 */
 	protected IStaticContentProvider createSelectorContentProvider(ReferenceSelector selector) {
 		final IAxisManager editedAxisManager = this.manager.getColumnAxisManager();
@@ -143,7 +141,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	/**
 	 * 
 	 * @return
-	 * 		the created and initialized reference selector
+	 *         the created and initialized reference selector
 	 */
 	protected ReferenceSelector createReferenceSelector() {
 		ReferenceSelector selector = new ReferenceSelector(false) {
@@ -173,7 +171,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	/**
 	 * 
 	 * @return
-	 * 		the page to use to select the categories to listen in the table
+	 *         the page to use to select the categories to listen in the table
 	 */
 	protected SelectCategoriesWizardPage createSelectCategoriesPage() {
 		this.categoriesPage = new SelectCategoriesWizardPage(createReferenceSelector());
@@ -186,7 +184,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	/**
 	 * 
 	 * @return
-	 * 		the paste page used to configure the paste
+	 *         the paste page used to configure the paste
 	 */
 	protected ConfigurePasteForCategoriesWizardPage createConfigurePastePage() {
 		this.pastePage = new ConfigurePasteForCategoriesWizardPage(createReferenceSelector());
@@ -221,6 +219,8 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 
 		private NatTable natTable;
 
+		private LabelProviderContextElementWrapper wrapper;
+		
 		/**
 		 * 
 		 * Constructor.
@@ -230,6 +230,8 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		public ITreeItemWrappedObjectLabelProvider(ILabelProvider wrappedProvider, NatTable natTable) {
 			this.wrappedLabelprovider = wrappedProvider;
 			this.natTable = natTable;
+			wrapper = new LabelProviderContextElementWrapper();
+			wrapper.setConfigRegistry(natTable.getConfigRegistry());
 		}
 
 		/**
@@ -309,18 +311,19 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 					}
 				}
 			}
-			LabelProviderContextElementWrapper wrapper = new LabelProviderContextElementWrapper(axis, natTable.getConfigRegistry());
+			wrapper.setObject(axis);
 			final LabelProviderService serv = this.natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			ILabelProvider p = serv.getLabelProvider(wrapper);
 			p = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 			return p.getText(wrapper);
+			// return wrappedLabelprovider.getText(wrapper);
 		}
 	}
 
 	/**
 	 * 
 	 * @return
-	 * 		the initial selection to use in the wizard page
+	 *         the initial selection to use in the wizard page
 	 */
 	protected List<Object> createInitialSelection() {
 		Table table = this.manager.getTable();
@@ -401,14 +404,8 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		return null;
 	}
 
-	private String getLabelProviderContextForTreeFillingConfiguration(final Table table, final Object listenObject) {
-		String result = ""; //$NON-NLS-1$
-		if (listenObject instanceof EStructuralFeature) {
-			result = Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_FEATURE_CONFIGURATION_CONTEXT;
-		} else if (listenObject instanceof EOperation) {
-			result = Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_OPERATION_CONFIGURATION_CONTEXT;
-		}
-		return result;
+	private String getLabelProviderContextForTreeFillingConfiguration(Table table) {
+		return Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_FEATURE_CONFIGURATION_CONTEXT;
 	}
 
 
@@ -443,7 +440,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 								IAxis axis = IAxisFactory.createAxisForFeature(categoryItem.getElement(), representation, categoryItem.getAlias());
 								newConf.setAxisUsedAsAxisProvider(axis);
 								newConf.setLabelProvider(getLabelConfigurationForTreeFillingConfiguration(table));
-								newConf.setLabelProviderContext(getLabelProviderContextForTreeFillingConfiguration(table, categoryItem.getElement()));
+								newConf.setLabelProviderContext(getLabelProviderContextForTreeFillingConfiguration(table));
 							} else {
 
 								// update the alias if required
@@ -513,7 +510,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	 * @param table
 	 *            the table
 	 * @return
-	 * 		the axis manager representation for rows
+	 *         the axis manager representation for rows
 	 */
 	private static final List<AxisManagerRepresentation> getRowAxisManagerRepresentations(Table table) {
 		AbstractHeaderAxisConfiguration tmp = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);

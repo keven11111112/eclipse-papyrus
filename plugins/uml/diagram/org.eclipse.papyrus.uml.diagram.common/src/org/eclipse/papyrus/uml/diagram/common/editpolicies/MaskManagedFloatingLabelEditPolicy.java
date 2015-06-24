@@ -169,11 +169,8 @@ public class MaskManagedFloatingLabelEditPolicy extends AbstractMaskManagedEditP
 
 		Object hostView = host.getModel();
 		if (hostView instanceof View) {
-			Object parentView = ((View) hostView).eContainer();
-			if (parentView instanceof View) {
-				return (View) parentView;
-			}
-			return null;
+			// The mask have to be applied on the label and not on the parent
+			return (View) hostView;
 		}
 		return null;
 	}

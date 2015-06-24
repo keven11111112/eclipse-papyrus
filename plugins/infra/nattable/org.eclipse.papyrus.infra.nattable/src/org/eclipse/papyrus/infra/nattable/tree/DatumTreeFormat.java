@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.infra.nattable.tree;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
+import org.eclipse.nebula.widgets.nattable.tree.SortableTreeComparator;
 import org.eclipse.papyrus.infra.nattable.manager.axis.CompositeTreeAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
+import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 
 import ca.odell.glazedlists.TreeList;
 
@@ -31,12 +31,14 @@ import ca.odell.glazedlists.TreeList;
 public class DatumTreeFormat implements TreeList.Format<ITreeItemAxis> {
 
 	/**
+	 * the comparator to use to sort the tree
+	 */
+	private Comparator<ITreeItemAxis> comparator = null;
+	
+	/**
 	 * the axis manager providing comparator
 	 */
 	private CompositeTreeAxisManagerForEventList axisManager;
-
-	/** the comparator used to sort rows with the same sort than the model */
-	private Map<Integer, Comparator<ITreeItemAxis>> comparator = new HashMap<Integer, Comparator<ITreeItemAxis>>();
 
 	/**
 	 * the sort model to use
@@ -62,12 +64,7 @@ public class DatumTreeFormat implements TreeList.Format<ITreeItemAxis> {
 	 */
 	@Override
 	public void getPath(List<ITreeItemAxis> path, ITreeItemAxis element) {
-		path.add(element);
-		ITreeItemAxis parent = element.getParent();
-		while (parent != null) {
-			path.add(0, parent);
-			parent = parent.getParent();
-		}
+		TableHelper.getPath(path, element);
 	}
 
 	/**
@@ -103,8 +100,8 @@ public class DatumTreeFormat implements TreeList.Format<ITreeItemAxis> {
 		if (this.axisManager == null) {
 			return null;
 		}
-		if (!this.comparator.containsKey(Integer.valueOf(depth))) {
-			Comparator<ITreeItemAxis> comparator = new Comparator<ITreeItemAxis>() {
+		if (this.comparator == null) {
+			this.comparator = new SortableTreeComparator<ITreeItemAxis>(new Comparator<ITreeItemAxis>() {
 				/**
 				 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 				 *
@@ -116,9 +113,9 @@ public class DatumTreeFormat implements TreeList.Format<ITreeItemAxis> {
 				public int compare(ITreeItemAxis o1, ITreeItemAxis o2) {
 					return axisManager.compare(sortModel, depth, o1, o2);
 				}
-			};
-			this.comparator.put(Integer.valueOf(depth), comparator);
+
+			}, this.sortModel);
 		}
-		return this.comparator.get(Integer.valueOf(depth));
+		return this.comparator;
 	}
 }

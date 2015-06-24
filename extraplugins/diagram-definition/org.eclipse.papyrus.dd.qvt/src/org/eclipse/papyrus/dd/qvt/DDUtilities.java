@@ -32,7 +32,7 @@ public class DDUtilities {
 	}
 
 	public double getAngle(double x1, double y1, double x2, double y2) {
-		double a = Math.atan2(y2-y1, x2-x1);
+		double a = Math.atan2(y2 - y1, x2 - x1);
 		return a * 180 / Math.PI;
 	}
 
@@ -46,6 +46,10 @@ public class DDUtilities {
 
 	public double tan(double angle) {
 		return Math.tan(angle * Math.PI / 180);
+	}
+
+	public double atan2(double dy, double dx) {
+		return Math.atan2(dy, dx) * 180 / Math.PI;
 	}
 
 }

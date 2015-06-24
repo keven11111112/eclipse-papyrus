@@ -130,6 +130,8 @@ public class Messages extends NLS {
 	/** The Select diagram kind page_select_kind_group. */
 	public static String SelectDiagramKindPage_select_kind_group;
 
+	public static String SelectDiagramKindPage_Set_Root_Name_Error;
+
 	/** The Select root element page_select_root_element_desc. */
 	public static String SelectRootElementPage_select_root_element_desc;
 

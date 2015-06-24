@@ -99,7 +99,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	@Override
 	protected void addListeners() {
 		this.resourceSetListener = new UpdateTableContentListener(getTableManager(), this);
-		if (getTableEditingDomain() != null) {
+		if (null != getTableEditingDomain()) {
 			getTableEditingDomain().addResourceSetListener(this.resourceSetListener);
 		}
 	}
@@ -152,6 +152,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 */
 	@Override
 	public void dispose() {
+		removeListeners();
 		super.dispose();
 		for (final IAxisManager current : this.subManagers) {
 			current.dispose();
@@ -167,11 +168,9 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 */
 	@Override
 	protected void removeListeners() {
-		if (getTableEditingDomain() != null && resourceSetListener != null) {
+		if (null != getTableEditingDomain()) {
 			getTableEditingDomain().removeResourceSetListener(this.resourceSetListener);
-			this.resourceSetListener = null;
 		}
-		super.removeListeners();
 	}
 
 	/**
@@ -504,8 +503,28 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 *            an axis
 	 * @return
 	 * 		the axis manager managing this axis
+	 * 
+	 * @Deprecated since Eclipse Mars, use getSubAxisManagerFor instead
 	 */
+	@Deprecated
 	protected IAxisManager getAxisManager(final IAxis axis) {
+		final AxisManagerRepresentation rep = axis.getManager();
+		for (final IAxisManager man : this.subManagers) {
+			if (man.getAxisManagerRepresentation() == rep) {
+				return man;
+			}
+		}
+		return null;// must be impossible
+	}
+
+	/**
+	 *
+	 * @param axis
+	 *            an axis
+	 * @return
+	 * 		the axis manager managing this axis
+	 */
+	public IAxisManager getSubAxisManagerFor(final IAxis axis) {
 		final AxisManagerRepresentation rep = axis.getManager();
 		for (final IAxisManager man : this.subManagers) {
 			if (man.getAxisManagerRepresentation() == rep) {
@@ -528,7 +547,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if (element instanceof IAxis) {
-			return getAxisManager((IAxis) element).canDestroyAxis(axisPosition);
+			return getSubAxisManagerFor((IAxis) element).canDestroyAxis(axisPosition);
 		}
 		// not yet managed
 		return false;
@@ -546,7 +565,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if (element instanceof IAxis) {
-			return getAxisManager((IAxis) element).canDestroyAxisElement(axisPosition);
+			return getSubAxisManagerFor((IAxis) element).canDestroyAxisElement(axisPosition);
 		} else if (subManagers.size() == 1) {
 			return subManagers.get(0).canDestroyAxisElement(axisPosition);
 		}
@@ -568,7 +587,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if (element instanceof IAxis) {
-			return getAxisManager((IAxis) element).getDestroyAxisElementCommand(domain, axisPosition);
+			return getSubAxisManagerFor((IAxis) element).getDestroyAxisElementCommand(domain, axisPosition);
 		} else if (subManagers.size() == 1) {
 			return subManagers.get(0).getDestroyAxisElementCommand(domain, axisPosition);
 		}
@@ -620,6 +639,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 * @param comp
 	 */
 	@Override
+	// seem not used now
 	public void setAxisComparator(final Comparator<Object> comp) {
 		this.axisComparator = comp;
 		if (this.axisComparator != null) {
@@ -695,13 +715,17 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		return null;
 	}
 
+
 	/**
 	 *
 	 * @param axisManagerId
 	 *            an axis
 	 * @return
 	 * 		the axis manager managing it
+	 * 
+	 * @deprecated since Eclipse Mars, use getSubAxisManagerFor instead
 	 */
+	@Deprecated
 	protected IAxisManager findAxisManager(final IAxis axis) {
 		final String axisManagerId = axis.getManager().getAxisManagerId();
 		for (final IAxisManager currentManager : this.subManagers) {
@@ -712,6 +736,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		return null;
 	}
 
+
 	/**
 	 *
 	 * @param idAxis
@@ -721,7 +746,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 */
 	protected Object getResolvedPath(final IdAxis idAxis) {
 		final String path = idAxis.getElement();
-		final IAxisManager manager = findAxisManager(idAxis);
+		final IAxisManager manager = getSubAxisManagerFor(idAxis);
 		if (manager instanceof IIdAxisManager) {
 			final Object resolvedElement = ((IIdAxisManager) manager).resolvedPath(path);
 			if (resolvedElement != null) {
@@ -819,7 +844,6 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 			}
 		}
 		// must not be done here -> to many refresh are done
-		// getTableManager().refreshNatTable();
 	}
 
 	/**

@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class OpaqueBehaviorShapeImpl extends ClassShapeImpl implements OpaqueBehaviorShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OpaqueBehaviorShapeImpl() {
@@ -36,11 +38,11 @@ public class OpaqueBehaviorShapeImpl extends ClassShapeImpl implements OpaqueBeh
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.OPAQUE_BEHAVIOR_SHAPE;
 	}
-
 } //OpaqueBehaviorShapeImpl

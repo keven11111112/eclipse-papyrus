@@ -17,14 +17,15 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Diagram Element</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <!-- begin-model-doc -->
  * DiagramElement is the abstract super type of all elements in diagrams, including diagrams themselves. When contained in a diagram, diagram elements
- * are laid out relative to the diagram?s origin.
+ * are laid out relative to the diagram’s origin.
  * <!-- end-model-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.dd.di.DiagramElement#getModelElement <em>Model Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.DiagramElement#getOwningDiagramElement <em>Owning Diagram Element</em>}</li>
@@ -33,9 +34,9 @@ import org.eclipse.emf.ecore.EObject;
  * <li>{@link org.eclipse.papyrus.dd.di.DiagramElement#getSharedStyle <em>Shared Style</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.DiagramElement#getTargetEdge <em>Target Edge</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.DiagramElement#getSourceEdge <em>Source Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.di.DiagramElement#getDiagram <em>Diagram</em>}</li>
  * </ul>
- * </p>
- * 
+ *
  * @see org.eclipse.papyrus.dd.di.DIPackage#getDiagramElement()
  * @model abstract="true"
  * @generated
@@ -162,4 +163,43 @@ public interface DiagramElement extends EObject {
 	 * @generated
 	 */
 	EList<Edge> getSourceEdge();
+
+	/**
+	 * Returns the value of the '<em><b>Diagram</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Diagram</em>' reference isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Diagram</em>' reference.
+	 * @see #setDiagram(Diagram)
+	 * @see org.eclipse.papyrus.dd.di.DIPackage#getDiagramElement_Diagram()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	Diagram getDiagram();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.dd.di.DiagramElement#getDiagram <em>Diagram</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Diagram</em>' reference.
+	 * @see #getDiagram()
+	 * @generated
+	 */
+	void setDiagram(Diagram value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @model required="true" ordered="false"
+	 *        annotation=
+	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(Diagram) then \n\tself.oclAsType(Diagram)\nelse if self.owningDiagramElement->notEmpty() then\n\tself.owningDiagramElement.diagram\nelse\n\tnull\nendif endif'"
+	 * @generated
+	 */
+	Diagram diagram();
 } // DiagramElement

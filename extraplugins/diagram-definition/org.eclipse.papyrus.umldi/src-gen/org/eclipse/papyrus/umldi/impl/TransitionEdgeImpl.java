@@ -23,10 +23,12 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  *
  * @generated
  */
-public class TransitionEdgeImpl extends RelationshipWithGuardEdgeImpl implements TransitionEdge {
+public class TransitionEdgeImpl extends ElementEdgeImpl implements TransitionEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TransitionEdgeImpl() {
@@ -36,11 +38,11 @@ public class TransitionEdgeImpl extends RelationshipWithGuardEdgeImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.TRANSITION_EDGE;
 	}
-
 } //TransitionEdgeImpl

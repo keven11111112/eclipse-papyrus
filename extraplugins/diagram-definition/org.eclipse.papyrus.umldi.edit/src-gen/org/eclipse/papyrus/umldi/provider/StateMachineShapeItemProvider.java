@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -30,13 +29,16 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.StateMachineShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class StateMachineShapeItemProvider extends ClassShapeItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StateMachineShapeItemProvider(AdapterFactory adapterFactory) {
@@ -47,13 +49,13 @@ public class StateMachineShapeItemProvider extends ClassShapeItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -64,11 +66,12 @@ public class StateMachineShapeItemProvider extends ClassShapeItemProvider {
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UMLDIPackage.Literals.BASE_STATE_SHAPE__CONNECTION_POINT_SHAPE);
 			childrenFeatures.add(UMLDIPackage.Literals.BASE_STATE_SHAPE__REGION_COMPARTMENT);
@@ -79,13 +82,13 @@ public class StateMachineShapeItemProvider extends ClassShapeItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
@@ -93,6 +96,7 @@ public class StateMachineShapeItemProvider extends ClassShapeItemProvider {
 	 * This returns StateMachineShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,31 +108,31 @@ public class StateMachineShapeItemProvider extends ClassShapeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		StateMachineShape stateMachineShape = (StateMachineShape)object;
-		return getString("_UI_StateMachineShape_type") + " " + stateMachineShape.isUseClassifierNotation();
+		return getString("_UI_StateMachineShape_type") + " " + stateMachineShape.isShowStereotypeAttributes();
 	}
-	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(StateMachineShape.class)) {
-			case UMLDIPackage.STATE_MACHINE_SHAPE__CONNECTION_POINT_SHAPE:
-			case UMLDIPackage.STATE_MACHINE_SHAPE__REGION_COMPARTMENT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(StateMachineShape.class)) {
+		case UMLDIPackage.STATE_MACHINE_SHAPE__CONNECTION_POINT_SHAPE:
+		case UMLDIPackage.STATE_MACHINE_SHAPE__REGION_COMPARTMENT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -138,21 +142,13 @@ public class StateMachineShapeItemProvider extends ClassShapeItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.BASE_STATE_SHAPE__CONNECTION_POINT_SHAPE,
-				 UMLDIFactory.eINSTANCE.createPseudostateShape()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.BASE_STATE_SHAPE__REGION_COMPARTMENT,
-				 UMLDIFactory.eINSTANCE.createRegionCompartment()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.BASE_STATE_SHAPE__CONNECTION_POINT_SHAPE, UMLDIFactory.eINSTANCE.createPseudostateShape()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.BASE_STATE_SHAPE__REGION_COMPARTMENT, UMLDIFactory.eINSTANCE.createRegionCompartment()));
 	}
-
 }

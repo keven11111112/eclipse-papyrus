@@ -93,8 +93,8 @@ public class UseContextItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_UseContext_DiagramType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_UseContext_DiagramType_feature", "_UI_UseContext_type"),
+				 getString("_UI_UseContext_diagramType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UseContext_diagramType_feature", "_UI_UseContext_type"),
 				 ExpansionmodelPackage.Literals.USE_CONTEXT__DIAGRAM_TYPE,
 				 true,
 				 false,
@@ -241,7 +241,7 @@ public class UseContextItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ExpansionmodelPackage.Literals.USE_CONTEXT__GMFT_REPRESENTATIONS,
-				 ExpansionmodelFactory.eINSTANCE.createGMFT_Based_Representation()));
+				 ExpansionmodelFactory.eINSTANCE.createGMFT_BasedRepresentation()));
 	}
 
 	/**

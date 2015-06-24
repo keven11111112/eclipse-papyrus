@@ -20,10 +20,27 @@ transformation AlfCommon2UML(in alf : Alf, inout uml : UML);
 
 abstract mapping SyntaxElement::toUml() : Element;
 
+property libraryCache : Dict(String, ElementReference);
+
+helper SyntaxElement::libraryElement(path : String) : ElementReference {
+	var referent := libraryCache->get(path);
+	if referent = null then {
+		referent := self.resolveInLibrary(path)![true];
+		if referent <> null then {
+			libraryCache->put(path, referent);
+		} endif;
+	} endif;
+  return referent;
+}
+
+helper SyntaxElement::collectionFunctionsPackage() : ElementReference {
+	return self.libraryElement("CollectionFunctions");
+}
+
 helper SyntaxElement::libraryFunction(path : String) : Behavior {
-	var referent := self.resolveInLibrary(path)![isBehavior()];
+	var referent := self.libraryElement(path);
   return
-    if referent->isEmpty() then null
+    if referent = null then null
     else referent.toUml().oclAsType(Behavior)
     endif;
 }
@@ -64,12 +81,24 @@ helper SyntaxElement::functionSize() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Size");
 }
 
+helper SyntaxElement::functionIsEmpty() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::IsEmpty");
+}
+
 helper SyntaxElement::functionNotEmpty() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::NotEmpty");
 }
 
+helper SyntaxElement::functionCount() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Count");
+}
+
 helper SyntaxElement::functionAt() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::At");
+}
+
+helper SyntaxElement::functionIncluding() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Including");
 }
 
 helper SyntaxElement::functionPlus() : Behavior {
@@ -112,24 +141,52 @@ helper SyntaxElement::functionIntegerToBitString() : Behavior {
 	return self.libraryFunction("PrimitiveBehaviors::BitStringFunctions::ToBitString");
 }
 
+helper SyntaxElement::libraryType(name : String) : Type {
+	return self.libraryElement("PrimitiveTypes::" + name).toType();
+}
+
+helper SyntaxElement::typeBoolean() : Type {
+	return self.libraryType("Boolean");
+}
+
+helper SyntaxElement::typeNatural() : Type {
+	return self.libraryType("Natural");
+}
+
+helper SyntaxElement::typeInteger() : Type {
+	return self.libraryType("Integer");
+}
+
+helper SyntaxElement::typeString() : Type {
+	return self.libraryType("String");
+}
+
+helper SyntaxElement::typeUnlimitedNatural() : Type {
+	return self.libraryType("UnlimitedNatural");
+}
+
+helper SyntaxElement::typeBitString() : Type {
+	return self.libraryType("BitString");
+}
+
 helper SyntaxElement::literalBoolean(b : Boolean) : LiteralBoolean {
-	return new LiteralBoolean(b, self.booleanType().toType());
+	return new LiteralBoolean(b, self.typeBoolean());
 }
 
 helper SyntaxElement::literalNatural(n : Integer) : LiteralInteger {
-	return new LiteralInteger(n, self.naturalType().toType());
+	return new LiteralInteger(n, self.typeNatural());
 }
 
 helper SyntaxElement::literalInteger(i : Integer) : LiteralInteger {
-	return new LiteralInteger(i, self.naturalType().toType());
+	return new LiteralInteger(i, self.typeInteger());
 }
 
 helper SyntaxElement::literalString(s : String) : LiteralString {
-	return new LiteralString(s, self.stringType().toType());
+	return new LiteralString(s, self.typeString());
 }
 
 helper SyntaxElement::literalUnlimited() : LiteralUnlimitedNatural {
-	return new LiteralUnlimitedNatural(self.unlimitedNaturalType().toType());
+	return new LiteralUnlimitedNatural(self.typeUnlimitedNatural());
 }
 
 // Documented Elements
@@ -167,13 +224,13 @@ helper toType(reference : ElementReference) : Type {
 helper BoundElementReference::toUml() : Element {
   // TODO: Handle expansion of template bindings.
   return self.referent.toUml();
-  /*
-    if self.isTemplateBinding() then
-      self.templateBinding.toUml()
-    else
-      self.referent.toUml()
-    endif;
-  */
+}
+
+// Constructors
+
+constructor Comment::Comment(body_ : String, element : Element) {
+	body := body_;
+	annotatedElement := element;
 }
 
 // Activities
@@ -211,6 +268,12 @@ constructor ObjectFlow::ObjectFlow(owner : StructuredActivityNode, sourceNode : 
 }
 
 constructor ControlFlow::ControlFlow(sourceNode : ActivityNode, targetNode : ActivityNode) {
+	source := sourceNode;
+	target := targetNode;
+}
+
+constructor ControlFlow::ControlFlow(owner : Activity, sourceNode : ActivityNode, targetNode : ActivityNode) {
+	activity := owner;
 	source := sourceNode;
 	target := targetNode;
 }
@@ -258,6 +321,20 @@ constructor ForkNode::ForkNode(structuredNode : StructuredActivityNode, sourceNa
 	name := "Fork(" + sourceName + ")";
 }
 
+constructor JoinNode::JoinNode(sourceName : String) {
+	name := "Join(" + sourceName + ")";
+}
+
+constructor JoinNode::JoinNode(owner : Activity, sourceName : String) {
+	activity := owner;
+	name := "Join(" + sourceName + ")";
+}
+
+constructor JoinNode::JoinNode(structuredNode : StructuredActivityNode, sourceName : String) {
+	inStructuredNode := structuredNode;
+	name := "Join(" + sourceName + ")";
+}
+
 constructor MergeNode::MergeNode(sourceName : String) {
 	name := "Merge(" + sourceName + ")";
 }
@@ -295,8 +372,8 @@ constructor InputPin::InputPin(pinName : String, pinType: Type, pinLower : Integ
 	upper := pinUpper;
 }
 
-constructor InputPin::InputPin(structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
-	inStructuredNode := structuredNode;
+constructor InputPin::InputPin(inout structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	structuredNode.structuredNodeInput += result;
 	name := pinName;
 	type := pinType;
 	lower := pinLower;
@@ -328,8 +405,8 @@ constructor OutputPin::OutputPin(pinName : String, pinType: Type, pinLower : Int
 	upper := pinUpper;
 }
 
-constructor OutputPin::OutputPin(structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
-	inStructuredNode := structuredNode;
+constructor OutputPin::OutputPin(inout structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	structuredNode.structuredNodeOutput += result;
 	name := pinName;
 	type := pinType;
 	lower := pinLower;
@@ -697,6 +774,31 @@ constructor StructuredActivityNode::StructuredActivityNode(name_ : String) {
 	name := name_;
 }
 
+constructor StructuredActivityNode::StructuredActivityNode(owner : Activity, name_ : String) {
+	activity := owner;
+	name := name_;
+}
+
+constructor ConditionalNode::ConditionalNode(name_ : String, assured : Boolean, determinate : Boolean) {
+	name := name_;
+	isAssured := assured;
+	isDeterminate := determinate;
+}
+
+constructor Clause::Clause(
+	testNodes : Set(ExecutableNode), bodyNodes : Set(ExecutableNode), 
+	bodyOutputs : Set(OutputPin), predecessorClauses : Set(Clause)) {
+		test := testNodes;
+		body := bodyNodes;
+		bodyOutput := bodyOutputs;
+		predecessorClause := predecessorClauses;
+}
+
+constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean) {
+	name := name_;
+	isTestedFirst := testedFirst;
+}
+
 constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean, inputs : OrderedSet(InputPin)) {
 	name := name_;
 	isTestedFirst := testedFirst;
@@ -711,7 +813,7 @@ constructor LoopNode::LoopNode(name_ : String, testedFirst : Boolean, inputs : O
 
 constructor ExpansionRegion::ExpansionRegion(name_ : String, mode_ : ExpansionKind) {
 	name := name_;
-	mode := mode;
+	mode := mode_;
 }
 
 constructor ExpansionNode::ExpansionNode(sourceName : String, region : ExpansionRegion, isInput : Boolean) {
@@ -780,6 +882,17 @@ helper addToExpansionRegion(inout region : ExpansionRegion, nodes : Set(Activity
 		} endif;
 	};
 	return edges - region.edge;
+}
+
+helper createPassthruNode (sourceName : String, type : Type, lower : Integer, upper : Integer) : StructuredActivityNode {
+	var nodeName := 
+		if sourceName = null or sourceName.oclIsInvalid() then "Passthru" 
+		else "Passthru(" + sourceName + ")" endif;
+	var structuredNode := new StructuredActivityNode(nodeName);
+	var inputPin := new InputPin(structuredNode, nodeName + ".input", type, lower, upper);
+	var outputPin := new OutputPin(structuredNode, nodeName + ".output", type, lower, upper);
+	structuredNode.edge += new ObjectFlow(inputPin, outputPin);
+	return structuredNode;
 }
 
 // Other

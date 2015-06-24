@@ -27,9 +27,9 @@ import org.eclipse.papyrus.dd.dc.Point;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.RadialGradient#getCenter <em>Center</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.RadialGradient#getFocus <em>Focus</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.RadialGradient#getRadius <em>Radius</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.RadialGradient#getCenter <em>Center</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.RadialGradient#getFocus <em>Focus</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.RadialGradient#getRadius <em>Radius</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getRadialGradient()
@@ -56,7 +56,9 @@ public interface RadialGradient extends Gradient {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.RadialGradient#getCenter <em>Center</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Center</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Center</em>' containment reference.
 	 * @see #getCenter()
 	 * @generated
 	 */
@@ -79,7 +81,9 @@ public interface RadialGradient extends Gradient {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.RadialGradient#getFocus <em>Focus</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Focus</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Focus</em>' containment reference.
 	 * @see #getFocus()
 	 * @generated
 	 */

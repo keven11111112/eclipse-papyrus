@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Selection Label</b></em>'.
@@ -21,8 +20,8 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.SelectionLabel#getObjectFlowEdge <em>Object Flow Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.SelectionLabel#getObjectNodeShape <em>Object Node Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.SelectionLabel#getObjectFlowEdge <em>Object Flow Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.SelectionLabel#getObjectNodeShape <em>Object Node Shape</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getSelectionLabel()
@@ -30,6 +29,7 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface SelectionLabel extends UmlLabel {
+
 	/**
 	 * Returns the value of the '<em><b>Object Flow Edge</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ObjectFlowEdge#getSelectionLabel <em>Selection Label</em>}'.
@@ -37,14 +37,14 @@ public interface SelectionLabel extends UmlLabel {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Object Flow Edge</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Object Flow Edge</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Object Flow Edge</em>' container reference.
 	 * @see #setObjectFlowEdge(ObjectFlowEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getSelectionLabel_ObjectFlowEdge()
@@ -58,7 +58,9 @@ public interface SelectionLabel extends UmlLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.SelectionLabel#getObjectFlowEdge <em>Object Flow Edge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object Flow Edge</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Object Flow Edge</em>' container reference.
 	 * @see #getObjectFlowEdge()
 	 * @generated
 	 */
@@ -71,14 +73,14 @@ public interface SelectionLabel extends UmlLabel {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Object Node Shape</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Object Node Shape</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Object Node Shape</em>' container reference.
 	 * @see #setObjectNodeShape(ObjectNodeShape)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getSelectionLabel_ObjectNodeShape()
@@ -92,10 +94,11 @@ public interface SelectionLabel extends UmlLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.SelectionLabel#getObjectNodeShape <em>Object Node Shape</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object Node Shape</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Object Node Shape</em>' container reference.
 	 * @see #getObjectNodeShape()
 	 * @generated
 	 */
 	void setObjectNodeShape(ObjectNodeShape value);
-
 } // SelectionLabel

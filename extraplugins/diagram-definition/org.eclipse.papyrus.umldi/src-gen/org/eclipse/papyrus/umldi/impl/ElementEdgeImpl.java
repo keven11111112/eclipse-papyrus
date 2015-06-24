@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.umldi.ElementEdge;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 
@@ -24,9 +23,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public abstract class ElementEdgeImpl extends UmlEdgeImpl implements ElementEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ElementEdgeImpl() {
@@ -36,11 +37,11 @@ public abstract class ElementEdgeImpl extends UmlEdgeImpl implements ElementEdge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ELEMENT_EDGE;
 	}
-
 } //ElementEdgeImpl

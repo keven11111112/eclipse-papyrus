@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.cell;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -73,7 +76,7 @@ public final class CellManagerFactory {
 			final Integer order = new Integer(iConfigurationElement.getAttribute(ORDER));
 			try {
 				final ICellManager solver = (ICellManager) iConfigurationElement.createExecutableExtension(CLASS_MANAGER);
-				this.managersMap.put(order, solver);
+				this.managersMap.put(order, new StringResolutionProblemWrapperCellManager(solver));
 			} catch (final CoreException e) {
 				Activator.log.error(e);
 			}
@@ -94,6 +97,25 @@ public final class CellManagerFactory {
 		final ICellManager cellManager = getCellManager(columnElement, rowElement);
 		if (cellManager != null) {
 			return cellManager.getValue(columnElement, rowElement, tableManager);
+		} else {
+			return CELL_MANAGER_NOT_FOUND;
+		}
+	}
+	
+	/**
+	 *
+	 * @param columnElement
+	 *            the column element as described in the model (you must ignore the invert axis)
+	 *
+	 * @param rowElement
+	 *            the row element as described in the model (you must ignore the invert axis)
+	 * @return
+	 *         the value to display in the cell
+	 */
+	public Object getCrossValueIgnoringProblems(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		if (cellManager != null) {
+			return ((StringResolutionProblemWrapperCellManager)cellManager).getValueIgnoringCellProblem(columnElement, rowElement, tableManager);
 		} else {
 			return CELL_MANAGER_NOT_FOUND;
 		}
@@ -271,7 +293,7 @@ public final class CellManagerFactory {
 	 * @param tableManager
 	 *            the table manager
 	 * @return
-	 *         the command to use to do the set value
+	 *         the command to use to do the set value. It is used by the DnD from the ModelExplorer
 	 */
 	public Command getSetCellValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
 		final ICellManager cellManager = getCellManager(columnElement, rowElement);
@@ -279,5 +301,29 @@ public final class CellManagerFactory {
 			return cellManager.getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 *
+	 * @param columnElement
+	 *            a column element
+	 * @param rowElement
+	 *            a row element
+	 * @param tableManager
+	 *            the table manager
+	 * @return
+	 *         a collection of all values for the intersection of the columnElement and the row element.
+	 */
+	public final Collection<?> getCrossValueAsCollection(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		Object value = CellManagerFactory.INSTANCE.getCrossValue(columnElement, rowElement, tableManager);
+		Collection<?> collection = Collections.emptyList();
+		if (value instanceof Collection<?>) {
+			collection = (Collection<?>) value;
+		}else if (value instanceof Object[]) {
+			collection = Arrays.asList(value);
+		}else if (null != value) {
+			collection = Collections.singletonList(value);
+		}
+		return collection;
 	}
 }

@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ConnectorEdge#getEndMultiplicityLabel <em>End Multiplicity Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ConnectorEdge#getEndMultiplicityLabel <em>End Multiplicity Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConnectorEdge()
@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ConnectorEdge extends ElementEdge {
+
 	/**
 	 * Returns the value of the '<em><b>End Multiplicity Label</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.MultiplicityLabel}.
@@ -38,20 +39,20 @@ public interface ConnectorEdge extends ElementEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>End Multiplicity Label</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>End Multiplicity Label</em>' containment reference list isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>End Multiplicity Label</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConnectorEdge_EndMultiplicityLabel()
 	 * @see org.eclipse.papyrus.umldi.MultiplicityLabel#getConnectorEdge
-	 * @model opposite="connectorEdge" containment="true" upper="2" ordered="false"
+	 * @model opposite="connectorEdge" containment="true" upper="2"
 	 * @generated
 	 */
 	EList<MultiplicityLabel> getEndMultiplicityLabel();
-
 } // ConnectorEdge

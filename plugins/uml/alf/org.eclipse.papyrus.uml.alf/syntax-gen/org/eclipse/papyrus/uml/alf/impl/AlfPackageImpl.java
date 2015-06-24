@@ -2397,6 +2397,15 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getElementReference__ConstructorReference() {
+        return getElementReference().getEOperations().get(103);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInternalElementReference() {
 		if (internalElementReferenceEClass == null) {
 			internalElementReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(3);
@@ -9351,7 +9360,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__Upper() {
+	public EOperation getSequenceConstructionExpression__ConstructorReference() {
         return getSequenceConstructionExpression().getEOperations().get(2);
 	}
 
@@ -9360,7 +9369,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__Lower() {
+	public EOperation getSequenceConstructionExpression__Upper() {
         return getSequenceConstructionExpression().getEOperations().get(3);
 	}
 
@@ -9369,7 +9378,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionTypeDerivation__DiagnosticChain_Map() {
+	public EOperation getSequenceConstructionExpression__Lower() {
         return getSequenceConstructionExpression().getEOperations().get(4);
 	}
 
@@ -9378,7 +9387,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionUpperDerivation__DiagnosticChain_Map() {
+	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionTypeDerivation__DiagnosticChain_Map() {
         return getSequenceConstructionExpression().getEOperations().get(5);
 	}
 
@@ -9387,7 +9396,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionLowerDerivation__DiagnosticChain_Map() {
+	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionUpperDerivation__DiagnosticChain_Map() {
         return getSequenceConstructionExpression().getEOperations().get(6);
 	}
 
@@ -9396,7 +9405,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionType__DiagnosticChain_Map() {
+	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionLowerDerivation__DiagnosticChain_Map() {
         return getSequenceConstructionExpression().getEOperations().get(7);
 	}
 
@@ -9405,7 +9414,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionElementType__DiagnosticChain_Map() {
+	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionType__DiagnosticChain_Map() {
         return getSequenceConstructionExpression().getEOperations().get(8);
 	}
 
@@ -9414,7 +9423,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionAssignmentsBefore__DiagnosticChain_Map() {
+	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionElementType__DiagnosticChain_Map() {
         return getSequenceConstructionExpression().getEOperations().get(9);
 	}
 
@@ -9423,8 +9432,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceConstructionExpression__UpdateAssignments() {
+	public EOperation getSequenceConstructionExpression__SequenceConstructionExpressionAssignmentsBefore__DiagnosticChain_Map() {
         return getSequenceConstructionExpression().getEOperations().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getSequenceConstructionExpression__UpdateAssignments() {
+        return getSequenceConstructionExpression().getEOperations().get(11);
 	}
 
 	/**

@@ -44,7 +44,7 @@ mapping UML::AcceptEventAction::shapeToGraphicalElement(shape : UMLDI::UmlShape)
 mapping UML::Activity::shapeToSpecialNotation(shape : UMLDI::UmlShape) : DG::GraphicalElement {
 	init {
 		if shape.owningUmlDiagramElement.oclIsKindOf(ActivityDiagram) then
-			result := self.shapeToFrame(shape)
+			result := shapeToFrame(shape)
 		else
 			result := object DG::Rectangle {
 				bounds := shape.bounds.clone().oclAsType(DC::Bounds);
@@ -62,7 +62,7 @@ mapping UML::ActivityFinalNode::shapeToGraphicalElement(shape : UMLDI::UmlShape)
 
 mapping UML::ActivityPartition::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
 	init {
-		if self.isDimension and shape.oclAsType(UMLDI::ActivityPartitionShape).subPartitionCompartment->notEmpty() then
+		if self.isDimension and shape.oclAsType(UMLDI::ActivityPartitionShape).subpartitionCompartment->notEmpty() then
 			result := object DG::Group {}
 		else
 			result := rectangle(shape)
@@ -169,7 +169,7 @@ mapping UML::Classifier::shapeToSpecialNotation(shape : UMLDI::UmlShape) : DG::G
 	}
 }
 
-helper UML::Classifier::shapeToFrame(shape : UMLDI::UmlShape) : DG::Group {
+helper shapeToFrame(shape : UMLDI::UmlShape) : DG::Group {
 	var b := shape.bounds; 
 	return object DG::Group {
 		member += object DG::Rectangle { 
@@ -187,9 +187,35 @@ helper UML::Classifier::shapeToFrame(shape : UMLDI::UmlShape) : DG::Group {
 	};
 }
 
+mapping UML::CombinedFragment::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		var b := shape.bounds;
+		if self.interactionOperator = UML::InteractionOperatorKind::par and
+			shape.owningUmlDiagramElement.umlModelElement.oclIsKindOf(UML::Lifeline) then
+			result := object DG::Group {
+				member += object DG::Polyline {
+					point += object DC::Point { x:=b.x; y:=b.y+10; };
+					point += object DC::Point { x:=b.x; y:=b.y; };
+					point += object DC::Point { x:=b.x+b.width; y:=b.y; };
+					point += object DC::Point { x:=b.x+b.width; y:=b.y+10; };
+				};
+				member += object DG::Polyline {
+					point += object DC::Point { x:=b.x; y:=b.y+b.height-10; };
+					point += object DC::Point { x:=b.x; y:=b.y+b.height; };
+					point += object DC::Point { x:=b.x+b.width; y:=b.y+b.height; };
+					point += object DC::Point { x:=b.x+b.width; y:=b.y+b.height-10; };
+				};
+			}
+		else
+			result := shapeToFrame(shape)
+		endif;
+		result.style := object DG::Style { fill := null };
+	}
+}
+
 mapping UML::Comment::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
 	init {
-		result := createNoteShape(shape.bounds);
+		result := createNoteShape(shape);
 	}
 }
 
@@ -205,21 +231,18 @@ mapping UML::ConnectionPointReference::shapeToGraphicalElement(shape : UMLDI::Um
 
 mapping UML::Constraint::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
 	init {
-		result := createNoteShape(shape.bounds);
+		result := createNoteShape(shape);
 	}
 }
 
-helper createNoteShape(b : DC::Bounds) : DG::Path {
-	return object DG::Path {
-		command += object DG::MoveTo { point := object DC::Point { x := b.x; y := b.y; } };
-		command += object DG::LineTo { point := object DC::Point { x := b.x+b.width-10; y := b.y; } };
-		command += object DG::LineTo { point := object DC::Point { x := b.x+b.width; y := b.y+10; } };
-		command += object DG::LineTo { point := object DC::Point { x := b.x+b.width; y := b.y+b.height; } };
-		command += object DG::LineTo { point := object DC::Point { x := b.x; y := b.y+b.height; } };
-		command += object DG::LineTo { point := object DC::Point { x := b.x; y := b.y; } };
-		command += object DG::MoveTo { point := object DC::Point { x := b.x+b.width-10; y := b.y; } };
-		command += object DG::LineTo { point := object DC::Point { x := b.x+b.width-10; y := b.y+10; } };
-		command += object DG::LineTo { point := object DC::Point { x := b.x+b.width; y := b.y+10; } };
+mapping UML::Continuation::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		var b := shape.bounds;
+		result := object DG::Rectangle {
+			bounds := shape.bounds.clone().oclAsType(DC::Bounds);
+			cornerRadius := b.height/2;
+			style := object DG::Style { fill:=null; };
+		}
 	}
 }
 
@@ -237,6 +260,63 @@ mapping UML::Dependency::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::
 			radius := min(b.width, b.height);
 			_class := 'filled';
 		}
+	}
+}
+
+mapping UML::DestructionOccurrenceSpecification::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		var b := shape.bounds;
+		result := object DG::Group {
+			member += object DG::Line {
+				start := object DC::Point { x:=b.x; y:=b.y };
+				_end := object DC::Point { x:=b.x+b.width; y:=b.y+b.height };
+			};
+			member += object DG::Line {
+				start := object DC::Point { x:=b.x; y:=b.y+b.height };
+				_end := object DC::Point { x:=b.x+b.width; y:=b.y };
+			};
+		}
+	}
+}
+
+mapping UML::DurationConstraint::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		var b := shape.bounds;
+		if shape.diagram.oclIsKindOf(UMLDI::TimingDiagram) then
+			result := object DG::Group {
+				member += object DG::Line {
+					start := object DC::Point{ x:=b.x; y:=b.y; };
+					_end := object DC::Point{ x:=b.x; y:=b.y+b.height; };
+				};
+				member += object DG::Line {
+					start := object DC::Point{ x:=b.x+b.width; y:=b.y; };
+					_end := object DC::Point{ x:=b.x+b.width; y:=b.y+b.height; };
+				};
+				member += object DG::Line {
+					start := object DC::Point{ x:=b.x; y:=b.y+b.height/2; };
+					_end := object DC::Point{ x:=b.x+b.width; y:=b.y+b.height/2; };
+					startMarker := shape.resolveDefinitions().getMarker("startOpenArrow");		
+					endMarker := shape.resolveDefinitions().getMarker("endOpenArrow");		
+				};
+			}
+		else
+			result := object DG::Group {
+				member += object DG::Line {
+					start := object DC::Point{ x:=b.x; y:=b.y; };
+					_end := object DC::Point{ x:=b.x+b.width; y:=b.y; };
+				};
+				member += object DG::Line {
+					start := object DC::Point{ x:=b.x; y:=b.y+b.height; };
+					_end := object DC::Point{ x:=b.x+b.width; y:=b.y+b.height; };
+				};
+				member += object DG::Line {
+					start := object DC::Point{ x:=b.x+b.width/2; y:=b.y; };
+					_end := object DC::Point{ x:=b.x+b.width/2; y:=b.y+b.height; };
+					startMarker := shape.resolveDefinitions().getMarker("startOpenArrow");		
+					endMarker := shape.resolveDefinitions().getMarker("endOpenArrow");		
+				};
+			}
+		endif;
 	}
 }
 
@@ -356,7 +436,60 @@ mapping UML::InputPin::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::Gr
 
 mapping UML::Interaction::shapeToSpecialNotation(shape : UMLDI::UmlShape) : DG::GraphicalElement {
 	init {
-		result := self.shapeToFrame(shape);
+		if shape.diagram.oclIsKindOf(UMLDI::TimingDiagram) then {
+			result := object DG::Group {
+				member += shapeToFrame(shape);
+				member += self.shapeToFrameRuler(shape);
+			}
+		} else {
+			result := shapeToFrame(shape)
+		} endif;
+	}
+}
+
+helper UML::Interaction::shapeToFrameRuler(shape : UMLDI::UmlShape) : DG::Group {
+	var x1 : Real := shape.oclAsType(UMLDI::InteractionShape).subfragmentCompartment.topUmlDiagramElement[UMLDI::LifelineShape]->
+		select(subfragmentShape->notEmpty())->first().subfragmentShape->at(1).bounds.x;		
+	var x2 := shape.bounds.x + shape.bounds.width;
+	var y2 := shape.bounds.y + shape.bounds.height;
+	var n := 10;
+	var j := (x2-x1)/n; 
+	return object DG::Group {
+		member += List{0..n-1}->collect(i|
+			object DG::Group {
+				member += object DG::Line {
+					start := object DC::Point { x:=x1+i*j; y:=y2-5 };
+					_end := object DC::Point { x:=x1+i*j; y:=y2+5 };
+				};
+				member += object DG::Text {
+					data := (i+1).toString();
+					bounds := object DC::Bounds { x:= x1+i*j; y:=y2+10; };
+					anchor := DG::TextAnchor::middle;
+				}
+			}
+		);
+		style := object DG::Style { fontSize := 11; }
+	};
+}
+
+mapping UML::InteractionOperand::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		var b := shape.bounds;
+		if self.container().oclAsType(UML::CombinedFragment).operand->indexOf(self) > 1 then
+			result := object DG::Line {
+				start := object DC::Point { x := b.x; y := b.y; };
+				_end := object DC::Point { x := b.x + b.width; y := b.y; };
+				_class := "dashed";
+			}
+		else
+			result := object DG::Group {}
+		endif;
+	}
+}
+
+mapping UML::InteractionUse::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		result := shapeToFrame(shape);
 	}
 }
 
@@ -418,6 +551,30 @@ mapping UML::JoinNode::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::Gr
 	}
 }
 
+mapping UML::Lifeline::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		var diagram = shape.diagram;
+		if diagram.oclIsKindOf(UMLDI::SequenceDiagram) then {
+			var sb = shape.bounds;
+			var lb = shape.mainLabel.bounds;
+			result := object DG::Group {
+				member += object DG::Rectangle {
+					bounds := object Bounds { x:=sb.x; y:=sb.y; width:=sb.width; height:=lb.height+2*(lb.y-sb.y) } 
+				};
+				if shape.oclAsType(UMLDI::LifelineShape).nestedLifelineShape->isEmpty() then
+					member += object DG::Line {
+						start := object DC::Point { x:=sb.x+sb.width/2; y:=sb.y+lb.height+2*(lb.y-sb.y) };
+						_end := object DC::Point { x:=sb.x+sb.width/2; y:=sb.y+sb.height };
+						_class := "dashed";
+					}
+				endif;
+			}
+		} else {
+			result := rectangle(shape);
+		} endif;
+	}
+}
+
 mapping UML::MergeNode::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
 	init {
 		result := diamond(shape);
@@ -430,12 +587,15 @@ mapping UML::Model::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::Graph
 		var nb := shape.mainLabel.bounds;
 		var dx := nb.x-b.x;
 		var dy := nb.y-b.y;
+		var compartment := shape.ownedUmlDiagramElement[UMLDI::UmlCompartment]->reject(
+			oclIsKindOf(UMLDI::TemplateParameterCompartment))->sortedBy(bounds.y)->first();
+		var cy := if compartment->notEmpty() then compartment.bounds.y else nb.y+nb.height+dy endif;
 		result := object DG::Group {
 			member += object DG::Rectangle { 
-				bounds := object DC::Bounds { x:=b.x; y:=b.y; width:=nb.width+2*dx+15; height:=nb.height+dy+1 };
+				bounds := object DC::Bounds { x:=b.x; y:=cy; width:=b.width; height:=b.height-cy+b.y };
 			};
 			member += object DG::Rectangle { 
-				bounds := object DC::Bounds { x:=b.x; y:=b.y+nb.height+dy+1; width:=b.width; height:=b.height-nb.height-dy };
+				bounds := object DC::Bounds { x:=b.x; y:=b.y; width:=min(nb.width+2*dx+16, b.width); height:=cy-b.y };
 			};
 			member += object DG::Path {
 				command += object DG::MoveTo { point := object DC::Point { x := nb.x+nb.width+dx+5; y := b.y+5; } };
@@ -499,6 +659,12 @@ mapping UML::ObjectNode::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::
 	} 
 }
 
+mapping UML::Observation::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		result := object DG::Group {}
+	}
+}
+
 mapping UML::OutputPin::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
 	init {
 		if shape.sourceEdge->isEmpty() then {
@@ -538,35 +704,17 @@ mapping UML::Package::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::Gra
 		var nb := shape.mainLabel.bounds;
 		var dx := nb.x-b.x;
 		var dy := nb.y-b.y;
+		var compartment := shape.ownedUmlDiagramElement[UMLDI::UmlCompartment]->reject(
+			oclIsKindOf(UMLDI::TemplateParameterCompartment))->sortedBy(bounds.y)->first();
+		var cy := if compartment->notEmpty() then compartment.bounds.y else nb.y+nb.height+dy endif;
 		result := object DG::Group {
 			member += object DG::Rectangle { 
-				bounds := object DC::Bounds { x:=b.x; y:=b.y; width:=nb.width+2*dx; height:=nb.height+dy+1 };
+				bounds := object DC::Bounds { x:=b.x; y:=cy; width:=b.width; height:=b.height-cy+b.y };
 			};
 			member += object DG::Rectangle { 
-				bounds := object DC::Bounds { x:=b.x; y:=b.y+nb.height+dy+1; width:=b.width; height:=b.height-nb.height-dy };
+				bounds := object DC::Bounds { x:=b.x; y:=b.y; width:=nb.width+2*dx+1; height:=cy-b.y };
 			};
 		};
-	}
-}
-
-mapping UML::Profile::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
-	init {
-		if shape.mainLabel->notEmpty() then {
-			var b := shape.bounds;
-			var nb := shape.mainLabel.bounds;
-			var dx := nb.x-b.x;
-			var dy := nb.y-b.y;
-			result := object DG::Group {
-				member += object DG::Rectangle { 
-					bounds := object DC::Bounds { x:=b.x; y:=b.y; width:=nb.width+2*dx; height:=nb.height+dy+1 };
-				};
-				member += object DG::Rectangle { 
-					bounds := object DC::Bounds { x:=b.x; y:=b.y+nb.height+dy+1; width:=b.width; height:=b.height-nb.height-dy };
-				};
-			};
-		} else {
-			result := rectangle(shape);
-		} endif;
 	}
 }
 
@@ -822,9 +970,69 @@ mapping UML::State::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::Graph
 	}
 }
 
+mapping UML::StateInvariant::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		var b := shape.bounds;
+		if shape.diagram.oclIsKindOf(SequenceDiagram) then
+			if shape.oclAsType(UMLDI::StateInvariantShape).useStateShape then {
+				result := object DG::Rectangle {
+					bounds := shape.bounds.clone().oclAsType(DC::Bounds);
+					cornerRadius := b.height/2;
+				}
+			} else {
+				result := rectangle(shape);
+				result.style := object DG::Style { stroke:=null };		
+			} endif
+		else if shape.diagram.oclIsKindOf(TimingDiagram) then {
+			// find an adjacent State Invariant if any
+			var lifeline := self.covered->any(true);
+			var fragments := self.enclosingInteraction.fragment;
+			var indexOfSI := fragments->indexOf(self);
+			var nextSI := fragments->subOrderedSet(indexOfSI+1, fragments->size())->any(
+				oclIsTypeOf(UML::StateInvariant) and covered->includes(lifeline)).oclAsType(UML::StateInvariant);
+			var hasADestructionEvent := lifeline.coveredBy->exists(oclIsTypeOf(UML::DestructionOccurrenceSpecification));
+				
+			if shape.oclAsType(UMLDI::StateInvariantShape).useStateShape then {
+				result := object DG::Polygon {
+					point += object DC::Point { x:=b.x+10; y:=b.y; };
+					point += object DC::Point { x:=b.x; y:=b.y+b.height/2; };
+					point += object DC::Point { x:=b.x+10; y:=b.y+b.height; };
+					if not hasADestructionEvent and nextSI = null then {
+						point += object DC::Point { x:=b.x+b.width; y:=b.y+b.height; };
+						point += object DC::Point { x:=b.x+b.width; y:=b.y; };
+					} else {
+						point += object DC::Point { x:=b.x+b.width-10; y:=b.y+b.height; };
+						point += object DC::Point { x:=b.x+b.width; y:=b.y+b.height/2; };
+						point += object DC::Point { x:=b.x+b.width-10; y:=b.y; };
+					}endif;
+				}
+			} else {
+				var group := object DG::Group {
+					member += object DG::Line {
+						start := object DC::Point { x:=b.x; y:=b.y+b.height/2; };
+						_end := object DC::Point { x:=b.x+b.width; y:=b.y+b.height/2; };
+					};
+				};
+				if nextSI->notEmpty() then {
+					var nextSIShape := shape.owningUmlDiagramElement.ownedUmlDiagramElement->any(s|
+						s.umlModelElement.oclAsType(UML::Element) = nextSI).oclAsType(DI::Shape);
+					if nextSIShape->notEmpty() then {
+						var nb := nextSIShape.bounds;
+						group.member += object DG::Line {
+							start := object DC::Point { x:=b.x+b.width; y:=b.y+b.height/2; };
+							_end := object DC::Point { x:=b.x+b.width; y:=nb.y+nb.height/2; };
+						};
+					} endif;
+				} endif;
+				result := group;
+			} endif
+		} endif endif;
+	}
+}
+
 mapping UML::StateMachine::shapeToSpecialNotation(shape : UMLDI::UmlShape) : DG::GraphicalElement {
 	init {
-		result := self.shapeToFrame(shape);
+		result := shapeToFrame(shape);
 	}
 }
 
@@ -835,6 +1043,12 @@ mapping UML::StructuredActivityNode::shapeToGraphicalElement(shape : UMLDI::UmlS
 			cornerRadius := 10;
 			_class := "dashed";
 		}
+	}
+}
+
+mapping UML::TimeConstraint::shapeToGraphicalElement(shape : UMLDI::UmlShape) : DG::GraphicalElement {
+	init {
+		result := object DG::Group {}
 	}
 }
 

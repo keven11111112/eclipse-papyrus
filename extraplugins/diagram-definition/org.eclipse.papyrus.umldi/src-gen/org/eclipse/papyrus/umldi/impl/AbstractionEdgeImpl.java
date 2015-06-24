@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class AbstractionEdgeImpl extends DependencyEdgeImpl implements AbstractionEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AbstractionEdgeImpl() {
@@ -36,11 +38,11 @@ public class AbstractionEdgeImpl extends DependencyEdgeImpl implements Abstracti
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ABSTRACTION_EDGE;
 	}
-
 } //AbstractionEdgeImpl

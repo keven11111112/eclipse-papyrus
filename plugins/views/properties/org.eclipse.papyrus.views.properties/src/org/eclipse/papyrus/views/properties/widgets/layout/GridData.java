@@ -360,7 +360,7 @@ public final class GridData {
 
 	protected int defaultWhint, defaultHhint, defaultWidth = -1, defaultHeight = -1;
 
-	protected int currentWhint, currentHhint, currentWidth = -1, currentHeight = -1;
+	public int currentWhint, currentHhint, currentWidth = -1, currentHeight = -1;
 
 	/**
 	 * Constructs a new instance of GridData using
@@ -610,49 +610,38 @@ public final class GridData {
 		}
 		String string = getName() + " {"; //$NON-NLS-1$
 		string += "horizontalAlignment=" + hAlign + " "; //$NON-NLS-1$ //$NON-NLS-2$
-		if (horizontalIndent != 0)
-		{
+		if (horizontalIndent != 0) {
 			string += "horizontalIndent=" + horizontalIndent + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (horizontalSpan != 1)
-		{
+		if (horizontalSpan != 1) {
 			string += "horizontalSpan=" + horizontalSpan + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (grabExcessHorizontalSpace)
-		{
+		if (grabExcessHorizontalSpace) {
 			string += "grabExcessHorizontalSpace=" + grabExcessHorizontalSpace + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (widthHint != SWT.DEFAULT)
-		{
+		if (widthHint != SWT.DEFAULT) {
 			string += "widthHint=" + widthHint + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (minimumWidth != 0)
-		{
+		if (minimumWidth != 0) {
 			string += "minimumWidth=" + minimumWidth + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		string += "verticalAlignment=" + vAlign + " "; //$NON-NLS-1$ //$NON-NLS-2$
-		if (verticalIndent != 0)
-		{
+		if (verticalIndent != 0) {
 			string += "verticalIndent=" + verticalIndent + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (verticalSpan != 1)
-		{
+		if (verticalSpan != 1) {
 			string += "verticalSpan=" + verticalSpan + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (grabExcessVerticalSpace)
-		{
+		if (grabExcessVerticalSpace) {
 			string += "grabExcessVerticalSpace=" + grabExcessVerticalSpace + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (heightHint != SWT.DEFAULT)
-		{
+		if (heightHint != SWT.DEFAULT) {
 			string += "heightHint=" + heightHint + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (minimumHeight != 0)
-		{
+		if (minimumHeight != 0) {
 			string += "minimumHeight=" + minimumHeight + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (exclude)
-		{
+		if (exclude) {
 			string += "exclude=" + exclude + " "; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		string = string.trim();

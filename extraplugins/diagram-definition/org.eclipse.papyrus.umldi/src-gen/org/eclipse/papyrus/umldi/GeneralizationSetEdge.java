@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Generalization Set Edge</b></em>'.
@@ -21,8 +20,8 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.GeneralizationSetEdge#getPowerLabel <em>Power Label</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.GeneralizationSetEdge#getConstraintLabel <em>Constraint Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.GeneralizationSetEdge#getPowerLabel <em>Power Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.GeneralizationSetEdge#getConstraintLabel <em>Constraint Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getGeneralizationSetEdge()
@@ -30,21 +29,23 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface GeneralizationSetEdge extends ElementEdge {
+
 	/**
 	 * Returns the value of the '<em><b>Power Label</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.PowerLabel#getGeneralizationSetEdge <em>Generalization Set Edge</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.PowerLabel#getGeneralizationSetEdge <em>Generalization Set Edge</em>}
+	 * '.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Power Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Power Label</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Power Label</em>' containment reference.
 	 * @see #setPowerLabel(PowerLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getGeneralizationSetEdge_PowerLabel()
@@ -58,7 +59,9 @@ public interface GeneralizationSetEdge extends ElementEdge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.GeneralizationSetEdge#getPowerLabel <em>Power Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Power Label</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Power Label</em>' containment reference.
 	 * @see #getPowerLabel()
 	 * @generated
 	 */
@@ -66,19 +69,20 @@ public interface GeneralizationSetEdge extends ElementEdge {
 
 	/**
 	 * Returns the value of the '<em><b>Constraint Label</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getGeneralizationSetEdge <em>Generalization Set Edge</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getGeneralizationSetEdge
+	 * <em>Generalization Set Edge</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Constraint Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Constraint Label</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Constraint Label</em>' containment reference.
 	 * @see #setConstraintLabel(ConstraintLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getGeneralizationSetEdge_ConstraintLabel()
@@ -89,13 +93,15 @@ public interface GeneralizationSetEdge extends ElementEdge {
 	ConstraintLabel getConstraintLabel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.GeneralizationSetEdge#getConstraintLabel <em>Constraint Label</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.GeneralizationSetEdge#getConstraintLabel <em>Constraint Label</em>}' containment
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint Label</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Constraint Label</em>' containment reference.
 	 * @see #getConstraintLabel()
 	 * @generated
 	 */
 	void setConstraintLabel(ConstraintLabel value);
-
 } // GeneralizationSetEdge

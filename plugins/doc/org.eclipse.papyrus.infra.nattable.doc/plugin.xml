@@ -8,6 +8,10 @@
             primary="false">
       </toc>
       <toc
+            file="target/site/generated-eclipse-help/tableUserDoc-toc.xml"
+            primary="false">
+      </toc>
+      <toc
             file="target/site/generated-eclipse-help/tablemetamodeldocumentation-toc.xml"
             primary="false">
       </toc>

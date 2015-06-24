@@ -128,6 +128,10 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 			break;
 		case Notification.UNSET:
 			break;
+		// case Notification.NO_FEATURE_ID:
+		// break;
+		// case Notification.NO_INDEX:
+		// break;
 		default:
 			break;
 		}
@@ -501,12 +505,11 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	public void moveAxis(Object elementToMove, int newIndex) {
 		if (!isDynamic() && elementToMove instanceof IAxis) {
 			TransactionalEditingDomain domain = getTableEditingDomain();
-			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
-			if(null != domain){
-				domain.getCommandStack().execute(command);
-			}else{
-				command.execute();
+			if (domain == null) {
+				return;
 			}
+			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
+			domain.getCommandStack().execute(command);
 		}
 	}
 
@@ -564,7 +567,10 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 *            an axis
 	 * @return
 	 * 		the axis manager managing this axis
+	 *
+	 * 		@deprecated, use getSubAxisManagerFor
 	 */
+	@Deprecated
 	protected IAxisManager getAxisManager(final IAxis axis) {
 		final AxisManagerRepresentation rep = axis.getManager();
 		for (final IAxisManager man : this.subManagers) {
@@ -575,6 +581,23 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		return null;// must be impossible
 	}
 
+	/**
+	 *
+	 * @param axis
+	 *            an axis
+	 * @return
+	 * 		the axis manager managing this axis
+	 */
+	@Override
+	public IAxisManager getSubAxisManagerFor(final IAxis axis) {
+		final AxisManagerRepresentation rep = axis.getManager();
+		for (final IAxisManager man : this.subManagers) {
+			if (man.getAxisManagerRepresentation() == rep) {
+				return man;
+			}
+		}
+		return null;// must be impossible
+	}
 
 	/**
 	 *
@@ -588,7 +611,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if (element instanceof IAxis) {
-			return getAxisManager((IAxis) element).canDestroyAxis(axisPosition);
+			return getSubAxisManagerFor((IAxis) element).canDestroyAxis(axisPosition);
 		}
 		// not yet managed
 		return false;
@@ -606,7 +629,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if (element instanceof IAxis) {
-			return getAxisManager((IAxis) element).canDestroyAxisElement(axisPosition);
+			return getSubAxisManagerFor((IAxis) element).canDestroyAxisElement(axisPosition);
 		} else if (subManagers.size() == 1) {
 			return subManagers.get(0).canDestroyAxisElement(axisPosition);
 		}
@@ -628,7 +651,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if (element instanceof IAxis) {
-			return getAxisManager((IAxis) element).getDestroyAxisElementCommand(domain, axisPosition);
+			return getSubAxisManagerFor((IAxis) element).getDestroyAxisElementCommand(domain, axisPosition);
 		} else if (subManagers.size() == 1) {
 			return subManagers.get(0).getDestroyAxisElementCommand(domain, axisPosition);
 		}

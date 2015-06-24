@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.PathCommand#isRelative <em>Is Relative</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.PathCommand#isRelative <em>Is Relative</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getPathCommand()
@@ -54,7 +54,9 @@ public interface PathCommand extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.PathCommand#isRelative <em>Is Relative</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Is Relative</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Is Relative</em>' attribute.
 	 * @see #isRelative()
 	 * @generated
 	 */

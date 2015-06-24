@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Interaction Shape</b></em>'.
@@ -22,5 +21,5 @@ package org.eclipse.papyrus.umldi;
  * @model
  * @generated
  */
-public interface InteractionShape extends ClassShape {
+public interface InteractionShape extends ClassShape, InteractionFragmentWithGatesShape, InteractionFragmentWithSubfragmentsShape {
 } // InteractionShape

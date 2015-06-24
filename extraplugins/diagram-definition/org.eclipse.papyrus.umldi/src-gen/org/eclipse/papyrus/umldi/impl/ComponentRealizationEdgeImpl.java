@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ComponentRealizationEdgeImpl extends RealizationEdgeImpl implements ComponentRealizationEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComponentRealizationEdgeImpl() {
@@ -36,11 +38,11 @@ public class ComponentRealizationEdgeImpl extends RealizationEdgeImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.COMPONENT_REALIZATION_EDGE;
 	}
-
 } //ComponentRealizationEdgeImpl

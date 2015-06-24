@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractModelerPropertySection;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.alf.properties.xtext.UndoRedoStack;
+import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.tooling.StyledTextWithUndoRedo;
 import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.ui.listeners.CommitButtonSelectionListener;
 import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.ui.listeners.EditorFocusListener;
 import org.eclipse.papyrus.uml.alf.text.generation.DefaultEditStringRetrievalStrategy;
@@ -31,13 +31,9 @@ import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ExtendedModifyEvent;
-import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -65,15 +61,13 @@ public class AlfEditionPropertySection extends
 
 	private Form form;
 
-	private StyledText textControl;
+	private StyledTextWithUndoRedo textControl;
 
 	private Button commitButton;
 
 	private StyledTextXtextAdapter styledTextAdapter;
 
 	final private ContextElementAdapter contextElementAdapter = new ContextElementAdapter(this);
-
-	private UndoRedoStack<ExtendedModifyEvent> undoRedoStack;
 
 	protected boolean isUndo;
 
@@ -87,7 +81,6 @@ public class AlfEditionPropertySection extends
 	
 	public AlfEditionPropertySection() {
 		this.previousEObject = null;
-		this.undoRedoStack = new UndoRedoStack<ExtendedModifyEvent>();
 		this.alfSerialization = new DefaultEditStringRetrievalStrategy();
 		this.alfToolingInjector = AlfActivator.getInstance().getInjector(AlfActivator.ORG_ECLIPSE_PAPYRUS_UML_ALF_ALF);
 	}
@@ -219,75 +212,14 @@ public class AlfEditionPropertySection extends
 
 	protected void createTextControl(final Composite parent) {
 
-		textControl = new StyledText(parent, SWT.MULTI | SWT.BORDER
+		textControl = new StyledTextWithUndoRedo(parent, SWT.MULTI | SWT.BORDER
 				| SWT.V_SCROLL | SWT.WRAP);
 
 		textControl.setAlwaysShowScrollBars(false);
 		GridDataFactory.fillDefaults().grab(true, true).hint(parent.getSize())
 				.applyTo(textControl);
-		textControl.addExtendedModifyListener(new ExtendedModifyListener() {
-
-			public void modifyText(ExtendedModifyEvent event) {
-				if (isUndo) {
-					undoRedoStack.pushRedo(event);
-				} else { // is Redo or a normal user action
-					undoRedoStack.pushUndo(event);
-					if (!isRedo) {
-						undoRedoStack.clearRedo();
-						// TODO Switch to treat consecutive characters as one event?
-					}
-				}
-			}
-		});
-
-		textControl.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				boolean isCtrl = (e.stateMask & SWT.CTRL) > 0;
-				boolean isAlt = (e.stateMask & SWT.ALT) > 0;
-				if (isCtrl && !isAlt) {
-					boolean isShift = (e.stateMask & SWT.SHIFT) > 0;
-					if (e.keyCode == 'z') {
-						if (isShift) {
-							redo();
-						} else {
-							undo();
-						}
-					}
-				}
-			}
-		});
-
+		
 		textControl.addFocusListener(new EditorFocusListener(this));
-	}
-
-	protected void undo() {
-		if (undoRedoStack.hasUndo()) {
-			isUndo = true;
-			revertEvent(undoRedoStack.popUndo());
-			isUndo = false;
-		}
-	}
-
-	protected void redo() {
-		if (undoRedoStack.hasRedo()) {
-			isRedo = true;
-			revertEvent(undoRedoStack.popRedo());
-			isRedo = false;
-		}
-	}
-
-	/**
-	 * Reverts the given modify event, in the way as the Eclipse text editor
-	 * does it.
-	 *
-	 * @param event
-	 */
-	private void revertEvent(ExtendedModifyEvent event) {
-		textControl.replaceTextRange(event.start, event.length, event.replacedText);
-		// (causes the modifyText() listener method to be called)
-
-		textControl.setSelectionRange(event.start, event.replacedText.length());
 	}
 
 	protected void updateXtextAdapters(Control styledText) {

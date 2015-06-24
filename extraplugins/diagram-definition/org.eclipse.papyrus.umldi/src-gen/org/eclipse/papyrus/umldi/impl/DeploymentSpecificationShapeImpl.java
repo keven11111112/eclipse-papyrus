@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class DeploymentSpecificationShapeImpl extends ArtifactShapeImpl implements DeploymentSpecificationShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DeploymentSpecificationShapeImpl() {
@@ -36,11 +38,11 @@ public class DeploymentSpecificationShapeImpl extends ArtifactShapeImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DEPLOYMENT_SPECIFICATION_SHAPE;
 	}
-
 } //DeploymentSpecificationShapeImpl

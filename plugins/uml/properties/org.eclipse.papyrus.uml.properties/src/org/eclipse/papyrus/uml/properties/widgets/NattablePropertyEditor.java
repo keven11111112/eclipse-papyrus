@@ -13,6 +13,8 @@
 package org.eclipse.papyrus.uml.properties.widgets;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -22,7 +24,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gef.editparts.AbstractEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -47,7 +51,10 @@ import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLNotationModelElement;
 import org.eclipse.papyrus.views.properties.contexts.Property;
 import org.eclipse.papyrus.views.properties.modelelement.CompositeModelElement;
+import org.eclipse.papyrus.views.properties.modelelement.DataSource;
+import org.eclipse.papyrus.views.properties.modelelement.DataSourceChangedEvent;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.views.properties.modelelement.IDataSourceListener;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.SWT;
@@ -68,12 +75,32 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * The composite.
 	 */
-	private Composite self = null;;
+	private Group self = null;;
 
 	/**
 	 * The table configuration URI.
 	 */
 	private URI tableConfigURI = null;
+
+	/**
+	 * The nattable widget.
+	 */
+	private NatTable natTableWidget = null;
+	
+	/**
+	 * The nattable manager.
+	 */
+	private INattableModelManager nattableManager = null;
+	
+	/**
+	 * The dispose listener.
+	 */
+	private DisposeListener nattableDisposeListener = null;
+	
+	/**
+	 * The data source listener.
+	 */
+	private IDataSourceListener dataSourceListener;
 
 	/**
 	 * Constructor.
@@ -93,7 +120,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		data.minimumHeight = 330;
 		self.setLayoutData(data);
 	}
-
+	
 	/**
 	 * Set the table URI.
 	 * 
@@ -135,78 +162,80 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	@Override
 	protected void doBinding() {
 		super.doBinding();
+		
+		final ModelElement modelElement = input.getModelElement(propertyPath);
+		
+		// The data neede to create the table
+		final List<Object> rows = new ArrayList<Object>();
+		EObject sourceElement = null;
+		EStructuralFeature feature = null;
 
-		// Configure the table
-		ModelElement modelElement = input.getModelElement(propertyPath);
-
-		Table table = null;
+		// Manage the data needed for the table creation
 		if (modelElement instanceof CompositeModelElement) {
 			if (!((CompositeModelElement) modelElement).getSubElements().isEmpty()) {
 				if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof UMLNotationModelElement) {
-					EModelElement eModelElement = ((UMLNotationModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0)).getEModelElement();
-					// Create a list of views to determinate the axis to display (cannot be created without the table editing domain)
-					final List<Object> views = new ArrayList<Object>();
-					for (ModelElement a : ((CompositeModelElement) modelElement).getSubElements()) {
-						if (a instanceof UMLNotationModelElement) {
-							views.add(((UMLNotationModelElement) a).getEModelElement());
+					final EModelElement eModelElement = ((UMLNotationModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0)).getEModelElement();
+					// Fill the list of views to determinate the axis to display (cannot be created without the table editing domain)
+					for (ModelElement subModelElement : ((CompositeModelElement) modelElement).getSubElements()) {
+						if (subModelElement instanceof UMLNotationModelElement) {
+							rows.add(((UMLNotationModelElement) subModelElement).getEModelElement());
 						}
 					}
-					table = createTable(eModelElement, null, views);
-					if (table == null) {
-						displayError("Cannot initialize the table"); //$NON-NLS-1$
-						return;
-					}
+					sourceElement = eModelElement;
 				} else if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof EMFModelElement) {
-					EMFModelElement emfModelElement = (EMFModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0);
-					EObject sourceElement = emfModelElement.getSource();
-					EStructuralFeature feature = emfModelElement.getFeature(getLocalPropertyPath());
-
-					table = createTable(sourceElement, feature, null);
-					if (table == null) {
-						displayError("Cannot initialize the table"); //$NON-NLS-1$
-						return;
-					}
+					final EMFModelElement emfModelElement = (EMFModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0);
+					sourceElement = emfModelElement.getSource();
+					feature = emfModelElement.getFeature(getLocalPropertyPath());
 				}
 			}
 		} else if (modelElement instanceof UMLNotationModelElement) {
-			EModelElement eModelElement = ((UMLNotationModelElement) modelElement).getEModelElement();
-			// Create a list of views to determinate the axis to display (cannot be created without the table editing domain)
-			final List<Object> views = new ArrayList<Object>();
-			views.add(eModelElement);
-			table = createTable(eModelElement, null, views);
-			if (table == null) {
-				displayError("Cannot initialize the table"); //$NON-NLS-1$
-				return;
-			}
+			final EModelElement eModelElement = ((UMLNotationModelElement) modelElement).getEModelElement();
+			// Fill the list of views to determinate the axis to display (cannot be created without the table editing domain)
+			rows.add(eModelElement);
+			sourceElement = eModelElement;
 		} else if (modelElement instanceof EMFModelElement) {
-			EMFModelElement emfModelElement = (EMFModelElement) modelElement;
-			EObject sourceElement = emfModelElement.getSource();
-			EStructuralFeature feature = emfModelElement.getFeature(getLocalPropertyPath());
+			final EMFModelElement emfModelElement = (EMFModelElement) modelElement;
+			sourceElement = emfModelElement.getSource();
+			feature = emfModelElement.getFeature(getLocalPropertyPath());
 
-			table = createTable(sourceElement, feature, null);
-			if (table == null) {
-				displayError("Cannot initialize the table"); //$NON-NLS-1$
-				return;
-			}
+			createTableWidget(sourceElement, feature, null);
 		} else {
 			displayError("Invalid table context"); //$NON-NLS-1$
 			return;
 		}
+		
+		createTableWidget(sourceElement, feature, rows);
+		
+	}
+	
+	/**
+	 * This allow to create the table widget.
+	 * 
+	 * @param sourceElement The source Element.
+	 * @param feature The feature.
+	 * @param rows The rows of the table.
+	 */
+	protected void createTableWidget(final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows){
 
+		// Create the table
+		final Table table = createTable(sourceElement, feature, rows);
+		if (table == null) {
+			displayError("Cannot initialize the table"); //$NON-NLS-1$
+			return;
+		}
+		
 		// Create the widget
-		final INattableModelManager nattableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(table, new EObjectSelectionExtractor());
-		NatTable widget = nattableManager.createNattable(self, SWT.NONE, null);
+		nattableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(table, new EObjectSelectionExtractor());
+		natTableWidget = nattableManager.createNattable(self, SWT.NONE, null);
 		if (nattableManager instanceof TreeNattableModelManager) {
 			((TreeNattableModelManager) nattableManager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		}
-		self.addDisposeListener(new DisposeListener() {
-
-			public void widgetDisposed(DisposeEvent e) {
-				nattableManager.dispose();
-			}
-		});
-
-		widget.setBackground(self.getBackground());
+		
+		self.addDisposeListener(getDisposeListener());
+		natTableWidget.setBackground(self.getBackground());
+		
+		natTableWidget.layout();
+		self.layout();
 	}
 
 	/**
@@ -238,7 +267,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 *            The error mesage to display.
 	 */
 	protected void displayError(final String message) {
-		Label label = new Label(self, SWT.NONE);
+		final Label label = new Label(self, SWT.NONE);
 		label.setText(message);
 		label.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/error.gif")); //$NON-NLS-1$
 	}
@@ -250,16 +279,17 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 *            The context element.
 	 * @param synchronizedFeature
 	 *            The synchronized feature.
+	 * @param rows The rows of the table.
 	 * @return The created nattable.
 	 */
-	protected Table createTable(final EObject sourceElement, final EStructuralFeature synchronizedFeature, final List<Object> views) {
+	protected Table createTable(final EObject sourceElement, final EStructuralFeature synchronizedFeature, final Collection<?> rows) {
 
 		final TableConfiguration tableConfiguration = getTableConfiguration();
 		if (tableConfiguration == null) {
 			return null;
 		}
 
-		Property property = getModelProperty();
+		final Property property = getModelProperty();
 		final Table table = NattableFactory.eINSTANCE.createTable();
 
 		table.setTableConfiguration(tableConfiguration);
@@ -298,7 +328,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 		table.setCurrentColumnAxisProvider(columnProvider);
 		table.setCurrentRowAxisProvider(rowProvider);
-
+		
 		table.setContext(sourceElement);
 
 		for (final Style style : tableConfiguration.getStyles()) {
@@ -306,15 +336,15 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		// Manage the construction of axis here because the table editing domain is null
-		if (null != views && !views.isEmpty()) {
+		if (null != rows && !rows.isEmpty()) {
 			final AbstractAxisProvider axisProvider = table.getCurrentRowAxisProvider();
 			TableHeaderAxisConfiguration conf = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
 			AxisManagerRepresentation rep = conf.getAxisManagers().get(0);
-			for (Object view : views) {
-				addTreeItemAxis(axisProvider, rep, view);
+			for (Object context : rows) {
+				addTreeItemAxis(axisProvider, rep, context);
 			}
 		}
-
+		
 		return table;
 	}
 	
@@ -354,7 +384,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	protected TableConfiguration getTableConfiguration() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		try {
-			TableConfiguration tableConfiguration = (TableConfiguration) EMFHelper.loadEMFModel(resourceSet,
+			final TableConfiguration tableConfiguration = (TableConfiguration) EMFHelper.loadEMFModel(resourceSet,
 					tableConfigURI);
 			return tableConfiguration;
 		} catch (Exception ex) {
@@ -363,5 +393,109 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 		return null;
 	}
+	
+	/**
+	 * This allow to create the dispose listener for the nattable table manager.
+	 * 
+	 * @return The dispose nattable manager listener.
+	 */
+	protected DisposeListener getDisposeListener(){
+		if(null == nattableDisposeListener){
+			nattableDisposeListener = new DisposeListener() {
+	
+				public void widgetDisposed(DisposeEvent e) {
+					nattableManager.dispose();
+					natTableWidget.dispose();
+				}
+			};
+		}
+		return nattableDisposeListener;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#unhookDataSourceListener(org.eclipse.papyrus.views.properties.modelelement.DataSource)
+	 */
+	@Override
+	protected void unhookDataSourceListener(DataSource oldInput) {
+		oldInput.removeDataSourceListener(getDataSourceListener());
+	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#hookDataSourceListener(org.eclipse.papyrus.views.properties.modelelement.DataSource)
+	 */
+	@Override
+	protected void hookDataSourceListener(DataSource newInput) {
+		newInput.addDataSourceListener(getDataSourceListener());
+	}
+	
+	/**
+	 * This allow to create the data source listener.
+	 * 
+	 * @return The created data source listeer.
+	 */
+	private IDataSourceListener getDataSourceListener() {
+		if (dataSourceListener == null) {
+			dataSourceListener = new IDataSourceListener() {
+
+				public void dataSourceChanged(final DataSourceChangedEvent event) {
+					if(null != nattableManager){
+						nattableManager.dispose();
+						nattableManager = null;
+					}
+					// Dispose the previous nattablewidget if necessary
+					if(null != natTableWidget){
+						natTableWidget.dispose();
+						natTableWidget = null;
+						self.removeDisposeListener(getDisposeListener());
+					}
+					// Get the datasource
+					final DataSource dataSource = event.getDataSource();
+					final StructuredSelection selection = (StructuredSelection) dataSource.getSelection();
+					
+					// Manage the context selection
+					final List<Object> contexts = new ArrayList<Object>(selection.size());
+					final Iterator<?> selectionIterator = selection.iterator();
+					while(selectionIterator.hasNext()){
+						Object selectedObject = selectionIterator.next();
+						if(selectedObject instanceof AbstractEditPart){
+							contexts.add(((AbstractEditPart) selectedObject).getModel());
+						}else{
+							contexts.add(selectedObject);
+						}
+					}
+					
+					// Get the model element
+					final ModelElement modelElement = dataSource.getModelElement(propertyPath);
+					EObject sourceElement = null;
+					EStructuralFeature feature = null;
+					if (modelElement instanceof CompositeModelElement) {
+						if (!((CompositeModelElement) modelElement).getSubElements().isEmpty()) {
+							if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof UMLNotationModelElement) {
+								sourceElement = ((UMLNotationModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0)).getEModelElement();
+							} else if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof EMFModelElement) {
+								final EMFModelElement emfModelElement = (EMFModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0);
+								sourceElement = emfModelElement.getSource();
+								feature = emfModelElement.getFeature(getLocalPropertyPath());
+							}
+						}
+					} else if (modelElement instanceof UMLNotationModelElement) {
+						sourceElement = ((UMLNotationModelElement) modelElement).getEModelElement();
+					} else if (modelElement instanceof EMFModelElement) {
+						final EMFModelElement emfModelElement = (EMFModelElement) modelElement;
+						sourceElement = emfModelElement.getSource();
+						feature = emfModelElement.getFeature(getLocalPropertyPath());
+					}
+					
+					// Recreate the table widget
+					createTableWidget(sourceElement, feature, contexts);
+				}
+			};
+		}
+		
+		return dataSourceListener;
+	}
 }

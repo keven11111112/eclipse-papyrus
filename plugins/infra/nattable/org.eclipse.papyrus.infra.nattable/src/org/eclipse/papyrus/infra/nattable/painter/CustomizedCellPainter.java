@@ -25,6 +25,7 @@ import org.eclipse.nebula.widgets.nattable.style.IStyle;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
@@ -41,6 +42,7 @@ import org.eclipse.swt.graphics.Rectangle;
 // TODO : we should use the TextPainter itself, now with the GenericDisplayConverter, it should works fine
 public class CustomizedCellPainter extends CellPainterWithUnderlinedError {
 
+	private LabelProviderCellContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper();
 	/**
 	 *
 	 * Constructor. We're overriding it to always set word-wrapping for our cells.
@@ -61,7 +63,9 @@ public class CustomizedCellPainter extends CellPainterWithUnderlinedError {
 	@Override
 	protected String convertDataType(final ILayerCell cell, final IConfigRegistry configRegistry) {
 		final LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		final ILabelProviderContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper(cell, configRegistry);
+		contextElement.setConfigRegistry(configRegistry);
+		contextElement.setObject(cell.getDataValue());
+		contextElement.setCell(cell);
 		final ILabelProvider provider = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT, contextElement);
 		String str = provider.getText(contextElement);
 		if (str == null) {

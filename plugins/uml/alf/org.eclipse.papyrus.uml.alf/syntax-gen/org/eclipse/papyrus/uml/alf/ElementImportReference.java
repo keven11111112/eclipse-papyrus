@@ -33,7 +33,7 @@ public interface ElementImportReference extends ImportReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The alias to be used as the name for the imported element in the importing unit’s namespace.
+	 * The alias to be used as the name for the imported element in the importing unit?s namespace.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Alias</em>' attribute.
 	 * @see #setAlias(String)

@@ -141,7 +141,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The effective left-hand side corresponding to the primary expression, if
-	 * the sequence operation is “in place” (that is, has a first parameter with
+	 * the sequence operation is ?in place? (that is, has a first parameter with
 	 * direction inout).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Left Hand Side</em>' reference.

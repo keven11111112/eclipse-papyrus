@@ -14,6 +14,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_H1_H1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_H1_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_V1_H1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_V1_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_H1_H1_H1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_H1_H1_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_H1_V1_H1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_H1_V1_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_V1_H1_H1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_V1_H1_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_V1_V1_H1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_V1_V1_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_Empty_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_Empty_H1_V1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_Empty_H3_V1_MultiColumns_Test;
@@ -34,9 +47,27 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
+		EditInvalidPastedText_V1_V3_V1.class,
 		OpenTableTest.class,
 		ContentsAndExpandWithCategories_0_1_2_Tests.class,
 		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,
+		
+		//filter tests
+		ReopenFilteredTable_Empty_H1_H1.class,
+		ReopenFilteredTable_Empty_H1_V1.class,
+		ReopenFilteredTable_Empty_V1_H1.class,
+		ReopenFilteredTable_Empty_V1_V1.class,
+		ReopenFilteredTable_H1_H1_H1.class,
+		ReopenFilteredTable_H1_H1_V1.class,
+		ReopenFilteredTable_H1_V1_H1.class,
+		ReopenFilteredTable_H1_V1_V1.class,
+		ReopenFilteredTable_V1_H1_H1.class,
+		ReopenFilteredTable_V1_H1_V1.class,
+		ReopenFilteredTable_V1_V1_H1.class,
+		ReopenFilteredTable_V1_V1_V1.class,
+		
+		
+		
 		PasteWithCategories_Empty_H1_H1_MultiColumns_Test.class,
 		PasteWithCategories_Empty_H1_V1_MultiColumns_Test.class,
 		PasteWithCategories_Empty_H3_V1_MultiColumns_Test.class,

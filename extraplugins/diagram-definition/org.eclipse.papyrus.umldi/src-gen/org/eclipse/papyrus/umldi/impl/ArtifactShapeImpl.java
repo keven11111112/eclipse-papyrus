@@ -36,17 +36,19 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ArtifactShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ArtifactShapeImpl#getNestedArtifactCompartment <em>Nested Artifact Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ArtifactShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ArtifactShapeImpl#getNestedArtifactCompartment <em>Nested Artifact Compartment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl implements ArtifactShape {
+
 	/**
 	 * The cached value of the '{@link #getNestedArtifactCompartment() <em>Nested Artifact Compartment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getNestedArtifactCompartment()
 	 * @generated
 	 * @ordered
@@ -56,6 +58,7 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ArtifactShapeImpl() {
@@ -65,6 +68,7 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +79,7 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,15 +91,17 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.ARTIFACT_SHAPE__MAIN_LABEL, UMLDIPackage.ARTIFACT_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__OWNED_USE_CASE_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__USE_CASE_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__ATTRIBUTE_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__OPERATION_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT};
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.ARTIFACT_SHAPE__STEREOTYPE_LABEL, UMLDIPackage.ARTIFACT_SHAPE__MAIN_LABEL, UMLDIPackage.ARTIFACT_SHAPE__STEREOTYPE_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__OWNED_USE_CASE_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__USE_CASE_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__ATTRIBUTE_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__OPERATION_COMPARTMENT, UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT };
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NestedArtifactCompartment getNestedArtifactCompartment() {
@@ -104,14 +111,18 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetNestedArtifactCompartment(NestedArtifactCompartment newNestedArtifactCompartment, NotificationChain msgs) {
 		NestedArtifactCompartment oldNestedArtifactCompartment = nestedArtifactCompartment;
 		nestedArtifactCompartment = newNestedArtifactCompartment;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT, oldNestedArtifactCompartment, newNestedArtifactCompartment);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -119,34 +130,36 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNestedArtifactCompartment(NestedArtifactCompartment newNestedArtifactCompartment) {
-		if (newNestedArtifactCompartment != nestedArtifactCompartment) {
+		if(newNestedArtifactCompartment != nestedArtifactCompartment) {
 			NotificationChain msgs = null;
-			if (nestedArtifactCompartment != null)
+			if(nestedArtifactCompartment != null)
 				msgs = ((InternalEObject)nestedArtifactCompartment).eInverseRemove(this, UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE, NestedArtifactCompartment.class, msgs);
-			if (newNestedArtifactCompartment != null)
+			if(newNestedArtifactCompartment != null)
 				msgs = ((InternalEObject)newNestedArtifactCompartment).eInverseAdd(this, UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE, NestedArtifactCompartment.class, msgs);
 			msgs = basicSetNestedArtifactCompartment(newNestedArtifactCompartment, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT, newNestedArtifactCompartment, newNestedArtifactCompartment));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
-				if (nestedArtifactCompartment != null)
-					msgs = ((InternalEObject)nestedArtifactCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT, null, msgs);
-				return basicSetNestedArtifactCompartment((NestedArtifactCompartment)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
+			if(nestedArtifactCompartment != null)
+				msgs = ((InternalEObject)nestedArtifactCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT, null, msgs);
+			return basicSetNestedArtifactCompartment((NestedArtifactCompartment)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -154,13 +167,14 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
-				return basicSetNestedArtifactCompartment(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
+			return basicSetNestedArtifactCompartment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -168,13 +182,14 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
-				return getNestedArtifactCompartment();
+		switch(featureID) {
+		case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
+			return getNestedArtifactCompartment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,14 +197,15 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
-				setNestedArtifactCompartment((NestedArtifactCompartment)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
+			setNestedArtifactCompartment((NestedArtifactCompartment)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -197,14 +213,15 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
-				setNestedArtifactCompartment((NestedArtifactCompartment)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
+			setNestedArtifactCompartment((NestedArtifactCompartment)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,15 +229,16 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.ARTIFACT_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
-				return isSetOwnedUmlDiagramElement();
-			case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
-				return nestedArtifactCompartment != null;
+		switch(featureID) {
+		case UMLDIPackage.ARTIFACT_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
+			return isSetOwnedUmlDiagramElement();
+		case UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT:
+			return nestedArtifactCompartment != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -228,12 +246,11 @@ public class ArtifactShapeImpl extends ClassifierWithOperationsShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT);
+		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT);
 	}
-
 } //ArtifactShapeImpl

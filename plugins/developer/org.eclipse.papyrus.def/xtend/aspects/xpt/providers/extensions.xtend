@@ -107,12 +107,14 @@ import xpt.providers.ShortcutsDecoratorProvider
 		«tripleSpace(1)»</extension>
 		«ENDIF»
 		
+		«IF !getLocalDefineTypedElements(it).empty»
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
 		«tripleSpace(2)»«xmlGeneratedTag»
-			«FOR e : getAllTypedElements(it)»
+		«FOR e : getLocalDefineTypedElements(it)»
 		«elementTypeSafe(e.elementType)»
 			«ENDFOR»
 		«tripleSpace(1)»</extension>
+		«ENDIF»
 		
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
 		«tripleSpace(2)»«xmlGeneratedTag»
@@ -130,7 +132,7 @@ import xpt.providers.ShortcutsDecoratorProvider
 
        <binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
       «ENDIF»
-				«FOR e : getAllTypedElements(it)»
+				«FOR e : getLocalDefineTypedElements(it)»
 		«tripleSpace(3)»<elementType ref="«e.elementType.uniqueIdentifier»"/>
 				«ENDFOR»
 		«tripleSpace(3)»<advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
@@ -138,6 +140,9 @@ import xpt.providers.ShortcutsDecoratorProvider
 		«tripleSpace(1)»</extension>
 	'''
 
+	def getLocalDefineTypedElements(GenDiagram it) {
+		getAllTypedElements(it).filter[et| false == et.elementType.definedExternally]
+	}
 //	override modelingAssistantProvider(GenDiagram it) '''
 //	
 //	   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">

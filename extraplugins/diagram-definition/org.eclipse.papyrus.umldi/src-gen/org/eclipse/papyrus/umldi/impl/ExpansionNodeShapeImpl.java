@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ExpansionNodeShapeImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ExpansionNodeShapeImpl#getExpansionRegionShape <em>Expansion Region Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ExpansionNodeShapeImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ExpansionNodeShapeImpl#getExpansionRegionShape <em>Expansion Region Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements ExpansionNodeShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ExpansionNodeShapeImpl() {
@@ -53,6 +55,7 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ExpansionRegionShape expansionRegionShape = getExpansionRegionShape();			
-		if (expansionRegionShape != null) {
+		ExpansionRegionShape expansionRegionShape = getExpansionRegionShape();
+		if(expansionRegionShape != null) {
 			return expansionRegionShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ExpansionRegionShape getExpansionRegionShape() {
-		if (eContainerFeatureID() != UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE)
+			return null;
 		return (ExpansionRegionShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetExpansionRegionShape(ExpansionRegionShape newExpansionRegionShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setExpansionRegionShape(ExpansionRegionShape newExpansionRegionShape) {
-		if (newExpansionRegionShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE && newExpansionRegionShape != null)) {
-			if (EcoreUtil.isAncestor(this, newExpansionRegionShape))
+		if(newExpansionRegionShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE && newExpansionRegionShape != null)) {
+			if(EcoreUtil.isAncestor(this, newExpansionRegionShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newExpansionRegionShape != null)
+			if(newExpansionRegionShape != null)
 				msgs = ((InternalEObject)newExpansionRegionShape).eInverseAdd(this, UMLDIPackage.EXPANSION_REGION_SHAPE__EXPANSION_NODE_SHAPE, ExpansionRegionShape.class, msgs);
 			msgs = basicSetExpansionRegionShape(newExpansionRegionShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE, newExpansionRegionShape, newExpansionRegionShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetExpansionRegionShape((ExpansionRegionShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetExpansionRegionShape((ExpansionRegionShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
-				return basicSetExpansionRegionShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
+			return basicSetExpansionRegionShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.EXPANSION_REGION_SHAPE__EXPANSION_NODE_SHAPE, ExpansionRegionShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.EXPANSION_REGION_SHAPE__EXPANSION_NODE_SHAPE, ExpansionRegionShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
-				return getExpansionRegionShape();
+		switch(featureID) {
+		case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
+			return getExpansionRegionShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
-				setExpansionRegionShape((ExpansionRegionShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
+			setExpansionRegionShape((ExpansionRegionShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
-				setExpansionRegionShape((ExpansionRegionShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
+			setExpansionRegionShape((ExpansionRegionShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.EXPANSION_NODE_SHAPE__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
-				return getExpansionRegionShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.EXPANSION_NODE_SHAPE__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE:
+			return getExpansionRegionShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class ExpansionNodeShapeImpl extends ObjectNodeShapeImpl implements Expan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.EXPANSION_NODE_SHAPE__EXPANSION_REGION_SHAPE);
 	}
-
 } //ExpansionNodeShapeImpl

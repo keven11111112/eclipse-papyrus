@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderFullCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -121,6 +122,9 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *         the row object for this cell
 	 */
 	protected Object getRowObject(final ILayerCell cell, final IConfigRegistry registry) {
+		if(cell instanceof LabelProviderFullCellContextElementWrapper){
+			return ((LabelProviderFullCellContextElementWrapper) cell).getRowObject();
+		}
 		int rowIndex = cell.getRowIndex();
 		INattableModelManager provider = getAxisContentProvider(registry);
 		return provider.getRowElement(rowIndex);
@@ -134,6 +138,9 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *         the column object for this cell
 	 */
 	protected Object getColumnObject(final ILayerCell cell, final IConfigRegistry registry) {
+		if(cell instanceof LabelProviderFullCellContextElementWrapper){
+			return ((LabelProviderFullCellContextElementWrapper) cell).getColumnObject();
+		}
 		int columnIndex = cell.getColumnIndex();
 		INattableModelManager provider = getAxisContentProvider(registry);
 		return provider.getColumnElement(columnIndex);

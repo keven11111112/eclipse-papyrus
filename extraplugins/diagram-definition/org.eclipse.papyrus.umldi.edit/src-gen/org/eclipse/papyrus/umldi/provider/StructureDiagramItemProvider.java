@@ -22,6 +22,7 @@ import org.eclipse.papyrus.umldi.StructureDiagram;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.StructureDiagram} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class StructureDiagramItemProvider extends UmlDiagramItemProvider {
@@ -30,6 +31,7 @@ public class StructureDiagramItemProvider extends UmlDiagramItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StructureDiagramItemProvider(AdapterFactory adapterFactory) {
@@ -40,13 +42,13 @@ public class StructureDiagramItemProvider extends UmlDiagramItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -55,14 +57,13 @@ public class StructureDiagramItemProvider extends UmlDiagramItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((StructureDiagram)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_StructureDiagram_type") :
-			getString("_UI_StructureDiagram_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_StructureDiagram_type") : getString("_UI_StructureDiagram_type") + " " + label;
 	}
 
 	/**
@@ -70,6 +71,7 @@ public class StructureDiagramItemProvider extends UmlDiagramItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,6 +85,7 @@ public class StructureDiagramItemProvider extends UmlDiagramItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -22,12 +22,12 @@ import org.eclipse.papyrus.infra.nattable.painter.CustomizedCellPainter;
 import org.eclipse.papyrus.infra.nattable.painter.PapyrusSortableHeaderTextPainter;
 
 /**
- * The configuration used to do the sort
+ * The abstract configuration used for the sort the sort
  *
  * @author vl222926
  *
  */
-public class PapyrusClickSortConfiguration extends DefaultSortConfiguration {
+public abstract class PapyrusClickSortConfiguration extends DefaultSortConfiguration {
 
 	/**
 	 *

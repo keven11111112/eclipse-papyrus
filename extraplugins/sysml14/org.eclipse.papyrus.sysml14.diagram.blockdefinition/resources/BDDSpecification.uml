@@ -150,7 +150,7 @@
   <Requirements:Requirement xmi:id="_CdEnIOgFEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_CdEAEOgFEeSUQvXhEVQh8w"/>
   <Requirements:Requirement xmi:id="_CjpJMOgFEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_CjnUAOgFEeSUQvXhEVQh8w"/>
   <Requirements:Requirement xmi:id="_VxS-8OgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_VxRJwOgHEeSUQvXhEVQh8w"/>
-  <Requirements:Requirement xmi:id="_V_ek4OgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_V_dWwOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_V_ek4OgHEeSUQvXhEVQh8w" text="Table 8.2 - Graphical paths defined by in Block Definition diagrams" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_V_dWwOgHEeSUQvXhEVQh8w"/>
   <Requirements:Requirement xmi:id="_WIGVYOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_WIFHQOgHEeSUQvXhEVQh8w"/>
   <Requirements:Requirement xmi:id="_WXhRcOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_WXgqYOgHEeSUQvXhEVQh8w"/>
   <Requirements:Requirement xmi:id="_WeZVgOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_WeYHYOgHEeSUQvXhEVQh8w"/>

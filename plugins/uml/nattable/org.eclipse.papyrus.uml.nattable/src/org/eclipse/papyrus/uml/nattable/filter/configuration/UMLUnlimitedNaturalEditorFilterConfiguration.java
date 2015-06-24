@@ -91,8 +91,20 @@ public class UMLUnlimitedNaturalEditorFilterConfiguration extends AbstractNatura
 
 	/**
 	 * @return the id
+	 * @deprecated since Eclipse Mars
 	 */
+	@Deprecated
 	public static String getId() {
 		return ID;
 	};
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.filter.configuration.TextEditorFilterConfiguration#getConfigurationId()
+	 *
+	 * @return
+	 */
+	@Override
+	public String getConfigurationId() {
+		return ID;
+	}
 }

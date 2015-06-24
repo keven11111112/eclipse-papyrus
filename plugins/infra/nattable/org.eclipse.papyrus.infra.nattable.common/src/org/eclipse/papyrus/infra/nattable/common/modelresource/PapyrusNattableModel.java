@@ -14,17 +14,17 @@
 
 package org.eclipse.papyrus.infra.nattable.common.modelresource;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
+import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
@@ -87,7 +87,6 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 		return MODEL_ID;
 	}
 
-
 	/**
 	 * Add a new initialized {@link PapyrusTableInstance} to the model.
 	 *
@@ -95,13 +94,35 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	 *            The tableInstance to add.
 	 */
 	public void addPapyrusTable(Table tableInstance) {
-		try {
-			TransactionalEditingDomain editingDomain = ServiceUtilsForResourceSet.getInstance().getTransactionalEditingDomain(modelSet);
-			Resource notationResource = NotationUtils.getNotationResourceForDiagram(tableInstance.getContext(), editingDomain);
-			notationResource.getContents().add(tableInstance);
-		} catch (ServiceException ex) {
-			Activator.log.error(ex);
+		EObject context = tableInstance.getContext();
+		if (context != null) { // we check the resource for control mode feature
+			Resource targetResource;
+			Resource contextResource = context.eResource();
+			if (!contextResource.getURI().trimFileExtension().equals(getResource().getURI().trimFileExtension())) {
+				URI uri = contextResource.getURI();
+				uri = uri.trimFileExtension();
+				uri = uri.appendFileExtension(getModelFileExtension());
+				ResourceSet set = contextResource.getResourceSet();
+				targetResource = set.getResource(uri, true);
+			} else {
+				targetResource = getResource();
+			}
+			if (targetResource != null) {
+				targetResource.getContents().add(tableInstance);
+			}
 		}
+
+		// it doesn't work when we call this method from the Create Project/Model wizard, because the file is not yet in the workspace
+		// see bug 470299: [Table] impossible to create new table from the creation wizard https://bugs.eclipse.org/bugs/show_bug.cgi?id=470299
+		// try {
+		// TransactionalEditingDomain editingDomain = ServiceUtilsForResourceSet.getInstance().getTransactionalEditingDomain(modelSet);
+		// Resource notationResource = NotationUtils.getNotationResourceForDiagram(tableInstance.getContext(), editingDomain);
+		// if (notationResource != null) {
+		// notationResource.getContents().add(tableInstance);
+		// }
+		// } catch (ServiceException ex) {
+		// Activator.log.error(ex);
+		// }
 	}
 
 	/**
@@ -111,7 +132,9 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	 *            The tableInstance to add.
 	 */
 	public void removeTable(Table tableInstance) {
-		getResource().getContents().remove(tableInstance);
+		if (tableInstance.eResource() != null) {
+			tableInstance.eResource().getContents().remove(tableInstance);
+		}
 	}
 
 	/**
@@ -124,6 +147,36 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	@Override
 	protected boolean isModelRoot(EObject object) {
 		return object instanceof Table;
+	}
+
+	/**
+	 * Get a table by its name.
+	 *
+	 * @param tableName
+	 *            Name of the table. This is the name set by the user.
+	 * @return
+	 * @throws NotFoundException
+	 * @throws BadArgumentExcetion
+	 */
+	public Table getTable(String tableName) throws NotFoundException, BadArgumentExcetion {
+
+		if (tableName == null || tableName.length() == 0) {
+			throw new BadArgumentExcetion("Table name should not be null and size should be >0."); //$NON-NLS-1$
+		}
+
+		for (EObject element : getResource().getContents()) {
+			if (element instanceof Table) {
+				Table table = (Table) element;
+
+				if (tableName.equals(table.getName())) {
+					// Found
+					return table;
+
+				}
+			}
+		}
+		// not found
+		throw new NotFoundException(NLS.bind("No Table named '{0}' can be found in Model.", tableName)); //$NON-NLS-1$
 	}
 
 }

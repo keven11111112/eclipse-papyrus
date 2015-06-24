@@ -185,23 +185,6 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 			final INattableModelManager tableManager) {
 		final CompositeCommand result = new CompositeCommand("Set Value Command"); //$NON-NLS-1$
 
-		// we need to destroy associated cell problem, if any.
-		final Cell cell = tableManager.getCell(columnElement, rowElement);
-		StringResolutionProblem stringPb = null;// we assume that there is only one string resolution problem for a cell
-		if (cell != null && cell.getProblems().size() > 0) {
-			for (final Problem current : cell.getProblems()) {
-				if (current instanceof StringResolutionProblem) {
-					stringPb = (StringResolutionProblem) current;
-					break;
-				}
-			}
-		}
-		if (stringPb != null) {
-			final DestroyElementRequest destroyRequest = new DestroyElementRequest(domain, stringPb, false);
-			final IElementEditService commandProvider2 = ElementEditServiceUtils.getCommandProvider(stringPb);
-			result.add(commandProvider2.getEditCommand(destroyRequest));
-		}
-
 		// 426731: [Table 2] Opening then closing cells editors without modifying values execute a command in the stack
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426731
 		// 1. we verify that the new value is not the same as the current value
@@ -298,34 +281,9 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		final EObject editedObject = (EObject) objects.get(0);
 		final EStructuralFeature editedFeature = (EStructuralFeature) objects.get(1);
 		ConvertedValueContainer<?> solvedValue = valueSolver.deduceValueFromString(editedFeature, newValue);
-		final CompositeCommand cmd = new CompositeCommand("Set Value As String Command"); //$NON-NLS-1$
 		Object convertedValue = solvedValue.getConvertedValue();
 		Command setValueCommand = getSetValueCommand(domain, editedObject, editedFeature, convertedValue, columnElement, rowElement, tableManager);
-		if (setValueCommand != null) {
-			cmd.add(new EMFtoGMFCommandWrapper(setValueCommand));
-		}
-		final Command createProblemCommand = getCreateStringResolutionProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
-		if (createProblemCommand != null) {
-			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
-		} else {
-			// we need to destroy associated cell problem
-			final Cell cell = tableManager.getCell(columnElement, rowElement);
-			StringResolutionProblem stringPb = null;// we assume that there is only one string resolution problem for a cell
-			if (cell != null && cell.getProblems().size() > 0) {
-				for (final Problem current : cell.getProblems()) {
-					if (current instanceof StringResolutionProblem) {
-						stringPb = (StringResolutionProblem) current;
-						break;
-					}
-				}
-			}
-			if (stringPb != null) {
-				final DestroyElementRequest destroyRequest = new DestroyElementRequest(domain, stringPb, false);
-				final IElementEditService commandProvider2 = ElementEditServiceUtils.getCommandProvider(stringPb);
-				cmd.add(commandProvider2.getEditCommand(destroyRequest));
-			}
-		}
-		return cmd.isEmpty() ? null : new GMFtoEMFCommandWrapper(cmd);
+		return setValueCommand;
 	}
 
 
@@ -405,7 +363,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @param valueContainer
 	 * @param sharedMap
 	 */
-	@Deprecated
+	@Deprecated //problem must no be managed here, since Eclipse Mars
 	// use CellHelper.createStringResolutionProblem
 	protected void createStringResolutionProblem(final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer, final Map<?, ?> sharedMap) {
 		CellHelper.createStringResolutionProblem(tableManager, columnElement, rowElement, pastedText, valueContainer, sharedMap);
@@ -437,7 +395,5 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		} else {
 			editedObject.eSet(editedFeature, solvedValue.getConvertedValue());
 		}
-
-		createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
 	}
 }

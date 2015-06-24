@@ -78,7 +78,7 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 	public void testOrderOfPages() {
 		// actual pages: [SelectDiagramCategory -> SelectDiagramCategoryPage, SelectStorageProvider -> SelectStorageProviderPage,
 		// NewPapyrusModel -> NewModelFilePage, NewCDOModel -> NewModelPage, SelectDiagramKind -> SelectDiagramKindPage, SelectRootPage -> SelectRootElementPage]
-		Class<?>[] expectedPages = new Class[] { SelectDiagramCategoryPage.class, NewModelFilePage.class, SelectDiagramKindPage.class, SelectRootElementPage.class, };
+		Class<?>[] expectedPages = new Class[] { SelectDiagramCategoryPage.class, NewModelFilePage.class, SelectDiagramKindPage.class, /* SelectRootElementPage.class, */ };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);

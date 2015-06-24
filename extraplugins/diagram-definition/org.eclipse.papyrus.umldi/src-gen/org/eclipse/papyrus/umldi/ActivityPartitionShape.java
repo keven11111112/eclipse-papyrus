@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Activity Partition Shape</b></em>'.
@@ -21,8 +20,8 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ActivityPartitionShape#isVertical <em>Is Vertical</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ActivityPartitionShape#getSubPartitionCompartment <em>Sub Partition Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ActivityPartitionShape#isVertical <em>Is Vertical</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ActivityPartitionShape#getSubpartitionCompartment <em>Subpartition Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityPartitionShape()
@@ -30,15 +29,16 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface ActivityPartitionShape extends ActivityGroupShape {
+
 	/**
 	 * Returns the value of the '<em><b>Is Vertical</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Vertical</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Is Vertical</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Is Vertical</em>' attribute.
 	 * @see #setIsVertical(boolean)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityPartitionShape_IsVertical()
@@ -51,44 +51,50 @@ public interface ActivityPartitionShape extends ActivityGroupShape {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityPartitionShape#isVertical <em>Is Vertical</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Vertical</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Is Vertical</em>' attribute.
 	 * @see #isVertical()
 	 * @generated
 	 */
 	void setIsVertical(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Sub Partition Compartment</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.SubPartitionCompartment#getActivityPartitionShape <em>Activity Partition Shape</em>}'.
+	 * Returns the value of the '<em><b>Subpartition Compartment</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.SubpartitionCompartment#getActivityPartitionShape
+	 * <em>Activity Partition Shape</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sub Partition Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Subpartition Compartment</em>' containment reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Partition Compartment</em>' containment reference.
-	 * @see #setSubPartitionCompartment(SubPartitionCompartment)
-	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityPartitionShape_SubPartitionCompartment()
-	 * @see org.eclipse.papyrus.umldi.SubPartitionCompartment#getActivityPartitionShape
+	 * 
+	 * @return the value of the '<em>Subpartition Compartment</em>' containment reference.
+	 * @see #setSubpartitionCompartment(SubpartitionCompartment)
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getActivityPartitionShape_SubpartitionCompartment()
+	 * @see org.eclipse.papyrus.umldi.SubpartitionCompartment#getActivityPartitionShape
 	 * @model opposite="activityPartitionShape" containment="true" ordered="false"
 	 * @generated
 	 */
-	SubPartitionCompartment getSubPartitionCompartment();
+	SubpartitionCompartment getSubpartitionCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityPartitionShape#getSubPartitionCompartment <em>Sub Partition Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ActivityPartitionShape#getSubpartitionCompartment <em>Subpartition Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sub Partition Compartment</em>' containment reference.
-	 * @see #getSubPartitionCompartment()
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Subpartition Compartment</em>' containment reference.
+	 * @see #getSubpartitionCompartment()
 	 * @generated
 	 */
-	void setSubPartitionCompartment(SubPartitionCompartment value);
-
+	void setSubpartitionCompartment(SubpartitionCompartment value);
 } // ActivityPartitionShape

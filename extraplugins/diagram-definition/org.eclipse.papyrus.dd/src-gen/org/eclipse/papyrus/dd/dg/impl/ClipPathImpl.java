@@ -25,6 +25,7 @@ public class ClipPathImpl extends GroupImpl implements ClipPath {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClipPathImpl() {
@@ -33,6 +34,7 @@ public class ClipPathImpl extends GroupImpl implements ClipPath {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

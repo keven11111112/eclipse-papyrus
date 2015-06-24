@@ -22,6 +22,7 @@ import org.eclipse.papyrus.umldi.InterfaceShape;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.InterfaceShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InterfaceShapeItemProvider extends ClassifierWithNestedClassifiersShapeItemProvider {
@@ -30,6 +31,7 @@ public class InterfaceShapeItemProvider extends ClassifierWithNestedClassifiersS
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InterfaceShapeItemProvider(AdapterFactory adapterFactory) {
@@ -40,13 +42,13 @@ public class InterfaceShapeItemProvider extends ClassifierWithNestedClassifiersS
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -55,6 +57,7 @@ public class InterfaceShapeItemProvider extends ClassifierWithNestedClassifiersS
 	 * This returns InterfaceShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,12 +69,13 @@ public class InterfaceShapeItemProvider extends ClassifierWithNestedClassifiersS
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		InterfaceShape interfaceShape = (InterfaceShape)object;
-		return getString("_UI_InterfaceShape_type") + " " + interfaceShape.isUseClassifierNotation();
+		return getString("_UI_InterfaceShape_type") + " " + interfaceShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -79,6 +83,7 @@ public class InterfaceShapeItemProvider extends ClassifierWithNestedClassifiersS
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +97,7 @@ public class InterfaceShapeItemProvider extends ClassifierWithNestedClassifiersS
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

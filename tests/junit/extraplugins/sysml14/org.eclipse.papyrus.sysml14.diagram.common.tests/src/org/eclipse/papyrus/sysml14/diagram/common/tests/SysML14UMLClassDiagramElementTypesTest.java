@@ -730,18 +730,8 @@ public class SysML14UMLClassDiagramElementTypesTest {
 	}
 
     @Test
-	public void testRegistryContentForPartAssociation_2015() {
-		Assert.assertTrue("PartAssociation_2015 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.PartAssociation_2015"));
-	}
-
-    @Test
 	public void testRegistryContentForPartAssociation_4001() {
 		Assert.assertTrue("PartAssociation_4001 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.PartAssociation_4001"));
-	}
-
-    @Test
-	public void testRegistryContentForPartAssociation_4019() {
-		Assert.assertTrue("PartAssociation_4019 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.PartAssociation_4019"));
 	}
 
 }

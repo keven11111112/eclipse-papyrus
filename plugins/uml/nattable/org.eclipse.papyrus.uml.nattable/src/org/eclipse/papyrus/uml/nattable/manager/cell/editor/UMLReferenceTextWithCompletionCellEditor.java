@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IEditErrorHandler;
 import org.eclipse.papyrus.infra.nattable.celleditor.AbstractPapyrusStyledTextCellEditor;
+import org.eclipse.papyrus.infra.nattable.converter.StringResolutionProblemPapyrusConverter;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.CrossAxisWrapper;
@@ -126,7 +127,7 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	@Override
 	protected Control activateCell(Composite parent, Object originalCanonicalValue) {
 		this.helper = createNameResolutionHelper();
-		parser = new UMLReferenceConverter(this.helper, isMultiValued);
+		parser = new StringResolutionProblemPapyrusConverter(new UMLReferenceConverter(this.helper, isMultiValued));
 		setPapyrusConverter(parser);
 		return super.activateCell(parent, originalCanonicalValue);
 	}
@@ -137,9 +138,6 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	 *            the parser to use to find the references
 	 */
 	private void setPapyrusConverter(IPapyrusConverter parser) {
-		// if (this.dataValidator instanceof ISetPapyrusParser) {
-		// ((ISetPapyrusParser) this.dataValidator).setPapyrusParser(parser);
-		// }
 		if (this.displayConverter instanceof ISetPapyrusConverter) {
 			((ISetPapyrusConverter) this.displayConverter).setPapyrusConverter(parser);
 		}
@@ -162,7 +160,6 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	 */
 	@Override
 	protected StyledText createStyledText(Composite parent, int style) {
-		// IPapyrusParser parser = new UMLReferenceParser(helper);
 		this.textCompletion = new StringEditorWithCompletionWrapper(parent, this.parser);
 		return this.textCompletion.getTextViewer().getTextWidget();
 	}

@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -29,13 +28,16 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.ClassifierCompartment} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ClassifierCompartmentItemProvider extends DiagramCompartmentItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClassifierCompartmentItemProvider(AdapterFactory adapterFactory) {
@@ -46,13 +48,13 @@ public class ClassifierCompartmentItemProvider extends DiagramCompartmentItemPro
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 			addLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -62,22 +64,11 @@ public class ClassifierCompartmentItemProvider extends DiagramCompartmentItemPro
 	 * This adds a property descriptor for the Layout feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLayoutPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ClassifierCompartment_layout_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ClassifierCompartment_layout_feature", "_UI_ClassifierCompartment_type"),
-				 UMLDIPackage.Literals.CLASSIFIER_COMPARTMENT__LAYOUT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ClassifierCompartment_layout_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ClassifierCompartment_layout_feature", "_UI_ClassifierCompartment_type"), UMLDIPackage.Literals.CLASSIFIER_COMPARTMENT__LAYOUT, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -86,11 +77,12 @@ public class ClassifierCompartmentItemProvider extends DiagramCompartmentItemPro
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UMLDIPackage.Literals.LIST_COMPARTMENT__LIST_ITEM_LABEL);
 		}
@@ -100,13 +92,13 @@ public class ClassifierCompartmentItemProvider extends DiagramCompartmentItemPro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
@@ -114,32 +106,32 @@ public class ClassifierCompartmentItemProvider extends DiagramCompartmentItemPro
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		return getString("_UI_ClassifierCompartment_type");
 	}
-	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ClassifierCompartment.class)) {
-			case UMLDIPackage.CLASSIFIER_COMPARTMENT__LAYOUT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case UMLDIPackage.CLASSIFIER_COMPARTMENT__LIST_ITEM_LABEL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(ClassifierCompartment.class)) {
+		case UMLDIPackage.CLASSIFIER_COMPARTMENT__LAYOUT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case UMLDIPackage.CLASSIFIER_COMPARTMENT__LIST_ITEM_LABEL:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -149,16 +141,12 @@ public class ClassifierCompartmentItemProvider extends DiagramCompartmentItemPro
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.LIST_COMPARTMENT__LIST_ITEM_LABEL,
-				 UMLDIFactory.eINSTANCE.createListItemLabel()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.LIST_COMPARTMENT__LIST_ITEM_LABEL, UMLDIFactory.eINSTANCE.createListItemLabel()));
 	}
-
 }

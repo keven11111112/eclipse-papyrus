@@ -15,6 +15,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
@@ -22,6 +25,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
@@ -34,6 +38,10 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.figures.ResizableLabelLocator
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyleObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelAlignmentEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelPrimarySelectionEditPolicy;
@@ -60,6 +68,40 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 	/** The affixed label locator. */
 	protected IPapyrusBorderItemLocator borderLabelLocator = null;
 
+	/** The labelConstrained Observable */
+	private IObservableValue labelConstrainedObservable;
+
+	/** The namedStyle Listener */
+	private IChangeListener namedStyleListener = new IChangeListener() {
+
+		@Override
+		public void handleChange(ChangeEvent event) {
+			refresh();
+
+		}
+
+	};
+
+	/** The position Observable */
+	private IObservableValue positionObservable;
+
+	/** The labelOffsetX Observable */
+	private IObservableValue labelOffsetXObservable;
+
+	/** The labelOffsety Observable */
+	private IObservableValue labelOffsetYObservable;
+
+	/** The leftMargin Observable */
+	private IObservableValue leftMarginObservable;
+
+	/** The rightMargin Observable */
+	private IObservableValue rightMarginObservable;
+
+	/** The topMargin Observable */
+	private IObservableValue topMarginObservable;
+
+	/** The bottomMargin Observable */
+	private IObservableValue bottomMarginObservable;
 
 	public PapyrusLabelEditPart(View view) {
 		super(view);
@@ -280,6 +322,58 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 	}
 
 	/**
+	 * Adds listener to handle named Style modifications.
+	 */
+	@Override
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+
+		View view = (View) getModel();
+		EditingDomain domain = EMFHelper.resolveEditingDomain(view);
+
+		labelConstrainedObservable = new CustomBooleanStyleObservableValue(view, domain, LABEL_CONSTRAINED);
+		labelConstrainedObservable.addChangeListener(namedStyleListener);
+
+		positionObservable = new CustomStringStyleObservableValue(view, domain, POSITION);
+		positionObservable.addChangeListener(namedStyleListener);
+
+		labelOffsetXObservable = new CustomIntStyleObservableValue(view, domain, LABEL_OFFSET_X);
+		labelOffsetXObservable.addChangeListener(namedStyleListener);
+
+		labelOffsetYObservable = new CustomIntStyleObservableValue(view, domain, LABEL_OFFSET_Y);
+		labelOffsetYObservable.addChangeListener(namedStyleListener);
+
+		leftMarginObservable = new CustomIntStyleObservableValue(view, domain, LEFT_MARGIN_PROPERTY);
+		leftMarginObservable.addChangeListener(namedStyleListener);
+
+		rightMarginObservable = new CustomIntStyleObservableValue(view, domain, RIGHT_MARGIN_PROPERTY);
+		rightMarginObservable.addChangeListener(namedStyleListener);
+
+		topMarginObservable = new CustomIntStyleObservableValue(view, domain, TOP_MARGIN_PROPERTY);
+		topMarginObservable.addChangeListener(namedStyleListener);
+
+		bottomMarginObservable = new CustomIntStyleObservableValue(view, domain, BOTTOM_MARGIN_PROPERTY);
+		bottomMarginObservable.addChangeListener(namedStyleListener);
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeNotationalListeners()
+	 *
+	 */
+	@Override
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		labelConstrainedObservable.dispose();
+		positionObservable.dispose();
+		labelOffsetXObservable.dispose();
+		labelOffsetYObservable.dispose();
+		leftMarginObservable.dispose();
+		rightMarginObservable.dispose();
+		topMarginObservable.dispose();
+		bottomMarginObservable.dispose();
+	}
+
+	/**
 	 * Gets the default label offset y.
 	 *
 	 * @return the default label offset y
@@ -355,7 +449,7 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 			}
 		}
 	}
-	
+
 	/**
 	 * Workaround for bug #465611, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=465611
 	 */

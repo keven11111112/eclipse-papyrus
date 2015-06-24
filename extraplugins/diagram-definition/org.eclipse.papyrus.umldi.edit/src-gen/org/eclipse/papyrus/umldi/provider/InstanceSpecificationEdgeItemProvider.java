@@ -26,6 +26,7 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.InstanceSpecificationEdge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvider {
@@ -34,6 +35,7 @@ public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvid
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InstanceSpecificationEdgeItemProvider(AdapterFactory adapterFactory) {
@@ -44,13 +46,13 @@ public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvid
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -61,11 +63,12 @@ public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvid
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UMLDIPackage.Literals.INSTANCE_SPECIFICATION_EDGE__END_ROLE_LABEL);
 		}
@@ -75,13 +78,13 @@ public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvid
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
@@ -89,6 +92,7 @@ public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvid
 	 * This returns InstanceSpecificationEdge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,11 +104,13 @@ public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvid
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_InstanceSpecificationEdge_type");
+		InstanceSpecificationEdge instanceSpecificationEdge = (InstanceSpecificationEdge)object;
+		return getString("_UI_InstanceSpecificationEdge_type") + " " + instanceSpecificationEdge.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -112,16 +118,16 @@ public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvid
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(InstanceSpecificationEdge.class)) {
-			case UMLDIPackage.INSTANCE_SPECIFICATION_EDGE__END_ROLE_LABEL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(InstanceSpecificationEdge.class)) {
+		case UMLDIPackage.INSTANCE_SPECIFICATION_EDGE__END_ROLE_LABEL:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -131,15 +137,12 @@ public class InstanceSpecificationEdgeItemProvider extends ElementEdgeItemProvid
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.INSTANCE_SPECIFICATION_EDGE__END_ROLE_LABEL,
-				 UMLDIFactory.eINSTANCE.createRoleLabel()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.INSTANCE_SPECIFICATION_EDGE__END_ROLE_LABEL, UMLDIFactory.eINSTANCE.createRoleLabel()));
 	}
 }

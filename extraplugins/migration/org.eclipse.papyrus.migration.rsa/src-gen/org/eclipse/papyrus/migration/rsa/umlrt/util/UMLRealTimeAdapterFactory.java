@@ -90,83 +90,87 @@ public class UMLRealTimeAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected UMLRealTimeSwitch<Adapter> modelSwitch =
-			new UMLRealTimeSwitch<Adapter>() {
-				@Override
-				public Adapter caseRTStereotype(RTStereotype object) {
-					return createRTStereotypeAdapter();
-				}
+	protected UMLRealTimeSwitch<Adapter> modelSwitch = new UMLRealTimeSwitch<Adapter>() {
+		@Override
+		public Adapter caseRTStereotype(RTStereotype object) {
+			return createRTStereotypeAdapter();
+		}
 
-				@Override
-				public Adapter caseAbstractEvent(AbstractEvent object) {
-					return createAbstractEventAdapter();
-				}
+		@Override
+		public Adapter caseAbstractEvent(AbstractEvent object) {
+			return createAbstractEventAdapter();
+		}
 
-				@Override
-				public Adapter caseCapsule(Capsule object) {
-					return createCapsuleAdapter();
-				}
+		@Override
+		public Adapter caseCapsule(Capsule object) {
+			return createCapsuleAdapter();
+		}
 
-				@Override
-				public Adapter caseCapsulePart(CapsulePart object) {
-					return createCapsulePartAdapter();
-				}
+		@Override
+		public Adapter caseCapsulePart(CapsulePart object) {
+			return createCapsulePartAdapter();
+		}
 
-				@Override
-				public Adapter caseCoregion(Coregion object) {
-					return createCoregionAdapter();
-				}
+		@Override
+		public Adapter caseCoregion(Coregion object) {
+			return createCoregionAdapter();
+		}
 
-				@Override
-				public Adapter caseInEvent(InEvent object) {
-					return createInEventAdapter();
-				}
+		@Override
+		public Adapter caseInEvent(InEvent object) {
+			return createInEventAdapter();
+		}
 
-				@Override
-				public Adapter caseOutEvent(OutEvent object) {
-					return createOutEventAdapter();
-				}
+		@Override
+		public Adapter caseOutEvent(OutEvent object) {
+			return createOutEventAdapter();
+		}
 
-				@Override
-				public Adapter caseProtocol(Protocol object) {
-					return createProtocolAdapter();
-				}
+		@Override
+		public Adapter caseProtocol(Protocol object) {
+			return createProtocolAdapter();
+		}
 
-				@Override
-				public Adapter caseProtocolContainer(ProtocolContainer object) {
-					return createProtocolContainerAdapter();
-				}
+		@Override
+		public Adapter caseProtocolContainer(ProtocolContainer object) {
+			return createProtocolContainerAdapter();
+		}
 
-				@Override
-				public Adapter caseRTConnector(RTConnector object) {
-					return createRTConnectorAdapter();
-				}
+		@Override
+		public Adapter caseRTConnector(RTConnector object) {
+			return createRTConnectorAdapter();
+		}
 
-				@Override
-				public Adapter caseRTHistorystate(RTHistorystate object) {
-					return createRTHistorystateAdapter();
-				}
+		@Override
+		public Adapter caseRTHistorystate(RTHistorystate object) {
+			return createRTHistorystateAdapter();
+		}
 
-				@Override
-				public Adapter caseRTPort(RTPort object) {
-					return createRTPortAdapter();
-				}
+		@Override
+		public Adapter caseRTPort(RTPort object) {
+			return createRTPortAdapter();
+		}
 
-				@Override
-				public Adapter caseRTRedefinableElement(RTRedefinableElement object) {
-					return createRTRedefinableElementAdapter();
-				}
+		@Override
+		public Adapter caseRTRedefinableElement(RTRedefinableElement object) {
+			return createRTRedefinableElementAdapter();
+		}
 
-				@Override
-				public Adapter caseTrigger(Trigger object) {
-					return createTriggerAdapter();
-				}
+		@Override
+		public Adapter caseTrigger(Trigger object) {
+			return createTriggerAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter caseRTMessage(RTMessage object) {
+			return createRTMessageAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -391,6 +395,21 @@ public class UMLRealTimeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTriggerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.migration.rsa.umlrt.RTMessage <em>RT Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.migration.rsa.umlrt.RTMessage
+	 * @generated
+	 */
+	public Adapter createRTMessageAdapter() {
 		return null;
 	}
 

@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ContainmentEdgeImpl extends UmlEdgeImpl implements ContainmentEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ContainmentEdgeImpl() {
@@ -36,11 +38,11 @@ public class ContainmentEdgeImpl extends UmlEdgeImpl implements ContainmentEdge 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.CONTAINMENT_EDGE;
 	}
-
 } //ContainmentEdgeImpl

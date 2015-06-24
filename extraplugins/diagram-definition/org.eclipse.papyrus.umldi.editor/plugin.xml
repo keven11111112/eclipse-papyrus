@@ -42,5 +42,25 @@
             contributorClass="org.eclipse.papyrus.umldi.presentation.UMLDIActionBarContributor">
       </editor>
    </extension>
+   
+      <extension point="org.eclipse.ui.newWizards">
+      <wizard id="org.eclipse.papyrus.umldi.examples"
+            category="org.eclipse.ui.Examples/org.eclipse.papyrus.dd.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            project="true"
+            name="%Examples_name"
+            icon="$nl$/icons/full/obj16/UMLDIModelFile.gif">
+         <description>%Examples_description</description>
+      </wizard>
+   </extension>
+   <extension point="org.eclipse.emf.common.ui.examples">
+      <example id="org.eclipse.papyrus.umldi.examples.project"
+            wizardID="org.eclipse.papyrus.umldi.examples"
+            pageImage="icons/full/wizban/NewUMLDI.gif">
+         <projectDescriptor name="org.eclipse.papyrus.umldi.examples"
+               contentURI="examples/org.eclipse.papyrus.umldi.examples/"
+               description="%Examples_description"/>
+      </example>
+   </extension>
 
 </plugin>

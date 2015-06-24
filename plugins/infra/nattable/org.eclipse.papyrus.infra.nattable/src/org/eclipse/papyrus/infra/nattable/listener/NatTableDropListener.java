@@ -156,7 +156,7 @@ public class NatTableDropListener implements DropTargetListener {
 			if (CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement)) {
 				final TransactionalEditingDomain domain = getEditingDomain();
 				final Command cmd = getDropSetValueCommand(domain, droppedElements);
-				if (cmd.canExecute()) {
+				if (cmd!=null && cmd.canExecute()) {
 					drop = event.detail;
 				}
 			}
@@ -208,7 +208,7 @@ public class NatTableDropListener implements DropTargetListener {
 		final Object columnElement = this.manager.getColumnElement(columnIndex);
 		if (CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement)) {
 			Object newValue = null;
-			final Object currentValue = CellManagerFactory.INSTANCE.getCrossValue(columnElement, rowElement, this.manager);
+			final Object currentValue = CellManagerFactory.INSTANCE.getCrossValueIgnoringProblems(columnElement, rowElement, this.manager);
 			if (currentValue instanceof Collection<?>) {
 				// the dropped elements will be added to the current Value in case of multivalued cell
 				final Collection<Object> tmpNewValue = new ArrayList<Object>();
@@ -254,7 +254,7 @@ public class NatTableDropListener implements DropTargetListener {
 				case CELL:
 					final TransactionalEditingDomain domain = getEditingDomain();
 					final Command cmd = getDropSetValueCommand(domain, droppedElements);
-					if (cmd.canExecute()) {
+					if (cmd!=null && cmd.canExecute()) {
 						domain.getCommandStack().execute(cmd);
 					}
 					break;

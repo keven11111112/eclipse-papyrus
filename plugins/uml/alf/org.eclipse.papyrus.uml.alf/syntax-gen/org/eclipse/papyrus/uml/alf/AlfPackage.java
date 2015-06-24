@@ -1477,13 +1477,22 @@ public interface AlfPackage extends EPackage {
 	int ELEMENT_REFERENCE___STUB_FOR__UNITDEFINITION = 102;
 
 	/**
+	 * The operation id for the '<em>Constructor Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE = 103;
+
+	/**
 	 * The number of operations of the '<em>Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_REFERENCE_OPERATION_COUNT = 103;
+	int ELEMENT_REFERENCE_OPERATION_COUNT = 104;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.InternalElementReferenceImpl <em>Internal Element Reference</em>}' class.
@@ -1755,6 +1764,15 @@ public interface AlfPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERNAL_ELEMENT_REFERENCE___ALLOW_PACKAGE_ONLY = ELEMENT_REFERENCE___ALLOW_PACKAGE_ONLY;
+
+	/**
+	 * The operation id for the '<em>Constructor Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERNAL_ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE = ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE;
 
 	/**
 	 * The operation id for the '<em>Is Alf</em>' operation.
@@ -2719,6 +2737,15 @@ public interface AlfPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_ELEMENT_REFERENCE___ALLOW_PACKAGE_ONLY = ELEMENT_REFERENCE___ALLOW_PACKAGE_ONLY;
+
+	/**
+	 * The operation id for the '<em>Constructor Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE = ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE;
 
 	/**
 	 * The operation id for the '<em>Is Uml</em>' operation.
@@ -3766,6 +3793,15 @@ public interface AlfPackage extends EPackage {
 	int EXTERNAL_ENUMERATION_LITERAL_REFERENCE___ALLOW_PACKAGE_ONLY = EXTERNAL_ELEMENT_REFERENCE___ALLOW_PACKAGE_ONLY;
 
 	/**
+	 * The operation id for the '<em>Constructor Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ENUMERATION_LITERAL_REFERENCE___CONSTRUCTOR_REFERENCE = EXTERNAL_ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE;
+
+	/**
 	 * The operation id for the '<em>Is Uml</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4809,6 +4845,15 @@ public interface AlfPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOUND_ELEMENT_REFERENCE___ALLOW_PACKAGE_ONLY = ELEMENT_REFERENCE___ALLOW_PACKAGE_ONLY;
+
+	/**
+	 * The operation id for the '<em>Constructor Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE = ELEMENT_REFERENCE___CONSTRUCTOR_REFERENCE;
 
 	/**
 	 * The operation id for the '<em>Is Uml</em>' operation.
@@ -30212,13 +30257,22 @@ public interface AlfPackage extends EPackage {
 	int SEQUENCE_CONSTRUCTION_EXPRESSION___TYPE = EXPRESSION_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Constructor Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___CONSTRUCTOR_REFERENCE = EXPRESSION_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Upper</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___UPPER = EXPRESSION_OPERATION_COUNT + 2;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___UPPER = EXPRESSION_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Lower</em>' operation.
@@ -30227,7 +30281,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___LOWER = EXPRESSION_OPERATION_COUNT + 3;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___LOWER = EXPRESSION_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Sequence Construction Expression Type Derivation</em>' operation.
@@ -30236,7 +30290,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 4;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Sequence Construction Expression Upper Derivation</em>' operation.
@@ -30245,7 +30299,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 5;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Sequence Construction Expression Lower Derivation</em>' operation.
@@ -30254,7 +30308,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 6;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Sequence Construction Expression Type</em>' operation.
@@ -30263,7 +30317,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_TYPE__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 7;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_TYPE__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Sequence Construction Expression Element Type</em>' operation.
@@ -30272,7 +30326,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 8;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Sequence Construction Expression Assignments Before</em>' operation.
@@ -30281,7 +30335,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 9;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___SEQUENCE_CONSTRUCTION_EXPRESSION_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP = EXPRESSION_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Update Assignments</em>' operation.
@@ -30290,7 +30344,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___UPDATE_ASSIGNMENTS = EXPRESSION_OPERATION_COUNT + 10;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___UPDATE_ASSIGNMENTS = EXPRESSION_OPERATION_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Sequence Construction Expression</em>' class.
@@ -30299,7 +30353,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 11;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.SequenceElementsImpl <em>Sequence Elements</em>}' class.
@@ -88561,6 +88615,16 @@ public interface AlfPackage extends EPackage {
 	EOperation getElementReference__StubFor__UnitDefinition();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ElementReference#constructorReference() <em>Constructor Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Constructor Reference</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.ElementReference#constructorReference()
+	 * @generated
+	 */
+	EOperation getElementReference__ConstructorReference();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.alf.InternalElementReference <em>Internal Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96256,6 +96320,16 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getSequenceConstructionExpression__Type();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.SequenceConstructionExpression#constructorReference() <em>Constructor Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Constructor Reference</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.SequenceConstructionExpression#constructorReference()
+	 * @generated
+	 */
+	EOperation getSequenceConstructionExpression__ConstructorReference();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.SequenceConstructionExpression#upper() <em>Upper</em>}' operation.

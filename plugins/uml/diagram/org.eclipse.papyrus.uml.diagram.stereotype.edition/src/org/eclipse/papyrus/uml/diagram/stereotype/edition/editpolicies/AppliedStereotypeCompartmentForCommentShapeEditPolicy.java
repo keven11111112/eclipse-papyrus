@@ -42,7 +42,7 @@ public class AppliedStereotypeCompartmentForCommentShapeEditPolicy extends Appli
 	 */
 	@Override
 	public void activate() {
-		// TODO Auto-generated method stub
+
 		super.activate();
 	}
 

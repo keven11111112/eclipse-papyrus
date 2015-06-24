@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class SubstitutionEdgeImpl extends RealizationEdgeImpl implements SubstitutionEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SubstitutionEdgeImpl() {
@@ -36,11 +38,11 @@ public class SubstitutionEdgeImpl extends RealizationEdgeImpl implements Substit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.SUBSTITUTION_EDGE;
 	}
-
 } //SubstitutionEdgeImpl

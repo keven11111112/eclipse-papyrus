@@ -83,6 +83,10 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
+import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
@@ -132,6 +136,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	private DiagramEditorWithFlyOutPalette activeDiagramEditor;
 
+	private AbstractEMFNattableEditor activeTableEditor;
+
 	private ModelExplorerView modelExplorer;
 
 	private Class<?> testClass;
@@ -180,6 +186,15 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 				// OK, we need to open it, then
 				openDiagram(name);
 			}
+		} else {
+			ActiveTable activeTable = JUnitUtils.getAnnotation(description, ActiveTable.class);
+			if (activeTable != null) {
+				String name = activeTable.value();
+				activateTable(name);
+				if ((activeTableEditor == null) || !name.equals(getActiveTableEditor().getTable().getName())) {
+					openTable(name);
+				}
+			}
 		}
 
 		super.starting(description);
@@ -199,6 +214,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 						}
 					}
 				}
+				//nothing to do for table
 			}
 		});
 	}
@@ -479,6 +495,10 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return activateDiagram(editor, name);
 	}
 
+	public PapyrusEditorFixture activateTable(String name) {
+		return activateTable(editor, name);
+	}
+
 	public PapyrusEditorFixture activateDiagram(IMultiDiagramEditor editor, final String name) {
 		activate(editor);
 
@@ -509,8 +529,44 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return this;
 	}
 
+	public PapyrusEditorFixture activateTable(IMultiDiagramEditor editor, final String name) {
+		activate(editor);
+
+		final ISashWindowsContainer sashContainer = AdapterUtils.adapt(editor, ISashWindowsContainer.class, null);
+		final org.eclipse.papyrus.infra.core.sasheditor.editor.IPage[] select = { null };
+
+		sashContainer.visit(new IPageVisitor() {
+
+			@Override
+			public void accept(IEditorPage page) {
+				if (name.equals(page.getPageTitle()) && (page.getIEditorPart() instanceof AbstractEMFNattableEditor)) {
+					select[0] = page;
+					setActiveTableEditor((AbstractEMFNattableEditor) page.getIEditorPart());
+				}
+			}
+
+			@Override
+			public void accept(IComponentPage page) {
+				// Pass
+			}
+		});
+
+		if (select[0] != null) {
+			sashContainer.selectPage(select[0]);
+			flushDisplayEvents();
+		}
+
+		return this;
+	}
+
 	private void setActiveDiagramEditor(DiagramEditorWithFlyOutPalette editor) {
 		activeDiagramEditor = editor;
+		activeTableEditor = null;
+	}
+
+	private void setActiveTableEditor(AbstractEMFNattableEditor editor) {
+		activeTableEditor = editor;
+		activeDiagramEditor = null;
 	}
 
 	public PapyrusEditorFixture activateDiagram(DiagramEditPart diagram) {
@@ -552,6 +608,10 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return openDiagram(editor, name);
 	}
 
+	public PapyrusEditorFixture openTable(String name) {
+		return openTable(editor, name);
+	}
+
 	public PapyrusEditorFixture openDiagram(IMultiDiagramEditor editor, final String name) {
 		activate(editor);
 
@@ -565,6 +625,24 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			activateDiagram(editor, name);
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot initialize test", e);
+		}
+
+		return this;
+	}
+
+	public PapyrusEditorFixture openTable(IMultiDiagramEditor editor, final String name) {
+		activate(editor);
+
+		try {
+			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
+			PapyrusNattableModel notation = (PapyrusNattableModel) modelSet.getModel(PapyrusNattableModel.MODEL_ID);
+			Table table = notation.getTable(name);
+			ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry()).openPage(table);
+			flushDisplayEvents();
+
+			activateTable(editor, name);
+		} catch (Exception e) {
+			throw new IllegalStateException("Cannot initialize test", e); //NON-NLS-1
 		}
 
 		return this;
@@ -617,10 +695,33 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return result;
 	}
 
+	public AbstractEMFNattableEditor getActiveTableEditor() {
+		AbstractEMFNattableEditor result = activeTableEditor;
+
+		if (result == null) {
+			IEditorPart activeEditor = getWorkbenchPage().getActiveEditor();
+			if (activeEditor instanceof IMultiDiagramEditor) {
+				activeEditor = ((IMultiDiagramEditor) activeEditor).getActiveEditor();
+				if (activeEditor instanceof AbstractEMFNattableEditor) {
+					result = (AbstractEMFNattableEditor) activeEditor;
+					setActiveTableEditor(result);
+				}
+			}
+		}
+
+		assertThat("No table active", result, notNullValue());
+
+		return result;
+	}
+
 	public DiagramEditPart getActiveDiagram() {
 		return getActiveDiagramEditor().getDiagramEditPart();
 	}
 
+	public INattableModelManager getActiveTableManager(){
+		return (INattableModelManager) getActiveTableEditor().getAdapter(INattableModelManager.class);
+	}
+	
 	public DiagramEditPart getDiagram(String name) {
 		return getDiagram(editor, name);
 	}

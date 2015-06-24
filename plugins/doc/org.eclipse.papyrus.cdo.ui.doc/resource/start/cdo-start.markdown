@@ -11,17 +11,13 @@ The CDO Model Repository integration feature is not installed by default with Pa
 Select the CDO integration feature by checking the box on the left side and press **Finish** to perform the installation.
 
 ## <a id="Connecting">Connecting to a Repository</a>
-Repository connections are managed in the **Model Repositories** view.  Use the **Add Repository...** button in the view to create a new repository connection:
+Repository connections are managed in the **CDO Repositories** view.  Use the green plus (**+**) button in the view to create a new repository connection:
 
 ![Add repository](addrepo.png)
 
-If your repository requires user authentication, a login dialog will appear to accept your credentials.
+The new repository is then added to the view.  Select the new repository and pick **Checkout** in the context menu.  Complete the wizard.  A new checkout representing the contents of the repository now appears in the **Project Explorer** view.  Note that this checkout looks like a workspace project but does not physically exist in your workspace.  An online checkout does not store model data on your local disk at all; an offline checkout stores the checked-out baseline locally (but not in the workspace).  You can create as many checkouts from a repository as you want, for example when working with different branches.
 
-The new repository is then added to the view.  Select the new repository and pick **New Papyrus Model** in the context menu.  Complete the wizard.  You should now have a new blank model open and something like this in the **Model Repositories** view:
-
-![Model Repositories view](modelreposview.png)
-
-Note that because it is necessary to explicitly connect to model repositories, any model editors that are open when shutting down the Papyrus workbench are not re-opened on next launch.
+Creating new or opening existing Papyrus models in a checkout works similar to local workspace projects.  Note that because it is necessary to explicitly connect to model repositories, any model editors that are open when shutting down the Papyrus workbench are not re-opened on next launch.
 
 ## <a id="Importing">Importing Models from the Workspace</a>
 

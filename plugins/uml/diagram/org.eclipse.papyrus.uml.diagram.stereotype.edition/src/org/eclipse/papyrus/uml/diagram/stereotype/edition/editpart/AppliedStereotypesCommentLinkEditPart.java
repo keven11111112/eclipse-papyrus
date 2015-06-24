@@ -18,6 +18,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.Activator;
 
 
 /**
@@ -66,4 +67,43 @@ public class AppliedStereotypesCommentLinkEditPart extends ConnectionEditPart {
 			this.setLineStyle(Graphics.LINE_DASH);
 		}
 	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart#refresh()
+	 *
+	 */
+	@Override
+	public void refresh() {
+
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					refreshVisuals();
+					refreshChildren();
+					refreshSourceAnchor();
+					refreshTargetAnchor();
+					refreshSourceConnections();
+					refreshTargetConnections();
+				}
+			});
+		} catch (InterruptedException e) {
+			Activator.log.error(e);
+
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart#refreshVisuals()
+	 *
+	 */
+	@Override
+	protected void refreshVisuals() {
+
+		super.refreshVisuals();
+		if (this.getTarget() == null || this.getSource() == null) {
+			setVisibility(false);
+		}
+	}
+
 }

@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.OwnedBehaviorCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.OwnedBehaviorCompartmentImpl#getBehavioredClassifierShape <em>Behaviored Classifier Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.OwnedBehaviorCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.OwnedBehaviorCompartmentImpl#getBehavioredClassifierShape <em>Behaviored Classifier Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl implements OwnedBehaviorCompartment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OwnedBehaviorCompartmentImpl() {
@@ -53,6 +55,7 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		BehavioredClassifierShape behavioredClassifierShape = getBehavioredClassifierShape();			
-		if (behavioredClassifierShape != null) {
+		BehavioredClassifierShape behavioredClassifierShape = getBehavioredClassifierShape();
+		if(behavioredClassifierShape != null) {
 			return behavioredClassifierShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BehavioredClassifierShape getBehavioredClassifierShape() {
-		if (eContainerFeatureID() != UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE)
+			return null;
 		return (BehavioredClassifierShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBehavioredClassifierShape(BehavioredClassifierShape newBehavioredClassifierShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBehavioredClassifierShape(BehavioredClassifierShape newBehavioredClassifierShape) {
-		if (newBehavioredClassifierShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE && newBehavioredClassifierShape != null)) {
-			if (EcoreUtil.isAncestor(this, newBehavioredClassifierShape))
+		if(newBehavioredClassifierShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE && newBehavioredClassifierShape != null)) {
+			if(EcoreUtil.isAncestor(this, newBehavioredClassifierShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newBehavioredClassifierShape != null)
+			if(newBehavioredClassifierShape != null)
 				msgs = ((InternalEObject)newBehavioredClassifierShape).eInverseAdd(this, UMLDIPackage.BEHAVIORED_CLASSIFIER_SHAPE__OWNED_BEHAVIOR_COMPARTMENT, BehavioredClassifierShape.class, msgs);
 			msgs = basicSetBehavioredClassifierShape(newBehavioredClassifierShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE, newBehavioredClassifierShape, newBehavioredClassifierShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetBehavioredClassifierShape((BehavioredClassifierShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetBehavioredClassifierShape((BehavioredClassifierShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
-				return basicSetBehavioredClassifierShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
+			return basicSetBehavioredClassifierShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.BEHAVIORED_CLASSIFIER_SHAPE__OWNED_BEHAVIOR_COMPARTMENT, BehavioredClassifierShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.BEHAVIORED_CLASSIFIER_SHAPE__OWNED_BEHAVIOR_COMPARTMENT, BehavioredClassifierShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
-				return getBehavioredClassifierShape();
+		switch(featureID) {
+		case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
+			return getBehavioredClassifierShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
-				setBehavioredClassifierShape((BehavioredClassifierShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
+			setBehavioredClassifierShape((BehavioredClassifierShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
-				setBehavioredClassifierShape((BehavioredClassifierShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
+			setBehavioredClassifierShape((BehavioredClassifierShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
-				return getBehavioredClassifierShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE:
+			return getBehavioredClassifierShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class OwnedBehaviorCompartmentImpl extends ClassifierCompartmentImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.OWNED_BEHAVIOR_COMPARTMENT__BEHAVIORED_CLASSIFIER_SHAPE);
 	}
-
 } //OwnedBehaviorCompartmentImpl

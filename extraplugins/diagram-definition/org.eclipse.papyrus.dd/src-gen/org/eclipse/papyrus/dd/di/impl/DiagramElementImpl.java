@@ -11,12 +11,16 @@
  */
 package org.eclipse.papyrus.dd.di.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.dd.di.DIPackage;
+import org.eclipse.papyrus.dd.di.Diagram;
 import org.eclipse.papyrus.dd.di.DiagramElement;
 import org.eclipse.papyrus.dd.di.Edge;
 import org.eclipse.papyrus.dd.di.Style;
@@ -26,6 +30,7 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Diagram Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramElementImpl#getModelElement <em>Model Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramElementImpl#getOwningDiagramElement <em>Owning Diagram Element</em>}</li>
@@ -34,9 +39,9 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramElementImpl#getSharedStyle <em>Shared Style</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramElementImpl#getTargetEdge <em>Target Edge</em>}</li>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramElementImpl#getSourceEdge <em>Source Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.di.impl.DiagramElementImpl#getDiagram <em>Diagram</em>}</li>
  * </ul>
- * </p>
- * 
+ *
  * @generated
  */
 public abstract class DiagramElementImpl extends MinimalEObjectImpl.Container implements DiagramElement {
@@ -121,6 +126,64 @@ public abstract class DiagramElementImpl extends MinimalEObjectImpl.Container im
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Diagram getDiagram() {
+		Diagram diagram = basicGetDiagram();
+		return diagram != null && diagram.eIsProxy() ? (Diagram)eResolveProxy((InternalEObject)diagram) : diagram;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public Diagram basicGetDiagram() {
+		return diagram();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setDiagram(Diagram newDiagram) {
+		// TODO: implement this method to set the 'Diagram' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #diagram() <em>Diagram</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #diagram()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate DIAGRAM__EINVOCATION_DELEGATE = ((EOperation.Internal)DIPackage.Literals.DIAGRAM_ELEMENT___DIAGRAM).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Diagram diagram() {
+		try {
+			return (Diagram)DIAGRAM__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -187,8 +250,44 @@ public abstract class DiagramElementImpl extends MinimalEObjectImpl.Container im
 			return getTargetEdge();
 		case DIPackage.DIAGRAM_ELEMENT__SOURCE_EDGE:
 			return getSourceEdge();
+		case DIPackage.DIAGRAM_ELEMENT__DIAGRAM:
+			if(resolve)
+				return getDiagram();
+			return basicGetDiagram();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch(featureID) {
+		case DIPackage.DIAGRAM_ELEMENT__DIAGRAM:
+			setDiagram((Diagram)newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch(featureID) {
+		case DIPackage.DIAGRAM_ELEMENT__DIAGRAM:
+			setDiagram((Diagram)null);
+			return;
+		}
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -213,8 +312,25 @@ public abstract class DiagramElementImpl extends MinimalEObjectImpl.Container im
 			return isSetTargetEdge();
 		case DIPackage.DIAGRAM_ELEMENT__SOURCE_EDGE:
 			return isSetSourceEdge();
+		case DIPackage.DIAGRAM_ELEMENT__DIAGRAM:
+			return basicGetDiagram() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch(operationID) {
+		case DIPackage.DIAGRAM_ELEMENT___DIAGRAM:
+			return diagram();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

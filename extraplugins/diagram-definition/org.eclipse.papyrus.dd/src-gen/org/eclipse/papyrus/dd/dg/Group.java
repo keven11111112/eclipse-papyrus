@@ -24,8 +24,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Group#getMembers <em>Member</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Group#getLayout <em>Layout</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Group#getMembers <em>Member</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Group#getLayout <em>Layout</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getGroup()
@@ -57,6 +57,7 @@ public interface Group extends GraphicalElement {
 	 * If the meaning of the '<em>Layout</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Layout</em>' attribute.
 	 * @see #setLayout(String)
 	 * @see org.eclipse.papyrus.dd.dg.DGPackage#getGroup_Layout()
@@ -69,7 +70,9 @@ public interface Group extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Group#getLayout <em>Layout</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Layout</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Layout</em>' attribute.
 	 * @see #getLayout()
 	 * @generated
 	 */

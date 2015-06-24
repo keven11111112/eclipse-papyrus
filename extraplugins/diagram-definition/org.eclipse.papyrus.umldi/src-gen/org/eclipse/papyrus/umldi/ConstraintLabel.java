@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Constraint Label</b></em>'.
@@ -21,10 +20,12 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getAssociationEdge <em>Association Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getGeneralizationSetEdge <em>Generalization Set Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getObjectNodeShape <em>Object Node Shape</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getPropertyEdge <em>Property Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getAssociationEdge <em>Association Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getGeneralizationSetEdge <em>Generalization Set Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getObjectNodeShape <em>Object Node Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getLifelineShape <em>Lifeline Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getActionShape <em>Action Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ConstraintLabel#getPropertyEdge <em>Property Edge</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConstraintLabel()
@@ -32,21 +33,23 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface ConstraintLabel extends UmlLabel {
+
 	/**
 	 * Returns the value of the '<em><b>Association Edge</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndConstraintLabel <em>End Constraint Label</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndConstraintLabel <em>End Constraint Label</em>}
+	 * '.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Association Edge</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Association Edge</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Association Edge</em>' container reference.
 	 * @see #setAssociationEdge(AssociationEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConstraintLabel_AssociationEdge()
@@ -60,7 +63,9 @@ public interface ConstraintLabel extends UmlLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getAssociationEdge <em>Association Edge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Association Edge</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Association Edge</em>' container reference.
 	 * @see #getAssociationEdge()
 	 * @generated
 	 */
@@ -73,14 +78,14 @@ public interface ConstraintLabel extends UmlLabel {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Generalization Set Edge</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Generalization Set Edge</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Generalization Set Edge</em>' container reference.
 	 * @see #setGeneralizationSetEdge(GeneralizationSetEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConstraintLabel_GeneralizationSetEdge()
@@ -91,10 +96,13 @@ public interface ConstraintLabel extends UmlLabel {
 	GeneralizationSetEdge getGeneralizationSetEdge();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getGeneralizationSetEdge <em>Generalization Set Edge</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getGeneralizationSetEdge <em>Generalization Set Edge</em>}' container
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Generalization Set Edge</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Generalization Set Edge</em>' container reference.
 	 * @see #getGeneralizationSetEdge()
 	 * @generated
 	 */
@@ -107,14 +115,14 @@ public interface ConstraintLabel extends UmlLabel {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Object Node Shape</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Object Node Shape</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Object Node Shape</em>' container reference.
 	 * @see #setObjectNodeShape(ObjectNodeShape)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConstraintLabel_ObjectNodeShape()
@@ -128,11 +136,85 @@ public interface ConstraintLabel extends UmlLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getObjectNodeShape <em>Object Node Shape</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object Node Shape</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Object Node Shape</em>' container reference.
 	 * @see #getObjectNodeShape()
 	 * @generated
 	 */
 	void setObjectNodeShape(ObjectNodeShape value);
+
+	/**
+	 * Returns the value of the '<em><b>Lifeline Shape</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.LifelineShape#getConstraintLabel <em>Constraint Label</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Lifeline Shape</em>' container reference isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Lifeline Shape</em>' container reference.
+	 * @see #setLifelineShape(LifelineShape)
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConstraintLabel_LifelineShape()
+	 * @see org.eclipse.papyrus.umldi.LifelineShape#getConstraintLabel
+	 * @model opposite="constraintLabel" transient="false" ordered="false"
+	 * @generated
+	 */
+	LifelineShape getLifelineShape();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getLifelineShape <em>Lifeline Shape</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Lifeline Shape</em>' container reference.
+	 * @see #getLifelineShape()
+	 * @generated
+	 */
+	void setLifelineShape(LifelineShape value);
+
+	/**
+	 * Returns the value of the '<em><b>Action Shape</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ActionShape#getConditionLabel <em>Condition Label</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Action Shape</em>' container reference isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Action Shape</em>' container reference.
+	 * @see #setActionShape(ActionShape)
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConstraintLabel_ActionShape()
+	 * @see org.eclipse.papyrus.umldi.ActionShape#getConditionLabel
+	 * @model opposite="conditionLabel" transient="false" ordered="false"
+	 * @generated
+	 */
+	ActionShape getActionShape();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getActionShape <em>Action Shape</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Action Shape</em>' container reference.
+	 * @see #getActionShape()
+	 * @generated
+	 */
+	void setActionShape(ActionShape value);
 
 	/**
 	 * Returns the value of the '<em><b>Property Edge</b></em>' container reference.
@@ -141,14 +223,14 @@ public interface ConstraintLabel extends UmlLabel {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Property Edge</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Property Edge</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Property Edge</em>' container reference.
 	 * @see #setPropertyEdge(PropertyEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConstraintLabel_PropertyEdge()
@@ -162,10 +244,11 @@ public interface ConstraintLabel extends UmlLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getPropertyEdge <em>Property Edge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property Edge</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Property Edge</em>' container reference.
 	 * @see #getPropertyEdge()
 	 * @generated
 	 */
 	void setPropertyEdge(PropertyEdge value);
-
 } // ConstraintLabel

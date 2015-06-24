@@ -48,7 +48,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void fillChildrenForTreeFillingConfiguration(ITreeItemAxis axis) {
-		// CEJ Auto-generated method stub
+
 		super.fillChildrenForTreeFillingConfiguration(axis);
 	}
 
@@ -87,20 +87,21 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 					if (obj instanceof IAdaptable) {
 						View v = ((IAdaptable) obj).getAdapter(View.class);
 						if (v != null) {
-							if(isStereotypedElement(v)){
+							if (isStereotypedElement(v)) {
 								selectionList.add(v);
 							}
 						}
 					}
 					if (obj instanceof View) {
-						if(isStereotypedElement((View)obj)){
-							selectionList.add((View) obj);
+						if (isStereotypedElement((View) obj)) {
+							selectionList.add(obj);
 						}
 					}
 				}
 			}
 
 			final Command cmd = getAddAxisCommand(getTableEditingDomain(), selectionList);
+
 			try {
 				GMFUnsafe.write(getTableEditingDomain(), cmd);
 			} catch (InterruptedException e) {
@@ -108,24 +109,22 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 			} catch (RollbackException e) {
 				Activator.log.error(e);
 			}
-			// because event will be propagated and children will be setted!
+			// because event will be propagated and children will be set!
 			return;
 		}
 		super.fillListWithRoots();
 	}
-	
+
 	/**
 	 * Check is the element of the view is stereotyped.
 	 * 
-	 * @param view The view.
+	 * @param view
+	 *            The view.
 	 * @return <code>true</code> if the element of view is stereotyped, <code>false</code> otherwise.
 	 */
-	protected boolean isStereotypedElement(final View view){
-		boolean result = false;
-		if(view.getElement() instanceof Element && !((Element)view.getElement()).getAppliedStereotypes().isEmpty()){
-			result = true;
-		}
-		return result;
+	protected boolean isStereotypedElement(final View view) {
+
+		return (view.getElement() instanceof Element && !((Element) view.getElement()).getAppliedStereotypes().isEmpty());
 	}
 
 	/**
@@ -148,8 +147,8 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void updateManagedList(List<Object> toAdd, List<Object> toRemove) {
-
 		super.updateManagedList(toAdd, toRemove);
+		getTableManager().refreshNatTable();
 	}
 
 	/**
@@ -161,6 +160,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	public void fillListWithChildren(ITreeItemAxis parentAxis) {
 
 		super.fillListWithChildren(parentAxis);
+
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void manageAddNotification(Notification notification) {
-		// CEJ Auto-generated method stub
+
 		super.manageAddNotification(notification);
 	}
 
@@ -214,7 +214,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void manageAddManyNotification(Notification notification) {
-		// CEJ Auto-generated method stub
+
 		super.manageAddManyNotification(notification);
 	}
 
@@ -225,7 +225,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void manageMoveNotification(Notification notification) {
-		// CEJ Auto-generated method stub
+
 		super.manageMoveNotification(notification);
 	}
 
@@ -236,7 +236,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void manageRemoveITreeItemAxisForSemanticElement(ITreeItemAxis axis) {
-		// CEJ Auto-generated method stub
+
 		super.manageRemoveITreeItemAxisForSemanticElement(axis);
 	}
 
@@ -247,7 +247,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void manageRemoveNotification(Notification notification) {
-		// CEJ Auto-generated method stub
+
 		super.manageRemoveNotification(notification);
 	}
 
@@ -258,8 +258,8 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void manageRemoveSemanticElement(Object object) {
-		// CEJ Auto-generated method stub
 		super.manageRemoveSemanticElement(object);
+
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void manageRemoveManyNotification(Notification notification) {
-		// CEJ Auto-generated method stub
+
 		super.manageRemoveManyNotification(notification);
 	}
 
@@ -280,7 +280,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void updateChildren(ITreeItemAxis semanticElementRepresentation) {
-		// CEJ Auto-generated method stub
+
 		super.updateChildren(semanticElementRepresentation);
 	}
 
@@ -291,8 +291,8 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	protected void updateSemanticElement(Object semanticElement) {
-		// CEJ Auto-generated method stub
 		super.updateSemanticElement(semanticElement);
+
 	}
 
 	/**
@@ -303,7 +303,6 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 */
 	@Override
 	public void managedHideShowCategoriesForDepth(List<Integer> depthToHide, List<Integer> depthToShow) {
-		// CEJ Auto-generated method stub
 		super.managedHideShowCategoriesForDepth(depthToHide, depthToShow);
 	}
 

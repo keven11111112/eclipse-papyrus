@@ -26,6 +26,7 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.AssociationEdge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
@@ -34,6 +35,7 @@ public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AssociationEdgeItemProvider(AdapterFactory adapterFactory) {
@@ -44,13 +46,13 @@ public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -61,11 +63,12 @@ public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UMLDIPackage.Literals.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL);
 			childrenFeatures.add(UMLDIPackage.Literals.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL);
@@ -77,13 +80,13 @@ public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
@@ -91,6 +94,7 @@ public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns AssociationEdge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,11 +106,13 @@ public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AssociationEdge_type");
+		AssociationEdge associationEdge = (AssociationEdge)object;
+		return getString("_UI_AssociationEdge_type") + " " + associationEdge.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -114,18 +120,18 @@ public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(AssociationEdge.class)) {
-			case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
-			case UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL:
-			case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(AssociationEdge.class)) {
+		case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
+		case UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL:
+		case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -135,25 +141,14 @@ public class AssociationEdgeItemProvider extends ElementEdgeItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL,
-				 UMLDIFactory.eINSTANCE.createMultiplicityLabel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL,
-				 UMLDIFactory.eINSTANCE.createConstraintLabel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.ASSOCIATION_EDGE__END_ROLE_LABEL,
-				 UMLDIFactory.eINSTANCE.createRoleLabel()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL, UMLDIFactory.eINSTANCE.createMultiplicityLabel()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL, UMLDIFactory.eINSTANCE.createConstraintLabel()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.ASSOCIATION_EDGE__END_ROLE_LABEL, UMLDIFactory.eINSTANCE.createRoleLabel()));
 	}
 }

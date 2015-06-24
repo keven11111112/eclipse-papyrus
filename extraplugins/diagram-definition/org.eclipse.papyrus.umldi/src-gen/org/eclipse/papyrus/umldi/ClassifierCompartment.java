@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Classifier Compartment</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ClassifierCompartment#getLayout <em>Layout</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ClassifierCompartment#getLayout <em>Layout</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getClassifierCompartment()
@@ -29,16 +28,17 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface ClassifierCompartment extends DiagramCompartment, ListCompartment {
+
 	/**
 	 * Returns the value of the '<em><b>Layout</b></em>' attribute.
 	 * The default value is <code>"list"</code>.
 	 * The literals are from the enumeration {@link org.eclipse.papyrus.umldi.CompartmentLayout}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Layout</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Layout</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Layout</em>' attribute.
 	 * @see org.eclipse.papyrus.umldi.CompartmentLayout
 	 * @see #setLayout(CompartmentLayout)
@@ -52,11 +52,12 @@ public interface ClassifierCompartment extends DiagramCompartment, ListCompartme
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ClassifierCompartment#getLayout <em>Layout</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Layout</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Layout</em>' attribute.
 	 * @see org.eclipse.papyrus.umldi.CompartmentLayout
 	 * @see #getLayout()
 	 * @generated
 	 */
 	void setLayout(CompartmentLayout value);
-
 } // ClassifierCompartment

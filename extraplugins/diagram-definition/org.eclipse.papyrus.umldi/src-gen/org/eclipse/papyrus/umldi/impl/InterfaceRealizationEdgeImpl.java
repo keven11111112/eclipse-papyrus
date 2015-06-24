@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class InterfaceRealizationEdgeImpl extends RealizationEdgeImpl implements InterfaceRealizationEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected InterfaceRealizationEdgeImpl() {
@@ -36,11 +38,11 @@ public class InterfaceRealizationEdgeImpl extends RealizationEdgeImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.INTERFACE_REALIZATION_EDGE;
 	}
-
 } //InterfaceRealizationEdgeImpl

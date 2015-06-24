@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ExpansionRegionShape#getExpansionNodeShape <em>Expansion Node Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ExpansionRegionShape#getExpansionNodeShape <em>Expansion Node Shape</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getExpansionRegionShape()
@@ -30,28 +30,30 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ExpansionRegionShape extends StructuredActivityNodeShape {
+
 	/**
 	 * Returns the value of the '<em><b>Expansion Node Shape</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.ExpansionNodeShape}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ExpansionNodeShape#getExpansionRegionShape <em>Expansion Region Shape</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ExpansionNodeShape#getExpansionRegionShape
+	 * <em>Expansion Region Shape</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Expansion Node Shape</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Expansion Node Shape</em>' containment reference list isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Expansion Node Shape</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getExpansionRegionShape_ExpansionNodeShape()
 	 * @see org.eclipse.papyrus.umldi.ExpansionNodeShape#getExpansionRegionShape
-	 * @model opposite="expansionRegionShape" containment="true" ordered="false"
+	 * @model opposite="expansionRegionShape" containment="true"
 	 * @generated
 	 */
 	EList<ExpansionNodeShape> getExpansionNodeShape();
-
 } // ExpansionRegionShape

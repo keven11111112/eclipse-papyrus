@@ -20,9 +20,7 @@ import org.eclipse.papyrus.dd.di.Style;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Style</b></em>'. <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public abstract class StyleImpl extends MinimalEObjectImpl.Container implements Style {

@@ -35,17 +35,19 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.SelectionLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.SelectionLabelImpl#getObjectFlowEdge <em>Object Flow Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.SelectionLabelImpl#getObjectNodeShape <em>Object Node Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.SelectionLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.SelectionLabelImpl#getObjectFlowEdge <em>Object Flow Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.SelectionLabelImpl#getObjectNodeShape <em>Object Node Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SelectionLabelImpl() {
@@ -55,6 +57,7 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +68,7 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,16 +80,17 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ObjectFlowEdge objectFlowEdge = getObjectFlowEdge();			
-		if (objectFlowEdge != null) {
+		ObjectFlowEdge objectFlowEdge = getObjectFlowEdge();
+		if(objectFlowEdge != null) {
 			return objectFlowEdge;
 		}
-		ObjectNodeShape objectNodeShape = getObjectNodeShape();			
-		if (objectNodeShape != null) {
+		ObjectNodeShape objectNodeShape = getObjectNodeShape();
+		if(objectNodeShape != null) {
 			return objectNodeShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -94,16 +99,19 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ObjectFlowEdge getObjectFlowEdge() {
-		if (eContainerFeatureID() != UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE)
+			return null;
 		return (ObjectFlowEdge)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetObjectFlowEdge(ObjectFlowEdge newObjectFlowEdge, NotificationChain msgs) {
@@ -114,37 +122,41 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setObjectFlowEdge(ObjectFlowEdge newObjectFlowEdge) {
-		if (newObjectFlowEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE && newObjectFlowEdge != null)) {
-			if (EcoreUtil.isAncestor(this, newObjectFlowEdge))
+		if(newObjectFlowEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE && newObjectFlowEdge != null)) {
+			if(EcoreUtil.isAncestor(this, newObjectFlowEdge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newObjectFlowEdge != null)
+			if(newObjectFlowEdge != null)
 				msgs = ((InternalEObject)newObjectFlowEdge).eInverseAdd(this, UMLDIPackage.OBJECT_FLOW_EDGE__SELECTION_LABEL, ObjectFlowEdge.class, msgs);
 			msgs = basicSetObjectFlowEdge(newObjectFlowEdge, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE, newObjectFlowEdge, newObjectFlowEdge));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ObjectNodeShape getObjectNodeShape() {
-		if (eContainerFeatureID() != UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE)
+			return null;
 		return (ObjectNodeShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetObjectNodeShape(ObjectNodeShape newObjectNodeShape, NotificationChain msgs) {
@@ -155,40 +167,42 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setObjectNodeShape(ObjectNodeShape newObjectNodeShape) {
-		if (newObjectNodeShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE && newObjectNodeShape != null)) {
-			if (EcoreUtil.isAncestor(this, newObjectNodeShape))
+		if(newObjectNodeShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE && newObjectNodeShape != null)) {
+			if(EcoreUtil.isAncestor(this, newObjectNodeShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newObjectNodeShape != null)
+			if(newObjectNodeShape != null)
 				msgs = ((InternalEObject)newObjectNodeShape).eInverseAdd(this, UMLDIPackage.OBJECT_NODE_SHAPE__SELECTION_LABEL, ObjectNodeShape.class, msgs);
 			msgs = basicSetObjectNodeShape(newObjectNodeShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE, newObjectNodeShape, newObjectNodeShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetObjectFlowEdge((ObjectFlowEdge)otherEnd, msgs);
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetObjectNodeShape((ObjectNodeShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetObjectFlowEdge((ObjectFlowEdge)otherEnd, msgs);
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetObjectNodeShape((ObjectNodeShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -196,15 +210,16 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
-				return basicSetObjectFlowEdge(null, msgs);
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
-				return basicSetObjectNodeShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
+			return basicSetObjectFlowEdge(null, msgs);
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
+			return basicSetObjectNodeShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -212,15 +227,16 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.OBJECT_FLOW_EDGE__SELECTION_LABEL, ObjectFlowEdge.class, msgs);
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.OBJECT_NODE_SHAPE__SELECTION_LABEL, ObjectNodeShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.OBJECT_FLOW_EDGE__SELECTION_LABEL, ObjectFlowEdge.class, msgs);
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.OBJECT_NODE_SHAPE__SELECTION_LABEL, ObjectNodeShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -228,15 +244,16 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
-				return getObjectFlowEdge();
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
-				return getObjectNodeShape();
+		switch(featureID) {
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
+			return getObjectFlowEdge();
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
+			return getObjectNodeShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,17 +261,18 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
-				setObjectFlowEdge((ObjectFlowEdge)newValue);
-				return;
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
-				setObjectNodeShape((ObjectNodeShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
+			setObjectFlowEdge((ObjectFlowEdge)newValue);
+			return;
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
+			setObjectNodeShape((ObjectNodeShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -262,17 +280,18 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
-				setObjectFlowEdge((ObjectFlowEdge)null);
-				return;
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
-				setObjectNodeShape((ObjectNodeShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
+			setObjectFlowEdge((ObjectFlowEdge)null);
+			return;
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
+			setObjectNodeShape((ObjectNodeShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -280,17 +299,18 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.SELECTION_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
-				return getObjectFlowEdge() != null;
-			case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
-				return getObjectNodeShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.SELECTION_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE:
+			return getObjectFlowEdge() != null;
+		case UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE:
+			return getObjectNodeShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -298,13 +318,11 @@ public class SelectionLabelImpl extends UmlLabelImpl implements SelectionLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE)
-			|| eIsSet(UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.SELECTION_LABEL__OBJECT_FLOW_EDGE) || eIsSet(UMLDIPackage.SELECTION_LABEL__OBJECT_NODE_SHAPE);
 	}
-
 } //SelectionLabelImpl

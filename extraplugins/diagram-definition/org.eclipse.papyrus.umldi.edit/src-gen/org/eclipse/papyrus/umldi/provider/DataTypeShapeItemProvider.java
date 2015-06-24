@@ -22,6 +22,7 @@ import org.eclipse.papyrus.umldi.DataTypeShape;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.DataTypeShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DataTypeShapeItemProvider extends ClassifierWithOperationsShapeItemProvider {
@@ -30,6 +31,7 @@ public class DataTypeShapeItemProvider extends ClassifierWithOperationsShapeItem
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DataTypeShapeItemProvider(AdapterFactory adapterFactory) {
@@ -40,13 +42,13 @@ public class DataTypeShapeItemProvider extends ClassifierWithOperationsShapeItem
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -55,6 +57,7 @@ public class DataTypeShapeItemProvider extends ClassifierWithOperationsShapeItem
 	 * This returns DataTypeShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,12 +69,13 @@ public class DataTypeShapeItemProvider extends ClassifierWithOperationsShapeItem
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		DataTypeShape dataTypeShape = (DataTypeShape)object;
-		return getString("_UI_DataTypeShape_type") + " " + dataTypeShape.isUseClassifierNotation();
+		return getString("_UI_DataTypeShape_type") + " " + dataTypeShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -79,6 +83,7 @@ public class DataTypeShapeItemProvider extends ClassifierWithOperationsShapeItem
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +97,7 @@ public class DataTypeShapeItemProvider extends ClassifierWithOperationsShapeItem
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

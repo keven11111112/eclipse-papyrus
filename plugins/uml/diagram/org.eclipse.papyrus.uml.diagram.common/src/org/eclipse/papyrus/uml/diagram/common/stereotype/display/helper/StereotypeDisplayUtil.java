@@ -220,9 +220,7 @@ public class StereotypeDisplayUtil {
 			object = iter.next();
 			if (isStereotypeBrace(object)) {
 				BasicCompartment compartment = (BasicCompartment) object;
-
 				textToDisplay = addStereotypeCompartmentProperties(textToDisplay, compartment);
-
 			}
 		}
 		return textToDisplay;
@@ -396,7 +394,7 @@ public class StereotypeDisplayUtil {
 			Object obj;
 			if (compartment != null) {
 				Iterator<?> iter = compartment.getChildren().iterator();
-				while (iter.hasNext()) {
+				while (null == propertyView && iter.hasNext()) {
 					obj = iter.next();
 					if (isStereotypeProperty(obj) && ((DecorationNode) obj).getElement().equals(property)) {
 						propertyView = (DecorationNode) obj;
@@ -420,12 +418,12 @@ public class StereotypeDisplayUtil {
 	 */
 	public DecorationNode getStereotypePropertyInBrace(View node, Stereotype stereotype, Property property) {
 		DecorationNode propertyView = null;
-		if ((stereotype != null) && (property != null)) {
+		if ((null != stereotype) && (null != property)) {
 			View compartment = getStereotypeBraceCompartment(node, stereotype);
 			Object obj;
-			if (compartment != null) {
+			if (null != compartment) {
 				Iterator<?> iter = compartment.getChildren().iterator();
-				while (iter.hasNext()) {
+				while (null == propertyView && iter.hasNext()) {
 					obj = iter.next();
 					if (isStereotypeBraceProperty(obj) && ((DecorationNode) obj).getElement().equals(property)) {
 						propertyView = (DecorationNode) obj;
@@ -451,12 +449,12 @@ public class StereotypeDisplayUtil {
 		View node = getStereotypeComment(mainView);
 		DecorationNode propertyView = null;
 
-		if ((stereotype != null) && (property != null)) {
+		if ((null != stereotype) && (null != property)) {
 			View compartment = getStereotypeCompartment(node, stereotype);
 			Object obj;
-			if (compartment != null) {
+			if (null != compartment) {
 				Iterator<?> iter = compartment.getChildren().iterator();
-				while (iter.hasNext()) {
+				while (null == propertyView && iter.hasNext()) {
 					obj = iter.next();
 					if (isStereotypeProperty(obj) && ((DecorationNode) obj).getElement().equals(property)) {
 						propertyView = (DecorationNode) obj;
@@ -472,9 +470,12 @@ public class StereotypeDisplayUtil {
 	/**
 	 * Return the associated Property view of a node from the property name.
 	 * 
-	 * @param node Node on which the Stereotype Label is retrieved
-	 * @param stereotype Stereotype Application of the Label to be retrieved.
-	 * @param property Property of the stereotype
+	 * @param node
+	 *            Node on which the Stereotype Label is retrieved
+	 * @param stereotype
+	 *            Stereotype Application of the Label to be retrieved.
+	 * @param property
+	 *            Property of the stereotype
 	 * @return associated StereotypeLabel
 	 */
 	public DecorationNode getStereotypePropertyInCompartment(View node, Stereotype stereotype, Property property) {
@@ -484,9 +485,9 @@ public class StereotypeDisplayUtil {
 			Object obj;
 			if (compartment != null) {
 				Iterator<?> iter = compartment.getChildren().iterator();
-				while (iter.hasNext()) {
+				while (null == propertyView && iter.hasNext()) {
 					obj = iter.next();
-					if (isStereotypeProperty(obj) && ((DecorationNode) obj).getElement().equals(property)) {
+					if (isStereotypeProperty(obj) && null != ((DecorationNode) obj).getElement() && ((DecorationNode) obj).getElement().equals(property)) {
 						propertyView = (DecorationNode) obj;
 					}
 
@@ -566,7 +567,7 @@ public class StereotypeDisplayUtil {
 			// look for all links with the id AppliedStereotypesCommentLinkEditPart.ID
 			Iterator<Edge> edgeIterator = SemanticView.getSourceEdges().iterator();
 			Edge appliedStereotypeLink = null;
-			while (edgeIterator.hasNext() && appliedStereotypeLink == null) {
+			while (null == appliedStereotypeLink && edgeIterator.hasNext()) {
 				Edge edge = edgeIterator.next();
 				if (edge.getType().equals(StereotypeDisplayConstant.STEREOTYPE_COMMENT_LINK_TYPE)) {
 					appliedStereotypeLink = edge;
@@ -1043,7 +1044,7 @@ public class StereotypeDisplayUtil {
 		boolean empty = true;
 		if (compartment != null) {
 			Iterator<?> childrenIterator = compartment.getChildren().iterator();
-			while (childrenIterator.hasNext() && empty) {
+			while (empty && childrenIterator.hasNext()) {
 				Object property = childrenIterator.next();
 				if (isStereotypeProperty(property) || isStereotypeBraceProperty(property)) {
 					if (isDisplayed((Node) property)) {
@@ -1277,18 +1278,39 @@ public class StereotypeDisplayUtil {
 		String label = getStereotypeTextToDisplay(view);
 		String brace = getStereotypePropertiesInBrace(view);
 
-		if (label != null && !label.isEmpty()) {
+		if (null != label && !label.isEmpty()) {
 			text.append(label);
 
 		}
 
 
-		if (brace != null && !brace.isEmpty()) {
+		if (null != brace && !brace.isEmpty()) {
 			text.append(StereotypeDisplayConstant.STEREOTYPE_PROPERTY_SEPARATOR).append(StereotypeDisplayConstant.BRACE_LEFT + brace + StereotypeDisplayConstant.BRACE_RIGHT);
 		}
 
 
 		return text.toString();
+	}
+
+	/**
+	 * Check if the Comment view has visible compartment.
+	 * 
+	 * @param comment
+	 * @return
+	 */
+	public boolean hasVisibleCompartment(View comment) {
+		boolean empty = true;
+
+		if (isStereotypeComment(comment)) {
+			Iterator<?> childrenIterator = comment.getChildren().iterator();
+			while (empty && childrenIterator.hasNext()) {
+				Object child = childrenIterator.next();
+				if (isStereotypeCompartment(child)) {
+					empty = !((View) child).isVisible();
+				}
+			}
+		}
+		return !empty;
 	}
 
 
