@@ -100,6 +100,12 @@
       namespace="//@namespaces.0"
       type="Reference"
       multiplicity="-1"/>
+  <propertyEditorTypes
+      label="Stereotype Display Nattable Property"
+      widgetClass="StereotypeDisplayNattablePropertyEditor"
+      namespace="//@namespaces.0"
+      type="Reference"
+      multiplicity="-1"/>
   <namespaces
       name="uml"
       value="org.eclipse.papyrus.uml.properties.widgets"/>

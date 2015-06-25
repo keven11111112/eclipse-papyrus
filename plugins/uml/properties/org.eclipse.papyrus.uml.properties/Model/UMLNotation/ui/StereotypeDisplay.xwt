@@ -10,10 +10,10 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
-		<uml:NattablePropertyEditor
+		<uml:StereotypeDisplayNattablePropertyEditor
 			property="UMLNotation:Element:stereotypeDisplay"
 			tableURI="platform:/plugin/org.eclipse.papyrus.uml.nattable.stereotype.display/config/stereotype.nattableconfiguration"
-			input="{Binding}"></uml:NattablePropertyEditor>
+			input="{Binding}"></uml:StereotypeDisplayNattablePropertyEditor>
 		<ppe:BooleanCheckbox input="{Binding}"
 			property="UMLNotation:Element:elementIcon"></ppe:BooleanCheckbox>
 		<ppe:BooleanCheckbox input="{Binding}"
