@@ -23,12 +23,13 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 	// canonical
-TestProfileApplication.class,
-TestStereotypeApplication.class,
-TestLayoutWithStereotype.class,
-TestUnapplyProfile2ClosedDiagComment.class,
-TestUnapplyProfile2Comment.class,
-TestLayoutWithStereotypeOnEclipseHIPPInstance.class
+	TestProfileApplication.class,
+	TestStereotypeApplication.class,
+	TestLayoutWithStereotype.class,
+	TestUnapplyProfile2ClosedDiagComment.class,
+	TestUnapplyProfile2Comment.class,
+	TestLayoutWithStereotypeOnEclipseHIPPInstance.class,
+	TestUnapplyStereotypeComment.class
 })
 public class AllTests {
 

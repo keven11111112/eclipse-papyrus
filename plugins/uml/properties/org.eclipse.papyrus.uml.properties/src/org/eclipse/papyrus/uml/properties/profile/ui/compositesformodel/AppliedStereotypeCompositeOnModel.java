@@ -48,6 +48,7 @@ import org.eclipse.papyrus.uml.profile.tree.objects.TreeObject;
 import org.eclipse.papyrus.uml.profile.utils.Util;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.ChooseSetStereotypeDialog;
 import org.eclipse.papyrus.uml.properties.profile.ui.panels.AppliedStereotypePanel;
+import org.eclipse.papyrus.uml.tools.commands.UnapplyStereotypeCommand;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Composite;
@@ -664,18 +665,19 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * @return Command to execute to unapply stereotype on element
 	 */
 	protected Command getUnapplyStereotypeCommand(final Element elt, final Stereotype st, final TransactionalEditingDomain domain) {
-		return new RecordingCommand(domain) {
-
-			/**
-			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
-			 */
-			@Override
-			protected void doExecute() {
-				elt.unapplyStereotype(st);
-				elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
-				refresh();
-			}
-		};
+		return new UnapplyStereotypeCommand(elt, st, domain);
+//		return new RecordingCommand(domain) {
+//
+//			/**
+//			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+//			 */
+//			@Override
+//			protected void doExecute() {
+//				elt.unapplyStereotype(st);
+//				elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
+//				refresh();
+//			}
+//		};
 	}
 
 
