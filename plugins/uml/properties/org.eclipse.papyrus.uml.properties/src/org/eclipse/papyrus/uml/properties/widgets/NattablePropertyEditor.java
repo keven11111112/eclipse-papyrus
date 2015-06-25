@@ -76,7 +76,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * The composite.
 	 */
-	private Group self = null;;
+	protected Group self = null;;
 
 	/**
 	 * The table configuration URI.
@@ -86,12 +86,12 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * The nattable widget.
 	 */
-	private NatTable natTableWidget = null;
+	protected NatTable natTableWidget = null;
 	
 	/**
 	 * The nattable manager.
 	 */
-	private INattableModelManager nattableManager = null;
+	protected INattableModelManager nattableManager = null;
 	
 	/**
 	 * The dispose listener.
@@ -117,9 +117,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		fillLayout.marginHeight = 10;
 		fillLayout.marginWidth = 10;
 		self.setLayout(fillLayout);
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		data.minimumHeight = 330;
-		self.setLayoutData(data);
 	}
 	
 	/**
@@ -233,7 +230,12 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		self.addDisposeListener(getDisposeListener());
 		natTableWidget.setBackground(self.getBackground());
 		
-		natTableWidget.layout();
+		// Adapt the group to the table prefered size (with sub of removed rows size)
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		data.minimumHeight = natTableWidget.getPreferredHeight()-(rows.size()*70);
+		self.setLayoutData(data);
+		
+		natTableWidget.layout();		
 		self.layout();
 	}
 
