@@ -109,6 +109,15 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 	/** The alignment Observable */
 	private IObservableValue alignmentObservable;
 
+	/** The hasHeader Observable */
+	private IObservableValue isFloatingLabelContrainedObservable;
+
+	/** The radiusHeight Observable */
+	private IObservableValue floatingLabelOffsetObservableHeight;
+
+	/** The radiusWidth Observable */
+	private IObservableValue floatingLabelOffsetObservableWidth;
+
 	/**
 	 * Instantiates a new rounded compartment edit part.
 	 *
@@ -190,11 +199,21 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 
 		alignmentObservable = new CustomStringStyleObservableValue(view, domain, TEXT_ALIGNMENT);
 		alignmentObservable.addChangeListener(namedStyleListener);
+
+		floatingLabelOffsetObservableHeight = new CustomIntStyleObservableValue(view, domain, FLOATING_LABEL_OFFSET_HEIGHT);
+		floatingLabelOffsetObservableHeight.addChangeListener(namedStyleListener);
+
+		floatingLabelOffsetObservableWidth = new CustomIntStyleObservableValue(view, domain, FLOATING_LABEL_OFFSET_WIDTH);
+		floatingLabelOffsetObservableWidth.addChangeListener(namedStyleListener);
+
+		isFloatingLabelContrainedObservable = new CustomBooleanStyleObservableValue(view, domain, FLOATING_LABEL_CONSTRAINED);
+		isFloatingLabelContrainedObservable.addChangeListener(namedStyleListener);
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeNotationalListeners()
+	 * Removes the notational listeners.
 	 *
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeNotationalListeners()
 	 */
 	@Override
 	protected void removeNotationalListeners() {
@@ -209,6 +228,9 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		shadowWidthObservable.dispose();
 		shadowColorObservable.dispose();
 		alignmentObservable.dispose();
+		floatingLabelOffsetObservableHeight.dispose();
+		floatingLabelOffsetObservableWidth.dispose();
+		isFloatingLabelContrainedObservable.dispose();
 	}
 
 	/**
