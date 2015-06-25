@@ -45,6 +45,7 @@ public class EclipseCommandUtils {
 
 	public static final String RADIO_STATE = "org.eclipse.ui.commands.radioState"; //$NON-NLS-1$
 
+	public static final String DELETE_COMMAND = "org.eclipse.ui.edit.delete"; //$NON-NLS-1$
 
 	/**
 	 *

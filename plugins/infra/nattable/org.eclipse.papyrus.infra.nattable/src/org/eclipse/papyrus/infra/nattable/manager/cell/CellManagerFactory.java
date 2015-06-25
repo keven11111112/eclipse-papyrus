@@ -326,4 +326,45 @@ public final class CellManagerFactory {
 		}
 		return collection;
 	}
+
+	/**
+	 * 
+	 * @param domain
+	 *            the editing domain to use
+	 * @param columnElement
+	 *            the column element
+	 * @param rowElement
+	 *            the row element
+	 * @param tableManager
+	 *            the table manager
+	 * 
+	 *            unset the cell value if possible (reset to default value)
+	 */
+	public final void unsetCellValue(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		if (cellManager instanceof IUnsetValueCellManager) {
+			((IUnsetValueCellManager) cellManager).unsetCellValue(domain, columnElement, rowElement, tableManager);
+		}
+	}
+
+	/**
+	 * 
+	 * @param domain
+	 *            the editing domain to use
+	 * @param columnElement
+	 *            the column element
+	 * @param rowElement
+	 *            the row element
+	 * @param tableManager
+	 *            the table manager
+	 * @return
+	 * 		the command to unset the cell value (reset to default value
+	 */
+	public final Command getUnsetCellValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		if (cellManager instanceof IUnsetValueCellManager) {
+			return ((IUnsetValueCellManager) cellManager).getUnsetCellValueCommand(domain, columnElement, rowElement, tableManager);
+		}
+		return null;
+	}
 }
