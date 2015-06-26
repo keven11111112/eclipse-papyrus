@@ -247,7 +247,7 @@ This table lists the most common properties:
 |-
 | fontName || String || "Segoe UI" || Shapes, floating labels || Most fonts are platform-specific. The list of available Fonts can be found in the "Appearance" tab of the properties view
 |-
-| fontSize || integer || 9 || Shapes, floating labels || 
+| fontHeight || integer || 9 || Shapes, floating labels || 
 |-
 | bold || boolean || false || Shapes, floating labels ||  
 |-
