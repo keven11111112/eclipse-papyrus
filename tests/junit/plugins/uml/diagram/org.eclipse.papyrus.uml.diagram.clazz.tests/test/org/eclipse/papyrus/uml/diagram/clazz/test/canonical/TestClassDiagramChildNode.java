@@ -101,7 +101,6 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 * Test to manage enumeration.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageEnumeration() {
 		testToManageNode(UMLElementTypes.Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Package_3009, true);
 	}

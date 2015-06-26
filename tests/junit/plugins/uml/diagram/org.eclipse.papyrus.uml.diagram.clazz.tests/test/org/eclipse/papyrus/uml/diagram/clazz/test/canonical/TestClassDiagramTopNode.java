@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomUMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
@@ -63,7 +62,6 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	 * Test to manage instance specification.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageInstanceSpecification() {
 		testToManageNode(UMLElementTypes.InstanceSpecification_2001, UMLPackage.eINSTANCE.getInstanceSpecification(), UMLElementTypes.Package_2007, true);
 	}
@@ -72,7 +70,6 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	 * Test to manage signal.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageSignal() {
 		testToManageNode(UMLElementTypes.Signal_2003, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Package_2007, true);
 	}
@@ -89,7 +86,6 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	 * Test to manage enumeration.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageEnumeration() {
 		testToManageNode(UMLElementTypes.Enumeration_2006, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Package_2007, true);
 	}
