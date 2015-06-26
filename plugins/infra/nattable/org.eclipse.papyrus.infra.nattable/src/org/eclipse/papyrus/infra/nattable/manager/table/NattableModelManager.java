@@ -362,23 +362,25 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *            manage the list events
 	 */
 	private void manageEventListChanges(ListEvent<Object> listChanges) {
-		EventList<?> sourceList = listChanges.getSourceList();
-		CellEditorDeclaration declaration = TableHelper.getCellEditorDeclaration(this);
-		boolean needConfiguration = false;
-		if (CellEditorDeclaration.COLUMN == declaration && sourceList == getColumnElementsList()) {
-			needConfiguration = true;
-		}
-		if (CellEditorDeclaration.ROW == declaration && sourceList == getRowElementsList()) {
-			needConfiguration = true;
-		}
-		if (needConfiguration) {
-			configureCellAxisEditor();
-			configureFilters();
-			
-			//comment to fix the bug 469739: [Table] Infinite refresh in Tables
-			//https://bugs.eclipse.org/bugs/show_bug.cgi?id=469739
-			//moreover this refresh seems 
-			//refreshNatTable();
+		if(natTable != null && !natTable.isDisposed()){
+			EventList<?> sourceList = listChanges.getSourceList();
+			CellEditorDeclaration declaration = TableHelper.getCellEditorDeclaration(this);
+			boolean needConfiguration = false;
+			if (CellEditorDeclaration.COLUMN == declaration && sourceList == getColumnElementsList()) {
+				needConfiguration = true;
+			}
+			if (CellEditorDeclaration.ROW == declaration && sourceList == getRowElementsList()) {
+				needConfiguration = true;
+			}
+			if (needConfiguration) {
+				configureCellAxisEditor();
+				configureFilters();
+				
+				//comment to fix the bug 469739: [Table] Infinite refresh in Tables
+				//https://bugs.eclipse.org/bugs/show_bug.cgi?id=469739
+				//moreover this refresh seems 
+				//refreshNatTable();
+			}
 		}
 	}
 
@@ -805,7 +807,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		}
 		this.columnManager.dispose();
+		this.columnManager = null;
 		this.rowManager.dispose();
+		this.rowManager = null;
 		Table table = getTable();
 		if (table != null) {
 
@@ -1703,40 +1707,42 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 							@Override
 							public void run() {
-								// already created booleanValues and intValues
-								if (notification.getNotifier() instanceof BooleanValueStyle) {
-									// as the filter already prevented any nonBooleanValueStyle, and therefore any non EObject, it can be cast without verification
-									EObject mergeContainer = ((EObject) notification.getNotifier()).eContainer();
-									if (mergeContainer instanceof AbstractHeaderAxisConfiguration || mergeContainer instanceof IAxis) {
+								if(null != natTable && !natTable.isDisposed()){
+									// already created booleanValues and intValues
+									if (notification.getNotifier() instanceof BooleanValueStyle) {
+										// as the filter already prevented any nonBooleanValueStyle, and therefore any non EObject, it can be cast without verification
+										EObject mergeContainer = ((EObject) notification.getNotifier()).eContainer();
+										if (mergeContainer instanceof AbstractHeaderAxisConfiguration || mergeContainer instanceof IAxis) {
+											mergeTable();
+										}
+									}
+									if (notification.getNotifier() instanceof IntValueStyle) {
+										EObject resizeContainer = ((EObject) notification.getNotifier()).eContainer();
+										if (resizeContainer instanceof AbstractHeaderAxisConfiguration) {
+											resizeHeader();
+										}
+										if (resizeContainer instanceof IAxis) {
+											resizeAxis();
+										}
+									}
+									// newly created booleanValues and intValues
+									if (notification.getNewValue() instanceof BooleanValueStyle) {
 										mergeTable();
 									}
-								}
-								if (notification.getNotifier() instanceof IntValueStyle) {
-									EObject resizeContainer = ((EObject) notification.getNotifier()).eContainer();
-									if (resizeContainer instanceof AbstractHeaderAxisConfiguration) {
+									if (notification.getNewValue() instanceof IntValueStyle) {
+										if (notification.getNotifier() instanceof IAxis) {
+											resizeAxis();
+										}
+										if (notification.getNotifier() instanceof AbstractHeaderAxisConfiguration) {
+											resizeHeader();
+										}
+									}
+									// reset to the default state using ctrl+z
+									if (notification.getNewValue() == null && notification.getOldValue() != null) {
+										mergeTable();
+										resizeAxis();
 										resizeHeader();
 									}
-									if (resizeContainer instanceof IAxis) {
-										resizeAxis();
-									}
-								}
-								// newly created booleanValues and intValues
-								if (notification.getNewValue() instanceof BooleanValueStyle) {
-									mergeTable();
-								}
-								if (notification.getNewValue() instanceof IntValueStyle) {
-									if (notification.getNotifier() instanceof IAxis) {
-										resizeAxis();
-									}
-									if (notification.getNotifier() instanceof AbstractHeaderAxisConfiguration) {
-										resizeHeader();
-									}
-								}
-								// reset to the default state using ctrl+z
-								if (notification.getNewValue() == null && notification.getOldValue() != null) {
-									mergeTable();
-									resizeAxis();
-									resizeHeader();
 								}
 							}
 						});

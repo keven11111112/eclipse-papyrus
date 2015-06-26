@@ -1135,20 +1135,30 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	public void dispose() {
 		if (this.bodyDataProvider != null) {
 			this.bodyLayerStack.removeLayerListener(resizeAxisListener);
+			this.bodyLayerStack.dispose();
+			this.bodyLayerStack = null;
 			this.bodyDataProvider.dispose();
+			this.bodyDataProvider = null;
 		}
 		if (this.rowHeaderDataProvider != null) {
 			this.rowHeaderLayerStack.removeLayerListener(resizeRowHeaderListener);
+			this.rowHeaderLayerStack.dispose();
+			this.rowHeaderLayerStack = null;
 			this.rowHeaderDataProvider.dispose();
+			this.rowHeaderDataProvider = null;
 		}
 		if (this.columnHeaderDataProvider != null) {
 			this.columnHeaderLayerStack.removeLayerListener(resizeColumnHeaderListener);
+			this.columnHeaderLayerStack.dispose();
+			this.columnHeaderLayerStack = null;
 			this.columnHeaderDataProvider.dispose();
+			this.columnHeaderDataProvider = null;
 		}
 
 
 		if (this.tableEditingDomain != null && this.resourceSetListener != null) {
 			this.tableEditingDomain.removeResourceSetListener(this.resourceSetListener);
+			this.tableEditingDomain = null;
 		}
 		if (this.filterStrategy instanceof IDisposable) {
 			((IDisposable) this.filterStrategy).dispose();

@@ -170,5 +170,16 @@ public abstract class AbstractIndexHeaderDataProvider extends AbstractDataProvid
 	 *         the axis configuration to listen
 	 */
 	protected abstract AbstractHeaderAxisConfiguration getAxisConfiguration();
+	
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.dataprovider.AbstractDataProvider#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		removeListeners();
+		this.listenAxisConfiguration = null;
+		super.dispose();
+	}
 
 }
