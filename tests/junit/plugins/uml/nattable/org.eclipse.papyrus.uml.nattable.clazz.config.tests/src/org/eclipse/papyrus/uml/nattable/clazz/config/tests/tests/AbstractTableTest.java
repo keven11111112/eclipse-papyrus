@@ -74,7 +74,7 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@ActiveTable("ClassTreeTable")
-	public void checkTestConsitency() {
+	public void checkTestConsistency() {
 		startTest();
 		String className = getClass().getSimpleName();
 		URI modelUri = fixture.getModel().eResource().getURI();

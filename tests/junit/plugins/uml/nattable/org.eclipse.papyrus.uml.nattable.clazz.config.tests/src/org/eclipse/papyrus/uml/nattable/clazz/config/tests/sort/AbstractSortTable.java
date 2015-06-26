@@ -60,6 +60,17 @@ public abstract class AbstractSortTable extends AbstractTableTest {
 
 	public static final String TYPE_DESC = "TYPE_DESC";//$NON-NLS-1$
 
+	public static final String NAME_ASC_TYPE_ASC = "NAME_ASC_TYPE_ASC";//$NON-NLS-1$
+	public static final String NAME_ASC_TYPE_DESC = "NAME_ASC_TYPE_DESC";//$NON-NLS-1$
+	public static final String NAME_DESC_TYPE_ASC = "NAME_DESC_TYPE_ASC";//$NON-NLS-1$
+	public static final String NAME_DESC_TYPE_DESC = "NAME_DESC_TYPE_DESC";//$NON-NLS-1$
+
+	public static final String TYPE_ASC_NAME_ASC = "TYPE_ASC_NAME_ASC";//$NON-NLS-1$
+	public static final String TYPE_DESC_NAME_ASC = "TYPE_DESC_NAME_ASC";//$NON-NLS-1$
+	public static final String TYPE_ASC_NAME_DESC = "TYPE_ASC_NAME_DESC";//$NON-NLS-1$
+	public static final String TYPE_DESC_NAME_DESC = "TYPE_DESC_NAME_DESC";//$NON-NLS-1$
+
+
 	/**
 	 * load the table editor
 	 */
@@ -68,7 +79,7 @@ public abstract class AbstractSortTable extends AbstractTableTest {
 		// these tests works only when the sorted columns are visible (without scrollbar)!
 		if (Display.getDefault() != null) {
 			Shell shell = Display.getDefault().getActiveShell();
-			if(shell!=null){
+			if (shell != null) {
 				shell.setMaximized(true);
 			}
 		}
@@ -112,7 +123,153 @@ public abstract class AbstractSortTable extends AbstractTableTest {
 		endTest(getResultFile_Type_DESC_SORT());
 	}
 
+	// ---sorting the 2 columns, name first
+	@Test
+	@ActiveTable("ClassTreeTable")
+	public void test_sort_NAME_ASC_TYPE_ASC() {
+		startTest();
+		// we do the sort
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), false)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), true)));
 
+		endTest(getResultFile_Name_ASC_Type_ASC_SORT());
+	}
+
+	/**
+	 * @return
+	 */
+	private String getResultFile_Name_ASC_Type_ASC_SORT() {
+		return createSortFileNameResult(NAME_ASC_TYPE_ASC);
+	}
+
+	@Test
+	@ActiveTable("ClassTreeTable")
+	public void test_sort_NAME_ASC_TYPE_DESC() {
+		startTest();
+		// we do the sort
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), false)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), true)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), true)));
+		endTest(getResultFile_Name_ASC_Type_DESC_SORT());
+	}
+
+	/**
+	 * @return
+	 */
+	private String getResultFile_Name_ASC_Type_DESC_SORT() {
+		return createSortFileNameResult(NAME_ASC_TYPE_DESC);
+	}
+
+	@Test
+	@ActiveTable("ClassTreeTable")
+	public void test_sort_NAME_DESC_TYPE_ASC() {
+		startTest();
+		// we do the sort
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), false)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), true)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), true)));
+		endTest(getResultFile_Name_DESC_Type_ASC_SORT());
+	}
+
+	/**
+	 * @return
+	 */
+	private String getResultFile_Name_DESC_Type_ASC_SORT() {
+		return createSortFileNameResult(NAME_DESC_TYPE_ASC);
+	}
+
+	@Test
+	@ActiveTable("ClassTreeTable")
+	public void test_sort_NAME_DESC_TYPE_DESC() {
+		startTest();
+		// we do the sort
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), false)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), true)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), true)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), true)));
+		endTest(getResultFile_Name_DESC_Type_DESC_SORT());
+	}
+
+	/**
+	 * @return
+	 */
+	private String getResultFile_Name_DESC_Type_DESC_SORT() {
+		return createSortFileNameResult(NAME_DESC_TYPE_DESC);
+	}
+
+	// ---sorting the 2 columns, type first
+	@Test
+	@ActiveTable("ClassTreeTable")
+	public void test_sort_TYPE_ASC_NAME_ASC() {
+		startTest();
+		// we do the sort
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), false)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), true)));
+		endTest(getResultFile_Type_ASC_Name_ASC_SORT());
+	}
+	
+	/**
+	 * @return
+	 */
+	private String getResultFile_Type_ASC_Name_ASC_SORT() {
+		return createSortFileNameResult(TYPE_ASC_NAME_ASC);
+	}
+
+	@Test
+	@ActiveTable("ClassTreeTable")
+	public void test_sort_TYPE_ASC_NAME_DESC() {
+		startTest();
+		// we do the sort
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), false)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), true)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), true)));
+		endTest(getResultFile_Type_ASC_Name_DESC_SORT());
+	}
+	
+	/**
+	 * @return
+	 */
+	private String getResultFile_Type_ASC_Name_DESC_SORT() {
+		return createSortFileNameResult(TYPE_ASC_NAME_DESC);
+	}
+
+	@Test
+	@ActiveTable("ClassTreeTable")
+	public void test_sort_TYPE_DESC_NAME_ASC() {
+		startTest();
+		// we do the sort
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), false)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), true)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), true)));
+		endTest(getResultFile_Type_DESC_Name_ASC_SORT());
+	}
+
+	/**
+	 * @return
+	 */
+	private String getResultFile_Type_DESC_Name_ASC_SORT() {
+		return createSortFileNameResult(TYPE_DESC_NAME_ASC);
+	}
+
+	
+	@Test
+	@ActiveTable("ClassTreeTable")
+	public void test_sort_TYPE_DESC_NAME_DESC() {
+		startTest();
+		// we do the sort
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), false)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getTypeColumnIndex(), true)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), true)));
+		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), true)));
+		endTest(getResultFile_Type_DESC_Name_DESC_SORT());
+	}
+
+	/**
+	 * @return
+	 */
+	private String getResultFile_Type_DESC_Name_DESC_SORT() {
+		return createSortFileNameResult(TYPE_DESC_NAME_DESC);
+	}
 
 	/**
 	 * @return
