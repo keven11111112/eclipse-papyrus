@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Papyrus" uid="org.eclipse.papyrus.rcp.product" id="org.eclipse.papyrus.rcp.product" application="org.eclipse.ui.ide.workbench" version="1.0.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Papyrus" uid="org.eclipse.papyrus.rcp.product" id="org.eclipse.papyrus.rcp.product" application="org.eclipse.ui.ide.workbench" version="1.1.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.eclipse.papyrus.rcp/icons/papyrus_lg.png"/>
       <text>
          Papyrus
 
-Version: 1.0.0
+Version: 1.1.0
 
 (c) Copyright Eclipse contributors and others 2000, 2013.  All rights reserved.
 Visit http://www.eclipse.org/platform
@@ -22,9 +22,12 @@ Apache Software Foundation http://www.apache.org/
    </configIni>
 
    <launcherArgs>
-      <programArgs>-showsplash org.eclipse.papyrus.rcp --launcher.XXMaxPermSize 256m --launcher.defaultAction openFile</programArgs>
-      <vmArgs>-Xms128m -Xmx900m</vmArgs>
-      <vmArgsMac>-Xdock:icon=../Resources/papyrus.icns -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+      <programArgs>-showsplash org.eclipse.papyrus.rcp --launcher.XXMaxPermSize 256m --launcher.defaultAction openFile
+      </programArgs>
+      <vmArgs>-Xms128m -Xmx900m
+      </vmArgs>
+      <vmArgsMac>-Xdock:icon=../Resources/papyrus.icns -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
    </launcherArgs>
 
    <windowImages i16="/org.eclipse.papyrus.rcp/icons/papyrus16.png" i32="/org.eclipse.papyrus.rcp/icons/papyrus32.png" i48="/org.eclipse.papyrus.rcp/icons/papyrus48.png" i64="/org.eclipse.papyrus.rcp/icons/papyrus64.png" i128="/org.eclipse.papyrus.rcp/icons/papyrus128.png"/>
@@ -51,7 +54,7 @@ Apache Software Foundation http://www.apache.org/
         <url>http://eclipse.org/legal/epl/notice.php</url>
         <text>
    Eclipse Foundation Software User Agreement
-February 1, 2011
+February 1, 2015
 
 Usage Of Content
 
@@ -197,5 +200,18 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
       <property name="org.eclipse.update.reconcile" value="false" />
       <property name="osgi.bundles.defaultStartLevel" value="4" />
    </configurations>
+
+   <repositories>
+      <repository location="http://download.eclipse.org/releases/mars/" enabled="true" />
+      <repository location="http://download.eclipse.org/eclipse/updates/4.5" enabled="true" />
+      <repository location="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/mars" enabled="true" />
+   </repositories>
+
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+   </cssInfo>
 
 </product>
