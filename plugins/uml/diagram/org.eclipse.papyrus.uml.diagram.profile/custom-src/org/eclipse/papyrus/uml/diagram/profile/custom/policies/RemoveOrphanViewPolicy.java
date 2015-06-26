@@ -50,12 +50,12 @@ import org.eclipse.uml2.uml.Profile;
  * <pre>
  * This policy is used to suppress orphan node view in GMF view.
  * The policy to remove orphan connection is more complex.
- * 
+ *
  * As this policy uses VisualID(s), this class obviously depends from
  * the diagram and may not be shared in Common plug-in.
- * 
+ *
  * See RemoveOrphanViewPolicy in Class Diagram
- * 
+ *
  * This EditPolicy have a custom method isOrphan to delete the Metaclass view if the ElementImport is deleted!
  * </pre>
  */
@@ -100,23 +100,25 @@ public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 	@Override
 	protected boolean isOrphaned(View view) {
 		String semanticHint = view.getType();
-		if ((metaclassNodeList.contains(new Integer(semanticHint)))) {
-			String metaclassName = null;
-			EObject el = view.getElement();
-			if (el != null && el instanceof Class) {
-				metaclassName = ((Class) el).getName();
-			}
-			/**
-			 * get the root profile
-			 */
-			Profile rootProfile = DiagramHelper.getTopProfile(view);
-			EList<ElementImport> importedElement = rootProfile.getElementImports();
-			for (ElementImport elementImport : importedElement) {
-				if (elementImport.getAlias().equals(metaclassName)) {
-					return false;
+		if (isInteger(semanticHint)) {
+			if ((metaclassNodeList.contains(new Integer(semanticHint)))) {
+				String metaclassName = null;
+				EObject el = view.getElement();
+				if (el != null && el instanceof Class) {
+					metaclassName = ((Class) el).getName();
 				}
+				/**
+				 * get the root profile
+				 */
+				Profile rootProfile = DiagramHelper.getTopProfile(view);
+				EList<ElementImport> importedElement = rootProfile.getElementImports();
+				for (ElementImport elementImport : importedElement) {
+					if (elementImport.getAlias().equals(metaclassName)) {
+						return false;
+					}
+				}
+				return true;
 			}
-			return true;
 		}
 
 		return super.isOrphaned(view);
