@@ -84,47 +84,6 @@
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_26bZ4PiYEeSxko_tWvdMlw" source="PapyrusCSSForceValue">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_26bZ4fiYEeSxko_tWvdMlw" key="visible" value="true"/>
     </eAnnotations>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_26UFIPiYEeSxko_tWvdMlw" type="StereotypeCompartment">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_26cA8PiYEeSxko_tWvdMlw" source="PapyrusCSSForceValue">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_26cA8fiYEeSxko_tWvdMlw" key="visible" value="true"/>
-      </eAnnotations>
-      <children xmi:type="notation:DecorationNode" xmi:id="_26UFJPiYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_dcMxQGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_26UFJfiYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_26UFJviYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_meyzIGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_26UFJ_iYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_26UFKPiYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_wshLYGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_26UFKfiYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_26UsMPiYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_1ta5cGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_26UsMfiYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_26UsMviYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_71vikGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_26UsM_iYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_26UsNPiYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_BfRW4GkeEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_26UsNfiYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_26UsNviYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_Lb0QgGz4EeGEKeJyQaxg3g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_26UsN_iYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_26UsOPiYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_jAiq8G38EeGag98Jn1kDVw"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_26UsOfiYEeSxko_tWvdMlw"/>
-      </children>
-      <styles xmi:type="notation:TitleStyle" xmi:id="_26UFIfiYEeSxko_tWvdMlw" showTitle="true"/>
-      <styles xmi:type="notation:StringValueStyle" xmi:id="_26UFIviYEeSxko_tWvdMlw" name="stereotype" stringValue="testProfile::Stereotype1"/>
-      <element xmi:type="uml:Stereotype" href="pathmap://Test_PROFILES/testProfile.profile.uml#_WJYD4GkdEeGGJOTenKBKAg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_26UFI_iYEeSxko_tWvdMlw"/>
-    </children>
     <styles xmi:type="notation:TitleStyle" xmi:id="_26S3AfiYEeSxko_tWvdMlw" showTitle="true"/>
     <styles xmi:type="notation:EObjectValueStyle" xmi:id="_26S3A_iYEeSxko_tWvdMlw" name="BASE_ELEMENT">
       <eObjectValue xmi:type="uml:Class" href="UnapplyProfile.uml#_BPjGgBwgEeKYb8ts8yUAsw"/>
@@ -136,39 +95,6 @@
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3ATYYPiYEeSxko_tWvdMlw" source="PapyrusCSSForceValue">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3ATYYfiYEeSxko_tWvdMlw" key="visible" value="true"/>
     </eAnnotations>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_3APG8PiYEeSxko_tWvdMlw" type="StereotypeCompartment">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3AT_cPiYEeSxko_tWvdMlw" source="PapyrusCSSForceValue">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3AT_cfiYEeSxko_tWvdMlw" key="visible" value="true"/>
-      </eAnnotations>
-      <children xmi:type="notation:DecorationNode" xmi:id="_3APuAPiYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_dcMxQGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_3APuAfiYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_3APuAviYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_meyzIGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_3APuA_iYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_3APuBPiYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_wshLYGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_3APuBfiYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_3APuBviYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_1ta5cGkdEeGGJOTenKBKAg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_3APuB_iYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_3AQVEviYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_Lb0QgGz4EeGEKeJyQaxg3g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_3AQVE_iYEeSxko_tWvdMlw"/>
-      </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_3AQVFPiYEeSxko_tWvdMlw" type="StereotypeProperty">
-        <element xmi:type="uml:Property" href="pathmap://Test_PROFILES/testProfile.profile.uml#_jAiq8G38EeGag98Jn1kDVw"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_3AQVFfiYEeSxko_tWvdMlw"/>
-      </children>
-      <styles xmi:type="notation:TitleStyle" xmi:id="_3APG8fiYEeSxko_tWvdMlw" showTitle="true"/>
-      <styles xmi:type="notation:StringValueStyle" xmi:id="_3APG8viYEeSxko_tWvdMlw" name="stereotype" stringValue="testProfile::Stereotype1"/>
-      <element xmi:type="uml:Stereotype" href="pathmap://Test_PROFILES/testProfile.profile.uml#_WJYD4GkdEeGGJOTenKBKAg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3APG8_iYEeSxko_tWvdMlw"/>
-    </children>
     <styles xmi:type="notation:TitleStyle" xmi:id="_3AOf4fiYEeSxko_tWvdMlw" showTitle="true"/>
     <styles xmi:type="notation:EObjectValueStyle" xmi:id="_3AOf4_iYEeSxko_tWvdMlw" name="BASE_ELEMENT">
       <eObjectValue xmi:type="uml:Dependency" href="UnapplyProfile.uml#_FcrOQBwgEeKYb8ts8yUAsw"/>

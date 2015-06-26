@@ -26,7 +26,8 @@ import org.junit.runners.Suite.SuiteClasses;
 TestProfileApplication.class,
 TestStereotypeApplication.class,
 TestLayoutWithStereotype.class,
-TestUnapplyProfile2ClosedDiagComment.class
+TestUnapplyProfile2ClosedDiagComment.class,
+TestUnapplyProfile2Comment.class
 })
 public class AllTests {
 
