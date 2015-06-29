@@ -92,6 +92,7 @@
 		<module>../../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.tests</module>
 		<module>../../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.generic.tests</module>
 		<module>../../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.clazz.config.tests</module>
+		<module>../../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.stereotype.display.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
         <module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.filters.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.modelrepair.tests</module>
@@ -211,7 +212,7 @@
 			<id>mdt-uml2</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT UML2",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.1milestones</url>
+			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.1</url>
 		</repository>
 		<repository>
 			<id>mmt-qvto</id>
