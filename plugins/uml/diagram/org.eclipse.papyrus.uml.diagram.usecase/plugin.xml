@@ -974,6 +974,12 @@
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
+   <diagramReconciler
+         diagramType="UseCase"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
 </extension>
 
 <extension point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">

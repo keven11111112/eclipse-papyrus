@@ -3184,6 +3184,12 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLActivityDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.activity.migration.ActivityReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
 </extension>
 
 </plugin>

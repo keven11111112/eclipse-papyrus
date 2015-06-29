@@ -34,10 +34,10 @@ public class ClassifierViewFactory implements ViewFactory {
 
 	public View createView(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
-		return createClass_2008((EObject)semanticAdapter.getAdapter(EObject.class), containerView,semanticHint, index, persisted, preferencesHint);
+		return createClass_2008((EObject) semanticAdapter.getAdapter(EObject.class), containerView, semanticHint, index, persisted, preferencesHint);
 	}
 
-	public Node createClass_2008(EObject domainElement, View containerView, String semanticHint,int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createClass_2008(EObject domainElement, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(semanticHint);
@@ -56,22 +56,19 @@ public class ClassifierViewFactory implements ViewFactory {
 		createCompartment(node, "7019", true, true, true, true);
 		return node;
 	}
+
 	protected Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
 		return rv;
 	}
+
 	protected Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
 		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		// rv.setShowTitle(showTitle);
 		// rv.setCollapsed(isCollapsed);
-		Node rv;
-		if (canCollapse) {
-			rv = NotationFactory.eINSTANCE.createBasicCompartment();
-		} else {
-			rv = NotationFactory.eINSTANCE.createDecorationNode();
-		}
+		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
 
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 

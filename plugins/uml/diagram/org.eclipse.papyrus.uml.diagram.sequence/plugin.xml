@@ -1822,4 +1822,13 @@
                 class="org.eclipse.papyrus.uml.diagram.sequence.canonical.LifelineSemanticChildrenStrategy">
         </semanticChildrenStrategy>
     </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+       <diagramReconciler
+             diagramType="PapyrusUMLSequence"
+             reconcilerClass="org.eclipse.papyrus.uml.diagram.sequence.migration.SequenceReconcilerForCompartment"
+             source="undefined"
+             target="1.2.0">
+       </diagramReconciler>
+    </extension>
 </plugin>

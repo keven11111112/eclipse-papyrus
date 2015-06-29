@@ -1213,6 +1213,15 @@
 	</paletteProvider>	
 		
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="PapyrusUMLTimingDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.timing.custom.migration.TimingReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+</extension>
 
 
 

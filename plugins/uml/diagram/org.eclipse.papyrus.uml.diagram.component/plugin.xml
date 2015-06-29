@@ -1004,6 +1004,12 @@
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLComponentDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
 </extension>
 
 </plugin>

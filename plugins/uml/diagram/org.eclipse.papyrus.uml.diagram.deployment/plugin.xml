@@ -731,6 +731,12 @@
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLDeploymentDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.deployment.custom.migration.DeploymentReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
