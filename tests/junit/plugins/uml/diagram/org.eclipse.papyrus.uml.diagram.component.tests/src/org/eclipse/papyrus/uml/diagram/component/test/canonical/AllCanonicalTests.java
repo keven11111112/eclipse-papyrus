@@ -43,7 +43,8 @@ TestListCompartmentNodeChildDuplicates.class,
 TestListCompartmentIllegalElements.class,
 TestListCompartmentPropertiesOperationsDrop.class,
 TestComponentDiagramConnector.class,
-TestComponentDiagramPortLink.class
+TestComponentDiagramPortLink.class,
+TestPortLocation.class
 // End
 })
 public class AllCanonicalTests {
