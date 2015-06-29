@@ -48,7 +48,13 @@ Export-Package: org.eclipse.papyrus.migration.rsa,
  org.eclipse.papyrus.migration.rsa.transformation,
  org.eclipse.papyrus.migration.rsa.umlrt,
  org.eclipse.papyrus.migration.rsa.umlrt.impl,
- org.eclipse.papyrus.migration.rsa.umlrt.util
+ org.eclipse.papyrus.migration.rsa.umlrt.util,
+ org.eclipse.papyrus.migration.rsa.diagramholder,
+ org.eclipse.papyrus.migration.rsa.diagramholder.impl,
+ org.eclipse.papyrus.migration.rsa.diagramholder.util,
+ org.eclipse.papyrus.migration.rsa.umlnotation,
+ org.eclipse.papyrus.migration.rsa.umlnotation.impl,
+ org.eclipse.papyrus.migration.rsa.umlnotation.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

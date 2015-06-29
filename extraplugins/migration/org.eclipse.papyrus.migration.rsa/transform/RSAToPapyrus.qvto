@@ -18,6 +18,7 @@ modeltype umlNotation "strict" uses 'http://www.eclipse.org/papyrus/umlnotation'
 modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
 modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
 modeltype config "strict" uses 'http:///RSAToPapyrusParameters.ecore';
+modeltype holder "strict" uses 'http://www.eclipse.org/papyrus/migration/diagramholder';
 
 /**
 *	Abstract transformation rules for importing notation diagrams into Papyrus
@@ -40,11 +41,11 @@ mapping EAnnotation::toOwnedDiagrams()
 	when { self.source = 'uml2.diagrams' or self.source = 'uml2.profile.diagrams'}{
 	
 	self.contents->selectByKind(notation::Diagram).map generateDiagram();
-	
 }
 
-
-
+mapping DiagramHolder::toOwnedDiagrams() {
+	self.ownedDiagrams.map generateDiagram();
+}
 
 /** Abstract mappings. Never called directly, inherited only */
 

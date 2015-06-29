@@ -8,4 +8,5 @@
   <mapping sourceURI="http://www.eclipse.org/papyrus/profile/profilebase" targetURI="platform:/resource/org.eclipse.papyrus.migration.rsa/model/PapyrusProfileBase.ecore"/>
   <mapping sourceURI="http://www.eclipse.org/papyrus/umlrt" targetURI="platform:/resource/org.eclipse.papyrus.umlrt/umlProfile/UMLRealTime.ecore"/>
   <mapping sourceURI="http://www.eclipse.org/papyrus/umlrt/statemachine" targetURI="platform:/resource/org.eclipse.papyrus.umlrt/umlProfile/UMLRealTimeStateMach.ecore"/>
+  <mapping sourceURI="http://www.eclipse.org/papyrus/migration/diagramholder" targetURI="platform:/resource/org.eclipse.papyrus.migration.rsa/model/DiagramHolder.ecore"/>
 </uriMap:MappingContainer>
