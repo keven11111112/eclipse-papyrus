@@ -73,6 +73,7 @@ public class DiagramKindComposite extends Composite {
 		viewer = new TableViewer(container, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.minimumHeight = viewer.getTable().getItemHeight() * 3;
+		gridData.heightHint = viewer.getTable().getItemHeight() * 3;
 		viewer.getTable().setLayoutData(gridData);
 
 		// viewer.setContentProvider(new ArrayContentProvider());
@@ -245,7 +246,7 @@ public class DiagramKindComposite extends Composite {
 				if (selectedDiagrams.containsKey(element)) {
 					return selectedDiagrams.get(element).toString();
 				}
-				//			return "0"; //$NON-NLS-1$
+				// return "0"; //$NON-NLS-1$
 				return ""; //$NON-NLS-1$
 			}
 		});

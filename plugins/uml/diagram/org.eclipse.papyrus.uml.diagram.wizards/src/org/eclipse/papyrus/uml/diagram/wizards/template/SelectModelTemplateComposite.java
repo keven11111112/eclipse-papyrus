@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -244,6 +245,18 @@ public class SelectModelTemplateComposite extends Composite {
 		}
 		return null;
 	}
+
+
+	/**
+	 * Used to check the number of items displayed by the viewer
+	 * 
+	 * @return
+	 * 		The viewer's Combo
+	 */
+	public Combo getTemplateCombo() {
+		return singleTemplateCombo.getCombo();
+	}
+
 
 	/**
 	 * Sets the input.
