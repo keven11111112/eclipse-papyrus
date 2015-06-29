@@ -307,12 +307,7 @@ import xpt.editor.VisualIDRegistry
 					//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 					//rv.setShowTitle(showTitle);
 					//rv.setCollapsed(isCollapsed);
-					org.eclipse.gmf.runtime.notation.Node rv;
-					if (canCollapse) {
-						rv = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createBasicCompartment();
-					} else {
-						rv = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDecorationNode();
-					}
+					org.eclipse.gmf.runtime.notation.Node rv = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createBasicCompartment();
 					
 					rv.setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createBounds());
 					
