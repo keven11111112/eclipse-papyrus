@@ -94,6 +94,21 @@ mapping sourcert::ProtocolContainer::toMessageSets() : Interface{
 	
 	result.name := protocolName+"IO";
 	result.map createMessageSet(RTMessageKind::inOut);
+	
+	//Create generalizations from the source interface to the target interface
+	var generalizations := self.base_Package.packagedElement->selectByKind(uml::Collaboration).generalization;
+	generalizations.map toGeneralization(result); 
+}
+
+mapping inout Generalization::toGeneralization(inoutInterface : Interface) : Generalization {
+	result.specific := inoutInterface;
+	
+	var generalCollaboration := self.general;
+	
+	var generalProtocolContainer := semantics.objectsOfType(sourcert::ProtocolContainer)![base_Package = generalCollaboration.getNearestPackage()];
+	var generalIOInterface : Interface := generalProtocolContainer.map toMessageSets();
+	
+	result.general := generalIOInterface;
 }
 
 query sourcert::ProtocolContainer::findInInterface() : Interface {
