@@ -457,5 +457,17 @@
             uri="http://www.eclipse.org/papyrus/profile/profilebase">
       </profile>
    </extension>
-	
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DiagramHolder -->
+      <package
+            uri="http://www.eclipse.org/papyrus/migration/diagramholder"
+            class="org.eclipse.papyrus.migration.rsa.diagramholder.DiagramHolderPackage"
+            genModel="model/DiagramHolder.genmodel"/>
+      <package
+            class="org.eclipse.papyrus.migration.rsa.diagramholder.DiagramHolderPackage"
+            genModel="model/DiagramHolder.genmodel"
+            uri="http://www.ibm.com/xtools/7.1.0/resources">
+      </package>
+   </extension>
+
 </plugin>
