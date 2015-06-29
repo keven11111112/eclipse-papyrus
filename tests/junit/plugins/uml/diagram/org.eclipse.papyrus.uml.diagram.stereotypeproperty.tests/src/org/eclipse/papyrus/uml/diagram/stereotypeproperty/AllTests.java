@@ -29,7 +29,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestUnapplyProfile2ClosedDiagComment.class,
 	TestUnapplyProfile2Comment.class,
 	TestLayoutWithStereotypeOnEclipseHIPPInstance.class,
-	TestUnapplyStereotypeComment.class
+	TestUnapplyStereotypeComment.class,
+	TestBadUnapplyProfile2ClosedDiagComment.class
 })
 public class AllTests {
 
