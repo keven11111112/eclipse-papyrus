@@ -16,7 +16,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
@@ -59,7 +58,6 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 * Test to manage i package.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageIPackage() {
 		testToManageNode(UMLElementTypes.Package_2009, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_2009, true);
 	}
@@ -68,7 +66,6 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 * Test to manage Model
 	 */
 	@Test
-	@FailingTest
 	public void testToManageModel() {
 		testToManageNode(UMLElementTypes.Model_2010, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_2009, true);
 	}
