@@ -89,7 +89,9 @@ public class UnsetCellValueHandler extends AbstractTableHandler {
 			NatEventData data = getNatEventData();
 			if (data != null) { //null with JUnit tests
 				LabelStack labels = data.getRegionLabels();
-				enabled = labels.hasLabel(GridRegion.BODY) && labels.getLabels().size() == 1;
+				if(labels!=null){  //seem null with JUnit tests
+					enabled = labels.hasLabel(GridRegion.BODY) && labels.getLabels().size() == 1;
+				}
 			}
 		}
 		return enabled;
