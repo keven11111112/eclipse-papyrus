@@ -141,9 +141,6 @@
                <documentation>
                   
                </documentation>
-               <appinfo>
-                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.papyrusDiagram/@id"/>
-               </appinfo>
             </annotation>
          </attribute>
          <attribute name="Transformation" type="string" use="required">
