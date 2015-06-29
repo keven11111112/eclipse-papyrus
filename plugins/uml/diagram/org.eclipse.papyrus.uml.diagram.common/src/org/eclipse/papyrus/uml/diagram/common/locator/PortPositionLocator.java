@@ -256,13 +256,13 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 *      the position of the port around its parent. This position can be
 	 *      <ul>
 	 *      <li>{@linkplain PositionConstants#NORTH}</li>
-	 *      <li> {@linkplain PositionConstants#SOUTH}</li>
-	 *      <li> {@linkplain PositionConstants#EAST}</li>
-	 *      <li> {@linkplain PositionConstants#WEST}</li>
-	 *      <li> {@linkplain PositionConstants#NORTH_EAST}</li>
-	 *      <li> {@linkplain PositionConstants#NORTH_WEST}</li>
-	 *      <li> {@linkplain PositionConstants#SOUTH_EAST}</li>
-	 *      <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
+	 *      <li>{@linkplain PositionConstants#SOUTH}</li>
+	 *      <li>{@linkplain PositionConstants#EAST}</li>
+	 *      <li>{@linkplain PositionConstants#WEST}</li>
+	 *      <li>{@linkplain PositionConstants#NORTH_EAST}</li>
+	 *      <li>{@linkplain PositionConstants#NORTH_WEST}</li>
+	 *      <li>{@linkplain PositionConstants#SOUTH_EAST}</li>
+	 *      <li>{@linkplain PositionConstants#SOUTH_WEST}</li>
 	 *      </ul>
 	 */
 	@Override
@@ -307,6 +307,10 @@ public class PortPositionLocator implements IBorderItemLocator {
 	@Override
 	public void setConstraint(Rectangle constraint) {
 		this.constraint = constraint;
+	}
+
+	public Rectangle getConstraint() {
+		return constraint;
 	}
 
 	/**

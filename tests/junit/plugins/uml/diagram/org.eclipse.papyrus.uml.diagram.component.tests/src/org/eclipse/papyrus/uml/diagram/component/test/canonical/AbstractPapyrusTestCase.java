@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.diagram.component.test.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand;
+import org.eclipse.papyrus.uml.diagram.component.test.IComponentDiagramTestsConstants;
 
 /**
  * The Class AbstractPapyrusTestCase.
@@ -23,6 +24,16 @@ public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.uml.di
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateComponentDiagramCommand();
+	}
+
+	@Override
+	protected String getProjectName() {
+		return IComponentDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IComponentDiagramTestsConstants.FILE_NAME;
 	}
 
 }
