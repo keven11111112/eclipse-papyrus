@@ -52,7 +52,7 @@ public class TypeUtils {
 	 */
 	public static final boolean isIntegerValue(String str) {
 		/** the pattern that checks visual ids are valid integers */
-		Pattern digit = Pattern.compile("\\d+"); //$NON-NLS-1$
+		Pattern digit = Pattern.compile("-?\\d+"); //$NON-NLS-1$
 		boolean result = false;
 		Matcher matcher = digit.matcher(str);
 		if (matcher != null) {

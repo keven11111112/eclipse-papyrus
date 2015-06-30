@@ -301,7 +301,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 			ITreeItemAxis axis = (ITreeItemAxis) arg0;
 			Object element = axis.getElement();
 			if (element instanceof String) {
-				if (TypeUtils.isIntegerValue((String) element)) {
+				if (TypeUtils.isNaturalValue((String) element)) {
 					Integer value = Integer.parseInt((String) element);
 					int depth = value;
 					if (depth == 0 && axis.getChildren().isEmpty()) {
