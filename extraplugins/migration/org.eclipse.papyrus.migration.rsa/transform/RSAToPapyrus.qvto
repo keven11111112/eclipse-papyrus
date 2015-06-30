@@ -98,6 +98,21 @@ abstract mapping Node::toPapyrusConnectorLabel() : Node {
 
 abstract mapping Shape::toPapyrusShape() : Shape inherits Node::toPapyrusNode, FillStyle::toFillStyle, FontStyle::toFontStyle, LineStyle::toLineStyle{
 	result.layoutConstraint := self.layoutConstraint.map toLayout(self.diagram);
+	
+	if self.oclIsKindOf(UMLView) then {
+		result.map handleStereotypeDisplay(self.oclAsType(UMLView));
+	} endif;
+}
+
+mapping inout View::handleStereotypeDisplay(sourceView : UMLView) : StringValueStyle when {
+	not sourceView.showStereotype.oclIsUndefined()
+}{
+	//We need to know all stereotypes to properly translate this in Papyrus, but they might be broken at this stage
+	//Additionally, we will lose track of the source View when stereotypes are fixed. 
+	//Let's serialize this information temporarily, then rely on it to properly initialize Papyrus DecorationNodes later 
+	result.name := "stereotypeDisplayBackup";
+	result.stringValue := sourceView.showStereotype;
+	self.styles += result;
 }
 
 abstract mapping DrawerStyle::toDrawerStyle() : DrawerStyle {
