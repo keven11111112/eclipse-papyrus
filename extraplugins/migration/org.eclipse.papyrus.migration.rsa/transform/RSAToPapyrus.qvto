@@ -158,7 +158,19 @@ query NamedElement::getDiagramName() : String {
 }
 
 query Diagram::findElement() : Element {
-	return if self.container().container().oclIsUndefined() then semantics.rootObjects()[Element]->any(true) else self.container().container().oclAsType(Element) endif;
+	var owningEAnnotation := self.container(); //Simple diagram, stored in its context element
+	
+	if owningEAnnotation.oclIsUndefined() or not owningEAnnotation.oclIsKindOf(EAnnotation) then
+		//Maybe the diagram is stored in a fragment. Find its DiagramHolder
+		owningEAnnotation := semantics.objectsOfType(DiagramHolder)![ownedDiagrams->includes(self)]
+	endif;
+	
+	return if owningEAnnotation.oclIsUndefined() then
+		//We didn't find the EAnnotation containing the Diagram. Use any root element of the model (Usually there is only one)
+		semantics.rootObjects()[Element]->any(true)
+	else
+		owningEAnnotation.oclAsType(EAnnotation).eModelElement.oclAsType(Element)
+	endif;
 }
 
 abstract mapping Element::toCompartmentEntry(node : Node) : Shape {
