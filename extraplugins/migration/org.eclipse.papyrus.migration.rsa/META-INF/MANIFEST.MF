@@ -64,5 +64,5 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.migration.rsa.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.migration.rsa;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 
