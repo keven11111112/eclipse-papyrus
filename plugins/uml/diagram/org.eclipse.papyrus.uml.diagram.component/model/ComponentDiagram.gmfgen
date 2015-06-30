@@ -27,10 +27,11 @@
         liveValidationUIFeedback="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
-      <elementType definedExternally="true"
+      <elementType
           xsi:type="gmfgen:MetamodelType"
           uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Model_1000"
           displayName="ComponentDiagram"
+          definedExternally="true"
           editHelperClassName="ModelEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
@@ -56,9 +57,10 @@
           containers="/0/@diagram/@topLevelNodes.1 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.12">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Port_3069"
+            definedExternally="true"
             editHelperClassName="PortEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -178,10 +180,11 @@
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Model_3077"
             displayName="Model"
+            definedExternally="true"
             editHelperClassName="ModelEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -258,10 +261,11 @@
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Package_3076"
             displayName="Package"
+            definedExternally="true"
             editHelperClassName="PackageEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -334,8 +338,9 @@
           containers="/0/@diagram/@compartments.1 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
-            xsi:type="gmfgen:MetamodelType"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.InterfaceFigure">
@@ -424,10 +429,11 @@
           containers="/0/@diagram/@compartments.5 /0/@diagram/@compartments.6 /0/@diagram/@compartments.0">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Component_3070"
             displayName="Component"
+            definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.1/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -548,10 +554,11 @@
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Component_3071"
             displayName="Component"
+            definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.1/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -669,9 +676,10 @@
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Comment_3074"
+            definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.5/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -737,9 +745,10 @@
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Constraint_3075"
+            definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.6/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -829,8 +838,9 @@
           containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.9">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
-            xsi:type="gmfgen:MetamodelType"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
@@ -877,8 +887,9 @@
           containers="/0/@diagram/@compartments.8 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
-            xsi:type="gmfgen:MetamodelType"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
@@ -925,8 +936,9 @@
           containers="/0/@diagram/@compartments.8 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
-            xsi:type="gmfgen:MetamodelType"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
@@ -967,10 +979,11 @@
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Interface_3072"
             displayName="Interface"
+            definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.8/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1052,8 +1065,9 @@
           containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
-            xsi:type="gmfgen:MetamodelType"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.PropertyPartFigure">
@@ -1136,10 +1150,11 @@
           createCommandClassName="DependencyNodeCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.DependencyNode_3203"
             displayName="DependencyNode"
+            definedExternally="true"
             editHelperClassName="DependencyEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1218,9 +1233,10 @@
           createCommandClassName="ComponentCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Component_2002"
+            definedExternally="true"
             editHelperClassName="ComponentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1337,10 +1353,11 @@
           createCommandClassName="ModelCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Model_3202"
             displayName="Model"
+            definedExternally="true"
             editHelperClassName="ModelEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1416,10 +1433,11 @@
           createCommandClassName="PackageCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Package_3200"
             displayName="Package"
+            definedExternally="true"
             editHelperClassName="PackageEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1495,8 +1513,9 @@
           createCommandClassName="RectangleInterfaceCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
-            xsi:type="gmfgen:MetamodelType"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.InterfaceFigure">
@@ -1582,10 +1601,11 @@
           createCommandClassName="CommentCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Comment_3201"
             displayName="Comment"
+            definedExternally="true"
             editHelperClassName="CommentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1650,10 +1670,11 @@
           createCommandClassName="ConstraintCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Comment_3199"
             displayName="Constraint"
+            definedExternally="true"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1741,10 +1762,11 @@
           createCommandClassName="DefaultNamedElementCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.DefaultNamedElement_3204"
             displayName="DefaultNamedElement"
+            definedExternally="true"
             editHelperClassName="DefaultNamedElementEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1805,9 +1827,10 @@
           createCommandClassName="InterfaceCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Interface_2003"
+            definedExternally="true"
             editHelperClassName="InterfaceEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1887,9 +1910,10 @@
           reorientCommandClassName="UsageReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Usage_4001"
+            definedExternally="true"
             editHelperClassName="UsageEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1958,9 +1982,10 @@
           reorientCommandClassName="InterfaceRealizationReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.InterfaceRealization_4006"
+            definedExternally="true"
             editHelperClassName="InterfaceRealizationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2025,9 +2050,10 @@
           reorientCommandClassName="GeneralizationReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Generalization_4003"
+            definedExternally="true"
             editHelperClassName="GeneralizationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2091,10 +2117,11 @@
           reorientCommandClassName="SubstitutionReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Substitution_4012"
             displayName="Substitution"
+            definedExternally="true"
             editHelperClassName="SubstitutionEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2187,10 +2214,11 @@
           reorientCommandClassName="ManifestationReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Manifestation_4014"
             displayName="Manifestation"
+            definedExternally="true"
             editHelperClassName="ManifestationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2283,8 +2311,9 @@
           reorientCommandClassName="ComponentRealizationReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"
             editHelperClassName="ComponentRealizationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2378,10 +2407,11 @@
           reorientCommandClassName="AbstractionReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Abstraction_4013"
             displayName="Abstraction"
+            definedExternally="true"
             editHelperClassName="AbstractionEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2474,8 +2504,9 @@
           reorientCommandClassName="LinkDescriptorReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
-            xsi:type="gmfgen:NotationType"/>
+        <elementType
+            xsi:type="gmfgen:NotationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -2492,10 +2523,11 @@
           reorientCommandClassName="CommentAnnotatedElementReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.CommentAnnotatedElement_4008"
-            displayName="CommentAnnotatedElement"/>
+            displayName="CommentAnnotatedElement"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -2517,10 +2549,11 @@
           reorientCommandClassName="ConstraintConstrainedElementReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.ConstraintConstrainedElement_4009"
-            displayName="ConstraintConstrainedElement"/>
+            displayName="ConstraintConstrainedElement"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -2542,9 +2575,10 @@
           reorientCommandClassName="DependencyReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             displayName="DependencyLink"
+            definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.0/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2638,9 +2672,10 @@
           reorientCommandClassName="DependencyBranchReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.component.Dependency_4017"
+            definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.0/@elementType"
             editHelperAdviceClassName="DependencyBranchLink"/>
         <viewmap
@@ -2682,9 +2717,10 @@
           reorientCommandClassName="InterfacePortLinkReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
+        <elementType
             xsi:type="gmfgen:NotationType"
-            displayName="InterfacePortLink"/>
+            displayName="InterfacePortLink"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx"/>
@@ -2694,8 +2730,9 @@
           editPartClassName="ConnectorEditPart">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-        <elementType definedExternally="true"
-            xsi:type="gmfgen:MetamodelType"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.ConnectorFigure"/>
@@ -2820,6 +2857,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7002"
@@ -2845,6 +2886,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7007"
@@ -2870,6 +2915,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7005"
@@ -2895,6 +2944,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7003"
