@@ -99,6 +99,12 @@
 						
 		<!-- From Main Papyrus -->
 		<repository>
+			<id>ep</id>
+			<layout>p2</layout>
+			<!-- updateFrom("Eclipse",0) -->
+			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC4-201506032000/</url>
+		</repository>
+		<repository>
 			<id>emf-emf</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF (Core)",0) -->
@@ -127,12 +133,6 @@
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
 			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201505312255</url>
-		</repository>
-		<repository>
-			<id>ep</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC4-201506032000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
