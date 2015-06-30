@@ -16,7 +16,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
@@ -53,7 +52,6 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 	}
 
 	@Test
-	@FailingTest
 	public void testToManageClass() {
 		testToManageNode(UMLElementTypes.Class_2008, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_2007, false);
 	}
