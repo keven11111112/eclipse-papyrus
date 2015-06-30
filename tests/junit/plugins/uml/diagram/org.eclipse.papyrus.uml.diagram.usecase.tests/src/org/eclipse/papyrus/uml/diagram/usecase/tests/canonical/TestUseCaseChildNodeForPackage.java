@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
@@ -56,7 +55,6 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	 * Test to manage component.
 	 */
 	@Test
-	@FailingTest
 	public void testToManagePackage() {
 		testToManageNode(UMLElementTypes.Package_3014, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_3014, true);
 	}
@@ -86,13 +84,11 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	}
 
 	@Test
-	@FailingTest
 	public void testToManageComponent() {
 		testToManageNode(UMLElementTypes.Component_3013, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_3014, true);
 	}
 
 	@Test
-	@FailingTest
 	public void testToManageUseCase() {
 		testToManageNode(UMLElementTypes.UseCase_3012, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Package_3014, true);
 	}

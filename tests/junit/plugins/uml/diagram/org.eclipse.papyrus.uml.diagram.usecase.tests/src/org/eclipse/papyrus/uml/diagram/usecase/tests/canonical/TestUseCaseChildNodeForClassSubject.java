@@ -23,7 +23,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
@@ -79,21 +78,18 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 
 	@Test
 	@InteractiveTest
-	@FailingTest
 	public void testToManageUseCaseForClassSubject() {
 		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
 	}
 
 	@Test
 	@InteractiveTest
-	@FailingTest
 	public void testToManageUseCaseForComponentSubject() {
 		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
 	}
 
 	@Test
 	@InteractiveTest
-	@FailingTest
 	public void testToManageUseCaseForInterfaceSubject() {
 		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
 	}
