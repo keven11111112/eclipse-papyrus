@@ -62,7 +62,7 @@ public class CustomJoinNodeEditPart extends JoinNodeEditPart {
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(20, 40);
+		DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(10, 40);
 		return result;
 	}
 

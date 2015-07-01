@@ -9,23 +9,15 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Remove old implementation to generic shape uses
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.draw2d;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LayoutManager;
-import org.eclipse.draw2d.OrderedLayout;
-import org.eclipse.draw2d.RoundedRectangle;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.GravityConstrainedFlowLayout;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.GravityDirectionType;
+import java.util.Collections;
+
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
-import org.eclipse.gmf.runtime.notation.MeasurementUnit;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 
 /**
@@ -37,102 +29,22 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
 public class StructuredActivityNodeFigure extends RoundedCompartmentFigure {
 
 	/**
-	 * Since the Activity diagram is using Pixel unit we can use this as constant
-	 */
-	private static IMapMode mapNode = MeasurementUnitHelper.getMapMode(MeasurementUnit.PIXEL_LITERAL);
-
-	/**
 	 * Compartment for activity node
 	 */
-	private RoundedRectangle fStructuredActivityNodeCompartment;
-
-	/**
-	 * Compartment for label
-	 */
-	private RoundedRectangle fFigureCompartmentLabelStructuredActivityNode;
-
-	/**
-	 * Preferences Store
-	 */
-	protected IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+	private static final String STRUCTURED_ACTIVITY_NODE_COMPARTMENT = "StructuredActivityNodeCompartment";
 
 	/**
 	 * Constructor
 	 */
 	public StructuredActivityNodeFigure() {
-		super();
-		createContentPane();
-	}
-
-	@Override
-	public LayoutManager getLayoutManager() {
-		FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
-		layoutThis.setStretchMinorAxis(true);
-		layoutThis.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
-		layoutThis.setMajorAlignment(OrderedLayout.ALIGN_TOPLEFT);
-		layoutThis.setMajorSpacing(0);
-		layoutThis.setMinorSpacing(0);
-		layoutThis.setHorizontal(false);
-		return layoutThis;
-	}
-
-	/**
-	 * Create compartment for activity node
-	 */
-	protected void createContentPane() {
-		/*
-		 * Compartment
-		 */
-		this.setLayoutManager(getLayoutManager());
-		fStructuredActivityNodeCompartment = new RoundedRectangle();
-		fStructuredActivityNodeCompartment.setCornerDimensions(new Dimension(mapNode.DPtoLP(8), mapNode.DPtoLP(8)));
-		fStructuredActivityNodeCompartment.setFill(false);
-		fStructuredActivityNodeCompartment.setOutline(false);
-		fStructuredActivityNodeCompartment.setLineWidth(0);
-		FlowLayoutAdvancedConstraint constraintFStructuredActivityNodeCompartment = new FlowLayoutAdvancedConstraint();
-		constraintFStructuredActivityNodeCompartment.setFull(true);
-		this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
-	}
-
-	@Override
-	protected Object getDefaultLabelsConstraint() {
-		GravityConstrainedFlowLayout layoutFFigureCompartmentLabelStructuredActivityNode = new GravityConstrainedFlowLayout();
-		layoutFFigureCompartmentLabelStructuredActivityNode.setGravity(GravityDirectionType.WEST);
-		fFigureCompartmentLabelStructuredActivityNode.setLayoutManager(layoutFFigureCompartmentLabelStructuredActivityNode);
-		return super.getDefaultLabelsConstraint();
-	}
-
-	@Override
-	protected Object getNameLabelConstraint() {
-		GravityConstrainedFlowLayoutConstraint constraintFKeyword = new GravityConstrainedFlowLayoutConstraint();
-		constraintFKeyword.setAlign(OrderedLayout.ALIGN_TOPLEFT);
-		return constraintFKeyword;
-	}
-
-	@Override
-	protected IFigure getDefaultLabelsContainer() {
-		if (fFigureCompartmentLabelStructuredActivityNode == null) {
-			fFigureCompartmentLabelStructuredActivityNode = new RoundedRectangle();
-			fFigureCompartmentLabelStructuredActivityNode.setCornerDimensions(new Dimension(mapNode.DPtoLP(8), mapNode.DPtoLP(8)));
-			fFigureCompartmentLabelStructuredActivityNode.setFill(false);
-			fFigureCompartmentLabelStructuredActivityNode.setOutline(false);
-			fFigureCompartmentLabelStructuredActivityNode.setLineWidth(0);
-			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelStructuredActivityNode = new FlowLayoutAdvancedConstraint();
-			constraintFFigureCompartmentLabelStructuredActivityNode.setHasMinsize(true);
-			this.add(fFigureCompartmentLabelStructuredActivityNode, constraintFFigureCompartmentLabelStructuredActivityNode);
-			GravityConstrainedFlowLayout layoutFFigureCompartmentLabelStructuredActivityNode = new GravityConstrainedFlowLayout();
-			layoutFFigureCompartmentLabelStructuredActivityNode.setGravity(GravityDirectionType.WEST);
-			layoutFFigureCompartmentLabelStructuredActivityNode.setSpacing(10);
-			fFigureCompartmentLabelStructuredActivityNode.setLayoutManager(layoutFFigureCompartmentLabelStructuredActivityNode);
-		}
-		return fFigureCompartmentLabelStructuredActivityNode;
+		super(Collections.singletonList(STRUCTURED_ACTIVITY_NODE_COMPARTMENT));
 	}
 
 	/**
 	 * Compartment for activity node
 	 */
-	public RoundedRectangle getStructuredActivityNodeCompartment() {
-		return fStructuredActivityNodeCompartment;
+	public RectangleFigure getStructuredActivityNodeCompartment() {
+		return getCompartment(STRUCTURED_ACTIVITY_NODE_COMPARTMENT);
 	}
 
 	/**

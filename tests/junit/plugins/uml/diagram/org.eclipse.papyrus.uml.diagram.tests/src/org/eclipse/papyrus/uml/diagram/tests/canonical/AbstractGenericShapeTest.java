@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.tests.canonical;
 
 import java.util.List;
 
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
@@ -33,7 +32,6 @@ abstract public class AbstractGenericShapeTest extends AbstractPapyrusTest {
 	 * Test rounded compartment edit parts.
 	 */
 	@Test
-	@FailingTest
 	public void testRoundedCompartmentEditParts() {
 
 		List<Class<?>> roundedCompartmentEditParts = getRoundedCompartmentEditParts();

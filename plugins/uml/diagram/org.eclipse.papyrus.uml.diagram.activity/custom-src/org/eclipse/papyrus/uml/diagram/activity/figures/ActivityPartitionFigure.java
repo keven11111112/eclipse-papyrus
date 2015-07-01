@@ -16,9 +16,7 @@ package org.eclipse.papyrus.uml.diagram.activity.figures;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.OneLineBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 
@@ -35,7 +33,6 @@ public class ActivityPartitionFigure extends RoundedCompartmentFigure {
 
 	public ActivityPartitionFigure() {
 		super(Collections.singletonList(ACTIVITY_CONTENT_COMPARTMENT));
-		getActivityPartitionCompartment().setBorder(new OneLineBorder(1, PositionConstants.TOP));
 	}
 
 	public RectangleFigure getActivityPartitionCompartment() {

@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
-import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
@@ -160,7 +159,6 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 * Test to manageDecision Node.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageActivityPartition() {
 		testToManageNode(UMLElementTypes.ActivityPartition_3067, UMLPackage.eINSTANCE.getActivityPartition(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
@@ -178,7 +176,6 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 * Test to manageStructuredActivity.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageStructuredActivity() {
 		testToManageNode(UMLElementTypes.StructuredActivityNode_3065, UMLPackage.eINSTANCE.getStructuredActivityNode(), UMLElementTypes.StructuredActivityNode_3065, true);
 	}
@@ -195,7 +192,6 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 * Test to manageDecision Node.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageConditionalNode() {
 		testToManageNode(UMLElementTypes.ConditionalNode_3069, UMLPackage.eINSTANCE.getConditionalNode(), UMLElementTypes.StructuredActivityNode_3065, true);
 	}
@@ -204,7 +200,6 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 * Test to manageDecision Node.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageExpansionRegion() {
 		testToManageNode(UMLElementTypes.ExpansionRegion_3070, UMLPackage.eINSTANCE.getExpansionRegion(), UMLElementTypes.StructuredActivityNode_3065, true);
 	}
@@ -213,7 +208,6 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 * Test to manageDecision Node.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageloopNode() {
 		testToManageNode(UMLElementTypes.LoopNode_3071, UMLPackage.eINSTANCE.getLoopNode(), UMLElementTypes.StructuredActivityNode_3065, true);
 	}
@@ -222,7 +216,6 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 * Test to manageDecision Node.
 	 */
 	@Test
-	@FailingTest
 	public void testToManageSequenceNode() {
 		testToManageNode(UMLElementTypes.SequenceNode_3073, UMLPackage.eINSTANCE.getSequenceNode(), UMLElementTypes.StructuredActivityNode_3065, true);
 	}
@@ -231,8 +224,7 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 * Test to manage Activity
 	 */
 	@Test
-	@InteractiveTest 
-	@FailingTest
+	@InteractiveTest
 	public void testToManageActivity() {
 		testToManageNode(UMLElementTypes.Activity_3083, UMLPackage.eINSTANCE.getActivity(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}

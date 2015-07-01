@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.part.ActivityGroup;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
 
 /**
@@ -49,5 +50,11 @@ public class CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPa
 	@Override
 	public boolean isSelectable() {
 		return false;
+	}
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
 }

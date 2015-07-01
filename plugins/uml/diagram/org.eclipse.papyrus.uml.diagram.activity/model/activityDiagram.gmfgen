@@ -19331,6 +19331,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7015"
@@ -19357,6 +19361,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7016"
@@ -19379,6 +19387,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7013"
@@ -19414,6 +19426,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <palette
           packageName="org.eclipse.papyrus.uml.diagram.activity.part">

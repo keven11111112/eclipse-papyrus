@@ -208,6 +208,22 @@ ActivityDiagram Activity
 	bottomMarginLabel:5;
 }
 
+ActivityDiagram SequenceNode,
+ActivityDiagram ConditionalNode,
+ActivityDiagram ExpansionRegion,
+ActivityDiagram LoopNode,
+ActivityDiagram StructuredActivityNode{
+	textAlignment:left;
+}
+
+ActivityDiagram SequenceNode>Compartment,
+ActivityDiagram ConditionalNode>Compartment,
+ActivityDiagram ExpansionRegion>Compartment,
+ActivityDiagram LoopNode>Compartment,
+ActivityDiagram StructuredActivityNode>Compartment{
+	lineLength:0;
+}
+
 /* For most Activity diagram nodes (e.g. initial, final, fork, decision, ...), 
  * the element icon is displayed next to the actual object. 
  * By default, we prevent this. 

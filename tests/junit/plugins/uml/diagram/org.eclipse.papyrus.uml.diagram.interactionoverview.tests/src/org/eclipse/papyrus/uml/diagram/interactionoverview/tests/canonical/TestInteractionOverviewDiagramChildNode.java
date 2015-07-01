@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -108,19 +107,16 @@ public class TestInteractionOverviewDiagramChildNode extends AbstractInteraction
 	}
 
 	@Test
-	@FailingTest
 	public void testToManageConditionalNode() {
 		testToManageNode(UMLElementTypes.ConditionalNode_3069, UMLPackage.eINSTANCE.getConditionalNode(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
 
 	@Test
-	@FailingTest
 	public void testToManageLoopNode() {
 		testToManageNode(UMLElementTypes.LoopNode_3071, UMLPackage.eINSTANCE.getLoopNode(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
 
 	@Test
-	@FailingTest
 	public void testToManageSequenceNode() {
 		testToManageNode(UMLElementTypes.SequenceNode_3073, UMLPackage.eINSTANCE.getSequenceNode(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
