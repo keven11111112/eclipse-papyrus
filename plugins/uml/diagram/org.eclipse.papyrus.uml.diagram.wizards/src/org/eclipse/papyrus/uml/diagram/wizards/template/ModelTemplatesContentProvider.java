@@ -16,6 +16,8 @@ package org.eclipse.papyrus.uml.diagram.wizards.template;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.infra.widgets.providers.UnsetObject;
+
 /**
  * The Class ModelTemplatesContentProvider.
  */
@@ -35,7 +37,8 @@ public class ModelTemplatesContentProvider extends AbstractModelTemplateContentP
 		// InputElement is the value of the selected language (radio button) from the SelectDiagramCategoryPage, e.g. "uml"
 
 		if (inputElement instanceof Object[]) {
-			List<ModelTemplateDescription> result = new ArrayList<ModelTemplateDescription>();
+			// List<ModelTemplateDescription> result = new ArrayList<ModelTemplateDescription>();
+			List<Object> result = new ArrayList<Object>();
 
 			for (Object next : (Object[]) inputElement) {
 				if (next instanceof String) {
@@ -51,6 +54,9 @@ public class ModelTemplatesContentProvider extends AbstractModelTemplateContentP
 					}
 				}
 			}
+
+			// Empty element to enable the empty selection even after a user selection
+			result.add(0, UnsetObject.instance);
 			return result.toArray();
 		}
 

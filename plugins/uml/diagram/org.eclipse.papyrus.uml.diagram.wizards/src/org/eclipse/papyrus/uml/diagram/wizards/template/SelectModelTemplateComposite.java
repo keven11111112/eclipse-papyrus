@@ -15,16 +15,15 @@
 package org.eclipse.papyrus.uml.diagram.wizards.template;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ComboViewer;
-import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.widgets.providers.UnsetObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -104,7 +103,13 @@ public class SelectModelTemplateComposite extends Composite {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				StructuredSelection template = (StructuredSelection) event.getSelection();
-				selectedTemplate = (ModelTemplateDescription) template.getFirstElement();
+				if (template.getFirstElement() instanceof ModelTemplateDescription) {
+					selectedTemplate = (ModelTemplateDescription) template.getFirstElement();
+				} else if (template.getFirstElement() == UnsetObject.instance) {
+					singleTemplateCombo.getCombo().clearSelection();
+					singleTemplateCombo.setSelection(null);
+					selectedTemplate = null;
+				}
 			}
 		});
 
@@ -214,7 +219,7 @@ public class SelectModelTemplateComposite extends Composite {
 		if (templateTransfoPath != null) {
 			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
 				String diPath = modelTemplateDescription.getDi_path();
-				if (diPath != null){
+				if (diPath != null) {
 					diPathList.add(diPath);
 				}
 			}
@@ -231,12 +236,12 @@ public class SelectModelTemplateComposite extends Composite {
 		if (templateTransfoPath != null) {
 			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
 				String notationPath = modelTemplateDescription.getNotation_path();
-				if (notationPath != null){
+				if (notationPath != null) {
 					notationPathList.add(notationPath);
 				}
 			}
 		}
-		return notationPathList;		
+		return notationPathList;
 	}
 
 	/**
@@ -248,12 +253,12 @@ public class SelectModelTemplateComposite extends Composite {
 		if (templateTransfoPath != null) {
 			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
 				String pluginId = modelTemplateDescription.getPluginId();
-				if (pluginId != null){
+				if (pluginId != null) {
 					pluginIdList.add(pluginId);
 				}
 			}
 		}
-		return pluginIdList;			
+		return pluginIdList;
 	}
 
 
