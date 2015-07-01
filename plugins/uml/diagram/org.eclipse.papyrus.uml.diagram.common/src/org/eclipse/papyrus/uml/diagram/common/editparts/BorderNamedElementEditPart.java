@@ -15,7 +15,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
-import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -105,7 +104,7 @@ public abstract class BorderNamedElementEditPart extends BorderUMLNodeEditPart i
 		getNodeNamedElementFigure().getNameLabel().setFont(font);
 
 		// Apply the font to the Qualified Name
-		Label qualifiedNameLabel = getNodeNamedElementFigure().getQualifiedNameLabel();
+		WrappingLabel qualifiedNameLabel = getNodeNamedElementFigure().getQualifiedNameLabel();
 		if (qualifiedNameLabel != null) {
 			qualifiedNameLabel.setFont(font);
 		}
@@ -134,7 +133,7 @@ public abstract class BorderNamedElementEditPart extends BorderUMLNodeEditPart i
 		super.setFontColor(color);
 
 		// Qualified Name
-		Label qualifiedNameLabel = getNodeNamedElementFigure().getQualifiedNameLabel();
+		WrappingLabel qualifiedNameLabel = getNodeNamedElementFigure().getQualifiedNameLabel();
 		if (qualifiedNameLabel != null) {
 			qualifiedNameLabel.setForegroundColor(color);
 		}
