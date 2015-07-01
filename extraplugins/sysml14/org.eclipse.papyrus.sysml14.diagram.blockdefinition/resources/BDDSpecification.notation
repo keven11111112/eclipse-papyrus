@@ -115,6 +115,14 @@
       </axis>
     </columnAxisProvidersHistory>
     <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_JLAf1ec2EeSLdPGe2q9R0g" description="Provides the requirements directly owned by the context of the table" name="Requirement Axis Provider" disconnectSlave="true"/>
+    <localRowHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="__5Od4B_JEeWp9rJ2gmw59A" indexStyle="NUMERIC">
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="__5PE8B_JEeWp9rJ2gmw59A" name="rowLabelWidth" intValue="310"/>
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="__6fpMB_JEeWp9rJ2gmw59A" name="rowIndexWidth" intValue="165"/>
+    </localRowHeaderAxisConfiguration>
+    <localColumnHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="__6dM8B_JEeWp9rJ2gmw59A">
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="__6dM8R_JEeWp9rJ2gmw59A" name="columnIndexHeight" intValue="25"/>
+      <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="__6fCIB_JEeWp9rJ2gmw59A" name="columnLabelHeight" intValue="25"/>
+    </localColumnHeaderAxisConfiguration>
   </nattable:Table>
   <nattable:Table xmi:id="_FB4isOgEEeSUQvXhEVQh8w" name="Palette Requirement Table" currentRowAxisProvider="_FB4itegEEeSUQvXhEVQh8w" currentColumnAxisProvider="_FB4isegEEeSUQvXhEVQh8w">
     <context xmi:type="uml:Model" href="BDDSpecification.uml#_OFsfcuLIEeSv5dwvZ9NSDw"/>

@@ -11,6 +11,7 @@
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_a0GrwOLIEeSv5dwvZ9NSDw" name="Block display"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_lLZBYOc2EeSLdPGe2q9R0g" name="The block can display constraints "/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_SnnPoB_KEeWp9rJ2gmw59A" name="FlowPortCompartment"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_IaVsQOgEEeSUQvXhEVQh8w" name="Block in BDD Palette"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_aMTSAOgEEeSUQvXhEVQh8w" name="Actor in BDD Palette"/>
@@ -170,4 +171,5 @@
   <Requirements:Requirement xmi:id="_rebZwOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_reaysOgHEeSUQvXhEVQh8w"/>
   <Requirements:Requirement xmi:id="_rjXkIOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_rjW9EOgHEeSUQvXhEVQh8w"/>
   <Requirements:Requirement xmi:id="_rot-MOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_roswEOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_Snq6AB_KEeWp9rJ2gmw59A" text="The FlowPortCompartment should'nt be prenset by default since FlowPorts arer Deprecated" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.Req003" base_Class="_SnnPoB_KEeWp9rJ2gmw59A"/>
 </xmi:XMI>
