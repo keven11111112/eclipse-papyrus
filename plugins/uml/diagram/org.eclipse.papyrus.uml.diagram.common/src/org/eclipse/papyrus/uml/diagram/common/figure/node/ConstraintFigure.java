@@ -125,10 +125,8 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 *
 	 * @return
 	 */
-
 	@Override
-	public Label getQualifiedNameLabel() {
-		// TODO Auto-generated method stub
+	public WrappingLabel getQualifiedNameLabel() {
 		return null;
 	}
 

@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
-import org.eclipse.draw2d.Label;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
 public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFigure {
@@ -32,7 +31,7 @@ public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFi
 	 *
 	 * @return the label that contains the qualified name
 	 */
-	public Label getQualifiedNameLabel();
+	public WrappingLabel getQualifiedNameLabel();
 
 	/**
 	 * Get the label containing the tagged value

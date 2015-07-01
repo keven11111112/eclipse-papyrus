@@ -80,6 +80,9 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	/** The shadow color. */
 	String shadowColor = null;
 
+	/** set to true to define the figure as a package. */
+	private boolean isPackage = false;
+
 	/**
 	 * Gets the shadow color.
 	 *
@@ -644,16 +647,13 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @return the point list to draw an header. its width is set to the width of the name and it's position to the left.
 	 */
 	protected PointList getHeader() {
-
-		Rectangle labelBounds = nameLabel.getBounds().getCopy();
 		PointList points = new PointList();
 
-		int labelWidth = -1;
-		labelWidth = Math.max(labelWidth, nameLabel.getPreferredSize().width);
+		Rectangle labelBounds = new Rectangle(getLocation(), getLabelsDimension());
 
 		// case the size of the label is 0 or -1 (no label)
-		if (labelWidth <= 0) {
-			labelWidth = getBounds().width / 4;
+		if (labelBounds.width <= 0) {
+			labelBounds.width = getBounds().width / 4;
 		}
 
 		Point verticalStart = new Point();
@@ -663,7 +663,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		Point horizontalStart = new Point();
 		Point horizontalEnd = new Point();
 
-		verticalStart.x = labelBounds.x + labelWidth + 4;
+		verticalStart.x = labelBounds.x + labelBounds.width + 4;
 		verticalStart.y = getBounds().y; // labelBounds.y;
 		points.addPoint(verticalStart);
 
@@ -689,45 +689,33 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		return points;
 	}
 
-	/** set to true to define the figure as a package. */
-	private boolean isPackage = false;
-
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
+	 * Gets the package header.
 	 *
-	 * @return
+	 * @return the package header
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
 	 */
 	public Rectangle getPackageHeader() {
 		Rectangle headerBound = new Rectangle();
 		if (isPackage) {
-
-			ResizableCompartmentFigure firstCompartment = FigureUtils.findChildFigureInstance(this, ResizableCompartmentFigure.class);
-			if (firstCompartment != null) {
-				int labelWidth = 60;
-				labelWidth = Math.max(labelWidth, nameLabel.getPreferredSize().width);
-				if (stereotypesLabel != null) {
-					labelWidth = Math.max(labelWidth, stereotypesLabel.getPreferredSize().width);
-				}
-
-				// If the width of the figure is < to the label width
-				labelWidth = Math.min(labelWidth, getBounds().width);
-
-				headerBound.x = getBounds().x;
-				headerBound.y = getBounds().y;
-				headerBound.height = firstCompartment.getBounds().y - getBounds().y;
-				headerBound.width = labelWidth;
-			} else {
-				headerBound = nameLabel.getBounds().getCopy();
+			headerBound.setBounds(getLocation(), getLabelsDimension());
+			if (-1 == headerBound.width) {
+				headerBound.width = 60;
 			}
+			// If the width of the figure is < to the label width
+			headerBound.width = Math.min(headerBound.width, getBounds().width);
+		} else {
+			headerBound = nameLabel.getBounds().getCopy();
 		}
-
 		return headerBound;
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setHasHeader(boolean)
+	 * Sets the checks for header.
 	 *
 	 * @param hasHeader
+	 *            the new checks for header
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setHasHeader(boolean)
 	 */
 	@Override
 	public void setHasHeader(boolean hasHeader) {
@@ -742,5 +730,37 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	@Override
 	public boolean hasHeader() {
 		return hasHeader;
+	}
+
+	/**
+	 * Gets the dimension of all labels together.
+	 *
+	 * @return the dimension. (-1,-1) if there is no label.
+	 */
+	private Dimension getLabelsDimension() {
+		Dimension labelDimension = new Dimension(-1, -1);
+
+		if (null != nameLabel && labelDimension.width < nameLabel.getPreferredSize().width) {
+			labelDimension.width = nameLabel.getPreferredSize().width;
+		}
+		if (null != taggedLabel && labelDimension.width < taggedLabel.getPreferredSize().width) {
+			labelDimension.width = taggedLabel.getPreferredSize().width;
+		}
+		if (null != stereotypesLabel && labelDimension.width < stereotypesLabel.getPreferredSize().width) {
+			labelDimension.width = stereotypesLabel.getPreferredSize().width;
+		}
+		if (null != stereotypePropertiesInBraceContent && labelDimension.width < stereotypePropertiesInBraceContent.getPreferredSize().width) {
+			labelDimension.width = stereotypePropertiesInBraceContent.getPreferredSize().width;
+		}
+		if (null != qualifiedLabel && labelDimension.width < qualifiedLabel.getPreferredSize().width) {
+			labelDimension.width = qualifiedLabel.getPreferredSize().width;
+		}
+
+		ResizableCompartmentFigure firstCompartment = FigureUtils.findChildFigureInstance(this, ResizableCompartmentFigure.class);
+		if (null != firstCompartment) {
+			labelDimension.height = firstCompartment.getBounds().y - getBounds().y;
+		}
+
+		return labelDimension;
 	}
 }
