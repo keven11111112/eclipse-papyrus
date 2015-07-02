@@ -10,6 +10,7 @@
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 470823
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
@@ -327,7 +328,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case InteractionConstraintEditPart.VISUAL_ID:
 
 				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
-				// Test TopLevelNode... End
+			// Test TopLevelNode... End
 			case PortEditPart.VISUAL_ID:
 				return dropAffixedNode(dropRequest, semanticElement, nodeVISUALID);
 			case ParameterEditPart.VISUAL_ID:
@@ -830,7 +831,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 			} else if (graphicalParentObject instanceof TypedElement) {
 
-				if (droppedObject instanceof Type) {
+				if (droppedObject instanceof Type && (!(droppedObject instanceof Association) || !(graphicalParentObject instanceof ConnectableElement))) { // Properties of association type are nonsense
 
 					TypeHelper helper = new TypeHelper(getEditingDomain());
 					cc.add(helper.dropTypeOnTypedElement((GraphicalEditPart) getHost(), (Type) droppedObject, location));
