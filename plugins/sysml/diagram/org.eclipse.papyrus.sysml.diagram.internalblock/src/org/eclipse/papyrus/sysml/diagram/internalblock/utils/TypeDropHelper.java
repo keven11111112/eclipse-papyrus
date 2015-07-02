@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
+ *		Christian W. Damus - bug 470296
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.utils;
@@ -42,6 +43,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
@@ -279,7 +281,9 @@ public class TypeDropHelper extends ElementHelper {
 	private boolean isValidPortType(Object object) {
 		boolean isValid = false;
 
-		if ((object != null) && (object instanceof Type)) {
+		// Bug 470296: Associations are not useful types for ports or any kind of property. Note that this
+		// deliberately excludes association-classes, also, because their primary semantics is that of an association
+		if ((object != null) && (object instanceof Type) && !(object instanceof Association)) {
 			isValid = true;
 		}
 
