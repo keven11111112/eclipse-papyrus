@@ -27,7 +27,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		CSSProjectStylesheetsTest.class,
 		CSSWorkspaceThemeTest.class,
 		InferredNotationStylesTest.class,
-		CSSNamedElementsTest.class
+		CSSNamedElementsTest.class,
+		CSSKindSelectorTest.class
 })
 public class AllTests {
 	// Test suite
