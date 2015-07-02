@@ -187,6 +187,8 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	protected void refreshStereotypeDisplay() {
 
 		super.refreshStereotypeDisplay();
+		comment = helper.getStereotypeComment(hostView);
+
 		// If no more Compartment, delete the Comment
 		if (comment != null && getAppliedStereotypeCompartmentNumber(comment) == 0) {
 			executeAppliedStereotypeCommentDeletion(comment);
@@ -470,4 +472,4 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	}
 
 
-}
+}  

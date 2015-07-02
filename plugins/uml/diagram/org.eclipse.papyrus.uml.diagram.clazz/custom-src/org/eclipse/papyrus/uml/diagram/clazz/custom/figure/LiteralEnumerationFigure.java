@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,10 +12,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 
-public class LiteralEnumerationFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
+
+public class LiteralEnumerationFigure extends PapyrusWrappingLabel {
 
 	public LiteralEnumerationFigure() {
-		this.setText("<UNDEFINED>");
+		this.setText("<UNDEFINED>"); //$NON-NLS-1$
 	}
 
 }

@@ -22,6 +22,8 @@ import org.eclipse.papyrus.uml.diagram.common.tests.parser.HTMLCleanerTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.HTMLCornerBentFigureTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.MultiplicityStringFormatterTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.ValueSpecificationUtilTestCase;
+import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayCompartmentClassDiagramTest;
+import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayNodeClassDiagramTest;
 import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayStructureTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
@@ -29,6 +31,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		AppliedStereotypeDisplayStructureTest.class,
+		AppliedStereotypeDisplayNodeClassDiagramTest.class,
+		AppliedStereotypeDisplayCompartmentClassDiagramTest.class,
 		CommonBendpointsTest.class,
 		HTMLCleanerTestCase.class,
 		HTMLCornerBentFigureTestCase.class,

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ * 		Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.netT - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -25,6 +25,8 @@ import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
 
 /**
+ * This Class is a Singleton that regroups all the Utilities method required in the TStereotype display test.
+ * 
  * @author Céline JANSSENS
  *
  */
