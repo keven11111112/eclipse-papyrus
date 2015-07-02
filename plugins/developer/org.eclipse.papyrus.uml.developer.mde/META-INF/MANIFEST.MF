@@ -32,5 +32,5 @@ Bundle-Description: The goal of this plugin is to bring a template and
  ocument model, and  a very simple of document generator.
 Bundle-SymbolicName: org.eclipse.papyrus.uml.developer.mde;singleton:=
  true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Description: %pluginDescription
