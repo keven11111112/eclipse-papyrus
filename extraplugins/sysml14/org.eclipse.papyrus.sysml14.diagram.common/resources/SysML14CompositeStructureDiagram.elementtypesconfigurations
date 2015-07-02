@@ -843,6 +843,24 @@
         identifier="org.eclipse.papyrus.sysml14.diagram.common.advices.ConstraintPropertyGraphicalEditHelperAdvice"
         editHelperAdviceClassName="org.eclipse.papyrus.sysml14.diagram.common.advices.ConstraintPropertyGraphicalEditHelperAdvice"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_S5YwwB_5EeWp9rJ2gmw59A"
+      name="ActorPart"
+      identifier="org.eclipse.papyrus.SysML14.ActorPart_3070"
+      hint="3070">
+    <iconEntry
+        xmi:id="_S5YwwR_5EeWp9rJ2gmw59A"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.composite.Property_3101</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ActorPart</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_5wiAgB_5EeWp9rJ2gmw59A"
+        name="org.eclipse.papyrus.sysml14.diagram.common.advices.ActorPartGraphicalEditHelperAdvice"
+        identifier="org.eclipse.papyrus.sysml14.diagram.common.advices.ActorPartGraphicalEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.sysml14.diagram.common.advices.ActorPartGraphicalEditHelperAdvice"/>
+  </elementTypeConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
       xmi:id="_Qt9dasv4EeS5BpE3hOblyw"

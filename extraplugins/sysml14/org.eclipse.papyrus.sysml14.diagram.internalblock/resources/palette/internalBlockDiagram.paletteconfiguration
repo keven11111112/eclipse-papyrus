@@ -10,6 +10,17 @@
       description="Nodes">
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="palettemodel.ActorPart"
+        label="Actor Part"
+        description="Create a Actor Part">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Property.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.ActorPart_3070"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="palettemodel.Block"
         label="Block"
         description="Create a Block">
