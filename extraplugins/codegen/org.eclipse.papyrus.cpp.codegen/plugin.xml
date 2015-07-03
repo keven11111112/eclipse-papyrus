@@ -12,7 +12,7 @@
       <generator
             id="Standard C++"
             language="C++"
-            class="org.eclipse.papyrus.cpp.codegen.C_CppLangCodegen">
+            class="org.eclipse.papyrus.cpp.codegen.CppLangCodegen">
       </generator>
    </extension>
 </plugin>

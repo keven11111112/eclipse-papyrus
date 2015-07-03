@@ -22,22 +22,44 @@ import org.eclipse.uml2.uml.PackageableElement;
  * programming language
  */
 public interface ILangCodegen {
-	
+
+	/**
+	 * FILE KIND enumeration. It supports two distinction options (this might
+	 * need revision in the future, but is sufficient for all currently
+	 * supported languages)
+	 */
+	public enum FILE_KIND {
+		HEADER, BODY
+	}
+
 	/**
 	 * Provide a user friendly description of the generator
 	 */
 	public String getDescription();
 
 	/**
-	 * Return true, if the generator is eligible for a certain type of model. The method may check for
-	 * instance whether a certain profile (such as UML-RT) has been applied. Generators are allowed
-	 * to return true for all models, if they do not have specific (profile related) requirements.
+	 * Return true, if the generator is eligible for a certain type of model.
+	 * The method may check for instance whether a certain profile (such as
+	 * UML-RT) has been applied. Generators are allowed to return true for all
+	 * models, if they do not have specific (profile related) requirements.
 	 * 
-	 * @param modelRoot the root of a UML model (for which code should be generated)
+	 * @param modelRoot
+	 *            the root of a UML model (for which code should be generated)
 	 * @return true, iff the generator is eligible for this model
 	 */
 	public boolean isEligible(Package modelRoot);
-	
+
+	/**
+	 * Return the suffix of a code generator. Some languages use different
+	 * suffixes depending on the file kind, e.g. C distinguishes between HEADER
+	 * and BODY languages. Other languages can ignore this parameter.
+	 * 
+	 * @param FILE_KIND
+	 *            The file kind
+	 * @return
+	 */
+	public String getSuffix(FILE_KIND fileKind);
+
 	/**
 	 * Generate code for a specific language
 	 *

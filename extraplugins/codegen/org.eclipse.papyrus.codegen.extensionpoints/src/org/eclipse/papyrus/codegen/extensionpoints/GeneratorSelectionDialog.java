@@ -37,15 +37,15 @@ public class GeneratorSelectionDialog extends AbstractElementListSelectionDialog
 
 	protected Text m_description;
 
-	List<ILangCodegen> generators;
+	ILangCodegen generators[];
 	
-	public GeneratorSelectionDialog(Shell parent, List<ILangCodegen> generators) {
+	public GeneratorSelectionDialog(Shell parent, List<ILangCodegen> generatorList) {
 		super(parent, new LabelProvider() {
 			public String getText(Object element) {
 				return LanguageCodegen.getID((ILangCodegen) element);
 			}
 		});
-		this.generators = generators;
+		generators = generatorList.toArray(new ILangCodegen[0]);
 		setMultipleSelection(false);
 		setTitle(Messages.GeneratorSelectionDialog_SelectGenerator);
 	}
@@ -61,8 +61,7 @@ public class GeneratorSelectionDialog extends AbstractElementListSelectionDialog
 		createFilteredList(contents);
 		createFilterText(contents);
 		
-		// lower list remains empty, if typeOnly is true
-		fFilteredList.setElements(generators.toArray());
+		fFilteredList.setElements(generators);
 		
 		Label info = createMessageArea(contents);
 		info.setText(Messages.GeneratorSelectionDialog_infoCodeGen);
@@ -73,7 +72,7 @@ public class GeneratorSelectionDialog extends AbstractElementListSelectionDialog
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int index = fFilteredList.getSelectionIndex();
-				m_description.setText(generators.get(index).getDescription());
+				m_description.setText(getElement(index).getDescription());
 			}
 			
 			@Override
@@ -90,15 +89,25 @@ public class GeneratorSelectionDialog extends AbstractElementListSelectionDialog
 
 		m_description = new Text(contents, SWT.NONE | SWT.WRAP | SWT.V_SCROLL | SWT.READ_ONLY);
 		m_description.setLayoutData(descriptionGD);
-		m_description.setText(generators.get(0).getDescription());
+		m_description.setText(getElement(0).getDescription());
 		
 		return contents;
 	}
 
+	/**
+	 * Obtain ILangCodegen object via index. Note that we need to access the data from the filtered list
+	 * since the order might not be the same as the local "generators" array (the filtered list sorts)
+	 * @param index
+	 * @return
+	 */
+	ILangCodegen getElement(int index) {
+		return (ILangCodegen) fFilteredList.getFoldedElements(index)[0];
+	}
+	
 	@Override
 	protected void computeResult() {
 		int index = fFilteredList.getSelectionIndex();
-		Object[] result = new Object[] { generators.get(index) };
+		Object[] result = new Object[] { getElement(index) };
 		setResult(Arrays.asList(result));		
 	}
 }

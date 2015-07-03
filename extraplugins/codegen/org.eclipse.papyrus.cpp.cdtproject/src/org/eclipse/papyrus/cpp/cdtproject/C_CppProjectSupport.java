@@ -15,7 +15,7 @@ import org.eclipse.cdt.managedbuilder.core.IConfiguration;
 import org.eclipse.cdt.managedbuilder.core.IOption;
 import org.eclipse.cdt.managedbuilder.core.ITool;
 import org.eclipse.cdt.managedbuilder.core.ManagedBuildManager;
-import org.eclipse.cdt.ui.wizards.CCProjectWizard;
+import org.eclipse.cdt.ui.wizards.CDTCommonProjectWizard;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -50,10 +50,11 @@ public class C_CppProjectSupport implements ILangProjectSupport {
 	private int dialogStatus;
 
 	/**
+	 * Create a C++ project.
 	 * Caller should test before calling, whether the project exists already
 	 *
 	 * @param projectName
-	 * @return
+	 * @return the created project
 	 */
 	@Override
 	public IProject createProject(String projectName)
@@ -65,8 +66,10 @@ public class C_CppProjectSupport implements ILangProjectSupport {
 		try {
 			IWorkbench wb = PlatformUI.getWorkbench();
 
-			final CCProjectWizard wiz = new CCNamedProjectWizard(projectName);
-			// use general selection dialog instead
+			// create CDT wizard for C++ or C
+			final CDTCommonProjectWizard wiz = this instanceof CppProjectSupport ?
+				new CCNamedProjectWizard(projectName) :
+				new CNamedProjectWizard(projectName);
 
 			wiz.setWindowTitle("create project " + projectName); //$NON-NLS-1$
 			wiz.init(wb, null);

@@ -155,8 +155,11 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		if (editorModel == null) {
 			// no editor exist for the given file => create
 			editorModel = createEditorModel(serviceRegistry, classifierToEdit);
-			// add the new editor model to the sash.
+			if (editorModel == null) {
+				return;
+			}
 		}
+		// add the new editor model to the sash.
 		editorModel.setSelectedObject(selectedEObject);
 
 		final TextEditorModel editorModelFinal = editorModel;
@@ -216,6 +219,9 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		editorModel.setType(PapyrusCDTEditor.EDITOR_TYPE);
 		editorModel.setName("CDT " + classifierToEdit.getName()); //$NON-NLS-1$
 		ILangCodegen codegen = LanguageCodegen.chooseGenerator(TextEditorConstants.CPP, classifierToEdit);
+		if (codegen == null) {
+			return null;
+		}
 		editorModel.setGeneratorID(LanguageCodegen.getID(codegen));
 		TextEditorModelSharedResource model = (TextEditorModelSharedResource)
 				ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);

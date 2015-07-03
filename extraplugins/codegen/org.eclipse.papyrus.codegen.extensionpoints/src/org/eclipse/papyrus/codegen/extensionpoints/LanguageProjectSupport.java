@@ -37,9 +37,6 @@ public class LanguageProjectSupport {
 			try {
 				final String extLanguage = configElement.getAttribute("language"); //$NON-NLS-1$
 				if (extLanguage.equals(language)) {
-					// TODO: cache returned instance (avoid creating a new
-					// instance each time => more efficient, no need for static
-					// attributes)
 					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
 					if (obj instanceof ILangProjectSupport) {
 						return (ILangProjectSupport) obj;

@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.codegen.base.ModelElementsCreator;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.uml2.uml.Element;
@@ -27,7 +28,7 @@ import org.eclipse.uml2.uml.PackageableElement;
  * C++ language support
  *
  */
-public class C_CppLangCodegen implements ILangCodegen {
+public class CppLangCodegen implements ILangCodegen {
 
 	protected ModelElementsCreator creator = null;
 
@@ -41,6 +42,16 @@ public class C_CppLangCodegen implements ILangCodegen {
 	@Override
 	public boolean isEligible(Package modelRoot) {
 		return (modelRoot.getAppliedProfile(C_CppPackage.eINSTANCE.getName()) != null);
+	}
+	
+	@Override
+	public String getSuffix(FILE_KIND fileKind) {
+		if (fileKind == FILE_KIND.BODY) {
+			return CppCodeGenUtils.getBodySuffix();
+		}
+		else {
+			return CppCodeGenUtils.getHeaderSuffix();
+		}
 	}
 	
 	@Override

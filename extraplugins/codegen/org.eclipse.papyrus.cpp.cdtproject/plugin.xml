@@ -8,4 +8,11 @@
             language="C++">
       </client>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.codegen.extensionpoints.languageProjectSupport">
+      <client
+            class="org.eclipse.papyrus.cpp.cdtproject.CProjectSupport"
+            language="C">
+      </client>
+   </extension>
  </plugin>

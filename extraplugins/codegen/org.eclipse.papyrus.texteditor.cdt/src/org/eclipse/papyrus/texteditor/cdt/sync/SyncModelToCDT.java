@@ -19,9 +19,9 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen.FILE_KIND;
 import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
 import org.eclipse.papyrus.cpp.codegen.Constants;
-import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.texteditor.cdt.TextEditorConstants;
 import org.eclipse.uml2.uml.Classifier;
@@ -56,7 +56,7 @@ public class SyncModelToCDT {
 		try {
 			codegen.generateCode(modelProject, classifier, null); // need listener for sync in both directions!
 
-			cppFile = modelProject.getFile(new Path(codegen.getFileName(modelProject, classifier) + Constants.DOT + CppCodeGenUtils.getBodySuffix()));
+			cppFile = modelProject.getFile(new Path(codegen.getFileName(modelProject, classifier) + Constants.DOT + codegen.getSuffix(FILE_KIND.BODY)));
 	
 			// IStorage storage = new TextStorage(string);
 		} finally {

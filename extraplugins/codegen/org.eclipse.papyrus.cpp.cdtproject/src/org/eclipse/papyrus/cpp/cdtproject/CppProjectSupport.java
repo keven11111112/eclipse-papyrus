@@ -4,11 +4,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
 
 /**
- * C++ language support
+ * C++ project support
  */
 public class CppProjectSupport extends C_CppProjectSupport implements ILangProjectSupport {
-
-	private static final String CppLanguage = "C++"; //$NON-NLS-1$
 
 	@Override
 	public IProject createProject(String projectName) {
