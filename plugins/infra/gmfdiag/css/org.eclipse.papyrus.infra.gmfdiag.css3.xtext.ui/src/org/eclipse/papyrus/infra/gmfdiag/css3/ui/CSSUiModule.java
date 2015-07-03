@@ -3,9 +3,11 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.css3.ui;
 
+import org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist.CustomCSSProposalProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css3.ui.highlighting.CSSHighlightingCalculator;
 import org.eclipse.papyrus.infra.gmfdiag.css3.ui.highlighting.CSSHighlightingConfiguration;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
@@ -24,5 +26,10 @@ public class CSSUiModule extends org.eclipse.papyrus.infra.gmfdiag.css3.ui.Abstr
 
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return CSSHighlightingCalculator.class;
+	}
+
+	@Override
+	public Class<? extends IContentProposalProvider> bindIContentProposalProvider() {
+		return CustomCSSProposalProvider.class;
 	}
 }
