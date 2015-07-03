@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 468079
+ *  Christian W. Damus - bug 471836
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.handler;
@@ -22,6 +23,12 @@ import java.util.Map;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
@@ -119,6 +126,13 @@ public abstract class IDMAbstractHandler extends AbstractHandler {
 
 		}
 		return selectedSet;
+	}
+
+	protected IProject getCurrentProject() {
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IWorkspaceRoot root = workspace.getRoot();
+		IPath path = new Path(getSelection().eResource().getURI().toPlatformString(true));
+		return root.getProject(path.segment(0));
 	}
 
 	public static void clear() {
