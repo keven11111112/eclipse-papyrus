@@ -84,7 +84,8 @@ public class LanguageCodegen {
 	 * @return a code generator
 	 */
 	public static ILangCodegen getGenerator(String language) {
-		return getGenerator(Pattern.compile(language), null);
+		// compile language into a pattern, escape "+"
+		return getGenerator(Pattern.compile(language.replace("+", "\\+")), null);  //$NON-NLS-1$//$NON-NLS-2$
 	}
 	
 	/**
