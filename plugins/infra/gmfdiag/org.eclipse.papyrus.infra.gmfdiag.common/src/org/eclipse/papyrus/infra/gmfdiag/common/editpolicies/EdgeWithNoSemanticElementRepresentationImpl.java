@@ -94,7 +94,11 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	 */
 	@Override
 	public int hashCode() {
-		return this.target.hashCode() + 7 * this.source.hashCode() + 11 * this.semanticHint.hashCode();
+		int result = 1;
+		result= result + ((this.target == null) ? 0 : this.target.hashCode());
+		result= result + 7 * ((this.source == null) ? 0 : this.source.hashCode());
+		result= result + 11 * ((this.semanticHint == null) ? 0 : this.semanticHint.hashCode());
+		return result;
 	}
 
 	/**
