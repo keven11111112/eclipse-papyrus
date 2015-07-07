@@ -15,6 +15,7 @@ package org.eclipse.papyrus.sysml14.diagram.common.dialog;
 
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.papyrus.sysml14.constraintblocks.ConstraintblocksPackage;
+import org.eclipse.papyrus.sysml14.service.types.util.SysmlServiceTypeUtil;
 //import org.eclipse.papyrus.sysml14.constraints.ConstraintsPackage;
 //import org.eclipse.papyrus.sysml14.diagram.common.messages.Messages;
 //import org.eclipse.papyrus.sysml14.service.types.element.SysMLElementTypes;
@@ -31,99 +32,11 @@ public class CreateOrSelectConstraintPropertyTypeDialog extends CreateOrSelectTy
 
 	/** Constructor */
 	public CreateOrSelectConstraintPropertyTypeDialog(Shell shell, NamedElement owner) {
-		super(shell, owner, ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.SysML14.ConstraintBlock"), 
+		super(shell, owner, ElementTypeRegistry.getInstance().getType(SysmlServiceTypeUtil.ORG_ECLIPSE_PAPYRUS_SYSML14_CONSTRAINTBLOCK), 
 				UMLPackage.eINSTANCE.getTypedElement_Type(),
 				ConstraintblocksPackage.eINSTANCE.getConstraintBlock(),
 				UMLElementTypes.PACKAGE,
 				UMLPackage.eINSTANCE.getPackage_PackagedElement(), null);
 	}
-	
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getDialogTitle() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_DialogTitle;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getSelectionSectionTitle() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_SelectionSectionTitle;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getSelectionSectionRadioLabel() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_SelectionSectionRadioLabel;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getCreationSectionTitle() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_CreationSectionTitle;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getCreationSectionRadioLabel() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_CreationSectionRadioLabel;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getNewTypeNameLabel() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_NewTypeNameLabel;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getNewTypeContainerNameLabel() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_NewTypeContainerNameLabel;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getNewTypeContainerDialogTitle() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_SelectNewTypeContainerDialogTitle;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getNewTypeContainerDialogMessage() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_SelectNewTypeContainerDialogMessage;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getTypeDialogTitle() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_SelectTypeDialogTitle;
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	protected String getTypeDialogMessage() {
-//		return Messages.CreateOrSelectConstraintPropertyTypeDialog_SelectTypeDialogMessage;
-//	}
 
 }

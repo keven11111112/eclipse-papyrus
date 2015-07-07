@@ -2336,4 +2336,49 @@
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_dWnbACCxEeWj-IGNWcNL0Q"
+      name="Value"
+      description="Create a value"
+      identifier="org.eclipse.papyrus.SysML14.Value"
+      hint="UML::Property">
+    <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_dWnbASCxEeWj-IGNWcNL0Q"
+        name="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"
+        description=""
+        identifier="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_n1I8cCC-EeWj-IGNWcNL0Q"
+      name="Reference"
+      description="Create a reference"
+      identifier="org.eclipse.papyrus.SysML14.Reference"
+      hint="UML::Property">
+    <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_n1I8cSC-EeWj-IGNWcNL0Q"
+        name="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"
+        description=""
+        identifier="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_VH780CDGEeWj-IGNWcNL0Q"
+      name="Part"
+      description="Create a part"
+      identifier="org.eclipse.papyrus.SysML14.Part"
+      hint="UML::Property">
+    <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_VH780SDGEeWj-IGNWcNL0Q"
+        name="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"
+        description=""
+        identifier="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.sysml14.service.types.advice.AfterConfigureCommandEditHelperAdvice"/>
+  </elementTypeConfigurations>  
 </elementtypesconfigurations:ElementTypeSetConfiguration>

@@ -51,6 +51,27 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.bdd.palette.node.Property"
+        label="Property"
+        description="Create a Property">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Property.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Property_3005"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Property_3006"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Property_3012"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Property_3018"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Property_3041"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.bdd.palette.node.Class_FullPort"
         label="FullPort"
         description="Create a FullPort">
@@ -210,6 +231,27 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.bdd.palette.node.Part"
+        label="Part"
+        description="Create a Part">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Property.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Part_3002"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Part_3005"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Part_3006"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Part_3012"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Part_3018"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Part_3041"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.bdd.palette.node.Problem"
         label="Problem"
         description="Create a Problem">
@@ -249,6 +291,27 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.bdd.palette.node.Reference"
+        label="Reference"
+        description="Create a Reference">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Property.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Reference_3002"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Reference_3005"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Reference_3006"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Reference_3012"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Reference_3018"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Reference_3041"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.bdd.palette.node.Slot"
         label="Slot"
         description="Create a Slot">
@@ -270,6 +333,27 @@
           elementTypeId="org.eclipse.papyrus.sysML.Unit_2001"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.Unit_3020"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.bdd.palette.node.Value"
+        label="Value"
+        description="Create a Value">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Property.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Value_3002"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Value_3005"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Value_3006"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Value_3012"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Value_3018"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Value_3041"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"

@@ -15,4 +15,5 @@ Bundle-Vendor: %providerName
 Bundle-Description: %pluginDescription
 Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.sysml14.service.types,
- org.eclipse.papyrus.sysml14.service.types.advice
+ org.eclipse.papyrus.sysml14.service.types.advice,
+ org.eclipse.papyrus.sysml14.service.types.util
