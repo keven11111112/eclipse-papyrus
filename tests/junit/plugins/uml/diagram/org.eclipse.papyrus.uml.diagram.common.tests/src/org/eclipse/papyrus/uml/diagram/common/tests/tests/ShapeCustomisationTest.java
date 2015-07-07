@@ -123,6 +123,9 @@ public class ShapeCustomisationTest extends AbstractPapyrusTest {
 		// Test shadowColor with command on notation.
 		testShadowColor(componentEditPart);
 
+		// Test the name background color on notation
+		testNameBackgroundColor(componentEditPart);
+
 		// Test isPackage with command on notation.
 		testIsPackage(componentEditPart);
 		// Test hasHeader with command on notation.
@@ -305,6 +308,9 @@ public class ShapeCustomisationTest extends AbstractPapyrusTest {
 
 		// Test shadowColor CSS
 		testShadowColorWithCSS(componentEditPart);
+
+		// Test name background color with CSS
+		testNameBackgroundColorWithCSS(componentEditPart);
 
 		// Test isPackage with CSS
 		testIsPackageWithCSS(componentEditPart);
@@ -675,6 +681,65 @@ public class ShapeCustomisationTest extends AbstractPapyrusTest {
 		editPart.refresh();
 
 		Assert.assertEquals("shadowColor not well set on IRoundedRectangleFigure", "#336699", ((IRoundedRectangleFigure) primaryShape).getShadowColor());
+		resetEmbeddedStyleSheet();
+	}
+
+	/**
+	 * Test background label color.
+	 *
+	 * @param editPart
+	 *            the edit part"true"
+	 */
+	private void testNameBackgroundColor(EditPart editPart) {
+		IFigure primaryShape = ((IPapyrusEditPart) editPart).getPrimaryShape();
+		Assert.assertTrue("The Figure must implement IRoundedRectangleFigure", primaryShape instanceof IRoundedRectangleFigure);
+
+		String labelBackgroundColorDefaultValue = ((IRoundedRectangleFigure) primaryShape).getNameBackgroundColor();
+		String labelBackgroundColorForTest1 = "red";
+
+		getCommandStack()
+				.execute(new CustomStyleValueCommand((View) editPart.getModel(), labelBackgroundColorForTest1, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(),
+						NamedStyleProperties.NAME_BACKGROUND_COLOR));
+		Assert.assertEquals("nameBackgroundColor not well set on IRoundedRectangleFigure", labelBackgroundColorForTest1, ((IRoundedRectangleFigure) primaryShape).getNameBackgroundColor());
+		getCommandStack().undo();
+		Assert.assertEquals("nameBackgroundColor not well undo on IRoundedRectangleFigure", labelBackgroundColorDefaultValue, ((IRoundedRectangleFigure) primaryShape).getNameBackgroundColor());
+		getCommandStack().redo();
+		Assert.assertEquals("nameBackgroundColor not well redo on IRoundedRectangleFigure", labelBackgroundColorForTest1, ((IRoundedRectangleFigure) primaryShape).getNameBackgroundColor());
+		getCommandStack().undo();
+
+		String labelBackgroundColorForTest2 = "#336699";
+		getCommandStack()
+				.execute(new CustomStyleValueCommand((View) editPart.getModel(), labelBackgroundColorForTest2, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(),
+						NamedStyleProperties.NAME_BACKGROUND_COLOR));
+		Assert.assertEquals("nameBackgroundColor not well set on IRoundedRectangleFigure", labelBackgroundColorForTest2, ((IRoundedRectangleFigure) primaryShape).getNameBackgroundColor());
+		getCommandStack().undo();
+		Assert.assertEquals("nameBackgroundColor not well undo on IRoundedRectangleFigure", labelBackgroundColorDefaultValue, ((IRoundedRectangleFigure) primaryShape).getNameBackgroundColor());
+	}
+
+	/**
+	 * Test name Background Color with css.
+	 *
+	 * @param editPart
+	 *            the edit part
+	 * @throws NotHandledException
+	 * @throws NotEnabledException
+	 * @throws NotDefinedException
+	 * @throws ExecutionException
+	 */
+	private void testNameBackgroundColorWithCSS(EditPart editPart) throws ExecutionException, NotDefinedException, NotEnabledException, NotHandledException {
+		IFigure primaryShape = ((IPapyrusEditPart) editPart).getPrimaryShape();
+		Assert.assertTrue("The Figure must implement IRoundedRectangleFigure", primaryShape instanceof IRoundedRectangleFigure);
+
+		setEmbeddedStyleSheet("*", NamedStyleProperties.NAME_BACKGROUND_COLOR, "red", false);
+		editPart.refresh();
+
+		Assert.assertEquals("nameBackgroundColor not well set on IRoundedRectangleFigure", "red", ((IRoundedRectangleFigure) primaryShape).getNameBackgroundColor());
+		resetEmbeddedStyleSheet();
+
+		setEmbeddedStyleSheet("*", NamedStyleProperties.NAME_BACKGROUND_COLOR, "\"#336699\"", false);// need to ass \" \" because #123456 is reconise as RGBColor whitch is not managed by papyrus.
+		editPart.refresh();
+
+		Assert.assertEquals("nameBackgroundColor not well set on IRoundedRectangleFigure", "#336699", ((IRoundedRectangleFigure) primaryShape).getNameBackgroundColor());
 		resetEmbeddedStyleSheet();
 	}
 

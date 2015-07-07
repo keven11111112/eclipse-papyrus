@@ -118,6 +118,9 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 	/** The radiusWidth Observable */
 	private IObservableValue floatingLabelOffsetObservableWidth;
 
+	/** The nameBackgroundColor Observable */
+	private IObservableValue nameBackgroundColorObservable;
+
 	/**
 	 * Instantiates a new rounded compartment edit part.
 	 *
@@ -156,9 +159,19 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		PapyrusRoundedEditPartHelper.refreshShadowWidth(this, getDefaultShadowWidth());
 		PapyrusRoundedEditPartHelper.refreshPackage(this, getDefaultIsPackage());
 		PapyrusRoundedEditPartHelper.refreshShadowColor(this, getDefaultShadowColor());
+		PapyrusRoundedEditPartHelper.refreshNameLabelColor(this, getNameLabelbackgroundColor());
 		super.refreshVisuals();
 	}
 
+
+	/**
+	 * Gets the name label color.
+	 *
+	 * @return the name label background color
+	 */
+	protected String getNameLabelbackgroundColor() {
+		return null;
+	}
 
 	/**
 	 * Adds listener to handle named Style modifications.
@@ -197,6 +210,9 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		shadowColorObservable = new CustomStringStyleObservableValue(view, domain, SHADOW_COLOR);
 		shadowColorObservable.addChangeListener(namedStyleListener);
 
+		nameBackgroundColorObservable = new CustomStringStyleObservableValue(view, domain, NAME_BACKGROUND_COLOR);
+		nameBackgroundColorObservable.addChangeListener(namedStyleListener);
+
 		alignmentObservable = new CustomStringStyleObservableValue(view, domain, TEXT_ALIGNMENT);
 		alignmentObservable.addChangeListener(namedStyleListener);
 
@@ -227,6 +243,7 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		isPackageObservable.dispose();
 		shadowWidthObservable.dispose();
 		shadowColorObservable.dispose();
+		nameBackgroundColorObservable.dispose();
 		alignmentObservable.dispose();
 		floatingLabelOffsetObservableHeight.dispose();
 		floatingLabelOffsetObservableWidth.dispose();

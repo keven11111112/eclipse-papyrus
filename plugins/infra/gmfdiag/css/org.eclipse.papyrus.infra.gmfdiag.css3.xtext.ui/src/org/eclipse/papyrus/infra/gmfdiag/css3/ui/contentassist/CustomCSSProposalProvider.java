@@ -254,7 +254,7 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				NamedStyleProperties.LABEL_OFFSET_X,
 				NamedStyleProperties.LABEL_OFFSET_Y,
 				NamedStyleProperties.LEFT_MARGIN_PROPERTY,
-				NamedStyleProperties.LENGTH,
+				NamedStyleProperties.LINE_LENGTH,
 				NamedStyleProperties.LINE_CUSTOM_VALUE,
 				NamedStyleProperties.LINE_LENGTH_RATIO,
 				NamedStyleProperties.LINE_POSITION,
@@ -269,6 +269,7 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				NamedStyleProperties.TOP_MARGIN_PROPERTY,
 				NamedStyleProperties.USE_ORIGINAL_COLORS,
 				NamedStyleProperties.WRAP_NAME,
+				NamedStyleProperties.NAME_BACKGROUND_COLOR
 		};
 
 		return Arrays.asList(properties);

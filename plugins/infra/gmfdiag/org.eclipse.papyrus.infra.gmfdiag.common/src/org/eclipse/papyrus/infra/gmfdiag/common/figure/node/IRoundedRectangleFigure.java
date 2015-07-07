@@ -156,4 +156,20 @@ public interface IRoundedRectangleFigure extends IFigure {
 	 */
 	public void setShadowColor(String shadowColor);
 
+
+	/**
+	 * Gets the Name Background color.
+	 *
+	 * @return the Label BackgroundColor
+	 */
+	public String getNameBackgroundColor();
+
+	/**
+	 * Sets the Label Background color.
+	 *
+	 * @param shadowColor
+	 *            the LabelBackgroundColor to set
+	 */
+	public void setNameBackgroundColor(String nameBackgroundColor);
+
 }

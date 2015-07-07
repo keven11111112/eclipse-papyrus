@@ -29,5 +29,42 @@ Compartment[kind=symbol]{
  	fontColor:black;
  	transparency:0; /* Default transparency in GMF Notation is -1. -1 is recognized as "Unchanged" by the GMF NodeFigure. e.g. changing from 50 to -1 ("reset") does nothing */
  	showTitle:false;
+ 	textAlignment:"center";
+ 	shadowWidth:5;
+ 	borderStyle:"solid";
+ 	customDash:5 5;
+ 	useOriginalColors:true;
+ 	nameBackgroundColor:"-1";
+ }
+
+Label,
+Model,
+Package,
+Profile{
+	textAlignment:"left";
+}
+
+Label{
+	position:"left";
+}
+
+Label[kind="FloatingLabel"]{
+	maskLabel:"name";
+}
+
+Port{
+	portPosition:"onLine";
+}
+
+Model,
+Package,
+Profile{
+	isPackage:true;
+}
+
+Compartment{
+	linePosition:"center";
+	lineLengthRatio:"1.0";
+	lineLength:-1;
 }
 

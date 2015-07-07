@@ -40,8 +40,10 @@ import org.eclipse.swt.graphics.Image;
  */
 public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure, IPapyrusNodeUMLElementFigure {
 
+	/** The no border boolean. */
 	protected boolean noBorder = false;
 
+	/** The Constant CHEVRON. */
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 
 	/** The tagged label. */

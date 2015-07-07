@@ -246,9 +246,30 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 
 				// get the CSS value of hasHeader
 				String shadowColor = NotationUtils.getStringValue((View) ((GraphicalEditPart) editpart).getModel(), SHADOW_COLOR, defaultShadowColor);
-
 				// Set color of the shadow
 				roundedRectangleFigure.setShadowColor(shadowColor);
+			}
+		}
+	}
+
+	/**
+	 * Refresh the Name Label background shadow color.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultLabelColor
+	 *            the default shadow color
+	 */
+	public static void refreshNameLabelColor(final IPapyrusEditPart editpart, final String defaultLabelColor) {
+		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
+			if (((GraphicalEditPart) editpart).getModel() instanceof View) {
+				// The figure
+				IRoundedRectangleFigure roundedRectangleFigure = (IRoundedRectangleFigure) editpart.getPrimaryShape();
+
+				String labelColor = NotationUtils.getStringValue((View) ((GraphicalEditPart) editpart).getModel(), NAME_BACKGROUND_COLOR, defaultLabelColor);
+
+				// Set color of the Name Label background
+				roundedRectangleFigure.setNameBackgroundColor(labelColor);
 			}
 		}
 

@@ -81,6 +81,11 @@ public interface NamedStyleProperties {
 	public static final String SHADOW_COLOR = "shadowColor"; //$NON-NLS-1$
 
 	/**
+	 * The NamedStyle property to set the nameLabel background color.
+	 */
+	public static final String NAME_BACKGROUND_COLOR = "nameBackgroundColor"; //$NON-NLS-1$
+
+	/**
 	 * The NamedStyle property to define if the figure must be draw as a package.
 	 */
 	public static final String IS_PACKAGE = "isPackage"; //$NON-NLS-1$
@@ -139,7 +144,7 @@ public interface NamedStyleProperties {
 	public static final String LINE_LENGTH_RATIO = "lineLengthRatio"; //$NON-NLS-1$
 
 	/** The notation NameStyle property to define the line length of compartment's topLine. */
-	public static final String LENGTH = "lineLength"; //$NON-NLS-1$
+	public static final String LINE_LENGTH = "lineLength"; //$NON-NLS-1$
 
 	/** The notation NameStyle property to display. */
 	public static final String DISPLAY_BORDER = "displayBorder"; //$NON-NLS-1$
