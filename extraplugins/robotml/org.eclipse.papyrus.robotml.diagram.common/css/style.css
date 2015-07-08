@@ -5,3 +5,9 @@ CompositeStructureDiagram Label[type="6029"]{
                 visible: false;
 }
 Class {displayIcon:true;}
+Connector > Label {
+    visible: false;
+}
+Property, Port, Connector {
+	canonical:true;
+}
