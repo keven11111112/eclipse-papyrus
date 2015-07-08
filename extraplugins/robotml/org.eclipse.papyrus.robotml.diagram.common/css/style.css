@@ -1,7 +1,7 @@
 Property {maskLabel:name; elementIcon:false;}
 Property[type] {maskLabel:name type; }
-Port {maskLabel:name;elementIcon:true;}
+Port {maskLabel:name;displayIcon:true;}
 CompositeStructureDiagram Label[type="6029"]{
                 visible: false;
 }
-Class {elementIcon:true;}
+Class {displayIcon:true;}
