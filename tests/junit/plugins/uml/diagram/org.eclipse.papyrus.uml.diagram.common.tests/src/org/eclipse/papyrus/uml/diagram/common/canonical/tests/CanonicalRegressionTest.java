@@ -11,58 +11,59 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
+package org.eclipse.papyrus.uml.diagram.common.canonical.tests;
 
 import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
 
+import org.eclipse.papyrus.infra.gmfdiag.canonical.tests.AbstractCanonicalTest;
 import org.eclipse.papyrus.junit.framework.runner.Scenario;
 import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Stereotype;
 import org.junit.runner.RunWith;
 
 /**
- * Specific regression tests for generic canonical model-view synchronization bugs.
+ * Regression tests for UML-specific canonical synchronization bugs.
  */
 @ActiveDiagram("classes")
 @RunWith(ScenarioRunner.class)
-public class RegressionTest extends AbstractCanonicalTest {
+public class CanonicalRegressionTest extends AbstractCanonicalTest {
 
-	public RegressionTest() {
+	public CanonicalRegressionTest() {
 		super();
 	}
 
-	@PluginResource("models/bugs/472155.di")
+	@PluginResource("resources/471954/model.di")
 	@Scenario({ "initial", "synch", "undo", "redo" })
-	public void referenceConnectionNotDeleted_bug472155() {
+	public void appliedStereotypeViewsNotDeleted_bug471954() {
 		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class) editor.getModel().getOwnedType("Class1");
-		Constraint constraint = class1.getOwnedRule("Constraint1");
+		Stereotype utility = class1.getAppliedStereotype("StandardProfile::Utility");
 
 		if (verificationPoint()) {
-			requireEdge(requireView(class1), requireView(constraint));
+			requireView(utility, requireView(class1));
 		}
 
 		// We know from previous assertion that there's an edit part here
 		setCanonical(true, getEditPart(class1));
 
 		if (verificationPoint()) {
-			// Still have the edge
-			requireEdge(requireView(class1), requireView(constraint));
+			// Still have the stereotype presentation
+			requireView(utility, requireView(class1));
 		}
 
 		undo();
 
 		if (verificationPoint()) {
-			// Still have the edge
-			requireEdge(requireView(class1), requireView(constraint));
+			// Still have the stereotype presentation
+			requireView(utility, requireView(class1));
 		}
 
 		redo();
 
 		if (verificationPoint()) {
-			// Still have the edge
-			requireEdge(requireView(class1), requireView(constraint));
+			// Still have the stereotype presentation
+			requireView(utility, requireView(class1));
 		}
 	}
 
