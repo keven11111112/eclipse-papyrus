@@ -29,6 +29,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.Crea
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_H3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_H1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.MoveElementsTreeTableTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_H1_H1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_H1_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_V1_H1;
@@ -70,6 +71,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		
 		SortAxisClassTreeTableTest.class,
 		EditAxisClassTreeTableTest.class,
+		
+		// Move elements
+		MoveElementsTreeTableTest.class,
 		
 		ContentsAndExpandWithCategories_0_1_2_Tests.class,
 		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,

@@ -8,17 +8,23 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug #471903
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.listener;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -132,58 +138,136 @@ public class UpdateTableContentListener implements ResourceSetListener {
 	 * @param event
 	 */
 	@Override
-	public void resourceSetChanged(ResourceSetChangeEvent event) {
+	public void resourceSetChanged(final ResourceSetChangeEvent event) {
 		if (containsTreeFillingConfigurationChange(event)) {
 			this.axisManager.fillingConfigurationsHaveChanged();
 			return;
 		}
-		List<Notification> notifications = event.getNotifications();
-		for (int i = 0; i < notifications.size(); i++) {
-			Notification current = notifications.get(i);
+		// The initial notifications
+		final List<Notification> initialNotifications = event.getNotifications();
+		// Create a copy of notifications to keep only the managed one
+		final List<Notification> managedNotifications = new ArrayList<Notification>(initialNotifications);
+		final Iterator<Notification> notificationsIterator = initialNotifications.iterator();
+		int index = 0;
 
-			// we need to verify that a remove_many is not followed by an add_many. in this case it is probably a move inside a list
-			boolean isAMove = false;
+		// Loop on initial notifications
+		while (notificationsIterator.hasNext()) {
+			Notification current = notificationsIterator.next();
 
-			// filtering notification concerning creation of ITreeItemAxis created as children
-			if (current.getEventType() == Notification.ADD) {
-				if (current.getFeature() == NattableaxisPackage.eINSTANCE.getITreeItemAxis_Children()) {
-					if (current.getNotifier() instanceof ITreeItemAxis && (((EObject) current.getNotifier()).eContainer() == null || (((EObject) current.getNotifier()).eContainer()) instanceof AbstractAxisProvider)) {
-						continue;
-					}
-				}
-			}
-			if (i + 1 < notifications.size()) {
-				Notification next = notifications.get(i + 1);
+			if (managedNotifications.contains(current)) {
 				int currentEvent = current.getEventType();
-				int nextEventType = next.getEventType();
-				if (currentEvent == Notification.REMOVE_MANY && nextEventType == Notification.ADD_MANY && current.getNotifier() == next.getNotifier() && current.getFeature() == next.getFeature()) {
-					Collection<?> oldValue = (Collection<?>) current.getOldValue();
-					Collection<?> newValue = (Collection<?>) next.getNewValue();
-					if (oldValue.size() == newValue.size()) {
-						for (Object object : newValue) {
-							if (!oldValue.contains(object)) {
-								isAMove = true;
-							}
-						}
-					}
+				
+				// filtering notification concerning creation of ITreeItemAxis created as children
+				if (Notification.ADD == currentEvent) {
+					current = getAddNotification(current, managedNotifications, index);
+					// check if the remove event is a move action
+				}else if (Notification.REMOVE_MANY == currentEvent || Notification.REMOVE == currentEvent && notificationsIterator.hasNext()) {
+					current = getMoveNotification(current, managedNotifications, index);
 				}
-			}
-			// }
-			if (isAMove) {
-				// do nothing
-				if (i + 2 < notifications.size()) {
-					i = i + 1;
-				}
-				// TODO : we need to refresh the structure of the table
-			} else {
-				if (this.axisManager != null) {
+
+				if (null != this.axisManager && null != current) {
 					this.axisManager.manageEvent(current);
 				}
 			}
 
+			index++;
 		}
 		tableManager.refreshNatTable();
 
+	}
+	
+	/**
+	 * This allow to get the notification from the initial add notification.
+	 * 
+	 * @param initialNotification
+	 *            The initial add notification.
+	 * @param managedNotifications
+	 *            The already managed notifications.
+	 * @param index
+	 *            The index of the notification in the list of initial notifications.
+	 * @return The notification to manage.
+	 */
+	protected Notification getAddNotification(final Notification initialNotification, final List<Notification> managedNotifications, final int index){
+		Notification currentNotification = initialNotification;
+		
+		if (NattableaxisPackage.eINSTANCE.getITreeItemAxis_Children() == currentNotification.getFeature()) {
+			if (currentNotification.getNotifier() instanceof ITreeItemAxis && (null == ((EObject) currentNotification.getNotifier()).eContainer() || (((EObject) currentNotification.getNotifier()).eContainer()) instanceof AbstractAxisProvider)) {
+				currentNotification = null;
+			}
+		}
+		
+		return currentNotification;	
+	}
+
+	/**
+	 * This allow to get the move notification from the initial remove notification. This one will be managed as a move (because the move does not exist in GMD command (replaced by add and remove)).
+	 * 
+	 * @param initialNotification
+	 *            The initial remove notification.
+	 * @param managedNotifications
+	 *            The already managed notifications.
+	 * @param index
+	 *            The index of the notification in the list of initial notifications.
+	 * @return The notification to manage.
+	 */
+	@SuppressWarnings("unchecked")
+	protected Notification getMoveNotification(final Notification initialNotification, final List<Notification> managedNotifications, final int index) {
+		Notification currentNotification = initialNotification;
+
+		// Create a list of remaining notifications to check if a
+		final List<Notification> remainingNotifications = managedNotifications.subList(index + 1, managedNotifications.size());
+		Iterator<Notification> remainingIterator = remainingNotifications.iterator();
+
+		// we need to verify that a remove_many is not followed by an add_many. in this case it is probably a move inside a list
+		boolean isAMove = false;
+
+		while (!isAMove && remainingIterator.hasNext()) {
+			Notification nextNotification = remainingIterator.next();
+			int nextEventType = nextNotification.getEventType();
+			// Check that the next notification manage a move action with the current one
+			if (Notification.ADD_MANY == nextEventType && currentNotification.getNotifier().equals(nextNotification.getNotifier()) && currentNotification.getFeature().equals(nextNotification.getFeature())) {
+				// Get the old value(s)
+				Collection<Object> oldValue = null;
+				if (Notification.REMOVE == currentNotification.getEventType()) {
+					oldValue = new ArrayList<Object>(1);
+					oldValue.add((Object) currentNotification.getOldValue());
+				} else {
+					oldValue = (Collection<Object>) currentNotification.getOldValue();
+				}
+				// Get the new values
+				Collection<?> newValue = (Collection<?>) nextNotification.getNewValue();
+
+				// Check that all the new values contains the old one (else it's not a move, don't continue
+				isAMove = newValue.containsAll(oldValue);
+				if (isAMove) {
+					if (oldValue.size() == newValue.size()) {
+						// The old and new values are just reorganized, the notification no need to be executed (only refresh on the nattable is necessary)
+						currentNotification = null;
+					} else {
+						// The move is done from a parent to another one, recreate a added notification with only the new added objects at the good position
+						int position = 0;
+
+						// Get the position to add it
+						Iterator<?> newValueIterator = newValue.iterator();
+						while (newValueIterator.hasNext() && oldValue.contains(newValueIterator.next())) {
+							position++;
+						}
+
+						// Get the objects to add
+						final List<Object> addedObject = new ArrayList<Object>(newValue);
+						addedObject.removeAll(oldValue);
+
+						// Create the add notifications
+						currentNotification = new ENotificationImpl((InternalEObject) currentNotification.getNotifier(), Notification.ADD_MANY, (EStructuralFeature) currentNotification.getFeature(), null, addedObject, position);
+					}
+
+					// The move manage the delete and the add notification so skip the next one
+					managedNotifications.remove(nextNotification);
+				}
+			}
+		}
+
+		return currentNotification;
 	}
 
 	/**
