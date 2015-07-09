@@ -52,9 +52,11 @@ public class ObtainICElement {
 					}
 					else if (element instanceof Transition) {
 						Transition transition = (Transition) element;
-						if (child.getElementName().endsWith(NamedElement.SEPARATOR + transition.getEffect().getName())) {
-							if (function.getNumberOfParameters() == countParameters(transition.getEffect().getOwnedParameters())) {
-								return child;
+						if (transition.getEffect() != null) {
+							if (child.getElementName().endsWith(NamedElement.SEPARATOR + transition.getEffect().getName())) {
+								if (function.getNumberOfParameters() == countParameters(transition.getEffect().getOwnedParameters())) {
+									return child;
+								}
 							}
 						}
 					}

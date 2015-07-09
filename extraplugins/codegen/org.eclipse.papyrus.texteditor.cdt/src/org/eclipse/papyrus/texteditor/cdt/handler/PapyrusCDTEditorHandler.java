@@ -52,10 +52,12 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelFacto
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Transition;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 /**
@@ -157,6 +159,13 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 			editorModel = createEditorModel(serviceRegistry, classifierToEdit);
 			if (editorModel == null) {
 				return;
+			}
+		}
+		
+		if (selectedEObject instanceof Transition) {
+			Transition transition = (Transition) selectedEObject;
+			if (transition.getEffect() == null) {
+				Behavior effect = transition.createEffect("effectOf" + transition.getName(), UMLPackage.eINSTANCE.getOpaqueBehavior());
 			}
 		}
 		// add the new editor model to the sash.
