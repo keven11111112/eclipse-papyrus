@@ -112,11 +112,6 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 		// retrieve the selected elements and get its children
 		boolean canFlip = true;
 
-		if (!validatePage() || fileName.getText().equals("")) { //$NON-NLS-1$
-			canFlip = false;
-			this.setErrorMessage(Messages.PapyrusProjectCreationPage_page_incorrect_desc + this.getProjectName().toLowerCase());
-		}
-
 		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 		if (canFlip != false) {
 			for (IProject iproject : projects) {
@@ -127,6 +122,10 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 					break;
 				}
 			}
+		}
+
+		if (!validatePage()) {
+			canFlip = false;
 		}
 
 		return canFlip;
