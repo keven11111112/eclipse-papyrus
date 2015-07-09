@@ -31,6 +31,7 @@ public class Messages extends NLS {
 	/** The Init model wizard_init_papyrus_model_desc. */
 	public static String InitModelWizard_init_papyrus_model_desc;
 
+
 	/** The New papyrus project with multi models wizard_exception_on_project_opening. */
 	public static String NewPapyrusProjectWithMultiModelsWizard_exception_on_project_opening;
 
@@ -52,10 +53,10 @@ public class Messages extends NLS {
 
 	public static String PapyrusProjectCreationPage_page_same_case_desc;
 
-	public static String PapyrusProjectCreationPage_page_incorrect_desc;
 
 	/** The Diagram category registry_bad_class_name_of_category. */
 	public static String DiagramCategoryRegistry_bad_class_name_of_category;
+
 
 	public static String DiagramKindComposite_0;
 
@@ -70,6 +71,7 @@ public class Messages extends NLS {
 
 	/** The Model templates label provider_model_template_description_text. */
 	public static String ModelTemplatesLabelProvider_model_template_description_text;
+
 
 	/** The New model file page_3. */
 	public static String NewModelFilePage_3;
@@ -103,6 +105,11 @@ public class Messages extends NLS {
 	/** The Select diagram category page_select_one_category. */
 	public static String SelectDiagramCategoryPage_select_one_category;
 
+	public static String SelectDiagramCategoryPage_umlGroup;
+
+	public static String SelectDiagramCategoryPage_dsmlGroup;
+
+
 	public static String SelectDiagramKindPage_0;
 
 	/** The Select diagram kind page_default_diagram_name. */
@@ -134,11 +141,19 @@ public class Messages extends NLS {
 
 	public static String SelectDiagramKindPage_Set_Root_Name_Error;
 
+	public static String SelectDiagramKindPage_ProfileComposite_RegisteredProfilesDialog;
+
+	public static String SelectDiagramKindPage_ProfileComposite_WorkspaceSelectionButton;
+
+	public static String SelectDiagramKindPage_ProfileComposite_RegisteredSelectionButton;
+
+
 	/** The Select root element page_select_root_element_desc. */
 	public static String SelectRootElementPage_select_root_element_desc;
 
 	/** The Select root element page_select_root_element_title. */
 	public static String SelectRootElementPage_select_root_element_title;
+
 
 	public static String SelectStorageProviderPage_0;
 
@@ -147,6 +162,7 @@ public class Messages extends NLS {
 	public static String SelectStorageProviderPage_2;
 
 	public static String SelectStorageProviderPage_3;
+
 
 	public static String ModelCopyWizard_AlreadyyExists;
 
@@ -163,6 +179,7 @@ public class Messages extends NLS {
 	public static String ModelCopyWizard_DoNotChangeFileName;
 
 	public static String ModelCopyWizard_SelectParentFolder;
+
 
 	public static String PapyrusProjectCreationPage_0;
 

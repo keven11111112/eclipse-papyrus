@@ -14,10 +14,12 @@
 package org.eclipse.papyrus.uml.diagram.wizards.template;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -38,6 +40,8 @@ public class SelectModelTemplateComposite extends Composite {
 	private ComboViewer singleTemplateCombo;
 
 	private ModelTemplateDescription selectedTemplate;
+
+	private GridData gridTable;
 
 	/**
 	 * Instantiates a new select model template composite.
@@ -104,16 +108,11 @@ public class SelectModelTemplateComposite extends Composite {
 		});
 
 		templateTableViewer = CheckboxTableViewer.newCheckList(composite, SWT.V_SCROLL);
-		GridData gridTable = new GridData(SWT.FILL, SWT.TOP, true, false);
+		gridTable = new GridData(SWT.FILL, SWT.TOP, true, false);
 		templateTableViewer.getTable().setLayoutData(gridTable);
 		templateTableViewer.getTable().setBackground(composite.getBackground());
 		templateTableViewer.setContentProvider(new ModelTemplateTransfoProvider());
 		templateTableViewer.setLabelProvider(new ModelTemplatesLabelProvider());
-		// Sets a minimum height for the tableViewer
-		// gridTable.minimumHeight = templateTableViewer.getTable().getItemHeight() * 2;
-		// Sets an arbitrary height for the tableViewer
-		gridTable.heightHint = templateTableViewer.getTable().getItemHeight() * 2;
-
 	}
 
 	/**
@@ -269,7 +268,15 @@ public class SelectModelTemplateComposite extends Composite {
 			templateTableViewer.setInput(input);
 		}
 		singleTemplateCombo.setInput(input);
-	}
 
+		// Resize the template table to minimize the space lost
+		int tableItemHeight = templateTableViewer.getTable().getItemHeight();
+		int tableItemCount = ((ModelTemplateTransfoProvider) templateTableViewer.getContentProvider()).getElements(input).length;
+		gridTable.minimumHeight = tableItemCount != 0 ? tableItemHeight * Math.max(1, Math.round((tableItemCount / 2))) : 0;
+		gridTable.heightHint = tableItemCount != 0 ? tableItemHeight * Math.max(1, Math.round((tableItemCount / 2))) : 0;
+
+		// Notifies the shell that the layout needs to be resized
+		((Composite) templateTableViewer.getControl()).layout(true, true);
+	}
 
 }

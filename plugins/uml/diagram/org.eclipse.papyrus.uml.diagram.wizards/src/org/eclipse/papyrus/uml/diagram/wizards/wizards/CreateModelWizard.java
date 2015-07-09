@@ -23,8 +23,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.SSLEngineResult.Status;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -41,15 +39,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -77,12 +72,10 @@ import org.eclipse.papyrus.uml.diagram.wizards.providers.NewModelStorageProvider
 import org.eclipse.papyrus.uml.diagram.wizards.providers.WorkspaceNewModelStorageProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.template.ModelTemplateDescription;
 import org.eclipse.papyrus.uml.diagram.wizards.transformation.IGenerator;
-import org.eclipse.papyrus.uml.diagram.wizards.transformation.QVToGenerator;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.commands.RenameElementCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
-import org.eclipse.swt.SWT;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
@@ -92,9 +85,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
-import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 import org.eclipse.ui.services.IEvaluationService;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 
@@ -149,6 +140,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	public CreateModelWizard() {
 		super();
 		setWindowTitle(Messages.CreateModelWizard_new_papyrus_model_title);
+		setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/papyrus/PapyrusWizban_75x66.gif")); //$NON-NLS-1$
 		// setHelpAvailable(true);
 
 	}
@@ -466,15 +458,14 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected void applyProfile(ModelSet modelSet) {
-		Resource myModelUMLResource = UmlUtils.getUmlResource(modelSet);
-		Model model = (Model) myModelUMLResource.getContents().get(0);
 		String profilePath = selectDiagramKindPage.getProfileURI();
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(profilePath, true), true);
+		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
 		Profile profile = (Profile) resource.getContents().get(0);
-		getCommandStack(modelSet).execute(new ApplyProfileCommand(model, profile, modelSet.getTransactionalEditingDomain()));
 
-
+		Resource myModelUMLResource = UmlUtils.getUmlResource(modelSet);
+		org.eclipse.uml2.uml.Package manipulatedModel = (org.eclipse.uml2.uml.Package) myModelUMLResource.getContents().get(0);
+		getCommandStack(modelSet).execute(new ApplyProfileCommand(manipulatedModel, profile, modelSet.getTransactionalEditingDomain()));
 	}
 
 	protected void applyTemplateTransfo(ModelSet modelSet) {

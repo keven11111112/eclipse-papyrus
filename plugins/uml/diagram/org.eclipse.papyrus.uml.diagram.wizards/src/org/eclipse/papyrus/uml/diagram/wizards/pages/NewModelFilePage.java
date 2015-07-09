@@ -248,7 +248,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 		// Verify that the new model is created in a correct container
 		if (canFlip && (getContainerFullPath() == null || ResourcesPlugin.getWorkspace().getRoot().findMember(getContainerFullPath()) == null)) {
-			this.setErrorMessage(Messages.NewModelFilePage_set_a_container);
+			this.setMessage(Messages.NewModelFilePage_set_a_container);
 			canFlip = false;
 		}
 
