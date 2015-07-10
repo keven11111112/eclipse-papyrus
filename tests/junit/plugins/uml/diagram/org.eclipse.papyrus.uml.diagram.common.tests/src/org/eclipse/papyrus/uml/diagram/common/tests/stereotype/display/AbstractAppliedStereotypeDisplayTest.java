@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
- *   
+ *   Celine Janssens (All4Tec) celine.janssens@all4tec.net - Bug 472342
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display;
@@ -18,22 +18,15 @@ package org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.DiagramUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
 import org.eclipse.papyrus.uml.tools.commands.UnapplyStereotypeCommand;
@@ -48,9 +41,9 @@ import org.junit.Before;
 import org.junit.Rule;
 
 /**
- * 
+ *
  * This Abstract class has to be extended to test application and unapplication of stereotypes.
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -264,10 +257,17 @@ public abstract class AbstractAppliedStereotypeDisplayTest extends AbstractPapyr
 
 	}
 
+	/**
+	 * Test the Label of the element
+	 *
+	 * @param expectedLabel
+	 *            Expected text of the Label
+	 */
+	protected abstract void testLabel(String expectedLabel);
 
 	/**
 	 * Unapply and check the applied stereotypes
-	 * 
+	 *
 	 * @param stereoList
 	 *            The collection of the Stereotypes to unapply.
 	 */
@@ -288,7 +288,7 @@ public abstract class AbstractAppliedStereotypeDisplayTest extends AbstractPapyr
 
 	/**
 	 * Apply and check the applied stereotype
-	 * 
+	 *
 	 * @param stereoList
 	 *            The collection of the Stereotypes to apply.
 	 */
@@ -307,60 +307,12 @@ public abstract class AbstractAppliedStereotypeDisplayTest extends AbstractPapyr
 	}
 
 	/**
-	 * Tests the Content of Named Node Label
-	 * 
-	 * @param expectedLabel
-	 *            The expected label Text
-	 */
-	protected void testNodeLabelContent(final String expectedLabel) {
-		// Check the Label content
-		Assert.assertNotNull(editPart);
-		Assert.assertTrue(editPart instanceof IPapyrusEditPart);
-		IPapyrusEditPart pep = (IPapyrusEditPart) editPart;
-		Assert.assertTrue(pep.getPrimaryShape() instanceof NodeNamedElementFigure);
-		PapyrusWrappingLabel label = ((NodeNamedElementFigure) pep.getPrimaryShape()).getStereotypesLabel();
-
-		if (null == expectedLabel) {
-			Assert.assertNull("Label stereotype should be null", label);
-		} else {
-			Assert.assertNotNull("The Label Stereotype should not be null ", label);
-			String labelText = label.getText();
-			Assert.assertEquals("The label content is not the one expected", expectedLabel, labelText);
-
-		}
-
-	}
-
-
-	/**
-	 * Test the Label of a UML Compartment element (Such as Operation , property or Enumeration Literal)
-	 * 
-	 * @param expectedLabel
-	 *            The expected Label
-	 * 
-	 */
-	protected void testCompartmentLabelContent(final String expectedLabel) {
-		// Check the Label content
-		Assert.assertNotNull(editPart);
-		Assert.assertTrue(editPart instanceof UMLCompartmentEditPart);
-		IFigure labelFigure = ((GraphicalEditPart) editPart).getFigure();
-
-		Assert.assertTrue("Figure should be a PapyrusWrappingLabel", labelFigure instanceof WrappingLabel);
-		String 	label = ((WrappingLabel) labelFigure).getText();
-
-		Assert.assertNotNull("The label of the figure is null",label);
-		Assert.assertTrue("The label content is not the one expected", label.startsWith(expectedLabel));
-
-	}
-
-
-	/**
 	 * Test if there is more than the expected number of Comment View into the Diagram.
 	 * This is to detect the Orphan Comment view.
-	 * 
+	 *
 	 * @param expectedNumberOfCommentView
 	 *            The expected number of Comment View into the entire diagram
-	 * 
+	 *
 	 */
 	protected void testOrphanComment(final int expectedNumberOfCommentView) {
 		List<View> listOfAllComment = testHelper.getAllComment(mainDiagram);
@@ -397,7 +349,7 @@ public abstract class AbstractAppliedStereotypeDisplayTest extends AbstractPapyr
 
 	/**
 	 * Set the different elements required for the specific test. ( Class, Enumeration, Package, ...)
-	 * 
+	 *
 	 * @param objectName
 	 *            The name of the object to be retrieved
 	 * @param classType
@@ -426,21 +378,21 @@ public abstract class AbstractAppliedStereotypeDisplayTest extends AbstractPapyr
 	}
 
 	/**
-	 * 
+	 *
 	 * @param stereotypeName
 	 *            the name of the stereotype
 	 * @return
 	 * 		the name of the stereotype between << and >>
 	 */
-	protected final String getStereotypeNameWithItsDelimiters(final String ... stereotypeName ) {
+	protected final String getStereotypeNameWithItsDelimiters(final String... stereotypeName) {
 		final StringBuilder builder = new StringBuilder(String.valueOf(Activator.ST_LEFT));
-		for(int i=0;i<stereotypeName.length;i++) {
-			if(i!=0) {
+		for (int i = 0; i < stereotypeName.length; i++) {
+			if (i != 0) {
 				builder.append(", ");
 			}
 			builder.append(stereotypeName[i]);
 		}
-		
+
 		builder.append(String.valueOf(Activator.ST_RIGHT));
 		return builder.toString();
 	}

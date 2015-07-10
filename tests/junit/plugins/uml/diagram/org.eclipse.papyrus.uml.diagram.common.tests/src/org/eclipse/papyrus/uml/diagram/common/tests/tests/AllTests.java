@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,8 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 471954
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 507488
- *  Micka�l ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 518645
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 518645
+    Celine Janssens (All4Tec) celine.janssens@all4tec.net - Bug 472342
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.tests.tests;
 
@@ -25,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.common.tests.parser.HTMLCornerBentFigureT
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.MultiplicityStringFormatterTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.ValueSpecificationUtilTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayCompartmentClassDiagramTest;
+import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayLinkClassDiagramTest;
 import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayNodeClassDiagramTest;
 import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayStructureTest;
 import org.junit.runner.RunWith;
@@ -35,6 +37,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		AppliedStereotypeDisplayStructureTest.class,
 		AppliedStereotypeDisplayNodeClassDiagramTest.class,
 		AppliedStereotypeDisplayCompartmentClassDiagramTest.class,
+		AppliedStereotypeDisplayLinkClassDiagramTest.class,
 		CommonBendpointsTest.class,
 		HTMLCleanerTestCase.class,
 		HTMLCornerBentFigureTestCase.class,

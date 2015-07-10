@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2018 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,22 +10,27 @@
  *
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and Implementation
-*	 Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 471584 : Stereotype Display Unit Tests
- *   
+ *	 Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 471584 : Stereotype Display Unit Tests
+ *   Celine Janssens (All4Tec) celine.janssens@all4tec.net - Bug 472342
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display;
 
 import java.util.Arrays;
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.uml2.uml.Enumeration;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * 
+ *
  * This Class tests the Stereotype Display of a Class Diagram
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -131,6 +136,44 @@ public class AppliedStereotypeDisplayNodeClassDiagramTest extends AbstractApplie
 		testStructure(0, 0, 0, 0);
 		testNodeLabelContent(null);
 		testOrphanComment(0);
+
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AbstractAppliedStereotypeDisplayTest#testLabel(java.lang.String)
+	 *
+	 * @param expectedLabel
+	 *            Expected text of the Label
+	 */
+	@Override
+	protected void testLabel(final String expectedLabel) {
+		testNodeLabelContent(expectedLabel);
+
+	}
+
+	/**
+	 * Tests the Content of Named Node Label
+	 *
+	 * @param expectedLabel
+	 *            The expected label Text
+	 */
+	protected void testNodeLabelContent(final String expectedLabel) {
+		// Check the Label content
+		Assert.assertNotNull(editPart);
+		Assert.assertTrue(editPart instanceof IPapyrusEditPart);
+		final IFigure figure = ((IPapyrusEditPart) editPart).getPrimaryShape();
+		Assert.assertTrue(figure instanceof NodeNamedElementFigure);
+		PapyrusWrappingLabel label = ((NodeNamedElementFigure) figure).getStereotypesLabel();
+
+		if (expectedLabel == null) {
+			Assert.assertNull("Label stereotype should be null", label);
+		} else {
+			Assert.assertNotNull("The Label Stereotype should not be null ", label);
+			String labelText = label.getText();
+			Assert.assertEquals("The label content is not the one expected", expectedLabel, labelText);
+
+		}
 
 	}
 

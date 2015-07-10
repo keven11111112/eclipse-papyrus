@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Celine Janssens (All4Tec) celine.janssens@all4tec.net - Bug 472342
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -80,7 +80,7 @@ public class AppliedStereotypeLinkLabelDisplayEditPolicy extends AppliedStereoty
 		// if the string is not empty, then, the figure has to display it. Else,
 		// it displays nothing
 		if (figure instanceof IPapyrusUMLElementFigure) {
-			((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay), imageToDisplay);
+			((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + stereotypesToDisplay, imageToDisplay);
 		}
 	}
 

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2018 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,20 +10,25 @@
  *
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
- *   
+ *   Celine Janssens (All4Tec) celine.janssens@all4tec.net - Bug 472342
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display;
 
 import java.util.Arrays;
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * This Class Tests the application of stereotypes for the UML Compartment editPart into the Class Diagram
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -44,7 +49,7 @@ public class AppliedStereotypeDisplayCompartmentClassDiagramTest extends Abstrac
 		// Apply 1 stereotypes and test structure and Label content
 		applyStereotype(Arrays.asList(stereotypeA));
 		testStructure(1, 0, 1, 0);
-		testCompartmentLabelContent(getStereotypeNameWithItsDelimiters(STEREO_A));
+		testLabel(String.valueOf("\u00AB") + "stereoA" + String.valueOf("\u00BB"));
 		testOrphanComment(0);
 
 		// UnApply 1 stereotype and test structure and Label content
@@ -52,6 +57,29 @@ public class AppliedStereotypeDisplayCompartmentClassDiagramTest extends Abstrac
 		testStructure(0, 0, 0, 0);
 		testCompartmentLabelContent("");
 		testOrphanComment(0);
+
+	}
+
+
+	/**
+	 * Test the Label of a UML Compartment element (Such as Operation , property or Enumeration Literal)
+	 *
+	 * @param expectedLabel
+	 *            The expected Label
+	 *
+	 */
+	protected void testCompartmentLabelContent(String expectedLabel) {
+		// Check the Label content
+		Assert.assertNotNull(editPart);
+		Assert.assertTrue(editPart instanceof UMLCompartmentEditPart);
+		String label = null;
+		IFigure labelFigure = ((GraphicalEditPart) editPart).getFigure();
+
+		Assert.assertTrue("Figure should be a PapyrusWrappingLabel", labelFigure instanceof WrappingLabel);
+		label = ((WrappingLabel) labelFigure).getText();
+
+		Assert.assertNotNull(label);
+		Assert.assertTrue("The label content is not the one expected", label.startsWith(expectedLabel));
 
 	}
 
@@ -75,6 +103,18 @@ public class AppliedStereotypeDisplayCompartmentClassDiagramTest extends Abstrac
 		testStructure(0, 0, 0, 0);
 		testCompartmentLabelContent("");
 		testOrphanComment(0);
+
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AbstractAppliedStereotypeDisplayTest#testLabel(java.lang.String)
+	 *
+	 * @param expectedLabel
+	 *            The Expected text for this Label
+	 */
+	@Override
+	protected void testLabel(String expectedLabel) {
+		testCompartmentLabelContent(expectedLabel);
 
 	}
 
