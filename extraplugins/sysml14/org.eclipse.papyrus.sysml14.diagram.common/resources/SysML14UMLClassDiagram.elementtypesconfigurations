@@ -13,7 +13,7 @@
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_LoKXAcJQEeSX9MoKMBV5Gw"
       name="ValueType (2010)"
-      identifier="org.eclipse.papyrus.sysMLParteType_2010"
+      identifier="org.eclipse.papyrus.sysML.ValueType_2010"
       hint="2010">
     <iconEntry
         xmi:id="_LoKXAsJQEeSX9MoKMBV5Gw"
@@ -2561,6 +2561,25 @@
       hint="4001">
     <specializedTypesID>org.eclipse.papyrus.SysML14.SharedAssociation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4001</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_6swwICcIEeWZS4hs8J1fNQ"
+      name="Value (3002)"
+      identifier="org.eclipse.papyrus.sysML.Value_3002"
+      hint="3002">
+    <iconEntry
+        xmi:id="_6swwIScIEeWZS4hs8J1fNQ"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Value</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_6swwIicIEeWZS4hs8J1fNQ"
+        name="org.eclipse.papyrus.sysml14.diagram.common.advices.ValueEditHelperAdvice"
+        description=""
+        identifier="org.eclipse.papyrus.sysml14.diagram.common.advices.ValueEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.sysml14.diagram.common.advices.ValueEditHelperAdvice"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
