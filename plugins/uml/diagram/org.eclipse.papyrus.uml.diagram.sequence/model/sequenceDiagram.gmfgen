@@ -10,7 +10,7 @@
       modelID="PapyrusUMLSequenceDiagram"
       domainFileExtension="PapyrusUMLSequence"
       dynamicTemplates="true"
-      templateDirectory="/org.eclipse.papyrus.def/dynamic-templates3.5/codegen">
+      templateDirectory="/org.eclipse.papyrus.def/xtend/">
     <audits>
       <categories
           id="org.eclipse.uml2.uml.util.UMLValidator.validate"
