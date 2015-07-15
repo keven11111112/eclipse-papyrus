@@ -20,6 +20,8 @@ import java.util.List;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.nebula.widgets.nattable.NatTable;
@@ -43,6 +45,7 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisManagerForEventList;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
@@ -61,6 +64,7 @@ import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.commands.ICommandService;
 
@@ -106,6 +110,28 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	public TreeNattableModelManager(Table rawModel, ISelectionExtractor selectionExtractor) {
 		super(rawModel, selectionExtractor);
 		Assert.isTrue(TableHelper.isTreeTable(rawModel));
+		
+		// Manage the change axis provider adapter only for the column (row cannot manage refresh)
+		rawModel.eAdapters().remove(changeAxisProvider);
+		changeAxisProvider = new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(final Notification msg) {
+				if (NattablePackage.eINSTANCE.getTable_CurrentColumnAxisProvider() == msg.getFeature()) {
+					if (null != msg.getNewValue() && !msg.getNewValue().equals(msg.getOldValue())) {
+						Display.getCurrent().asyncExec(new Runnable() {
+
+							@Override
+							public void run() {
+								init();
+								refreshNatTable();
+							}
+						});
+					}
+				}
+			}
+		};
+		rawModel.eAdapters().add(changeAxisProvider);
 	}
 
 	/**

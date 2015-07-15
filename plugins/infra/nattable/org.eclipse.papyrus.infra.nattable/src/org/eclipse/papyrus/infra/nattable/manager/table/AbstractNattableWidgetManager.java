@@ -1162,7 +1162,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			this.columnHeaderDataProvider = null;
 		}
 
-
 		if (this.tableEditingDomain != null && this.resourceSetListener != null) {
 			this.tableEditingDomain.removeResourceSetListener(this.resourceSetListener);
 			this.tableEditingDomain = null;
@@ -1170,6 +1169,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		if (this.filterStrategy instanceof IDisposable) {
 			((IDisposable) this.filterStrategy).dispose();
 		}
+		this.cellAxisConfiguration = null;
+		this.filterConfiguration = null;
 		this.tableEditingDomain = null;
 		this.contextEditingDomain = null;
 		this.tableContext = null;
