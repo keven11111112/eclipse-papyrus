@@ -232,6 +232,12 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	public void dispose() {
 		removeListeners();
 		this.tableContext = null;
+		this.tableManager = null;
+		this.representedAxisManager = null;
+		this.representedContentProvider = null;
+		if(null != this.managedObject){
+			this.managedObject.clear();
+		}
 	}
 
 	/**
