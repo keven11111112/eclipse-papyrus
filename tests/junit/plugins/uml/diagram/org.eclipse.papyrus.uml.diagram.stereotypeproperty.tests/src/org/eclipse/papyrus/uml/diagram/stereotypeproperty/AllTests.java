@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotypeproperty;
 
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.creation.TestCreationReopen2Comment;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -30,7 +31,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestUnapplyProfile2Comment.class,
 	TestLayoutWithStereotypeOnEclipseHIPPInstance.class,
 	TestUnapplyStereotypeComment.class,
-	TestBadUnapplyProfile2ClosedDiagComment.class
+	TestBadUnapplyProfile2ClosedDiagComment.class,
+	TestCreationReopen2Comment.class
 })
 public class AllTests {
 
