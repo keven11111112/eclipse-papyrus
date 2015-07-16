@@ -19,8 +19,11 @@ import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.HighlightEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 
 /**
  * this is an editpolicy provider in charge to install a policy to navigate between diagrams and elements
@@ -67,18 +70,25 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean provides(IOperation operation) {
+	public boolean provides(IOperation operation) {	
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
-		EditPart editPart = epOperation.getEditPart();
-		if (!(editPart instanceof GraphicalEditPart)) {
+		try {
+			EditPart editPart = epOperation.getEditPart();
+			if (!(editPart instanceof GraphicalEditPart)) {
+				return false;
+			}
+
+			EditingDomain domain = EMFHelper.resolveEditingDomain(editPart);
+			if (domain == null) {
+				return false;
+			}
+
+			ServicesRegistry registry = ServiceUtilsForEditPart.getInstance().getServiceRegistry(epOperation.getEditPart());
+			return registry != null;
+		} catch (ServiceException e) {
 			return false;
 		}
 
-		EditingDomain domain = EMFHelper.resolveEditingDomain(editPart);
-		if (domain == null) {
-			return false;
-		}
-		return true;
 	}
 
 	/**
