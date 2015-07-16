@@ -816,7 +816,7 @@ public class SoaMLPackageImpl extends EPackageImpl implements SoaMLPackage {
 	 * @generated
 	 */
 	public EReference getServiceInterface_Base_Class() {
-		return (EReference)serviceInterfaceEClass.getEStructuralFeatures().get(1);
+		return (EReference)serviceInterfaceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -826,15 +826,6 @@ public class SoaMLPackageImpl extends EPackageImpl implements SoaMLPackage {
 	 */
 	public EOperation getServiceInterface__PartsTypesOfServiceInterface__DiagnosticChain_Map() {
 		return serviceInterfaceEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getServiceInterface_Base_Interface() {
-		return (EReference)serviceInterfaceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -862,6 +853,15 @@ public class SoaMLPackageImpl extends EPackageImpl implements SoaMLPackage {
 	 */
 	public EOperation getServicesArchitecture__PartsTypes__DiagnosticChain_Map() {
 		return servicesArchitectureEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getServicesArchitecture__GetIcon__Image() {
+		return servicesArchitectureEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -1198,13 +1198,13 @@ public class SoaMLPackageImpl extends EPackageImpl implements SoaMLPackage {
 		createEReference(motivationRealizationEClass, MOTIVATION_REALIZATION__BASE_REALIZATION);
 
 		serviceInterfaceEClass = createEClass(SERVICE_INTERFACE);
-		createEReference(serviceInterfaceEClass, SERVICE_INTERFACE__BASE_INTERFACE);
 		createEReference(serviceInterfaceEClass, SERVICE_INTERFACE__BASE_CLASS);
 		createEOperation(serviceInterfaceEClass, SERVICE_INTERFACE___PARTS_TYPES_OF_SERVICE_INTERFACE__DIAGNOSTICCHAIN_MAP);
 
 		servicesArchitectureEClass = createEClass(SERVICES_ARCHITECTURE);
 		createEOperation(servicesArchitectureEClass, SERVICES_ARCHITECTURE___PARTICIPANTS_ROLE_COMPATIBILITY__DIAGNOSTICCHAIN_MAP);
 		createEOperation(servicesArchitectureEClass, SERVICES_ARCHITECTURE___PARTS_TYPES__DIAGNOSTICCHAIN_MAP);
+		createEOperation(servicesArchitectureEClass, SERVICES_ARCHITECTURE___GET_ICON__IMAGE);
 
 		attachmentEClass = createEClass(ATTACHMENT);
 		createEAttribute(attachmentEClass, ATTACHMENT__ENCODING);
@@ -1432,7 +1432,6 @@ public class SoaMLPackageImpl extends EPackageImpl implements SoaMLPackage {
 		initEReference(getMotivationRealization_Base_Realization(), theUMLPackage.getRealization(), null, "base_Realization", null, 1, 1, MotivationRealization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(serviceInterfaceEClass, ServiceInterface.class, "ServiceInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getServiceInterface_Base_Interface(), theUMLPackage.getInterface(), null, "base_Interface", null, 0, 1, ServiceInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getServiceInterface_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 0, 1, ServiceInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = initEOperation(getServiceInterface__PartsTypesOfServiceInterface__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "partsTypesOfServiceInterface", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1463,6 +1462,9 @@ public class SoaMLPackageImpl extends EPackageImpl implements SoaMLPackage {
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getServicesArchitecture__GetIcon__Image(), null, "getIcon", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theUMLPackage.getImage(), "image", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(attachmentEClass, Attachment.class, "Attachment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAttachment_Encoding(), theTypesPackage.getString(), "encoding", null, 1, 1, Attachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1555,6 +1557,140 @@ public class SoaMLPackageImpl extends EPackageImpl implements SoaMLPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/uml2/1.1.0/GenModel
+		createGenModelAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/uml2/1.1.0/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/uml2/1.1.0/GenModel";	
+		addAnnotation
+		  (getAgent__IsActive__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "base_Class.isActive"
+		   });	
+		addAnnotation
+		  (getParticipant__NoRealizedUsedInterface__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "Realization.allInstances()->select(r|r.client->includes(self.base_Class))->size()=0 and \r\nUsage.allInstances()->select(r|r.client->includes(self.base_Class))->size()=0"
+		   });	
+		addAnnotation
+		  (getParticipant__PortTypes__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "  let portsSet: OrderedSet(UML::Port)= self.base_Class.ownedPort() in\r\n  portsSet->size()>0 implies \r\n  portsSet->forAll(p|p.getAppliedStereotypes()->select(s|s.name=\'Request\' or s.name=\'Service\')->size()=1 )"
+		   });	
+		addAnnotation
+		  (getMessageType__NoOwnedBehaviors__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "self.base_Class<>null  implies self.base_Class.ownedBehavior->size()=0"
+		   });	
+		addAnnotation
+		  (getMessageType__NoOwnedOperations__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if self.base_Class<>null \r\nthen self.base_Class.ownedOperation->size()=0  \r\nelse\r\n\t if self.base_DataType<>null \r\n\t then self.base_DataType.ownedOperation->size()=0\r\n\t else self.base_Signal<>null implies true endif  \r\nendif"
+		   });	
+		addAnnotation
+		  (getMessageType__PublicAttributes__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if self.base_Class<>null then self.base_Class.attribute->size()>0 implies self.base_Class.attribute->forAll (a|a.visibility=UML::VisibilityKind::public)\r\n else \r\n\t  (if self.base_DataType<>null then \r\n\t\t  \tself.base_DataType.attribute->size()>0 implies self.base_DataType.attribute->forAll(a|a.visibility=UML::VisibilityKind::public)\r\n \t\telse \r\n  \t\t\tself.base_Signal.attribute->size()>0 implies self.base_Signal.attribute-> forAll (a|a.visibility=UML::VisibilityKind::public)\r\n\t\tendif)\r\n endif"
+		   });	
+		addAnnotation
+		  (getServiceContract__RoleType__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", " \r\nlet isComposit :  Boolean= self.base_Collaboration.ownedConnector->isEmpty()\r\n and self.base_Collaboration.getAllAttributes()\r\n->collect(oclAsType(UML::CollaborationUse))->notEmpty(),\r\nisSimple :Boolean=  self.base_Collaboration.getAllAttributes()\r\n->collect(oclAsType(UML::CollaborationUse))->isEmpty()\r\nin  self.base_Collaboration.role-> notEmpty() implies \r\nisSimple and  self.base_Collaboration.role-> forAll(role|\r\nrole.type.oclIsTypeOf(UML::Interface))\r\nor\r\nisComposit  and self.base_Collaboration.role->forAll(role|\r\nrole.type.oclIsTypeOf(UML::Interface) or\r\n(role.type.oclIsTypeOf(UML::Class)\tand\r\n(role.type.oclIsTypeOf(UML::Class) implies(role.type.getAppliedStereotypes()\r\n->select(s|s.name=\'Provider\' or s.name=\'Consumer\' \r\nor s.name=\'ServiceInterface\') ->size()=1))))\r\n"
+		   });	
+		addAnnotation
+		  (getServiceContract__AttachedBehaviorCompatibility__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", " self.base_Collaboration.ownedBehavior->size()>0 implies (\r\n\tself.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclIsTypeOf(UML::Interaction) implies\r\n\t\tlet attachedInteraction=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction),\r\n\t\tlifelines=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).lifeline,\r\n\t\tmessages= self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).message,\r\n\t\tmessOccuSpec=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).fragment\r\n\t\t->select(f|f.oclIsTypeOf(MessageOccurrenceSpecification)) in \r\n\t\tlifelines->size()>0 implies lifelines->forAll(l| self.base_Collaboration.role -> includes(l.oclAsType(UML::Lifeline).represents)  ) \r\n\t\tand \r\n\t\tmessages->size()>0 implies messages\r\n\t\t--->select(m|m.messageSort=MessageSort::asynchCall) \r\n\t\t--signature of messages should be one of the operations or signal of the corresponding Service Declaration\r\n\t\t->forAll(m|m.signature.oclIsTypeOf(Operation) implies \r\n\t\t\tm.receiveEvent.oclAsType(MessageOccurrenceSpecification).covered->flatten()->asOrderedSet()\r\n\t\t\t->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement->select(oclIsTypeOf(Operation))\r\n\t\t\t->includes(m.signature.oclAsType(Operation)) and \r\n\t\t\t\tm.signature.oclIsTypeOf(Signal) implies \r\n\t\t\t\tm.sendEvent->asOrderedSet()->first().oclAsType(MessageOccurrenceSpecification).covered->asOrderedSet()\r\n\t\t\t\t->first().oclAsType(Sequence)->asOrderedSet()->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement\r\n\t\t\t\t->select(oclIsTypeOf(Signal))->includes(m.signature.oclAsType(Signal)\r\n\t\t\t))  )"
+		   });	
+		addAnnotation
+		  (getRequest__RequestType__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", " let portType: Type=  base_Port.type in\r\n portType.getAppliedStereotypes()->select(s|s.name=\'ServiceInterface\' or s.name=\'Consumer\')->size()=1 or portType.oclIsTypeOf(Interface) "
+		   });	
+		addAnnotation
+		  (getRequest__IsConjugatedTrue__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "base_Port.isConjugated"
+		   });	
+		addAnnotation
+		  (getServiceInterface__PartsTypesOfServiceInterface__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "self.base_Class.ownedAttribute->forAll(a|self.base_Class.getAllUsedInterfaces()->includes(a.type) or \r\n\tself.base_Class.allRealizedInterfaces()->includes(a.type))\r\n"
+		   });	
+		addAnnotation
+		  (getServicesArchitecture__ParticipantsRoleCompatibility__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "let properties : Set (UML::ConnectableElement) = self.base_Collaboration.role,\r\ncollBUses: Set(UML::Element)= self.base_Collaboration.collaborationUse in\r\ncollBUses->notEmpty() implies \r\n-- Each participant satisfying roles in a ServicesArchitecture shall have a port for each role binding attached to that participant. \r\n--This port shall have a type compliant with the type of the role used in the ServiceContract.\r\ncollBUses.oclAsType(UML::CollaborationUse).roleBinding-> forAll(rb| let \r\n\tportTypesOfSupplier=\trb.oclAsType(UML::Dependency).supplier->select(s|s.oclIsTypeOf(UML::Property))->select(s|s.oclAsType(UML::Property).type.oclIsTypeOf(Class))->collect(oclAsType(UML::Property).type.oclAsType(Class).getAllAttributes())->select(att|att.oclIsTypeOf(UML::Port))->collect(oclAsType(UML::Port).type) , clientType=rb.oclAsType(UML::Dependency).client->select(s|s.oclIsTypeOf(UML::Property))->collect(t:UML::NamedElement|t.oclAsType(UML::Property).type)->asOrderedSet()->first()in \t\r\nportTypesOfSupplier->includes(clientType)--1. The role correspond to a port type on the supplier.\r\n--2. the supplier has a port type that specializes the type of the role.\r\nor(clientType.oclAsType(Classifier).generalization.general->closure(general)->includes(portTypesOfSupplier)) \r\n--3. the supplier has a port type that realizes the type of the role.\r\nor(clientType.oclAsType(Classifier).getRelationships().oclAsType(UML::Realization)->includes(portTypesOfSupplier)) \r\n--4. the supplier has a port type that contains at least the ownedAttributes and ownedOperations of the role.\r\nor(portTypesOfSupplier.oclAsType(Classifier).getAllAttributes()->includesAll(clientType.oclAsType(Classifier).getAllAttributes()) \r\n\tand portTypesOfSupplier.oclAsType(Classifier).getAllOperations()->includesAll(clientType.oclAsType(Classifier).getAllOperations())\r\n) )"
+		   });	
+		addAnnotation
+		  (getServicesArchitecture__PartsTypes__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "let properties : Set (UML::ConnectableElement) = self.base_Collaboration.role,\r\ncollBUses: Set(UML::Element)= self.base_Collaboration.collaborationUse in\r\nproperties->notEmpty() implies \r\nproperties-> forAll(p|p.type->exists(p|p.getAppliedStereotypes()->select(s|s.name=\'Participant\' or s.name=\'Capability\' or s.name=\'Agent\' )->size()=1) )\r\n"
+		   });	
+		addAnnotation
+		  (getCollaborationUse__RoleBindingClientSupplierCompatibility__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "--only in case of defining Contract collaboratinUse inside the ServiceInterface\r\n--If the CollaborationUse has isStrict=true, then the parts must be compatible with the roles they are bound to.\r\nself.isStrict=true and self.base_CollaborationUse.owner.oclIsTypeOf(Classifier) \r\nand  self.base_CollaborationUse.type.oclAsType(UML::Collaboration).getAppliedStereotypes()->select(s|s.name=\'ServiceContract\')->size()=1 implies\r\n--For parts to be compatible with a role, one of the following must be true:\r\n--1. The role and part have the same type.\r\nself.base_CollaborationUse.roleBinding-> forAll(rb|\r\n\t(let supplierType =(rb.oclAsType(UML::Dependency).supplier->select(s|s.oclIsTypeOf(UML::Property))->select(s|s.oclAsType(UML::Property).type.oclIsTypeOf(Class))\r\n\t->collect(oclAsType(UML::Property).type ->asOrderedSet()->first())),\r\n\tclientType= (rb.oclAsType(UML::Dependency).client->select(s|s.oclIsTypeOf(UML::Property))->collect(t:UML::NamedElement|t.oclAsType(UML::Property).type)->asOrderedSet()->first())in (\r\n\tsupplierType= clientType\r\n--2. The part (the supplier) has a type that specializes the type of the role.\r\nor(clientType.oclAsType(Classifier).generalization.general->closure(general)->includes(supplierType)) \r\n--3. The part has a type that realizes the type of the role.\r\nor(clientType.oclAsType(Classifier).getRelationships().oclAsType(UML::Realization)->includes(supplierType)) \r\n--4. The part has a type that contains at least the ownedAttributes and ownedOperations of the role. In general this is a\r\n--special case of item 3 where the part has an Interface type that realizes another Interface.\r\nor(supplierType.oclAsType(Classifier).getAllAttributes()->includesAll(clientType.oclAsType(Classifier).getAllAttributes()) \r\n\tand supplierType.oclAsType(Classifier).getAllOperations()->includesAll(clientType.oclAsType(Classifier).getAllOperations())\r\n) )\r\n--5. The type of each role in a service contract shall have a uses dependency to the type of all roles that role is connected to.\r\n)\r\n)"
+		   });	
+		addAnnotation
+		  (getServiceChannel__Onlybinaryconnectorsallowed__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "self.base_Connector.end->size() = 2 \r\n--and self.base_Connector.end->forAll(e|e.oclIsTypeOf(UML::Port)) "
+		   });	
+		addAnnotation
+		  (getServiceChannel__ServiceChannelEndTypes__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "let portsSet: OrderedSet(UML::ConnectorEnd)= self.base_Connector.end ->select(e|e.oclIsTypeOf(UML::Port)) in\r\n  portsSet->size()>0 implies \r\n  portsSet->forAll(p|p.getAppliedStereotypes()->select(s|s.name=\'Request\' or s.name=\'Service\')->size()=1 )\r\n"
+		   });	
+		addAnnotation
+		  (getServiceChannel__Compatibility__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "let \r\n requestTypeClassifier: UML::Classifier=self.base_Connector.end->select(p|p.oclIsTypeOf(UML::Port) and  \toclIsTypeOf(SoaML::Request))\r\n -> select(p|p.oclAsType(UML::Port).type.oclIsTypeOf(Classifier))->first().oclAsType(UML::Port).type.oclAsType(Classifier),\r\n serviceTypeClassifier: UML::Classifier=self.base_Connector.end->select(p|p.oclIsTypeOf(UML::Port) and oclIsTypeOf(SoaML::Service))\r\n ->select(p|p.oclAsType(UML::Port).type.oclIsTypeOf(Classifier))->first().oclAsType(UML::Port).type.oclAsType(Classifier)  in \r\n--The Request and Service connected by a ServiceChannel must be compatible\r\n  --1. The Request and Service have the same type, either an Interface or ServiceInterface.\r\nnot requestTypeClassifier.oclIsUndefined() and not serviceTypeClassifier.oclIsUndefined() implies requestTypeClassifier=serviceTypeClassifier or\r\n --2. The type of the Service is a specialization or realization of the type of the Request.  --2 implies 1\r\nserviceTypeClassifier.Generalization.general->closure(general)-> includes(requestTypeClassifier) or\r\n requestTypeClassifier.allUsedInterfaces()->includes(serviceTypeClassifier) or\r\n --3. The Request and Service have compatible needs and capabilities respectively. This means the Service must provide an \r\n--Operation for every Operation used through the Request, the Request must provide an Operation for every Operation used \r\n--through the Service, and the protocols for how the capabilities are compatible between the Request and Service. \r\n(requestTypeClassifier.allUsedInterfaces().getAllOperations()->includesAll(serviceTypeClassifier.allRealizedInterfaces().getAllOperations() )and \r\n\trequestTypeClassifier.allRealizedInterfaces().getAllOperations()-> includesAll(serviceTypeClassifier.allUsedInterfaces().getAllOperations()))"
+		   });	
+		addAnnotation
+		  (getService__ServiceType__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "  if base_Port.type.oclIsUndefined() then false else\r\n  let portType: Type=  base_Port.type in\r\n portType.getAppliedStereotypes()->select(s|s.name=\'ServiceInterface\' or  s.name=\'Provider\' )->size()=1 or portType.oclIsTypeOf(Interface)\r\n endif "
+		   });	
+		addAnnotation
+		  (getService__IsConjugatedFalse__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", " \r\n  not base_Port.isConjugated"
+		   });	
+		addAnnotation
+		  (getPort__ConnectorRequired__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "--self.connectorRequired=true implies self.base_Port.owner.\r\ntrue"
+		   });
 	}
 
 } //SoaMLPackageImpl

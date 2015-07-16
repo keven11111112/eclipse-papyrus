@@ -37,11 +37,11 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.CollaborationUseImpl#getBase_CollaborationUse <em>Base Collaboration Use</em>}</li>
- *   <li>{@link SoaML.impl.CollaborationUseImpl#isStrict <em>Is Strict</em>}</li>
+ *   <li>{@link SoaML.impl.CollaborationUseImpl#isIsStrict <em>Is Strict</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -57,20 +57,20 @@ public class CollaborationUseImpl extends MinimalEObjectImpl.Container implement
 	protected org.eclipse.uml2.uml.CollaborationUse base_CollaborationUse;
 
 	/**
-	 * The default value of the '{@link #isStrict() <em>Is Strict</em>}' attribute.
+	 * The default value of the '{@link #isIsStrict() <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_STRICT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isStrict() <em>Is Strict</em>}' attribute.
+	 * The cached value of the '{@link #isIsStrict() <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 * @ordered
 	 */
@@ -138,7 +138,7 @@ public class CollaborationUseImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isStrict() {
+	public boolean isIsStrict() {
 		return isStrict;
 	}
 
@@ -191,7 +191,7 @@ public class CollaborationUseImpl extends MinimalEObjectImpl.Container implement
 				if (resolve) return getBase_CollaborationUse();
 				return basicGetBase_CollaborationUse();
 			case SoaMLPackage.COLLABORATION_USE__IS_STRICT:
-				return isStrict();
+				return isIsStrict();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

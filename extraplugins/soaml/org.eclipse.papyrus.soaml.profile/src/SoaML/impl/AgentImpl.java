@@ -29,8 +29,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Agent</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Participant#getBase_Class <em>Base Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getParticipant()
  * @model
@@ -62,12 +62,10 @@ public interface Participant extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Realization.allInstances()->select(r|r.client->includes(self.base_Class))->size()=0 and 
-	 * Usage.allInstances()->select(r|r.client->includes(self.base_Class))->size()=0
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='Realization.allInstances()->select(r|r.client->includes(self.base_Class))->size()=0 and \r\nUsage.allInstances()->select(r|r.client->includes(self.base_Class))->size()=0'"
 	 * @generated
 	 */
 	boolean noRealizedUsedInterface(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -76,13 +74,10 @@ public interface Participant extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *   let portsSet: OrderedSet(UML::Port)= self.base_Class.ownedPort() in
-	 *   portsSet->size()>0 implies 
-	 *   portsSet->forAll(p|p.getAppliedStereotypes()->select(s|s.name='Request' or s.name='Service')->size()=1 )
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='  let portsSet: OrderedSet(UML::Port)= self.base_Class.ownedPort() in\r\n  portsSet->size()>0 implies \r\n  portsSet->forAll(p|p.getAppliedStereotypes()->select(s|s.name=\'Request\' or s.name=\'Service\')->size()=1 )'"
 	 * @generated
 	 */
 	boolean portTypes(DiagnosticChain diagnostics, Map<Object, Object> context);

@@ -30,11 +30,11 @@ import org.eclipse.uml2.uml.Interface;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.ConsumerImpl#getBase_Interface <em>Base Interface</em>}</li>
  *   <li>{@link SoaML.impl.ConsumerImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

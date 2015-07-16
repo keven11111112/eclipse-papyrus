@@ -30,10 +30,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.FreeFormValueImpl#getBase_ValueSpecification <em>Base Value Specification</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

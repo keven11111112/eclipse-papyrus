@@ -30,10 +30,10 @@ import org.eclipse.uml2.uml.Artifact;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.NodeDescriptorImpl#getBase_Artifact <em>Base Artifact</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

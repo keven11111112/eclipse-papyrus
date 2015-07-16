@@ -22,10 +22,10 @@ import org.eclipse.uml2.uml.Dependency;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Expose#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getExpose()
  * @model

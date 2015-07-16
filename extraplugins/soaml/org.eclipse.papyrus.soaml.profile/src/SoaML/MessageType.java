@@ -25,13 +25,13 @@ import org.eclipse.uml2.uml.Signal;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.MessageType#getBase_Signal <em>Base Signal</em>}</li>
  *   <li>{@link SoaML.MessageType#getEncoding <em>Encoding</em>}</li>
  *   <li>{@link SoaML.MessageType#getBase_Class <em>Base Class</em>}</li>
  *   <li>{@link SoaML.MessageType#getBase_DataType <em>Base Data Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getMessageType()
  * @model
@@ -146,11 +146,10 @@ public interface MessageType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * self.base_Class<>null  implies self.base_Class.ownedBehavior->size()=0
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.base_Class<>null  implies self.base_Class.ownedBehavior->size()=0'"
 	 * @generated
 	 */
 	boolean noOwnedBehaviors(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -159,17 +158,10 @@ public interface MessageType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * if self.base_Class<>null 
-	 * then self.base_Class.ownedOperation->size()=0  
-	 * else
-	 * 	 if self.base_DataType<>null 
-	 * 	 then self.base_DataType.ownedOperation->size()=0
-	 * 	 else self.base_Signal<>null implies true endif  
-	 * endif
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='if self.base_Class<>null \r\nthen self.base_Class.ownedOperation->size()=0  \r\nelse\r\n\t if self.base_DataType<>null \r\n\t then self.base_DataType.ownedOperation->size()=0\r\n\t else self.base_Signal<>null implies true endif  \r\nendif'"
 	 * @generated
 	 */
 	boolean noOwnedOperations(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -178,18 +170,10 @@ public interface MessageType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * if self.base_Class<>null then self.base_Class.attribute->size()>0 implies self.base_Class.attribute->forAll (a|a.visibility=UML::VisibilityKind::public)
-	 *  else 
-	 * 	  (if self.base_DataType<>null then 
-	 * 		  	self.base_DataType.attribute->size()>0 implies self.base_DataType.attribute->forAll(a|a.visibility=UML::VisibilityKind::public)
-	 *  		else 
-	 *   			self.base_Signal.attribute->size()>0 implies self.base_Signal.attribute-> forAll (a|a.visibility=UML::VisibilityKind::public)
-	 * 		endif)
-	 *  endif
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='if self.base_Class<>null then self.base_Class.attribute->size()>0 implies self.base_Class.attribute->forAll (a|a.visibility=UML::VisibilityKind::public)\r\n else \r\n\t  (if self.base_DataType<>null then \r\n\t\t  \tself.base_DataType.attribute->size()>0 implies self.base_DataType.attribute->forAll(a|a.visibility=UML::VisibilityKind::public)\r\n \t\telse \r\n  \t\t\tself.base_Signal.attribute->size()>0 implies self.base_Signal.attribute-> forAll (a|a.visibility=UML::VisibilityKind::public)\r\n\t\tendif)\r\n endif'"
 	 * @generated
 	 */
 	boolean publicAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);

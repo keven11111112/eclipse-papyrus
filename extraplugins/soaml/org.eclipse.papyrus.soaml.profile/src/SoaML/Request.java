@@ -24,10 +24,10 @@ import org.eclipse.uml2.uml.Port;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Request#getBase_Port <em>Base Port</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getRequest()
  * @model
@@ -64,12 +64,10 @@ public interface Request extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  let portType: Type=  base_Port.type in
-	 *  portType.getAppliedStereotypes()->select(s|s.name='ServiceInterface' or s.name='Consumer')->size()=1 or portType.oclIsTypeOf(Interface) 
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body=' let portType: Type=  base_Port.type in\r\n portType.getAppliedStereotypes()->select(s|s.name=\'ServiceInterface\' or s.name=\'Consumer\')->size()=1 or portType.oclIsTypeOf(Interface) '"
 	 * @generated
 	 */
 	boolean requestType(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -78,11 +76,10 @@ public interface Request extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * base_Port.isConjugated
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='base_Port.isConjugated'"
 	 * @generated
 	 */
 	boolean isConjugatedTrue(DiagnosticChain diagnostics, Map<Object, Object> context);

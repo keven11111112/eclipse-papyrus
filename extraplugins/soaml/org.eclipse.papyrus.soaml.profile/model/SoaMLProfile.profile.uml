@@ -18894,15 +18894,23 @@ endif</body>
       <ownedRule xmi:type="uml:Constraint" xmi:id="_8JzecK0NEeSlTMA1djG_jg" name="RoleType">
         <specification xmi:type="uml:OpaqueExpression" xmi:id="_SamYQK0UEeSlTMA1djG_jg">
           <language>OCL</language>
-          <body>  self.base_Collaboration.role-> notEmpty()  implies self.base_Collaboration.role-> forAll(role|&#xD;
-		role.type.oclIsTypeOf(UML::Interface) &#xD;
-	or &#xD;
-		(role.type.oclIsTypeOf(UML::Class)	and &#xD;
-		(role.type.oclIsTypeOf(UML::Class) implies (role.type.getAppliedStereotypes()->select(s|s.name='Provider')->size()>0 &#xD;
-			and  role.type.getAppliedStereotypes()->select(s|s.name='Consumer') ->size()>0&#xD;
-		)&#xD;
-			or  role.type.getAppliedStereotypes()->select(s| s.name='ServiceInterface') ->size()>0&#xD;
-		))) </body>
+          <body> &#xD;
+let isComposit :  Boolean= self.base_Collaboration.ownedConnector->isEmpty()&#xD;
+ and self.base_Collaboration.getAllAttributes()&#xD;
+->select(oclIsTypeOf(UML::CollaborationUse))->notEmpty(),&#xD;
+isSimple :Boolean=  self.base_Collaboration.getAllAttributes()&#xD;
+->select(oclIsTypeOf(UML::CollaborationUse))->isEmpty()&#xD;
+in  self.base_Collaboration.role-> notEmpty() implies &#xD;
+isSimple and  self.base_Collaboration.role-> forAll(role|&#xD;
+role.type.oclIsTypeOf(UML::Interface))&#xD;
+or&#xD;
+isComposit  and self.base_Collaboration.role->forAll(role|&#xD;
+role.type.oclIsTypeOf(UML::Interface) or&#xD;
+(role.type.oclIsTypeOf(UML::Class)	and&#xD;
+(role.type.oclIsTypeOf(UML::Class) implies(role.type.getAppliedStereotypes()&#xD;
+->select(s|s.name='Provider' or s.name='Consumer' &#xD;
+or s.name='ServiceInterface') ->size()=1))))&#xD;
+</body>
         </specification>
       </ownedRule>
       <ownedRule xmi:type="uml:Constraint" xmi:id="_hxXYoLHPEeS8wqq-i9d2rg" name="AttachedBehaviorCompatibility">
@@ -19073,22 +19081,11 @@ Usage.allInstances()->select(r|r.client->includes(self.base_Class))->size()=0</b
       <ownedRule xmi:type="uml:Constraint" xmi:id="_mwXE8Kr6EeSzWoL50MoSpQ" name="partsTypesOfServiceInterface">
         <specification xmi:type="uml:OpaqueExpression" xmi:id="_cf-k0Kr7EeSzWoL50MoSpQ">
           <language>OCL</language>
-          <body>if self.base_Interface.oclIsUndefined()&#xD;
-then self.base_Class.ownedAttribute->forAll(a|self.base_Class.getAllUsedInterfaces()->includes(a.type) or &#xD;
-	self.base_Class.allRealizedInterfaces()->includes(a.type)&#xD;
-)&#xD;
-else &#xD;
-	self.base_Interface.ownedAttribute->forAll(a|self.base_Interface.getAllUsedInterfaces()->includes(a.type) or 	&#xD;
-		self.base_Interface.allRealizedInterfaces()->includes(a.type)&#xD;
-	)&#xD;
-endif</body>
+          <body>self.base_Class.ownedAttribute->forAll(a|self.base_Class.getAllUsedInterfaces()->includes(a.type) or &#xD;
+	self.base_Class.allRealizedInterfaces()->includes(a.type))&#xD;
+</body>
         </specification>
       </ownedRule>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_t8PLAKcDEeSBFrJi24CP7w" name="base_Interface" association="_t8SOUKcDEeSBFrJi24CP7w">
-        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Interface"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GYK5sKeZEeS-eMdtOM54rg"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GYMH0KeZEeS-eMdtOM54rg" value="1"/>
-      </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_ufqBIKcDEeSBFrJi24CP7w" name="base_Class" association="_ufrPQKcDEeSBFrJi24CP7w">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HXVQoKeZEeS-eMdtOM54rg"/>
@@ -19320,9 +19317,6 @@ true</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_uRRuQKcAEeSrk7bGRySKyg" name="Participant_Class" memberEnd="_uRRuQacAEeSrk7bGRySKyg _uRQgIKcAEeSrk7bGRySKyg">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_uRRuQacAEeSrk7bGRySKyg" name="extension_Participant" type="SoaML-Participant" aggregation="composite" association="_uRRuQKcAEeSrk7bGRySKyg"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_t8SOUKcDEeSBFrJi24CP7w" name="ServiceInterface_Interface" memberEnd="_t8SOUacDEeSBFrJi24CP7w _t8PLAKcDEeSBFrJi24CP7w">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_t8SOUacDEeSBFrJi24CP7w" name="extension_ServiceInterface" type="SoaML-ServiceInterface" aggregation="composite" association="_t8SOUKcDEeSBFrJi24CP7w"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_ufrPQKcDEeSBFrJi24CP7w" name="ServiceInterface_Class" memberEnd="_ufrPQacDEeSBFrJi24CP7w _ufqBIKcDEeSBFrJi24CP7w">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ufrPQacDEeSBFrJi24CP7w" name="extension_ServiceInterface" type="SoaML-ServiceInterface" aggregation="composite" association="_ufrPQKcDEeSBFrJi24CP7w"/>

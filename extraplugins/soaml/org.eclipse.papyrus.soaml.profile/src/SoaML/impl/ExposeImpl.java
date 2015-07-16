@@ -30,10 +30,10 @@ import org.eclipse.uml2.uml.Dependency;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.ExposeImpl#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

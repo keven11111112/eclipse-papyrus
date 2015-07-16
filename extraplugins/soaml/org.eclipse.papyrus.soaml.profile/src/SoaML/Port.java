@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Port#getBase_Port <em>Base Port</em>}</li>
  *   <li>{@link SoaML.Port#isConnectorRequired <em>Connector Required</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getPort()
  * @model
@@ -90,12 +90,10 @@ public interface Port extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * --self.connectorRequired=true implies self.base_Port.owner.
-	 * true
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='--self.connectorRequired=true implies self.base_Port.owner.\r\ntrue'"
 	 * @generated
 	 */
 	boolean connectorRequired(DiagnosticChain diagnostics, Map<Object, Object> context);

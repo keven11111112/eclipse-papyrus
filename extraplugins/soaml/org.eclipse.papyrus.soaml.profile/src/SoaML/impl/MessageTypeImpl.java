@@ -40,13 +40,13 @@ import org.eclipse.uml2.uml.Signal;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.MessageTypeImpl#getBase_Signal <em>Base Signal</em>}</li>
  *   <li>{@link SoaML.impl.MessageTypeImpl#getEncoding <em>Encoding</em>}</li>
  *   <li>{@link SoaML.impl.MessageTypeImpl#getBase_Class <em>Base Class</em>}</li>
  *   <li>{@link SoaML.impl.MessageTypeImpl#getBase_DataType <em>Base Data Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

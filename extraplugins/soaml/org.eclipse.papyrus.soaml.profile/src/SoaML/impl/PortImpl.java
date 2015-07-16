@@ -37,11 +37,11 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.PortImpl#getBase_Port <em>Base Port</em>}</li>
  *   <li>{@link SoaML.impl.PortImpl#isConnectorRequired <em>Connector Required</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -22,10 +22,10 @@ import org.eclipse.uml2.uml.Realization;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.MotivationRealization#getBase_Realization <em>Base Realization</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getMotivationRealization()
  * @model

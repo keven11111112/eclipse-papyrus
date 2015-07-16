@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.CollaborationImpl#getBase_Collaboration <em>Base Collaboration</em>}</li>
- *   <li>{@link SoaML.impl.CollaborationImpl#isStrict <em>Is Strict</em>}</li>
+ *   <li>{@link SoaML.impl.CollaborationImpl#isIsStrict <em>Is Strict</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -48,20 +48,20 @@ public class CollaborationImpl extends MinimalEObjectImpl.Container implements C
 	protected org.eclipse.uml2.uml.Collaboration base_Collaboration;
 
 	/**
-	 * The default value of the '{@link #isStrict() <em>Is Strict</em>}' attribute.
+	 * The default value of the '{@link #isIsStrict() <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_STRICT_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isStrict() <em>Is Strict</em>}' attribute.
+	 * The cached value of the '{@link #isIsStrict() <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 * @ordered
 	 */
@@ -129,7 +129,7 @@ public class CollaborationImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isStrict() {
+	public boolean isIsStrict() {
 		return isStrict;
 	}
 
@@ -157,7 +157,7 @@ public class CollaborationImpl extends MinimalEObjectImpl.Container implements C
 				if (resolve) return getBase_Collaboration();
 				return basicGetBase_Collaboration();
 			case SoaMLPackage.COLLABORATION__IS_STRICT:
-				return isStrict();
+				return isIsStrict();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

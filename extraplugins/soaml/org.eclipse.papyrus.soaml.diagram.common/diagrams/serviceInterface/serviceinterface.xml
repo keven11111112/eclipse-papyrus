@@ -16,14 +16,7 @@
 						</stereotypesToApply>
 					</postAction>
 				</aspectTool>
-				<aspectTool description="Create an ServiceInterface" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
-					id="clazz.tool.interface_1423842626741" name="ServiceInterface (Interface)" refToolId="clazz.tool.interface">
-					<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
-						<stereotypesToApply>
-							<stereotype stereotypeName="SoaML::ServiceInterface"/>
-						</stereotypesToApply>
-					</postAction>
-				</aspectTool>
+				
 				<aspectTool description="Create a new Consumer" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
 					id="clazz.tool.class_1423842688319" name="Consumer (Class)" refToolId="clazz.tool.class">
 					<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">

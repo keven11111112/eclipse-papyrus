@@ -30,12 +30,12 @@ import org.eclipse.uml2.uml.Property;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.AttachmentImpl#getEncoding <em>Encoding</em>}</li>
  *   <li>{@link SoaML.impl.AttachmentImpl#getBase_Property <em>Base Property</em>}</li>
  *   <li>{@link SoaML.impl.AttachmentImpl#getMimetype <em>Mimetype</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

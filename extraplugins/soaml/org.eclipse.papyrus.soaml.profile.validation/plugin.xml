@@ -13,7 +13,7 @@
                <message>MessageType cannot contain ownedOperation</message><![CDATA[if self.base_Class<>null 
 then self.base_Class.ownedOperation->size()=0  
 else
-	 if self.base_DataType<>null 
+	 if self.base_DataType<>null
 	 then self.base_DataType.ownedOperation->size()=0
 	 else self.base_Signal<>null implies true endif  
 endif]]></constraint>
@@ -27,36 +27,45 @@ endif]]></constraint>
 		endif)
  endif]]></constraint>
             <constraint id="SoaML.ServiceContract.RoleType" isEnabledByDefault="true" lang="OCLpivot" mode="Batch" name="RoleType" severity="ERROR" statusCode="1">
-               <message>role type of ServiceContract must be a ServiceInterface or UML Interface or Class stereotyped as Provider or Consumer.</message><![CDATA[  self.base_Collaboration.role-> notEmpty()  implies self.base_Collaboration.role-> forAll(role|
-		role.type.oclIsTypeOf(UML::Interface) 
-	or 
-		(role.type.oclIsTypeOf(UML::Class)	and 
-		(role.type.oclIsTypeOf(UML::Class) implies (role.type.getAppliedStereotypes()->select(s|s.name='Provider')->size()>0 
-			and  role.type.getAppliedStereotypes()->select(s|s.name='Consumer') ->size()>0
-		)
-			or  role.type.getAppliedStereotypes()->select(s| s.name='ServiceInterface') ->size()>0
-		))) ]]></constraint>
+               <message>role type of ServiceContract must be a ServiceInterface or UML Interface or Class stereotyped as Provider or Consumer.</message><![CDATA[ 
+let isComposit :  Boolean= self.base_Collaboration.ownedConnector->isEmpty()
+ and self.base_Collaboration.getAllAttributes()
+->select(oclIsTypeOf(UML::CollaborationUse))->notEmpty(),
+isSimple :Boolean=  self.base_Collaboration.getAllAttributes()
+->select(oclIsTypeOf(UML::CollaborationUse))->isEmpty()
+in  self.base_Collaboration.role-> notEmpty() implies 
+isSimple and  self.base_Collaboration.role-> forAll(role|
+role.type.oclIsTypeOf(UML::Interface))
+or
+isComposit  and self.base_Collaboration.role->forAll(role|
+role.type.oclIsTypeOf(UML::Interface) or
+(role.type.oclIsTypeOf(UML::Class)	and
+(role.type.oclIsTypeOf(UML::Class) implies(role.type.getAppliedStereotypes()
+->select(s|s.name='Provider' or s.name='Consumer' 
+or s.name='ServiceInterface') ->size()=1))))
+]]></constraint>
             <constraint id="SoaML.ServiceContract.AttachedBehaviorCompatibility" isEnabledByDefault="true" lang="OCLpivot" mode="Batch" name="AttachedBehaviorCompatibility" severity="ERROR" statusCode="1">
-               <message>Attached behavior should be compatible with the parts of the ServiceContract</message><![CDATA[   self.base_Collaboration.ownedBehavior->size()>0 implies (
-	self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclIsTypeOf(UML::Interaction) implies
-		let attachedInteraction=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction),
-		lifelines=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).lifeline,
-		messages= self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).message,
-		messOccuSpec=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).fragment
-		->select(f|f.oclIsTypeOf(MessageOccurrenceSpecification)) in 
-		lifelines->size()>0 implies lifelines->forAll(l| self.base_Collaboration.role -> includes(l.oclAsType(UML::Lifeline).represents)  ) 
-		and 
-		messages->size()>0 implies messages 
-		--signature of messages should be one of the operations or signal of the corresponding Service Declaration
-		->forAll(m|m.signature.oclIsTypeOf(Operation) implies 
-			m.receiveEvent->asOrderedSet()->first().oclAsType(MessageOccurrenceSpecification).covered->asOrderedSet()
-			->first().oclAsType(Sequence)->asOrderedSet()->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement->select(oclIsTypeOf(Operation))
-			->includes(m.signature.oclAsType(Operation)) and 
-				m.signature.oclIsTypeOf(Signal) implies 
-				m.sendEvent->asOrderedSet()->first().oclAsType(MessageOccurrenceSpecification).covered->asOrderedSet()
-				->first().oclAsType(Sequence)->asOrderedSet()->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement->select(oclIsTypeOf(Signal))
-			->includes(m.signature.oclAsType(Signal)
-			))  ) ]]></constraint>
+               <message>Attached behavior should be compatible with the parts of the ServiceContract</message><![CDATA[ self.base_Collaboration.ownedBehavior->size()>0 implies (
+	self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclIsTypeOf(UML::Interaction) implies
+		let attachedInteraction=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction),
+		lifelines=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).lifeline,
+		messages= self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).message,
+		messOccuSpec=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).fragment
+		->select(f|f.oclIsTypeOf(MessageOccurrenceSpecification)) in 
+		lifelines->size()>0 implies lifelines->forAll(l| self.base_Collaboration.role -> includes(l.oclAsType(UML::Lifeline).represents)  ) 
+		and 
+		messages->size()>0 implies messages
+		--->select(m|m.messageSort=MessageSort::asynchCall) 
+		--signature of messages should be one of the operations or signal of the corresponding Service Declaration
+		->forAll(m|m.signature.oclIsTypeOf(Operation) implies 
+			m.receiveEvent.oclAsType(MessageOccurrenceSpecification).covered->flatten()->asOrderedSet()
+			->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement->select(oclIsTypeOf(Operation))
+			->includes(m.signature.oclAsType(Operation)) and 
+				m.signature.oclIsTypeOf(Signal) implies 
+				m.sendEvent->asOrderedSet()->first().oclAsType(MessageOccurrenceSpecification).covered->asOrderedSet()
+				->first().oclAsType(Sequence)->asOrderedSet()->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement
+				->select(oclIsTypeOf(Signal))->includes(m.signature.oclAsType(Signal)
+			))  )]]></constraint>
             <constraint id="SoaML.Request.requestType" isEnabledByDefault="true" lang="OCLpivot" mode="Batch" name="requestType" severity="ERROR" statusCode="1">
                <message>The type of a Request must be a ServiceInterface, an Interface, a provider or a consumer</message><![CDATA[ let portType: Type=  base_Port.type in
  portType.getAppliedStereotypes()->select(s|s.name='ServiceInterface' or s.name='Consumer')->size()=1 or portType.oclIsTypeOf(Interface) ]]></constraint>
@@ -70,15 +79,9 @@ Usage.allInstances()->select(r|r.client->includes(self.base_Class))->size()=0]]>
   portsSet->size()>0 implies 
   portsSet->forAll(p|p.getAppliedStereotypes()->select(s|s.name='Request' or s.name='Service')->size()=1 )]]></constraint>
             <constraint id="SoaML.ServiceInterface.partsTypesOfServiceInterface" isEnabledByDefault="true" lang="OCLpivot" mode="Batch" name="partsTypesOfServiceInterface" severity="ERROR" statusCode="1">
-               <message>All parts of a ServiceInterface must be typed by the Interfaces realized or used by the ServiceInterface</message><![CDATA[if self.base_Interface.oclIsUndefined()
-then self.base_Class.ownedAttribute->forAll(a|self.base_Class.getAllUsedInterfaces()->includes(a.type) or 
-	self.base_Class.allRealizedInterfaces()->includes(a.type)
-)
-else 
-	self.base_Interface.ownedAttribute->forAll(a|self.base_Interface.getAllUsedInterfaces()->includes(a.type) or 	
-		self.base_Interface.allRealizedInterfaces()->includes(a.type)
-	)
-endif]]></constraint>
+               <message>All parts of a ServiceInterface must be typed by the Interfaces realized or used by the ServiceInterface</message><![CDATA[self.base_Class.ownedAttribute->forAll(a|self.base_Class.getAllUsedInterfaces()->includes(a.type) or 
+	self.base_Class.allRealizedInterfaces()->includes(a.type))
+]]></constraint>
             <constraint id="SoaML.ServicesArchitecture.participantsRoleCompatibility" isEnabledByDefault="true" lang="OCLpivot" mode="Batch" name="participantsRoleCompatibility" severity="ERROR" statusCode="1">
                <message>Each participant satisfying roles in a ServicesArchitecture shall have a port for each role binding attached to that participant.</message><![CDATA[let properties : Set (UML::ConnectableElement) = self.base_Collaboration.role,
 collBUses: Set(UML::Element)= self.base_Collaboration.collaborationUse in
@@ -100,7 +103,7 @@ or(portTypesOfSupplier.oclAsType(Classifier).getAllAttributes()->includesAll(cli
                <message>The parts of a ServicesArchitecture must be typed by a Participant or capability</message><![CDATA[let properties : Set (UML::ConnectableElement) = self.base_Collaboration.role,
 collBUses: Set(UML::Element)= self.base_Collaboration.collaborationUse in
 properties->notEmpty() implies 
-properties-> forAll(p|p.type->exists(p|p.getAppliedStereotypes()->select(s|s.name='Participant' or s.name='Capability' or s.name='Agent')->size()=1) )
+properties-> forAll(p|p.type->exists(p|p.getAppliedStereotypes()->select(s|s.name='Participant' or s.name='Capability' or s.name='Agent' )->size()=1) )
 ]]></constraint>
             <constraint id="SoaML.CollaborationUse.RoleBindingClientSupplierCompatibility" isEnabledByDefault="true" lang="OCLpivot" mode="Batch" name="RoleBindingClientSupplierCompatibility" severity="ERROR" statusCode="1">
                <message>If the CollaborationUse has isStrict=true, then the parts must be compatible with the roles they are bound to. </message><![CDATA[--only in case of defining Contract collaboratinUse inside the ServiceInterface
@@ -166,26 +169,24 @@ true]]></constraint>
       </constraintProvider>
    </extension>
    <extension point="org.eclipse.emf.validation.constraintBindings">
-      <clientContext id="PortClientContext">
-         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.PortClientSelector"/>
+      <clientContext id="CollaborationUseClientContext">
+         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.CollaborationUseClientSelector"/>
       </clientContext>
-      <binding context="PortClientContext">
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Port.connectorRequired"/>
+      <binding context="CollaborationUseClientContext">
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.CollaborationUse.RoleBindingClientSupplierCompatibility"/>
       </binding>
-      <clientContext id="RequestClientContext">
-         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.RequestClientSelector"/>
+      <clientContext id="ServiceInterfaceClientContext">
+         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.ServiceInterfaceClientSelector"/>
       </clientContext>
-      <binding context="RequestClientContext">
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Request.requestType"/>
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Request.isConjugatedTrue"/>
+      <binding context="ServiceInterfaceClientContext">
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServiceInterface.partsTypesOfServiceInterface"/>
       </binding>
-      <clientContext id="MessageTypeClientContext">
-         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.MessageTypeClientSelector"/>
+      <clientContext id="ServicesArchitectureClientContext">
+         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.ServicesArchitectureClientSelector"/>
       </clientContext>
-      <binding context="MessageTypeClientContext">
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.MessageType.noOwnedBehaviors"/>
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.MessageType.noOwnedOperations"/>
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.MessageType.publicAttributes"/>
+      <binding context="ServicesArchitectureClientContext">
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServicesArchitecture.participantsRoleCompatibility"/>
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServicesArchitecture.partsTypes"/>
       </binding>
       <clientContext id="AgentClientContext">
          <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.AgentClientSelector"/>
@@ -200,12 +201,13 @@ true]]></constraint>
          <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Service.serviceType"/>
          <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Service.isConjugatedFalse"/>
       </binding>
-      <clientContext id="ServicesArchitectureClientContext">
-         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.ServicesArchitectureClientSelector"/>
+      <clientContext id="MessageTypeClientContext">
+         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.MessageTypeClientSelector"/>
       </clientContext>
-      <binding context="ServicesArchitectureClientContext">
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServicesArchitecture.participantsRoleCompatibility"/>
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServicesArchitecture.partsTypes"/>
+      <binding context="MessageTypeClientContext">
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.MessageType.noOwnedBehaviors"/>
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.MessageType.noOwnedOperations"/>
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.MessageType.publicAttributes"/>
       </binding>
       <clientContext id="ServiceChannelClientContext">
          <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.ServiceChannelClientSelector"/>
@@ -215,6 +217,13 @@ true]]></constraint>
          <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServiceChannel.serviceChannelEndTypes"/>
          <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServiceChannel.Compatibility"/>
       </binding>
+      <clientContext id="ParticipantClientContext">
+         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.ParticipantClientSelector"/>
+      </clientContext>
+      <binding context="ParticipantClientContext">
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Participant.noRealizedUsedInterface"/>
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Participant.portTypes"/>
+      </binding>
       <clientContext id="ServiceContractClientContext">
          <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.ServiceContractClientSelector"/>
       </clientContext>
@@ -222,24 +231,18 @@ true]]></constraint>
          <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServiceContract.RoleType"/>
          <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServiceContract.AttachedBehaviorCompatibility"/>
       </binding>
-      <clientContext id="ServiceInterfaceClientContext">
-         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.ServiceInterfaceClientSelector"/>
+      <clientContext id="PortClientContext">
+         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.PortClientSelector"/>
       </clientContext>
-      <binding context="ServiceInterfaceClientContext">
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.ServiceInterface.partsTypesOfServiceInterface"/>
+      <binding context="PortClientContext">
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Port.connectorRequired"/>
       </binding>
-      <clientContext id="CollaborationUseClientContext">
-         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.CollaborationUseClientSelector"/>
+      <clientContext id="RequestClientContext">
+         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.RequestClientSelector"/>
       </clientContext>
-      <binding context="CollaborationUseClientContext">
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.CollaborationUse.RoleBindingClientSupplierCompatibility"/>
-      </binding>
-      <clientContext id="ParticipantClientContext">
-         <selector class="org.eclipse.papyrus.soaml.profile.validation.selectors.ParticipantClientSelector"/>
-      </clientContext>
-      <binding context="ParticipantClientContext">
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Participant.noRealizedUsedInterface"/>
-         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Participant.portTypes"/>
+      <binding context="RequestClientContext">
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Request.requestType"/>
+         <constraint ref="org.eclipse.papyrus.soaml.profile.validation.SoaML.Request.isConjugatedTrue"/>
       </binding>
    </extension>
 </plugin>

@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Collaboration#getBase_Collaboration <em>Base Collaboration</em>}</li>
- *   <li>{@link SoaML.Collaboration#isStrict <em>Is Strict</em>}</li>
+ *   <li>{@link SoaML.Collaboration#isIsStrict <em>Is Strict</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getCollaboration()
  * @model
@@ -72,14 +72,14 @@ public interface Collaboration extends EObject {
 	 * @model default="true" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isStrict();
+	boolean isIsStrict();
 
 	/**
-	 * Sets the value of the '{@link SoaML.Collaboration#isStrict <em>Is Strict</em>}' attribute.
+	 * Sets the value of the '{@link SoaML.Collaboration#isIsStrict <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Strict</em>' attribute.
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 */
 	void setIsStrict(boolean value);

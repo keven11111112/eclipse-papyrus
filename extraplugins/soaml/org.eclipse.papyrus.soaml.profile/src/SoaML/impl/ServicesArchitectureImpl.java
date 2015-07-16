@@ -31,8 +31,6 @@ import org.eclipse.uml2.uml.Image;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Services Architecture</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -111,6 +109,17 @@ public class ServicesArchitectureImpl extends CollaborationImpl implements Servi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void getIcon(Image image) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
@@ -119,6 +128,9 @@ public class ServicesArchitectureImpl extends CollaborationImpl implements Servi
 				return participantsRoleCompatibility((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case SoaMLPackage.SERVICES_ARCHITECTURE___PARTS_TYPES__DIAGNOSTICCHAIN_MAP:
 				return partsTypes((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case SoaMLPackage.SERVICES_ARCHITECTURE___GET_ICON__IMAGE:
+				getIcon((Image)arguments.get(0));
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}

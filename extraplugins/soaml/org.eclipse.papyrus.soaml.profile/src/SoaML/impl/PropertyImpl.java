@@ -25,30 +25,30 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
- *   <li>{@link SoaML.impl.PropertyImpl#isID <em>Is ID</em>}</li>
+ *   <li>{@link SoaML.impl.PropertyImpl#isIsID <em>Is ID</em>}</li>
  *   <li>{@link SoaML.impl.PropertyImpl#getBase_Property <em>Base Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class PropertyImpl extends MinimalEObjectImpl.Container implements Property {
 	/**
-	 * The default value of the '{@link #isID() <em>Is ID</em>}' attribute.
+	 * The default value of the '{@link #isIsID() <em>Is ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isID()
+	 * @see #isIsID()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_ID_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isID() <em>Is ID</em>}' attribute.
+	 * The cached value of the '{@link #isIsID() <em>Is ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isID()
+	 * @see #isIsID()
 	 * @generated
 	 * @ordered
 	 */
@@ -88,7 +88,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isID() {
+	public boolean isIsID() {
 		return isID;
 	}
 
@@ -151,7 +151,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SoaMLPackage.PROPERTY__IS_ID:
-				return isID();
+				return isIsID();
 			case SoaMLPackage.PROPERTY__BASE_PROPERTY:
 				if (resolve) return getBase_Property();
 				return basicGetBase_Property();
