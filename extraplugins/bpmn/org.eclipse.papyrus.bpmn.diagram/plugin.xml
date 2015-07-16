@@ -8,10 +8,4 @@
           original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
     </contribution>
  </extension>
-  <extension
-        point="org.eclipse.papyrus.infra.core.papyrusDiagram">
-     <editorDiagram
-           factoryClass="org.eclipse.papyrus.bpmn.diagram.PluggableEditorFactory1">
-     </editorDiagram>
-  </extension>
 </plugin>
