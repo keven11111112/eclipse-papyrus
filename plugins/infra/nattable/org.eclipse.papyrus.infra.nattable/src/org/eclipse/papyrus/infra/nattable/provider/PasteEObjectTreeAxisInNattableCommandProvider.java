@@ -43,7 +43,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -911,8 +910,19 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 							nbReadCell++;
 						}
 
-						int depth = getDepth(nbReadCell);
-						boolean isCategory = isCategory(nbReadCell);
+						int depth = -1;
+						boolean isCategory = false;
+						try {
+							depth = getDepth(nbReadCell);
+							isCategory = isCategory(nbReadCell);
+						} catch (UnsupportedOperationException ex) {
+							String message = NLS.bind("No defined depth for line {0}", nbReadCell); //$NON-NLS-1$
+							// The following lines allows to cancel all the paste if a problem of depth appears
+							// If a partial paste is authorized, remove this lines
+							Activator.log.error(message, ex);
+							IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__MORE_LINES_THAN_DEPTH, message, null);
+							return new CommandResult(status);
+						}
 
 						if (isCategory) {
 							confMap.put(Integer.valueOf(depth), (PasteEObjectConfiguration) getPasteConfigurationsFor(depth, valueAsString));
@@ -947,7 +957,7 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 						final IElementEditService creationContextCommandProvider = ElementEditServiceUtils.getCommandProvider(context);
 
 						final ICommand commandCreation = creationContextCommandProvider.getEditCommand(createRequest1);
-						if (commandCreation.canExecute()) {
+						if (null != commandCreation && commandCreation.canExecute()) {
 
 							// 1. we create the element
 							commandCreation.execute(monitor, info);
