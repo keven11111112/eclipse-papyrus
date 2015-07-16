@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer iconpath="/icons/drawer.gif" id="org.eclipse.papyrus.bpmn.diagram.connectors"
+			name="Connectors">
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/SequenceFlow.png"
+				id="bpmn.sequenceFlow" name="SequenceFlow (Control Flow)"
+				refToolId="activity.edges.controlflow">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::SequenceFlow" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/DataAssociation.png"
+				id="bpmn.dataAssociation" name="DataAssociation (Object Flow)"
+				refToolId="activity.edges.objectflow">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::DataAssociation" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+		</drawer>
+		<drawer iconpath="/icons/drawer.gif" id="org.eclipse.papyrus.bpmn.diagram.tasks"
+			name="Tasks">
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Task.png"
+				id="bpmn.task"
+				name="Task (Opaque Action)" refToolId="activity.nodes.miscellaneousactions.opaqueaction">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::Task" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Task.png"
+				id="bpmn.manualTask"
+				name="ManualTask (Opaque Action)" refToolId="activity.nodes.miscellaneousactions.opaqueaction">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::ManualTask" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Task.png"
+				id="bpmn.userTask"
+				name="UserTask (Opaque Action)" refToolId="activity.nodes.miscellaneousactions.opaqueaction">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::UserTask" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Task.png"
+				id="bpmn.scriptTask"
+				name="ScriptTask (Opaque Action)" refToolId="activity.nodes.miscellaneousactions.opaqueaction">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::ScriptTask" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Task.png"
+				id="bpmn.businessRuleTask"
+				name="BusinessRuleTask (Opaque Action)" refToolId="activity.nodes.miscellaneousactions.opaqueaction">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::BusinessRuleTask" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/SendTask.png"
+				id="bpmn.sendTask"
+				name="SendTask (Call Operation Action)" refToolId="activity.nodes.invocationactions.calloperationaction">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::SendTask" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/ServiceTask.png"
+				id="bpmn.serviceTask"
+				name="ServiceTask (Call Operation Action)" refToolId="activity.nodes.invocationactions.calloperationaction">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::ServiceTask" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+		</drawer>
+		<drawer iconpath="/icons/drawer.gif" id="org.eclipse.papyrus.bpmn.diagram.gateways"
+			name="Gateways">
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/InclusiveGateway.png"
+				id="bpmn.inclusiveGateway" name="InclusiveGateway (Join node)"
+				refToolId="activity.nodes.controlnodes.joinnode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::InclusiveGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/ExclusiveGateway.png"
+				id="bpmn.exclusiveGateway" name="ExclusiveGateway (Decision node)"
+				refToolId="activity.nodes.controlnodes.decisionnode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::ExclusiveGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/ExclusiveGateway.png"
+				id="bpmn.exclusiveGateway" name="ExclusiveGateway (Merge node)"
+				refToolId="activity.nodes.controlnodes.mergenode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::ExclusiveGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/ParallelGateway.png"
+				id="bpmn.parallelGateway" name="ParallelGateway (Join node)"
+				refToolId="activity.nodes.controlnodes.joinnode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::ParallelGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/InclusiveGateway.png"
+				id="bpmn.inclusiveGateway" name="InclusiveGateway (Fork node)"
+				refToolId="activity.nodes.controlnodes.forknode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::InclusiveGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/ParallelGateway.png"
+				id="bpmn.parallelGateway" name="ParallelGateway (Fork node)"
+				refToolId="activity.nodes.controlnodes.forknode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::ParallelGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/EventBasedGateway.png"
+				id="bpmn.eventBasedGateway" name="EventBasedGateway (Fork node)"
+				refToolId="activity.nodes.controlnodes.forknode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::EventBasedGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/EventBasedGateway.png"
+				id="bpmn.eventBasedGateway2"
+				name="EventBasedGateway (Interruptible Activity Region)" refToolId="activity.nodes.activitygroup.interruptibleactivityregion">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::EventBasedGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/EventBasedGateway.png"
+				id="bpmn.eventBasedGateway3"
+				name="EventBasedGateway (Structured Activity Node)" refToolId="activity.nodes.structuredactions.structuredactivitynode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::EventBasedGateway" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+		</drawer>
+		<drawer iconpath="/icons/drawer.gif" id="org.eclipse.papyrus.bpmn.diagram.events"
+			name="Events">
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/StartEvent.png"
+				id="bpmn.startEvent" name="StartEvent (Initial node)"
+				refToolId="activity.nodes.controlnodes.initialnode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::StartEvent" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/EndEvent.png"
+				id="bpmn.endEvent" name="EndEvent (Flow final)"
+				refToolId="activity.nodes.controlnodes.flowfinal">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::EndEvent" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/IntermediateThrowEvent.png"
+				id="bpmn.intermediateThrowEvent"
+				name="IntermediateThrowEvent (Call Operation Action)" refToolId="activity.nodes.invocationactions.calloperationaction">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::IntermediateThrowEvent" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+ 
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/BoundaryEvent.png"
+				id="bpmn.boundaryEvent" name="BoundaryEvent (Initial node)"
+				refToolId="activity.nodes.controlnodes.initialnode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::BoundaryEvent" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+ 
+		</drawer>
+		<drawer iconpath="/icons/drawer.gif"
+			id="org.eclipse.papyrus.bpmn.diagram.subprocesses" name="Subprocesses">
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/SubProcess.png"
+				id="bpmn.subprocess"
+				name="SubProcess (Structured Activity Node)" refToolId="activity.nodes.structuredactions.structuredactivitynode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::SubProcess" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+		</drawer>
+		<drawer iconpath="/icons/drawer.gif" id="org.eclipse.papyrus.bpmn.diagram.dataitems"
+			name="Data Items">
+			<!-- 
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/DataStore.png"
+				id="bpmn.dataInput" name="DataStore (Class)"
+				refToolId="activity.nodes.pins.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::DataStore" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			 -->
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/DataStore.png"
+				id="bpmn.dataStoreProperty" name="DataStore Property (Data Store Node)"
+				refToolId="activity.nodes.datastorenode">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::BPMNProperty" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/DataInput.png"
+				id="bpmn.dataInput" name="DataInput (Input Pin)"
+				refToolId="activity.nodes.pins.inputpin">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::DataInput" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/DataOutput.png"
+				id="bpmn.dataOutput" name="DataOutput (Output Pin)"
+				refToolId="activity.nodes.pins.outputpin">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::DataOutput" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+		</drawer>
+		<drawer iconpath="/icons/drawer.gif" id="org.eclipse.papyrus.bpmn.diagram.swimlanes"
+			name="Swim Lanes">
+			<aspectTool description="Create an element with a stereotype"
+				iconpath="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Lane.png"
+				id="bpmn.lane"
+				name="Lane (Activity Partition)" refToolId="activity.nodes.activitygroup.activitypartition">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="BPMNProfile::Lane" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+		</drawer>
+	</content>
+</paletteDefinition>
