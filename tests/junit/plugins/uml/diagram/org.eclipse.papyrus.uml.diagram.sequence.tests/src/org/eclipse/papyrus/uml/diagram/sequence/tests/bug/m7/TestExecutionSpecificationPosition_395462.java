@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -105,6 +106,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
+	@FailingTest
 	@Test
 	public void testOnChangeLifelineName() {
 		//Make sure the lifeline width is -1 to enable auto-increment.

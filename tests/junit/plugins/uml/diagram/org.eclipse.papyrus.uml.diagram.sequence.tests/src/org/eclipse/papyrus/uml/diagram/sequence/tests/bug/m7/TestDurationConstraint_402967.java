@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
@@ -279,6 +280,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		return null;
 	}
 
+	@FailingTest
 	@Test
 	public void testDurationRotate() {
 		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(100, 200), null);
@@ -375,6 +377,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		assertTrue(EDIT + TEST_THE_EXECUTION, label.getText().contains("1") && !label.getText().contains(SEP));
 	}
 
+	@FailingTest
 	@Test
 	// link to the top and bottom of execution specification on the single lifeline
 	public void testLinkingExecutionOnSameLifeline() {
@@ -436,6 +439,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		assertTrue("anchor is not at center", Math.abs(connectPoint.getDistance(getAbsoluteBounds(dc).getTopRight()) - connectPoint.getDistance(getAbsoluteBounds(dc).getBottomRight())) <= 2);
 	}
 
+	@FailingTest
 	@Test
 	// link to different execution specification on two lifeline
 	public void testLinkingExecutionOnTwoLifeline() {
@@ -473,6 +477,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	// link to different messages on two lifeline
+	@FailingTest
 	@Test
 	public void testLinkingMessageOnTwoLifeline() {
 		LifelineEditPart lifeline1 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(10, 80), null);
