@@ -721,9 +721,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="TimeConstraintEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="TimeMarkElementFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TimeMarkElementFigure extends org.eclipse.draw2d.PolylineShape {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TimeMarkElementFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.setLocation(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.TimeMarkElementFigure" />
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="DeleteTimeElementWithoutEventPolicy.KEY"
@@ -824,10 +823,9 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="TimeObservationEditHelper"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="TimeMarkElementFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TimeMarkElementFigure extends org.eclipse.draw2d.PolylineShape {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TimeMarkElementFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.setLocation(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+       <viewmap
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.TimeMarkElementFigure" />
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="DeleteTimeElementWithoutEventPolicy.KEY"

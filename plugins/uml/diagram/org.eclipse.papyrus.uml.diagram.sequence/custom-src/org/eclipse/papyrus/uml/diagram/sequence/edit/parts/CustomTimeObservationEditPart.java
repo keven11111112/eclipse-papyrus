@@ -13,17 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.TransactionalCommandStack;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -32,22 +22,17 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.LayoutConstraint;
-import org.eclipse.gmf.runtime.notation.Location;
-import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeRelatedSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomTimeObservationItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.TimeObservationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
@@ -211,79 +196,5 @@ public class CustomTimeObservationEditPart extends TimeObservationEditPart {
 	@Override
 	public TimeObservationFigure getPrimaryShape() {
 		return (TimeObservationFigure) primaryShape;
-	}
-
-	public class TimeObservationFigure extends TimeMarkElementFigure {
-
-		/**
-		 * the length of the time mark
-		 *
-		 */
-		private static final int TIME_MARK_LENGTH = 20;
-
-		/**
-		 * The side where the figure currently is
-		 *
-		 */
-		private int sideOfFigure = PositionConstants.NONE;
-
-		/**
-		 * Constructor.
-		 *
-		 */
-		public TimeObservationFigure() {
-			removeAllPoints();
-		}
-
-		/**
-		 * Update the side of the lifeline where the figure lies
-		 *
-		 * @param side
-		 *            side where the figure must be
-		 * @param newLocation
-		 *            the new location rectangle
-		 * @generated NOT
-		 */
-		public void setCurrentSideOfFigure(int side, Rectangle newLocation) {
-			// no effect if side has not changed or side is set to default one
-			if (sideOfFigure != side && !(PositionConstants.NONE == sideOfFigure && side == PositionConstants.EAST)) {
-				// mirror the label too
-				IGraphicalEditPart labelChild = getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
-				if (labelChild instanceof TimeObservationLabelEditPart) {
-					TimeObservationLabelEditPart label = (TimeObservationLabelEditPart) labelChild;
-					int labelWidth = label.getFigure().getMinimumSize().width;
-					if (label.getNotationView() instanceof Node) {
-						LayoutConstraint constraint = ((Node) label.getNotationView()).getLayoutConstraint();
-						// update model location constraint for persisting the mirror effect
-						if (constraint instanceof Location) {
-							int xLocation = ((Location) constraint).getX();
-							int mirroredLocation = -xLocation - labelWidth;
-							TransactionalEditingDomain dom = getEditingDomain();
-							org.eclipse.emf.common.command.Command setCmd = SetCommand.create(dom, constraint, NotationPackage.eINSTANCE.getLocation_X(), mirroredLocation);
-							TransactionalCommandStack stack = (TransactionalCommandStack) dom.getCommandStack();
-							Map<String, Boolean> options = new HashMap<String, Boolean>();
-							options.put(Transaction.OPTION_NO_NOTIFICATIONS, true);
-							options.put(Transaction.OPTION_NO_UNDO, true);
-							options.put(Transaction.OPTION_UNPROTECTED, true);
-							try {
-								stack.execute(setCmd, options);
-								// then, update graphically for short time effect
-								IBorderItemLocator locator = label.getBorderItemLocator();
-								Rectangle constrRect = ((ExternalLabelPositionLocator) locator).getConstraint();
-								constrRect.x = mirroredLocation;
-								locator.relocate(label.getFigure());
-							} catch (InterruptedException e) {
-								// log and skip update
-								UMLDiagramEditorPlugin.log.error(e);
-							} catch (RollbackException e) {
-								// log and skip update
-								UMLDiagramEditorPlugin.log.error(e);
-							}
-						}
-					}
-				}
-			}
-			sideOfFigure = side;
-		}
 	}
 }

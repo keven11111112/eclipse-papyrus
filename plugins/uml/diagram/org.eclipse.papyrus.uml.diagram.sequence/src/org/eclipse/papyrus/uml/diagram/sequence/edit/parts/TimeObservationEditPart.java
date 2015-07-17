@@ -17,12 +17,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -52,6 +50,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeObservationItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.TimeMarkElementFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -262,21 +261,6 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public class TimeMarkElementFigure extends PolylineShape {
-
-		/**
-		 * @generated
-		 */
-		public TimeMarkElementFigure() {
-			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
-			this.addPoint(new Point(getMapMode().DPtoLP(20), getMapMode().DPtoLP(0)));
-			this.setLocation(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
-		}
 	}
 
 	/**
