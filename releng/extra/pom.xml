@@ -139,6 +139,7 @@
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.texteditor.modelexplorer</module>
 		<module>../../extraplugins/uml/compare/org.eclipse.papyrus.uml.compare</module>
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.export</module>
+		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.diagram.dnd.smart</module>
 		
 		<!-- Papyrus SoaML   -->
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.profile</module>
