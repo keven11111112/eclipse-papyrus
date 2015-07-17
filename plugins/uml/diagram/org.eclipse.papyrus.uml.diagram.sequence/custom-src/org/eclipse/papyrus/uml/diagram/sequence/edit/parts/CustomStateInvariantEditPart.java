@@ -65,6 +65,7 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomStateInvariantItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;

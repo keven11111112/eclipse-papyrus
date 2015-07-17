@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomGeneralOrderingItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.GeneralOrderingDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;

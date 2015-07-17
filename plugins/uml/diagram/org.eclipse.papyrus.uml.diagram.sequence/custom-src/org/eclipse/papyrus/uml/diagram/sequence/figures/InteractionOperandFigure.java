@@ -14,6 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 
 public class InteractionOperandFigure extends PapyrusNodeFigure {
@@ -22,6 +26,25 @@ public class InteractionOperandFigure extends PapyrusNodeFigure {
 	 * True if line separator is printed
 	 */
 	private boolean lineSeparator = true;
+
+	/**
+	 * True if this Edit Part is the first Operand of his CombinedFragment's parent
+	 */
+	private boolean firstOperand = false;
+
+	private WrappingLabel fInteractionConstraintLabel;
+
+	public InteractionOperandFigure() {
+		this.setLayoutManager(new XYLayout());
+		this.setLineStyle(Graphics.LINE_DASH);
+		this.setBorder(null);
+		this.setLineSeparator(!firstOperand);
+		createContents();
+	}
+
+	public WrappingLabel getInteractionConstraintLabel() {
+		return fInteractionConstraintLabel;
+	}
 
 	@Override
 	public void paintFigure(Graphics graphics) {
@@ -40,5 +63,12 @@ public class InteractionOperandFigure extends PapyrusNodeFigure {
 	 */
 	public void setLineSeparator(boolean lineSeparator) {
 		this.lineSeparator = lineSeparator;
+	}
+
+	private void createContents() {
+		IMapMode mapMode = SequenceMapModeUtil.getMapModel(this);
+		fInteractionConstraintLabel = new WrappingLabel();
+		fInteractionConstraintLabel.setText("");
+		this.add(fInteractionConstraintLabel, new Rectangle(mapMode.DPtoLP(10), mapMode.DPtoLP(10), mapMode.DPtoLP(200), mapMode.DPtoLP(20)));
 	}
 }

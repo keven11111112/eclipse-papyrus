@@ -16,15 +16,11 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -51,11 +47,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNod
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DurationConstraintItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationConstraintFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -266,64 +261,6 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DurationConstraintLabelEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public class DurationConstraintFigure extends RectangleFigure {
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fDurationArrow;
-
-		/**
-		 * @generated
-		 */
-		public DurationConstraintFigure() {
-
-			CenterLayout layoutThis = new CenterLayout();
-
-			this.setLayoutManager(layoutThis);
-
-			this.setFill(false);
-			this.setOutline(false);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(40), getMapMode().DPtoLP(-1)));
-			this.setBorder(createBorder0());
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fDurationArrow = new PolylineShape();
-			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
-			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
-
-			this.add(fDurationArrow);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private Border createBorder0() {
-			LinesBorder result = new LinesBorder();
-
-			result.setSides(PositionConstants.TOP | PositionConstants.BOTTOM);
-
-			return result;
-		}
-
-		/**
-		 * @generated
-		 */
-		public PolylineShape getDurationArrow() {
-			return fDurationArrow;
-		}
 	}
 
 	/**

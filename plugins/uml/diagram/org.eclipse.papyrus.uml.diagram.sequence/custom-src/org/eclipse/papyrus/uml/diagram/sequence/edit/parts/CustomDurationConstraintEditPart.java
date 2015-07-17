@@ -71,6 +71,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper.FixedA
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationConstraintItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationConstraintFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;

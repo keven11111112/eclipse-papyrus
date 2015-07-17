@@ -14,10 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -41,10 +39,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNod
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.StateInvariantItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -289,47 +286,6 @@ public class StateInvariantEditPart extends AbstractBorderItemEditPart {
 	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public class ContinuationFigure extends RoundedRectangle {
-
-		/**
-		 * @generated
-		 */
-		private CenteredWrappedLabel fFigureContinuationNameLabel;
-
-		/**
-		 * @generated
-		 */
-		public ContinuationFigure() {
-			CenterLayout layoutThis = new CenterLayout();
-			this.setLayoutManager(layoutThis);
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50)));
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-			fFigureContinuationNameLabel = new CenteredWrappedLabel();
-			this.add(fFigureContinuationNameLabel);
-		}
-
-		/**
-		 * @generated
-		 */
-		public CenteredWrappedLabel getFigureContinuationNameLabel() {
-			return fFigureContinuationNameLabel;
-		}
-
-		/** generated */
-		public IFigure getInvariantFigure() {
-			return this;
-		}
 	}
 
 	/**

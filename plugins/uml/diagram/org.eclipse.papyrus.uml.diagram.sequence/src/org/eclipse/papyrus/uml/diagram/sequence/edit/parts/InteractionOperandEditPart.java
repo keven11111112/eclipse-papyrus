@@ -14,12 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.FreeformLayout;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
@@ -31,7 +29,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -76,11 +73,6 @@ public class InteractionOperandEditPart extends NodeEditPart {
 	 * @generated
 	 */
 	protected IFigure primaryShape;
-
-	/**
-	 * True if this Edit Part is the first Operand of his CombinedFragment's parent
-	 */
-	private boolean firstOperand = false;
 
 	/**
 	 * @generated
@@ -142,7 +134,7 @@ public class InteractionOperandEditPart extends NodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new CustomInteractionOperandFigure() {
+		return primaryShape = new InteractionOperandFigure() {
 
 			@Override
 			protected boolean useLocalCoordinates() {
@@ -154,8 +146,8 @@ public class InteractionOperandEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public CustomInteractionOperandFigure getPrimaryShape() {
-		return (CustomInteractionOperandFigure) primaryShape;
+	public InteractionOperandFigure getPrimaryShape() {
+		return (InteractionOperandFigure) primaryShape;
 	}
 
 	/**
@@ -264,44 +256,6 @@ public class InteractionOperandEditPart extends NodeEditPart {
 	protected void setLineType(int style) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineStyle(style);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public class CustomInteractionOperandFigure extends InteractionOperandFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fInteractionConstraintLabel;
-
-		/**
-		 * @generated
-		 */
-		public CustomInteractionOperandFigure() {
-			this.setLayoutManager(new XYLayout());
-			this.setLineStyle(Graphics.LINE_DASH);
-			this.setBorder(null);
-			this.setLineSeparator(!firstOperand);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-			fInteractionConstraintLabel = new WrappingLabel();
-			fInteractionConstraintLabel.setText("");
-			this.add(fInteractionConstraintLabel, new Rectangle(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10), getMapMode().DPtoLP(200), getMapMode().DPtoLP(20)));
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getInteractionConstraintLabel() {
-			return fInteractionConstraintLabel;
 		}
 	}
 

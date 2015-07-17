@@ -86,6 +86,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGua
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandAppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionOperandItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
@@ -236,7 +237,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		while (operationOwner != null && false == operationOwner instanceof CombinedFragment) {
 			operationOwner = operationOwner.getOwner();
 		}
-		
+
 		CombinedFragment enclosingCF = (CombinedFragment) operationOwner;
 		InteractionOperatorKind cfOperator = enclosingCF != null ? enclosingCF.getInteractionOperator() : InteractionOperatorKind.SEQ_LITERAL;
 		InteractionConstraint guard = interactionOperand.getGuard();
@@ -807,7 +808,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		}
 	}
 
-	public class CustomCustomInteractionOperandFigure extends CustomInteractionOperandFigure {
+	public class CustomCustomInteractionOperandFigure extends InteractionOperandFigure {
 
 		/**
 		 * Constructor.

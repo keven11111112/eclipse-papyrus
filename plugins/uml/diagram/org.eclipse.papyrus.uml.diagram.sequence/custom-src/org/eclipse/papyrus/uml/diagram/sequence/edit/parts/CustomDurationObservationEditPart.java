@@ -34,6 +34,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomConnectionHa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationObservationItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationObservationConstraint;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**

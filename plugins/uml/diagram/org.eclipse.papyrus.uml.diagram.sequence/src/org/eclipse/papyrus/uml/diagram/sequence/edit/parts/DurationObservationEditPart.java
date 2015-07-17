@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
@@ -41,7 +40,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ListItemComponentEditPoli
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -56,12 +54,10 @@ import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForEle
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DurationObservationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MoveableNonResizableLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationObservationConstraint;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
@@ -327,44 +323,6 @@ public class DurationObservationEditPart extends AbstractBorderedShapeEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DurationObservationLabelEditPart.VISUAL_ID));
 	}
-
-	/**
-	 * @generated
-	 */
-	public class DurationObservationConstraint extends WrappingLabel {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fDurationLabel;
-
-		/**
-		 * @generated
-		 */
-		public DurationObservationConstraint() {
-
-			this.setTextWrap(true);
-
-			this.setTextJustification(PositionConstants.CENTER);
-
-			this.setForegroundColor(ColorConstants.black);
-
-			this.setFont(THIS_FONT);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getDurationLabel() {
-			return fDurationLabel;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font THIS_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
 
 	/**
 	 * @generated
