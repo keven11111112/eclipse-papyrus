@@ -772,14 +772,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="MultilineLabelFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class MultilineLabelFigure extends org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public MultilineLabelFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setBackgroundColor(&#xD;&#xA;getBackgroundColor());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextWrap(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextJustification(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-            <attributes
-                xsi:type="gmfgen:LabelOffsetAttributes"
-                x="22"
-                y="-7"/>
-          </viewmap>
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure" />
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -860,14 +854,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="MultilineLabelFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class MultilineLabelFigure extends org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public MultilineLabelFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setBackgroundColor(&#xD;&#xA;getBackgroundColor());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextWrap(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextJustification(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-            <attributes
-                xsi:type="gmfgen:LabelOffsetAttributes"
-                x="22"
-                y="-7"/>
-          </viewmap>
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure" />
           <modelFacet
               parser="/0/@labelParsers/@implementations.7"/>
         </labels>
@@ -969,14 +957,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="MultilineLabelFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class MultilineLabelFigure extends org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public MultilineLabelFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setBackgroundColor(&#xD;&#xA;getBackgroundColor());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextWrap(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextJustification(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-            <attributes
-                xsi:type="gmfgen:LabelOffsetAttributes"
-                x="25"
-                y="45"/>
-          </viewmap>
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure" />
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
