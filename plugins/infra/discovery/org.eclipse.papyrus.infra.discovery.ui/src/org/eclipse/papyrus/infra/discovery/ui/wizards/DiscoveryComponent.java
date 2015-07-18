@@ -32,13 +32,11 @@ import org.eclipse.ui.PlatformUI;
  */
 public class DiscoveryComponent {
 
-	/**
-	 * URI of the model where all extra component features to be installed are referenced.
-	 * 
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	public static final String DISCOVERY_PAPYRUS_URI = "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/neon/papyrus-extra.xmi";
-
+	/** 
+	* URI of the model where all extra component features to be installed are referenced. Can be set via the system property 'papyrus.discovery.uri'.
+	*/
+	public static final String DISCOVERY_PAPYRUS_URI = System.getProperty("papyrus.discovery.uri", "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/neon/papyrus-extra.xmi"); //$NON-NLS-1$ //$NON-NLS-2$
+	
 	public static final Object execute() {
 		final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 
