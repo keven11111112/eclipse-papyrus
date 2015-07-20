@@ -16,18 +16,14 @@ package org.eclipse.papyrus.sysml14.diagram.common.advices;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
+import org.eclipse.papyrus.sysml14.diagram.common.command.ConfigurePartCommand;
 import org.eclipse.papyrus.sysml14.diagram.common.dialog.CreateOrSelectConstraintPropertyTypeDialog;
 import org.eclipse.papyrus.sysml14.service.types.advice.ConstraintPropertyEditHelperAdvice;
 import org.eclipse.swt.widgets.Display;
@@ -79,7 +75,6 @@ public class ConstraintPropertyGraphicalEditHelperAdvice extends AbstractEditHel
 			// Abort if type creation command exists but is not executable
 			if ((typeCreationCommand != null) && (!typeCreationCommand.canExecute())) {
 				configureCommand = UnexecutableCommand.INSTANCE;
-				// FIXME : Cancel not working throw new OperationCanceledException("Operation Cnacelled by user");
 			} else {
 				configureCommand = CompositeCommand.compose(configureCommand, typeCreationCommand);
 			}
@@ -87,42 +82,11 @@ public class ConstraintPropertyGraphicalEditHelperAdvice extends AbstractEditHel
 			// Create the configure command that will set the constraint property type
 			ICommand setTypeCommand = new ConfigurePartCommand(request,partType,typeCreationCommand) ;
 			configureCommand = CompositeCommand.compose(configureCommand, setTypeCommand);
-			
-			
+		} else {
+			throw new OperationCanceledException("Constraint Property creation cancelled by user"); //$NON-NLS-1$
 		}
+		
 		newParameters.put(ConstraintPropertyEditHelperAdvice.SET_CONSTRAINT_ICOMMAND, configureCommand);
 		request.addParameters(newParameters);
-	}
-}
-
-class ConfigurePartCommand extends ConfigureElementCommand {
-
-
-	private Type partType;
-	private ICommand typeCreationCommand;
-
-	/**
-	 * Constructor.
-	 *
-	 * @param request
-	 * @param partType
-	 */
-	public ConfigurePartCommand(ConfigureRequest request, Type partType, ICommand typeCreationCommand) {
-		super(request);
-		this.partType= partType;
-		this.typeCreationCommand = typeCreationCommand;
-	}
-
-	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-		Property part = (Property) getElementToEdit();
-		if (partType != null) {
-			part.setType(partType);
-		} else {
-			Type newType = (Type) GMFCommandUtils.getCommandEObjectResult(typeCreationCommand);
-			part.setType(newType);
-		}
-		return CommandResult.newOKCommandResult(part);
 	}
 }

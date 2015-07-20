@@ -116,7 +116,6 @@
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf</module>
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf.appearance</module>
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf.diagram.common</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.emf.nattable</module>
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.export</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes</module>
@@ -158,16 +157,7 @@
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.viewersearcher</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.widgets</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.hyperlink</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.common</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.controlmode</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.model</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.model.edit</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.model.editor</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.modelexplorer</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.properties</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.views.config</module>
-		<module>../../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.views.editor</module>
+		<module>../../plugins/infra/nattable</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.newchild</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.newchild.edit</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.onefile</module>
@@ -209,12 +199,7 @@
 		<module>../../plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.ui</module>
 		<module>../../plugins/sysml/org.eclipse.papyrus.sysml.edit</module>
 		<module>../../plugins/sysml/modelexplorer/org.eclipse.papyrus.sysml.modelexplorer</module>
-		<module>../../plugins/sysml/nattable/org.eclipse.papyrus.sysml.nattable</module>
-		<module>../../plugins/sysml/nattable/org.eclipse.papyrus.sysml.nattable.allocation</module>
-		<module>../../plugins/sysml/nattable/org.eclipse.papyrus.sysml.nattable.allocation.config</module>
-		<module>../../plugins/sysml/nattable/org.eclipse.papyrus.sysml.nattable.menu</module>
-		<module>../../plugins/sysml/nattable/org.eclipse.papyrus.sysml.nattable.requirement</module>
-		<module>../../plugins/sysml/nattable/org.eclipse.papyrus.sysml.nattable.requirement.config</module>
+		<module>../../plugins/sysml/nattable</module>
 		<module>../../plugins/sysml/properties/org.eclipse.papyrus.sysml.properties</module>
 		<module>../../plugins/sysml/org.eclipse.papyrus.sysml.service.types</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.eclipse.project.editors</module>
@@ -278,14 +263,7 @@
 		<module>../../plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer</module>
 		<module>../../plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer.widgets</module>
 		<module>../../plugins/uml/org.eclipse.papyrus.uml.modelrepair</module>
-		<module>../../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable</module>
-		<module>../../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.generic</module>
-		<module>../../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.generic.config</module>
-		<module>../../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.clazz.config</module>
-		<module>../../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.menu</module>
-		<module>../../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.xtext.integration</module>
-		<module>../../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.xtext.valuespecification</module>
-		<module>../../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.stereotype.display</module>
+		<module>../../plugins/uml/nattable</module>
 		<module>../../plugins/uml/org.eclipse.papyrus.uml.navigation</module>
 		<module>../../plugins/uml/org.eclipse.papyrus.uml.oclconstraintevaluation</module>
 		<module>../../plugins/uml/org.eclipse.papyrus.uml.perspective</module>
@@ -382,19 +360,19 @@
 			<id>emf-transaction</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201506010221</url>
+			<url>http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201506010221</url>
 		</repository>
 		<repository>
 			<id>emf-validation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201505312255</url>
+			<url>http://download.eclipse.org/modeling/emf/validation/updates/releases/R201505312255</url>
 		</repository>
 		<repository>
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC4-201506032000/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.5/R-4.5-201506032000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -406,13 +384,13 @@
 			<id>gmp-gmf-notation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Notation",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201505312221</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201505312221</url>
 		</repository>
 		<repository>
 			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Runtime",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201506060219</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201506060219</url>
 		</repository>
 		<repository>
 			<id>gmf-tooling</id>
@@ -430,7 +408,7 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201506090403</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.0.0</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>

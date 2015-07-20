@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.infra.nattable.comparator;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +23,16 @@ import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
 import org.eclipse.nebula.widgets.nattable.sort.SortDirectionEnum;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisComparator;
+import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
+import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.SortLabelProviderFullCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
 
 /**
@@ -88,16 +93,12 @@ public class TreeTableCellLabelProviderComparator extends TableCellLabelProvider
 		if (row1 instanceof ITreeItemAxis && row2 instanceof ITreeItemAxis) {
 			ITreeItemAxis axis1 = (ITreeItemAxis) row1;
 			ITreeItemAxis axis2 = (ITreeItemAxis) row2;
-			List<ITreeItemAxis> path1 = new ArrayList<ITreeItemAxis>();
-			List<ITreeItemAxis> path2 = new ArrayList<ITreeItemAxis>();
-			TableHelper.getPath(path1, axis1);
-			TableHelper.getPath(path2, axis2);
 			Object rep1 = AxisUtils.getRepresentedElement(axis1);
 			Object rep2 = AxisUtils.getRepresentedElement(axis2);
 
 			// when the parent is not common between the 2 compared elements OR when at least one of the element is a TreeFillingConfiguration, we must not compare CellValue,
 			// we must compare the location in the tree
-			if ((path1.size() != path2.size()) || (axis1.getParent() != axis2.getParent()) || (rep1 instanceof TreeFillingConfiguration || rep2 instanceof TreeFillingConfiguration)) {
+			if ((axis1.getParent() != axis2.getParent()) || (rep1 instanceof TreeFillingConfiguration || rep2 instanceof TreeFillingConfiguration)) {
 				// we must not compare cell values must location in the tree
 				int res = comparator.compare(axis1, axis2);
 
@@ -106,11 +107,25 @@ public class TreeTableCellLabelProviderComparator extends TableCellLabelProvider
 				}
 				return res;
 			} else {
-				return super.compare(sortWrapper1, sortWrapper2);
+				LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, org.eclipse.nebula.widgets.nattable.style.DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+
+				final String txt1 = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT).getText(sortWrapper1);
+				final String txt2 = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT).getText(sortWrapper2);
+				int res = -1;
+				if (ICellManager.NOT_AVALAIBLE.equals(txt1) || ICellManager.NOT_AVALAIBLE.equals(txt2)) { // OR or AND ? I don't know 
+					res = comparator.compare(axis1, axis2);
+					if (direction == SortDirectionEnum.DESC) {
+						res = -res;// to preserve the order of the TreeFillingConfiguration declared in the model and of the unsortable object
+					}
+				} else {
+					res = Collator.getInstance().compare(txt1, txt2);
+				}
+
+				return res;
 
 			}
 		} else if (row1 instanceof ITreeItemAxis || row2 instanceof ITreeItemAxis) {
-			throw new UnsupportedOperationException(); 
+			throw new UnsupportedOperationException();
 		}
 
 		return super.compare(sortWrapper1, sortWrapper2);

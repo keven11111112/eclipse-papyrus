@@ -48,7 +48,13 @@ Export-Package: org.eclipse.papyrus.migration.rsa,
  org.eclipse.papyrus.migration.rsa.transformation,
  org.eclipse.papyrus.migration.rsa.umlrt,
  org.eclipse.papyrus.migration.rsa.umlrt.impl,
- org.eclipse.papyrus.migration.rsa.umlrt.util
+ org.eclipse.papyrus.migration.rsa.umlrt.util,
+ org.eclipse.papyrus.migration.rsa.diagramholder,
+ org.eclipse.papyrus.migration.rsa.diagramholder.impl,
+ org.eclipse.papyrus.migration.rsa.diagramholder.util,
+ org.eclipse.papyrus.migration.rsa.umlnotation,
+ org.eclipse.papyrus.migration.rsa.umlnotation.impl,
+ org.eclipse.papyrus.migration.rsa.umlnotation.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
@@ -58,5 +64,5 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.migration.rsa.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.migration.rsa;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

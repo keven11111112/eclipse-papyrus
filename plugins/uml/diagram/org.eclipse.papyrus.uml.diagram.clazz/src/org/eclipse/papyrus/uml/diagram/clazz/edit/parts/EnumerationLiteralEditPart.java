@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 472034
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -70,6 +71,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.LiteralEnumerationFigure;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeEnumerationLiteralDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
@@ -77,6 +79,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.EnumerationLiteralLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
@@ -163,6 +167,8 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		installEditPolicy(AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeEnumerationLiteralDisplayEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new EnumerationLiteralLabelEditPolicy());
 	}
 
 	/**
@@ -220,8 +226,7 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure
-			figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -343,15 +348,14 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid =
-								(IParserEditStatus) getEditingDomain().runExclusive(
-										new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+								new RunnableWithResult.Impl<java.lang.Object>() {
 
-											@Override
-											public void run() {
-												setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
-											}
-										});
+							@Override
+							public void run() {
+								setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+							}
+						});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
@@ -480,8 +484,7 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
-				}
-				else if (configuration instanceof IAdvancedEditorConfiguration) {
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
 					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
@@ -526,8 +529,7 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						}
-						else {
+						} else {
 							performDirectEdit();
 						}
 					}
@@ -564,8 +566,7 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 			if (view.isVisible()) {
 				setLabelTextHelper(getFigure(), getLabelText());
 				setLabelIconHelper(getFigure(), getLabelIcon());
-			}
-			else {
+			} else {
 				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
 				setLabelIconHelper(getFigure(), null);
 			}
@@ -584,17 +585,15 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if (resolveSemanticElement() instanceof Feature) {
 			if (((Feature) resolveSemanticElement()).isStatic()) {
 				((WrappingLabel) getFigure()).setTextUnderline(true);
-			}
-			else {
+			} else {
 				((WrappingLabel) getFigure()).setTextUnderline(false);
 			}
 		}
@@ -604,9 +603,8 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -617,9 +615,8 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
 			FontData fontData = new FontData(
 					style.getFontName(), style.getFontHeight(),
@@ -839,8 +836,7 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 				refreshLabel();
 			}
 			if (getParser() instanceof ISemanticParser) {
-				ISemanticParser modelParser =
-						(ISemanticParser) getParser();
+				ISemanticParser modelParser = (ISemanticParser) getParser();
 				if (modelParser.areSemanticElementsAffected(null, event)) {
 					removeSemanticListeners();
 					if (resolveSemanticElement() != null) {

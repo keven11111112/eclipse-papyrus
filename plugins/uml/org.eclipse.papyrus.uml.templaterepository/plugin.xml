@@ -5,7 +5,6 @@
          point="org.eclipse.papyrus.uml.diagram.wizards.templates">
       <transformation
             Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInModel"
-            file="resource/ModelWithBasicTypes.uml"
          	id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInModel"
             language="uml"
             name="A UML model with basic primitive types">
@@ -16,6 +15,7 @@
             id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInProfile"
             language="profile"
             name="A UML profile with basic primitive types">
-      </transformation>   </extension>
+      </transformation>   
+   </extension>
 
 </plugin>

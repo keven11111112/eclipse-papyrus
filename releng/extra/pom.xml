@@ -139,6 +139,7 @@
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.texteditor.modelexplorer</module>
 		<module>../../extraplugins/uml/compare/org.eclipse.papyrus.uml.compare</module>
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.export</module>
+		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.diagram.dnd.smart</module>
 		
 		<!-- Papyrus SoaML   -->
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.profile</module>
@@ -239,6 +240,14 @@
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.traceabilityassistant</module>
 		
+		<!--  Papyrus BPMN  -->
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.common</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.process</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.ui</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bpmn.extra.feature</module>
+		
 		<module>site</module>
 	</modules>
 	<properties>
@@ -259,7 +268,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC4-201506032000/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.5/R-4.5-201506032000/</url>
 		</repository>
 		<repository>
 			<id>cdt</id>
@@ -271,7 +280,7 @@
 			<id>emf-cdo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF CDO",0) -->
-			<url>http://download.eclipse.org/modeling/emf/cdo/drops/R20150610-1526</url>
+			<url>http://download.eclipse.org/modeling/emf/cdo/updates/integration</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>
@@ -301,19 +310,19 @@
 			<id>emf-query</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF Query",0) -->
-			<url>http://download.eclipse.org/modeling/emf/query/updates/milestones/S201505312221</url>
+			<url>http://download.eclipse.org/modeling/emf/query/updates/releases/R201505312221</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201506010221</url>
+			<url>http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201506010221</url>
 		</repository>
 		<repository>
 			<id>emf-validation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201505312255</url>
+			<url>http://download.eclipse.org/modeling/emf/validation/updates/releases/R201505312255</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -325,13 +334,13 @@
 			<id>gmp-gmf-notation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Notation",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201505312221</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201505312221</url>
 		</repository>
 		<repository>
 			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Runtime",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201506060219</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201506060219</url>
 		</repository>
 		<repository>
 			<id>gmf-tooling</id>
@@ -355,7 +364,7 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201506090403</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.0.0</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>

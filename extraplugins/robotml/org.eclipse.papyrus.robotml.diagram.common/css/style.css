@@ -1,7 +1,13 @@
 Property {maskLabel:name; elementIcon:false;}
 Property[type] {maskLabel:name type; }
-Port {maskLabel:name;}
+Port {maskLabel:name;displayIcon:true;}
 CompositeStructureDiagram Label[type="6029"]{
                 visible: false;
 }
-Class {elementIcon:false;}
+Class {displayIcon:true;}
+Connector > Label {
+    visible: false;
+}
+Property, Port, Connector {
+	canonical:true;
+}

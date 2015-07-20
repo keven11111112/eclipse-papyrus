@@ -1,7 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,542 +8,523 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Thomas Daniellou (CEA LIST) - Refactoring and cleanup
  *****************************************************************************/
 package org.eclipse.papyrus.adltool.designer;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
-import org.eclipse.papyrus.adltool.Activator;
-import org.eclipse.papyrus.adltool.designer.bundle.BundleDesignerRegistry;
-import org.eclipse.papyrus.adltool.designer.bundle.ReferencedOSGIElement;
+import org.eclipse.papyrus.adltool.ADLConstants;
+import org.eclipse.papyrus.adltool.reversible.project.ReversiblePlugin;
+import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
 import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
+import org.eclipse.papyrus.adltool.reversible.extension.SchemaElement;
+import org.eclipse.papyrus.adltool.reversible.extension.SchemaAttribute;
+import org.eclipse.papyrus.adltool.reversible.extension.ReversibleExtension;
+import org.eclipse.papyrus.adltool.reversible.extensionpoint.ReversibleExtensionPoint;
+import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
-import org.eclipse.pde.core.project.IBundleProjectDescription;
-import org.eclipse.pde.core.project.IBundleProjectService;
-import org.eclipse.pde.internal.core.PDECore;
-import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
-import org.eclipse.pde.internal.core.ifeature.IFeaturePlugin;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
-import org.osgi.framework.VersionRange;
 
 /**
- * this purpose of this class is to provide mechanism to import bundle into model
- *
+ * This class manipulates each reversibles representation, creates the
+ * dependencies between them, and when necessary, adds them in the model.
  */
-@SuppressWarnings("restriction")
-public abstract class ArchitectureSnapshotDesigner {
-	protected HashMap<String, Object> bundlesIndex = null;
-	protected HashMap<String, Component> createdFeatureIndex = null;
-	protected HashMap<String, Object> featureIndex = null;
-	protected BundleDesignerRegistry bundleDesignerRegistry = null;
-	protected int dependenciesN = 0;
-	protected ArrayList<Object> bundleInitialList = null;
-	protected int dependencyLevelMax = 1;
+public class ArchitectureSnapshotDesigner {
 
-
+	private static final String DEPENDENCY_NAME_SUFFIX = "dep_";
+	private static final String EXTENSION_POINT_DEPENDENCY_NAME_SUFFIX = "ext_";
 
 	/**
-	 * The key used to designate the buddy loader associated with a given bundle.
+	 * Set containing the projects that have been reversed during the current import.
 	 */
-
-	protected Package rootPackage;
-	private Bundle systemBundle;
-
-	private ArchitectureSnapshotDesigner(Package rootPackage) {
-		this.rootPackage = rootPackage;
-		bundleDesignerRegistry = new BundleDesignerRegistry();
-		createdFeatureIndex = new HashMap<String, Component>();
-
-	}
+	private Set<ReversibleProject> reversedProjects;
 
 	/**
-	 *
+	 * List of projects to be reversed.
+	 */
+	private Set<ReversibleProject> reversibles;
+
+	/**
+	 * Reverse settings containing the depth level of dependencies to reverse.
+	 */
+	private ReverseSettings settings;
+
+	/**
+	 * The package that will hold the reversed projects.
+	 */
+	private Package model;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param rootPackage
-	 * @param bundleInitialList
-	 *            must not be null
+	 * @param model
+	 * @param reversibles
+	 * @param settings
 	 */
-	public ArchitectureSnapshotDesigner(Package rootPackage, ArrayList<Object> bundleInitialList) {
-		this(rootPackage);
-		assert (bundleInitialList != null);
-		this.bundleInitialList = bundleInitialList;
-
-	}
-
-	/**
-	 * this method is used to launch the import of bundle into models
-	 */
-	public abstract void runImportBundles();
-
-	/**
-	 *
-	 * @return bundles loaded in the platform
-	 */
-	public static ArrayList<Bundle> getLoadedBundles() {
-		ArrayList<Bundle> pluginList = new ArrayList<Bundle>();
-		Bundle[] bundleArray = PDECore.getDefault().getBundleContext().getBundles();
-		pluginList.addAll(Arrays.asList(bundleArray));
-		return pluginList;
-	}
-
-	/**
-	 *
-	 * @return the list of bundle description contained in the workspace
-	 */
-	public static ArrayList<IBundleProjectDescription> getWorkspaceBundle() {
-		ArrayList<IBundleProjectDescription> bundleProjectList = new ArrayList<IBundleProjectDescription>();
-		IProject[] project = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-		BundleContext context = Activator.getDefault().getBundleContext();
-		ServiceReference<?> ref = context.getServiceReference(IBundleProjectService.class.getName());
-		IBundleProjectService BundleProjectservice = (IBundleProjectService) context.getService(ref);
-		for (int i = 0; i < project.length; i++) {
-			try {
-				if ((project[i].getNature(IBundleProjectDescription.PLUGIN_NATURE)) != null) {
-					IBundleProjectDescription bundleDescription = BundleProjectservice.getDescription(project[i]);
-					bundleProjectList.add(bundleDescription);
-				}
-			} catch (CoreException e) {
-				e.printStackTrace();
-			}
-		}
-		return bundleProjectList;
-	}
-
-	/**
-	 *
-	 * @return the list of bundle description contained in the workspace
-	 */
-	public static ArrayList<Object> getWorkspaceFeature() {
-		ArrayList<Object> featureList = new ArrayList<Object>();
-		IFeatureModel[] featureModels = PDECore.getDefault().getFeatureModelManager().getWorkspaceModels();
-		featureList.addAll(Arrays.asList(featureModels));
-		return featureList;
-	}
-
-	/**
-	 *
-	 * @return the list of bundle description contained in the workspace
-	 */
-	public static ArrayList<Object> getFeature() {
-		ArrayList<Object> featureList = new ArrayList<Object>();
-		IFeatureModel[] featureModels = PDECore.getDefault().getFeatureModelManager().getModels();
-		featureList.addAll(Arrays.asList(featureModels));
-		return featureList;
-	}
-
-
-	/**
-	 * model all bundle contained in the workspaces
-	 *
-	 * @param pluginPackage
-	 *            the name of UML package that represent the plugin
-	 */
-	protected void modelBundles(Package pluginPackage) {
-		ArrayList<Object> bundleProjects = new ArrayList<Object>();
-		bundleProjects.addAll(bundleInitialList);
-		Iterator<Object> bundleProjectsIterator = bundleProjects.iterator();
-		while (bundleProjectsIterator.hasNext()) {
-			Object bundleProject = bundleProjectsIterator.next();
-			modelBundle(pluginPackage, bundleProject, 0);
-		}
-		System.out.println("created bundles numbers: " + createdFeatureIndex.keySet().size());
-		System.out.println("dependencies: " + dependenciesN);
-
-	}
-
-	// protected void modelWorkspaceFeatures(Package pluginPackage, boolean createAll){
-	// // IFeatureModel[] featureModels=PDECore.getDefault().getFeatureModelManager().getModels();
-	// IFeatureModel[] featureModels=PDECore.getDefault().getFeatureModelManager().getWorkspaceModels();
-	// for(int i = 0; i < featureModels.length; i++) {
-	// modelAFeature(pluginPackage,featureModels[i], createAll);
-	// }
-	//
-	// }
-
-	// protected void modelPlatformFeatures(Package pluginPackage, boolean createAll){
-	// // IFeatureModel[] featureModels=PDECore.getDefault().getFeatureModelManager().getModels();
-	// IFeatureModel[] featureModels=PDECore.getDefault().getFeatureModelManager().getModels();
-	// for(int i = 0; i < featureModels.length; i++) {
-	// modelAFeature(pluginPackage,featureModels[i], createAll);
-	// }
-	//
-	// }
-	// protected void modelAFeature(Package pluginPackage, IFeatureModel featureModel, boolean createAll){
-	//
-	// Component bundleComponent= UMLFactory.eINSTANCE.createComponent();
-	// bundleComponent.setName(featureModel.getFeature().getId());
-	// pluginPackage.getPackagedElements().add(bundleComponent);
-	// Stereotype featureStereotype=bundleComponent.getApplicableStereotype(IADL4ECLIPSE_Stereotype.FEATURE_STEREOTYPE);
-	// bundleComponent.applyStereotype(featureStereotype);
-	// bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_ID_ATT,featureModel.getFeature().getId());
-	// bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_VERSION_ATT,featureModel.getFeature().getVersion());
-	// //bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_COPYRIGHT_ATT,featureModel.getFeature().getVersion());
-	// //bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_DESCRIPTION_ATT,featureModel.getFeature().get);
-	// bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_IMAGE_ATT,featureModel.getFeature().getImageName());
-	// bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_LABEL_ATT,featureModel.getFeature().getLabel());
-	// bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_LICENSE_ATT,featureModel.getFeature().getLicenseFeatureID());
-	// bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_PROVIDER_ATT,featureModel.getFeature().getProviderName());
-	// //bundleComponent.setValue(featureStereotype, IADL4ECLIPSE_Stereotype.FEATURE_URL_ATT,featureModel.getFeature().getURL());
-	//
-	// }
-
-
-	protected void modelPseudoBundle(Package pluginPackage, String ID) {
-		Component bundleComponent = UMLFactory.eINSTANCE.createComponent();
-		System.out.println("PS-->" + ID);
-		bundleComponent.setName(ID);
-		pluginPackage.getPackagedElements().add(bundleComponent);
-		createdFeatureIndex.put(ID, bundleComponent);
-	}
-
-
-	/**
-	 * Model a bundle into the plugins packages:
-	 * <UL>
-	 * <LI>model the bundle as a stereotyped UML component
-	 * <LI>add links to required bundle
-	 * <LI>fill information about exported packages
-	 * </UL>
-	 *
-	 *
-	 * @param pluginPackage
-	 * @param bundleProjectsIterator
-	 */
-	protected void modelBundle(Package pluginPackage, Object bundleProject, int currentLevel) {
-
-		if (bundleProject instanceof IFeatureModel) {
-			if (!(createdFeatureIndex.containsKey(bundleDesignerRegistry.getSymbolicName(bundleProject)))) {
-				Component bundleComponent = UMLFactory.eINSTANCE.createComponent();
-				System.out.println("F-->" + bundleDesignerRegistry.getSymbolicName(bundleProject));
-				bundleComponent.setName(bundleDesignerRegistry.getSymbolicName(bundleProject));
-				pluginPackage.getPackagedElements().add(bundleComponent);
-				Stereotype pluginStereotype = bundleComponent.getApplicableStereotype(IADL4ECLIPSE_Stereotype.FEATURE_STEREOTYPE);
-				bundleComponent.applyStereotype(pluginStereotype);
-				// add in the index of bundles
-				if (bundleDesignerRegistry.getSymbolicName(bundleProject) != null) {
-					createdFeatureIndex.put(bundleDesignerRegistry.getSymbolicName(bundleProject), bundleComponent);
-				}
-				else {
-					System.err.println("bundle symbolic name is null");
-				}
-				fillRequiredBundle(bundleComponent, bundleProject, pluginPackage, currentLevel);
-				fillReferencedPlugins(pluginPackage, (IFeatureModel) bundleProject, currentLevel, bundleComponent);
-
-				// bundleDesignerRegistry.fillPluginProperties(bundleComponent, bundleProject);
-				// bundleDesignerRegistry.fillExportedPackages(bundleComponent, bundleProject);
-			}
-
-		} else {
-
-			if (!(createdFeatureIndex.containsKey(bundleDesignerRegistry.getSymbolicName(bundleProject)))) {
-
-
-				Component bundleComponent = UMLFactory.eINSTANCE.createComponent();
-
-				System.out.println("P (" + currentLevel + ")-->" + bundleDesignerRegistry.getSymbolicName(bundleProject));
-
-				bundleComponent.setName(bundleDesignerRegistry.getSymbolicName(bundleProject));
-				pluginPackage.getPackagedElements().add(bundleComponent);
-				Stereotype pluginStereotype = bundleComponent.getApplicableStereotype(IADL4ECLIPSE_Stereotype.PLUGIN_STEREOTYPE);
-				bundleComponent.applyStereotype(pluginStereotype);
-				// add in the index of bundles
-				if ("org.eclipse.osgi".equals(bundleDesignerRegistry.getSymbolicName(bundleProject))) {
-					createdFeatureIndex.put(org.osgi.framework.Constants.SYSTEM_BUNDLE_SYMBOLICNAME, bundleComponent);
-				}
-				if (bundleDesignerRegistry.getSymbolicName(bundleProject) != null) {
-					createdFeatureIndex.put(bundleDesignerRegistry.getSymbolicName(bundleProject), bundleComponent);
-				}
-				else {
-					System.err.println("bundle symbolic name is null");
-				}
-				fillRequiredBundle(bundleComponent, bundleProject, pluginPackage, currentLevel);
-				bundleDesignerRegistry.fillPluginProperties(bundleComponent, bundleProject);
-				bundleDesignerRegistry.fillExportedPackages(bundleComponent, bundleProject);
-				modelExtensions(bundleComponent, bundleProject, currentLevel);
-			}
-		}
-	}
-
-	protected void modelExtensions(Component bundleComponent, Object bundleProject, int currentLevel) {
-		if (currentLevel >= dependencyLevelMax) {
-			return;
+	public ArchitectureSnapshotDesigner(Package model, Set<ReversibleProject> reversibles, ReverseSettings settings) {
+		if (model == null || reversibles == null || reversibles.isEmpty()) {
+			throw new IllegalArgumentException();
 		}
 
-		// list all extensions use and declaration
-		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
-		IExtension[] extensions = extensionRegistry.getExtensions(bundleDesignerRegistry.getSymbolicName(bundleProject));
-		System.out.println("nb extension " + extensions.length);
+		this.model = model;
+		this.settings = settings;
+		this.reversibles = reversibles;
 
+		reversedProjects = new HashSet<>();
+	}
 
-		for (int i = 0; i < extensions.length; i++) {
-			// use or declaration create it!
-			Port clientPort = bundleComponent.createOwnedPort(extensions[i].getExtensionPointUniqueIdentifier(), null);
-			String ownerID = extensionRegistry.getExtensionPoint(extensions[i].getExtensionPointUniqueIdentifier()).getNamespaceIdentifier();
-			System.out.println("---------> " + extensions[i].getExtensionPointUniqueIdentifier() + " FROM " + ownerID);
+	/**
+	 * Launches the import of bundle into the model.
+	 */
+	public void runImportBundles() {
+		initModel();
 
-			// look for the plugin that declare the extension point
-			Object foundBundle = getBundle(ownerID);
-			if (foundBundle != null) {
-				if (!(createdFeatureIndex.containsKey(ownerID))) {
-					modelBundle(bundleComponent.getNearestPackage(), foundBundle, currentLevel + 1);
-				}
-			}
-			else {
-				modelPseudoBundle(bundleComponent.getNearestPackage(), ownerID);
-			}
-
-			Component componentOwner = createdFeatureIndex.get(ownerID);
-			// if the declaration of the bundle is the same bundle , this is a declaration so no link to create
-			if (!componentOwner.equals(bundleComponent)) {
-				Port supplierPort = componentOwner.getOwnedPort(extensions[i].getExtensionPointUniqueIdentifier(), null);
-				if (supplierPort == null) {
-					supplierPort = componentOwner.createOwnedPort(extensions[i].getExtensionPointUniqueIdentifier(), null);
-				}
-				modelRelationExtensionBased(bundleComponent, extensions[i], clientPort, supplierPort);
-			}
+		// Reverses the selected projects in the model
+		for (ReversibleProject project : reversibles) {
+			reverseProject(project);
 		}
 	}
 
 	/**
-	 * create a model element between 2 elements that represents relation between two extension point
-	 *
-	 * @param bundleComponent
-	 *            the component that use extension
-	 * @param extension
-	 *            the extension point
-	 * @param clientPort
-	 *            the port that represent the use to the extension point
-	 * @param supplierPort
-	 *            the port that represent the declaration of this extension point
+	 * Ensures that the ADL4Eclipse and OSGi profiles have been applied.
 	 */
-	protected void modelRelationExtensionBased(Component bundleComponent, IExtension extension, Port clientPort, Port supplierPort) {
-		Dependency dependency = UMLFactory.eINSTANCE.createDependency();
-		dependency.setName(extension.getExtensionPointUniqueIdentifier());
-		// bundleComponent.getNearestPackage().getPackagedElements().add(dependency);
-		bundleComponent.getPackagedElements().add(dependency);
-		dependency.getClients().add(clientPort);
-		dependency.getSuppliers().add(supplierPort);
+	private void initModel() {
+		applyProfile(IADL4ECLIPSE_Stereotype.ADL4ECLIPSE);
+		applyProfile(IOSGIStereotype.OSGI);
 	}
 
-	/**
-	 * fill the list of referenced plug-ins of a feature. for each plug-in a property will be created
-	 *
-	 * @param pluginPackage
-	 *            the package that will contain plug-ins
-	 * @param bundleProject
-	 *            the bundle project that represents a feature
-	 * @param currentLevel
-	 *            the current level about dependency depth
-	 * @param bundleComponent
-	 *            model in UML that correspond to the bundle project
-	 */
-	protected void fillReferencedPlugins(Package pluginPackage, IFeatureModel bundleProject, int currentLevel, Component bundleComponent) {
-		IFeaturePlugin[] pluginsList = bundleProject.getFeature().getPlugins();
-		for (int i = 0; i < pluginsList.length; i++) {
-			System.out.println("+-> P from F (" + currentLevel + ")" + pluginsList[i].getId());
-			Object foundBundle = getBundle(pluginsList[i].getId());
-			if (foundBundle == null) {
-				System.err.println("Cannot find the plugin : " + pluginsList[i].getId());
-				System.err.println("Memory\n" + this);
-			}
-			else {
-				modelBundle(pluginPackage, foundBundle, currentLevel);
-				Component createdBundle = createdFeatureIndex.get(pluginsList[i].getId());
-				bundleComponent.createOwnedAttribute(pluginsList[i].getId(), createdBundle);
-			}
-		}
-	}
+	private void applyProfile(String profileName) {
+		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile(profileName);
 
-	/**
-	 * Ensure that the profile ADL4 eclipse has been applied
-	 */
-	protected void initModel() {
-		RegisteredProfile registeredProfile = (RegisteredProfile) RegisteredProfile.getRegisteredProfile("ADL4Eclipse");
 		if (registeredProfile != null) {
-			URI modelUri = registeredProfile.uri;
-			final Resource modelResource = Util.getResourceSet(rootPackage).getResource(modelUri, true);
-			Profile adl4eclipseprofile = (Profile) modelResource.getContents().get(0);
-			PackageUtil.applyProfile(rootPackage, adl4eclipseprofile, false);
+			URI modelUri = registeredProfile.getUri();
+			Resource modelResource = Util.createTemporaryResourceSet().getResource(modelUri, true);
+			Profile profile = (Profile) modelResource.getContents().get(0);
+
+			PackageUtil.applyProfile(model, profile, false);
 		}
-	}
-
-	protected Object getfeature(String name) {
-		if (featureIndex == null) {
-			featureIndex = new HashMap<String, Object>();
-			IFeatureModel[] featureModels = PDECore.getDefault().getFeatureModelManager().getModels();
-			for (int i = 0; i < featureModels.length; i++) {
-				System.out.println("feature known: " + bundleDesignerRegistry.getSymbolicName(featureModels[i]));
-				featureIndex.put(bundleDesignerRegistry.getSymbolicName(featureModels[i]), featureModels[i]);
-			}
-		}
-		return featureIndex.get(name);
-	}
-
-	protected Object getBundle(String name) {
-
-		if (bundlesIndex == null) {
-			bundlesIndex = new HashMap<String, Object>();
-			// loaded bundle
-			BundleContext context = Activator.getDefault().getBundleContext();
-			systemBundle = context.getBundle(0);
-			bundlesIndex.put(org.osgi.framework.Constants.SYSTEM_BUNDLE_SYMBOLICNAME, systemBundle);
-			bundlesIndex.put(bundleDesignerRegistry.getSymbolicName(systemBundle), systemBundle);
-			System.out.println(bundleDesignerRegistry.getName(systemBundle) + " " + bundleDesignerRegistry.getSymbolicName(systemBundle));
-			org.osgi.framework.Bundle[] bundles = context.getBundles();
-
-			for (int i = 0; i < bundles.length; i++) {
-				if (bundleDesignerRegistry.getSymbolicName(bundles[i]) != null) {
-					bundlesIndex.put(bundleDesignerRegistry.getSymbolicName(bundles[i]), bundles[i]);
-				}
-				else {
-					System.err.println("Bundle has a symbolic name null!");
-				}
-				if (bundleDesignerRegistry.getName(bundles[i]) != null) {
-					bundlesIndex.put(bundleDesignerRegistry.getName(bundles[i]), bundles[i]);
-				}
-				else {
-					System.err.println("Bundle has a  name null!");
-				}
-			}
-			IProject[] project = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-			// bundle Workspace
-			ServiceReference<?> ref = context.getServiceReference(IBundleProjectService.class.getName());
-			IBundleProjectService BundleProjectservice = (IBundleProjectService) context.getService(ref);
-			for (int i = 0; i < project.length; i++) {
-				try {
-					if ((project[i].getNature(IBundleProjectDescription.PLUGIN_NATURE)) != null) {
-						IBundleProjectDescription bundleDescription = BundleProjectservice.getDescription(project[i]);
-						bundlesIndex.put(bundleDesignerRegistry.getBundleValue(bundleDescription, org.osgi.framework.Constants.BUNDLE_NAME), bundleDescription);
-					}
-				} catch (CoreException e) {
-					e.printStackTrace();
-				}
-			}
-
-		}
-
-
-
-		return bundlesIndex.get(name);
-
 	}
 
 	/**
-	 * Model the required bundle. if it not exist the bundle is modeling.
-	 * It create a stereotyped dependency to the required element
+	 * Checks whether the reversible has been flagged as reversed or not.
 	 *
-	 * @param bundleComponent
-	 *            the description of the bundle
-	 * @param bundleProject
+	 * @param project
+	 * @return returns true if this the reversible has been reversed.
 	 */
-	protected void fillRequiredBundle(Component bundleComponent, Object bundleProject, Package library, int currentLevel) {
-		ArrayList<ReferencedOSGIElement> requiredBundleNameList = bundleDesignerRegistry.getRequiredBundle(bundleComponent, bundleProject);
-		Iterator<ReferencedOSGIElement> bundleNameIterator = requiredBundleNameList.iterator();
-		if (currentLevel >= dependencyLevelMax) {
-			return;
+	private boolean wasReversed(ReversibleProject project) {
+		return reversedProjects.contains(project);
+	}
+
+	/**
+	 * Flags the reversible to prevent recursive reverse loop.
+	 *
+	 * @param project the project to be flagged as reversed
+	 */
+	private void setReversed(ReversibleProject project) {
+		reversedProjects.add(project);
+	}
+
+	/**
+	 * Reverses a project and, if the {@link ReverseSettings} allows it, its
+	 * dependencies, exported packages, extension points and extensions.
+	 *
+	 * <p>
+	 * <b>Note:</b> This method adds the project's representation in the model.
+	 * </p>
+	 *
+	 * @param project the project to reverse
+	 */
+	private void reverseProject(ReversibleProject project) {
+		insertInModel(project);
+		setReversed(project);
+
+		// Reverse the children
+		if (project instanceof ReversibleProject) {
+			if (settings.reverseDependencies()) {
+
+				for (ReversibleProject child : project.getDependencies()) {
+					reverseChildProject(project, child, settings.getReverseDepth());
+				}
+			}
 		}
-		while (bundleNameIterator.hasNext()) {
-			dependenciesN++;
-			ReferencedOSGIElement bundleRef = bundleNameIterator.next();
-			Component requiredComponent = null;
-			Object foundBundle = getBundle(bundleRef.getSymbolicName());
 
-			if (bundleRef.isOptional() || foundBundle != null) {
-				if (foundBundle != null) {
-					if ((!(createdFeatureIndex.containsKey(bundleRef.getSymbolicName()))) && (!(createdFeatureIndex.containsKey(bundleRef.getSymbolicName())))) {
-						if (isInitialPlugin(bundleRef.getSymbolicName())) {
-							modelBundle(library, foundBundle, currentLevel);
-						}
-						else {
-							modelBundle(library, foundBundle, currentLevel + 1);
-						}
-					}
-				}
-				else {
-					modelPseudoBundle(library, bundleRef.getSymbolicName());
-				}
-				requiredComponent = createdFeatureIndex.get(bundleRef.getSymbolicName());
-				Dependency dependency = UMLFactory.eINSTANCE.createDependency();
-				dependency.setName(requiredComponent.getName());
-				// bundleComponent.getNearestPackage().getPackagedElements().add(dependency);
-				bundleComponent.getPackagedElements().add(dependency);
-				dependency.getClients().add(bundleComponent);
-				dependency.getSuppliers().add(requiredComponent);
-				Stereotype bRef_stereotype = dependency.getApplicableStereotype(IOSGIStereotype.BUNDLEREFERENCE_);
-				dependency.applyStereotype(bRef_stereotype);
-				VersionRange versionRange = bundleRef.getVersion();
-				if (versionRange != null) {
-					if (versionRange.getRight() == null) {
-						dependency.setValue(bRef_stereotype, IOSGIStereotype.VERSIONRANGE_ATLEAST_ATT, versionRange.getLeft().toString());
-						System.out.println("  " + versionRange.getLeft());
-					}
-					else {
-						dependency.setValue(bRef_stereotype, IOSGIStereotype.VERSIONRANGE_FLOOR_ATT, versionRange.getLeft().toString());
-						dependency.setValue(bRef_stereotype, IOSGIStereotype.VERSIONRANGE_CEILING_ATT, versionRange.getRight().toString());
-						dependency.setValue(bRef_stereotype, IOSGIStereotype.VERSIONRANGE_INCLUDEFLOOR_ATT, versionRange.getRightType() == VersionRange.LEFT_OPEN);
-						dependency.setValue(bRef_stereotype, IOSGIStereotype.VERSIONRANGE_INCLUDECEILING_ATT, versionRange.getRightType() == VersionRange.RIGHT_OPEN);
-						System.out.println("  " + versionRange.getRight() + " " + versionRange.getLeft());
-					}
-				}
+		if (project instanceof ReversiblePlugin) {
+			ReversiblePlugin reversiblePlugin = (ReversiblePlugin) project;
 
+			// Reverse exported packages
+			if (settings.reverseExportPackages()) {
+				for (String exportedPackageName : reversiblePlugin.getExportedPackages()) {
+					reverseExportedPackage(project, exportedPackageName);
+				}
 			}
 
-			else if ((!bundleRef.isOptional()) && foundBundle == null) {
-				System.err.println("pb: impossible to find the get the bundle dependency " + bundleRef.getSymbolicName() + " for " + bundleDesignerRegistry.getSymbolicName(bundleProject));
-				System.err.println("Memory\n" + this);
+			// Extension points
+			if (settings.reverseExtensionPoints()) {
+				for (ReversibleExtensionPoint extensionPoint : reversiblePlugin.getExtensionPoints()) {
+					reverseExtensionPoint(extensionPoint);
+				}
 			}
+
+			// Extensions
+			if (settings.reverseExtensions()) {
+				for (ReversibleExtension extension : reversiblePlugin.getExtensions()) {
+					reverseExtension(extension);
+				}
+			}
+		}
+
+		// Fill stereotype properties
+		project.fillStereotype();
+	}
+
+	/**
+	 * Reverses a child project and adds a dependency to its parent.
+	 *
+	 * <p>
+	 * <b>Note:</b> This method adds the project's representation in the model.
+	 * </p>
+	 *
+	 * @param parent the parent project
+	 * @param child the child project
+	 * @param currentDepth the current depth level
+	 */
+	private void reverseChildProject(ReversibleProject parent, ReversibleProject child, int currentDepth) {
+		// Prevent recursion cycle
+		if (!wasReversed(child)) {
+			insertInModel(child);
+			setReversed(child);
+
+			createDependency(parent, child);
+
+			// Reverse the sub-children if we are in infinite mode or the depth is not reached
+			if (currentDepth == ADLConstants.INFINITE_DEPTH_OPTION || currentDepth > 1) {
+				int newDepth = currentDepth == ADLConstants.INFINITE_DEPTH_OPTION ? currentDepth : currentDepth - 1;
+
+				for (ReversibleProject subChild : child.getDependencies()) {
+					reverseChildProject(child, subChild, newDepth);
+				}
+			}
+
+			// Fill stereotype
+			child.fillStereotype();
 		}
 	}
 
-	@Override
-	public String toString() {
-		String out = "loaded bundles:\n";
-		for (Iterator<String> iterator = bundlesIndex.keySet().iterator(); iterator.hasNext();) {
-			String id = iterator.next();
-			out = out + "\n" + id;
+	/**
+	 * Reverses an exported package inside a reversible project. <br />
+	 * A reversed exported package is a package inside the project's component.
+	 *
+	 * @param project the project containing the exported packages
+	 * @param exportedPackageName the exported package name
+	 */
+	private void reverseExportedPackage(ReversibleProject project, String exportedPackageName) {
+		Component reversedProject = project.getRepresentation();
+
+		// Add the package if it does not exist
+		if (project.getElement(exportedPackageName, Package.class) == null) {
+			Package exportedPackage = UMLFactory.eINSTANCE.createPackage();
+
+			exportedPackage.setName(exportedPackageName);
+			reversedProject.getPackagedElements().add(exportedPackage);
+
+			String stereotypeName = IADL4ECLIPSE_Stereotype.ECLIPSE_EXPORTEDPACKAGE_STEREOTYPE;
+			Stereotype exportedPackageStereotype = exportedPackage.getApplicableStereotype(stereotypeName);
+			exportedPackage.applyStereotype(exportedPackageStereotype);
 		}
-		out = out + "\ncreated bundles:\n";
-		for (Iterator<String> iterator = createdFeatureIndex.keySet().iterator(); iterator.hasNext();) {
-			String id = iterator.next();
-			out = out + "\n" + id;
-		}
-		return out;
 	}
 
-	protected boolean isInitialPlugin(String name) {
-		Iterator<Object> bundleProjectsIterator = bundleInitialList.iterator();
-		while (bundleProjectsIterator.hasNext()) {
-			Object bundleProject = bundleProjectsIterator.next();
-			if (name.equals(bundleDesignerRegistry.getSymbolicName(bundleProject))) {
-				return true;
+	/**
+	 * Reverses an extension point. <br />
+	 * A reversed extension point is a component inside the project's component.
+	 *
+	 * @param extensionPoint
+	 */
+	private void reverseExtensionPoint(ReversibleExtensionPoint extensionPoint) {
+		ReversibleProject project = extensionPoint.getParent();
+		Component reversedProject = project.getRepresentation();
+		Component reversedExtensionPoint = project.getElement(extensionPoint);
+
+		if (reversedExtensionPoint == null) {
+			reversedExtensionPoint = extensionPoint.getRepresentation();
+			reversedProject.getPackagedElements().add(reversedExtensionPoint);
+		} else {
+			extensionPoint.setRepresentation(reversedExtensionPoint);
+		}
+
+		// Create a port of type "reversed extension point" if it does not exist
+		if (project.getElement(extensionPoint.getId(), Port.class) == null) {
+			reversedProject.createOwnedPort(extensionPoint.getId(), reversedExtensionPoint);
+		}
+
+		reverseExtensionPointElements(extensionPoint);
+
+		// Fill stereotype
+		extensionPoint.fillStereotype();
+	}
+
+	/**
+	 * Reverses an extension. <br/>
+	 * An reversed extension is represented by an
+	 * {@link org.eclipse.uml2.uml.InstanceSpecification InstanceSpecification}
+	 * inside the project's component. The reversed project will have a port
+	 * linked to the extension point definer's port.
+	 *
+	 * @param extension
+	 */
+	private void reverseExtension(ReversibleExtension extension) {
+		ReversibleProject project = extension.getParent();
+		ReversibleExtensionPoint extensionPoint = extension.getExtensionPoint();
+
+		if (extensionPoint != null) {
+			Component reversedProject = project.getRepresentation();
+
+			// Check if the extension is in the project's representation
+			InstanceSpecification reversedExtension = project.getElement(extension);
+
+			if (reversedExtension == null) {
+				reversedExtension = extension.getRepresentation();
+				reversedProject.getPackagedElements().add(reversedExtension);
+			} else {
+				extension.setRepresentation(reversedExtension);
+			}
+
+			// Make sure the extension point's elements are reversed
+			reverseExtensionPointElements(extensionPoint);
+
+			// Create the instance specification's slots
+			for (SchemaElement element : extension.getElements()) {
+				Component reversedElement = extensionPoint.getElement(element.getName(), Component.class);
+
+				if (reversedElement != null) {
+					// Set the InstanceSpecification's classifier
+					reversedExtension.getClassifiers().add(reversedElement);
+					reversedExtension.getSlots().clear();
+
+					for (SchemaAttribute schemaAttribute : element.getAttributes()) {
+						LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+						value.setValue(schemaAttribute.getValue());
+
+						// TODO: Refactor this
+						for (Property attribute : reversedElement.getOwnedAttributes()) {
+							if (attribute.getName().equals(schemaAttribute.getName())) {
+								Slot slot = reversedExtension.createSlot();
+
+								slot.setDefiningFeature(attribute);
+								slot.getValues().add(value);
+							}
+						}
+					}
+				}
+			}
+
+			// Create a port of type "reversed extension point"
+			if (project.getElement(extensionPoint.getId(), Port.class) == null) {
+				reversedProject.createOwnedPort(extensionPoint.getId(), extensionPoint.getRepresentation());
+			}
+
+			createExtensionPointDependency(project, extensionPoint);
+		}
+
+		// Fill stereotype
+		extension.fillStereotype();
+	}
+
+	/**
+	 * Creates a dependency between two projects (the one that contributes to an
+	 * extension point and the extension point's parent).
+	 *
+	 * <p>
+	 * <b>Note:</b> If the project and its extension point are not in the model,
+	 * this method will add them.
+	 * </p>
+	 *
+	 * @param project
+	 * @param extensionPoint
+	 */
+	private void createExtensionPointDependency(ReversibleProject project, ReversibleExtensionPoint extensionPoint) {
+		// Retrieve the extension point definer
+		ReversibleProject parent = extensionPoint.getParent();
+
+		Component reversedProject = project.getRepresentation();
+		Component parentRepresentation = parent.getRepresentation();
+		Component reversedExtensionPoint = extensionPoint.getRepresentation();
+
+		// Add the extension point definer in the model
+		if (model.getPackagedElement(parent.getId()) == null) {
+			model.getPackagedElements().add(parentRepresentation);
+		}
+
+		// Make sure the extension point is in the model
+		if (parent.getElement(extensionPoint) == null) {
+			parentRepresentation.getPackagedElements().add(reversedExtensionPoint);
+		}
+
+		// Ensure the stereotype are applied
+		parent.fillStereotype();
+		extensionPoint.fillStereotype();
+
+		// The project's port was created before this method is called
+		Port extensionPort = project.getElement(extensionPoint.getId(), Port.class);
+		Port extensionPointPort = parent.getElement(extensionPoint.getId(), Port.class);
+
+		if (extensionPointPort == null) {
+			extensionPointPort = parentRepresentation.createOwnedPort(extensionPoint.getId(), reversedExtensionPoint);
+		}
+
+		String dependencyName = EXTENSION_POINT_DEPENDENCY_NAME_SUFFIX + extensionPoint.getId();
+		Dependency dependency = project.getElement(dependencyName, Dependency.class);
+
+		if (dependency != null) {
+			return; // The dependency already exists
+		}
+
+		// Create the dependency and add it to the reversed project's representation
+		Dependency extensionPointDependency = createDependency(dependencyName, extensionPort, extensionPointPort);
+
+		reversedProject.getPackagedElements().add(extensionPointDependency);
+
+		String extensionPtStereotypeName = extensionPoint.getDependencyStereotypeName();
+		Stereotype dependencyStereotype = extensionPointDependency.getApplicableStereotype(extensionPtStereotypeName);
+
+		extensionPointDependency.applyStereotype(dependencyStereotype);
+	}
+
+	/**
+	 * Creates a dependency link between two reversible projects. Adds the
+	 * dependency to the first reversible representation and apply the
+	 * stereotype.
+	 *
+	 * @param parent
+	 * @param child
+	 * @return the created dependency
+	 */
+	private Dependency createDependency(ReversibleProject parent, ReversibleProject child) {
+		Component parentComponent = parent.getRepresentation();
+		Component childComponent = child.getRepresentation();
+
+		String dependencyName = DEPENDENCY_NAME_SUFFIX + child.getId();
+		Dependency dependency = parent.getElement(dependencyName, Dependency.class);
+
+		if (dependency == null) {
+			dependency = createDependency(dependencyName, parentComponent, childComponent);
+
+			parentComponent.getPackagedElements().add(dependency);
+			parentComponent.createOwnedAttribute(child.getId(), childComponent);
+
+			String depStereotypeName = child.getDependencyStereotypeName();
+			Stereotype depStereotype = dependency.getApplicableStereotype(depStereotypeName);
+
+			dependency.applyStereotype(depStereotype);
+		}
+
+		return dependency;
+	}
+
+	/**
+	 * Creates a dependency link between two
+	 * {@link org.eclipse.uml2.uml.NamedElement NamedElement}s
+	 *
+	 * @param name the name of the dependency
+	 * @param client the client NamedElement
+	 * @param supplier the supplier NamedElement
+	 * @return the created dependency
+	 */
+	private Dependency createDependency(String name, NamedElement client, NamedElement supplier) {
+		Dependency dependency = UMLFactory.eINSTANCE.createDependency();
+
+		dependency.setName(name);
+		dependency.getClients().add(client);
+		dependency.getSuppliers().add(supplier);
+
+		return dependency;
+	}
+
+	/**
+	 * Adds a reversible project's representation in the model or updates it if
+	 * is already in it (in case we are updating an existing model).
+	 *
+	 * @param project
+	 */
+	private void insertInModel(ReversibleProject project) {
+		PackageableElement representation = model.getPackagedElement(project.getId());
+
+		if (representation instanceof Component) {
+			project.setRepresentation((Component) representation);
+		} else {
+			representation = project.getRepresentation();
+			model.getPackagedElements().add(representation);
+		}
+	}
+
+	private void reverseExtensionPointElements(ReversibleExtensionPoint extensionPoint) {
+		ReversibleProject parent = extensionPoint.getParent();
+
+		// Make sure the parent project is in the model to apply the stereotypes on the elements
+		insertInModel(parent);
+
+		// Ensure the extension point is in its parent's representation
+		Component reversedExtensionPoint = parent.getElement(extensionPoint);
+
+		if (reversedExtensionPoint != null) {
+			extensionPoint.setRepresentation(reversedExtensionPoint);
+		} else {
+			Component parentRepresentation = parent.getRepresentation();
+			reversedExtensionPoint = extensionPoint.getRepresentation();
+
+			parentRepresentation.getPackagedElements().add(reversedExtensionPoint);
+		}
+
+		// Create the extension point's elements
+		for (SchemaElement element : extensionPoint.getElements()) {
+			String elementName = element.getName();
+			PackageableElement existingElement = reversedExtensionPoint.getPackagedElement(elementName);
+
+			if (existingElement == null) {
+				Component reversedElement = UMLFactory.eINSTANCE.createComponent();
+
+				reversedElement.setName(elementName);
+				reversedExtensionPoint.getPackagedElements().add(reversedElement);
+
+				for (SchemaAttribute attribute : element.getAttributes()) {
+					Property property = UMLFactory.eINSTANCE.createProperty();
+
+					property.setName(attribute.getName());
+					reversedElement.getOwnedAttributes().add(property);
+				}
 			}
 		}
-		return false;
+
+		// Apply the stereotype if it is not already applied
+		for (PackageableElement element : reversedExtensionPoint.getPackagedElements()) {
+			if (element instanceof Component) {
+				String stereotypeName = IADL4ECLIPSE_Stereotype.ELEMENT_STEREOTYPE;
+				Stereotype elementStereotype = element.getAppliedStereotype(stereotypeName);
+
+				if (elementStereotype == null) {
+					elementStereotype = element.getApplicableStereotype(stereotypeName);
+					element.applyStereotype(elementStereotype);
+				}
+			}
+		}
 	}
 
 }

@@ -162,7 +162,7 @@ public class MoveInnerClassDropStrategy extends MoveDropStrategy {
 		if (targetEditPart instanceof IGraphicalEditPart) {
 			EditPart primaryEditPart = getPrimaryEditPart(targetEditPart);
 			View primaryView = ((IGraphicalEditPart) targetEditPart).getPrimaryView();
-
+			
 			int nestedClassSemanticHint = -1;
 			switch (UMLVisualIDRegistry.getVisualID(primaryView)) {
 			case ClassEditPart.VISUAL_ID:

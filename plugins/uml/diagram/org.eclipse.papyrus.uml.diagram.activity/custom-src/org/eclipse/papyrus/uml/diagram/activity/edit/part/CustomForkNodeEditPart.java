@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ForkNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ForkJoinResizeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 
@@ -50,6 +51,7 @@ public class CustomForkNodeEditPart extends ForkNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ForkJoinResizeEditPolicy());
 	}
 
 	/**
@@ -96,6 +98,7 @@ public class CustomForkNodeEditPart extends ForkNodeEditPart {
 		}
 	}
 
+
 	/** The Constant FLOATING_LABEL_DEFAULT_WIDTH. */
 	private static final int FLOATING_LABEL_DEFAULT_WIDTH = 20;
 
@@ -110,4 +113,14 @@ public class CustomForkNodeEditPart extends ForkNodeEditPart {
 		return FLOATING_LABEL_DEFAULT_WIDTH;
 	}
 
+	/**
+	 * Return the edit policy to resize figure as a fork or a join
+	 *
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#getPrimaryDragEditPolicy()
+	 * @return EditPolicy
+	 */
+	@Override
+	public EditPolicy getPrimaryDragEditPolicy() {
+		return getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+	}
 }

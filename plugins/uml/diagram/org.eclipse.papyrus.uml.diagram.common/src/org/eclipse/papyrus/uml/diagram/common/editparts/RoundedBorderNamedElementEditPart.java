@@ -106,6 +106,9 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	/** The port position Observable */
 	private IObservableValue positionObservable;
 
+	/** The border style observable. */
+	private IObservableValue borderStyleObservable;
+
 	/**
 	 * Constructor.
 	 *
@@ -257,6 +260,8 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 		positionObservable = new CustomStringStyleObservableValue(view, domain, PORT_POSITION);
 		positionObservable.addChangeListener(namedStyleListener);
 
+		borderStyleObservable = new CustomStringStyleObservableValue(view, domain, BORDER_STYLE);
+		borderStyleObservable.addChangeListener(namedStyleListener);
 	}
 
 	/**
@@ -273,6 +278,7 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 		shadowWidthObservable.dispose();
 		shadowColorObservable.dispose();
 		positionObservable.dispose();
+		borderStyleObservable.dispose();
 	}
 
 	/**

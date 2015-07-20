@@ -30,7 +30,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		CSSCanonicalClassDiagramTest.class,
 		CSSCanonicalStateInClassDiagramTest.class,
 		CSSExternalStylesheetInClassDiagramTest.class,
-		CSSCanonicalCompositeDiagramTest.class })
+		CSSCanonicalCompositeDiagramTest.class,
+		RegressionTest.class,
+})
 public class AllTests {
 
 	public AllTests() {

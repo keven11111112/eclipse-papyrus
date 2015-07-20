@@ -41,6 +41,10 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWith
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_V1_H1_V1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_V1_V3_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_V1_V3_V1_MultiColumns_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Sort_H1_H3_H1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Sort_V1_V3_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.unset.UnsetCellValueWithProfile_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.unset.UnsetCellValue_H1_H3_H1_Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -49,9 +53,21 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		EditInvalidPastedText_V1_V3_V1.class,
 		OpenTableTest.class,
+		
+		SortAxisClassTreeTableTest.class,
+		
 		ContentsAndExpandWithCategories_0_1_2_Tests.class,
 		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,
 		
+		//SORT
+		Sort_V1_V3_V1.class,
+		Sort_H1_H3_H1.class,
+
+		// reset cell value
+		UnsetCellValueWithProfile_V1_V3_V1_Test.class,
+		UnsetCellValue_H1_H3_H1_Test.class,
+
+
 		//filter tests
 		ReopenFilteredTable_Empty_H1_H1.class,
 		ReopenFilteredTable_Empty_H1_V1.class,
@@ -85,7 +101,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_V3_H1_MultiColumns_Test.class,
 
 
-		PasteWithCategories_V1_V3_V1_MultiColumns_Test.class, })
+		PasteWithCategories_V1_V3_V1_MultiColumns_Test.class, 
+})
 public class AllTests {
 	// JUnit 4 test suite
 

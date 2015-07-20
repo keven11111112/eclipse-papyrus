@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
  * This wrapper manage the display and the creation/destruction of the StringResolutionProblem associated to the cells
  *
  */
-public class StringResolutionProblemWrapperCellManager implements ICellManager {
+public class StringResolutionProblemWrapperCellManager implements IUnsetValueCellManager {
 
 	/**
 	 * the wrapped cell manager
@@ -244,4 +244,37 @@ public class StringResolutionProblemWrapperCellManager implements ICellManager {
 		CellHelper.createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, valueConverter.getConvertedValue(), sharedMap);
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.IUnsetValueCellManager#unsetCellValue(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 */
+	@Override
+	public void unsetCellValue(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		if (this.wrappedCellManager instanceof IUnsetValueCellManager) {
+			((IUnsetValueCellManager) this.wrappedCellManager).unsetCellValue(domain, columnElement, rowElement, tableManager);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.IUnsetValueCellManager#getUnsetCellValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Command getUnsetCellValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		if (this.wrappedCellManager instanceof IUnsetValueCellManager) {
+			return ((IUnsetValueCellManager) this.wrappedCellManager).getUnsetCellValueCommand(domain, columnElement, rowElement, tableManager);
+		}
+		return null;
+	}
 }

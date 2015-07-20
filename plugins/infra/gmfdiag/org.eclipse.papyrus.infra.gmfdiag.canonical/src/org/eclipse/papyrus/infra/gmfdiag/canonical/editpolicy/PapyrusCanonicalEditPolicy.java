@@ -10,6 +10,8 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 420549
+ *  Christian W. Damus - bug 472155
+ *  Christian W. Damus - bug 471954
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy;
@@ -46,7 +48,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.CanonicalStyle;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Sorting;
 import org.eclipse.gmf.runtime.notation.SortingStyle;
@@ -626,63 +627,30 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected List<View> getViewChildren(ChildrenKind kind) {
 		final IGraphicalEditPart host = host();
 		final View view = host.getNotationView();
-		final IVisualChildrenStrategy strategy = SemanticChildrenStrategyRegistry.getInstance().getVisualChildrenStrategy(host);
+
+		IVisualChildrenStrategy strategy = SemanticChildrenStrategyRegistry.getInstance().getVisualChildrenStrategy(host);
 
 		List<View> result;
 
-		if (strategy != null) {
-			List<? extends View> childViews;
-			switch (kind) {
-			case NODE:
-				childViews = strategy.getCanonicalChildren(host, view);
-				break;
-			case CONNECTION:
-				childViews = strategy.getCanonicalEdges(host, view);
-				break;
-			default:
-				throw new IllegalArgumentException(kind.name());
-			}
-			result = (childViews == null) ? Collections.<View> emptyList() : Lists.newArrayList(childViews);
-		} else {
-			// Default strategy
-			switch (kind) {
-			case NODE:
-				result = super.getViewChildren();
-
-				// Filter out child views that visualize the same element as my view (these
-				// should be compartments, decorations, labels)
-				final EObject semantic = getSemanticHost();
-				for (Iterator<? extends View> iter = result.iterator(); iter.hasNext();) {
-					if (iter.next().getElement() == semantic) {
-						iter.remove();
-					}
-				}
-				break;
-			case CONNECTION:
-				// Get distinct incoming and outgoing edges of top shapes and border items.
-				// Compartments of top shapes take care of their own contents
-				List<View> edges = Lists.newArrayList();
-				result = edges;
-				if (view.eIsSet(NotationPackage.Literals.VIEW__SOURCE_EDGES)) {
-					edges.addAll(view.getSourceEdges());
-				}
-				if (view.eIsSet(NotationPackage.Literals.VIEW__TARGET_EDGES)) {
-					for (Edge next : (Iterable<? extends Edge>) view.getTargetEdges()) {
-						if (next.getSource() != view) {
-							// Didn't already get a self-edge from the source edges
-							edges.add(next);
-						}
-					}
-				}
-				break;
-			default:
-				throw new IllegalArgumentException(kind.name());
-			}
+		if (strategy == null) {
+			strategy = IVisualChildrenStrategy.DEFAULT;
 		}
+
+		List<? extends View> childViews;
+		switch (kind) {
+		case NODE:
+			childViews = strategy.getCanonicalChildren(host, view);
+			break;
+		case CONNECTION:
+			childViews = strategy.getCanonicalEdges(host, view);
+			break;
+		default:
+			throw new IllegalArgumentException(kind.name());
+		}
+		result = (childViews == null) ? Collections.<View> emptyList() : Lists.newArrayList(childViews);
 
 		return result;
 	}

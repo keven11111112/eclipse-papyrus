@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.nattable.stereotype.display.utils;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
@@ -110,7 +109,7 @@ public class StereotypeDisplayTreeTableHelper {
 				}
 			}
 		}
-		return null;
+		return ICellManager.EMPTY_STRING;
 	}
 
 	/**
@@ -158,11 +157,6 @@ public class StereotypeDisplayTreeTableHelper {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
 		if (rowElement instanceof ITreeItemAxis) {
 
-			// Depth 1
-			if (row instanceof Node) {
-				return ICellManager.EMPTY_STRING;
-			}
-
 			// Depth 2
 			if (row instanceof Stereotype) {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
@@ -174,14 +168,9 @@ public class StereotypeDisplayTreeTableHelper {
 					return NA;
 				}
 			}
-
-			// Depth 3
-			if (row instanceof Property) {
-				return ICellManager.EMPTY_STRING;
-			}
 		}
 
-		return Boolean.FALSE;
+		return ICellManager.EMPTY_STRING;
 	}
 
 	/**
@@ -226,11 +215,6 @@ public class StereotypeDisplayTreeTableHelper {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
 		if (rowElement instanceof ITreeItemAxis) {
 
-			// Depth 1
-			if (row instanceof Node) {
-				return ICellManager.EMPTY_STRING;
-			}
-
 			// Depth 2
 			if (row instanceof Stereotype) {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
@@ -246,7 +230,7 @@ public class StereotypeDisplayTreeTableHelper {
 			}
 
 			// Depth 3
-			if (row instanceof Property) {
+			if (row instanceof Property && ((Property) row).eContainer() instanceof Stereotype) {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent().getParent().getParent());
 				Object stereo = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent());
 
@@ -261,7 +245,7 @@ public class StereotypeDisplayTreeTableHelper {
 			}
 		}
 
-		return Boolean.FALSE;
+		return ICellManager.EMPTY_STRING;
 	}
 
 	/**
@@ -295,7 +279,7 @@ public class StereotypeDisplayTreeTableHelper {
 		}
 
 		// Depth 3
-		if (row instanceof Property) {
+		if (row instanceof Property && ((Property) row).eContainer() instanceof Stereotype) {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent().getParent().getParent());
 			Object stereo = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent());
 
@@ -328,11 +312,6 @@ public class StereotypeDisplayTreeTableHelper {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
 		if (rowElement instanceof ITreeItemAxis) {
 
-			// Depth 1
-			if (row instanceof Node) {
-				return ICellManager.EMPTY_STRING;
-			}
-
 			// Depth 2
 			if (row instanceof Stereotype) {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
@@ -350,7 +329,7 @@ public class StereotypeDisplayTreeTableHelper {
 			}
 
 			// Depth 3
-			if (row instanceof Property) {
+			if (row instanceof Property && ((Property) row).eContainer() instanceof Stereotype) {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent().getParent().getParent());
 				Object stereo = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent());
 
@@ -365,7 +344,7 @@ public class StereotypeDisplayTreeTableHelper {
 			}
 		}
 
-		return Boolean.FALSE;
+		return ICellManager.EMPTY_STRING;
 	}
 
 	/**
@@ -408,7 +387,7 @@ public class StereotypeDisplayTreeTableHelper {
 
 
 		// Depth 3
-		if (row instanceof Property) {
+		if (row instanceof Property && ((Property) row).eContainer() instanceof Stereotype) {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent().getParent().getParent());
 			Object stereo = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent());
 
@@ -441,11 +420,6 @@ public class StereotypeDisplayTreeTableHelper {
 		Object row = AxisUtils.getRepresentedElement(rowElement);
 		if (rowElement instanceof ITreeItemAxis) {
 
-			// Depth 1
-			if (row instanceof Node) {
-				return ICellManager.EMPTY_STRING;
-			}
-
 			// Depth 2
 			if (row instanceof Stereotype) {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent());
@@ -461,7 +435,7 @@ public class StereotypeDisplayTreeTableHelper {
 			}
 
 			// Depth 3
-			if (row instanceof Property) {
+			if (row instanceof Property && ((Property) row).eContainer() instanceof Stereotype) {
 				Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent().getParent().getParent());
 				Object stereo = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent());
 
@@ -476,7 +450,7 @@ public class StereotypeDisplayTreeTableHelper {
 			}
 		}
 
-		return Boolean.FALSE;
+		return ICellManager.EMPTY_STRING;
 	}
 
 	/**
@@ -511,7 +485,7 @@ public class StereotypeDisplayTreeTableHelper {
 		}
 
 		// Depth 3
-		if (row instanceof Property) {
+		if (row instanceof Property && ((Property) row).eContainer() instanceof Stereotype) {
 			Object parent = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent().getParent().getParent().getParent().getParent());
 			Object stereo = AxisUtils.getRepresentedElement(((ITreeItemAxis) rowElement).getParent().getParent());
 

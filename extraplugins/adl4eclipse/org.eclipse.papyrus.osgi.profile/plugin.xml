@@ -13,9 +13,9 @@
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            description="bundle layer of OSGI"
+            description="OSGI Profile"
             iconpath="img/osgi.org.ico"
-            name="OSGI profile"
+            name="OSGI"
             path="pathmap://OSGI_PROFILES/osgi.profile.uml"
             provider="Eclipse.org">
       </profile>

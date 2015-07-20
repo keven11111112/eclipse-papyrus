@@ -65,6 +65,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
@@ -606,6 +607,35 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 	protected View requireView(EObject object) {
 		View result = getView(object);
 		assertThat("No view for " + label(object), result, notNullValue());
+		return result;
+	}
+
+	protected Edge requireEdge(View oneEnd, View otherEnd) {
+		Edge result = getEdge(oneEnd, otherEnd);
+		assertThat("No edge between " + label(oneEnd) + " and " + label(otherEnd), result, notNullValue());
+		return result;
+	}
+
+	protected Edge getEdge(View oneEnd, View otherEnd) {
+		Edge result = null;
+
+		for (Edge next : Iterables.filter(oneEnd.getSourceEdges(), Edge.class)) {
+			if (next.getTarget() == otherEnd) {
+				result = next;
+				break;
+			}
+		}
+
+		if (result == null) {
+			// Try the other way around
+			for (Edge next : Iterables.filter(oneEnd.getTargetEdges(), Edge.class)) {
+				if (next.getSource() == otherEnd) {
+					result = next;
+					break;
+				}
+			}
+		}
+
 		return result;
 	}
 
