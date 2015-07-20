@@ -27,8 +27,10 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -231,6 +233,12 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		 */
 		@Override
 		public String getTabTitle() {
+			try {
+				LabelProviderService service = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, diagram);
+				return service.getLabelProvider().getText(diagram);
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
 			return diagram.getName();
 		}
 
