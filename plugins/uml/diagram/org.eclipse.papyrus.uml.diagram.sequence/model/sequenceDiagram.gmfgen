@@ -7300,43 +7300,43 @@
           xsi:type="gmfgen:GenJavaExpressionProvider"
           injectExpressionBody="true">
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, &quot;t&quot;, &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, &quot;t&quot;, &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
             body="return &quot;&quot;;"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, &quot;d&quot;, &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, &quot;d&quot;, &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"/>
