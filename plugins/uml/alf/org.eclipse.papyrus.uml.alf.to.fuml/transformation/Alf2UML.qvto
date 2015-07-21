@@ -471,14 +471,12 @@ mapping ClassDefinition::toClass() : Class
 		  
 		  ownedAttribute := members[Property];
 		  ownedOperation := members[Operation];
-		  ownedBehavior := result.ownedOperation.method;
 		  nestedClassifier := members[Classifier];
 		  
-		  ownedAttribute[defaultValue <> null]->forEach(p) {
-		    var behavior := p.defaultValue.oclAsType(OpaqueExpression).behavior;
-		    behavior.name := uniqueName(p.name + "$defaultValue", result);
-		    ownedBehavior += behavior;
-		  };
+		  ownedBehavior := result.ownedOperation.method;
+		  ownedBehavior += ownedAttribute[defaultValue <> null].
+		  	defaultValue.oclAsType(OpaqueExpression).behavior;
+
 		  ownedOperation.method->forEach(m) {
 				m.name := uniqueName(m.specification.name + "$method", result);
 				if m.specification.invresolveone(OperationDefinition).isStub then {
@@ -870,13 +868,20 @@ mapping PropertyDefinition::toProperty() : Property
 		else AggregationKind::none endif;
   if self.initializer <> null then {
   	 var expression := self.initializer.map toOpaqueExpression();
+  	 expression.behavior.name := name + "$defaultValue$1";
   	 defaultValue := expression;
   } endif;
 }
 
 mapping Expression::toOpaqueExpression() : OpaqueExpression {
   behavior := self.map toActivity();
-  addDefinition(behavior.oclAsType(Activity), self);
+  language += "Alf";
+  var text := self.serialize();
+  if text.startsWith("=") then {
+  	text := text.substring(2, text.length());
+  } endif;
+  body += text;
+//  addDefinition(behavior.oclAsType(Activity), self);
 }
 
 // Operation Definitions
