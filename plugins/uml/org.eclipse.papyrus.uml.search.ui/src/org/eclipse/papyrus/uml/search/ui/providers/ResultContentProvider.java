@@ -298,12 +298,10 @@ public class ResultContentProvider implements ITreeContentProvider {
 	 *            objects that changed
 	 */
 	public synchronized void elementsChanged(Object[] updatedElements) {
-
+		Set<AbstractResultEntry> matches = MatchUtils.getMatches(fResult, true);
 		for (int i = 0; i < updatedElements.length; i++) {
-
 			if (updatedElements[i] instanceof AbstractResultEntry) {
 				AbstractResultEntry resultEntry = (AbstractResultEntry) updatedElements[i];
-				Set<AbstractResultEntry> matches = MatchUtils.getMatches(fResult, true);
 
 				if (matches.contains(updatedElements[i])) {
 
@@ -312,20 +310,22 @@ public class ResultContentProvider implements ITreeContentProvider {
 					if (hasChild(parent, resultEntry)) {
 						fViewer.update(new Object[] { resultEntry, parent }, null);
 					} else {
-						insert(resultEntry, true); // or update
+						insert(resultEntry, false); // or update
 					}
 
 				} else {
-					remove(resultEntry, true);
+					remove(resultEntry, false);
 				}
 			} else {
 				if (fResult.getMatchCount(updatedElements[i]) > 0) {
-					insert(updatedElements[i], true);
+					insert(updatedElements[i], false);
 				} else {
-					remove(updatedElements[i], true);
+					remove(updatedElements[i], false);
 				}
 			}
 		}
+		
+		fViewer.refresh();
 	}
 
 	public Object[] getChildren(Object parentElement) {

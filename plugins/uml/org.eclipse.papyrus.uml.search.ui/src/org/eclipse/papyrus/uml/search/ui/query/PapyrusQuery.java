@@ -26,7 +26,6 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
@@ -83,12 +82,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 
 	protected Set<AbstractResultEntry> fResults = null;
 
-	/**
-	 * Buffer contains matches to manually display.
-	 * The buffer should be cleared after the display operation.
-	 */
-	//protected Set<AbstractResultEntry> buffer = null;
-
 	public PapyrusQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsTypes, boolean searchAllStringAttributes) {
 		this.searchQueryText = searchQueryText;
 		this.isCaseSensitive = isCaseSensitive;
@@ -99,21 +92,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 
 		results = new PapyrusSearchResult(this);
 		fResults = new HashSet<AbstractResultEntry>();
-		//buffer = new HashSet<AbstractResultEntry>();
-	}
-	
-	public PapyrusQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsTypes, boolean searchAllStringAttributes, boolean delay) {
-		this.searchQueryText = searchQueryText;
-		this.isCaseSensitive = isCaseSensitive;
-		this.isRegularExpression = isRegularExpression;
-		this.scopeEntries = scopeEntries;
-		this.participantsTypes = participantsTypes;
-		this.searchAllStringAttributes = searchAllStringAttributes;
-		this.delay = delay;
-
-		results = new PapyrusSearchResult(this);
-		fResults = new HashSet<AbstractResultEntry>();
-		//buffer = new HashSet<AbstractResultEntry>();
 	}
 
 	public IStatus run(IProgressMonitor monitor) throws OperationCanceledException {
@@ -177,7 +155,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, stereotype);
 
 				fResults.add(match);
-				//addToBuffer(match);
 			}
 		} else {
 			while (m.find()) {
@@ -185,7 +162,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 				int length = m.end() - m.start();
 				AttributeMatch match = new AttributeMatch(offset, length, participant, scopeEntry, attribute, stereotype);
 				fResults.add(match);
-				//addToBuffer(match);
 			}
 		}
 
@@ -195,7 +171,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 		// ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute);
 		//
 		// fResults.add(match);
-		// addToBuffer(match);
 		// }
 	}
 
@@ -278,7 +253,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 					Object semanticElement = viewersMappings.get(containingModelSet).get(view);
 					ViewerMatch viewMatch = new ViewerMatch(view, scopeEntry, semanticElement);
 					fResults.add(viewMatch);
-					//addToBuffer(viewMatch);
 				}
 			}
 
@@ -305,8 +279,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 	}
 
 	public ISearchResult getSearchResult() {
-		int adds = 0;
-		
 		if (progressMonitor != null) {
 			progressMonitor.setWorkRemaining(fResults.size());
 			progressMonitor.subTask("Displaying Results");
@@ -318,22 +290,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			if (progressMonitor != null) {
 				progressMonitor.worked(1);
 			}
-			
-			
-			if (delay) {
-				/** E.g. Every 100 events fired (prompting 100 results display operation),
-				* sleep 100ms so the UI doesn't get stuck
-				*/
-				adds++;
-				if (adds >= NUMBER_ADDS_BEFORE_SLEEP) {
-					adds = 0;
-					try {
-						Thread.sleep(SLEEP_MILLISECONDS);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
 		}
 		
 		if (progressMonitor != null) {
@@ -342,28 +298,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 		
 		return results;
 	}
-	
-	/*private void displaySearchResult() {
-		for (AbstractResultEntry match : buffer) {
-			results.addMatch(match);
-		}
-		
-		try {
-			Thread.sleep(SLEEP_MILLISECONDS);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			buffer.clear();
-		}
-	}
-	
-	private void addToBuffer(AbstractResultEntry match) {
-		buffer.add(match);
-		
-		if (buffer.size() > BUFFER_SIZE) {
-			displaySearchResult();
-			buffer.clear();
-		}
-	}*/
 
 	/**
 	 * Getter for the text query
