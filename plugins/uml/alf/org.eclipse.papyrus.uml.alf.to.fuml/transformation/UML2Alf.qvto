@@ -11,6 +11,7 @@
  *  Ed Seidewitz (MDS)
  * 
  *****************************************************************************/
+import org.eclipse.papyrus.uml.alf.to.fuml.qvt.QVTLibrary;
 import UML2AlfLibrary;
 
 modeltype Alf uses "http://www.omg.org/spec/ALF/20120827";
@@ -200,7 +201,7 @@ mapping uml::ClassifierTemplateParameter::toTemplateParameter() : Member {
 abstract mapping Class::toClassDefinition() : ClassDefinition 
   inherits Classifier::toClassifierDefinition {
   ownedMember += self.nestedClassifier->map toMember();
-  ownedMember += self.ownedBehavior->select(isDefaultValue())->map toMember(); // TODO: Remove
+//  ownedMember += self.ownedBehavior->select(isDefaultValue())->map toMember(); // TODO: Remove
   ownedMember += self.ownedAttribute->reject(isInitializationFlag(self.name))->
     map toMember();
   // TODO: Filter out default constructor and destructor operations.
@@ -394,14 +395,20 @@ mapping Property::toPropertyDefinition() : PropertyDefinition
 
 mapping OpaqueExpression::toExpression(context : NamedElement) : Expression {
   init {
-  	result := object BehaviorInvocationExpression {
-  	  target := self.behavior.alfQualifiedName(context);
-  	  tuple := object PositionalTuple {
-  	  	expression := OrderedSet{};
-  	  }
-  	};
+  	if self.language->exists(language | language = "Alf") then {
+  		var i := self.language->indexOf("Alf");
+  		result := self.body->at(i).parseExpression();
+  	} else if self.behavior <> null then {
+	  	result := object BehaviorInvocationExpression {
+	  	  target := self.behavior.alfQualifiedName(context);
+	  	  tuple := object PositionalTuple {
+	  	  	expression := OrderedSet{};
+	  	  }
+	  	};
+  	} else {
+  		result := null;
+  	} endif endif;
   }
-  // TODO: Map default values to true initializer expressions.
 }
 
 // Operations
