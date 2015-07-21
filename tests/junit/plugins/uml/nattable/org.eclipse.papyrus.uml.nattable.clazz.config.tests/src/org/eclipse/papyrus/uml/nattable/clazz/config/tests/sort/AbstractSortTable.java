@@ -299,18 +299,7 @@ public abstract class AbstractSortTable extends AbstractTableTest {
 	 *            the name of the result file to use to compare the displayed state and the wanted state
 	 */
 	protected void endTest(String resultFileName) {
-		fixture.flushDisplayEvents();
-		manager.selectAll();
-		((NattableModelManager) manager).copyToClipboard();
-		fixture.flushDisplayEvents();
-
-		String clipboard = getClipboardContent();
-		Assert.assertNotNull(clipboard);
-
-		String str = getWantedString(resultFileName);
-
-		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
-		Assert.assertEquals(str, clipboard);
+		compareCurrentDisplayToWantedDisplay(resultFileName);
 	}
 
 	/**

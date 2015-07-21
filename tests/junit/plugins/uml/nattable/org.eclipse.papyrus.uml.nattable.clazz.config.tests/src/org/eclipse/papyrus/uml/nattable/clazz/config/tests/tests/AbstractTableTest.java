@@ -16,9 +16,12 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.clipboard.core.ClipboardUtil;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
+import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
@@ -26,6 +29,7 @@ import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
@@ -167,6 +171,44 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	protected String getClipboardContent() {
 		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
 		return clipboard;
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		the editing domain of the context of the table
+	 */
+	protected TransactionalEditingDomain getTableContextEditingDomain() {
+		return TableEditingDomainUtils.getTableContextEditingDomain(this.manager.getTable());
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		the editing domain of the table
+	 */
+	protected TransactionalEditingDomain getTableEditingDomain() {
+		return TableEditingDomainUtils.getTableEditingDomain(this.manager.getTable());
+	}
+
+	/**
+	 * 
+	 * @param resultFileName
+	 *            the name of the file containing the wanted result
+	 */
+	protected void compareCurrentDisplayToWantedDisplay(String resultFileName) {
+		fixture.flushDisplayEvents();
+		manager.selectAll();
+		((NattableModelManager) manager).copyToClipboard();
+		fixture.flushDisplayEvents();
+
+		String clipboard = getClipboardContent();
+		Assert.assertNotNull(clipboard);
+
+		String str = getWantedString(resultFileName);
+
+		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
+		Assert.assertEquals(str, clipboard);
 	}
 
 }

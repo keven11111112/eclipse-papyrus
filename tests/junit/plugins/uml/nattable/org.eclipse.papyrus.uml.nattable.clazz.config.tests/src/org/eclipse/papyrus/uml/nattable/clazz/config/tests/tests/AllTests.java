@@ -15,6 +15,20 @@
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_H1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth1_H1_H3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth1_H1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth1_V1_H3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth1_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_H1_H3_H1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_H1_H3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_H1_V3_H1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_H1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_H3_H1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_H3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_H1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_H1_H1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_H1_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_V1_H1;
@@ -68,7 +82,22 @@ import org.junit.runners.Suite.SuiteClasses;
 		UnsetCellValueWithProfile_V1_V3_V1_Test.class,
 		UnsetCellValue_H1_H3_H1_Test.class,
 
-
+		//test creation outside of the table
+		CreateElementDepth0_H1_V3_V1_Test.class,
+		CreateElementDepth0_V1_V3_V1_Test.class,
+		CreateElementDepth1_H1_H3_V1_Test.class,
+		CreateElementDepth1_H1_V3_V1_Test.class,
+		CreateElementDepth1_V1_H3_V1_Test.class,
+		CreateElementDepth1_V1_V3_V1_Test.class,
+		CreateElementDepth2_H1_H3_H1_Test.class,
+		CreateElementDepth2_H1_H3_V1_Test.class,
+		CreateElementDepth2_H1_V3_H1_Test.class,
+		CreateElementDepth2_H1_V3_V1_Test.class,
+		CreateElementDepth2_V1_H3_H1_Test.class,
+		CreateElementDepth2_V1_H3_V1_Test.class,
+		CreateElementDepth2_V1_V3_H1_Test.class,
+		CreateElementDepth2_V1_V3_V1_Test.class,
+		
 		//filter tests
 		ReopenFilteredTable_Empty_H1_H1.class,
 		ReopenFilteredTable_Empty_H1_V1.class,
@@ -107,4 +136,4 @@ import org.junit.runners.Suite.SuiteClasses;
 public class AllTests {
 	// JUnit 4 test suite
 
-}
+} 

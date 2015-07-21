@@ -23,6 +23,7 @@ import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiRowShowCommand;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.RowHideCommand;
+import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.IUniqueIndexLayer;
 import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
@@ -31,6 +32,7 @@ import org.eclipse.nebula.widgets.nattable.layer.event.RowInsertEvent;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.tree.ITreeRowModel;
 import org.eclipse.nebula.widgets.nattable.tree.TreeLayer;
+import org.eclipse.nebula.widgets.nattable.tree.command.TreeExpandToLevelCommand;
 import org.eclipse.nebula.widgets.nattable.tree.config.DefaultTreeLayerConfiguration;
 import org.eclipse.nebula.widgets.nattable.tree.painter.IndentedTreeImagePainter;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
@@ -183,7 +185,8 @@ public class PapyrusTreeLayer extends TreeLayer {
 		if (index != -1) {
 			// we notify the layer than a row has been added
 			if (natTable != null) {
-								/* not in asyncExec to fix the bug 463312 (excepted collapse all
+				/*
+				 * not in asyncExec to fix the bug 463312 (excepted collapse all
 				 * // required to avoid bug during paste from Excel which is not executed in the UI Thread
 				 * natTable.getDisplay().asyncExec(new Runnable() {
 				 * 
@@ -209,7 +212,12 @@ public class PapyrusTreeLayer extends TreeLayer {
 				if (StyleUtils.getHiddenDepths(getTableManager()).contains(Integer.valueOf(conf.getDepth()))) {
 					int realIndex = rowHideShowLayer.underlyingToLocalRowPosition(natTable, index);
 					if (realIndex != -1) {
+						 //see bug 469619: [Tree Table] New inserted element not displayed when categories are hidden
+					    natTable.doCommand(new TreeExpandToLevelCommand(tableManager.getRowElementsList().indexOf(element), 1));
+					    
+					    //hide the row
 						natTable.doCommand(new RowHideCommand(rowHideShowLayer, realIndex));
+						
 					}
 				}
 			}
