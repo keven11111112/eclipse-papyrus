@@ -15,9 +15,6 @@ package org.eclipse.papyrus.uml.search.ui.pages;
 
 import java.util.Set;
 
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ISelection;
@@ -38,8 +35,6 @@ import org.eclipse.papyrus.views.search.utils.MatchUtils;
 import org.eclipse.search.ui.IContextMenuConstants;
 import org.eclipse.search.ui.text.AbstractTextSearchViewPage;
 import org.eclipse.search.ui.text.Match;
-import org.eclipse.search2.internal.ui.SearchView;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PartInitException;
 
 /**
@@ -47,7 +42,7 @@ import org.eclipse.ui.PartInitException;
  * Papyrus specific search results page
  *
  */
-public class PapyrusSearchResultPage extends AbstractTextSearchViewPage implements IResourceChangeListener {
+public class PapyrusSearchResultPage extends AbstractTextSearchViewPage {
 
 	ResultContentProvider fContentProvider = null;
 
@@ -60,8 +55,6 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage implemen
 		super(FLAG_LAYOUT_TREE);
 		setElementLimit(new Integer(DEFAULT_ELEMENT_LIMIT));
 		fFiltertypesAction = new FilterTypesAction(this);
-
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
 	}
 
 
@@ -174,34 +167,8 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage implemen
 
 	}
 
-	public void resourceChanged(IResourceChangeEvent event) {
-
-		if (event.getType() == IResourceChangeEvent.POST_CHANGE) {
-
-			if (this.getInput() != null && this.getViewer().getInput() != null && this.getViewPart() != null) {
-
-
-
-				Display.getDefault().asyncExec(new Runnable() {
-
-					public void run() {
-						((SearchView) getViewPart()).showSearchResult(getInput());
-						getViewer().refresh();
-					}
-				});
-			}
-		}
-
-
-
-
-
-	}
-
 	@Override
 	public void dispose() {
-
 		super.dispose();
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
 	}
 }

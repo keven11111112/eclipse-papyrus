@@ -46,12 +46,12 @@ public class WorkspaceQueryProvider implements IPapyrusQueryProvider {
 	public AbstractPapyrusQuery createSimpleSearchQuery(QueryInfo queryInfo) {
 		initMetaClasses();
 		Collection<ScopeEntry> scopeEntries = createScopeEntries(queryInfo.getScope());
-		return new PapyrusQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, umlMetaClasses.toArray(), queryInfo.isSearchAllStringAttributes(), queryInfo.isDelay());
+		return new PapyrusQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, umlMetaClasses.toArray(), queryInfo.isSearchAllStringAttributes());
 	}
 
 	public AbstractPapyrusQuery createAdvancedSearchQuery(QueryInfo queryInfo) {
 		Collection<ScopeEntry> scopeEntries = createScopeEntries(queryInfo.getScope());
-		return new PapyrusAdvancedQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, queryInfo.getParticipantTypes().toArray(), queryInfo.isSearchForAllSter(), queryInfo.isSearchForAnySter(), queryInfo.isDelay());
+		return new PapyrusAdvancedQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, queryInfo.getParticipantTypes().toArray(), queryInfo.isSearchForAllSter(), queryInfo.isSearchForAnySter());
 	}
 
 

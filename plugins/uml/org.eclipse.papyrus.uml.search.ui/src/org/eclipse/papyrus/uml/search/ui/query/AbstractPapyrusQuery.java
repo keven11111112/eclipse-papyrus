@@ -28,20 +28,6 @@ import org.eclipse.search.ui.ISearchQuery;
  *
  */
 public abstract class AbstractPapyrusQuery implements ISearchQuery {
-
-	/**
-	 * Sleep SLEEP_MILLISECONDS every NUMBER_ADDS_BEFORE_SLEEP of adds (events fired to update UI)
-	 * so UI does not get stuck
-	 */
-	public static final int NUMBER_ADDS_BEFORE_SLEEP = 100;
-	public static final int SLEEP_MILLISECONDS = 500;
-	
-	/**
-	 * Display results every BUFFER_SIZE
-	 */
-	public static final int BUFFER_SIZE = 100;
-	
-	protected boolean delay = false;
 	
 	protected SubMonitor progressMonitor;
 	

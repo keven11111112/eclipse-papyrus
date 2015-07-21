@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.DialogPage;
@@ -44,10 +43,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ComboViewer;
-import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.ICheckable;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -123,14 +120,12 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
@@ -1385,14 +1380,12 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					} else {
 						// One query per di file to avoid one single slow query on many files
 						ArrayList<AbstractPapyrusQuery> queries = new ArrayList<AbstractPapyrusQuery>(scope.size());
-						//boolean delay = scope.size() > 1 ? false : true;
-						boolean delay = false;
 						
 						for (URI uri : scope) {
 							Collection<URI> singleScope = new HashSet<URI>();
 							singleScope.add(uri);
 							
-							QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), btnSearchAllStringAttributes.getSelection(), singleScope, delay);
+							QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), btnSearchAllStringAttributes.getSelection(), singleScope);
 							ISearchQuery query = CompositePapyrusQueryProvider.getInstance().createSimpleSearchQuery(info);
 							
 							queries.add((AbstractPapyrusQuery) query);
@@ -1439,13 +1432,12 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					} else {
 						// One query per di file to avoid one single slow query on many files
 						ArrayList<AbstractPapyrusQuery> queries = new ArrayList<AbstractPapyrusQuery>(scope.size());
-						boolean delay = scope.size() > 1 ? false : true;
 						
 						for (URI uri : scope) {
 							Collection<URI> singleScope = new HashSet<URI>();
 							singleScope.add(uri);
 							
-							QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, singleScope, fBtnSearchForAllSelected.getSelection(), fBtnSearchForAnySelected.getSelection(), delay);
+							QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, singleScope, fBtnSearchForAllSelected.getSelection(), fBtnSearchForAnySelected.getSelection());
 							ISearchQuery query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
 							
 							queries.add((AbstractPapyrusQuery) query);

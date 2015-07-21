@@ -38,8 +38,6 @@ public class QueryInfo {
 	private boolean searchForAnySter;
 
 	private Collection<URI> scope;
-	
-	private boolean delay = false;
 
 	/**
 	 * Creates a query info for simple query.
@@ -66,36 +64,6 @@ public class QueryInfo {
 		this.searchAllStringAttributes = searchAllStringAttributes;
 		this.participantTypes = Collections.emptyList();
 		this.scope = scope;
-	}
-	
-	/**
-	 * Creates a query info for simple query.
-	 *
-	 * @param queryText
-	 *            the user-supplied search query text
-	 * @param caseSensitive
-	 *            whether the {@code queryText} is to be applied in case-sensitive fashion
-	 * @param regularExpression
-	 *            whether the {@code queryText} is to be taken as a regular expression
-	 * @param searchAllStringAttributes
-	 *            whether to search all string attributes of UML metaclasses ({@code true}), or just named element {@linkplain NamedElement#getName()
-	 *            names} ({@code false})
-	 * @param scope
-	 *            the domain-specific search scope
-	 * @param delay
-	 *            delayed results display
-	 */
-	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, boolean searchAllStringAttributes, Collection<URI> scope, boolean delay) {
-		super();
-
-
-		this.queryText = queryText;
-		this.caseSensitive = caseSensitive;
-		this.regularExpression = regularExpression;
-		this.searchAllStringAttributes = searchAllStringAttributes;
-		this.participantTypes = Collections.emptyList();
-		this.scope = scope;
-		this.delay = delay;
 	}
 
 	/**
@@ -128,40 +96,6 @@ public class QueryInfo {
 		this.searchForAllSter = searchForAllSter;
 		this.searchForAnySter = searchForAnySter;
 	}
-	
-	/**
-	 * Creates a query info for advanced query.
-	 *
-	 * @param queryText
-	 *            the user-supplied search query text
-	 * @param caseSensitive
-	 *            whether the {@code queryText} is to be applied in case-sensitive fashion
-	 * @param regularExpression
-	 *            whether the {@code queryText} is to be taken as a regular expression
-	 * @param participantTypes
-	 *            the participant types (identifying specific metaclasses and/or attributes) to include in the search
-	 * @param searchForAllSter
-	 *            all and only selected stereotypes must be applied
-	 * @param searchForAnySter
-	 *            at least one selected stereotype is applied or not
-	 * @param scope
-	 *            the domain-specific search scope
-	 * @param delay
-	 *            delayed results display
-	 */
-	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, Collection<? extends ParticipantTypeElement> participantTypes, Collection<URI> scope, boolean searchForAllSter, boolean searchForAnySter, boolean delay) {
-		super();
-
-		this.queryText = queryText;
-		this.caseSensitive = caseSensitive;
-		this.regularExpression = regularExpression;
-		this.searchAllStringAttributes = false;
-		this.participantTypes = participantTypes;
-		this.scope = scope;
-		this.searchForAllSter = searchForAllSter;
-		this.searchForAnySter = searchForAnySter;
-		this.delay = delay;
-	}
 
 	/**
 	 * Partition copy constructor.
@@ -177,7 +111,6 @@ public class QueryInfo {
 		this.searchForAllSter = original.searchForAllSter;
 		this.searchForAnySter = original.searchForAnySter;
 		this.scope = scope;
-		this.delay = original.delay;
 	}
 
 	public String getQueryText() {
@@ -212,15 +145,6 @@ public class QueryInfo {
 		return searchForAnySter;
 	}
 	
-	public boolean isDelay() {
-		return delay;
-	}
-
-	public void setDelay(boolean delay) {
-		this.delay = delay;
-	}
-
-
 	/**
 	 * Creates a new instance encapsulating query parameters for the specified partition (strict subset) of my {@linkplain #getScope() scope}.
 	 *
