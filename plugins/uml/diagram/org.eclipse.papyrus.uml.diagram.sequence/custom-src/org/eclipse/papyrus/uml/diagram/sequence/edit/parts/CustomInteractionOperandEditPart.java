@@ -76,7 +76,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
@@ -114,7 +113,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart, IPapyrusEditPart {
+public class CustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
