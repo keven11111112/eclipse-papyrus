@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -7,7 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *    CEA LIST - initial API and implementation
+ *    Christian W. Damus - bug 473183
+ *    
  *****************************************************************************/
+
 package org.eclipse.papyrus.uml.diagram.interactionoverview.tests.canonical;
 
 import static org.junit.Assert.assertEquals;
@@ -20,6 +25,7 @@ import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityNameEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomActivityEditPartTN;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.StateNotShareable;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -29,7 +35,7 @@ import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.Test;
 
-
+@StateNotShareable
 public class TestInteractionOverviewDiagramActivityTN extends AbstractInteractionOverviewDiagramTestCase {
 
 	@Override
@@ -37,15 +43,15 @@ public class TestInteractionOverviewDiagramActivityTN extends AbstractInteractio
 
 		removeWelcomeScreen();
 		projectCreation();
-		//createActivity();
+		// createActivity();
 
 		assertTrue(AbstractPapyrusTestCase.CREATION + AbstractPapyrusTestCase.INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
-		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
+		GraphicalEditPart containerEditPart = (GraphicalEditPart) getDiagramEditPart().getChildren().get(0);
 		rootCompartment = null;
 		int index = 0;
-		while(rootCompartment == null && index < containerEditPart.getChildren().size()) {
-			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
-				rootCompartment = (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
+		while (rootCompartment == null && index < containerEditPart.getChildren().size()) {
+			if ((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
+				rootCompartment = (ShapeCompartmentEditPart) (containerEditPart.getChildren().get(index));
 			}
 			index++;
 		}
@@ -70,7 +76,7 @@ public class TestInteractionOverviewDiagramActivityTN extends AbstractInteractio
 	@FailingTest
 	@Test
 	public void testDeleteActivity() {
- 		final CustomActivityEditPartTN activity = createActivity();
+		final CustomActivityEditPartTN activity = createActivity();
 		testDelete(activity);
 	}
 
@@ -90,8 +96,8 @@ public class TestInteractionOverviewDiagramActivityTN extends AbstractInteractio
 	@Test
 	public void testEditInteractionName() {
 		final CustomActivityEditPartTN activityEditPart = createActivity();
-		final ActivityNameEditPart activityNameEditPart = (ActivityNameEditPart)EditPartUtils.findFirstChildEditPartWithId(activityEditPart, ActivityNameEditPart.VISUAL_ID);
-		final NamedElement namedElement = (Activity)activityEditPart.getUMLElement();
+		final ActivityNameEditPart activityNameEditPart = (ActivityNameEditPart) EditPartUtils.findFirstChildEditPartWithId(activityEditPart, ActivityNameEditPart.VISUAL_ID);
+		final NamedElement namedElement = (Activity) activityEditPart.getUMLElement();
 		testSetNameWithDirectEditRequest(activityNameEditPart, namedElement);
 	}
 }

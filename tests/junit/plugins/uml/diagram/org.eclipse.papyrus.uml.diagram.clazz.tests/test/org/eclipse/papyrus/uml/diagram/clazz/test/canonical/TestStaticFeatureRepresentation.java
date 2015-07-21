@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus - bug 473183
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.test.canonical;
 
@@ -36,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmen
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.StateNotShareable;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestChildLabel;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -45,12 +47,14 @@ import org.junit.Test;
  * this class is used to test if feature are a representation for static
  *
  */
+@StateNotShareable
 public class TestStaticFeatureRepresentation extends TestChildLabel {
 
 	@Override
 	public DiagramUpdater getDiagramUpdater() {
 		return CustomUMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateClassDiagramCommand();
@@ -81,14 +85,14 @@ public class TestStaticFeatureRepresentation extends TestChildLabel {
 	protected void testToTestStaticoperation(IElementType type, int containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
-		while(compartment == null && index < getTopEditPart().getChildren().size()) {
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
-				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
+		while (compartment == null && index < getTopEditPart().getChildren().size()) {
+			if ((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View) ((ListCompartmentEditPart) (getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+				compartment = (ListCompartmentEditPart) (getTopEditPart().getChildren().get(index));
 			}
 			index++;
 		}
 		assertTrue("Container not found", compartment != null);
-		//CREATION
+		// CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, compartment.getChildren().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
@@ -96,19 +100,19 @@ public class TestStaticFeatureRepresentation extends TestChildLabel {
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
-		//creation of label
+		// creation of label
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION + TEST_THE_EXECUTION, compartment.getChildren().size() == 1);
 		assertTrue("ceated editpart is a feature editpart", ((compartment.getChildren().get(0)) instanceof UMLCompartmentEditPart));
-		UMLCompartmentEditPart featureEditPart = (UMLCompartmentEditPart)compartment.getChildren().get(0);
-		//make it static
+		UMLCompartmentEditPart featureEditPart = (UMLCompartmentEditPart) compartment.getChildren().get(0);
+		// make it static
 		SetCommand setStaticOperation = new SetCommand(diagramEditor.getEditingDomain(), featureEditPart.resolveSemanticElement(), UMLPackage.eINSTANCE.getFeature_IsStatic(), true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(new EMFtoGMFCommandWrapper(setStaticOperation)));
-		TextFlowEx label = (TextFlowEx)((FlowPage)featureEditPart.getFigure().getChildren().get(0)).getChildren().get(0);
+		TextFlowEx label = (TextFlowEx) ((FlowPage) featureEditPart.getFigure().getChildren().get(0)).getChildren().get(0);
 		featureEditPart.refresh();
-		//the semantic element is static
-		assertTrue("the feature is static", ((Feature)featureEditPart.resolveSemanticElement()).isStatic());
-		//the graphical element is underlined
+		// the semantic element is static
+		assertTrue("the feature is static", ((Feature) featureEditPart.resolveSemanticElement()).isStatic());
+		// the graphical element is underlined
 		assertTrue("the figigure is drawn as static", label.isTextUnderlined());
 	}
 }
