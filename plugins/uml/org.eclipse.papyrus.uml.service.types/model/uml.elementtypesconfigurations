@@ -3889,4 +3889,12 @@
       editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.TemplateableElementEditHelperAdvice"
       inheritance="all"
       target="_SdHYY1YCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations
+      xmi:id="_hjfH8DCzEeWM9ILC16rEvw"
+      name="UML Read-only Hints Advice"
+      description="Advice that tweaks requests to provide hints to the read-only advice"
+      identifier="org.eclipse.papyrus.uml.advice.UMLReadOnlyHints"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.UMLReadOnlyHintsAdvice"
+      inheritance="all"
+      target="_ScgUUFYCEeS0WsAAtVmToA"/>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

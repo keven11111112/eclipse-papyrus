@@ -10,11 +10,13 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 458685
  *   Christian W. Damus - bug 468071
+ *   Christian W. Damus - bug 465899
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.types.tests.suites;
 
+import org.eclipse.papyrus.uml.service.types.tests.creation.ConnectorReadOnlyTestBug465899;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateElementTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateProfileRelationshipTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreatePureUMLElementTest;
@@ -42,7 +44,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		SetFeatureTest.class,
 		DeletePureUMLElementTest.class,
 		DeleteAssociationTest.class,
-		DeleteDependentWithStereotypeApplications458685.class, })
+		DeleteDependentWithStereotypeApplications458685.class,
+		ConnectorReadOnlyTestBug465899.class,
+})
 public class AllTests {
 	// JUnit 4 Test Suite
 }
