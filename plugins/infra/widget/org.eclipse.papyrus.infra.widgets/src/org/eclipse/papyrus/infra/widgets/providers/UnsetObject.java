@@ -25,5 +25,5 @@ public class UnsetObject {
 
 	}
 
-	public static UnsetObject instance = new UnsetObject();
+	public static final UnsetObject instance = new UnsetObject();
 }

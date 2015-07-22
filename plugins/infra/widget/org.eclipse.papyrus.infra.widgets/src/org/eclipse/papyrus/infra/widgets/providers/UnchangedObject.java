@@ -25,5 +25,5 @@ public class UnchangedObject {
 		return Messages.ReferenceDialogObservable_Unchanged;
 	}
 
-	public static UnchangedObject instance = new UnchangedObject();
+	public static final UnchangedObject instance = new UnchangedObject();
 }

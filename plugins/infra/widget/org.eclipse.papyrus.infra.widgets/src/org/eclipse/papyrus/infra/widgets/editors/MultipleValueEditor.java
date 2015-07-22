@@ -56,7 +56,7 @@ import org.eclipse.swt.widgets.TreeItem;
  */
 public class MultipleValueEditor extends AbstractListEditor implements SelectionListener, IChangeListener, DisposeListener {
 
-	public static int MANY = -1;
+	public static final int MANY = -1;
 
 	/**
 	 * The viewer displaying the current values from
@@ -719,7 +719,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 	@Override
 	public void changeColorField() {
-		 //nothing to do here
+		// nothing to do here
 
 	}
 }

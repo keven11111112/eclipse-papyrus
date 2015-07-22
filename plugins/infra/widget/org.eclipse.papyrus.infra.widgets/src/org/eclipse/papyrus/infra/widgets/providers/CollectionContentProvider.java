@@ -51,7 +51,7 @@ public class CollectionContentProvider implements ITreeContentProvider {
 	 *
 	 * @param inputElement
 	 * @return
-	 *         The Array containing the input elements
+	 * 		The Array containing the input elements
 	 */
 	@Override
 	public Object[] getElements(Object inputElement) {
@@ -67,7 +67,7 @@ public class CollectionContentProvider implements ITreeContentProvider {
 	/**
 	 * The Singleton instance
 	 */
-	public static CollectionContentProvider instance = new CollectionContentProvider();
+	public static final CollectionContentProvider instance = new CollectionContentProvider();
 
 	@Override
 	public Object[] getChildren(Object parentElement) {

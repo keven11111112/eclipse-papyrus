@@ -38,7 +38,7 @@ public class TreeCollectionContentProvider implements ITreeContentProvider {
 		return false;
 	}
 
-	public static TreeCollectionContentProvider instance = new TreeCollectionContentProvider();
+	public static final TreeCollectionContentProvider instance = new TreeCollectionContentProvider();
 
 	@Override
 	public void dispose() {
@@ -57,7 +57,7 @@ public class TreeCollectionContentProvider implements ITreeContentProvider {
 	 *
 	 * @param inputElement
 	 * @return
-	 *         The Array containing the input elements
+	 * 		The Array containing the input elements
 	 */
 	@Override
 	public Object[] getElements(Object inputElement) {

@@ -116,18 +116,7 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 	 */
 	protected ReferenceValueFactory valueFactory;
 
-	/**
-	 * Indicates whether the widget is read-only or not
-	 */
-	protected boolean readOnly;
-
 	private boolean directCreation;
-
-	/**
-	 * Indicates whether the widget requires a value or not. If it is mandatory,
-	 * it cannot delete/unset its value
-	 */
-	protected boolean mandatory;
 
 	private ControlDecoration controlDecoration;
 
@@ -302,12 +291,13 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 	/**
 	 * Updates the displayed label for the current value
 	 */
+	@Override
 	public void updateLabel() {
 		if (binding != null) {
 			binding.updateModelToTarget();
 
 		} else {
-			if(null != labelProvider){
+			if (null != labelProvider) {
 				currentValueLabel.setImage(labelProvider.getImage(getValue()));
 				currentValueLabel.setText(labelProvider.getText(getValue()));
 			}
@@ -321,6 +311,7 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 	 *            The content provider used to retrieve the possible values for
 	 *            this Reference
 	 */
+	@Override
 	public void setContentProvider(IStaticContentProvider provider) {
 		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
 		if (getValue() != null) {
@@ -338,6 +329,7 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 	 * @param provider
 	 *            The label provider
 	 */
+	@Override
 	public void setLabelProvider(ILabelProvider provider) {
 		if (provider == null) {
 			setLabelProvider(new LabelProvider());
@@ -418,7 +410,7 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 
 	/**
 	 * This allow to create the widget observable value.
-	 * 
+	 *
 	 * @param modelProperty
 	 *            The current observable value.
 	 * @return The created {@link StyledTextReferenceDialogObservableValue}.
@@ -433,6 +425,7 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 		currentValueLabel.setToolTipText(text);
 	}
 
+	@Override
 	public void setValueFactory(ReferenceValueFactory factory) {
 		valueFactory = factory;
 		updateControls();
@@ -460,6 +453,7 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 	/**
 	 * Updates the buttons' status
 	 */
+	@Override
 	public void updateControls() {
 		// Check if the edit & create buttons should be displayed
 		boolean exclude = valueFactory == null || !valueFactory.canCreateObject();
@@ -492,6 +486,7 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 		updateControls();
 	}
 
+	@Override
 	public void setDirectCreation(boolean directCreation) {
 		this.directCreation = directCreation;
 		updateControls();
@@ -522,6 +517,7 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 		this.dialog.setInput(input);
 	}
 
+	@Override
 	public void setMandatory(boolean mandatory) {
 		this.mandatory = mandatory;
 	}
