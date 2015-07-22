@@ -54,7 +54,9 @@ public class UMLIntegerEditorFilterConfiguration extends AbstractIntegerEditorFi
 				final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), AxisUtils.getPropertyId(string));
 				if (prop != null) {
 					Type type = prop.getType();
-					return PrimitivesTypesUtils.UML_INTEGER.equals(type.getName());
+					if (null != type){
+						return PrimitivesTypesUtils.UML_INTEGER.equals(type.getName());
+					}
 				}
 			}
 		}

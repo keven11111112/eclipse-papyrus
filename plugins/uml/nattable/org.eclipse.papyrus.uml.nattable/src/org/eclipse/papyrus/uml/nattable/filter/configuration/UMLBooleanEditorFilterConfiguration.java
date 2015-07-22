@@ -54,7 +54,9 @@ public class UMLBooleanEditorFilterConfiguration extends AbstractBooleanFilterRo
 				final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), AxisUtils.getPropertyId(string));
 				if (prop != null) {
 					Type type = prop.getType();
-					return PrimitivesTypesUtils.UML_BOOLEAN.equals(type.getName());
+					if (null != type){
+						return PrimitivesTypesUtils.UML_BOOLEAN.equals(type.getName());
+					}
 				}
 			}
 		}
