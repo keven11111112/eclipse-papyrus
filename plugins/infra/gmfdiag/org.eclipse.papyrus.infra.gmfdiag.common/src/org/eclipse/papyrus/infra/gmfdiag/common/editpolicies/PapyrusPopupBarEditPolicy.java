@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2003, 2015 IBM Corporation, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *   IBM Corporation - Initial API and implementation
  *   Christian W. Damus - Adapted to the Papyrus environment (too many private APIs to simply extend/override)
  *   Christian W. Damus - bug 451230
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
@@ -69,7 +69,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * Papyrus adaptation of the GMF popup bar diagram assistant.
- * 
+ *
  * @author affrantz@us.ibm.com
  * @author cmahoney
  */
@@ -121,29 +121,26 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/** flag for whether mouse cursor within shape */
 
-	private void setFlag(int bit, boolean b)
-	{
-		if (b)
+	private void setFlag(int bit, boolean b) {
+		if (b) {
 			myPopupBarFlags |= bit;
-		else if (getFlag(bit))
+		} else if (getFlag(bit)) {
 			myPopupBarFlags ^= bit;
+		}
 
 	}
 
-	private boolean getFlag(int bit)
-	{
+	private boolean getFlag(int bit) {
 		return ((myPopupBarFlags & bit) > 0);
 	}
 
 
 
-	private void setPopupBarOnDiagramActivated(boolean bVal)
-	{
+	private void setPopupBarOnDiagramActivated(boolean bVal) {
 		setFlag(POPUPBAR_ONDIAGRAMACTIVATED, bVal);
 	}
 
-	private boolean getPopupBarOnDiagramActivated()
-	{
+	private boolean getPopupBarOnDiagramActivated() {
 		return getFlag(POPUPBAR_ONDIAGRAMACTIVATED);
 	}
 
@@ -157,22 +154,20 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * set the host is connection flag
-	 * 
+	 *
 	 * @param bVal
 	 *            the new value
 	 */
-	protected void setHostConnection(boolean bVal)
-	{
+	protected void setHostConnection(boolean bVal) {
 		setFlag(POPUPBAR_HOST_IS_CONNECTION, bVal);
 	}
 
 	/**
 	 * get the host is connection flag
-	 * 
+	 *
 	 * @return true or false
 	 */
-	protected boolean isHostConnection()
-	{
+	protected boolean isHostConnection() {
 		return getFlag(POPUPBAR_HOST_IS_CONNECTION);
 	}
 
@@ -255,8 +250,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			} else {
 				return false;
 			}
-		}
-		else {
+		} else {
 			return isSelectionToolActive();
 		}
 	}
@@ -302,7 +296,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 				if (activePart instanceof IDiagramWorkbenchPart) {
 					editorPart = (IDiagramWorkbenchPart) activePart;
 				} else if (activePart instanceof IAdaptable) {
-					editorPart = (IDiagramWorkbenchPart) ((IAdaptable) activePart).getAdapter(IDiagramWorkbenchPart.class);
+					editorPart = ((IAdaptable) activePart).getAdapter(IDiagramWorkbenchPart.class);
 				}
 
 				if (editorPart != null) {
@@ -316,7 +310,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * allows plugins to add their own popup bar tools and tips
-	 * 
+	 *
 	 * @param elementType
 	 * @param theImage
 	 * @param theTracker
@@ -337,7 +331,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * adds popup bar descriptor
-	 * 
+	 *
 	 * @param elementType
 	 * @param theImage
 	 * @param theTracker
@@ -356,7 +350,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/**
 	 * default method for plugins which passes along the PopupBarTool
 	 * as the tool to be used.
-	 * 
+	 *
 	 * @param elementType
 	 * @param theImage
 	 */
@@ -386,7 +380,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * method used primarily to add UnspecifiedTypeCreationTool
-	 * 
+	 *
 	 * @param elementType
 	 * @param theImage
 	 * @param theRequest
@@ -407,7 +401,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * Add a drag-tracker/tool that doesn't create an element type.
-	 * 
+	 *
 	 * @param image
 	 *            the image to show in the popup bar
 	 * @param tracker
@@ -421,7 +415,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * gets the popup bar descriptors
-	 * 
+	 *
 	 * @return list
 	 */
 	protected List<PopupBarDescriptor> getPopupBarDescriptors() {
@@ -450,10 +444,9 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		for (PopupBarDescriptor theDesc : theList) {
 			// Button b = new Button(theDesc.myButtonIcon);
-			PopupBarLabelHandle b =
-					new PopupBarLabelHandle(
-							theDesc.getDragTracker(),
-							theDesc.getIcon());
+			PopupBarLabelHandle b = new PopupBarLabelHandle(
+					theDesc.getDragTracker(),
+					theDesc.getIcon());
 
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(xLoc, yLoc);
@@ -488,7 +481,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy#isDiagramAssistantShowing()
 	 */
 	@Override
@@ -546,7 +539,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * getter for the IsInstalledOnSurface flag
-	 * 
+	 *
 	 * @return true or false
 	 */
 	protected boolean getIsInstalledOnSurface() {
@@ -555,7 +548,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * setter for the IsInstalledOnSurface flag
-	 * 
+	 *
 	 * @param bVal
 	 */
 	protected void setIsInstalledOnSurface(boolean bVal) {
@@ -565,7 +558,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/**
 	 * For editparts that consume the entire viewport, statechart, structure,
 	 * communication, we want to display the popup bar at the mouse location.
-	 * 
+	 *
 	 * @param referencePoint
 	 *            The reference point which may be used to determine where the
 	 *            diagram assistant should be located. This is most likely the
@@ -604,7 +597,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 * Uses the balloon location passed in and its size to determine if the
 	 * balloon will appear outside the viewport. If so, the balloon location
 	 * will be modified accordingly.
-	 * 
+	 *
 	 * @param balloonLocation
 	 *            the suggested balloon location passed in and potentially
 	 *            modified when this method completes
@@ -662,7 +655,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy#showDiagramAssistantAfterDelay(int)
 	 */
 	@Override
@@ -698,7 +691,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/**
 	 * Gets the amount of time to wait before showing the popup bar if the
 	 * popup bar is to be shown at the mouse location {@link #getIsDisplayAtMouseHoverLocation()}.
-	 * 
+	 *
 	 * @return the time to wait in milliseconds
 	 */
 	protected int getAppearanceDelayLocationSpecific() {
@@ -734,8 +727,9 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		// if the cursor is inside the popup bar
 		// or the keyboar triggred activation
 		// then we do not want to deactivate
-		if (!isDiagramAssistant(me.getSource()))
+		if (!isDiagramAssistant(me.getSource())) {
 			setAvoidHidingDiagramAssistant(false);
+		}
 
 		setMouseLocation(me.getLocation());
 		if (getIsInstalledOnSurface()) {
@@ -764,8 +758,9 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			// if the cursor is inside the popup bar
 			// or the keyboar triggred activation
 			// then we do not want to deactivate
-			if (!isDiagramAssistant(me.getSource()))
+			if (!isDiagramAssistant(me.getSource())) {
 				setAvoidHidingDiagramAssistant(false);
+			}
 
 			showDiagramAssistantAfterDelay(getAppearanceDelay());
 		}
@@ -776,9 +771,9 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	//
 
 	/**
-	 * 
+	 *
 	 * Class to hold pertinent information about the tool placed on the popup bar
-	 * 
+	 *
 	 * @author affrantz@us.ibm.com
 	 */
 	private class PopupBarDescriptor {
@@ -798,7 +793,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * constructor
-		 * 
+		 *
 		 * @param s
 		 * @param i
 		 * @param elementType
@@ -818,7 +813,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * gets the icon associated with this Descriptor
-		 * 
+		 *
 		 * @return Image
 		 */
 		public final Image getIcon() {
@@ -827,7 +822,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * gets the drag tracker associated with this Descriptor
-		 * 
+		 *
 		 * @return drag tracker
 		 */
 		public final DragTracker getDragTracker() {
@@ -836,7 +831,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * gets the tool tip associated with this Descriptor
-		 * 
+		 *
 		 * @return string
 		 */
 		public final String getToolTip() {
@@ -847,7 +842,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * Default tool placed on the popup bar
-	 * 
+	 *
 	 * @author affrantz@us.ibm.com
 	 */
 	private class PopupBarLabelHandle extends Label implements Handle {
@@ -863,12 +858,14 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		private DragTracker myDragTracker = null;
 
 		private Image getDisabledImage() {
-			if (myDisabledImage != null)
+			if (myDisabledImage != null) {
 				return myDisabledImage;
+			}
 
 			Image theImage = this.getIcon();
-			if (theImage == null)
+			if (theImage == null) {
 				return null;
+			}
 
 			myDisabledImage = new Image(Display.getCurrent(), theImage, SWT.IMAGE_DISABLE);
 			if (imagesToBeDisposed == null) {
@@ -880,7 +877,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * cnostructor
-		 * 
+		 *
 		 * @param tracker
 		 * @param theImage
 		 */
@@ -963,18 +960,17 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @see org.eclipse.draw2d.IFigure#handleMousePressed(org.eclipse.draw2d.MouseEvent)
 		 *      set PopupBarEditPolicy.myActionMoveFigure bit so the popup bar
 		 *      is not dismissed after creating an item in the editpart
-		 * 
+		 *
 		 */
 		@Override
 		public void handleMousePressed(MouseEvent event) {
 
-			if (1 == event.button)
-			{
+			if (1 == event.button) {
 				// this is the flag in PopupBarEditPolicy that
 				// prevents the popup bar from dismissing after a new item
 				// is added to a shape, which causes the editpart to be
 				// resized.
-				setFlag(POPUPBAR_MOVE_FIGURE, true);
+				this.setFlag(POPUPBAR_MOVE_FIGURE, true);
 				// future: when other tools besides PopupBarTool are
 				// used
 				// we will need a way in which to call
@@ -985,8 +981,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		}
 
 		private void calculateEnabled() {
-			if ((myDragTracker != null) && (myDragTracker instanceof AbstractPopupBarTool))
-			{
+			if ((myDragTracker != null) && (myDragTracker instanceof AbstractPopupBarTool)) {
 				AbstractPopupBarTool abarTool = (AbstractPopupBarTool) myDragTracker;
 				setEnabled(abarTool.isCommandEnabled());
 			} else {
@@ -999,11 +994,9 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 */
 		@Override
 		protected void paintFigure(Graphics graphics) {
-			if (!isEnabled())
-			{
+			if (!isEnabled()) {
 				Image theImage = getDisabledImage();
-				if (theImage != null)
-				{
+				if (theImage != null) {
 					graphics.translate(bounds.x, bounds.y);
 					graphics.drawImage(theImage, getIconLocation());
 					graphics.translate(-bounds.x, -bounds.y);
@@ -1036,19 +1029,21 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/**
 	 * Listens to the owner figure being moved so the handles can be removed
 	 * when this occurs.
-	 * 
+	 *
 	 * @author affrantz@us.ibm.com
-	 * 
+	 *
 	 */
 	private class OwnerMovedListener implements FigureListener {
 
 		private Point myPopupBarLastPosition = new Point(0, 0);
 
 		boolean hasPositionChanged(Rectangle theBounds) {
-			if (theBounds.x != myPopupBarLastPosition.x)
+			if (theBounds.x != myPopupBarLastPosition.x) {
 				return true;
-			if (theBounds.y != myPopupBarLastPosition.y)
+			}
+			if (theBounds.y != myPopupBarLastPosition.y) {
 				return true;
+			}
 			return false;
 		}
 
@@ -1079,7 +1074,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/**
 	 * Listens for mouse key presses so the popup bar can be dismissed if the context
 	 * menu is displayed
-	 * 
+	 *
 	 * @author affrantz@us.ibm.com
 	 */
 	private class PopupBarMouseListener extends MouseListener.Stub {
@@ -1099,8 +1094,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		}
 
 		@Override
-		public void mouseReleased(MouseEvent me)
-		{
+		public void mouseReleased(MouseEvent me) {
 			super.mouseReleased(me);
 
 		}

@@ -57,22 +57,22 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 
 	private static String diagramCreationMethodName = "createDiagram"; //$NON-NLS-1$
 
-	static protected class ClassToCreationMethodMap extends HashMap {
+	static protected class ClassToCreationMethodMap extends HashMap<Class<?>, Method> {
 
 		static final long serialVersionUID = 1;
 
-		public void addMethod(Class clazz, Method method) {
+		public void addMethod(Class<?> clazz, Method method) {
 			if (get(clazz) == null) {
 				put(clazz, method);
 			}
 		}
 
-		public Method getCreationMethod(Class clazz) {
-			return (Method) get(clazz);
+		public Method getCreationMethod(Class<?> clazz) {
+			return get(clazz);
 		}
 	}
 
-	public static ClassToCreationMethodMap classToCreateMethod = new ClassToCreationMethodMap();
+	public static final ClassToCreationMethodMap classToCreateMethod = new ClassToCreationMethodMap();
 
 	/**
 	 * Determines whether this view provider can provide for the required
@@ -176,7 +176,7 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 	 * @param semanticAdapter
 	 * @return Class
 	 */
-	protected Class getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
+	protected Class<?> getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
 		return null;
 	}
 
@@ -188,7 +188,7 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 	 * @param semanticHint
 	 * @return Class
 	 */
-	protected Class getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
+	protected Class<?> getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		return null;
 	}
 
@@ -200,7 +200,7 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 	 * @param semanticHint
 	 * @return Class
 	 */
-	protected Class getNodeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
+	protected Class<?> getNodeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		return null;
 	}
 
@@ -210,11 +210,11 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 	 * @param constructorParams
 	 *            the view's constructor parameters.
 	 */
-	private View createNewView(Class viewClass, Object[] constructorParams) {
+	private View createNewView(Class<?> viewClass, Object[] constructorParams) {
 		try {
 			assert null != viewClass : "Null viewClass in AbstractProvider";//$NON-NLS-1$
 			assert null != constructorParams : "Null constructorParams in AbstractProvider";//$NON-NLS-1$
-			Constructor constructor = getFactoryConstructor(viewClass);
+			Constructor<?> constructor = getFactoryConstructor(viewClass);
 			if (constructor == null) {
 				Log.error(DiagramPlugin.getInstance(), DiagramStatusCodes.SERVICE_FAILURE, "View (" + viewClass + ") is missing a proper creation Factory"); //$NON-NLS-1$//$NON-NLS-2$
 				return null;
@@ -233,9 +233,9 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 		}
 	}
 
-	private Constructor getFactoryConstructor(Class viewClass) {
+	private Constructor<?> getFactoryConstructor(Class<?> viewClass) {
 		if (viewClass != null) {
-			Constructor[] ctors = viewClass.getConstructors();
+			Constructor<?>[] ctors = viewClass.getConstructors();
 			for (int i = 0; i < ctors.length; i++) {
 				if (ctors[i].getParameterTypes().length == 0) {
 					return ctors[i];
@@ -246,7 +246,7 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 	}
 
 	/** Return the <i>creation</i> constructor for the cached view class. */
-	private Method getCreationMethod(Class viewClass, Object[] params) {
+	private Method getCreationMethod(Class<?> viewClass, Object[] params) {
 		if (viewClass != null) {
 			Method method = classToCreateMethod.getCreationMethod(viewClass);
 			if (method != null) {
@@ -275,11 +275,11 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 		if (semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		EObject eObject = semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
 			return EMFCoreUtil.getProxyClass(eObject);
 		}
-		IElementType type = (IElementType) semanticAdapter.getAdapter(IElementType.class);
+		IElementType type = semanticAdapter.getAdapter(IElementType.class);
 		if (type != null) {
 			return type.getEClass();
 		}
@@ -296,7 +296,7 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 		if (semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		EObject eObject = semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
 			return EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(eObject), eObject);
 		}
@@ -313,7 +313,7 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 		if (semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		EObject eObject = semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
 			return EMFCoreUtil.resolve(domain, eObject);
 		}

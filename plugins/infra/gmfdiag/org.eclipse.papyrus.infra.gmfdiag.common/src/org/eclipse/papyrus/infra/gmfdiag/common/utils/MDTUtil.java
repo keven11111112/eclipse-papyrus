@@ -41,6 +41,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IURIEditorInput;
+import org.eclipse.uml2.common.util.CacheAdapter;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 
@@ -56,7 +57,7 @@ public class MDTUtil {
 	// ID for the EAnnotation that describes the version of the first editor
 	// that modified the diagram
 	/** The EDITO r_ version. */
-	public static String EDITOR_VERSION = "org.eclipse.papyrus.uml.diagram.common.Editor";
+	public static final String EDITOR_VERSION = "org.eclipse.papyrus.uml.diagram.common.Editor";
 
 	/**
 	 * Add to a diagram the version of the first editor that will modify the

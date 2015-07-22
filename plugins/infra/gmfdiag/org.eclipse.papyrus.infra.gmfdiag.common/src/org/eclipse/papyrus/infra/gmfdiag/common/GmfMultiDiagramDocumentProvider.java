@@ -77,7 +77,7 @@ import org.eclipse.ui.part.FileEditorInput;
 public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider,
 		IEditingDomainProvider {
 
-	public static String EditingDomainID = "com.cea.papyrus.core.PapyrusEditingDomainID"; //$NON-NLS-1$
+	public static final String EditingDomainID = "com.cea.papyrus.core.PapyrusEditingDomainID"; //$NON-NLS-1$
 
 	/**
 	 * The shared ResourceSet.
@@ -230,7 +230,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		if (sharedEditingDomain != null) { // Already initialized
 			editingDomain = sharedEditingDomain;
 			// System.out.println(this.getClass().getSimpleName()
-			//					+ ".createEditingDomain() - got EditingDomain from previous call (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			// + ".createEditingDomain() - got EditingDomain from previous call (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 			return editingDomain;
 		}
 
@@ -272,7 +272,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		// Add listener on resource change
 		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(
 				editingDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(
-				NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
+						NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
 		editingDomain.getResourceSet().eAdapters().add(new Adapter() {
 
 			private Notifier myTarger;
@@ -1122,7 +1122,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			myInfos = new ArrayList<GmfMultiDiagramDocumentProvider.ResourceSetInfo>();
 			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(
 					NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(
-					NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
+							NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
 		}
 
 		public void addResourceSet(ResourceSetInfo info) {

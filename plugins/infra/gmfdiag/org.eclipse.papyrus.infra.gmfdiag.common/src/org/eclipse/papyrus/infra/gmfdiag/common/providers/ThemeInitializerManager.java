@@ -21,7 +21,7 @@ public class ThemeInitializerManager {
 
 	private static final String EXTENSION_ID = Activator.ID + ".initializeView";
 
-	public static IThemeInitializer instance = loadThemeInitializer();
+	public static final IThemeInitializer instance = loadThemeInitializer();
 
 	private static IThemeInitializer loadThemeInitializer() {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
