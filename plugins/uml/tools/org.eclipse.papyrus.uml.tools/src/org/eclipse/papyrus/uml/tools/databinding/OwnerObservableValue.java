@@ -67,12 +67,12 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 	/**
 	 * Owned by classifier
 	 */
-	public static String CLASSIFIER = "Classifier"; //$NON-NLS-1$
+	public static final String CLASSIFIER = "Classifier"; //$NON-NLS-1$
 
 	/**
 	 * Owned by association
 	 */
-	public static String ASSOCIATION = "Association"; //$NON-NLS-1$
+	public static final String ASSOCIATION = "Association"; //$NON-NLS-1$
 
 	/**
 	 * Constructor.
@@ -89,10 +89,12 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 		navigableEndsObservableList.addChangeListener(this);
 	}
 
+	@Override
 	public void handleChange(ChangeEvent event) {
 		fireValueChange(Diffs.createValueDiff(currentValue, doGetValue()));
 	}
 
+	@Override
 	public Object getValueType() {
 		return String.class;
 	}
@@ -108,6 +110,7 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 		domain.getCommandStack().execute(command);
 	}
 
+	@Override
 	public Object getObserved() {
 		return memberEnd;
 	}
@@ -119,6 +122,7 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 		navigableEndsObservableList.dispose();
 	}
 
+	@Override
 	public Command getCommand(Object value) {
 		if (value instanceof String) {
 			String owner = (String) value;
@@ -166,6 +170,7 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	@Override
 	public AggregatedObservable aggregate(IObservable observable) {
 		try {
 			return new AggregatedPapyrusObservableValue(domain, this, observable);
@@ -174,6 +179,7 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 		}
 	}
 
+	@Override
 	public boolean hasDifferentValues() {
 		return false;
 	}
