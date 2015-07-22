@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,11 +7,16 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 465899
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.utils;
+
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+
+import com.google.common.base.Defaults;
 
 /**
  * <pre>
@@ -103,11 +108,99 @@ public interface RequestParameterConstants {
 	 * the ID to store the name to be set for the new element.
 	 */
 	public final static String NAME_TO_SET = "nameToSet";
-	
+
 	/**
 	 * this constant is used to precise if it is needed to launch UI during the edition of an element
 	 */
-	public static String USE_GUI= "USE_GUI";
+	public static String USE_GUI = "USE_GUI";
 
+	/**
+	 * A boolean-valued parameter for {@link CreateRelationshipRequest} that indicates
+	 * whether the creation of the relationship will modify the source element (usually
+	 * because it will have an inverse reference to some element of the relationship).
+	 * The default value is {@code true} if the parameter is not specified. <b>Note</b>
+	 * that this is different from the {@link #AFFECTS_TARGET} parameter.
+	 * 
+	 * @see #AFFECTS_TARGET
+	 */
+	public static final String AFFECTS_SOURCE = "papyrus.affectsSource"; //$NON-NLS-1$
 
+	/**
+	 * A boolean-valued parameter for {@link CreateRelationshipRequest} that indicates
+	 * whether the creation of the relationship will modify the target element (usually
+	 * because it will have an inverse reference to some element of the relationship).
+	 * The default value is {@code false} if the parameter is not specified. <b>Note</b>
+	 * that this is different from the {@link #AFFECTS_SOURCE} parameter.
+	 * 
+	 * @see #AFFECTS_SOURCE
+	 */
+	public static final String AFFECTS_TARGET = "papyrus.affectsTarget"; //$NON-NLS-1$
+
+	//
+	// Nested types
+	//
+
+	/**
+	 * Provider of default values for request parameters that support them, defined in the
+	 * {@link RequestParameterConstants} type.
+	 */
+	final class DefaultValues {
+		/**
+		 * Obtains the value of a parameter of the given {@code type} from a {@code request},
+		 * returning the parameter's default value (if any such is defined) in the case that it
+		 * is absent from the request.
+		 * 
+		 * @param request
+		 *            an edit request
+		 * @param parameterName
+		 *            the name of the parameter to retrieve
+		 * @param type
+		 *            the type of the parameter
+		 * 
+		 * @return the parameter value, its default (if specified) in case it is absent from the
+		 *         {@code request}, or the {@code type}'s default-default otherwise
+		 */
+		public static <T> T getValue(IEditCommandRequest request, String parameterName, Class<T> type) {
+			T result;
+
+			try {
+				if (type == Boolean.class) {
+					Boolean booleanResult = (Boolean) request.getParameter(parameterName);
+					if (booleanResult == null) {
+						booleanResult = defaultBoolean(parameterName);
+					}
+					result = type.cast(booleanResult);
+				} else {
+					result = type.cast(Defaults.defaultValue(type));
+				}
+			} catch (IllegalArgumentException e) {
+				// The parameter doesn't specify a default
+				result = type.cast(Defaults.defaultValue(type));
+			}
+
+			return result;
+		}
+
+		/**
+		 * Queries the default value of a boolean-valued request parameter.
+		 * 
+		 * @param parameterName
+		 *            the boolean-value parameter for which to obtain the default value
+		 * 
+		 * @return the default value
+		 * 
+		 * @throws IllegalArgumentException
+		 *             if the parameter is not boolean-valued or if it does not have a default value
+		 */
+		public static boolean defaultBoolean(String parameterName) {
+			switch (parameterName) {
+			case AFFECTS_SOURCE:
+				return true;
+			case AFFECTS_TARGET:
+				return false;
+			default:
+				throw new IllegalArgumentException("Not a boolean parameter or not defaulted: " + parameterName); //$NON-NLS-1$
+			}
+		}
+	}
 }
