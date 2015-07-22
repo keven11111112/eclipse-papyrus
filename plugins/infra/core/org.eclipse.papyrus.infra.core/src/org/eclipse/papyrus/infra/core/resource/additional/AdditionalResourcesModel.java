@@ -39,7 +39,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 public class AdditionalResourcesModel extends AbstractModel implements IModel {
 
 	/** Model identifier */
-	public static String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.additional";
+	public static final String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.additional";
 
 	/**
 	 * {@inheritDoc}
