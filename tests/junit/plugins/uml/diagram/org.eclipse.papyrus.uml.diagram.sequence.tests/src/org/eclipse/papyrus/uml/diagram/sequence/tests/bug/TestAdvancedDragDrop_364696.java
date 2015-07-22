@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 434993
  *   Christian W. Damus (CEA) - bug 436047
+ *   Christian W. Damus - bug 473183
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.StateNotShareable;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -57,9 +59,14 @@ import org.junit.Test;
  * reference the dropped ConnectableElement in the Lifeline "represents" property.
  * A generic solution may be possible.
  */
+@StateNotShareable
 public class TestAdvancedDragDrop_364696 extends TestTopNode {
 
-	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">" + "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">" + "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>" + "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>" + "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
+	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">"
+			+ "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">"
+			+ "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>"
+			+ "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>"
+			+ "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
@@ -82,12 +89,12 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 		file = project.getFile(getFileName());
 		this.diResourceSet = houseKeeper.cleanUpLater(new DiResourceSet());
 		try {
-			//at this point, no resources have been created
-			if(file.exists()) {
+			// at this point, no resources have been created
+			if (file.exists()) {
 				file.delete(true, new NullProgressMonitor());
 			}
 
-			if(!file.exists()) {
+			if (!file.exists()) {
 				// Don't create a zero-byte file. Create an empty XMI document
 				Resource diResource = diResourceSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
 				diResource.save(null);
@@ -96,10 +103,10 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 				new CreateUMLModelCommand().createModel(this.diResourceSet);
 				ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 				try {
-					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); //High priority to override all contributions
+					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); // High priority to override all contributions
 					registry.startRegistry();
 				} catch (ServiceException ex) {
-					//Ignore exceptions
+					// Ignore exceptions
 				}
 				ICreationCommand command = getDiagramCommandCreation();
 				command.createDiagram(diResourceSet, null, "DiagramToTest");
@@ -126,7 +133,7 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 
 	@Test
 	public void testDragDrop() {
-		Interaction interaction = (Interaction)getRootSemanticModel();
+		Interaction interaction = (Interaction) getRootSemanticModel();
 		{
 			Classifier p = interaction.getNestedClassifier("Person");
 			Feature feature = p.getFeature("company");
@@ -135,7 +142,7 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 			dropObject(getRootEditPart(), feature);
 			assertTrue(DROP + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 1);
 			assertTrue(DROP + TEST_THE_EXECUTION, getRootEditPart().getChildren().get(0) instanceof LifelineEditPart);
-			assertTrue(DROP + TEST_THE_EXECUTION, getRepresents(((LifelineEditPart)getRootEditPart().getChildren().get(0))) == feature);
+			assertTrue(DROP + TEST_THE_EXECUTION, getRepresents(((LifelineEditPart) getRootEditPart().getChildren().get(0))) == feature);
 		}
 		{
 			Classifier p = interaction.getNestedClassifier("Company");
@@ -144,7 +151,7 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 			dropObject(getRootEditPart(), feature);
 			assertTrue(DROP + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 2);
 			assertTrue(DROP + TEST_THE_EXECUTION, getRootEditPart().getChildren().get(1) instanceof LifelineEditPart);
-			assertTrue(DROP + TEST_THE_EXECUTION, getRepresents(((LifelineEditPart)getRootEditPart().getChildren().get(1))) == feature);
+			assertTrue(DROP + TEST_THE_EXECUTION, getRepresents(((LifelineEditPart) getRootEditPart().getChildren().get(1))) == feature);
 		}
 
 		{
@@ -154,12 +161,12 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 			dropObject(getRootEditPart(), feature);
 			assertTrue(DROP + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 3);
 			assertTrue(DROP + TEST_THE_EXECUTION, getRootEditPart().getChildren().get(2) instanceof LifelineEditPart);
-			assertTrue(DROP + TEST_THE_EXECUTION, getRepresents(((LifelineEditPart)getRootEditPart().getChildren().get(2))) == feature);
+			assertTrue(DROP + TEST_THE_EXECUTION, getRepresents(((LifelineEditPart) getRootEditPart().getChildren().get(2))) == feature);
 		}
 	}
 
 	protected ConnectableElement getRepresents(LifelineEditPart editPart) {
-		Lifeline lifeline = (Lifeline)editPart.resolveSemanticElement();
+		Lifeline lifeline = (Lifeline) editPart.resolveSemanticElement();
 		return lifeline.getRepresents();
 	}
 

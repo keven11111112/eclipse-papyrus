@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *   Christian W. Damus (CEA) - bug 434993
  *   Christian W. Damus (CEA) - bug 436047
  *   Christian W. Damus (CEA) - Decompositions need more room on Linux
+ *   Christian W. Damus - bug 473183
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
@@ -59,6 +60,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.StateNotShareable;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Interaction;
@@ -72,11 +74,16 @@ import org.junit.Test;
  * their moving (horizontally), resizing and resizing of the lifeline representing
  * the father component. These operations should be allowed.
  */
+@StateNotShareable
 public class TestDecompositionMove_364812 extends TestTopNode {
 
 	private static final String MOVE = "Move: ";
 
-	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">" + "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">" + "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>" + "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>" + "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
+	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">"
+			+ "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">"
+			+ "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>"
+			+ "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>"
+			+ "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
 
 	private static final String RESIZE = "Resize: ";
 
@@ -103,12 +110,12 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 		file = project.getFile(getFileName());
 		this.diResourceSet = houseKeeper.cleanUpLater(new DiResourceSet());
 		try {
-			//at this point, no resources have been created
-			if(file.exists()) {
+			// at this point, no resources have been created
+			if (file.exists()) {
 				file.delete(true, new NullProgressMonitor());
 			}
 
-			if(!file.exists()) {
+			if (!file.exists()) {
 				// Don't create a zero-byte file. Create an empty XMI document
 				Resource diResource = diResourceSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
 				diResource.save(null);
@@ -117,10 +124,10 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 				new CreateUMLModelCommand().createModel(this.diResourceSet);
 				ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 				try {
-					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); //High priority to override all contributions
+					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); // High priority to override all contributions
 					registry.startRegistry();
 				} catch (ServiceException ex) {
-					//Ignore exceptions
+					// Ignore exceptions
 				}
 				ICreationCommand command = getDiagramCommandCreation();
 				command.createDiagram(diResourceSet, null, "DiagramToTest");
@@ -152,8 +159,8 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 			moveLifeline(decomposition, new Point(50, 0));
 			moveLifeline(decomposition, new Point(-20, 0));
 			// move child
-			moveLifeline((LifelineEditPart)decomposition.getChildren().get(1), new Point(10, 0));
-			moveLifeline((LifelineEditPart)decomposition.getChildren().get(2), new Point(-10, 0));
+			moveLifeline((LifelineEditPart) decomposition.getChildren().get(1), new Point(10, 0));
+			moveLifeline((LifelineEditPart) decomposition.getChildren().get(2), new Point(-10, 0));
 		}
 	}
 
@@ -169,11 +176,11 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 		}
 
 		{ // resize child
-			resizeEast((LifelineEditPart)decomposition.getChildren().get(1), new Dimension(20, 0));
-			resizeEast((LifelineEditPart)decomposition.getChildren().get(1), new Dimension(-10, 0));
+			resizeEast((LifelineEditPart) decomposition.getChildren().get(1), new Dimension(20, 0));
+			resizeEast((LifelineEditPart) decomposition.getChildren().get(1), new Dimension(-10, 0));
 
-			resizeWest((LifelineEditPart)decomposition.getChildren().get(2), new Dimension(20, 0));
-			resizeWest((LifelineEditPart)decomposition.getChildren().get(2), new Dimension(-10, 0));
+			resizeWest((LifelineEditPart) decomposition.getChildren().get(2), new Dimension(20, 0));
+			resizeWest((LifelineEditPart) decomposition.getChildren().get(2), new Dimension(-10, 0));
 		}
 	}
 
@@ -225,8 +232,8 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 	protected LifelineEditPart setupDecomposition() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(300, 200));
 
-		Interaction interaction = (Interaction)getRootSemanticModel();
-		CustomLifelineEditPart lifeline1 = (CustomLifelineEditPart)getRootEditPart().getChildren().get(0);
+		Interaction interaction = (Interaction) getRootSemanticModel();
+		CustomLifelineEditPart lifeline1 = (CustomLifelineEditPart) getRootEditPart().getChildren().get(0);
 		Classifier p = interaction.getNestedClassifier("Person");
 		changeRepresents(lifeline1, p.getFeature("company"));
 		assertTrue(CREATION + INITIALIZATION_TEST, !lifeline1.isInlineMode());
@@ -289,7 +296,7 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 	}
 
 	protected void changeRepresents(LifelineEditPart p, Object value) {
-		Lifeline lifeline = (Lifeline)p.resolveSemanticElement();
+		Lifeline lifeline = (Lifeline) p.resolveSemanticElement();
 		EReference feature = UMLPackage.eINSTANCE.getLifeline_Represents();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(lifeline);
 		SetRequest request = new SetRequest(p.getEditingDomain(), lifeline, feature, value);
@@ -301,7 +308,7 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 	}
 
 	public void createNode(IElementType type, GraphicalEditPart parent, Point location, Dimension size) {
-		//CREATION
+		// CREATION
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST and others.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434993
  *  Christian W. Damus (CEA) - bug 436047
+ *  Christian W. Damus - bug 473183
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.tests.canonical;
@@ -27,6 +28,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -63,6 +65,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Rule;
 
 /**
@@ -70,8 +73,11 @@ import org.junit.Rule;
  */
 public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 
+	@ClassRule
+	public static final SharedTestSuiteState suiteState = new SharedTestSuiteState();
+
 	@Rule
-	public final HouseKeeper houseKeeper = new HouseKeeper();
+	public final HouseKeeper houseKeeper = suiteState.testState();
 
 	protected boolean operationFailed = false;
 
@@ -141,6 +147,10 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		suiteState.setupTest();
+	}
+
+	void doSetUp() throws Exception {
 		projectCreation();
 
 	}
@@ -170,6 +180,10 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		suiteState.teardownTest();
+	}
+
+	void doTearDown() throws Exception {
 		Runnable runnable = new Runnable() {
 
 			public void run() {
@@ -202,7 +216,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 			Assert.assertNotNull("Cannot find the diagram editor", diagramEditor); //$NON-NLS-1$
 			Assert.assertNotNull("Cannot find the Diagram edit part", diagramEditPart); //$NON-NLS-1$
 			StringValueStyle style = (StringValueStyle)diagramEditPart.getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), DiagramVersioningUtils.COMPATIBILITY_VERSION);
-			Assert.assertNotNull("A version lust be associated to a each diagram", style); //$NON-NLS-1$
+			Assert.assertNotNull("A version must be associated with every diagram", style); //$NON-NLS-1$
 			Assert.assertTrue("The created diagram has not a good version", DiagramVersioningUtils.isOfCurrentPapyrusVersion((Diagram)diagramEditPart.getNotationView())); //$NON-NLS-1$
 		}
 		return diagramEditPart;
@@ -372,7 +386,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	/** Execute the given command in the diagram editor. */
 	protected void execute(final Command command) {
 		resetLastOperationFailedState();
-		getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
 		assertLastOperationSuccessful();
 	}
 
@@ -398,6 +412,10 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	protected CommandStack getCommandStack() {
 		// not "diagramEditor.getDiagramEditDomain().getDiagramCommandStack()"
 		// because it messes up undo contexts
-		return this.diagramEditor.getEditingDomain().getCommandStack();
+		return getEditingDomain().getCommandStack();
+	}
+
+	protected TransactionalEditingDomain getEditingDomain() {
+		return diagramEditor.getEditingDomain();
 	}
 }
