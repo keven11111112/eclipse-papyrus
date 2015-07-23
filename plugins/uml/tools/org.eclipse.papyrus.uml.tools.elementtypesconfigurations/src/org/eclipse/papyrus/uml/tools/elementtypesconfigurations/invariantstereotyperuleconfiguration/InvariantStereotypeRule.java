@@ -20,6 +20,8 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfiguredHinte
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration.AbstractInvariantRule;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 
 public class InvariantStereotypeRule extends AbstractInvariantRule<InvariantStereotypeRuleConfiguration> {
@@ -90,6 +92,22 @@ public class InvariantStereotypeRule extends AbstractInvariantRule<InvariantSter
 	 */
 	@Override
 	protected boolean approveCreationRequest(ConfiguredHintedSpecializationElementType type, CreateElementRequest request) {
+		// check that the required profile is present.
+		String requiredProfileName = invariantRuleConfiguration.getRequiredProfile();
+		if (requiredProfileName != null) {
+			// check target
+			EObject container = request.getContainer();
+			if (!(container instanceof Element)) {
+				return false;
+			}
+			Package nearestPackage = ((Element) container).getNearestPackage();
+			if (nearestPackage == null) {
+				return false;
+			}
+			Profile appliedProfile = nearestPackage.getAppliedProfile(requiredProfileName, true);
+			return appliedProfile != null;
+		}
+
 		return true;
 	}
 
