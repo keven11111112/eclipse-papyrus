@@ -130,7 +130,7 @@ public abstract class AbstractShapeEditPart extends UMLNodeEditPart implements I
 
 					} catch (MalformedURLException e) {
 
-						Activator.log.error(String.format("$0 $1", icon.getLocation(), e.getLocalizedMessage()), e);
+						Activator.log.error(String.format("%s %s", icon.getLocation(), e.getLocalizedMessage()), e);
 					}
 				} else {
 					shape.setIcon(Activator.getShape(getUMLElement(), stereotype, false));

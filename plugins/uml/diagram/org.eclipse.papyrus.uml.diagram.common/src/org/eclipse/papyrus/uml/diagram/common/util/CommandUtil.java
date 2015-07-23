@@ -44,7 +44,7 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 public class CommandUtil {
 
 
-	private static final String DOMAIN_FORMAT = "The transactional Domain cannot be retrived from the object s1";
+	private static final String DOMAIN_FORMAT = "The transactional Domain cannot be retrived from the object %s";
 
 	/**
 	 * Executes the supplied command inside an <code>unchecked action</code>
@@ -90,7 +90,7 @@ public class CommandUtil {
 	/**
 	 * Execute a command as unsafe.
 	 * Consequence: the command doesn't appear in the Command Stack and does not make the diagram dirty.
-	 * 
+	 *
 	 * @param command
 	 *            The command to execute unsafe
 	 * @param object
@@ -111,7 +111,7 @@ public class CommandUtil {
 	/**
 	 * Execute a command as unsafe.
 	 * Consequence: the command doesn't appear in the Command Stack and does not make the diagram dirty.
-	 * 
+	 *
 	 * @param command
 	 *            The command to execute unsafe
 	 * @param object
@@ -131,7 +131,7 @@ public class CommandUtil {
 	/**
 	 * Execute a command as unsafe.
 	 * Consequence: the command doesn't appear in the Command Stack and does not make the diagram dirty.
-	 * 
+	 *
 	 * @param command
 	 *            The command to execute unsafe
 	 * @param object
@@ -152,12 +152,12 @@ public class CommandUtil {
 	/**
 	 * Execute a command as unsafe.
 	 * Consequence: the command doesn't appear in the Command Stack and does not make the diagram dirty.
-	 * 
+	 *
 	 * @param command
 	 *            The command to execute unsafe
 	 * @param object
 	 *            The EObject that is required to define the Transactional domain.
-	 * 
+	 *
 	 * @see {@link #resolveEditingDomain}
 	 */
 	public static void executeCommandInStack(final org.eclipse.emf.common.command.Command command, final Object object) {
@@ -170,10 +170,10 @@ public class CommandUtil {
 	/**
 	 * Retrieve Editing Domain from an object.
 	 * The Object treated can be a {@link TransactionalEditingDomain}, an {@link EObject} or a {@link IGraphicalEditPart}.
-	 * 
+	 *
 	 * @param object
 	 *            The object used to find the Transactional Editing Domain.
-	 * 
+	 *
 	 * @return The associated Editing Domain, or null if not found.
 	 */
 	public static TransactionalEditingDomain resolveEditingDomain(Object object) {
@@ -197,7 +197,7 @@ public class CommandUtil {
 
 	/**
 	 * Run the Command Asynchronously
-	 * 
+	 *
 	 * @param command
 	 *            The command to execute
 	 * @param domain
@@ -216,7 +216,7 @@ public class CommandUtil {
 
 	/**
 	 * Run the Command Asynchronously
-	 * 
+	 *
 	 * @param command
 	 *            The command to execute
 	 * @param domain
@@ -233,7 +233,7 @@ public class CommandUtil {
 
 	/**
 	 * Run the Command Asynchronously
-	 * 
+	 *
 	 * @param command
 	 *            The command to execute
 	 * @param domain

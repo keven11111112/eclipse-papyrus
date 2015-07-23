@@ -64,12 +64,16 @@ public class RemoveAppliedStereotypePropertiesToDisplayCommand extends Recording
 	@Override
 	protected void doExecute() {
 		View propertyView = null;
-		if (StereotypeLocationEnum.IN_COMPARTMENT.equals(location)) {
+		switch (StereotypeLocationEnum.valueOf(location)) {
+		case IN_COMPARTMENT:
 			propertyView = helper.getStereotypeProperty(view, stereotype, property);
-		} else if (StereotypeLocationEnum.IN_BRACE.equals(location)) {
+			break;
+		case IN_BRACE:
 			propertyView = helper.getStereotypePropertyInBrace(view, stereotype, property);
-		} else if (StereotypeLocationEnum.IN_COMMENT.equals(location)) {
+			break;
+		case IN_COMMENT:
 			propertyView = helper.getStereotypePropertyInComment(view, stereotype, property);
+			break;
 		}
 
 		commandHelper.setUserVisibility(domain, propertyView, false);

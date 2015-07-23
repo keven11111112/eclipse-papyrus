@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
  *   Christian W. Damus - bug 466629
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.migration.commands;
@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * In charge of applying user preferences from the old EAnnotation structure to the new one
  * For Stereotypes Properties
  * This means set visibility to the newly created views .
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -43,8 +43,8 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 	private IStereotypeViewProvider provider;
 
 	// Helpers
-	protected static StereotypeMigrationHelper migrationHelper = StereotypeMigrationHelper.getInstance();
-	protected static StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
+	protected static final StereotypeMigrationHelper migrationHelper = StereotypeMigrationHelper.getInstance();
+	protected static final StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 
 	// Constant
 	protected final static String EANNOTATION_LIST_SEPARATOR = ","; //$NON-NLS-1$
@@ -68,7 +68,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Migrate the Stereotype Properties from the old Version.
-	 * 
+	 *
 	 * @param view
 	 *            View of the Editpart on which the STereotype is applied
 	 */
@@ -103,7 +103,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Create the Provider with the associated View
-	 * 
+	 *
 	 * @param view
 	 *            The View of the object that will be taken as Reference to provide the different Stereotype to display View.
 	 */
@@ -116,7 +116,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 	/**
 	 * From the Stereotype Property List to display , update the Visibility
 	 * And hide visible Stereotype property that should not be shown.
-	 * 
+	 *
 	 * @param view
 	 *            The view of the object to migrate
 	 * @param propertyList
@@ -133,7 +133,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Show all the Properties from the Properties List and their location
-	 * 
+	 *
 	 * @param propertyList
 	 *            List of properties (ie: "SysML::Blocks::Block.isEncapsulated,SysML::Requirement::Requirement.id")
 	 * @param view
@@ -157,7 +157,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Show the property and related Location Compartment to display
-	 * 
+	 *
 	 * @param view
 	 *            The Main View on which the stereotype is applied.
 	 * @param location
@@ -187,7 +187,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 	 * Hide visible Properties that should not be shown.
 	 * List all the applied Stereotypes and their Properties, if the property is not in the property to Display list,
 	 * hide the Node.
-	 * 
+	 *
 	 * @param view
 	 *            The view of the object to migrate
 	 * @param stereotypeList
@@ -207,7 +207,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Hide the Properties from the properties list, location and Stereotypes
-	 * 
+	 *
 	 * @param stereotype
 	 *            The Stereotype of which the Properties should be hidden
 	 * @param propertyList
@@ -228,7 +228,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Hide a single property View based on the stereotype and the location.
-	 * 
+	 *
 	 * @param property
 	 *            The property to hide
 	 * @param stereotype
@@ -249,7 +249,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Get the property from String
-	 * 
+	 *
 	 * @param view
 	 *            The Main View on which the stereotype is applied.
 	 * @param propertyString
@@ -264,7 +264,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Get the stereotype from String
-	 * 
+	 *
 	 * @param view
 	 *            The Main View on which the stereotype is applied.
 	 * @param propertyString
@@ -280,7 +280,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Get the EAnnotation Detail value for the properties Location.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the stereotype is applied
 	 * @return Location value
@@ -292,7 +292,7 @@ public class StereotypePropertiesMigrationCommand implements Runnable {
 
 	/**
 	 * Get the EAnnotation Detail value for the Property list to displayed
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the stereotype is applied
 	 * @return The list of the properties to be displayed

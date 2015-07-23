@@ -67,17 +67,20 @@ public class AddAppliedStereotypePropertiesToDisplayCommand extends RecordingCom
 	@Override
 	protected void doExecute() {
 		View propertyView = null;
-		if (StereotypeLocationEnum.IN_COMPARTMENT.equals(location)) {
-			propertyView = helper.getStereotypeProperty(view, stereotype, property);
-		} else if (StereotypeLocationEnum.IN_BRACE.equals(location)) {
+
+		switch (StereotypeLocationEnum.valueOf(location)) {
+		case IN_BRACE:
 			propertyView = helper.getStereotypePropertyInBrace(view, stereotype, property);
-		} else if (StereotypeLocationEnum.IN_COMMENT.equals(location)) {
+			break;
+		case IN_COMMENT:
 			propertyView = helper.getStereotypePropertyInComment(view, stereotype, property);
+			break;
+		case IN_COMPARTMENT:
+			propertyView = helper.getStereotypeProperty(view, stereotype, property);
+			break;
 		}
 
 		commandHelper.setUserVisibility(domain, propertyView, true);
-
-
 	}
 
 

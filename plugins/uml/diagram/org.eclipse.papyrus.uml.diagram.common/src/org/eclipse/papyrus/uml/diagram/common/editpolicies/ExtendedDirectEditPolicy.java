@@ -90,7 +90,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 			if (Window.OK == dialog.open()) {
 				TransactionalEditingDomain domain = getEditingDomain();
 				try {
-					domain.runExclusive(new RunnableWithResult() {
+					domain.runExclusive(new RunnableWithResult<Object>() {
 
 						private Object result = null;
 
