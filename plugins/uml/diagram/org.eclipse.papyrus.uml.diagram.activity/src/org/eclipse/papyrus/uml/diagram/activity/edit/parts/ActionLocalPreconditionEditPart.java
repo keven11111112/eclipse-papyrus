@@ -79,6 +79,7 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 		 */
 		public DashedLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 	}
 }

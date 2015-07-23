@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
@@ -27,9 +28,17 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowInterruptibleIconEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowInterruptibleIconEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.uml2.uml.ActionInputPin;
+import org.eclipse.uml2.uml.CallBehaviorAction;
+import org.eclipse.uml2.uml.CallOperationAction;
+import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.OpaqueAction;
+import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValuePin;
 
 /**
  * Extends UMLViewProvider in order to provide custom node creation.
@@ -222,5 +231,113 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 			return createInterruptibleEdgeIconOnObjectlFlow(containerView, preferencesHint);
 		}
 		return null;
+	}
+
+
+
+
+	@Override
+	public Node createOpaqueAction_3007(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = super.createOpaqueAction_3007(domainElement, containerView, index, persisted, preferencesHint);
+		adaptActionHeight(node, domainElement);
+		createPins(domainElement, node, persisted, preferencesHint);
+		return node;
+	}
+
+	@Override
+	public Node createCallBehaviorAction_3008(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = super.createCallBehaviorAction_3008(domainElement, containerView, index, persisted, preferencesHint);
+		adaptActionHeight(node, domainElement);
+		createPins(domainElement, node, persisted, preferencesHint);
+		return node;
+	}
+
+	@Override
+	public Node createCallOperationAction_3010(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = super.createCallOperationAction_3010(domainElement, containerView, index, persisted, preferencesHint);
+		adaptActionHeight(node, domainElement);
+		createPins(domainElement, node, persisted, preferencesHint);
+		return node;
+	}
+
+	private void adaptActionHeight(Node node, EObject domainElement) {
+		Bounds boundsConstraint = NotationFactory.eINSTANCE.createBounds();
+		PinPositionLocator.adaptActionHeight(boundsConstraint, domainElement);
+		node.setLayoutConstraint(boundsConstraint);
+	}
+
+	/**
+	 * Create pins in an action's node
+	 *
+	 * @param domainElement
+	 *            the model action
+	 * @param node
+	 *            the action node
+	 * @param persisted
+	 *            the persisted property of views to create
+	 * @param preferencesHint
+	 *            the preference hint
+	 */
+	private void createPins(EObject domainElement, Node node, boolean persisted, PreferencesHint preferencesHint) {
+		if (domainElement instanceof OpaqueAction) {
+			// pins of an opaque action : input values and output values
+			int index = 0;
+			for (InputPin pin : ((OpaqueAction) domainElement).getInputValues()) {
+				if (pin instanceof ValuePin) {
+					createValuePin_3015(pin, node, index, persisted, preferencesHint);
+				} else if (pin instanceof ActionInputPin) {
+					createActionInputPin_3016(pin, node, index, persisted, preferencesHint);
+				} else {
+					createInputPin_3013(pin, node, index, persisted, preferencesHint);
+				}
+				index++;
+			}
+			index = 0;
+			for (OutputPin pin : ((OpaqueAction) domainElement).getOutputValues()) {
+				createOutputPin_3014(pin, node, index, persisted, preferencesHint);
+			}
+		} else if (domainElement instanceof CallBehaviorAction) {
+			// pins of a call behavior action : arguments and results
+			int index = 0;
+			for (InputPin pin : ((CallBehaviorAction) domainElement).getArguments()) {
+				if (pin instanceof ValuePin) {
+					createValuePin_3017(pin, node, index, persisted, preferencesHint);
+				} else if (pin instanceof ActionInputPin) {
+					createActionInputPin_3018(pin, node, index, persisted, preferencesHint);
+				} else {
+					createInputPin_3019(pin, node, index, persisted, preferencesHint);
+				}
+				index++;
+			}
+			index = 0;
+			for (OutputPin pin : ((CallBehaviorAction) domainElement).getResults()) {
+				createOutputPin_3020(pin, node, index, persisted, preferencesHint);
+			}
+		} else if (domainElement instanceof CallOperationAction) {
+			// pins of a call operation action : arguments, target and results
+			int index = 0;
+			for (InputPin pin : ((CallOperationAction) domainElement).getArguments()) {
+				if (pin instanceof ValuePin) {
+					createValuePin_3022(pin, node, index, persisted, preferencesHint);
+				} else if (pin instanceof ActionInputPin) {
+					createActionInputPin_3021(pin, node, index, persisted, preferencesHint);
+				} else {
+					createInputPin_3023(pin, node, index, persisted, preferencesHint);
+				}
+				index++;
+			}
+			InputPin target = ((CallOperationAction) domainElement).getTarget();
+			if (target instanceof ValuePin) {
+				createValuePin_3025(target, node, index, persisted, preferencesHint);
+			} else if (target instanceof ActionInputPin) {
+				createActionInputPin_3026(target, node, index, persisted, preferencesHint);
+			} else if (target != null) {
+				createInputPin_3027(target, node, index, persisted, preferencesHint);
+			}
+			index = 0;
+			for (OutputPin pin : ((CallOperationAction) domainElement).getResults()) {
+				createOutputPin_3024(pin, node, index, persisted, preferencesHint);
+			}
+		}
 	}
 }

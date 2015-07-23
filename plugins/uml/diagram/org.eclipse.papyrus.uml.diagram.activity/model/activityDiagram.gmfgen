@@ -1171,6 +1171,7 @@
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
+          definedExternally="true"
           editHelperClassName="PackageEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
@@ -17696,7 +17697,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="CreateLinkObjectAction">
+            displayName="CreateLinkObjectAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.121/@elementType"/>
         </elementType>
@@ -17799,7 +17801,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -17885,7 +17888,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -17984,7 +17988,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -18277,7 +18282,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="DashedLinkDescriptor"
@@ -18298,7 +18304,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="DashedLinkDescriptor"
@@ -18321,7 +18328,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ObjectFlow_4003"
-            displayName="ObjectFlow">
+            displayName="ObjectFlow"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.125/@elementType"/>
         </elementType>
@@ -18530,7 +18538,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004"
-            displayName="ControlFlow">
+            displayName="ControlFlow"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.116/@elementType"/>
         </elementType>
@@ -18675,7 +18684,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005"
-            displayName="ExceptionHandler">
+            displayName="ExceptionHandler"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.79/@elementType"/>
         </elementType>
@@ -18739,7 +18749,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LinkFigure"/>
@@ -18757,7 +18768,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ConstraintConstrainedElement_4007"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ConstraintConstrainedElement_4007"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LinkFigure"/>
