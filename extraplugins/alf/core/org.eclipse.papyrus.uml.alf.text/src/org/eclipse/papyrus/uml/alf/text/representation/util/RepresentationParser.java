@@ -64,7 +64,7 @@ public class RepresentationParser {
 			representation.setSource(comment);
 			representation.setText(comment.getBody());
 			if (helperBackup.isBackup(comment)) {
-				Stereotype backup = helperBackup.getBackuStereotype(modelElement);
+				Stereotype backup = helperBackup.getBackupStereotype(modelElement);
 				if (backup != null) {
 					representation.setEditionState(helperBackup.getBackupState(comment));
 				}

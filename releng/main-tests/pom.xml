@@ -108,6 +108,7 @@
 		<module>../../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.valuespecification.tests</module>
 		<module>../../tests/junit/plugins/uml/profile/org.eclipse.papyrus.uml.profile.drafter.tests</module>
 		<module>../../tests/junit/plugins/uml/alf/org.eclipse.papyrus.uml.alf.tests</module>
+		<module>../../tests/junit/plugins/uml/alf/org.eclipse.papyrus.uml.alf.backend.tests</module>
 	</modules>
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
