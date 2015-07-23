@@ -185,12 +185,9 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				}
 			}			
 			
-			if (name == null) {
-				name = openDiagramNameDialog(prototype.isNatural() ? getDefaultDiagramName() : "New" + prototype.getLabel().replace(" ", ""));
-			}
-			// canceled
-			if (name == null) {
-				return CommandResult.newCancelledCommandResult();
+			CommandResult result = doEditDiagramName(prototype, name);
+			if (!result.getStatus().isOK()) {
+				return result;
 			}
 
 			Diagram diagram = doCreateDiagram(notationResource, owner, element, prototype, name);
@@ -258,6 +255,22 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		}
 
 		return notationResource;
+	}
+
+
+	/**
+	 * @return
+	 */
+	protected CommandResult doEditDiagramName(ViewPrototype prototype, String name) {
+
+		if (name == null) {
+			name = openDiagramNameDialog(prototype.isNatural() ? getDefaultDiagramName() : "New" + prototype.getLabel().replace(" ", ""));
+		}
+		// canceled
+		if (name == null) {
+			return CommandResult.newCancelledCommandResult();
+		}
+		return CommandResult.newOKCommandResult();
 	}
 
 
