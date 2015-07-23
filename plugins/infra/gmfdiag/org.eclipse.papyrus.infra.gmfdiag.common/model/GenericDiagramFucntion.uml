@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:structure="http://DeveloperProcess/schemas/structure/_VA9p4McPEeO9CYUoXDRplw/1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_VA9p4McPEeO9CYUoXDRplw/1 pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_VA-4AMcPEeO9CYUoXDRplw">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:structure="http://DeveloperProcess/schemas/structure/_VA9p4McPEeO9CYUoXDRplw/1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_VA9p4McPEeO9CYUoXDRplw/1 pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml">
   <uml:Model xmi:id="_v2A68HaMEeKemeMpJaVA3A" name="DiagramEditorFunctionalities">
     <ownedComment xmi:type="uml:Comment" xmi:id="_xpU2MHaNEeKemeMpJaVA3A" annotatedElement="_v2A68HaMEeKemeMpJaVA3A">
       <body>The purpose of this document is to explain basic functionalities intra diagram, i.e. how element in the diagram can be manipulated without taking in account link with model explorer, and properties view </body>
@@ -30,6 +30,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_Gy3vsAH4EeSOr6S9q_OEFA" name="AppearanceoNodelabel"/>
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_Gy6L8AH4EeSOr6S9q_OEFA" name="DeriveFrom_AppearanceNodeElement" client="_Gy3vsAH4EeSOr6S9q_OEFA" supplier="_7xzO8AH3EeSOr6S9q_OEFA"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_D-PLQAIAEeSOr6S9q_OEFA" name="EditableElement"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_bnDx0NxpEeSV4KOvESrDwA" name="CanonicalViews"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_tEgNoOy6EeOTppRa5YYcIg" name="UseCases"/>
     <packagedElement xmi:type="uml:Model" xmi:id="_tqyKgOy6EeOTppRa5YYcIg" name="Design"/>
@@ -79,7 +80,7 @@
   <Requirements:Requirement xmi:id="__iyRoXaTEeKemeMpJaVA3A" text="When an element move from an element to the diagram, two options can be applied:&#xD;&#xA;- The container change and the namespace has to be adapted, so a clean into diagrams has to be done to respect Req_002&#xD;&#xA;- The container does not change; this is only a graphical move, as described by the req_001" id="Req_004" base_Class="__iyRoHaTEeKemeMpJaVA3A"/>
   <Requirements:Requirement xmi:id="_tDokkGP6EeOq0pDGL_YBMA" text="The user must be able to change the Diagram Viewer properties (Snap To Grid/To Geometry, Show Rulers, Show Grid, Grid Style, Grid Color, Grid Order, Ruler Units, Grid Spacing )" id="Req_005" base_Class="_seSb0GP6EeOq0pDGL_YBMA"/>
   <Requirements:Requirement xmi:id="_u_1LgGP6EeOq0pDGL_YBMA" text="Snap To Grid must be able to snap on : &#xD;&#xA;- 4 corners of rectangle&#xD;&#xA;- 4 middles of side of a rectangle&#xD;&#xA;- anchors of link&#xD;&#xA;- bendpoints" id="Req_006" base_Class="_uKPAQGP6EeOq0pDGL_YBMA"/>
-  <Requirements:Requirement xmi:id="_Uzo20OGuEeO_JM12vRgWBQ" text="Its possible to drop the seame element several time on the canva" id="Req_007" base_Class="_UzjXQOGuEeO_JM12vRgWBQ"/>
+  <Requirements:Requirement xmi:id="_Uzo20OGuEeO_JM12vRgWBQ" text="It is possible to drop the same element several time on the canvas." id="Req_007" base_Class="_UzjXQOGuEeO_JM12vRgWBQ"/>
   <Requirements:Requirement xmi:id="_dQusYOvJEeOv4v5t8d2cOg" text="Each diagram must have a version  in order to able possible migration" id="Req_008" base_Class="_dQjtQOvJEeOv4v5t8d2cOg"/>
   <structure:Project xmi:id="_q9KrgOyrEeOTppRa5YYcIg" author="CEA LIST" version="1.0.0" base_Model="_v2A68HaMEeKemeMpJaVA3A" title="Generic function of a Papyrus diagram editor"/>
   <structure:Requirements xmi:id="_ybsUwOy6EeOTppRa5YYcIg" base_Model="_sz15QOyrEeOTppRa5YYcIg"/>
@@ -100,4 +101,5 @@
   <Requirements:Requirement xmi:id="_Gy490AH4EeSOr6S9q_OEFA" text="&#xD;&#xA;&#xD;&#xD;&#xA;Appearence of elements of label node must be modified ( font, color, but not size)" id="Req_018" base_Class="_Gy3vsAH4EeSOr6S9q_OEFA"/>
   <Requirements:DeriveReqt xmi:id="_Gy8BIAH4EeSOr6S9q_OEFA" base_Abstraction="_Gy6L8AH4EeSOr6S9q_OEFA"/>
   <Requirements:Requirement xmi:id="_D-RngAIAEeSOr6S9q_OEFA" text="Element in papyrus must be editable" id="Req_019" base_Class="_D-PLQAIAEeSOr6S9q_OEFA"/>
+  <Requirements:Requirement xmi:id="_bnG1INxpEeSV4KOvESrDwA" text="Custom strategies shall be implemented to support the synchronization of the diagram from the model via the PapyrusCanonicalEditPolicy." id="Req_020" base_Class="_bnDx0NxpEeSV4KOvESrDwA"/>
 </xmi:XMI>

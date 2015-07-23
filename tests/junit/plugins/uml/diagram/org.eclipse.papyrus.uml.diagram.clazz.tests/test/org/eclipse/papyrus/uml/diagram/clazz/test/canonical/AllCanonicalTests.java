@@ -47,6 +47,7 @@ TestListCompartmentNodesChildDuplicates.class,
 //List Compartment illegal elements
 TestListCompartmentIllegalElements.class,
 TestListCompartmentPropertiesOperationsDrop.class,
+TestEditableClassDiagramTopNode.class,
 TestClassDiagramAssociationClass.class,
 TestListCompartmentNestedChild.class
 })

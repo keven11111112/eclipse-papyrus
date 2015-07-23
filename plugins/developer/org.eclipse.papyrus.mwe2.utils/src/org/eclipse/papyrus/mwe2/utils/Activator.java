@@ -6,7 +6,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     Juan Cadavid <juan.cadavid@cea.fr> implementation
+ *   Juan Cadavid <juan.cadavid@cea.fr> - Initial API and implementation
+ *   
  ******************************************************************************/
 package org.eclipse.papyrus.mwe2.utils;
 

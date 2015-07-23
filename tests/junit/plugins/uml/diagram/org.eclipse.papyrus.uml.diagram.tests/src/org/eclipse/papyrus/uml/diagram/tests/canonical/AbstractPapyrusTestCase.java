@@ -11,9 +11,13 @@
  *  Christian W. Damus (CEA) - bug 434993
  *  Christian W. Damus (CEA) - bug 436047
  *  Christian W. Damus - bug 473183
+ *  Christian W. Damus - bug 464647
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.tests.canonical;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -33,7 +37,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
@@ -61,6 +71,7 @@ import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.After;
 import org.junit.Assert;
@@ -170,7 +181,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 * @return the root semantic model
 	 */
 	protected Element getRootSemanticModel() {
-		return (Element)getRootView().getElement();
+		return (Element) getRootView().getElement();
 	}
 
 	/**
@@ -186,14 +197,15 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	void doTearDown() throws Exception {
 		Runnable runnable = new Runnable() {
 
+			@Override
 			public void run() {
-				//if the diagram is a Profile we dont save it because we dont need to define it
-				if(diagramEditPart == null || !diagramEditPart.getDiagramView().getType().equals("PapyrusUMLProfileDiagram")) { //$NON-NLS-1$
+				// if the diagram is a Profile we dont save it because we dont need to define it
+				if (diagramEditPart == null || !diagramEditPart.getDiagramView().getType().equals("PapyrusUMLProfileDiagram")) { //$NON-NLS-1$
 					papyrusEditor.doSave(new NullProgressMonitor());
 				}
 
 				// diResourceSet.save( new NullProgressMonitor());
-				if(diagramEditor != null) {
+				if (diagramEditor != null) {
 					diagramEditor.close(true);
 				}
 				papyrusEditor = null;
@@ -210,14 +222,14 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 * @return the diagram edit part
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
-		if(diagramEditPart == null) {
-			diagramEditor = (UmlGmfDiagramEditor)papyrusEditor.getActiveEditor();
-			diagramEditPart = (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
+		if (diagramEditPart == null) {
+			diagramEditor = (UmlGmfDiagramEditor) papyrusEditor.getActiveEditor();
+			diagramEditPart = papyrusEditor.getAdapter(DiagramEditPart.class);
 			Assert.assertNotNull("Cannot find the diagram editor", diagramEditor); //$NON-NLS-1$
 			Assert.assertNotNull("Cannot find the Diagram edit part", diagramEditPart); //$NON-NLS-1$
-			StringValueStyle style = (StringValueStyle)diagramEditPart.getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), DiagramVersioningUtils.COMPATIBILITY_VERSION);
+			StringValueStyle style = (StringValueStyle) diagramEditPart.getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), DiagramVersioningUtils.COMPATIBILITY_VERSION);
 			Assert.assertNotNull("A version must be associated with every diagram", style); //$NON-NLS-1$
-			Assert.assertTrue("The created diagram has not a good version", DiagramVersioningUtils.isOfCurrentPapyrusVersion((Diagram)diagramEditPart.getNotationView())); //$NON-NLS-1$
+			Assert.assertTrue("The created diagram has not a good version", DiagramVersioningUtils.isOfCurrentPapyrusVersion((Diagram) diagramEditPart.getNotationView())); //$NON-NLS-1$
 		}
 		return diagramEditPart;
 	}
@@ -245,10 +257,11 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 		// assert the intro is not visible
 		Runnable closeIntroRunnable = new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
-					if(introPart != null) {
+					if (introPart != null) {
 						PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
 					}
 				} catch (Exception ex) {
@@ -269,16 +282,16 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 		this.diResourceSet = houseKeeper.cleanUpLater(new DiResourceSet());
 		// at this point, no resources have been created
 
-		if(file.exists()) {
+		if (file.exists()) {
 			file.delete(true, new NullProgressMonitor());
 		}
-		if(!file.exists()) {
+		if (!file.exists()) {
 			// Don't create a zero-byte file. Create an empty XMI document
 			Resource diResource = diResourceSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
 			diResource.save(null);
 			diResource.unload();
 			diResourceSet.createsModels(file);
-			if(!file.getName().endsWith(".profile.di")) { //$NON-NLS-1$
+			if (!file.getName().endsWith(".profile.di")) { //$NON-NLS-1$
 
 				new CreateUMLModelCommand().createModel(this.diResourceSet);
 
@@ -304,11 +317,11 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 						} catch (NotFoundException e) {
 							return CommandResult.newErrorCommandResult(e);
 						}
-						if(obj instanceof Model) {
-							Model model = (Model)obj;
-							for(String uri : getRequiredProfiles()) {
+						if (obj instanceof Model) {
+							Model model = (Model) obj;
+							for (String uri : getRequiredProfiles()) {
 								EPackage definition = EPackage.Registry.INSTANCE.getEPackage(uri);
-								if(definition != null) {
+								if (definition != null) {
 									Profile profile = UMLUtil.getProfile(definition, model);
 									model.applyProfile(profile);
 								}
@@ -345,6 +358,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	protected void executeOnUIThread(final Command command) {
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				execute(command);
 			}
@@ -355,6 +369,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	protected void undoOnUIThread() {
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				undo();
 			}
@@ -365,6 +380,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	protected void redoOnUIThread() {
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				redo();
 			}
@@ -413,6 +429,42 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 		// not "diagramEditor.getDiagramEditDomain().getDiagramCommandStack()"
 		// because it messes up undo contexts
 		return getEditingDomain().getCommandStack();
+	}
+
+	/**
+	 * Create a node, if necessary. It will not be necessary if the node we are trying implicitly
+	 * exists because it's the behavior frame of a behavior diagram.
+	 */
+	public GraphicalEditPart createNodeOptionally(IElementType type, final IGraphicalEditPart containerEditPart) {
+
+		GraphicalEditPart result = null;
+
+		if (UMLPackage.Literals.BEHAVIOR.isSuperTypeOf(type.getEClass()) && (containerEditPart instanceof DiagramEditPart)) {
+			// Look for the existing behavior frame
+			result = (GraphicalEditPart) containerEditPart.getChildBySemanticHint(((IHintedType) type).getSemanticHint());
+		}
+
+		if (result == null) {
+			// CREATION
+			final Command[] command = { null };
+			final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, containerEditPart.getDiagramPreferencesHint());
+			Display.getDefault().syncExec(new Runnable() {
+
+				@Override
+				public void run() {
+					command[0] = containerEditPart.getCommand(requestcreation);
+				}
+			});
+			assertNotNull("the command must not be null", command[0]);
+			assertTrue("the command must be executable", command[0].canExecute()); //$NON-NLS-1$
+			// execute the creation
+			executeOnUIThread(command[0]);
+
+			result = (GraphicalEditPart) containerEditPart.getChildren().get((containerEditPart.getChildren().size() - 1));
+		}
+
+		Assert.assertNotNull("The editpart must be created", result); //$NON-NLS-1$
+		return result;
 	}
 
 	protected TransactionalEditingDomain getEditingDomain() {

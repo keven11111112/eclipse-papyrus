@@ -66,24 +66,7 @@
         <module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests</module>
         <module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>
         <module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.controlmode.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.activity.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.clazz.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.statemachine.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.common.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.component.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.communication.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.composite.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.deployment.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.dnd.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.interactionoverview.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.profile.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.sequence.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.timing.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.usecase.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.wizards.tests</module>
+		<module>../../tests/junit/plugins/uml/diagram</module>
 		<module>../../tests/junit/plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer.tests</module>
 		<module>../../tests/junit/plugins/uml/nattable</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
@@ -255,6 +238,11 @@
 			<!-- updateFrom("XWT",0) -->
 			<url>http://download.eclipse.org/xwt/release-1.1.0</url>
 		</repository>
+		<repository>
+			<id>UPR</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/upr/0.9RC1/update/</url>
+		</repository>
 	</repositories>
 	<build>
 		<pluginManagement>
@@ -336,6 +324,11 @@
 						 </environment>
 					 </environments>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
 			</plugin>
 			</plugins>
 		</pluginManagement>

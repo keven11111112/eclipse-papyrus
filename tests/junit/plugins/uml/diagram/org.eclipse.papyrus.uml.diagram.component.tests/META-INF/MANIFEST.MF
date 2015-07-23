@@ -15,9 +15,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.diagram.component;bundle-version="1.1.0",
  org.eclipse.papyrus.junit.framework;bundle-version="1.1.0",
  org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,4.0.0)",
- org.eclipse.papyrus.junit.utils;bundle-version="1.1.0"
+ org.eclipse.papyrus.junit.utils;bundle-version="1.1.0",
+ org.eclipse.papyrus.tests.framework;bundle-version="1.1.0",
+ org.eclipse.xtend.lib;bundle-version="2.8.1"
 Export-Package: org.eclipse.papyrus.uml.diagram.component.test,
  org.eclipse.papyrus.uml.diagram.component.test.canonical,
+ org.eclipse.papyrus.uml.diagram.component.test.generation,
  org.eclipse.papyrus.uml.diagram.component.test.load
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
@@ -25,9 +28,7 @@ Bundle-Version: 1.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.component.test.Activ
- ator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.component.tests;s
- ingleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.component.test.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.component.tests;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

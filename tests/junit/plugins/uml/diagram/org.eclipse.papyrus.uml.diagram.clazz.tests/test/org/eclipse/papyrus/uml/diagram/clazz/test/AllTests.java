@@ -13,19 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.test;
 
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite.DynamicClasses;
 import org.eclipse.papyrus.uml.diagram.clazz.test.canonical.AllCanonicalTests;
 import org.eclipse.papyrus.uml.diagram.clazz.test.canonical.TestClassDiagram;
 import org.eclipse.papyrus.uml.diagram.clazz.test.copyPaste.ConstraintPasteStrategyTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.legacy.PackageDiagramLegacyTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug382954_InstanceSpecificationLink;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * All tests together.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// canonical
 		AllCanonicalTests.class,
@@ -33,9 +34,10 @@ import org.junit.runners.Suite.SuiteClasses;
 		PackageDiagramLegacyTest.class,
 		Bug382954_InstanceSpecificationLink.class,
 		ConstraintPasteStrategyTest.class
-// load
-// LoadTests.class
+		// load
+		// LoadTests.class
 
 })
+@DynamicClasses("org.eclipse.papyrus.uml.diagram.clazz.test.AllGenTests")
 public class AllTests {
 }
