@@ -17,13 +17,13 @@ import org.eclipse.papyrus.uml.extensionpoints.Activator;
 public class ExtensionIds {
 
 	/** ID for the profile extension */
-	public static String PROFILE_EXTENSION_ID = Activator.PLUGIN_ID + "." + "UMLProfile";
+	public static final String PROFILE_EXTENSION_ID = Activator.PLUGIN_ID + "." + "UMLProfile";
 
 	/** ID for the library extension point */
-	public static String LIBRARY_EXTENSION_ID = Activator.PLUGIN_ID + "." + "UMLLibrary";
+	public static final String LIBRARY_EXTENSION_ID = Activator.PLUGIN_ID + "." + "UMLLibrary";
 
 	/** ID for the metamodel extension point */
-	public static String METAMODEL_EXTENSION_ID = Activator.PLUGIN_ID + "." + "UMLMetamodel";
+	public static final String METAMODEL_EXTENSION_ID = Activator.PLUGIN_ID + "." + "UMLMetamodel";
 
 	/** name of the <code>name</code> attribute in the DTD */
 	public final static String ATT_NAME = "name";

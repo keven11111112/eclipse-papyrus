@@ -47,18 +47,6 @@ public class Activator extends Plugin {
 
 	public static LogHelper log;
 
-	/**
-	 * The constructor.
-	 */
-	public Activator() {
-		plugin = this;
-		try {
-			resourceBundle = ResourceBundle.getBundle("com.cea.papyrus.umlutils.PluginManagerResources");
-		} catch (MissingResourceException x) {
-			resourceBundle = null;
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 *
@@ -75,6 +63,7 @@ public class Activator extends Plugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		log = new LogHelper(this);
+		plugin = this;
 	}
 
 	/*

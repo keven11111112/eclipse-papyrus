@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.tools.utils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -271,8 +272,10 @@ public class ElementUtil {
 	 */
 	public static List<Type> getMetaclasses(Element element) {
 		if (element == null) {
-			System.err.println("element should not be null to retrieve metaclasses");
+			Activator.log.warn("element should not be null to retrieve metaclasses");
+			return Collections.emptyList();
 		}
+
 		org.eclipse.uml2.uml.Package uml2Metamodel = contentload(URI.createURI(UMLResource.UML_METAMODEL_URI), element);
 
 		return uml2Metamodel.getOwnedTypes();

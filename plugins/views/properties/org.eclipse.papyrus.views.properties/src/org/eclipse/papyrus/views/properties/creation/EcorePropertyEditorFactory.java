@@ -179,6 +179,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsUri);
 			if (ePackage == null) {
 				Activator.log.warn("Cannot find the EPackage corresponding to URI " + nsUri); //$NON-NLS-1$
+				return;
 			}
 			eClass = (EClass) ePackage.getEClassifier(className);
 			if (eClass == null) {
@@ -314,7 +315,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 *            The control used to open a selection list (if more than one EClass
 	 *            can be instantiated)
 	 * @return
-	 *         The EClass to instantiate
+	 * 		The EClass to instantiate
 	 */
 	protected EClass chooseEClass(Control widget) {
 		if (eClass != null) {
@@ -377,7 +378,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 	/**
 	 * @return
-	 *         The list of {@link EClass} that can be instantiated.
+	 * 		The list of {@link EClass} that can be instantiated.
 	 *         This is the list of all concrete subclasses of {@link #type}
 	 */
 	protected List<EClass> getAvailableEClasses() {
@@ -426,7 +427,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 	/**
 	 * @return
-	 *         The EClass that will be instantiated, or null if this hasn't been forced
+	 * 		The EClass that will be instantiated, or null if this hasn't been forced
 	 */
 	public EClass getEClass() {
 		return eClass;

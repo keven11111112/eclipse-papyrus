@@ -42,7 +42,7 @@ public class InvalidStringUtil {
 	 */
 	public static final String LANGUAGE = "language"; //$NON-NLS-1$
 
-	public static String ACTION_LANGUAGE_PROFILE_NAME = "ActionLanguage"; //$NON-NLS-1$
+	public static final String ACTION_LANGUAGE_PROFILE_NAME = "ActionLanguage"; //$NON-NLS-1$
 
 	/**
 	 * The Action Language profile
@@ -112,8 +112,7 @@ public class InvalidStringUtil {
 	 */
 	public static boolean isActionLanguageProfileApplied(Element element) {
 		if (actionLanguageProfile == null) {
-			IRegisteredProfile registeredActionLanguageProfile =
-					Registry.getRegisteredProfile(ACTION_LANGUAGE_PROFILE_NAME, null);
+			IRegisteredProfile registeredActionLanguageProfile = Registry.getRegisteredProfile(ACTION_LANGUAGE_PROFILE_NAME, null);
 			URI modelUri = registeredActionLanguageProfile.getUri();
 			Package root = PackageUtil.getRootPackage(element);
 

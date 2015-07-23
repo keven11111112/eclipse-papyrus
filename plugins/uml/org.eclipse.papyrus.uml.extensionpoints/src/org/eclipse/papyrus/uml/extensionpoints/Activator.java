@@ -19,6 +19,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleContext;
 
 /**
  * Main plugin class, in charge of its lifetime circle.
@@ -31,23 +32,34 @@ public class Activator extends AbstractUIPlugin {
 	/** ID of the plugin */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.extensionpoints";
 
+
 	/** Resource Bundle */
 	private static final String RESOURCE_NAME = PLUGIN_ID + ".ViewPlugin";
 
 	/** Resource bundle associated to this plugin */
 	private ResourceBundle resourceBundle;
 
+
+
 	/**
 	 * The constructor.
 	 */
-	public Activator() {
-		super();
+	@Override
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
 		plugin = this;
-		try {
-			resourceBundle = ResourceBundle.getBundle(RESOURCE_NAME);
-		} catch (MissingResourceException mre) {
-			resourceBundle = null;
-		}
+	}
+
+	/**
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 *
+	 * @param context
+	 * @throws Exception
+	 */
+	@Override
+	public void stop(BundleContext context) throws Exception {
+		plugin = null;
+		super.stop(context);
 	}
 
 	/**
