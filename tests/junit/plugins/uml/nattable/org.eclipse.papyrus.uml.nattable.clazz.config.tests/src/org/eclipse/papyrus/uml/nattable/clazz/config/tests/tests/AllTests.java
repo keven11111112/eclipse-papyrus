@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.MoveElementsTreeTableTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.OpenAndDeleteTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_H1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth1_H1_H3_V1_Test;
@@ -68,11 +69,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		EditInvalidPastedText_V1_V3_V1.class,
 		OpenTableTest.class,
+		OpenAndDeleteTest.class,
 		
 		SortAxisClassTreeTableTest.class,
-		
-		// Move elements
-		MoveElementsTreeTableTest.class,
 		
 		ContentsAndExpandWithCategories_0_1_2_Tests.class,
 		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,

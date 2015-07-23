@@ -436,7 +436,12 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 			getTableEditingDomain().removeResourceSetListener(this.hideShowCategoriesListener);
 			this.hideShowCategoriesListener = null;
 		}
-		final List<IAxis> iAxis = getHorizontalAxisProvider().getAxis();
+		final List<IAxis> iAxis;
+		if(null == getHorizontalAxisProvider()){
+			iAxis = null;
+		}else{
+			iAxis = getHorizontalAxisProvider().getAxis();
+		}
 
 		if (iAxis != null && !iAxis.isEmpty()) { // see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
 			// we need to remove the children which are not serialized from the root of the table, to be able to reopen
