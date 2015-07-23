@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *
+ *  Benoit Maggi benoit.maggi@cea.fr - Bug 473366 : get stereotype recursively
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration;
 
@@ -37,6 +37,12 @@ public class StereotypePropertyDescriptor extends SurrogateItemPropertyDescripto
 		super(inner);
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.SurrogateItemPropertyDescriptor#getChoiceOfValues(java.lang.Object)
+	 *
+	 * @param object
+	 * @return
+	 */
 	@Override
 	public Collection<?> getChoiceOfValues(Object object) {
 		EObject current = (EObject) object;
@@ -48,12 +54,27 @@ public class StereotypePropertyDescriptor extends SurrogateItemPropertyDescripto
 		}
 		PapyrusView conf = (PapyrusView) current;
 		List<EClass> result = new ArrayList<EClass>();
-		for (EPackage p : conf.getProfiles()) {
-			for (EClassifier c : p.getEClassifiers()) {
-				if (c instanceof EClass) {
-					result.add((EClass) c);
-				}
+		for (EPackage p : conf.getProfiles()) { 
+			result.addAll(getAllStereotypes(p));
+		}
+		return result;
+	}
+
+
+	/**
+	 * Get all stereotype contained (even in sub package)
+	 * @param ePackage
+	 * @return
+	 */
+	protected List<EClass> getAllStereotypes(EPackage ePackage) {
+		List<EClass> result = new ArrayList<EClass>();
+		for (EClassifier clazz : ePackage.getEClassifiers()) {
+			if (clazz instanceof EClass) {
+				result.add((EClass) clazz);
 			}
+		}
+		for (EPackage subPackage : ePackage.getESubpackages()) {
+			result.addAll(getAllStereotypes(subPackage));
 		}
 		return result;
 	}
