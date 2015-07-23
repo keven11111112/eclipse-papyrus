@@ -14,20 +14,17 @@
 package org.eclipse.papyrus.uml.alf.libraries.helper;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.Iterator;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.alf.libraries.helper.BackupState.EditionStatus;
-import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * Singleton class providing a set of methods to manipulate the backup profile
@@ -39,34 +36,7 @@ public class BackupUtil {
 	 */
 	private static BackupUtil singleton;
 
-	/**
-	 * A reference on the Backup profile
-	 */
-	protected Profile backupProfile;
-
-	/**
-	 * A reference on the stereotype Backup
-	 */
-	protected Stereotype backupStereotype;
-
-	/**
-	 * A reference to the enumeration BackupState
-	 */
-	protected Enumeration backupStateEnumeration;
-
-	/**
-	 * Mapping between UML Enumeration BackupState and its Java Implementation
-	 */
-	private HashMap<EditionStatus, EnumerationLiteral> stateMapping;
-
-	/**
-	 * Reverse mapping
-	 */
-	private HashMap<EnumerationLiteral, EditionStatus> inverseStateMapping;
-
 	private BackupUtil() {
-		this.stateMapping = new HashMap<EditionStatus, EnumerationLiteral>();
-		this.inverseStateMapping = new HashMap<EnumerationLiteral, EditionStatus>();
 	}
 
 	/**
@@ -82,58 +52,14 @@ public class BackupUtil {
 	}
 
 	/**
-	 * Load the backup profile in the context of the resource owning the element given as a parameter.
+	 * Get the reference to the backup profile that is applied on the given model
 	 * 
 	 * @param context
-	 *            - the context element
-	 * @return backupProfile - a reference to the loaded profile
+	 *            - the model on which the profile is applied
+	 * @return a reference to the applied profile
 	 */
-	public Profile getBackupProfile(Element context) {
-		if (this.backupProfile == null) {
-			this.backupProfile = AlfUtil.getInstance().getProfile(context.getModel(), BackupUtilConstants.BACKUP_PROFILE_NAME);
-			this.backupStereotype = this.backupProfile.getOwnedStereotype(BackupUtilConstants.BACKUP_STEREOTYPE_NAME);
-			this.backupStateEnumeration = (Enumeration) this.backupProfile.getOwnedType(BackupUtilConstants.BACKUP_BACKUP_STATE_ENUMERATION_NAME);
-			this.initInternalConverter();
-		}
-		return this.backupProfile;
-	}
-
-	private void initInternalConverter() {
-		for (EnumerationLiteral literal : this.backupStateEnumeration.getOwnedLiterals()) {
-			if (literal.getLabel().equals("NONE")) {
-				stateMapping.put(EditionStatus.NONE, literal);
-				inverseStateMapping.put(literal, EditionStatus.NONE);
-			} else if (literal.getLabel().equals("SAVED")) {
-				stateMapping.put(EditionStatus.SAVED, literal);
-				inverseStateMapping.put(literal, EditionStatus.SAVED);
-			} else {
-				stateMapping.put(EditionStatus.MERGED, literal);
-				inverseStateMapping.put(literal, EditionStatus.MERGED);
-			}
-		}
-	}
-
-	/**
-	 * Returns whether the element has a comment with the Backup stereotype
-	 * 
-	 * @param element
-	 *            - the assessed element
-	 * @return true if the stereotype is applied
-	 */
-	public boolean isBackup(Element element) {
-		boolean found = false;
-		Iterator<Comment> iteratorComments = element.getOwnedComments().iterator();
-		while (iteratorComments.hasNext() && !found) {
-			Comment current = iteratorComments.next();
-			if (current.getAppliedStereotypes().contains(this.backupStereotype)) {
-				found = true;
-			}
-		}
-		return found;
-	}
-
-	public boolean isBackup(Comment comment) {
-		return comment.getAppliedStereotypes().contains(this.backupStereotype);
+	public Profile getBackupProfile(Model context) {
+		return AlfUtil.getInstance().getAppliedProfile(context, BackupUtilConstants.BACKUP_PROFILE_NAME);
 	}
 
 	/**
@@ -143,16 +69,150 @@ public class BackupUtil {
 	 *            - the context element
 	 * @return backupStereotype - the definition of the stereotype
 	 */
-	public Stereotype getBackuStereotype(Element element) {
-		if (this.backupStereotype != null) {
-			return this.backupStereotype;
+	public Stereotype getBackupStereotype(Element context) {
+		if (context != null) {
+			Profile backupProfile = this.getBackupProfile(context.getModel());
+			return backupProfile.getOwnedStereotype(BackupUtilConstants.BACKUP_STEREOTYPE_NAME);
 		}
-		else if (this.isBackupProfileApplied(element) && !element.getOwnedComments().isEmpty()) {
-			this.backupStereotype = element.getOwnedComments().get(0).getApplicableStereotype(BackupUtilConstants.BACKUP_STEREOTYPE_NAME);
-			return this.backupStereotype;
-		} else {
-			return null;
+		return null;
+	}
+
+	/**
+	 * Retrieve the definition of the Enumerated type BackupState
+	 * 
+	 * @param context
+	 *            - a model that has the backup profile applied
+	 * @return a reference to the ennumeration specifying the backup state
+	 */
+	public Enumeration getBackupStateDefinition(Element context) {
+		if (context != null) {
+			Profile backupProfile = this.getBackupProfile(context.getModel());
+			if (backupProfile != null) {
+				Type backupStateDefinition = backupProfile.getOwnedType(BackupUtilConstants.BACKUP_BACKUP_STATE_ENUMERATION_NAME);
+				if (backupStateDefinition != null &&
+						backupStateDefinition instanceof Enumeration) {
+					return (Enumeration) backupStateDefinition;
+				}
+			}
 		}
+		return null;
+	}
+
+	/**
+	 * if the given element has a comment that has the backup
+	 * stereotype applied then return that comment
+	 * 
+	 * @param element
+	 *            - the element from which the search is initiated
+	 * @return a comment or null
+	 */
+	public Comment getBackupComment(Element element) {
+		Comment backupComment = null;
+		if (element != null) {
+			Iterator<Comment> iteratorComments = element.getOwnedComments().iterator();
+			while (iteratorComments.hasNext() && backupComment == null) {
+				Comment current = iteratorComments.next();
+				if (current.getAppliedStereotypes().contains(this.getBackupStereotype(element))) {
+					backupComment = current;
+				}
+			}
+		}
+		return backupComment;
+	}
+
+	/**
+	 * Returns whether the element has a comment with the Backup stereotype
+	 * 
+	 * @param element
+	 *            - the assessed element
+	 * @return true if the stereotype is applied
+	 */
+	public boolean hasBackupComment(Element element) {
+		return this.getBackupComment(element) != null;
+	}
+
+	/**
+	 * Determines if the given comment has the backup stereotype applied
+	 * 
+	 * @param comment
+	 * 			- the comment which is assessed
+	 * @return true if the stereotype is applie false otherwise
+	 */
+	public boolean isBackup(Comment comment){
+		if(comment!=null){
+			Stereotype backupStereotype = this.getBackupStereotype(comment);
+			if(backupStereotype!=null){
+				return comment.getAppliedStereotypes().contains(backupStereotype);
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Returns the BackupState applied to this comment
+	 * 
+	 * @param comment
+	 *            - the comment containing the backup information
+	 * @return state - the backup information
+	 */
+	public BackupState getBackupState(Comment comment) {
+		BackupState state = null;
+		if (comment != null) {
+			/* 1. Extract time information */
+			String timestamp = (String) comment.getValue(this.getBackupStereotype(comment),
+					BackupUtilConstants.BACKUP_TIMESTAMP_ATTR_NAME);
+			/* 2. Extract textual representation state information */
+			EnumerationLiteral literal = (EnumerationLiteral) comment.getValue(this.getBackupStereotype(comment),
+					BackupUtilConstants.BACKUP_STATE_ATTR_NAME);
+			/* 3. Build state */
+			state = new BackupState();
+			try {
+				state.timestamp = Timestamp.valueOf(timestamp);
+			} catch (Exception e) {
+			}
+			state.status = this.map(literal);
+		}
+		return state;
+	}
+	
+	/**
+	 * 
+	 * @param literal
+	 * @return
+	 */
+	private EditionStatus map(EnumerationLiteral literal){
+		EditionStatus status = null;
+		if(literal.getLabel().equals("NONE")){
+			status = EditionStatus.NONE;
+		}else if(literal.getLabel().equals("SAVED")){
+			status = EditionStatus.SAVED;
+		}else if(literal.getLabel().equals("MERGED")){
+			status = EditionStatus.MERGED;
+		}
+		return status;
+	}
+	
+	/**
+	 * 
+	 * @param editionStatus
+	 * @param context
+	 * @return
+	 */
+	private EnumerationLiteral map(EditionStatus editionStatus, Element context){
+		EnumerationLiteral status = null;
+		if(context!=null){
+			Enumeration backupState = this.getBackupStateDefinition(context);
+			if(backupState!=null){
+				if(editionStatus.equals(EditionStatus.NONE)){
+					status = backupState.getOwnedLiteral("NONE");
+				}else if(editionStatus.equals(EditionStatus.SAVED)){
+					status = backupState.getOwnedLiteral("SAVED");
+				}else if(editionStatus.equals(EditionStatus.MERGED)){
+					status = backupState.getOwnedLiteral("MERGED");
+				}
+			}
+		}
+		return status;
 	}
 
 	/**
@@ -168,53 +228,25 @@ public class BackupUtil {
 	 * @return true if the applications was realized
 	 */
 	public boolean applyBackup(Comment comment, final BackupState state) {
-		boolean applied = false;
-		boolean profileApplied = true;
-		if (!this.isBackupProfileApplied(comment)) {
-			if (this.backupProfile == null) {
-				this.getBackupProfile(comment);
-			}
-			profileApplied = PackageUtil.applyProfile((org.eclipse.uml2.uml.Package)
-					comment.getModel(), this.backupProfile, true);
+		boolean applied = this.isBackupProfileApplied(comment);
+		if (!applied) {
+			applied = this.applyBackupProfile(comment);
 		}
-		if (profileApplied) {
+		if (applied) { 
+			Stereotype backupStereotype = this.getBackupStereotype(comment);
 			/* 1. Apply the stereotype */
-			if (!this.isBackup(comment)) {
-				comment.applyStereotype(this.backupStereotype);
+			if(!this.isBackup(comment)){
+				comment.applyStereotype(backupStereotype);
 			}
 			/* 2. Set time stamp attribute */
-			comment.setValue(this.backupStereotype, BackupUtilConstants.BACKUP_TIMESTAMP_ATTR_NAME, state.timestamp.toString());
+			comment.setValue(backupStereotype, BackupUtilConstants.BACKUP_TIMESTAMP_ATTR_NAME, state.timestamp.toString());
 			/* 3. Set state attribute */
-			comment.setValue(this.backupStereotype, BackupUtilConstants.BACKUP_STATE_ATTR_NAME, this.stateMapping.get(state.status));
+			comment.setValue(backupStereotype, BackupUtilConstants.BACKUP_STATE_ATTR_NAME, this.map(state.status, comment));
 		}
 		return applied;
 	}
 
-	/**
-	 * Returns the BackupState applied to this comment
-	 * 
-	 * @param comment
-	 *            - the comment containing the backup information
-	 * @return state - the backup information
-	 */
-	public BackupState getBackupState(Comment comment) {
-		BackupState state = null;
-		if (this.isBackup(comment)) {
-			state = new BackupState();
-			String timestamp = (String) comment.getValue(this.backupStereotype, BackupUtilConstants.BACKUP_TIMESTAMP_ATTR_NAME);
-			if (timestamp != null && !timestamp.isEmpty()) {
-				try {
-					state.timestamp = Timestamp.valueOf(timestamp);
-				} catch (Exception e) {
-				}
-			}
-			EnumerationLiteral literal = (EnumerationLiteral) comment.getValue(this.backupStereotype, BackupUtilConstants.BACKUP_STATE_ATTR_NAME);
-			if (state != null) {
-				state.status = this.inverseStateMapping.get(literal);
-			}
-		}
-		return state;
-	}
+
 
 	/**
 	 * Applies the backup profile over the model owning the context element provided as a parameter
@@ -225,52 +257,26 @@ public class BackupUtil {
 	 */
 	public boolean applyBackupProfile(Element context) {
 		boolean applied = this.isBackupProfileApplied(context);
-		if (!applied) {
-			this.backupProfile = this.getBackupProfile(context);
-			if (this.backupProfile != null) {
-				AbstractTransactionalCommand command = new ApplyProfileCommand(this.backupProfile, context.getModel());
-				TransactionalEditingDomain domain = command.getEditingDomain();
-				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
-				if (command.getCommandResult().getStatus().isOK()) {
-					applied = true;
-				}
-			}
+		if(!applied){
+			 applied = AlfUtil.getInstance().applyProfile(context.getModel(),
+					AlfUtil.getInstance().loadProfile(context.getModel(), 
+							BackupUtilConstants.BACKUP_PROFILE_LOADING_NAME));
 		}
 		return applied;
 	}
-
+	
 	/**
-	 * Returns whether the backup profile is applied over the context model
 	 * 
 	 * @param context
-	 *            - the UML element used as context
-	 * @return true if the profile is applied
+	 * @return
 	 */
-	public boolean isBackupProfileApplied(Element context) {
-		return context.getModel().getAllAppliedProfiles().contains(this.backupProfile);
-	}
-
-	public Comment getBackupComment(Element element) {
-		Comment comment = null;
-		Iterator<Comment> iteratorComments = element.getOwnedComments().iterator();
-		while (iteratorComments.hasNext() && comment == null) {
-			Comment current = iteratorComments.next();
-			if (current.getAppliedStereotypes().contains(this.backupStereotype)) {
-				comment = current;
-			}
-		}
-		return comment;
-	}
-
-	public Enumeration getBackupState(Element context) {
-		if (this.backupStateEnumeration == null) {
-			this.getBackupProfile(context);
-		}
-		return this.backupStateEnumeration;
+	public boolean isBackupProfileApplied(Element context){
+		return this.getBackupProfile(context.getModel()) != null;
 	}
 
 	public class BackupUtilConstants {
-		public static final String BACKUP_PROFILE_NAME = "TextualRepresentationBackup";
+		public static final String BACKUP_PROFILE_NAME = "BackupProfile";
+		public static final String BACKUP_PROFILE_LOADING_NAME = "TextualRepresentationBackup";
 		public static final String BACKUP_STEREOTYPE_NAME = "Backup";
 		public static final String BACKUP_BACKUP_STATE_ENUMERATION_NAME = "BackupState";
 		public static final String BACKUP_TIMESTAMP_ATTR_NAME = "timestamp";
