@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.emf.appearance.style.AppearanceStyleProvider;
 
 public class AppearanceHelper {
 
-	public static String EXTENSION_ID = Activator.PLUGIN_ID + ".styleProvider";
+	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".styleProvider";
 
 	private static AppearanceStyleProvider styleProvider = findStyleProvider();
 

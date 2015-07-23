@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.customization.properties.generation.generators;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -37,7 +36,6 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
-import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.contexts.Context;
@@ -126,7 +124,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	 * @param uri
 	 *            The URI from which the EObject is loaded
 	 * @return
-	 *         The loaded EObject, or null if an error occured
+	 * 		The loaded EObject, or null if an error occured
 	 * @throws IOException
 	 *             If the URI isn't a valid EObject
 	 */
@@ -175,7 +173,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	 * @param outObjects
 	 *            The list of EObjects from which the context will be retrieved
 	 * @return
-	 *         The main generated context
+	 * 		The main generated context
 	 */
 	protected List<Context> getContexts(List<EObject> outObjects) {
 		List<Context> result = new LinkedList<Context>();
@@ -211,7 +209,8 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true); //$NON-NLS-1$
-		context.setLog(new WriterLog(new OutputStreamWriter(System.out)));
+
+		// context.setLog(new WriterLog(new OutputStreamWriter(System.out)));
 
 		ExecutionDiagnostic result = executor.execute(context, extents.toArray(new ModelExtent[0]));
 
@@ -234,11 +233,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		return generatedContexts = null;
 	}
 
-
-
-
 	protected abstract List<ModelExtent> getModelExtents(int i);
-
 
 	private List<Context> generateDifferentFile(List<URI> targetURI) {
 
@@ -253,7 +248,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		List<ModelExtent> extents = null;
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true); //$NON-NLS-1$
-		context.setLog(new WriterLog(new OutputStreamWriter(System.out)));
+		// context.setLog(new WriterLog(new OutputStreamWriter(System.out)));
 		List<Context> temp = new LinkedList<Context>();
 
 		for (int i = 0; i < targetURI.size(); i++) {

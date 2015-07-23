@@ -95,13 +95,13 @@ public class ConstraintsManager {
 	/**
 	 * The singleton instance of {@link ConstraintsManager}
 	 */
-	public static ConstraintsManager instance = new ConstraintsManager();
+	public static final ConstraintsManager instance = new ConstraintsManager();
 
 	/**
 	 * Returns all {@link ConstraintType}s contained in the {@link ConstraintEnvironment} managed by this singleton
 	 *
 	 * @return
-	 *         All known {@link ConstraintType}s
+	 * 		All known {@link ConstraintType}s
 	 */
 	public Collection<ConstraintType> getConstraintTypes() {
 		Collection<ConstraintType> constraintTypes = new HashSet<ConstraintType>();

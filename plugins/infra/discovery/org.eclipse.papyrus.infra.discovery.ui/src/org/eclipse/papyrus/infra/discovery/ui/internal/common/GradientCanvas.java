@@ -29,7 +29,6 @@ import org.eclipse.swt.widgets.Listener;
 /**
  * Based on {@link org.eclipse.ui.internal.forms.widgets.FormHeading}.
  */
-@SuppressWarnings("restriction")
 public class GradientCanvas extends Canvas {
 
 	private static final int SEPARATOR = 1 << 1;
@@ -44,12 +43,12 @@ public class GradientCanvas extends Canvas {
 
 	static String H_PREFIX = PREFIX + "H_"; //$NON-NLS-1$
 
-	public static String H_BOTTOM_KEYLINE1 = H_PREFIX + "BOTTOM_KEYLINE1"; //$NON-NLS-1$
+	public static final String H_BOTTOM_KEYLINE1 = H_PREFIX + "BOTTOM_KEYLINE1"; //$NON-NLS-1$
 
 	/**
 	 * Key for the form header bottom keyline 2 color.
 	 */
-	public static String H_BOTTOM_KEYLINE2 = H_PREFIX + "BOTTOM_KEYLINE2"; //$NON-NLS-1$
+	public static final String H_BOTTOM_KEYLINE2 = H_PREFIX + "BOTTOM_KEYLINE2"; //$NON-NLS-1$
 
 	private Image backgroundImage;
 
