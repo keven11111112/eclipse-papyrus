@@ -126,11 +126,11 @@ public class AbstractEditHyperlinkDocumentShell {
 		useDefaultcheckBox = new Button(getEditHyperlinkShell(), SWT.CHECK);
 		useDefaultcheckBox.setText(Messages.AbstractEditHyperlinkDocumentShell_UseDefault);
 		useDefaultcheckBox.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		Label filler1 = new Label(editHyperlinkShell, SWT.NONE);
-		Label filler938 = new Label(getEditHyperlinkShell(), SWT.NONE);
-		Label filler6 = new Label(editHyperlinkShell, SWT.NONE);
-		Label filler2 = new Label(editHyperlinkShell, SWT.NONE);
-		Label filler7 = new Label(getEditHyperlinkShell(), SWT.NONE);
+		new Label(editHyperlinkShell, SWT.NONE);
+		new Label(getEditHyperlinkShell(), SWT.NONE);
+		new Label(editHyperlinkShell, SWT.NONE);
+		new Label(editHyperlinkShell, SWT.NONE);
+		new Label(getEditHyperlinkShell(), SWT.NONE);
 		OkButton = new Button(getEditHyperlinkShell(), SWT.NONE);
 		OkButton.setText(Messages.AbstractEditHyperlinkDocumentShell_OK);
 		OkButton.setLayoutData(gridData2);

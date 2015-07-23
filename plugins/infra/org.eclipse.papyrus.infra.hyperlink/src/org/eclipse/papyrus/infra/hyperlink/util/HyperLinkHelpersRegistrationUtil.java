@@ -49,7 +49,7 @@ public class HyperLinkHelpersRegistrationUtil {
 	/**
 	 * A map sorting the helpers by position
 	 */
-	private static Map<Integer, AbstractHyperLinkHelper> map = null;
+	private Map<Integer, AbstractHyperLinkHelper> map = null;
 
 	/**
 	 * The instance of HyperLinkHelpersRegistrationUtil
@@ -68,7 +68,7 @@ public class HyperLinkHelpersRegistrationUtil {
 	/**
 	 *
 	 * @return
-	 *         the list of registered helpers
+	 * 		the list of registered helpers
 	 */
 	public Collection<AbstractHyperLinkHelper> getAllRegisteredHyperLinkHelper() {
 		if (map == null) {
@@ -80,7 +80,7 @@ public class HyperLinkHelpersRegistrationUtil {
 	/**
 	 *
 	 * @return
-	 *         a map owning the registered helpers, sorted by position
+	 * 		a map owning the registered helpers, sorted by position
 	 */
 	public Map<Integer, AbstractHyperLinkHelper> getHelperWithPosition() {
 		if (map == null) {

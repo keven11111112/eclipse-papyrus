@@ -86,7 +86,6 @@ public abstract class AbstractEditHyperlinkShell {
 		gridLayout.numColumns = 7;
 		gridLayout.makeColumnsEqualWidth = true;
 
-		Display display = Display.getCurrent();
 		// this line has to be commented in order to open with VISUAL EDITOR
 		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.DIALOG_TRIM | SWT.RESIZE);
 
@@ -113,11 +112,11 @@ public abstract class AbstractEditHyperlinkShell {
 		useDefaultCheckBox = new Button(getEditHyperlinkShell(), SWT.CHECK);
 		useDefaultCheckBox.setText(Messages.AbstractEditHyperlinkShell_UseDefault);
 		useDefaultCheckBox.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		Label filler1 = new Label(editHyperlinkShell, SWT.NONE);
-		Label filler3 = new Label(editHyperlinkShell, SWT.NONE);
-		Label filler6 = new Label(editHyperlinkShell, SWT.NONE);
-		Label filler2 = new Label(editHyperlinkShell, SWT.NONE);
-		Label filler452 = new Label(getEditHyperlinkShell(), SWT.NONE);
+		new Label(editHyperlinkShell, SWT.NONE);
+		new Label(editHyperlinkShell, SWT.NONE);
+		new Label(editHyperlinkShell, SWT.NONE);
+		new Label(editHyperlinkShell, SWT.NONE);
+		new Label(getEditHyperlinkShell(), SWT.NONE);
 		OkButton = new Button(getEditHyperlinkShell(), SWT.NONE);
 		OkButton.setText(Messages.AbstractEditHyperlinkShell_OK);
 		OkButton.setLayoutData(gridData2);
