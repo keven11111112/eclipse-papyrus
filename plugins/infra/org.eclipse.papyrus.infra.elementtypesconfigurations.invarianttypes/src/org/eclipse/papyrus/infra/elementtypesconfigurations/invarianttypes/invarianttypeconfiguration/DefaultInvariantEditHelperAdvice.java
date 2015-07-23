@@ -65,15 +65,8 @@ public class DefaultInvariantEditHelperAdvice extends AbstractEditHelperAdvice {
 		List<ConfiguredHintedSpecializationElementType> result = new ArrayList<ConfiguredHintedSpecializationElementType>();
 		if (request instanceof CreateElementRequest) {
 			IElementType typeToCreate = ((CreateElementRequest) request).getElementType();
-			if (typeToCreate instanceof ConfiguredHintedSpecializationElementType) {
-				if (((ConfiguredHintedSpecializationElementType) typeToCreate).getConfiguration() instanceof InvariantTypeConfiguration) {
-					result.add((ConfiguredHintedSpecializationElementType) typeToCreate);
-
-					List<ConfiguredHintedSpecializationElementType> superConfiguredTypes = getAllSuperConfiguredTypes((ConfiguredHintedSpecializationElementType) typeToCreate);
-					result.addAll(superConfiguredTypes);
-				}
-
-			}
+			List<ConfiguredHintedSpecializationElementType> superConfiguredTypes = getAllInvariantTypes(typeToCreate);
+			result.addAll(superConfiguredTypes);
 		} else if (request instanceof SetRequest) {
 			// check the feature to set is a containment feature and element to move is an extended element type
 			EStructuralFeature feature = ((SetRequest) request).getFeature();
@@ -128,6 +121,41 @@ public class DefaultInvariantEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		return result;
 
+	}
+
+	/**
+	 * Returns the list of types (this one and supers) that are configuredTypes.
+	 * 
+	 * @param type
+	 *            the type from which all invariants are retrieved
+	 * @return the list of invariant types in the hierarchy of specified type, including type itself if matching. Returns an empty list if none is matching
+	 */
+	protected List<ConfiguredHintedSpecializationElementType> getAllInvariantTypes(IElementType type) {
+		List<ConfiguredHintedSpecializationElementType> result = new ArrayList<ConfiguredHintedSpecializationElementType>();
+
+		if (!(type instanceof ConfiguredHintedSpecializationElementType)) {
+			// no need to take care of metamodel types yet
+			return result;
+		}
+
+		if (((ConfiguredHintedSpecializationElementType) type).getConfiguration() instanceof InvariantTypeConfiguration) {
+			result.add((ConfiguredHintedSpecializationElementType) type);
+		}
+
+		IElementType[] superTypes = type.getAllSuperTypes();
+		if (superTypes.length == 0) {
+			return result;
+		}
+		// get the reverse order
+		for (int i = superTypes.length - 1; i >= 0; i--) {
+			if (superTypes[i] instanceof ConfiguredHintedSpecializationElementType) {
+				if (((ConfiguredHintedSpecializationElementType) superTypes[i]).getConfiguration() instanceof InvariantTypeConfiguration) {
+					result.add((ConfiguredHintedSpecializationElementType) superTypes[i]);
+				}
+			}
+		}
+
+		return result;
 	}
 
 	protected List<ConfiguredHintedSpecializationElementType> getAllSuperConfiguredTypes(ConfiguredHintedSpecializationElementType type) {
