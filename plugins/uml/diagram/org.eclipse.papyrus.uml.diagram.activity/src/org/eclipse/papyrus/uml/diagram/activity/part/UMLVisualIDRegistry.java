@@ -334,11 +334,17 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3089((InputPin) domainElement)) {
 				return InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 				return OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3203((ValuePin) domainElement)) {
+				return ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3204((ActionInputPin) domainElement)) {
+				return ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
 			}
 			break;
 		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
@@ -2965,12 +2971,40 @@ public class UMLVisualIDRegistry {
 			if (OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			if (InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+			if (ValuePinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ValuePinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+			if (ActionPinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ActionPinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -5837,6 +5871,30 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
+	* @generated
+	*/
+	private static boolean isInputPin_3089(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(157, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isValuePin_3203(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(156, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isActionInputPin_3204(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(158, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
 	 * @generated
 	 */
 	private static boolean isInputPin_3092(InputPin domainElement) {
@@ -6528,6 +6586,8 @@ public class UMLVisualIDRegistry {
 		case ValuePinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
 		case ActionPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
 		case OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID:
+		case ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+		case ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

@@ -49,7 +49,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[156];
+		this.expressions = new UMLAbstractExpression[159];
 		this.expressionBodies = new String[] {
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
@@ -207,6 +207,9 @@ public class UMLOCLFactory {
 				"if self.owner.oclIsKindOf(LoopNode) and self.oclIsTypeOf(InputPin)\nthen self.owner.oclAsType(LoopNode).loopVariableInput->includes(self) \nelse false endif", //$NON-NLS-1$
 				"self.oclIsTypeOf(CreateLinkAction)", //$NON-NLS-1$
 				"self.oclIsTypeOf(CreateLinkObjectAction)", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadStructuralFeatureAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(ReadStructuralFeatureAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadStructuralFeatureAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(ReadStructuralFeatureAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadStructuralFeatureAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(ReadStructuralFeatureAction).object = self\r\nelse false endif", //$NON-NLS-1$
 		};
 	}
 

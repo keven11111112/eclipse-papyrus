@@ -828,6 +828,30 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return new InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart(view);
 
+			case ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+				return new ValuePinInReadStructuralFeatureAsObjectEditPart(view);
+
+			case ValuePinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID:
+				return new ValuePinInReadStructuralFeatureAsObjectNameLabelEditPart(view);
+
+			case ValuePinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID:
+				return new ValuePinInReadStructuralFeatureAsObjectValueEditPart(view);
+
+			case ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart(view);
+
+			case ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+				return new ActionPinInReadStructuralFeatureAsObjectEditPart(view);
+
+			case ActionPinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID:
+				return new ActionPinInReadStructuralFeatureAsObjectNameLabelEditPart(view);
+
+			case ActionPinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID:
+				return new ActionPinInReadStructuralFeatureAsObjectValueEditPart(view);
+
+			case ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart(view);
+
 			case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
 				return new OutputPinInReadStructuralFeatureAsResultEditPart(view);
 

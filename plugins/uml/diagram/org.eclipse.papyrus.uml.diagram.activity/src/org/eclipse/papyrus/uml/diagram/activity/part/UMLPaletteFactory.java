@@ -943,7 +943,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createActionInputPin3CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(27);
+		List<IElementType> types = new ArrayList<IElementType>(28);
 		types.add(UMLElementTypes.ActionInputPin_3016);
 		types.add(UMLElementTypes.ActionInputPin_3018);
 		types.add(UMLElementTypes.ActionInputPin_3021);
@@ -971,6 +971,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.ActionInputPin_3193);
 		types.add(UMLElementTypes.ActionInputPin_3190);
 		types.add(UMLElementTypes.ActionInputPin_3201);
+		types.add(UMLElementTypes.ActionInputPin_3204);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -979,7 +980,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createValuePin4CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(27);
+		List<IElementType> types = new ArrayList<IElementType>(28);
 		types.add(UMLElementTypes.ValuePin_3015);
 		types.add(UMLElementTypes.ValuePin_3017);
 		types.add(UMLElementTypes.ValuePin_3022);
@@ -1007,6 +1008,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.ValuePin_3192);
 		types.add(UMLElementTypes.ValuePin_3189);
 		types.add(UMLElementTypes.ValuePin_3200);
+		types.add(UMLElementTypes.ValuePin_3203);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

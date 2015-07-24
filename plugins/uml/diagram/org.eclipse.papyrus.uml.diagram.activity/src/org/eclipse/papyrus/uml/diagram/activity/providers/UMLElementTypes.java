@@ -397,6 +397,16 @@ public class UMLElementTypes {
 	public static final IElementType InputPin_3089 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3089"); //$NON-NLS-1$
 
 	/**
+	* @generated
+	*/
+	public static final IElementType ValuePin_3203 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3203"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3204 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionPin_3204"); //$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	public static final IElementType OutputPin_3090 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090"); //$NON-NLS-1$
@@ -1287,6 +1297,12 @@ public class UMLElementTypes {
 			elements.put(InputPin_3089, UMLPackage.eINSTANCE.getInputPin());
 
 
+			elements.put(ValuePin_3203, UMLPackage.eINSTANCE.getValuePin());
+
+
+			elements.put(ActionInputPin_3204, UMLPackage.eINSTANCE.getActionInputPin());
+
+
 			elements.put(OutputPin_3090, UMLPackage.eINSTANCE.getOutputPin());
 
 
@@ -1687,6 +1703,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(NamedElement_3085);
 			KNOWN_ELEMENT_TYPES.add(ReadStructuralFeatureAction_3088);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3089);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3203);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3204);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3090);
 			KNOWN_ELEMENT_TYPES.add(AddStructuralFeatureValueAction_3091);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3092);
@@ -1979,6 +1997,10 @@ public class UMLElementTypes {
 			return ReadStructuralFeatureAction_3088;
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			return InputPin_3089;
+		case ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+			return ValuePin_3203;
+		case ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+			return ActionInputPin_3204;
 		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
 			return OutputPin_3090;
 		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:

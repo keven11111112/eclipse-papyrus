@@ -2311,6 +2311,96 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
+	* @generated
+	*/
+	private PinParser valuePinLabel_5420Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5420Parser() {
+		if (valuePinLabel_5420Parser == null) {
+			valuePinLabel_5420Parser = new PinParser();
+		}
+		return valuePinLabel_5420Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser valuePinLabel_5421Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5421Parser() {
+		if (valuePinLabel_5421Parser == null) {
+			valuePinLabel_5421Parser = new PinValueParser();
+		}
+		return valuePinLabel_5421Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser valuePinLabel_5422Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5422Parser() {
+		if (valuePinLabel_5422Parser == null) {
+			valuePinLabel_5422Parser = new AppliedStereotypeParser();
+		}
+		return valuePinLabel_5422Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser actionInputPinLabel_5423Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5423Parser() {
+		if (actionInputPinLabel_5423Parser == null) {
+			actionInputPinLabel_5423Parser = new PinParser();
+		}
+		return actionInputPinLabel_5423Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser actionInputPinLabel_5419Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5419Parser() {
+		if (actionInputPinLabel_5419Parser == null) {
+			actionInputPinLabel_5419Parser = new PinValueParser();
+		}
+		return actionInputPinLabel_5419Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser actionInputPinLabel_5418Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5418Parser() {
+		if (actionInputPinLabel_5418Parser == null) {
+			actionInputPinLabel_5418Parser = new AppliedStereotypeParser();
+		}
+		return actionInputPinLabel_5418Parser;
+	}
+
+	/**
 	 * @generated
 	 */
 	private PinParser outputPinLabel_5151Parser;
@@ -7141,6 +7231,20 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInputPinLabel_5149Parser();
 		case InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 			return getInputPinLabel_5150Parser();
+
+		case ValuePinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID:
+			return getValuePinLabel_5420Parser();
+		case ValuePinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID:
+			return getValuePinLabel_5421Parser();
+		case ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
+			return getValuePinLabel_5422Parser();
+
+		case ActionPinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5423Parser();
+		case ActionPinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5419Parser();
+		case ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5418Parser();
 
 		case OutputPinInReadStructuralFeatureAsResultLabelEditPart.VISUAL_ID:
 			return getOutputPinLabel_5151Parser();
