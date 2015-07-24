@@ -10,6 +10,7 @@
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *	Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
+ *  Benoit Maggi  (CEA LIST) - #473480 Allow selection of more than one template  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.template;
 
@@ -187,11 +188,13 @@ public class SelectModelTemplateComposite extends Composite {
 		return null;
 	}
 
-
+	/**
+	 * @return the list of model template description for each transformation template
+	 */
 	public List<ModelTemplateDescription> getTemplateTransfoPath() {
 		if (templateTableViewer != null) {
 			Object[] selection = templateTableViewer.getCheckedElements();
-			if (selection.length <= 1) {
+			if (selection.length > 0) {
 				List<ModelTemplateDescription> templatePath = new ArrayList<ModelTemplateDescription>();
 				for (Object currentObject : selection) {
 					templatePath.add((ModelTemplateDescription) currentObject);
@@ -199,50 +202,58 @@ public class SelectModelTemplateComposite extends Composite {
 				return templatePath;
 			}
 		}
-		return null;
+		return new ArrayList<ModelTemplateDescription>();
 	}
 
-
+	/**
+	 * @return the list of di path for each transformation template
+	 */
 	public List<String> getDiTemplateTransfoPath() {
-		if (templateTableViewer != null) {
-			Object[] selection = templateTableViewer.getCheckedElements();
-			if (selection.length <= 1) {
-				List<String> templatePath = new ArrayList<String>();
-				for (Object currentObject : selection) {
-					templatePath.add(((ModelTemplateDescription) currentObject).getDi_path());
+		List<String> diPathList = new ArrayList<String>();
+		List<ModelTemplateDescription> templateTransfoPath = getTemplateTransfoPath();
+		if (templateTransfoPath != null) {
+			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
+				String diPath = modelTemplateDescription.getDi_path();
+				if (diPath != null){
+					diPathList.add(diPath);
 				}
-				return templatePath;
 			}
 		}
-		return null;
+		return diPathList;
 	}
 
+	/**
+	 * @return the list of notation path for each transformation template
+	 */
 	public List<String> getNotationTemplateTransfoPath() {
-		if (templateTableViewer != null) {
-			Object[] selection = templateTableViewer.getCheckedElements();
-			if (selection.length <= 1) {
-				List<String> templatePath = new ArrayList<String>();
-				for (Object currentObject : selection) {
-					templatePath.add(((ModelTemplateDescription) currentObject).getNotation_path());
+		List<String> notationPathList = new ArrayList<String>();
+		List<ModelTemplateDescription> templateTransfoPath = getTemplateTransfoPath();
+		if (templateTransfoPath != null) {
+			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
+				String notationPath = modelTemplateDescription.getNotation_path();
+				if (notationPath != null){
+					notationPathList.add(notationPath);
 				}
-				return templatePath;
 			}
 		}
-		return null;
+		return notationPathList;		
 	}
 
+	/**
+	 * @return the list of plugin id for each transformation template
+	 */
 	public List<String> getTemplateTransfoPluginID() {
-		if (templateTableViewer != null) {
-			Object[] selection = templateTableViewer.getCheckedElements();
-			if (selection.length <= 1) {
-				List<String> templatePath = new ArrayList<String>();
-				for (Object currentObject : selection) {
-					templatePath.add(((ModelTemplateDescription) currentObject).getPluginId());
+		List<String> pluginIdList = new ArrayList<String>();
+		List<ModelTemplateDescription> templateTransfoPath = getTemplateTransfoPath();
+		if (templateTransfoPath != null) {
+			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
+				String pluginId = modelTemplateDescription.getPluginId();
+				if (pluginId != null){
+					pluginIdList.add(pluginId);
 				}
-				return templatePath;
 			}
 		}
-		return null;
+		return pluginIdList;			
 	}
 
 
