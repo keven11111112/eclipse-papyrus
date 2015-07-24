@@ -22,9 +22,9 @@ import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart;
-import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
+import org.eclipse.papyrus.uml.diagram.common.parser.IMaskManagedSemanticParser;
 
 
 /**

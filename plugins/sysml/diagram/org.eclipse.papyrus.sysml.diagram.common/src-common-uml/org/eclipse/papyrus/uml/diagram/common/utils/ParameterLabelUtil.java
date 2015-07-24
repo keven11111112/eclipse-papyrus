@@ -15,9 +15,9 @@ package org.eclipse.papyrus.uml.diagram.common.utils;
 
 import java.util.Collection;
 
-import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLMultiplicityElementUtil;
+import org.eclipse.papyrus.uml.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Parameter;

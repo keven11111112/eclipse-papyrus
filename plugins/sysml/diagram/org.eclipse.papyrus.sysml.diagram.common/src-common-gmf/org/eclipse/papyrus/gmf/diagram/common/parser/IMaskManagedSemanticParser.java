@@ -21,11 +21,14 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 
 /**
  * Interface for semantic parsers that support mask options.
+ * 
+ * @deprecated since Eclipse Mars SR1. Use {@link org.eclipse.papyrus.uml.diagram.common.parser.IMaskManagedSemanticParser} instead
  */
+@Deprecated
 public interface IMaskManagedSemanticParser extends ISemanticParser {
 
 	/** The label to show in case ParserOptions.None is passed as flag (avoid a fully masked label) */
-	public static final String MaskedLabel = "<empty label>";
+	public static final String MaskedLabel = "<empty label>"; 
 
 	/**
 	 * Get the {@link Map} of masks
