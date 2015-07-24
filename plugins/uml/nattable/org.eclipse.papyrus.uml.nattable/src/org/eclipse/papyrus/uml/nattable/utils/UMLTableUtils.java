@@ -100,17 +100,22 @@ public class UMLTableUtils {
 			final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
 			String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
 			final List<String> subPackages = new ArrayList<String>();
-			if (profileQN.contains(NamedElement.SEPARATOR)){
-				String[] split = profileQN.split(NamedElement.SEPARATOR);
-				profileQN = split[0];
-				for (int splitIndex=1;splitIndex<split.length;splitIndex++){
-					subPackages.add(split[splitIndex]);
-				}
-			}
-
+			
 			// 1. we check if the profile is applied on the nearest package
 			if (element.getNearestPackage() != null) {
-				final Profile profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
+				Profile profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
+			
+				if(null == profile){
+					if (profileQN.contains(NamedElement.SEPARATOR)){
+						String[] split = profileQN.split(NamedElement.SEPARATOR);
+						profileQN = split[0];
+						for (int splitIndex=1;splitIndex<split.length;splitIndex++){
+							subPackages.add(split[splitIndex]);
+						}
+					}
+					profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
+				}
+
 				if (profile != null) {
 					Package currentPackage = profile;
 					Iterator<String> subPackagesIterator = subPackages.iterator();
