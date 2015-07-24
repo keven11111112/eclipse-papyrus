@@ -329,7 +329,7 @@ public class EditAxisRequirementTableTest extends AbstractOpenTableTest {
 
 		final IAxis fourthColumn = (IAxis) columnElements.get(3);
 		final Object fourthColumnRepresentedElement = fourthColumn.getElement();
-		Assert.assertEquals(DERIVED_PROPERTY, fourthColumnRepresentedElement);
+		Assert.assertEquals(TRACED_TO_PROPERTY, fourthColumnRepresentedElement);
 	}
 	
 	/**
