@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -24,23 +25,21 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationObservationItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationObservationConstraint;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomDurationObservationEditPart extends DurationObservationEditPart implements IPapyrusEditPart {
+public class CustomDurationObservationEditPart extends DurationObservationEditPart {
 
 	/**
 	 * Constructor.
@@ -124,36 +123,25 @@ public class CustomDurationObservationEditPart extends DurationObservationEditPa
 		}
 	}
 
-	/**
-	 * @Override use correct minimum size
-	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		// use correct minimum size
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(-1, -1);
-		// String prefElementId = "DurationObservation";
-		// IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		// String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		// String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		// DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		return result;
+		return new RoundedRectangleNodePlateFigure(20, 20);
 	}
 
 	@Override
 	protected IFigure createNodeShape() {
-		return primaryShape = new CustomDurationObservationConstraint();
-	}
+		primaryShape = new RoundedCompartmentFigure() {
 
-	public class CustomDurationObservationConstraint extends DurationObservationConstraint {
+			@Override
+			public Border getBorder() {
+				return null;
+			}
 
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart.DurationObservationConstraint#getDurationLabel()
-		 *
-		 * @return
-		 */
-		@Override
-		public WrappingLabel getDurationLabel() {
-			return this;
-		}
+			@Override
+			public boolean isUsingGradient() {
+				return false;
+			}
+		};
+		return primaryShape;
 	}
 }
