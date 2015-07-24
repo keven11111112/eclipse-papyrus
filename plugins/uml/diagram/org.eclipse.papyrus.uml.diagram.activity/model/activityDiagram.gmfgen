@@ -8415,7 +8415,12 @@
         </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="16"
+              height="16"/>
+        </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
