@@ -29,6 +29,8 @@ import org.eclipse.papyrus.C_Cpp.ConstInit
 import org.eclipse.uml2.uml.util.UMLUtil
 import org.eclipse.papyrus.cpp.codegen.Constants
 import org.eclipse.papyrus.codegen.base.GenUtils
+import org.eclipse.uml2.uml.NamedElement
+import org.eclipse.uml2.uml.Region
 
 class CppOperations {
 	static def CppOperationImplementation(Operation operation) '''
@@ -110,7 +112,7 @@ class CppOperations {
 	
 	static def CppBehaviorImplementation(OpaqueBehavior behavior) '''
 		«CppDocumentation.CppBehaviorDoc(behavior)»
-		«CppReturnSpec(behavior)»«behavior.context.name»::«behavior.name»(«CppParameter.CppBehaviorParameters(behavior, false)»)«Modifier.modCVQualifier(behavior)» {
+		«CppReturnSpec(behavior)»«behavior.context.name»::«behavior.qualifiedBehaviorName»(«CppParameter.CppBehaviorParameters(behavior, false)»)«Modifier.modCVQualifier(behavior)» {
 			«GenUtils.getBodyFromOB(behavior, Constants.supportedLanguages)»
 		}
 	'''
@@ -146,6 +148,20 @@ class CppOperations {
 	
 	static def CppBehaviorDeclaration(Behavior behavior) '''
 		«CppDocumentation.CppBehaviorDoc(behavior)»
-		«InlineTxt(behavior)»«CppReturnSpec(behavior)»«behavior.name»(«CppParameter.CppBehaviorParameters(behavior, true)»)«Modifier.modCVQualifier(behavior)»;
+		«InlineTxt(behavior)»«CppReturnSpec(behavior)»«behavior.qualifiedBehaviorName»(«CppParameter.CppBehaviorParameters(behavior, true)»)«Modifier.modCVQualifier(behavior)»;
 	'''
+	
+	static def qualifiedBehaviorName(Behavior behavior) {
+		var ne = behavior as NamedElement
+		var name = behavior.name
+		while ((ne != null) && !(ne instanceof Classifier) || (ne instanceof Behavior)) {
+			if (ne.owner instanceof NamedElement) {
+				ne = ne.owner as NamedElement
+			}
+			if (ne.owner instanceof Region) {
+				name = ne.name + "_" + name
+			}
+		}
+		return name
+	}
 }

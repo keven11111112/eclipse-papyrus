@@ -30,8 +30,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.ContainerRuleKind;
 import org.eclipse.papyrus.FCM.util.FCMUtil;
-import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
-import org.eclipse.papyrus.codegen.extensionpoints.LanguageSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageProjectSupport;
 import org.eclipse.papyrus.qompass.designer.core.EnumService;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
@@ -200,12 +202,10 @@ public class TrafoAndCodegenPackage {
 			// genProject = project
 			ModelManagement genMM = tmpMM;
 			IProject genProject = project;
-			ILangSupport langSupport = LanguageSupport.getLangSupport(targetLanguage);
-			langSupport.resetConfigurationData();
+			ILangProjectSupport projectSupport = LanguageProjectSupport.getProjectSupport(targetLanguage);
+			ILangCodegen codegen = LanguageCodegen.getGenerator(targetLanguage);
 
-			langSupport.setProject(genProject);
-
-			GenerateCode codeGen = new GenerateCode(genProject, langSupport, genMM, monitor);
+			GenerateCode codeGen = new GenerateCode(genProject, codegen, genMM, monitor);
 			codeGen.generate(null, targetLanguage, false);
 
 			genMM.dispose();

@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     CEA LIST - initial API and implementation
+ *     CEA LIST - ansgar.radermacher@cea.fr   initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.papyrus.codegen.extensionpoints;
@@ -16,26 +16,30 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 
-
 /**
  * Support for multiple target languages via the Eclipse extension mechanism
  */
-public class LanguageSupport {
+public class LanguageProjectSupport {
 
-	public static final String ILANG_SUPPORT_ID = Activator.PLUGIN_ID + ".language"; //$NON-NLS-1$
+	public static final String ILANG_SUPPORT_ID = Activator.PLUGIN_ID + ".languageProjectSupport"; //$NON-NLS-1$
 
-	public static ILangSupport getLangSupport(String language)
-	{
+	/**
+	 * Get the project support for a given language editor.
+	 * 
+	 * @param language
+	 *            a programming language
+	 * @return the project support
+	 */
+	public static ILangProjectSupport getProjectSupport(String language) {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(ILANG_SUPPORT_ID);
 		for (IConfigurationElement configElement : configElements) {
 			try {
 				final String extLanguage = configElement.getAttribute("language"); //$NON-NLS-1$
 				if (extLanguage.equals(language)) {
-					// TODO: cache returned instance (avoid creating a new instance each time => more efficient, no need for static attributes)
 					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
-					if (obj instanceof ILangSupport) {
-						return (ILangSupport) obj;
+					if (obj instanceof ILangProjectSupport) {
+						return (ILangProjectSupport) obj;
 					}
 				}
 			} catch (CoreException exception) {

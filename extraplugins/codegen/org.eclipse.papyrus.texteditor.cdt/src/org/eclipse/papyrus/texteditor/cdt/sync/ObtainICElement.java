@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,7 +23,15 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Transition;
 
+
+/**
+ * This class is used to select the operation the user wants to edit after opening the editor.
+ * In case of transition, the selection is based on simple name only (either prefixed with the name separator or with an
+ * underscore - based on the assumption that scoped names are either kept or flattened using underscore as separator
+ *
+ */
 public class ObtainICElement {
+	
 	/**
 	 * Return the ICelement associated with a UML element. Currently, only methods are supported.
 	 *
@@ -52,9 +60,12 @@ public class ObtainICElement {
 					}
 					else if (element instanceof Transition) {
 						Transition transition = (Transition) element;
-						if (child.getElementName().endsWith(NamedElement.SEPARATOR + transition.getEffect().getName())) {
-							if (function.getNumberOfParameters() == countParameters(transition.getEffect().getOwnedParameters())) {
-								return child;
+						if (transition.getEffect() != null) {
+							if (FindTransition.behaviorMatches(transition.getEffect(), child.getElementName())) {
+							
+								if (function.getNumberOfParameters() == countParameters(transition.getEffect().getOwnedParameters())) {
+									return child;
+								}
 							}
 						}
 					}

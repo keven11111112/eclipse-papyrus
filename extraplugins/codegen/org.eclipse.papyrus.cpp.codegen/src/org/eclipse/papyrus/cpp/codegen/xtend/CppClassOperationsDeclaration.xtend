@@ -28,8 +28,8 @@ class CppClassOperationsDeclaration {
 		«FOR b : clazz.eAllContents.toList.filter(OpaqueBehavior).filter[it.visibility == visibilityFilter]»
 			«IF b.specification == null»
 			
-			// opaque behavior without specification (typically from state machine)
-			«CppOperations.CppBehaviorDeclaration(b)»
+				// opaque behavior without specification (typically from state machine)
+				«CppOperations.CppBehaviorDeclaration(b)»
 			«ENDIF»
 		«ENDFOR»
 	'''

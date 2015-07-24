@@ -1,10 +1,10 @@
 package org.eclipse.papyrus.cpp.cdtproject;
 
-import org.eclipse.cdt.ui.wizards.CCProjectWizard;
+import org.eclipse.cdt.ui.wizards.CProjectWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 
 /**
- * Variant of CCProjectWizard that allows for setting an initial
+ * Variant of CProjectWizard that allows for setting an initial
  * project name. It creates the pages and sets the initial name.
  * It does not use the standard CDTMainWizardPage but a variant
  * called CDTMainWizardPageV that skips the first validation which
@@ -12,9 +12,9 @@ import org.eclipse.jface.wizard.IWizardPage;
  *
  * @see org.eclipse.papyrus.cpp.cdtproject.CDTMainWizardPageV
  */
-public class CCNamedProjectWizard extends CCProjectWizard {
+public class CNamedProjectWizard extends CProjectWizard {
 
-	public CCNamedProjectWizard(String projectName) {
+	public CNamedProjectWizard(String projectName) {
 		this.projectName = projectName;
 		dontAdd = false;
 	}
