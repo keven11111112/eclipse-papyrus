@@ -30,7 +30,6 @@ import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
 import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
-import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
@@ -149,10 +148,6 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 
 		Classifier classifierToEdit = getClassifierToEdit();
-		if (LocateCppProject.getTargetProject(classifierToEdit, true) == null) {
-			return;
-		}
-
 		TextEditorModel editorModel = getEditorModel(serviceRegistry, classifierToEdit);
 		if (editorModel == null) {
 			// no editor exist for the given file => create
@@ -161,11 +156,16 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 				return;
 			}
 		}
+		ILangCodegen codegen = LanguageCodegen.getGenerator(TextEditorConstants.CPP, editorModel.getGeneratorID());
+
+		if (codegen.getTargetProject(classifierToEdit, true) == null) {
+			return;
+		}
 		
 		if (selectedEObject instanceof Transition) {
 			Transition transition = (Transition) selectedEObject;
 			if (transition.getEffect() == null) {
-				Behavior effect = transition.createEffect("effectOf" + transition.getName(), UMLPackage.eINSTANCE.getOpaqueBehavior());
+				Behavior effect = transition.createEffect("effectOf" + transition.getName(), UMLPackage.eINSTANCE.getOpaqueBehavior()); //$NON-NLS-1$
 			}
 		}
 		// add the new editor model to the sash.
