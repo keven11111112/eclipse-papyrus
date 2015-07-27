@@ -172,15 +172,12 @@ public class ModelEditPartTN extends PackageEditPart {
 			return true;
 		}
 
-
 		if (childEditPart instanceof ModelPackageableElementCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ModelPackageableElementCompartmentEditPartTN) childEditPart).getFigure());
 			return true;
 		}
-
-
 
 		// Papyrus Gencode :precise the locator for a template signature
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -189,16 +186,12 @@ public class ModelEditPartTN extends PackageEditPart {
 			return true;
 		}
 
-
-
-
 		// Papyrus Gencode :precise the locator for a template signature
 		if (childEditPart instanceof TemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((TemplateSignatureEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
 
 		return false;
 	}

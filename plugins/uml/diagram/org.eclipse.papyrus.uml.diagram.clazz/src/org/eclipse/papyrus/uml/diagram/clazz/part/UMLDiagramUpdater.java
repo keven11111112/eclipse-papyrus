@@ -218,8 +218,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getPackagedElements()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == DependencyNodeEditPart.VISUAL_ID) {
@@ -295,8 +294,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedComments()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == CommentEditPart.VISUAL_ID) {
@@ -609,8 +607,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Class modelElement = (Class) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForClassEditPart.VISUAL_ID) {
@@ -634,8 +631,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Class modelElement = (Class) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedReceptions()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
 			Reception childElement = (Reception) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ReceptionEditPart.VISUAL_ID) {
@@ -643,8 +639,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForClassEditPart.VISUAL_ID) {
@@ -668,8 +663,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Class modelElement = (Class) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedClassifiers()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == NestedClassForClassEditPart.VISUAL_ID) {
@@ -713,8 +707,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Component modelElement = (Component) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForComponentEditPart.VISUAL_ID) {
@@ -738,8 +731,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Component modelElement = (Component) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForComponentEditPart.VISUAL_ID) {
@@ -747,8 +739,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedReceptions()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
 			Reception childElement = (Reception) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ReceptionEditPart.VISUAL_ID) {
@@ -772,8 +763,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Component modelElement = (Component) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedClassifiers()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == NestedClassForComponentEditPart.VISUAL_ID) {
@@ -817,8 +807,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Signal modelElement = (Signal) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForSignalEditPart.VISUAL_ID) {
@@ -842,8 +831,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Interface modelElement = (Interface) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForInterfaceEditPart.VISUAL_ID) {
@@ -867,8 +855,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Interface modelElement = (Interface) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForInterfaceEditpart.VISUAL_ID) {
@@ -876,8 +863,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedReceptions()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
 			Reception childElement = (Reception) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ReceptionInInterfaceEditPart.VISUAL_ID) {
@@ -901,8 +887,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Interface modelElement = (Interface) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedClassifiers()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == NestedClassForInterfaceEditPart.VISUAL_ID) {
@@ -946,8 +931,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		PrimitiveType modelElement = (PrimitiveType) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyforPrimitiveTypeEditPart.VISUAL_ID) {
@@ -971,8 +955,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		PrimitiveType modelElement = (PrimitiveType) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForPrimitiveTypeEditPart.VISUAL_ID) {
@@ -996,8 +979,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		DataType modelElement = (DataType) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyforDataTypeEditPart.VISUAL_ID) {
@@ -1021,8 +1003,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		DataType modelElement = (DataType) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForDataTypeEditPart.VISUAL_ID) {
@@ -1046,8 +1027,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Model modelElement = (Model) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getPackagedElements()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == InstanceSpecificationEditPartCN.VISUAL_ID) {
@@ -1099,8 +1079,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedComments()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == CommentEditPartCN.VISUAL_ID) {
@@ -1124,8 +1103,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Package modelElement = (Package) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getPackagedElements()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == InstanceSpecificationEditPartCN.VISUAL_ID) {
@@ -1177,8 +1155,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedComments()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == CommentEditPartCN.VISUAL_ID) {
@@ -1202,8 +1179,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Enumeration modelElement = (Enumeration) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedLiterals()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedLiterals().iterator(); it.hasNext();) {
 			EnumerationLiteral childElement = (EnumerationLiteral) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == EnumerationLiteralEditPart.VISUAL_ID) {
@@ -1227,8 +1203,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		InstanceSpecification modelElement = (InstanceSpecification) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getSlots()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getSlots().iterator(); it.hasNext();) {
 			Slot childElement = (Slot) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == SlotEditPart.VISUAL_ID) {
@@ -1252,8 +1227,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Class modelElement = (Class) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForClassEditPart.VISUAL_ID) {
@@ -1277,8 +1251,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Class modelElement = (Class) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedReceptions()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
 			Reception childElement = (Reception) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ReceptionEditPart.VISUAL_ID) {
@@ -1286,8 +1259,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForClassEditPart.VISUAL_ID) {
@@ -1311,8 +1283,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Class modelElement = (Class) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedClassifiers()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == NestedClassForClassEditPart.VISUAL_ID) {
@@ -1356,8 +1327,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Component modelElement = (Component) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForComponentEditPart.VISUAL_ID) {
@@ -1381,8 +1351,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Component modelElement = (Component) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForComponentEditPart.VISUAL_ID) {
@@ -1390,8 +1359,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedReceptions()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
 			Reception childElement = (Reception) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ReceptionEditPart.VISUAL_ID) {
@@ -1415,8 +1383,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Component modelElement = (Component) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedClassifiers()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == NestedClassForComponentEditPart.VISUAL_ID) {
@@ -1460,8 +1427,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Interface modelElement = (Interface) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForInterfaceEditPart.VISUAL_ID) {
@@ -1485,8 +1451,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Interface modelElement = (Interface) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForInterfaceEditpart.VISUAL_ID) {
@@ -1494,8 +1459,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedReceptions()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
 			Reception childElement = (Reception) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ReceptionInInterfaceEditPart.VISUAL_ID) {
@@ -1519,8 +1483,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Interface modelElement = (Interface) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedClassifiers()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == NestedClassForInterfaceEditPart.VISUAL_ID) {
@@ -1564,8 +1527,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		PrimitiveType modelElement = (PrimitiveType) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyforPrimitiveTypeEditPart.VISUAL_ID) {
@@ -1589,8 +1551,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		PrimitiveType modelElement = (PrimitiveType) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForPrimitiveTypeEditPart.VISUAL_ID) {
@@ -1614,8 +1575,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		DataType modelElement = (DataType) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyforDataTypeEditPart.VISUAL_ID) {
@@ -1639,8 +1599,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		DataType modelElement = (DataType) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForDataTypeEditPart.VISUAL_ID) {
@@ -1664,8 +1623,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		AssociationClass modelElement = (AssociationClass) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForComponentEditPart.VISUAL_ID) {
@@ -1689,8 +1647,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		InstanceSpecification modelElement = (InstanceSpecification) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getSlots()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getSlots().iterator(); it.hasNext();) {
 			Slot childElement = (Slot) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == SlotEditPart.VISUAL_ID) {
@@ -1714,8 +1671,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Signal modelElement = (Signal) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedAttributes()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == PropertyForSignalEditPart.VISUAL_ID) {
@@ -1739,8 +1695,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Model modelElement = (Model) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getPackagedElements()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == InstanceSpecificationEditPartCN.VISUAL_ID) {
@@ -1792,8 +1747,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedComments()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == CommentEditPartCN.VISUAL_ID) {
@@ -1817,8 +1771,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Package modelElement = (Package) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getPackagedElements()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == InstanceSpecificationEditPartCN.VISUAL_ID) {
@@ -1870,8 +1823,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getOwnedComments()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == CommentEditPartCN.VISUAL_ID) {
@@ -1895,8 +1847,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Enumeration modelElement = (Enumeration) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedLiterals()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedLiterals().iterator(); it.hasNext();) {
 			EnumerationLiteral childElement = (EnumerationLiteral) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == EnumerationLiteralEditPart.VISUAL_ID) {
@@ -1920,8 +1871,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		AssociationClass modelElement = (AssociationClass) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedOperations()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == OperationForComponentEditPart.VISUAL_ID) {
@@ -1945,8 +1895,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		AssociationClass modelElement = (AssociationClass) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedClassifiers()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == NestedClassForComponentEditPart.VISUAL_ID) {
@@ -1970,8 +1919,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		RedefinableTemplateSignature modelElement = (RedefinableTemplateSignature) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getParameters()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getParameters().iterator(); it.hasNext();) {
 			TemplateParameter childElement = (TemplateParameter) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ClassifierTemplateParameterEditPart.VISUAL_ID) {
@@ -2007,8 +1955,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		TemplateSignature modelElement = (TemplateSignature) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getParameters()
-				.iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getParameters().iterator(); it.hasNext();) {
 			TemplateParameter childElement = (TemplateParameter) it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (visualID == ClassifierTemplateParameterEditPart.VISUAL_ID) {
@@ -6346,8 +6293,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_AssociationClass_4017(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof AssociationClass) {
 				continue;
@@ -6378,8 +6324,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Association_4001(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
@@ -6410,8 +6355,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Association_4019(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
@@ -6442,8 +6386,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Generalization_4002(Classifier container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getGeneralizations()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getGeneralizations().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Generalization) {
 				continue;
@@ -6463,8 +6406,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_InterfaceRealization_4003(BehavioredClassifier container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getInterfaceRealizations()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getInterfaceRealizations().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof InterfaceRealization) {
 				continue;
@@ -6484,8 +6426,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Substitution_4004(Classifier container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getSubstitutions()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getSubstitutions().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Substitution) {
 				continue;
@@ -6506,8 +6447,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Realization_4005(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Realization) {
 				continue;
@@ -6538,8 +6478,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Abstraction_4006(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Abstraction) {
 				continue;
@@ -6570,8 +6509,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Usage_4007(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Usage) {
 				continue;
@@ -6602,8 +6540,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Dependency_4008(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Dependency) {
 				continue;
@@ -6634,8 +6571,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Dependency_4018(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Dependency) {
 				continue;
@@ -6666,8 +6602,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_ElementImport_4009(Namespace container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getElementImports()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getElementImports().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof ElementImport) {
 				continue;
@@ -6687,8 +6622,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_PackageImport_4010(Namespace container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackageImports()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackageImports().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof PackageImport) {
 				continue;
@@ -6708,8 +6642,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_PackageMerge_4011(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackageMerges()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackageMerges().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof PackageMerge) {
 				continue;
@@ -6730,8 +6663,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_ProfileApplication_4012(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getProfileApplications()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getProfileApplications().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof ProfileApplication) {
 				continue;
@@ -6751,8 +6683,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_TemplateBinding_4015(TemplateableElement container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getTemplateBindings()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getTemplateBindings().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof TemplateBinding) {
 				continue;
@@ -6773,8 +6704,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_GeneralizationSet_4020(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof GeneralizationSet) {
 				continue;
@@ -6805,8 +6735,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_InstanceSpecification_4021(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof InstanceSpecification) {
 				continue;
@@ -6837,8 +6766,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_InformationFlow_4026(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof InformationFlow) {
 				continue;
@@ -7357,8 +7285,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof AssociationClass) {
 				continue;
@@ -7404,8 +7331,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
@@ -7451,8 +7377,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
@@ -7498,8 +7423,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getSubstitutions()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getSubstitutions().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Substitution) {
 				continue;
@@ -7535,8 +7459,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Realization) {
 				continue;
@@ -7582,8 +7505,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Abstraction) {
 				continue;
@@ -7629,8 +7551,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Usage) {
 				continue;
@@ -7676,8 +7597,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Dependency) {
 				continue;
@@ -7723,8 +7643,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Dependency) {
 				continue;
@@ -7770,8 +7689,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackageMerges()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackageMerges().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof PackageMerge) {
 				continue;
@@ -7795,8 +7713,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(Comment source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> destinations = source.getAnnotatedElements()
-				.iterator(); destinations.hasNext();) {
+		for (Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4013, CommentAnnotatedElementEditPart.VISUAL_ID));
 		}
@@ -7808,8 +7725,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> destinations = source.getConstrainedElements()
-				.iterator(); destinations.hasNext();) {
+		for (Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4014, ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
@@ -7833,8 +7749,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getTemplateBindings()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getTemplateBindings().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof TemplateBinding) {
 				continue;
@@ -7870,8 +7785,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof GeneralizationSet) {
 				continue;
@@ -7918,8 +7832,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_DurationObservation_Event_4025(DurationObservation source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> destinations = source.getEvents()
-				.iterator(); destinations.hasNext();) {
+		for (Iterator<?> destinations = source.getEvents().iterator(); destinations.hasNext();) {
 			NamedElement destination = (NamedElement) destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.DurationObservationEvent_4025, ConnectorDurationObservationEditPart.VISUAL_ID));
 		}
@@ -7943,8 +7856,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getPackagedElements()
-				.iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof InformationFlow) {
 				continue;

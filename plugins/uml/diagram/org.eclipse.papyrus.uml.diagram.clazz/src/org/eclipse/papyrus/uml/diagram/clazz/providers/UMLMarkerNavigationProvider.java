@@ -53,8 +53,7 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 		}
 		EditPart targetEditPart = (EditPart) editPartRegistry.get(targetView);
 		if (targetEditPart != null) {
-			UMLDiagramEditorUtil.selectElementsInDiagram(
-					editor, Arrays.asList(new EditPart[] { targetEditPart }));
+			UMLDiagramEditorUtil.selectElementsInDiagram(editor, Arrays.asList(new EditPart[] { targetEditPart }));
 		}
 	}
 
@@ -65,8 +64,7 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 		try {
 			resource.deleteMarkers(MARKER_TYPE, true, IResource.DEPTH_ZERO);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Failed to delete validation markers", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Failed to delete validation markers", e); //$NON-NLS-1$
 		}
 	}
 
@@ -88,8 +86,7 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Failed to create validation marker", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Failed to create validation marker", e); //$NON-NLS-1$
 		}
 		return marker;
 	}

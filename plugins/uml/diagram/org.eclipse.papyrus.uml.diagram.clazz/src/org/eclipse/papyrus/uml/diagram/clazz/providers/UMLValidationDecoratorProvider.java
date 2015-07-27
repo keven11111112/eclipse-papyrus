@@ -65,8 +65,7 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 			return false;
 		}
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-		View view = (View) decoratorTarget.getAdapter(
-				View.class);
+		View view = (View) decoratorTarget.getAdapter(View.class);
 		return view != null && ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
 }

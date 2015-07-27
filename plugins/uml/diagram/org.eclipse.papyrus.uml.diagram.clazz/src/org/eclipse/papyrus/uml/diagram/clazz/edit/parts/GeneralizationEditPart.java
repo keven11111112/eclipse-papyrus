@@ -57,8 +57,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AppliedStereotyperGeneralizationEditPart) {
-			((AppliedStereotyperGeneralizationEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotyperGeneralizationEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

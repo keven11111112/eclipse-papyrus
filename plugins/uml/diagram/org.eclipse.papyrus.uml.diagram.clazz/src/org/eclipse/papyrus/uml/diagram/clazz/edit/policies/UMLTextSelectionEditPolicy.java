@@ -215,6 +215,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	private FigureListener getHostPositionListener() {
 		if (hostPositionListener == null) {
 			hostPositionListener = new FigureListener() {
+
 				@Override
 				public void figureMoved(IFigure source) {
 					refreshFeedback();

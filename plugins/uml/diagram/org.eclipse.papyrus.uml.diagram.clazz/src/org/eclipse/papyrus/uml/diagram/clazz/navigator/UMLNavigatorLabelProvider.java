@@ -72,7 +72,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage(navigatorItem.getView());
 		}
 
-
 		return super.getImage(element);
 	}
 
@@ -119,7 +118,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getText(navigatorItem.getView());
 		}
 
-
 		return super.getText(element);
 	}
 
@@ -137,14 +135,14 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getUnknownElementText(View view) {
-		return "<UnknownElement Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$  //$NON-NLS-2$
+		return "<UnknownElement Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getUnresolvedDomainElementProxyText(View view) {
-		return "<Unresolved domain element Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$  //$NON-NLS-2$
+		return "<Unresolved domain element Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

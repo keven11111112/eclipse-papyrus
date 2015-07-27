@@ -150,7 +150,6 @@ public class CommentEditPartCN extends AbstractCommentEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 

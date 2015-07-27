@@ -2092,6 +2092,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
 		/**
 		 * @generated
 		 */

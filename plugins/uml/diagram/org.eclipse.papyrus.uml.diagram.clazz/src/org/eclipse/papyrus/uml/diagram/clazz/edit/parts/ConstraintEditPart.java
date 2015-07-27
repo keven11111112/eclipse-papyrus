@@ -152,7 +152,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 
