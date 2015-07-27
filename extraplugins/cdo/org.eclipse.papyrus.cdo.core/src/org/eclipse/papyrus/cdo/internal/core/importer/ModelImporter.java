@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CommitException;
@@ -175,7 +176,8 @@ public class ModelImporter implements IModelImporter {
 
 			if (model.getConfiguration().isStripSashModelContent() && DependencyAdapter.isDIResource(source)) {
 				// import *.di content into the *.sash
-				URI sashURI = new CDOSashModelProvider().initialize(transaction).getSashModelURI(destination.getURI());
+				CDOCheckout checkout = CDOExplorerUtil.getCheckout(transaction);
+				URI sashURI = new CDOSashModelProvider().initialize(checkout).getSashModelURI(destination.getURI());
 				ResourceSet dset = destination.getResourceSet();
 				Resource sashResource = dset.getURIConverter().exists(sashURI, null) ? dset.getResource(sashURI, true) : null;
 				if (sashResource == null) {

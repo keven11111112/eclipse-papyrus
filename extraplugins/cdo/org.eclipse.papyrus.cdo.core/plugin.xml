@@ -95,7 +95,7 @@
          point="org.eclipse.papyrus.infra.core.sashModelProvider">
       <sashModelProvider
             class="org.eclipse.papyrus.cdo.internal.core.resource.CDOSashModelProvider"
-            scheme="cdo">
+            scheme="cdo.checkout">
       </sashModelProvider>
    </extension>
 
