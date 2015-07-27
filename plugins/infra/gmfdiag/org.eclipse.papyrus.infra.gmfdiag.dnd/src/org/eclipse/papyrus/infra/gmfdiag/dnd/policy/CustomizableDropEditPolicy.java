@@ -244,8 +244,14 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 				//in charge of managing multiple commands per strategy is not take into account in this version.
 				return null;
 			}
-
-
+			else if(ds instanceof DefaultDropStrategy){
+				//given a default drop strategy, return the single associated command.
+				return matchingStrategies.get(ds).get(0);
+			}
+			else{
+				Activator.log.warn("Drop strategy not taken into account: "+ds);
+				return null;
+			}
 		}
 
 		// More than one strategy
@@ -266,13 +272,14 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 				DropStrategy defaultStrategy = DropStrategyManager.instance.getDefaultDropStrategy(matchingStrategies.keySet());
 				if (defaultStrategy != null ) {
 
-					if(defaultStrategy instanceof TransactionalDropStrategy){
-						//return the single command associated with a TransactionalDropStrategy
-						return matchingStrategies.get(defaultStrategy).iterator().next();
-					}
-					else if(defaultStrategy instanceof TransactionalCommandsDropStrategy){
-						//this case is not manage
+					if(defaultStrategy instanceof TransactionalCommandsDropStrategy ){
+						//this case is not managed due to multiple commands associated with the strategy
+						Activator.log.warn("Default strategies of type TransactionalCommandsDropStrategy are not taken into account");
 						return null;
+					}
+					else if(defaultStrategy instanceof TransactionalDropStrategy){
+						//return the single command associated with a TransactionalDropStrategy
+						return matchingStrategies.get(defaultStrategy).get(0);
 					}
 
 				}
@@ -304,7 +311,6 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 					}
 				}
 			}
-			Activator.log.info("proposalCommands"+proposalCommands.size());;
 			SelectAndExecuteCommand command = new SelectAndExecuteCommand("Select drop", shell, new LinkedList<Command>(proposalCommands), handler);
 			return new ICommandProxy(command);
 		}
@@ -315,7 +321,8 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 
 	private static DropStrategy findStrategy(Map<DropStrategy, List<Command>> matchingStrategies, Command command) {
 		for (Map.Entry<DropStrategy, List<Command>> entry : matchingStrategies.entrySet()) {
-			if (entry.getValue() == command) {
+			
+			if (entry.getValue().contains(command)) {
 				return entry.getKey();
 			}
 		}
@@ -345,14 +352,16 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 					}
 				}
 			}
-			else if(strategy instanceof TransactionalDropStrategy){
+			else{
 				Command command = strategy.getCommand(request, getHost());
 				if (command != null && command.canExecute()) {
 					selectedCommands.add(command);
 				}
 			}
-
-			matchingStrategies.put(strategy, selectedCommands);
+			//Do not reference strategies that have no executable commands
+			if(selectedCommands.size()>0){
+				matchingStrategies.put(strategy, selectedCommands);
+			}
 
 		}
 
