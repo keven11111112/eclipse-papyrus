@@ -72,6 +72,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
 		Map<Resource, Boolean> map = new HashMap<Resource, Boolean>() {
+
 			@Override
 			public Boolean get(java.lang.Object key) {
 				if (!containsKey(key)) {
@@ -84,6 +85,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		};
 		myEditingDomain.setResourceToReadOnlyMap(map);
 		myViewerRefreshRunnable = new Runnable() {
+
+			@Override
 			public void run() {
 				if (myViewer != null) {
 					myViewer.refresh();
@@ -91,9 +94,12 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 		};
 		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain, new WorkspaceSynchronizer.Delegate() {
+
+			@Override
 			public void dispose() {
 			}
 
+			@Override
 			public boolean handleResourceChanged(final Resource resource) {
 				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();
@@ -105,6 +111,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				return true;
 			}
 
+			@Override
 			public boolean handleResourceDeleted(Resource resource) {
 				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();
@@ -116,6 +123,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				return true;
 			}
 
+			@Override
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
 				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();

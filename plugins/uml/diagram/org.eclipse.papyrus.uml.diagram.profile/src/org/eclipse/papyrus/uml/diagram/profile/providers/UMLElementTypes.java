@@ -535,7 +535,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4014);
 			KNOWN_ELEMENT_TYPES.add(ConstraintContext_8500);
 		}
-		
+
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
 
 		if (!result) {

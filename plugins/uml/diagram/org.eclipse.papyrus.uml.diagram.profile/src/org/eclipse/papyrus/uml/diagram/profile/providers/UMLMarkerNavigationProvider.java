@@ -45,8 +45,7 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 		if (elementId == null || !(getEditor() instanceof DiagramEditor)) {
 			return;
 		}
-		DiagramEditor editor =
-				(DiagramEditor) getEditor();
+		DiagramEditor editor = (DiagramEditor) getEditor();
 		Map<?, ?> editPartRegistry = editor.getDiagramGraphicalViewer().getEditPartRegistry();
 		EObject targetView = editor.getDiagram().eResource().getEObject(elementId);
 		if (targetView == null) {
@@ -66,7 +65,8 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 		try {
 			resource.deleteMarkers(MARKER_TYPE, true, IResource.DEPTH_ZERO);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Failed to delete validation markers", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Failed to delete validation markers", e); //$NON-NLS-1$
 		}
 	}
 
@@ -83,13 +83,13 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 			int markerSeverity = IMarker.SEVERITY_INFO;
 			if (statusSeverity == IStatus.WARNING) {
 				markerSeverity = IMarker.SEVERITY_WARNING;
-			} else if (statusSeverity == IStatus.ERROR ||
-					statusSeverity == IStatus.CANCEL) {
+			} else if (statusSeverity == IStatus.ERROR || statusSeverity == IStatus.CANCEL) {
 				markerSeverity = IMarker.SEVERITY_ERROR;
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Failed to create validation marker", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Failed to create validation marker", e); //$NON-NLS-1$
 		}
 		return marker;
 	}

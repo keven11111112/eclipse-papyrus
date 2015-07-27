@@ -165,14 +165,17 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 
 			private Notifier myTarger;
 
+			@Override
 			public Notifier getTarget() {
 				return myTarger;
 			}
 
+			@Override
 			public boolean isAdapterForType(Object type) {
 				return false;
 			}
 
+			@Override
 			public void notifyChanged(Notification notification) {
 				if (diagramResourceModifiedFilter.matches(notification)) {
 					Object value = notification.getNewValue();
@@ -182,6 +185,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				}
 			}
 
+			@Override
 			public void setTarget(Notifier newTarget) {
 				myTarger = newTarget;
 			}
@@ -904,6 +908,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					}
 				}
 				Display.getDefault().asyncExec(new Runnable() {
+					@Override
 					public void run() {
 						handleElementChanged(ResourceSetInfo.this, resource, null);
 					}
@@ -922,6 +927,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					}
 				}
 				Display.getDefault().asyncExec(new Runnable() {
+					@Override
 					public void run() {
 						fireElementDeleted(ResourceSetInfo.this.getEditorInput());
 					}
@@ -941,6 +947,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				}
 				if (myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
+						@Override
 						public void run() {
 							handleElementMoved(ResourceSetInfo.this.getEditorInput(), newURI);
 						}

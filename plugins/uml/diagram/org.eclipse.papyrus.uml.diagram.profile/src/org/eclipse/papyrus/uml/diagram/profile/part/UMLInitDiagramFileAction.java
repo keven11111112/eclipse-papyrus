@@ -61,8 +61,7 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 		if (selection instanceof IStructuredSelection == false || selection.isEmpty()) {
 			return;
 		}
-		IFile file =
-				(IFile) ((IStructuredSelection) selection).getFirstElement();
+		IFile file = (IFile) ((IStructuredSelection) selection).getFirstElement();
 		domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 		action.setEnabled(true);
 	}
@@ -78,8 +77,7 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain =
-				WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
+		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		EObject diagramRoot = null;
 		try {

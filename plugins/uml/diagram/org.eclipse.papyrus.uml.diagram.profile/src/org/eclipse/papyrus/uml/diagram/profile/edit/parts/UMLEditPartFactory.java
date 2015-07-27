@@ -378,8 +378,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
 			return new MultilineCellEditorLocator(
 					(IMultilineEditableFigure) source.getFigure());
-		}
-		else {
+		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
 		}
