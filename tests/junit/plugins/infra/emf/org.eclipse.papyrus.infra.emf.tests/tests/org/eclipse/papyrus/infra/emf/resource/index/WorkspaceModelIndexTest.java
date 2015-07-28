@@ -14,13 +14,18 @@
 package org.eclipse.papyrus.infra.emf.resource.index;
 
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.statusWithException;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -30,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -44,8 +50,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.LogTracker;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.junit.After;
@@ -57,6 +65,7 @@ import org.junit.Test;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.google.common.io.Files;
 import com.google.common.util.concurrent.Uninterruptibles;
 
 /**
@@ -243,6 +252,56 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 
 		assertThat("Didn't have to wait for the index to recover", (gotIndex - requestIndex), greaterThan(1000L));
 
+		assertIndex(index);
+	}
+
+	/**
+	 * Verify that the index will refresh workspace resources as necessary in order to
+	 * properly determine the content-types of files, skip missing resources, etc.
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=473154
+	 */
+	@Test
+	public void indexRefreshesIfNecessary_bug473154() throws Exception {
+
+		final LogTracker tracker = houseKeeper.cleanUpLater(new LogTracker());
+		tracker.start("org.eclipse.core.filesystem");
+
+		final File nativeFile = new File(referencingFile.getLocationURI());
+		final Charset charset = Charset.forName(referencedFile.getCharset());
+		final String contents = Files.toString(nativeFile, charset);
+
+		// De-synchronize the file (by deletion, as in the bugzilla scenario)
+		new FileManipulationJob("Sneakily delete file", referencingFile) {
+
+			@Override
+			protected void manipulateFile(IFile file, IProgressMonitor monitor) throws CoreException {
+				// Sneakily delete the file (don't tell the workspace)
+				File nativeFile = new File(file.getLocationURI());
+				nativeFile.delete();
+			}
+		}.go();
+
+		// Initial build
+		Map<IFile, CrossReferenceIndex> index = fixture.getIndex().get();
+
+		tracker.assertNone(statusWithException(instanceOf(FileNotFoundException.class)));
+
+		// Put the file back and synchronize it
+		new FileManipulationJob("Restore file", referencingFile) {
+			@Override
+			protected void manipulateFile(IFile file, IProgressMonitor monitor) throws CoreException {
+				try {
+					Files.write(contents, nativeFile, charset);
+				} catch (IOException e) {
+					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to restore test file.", e));
+				}
+				file.getProject().refreshLocal(IResource.DEPTH_INFINITE, monitor);
+			}
+		}.go();
+
+		// Synchronize with the index and verify that it got the file
+		index = fixture.getIndex().get();
 		assertIndex(index);
 	}
 

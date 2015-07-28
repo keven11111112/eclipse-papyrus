@@ -284,8 +284,13 @@ public class WorkspaceModelIndex<T> {
 	boolean match(IFile file) {
 		boolean result = false;
 
-		// Don't even attempt to match the content type if the file extension doesn't match
-		if (file.isAccessible() && ((fileExtensions == null) || fileExtensions.contains(file.getFileExtension()))) {
+		// Don't even attempt to match the content type if the file extension doesn't match.
+		// And if it's not synchronized, don't attempt to do anything with it. We'll get it
+		// later when it is synchronized
+		if (file.isAccessible()
+				&& ((fileExtensions == null) || fileExtensions.contains(file.getFileExtension()))
+				&& file.isSynchronized(IResource.DEPTH_ZERO)) {
+
 			IContentType[] contentTypes = contentTypeService.getContentTypes(file);
 			if (contentTypes != null) {
 				for (int i = 0; (i < contentTypes.length) && !result; i++) {
