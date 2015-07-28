@@ -22,9 +22,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
@@ -60,7 +62,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
@@ -69,7 +70,6 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 import org.eclipse.gmf.runtime.notation.Bounds;
@@ -78,24 +78,20 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
-import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper.CombinedFragmentAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
@@ -105,7 +101,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperatorKindCompatibleMapping;
@@ -128,7 +123,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart implements ITextAwareEditPart, IPapyrusEditPart {
+public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart implements ITextAwareEditPart {
 
 
 	/**
@@ -139,22 +134,22 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 	/**
 	 * CSS Integer property to define the horizontal Label Margin
 	 */
-	public static final String TOP_MARGIN_PROPERTY = "TopMarginLabel"; //$NON-NLS$
+	public static final String TOP_MARGIN_PROPERTY = "TopMarginLabel"; // $NON-NLS$
 
 	/**
 	 * CSS Integer property to define the vertical Label Margin
 	 */
-	public static final String LEFT_MARGIN_PROPERTY = "LeftMarginLabel"; //$NON-NLS$
+	public static final String LEFT_MARGIN_PROPERTY = "LeftMarginLabel"; // $NON-NLS$
 
 	/**
 	 * CSS Integer property to define the horizontal Label Margin
 	 */
-	public static final String BOTTOM_MARGIN_PROPERTY = "BottomMarginLabel"; //$NON-NLS$
+	public static final String BOTTOM_MARGIN_PROPERTY = "BottomMarginLabel"; // $NON-NLS$
 
 	/**
 	 * CSS Integer property to define the vertical Label Margin
 	 */
-	public static final String RIGHT_MARGIN_PROPERTY = "RightMarginLabel"; //$NON-NLS$
+	public static final String RIGHT_MARGIN_PROPERTY = "RightMarginLabel"; // $NON-NLS$
 	/**
 	 * Title for dialog of bloc operator modification error
 	 */
@@ -215,7 +210,18 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 	 */
 	@Override
 	protected IFigure createNodeShape() {
-		primaryShape = new CombinedFragmentFigure();
+		primaryShape = new CombinedFragmentFigure() {
+
+			@Override
+			protected ConnectionAnchor createAnchor(PrecisionPoint p) {
+				if (p == null) {
+					// If the old terminal for the connection anchor cannot be resolved (by SlidableAnchor) a null
+					// PrecisionPoint will passed in - this is handled here
+					return createDefaultAnchor();
+				}
+				return new CombinedFragmentAnchor(this, p);
+			}
+		};
 		updateHeaderLabel();
 		return primaryShape;
 	}
@@ -224,38 +230,19 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 	 * Create a BorderedNodeFigure for holding Gates.
 	 */
 	@Override
-	protected NodeFigure createNodeFigure() {
-		return new BorderedNodeFigure(super.createNodeFigure());
-	}
-
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
-		return getContentPane();
+		return super.getContentPaneFor(editPart);
 	}
 
 	public InteractionInteractionCompartmentEditPart getParentInteractionCompartmentEditPart() {
 		EditPart part = this;
 		do {
 			part = part.getParent();
-		} while(part != null && !(part instanceof InteractionInteractionCompartmentEditPart));
-		return (InteractionInteractionCompartmentEditPart)part;
-	}
-	
-	public final BorderedNodeFigure getBorderedFigure() {
-		return (BorderedNodeFigure) getFigure();
-	}
-
-	@Override
-	protected NodeFigure createNodePlate() {
-		String prefElementId = "CombinedFragment";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new AnchorHelper.CombinedFragmentNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		return result;
+		} while (part != null && !(part instanceof InteractionInteractionCompartmentEditPart));
+		return (InteractionInteractionCompartmentEditPart) part;
 	}
 
 	/**
@@ -429,10 +416,6 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 		}
 	}
 
-	protected void refreshShadow() {
-		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View) getModel()));
-	}
-
 	/**
 	 * Override to set the transparency to the correct figure
 	 */
@@ -537,9 +520,9 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 	/**
 	 * Refresh margin of named element children labels
 	 * <ul>
-	 * <li> Get Css values </li>
-	 * <li> Get all the children figure </li>
-	 * <li> If the child is a label then apply the margin </li>
+	 * <li>Get Css values</li>
+	 * <li>Get all the children figure</li>
+	 * <li>If the child is a label then apply the margin</li>
 	 * </ul>
 	 */
 	public void refreshLabelMargin() {
@@ -563,12 +546,12 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 
 
 		// Get all children figures of the Edit Part and set margin according to the retrieve values
-		if (this instanceof IPapyrusEditPart){
+		if (this instanceof IPapyrusEditPart) {
 			figure = ((IPapyrusEditPart) this).getPrimaryShape();
 			List<IPapyrusWrappingLabel> labelChildFigureList = FigureUtils.findChildFigureInstances(figure, IPapyrusWrappingLabel.class);
 
-			for (IPapyrusWrappingLabel label : labelChildFigureList){
-				if (label != null){
+			for (IPapyrusWrappingLabel label : labelChildFigureList) {
+				if (label != null) {
 					label.setMarginLabel(leftMargin, topMargin, rightMargin, bottomMargin);
 				}
 			}

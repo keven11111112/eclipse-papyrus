@@ -37,8 +37,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -64,27 +62,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionUseEditPart extends InteractionUseEditPart implements IPapyrusEditPart {
-
-	/**
-	 * Title for dialog of no actual gate's manual creation
-	 */
-	private static final String NO_ACTUAL_GATE_MANUAL_CREATION_DLG_TITLE = "No manual creation of actual gate"; //$NON-NLS-1$
-
-	/**
-	 * Message for dialog of no actual gate's manual creation
-	 */
-	private static final String NO_ACTUAL_GATE_MANUAL_CREATION_DLG_MSG = "It's forbidden to create actual gate"; //$NON-NLS-1$
-
-	/**
-	 * Title for dialog of no actual gate's manual deletion
-	 */
-	private static final String NO_ACTUAL_GATE_MANUAL_DELETION_DLG_TITLE = "No manual deletion of actual gate"; //$NON-NLS-1$
-
-	/**
-	 * Message for dialog of no actual gate's manual deletion
-	 */
-	private static final String NO_ACTUAL_GATE_MANUAL_DELETION_DLG_MSG = "It's forbidden to delete actual gate"; //$NON-NLS-1$
+public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -168,10 +146,6 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart impleme
 		return getContentPane();
 	}
 
-	public final BorderedNodeFigure getBorderedFigure() {
-		return (BorderedNodeFigure) getFigure();
-	}
-
 	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof GateEditPart) {
@@ -194,10 +168,6 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart impleme
 			return true;
 		}
 		return super.addFixedChild(childEditPart);
-	}
-
-	protected void refreshShadow() {
-		getPrimaryShape().setShadow(AppearanceHelper.showShadow((View) getModel()));
 	}
 
 	/**
@@ -352,7 +322,7 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart impleme
 					updater.update(CustomInteractionUseEditPart.this);
 				}
 			});
-		}		
+		}
 		refreshShadow();
 		super.handleNotificationEvent(notification);
 	}
