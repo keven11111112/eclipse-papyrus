@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;
@@ -77,8 +78,6 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 		return isRegularExpression;
 	}
 
-	private Set<Object> sources;
-
 	private String searchQueryText;
 
 	private boolean isCaseSensitive;
@@ -107,7 +106,6 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 
 	public PapyrusAdvancedQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsChecked, boolean searchForAllSter, boolean searchForAnySter) {
 		this.propertyList = new ArrayList<Property>();
-		this.sources = new HashSet<Object>();
 		this.searchQueryText = searchQueryText;
 		this.isCaseSensitive = isCaseSensitive;
 		this.isRegularExpression = isRegularExpression;
@@ -464,36 +462,24 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 	}
 
 	protected void findInDiagram(ScopeEntry scopeEntry) {
-		// Now, find in diagram and others the elements we found
-		ViewerSearchService viewerSearcherService = new ViewerSearchService();
-		try {
-			viewerSearcherService.startService();
+		// Find diagrams that contain the elements that were found
+		Set<AbstractResultEntry> viewResults = new HashSet<AbstractResultEntry>();
+		for (AbstractResultEntry match : fResults) {
+			Object source = match.getSource();
 
-			// Get sources elements that matched
+			if (source instanceof Element) {
+				List<View> views = getViews((Element) source);
 
-			for (AbstractResultEntry match : fResults) {
-				if (match instanceof AttributeMatch) {
-					sources.add(((AttributeMatch) match).getSource());
-				} else {
-					sources.add(match.getSource());
+				if (views != null && !views.isEmpty()) {
+					for (View view : views) {
+						ViewerMatch viewMatch = new ViewerMatch(view, scopeEntry, source);
+						viewResults.add(viewMatch);
+					}
 				}
 			}
-
-			// Get viewer of these sources
-			Map<Object, Map<Object, Object>> viewersMappings = viewerSearcherService.getViewers(sources, scopeEntry.getModelSet());
-
-			// Add viewers to results
-			for (Object containingModelSet : viewersMappings.keySet()) {
-				for (Object view : viewersMappings.get(containingModelSet).keySet()) {
-					Object semanticElement = viewersMappings.get(containingModelSet).get(view);
-					ViewerMatch viewMatch = new ViewerMatch(view, scopeEntry, semanticElement);
-					fResults.add(viewMatch);
-				}
-			}
-
-		} catch (ServiceException e) {
-			Activator.log.error(Messages.PapyrusQuery_5 + scopeEntry.getModelSet(), e);
 		}
+		
+		fResults.addAll(viewResults);
 	}
 
 	public String getLabel() {
