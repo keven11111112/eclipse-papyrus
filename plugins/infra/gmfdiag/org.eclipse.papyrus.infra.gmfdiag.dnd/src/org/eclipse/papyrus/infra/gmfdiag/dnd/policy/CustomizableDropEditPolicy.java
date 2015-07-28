@@ -366,10 +366,13 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		}
 
 		//Retrieve defaultStrategy
-		ArrayList<Command> selectedCommands = new ArrayList<Command>();
-		selectedCommands.add(defaultDropStrategy.getCommand(request, getHost()));
-		matchingStrategies.put(defaultDropStrategy, selectedCommands);
-
+		Command command = defaultDropStrategy.getCommand(request, getHost());
+		if (command != null && command.canExecute()) {
+			ArrayList<Command> selectedCommands = new ArrayList<Command>();
+			selectedCommands.add(command);
+			matchingStrategies.put(defaultDropStrategy, selectedCommands);
+		}
+		
 		return matchingStrategies;
 	}
 
