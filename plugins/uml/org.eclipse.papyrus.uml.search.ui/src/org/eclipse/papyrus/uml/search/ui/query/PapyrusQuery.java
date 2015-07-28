@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.search.ui.query;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,9 +28,8 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
@@ -229,36 +228,24 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			}
 		}
 		
-		// Now, find in diagram and others the elements we found
-		ViewerSearchService viewerSearcherService = new ViewerSearchService();
-		try {
-			viewerSearcherService.startService();
-
-			// Get sources elements that matched
-			Set<Object> sources = new HashSet<Object>();
-			for (AbstractResultEntry match : fResults) {
-				if (match instanceof AttributeMatch) {
-					sources.add(((AttributeMatch) match).getSource());
-				} else {
-					sources.add(match.getSource());
+		// Find diagrams that contain the elements that were found
+		Set<AbstractResultEntry> viewResults = new HashSet<AbstractResultEntry>();
+		for (AbstractResultEntry match : fResults) {
+			Object source = match.getSource();
+			
+			if (source instanceof Element) {
+				List<View> views = getViews((Element) source);
+				
+				if (views != null && !views.isEmpty()) {
+					for (View view : views) {
+						ViewerMatch viewMatch = new ViewerMatch(view, scopeEntry, source);
+						viewResults.add(viewMatch);
+					}
 				}
 			}
-
-			// Get viewer of these sources
-			Map<Object, Map<Object, Object>> viewersMappings = viewerSearcherService.getViewers(sources, scopeEntry.getModelSet());
-
-			// Add viewers to results
-			for (Object containingModelSet : viewersMappings.keySet()) {
-				for (Object view : viewersMappings.get(containingModelSet).keySet()) {
-					Object semanticElement = viewersMappings.get(containingModelSet).get(view);
-					ViewerMatch viewMatch = new ViewerMatch(view, scopeEntry, semanticElement);
-					fResults.add(viewMatch);
-				}
-			}
-
-		} catch (ServiceException e) {
-			Activator.log.error(Messages.PapyrusQuery_5 + scopeEntry.getModelSet(), e);
 		}
+		
+		fResults.addAll(viewResults);
 	}
 
 
