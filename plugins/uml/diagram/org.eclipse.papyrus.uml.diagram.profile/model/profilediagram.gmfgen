@@ -27,6 +27,7 @@
       <elementType
           xsi:type="gmfgen:MetamodelType"
           displayName="ProfileDiagram"
+          definedExternally="true"
           editHelperClassName="ProfileDiagramEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
