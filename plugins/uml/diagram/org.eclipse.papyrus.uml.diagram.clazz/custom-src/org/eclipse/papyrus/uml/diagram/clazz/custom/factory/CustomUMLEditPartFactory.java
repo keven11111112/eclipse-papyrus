@@ -27,8 +27,10 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CTargetISLinkLabel
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomDurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomDurationObservationFloatingNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomDurationObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomTimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomTimeObservationFloatingNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomTimeObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
@@ -37,12 +39,14 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationFloatingNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SourceISLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TargetISLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationFloatingNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 
@@ -84,6 +88,10 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CSourceISLinkLabelEditPart(view);
 			case TargetISLinkLabelEditPart.VISUAL_ID:
 				return new CTargetISLinkLabelEditPart(view);
+			case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
+				return new CustomDurationObservationStereotypeLabelEditPart(view);
+			case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
+				return new CustomTimeObservationStereotypeLabelEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);
