@@ -13,27 +13,18 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.dnd.behavior;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.ArrangeRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.RefreshConnectionsRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideElementsRequest;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Activity;
@@ -47,11 +38,11 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 public class BehaviorToCallBehaviorActionDropStrategy extends TransactionalDropStrategy {
 
 	public String getLabel() {
-		return "label";
+		return CustomMessages.BehaviorToCallBehaviorActionDropStrategy_Label; 
 	}
 
 	public String getDescription() {
-		return "description";
+		return CustomMessages.BehaviorToCallBehaviorActionDropStrategy_Description;
 	}
 
 	public Image getImage() {
