@@ -5264,7 +5264,7 @@
             metamodelType="/0/@diagram/@topLevelNodes.1/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
@@ -5367,7 +5367,7 @@
             metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -5581,7 +5581,7 @@
             metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"

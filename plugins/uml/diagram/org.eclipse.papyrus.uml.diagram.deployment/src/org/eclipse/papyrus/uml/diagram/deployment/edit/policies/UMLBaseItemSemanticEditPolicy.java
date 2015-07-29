@@ -11,8 +11,11 @@
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.policies;
 
+import java.util.Collections;
 import java.util.Iterator;
 
+import java.util.Map;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
@@ -47,12 +50,14 @@ import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.diagram.deployment.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Deployment;
@@ -62,6 +67,8 @@ import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -485,8 +492,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
+		public boolean canCreateCommunicationPath_4011(
+				Package container, Type source, Type target) {
+			return canExistCommunicationPath_4011(
+					container, null, source, target);
+		}
+
+		/**
+			 * @generated
+			 */
 		public boolean canExistLink_4005() {
 			return true;
 		}
@@ -537,6 +553,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistDependency_4010(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
+			return true;
+		}
+
+		/**
+		* @generated
+		*/
+		public boolean canExistCommunicationPath_4011(
+				Package container, CommunicationPath linkInstance, Type source, Type target) {
 			return true;
 		}
 	}

@@ -29,6 +29,7 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPartCN;
@@ -246,6 +247,11 @@ public class UMLElementTypes {
 	public static final IElementType Dependency_4010 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Dependency_4010"); //$NON-NLS-1$
 
 	/**
+	* @generated
+	*/
+	public static final IElementType CommunicationPath_4011 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.CommunicationPath_4011"); //$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
@@ -372,6 +378,9 @@ public class UMLElementTypes {
 
 
 			elements.put(Dependency_4010, UMLPackage.eINSTANCE.getDependency());
+
+
+			elements.put(CommunicationPath_4011, UMLPackage.eINSTANCE.getCommunicationPath());
 		}
 		return elements.get(type);
 	}
@@ -421,6 +430,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Generalization_4003);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4004);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4010);
+			KNOWN_ELEMENT_TYPES.add(CommunicationPath_4011);
 		}
 
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
@@ -504,6 +514,8 @@ public class UMLElementTypes {
 			return Dependency_4004;
 		case DependencyBranchEditPart.VISUAL_ID:
 			return Dependency_4010;
+		case CommunicationPathEditPart.VISUAL_ID:
+			return CommunicationPath_4011;
 		}
 		return null;
 	}

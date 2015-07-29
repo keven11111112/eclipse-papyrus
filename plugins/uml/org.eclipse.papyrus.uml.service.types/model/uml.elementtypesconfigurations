@@ -685,7 +685,7 @@
       name="UML::CommunicationPath"
       identifier="org.eclipse.papyrus.uml.CommunicationPath"
       hint="UML::CommunicationPath"
-      editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+      editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.CommunicationPathEditHelper">
     <iconEntry
         xmi:id="_Scbb21YCEeS0WsAAtVmToA"
         iconPath="/icons/full/obj16/CommunicationPath.gif"
@@ -3897,4 +3897,10 @@
       editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.UMLReadOnlyHintsAdvice"
       inheritance="all"
       target="_ScgUUFYCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations
+      xmi:id="_SJGO0DWbEeWdwYNHBiYLiA"
+      name="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice_CommunicationPath"
+      identifier="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice_CommunicationPath"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice"
+      target="_Scbb2lYCEeS0WsAAtVmToA"/>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

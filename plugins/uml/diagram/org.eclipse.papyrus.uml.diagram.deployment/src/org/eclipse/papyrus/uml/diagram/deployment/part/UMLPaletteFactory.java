@@ -100,6 +100,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private final static String DEPLOYMENT_TOOL_MANIFESTATION = "deployment.tool.manifestation";//$NON-NLS-1$
 
 	/**
+	* @generated
+	*/
+	private final static String DEPLOYMENT_TOOL_COMMUNICATIONPATH = "deployment.tool.communicationpath";//$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
@@ -134,6 +139,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if (toolId.equals(DEPLOYMENT_TOOL_PACKAGE)) {
 			return createPackageCreationTool();
+		}
+		if (toolId.equals(DEPLOYMENT_TOOL_COMMUNICATIONPATH)) {
+			return createCommunicationPath1CreationTool();
 		}
 		if (toolId.equals(DEPLOYMENT_TOOL_DEPENDENCY)) {
 			return createDependencyCreationTool();
@@ -186,6 +194,16 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.Package_2009);
 		types.add(UMLElementTypes.Package_36);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	* @generated
+	*/
+	private Tool createCommunicationPath1CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.CommunicationPath_4011);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
 
