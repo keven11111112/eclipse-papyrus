@@ -75,6 +75,7 @@ public class InitDerivedReqCommand extends RecordingCommand {
 			Object[] result = dialog.getResult();
 			owner= ((org.eclipse.uml2.uml.Package)result[0]);
 		}
+		else return;
 		String ID= PapyrusReqSysMLRequirementCreateCommand.getNewIDReq(owner);
 		Class req=owner.createOwnedClass(ID, false);
 		Stereotype reqStereotype=req.getApplicableStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);

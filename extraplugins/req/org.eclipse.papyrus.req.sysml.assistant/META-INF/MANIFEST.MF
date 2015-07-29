@@ -1,4 +1,10 @@
 Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.papyrus.req.sysml.assistant;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.req.sysml.assistant.Activator
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
@@ -9,14 +15,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools;bundle-version="0.9.1";resolution:=optional,
  org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1";resolution:=optional,
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0";resolution:=optional,
- org.eclipse.papyrus.editor;bundle-version="0.9.0";resolution:=optional
-Export-Package: org.eclipse.papyrus.req.sysml.assistant
-Bundle-Vendor: %Bundle-Vendor
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.7.0.qualifier
-Bundle-Name: %Bundle-Name
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.req.sysml.assistant.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.req.sysml.assistant;singleton:=true
+ org.eclipse.papyrus.editor;bundle-version="0.9.0";resolution:=optional,
+ org.eclipse.core.expressions;bundle-version="3.5.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.req.sysml.assistant
+Bundle-Localization: plugin

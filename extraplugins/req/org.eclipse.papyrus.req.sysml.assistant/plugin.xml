@@ -40,7 +40,14 @@
                style="push"
                tooltip="%command.tooltip">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        property="org.eclipse.papyrus.req.sysml.assistant.packageElement.isUMLPackage"
+                        value="true">
+                  </test>
+               </with>
             </visibleWhen>
          </command>
          <command
@@ -49,7 +56,15 @@
                style="push"
                tooltip="%command.tooltip.0">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
             </visibleWhen>
          </command>
          <command
@@ -58,7 +73,15 @@
                style="push"
                tooltip="%command.tooltip.1">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
             </visibleWhen>
          </command>
          <command
@@ -67,7 +90,15 @@
                style="push"
                tooltip="%command.tooltip.2">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
             </visibleWhen>
          </command>
          <command
@@ -76,7 +107,15 @@
                style="push"
                tooltip="%command.tooltip.3">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
             </visibleWhen>
          </command>
       </menuContribution>
@@ -113,6 +152,23 @@
             id="org.eclipse.papyrus.req.sysml.assistant.handler.AddDerivedLinkReqHandler"
             name="%command.name.3">
       </command>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.req.sysml.assistant.testers.RequirementTester"
+            id="org.eclipse.papyrus.req.sysml.assistant.requirement"
+            namespace="org.eclipse.papyrus.req.sysml.assistant.requirement"
+            properties="isRequirementElement"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.req.sysml.assistant.testers.PackageTester"
+            id="org.eclipse.papyrus.req.sysml.assistant.packageElement"
+            namespace="org.eclipse.papyrus.req.sysml.assistant.packageElement"
+            properties="isUMLPackage"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
    </extension>
 
 </plugin>
