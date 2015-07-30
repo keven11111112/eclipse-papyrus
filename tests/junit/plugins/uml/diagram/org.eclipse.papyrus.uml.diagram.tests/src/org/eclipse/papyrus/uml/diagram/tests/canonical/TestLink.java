@@ -102,6 +102,8 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	private FixtureEditPartConfigurator targetConfigurator;
 
+	protected int rootSemanticOwnedElements = 5;
+
 	@Rule
 	public final TestRule annotationRule = new AnnotationRule();
 
@@ -293,13 +295,13 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
-		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertEquals(CREATION + INITIALIZATION_TEST, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, getRootView().getChildren().size() == 4);
 		assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 4);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(CREATION + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == 1);
-		assertTrue(CREATION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertEquals(CREATION + TEST_THE_REDO, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 		ConnectionEditPart linkEditPart = (ConnectionEditPart) getDiagramEditPart().getConnections().get(0);
 		testLinkEditPart(linkEditPart, initialName);
 	}

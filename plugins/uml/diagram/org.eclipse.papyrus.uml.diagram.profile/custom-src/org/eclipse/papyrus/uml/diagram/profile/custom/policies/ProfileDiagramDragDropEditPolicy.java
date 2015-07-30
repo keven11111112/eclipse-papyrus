@@ -50,10 +50,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.strategy.paste.ShowConstraintContextLink;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.SetStereotypeVisibleOnMetaclassCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MultiAssociationHelper;
@@ -228,7 +230,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 			return dropComment(dropRequest, semanticElement, nodeVISUALID);
 		case ConstraintEditPart.VISUAL_ID:
 		case ConstraintEditPartCN.VISUAL_ID:
-			return dropConstraint(dropRequest, semanticElement, nodeVISUALID);
+			return dropConstraint(dropRequest, (Constraint) semanticElement, nodeVISUALID);
 		case MetaclassEditPart.VISUAL_ID:
 		case MetaclassEditPartCN.VISUAL_ID:
 			return dropMetaclass(dropRequest, semanticElement, nodeVISUALID);
@@ -304,28 +306,20 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @param dropRequest
 	 *            the drop request
-	 * @param semanticLink
-	 *            the semantic link
+	 * @param constraint
+	 *            the dropped constraint
 	 * @param nodeVISUALID
 	 *            the node visual id
 	 *
 	 * @return the command
 	 */
-	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		// Test canvas element
-		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		if (!(graphicalParentObject instanceof org.eclipse.uml2.uml.Package)) {
-			return UnexecutableCommand.INSTANCE;
+	protected Command dropConstraint(DropObjectsRequest dropRequest, Constraint constraint, int nodeVISUALID) {
+		ICommand dropConstraintCommand = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), constraint, dropRequest);
+		if (constraint.getContext() != null) {
+			ShowConstraintContextLink showConstraintContextLink = new ShowConstraintContextLink(getEditingDomain(), (GraphicalEditPart) getHost(), constraint);
+			dropConstraintCommand = dropConstraintCommand.compose(showConstraintContextLink);
 		}
-		if (nodeVISUALID == ConstraintEditPart.VISUAL_ID) {
-			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_1014,
-					(IHintedType) UMLElementTypes.ConstraintConstrainedElement_4014);
-		} else if (nodeVISUALID == ConstraintEditPartCN.VISUAL_ID) {
-			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_1028,
-					(IHintedType) UMLElementTypes.ConstraintConstrainedElement_4014);
-		}
-		return UnexecutableCommand.INSTANCE;
+		return GMFtoGEFCommandWrapper.wrap(dropConstraintCommand);
 	}
 
 	/**

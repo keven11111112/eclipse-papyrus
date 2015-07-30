@@ -22,7 +22,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		case AppliedStereotypeElementImportEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser("ElementImport"); //$NON-NLS-1$
 		case ContextLinkAppliedStereotypeEditPart.VISUAL_ID:
-				return getAppliedStereotypeParser("context"); //$NON-NLS-1$
+			return getAppliedStereotypeParser("context"); //$NON-NLS-1$
 		}
 		return super.getParser(visualID);
 	}
