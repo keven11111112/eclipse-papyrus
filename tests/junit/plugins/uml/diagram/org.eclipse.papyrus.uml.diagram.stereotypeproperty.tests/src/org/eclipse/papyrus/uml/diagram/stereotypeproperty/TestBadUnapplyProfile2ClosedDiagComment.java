@@ -53,30 +53,24 @@ public class TestBadUnapplyProfile2ClosedDiagComment extends AbstractPapyrusTest
 		//Check initial model
 		NamedElement stereotypedClass = fixture.getModel().getOwnedMember(STEREOTYPEDCLASS);
 		EditPart stereotypedClassEditPart = fixture.findEditPart(stereotypedClass);
+		boolean isPresent=false;
 		for(Object o : stereotypedClassEditPart.getChildren()){
 			if(o instanceof AppliedStereotypeEmptyEditPart){
-				assertTrue(STEREOTYPEDCLASS+" do not refer to any AppliedStereotypeEmptyEditPart comment", true); //$NON-NLS-1$
+				isPresent =true;
 			}
 		}
-		//List of EditPart
-		//ClassNameEditPart
-		//ClassAttributeCompartmentEditPart
-		//ClassOperationCompartmentEditPart
-		//ClassnestedclassifierCompartemtnEditPart
-		//ClassFloatingNameEditPart
-		assertEquals(STEREOTYPEDCLASS + " has not the right number of children", 5, stereotypedClassEditPart.getChildren().size()); //$NON-NLS-1$
-
+		assertTrue(STEREOTYPEDCLASS+" do not refer to any AppliedStereotypeEmptyEditPart comment", !isPresent); //$NON-NLS-1$
+		
 		NamedElement stereotypedLink = fixture.getModel().getOwnedMember(STEREOTYPEDLINK);
 		EditPart stereotypedLinkEditPart = fixture.findEditPart(stereotypedLink);
+		isPresent=false;
 		for(Object o : stereotypedLinkEditPart.getChildren()){
 			if(o instanceof AppliedStereotypeEmptyEditPart){
-				assertTrue(STEREOTYPEDLINK+" do not refer to any AppliedStereotypeEmptyEditPart comment", true); //$NON-NLS-1$
+				isPresent=true;
 			}
 		}
-		//List of EditPart
-		//DependencyNameEditPart
-		//AppliedStereotypeDependencyEditPart
-		assertEquals(STEREOTYPEDLINK + " has not the right number of children", 2, stereotypedLinkEditPart.getChildren().size()); //$NON-NLS-1$
+		assertTrue(STEREOTYPEDLINK+" do not refer to any AppliedStereotypeEmptyEditPart comment", !isPresent); //$NON-NLS-1$
+
 	}
 
 

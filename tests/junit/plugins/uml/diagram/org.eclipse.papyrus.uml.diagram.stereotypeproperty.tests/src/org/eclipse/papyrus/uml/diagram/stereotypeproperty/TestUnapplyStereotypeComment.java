@@ -58,36 +58,26 @@ public class TestUnapplyStereotypeComment extends AbstractPapyrusTestCase {
 
 		editor = fixture.getEditor(MODEL_DI);
 		fixture.openDiagram("ClassDiagram");
-		
+		boolean isPresent=false;
 		//Check initial model
 		NamedElement stereotypedClass = fixture.getModel().getOwnedMember(STEREOTYPEDCLASS);
 		EditPart stereotypedClassEditPart = fixture.findEditPart(stereotypedClass);
 		for(Object o : stereotypedClassEditPart.getChildren()){
 			if(o instanceof AppliedStereotypeEmptyEditPart){
-				assertTrue(STEREOTYPEDCLASS+" do not refer to any AppliedStereotypeEmptyEditPart comment", true);
+				isPresent=true;
 			}
 		}
-		//List of EditPart
-		//ClassNameEditPart
-		//ClassAttributeCompartmentEditPart
-		//ClassOperationCompartmentEditPart
-		//ClassNestedclassifierCompartemtnEditPart
-		//ClassFloatingNameEditPart
-		//AppliedStereotypeEmptyEditPart
-		assertEquals(STEREOTYPEDCLASS + " has not the right number of children", 6, stereotypedClassEditPart.getChildren().size());
+		assertTrue(STEREOTYPEDCLASS+" do not refer to any AppliedStereotypeEmptyEditPart comment", isPresent);
 		
 		NamedElement stereotypedLink = fixture.getModel().getOwnedMember(STEREOTYPEDLINK);
 		EditPart stereotypedLinkEditPart = fixture.findEditPart(stereotypedLink);
+		isPresent=false;
 		for(Object o : stereotypedLinkEditPart.getChildren()){
 			if(o instanceof AppliedStereotypeEmptyEditPart){
-				assertTrue(STEREOTYPEDLINK+" do not refer to any AppliedStereotypeEmptyEditPart comment", true);
+				isPresent=true;
 			}
 		}
-		//List of EditPart
-		//DependencyNameEditPart
-		//AppliedStereotypeDependencyEditPart
-		//AppliedStereotypeEmptyEditPart
-		assertEquals(STEREOTYPEDLINK + " has not the right number of children", 3, stereotypedLinkEditPart.getChildren().size());
+		assertTrue(STEREOTYPEDLINK+" do not refer to any AppliedStereotypeEmptyEditPart comment", isPresent);
 		
 		//Remove the stereotypes
 		EList<NamedElement> elements= fixture.getModel().getOwnedMembers();
@@ -104,31 +94,24 @@ public class TestUnapplyStereotypeComment extends AbstractPapyrusTestCase {
 		}
 
 		//check the final model
-		//List of EditPart
-		//ClassNameEditPart
-		//ClassAttributeCompartmentEditPart
-		//ClassOperationCompartmentEditPart
-		//ClassNestedclassifierCompartemtnEditPart
-		//ClassFloatingNameEditPart
-		//AppliedStereotypeEmptyEditPart --> removed
-		assertEquals(STEREOTYPEDCLASS + " has not the right number of children", 5, stereotypedClassEditPart.getChildren().size());
+
+		isPresent=false;
 		for(Object ee : stereotypedClassEditPart.getChildren()){
 			EditPart a = (EditPart)ee;
 			if(a instanceof AppliedStereotypeEmptyEditPart){
-				assertTrue(STEREOTYPEDCLASS+" still refer to a AppliedStereotypeEmptyEditPart comment", false);
+				isPresent=true;
 			}
 		}
-		//List of EditPart
-		//DependencyNameEditPart
-		//AppliedStereotypeDependencyEditPart
-		//AppliedStereotypeEmptyEditPart --> removed
-		assertEquals(STEREOTYPEDLINK + " has not the right number of children", 2, stereotypedLinkEditPart.getChildren().size());
+		assertTrue(STEREOTYPEDCLASS+" still refer to a AppliedStereotypeEmptyEditPart comment", !isPresent);
+		isPresent=false;
 		for(Object ee : stereotypedLinkEditPart.getChildren()){
 			EditPart a = (EditPart)ee;
 			if(a instanceof AppliedStereotypeEmptyEditPart){
-				assertTrue(STEREOTYPEDLINK+" still refer to a AppliedStereotypeEmptyEditPart comment", false);
+				isPresent=true;
 			}
 		}
+		assertTrue(STEREOTYPEDLINK+" still refer to a AppliedStereotypeEmptyEditPart comment", !isPresent);
+		
 	}
 
 
