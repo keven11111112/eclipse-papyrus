@@ -7,8 +7,13 @@
             category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.gmf.figureview.view.FigureHierarchyView"
             id="org.eclipse.papyrus.gmf.figureview.view"
-            name="Figure hierarchy view"
+            name="%view.name"
             restorable="true">
       </view>
+      <category
+            id="org.eclipse.papyrus.dev.views.category"
+            name="%category.name"
+            parentCategory="org.eclipse.papyrus.views.category">
+      </category>
    </extension>
 </plugin>
