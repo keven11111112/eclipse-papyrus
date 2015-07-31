@@ -1047,30 +1047,32 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public void updateAxisContents(final AbstractAxisProvider axis) {
 
 		try {
-			getContextEditingDomain().runExclusive(new Runnable() {
-
-				@Override
-				public void run() {
-					Display.getDefault().syncExec(new Runnable() {
-
-						@Override
-						public void run() {
-							if (NattableModelManager.this.natTable != null && !NattableModelManager.this.natTable.isDisposed()) {
-								if (NattableModelManager.this.getTable() != null && NattableModelManager.this.getTable().getTableConfiguration() != null) {
-									if (axis == NattableModelManager.this.columnProvider) {
-										updateColumnContents();
-										NattableModelManager.this.getRowSortModel().updateSort();
-									} else {
-										updateRowContents();
+			if(null != getContextEditingDomain()){
+				getContextEditingDomain().runExclusive(new Runnable() {
+	
+					@Override
+					public void run() {
+						Display.getDefault().syncExec(new Runnable() {
+	
+							@Override
+							public void run() {
+								if (NattableModelManager.this.natTable != null && !NattableModelManager.this.natTable.isDisposed()) {
+									if (NattableModelManager.this.getTable() != null && NattableModelManager.this.getTable().getTableConfiguration() != null) {
+										if (axis == NattableModelManager.this.columnProvider) {
+											updateColumnContents();
+											NattableModelManager.this.getRowSortModel().updateSort();
+										} else {
+											updateRowContents();
+										}
 									}
 								}
 							}
-						}
-					});
-
-				}
-
-			});
+						});
+	
+					}
+	
+				});
+			}
 		} catch (InterruptedException e) {
 			Activator.log.error(e);
 		}
