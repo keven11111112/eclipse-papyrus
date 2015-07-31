@@ -43,8 +43,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CSSOptionsConstants;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.PreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.tools.utils.OpaqueBehaviorUtil;
-import org.eclipse.papyrus.uml.tools.utils.OpaqueExpressionUtil;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallEvent;
@@ -67,10 +65,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	public static final String ONE_SPACE_STRING = " "; //$NON-NLS-1$
-	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
-	public static final String DOTS = "..."; //$NON-NLS-1$
-	public static final String PARAM_DOTS = "(...)"; //$NON-NLS-1$
 	protected Constraint guardConstraint = null;
+	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
@@ -218,7 +214,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				OpaqueBehavior ob = (OpaqueBehavior) effect;
 				if (ob.getBodies().size() > 0) {
 					// return body of behavior (only handle case of a single body)
-					result.append(retrieveBody(view, ob));
+					result.append(OpaqueBehaviorViewUtil.retrieveBody(view, ob));
 					return result.toString();
 				}
 			}
@@ -250,8 +246,8 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					Operation op = ((CallEvent) e).getOperation();
 					if (op != null) {
 						result.append(op.getName());
-						if ((op.getOwnedParameters().size() > 0) && displayParamDots(view)) {
-							result.append(PARAM_DOTS);
+						if ((op.getOwnedParameters().size() > 0) && OpaqueBehaviorViewUtil.displayParamDots(view)) {
+							result.append(OpaqueBehaviorViewUtil.PARAM_DOTS);
 						}
 					} else {
 						result.append(((CallEvent) e).getName());
@@ -260,8 +256,8 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					Signal signal = ((SignalEvent) e).getSignal();
 					if (signal != null) {
 						result.append(signal.getName());
-						if ((signal.getAttributes().size() > 0) && displayParamDots(view)) {
-							result.append(PARAM_DOTS);
+						if ((signal.getAttributes().size() > 0) && OpaqueBehaviorViewUtil.displayParamDots(view)) {
+							result.append(OpaqueBehaviorViewUtil.PARAM_DOTS);
 						}
 					} else {
 						result.append(((SignalEvent) e).getName());
@@ -270,7 +266,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					ValueSpecification vs = ((ChangeEvent) e).getChangeExpression();
 					String value;
 					if (vs instanceof OpaqueExpression) {
-						value = retrieveBody(view, (OpaqueExpression) vs);
+						value = OpaqueBehaviorViewUtil.retrieveBody(view, (OpaqueExpression) vs);
 					}
 					else {
 						value = vs.stringValue();
@@ -286,7 +282,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					if (te != null) {
 						ValueSpecification vs = te.getExpr();
 						if (vs instanceof OpaqueExpression) {
-							value = retrieveBody(view, (OpaqueExpression) vs);
+							value = OpaqueBehaviorViewUtil.retrieveBody(view, (OpaqueExpression) vs);
 						}
 						else {
 							value = vs.stringValue();
@@ -355,89 +351,6 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		return true;
-	}
-
-	/**
-	 * Return the body of an expression. Retrieve the "Natural Language" body with priority,
-	 * i.e. return this body if it exists, otherwise return the first body.
-	 *
-	 * @param exp
-	 *            an opaque expression
-	 * @return the associated body
-	 */
-	public static String retrieveBody(View view, OpaqueExpression exp) {
-		String body = OpaqueExpressionUtil.getBodyForLanguage(exp, "Natural Language"); //$NON-NLS-1$
-		if (body.equals(EMPTY_STRING)) {
-			body = OpaqueExpressionUtil.getBodyForLanguage(exp, null);
-		}
-		return cutBodyString(view, body);
-	}
-
-	/**
-	 * Return the body of an opaque behavior. Retrieve the "Natural Language" body with priority,
-	 * i.e. return this body if it exists, otherwise return the first body.
-	 *
-	 * @param exp
-	 *            an opaque expression
-	 * @return the associated body
-	 */
-	public static String retrieveBody(View view, OpaqueBehavior ob) {
-		String body = OpaqueBehaviorUtil.getBody(ob, "Natural Language"); //$NON-NLS-1$
-		if (body.equals(EMPTY_STRING) && ob.getBodies().size() > 0) {
-			body = ob.getBodies().get(0);
-		}
-		return cutBodyString(view, body);
-	}
-
-	/**
-	 * Cut a body string after a predefined number of lines (taken from preference store).
-	 *
-	 * @param body
-	 *            the body string
-	 * @return
-	 */
-	public static String cutBodyString(View view, String body) {
-		IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		int prefCutLength = preferenceStore.getInt(PreferenceConstants.BODY_CUT_LENGTH);
-		int cutLength = NotationUtils.getIntValue(view, CSSOptionsConstants.BODY_CUT_LENGTH, prefCutLength);
-		if (cutLength == 0) {
-			return DOTS;
-		}
-		else {
-			int start = 0;
-			int newStart = 0;
-			while (cutLength > 0) {
-				// use "\n" instead of System.lineSeparator, since code embedded into a model
-				// might not be destined for the development machine, e.g. contain eventually only
-				// \n, although the model is opened on a windows machine.
-				newStart = body.indexOf("\n", start); //$NON-NLS-1$
-				if (newStart > 0) {
-					cutLength--;
-					start = newStart + 1;
-				}
-				else {
-					return body;
-				}
-			}
-			if (newStart > 0) {
-				// handle case that \n is preceded by a \r
-				if (newStart >= 1 && body.charAt(newStart - 1) == '\r') {
-					return body.substring(0, start - 1) + DOTS;
-				}
-				return body.substring(0, newStart) + DOTS;
-			}
-			return body;
-		}
-	}
-
-	/**
-	 *
-	 * @return true, if the presence of parameters should be indicated by (...)
-	 */
-	public static boolean displayParamDots(View view) {
-		IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		boolean prefValue = preferenceStore.getBoolean(PreferenceConstants.INDICATE_PARAMETERS);
-		return NotationUtils.getBooleanValue(view, CSSOptionsConstants.INDICATE_PARAMETERS, prefValue);
 	}
 
 	/**

@@ -26,7 +26,6 @@ public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
 
 	public CustomTransitionGuardEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -58,6 +57,8 @@ public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
+			// pass an EObject based on the view (getModel) to the parser. This enables the parser to
+			// access the view dependent configuration how much text should be displayed. 
 			text = getParser().getPrintString(
 					new EObjectAdapter((View) getModel()),
 					getParserOptions().intValue());

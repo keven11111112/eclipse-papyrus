@@ -738,7 +738,7 @@
 			category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
 			class="org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CustomTransitionPreferencePage"
 			id="org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CustomTransitionPreferencePage_ID"
-			name="Transition options">
+			name="Transition and behavior options">
       </page>
 	</extension>
  
