@@ -166,7 +166,7 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			assertDimension("The figure of the Class ", 0,0,200,200,class1figure);
 
 			// At this moment the class figure must contain 4 sub-figures 1label+ 3compartments
-			assertEquals("The number of figure children must be equal to 4", 4, class1figure.getChildren().size());
+			assertEquals("The number of figure children must be equal to 5", 5, class1figure.getChildren().size());
 
 			// wrappinglabel for name
 			assertEquals("The sub figure [0] is not a wrapping label", PapyrusWrappingLabel.class, class1figure.getChildren().get(0).getClass());
@@ -532,7 +532,7 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			// wrappingLabel for stereotype
 			assertEquals("The sub figure [0] of «stereotype1»Class1 is not a label", PapyrusWrappingLabel.class, package1figure.getChildren().get(0).getClass());
 			PapyrusWrappingLabel stereotypelabelClass = (PapyrusWrappingLabel) package1figure.getChildren().get(0);
-			assertDimension("The figure of the Class", 0,3,200,17,stereotypelabelClass);
+			assertDimension("The figure of the Class", 0,3,200,14,stereotypelabelClass);
 			assertEquals("The label of the Class does not display " + ST_LEFT + "stereotype1" + ST_RIGHT, ST_LEFT + "Stereotype1" + ST_RIGHT, stereotypelabelClass.getText());
 
 
