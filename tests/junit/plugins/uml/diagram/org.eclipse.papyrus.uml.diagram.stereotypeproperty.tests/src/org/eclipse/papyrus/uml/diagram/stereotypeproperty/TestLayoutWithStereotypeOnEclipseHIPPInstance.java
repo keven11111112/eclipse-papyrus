@@ -185,7 +185,7 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			// compartment for operation
 			assertEquals("The figure of class1 is not an RectangleFigure", RectangleFigure.class,class1figure.getChildren().get(2).getClass());
 			RectangleFigure operationsClass = (RectangleFigure) class1figure.getChildren().get(2);
-			assertFigure("The figure of the Class", 0,80,200,59,operationsClass, ResizableCompartmentFigure.class.toString());
+			assertFigure("The figure of the Class", 0,70,200,59,operationsClass, ResizableCompartmentFigure.class.toString());
 
 
 			// compartment for nested classifier
@@ -539,7 +539,7 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			// wrappingLabel for name
 			assertTrue("The sub figure [1] of «stereotype1»Class1 is not a wrapping label", package1figure.getChildren().get(1) instanceof WrappingLabel);
 			WrappingLabel labelPackage = (WrappingLabel) package1figure.getChildren().get(1);
-			assertDimension("The figure of the  Class", 0,21,200,18,labelPackage);
+			assertDimension("The figure of the  Class", 0,18,200,18,labelPackage);
 			assertEquals("The label of the Class does not display Class1","Package1", labelPackage.getText());
 
 			// compartment for property of stereotype
