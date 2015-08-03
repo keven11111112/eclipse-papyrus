@@ -60,6 +60,6 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart implemen
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure)getFigure();
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }

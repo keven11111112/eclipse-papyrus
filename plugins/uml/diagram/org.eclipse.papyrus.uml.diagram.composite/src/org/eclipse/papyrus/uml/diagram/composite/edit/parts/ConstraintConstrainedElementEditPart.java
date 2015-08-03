@@ -60,6 +60,6 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure)getFigure();
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }

@@ -60,6 +60,6 @@ public class DurationObservationEventEditPart extends ConnectionEditPart impleme
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure)getFigure();
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }

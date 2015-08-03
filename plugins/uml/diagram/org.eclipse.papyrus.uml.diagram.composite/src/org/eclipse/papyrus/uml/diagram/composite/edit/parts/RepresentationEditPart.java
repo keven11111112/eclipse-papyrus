@@ -49,8 +49,9 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof RepresentationTagLabelEditPart) {
-			((RepresentationTagLabelEditPart)childEditPart).setLabel(getPrimaryShape().getTagLabel());
+		if (childEditPart instanceof RepresentationTagLabelEditPart) {
+			((RepresentationTagLabelEditPart) childEditPart).setLabel(
+					getPrimaryShape().getTagLabel());
 		}
 		return false;
 	}
@@ -59,7 +60,7 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -69,7 +70,7 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof RepresentationTagLabelEditPart) {
+		if (childEditPart instanceof RepresentationTagLabelEditPart) {
 			return true;
 		}
 		return false;
@@ -79,7 +80,7 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -101,6 +102,6 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public RepresentationFigure getPrimaryShape() {
-		return (RepresentationFigure)getFigure();
+		return (RepresentationFigure) getFigure();
 	}
 }
