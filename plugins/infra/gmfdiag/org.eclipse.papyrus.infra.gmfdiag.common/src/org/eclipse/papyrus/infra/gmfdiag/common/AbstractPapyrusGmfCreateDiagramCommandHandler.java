@@ -337,19 +337,15 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		return createDiagram(modelSet, owner, owner, proto, name);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.papyrus.commands.ICreationCommand#createDiagram(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.ecore.EObject,
-	 * org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype, java.lang.String)
-	 */
-	@Override
-	public final Diagram createDiagram(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name) {
+
+	public final Diagram createDiagram(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name, boolean openDiagram) {
 		ICommand createCmd = getCreateDiagramCommand(modelSet, owner, element, prototype, name);
 		TransactionalEditingDomain dom = modelSet.getTransactionalEditingDomain();
 		CompositeCommand cmd = new CompositeCommand("Create diagram");
 		cmd.add(createCmd);
-		cmd.add(new OpenDiagramCommand(dom, createCmd));
+		if (openDiagram) {
+			cmd.add(new OpenDiagramCommand(dom, createCmd));
+		}
 
 		try {
 
@@ -374,6 +370,18 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		}
 
 		return null;
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.eclipse.papyrus.commands.ICreationCommand#createDiagram(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.ecore.EObject,
+	 * org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype, java.lang.String)
+	 */
+	@Override
+	public final Diagram createDiagram(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name) {
+		return createDiagram(modelSet, owner, element, prototype, name, true);
 	}
 
 	/*
