@@ -922,9 +922,6 @@
          path="model/compositediagram-notation.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
-      <?gmfgen generated="true"?>
-   </extension>
 
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
@@ -936,113 +933,6 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Package_1000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_2062"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StateMachine_2063"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_2064"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_2065"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Component_2069"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Device_2070"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_2071"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_2072"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Class_2073"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Collaboration_2075"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interface_2076"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_2066"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Enumeration_2067"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DataType_2068"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Actor_2077"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_2078"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Artifact_2079"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationItem_2080"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Signal_2081"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.UseCase_2082"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.SignalEvent_2083"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CallEvent_2084"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.AnyReceiveEvent_2085"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ChangeEvent_2088"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeEvent_2089"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationObservation_2093"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeObservation_2094"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralBoolean_2095"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralInteger_2096"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralNull_2097"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralString_2098"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralUnlimitedNatural_2099"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StringExpression_2100"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueExpression_2101"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeExpression_2102"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Expression_2103"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Duration_2104"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeInterval_2105"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationInterval_2106"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interval_2107"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InstanceValue_2108"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Comment_2109"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_2110"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_2111"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_2112"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_2113"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_3121"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Port_3069"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Parameter_3088"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3070"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationRole_3115"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationUse_3071"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_3072"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_3073"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3074"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StateMachine_3075"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3076"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3077"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Component_3081"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Device_3082"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_3083"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_3084"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Class_3085"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3086"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interface_3087"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3078"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Enumeration_3079"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DataType_3080"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Actor_3091"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_3092"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Artifact_3093"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationItem_3094"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Signal_3095"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.UseCase_3096"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Comment_3097"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_3116"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_3117"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_3118"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_3119"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Constraint_3120"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3101"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Operation_3102"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.EnumerationLiteral_3066"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4022"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4001"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ComponentRealization_4004"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InterfaceRealization_4005"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Substitution_4011"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Realization_4006"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Manifestation_4012"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Abstraction_4007"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Usage_4008"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Deployment_4009"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.RoleBinding_4017"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Dependency_4010"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Connector_4013"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Generalization_4015"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeObservationEvent_4018"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationObservationEvent_4019"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Representation_4020"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationFlow_4021"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
