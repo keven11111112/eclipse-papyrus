@@ -197,6 +197,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * the columnHeaderLayerStack
 	 */
 	private ColumnHeaderLayerStack columnHeaderLayerStack;
+	
+	/**
+	 * @return the rowHeaderLayerStack
+	 */
+	public ColumnHeaderLayerStack getColumnHeaderLayerStack() {
+		return columnHeaderLayerStack;
+	}
 
 	/**
 	 * the rowHeaderLayerStack

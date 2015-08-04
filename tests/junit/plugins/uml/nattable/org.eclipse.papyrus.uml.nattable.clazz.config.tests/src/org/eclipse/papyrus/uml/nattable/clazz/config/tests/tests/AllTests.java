@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithConfigurationTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_H1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_V1_V3_V1_Test;
@@ -83,6 +85,10 @@ import org.junit.runners.Suite.SuiteClasses;
 		//SORT
 		Sort_V1_V3_V1.class,
 		Sort_H1_H3_H1.class,
+		
+		// Bug 473155 : change axis index style
+		AxisChangeIndexWithConfigurationTest.class,
+		AxisChangeIndexWithoutConfigurationTest.class,
 
 		// reset cell value
 		UnsetCellValueWithProfile_V1_V3_V1_Test.class,
