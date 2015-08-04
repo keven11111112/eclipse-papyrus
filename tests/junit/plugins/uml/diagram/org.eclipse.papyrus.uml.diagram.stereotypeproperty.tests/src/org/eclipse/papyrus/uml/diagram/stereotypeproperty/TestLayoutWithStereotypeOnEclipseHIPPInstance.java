@@ -191,8 +191,7 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			// compartment for nested classifier
 			assertEquals("The figure of class1 is not an automaticCompartmentLayoutManager", RectangleFigure.class,class1figure.getChildren().get(3).getClass() );
 			RectangleFigure innerclassifiersClass = (RectangleFigure) class1figure.getChildren().get(3);
-			assertEquals("The sub figure [0] is not the nested Classifier compartment is not a ResizableCompartmentFigure", ResizableCompartmentFigure.class,innerclassifiersClass.getChildren().get(0).getClass());
-			assertDimension("The figure of the Class ", 0,140,200,59,innerclassifiersClass);
+			assertFigure("The figure of the Class ", 0,120,200,59,innerclassifiersClass, ResizableCompartmentFigure.class.toString());
 
 		}
 
@@ -242,42 +241,42 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			// now verify position of each subfigure
 			class1figure = ((ClassifierFigure) nodePlate.getChildren().get(0));
 			class1figure.setBounds(new Rectangle(0, 0, 200, 200));
-			assertEquals("The figure of «stereotype1»Class1 is not an automaticCompartmentLayoutManager", AutomaticCompartmentLayoutManager.class,class1figure.getLayoutManager().getClass());
+
 			class1figure.getLayoutManager().layout(class1figure);
-			assertDimension("of the  «stereotype1»Class1 ", 0,0,200,200,class1figure);
+
+			assertFigure("The figure of the «stereotype1»Class1 ", 0,0,200,200,class1figure, AutomaticCompartmentLayoutManager.class.toString());
+
 			// At this moment the class figure must contain 5 sub-figures 1 label for stereotype+ 1label for name+ 3compartments
 			assertEquals("The number of children «stereotype1»Class1 is not equals to 7", 7, class1figure.getChildren().size());
 
 
 			// wrappingLabel for stereotype
 			PapyrusWrappingLabel stereotypelabelClass = (PapyrusWrappingLabel) class1figure.getChildren().get(0);
-			assertDimension("The figure of the  «stereotype1»Class1 ", 0,3,200,15,stereotypelabelClass);
+			assertFigure("The figure of the «stereotype1»Class1 ", 0,3,200,15,stereotypelabelClass, PapyrusWrappingLabel.class.toString());
+
 			assertEquals("The label of the Class does not display " + ST_LEFT + "stereotype1" + ST_RIGHT, ST_LEFT + "Stereotype1" + ST_RIGHT, stereotypelabelClass.getText());
 
 			// wrappingLabel for name
 			assertEquals("The sub figure [1] of «stereotype1»Class1 is not a wrapping label", PapyrusWrappingLabel.class,class1figure.getChildren().get(1).getClass());
 			WrappingLabel labelClass = (WrappingLabel) class1figure.getChildren().get(1);
-			assertDimension("The figure of the  «stereotype1»Class1 ", 0,19,200,16,labelClass);
+			assertFigure("The figure of the «stereotype1»Class1 ", 0,19,200,16,labelClass, WrappingLabel.class.toString());
 			assertEquals("The label of the Class does not display Class1", "Class1",labelClass.getText());
 
 			// compartment for property of stereotype
 			assertEquals("The sub figure [0] of «stereotype1»Class1 is not a StereotypePropertiesCompartment", StereotypePropertiesCompartment.class,class1figure.getChildren().get(2).getClass() );
 			RectangleFigure stereotypePropertiesClass = (RectangleFigure) class1figure.getChildren().get(2);
-			assertEquals("The sub figure [0] is not the attribute compartment is not a AppliedStereotypeCompartmentFigure", AppliedStereotypeCompartmentFigure.class,stereotypePropertiesClass.getChildren().get(0).getClass() );
-			assertDimension("The figure of the  «stereotype1»Class1 ", 0,36,200,342,stereotypePropertiesClass);
-
+			assertFigure("The sub figure [0] of «stereotype1»Class1  ", 0,36,200,342,stereotypePropertiesClass, AppliedStereotypeCompartmentFigure.class.toString());
+			
 			// compartment for operation
 			assertEquals("The sub figure [2] of «stereotype1»Class1 is not a RectangleFigure", RectangleFigure.class,class1figure.getChildren().get(3).getClass());
 			RectangleFigure operationsClass = (RectangleFigure) class1figure.getChildren().get(3);
-			assertEquals("The sub figure [2] is not the operation compartment is not a ResizableCompartmentFigure", ResizableCompartmentFigure.class, operationsClass.getChildren().get(0).getClass());
-			assertDimension("The figure of the Class ", 0,379,200,-59,operationsClass);
-
+			assertFigure("The sub figure [2] is not the operation compartment",0,379,200,-59,operationsClass, RectangleFigure.class.toString());
+			
 			// compartment for nested classifier
 			assertEquals("The figure of class1 is not an automaticCompartmentLayoutManager", RectangleFigure.class,class1figure.getChildren().get(4).getClass());
 			RectangleFigure innerclassifiersClass = (RectangleFigure) class1figure.getChildren().get(4);
-			assertEquals("The sub figure [0] is not the nested Classifier compartment is not a ResizableCompartmentFigure", ResizableCompartmentFigure.class,innerclassifiersClass.getChildren().get(0).getClass());
-			assertDimension("The figure of the Class ", 0,321,200,-59,innerclassifiersClass);
-
+			assertFigure("The sub figure [2] is not the operation compartment",0,321,200,-59,innerclassifiersClass, RectangleFigure.class.toString());
+			
 		}
 
 
@@ -306,10 +305,10 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			// now verify position of each subfigure
 			class1figure = ((ClassifierFigure) nodePlate.getChildren().get(0));
 			class1figure.setBounds(new Rectangle(0, 0, 200, 200));
-			assertEquals("The figure of «stereotype1»Class1 is not an automaticCompartmentLayoutManager", AutomaticCompartmentLayoutManager.class, class1figure.getLayoutManager().getClass());
-			class1figure.getLayoutManager().layout(class1figure);
-			assertDimension("The figure of the  «stereotype1»Class1 ", 0,0,200,200,class1figure);
 
+			class1figure.getLayoutManager().layout(class1figure);
+			assertFigure("The figure of the  «stereotype1»Class1 ", 0,0,200,200,class1figure, AutomaticCompartmentLayoutManager.class.toString());
+			
 			// At this moment the class figure must contain 5 sub-figures 1 label for stereotype+ 1label for name+ compartment of stereotypes+ 3compartments
 			assertEquals("The number of children «stereotype1»Class1 is not equals to 7", 7, class1figure.getChildren().size());
 
@@ -317,14 +316,15 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			// label for stereotype
 			assertEquals("The sub figure [0] of «stereotype1»Class1 is not a label", PapyrusWrappingLabel.class,class1figure.getChildren().get(0).getClass());
 			PapyrusWrappingLabel stereotypelabelClass = (PapyrusWrappingLabel) class1figure.getChildren().get(0);
-			assertDimension("The figure of the Class ", 0,3,200,15,stereotypelabelClass);
 			assertEquals("The label of the Class does not display " + ST_LEFT + "stereotype1" + ST_RIGHT, ST_LEFT + "Stereotype1" + ST_RIGHT, stereotypelabelClass.getText());
-
+			assertFigure("The figure of the Class ", 0,3,200,15,stereotypelabelClass, PapyrusWrappingLabel.class.toString());
+			
 
 			// wrappingLabel for name
 			assertEquals("The sub figure [1] of «stereotype1»Class1 is not a wrapping label", PapyrusWrappingLabel.class, class1figure.getChildren().get(1).getClass());
 			PapyrusWrappingLabel labelClass = (PapyrusWrappingLabel) class1figure.getChildren().get(1);
-			assertDimension("The figure of the Class ", 0,19,200,16,labelClass);
+			assertFigure("The figure of the Class ", 0,19,200,16,labelClass, PapyrusWrappingLabel.class.toString());
+			
 			assertEquals("The label of the Class does not display Class1", "Class1", labelClass.getText());
 
 
@@ -337,27 +337,24 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 			assertEquals("The content of the sterotype properties compartment is not an EditingFlowPage", EditingFlowPage.class,compartmentFigure.getContentPane().getChildren().get(0).getClass());
 			EditingFlowPage stereotypeProperty = (EditingFlowPage) compartmentFigure.getContentPane().getChildren().get(0);
 			assertEquals("text of stereotype label be equals to «stereotype1» ", "testReftoStereotype2=[] ", ((TextFlowEx) stereotypeProperty.getChildren().get(0)).getText());
-			assertDimension("The compartment property of stereotypes of the Class ", 0,36,200,342,sterotypesPropertiesClass);
-
+			assertFigure("The compartment property of stereotypes of the Class ", 0,36,200,342,sterotypesPropertiesClass, EditingFlowPage.class.toString());
+			
 			// compartment for attribute
 			assertEquals("The sub figure [3] of «stereotype1»Class1 is not a compartment", RectangleFigure.class,class1figure.getChildren().get(3).getClass() );
 			RectangleFigure propertiesClass = (RectangleFigure) class1figure.getChildren().get(3);
-			assertEquals("The sub figure [3] is not the attribute compartment is not a ResizableCompartmentFigure", ResizableCompartmentFigure.class, propertiesClass.getChildren().get(0).getClass() );
-			assertDimension("The compartment attribute of the Class ", 0,379,200,-59,propertiesClass);
-
+			assertFigure("The compartment attribute of the Class ", 0,379,200,-59,propertiesClass, RectangleFigure.class.toString());
+			
 
 			// compartment for operation
 			assertEquals("The sub figure [4] of «stereotype1»Class1 is not a compartment", RectangleFigure.class, class1figure.getChildren().get(4).getClass() );
 			RectangleFigure operationsClass = (RectangleFigure) class1figure.getChildren().get(4);
-			assertEquals("The sub figure [4] is not the operation compartment is not a ResizableCompartmentFigure", ResizableCompartmentFigure.class, operationsClass.getChildren().get(0).getClass());
-			assertDimension("The compartment operation of the Class ", 0,321,200,-59,operationsClass);
-
+			assertFigure("The compartment operation of the Class ", 0,321,200,-59,operationsClass, RectangleFigure.class.toString());
+			
 			// compartment for nested classifier
 			assertEquals("The figure of class1 is not an automaticCompartmentLayoutManager", RectangleFigure.class, class1figure.getChildren().get(5).getClass());
 			RectangleFigure innerclassifiersClass = (RectangleFigure) class1figure.getChildren().get(5);
-			assertEquals("The sub figure [0] is not the nested Classifier compartment is not a ResizableCompartmentFigure", ResizableCompartmentFigure.class, innerclassifiersClass.getChildren().get(0).getClass());
-			assertDimension("of the «stereotype1»Class1  ", 0,263,200,-59,innerclassifiersClass);
-
+			assertFigure("of the «stereotype1»Class1  ", 0,263,200,-59,innerclassifiersClass, RectangleFigure.class.toString());
+			
 		}
 	}
 
