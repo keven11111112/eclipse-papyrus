@@ -11,8 +11,8 @@
 		<module>org.eclipse.papyrus.rcp.product</module>
 	</modules>
 	<properties>
-		<tycho-version>0.23.0</tycho-version>
-		<tychoExtrasVersion>0.23.0</tychoExtrasVersion>
+		<tycho-version>0.23.1</tycho-version>
+		<tychoExtrasVersion>0.23.1</tychoExtrasVersion>
 		<jarSignerVersion>1.1.2</jarSignerVersion>
 		<findbugs.version>2.5.3</findbugs.version>
 		<xtext.version>2.7.3</xtext.version>
@@ -25,7 +25,7 @@
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}</papyrus.repo.main>
 	</properties>
 	<repositories>
-							
+
 		<!-- From Main Papyrus -->
 		<repository>
 			<id>ep</id>
@@ -154,8 +154,8 @@
 			<!-- updateFrom("Subversive",0) -->
 			<url>http://download.eclipse.org/technology/subversive/3.0/mars-site/</url>
 		</repository>
-		
-		
+
+
 		<!-- Modeling features -->
 		<repository>
 			<id>mylyn-mars</id>
@@ -221,7 +221,7 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/emfstore/rt/150</url>
 		</repository>  -->	
-		
+
 		<!-- Papyrus repository -->
 		<repository>
 			<id>papyrus-main</id>
@@ -268,6 +268,11 @@
 							<os>win32</os>
 							<ws>win32</ws>
 							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
 						</environment>
 					</environments>
 				</configuration>
