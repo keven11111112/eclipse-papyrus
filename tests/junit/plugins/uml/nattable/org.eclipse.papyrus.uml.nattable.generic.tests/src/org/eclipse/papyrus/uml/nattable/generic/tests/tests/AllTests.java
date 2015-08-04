@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
 
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AddElementsOnConnectedTableTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
@@ -29,6 +30,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		InvertAxisGenericTableTest.class,
 		EditAxisGenericTableTest.class,
 		OpenAndDeleteTest.class,
+		AddElementsOnConnectedTableTest.class,
 		Bug458492_Edition_Enumeration.class,
 		AxisChangeIndexWithConfigurationTest.class,
 		AxisChangeIndexWithoutConfigurationTest.class,

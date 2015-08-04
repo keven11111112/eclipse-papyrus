@@ -89,6 +89,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 				horizontalAxis.setElement((EObject) object);
 				horizontalAxis.setManager(this.representedAxisManager);
 				toAdd.add(horizontalAxis);
+				managedObject.add(object);
 			}
 		}
 		if (!toAdd.isEmpty()) {
