@@ -30,6 +30,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestCompositeDiagramActivityChildNode.class,
 		TestCompositeDiagramChildLabel.class,
 		TestCompositeDiagramSimpleLink.class,
+		TestPortLocation.class,
 
 		// Specific regression tests
 		TestCompositeDiagramDropOntoChildNode.class
