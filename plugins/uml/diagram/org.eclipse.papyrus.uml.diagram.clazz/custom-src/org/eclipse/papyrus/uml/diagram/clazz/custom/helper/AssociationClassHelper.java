@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
-import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -175,32 +174,29 @@ public class AssociationClassHelper extends ElementHelper {
 	 * @return the set of command to create an association Class
 	 */
 	public Command getAssociationClassElementCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, Command command) {
-		if (command instanceof ICommandProxy) {
-			if (createConnectionViewAndElementRequest.getSourceEditPart() instanceof GraphicalEditPart) {
-				GraphicalEditPart sourceEditPart = (GraphicalEditPart) createConnectionViewAndElementRequest.getSourceEditPart();
-				// 1. calculus of the position of the associationClass node
-				Point p = sourceEditPart.getFigure().getBounds().getTopRight().getCopy();
-				sourceEditPart.getFigure().translateToAbsolute(p);
-				int edgeCount = sourceEditPart.getNotationView().getSourceEdges().size();
-				int offset = (edgeCount * 50) - 100;
-				p = p.translate(100, offset);
-				// 2. creation of the associationClass Node without semantic element
-				GraphicalEditPart parent = (GraphicalEditPart) sourceEditPart.getParent();
-				AssociationClassViewCreateCommand assCommand = new AssociationClassViewCreateCommand(createConnectionViewAndElementRequest, getEditingDomain(), (View) parent.getModel(), sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), p);
-				command = command.chain(new ICommandProxy(assCommand));
-				// 3. creation of the dashed line between the associationClass link
-				// and associationClass Node
-				// target
-				IAdaptable associationClassLinkViewAdapter = (IAdaptable) (createConnectionViewAndElementRequest.getNewObject());
-				ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Link_4016, ((INotationType) UMLElementTypes.Link_4016).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
-				ICommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Link_4016).getSemanticHint(), associationClassLinkViewAdapter, null, sourceEditPart.getViewer(),
-						sourceEditPart.getDiagramPreferencesHint(), viewDescriptor, assCommand);
-				command = command.chain(new ICommandProxy(dashedLineCmd));
-				return command;
-			} else {
-				return UnexecutableCommand.INSTANCE;
-			}
+		if (false == createConnectionViewAndElementRequest.getSourceEditPart() instanceof GraphicalEditPart) {
+			return UnexecutableCommand.INSTANCE;
 		}
-		return null;
+		GraphicalEditPart sourceEditPart = (GraphicalEditPart) createConnectionViewAndElementRequest.getSourceEditPart();
+		// 1. calculus of the position of the associationClass node
+		Point p = sourceEditPart.getFigure().getBounds().getTopRight().getCopy();
+		sourceEditPart.getFigure().translateToAbsolute(p);
+		int edgeCount = sourceEditPart.getNotationView().getSourceEdges().size();
+		int offset = (edgeCount * 50) - 100;
+		p = p.translate(100, offset);
+		// 2. creation of the associationClass Node without semantic element
+		GraphicalEditPart parent = (GraphicalEditPart) sourceEditPart.getParent();
+		AssociationClassViewCreateCommand assCommand = new AssociationClassViewCreateCommand(createConnectionViewAndElementRequest, getEditingDomain(), (View) parent.getModel(), sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), p);
+		command = command.chain(new ICommandProxy(assCommand));
+		// 3. creation of the dashed line between the associationClass link
+		// and associationClass Node
+		// target
+		IAdaptable associationClassLinkViewAdapter = (IAdaptable) (createConnectionViewAndElementRequest.getNewObject());
+		String semanticHint = ((IHintedType) UMLElementTypes.Link_4016).getSemanticHint();
+		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Link_4016, semanticHint, sourceEditPart.getDiagramPreferencesHint());
+		ICommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), semanticHint, associationClassLinkViewAdapter, null, sourceEditPart.getViewer(),
+				sourceEditPart.getDiagramPreferencesHint(), viewDescriptor, assCommand);
+		command = command.chain(new ICommandProxy(dashedLineCmd));
+		return command;
 	}
 }
