@@ -168,7 +168,7 @@ public class Utils {
 				break;
 			}
 			// search line break of previous line (if any)
-			while ((startPos > 0) && bodyStr.charAt(startPos) != Character.LINE_SEPARATOR) {
+			while ((startPos > 0) && bodyStr.charAt(startPos) != '\r' && bodyStr.charAt(startPos) != '\n') {
 				startPos--;
 			}
 			int endPos = bodyStr.indexOf(GenerationConstants.GENERATED_END, startPos);
@@ -176,7 +176,6 @@ public class Utils {
 				break;
 			}
 			endPos += GenerationConstants.GENERATED_END.length();
-			char tst = bodyStr.charAt(endPos);
 			// stop at first non white-space character after comment.
 			while ((endPos < bodyStr.length()) && Character.isWhitespace(bodyStr.charAt(endPos))) {
 				endPos++;
