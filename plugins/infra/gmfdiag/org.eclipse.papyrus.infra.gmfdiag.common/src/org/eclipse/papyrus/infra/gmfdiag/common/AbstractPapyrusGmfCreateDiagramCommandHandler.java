@@ -188,6 +188,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			CommandResult result = doEditDiagramName(prototype, name);
 			if (!result.getStatus().isOK()) {
 				return result;
+			} else {
+				name = (result.getReturnValue() != null) ? result.getReturnValue().toString() : null;
 			}
 
 			Diagram diagram = doCreateDiagram(notationResource, owner, element, prototype, name);
@@ -270,7 +272,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		if (name == null) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		return CommandResult.newOKCommandResult();
+		return CommandResult.newOKCommandResult(name);
 	}
 
 
