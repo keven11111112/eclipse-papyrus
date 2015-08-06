@@ -67,7 +67,8 @@ public class LanguageCodegen {
 			}
 		}
 		else {
-			// size must be 0
+			// echo language pattern in a more readible way: without escape characters that are used for
+			// the "+" in C++
 			String pattern = languagePattern.pattern().replace("\\", ""); //$NON-NLS-1$ //$NON-NLS-2$
 			MessageDialog.openError(shell, Messages.LanguageCodegen_NoGeneratorsFound,
 					String.format(Messages.LanguageCodegen_NoGeneratorsFoundLong, pattern));			

@@ -48,9 +48,13 @@ import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
 import org.eclipse.papyrus.C_Cpp.Volatile;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.SyncInformation;
 import org.eclipse.papyrus.cpp.codegen.Constants;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.texteditor.cdt.CommandSupport;
+import org.eclipse.papyrus.texteditor.cdt.TextEditorConstants;
 import org.eclipse.papyrus.texteditor.cdt.Utils;
 import org.eclipse.papyrus.texteditor.cdt.listener.ModelListener;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
@@ -75,13 +79,15 @@ public class SyncCDTtoModel implements Runnable {
 
 	public static final String ansiCLib = "AnsiCLibrary"; //$NON-NLS-1$
 
-	public SyncCDTtoModel(IEditorInput input, Classifier classifier, String projectName) {
+	public SyncCDTtoModel(IEditorInput input, Classifier classifier, String projectName, String generatorID) {
 		m_input = input;
 		m_classifier = classifier;
 		m_projectName = projectName;
+		m_codegen = LanguageCodegen.getGenerator(TextEditorConstants.CPP, generatorID);
 	}
+	
 
-	public final String langID = "C/C++"; //$NON-NLS-1$
+	public final String c_cpp_langID = "C/C++"; //$NON-NLS-1$
 
 	public void syncCDTtoModel() {
 		CommandSupport.exec("update model from CDT", this);
@@ -166,8 +172,13 @@ public class SyncCDTtoModel implements Runnable {
 					IASTFunctionDefinition definition = (IASTFunctionDefinition) node;
 					IASTFunctionDeclarator declarator = definition.getDeclarator();
 					String body = getBody(itu, definition);
-					NamedElement ne = updateMethod(position, parent, name, body, declarator);
-					updateComment(itu, definition, ne);
+					// get additional information about method synchronization from generator
+					SyncInformation syncInfo = m_codegen.getSyncInformation(name, body);
+					if (syncInfo == null || !syncInfo.isGenerated) {
+						// only update method, if it is not generated 
+						NamedElement ne = updateMethod(position, parent, name, body, declarator, syncInfo);
+						updateComment(itu, definition, ne);
+					}
 					// System.err.println("body source <" + body + ">");
 				}
 				position++;
@@ -230,40 +241,16 @@ public class SyncCDTtoModel implements Runnable {
 	 *            case of behaviors that do not have a specification (e.g. the effect of a transition).
 	 */
 	public NamedElement updateMethod(int position, IParent parent, String qualifiedName, String body,
-			IASTFunctionDeclarator declarator) {
+			IASTFunctionDeclarator declarator, SyncInformation syncInfo) {
 
 		String names[] = qualifiedName.split(Utils.nsSep);
 		String name = names[names.length - 1];
 
-		Operation operation = m_classifier.getOperation(name, null, null);
+		Operation operation = null;
 		Behavior behavior = null;
 
-		if (operation == null) {
-			// operation is not found via name in the model. That does not
-			// necessarily mean that this is a new method.
-			// It may also have been renamed.
-			// Strategy: try to locate the operation in the model at the same
-			// "position" as the method in the file and
-			// verify that this method does not have the same name as any method
-			// in the CDT file.
-			if (position < m_classifier.getOperations().size()) {
-				operation = m_classifier.getOperations().get(position);
-				String modelName = operation.getName();
-				try {
-					for (ICElement child : parent.getChildren()) {
-						if (child instanceof IMethodDeclaration) {
-							String cdtName = ((IMethodDeclaration) child).getElementName();
-							if (cdtName.equals(modelName)) {
-								// an existing operation in the CDT file already
-								// has this name
-								operation = null;
-								break;
-							}
-						}
-					}
-				} catch (CModelException e) {
-				}
-			}
+		if (syncInfo == null || (syncInfo.behavior == null && syncInfo.createBehaviorName == null)) {
+			operation = getModelOperationFromName(name, parent, position);
 			if (operation != null) {
 				operation.setName(name);
 			} else {
@@ -279,6 +266,14 @@ public class SyncCDTtoModel implements Runnable {
 					}
 				}
 			}
+		}
+		else if (syncInfo.behavior != null) {
+			behavior = syncInfo.behavior;
+		}
+		else if ((syncInfo.createBehaviorName != null) && (m_classifier instanceof Class)) {
+			Class clazz = (Class) m_classifier;
+			behavior = (OpaqueBehavior) clazz.createOwnedBehavior(syncInfo.createBehaviorName,
+					UMLPackage.eINSTANCE.getOpaqueBehavior().eClass());
 		}
 
 		if (operation != null) {
@@ -402,11 +397,15 @@ public class SyncCDTtoModel implements Runnable {
 		if (behavior instanceof OpaqueBehavior) {
 			OpaqueBehavior ob = (OpaqueBehavior) behavior;
 			if (ob.getBodies().size() == 0) {
-				ob.getLanguages().add(langID);
+				ob.getLanguages().add(c_cpp_langID);
 				ob.getBodies().add(""); //$NON-NLS-1$
 			}
 			for (int i = 0; i < ob.getLanguages().size(); i++) {
-				if (ob.getLanguages().get(i).equals(langID)) {
+				// update first body of one of the languages supported by CDT. This implies that
+				// it is actually not possible to have separate C and C++ bodes in the same opaque
+				// behavior (which is rarely a good idea).
+				String language = ob.getLanguages().get(i);
+				if (TextEditorConstants.CPP.matcher(language).matches() || c_cpp_langID.equals(language)) {
 					if (i < ob.getBodies().size()) {
 						// should always be true, unless sync between
 						// languages/bodies is lost
@@ -423,6 +422,47 @@ public class SyncCDTtoModel implements Runnable {
 		}
 	}
 
+	/**
+	 * Obtain an operation from the model by using the name of a CDT method.
+	 * If an operation of the given name does not exist, it might indicate that
+	 * the method has been renamed.
+	 * 
+	 * @param name the operation name within CDT
+	 * @param parent the parent of the CDT method within CDT editor model
+	 * @param position the position within the other methods. This information is used to locate methods
+	 *   within the model that might have been renamed in the CDT editor.
+	 * @return
+	 */
+	public Operation getModelOperationFromName(String name, IParent parent, int position) {
+		Operation operation = m_classifier.getOperation(name, null, null);
+		
+		if (operation == null) {
+			// operation is not found via name in the model. try to locate the operation in the model at the same
+			// "position" as the method in the file and
+			// verify that this method does not have the same name as any method
+			// in the CDT file.
+			if (position < m_classifier.getOperations().size()) {
+				operation = m_classifier.getOperations().get(position);
+				String modelName = operation.getName();
+				try {
+					for (ICElement child : parent.getChildren()) {
+						if (child instanceof IMethodDeclaration) {
+							String cdtName = ((IMethodDeclaration) child).getElementName();
+							if (cdtName.equals(modelName)) {
+								// an existing operation in the CDT file already
+								// has this name
+								operation = null;
+								break;
+							}
+						}
+					}
+				} catch (CModelException e) {
+				}
+			}
+		}
+		return operation;
+	}
+	
 	public static String getBody(ITranslationUnit itu, IASTFunctionDefinition definition) {
 		IASTStatement body = definition.getBody();
 
@@ -533,9 +573,23 @@ public class SyncCDTtoModel implements Runnable {
 		}
 	}
 
+	/**
+	 * input of the CDT editor. Used to obtain code within editor.
+	 */
 	protected IEditorInput m_input;
 
+	/**
+	 * The classifier (class) that is currently edited
+	 */
 	protected Classifier m_classifier;
 
+	/**
+	 * name of CDT project in which the generated code is stored.
+	 */
 	protected String m_projectName;
+	
+	/**
+	 * reference to code generator
+	 */
+	protected ILangCodegen m_codegen;
 }

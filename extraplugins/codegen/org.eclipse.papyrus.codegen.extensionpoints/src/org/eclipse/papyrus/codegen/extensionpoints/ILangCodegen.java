@@ -38,6 +38,18 @@ public interface ILangCodegen {
 	public String getDescription();
 
 	/**
+	 * Some code generators use a non-trivial mapping from behaviors to methods in the generated code or
+	 * add methods that are not part of a existing behavior in the model.
+	 * This is a problem for code synchronization (update of model from code) as done for instance
+	 * with the CDT editor integration.
+	 * 
+	 * @param methodName the name of the method as in the code
+	 * @param body the body
+	 * @return the associated synchronization information. Null indicates that a default mapping is used
+	 */
+	public SyncInformation getSyncInformation(String methodName, String body);
+	
+	/**
 	 * Return true, if the generator is eligible for a certain type of model.
 	 * The method may check for instance whether a certain profile (such as
 	 * UML-RT) has been applied. Generators are allowed to return true for all

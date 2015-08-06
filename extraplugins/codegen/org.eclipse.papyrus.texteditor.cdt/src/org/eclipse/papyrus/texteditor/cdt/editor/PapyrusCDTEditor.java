@@ -351,7 +351,7 @@ public class PapyrusCDTEditor extends CEditor {
 		// IStorage storage = new TextStorage(string);
 		super.doSetInput(newInput);
 
-		syncCpp = new SyncCDTtoModel(newInput, classifier, uri.segment(1));
+		syncCpp = new SyncCDTtoModel(newInput, classifier, uri.segment(1), generatorID);
 		m_input = newInput;
 		reveal = new RevealCurrentOperation(newInput, classifier, uri.segment(1));
 

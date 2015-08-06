@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.codegen.base.ModelElementsCreator;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.SyncInformation;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
@@ -86,5 +87,10 @@ public class CppLangCodegen implements ILangCodegen {
 			lastProject = project;
 			creator = new CppModelElementsCreator(project);
 		}
+	}
+
+	@Override
+	public SyncInformation getSyncInformation(String methodName, String body) {
+		return null;
 	}
 }
