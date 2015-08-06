@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.umldi.feature"
-      label="%featureName"
-      version="0.7.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.umldi.feature" label="%featureName" provider-name="%providerName" version="0.7.0.qualifier">
 
    <description>
       UML Diagram Interchange Implementation
@@ -28,31 +23,11 @@ Contributors:
       <import feature="org.eclipse.papyrus.dd.feature"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.papyrus.umldi"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.umldi" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.umldi.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.umldi.edit" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.umldi.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-   <plugin
-         id="org.eclipse.papyrus.umldi2dg"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.umldi.editor" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.umldi2dg" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

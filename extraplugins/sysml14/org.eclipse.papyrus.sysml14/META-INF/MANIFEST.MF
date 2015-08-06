@@ -1,17 +1,10 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.sysml14;singleton:=true
-Bundle-Version: 0.7.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.sysml14.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.uml2.uml.profile.standard;visibility:=reexport,
  org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.papyrus.sysml14.activities,
  org.eclipse.papyrus.sysml14.activities.internal.impl,
  org.eclipse.papyrus.sysml14.activities.util,
@@ -37,7 +30,14 @@ Export-Package: org.eclipse.papyrus.sysml14.activities,
  org.eclipse.papyrus.sysml14.requirements.internal.impl,
  org.eclipse.papyrus.sysml14.requirements.util,
  org.eclipse.papyrus.sysml14.util
-Bundle-ActivationPolicy: lazy
-Bundle-Localization: plugin
-Bundle-Description: %pluginDescription
 Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.7.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.sysml14.Activator
+Bundle-Description: %pluginDescription
+Bundle-SymbolicName: org.eclipse.papyrus.sysml14;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

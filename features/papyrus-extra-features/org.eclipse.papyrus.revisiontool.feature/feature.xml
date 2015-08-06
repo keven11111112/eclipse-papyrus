@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.revisiontool.feature"
-      label="%featureName"
-      version="0.7.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.revisiontool.feature" label="%featureName" provider-name="%providerName" version="0.7.0.qualifier">
 
    <description>
       This feature enables to add the fucntionality revision inside Papyrus
@@ -22,11 +17,6 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin
-         id="org.eclipse.papyrus.revisiontool"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.revisiontool" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

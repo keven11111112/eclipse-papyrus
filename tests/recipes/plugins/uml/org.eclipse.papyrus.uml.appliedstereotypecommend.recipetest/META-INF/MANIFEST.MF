@@ -1,14 +1,11 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests;bundle-version="1.1.0"
+ org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests;bundle-version="1.1.1"
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.1.qualifier
 Bundle-Name: Recipetest
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.appliedstereotypecommend.rec
- ipetest.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.appliedstereotypecommend.
- recipetest
+Bundle-Activator: org.eclipse.papyrus.uml.appliedstereotypecommend.recipetest.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.appliedstereotypecommend.recipetest
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

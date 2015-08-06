@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.dd.feature"
-      label="%featureName"
-      version="0.7.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<feature id="org.eclipse.papyrus.dd.feature" label="%featureName" provider-name="%providerName" version="0.7.0.qualifier">
 
    <description url="">
       Diagram Definition Implementation
@@ -44,32 +41,12 @@ Contributors:
       <import plugin="org.eclipse.m2m.qvt.oml"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.papyrus.dd"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.dd" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.dd.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.dd.edit" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.dd.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.dd.editor" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.dd.qvt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.dd.qvt" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

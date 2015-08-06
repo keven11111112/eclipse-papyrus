@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.sysml14.feature"
-      label="%featureName"
-      version="0.7.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.sysml14.feature" label="%featureName" provider-name="%providerName" version="0.7.0.qualifier">
 
    <description url="http://www.example.com/description">
       This feature enables to create Syml 1.4 model
@@ -22,14 +17,14 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin id="org.eclipse.papyrus.sysml14" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="org.eclipse.papyrus.sysml14.ui" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="org.eclipse.papyrus.sysml14.diagram.common" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="org.eclipse.papyrus.sysml14.diagram.blockdefinition" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="org.eclipse.papyrus.sysml14.diagram.internalblock" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="org.eclipse.papyrus.sysml14.diagram.parametric" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="org.eclipse.papyrus.sysml14.diagram.requirement" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="org.eclipse.papyrus.sysml14.edit" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="org.eclipse.papyrus.sysml14.service.types" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14.ui" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14.diagram.common" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14.diagram.internalblock" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14.diagram.parametric" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14.diagram.requirement" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14.edit" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml14.service.types" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

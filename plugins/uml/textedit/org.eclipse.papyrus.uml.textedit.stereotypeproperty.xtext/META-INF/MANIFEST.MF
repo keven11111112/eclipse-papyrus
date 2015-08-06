@@ -4,7 +4,8 @@ Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.util,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.formatting;uses:="org.eclipse.xtext.formatting.impl",
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.generator;uses:="org.eclipse.emf.ecore.resource,org.eclipse.xtext.generator",
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.generator;uses:="org.eclipse.emf.ecore.resource,
+ org.eclipse.xtext.generator",
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr.internal,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.scoping;uses:="org.eclipse.papyrus.alf.scoping",
@@ -27,18 +28,18 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="3.1.1",
  org.eclipse.jface,
  org.eclipse.ui.ide,
- org.eclipse.papyrus.uml.profile;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.tools;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.alf;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.0",
+ org.eclipse.papyrus.uml.profile;bundle-version="1.1.1",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.1.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.1",
+ org.eclipse.papyrus.uml.alf;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.1.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.1.1",
+ org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.1.1",
  org.eclipse.xtext.xbase.lib
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.1.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

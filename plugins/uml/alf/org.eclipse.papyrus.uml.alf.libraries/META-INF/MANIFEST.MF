@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: ALF Libraries
-Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.libraries;singleton:=true
-Bundle-Version: 1.1.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.alf.libraries.AlfLibrariesActivator
-Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.1.0",
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.1.1",
  org.eclipse.emf.ecore;bundle-version="2.10.1",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.1",
  org.eclipse.gmf.runtime.emf.commands.core,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-ActivationPolicy: lazy
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.1"
 Export-Package: org.eclipse.papyrus.uml.alf.libraries,
  org.eclipse.papyrus.uml.alf.libraries.helper
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.1.1.qualifier
+Bundle-Name: ALF Libraries
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.alf.libraries.AlfLibrariesActivator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.libraries;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

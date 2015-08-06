@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.papyrus.infra.constraints.edit;bundle-version="1.1.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.constraints.edit;bundle-version="1.1.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide
@@ -10,13 +10,10 @@ Export-Package: org.eclipse.papyrus.infra.constraints.environment.presentation,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.1.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.constraints.presentation.C
- onstraintsEditorPlugin$Implementation
+Bundle-Activator: org.eclipse.papyrus.infra.constraints.presentation.ConstraintsEditorPlugin$Implementation
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.constraints.editor;sing
- leton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.constraints.editor;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

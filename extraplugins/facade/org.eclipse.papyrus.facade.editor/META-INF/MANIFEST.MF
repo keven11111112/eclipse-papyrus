@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.facade.edit;bundle-version="1.1.0";visibility:=reexport,
+ org.eclipse.papyrus.facade.edit;bundle-version="1.1.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -14,12 +14,10 @@ Export-Package: org.eclipse.papyrus.facade.extensiondefinition.presentation,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.1.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.facade.presentation.FacadeEditor
- Plugin$Implementation
+Bundle-Activator: org.eclipse.papyrus.facade.presentation.FacadeEditorPlugin$Implementation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.facade.editor;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-

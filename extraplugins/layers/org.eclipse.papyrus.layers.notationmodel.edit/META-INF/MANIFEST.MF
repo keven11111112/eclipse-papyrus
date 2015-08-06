@@ -8,13 +8,10 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.layers.notationmodel.edit
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.layers.notationmodel.edit.Activa
- tor
-Bundle-SymbolicName: org.eclipse.papyrus.layers.notationmodel.edit;sin
- gleton:=true
+Bundle-Activator: org.eclipse.papyrus.layers.notationmodel.edit.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.layers.notationmodel.edit;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

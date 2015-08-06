@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.uml.alf.extra.feature"
-      label="Papyrus ALF Properties View Integration (Incubation)"
-      version="0.7.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.uml.alf.extra.feature" label="Papyrus ALF Properties View Integration (Incubation)" provider-name="Eclipse Modeling Project" version="0.7.0.qualifier">
 
    <copyright url="http://www.example.com/copyright">
       Copyright (c) 2015 CEA LIST.
@@ -18,35 +13,15 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.papyrus.extra.moka.feature" version="1.1.0.qualifier"/>
+      <import feature="org.eclipse.papyrus.extra.moka.feature" version="1.1.1.qualifier"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.alf.text"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.alf.text" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.alf.transaction"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.alf.transaction" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.alf.properties.xtext"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.alf.properties.xtext" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.alf.preferences"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.alf.preferences" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

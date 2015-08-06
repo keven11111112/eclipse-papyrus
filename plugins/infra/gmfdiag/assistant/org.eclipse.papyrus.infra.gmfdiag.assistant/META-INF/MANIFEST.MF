@@ -1,40 +1,39 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.assistant;singleton:=true
-Bundle-Version: 1.1.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.AssistantPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Description: %pluginDescription
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;bundle-version="2.11.0";visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.11.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.filters;bundle-version="1.1.1";visibility:=reexport,
+ org.eclipse.uml2.types;bundle-version="2.0.0";visibility:=reexport,
+ org.eclipse.uml2.common;bundle-version="2.0.100";visibility:=reexport,
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.1",
+ com.google.guava;bundle-version="11.0.0",
+ org.eclipse.gmf.runtime.emf.ui;bundle-version="1.7.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.1",
+ org.eclipse.core.expressions;bundle-version="3.4.600",
+ org.eclipse.gmf.runtime.notation;bundle-version="1.8.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.1",
+ com.ibm.icu;bundle-version="52.1.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.1.1"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.assistant,
  org.eclipse.papyrus.infra.gmfdiag.assistant.core,
  org.eclipse.papyrus.infra.gmfdiag.assistant.core.util,
  org.eclipse.papyrus.infra.gmfdiag.assistant.impl,
- org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core;
-  x-friends:="org.eclipse.papyrus.infra.gmfdiag.assistant.ui",
+ org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core; x-friends:="org.eclipse.papyrus.infra.gmfdiag.assistant.ui",
  org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.util;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.assistant.internal.expressions;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.assistant.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;bundle-version="2.11.0";visibility:=reexport,
- org.eclipse.emf.ecore.xmi;bundle-version="2.11.0";visibility:=reexport,
- org.eclipse.papyrus.infra.filters;bundle-version="1.1.0";visibility:=reexport,
- org.eclipse.uml2.types;bundle-version="2.0.0";visibility:=reexport,
- org.eclipse.uml2.common;bundle-version="2.0.100";visibility:=reexport,
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.0",
- com.google.guava;bundle-version="11.0.0",
- org.eclipse.gmf.runtime.emf.ui;bundle-version="1.7.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.0",
- org.eclipse.core.expressions;bundle-version="3.4.600",
- org.eclipse.gmf.runtime.notation;bundle-version="1.8.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.0",
- com.ibm.icu;bundle-version="52.1.0",
- org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.1.0"
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.1.1.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.AssistantPlugin$Implementation
+Bundle-ManifestVersion: 2
+Bundle-Description: %pluginDescription
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.assistant;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
