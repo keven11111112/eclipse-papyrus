@@ -296,6 +296,9 @@ public class UMLVisualIDRegistry {
 			if (UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return NestedSignalForClassEditPart.VISUAL_ID;
 			}
+			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
+				return NestedComponentForClassEditPart.VISUAL_ID;
+			}
 			break;
 		case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
@@ -328,6 +331,9 @@ public class UMLVisualIDRegistry {
 			}
 			if (UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return NestedSignalForComponentEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
+				return NestedComponentForComponentEditPart.VISUAL_ID;
 			}
 			break;
 		case SignalAttributeCompartmentEditPartCN.VISUAL_ID:
@@ -366,6 +372,9 @@ public class UMLVisualIDRegistry {
 			}
 			if (UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return NestedSignalForInterfaceEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
+				return NestedComponentForInterfaceEditPart.VISUAL_ID;
 			}
 			break;
 		case PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID:
@@ -512,6 +521,9 @@ public class UMLVisualIDRegistry {
 			if (UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return NestedSignalForClassEditPart.VISUAL_ID;
 			}
+			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
+				return NestedComponentForClassEditPart.VISUAL_ID;
+			}
 			break;
 		case ComponentAttributeCompartmentEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
@@ -545,6 +557,9 @@ public class UMLVisualIDRegistry {
 			if (UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return NestedSignalForComponentEditPart.VISUAL_ID;
 			}
+			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
+				return NestedComponentForComponentEditPart.VISUAL_ID;
+			}
 			break;
 		case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
@@ -577,6 +592,9 @@ public class UMLVisualIDRegistry {
 			}
 			if (UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return NestedSignalForInterfaceEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
+				return NestedComponentForInterfaceEditPart.VISUAL_ID;
 			}
 			break;
 		case PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID:
@@ -1271,6 +1289,9 @@ public class UMLVisualIDRegistry {
 			if (NestedSignalForClassEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (NestedComponentForClassEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
 			if (PropertyForComponentEditPart.VISUAL_ID == nodeVisualID) {
@@ -1302,6 +1323,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (NestedSignalForComponentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NestedComponentForComponentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1340,6 +1364,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (NestedSignalForInterfaceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NestedComponentForInterfaceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1487,6 +1514,9 @@ public class UMLVisualIDRegistry {
 			if (NestedSignalForClassEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (NestedComponentForClassEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ComponentAttributeCompartmentEditPart.VISUAL_ID:
 			if (PropertyForComponentEditPart.VISUAL_ID == nodeVisualID) {
@@ -1520,6 +1550,9 @@ public class UMLVisualIDRegistry {
 			if (NestedSignalForComponentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (NestedComponentForComponentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
 			if (PropertyForInterfaceEditPart.VISUAL_ID == nodeVisualID) {
@@ -1551,6 +1584,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (NestedSignalForInterfaceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NestedComponentForInterfaceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2081,6 +2117,9 @@ public class UMLVisualIDRegistry {
 		case NestedEnumerationForClassEditPart.VISUAL_ID:
 		case NestedEnumerationForComponentEditPart.VISUAL_ID:
 		case NestedEnumerationForInterfaceEditPart.VISUAL_ID:
+		case NestedComponentForClassEditPart.VISUAL_ID:
+		case NestedComponentForInterfaceEditPart.VISUAL_ID:
+		case NestedComponentForComponentEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

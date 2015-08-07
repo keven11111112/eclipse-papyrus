@@ -423,6 +423,21 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Component_3055 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Component_3055"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Component_3056 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Component_3056"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Component_3057 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Component_3057"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Link_4016 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Link_4016"); //$NON-NLS-1$
 
 	/**
@@ -734,6 +749,16 @@ public class UMLElementTypes {
 
 			elements.put(Signal_3049, UMLPackage.eINSTANCE.getSignal());
 
+
+			elements.put(Component_3055, UMLPackage.eINSTANCE.getComponent());
+
+
+			elements.put(Component_3056, UMLPackage.eINSTANCE.getComponent());
+
+
+			elements.put(Component_3057, UMLPackage.eINSTANCE.getComponent());
+
+
 			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
 
 			elements.put(Association_4001, UMLPackage.eINSTANCE.getAssociation());
@@ -871,6 +896,9 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Signal_3050);
 			KNOWN_ELEMENT_TYPES.add(Signal_3051);
 			KNOWN_ELEMENT_TYPES.add(Signal_3049);
+			KNOWN_ELEMENT_TYPES.add(Component_3055);
+			KNOWN_ELEMENT_TYPES.add(Component_3056);
+			KNOWN_ELEMENT_TYPES.add(Component_3057);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
 			KNOWN_ELEMENT_TYPES.add(Association_4001);
@@ -1062,6 +1090,12 @@ public class UMLElementTypes {
 			return Signal_3051;
 		case NestedSignalForInterfaceEditPart.VISUAL_ID:
 			return Signal_3049;
+		case NestedComponentForClassEditPart.VISUAL_ID:
+			return Component_3055;
+		case NestedComponentForInterfaceEditPart.VISUAL_ID:
+			return Component_3056;
+		case NestedComponentForComponentEditPart.VISUAL_ID:
+			return Component_3057;
 		case AssociationClassDashedLinkEditPart.VISUAL_ID:
 			return Link_4016;
 		case AssociationClassLinkEditPart.VISUAL_ID:

@@ -690,6 +690,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if (visualID == NestedComponentForClassEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		return result;
 	}
@@ -787,6 +791,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			if (visualID == NestedSignalForComponentEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == NestedComponentForComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -911,6 +919,14 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			if (visualID == NestedSignalForInterfaceEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
+			Classifier childElement = (Classifier) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == NestedComponentForInterfaceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1310,6 +1326,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if (visualID == NestedComponentForClassEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		return result;
 	}
@@ -1410,6 +1430,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if (visualID == NestedComponentForComponentEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		return result;
 	}
@@ -1507,6 +1531,14 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			if (visualID == NestedSignalForInterfaceEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
+			Classifier childElement = (Classifier) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == NestedComponentForInterfaceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2133,6 +2165,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return getSignal_3051ContainedLinks(view);
 		case NestedSignalForInterfaceEditPart.VISUAL_ID:
 			return getSignal_3049ContainedLinks(view);
+		case NestedComponentForClassEditPart.VISUAL_ID:
+			return getComponent_3055ContainedLinks(view);
+		case NestedComponentForInterfaceEditPart.VISUAL_ID:
+			return getComponent_3056ContainedLinks(view);
+		case NestedComponentForComponentEditPart.VISUAL_ID:
+			return getComponent_3057ContainedLinks(view);
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017ContainedLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -2325,6 +2363,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return getSignal_3051IncomingLinks(view);
 		case NestedSignalForInterfaceEditPart.VISUAL_ID:
 			return getSignal_3049IncomingLinks(view);
+		case NestedComponentForClassEditPart.VISUAL_ID:
+			return getComponent_3055IncomingLinks(view);
+		case NestedComponentForInterfaceEditPart.VISUAL_ID:
+			return getComponent_3056IncomingLinks(view);
+		case NestedComponentForComponentEditPart.VISUAL_ID:
+			return getComponent_3057IncomingLinks(view);
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017IncomingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -2517,6 +2561,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return getSignal_3051OutgoingLinks(view);
 		case NestedSignalForInterfaceEditPart.VISUAL_ID:
 			return getSignal_3049OutgoingLinks(view);
+		case NestedComponentForClassEditPart.VISUAL_ID:
+			return getComponent_3055OutgoingLinks(view);
+		case NestedComponentForInterfaceEditPart.VISUAL_ID:
+			return getComponent_3056OutgoingLinks(view);
+		case NestedComponentForComponentEditPart.VISUAL_ID:
+			return getComponent_3057OutgoingLinks(view);
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017OutgoingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -3466,6 +3516,51 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Signal modelElement = (Signal) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Substitution_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3055ContainedLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Substitution_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3056ContainedLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Substitution_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3057ContainedLinks(View view) {
+		Component modelElement = (Component) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4003(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Substitution_4004(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
@@ -4720,6 +4815,27 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSignal_3049IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3055IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3056IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3057IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -6020,6 +6136,27 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSignal_3049OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3055OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3056OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getComponent_3057OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 

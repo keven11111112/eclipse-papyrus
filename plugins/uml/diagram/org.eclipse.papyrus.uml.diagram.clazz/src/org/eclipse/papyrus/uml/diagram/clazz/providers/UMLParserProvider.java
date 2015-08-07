@@ -1592,6 +1592,57 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser component_3055Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getComponent_3055Parser() {
+		if (component_3055Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			component_3055Parser = parser;
+		}
+		return component_3055Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser component_3056Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getComponent_3056Parser() {
+		if (component_3056Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			component_3056Parser = parser;
+		}
+		return component_3056Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser component_3057Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getComponent_3057Parser() {
+		if (component_3057Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			component_3057Parser = parser;
+		}
+		return component_3057Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser associationClassName_6031Parser;
 
 	/**
@@ -2363,6 +2414,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getSignal_3051Parser();
 		case NestedSignalForInterfaceEditPart.VISUAL_ID:
 			return getSignal_3049Parser();
+		case NestedComponentForClassEditPart.VISUAL_ID:
+			return getComponent_3055Parser();
+		case NestedComponentForInterfaceEditPart.VISUAL_ID:
+			return getComponent_3056Parser();
+		case NestedComponentForComponentEditPart.VISUAL_ID:
+			return getComponent_3057Parser();
 
 		case AssociationClassRoleSourceEditPart.VISUAL_ID:
 			return getAssociationClassName_6031Parser();

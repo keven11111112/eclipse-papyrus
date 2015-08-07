@@ -429,6 +429,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case NestedSignalForInterfaceEditPart.VISUAL_ID:
 				return new NestedSignalForInterfaceEditPart(view);
 
+			case NestedComponentForClassEditPart.VISUAL_ID:
+				return new NestedComponentForClassEditPart(view);
+
+			case NestedComponentForInterfaceEditPart.VISUAL_ID:
+				return new NestedComponentForInterfaceEditPart(view);
+
+			case NestedComponentForComponentEditPart.VISUAL_ID:
+				return new NestedComponentForComponentEditPart(view);
+
 			case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
 				return new ClassAttributeCompartmentEditPartCN(view);
 

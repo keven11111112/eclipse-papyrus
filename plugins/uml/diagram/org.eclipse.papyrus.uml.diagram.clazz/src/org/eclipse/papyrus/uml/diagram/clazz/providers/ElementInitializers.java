@@ -941,6 +941,48 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Component_3055(Component instance) {
+		try {
+			Object value_0 = name_Component_3055(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Component_3056(Component instance) {
+		try {
+			Object value_0 = name_Component_3056(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Component_3057(Component instance) {
+		try {
+			Object value_0 = name_Component_3057(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_AssociationClass_4017(AssociationClass instance) {
 		try {
 			Object value_0 = name_AssociationClass_4017(instance);
@@ -1527,6 +1569,27 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Signal_3049(Signal it) {
+		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Component_3055(Component it) {
+		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Component_3056(Component it) {
+		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Component_3057(Component it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
