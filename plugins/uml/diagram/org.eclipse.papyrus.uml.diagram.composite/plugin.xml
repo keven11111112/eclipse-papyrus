@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <!--
- Copyright (c) 2009, 2015 CEA and others.
+ Copyright (c) 2009, 2015 CEA, Christian W. Damus, and others.
  
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  Contributors:
    CEA - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
+   Christian W. Damus - bug 474489
    
 -->
 <plugin>
@@ -906,6 +907,26 @@
    <semanticChildrenStrategy
          editPart="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart"
          class="org.eclipse.papyrus.uml.diagram.composite.custom.canonical.PropertyPartCompartmentSemanticChildrenStrategy">
+   </semanticChildrenStrategy>
+   <semanticChildrenStrategy
+         class="org.eclipse.papyrus.uml.diagram.composite.custom.canonical.StructuredClassifierSemanticChildrenStrategy">
+      <enablement>
+         <and>
+            <with
+                  variable="element">
+               <instanceof
+                     value="org.eclipse.uml2.uml.StructuredClassifier">
+               </instanceof>
+            </with>
+            <with
+                  variable="view">
+               <test
+                     property="org.eclipse.papyrus.infra.gmfdiag.common.diagramType"
+                     value="CompositeStructure">
+               </test>
+            </with>
+         </and>
+      </enablement>
    </semanticChildrenStrategy>
 </extension>
 <extension
