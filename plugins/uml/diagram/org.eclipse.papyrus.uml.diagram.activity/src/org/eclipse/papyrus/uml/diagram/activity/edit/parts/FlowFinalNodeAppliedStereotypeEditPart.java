@@ -93,7 +93,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated NOT implements IPapyrusEditPart
  */
-public class FlowFinalNodeAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
+public class FlowFinalNodeAppliedStereotypeEditPart extends AbstractLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 
 	/**
 	 * @generated
