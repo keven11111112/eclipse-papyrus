@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -84,28 +85,27 @@ public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 
 	protected void resizeNorth(IElementType elementType) {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
-		createNode(elementType, lifeline1, new Point(131, 200), new Dimension(20, 40));
+		createNode(elementType, lifeline1, new Point(131, 200), new Dimension(20, 60));
 		waitForComplete();
 
-		IGraphicalEditPart esp = (IGraphicalEditPart)lifeline1.getChildren().get(1);
+		IGraphicalEditPart esp = (IGraphicalEditPart) lifeline1.getChildren().get(1);
 		resize(esp, getAbsoluteBounds(esp).getTop(), PositionConstants.NORTH, new Dimension(0, 30));
 		resize(esp, getAbsoluteBounds(esp).getTop(), PositionConstants.NORTH, new Dimension(0, -30));
-
 		resize(esp, getAbsoluteBounds(esp).getTop(), PositionConstants.NORTH, new Dimension(0, -20));
 	}
 
 	protected void resizeSouth(IElementType elementType) {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
 		createNode(elementType, lifeline1, new Point(131, 200), new Dimension(20, 40));
 		waitForComplete();
 
-		IGraphicalEditPart esp = (IGraphicalEditPart)lifeline1.getChildren().get(1);
+		IGraphicalEditPart esp = (IGraphicalEditPart) lifeline1.getChildren().get(1);
 		resize(esp, getAbsoluteBounds(esp).getBottom(), PositionConstants.SOUTH, new Dimension(0, 30));
 		resize(esp, getAbsoluteBounds(esp).getBottom(), PositionConstants.SOUTH, new Dimension(0, -30));
 
@@ -118,7 +118,7 @@ public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 		req.setEditParts(op);
 		req.setResizeDirection(resizeDir);
 		req.setSizeDelta(deltaSize);
-		if(resizeDir == PositionConstants.NORTH || resizeDir == PositionConstants.WEST) {
+		if (resizeDir == PositionConstants.NORTH || resizeDir == PositionConstants.WEST) {
 			req.setMoveDelta(new Point(-deltaSize.width(), -deltaSize.height()));
 		}
 
@@ -128,14 +128,15 @@ public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 
 	private void manageResizeCommnad(IGraphicalEditPart op, Dimension deltaSize, Command c) {
 		assertNotNull(RESIZE + COMMAND_NULL, c);
-		assertTrue(RESIZE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, c.canExecute() == true);
+		assertTrue(RESIZE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, c.canExecute());
 		Rectangle before = getAbsoluteBounds(op);
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(c));
 		waitForComplete();
 
 		Rectangle after = getAbsoluteBounds(op);
-		assertTrue(RESIZE + TEST_THE_EXECUTION, after.width() - before.width() == deltaSize.width());
-		assertTrue(RESIZE + TEST_THE_EXECUTION, after.height() - before.height() == deltaSize.height());
+		Dimension expected = getExpectedSize(op, before, deltaSize);
+		assertEquals(RESIZE + TEST_THE_EXECUTION, expected.width() - before.width(), after.width() - before.width());
+		assertEquals(RESIZE + TEST_THE_EXECUTION, expected.height() - before.height(), after.height() - before.height());
 
 		getEMFCommandStack().undo();
 		waitForComplete();
@@ -146,8 +147,20 @@ public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 		assertTrue(RESIZE + TEST_THE_REDO, after.equals(getAbsoluteBounds(op)));
 	}
 
+	private Dimension getExpectedSize(IGraphicalEditPart op, Rectangle before, Dimension deltaSize) {
+		int expectedHeight = before.height() + deltaSize.height();
+		int expectedWidth = before.width() + deltaSize.width();
+		Dimension minSize = op.getFigure().getMinimumSize();
+		Dimension maxSize = op.getFigure().getMaximumSize();
+		expectedHeight = expectedHeight > maxSize.height() ? maxSize.height() : expectedHeight;
+		expectedHeight = expectedHeight < minSize.height() ? minSize.height() : expectedHeight;
+		expectedWidth = expectedWidth > maxSize.width() ? maxSize.width() : expectedWidth;
+		expectedWidth = expectedWidth < minSize.width() ? minSize.width() : expectedWidth;
+		return new Dimension(expectedWidth, expectedHeight);
+	}
+
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
-		//CREATION
+		// CREATION
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);

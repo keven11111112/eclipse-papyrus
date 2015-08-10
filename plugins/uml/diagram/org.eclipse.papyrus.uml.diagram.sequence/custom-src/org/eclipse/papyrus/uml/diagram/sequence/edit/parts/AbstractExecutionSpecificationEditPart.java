@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.DelegatingLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
@@ -42,7 +43,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -52,10 +52,10 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
-import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.LinkLFSVGNodePlateFigure;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
@@ -73,7 +73,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEditPart implements IPapyrusEditPart {
+public abstract class AbstractExecutionSpecificationEditPart extends RoundedCompartmentEditPart {
 
 	public static final String EXECUTION_FIX_ANCHOR_POSITION = "Execution Fix Anchor Position";
 
@@ -117,26 +117,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		}
 	}
 
-	/**
-	 * Overrides to disable the defaultAnchorArea. The edge is now more stuck with the middle of the
-	 * figure.
-	 *
-	 */
-	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(16, 60) {
-
-			/**
-			 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
-			 */
-			@Override
-			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
-				return false;
-			}
-		};
-		result.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20))); // min height 20
-		return result;
-	}
-
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -154,7 +134,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				HashMap<ShapeNodeEditPart, Integer> childrenLevels = new HashMap<ShapeNodeEditPart, Integer>();
 				Integer currentLevel = 0;
 				while (!testChildrenParts.isEmpty()) {
-					currentLevel ++;
+					currentLevel++;
 					List<ShapeNodeEditPart> testChildrenPartsNew = new ArrayList<ShapeNodeEditPart>(testChildrenParts);
 					HashMap<ShapeNodeEditPart, Integer> childrenLevelsNew = new HashMap<ShapeNodeEditPart, Integer>(childrenLevels);
 					for (ShapeNodeEditPart child : testChildrenParts) {
@@ -169,8 +149,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 						if (childrenLevels.containsKey(parentTest) || parentTest == null) {
 							testChildrenPartsNew.remove(child);
 							childrenLevelsNew.put(child, currentLevel);
-						}							
-					}		
+						}
+					}
 					childrenLevels = childrenLevelsNew;
 					testChildrenParts = testChildrenPartsNew;
 				}
@@ -187,8 +167,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 					}
 					Integer level = childrenLevels.get(child);
 					Rectangle r = rectRequest.getCopy();
-					r.translate(0, level*LifelineXYLayoutEditPolicy.SPACING_HEIGHT);
-					r.resize(0, -2*level*LifelineXYLayoutEditPolicy.SPACING_HEIGHT);
+					r.translate(0, level * LifelineXYLayoutEditPolicy.SPACING_HEIGHT);
+					r.resize(0, -2 * level * LifelineXYLayoutEditPolicy.SPACING_HEIGHT);
 					Rectangle translatedRect = originalRect.getCopy();
 					figure.translateToAbsolute(translatedRect);
 					if (translatedRect.y < r.y || translatedRect.bottom() > r.bottom()) {
@@ -197,11 +177,11 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 						if (translatedRect.y < r.y) {
 							moveAmount = r.y - translatedRect.y;
 							resizeAmount = moveAmount;
-						} else  { // translatedRect.bottom() > r.bottom()
+						} else { // translatedRect.bottom() > r.bottom()
 							resizeAmount = translatedRect.bottom() - r.bottom();
 						}
 						if (translatedRect.height() - resizeAmount < figure.getMinimumSize().height()) {
-							return UnexecutableCommand.INSTANCE; 
+							return UnexecutableCommand.INSTANCE;
 						}
 						// Resize child ES
 						ChangeBoundsRequest esRequest = new ChangeBoundsRequest(org.eclipse.gef.RequestConstants.REQ_MOVE);
@@ -285,10 +265,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		}
 	}
 
-	protected final void refreshShadow() {
-		getPrimaryShape().setShadow(AppearanceHelper.showShadow((View) getModel()));
-	}
-
 	/**
 	 * Override to set the transparency to the correct figure
 	 */
@@ -356,7 +332,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		refreshShadow();
 	}
 
-	public class ExecutionSpecificationRectangleFigure extends PapyrusNodeFigure { // RectangleFigure {
+	public class ExecutionSpecificationRectangleFigure extends NodeNamedElementFigure { // RectangleFigure {
 
 		public ExecutionSpecificationRectangleFigure() {
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
@@ -556,8 +532,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 					Anchor a = ((Edge) connection.getModel()).getTargetAnchor();
 					if (a instanceof IdentityAnchor) {
 						setResult(((IdentityAnchor) a).getId());
-					}
-					else {
+					} else {
 						setResult(""); //$NON-NLS-1$
 					}
 				}
@@ -631,8 +606,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 					Anchor a = ((Edge) connection.getModel()).getSourceAnchor();
 					if (a instanceof IdentityAnchor) {
 						setResult(((IdentityAnchor) a).getId());
-					}
-					else {
+					} else {
 						setResult(""); //$NON-NLS-1$
 					}
 				}
@@ -655,5 +629,44 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		super.refreshVisuals();
 		refreshTransparency();
 		refreshShadow();
+	}
+
+	@Override
+	protected NodeFigure createMainFigureWithSVG() {
+		NodeFigure figure = createSVGNodePlate();
+		figure.setLayoutManager(new DelegatingLayout());
+		shape = createNodeShape();
+		figure.add(shape, new FillParentLocator());
+		setupContentPane(shape);
+		return figure;
+	}
+
+	@Override
+	protected NodeFigure createSVGNodePlate() {
+		LinkLFSVGNodePlateFigure svgNodePlateFigure = new LinkLFSVGNodePlateFigure(this, -1, -1) {
+			/**
+			 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
+			 */
+			@Override
+			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
+				return false;
+			}
+
+			@Override
+			public ConnectionAnchor getConnectionAnchor(String terminal) {
+				// Use FixedAnchorEx for MessageSync, this will be invoked by mapConnectionAnchor(termial) operation.
+				if (terminal != null && terminal.indexOf("{") != -1 && terminal.indexOf("}") != -1) {
+					int position = AnchorHelper.FixedAnchorEx.parsePosition(terminal);
+					if (PositionConstants.TOP == position || PositionConstants.BOTTOM == position) {
+						return new AnchorHelper.FixedAnchorEx(this, position);
+					}
+				}
+				return super.getConnectionAnchor(terminal);
+			}
+		};
+		svgNodePlateFigure.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20))); // min height 20
+		svgNodePlate = svgNodePlateFigure.withLinkLFEnabled();
+		svgNodePlate.setDefaultNodePlate(createNodePlate());
+		return svgNodePlate;
 	}
 }
