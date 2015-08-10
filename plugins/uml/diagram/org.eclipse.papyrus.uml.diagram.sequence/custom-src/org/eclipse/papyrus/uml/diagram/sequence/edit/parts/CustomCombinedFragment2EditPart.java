@@ -54,7 +54,7 @@ public class CustomCombinedFragment2EditPart extends CombinedFragment2EditPart {
 	 * outline of this shape).
 	 */
 	@Override
-	protected NodeFigure getNodeFigure() {
+	public NodeFigure getNodeFigure() {
 		NodeFigure centerFigure = null;
 		if (getContentPane() instanceof CoRegionCombinedFragmentFigure) {
 			centerFigure = ((CoRegionCombinedFragmentFigure) getContentPane()).getCentralVerticalLine();
