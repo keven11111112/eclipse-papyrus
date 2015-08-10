@@ -194,6 +194,13 @@
          properties="hasEditPolicy"
          type="org.eclipse.gef.EditPart">
    </propertyTester>   
+   <propertyTester
+         class="org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramPropertyTester"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.diagramProperties"
+         namespace="org.eclipse.papyrus.infra.gmfdiag.common"
+         properties="diagramType"
+         type="org.eclipse.gmf.runtime.notation.View">
+   </propertyTester>   
 </extension>
 <extension
       point="org.eclipse.ui.menus">

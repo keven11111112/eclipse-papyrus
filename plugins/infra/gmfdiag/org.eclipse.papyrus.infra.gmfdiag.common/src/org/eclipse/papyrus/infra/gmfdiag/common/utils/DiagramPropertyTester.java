@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 474489
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
@@ -17,7 +18,11 @@ import java.util.Collection;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Control;
@@ -25,6 +30,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchPart;
+
+import com.google.common.base.Objects;
 
 
 public class DiagramPropertyTester extends PropertyTester {
@@ -42,6 +49,12 @@ public class DiagramPropertyTester extends PropertyTester {
 	 */
 	public static final String IS_TEXT_ZONE = "isTextZone"; //$NON-NLS-1$
 
+	/**
+	 * The {@code diagramType} property of anything adaptable to {@link View}.
+	 * Its value is the string type of the {@link Diagram} that is or contains the view.
+	 */
+	public static final String DIAGRAM_TYPE = "diagramType"; //$NON-NLS-1$
+
 
 	/**
 	 *
@@ -54,13 +67,16 @@ public class DiagramPropertyTester extends PropertyTester {
 			// activeWhen -> with -> activeEditor -> adapt -> IDiagramWorkbenchPart. unfortunately, this method doesn't work, the adapt test is correct, but the Eclipse handler system
 			// find often several handlers actived in the same time and choose one of them (and never the Papyrus handler...)
 			boolean answer = isDiagramEditor((IStructuredSelection) receiver);
-			return new Boolean(answer).equals(expectedValue);
+			return Boolean.valueOf(answer).equals(expectedValue);
 		} else if (IS_GMF_DIAGRAM_CONTEXT_ACTIVE.equals(property) && receiver instanceof Collection<?>) {
 			boolean answer = isDiagramContextActive((Collection<?>) receiver);
-			return new Boolean(answer).equals(expectedValue);
+			return Boolean.valueOf(answer).equals(expectedValue);
 		} else if (IS_TEXT_ZONE.equals(property) && receiver instanceof Shell) {
 			boolean answer = isTextZone((Shell) receiver);
-			return new Boolean(answer).equals(expectedValue);
+			return Boolean.valueOf(answer).equals(expectedValue);
+		} else if (DIAGRAM_TYPE.equals(property)) {
+			String type = diagramType(receiver);
+			return Objects.equal(type, expectedValue);
 		}
 		return false;
 	}
@@ -89,7 +105,7 @@ public class DiagramPropertyTester extends PropertyTester {
 	private boolean isDiagramEditor(IStructuredSelection selection) {
 		final IWorkbenchPart part = WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
 		if (part != null) {
-			final IDiagramWorkbenchPart diagramPart = (IDiagramWorkbenchPart) part.getAdapter(IDiagramWorkbenchPart.class);
+			final IDiagramWorkbenchPart diagramPart = part.getAdapter(IDiagramWorkbenchPart.class);
 			return diagramPart != null;
 		}
 		return false;
@@ -103,5 +119,23 @@ public class DiagramPropertyTester extends PropertyTester {
 	 */
 	private boolean isDiagramContextActive(final Collection<?> activeContextIds) {
 		return activeContextIds.contains("org.eclipse.gmf.runtime.diagram.ui.diagramContext"); //$NON-NLS-1$
+	}
+
+	private final String diagramType(Object viewOrAdaptableToView) {
+		String result = null;
+
+		View view = TypeUtils.as(viewOrAdaptableToView, View.class);
+		if (view == null) {
+			AdapterUtils.adapt(viewOrAdaptableToView, View.class, null);
+		}
+
+		if (view != null) {
+			Diagram diagram = view.getDiagram();
+			if (diagram != null) {
+				result = diagram.getType();
+			}
+		}
+
+		return result;
 	}
 }
