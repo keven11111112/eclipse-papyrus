@@ -29,15 +29,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.LabelLocator;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationConstraintInMessageItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationObservationConstraint;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
@@ -138,39 +134,6 @@ public class CustomDurationConstraintInMessageEditPart extends DurationConstrain
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
-		}
-	}
-
-	@Override
-	protected IFigure createNodeShape() {
-		return primaryShape = new CustomDurationObservationConstraint();
-	}
-
-	/**
-	 * @Override use correct minimum size
-	 */
-	@Override
-	protected NodeFigure createNodePlate() {
-		// use correct minimum size
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(-1, -1);
-		// String prefElementId = "DurationConstraint";
-		// IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		// String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		// String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		// DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		return result;
-	}
-
-	public class CustomDurationObservationConstraint extends DurationObservationConstraint {
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart.DurationObservationConstraint#getDurationLabel()
-		 *
-		 * @return
-		 */
-		@Override
-		public WrappingLabel getDurationLabel() {
-			return this;
 		}
 	}
 }

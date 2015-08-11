@@ -1190,7 +1190,7 @@
             metamodelType="/0/@diagram/@childNodes.12/@elementType"/>
         <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.DurationObservationConstraint"/>
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.COMPONENT_ROLE"
@@ -1248,7 +1248,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getDurationLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
