@@ -1836,7 +1836,7 @@
           <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
           <repositoryList>
             <repository url="${oomph.update.url}"/>
-            <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.3/"/>
+            <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.4/"/>
           </repositoryList>
         </targlet>
       </setupTask>
@@ -1861,7 +1861,7 @@
           <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
           <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/"/>
           <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/neon/main"/>
-          <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.3/"/>
+          <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.4/"/>
         </setupTask>
       </stream>
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
