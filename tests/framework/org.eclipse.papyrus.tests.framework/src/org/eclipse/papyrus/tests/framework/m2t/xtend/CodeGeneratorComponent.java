@@ -29,6 +29,7 @@ import org.eclipse.papyrus.tests.framework.m2t.xtend.templates.CodegenContext;
 import org.eclipse.papyrus.tests.framework.m2t.xtend.templates.PapyrusDiagramCanonicalTests;
 import org.eclipse.uml2.uml.Model;
 
+import com.google.common.base.Supplier;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -48,19 +49,14 @@ public class CodeGeneratorComponent extends WorkflowComponentWithModelSlot {
 	@Inject
 	private CodegenContext codegenContext;
 
-	public CodeGeneratorComponent() {
-		injector = Guice.createInjector(createCodeGeneratorModule());
+	public CodeGeneratorComponent(Supplier<? extends CodeGeneratorModule> codegenModule) {
+		injector = Guice.createInjector(codegenModule.get());
 		injector.injectMembers(this);
-	}
-
-	protected CodeGeneratorModule createCodeGeneratorModule() {
-		return new CodeGeneratorModule();
 	}
 
 	public String getTempSrcPath() {
 		return tempSrcPath;
 	}
-
 
 	public void setTempSrcPath(String tempSrcPath) {
 		this.tempSrcPath = tempSrcPath;

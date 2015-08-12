@@ -12,32 +12,33 @@
  ******************************************************************************/
 package org.eclipse.papyrus.tests.framework.mwe
 
+import java.util.Collection
+import java.util.List
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.plugin.EcorePlugin
+import org.eclipse.emf.mwe.core.WorkflowContext
+import org.eclipse.emf.mwe.core.issues.Issues
+import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent2
+import org.eclipse.emf.mwe.core.monitor.ProgressMonitor
 import org.eclipse.emf.mwe.utils.DirectoryCleaner
 import org.eclipse.emf.mwe.utils.Mapping
 import org.eclipse.emf.mwe.utils.Reader
 import org.eclipse.emf.mwe.utils.StandaloneSetup
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext
+import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
 import org.eclipse.papyrus.mwe2.utils.XtendWorkflow
+import org.eclipse.papyrus.mwe2.utils.components.MultiReader
 import org.eclipse.papyrus.mwe2.utils.components.RegisterUmlProfile
 import org.eclipse.papyrus.mwe2.utils.components.UMLWriter
 import org.eclipse.papyrus.tests.framework.gmfgen2uml.GMFGen2UMLComponent
 import org.eclipse.papyrus.tests.framework.gmfgenuml2utp.GMFGen2UTPComponent
 import org.eclipse.papyrus.tests.framework.gmfgenuml2utp.GMFGen2UTPModule
 import org.eclipse.papyrus.tests.framework.m2t.xtend.CodeGeneratorComponent
+import org.eclipse.papyrus.tests.framework.m2t.xtend.CodeGeneratorModule
 import org.eclipse.uml2.uml.Model
 import org.eclipse.uml2.uml.Profile
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.eclipse.emf.common.util.URI
-import java.util.List
-import org.eclipse.papyrus.mwe2.utils.components.MultiReader
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
-import java.util.Collection
-import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent2
-import org.eclipse.emf.mwe.core.monitor.ProgressMonitor
-import org.eclipse.emf.mwe.core.issues.Issues
-import org.eclipse.emf.mwe.core.WorkflowContext
 
 /**
  * A workflow orchestrating a transformation pipeline for generation of JUnit tests for the edit-parts of a diagram.
@@ -65,6 +66,8 @@ class GenerateTestsWorkflow extends XtendWorkflow {
 
 	(Model, Model, Profile)=>GMFGen2UTPModule utpModuleFunction
 
+	@Accessors ()=>CodeGeneratorModule codegenModuleSupplier = [new CodeGeneratorModule]
+	
 	final TestExceptionsBuilder testExceptionsBuilder = new TestExceptionsBuilder
 	
 	def setUtpModuleFunction((Model, Model, Profile)=>GMFGen2UTPModule utpModuleFunction) {
@@ -281,7 +284,7 @@ class GenerateTestsWorkflow extends XtendWorkflow {
 		components += new DirectoryCleaner => [
 			directory = projectFile(testSrcGenLocation)
 		]
-		components += new CodeGeneratorComponent => [
+		components += new CodeGeneratorComponent(codegenModuleSupplier) => [
 			tempSrcPath = projectFile(testSrcGenLocation)
 			modelSlot = 'papyrusTestModel'
 		]

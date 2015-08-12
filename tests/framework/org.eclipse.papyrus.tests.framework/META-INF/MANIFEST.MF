@@ -41,13 +41,14 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.papyrus.tests.framework,
- org.eclipse.papyrus.tests.framework.gmfgen2uml,
- org.eclipse.papyrus.tests.framework.gmfgenuml2utp,
- org.eclipse.papyrus.tests.framework.m2m,
- org.eclipse.papyrus.tests.framework.m2t.xtend,
- org.eclipse.papyrus.tests.framework.mwe,
  org.eclipse.papyrus.tests.framework.exceptions,
  org.eclipse.papyrus.tests.framework.exceptions.impl,
  org.eclipse.papyrus.tests.framework.exceptions.util,
- org.eclipse.papyrus.tests.framework.internal.exceptions.operations
+ org.eclipse.papyrus.tests.framework.gmfgen2uml,
+ org.eclipse.papyrus.tests.framework.gmfgenuml2utp,
+ org.eclipse.papyrus.tests.framework.internal.exceptions.operations,
+ org.eclipse.papyrus.tests.framework.m2m,
+ org.eclipse.papyrus.tests.framework.m2t.xtend,
+ org.eclipse.papyrus.tests.framework.m2t.xtend.templates,
+ org.eclipse.papyrus.tests.framework.mwe
 

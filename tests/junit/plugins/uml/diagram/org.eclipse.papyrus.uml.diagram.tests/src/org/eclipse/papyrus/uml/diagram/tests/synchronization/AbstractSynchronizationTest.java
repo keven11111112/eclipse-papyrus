@@ -251,6 +251,10 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 		if (UMLPackage.Literals.BEHAVIOR.isSuperTypeOf(elementType.getEClass()) && (container.eContainer() == null)) {
 			result = (EObject) EcoreUtil.getObjectByType(container.eContents(), elementType.getEClass());
 		}
+		// Also, we don't nest behaviors
+		if (UMLPackage.Literals.BEHAVIOR.isSuperTypeOf(elementType.getEClass()) && (elementType.getEClass().isInstance(container))) {
+			result = container;
+		}
 
 		if (result == null) {
 			IElementEditService edit = ElementEditServiceUtils.getCommandProvider(container);

@@ -28,7 +28,7 @@ class ComponentDiagramGenerateTestsWorkflow {
 
 	def static void runWorkflow(extension GenerateTestsWorkflow workflow) {
         testProjectName = 'org.eclipse.papyrus.uml.diagram.component.tests'
-		gmfgenUri = workflow.resourceURI('/org.eclipse.papyrus.uml.diagram.component/model/ComponentDiagram.gmfgen')
+		gmfgenUri = resourceURI('/org.eclipse.papyrus.uml.diagram.component/model/ComponentDiagram.gmfgen')
 		testSrcGenLocation = 'test-gen/'
 		testModel = 'model/ComponentDiagramTest.uml'
 		

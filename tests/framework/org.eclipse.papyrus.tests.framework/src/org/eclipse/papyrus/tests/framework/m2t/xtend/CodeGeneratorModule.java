@@ -52,35 +52,35 @@ public class CodeGeneratorModule extends AbstractModule {
 		// Pass
 	}
 
-	private void bindAllPackageTestsTemplate() {
+	protected void bindAllPackageTestsTemplate() {
 		// Pass
 	}
 
-	private void bindAppearanceTestTemplate() {
+	protected void bindAppearanceTestTemplate() {
 		// Pass
 	}
 
-	private void bindDeleteTestTemplate() {
+	protected void bindDeleteTestTemplate() {
 		// Pass
 	}
 
-	private void bindDropTestTemplate() {
+	protected void bindDropTestTemplate() {
 		// Pass
 	}
 
-	private void bindEditionTestTemplate() {
+	protected void bindEditionTestTemplate() {
 		// Pass
 	}
 
-	private void bindTestChildLabelNodeTestTemplate() {
+	protected void bindTestChildLabelNodeTestTemplate() {
 		// Pass
 	}
 
-	private void bindTestLinkTemplate() {
+	protected void bindTestLinkTemplate() {
 		// Pass
 	}
 
-	private void bindTestNodeTemplate() {
+	protected void bindTestNodeTemplate() {
 		// Pass
 	}
 

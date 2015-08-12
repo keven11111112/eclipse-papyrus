@@ -26,15 +26,20 @@ class CompositeDiagramGenerateTestsWorkflow {
 		runWorkflow(workflow);
 	}
 
-	def static void runWorkflow(GenerateTestsWorkflow workflow) {
-        workflow.testProjectName = 'org.eclipse.papyrus.uml.diagram.composite.tests'
-        workflow.gmfgenUri = workflow.resourceURI('/org.eclipse.papyrus.uml.diagram.composite/model/compositediagram.gmfgen')
-		workflow.testSrcGenLocation = 'test-gen/'
-		workflow.testModel = 'model/CompositeDiagramTest.uml'
+	def static void runWorkflow(extension GenerateTestsWorkflow workflow) {
+        testProjectName = 'org.eclipse.papyrus.uml.diagram.composite.tests'
+        gmfgenUri = resourceURI('/org.eclipse.papyrus.uml.diagram.composite/model/compositediagram.gmfgen')
+		testSrcGenLocation = 'test-gen/'
+		testModel = 'model/CompositeDiagramTest.uml'
 		
-        workflow.utpModuleFunction = [gmfgen, framework, utp |
+        utpModuleFunction = [gmfgen, framework, utp |
             new GMFGen2UTPModule(gmfgen, framework, utp) => [
                 diagramTestPackageName = 'org.eclipse.papyrus.uml.diagram.composite.test'
+                
+                // Nonconformant API names for this diagram
+                diagramCreationCommand = 'CreateCompositeDiagramCommand';
+                testConstantsInterface = 'ICompositeDiagramTestsConstants';
+                
                 topContainerEditPart = 'ClassCompositeEditPart';
                 topNodesToTest += #[
                     'ClassCompositeEditPart',
@@ -92,7 +97,6 @@ class CompositeDiagramGenerateTestsWorkflow {
                 ]
                 childNodesToTest += #[
                     'PropertyPartEditPartCN',
-                    'CollaborationRoleEditPartCN',
                     'CollaborationUseEditPartCN',
                     'CollaborationCompositeEditPartCN',
                     'CommentEditPartCN',
@@ -126,131 +130,18 @@ class CompositeDiagramGenerateTestsWorkflow {
                     'ConstraintEditPartCN'
                     */
                 ]
-                linksToTest += #[
-                    'AbstractionEditPart',
-                    'DeploymentEditPart',
-                    //Blocks the interface
-                    //'InformationFlowEditPart',
-                    'DependencyEditPart',
-                    'RealizationEditPart',
-                    'UsageEditPart'
-                ]
-                linksOwnedBySourceToTest += #[
-                    'GeneralizationEditPart',
-                    'InterfaceRealizationEditPart',
-                    'SubstitutionEditPart'
-                ]
-                elementTypesAppearanceTests += #[
-                    'ActivityEditPart',
-                    'ActorEditPart',
-                    'AnyReceiveEventEditPart',
-                    'ArtifactEditPart',
-                    'CallEventEditPart',
-                    'ChangeEventEditPart',
-                    'ClassEditPart',
-                    'CollaborationEditPart',
-                    'CommentEditPart',
-                    'ComponentEditPart',
-                    'ConstraintEditPart',
-                    'DataTypeEditPart',
-                    'DeploymentSpecificationEditPart',
-                    'DeviceEditPart',
-                    'DurationEditPart',
-                    'DurationConstraintEditPart',
-                    'DurationIntervalEditPart',
-                    'DurationObservationEditPart',
-                    'EnumerationEditPart',
-                    'ExecutionEnvironmentEditPart',
-                    'ExpressionEditPart',
-                    'FunctionBehaviorEditPart',
-                    'InformationItemEditPart',
-                    'InstanceValueEditPart',
-                    'InteractionEditPart',
-                    'InteractionConstraintEditPart',
-                    'InterfaceEditPart',
-                    'IntervalEditPart',
-                    'IntervalConstraintEditPart',
-                    'LiteralBooleanEditPart',
-                    'LiteralIntegerEditPart',
-                    'LiteralNullEditPart',
-                    'LiteralStringEditPart',
-                    'LiteralUnlimitedNaturalEditPart',
-                    'NodeEditPart',
-                    'OpaqueBehaviorEditPart',
-                    'OpaqueExpressionEditPart',
-                    'PrimitiveTypeEditPart',
-                    'ProtocolStateMachineEditPart',
-                    'SignalEditPart',
-                    'SignalEventEditPart',
-                    'StateMachineEditPart',
-                    'StringExpressionEditPart',
-                    'TimeConstraintEditPart',
-                    'TimeEventEditPart',
-                    'TimeExpressionEditPart',
-                    'TimeIntervalEditPart',
-                    'TimeObservationEditPart',
-                    'UseCaseEditPart'
-                ]
-                elementTypesDropTests += #[
-                    'ClassEditPart',
-                    'ActivityEditPart',
-                    'ActorEditPart',
-                    'AnyReceiveEventEditPart',
-                    'ArtifactEditPart',
-                    'CallEventEditPart',
-                    'ChangeEventEditPart',
-                    'ClassEditPart',
-                    'CollaborationEditPart',
-                    'CommentEditPart',
-                    'ComponentEditPart',
-                    'ConstraintEditPart',
-                    'DataTypeEditPart',
-                    'DeploymentSpecificationEditPart',
-                    'DeviceEditPart',
-                    'DurationEditPart',
-                    'DurationConstraintEditPart',
-                    'DurationIntervalEditPart',
-                    'DurationObservationEditPart',
-                    'EnumerationEditPart',
-                    'ExecutionEnvironmentEditPart',
-                    'ExpressionEditPart',
-                    'FunctionBehaviorEditPart',
-                    'InformationItemEditPart',
-                    'InstanceValueEditPart',
-                    'InteractionEditPart',
-                    'InteractionConstraintEditPart',
-                    'InterfaceEditPart',
-                    'IntervalEditPart',
-                    'IntervalConstraintEditPart',
-                    'LiteralBooleanEditPart',
-                    'LiteralIntegerEditPart',
-                    'LiteralNullEditPart',
-                    'LiteralStringEditPart',
-                    'LiteralUnlimitedNaturalEditPart',
-                    'NodeEditPart',
-                    'OpaqueBehaviorEditPart',
-                    'OpaqueExpressionEditPart',
-                    'PrimitiveTypeEditPart',
-                    'ProtocolStateMachineEditPart',
-                    'SignalEditPart',
-                    'SignalEventEditPart',
-                    'StateMachineEditPart',
-                    'StringExpressionEditPart',
-                    'TimeConstraintEditPart',
-                    'TimeEventEditPart',
-                    'TimeExpressionEditPart',
-                    'TimeIntervalEditPart',
-                    'TimeObservationEditPart',
-                    'UseCaseEditPart'
-                ]
-                
-                // Nonconformant API names for this diagram
-                diagramCreationCommand = 'CreateCompositeDiagramCommand';
-                testConstantsInterface = 'ICompositeDiagramTestsConstants';
             ]
         ]
         
-        workflow.run(new WorkflowContextImpl);
+        except [
+        	editPart [
+        		kind = interactive
+        		reason = 'Pops up a dialog to configure the element.'
+        		editPart = named('CollaborationRoleEditPartCN')
+        	]
+        ]
+        
+        run(new WorkflowContextImpl);
 	}
 
 }

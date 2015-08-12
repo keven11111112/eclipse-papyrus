@@ -28,7 +28,7 @@ class CommunicationDiagramGenerateTestsWorkflow {
 
 	def static void runWorkflow(extension GenerateTestsWorkflow workflow) {
         testProjectName = 'org.eclipse.papyrus.uml.diagram.communication.tests'
-        gmfgenUri = workflow.resourceURI('/org.eclipse.papyrus.uml.diagram.communication/model/communicationdiagram.gmfgen')
+        gmfgenUri = resourceURI('/org.eclipse.papyrus.uml.diagram.communication/model/communicationdiagram.gmfgen')
 		testSrcGenLocation = 'test-gen/'
 		testModel = 'model/CommunicationDiagramTest.uml'
 		

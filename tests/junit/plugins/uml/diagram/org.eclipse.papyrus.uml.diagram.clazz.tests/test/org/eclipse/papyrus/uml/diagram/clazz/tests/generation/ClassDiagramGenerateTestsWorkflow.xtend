@@ -29,7 +29,7 @@ class ClassDiagramGenerateTestsWorkflow {
 
 	def static void runWorkflow(extension GenerateTestsWorkflow workflow) {
         testProjectName = 'org.eclipse.papyrus.uml.diagram.clazz.tests'
-		gmfgenUri = workflow.resourceURI('/org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen')
+		gmfgenUri = resourceURI('/org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen')
 		
 		testSrcGenLocation = 'test-gen/'
 		testModel = 'model/ClassDiagramTest.uml'

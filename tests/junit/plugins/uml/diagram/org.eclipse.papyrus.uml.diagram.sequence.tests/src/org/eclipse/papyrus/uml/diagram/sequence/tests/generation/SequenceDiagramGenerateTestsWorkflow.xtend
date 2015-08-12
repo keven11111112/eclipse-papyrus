@@ -26,13 +26,13 @@ class SequenceDiagramGenerateTestsWorkflow {
 		runWorkflow(workflow);
 	}
 
-	def static void runWorkflow(GenerateTestsWorkflow workflow) {
-        workflow.testProjectName = 'org.eclipse.papyrus.uml.diagram.sequence.tests'
-		workflow.gmfgenUri = workflow.resourceURI('/org.eclipse.papyrus.uml.diagram.sequence/model/sequenceDiagram.gmfgen')
-		workflow.testSrcGenLocation = 'test-gen/'
-		workflow.testModel = 'model/SequenceDiagramTest.uml'
+	def static void runWorkflow(extension GenerateTestsWorkflow workflow) {
+        testProjectName = 'org.eclipse.papyrus.uml.diagram.sequence.tests'
+		gmfgenUri = resourceURI('/org.eclipse.papyrus.uml.diagram.sequence/model/sequenceDiagram.gmfgen')
+		testSrcGenLocation = 'test-gen/'
+		testModel = 'model/SequenceDiagramTest.uml'
 		
-        workflow.utpModuleFunction = [gmfgen, framework, utp |
+        utpModuleFunction = [gmfgen, framework, utp |
             new GMFGen2UTPModule(gmfgen, framework, utp) => [
                 diagramTestPackageName = 'org.eclipse.papyrus.uml.diagram.sequence.test'
                 topContainerEditPart = 'InteractionEditPart'
@@ -92,7 +92,7 @@ class SequenceDiagramGenerateTestsWorkflow {
             ]
         ]
         
-        workflow.run(new WorkflowContextImpl);
+        run(new WorkflowContextImpl);
 	}
 
 }

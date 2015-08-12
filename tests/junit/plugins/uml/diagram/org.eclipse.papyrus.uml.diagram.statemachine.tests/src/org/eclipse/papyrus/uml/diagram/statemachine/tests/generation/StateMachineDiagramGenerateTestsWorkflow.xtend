@@ -15,6 +15,10 @@ package org.eclipse.papyrus.uml.diagram.statemachine.tests.generation
 import org.eclipse.emf.mwe2.runtime.workflow.WorkflowContextImpl
 import org.eclipse.papyrus.tests.framework.mwe.GenerateTestsWorkflow
 import org.eclipse.papyrus.tests.framework.gmfgenuml2utp.GMFGen2UTPModule
+import org.eclipse.papyrus.tests.framework.m2t.xtend.templates.TestNodeTemplate
+import org.eclipse.papyrus.tests.framework.m2t.xtend.CodeGeneratorModule
+import org.eclipse.papyrus.tests.framework.m2t.xtend.templates.TestLinkTemplate
+import org.eclipse.papyrus.tests.framework.m2t.xtend.templates.SynchronizationTestTemplate
 
 /**
  * Xtend program for the generation of the State Machine Diagram tests.
@@ -26,75 +30,29 @@ class StateMachineDiagramGenerateTestsWorkflow {
 		runWorkflow(workflow);
 	}
 
-	def static void runWorkflow(GenerateTestsWorkflow workflow) {
-        workflow.testProjectName = 'org.eclipse.papyrus.uml.diagram.statemachine.tests'
-		workflow.gmfgenUri = workflow.resourceURI('/org.eclipse.papyrus.uml.diagram.statemachine/model/stateMachineDiagram.gmfgen')
-		workflow.testSrcGenLocation = 'test-gen/'
-		workflow.testModel = 'model/StateMachineDiagramTest.uml'
+	def static void runWorkflow(extension GenerateTestsWorkflow workflow) {
+        testProjectName = 'org.eclipse.papyrus.uml.diagram.statemachine.tests'
+		gmfgenUri = resourceURI('/org.eclipse.papyrus.uml.diagram.statemachine/model/stateMachineDiagram.gmfgen')
+		testSrcGenLocation = 'test-gen/'
+		testModel = 'model/StateMachineDiagramTest.uml'
 		
-        workflow.utpModuleFunction = [gmfgen, framework, utp |
+        utpModuleFunction = [gmfgen, framework, utp |
             new GMFGen2UTPModule(gmfgen, framework, utp) => [
                 diagramTestPackageName = 'org.eclipse.papyrus.uml.diagram.statemachine.test'
                 topContainerEditPart = 'StateMachineEditPart';
-                topNodesToTest += #[
-                    'StateMachineEditPart'
-                ]
-                childNodesToTest += #[
-                    'RegionEditPart',
-                    'FinalStateEditPart',
-                    'StateEditPart',
-                    'PseudostateInitialEditPart',
-                    'PseudostateJoinEditPart',
-                    'PseudostateForkEditPart',
-                    'PseudostateChoiceEditPart',
-                    'PseudostateJunctionEditPart',
-                    'PseudostateShallowHistoryEditPart',
-                    'PseudostateDeepHistoryEditPart',
-                    'PseudostateTerminateEditPart',
-                    'CommentEditPart',
-                    'ConstraintEditPart'
-                ]
-                linksToTest += #[
-                    'TransitionEditPart'
-                ]
-                linksOwnedBySourceToTest += #[
-                    'GeneralizationEditPart'
-                ]
-                elementTypesAppearanceTests += #[
-                    'RegionEditPart',
-                    'FinalStateEditPart',
-                    'StateEditPart',
-                    'PseudostateInitialEditPart',
-                    'PseudostateJoinEditPart',
-                    'PseudostateForkEditPart',
-                    'PseudostateChoiceEditPart',
-                    'PseudostateJunctionEditPart',
-                    'PseudostateShallowHistoryEditPart',
-                    'PseudostateDeepHistoryEditPart',
-                    'PseudostateTerminateEditPart',
-                    'CommentEditPart',
-                    'ConstraintEditPart'
-                ]
-                elementTypesDropTests += #[
-                    'StateMachineEditPart',
-                    'RegionEditPart',
-                    'FinalStateEditPart',
-                    'StateEditPart',
-                    'PseudostateInitialEditPart',
-                    'PseudostateJoinEditPart',
-                    'PseudostateForkEditPart',
-                    'PseudostateChoiceEditPart',
-                    'PseudostateJunctionEditPart',
-                    'PseudostateShallowHistoryEditPart',
-                    'PseudostateDeepHistoryEditPart',
-                    'PseudostateTerminateEditPart',
-                    'CommentEditPart',
-                    'ConstraintEditPart'
-                ]
             ]
         ]
         
-        workflow.run(new WorkflowContextImpl);
+        // Custom code generation templates
+        codegenModuleSupplier = [new CodeGeneratorModule {
+			override protected bindTestNodeTemplate() {
+				bind(TestNodeTemplate).to(CustomTestNodeTemplate)
+				bind(TestLinkTemplate).to(CustomTestLinkTemplate)
+				bind(SynchronizationTestTemplate).to(CustomSynchronizationTestTemplate)
+			}
+        }]
+        
+        run(new WorkflowContextImpl);
 	}
 
 }

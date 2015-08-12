@@ -26,13 +26,13 @@ class TimingDiagramGenerateTestsWorkflow {
 		runWorkflow(workflow);
 	}
 
-	def static void runWorkflow(GenerateTestsWorkflow workflow) {
-        workflow.testProjectName = 'org.eclipse.papyrus.uml.diagram.timing.tests'
-		workflow.gmfgenUri = workflow.resourceURI('/org.eclipse.papyrus.uml.diagram.timing/model/timingdiagram.gmfgen')
-		workflow.testSrcGenLocation = 'test-gen/'
-		workflow.testModel = 'model/TimingDiagramTest.uml'
+	def static void runWorkflow(extension GenerateTestsWorkflow workflow) {
+        testProjectName = 'org.eclipse.papyrus.uml.diagram.timing.tests'
+		gmfgenUri = resourceURI('/org.eclipse.papyrus.uml.diagram.timing/model/timingdiagram.gmfgen')
+		testSrcGenLocation = 'test-gen/'
+		testModel = 'model/TimingDiagramTest.uml'
 		
-        workflow.utpModuleFunction = [gmfgen, framework, utp |
+        utpModuleFunction = [gmfgen, framework, utp |
             new GMFGen2UTPModule(gmfgen, framework, utp) => [
                 diagramTestPackageName = 'org.eclipse.papyrus.uml.diagram.timing.test'
                 topContainerEditPart = 'InteractionEditPartTN';
@@ -88,7 +88,7 @@ class TimingDiagramGenerateTestsWorkflow {
             ]
         ]
         
-        workflow.run(new WorkflowContextImpl);
+        run(new WorkflowContextImpl);
 	}
 
 }
