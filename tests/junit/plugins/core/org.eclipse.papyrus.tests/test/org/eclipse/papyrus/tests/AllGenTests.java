@@ -47,8 +47,8 @@ public class AllGenTests {
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.composite.tests", "org.eclipse.papyrus.uml.diagram.composite.test.AllGenTests"));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.deployment.tests", "org.eclipse.papyrus.uml.diagram.deployment.test.AllGenTests"));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.profile.tests", "org.eclipse.papyrus.uml.diagram.profile.tests.AllGenTests"));
-		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.statemachine.tests", "org.eclipse.papyrus.uml.diagram.profile.tests.AllGenTests"));
-		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.sequence.tests", "org.eclipse.papyrus.uml.diagram.profile.tests.AllGenTests"));
+		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.statemachine.tests", "org.eclipse.papyrus.uml.diagram.statemachine.test.AllGenTests"));
+		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.sequence.tests", "org.eclipse.papyrus.uml.diagram.sequence.test.AllGenTests"));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.timing.tests", "org.eclipse.papyrus.uml.diagram.timing.test.AllGenTests"));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.usecase.tests", "org.eclipse.papyrus.uml.diagram.usecase.test.AllGenTests"));
 		// end
@@ -81,7 +81,7 @@ public class AllGenTests {
 		@SuiteSpot
 		public static final List<? extends ITestSuiteClass> suiteClasses = ImmutableList.of( //
 				new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.activity.tests", "org.eclipse.papyrus.uml.diagram.activity.test.AllGenTests"),
-				new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.statemachine.tests", "org.eclipse.papyrus.uml.diagram.profile.tests.AllGenTests"));
+				new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.statemachine.tests", "org.eclipse.papyrus.uml.diagram.statemachine.test.AllGenTests"));
 	}
 
 	@RunWith(AllTestsRunner.class)
@@ -89,7 +89,7 @@ public class AllGenTests {
 		@SuiteSpot
 		public static final List<? extends ITestSuiteClass> suiteClasses = ImmutableList.of( //
 				new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.communication.tests", "org.eclipse.papyrus.uml.diagram.communication.test.AllGenTests"),
-				new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.sequence.tests", "org.eclipse.papyrus.uml.diagram.profile.tests.AllGenTests"),
+				new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.sequence.tests", "org.eclipse.papyrus.uml.diagram.sequence.test.AllGenTests"),
 				new FragmentTestSuiteClass("org.eclipse.papyrus.uml.diagram.timing.tests", "org.eclipse.papyrus.uml.diagram.timing.test.AllGenTests"));
 	}
 }
