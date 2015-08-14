@@ -9,21 +9,28 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 433206
+ *   Christian W. Damus - bug 473148
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.canonical;
+
+import static com.google.common.base.Predicates.and;
+import static com.google.common.base.Predicates.not;
+import static org.eclipse.papyrus.uml.tools.utils.UMLUtil.isAssociationEnd;
+import static org.eclipse.papyrus.uml.tools.utils.UMLUtil.isRelationship;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ISemanticChildrenStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
-import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -33,10 +40,11 @@ import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.Vertex;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
-import com.google.common.base.Predicates;
+import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -59,10 +67,44 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 
 			// Never include relationships that are owned, because they would be found
 			// when relationships are requested
-			result = Lists.newArrayList(Iterables.filter(owned, Predicates.not(UMLUtil.isRelationship())));
+			owned = Iterables.filter(owned, not(isRelationship()));
+
+			// And also don't include association ends because we visualize the association,
+			// unless we actually won't visualize the association because the other type
+			// is not present in the diagram, in which case the attribute style is the only
+			// way we can show the end
+			owned = Iterables.filter(owned, not(and(isAssociationEnd(), isPropertyTypeVisualized(viewFromEditPart))));
+
+			result = Lists.newArrayList(owned);
 		}
 
 		return result;
+	}
+
+	protected Predicate<Object> isPropertyTypeVisualized(View viewContext) {
+		final Diagram diagram = viewContext.getDiagram();
+
+		return new Predicate<Object>() {
+			@Override
+			public boolean apply(Object input) {
+				boolean result = false;
+
+				if (input instanceof Property) {
+					Type type = ((Property) input).getType();
+					if (type != null) {
+						for (View view : DiagramEditPartsUtil.getEObjectViews(type)) {
+							if (view.getDiagram() == diagram) {
+								// type is visualized in the same diagram as the property
+								result = true;
+								break;
+							}
+						}
+					}
+				}
+
+				return result;
+			}
+		};
 	}
 
 	@Override
