@@ -50,8 +50,6 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 	private org.eclipse.uml2.uml.Package root;
 
 	private org.eclipse.uml2.uml.Class foo;
-	private Property foo_ok;
-	private Property foo_bar;
 	private Operation foo_doit;
 	private org.eclipse.uml2.uml.Class bar;
 	private org.eclipse.uml2.uml.Class super_;
@@ -60,6 +58,9 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 	private org.eclipse.uml2.uml.Package types;
 	private org.eclipse.uml2.uml.Class types_subfoo;
 	private DataType types_date;
+	private DataType types_struct;
+	private Property struct_name;
+	private Property struct_age;
 
 	private Generalization types_subfoo_foo;
 
@@ -293,34 +294,36 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 
 	@Scenario({ "execute", "undo", "redo" })
 	public void reorderPropertiesInClass_bug420549() {
-		IGraphicalEditPart attributes = getClassAttributeCompartment(requireEditPart(foo));
+		setCanonical(true, requireEditPart(types_struct));
 
-		// Move 'bar' ahead of 'ok'
-		execute(MoveCommand.create(editor.getEditingDomain(), foo, UMLPackage.Literals.STRUCTURED_CLASSIFIER__OWNED_ATTRIBUTE, foo_bar, 0));
+		IGraphicalEditPart attributes = getDataTypeAttributeCompartment(requireEditPart(types_struct));
+
+		// Move 'age' ahead of 'name'
+		execute(MoveCommand.create(editor.getEditingDomain(), types_struct, UMLPackage.Literals.DATA_TYPE__OWNED_ATTRIBUTE, struct_age, 0));
 
 		if (verificationPoint()) {
-			IGraphicalEditPart okEditPart = getEditPart(foo_ok, attributes);
-			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
-			assertThat(attributes.getChildren().indexOf(barEditPart), is(0));
-			assertThat(attributes.getChildren().indexOf(okEditPart), is(1));
+			IGraphicalEditPart nameEditPart = getEditPart(struct_name, attributes);
+			IGraphicalEditPart ageEditPart = getEditPart(struct_age, attributes);
+			assertThat(attributes.getChildren().indexOf(ageEditPart), is(0));
+			assertThat(attributes.getChildren().indexOf(nameEditPart), is(1));
 		}
 
 		undo();
 
 		if (verificationPoint()) {
-			IGraphicalEditPart okEditPart = getEditPart(foo_ok, attributes);
-			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
-			assertThat(attributes.getChildren().indexOf(barEditPart), is(1));
-			assertThat(attributes.getChildren().indexOf(okEditPart), is(0));
+			IGraphicalEditPart nameEditPart = getEditPart(struct_name, attributes);
+			IGraphicalEditPart ageEditPart = getEditPart(struct_age, attributes);
+			assertThat(attributes.getChildren().indexOf(ageEditPart), is(1));
+			assertThat(attributes.getChildren().indexOf(nameEditPart), is(0));
 		}
 
 		redo();
 
 		if (verificationPoint()) {
-			IGraphicalEditPart okEditPart = getEditPart(foo_ok, attributes);
-			IGraphicalEditPart barEditPart = getEditPart(foo_bar, attributes);
-			assertThat(attributes.getChildren().indexOf(barEditPart), is(0));
-			assertThat(attributes.getChildren().indexOf(okEditPart), is(1));
+			IGraphicalEditPart nameEditPart = getEditPart(struct_name, attributes);
+			IGraphicalEditPart ageEditPart = getEditPart(struct_age, attributes);
+			assertThat(attributes.getChildren().indexOf(ageEditPart), is(0));
+			assertThat(attributes.getChildren().indexOf(nameEditPart), is(1));
 		}
 	}
 
@@ -334,8 +337,6 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 		root = editor.getModel();
 
 		foo = (org.eclipse.uml2.uml.Class) root.getOwnedType("Foo");
-		foo_ok = foo.getOwnedAttribute("ok", null);
-		foo_bar = foo.getOwnedAttribute("bar", null);
 		foo_doit = foo.getOwnedOperation("doIt", null, null);
 		bar = (org.eclipse.uml2.uml.Class) root.getOwnedType("Bar");
 		super_ = (org.eclipse.uml2.uml.Class) root.getOwnedType("Super");
@@ -344,6 +345,9 @@ public class EditingInModelInClassDiagramTest extends AbstractCanonicalTest {
 		types = root.getNestedPackage("types");
 		types_subfoo = (org.eclipse.uml2.uml.Class) types.getOwnedType("SubFoo");
 		types_date = (DataType) types.getOwnedType("Date");
+		types_struct = (DataType) types.getOwnedType("Struct");
+		struct_name = types_struct.getOwnedAttribute("name", null);
+		struct_age = types_struct.getOwnedAttribute("age", null);
 
 		types_subfoo_foo = types_subfoo.getGeneralization(foo);
 	}

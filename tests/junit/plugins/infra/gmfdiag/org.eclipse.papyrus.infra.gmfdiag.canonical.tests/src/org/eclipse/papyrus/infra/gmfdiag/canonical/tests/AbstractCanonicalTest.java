@@ -84,6 +84,8 @@ import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeAttributeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeAttributeCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
@@ -228,6 +230,14 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 
 	protected IGraphicalEditPart getClassNestedClassifierCompartment(IGraphicalEditPart class_) {
 		return getCompartment(class_, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
+	}
+
+	protected IGraphicalEditPart getDataTypeAttributeCompartment(IGraphicalEditPart dataType) {
+		IGraphicalEditPart result = getCompartment(dataType, DataTypeAttributeCompartmentEditPart.VISUAL_ID);
+		if (result == null) {
+			result = getCompartment(dataType, DataTypeAttributeCompartmentEditPartCN.VISUAL_ID);
+		}
+		return result;
 	}
 
 	protected IGraphicalEditPart getEnumerationLiteralCompartment(IGraphicalEditPart enumeration) {

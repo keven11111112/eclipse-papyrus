@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
 import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -121,5 +122,39 @@ public class RegressionTest extends AbstractCanonicalTest {
 		for (Property next : blackBox.getAllAttributes()) {
 			assertThat(next.getType(), not(is((Type) behavior)));
 		}
+	}
+
+	@PluginResource("models/bugs/473148.di")
+	@Test
+	public void associationEndCanonicalPresentation_bug473148() {
+		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class) editor.getModel().getOwnedType("Class1");
+		org.eclipse.uml2.uml.Class class2 = (org.eclipse.uml2.uml.Class) editor.getModel().getOwnedType("Class2");
+		Property name = class1.getOwnedAttribute("name", null);
+		Property end = class1.getOwnedAttribute("class2", class2);
+
+		setCanonical(true, requireEditPart(class1));
+
+		requireEditPart(name); // the attribute should be shown
+		assertNoView(end); // but not the association end
+	}
+
+	@PluginResource("models/bugs/473148.di")
+	@Test
+	public void associationEndWhenNoAssociationEdge_bug473148() {
+		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class) editor.getModel().getOwnedType("Class1");
+		org.eclipse.uml2.uml.Class class2 = (org.eclipse.uml2.uml.Class) editor.getModel().getOwnedType("Class2");
+		Property name = class1.getOwnedAttribute("name", null);
+		Property end = class1.getOwnedAttribute("class2", class2);
+
+		// Ensure that we will not canonically present the association
+		delete(requireEditPart(class2));
+		assertAttached(class2); // we didn't accidentally delete the class
+		assertThat(end.getType(), is((Type) class2)); // nor mess with the association end
+		assertThat(end.getAssociation(), not(nullValue()));
+
+		setCanonical(true, requireEditPart(class1));
+
+		requireEditPart(name); // the attribute should be shown
+		requireEditPart(end); // and also the association end because we can't show the association
 	}
 }

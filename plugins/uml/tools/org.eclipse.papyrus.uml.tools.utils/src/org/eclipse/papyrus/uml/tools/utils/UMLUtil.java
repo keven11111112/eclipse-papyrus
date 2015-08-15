@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 444092
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 473148
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -38,8 +39,9 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEvent;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Transition;
@@ -75,7 +77,7 @@ public class UMLUtil {
 	 * @param source
 	 *            The Object to resolve
 	 * @return
-	 *         The UML semantic element, or null if it couldn't be resolved
+	 * 		The UML semantic element, or null if it couldn't be resolved
 	 */
 	public static Element resolveUMLElement(Object source) {
 		EObject eElement = EMFHelper.getEObject(source);
@@ -94,7 +96,7 @@ public class UMLUtil {
 	 * @param className
 	 * @param superclassName
 	 * @return
-	 *         True if the class className is a subclass of the class superclassName
+	 * 		True if the class className is a subclass of the class superclassName
 	 */
 	public static boolean isSubClass(String className, String superclassName) {
 		EClass eClass = (EClass) getUMLMetamodel().getEClassifier(className);
@@ -107,7 +109,7 @@ public class UMLUtil {
 	 *
 	 * @param source
 	 * @return
-	 *         The source object's editing domain, or null if it couldn't be found
+	 * 		The source object's editing domain, or null if it couldn't be found
 	 */
 	public static EditingDomain resolveEditingDomain(Object source) {
 		return EMFHelper.resolveEditingDomain(resolveUMLElement(source));
@@ -135,7 +137,7 @@ public class UMLUtil {
 	 *            returned. Note that if more than one stereotype is a subtype of the
 	 *            given stereotype, the first matching stereotype is returned.
 	 * @return
-	 *         The first matching stereotype, or null if none was found
+	 * 		The first matching stereotype, or null if none was found
 	 */
 	public static Stereotype getAppliedStereotype(Element umlElement, String stereotypeName, boolean strict) {
 		if (umlElement == null || stereotypeName == null) {
@@ -170,7 +172,7 @@ public class UMLUtil {
 	 * @param stereotypeName
 	 *            The qualified name of the stereotype
 	 * @return
-	 *         The stereotype of the given name that either is applied or has some substereotype that is applied to the element
+	 * 		The stereotype of the given name that either is applied or has some substereotype that is applied to the element
 	 */
 	public static Stereotype getAppliedSuperstereotype(Element umlElement, String stereotypeName) {
 		if (umlElement == null) {
@@ -209,7 +211,7 @@ public class UMLUtil {
 	 *            returned. Note that if more than one stereotype is a subtype of the
 	 *            given stereotype, the first matching stereotype is returned.
 	 * @return
-	 *         The first matching applicable stereotype, or null if none was found
+	 * 		The first matching applicable stereotype, or null if none was found
 	 */
 	public static Stereotype getApplicableStereotype(Element umlElement, String stereotypeName, boolean strict) {
 		if (umlElement == null) {
@@ -332,14 +334,15 @@ public class UMLUtil {
 		return new LinkedList<Stereotype>(stereotypes);
 	}
 
-	
-	
+
+
 	/**
 	 * Get all stereotyped contained in a profile and its nested package
+	 * 
 	 * @param pck
 	 * @return
 	 */
-	public static Set<Stereotype> getAllStereotypes(Package pck){
+	public static Set<Stereotype> getAllStereotypes(Package pck) {
 		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
 		stereotypes.addAll(pck.getOwnedStereotypes());
 		for (Package nestedPackage : pck.getNestedPackages()) {
@@ -347,10 +350,10 @@ public class UMLUtil {
 		}
 		return stereotypes;
 	}
-	
-	
-	
-	
+
+
+
+
 	private static Stereotype getSuperstereotype(Stereotype substereotype, String qualifiedName) {
 		Stereotype result = null;
 
@@ -374,7 +377,7 @@ public class UMLUtil {
 	 *
 	 * @param stereotype
 	 * @return
-	 *         A collection of all super stereotypes
+	 * 		A collection of all super stereotypes
 	 */
 	public static Collection<Stereotype> getAllSuperStereotypes(Stereotype stereotype) {
 		Set<Stereotype> result = new HashSet<Stereotype>();
@@ -529,6 +532,30 @@ public class UMLUtil {
 		return new Predicate<Element>() {
 			public boolean apply(Element input) {
 				return isRelationship(input);
+			}
+		};
+	}
+
+	/**
+	 * A predicate matching association-end {@link Property} elements.
+	 * 
+	 * @return an is-association-end predicate
+	 */
+	public static <T> Predicate<T> isAssociationEnd() {
+		return new Predicate<T>() {
+			public boolean apply(T input) {
+				boolean result = false;
+
+				if (input instanceof Property) {
+					Property property = (Property) input;
+
+					// Could be owned by an association; that's okay, too
+					result = (property.getOwner() instanceof Type)
+							&& (property.getType() != null)
+							&& (property.getAssociation() != null);
+				}
+
+				return result;
 			}
 		};
 	}
