@@ -227,7 +227,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 				if (numberOfStereotypeToBeApplied == ((Element) participants).getAppliedStereotypes().size()) {
 					for (Stereotype stereotypeToBeApplied : stereotypeList.keySet()) {
 						for (Stereotype stereotypeApplied : ((Element) participants).getAppliedStereotypes()) {
-							if (EcoreUtil.equals(stereotypeToBeApplied, stereotypeApplied)) {
+							if (EcoreUtil.getURI(stereotypeToBeApplied).equals(EcoreUtil.getURI(stereotypeApplied))) {
 								numberOfStereotypeMatching++;
 							}
 						}
@@ -250,7 +250,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 				
 				for (Stereotype stereotypeToBeApplied : stereotypeList.keySet()) {	
 					for (Stereotype stereotypeApplied : ((Element) participants).getAppliedStereotypes()) {
-						if (EcoreUtil.equals(stereotypeToBeApplied, stereotypeApplied)) {
+						if (EcoreUtil.getURI(stereotypeToBeApplied).equals(EcoreUtil.getURI(stereotypeApplied))) {
 							participantsToKeep.add(participants);
 							added = true;
 							break;
@@ -384,7 +384,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 					EList<Stereotype> stereotypesApplied = ((Element) participant).getAppliedStereotypes();
 					for (Stereotype stereotype : stereotypesApplied) {
 						for (Stereotype stereotypeSelected : stereotypeList.keySet()) {
-							if (EcoreUtil.equals(stereotype, stereotypeSelected)) {
+							if (EcoreUtil.getURI(stereotype).equals(EcoreUtil.getURI(stereotypeSelected))) {
 								propertyList = this.getStereotypesAttributes(stereotype);
 								
 								for (Property property : propertyList) {
@@ -393,7 +393,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 										evaluateAndAddToResult(value, property, pattern, participant, scopeEntry, stereotype);
 									} else {
 										for (Property property2 : (stereotypeList.get(stereotypeSelected))) {
-											if (EcoreUtil.equals(property, property2)) { // We loop through all selected attributes of all stereotypes, therefore this test is necessary to compare to currently searched stereotype's attributes
+											if (EcoreUtil.getURI(property).equals(EcoreUtil.getURI(property2))) { // We loop through all selected attributes of all stereotypes, therefore this test is necessary to compare to currently searched stereotype's attributes
 												String value = StereotypeUtil.displayPropertyValueOnly(stereotype, property, (Element) participant, "");
 												evaluateAndAddToResult(value, property, pattern, participant, scopeEntry, stereotype);
 											}

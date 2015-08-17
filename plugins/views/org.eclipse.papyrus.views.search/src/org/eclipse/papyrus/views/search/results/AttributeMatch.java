@@ -100,7 +100,7 @@ public class AttributeMatch extends ModelMatch {
 		if (obj instanceof AttributeMatch) {
 			if (super.equals(obj)) {
 				if (((AttributeMatch) obj).getSource() instanceof EObject && this.getSource() instanceof EObject) {
-					if (EcoreUtil.equals((EObject) ((AttributeMatch) obj).getSource(), (EObject) this.getSource())) {
+					if (EcoreUtil.getURI((EObject) ((AttributeMatch) obj).getSource()).equals(EcoreUtil.getURI((EObject) this.getSource()))) {
 						if (obj.hashCode() == this.hashCode()) {
 							return true;
 						}
