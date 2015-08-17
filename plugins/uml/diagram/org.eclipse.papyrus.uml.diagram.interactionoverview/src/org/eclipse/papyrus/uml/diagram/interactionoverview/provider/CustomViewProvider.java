@@ -34,7 +34,8 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUti
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil.CallBehaviorActionType;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 
-public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.provider.AbstractViewProvider {
+
+public class CustomViewProvider extends AbstractViewProvider {
 
 	@Override
 	protected boolean provides(final CreateNodeViewOperation op) {
