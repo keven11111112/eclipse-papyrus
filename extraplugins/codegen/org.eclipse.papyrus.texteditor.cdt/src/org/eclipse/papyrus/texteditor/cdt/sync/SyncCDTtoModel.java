@@ -268,6 +268,7 @@ public class SyncCDTtoModel implements Runnable {
 			}
 		}
 		else if (syncInfo.behavior != null) {
+			// operation is still null (=> does not enter operation != null case below)
 			behavior = syncInfo.behavior;
 		}
 		else if ((syncInfo.createBehaviorName != null) && (m_classifier instanceof Class)) {
@@ -297,12 +298,17 @@ public class SyncCDTtoModel implements Runnable {
 					behavior.setName(name);
 				}
 			}
-			// Remove all parameters from the operation (they will be added later).
-			// Calling parameters.clear() is not sufficient. Otherwise stereotype
-			// applications to unresolved elements remain in the model
-			UMLUtil.destroyElements(operation.getOwnedParameters());
-			UMLUtil.destroyElements(behavior.getOwnedParameters());
 		}
+
+		// assertions: operation can be null, behavior is always non-null
+		
+		// Remove all parameters from operation / behavior (they will be added later).
+		// Calling parameters.clear() is not sufficient. Otherwise stereotype
+		// applications to unresolved elements remain in the model
+		if (operation != null) {
+			UMLUtil.destroyElements(operation.getOwnedParameters());
+		}
+		UMLUtil.destroyElements(behavior.getOwnedParameters());
 	
 		for (IASTNode declaratorChild : declarator.getChildren()) {
 			if (declaratorChild instanceof IASTParameterDeclaration) {
@@ -357,22 +363,20 @@ public class SyncCDTtoModel implements Runnable {
 				} catch (ExpansionOverlapsBoundaryException e) {
 				}
 
-				NamedElement umlParameterType = Utils.getQualifiedElement(Utils.getTop(m_classifier),
+				NamedElement namedElemParamType = Utils.getQualifiedElement(Utils.getTop(m_classifier),
 						parameterTypeName);
-				if (umlParameterType == null) {
-					umlParameterType = Utils.getQualifiedElement(Utils.getTop(m_classifier),
+				if (namedElemParamType == null) {
+					namedElemParamType = Utils.getQualifiedElement(Utils.getTop(m_classifier),
 							ansiCLib + Utils.nsSep + parameterTypeName);
 				}
 				if (parameterType.isRestrict()) {
 				}
 				Parameter umlParameter = null;
-				if (umlParameterType instanceof Type) {
-					umlParameter = operation.createOwnedParameter(parameterName.toString(), (Type) umlParameterType);
-					behavior.createOwnedParameter(parameterName.toString(), (Type) umlParameterType);
-				} else {
-					umlParameter = operation.createOwnedParameter(parameterName.toString(), null);
-					behavior.createOwnedParameter(parameterName.toString(), null);
+				Type paramType = namedElemParamType instanceof Type ? (Type) namedElemParamType : null;
+				if (operation != null) {
+					umlParameter = operation.createOwnedParameter(parameterName.toString(), paramType);
 				}
+				behavior.createOwnedParameter(parameterName.toString(), paramType);
 				if (parameterType.isConst()) {
 					StereotypeUtil.apply(umlParameter, Const.class);
 				}
