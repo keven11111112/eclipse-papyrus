@@ -19,9 +19,8 @@ papyrusWinApp=papyrus.exe
 
 mkdir $rcpProductTempDir
 
-cd $rcpProductDir
-
 #Proceed with Windows
+cd $rcpProductDir
 for f in *win32*; do
 	echo "Repackaging $f"
 
@@ -47,10 +46,12 @@ for f in *win32*; do
 
 	zip -r -9 -qq --symlinks $rcpProductTempDir/papyrus-win-$bitness.zip Papyrus
 
+	cd $rcpProductDir
 	rm -rf $TMP
 done
 
 #Proceed with Linux
+cd $rcpProductDir
 for f in *linux*; do
 	echo "Repackaging $f"
 
@@ -64,6 +65,7 @@ for f in *linux*; do
 done
 
 #Proceed with MacOSX
+cd $rcpProductDir
 for f in *macosx*; do
 	echo "Repackaging $f"
 
@@ -89,6 +91,7 @@ for f in *macosx*; do
 	chmod a+x "$papyrusMacApp/Contents/MacOS/papyrus"
 	tar -czf $rcpProductTempDir/papyrus-macosx-$bitness.tar.gz $papyrusMacApp
 
+	cd $rcpProductDir
 	rm -rf $TMP
 done
 
@@ -97,4 +100,5 @@ rm -f *linux* *macosx* *win32*
 
 mv $rcpProductTempDir/* .
 
+cd $rcpProductDir
 rm -rf $rcpProductTempDir
