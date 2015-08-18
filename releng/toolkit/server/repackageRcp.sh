@@ -17,7 +17,6 @@ product-id=org.eclipse.papyrus.rcp.product
 TMP=${rcpProductDir}/tmp
 papyrusMacApp=Papyrus.app
 papyrusWinApp=papyrus.exe
-papyrusVersion=mars
 
 mkdir $rcpProductTempDir
 
@@ -47,7 +46,7 @@ for f in *win32*; do
 
 	cd ..
 
-	zip -r -9 -qq --symlinks $rcpProductTempDir/papyrus-$papyrusVersion-win-$bitness.zip Papyrus
+	zip -r -9 -qq --symlinks $rcpProductTempDir/papyrus-win-$bitness.zip Papyrus
 
 	rm -rf $TMP
 done
@@ -62,7 +61,7 @@ for f in *linux*; do
 		bitness=32
 	fi
 
-	mv $rcpProductDir/$f $rcpProductDir/papyrus-$papyrusVersion-linux-$bitness.tar.gz
+	mv $rcpProductDir/$f $rcpProductDir/papyrus-linux-$bitness.tar.gz
 done
 
 #Proceed with MacOSX
@@ -89,7 +88,7 @@ for f in *macosx*; do
 	rm -f unsigned.zip signed.zip
 
 	chmod a+x "$papyrusMacApp/Contents/MacOS/papyrus"
-	tar -czf $rcpProductTempDir/papyrus-$papyrusVersion-macosx-$bitness.tar.gz $papyrusMacApp
+	tar -czf $rcpProductTempDir/papyrus-macosx-$bitness.tar.gz $papyrusMacApp
 
 	rm -rf $TMP
 done
