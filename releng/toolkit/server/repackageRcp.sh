@@ -11,9 +11,8 @@
 #	 CEA LIST
 #--------------------------------------------------------------------------------
 
-rcpProductDir=${WORKSPACE}/releng/rcp/org.eclipse.papyrus.rcp.product/target/products/
+rcpProductDir=${WORKSPACE}/releng/rcp/org.eclipse.papyrus.rcp.product/target/products
 rcpProductTempDir=${WORKSPACE}/releng/rcp/products
-product-id=org.eclipse.papyrus.rcp.product
 TMP=${rcpProductDir}/tmp
 papyrusMacApp=Papyrus.app
 papyrusWinApp=papyrus.exe
