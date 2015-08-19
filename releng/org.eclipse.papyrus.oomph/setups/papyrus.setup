@@ -1762,9 +1762,6 @@
     </project>
     <project label="SysML 1.4" name="sysml14">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="sysml14"/>
-      <stream label="master (Neon/1.2)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
       </stream>

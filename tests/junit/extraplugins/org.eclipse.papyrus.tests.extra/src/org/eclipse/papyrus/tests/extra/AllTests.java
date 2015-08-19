@@ -60,11 +60,6 @@ public class AllTests {
 
 		/* **************** plugins *********************** */
 		
-		/* Sysml 1.4 tests */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml14.service.types.tests.AllTests.class));
-		
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml14.diagram.common.tests.AllTests.class));
-		
 	}
 
 	/**
