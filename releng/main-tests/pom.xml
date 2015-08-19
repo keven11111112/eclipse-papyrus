@@ -96,6 +96,7 @@
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
         <module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.filters.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.modelrepair.tests</module>
+		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.profile.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.service.types.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.controlmode.tests</module>
 		<module>../../tests/junit/plugins/uml/tools/org.eclipse.papyrus.uml.tools.tests</module>
