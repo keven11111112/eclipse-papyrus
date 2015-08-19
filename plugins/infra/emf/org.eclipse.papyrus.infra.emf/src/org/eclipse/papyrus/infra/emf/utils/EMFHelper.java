@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
@@ -234,11 +235,15 @@ public class EMFHelper {
 		if (isEMFModelElement(source)) {
 			return (EObject) source;
 		} else if (source instanceof IAdaptable) {
-			EObject eObject = (EObject) ((IAdaptable) source).getAdapter(EObject.class);
+			EObject eObject = ((IAdaptable) source).getAdapter(EObject.class);
 			if (eObject == null) { // EMF Facet 0.1
-				eObject = (EObject) ((IAdaptable) source).getAdapter(EReference.class);
+				eObject = ((IAdaptable) source).getAdapter(EReference.class);
 			}
 			return asEMFModelElement(eObject); // in case the adapter is a CDOResource
+		}
+
+		if (source != null) {
+			return asEMFModelElement(Platform.getAdapterManager().getAdapter(source, EObject.class));
 		}
 
 		return null;

@@ -11,11 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.constraint;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 
 /**
  * A constraint for the GMF Notation metamodel
@@ -33,21 +31,7 @@ public class GMFNotationConstraint extends EMFInstanceOfConstraint {
 	 */
 	@Override
 	public boolean match(Object selection) {
-
-		View view = null;
-
-		if (selection instanceof EditPart) {
-			EditPart part = (EditPart) selection;
-			Object model = part.getModel();
-			if (model instanceof View) {
-				view = (View) model;
-			}
-		}
-
-		EObject eObject = EMFHelper.getEObject(selection);
-		if (eObject instanceof View) {
-			view = (View) eObject;
-		}
+		View view = NotationHelper.findView(selection);
 
 		return view == null ? false : super.match(view);
 	}
