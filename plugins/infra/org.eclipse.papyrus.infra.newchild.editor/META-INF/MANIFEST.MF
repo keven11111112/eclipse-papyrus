@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.infra.newchild.edit;bundle-version="1.1.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.newchild.edit;bundle-version="1.1.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.1.1.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

@@ -4,21 +4,21 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml,
  org.eclipse.gmf.runtime.common.core,
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.1",
- org.eclipse.papyrus.uml.textedit.valuespecification.xtext;bundle-version="1.1.1",
- org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.2",
+ org.eclipse.papyrus.uml.textedit.valuespecification.xtext;bundle-version="1.1.2",
+ org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.1.2",
  com.google.inject,
- org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.1.1",
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.1.2",
  org.eclipse.xtext,
- org.eclipse.papyrus.infra.services.validation;bundle-version="1.1.1",
- org.eclipse.papyrus.uml.service.validation;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.services.validation;bundle-version="1.1.2",
+ org.eclipse.papyrus.uml.service.validation;bundle-version="1.1.2",
  org.eclipse.ui.workbench,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.1"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.2"
 Export-Package: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils;uses:="org.osgi.framework",
  org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils.commands
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.1.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

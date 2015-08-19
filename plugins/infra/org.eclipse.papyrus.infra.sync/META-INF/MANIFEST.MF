@@ -3,10 +3,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.11.0",
  org.eclipse.emf.transaction;bundle-version="1.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.2",
  com.google.guava;bundle-version="11.0.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.1",
- org.eclipse.papyrus.infra.tools;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.2",
+ org.eclipse.papyrus.infra.tools;bundle-version="1.1.2",
  org.eclipse.core.expressions;bundle-version="3.4.600"
 Export-Package: org.eclipse.papyrus.infra.sync,
  org.eclipse.papyrus.infra.sync.internal;x-internal:=true,
@@ -14,7 +14,7 @@ Export-Package: org.eclipse.papyrus.infra.sync,
  org.eclipse.papyrus.infra.sync.service
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.1.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

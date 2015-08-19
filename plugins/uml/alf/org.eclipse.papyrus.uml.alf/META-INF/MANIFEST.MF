@@ -39,18 +39,18 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.uml2.uml.resources,
  org.objectweb.asm;bundle-version="[5.0.1,
  6.0.0)";resolution:=optional,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.1",
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.1.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.2",
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.1.2",
  org.eclipse.m2m.qvt.oml;bundle-version="3.4.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.2",
  org.eclipse.emf.transaction;bundle-version="1.8.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.1.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.1.2",
  org.eclipse.gmf.runtime.emf.commands.core,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.gmf.runtime.common.ui.services,
- org.eclipse.papyrus.uml.alf.libraries;bundle-version="1.1.1"
+ org.eclipse.papyrus.uml.alf.libraries;bundle-version="1.1.2"
 Bundle-Vendor: %providerName
-Bundle-Version: 1.1.1.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.alf.AlfActivator
 Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j,

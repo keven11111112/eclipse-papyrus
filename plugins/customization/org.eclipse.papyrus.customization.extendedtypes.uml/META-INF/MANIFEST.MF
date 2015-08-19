@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.views.properties;bundle-version="1.1.1",
- org.eclipse.papyrus.customization.extendedtypes;bundle-version="1.1.1"
+ org.eclipse.papyrus.views.properties;bundle-version="1.1.2",
+ org.eclipse.papyrus.customization.extendedtypes;bundle-version="1.1.2"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.1.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Name: UML ExtendedTypes Customization
 Bundle-Activator: org.eclipse.papyrus.customization.extendedtypes.uml.Activator
 Bundle-ManifestVersion: 2

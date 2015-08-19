@@ -7,7 +7,7 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.m2m.qvto
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.1.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Name: Qvto Library
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.m2m.qvto.Activator

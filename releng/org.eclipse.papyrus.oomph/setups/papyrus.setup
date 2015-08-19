@@ -77,7 +77,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Mars">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.5/R-4.5-201506032000/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M1-201508052000/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -85,7 +85,7 @@
           </annotation>
         </repository>
         <repository url="${base.downloads.url}/tools/orbit/downloads/drops/R20150519210750/repository"/>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.11.x/">
+        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>
@@ -155,14 +155,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201506080954">
+        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T ACCELEO</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.0.0">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201508171259">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT OCL 6.0</value>
@@ -176,7 +176,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201505260349/">
+        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201508180411/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T XPAND</value>
@@ -190,14 +190,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201506080833">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201508181443">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.7.0/R-3.7.0-20150609111814/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M1-20150818010140/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -998,7 +998,7 @@
               <repository url="http://community.polarion.com/projects/subversive/download/eclipse/4.0/update-site/"/>
             </repositoryList>
             <repositoryList name="Mars">
-              <repository url="http://download.eclipse.org/technology/subversive/3.0/mars-site/">
+              <repository url="http://download.eclipse.org/technology/subversive/3.0/neon-site/">
                 <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                   <detail key="updateFrom">
                     <value>Subversive</value>
@@ -1089,7 +1089,7 @@
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus CDO Dependencies">
           <requirement name="org.eclipse.emf.cdo.sdk.feature.group"/>
           <repositoryList name="Mars">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/I20150714-0514">
+            <repository url="http://download.eclipse.org/modeling/emf/cdo/updates/integration">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF CDO</value>
@@ -1124,7 +1124,7 @@
                 </detail>
               </annotation>
             </repository>
-            <repository url="http://download.eclipse.org/facet/updates/integration/1.1.0/I201508041458/">
+            <repository url="http://download.eclipse.org/facet/updates/integration/1.1.0/I201508171709/">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF Facet</value>
@@ -1479,7 +1479,7 @@
       <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Luna Dependencies">
         <requirement name="org.eclipse.acceleo.feature.group"/>
         <repositoryList name="Mars">
-          <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201506080954">
+          <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441">
             <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
               <detail key="updateFrom">
                 <value>M2T ACCELEO</value>
