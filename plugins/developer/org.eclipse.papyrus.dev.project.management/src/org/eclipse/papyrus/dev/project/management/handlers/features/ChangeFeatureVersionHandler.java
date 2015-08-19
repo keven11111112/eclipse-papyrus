@@ -20,14 +20,17 @@ public class ChangeFeatureVersionHandler extends AbstractChangeProjectVersionHan
 
 	@Override
 	protected void setVersionNumber(final IProject project, final String newVersion, String notManagedProjectNames) {
-		if(project.isOpen()) {
+		if (project.isOpen()) {
 			try {
-				if(project.hasNature(Utils.FEATURE_NATURE)) {//for features
+				if (project.hasNature(Utils.FEATURE_NATURE)) {// for features
 					try {
 						final IFeatureProjectEditor editor = new FeatureProjectEditor(project);
 						editor.init();
-						editor.setVersion(newVersion);
-						editor.save();
+						// This test is necessary to bypass the plugins tagged 0.*.*
+						if (editor.getVersion().matches("[1-9]+\\.[0-9]+\\.[0-9]+\\.qualifier")) {
+							editor.setVersion(newVersion);
+							editor.save();
+						}
 					} catch (final ParserConfigurationException e) {
 						Activator.log.error(e);
 						notManagedProjectNames += NLS.bind("- {0} \n", project.getName());
