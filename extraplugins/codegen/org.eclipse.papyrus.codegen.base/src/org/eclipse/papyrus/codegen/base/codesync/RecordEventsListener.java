@@ -24,6 +24,7 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This listener is used to register ADD ant SET about in the diff model during
@@ -68,6 +69,11 @@ public class RecordEventsListener implements ResourceSetListener {
 			int eventType = notification.getEventType();
 			if (notification.getNotifier() instanceof EObject) {
 				EObject notifier = (EObject) notification.getNotifier();
+				
+				EObject baseElement = UMLUtil.getBaseElement(notifier);
+				if (baseElement != null) {
+					notifier = baseElement;
+				}
 				if ((eventType != Notification.REMOVING_ADAPTER) && (eventType != Notification.RESOLVE)) {
 					if ((notifier instanceof Element) || (notifier instanceof EAnnotation)) {
 						ChangeObject changeObject = new ChangeObject();
