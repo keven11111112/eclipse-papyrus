@@ -10,7 +10,7 @@
 		<tycho-version>0.23.0</tycho-version>
 		<tychoExtrasVersion>0.23.0</tychoExtrasVersion>
 		<jarSignerVersion>1.1.2</jarSignerVersion>
-		<findbugs.version>2.5.3</findbugs.version>
+		<findbugs.version>3.0.1</findbugs.version>
 		<xtext.version>2.7.3</xtext.version>
 		<java.source.version>1.7</java.source.version>
 		<java.target.version>1.7</java.target.version>
