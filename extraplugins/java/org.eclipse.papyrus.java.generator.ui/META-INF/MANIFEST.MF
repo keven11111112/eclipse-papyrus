@@ -6,18 +6,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml,
  org.eclipse.ui.ide,
  org.eclipse.core.resources;bundle-version="3.6.0",
- org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="1.1.0",
+ org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="1.2.0",
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,
- org.eclipse.papyrus.java.generator.jdtsynchronizer;bundle-version="1.1.0"
+ org.eclipse.papyrus.java.generator.jdtsynchronizer;bundle-version="1.2.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.java.generator.ui.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.java.generator.ui;singleton:=
- true
+Bundle-SymbolicName: org.eclipse.papyrus.java.generator.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

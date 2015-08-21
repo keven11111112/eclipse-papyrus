@@ -37,11 +37,11 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.Activator
 Bundle-ManifestVersion: 2
+Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Description: %pluginDescription

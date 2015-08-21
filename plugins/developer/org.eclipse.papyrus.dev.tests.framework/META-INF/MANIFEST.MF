@@ -8,10 +8,9 @@ Require-Bundle: org.eclipse.core.runtime,
 Export-Package: org.eclipse.papyrus.dev.tests.framework.internal;x-internal:=true
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.dev.tests.framework.internal.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.dev.tests.framework;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-

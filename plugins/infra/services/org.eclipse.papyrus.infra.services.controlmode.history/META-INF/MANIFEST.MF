@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.papyrus.infra.core;bundle-version="1.1.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
  org.eclipse.core.resources;bundle-version="3.7.0"
 Export-Package: org.eclipse.papyrus.infra.services.controlmode.history,
  org.eclipse.papyrus.infra.services.controlmode.history.utils,
@@ -11,11 +11,9 @@ Export-Package: org.eclipse.papyrus.infra.services.controlmode.history,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.controlmode.hi
- story;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.controlmode.history;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

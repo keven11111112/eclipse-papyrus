@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipse.papyrus</groupId>
 	<artifactId>org.eclipse.papyrus.dev.releng</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<parent>
 	    <groupId>org.eclipse.papyrus</groupId>
 	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
-	    <version>1.1.0-SNAPSHOT</version>
+	    <version>1.2.0-SNAPSHOT</version>
 	    <relativePath>..</relativePath>
     </parent>
 	<modules>
@@ -174,7 +174,7 @@
 			<id>subversive</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Subversive",0) -->
-			<url>http://download.eclipse.org/technology/subversive/3.0/mars-site/</url>
+			<url>http://download.eclipse.org/technology/subversive/3.0/neon-site/</url>
 		</repository>
 		<repository>
 			<id>m2t-acceleo</id>
@@ -192,7 +192,7 @@
 			<id>oomph</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Oomph",0) -->
-			<url>http://download.eclipse.org/oomph/drops/milestone/S20150610-124713-1.1.0-RC4</url>
+			<url>http://download.eclipse.org/oomph/drops/milestone/S20150819-113829-1.2.0-M1</url>
 		</repository>		
 		<repository>
 			<id>UPR</id>

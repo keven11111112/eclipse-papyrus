@@ -1,9 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.soaml.diagram.common;singleton:=true
-Bundle-Version: 1.1.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.soaml.diagram.common.Activator
 Require-Bundle: org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.uml.tools.utils,
  org.eclipse.papyrus.uml.diagram.common,
@@ -17,8 +12,13 @@ Require-Bundle: org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.core.expressions,
  org.eclipse.papyrus.uml.diagram.communication
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.soaml.diagram.common.commands
 Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.2.0.qualifier
+Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.soaml.diagram.common.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.soaml.diagram.common;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

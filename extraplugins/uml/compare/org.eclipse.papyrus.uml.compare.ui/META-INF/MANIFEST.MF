@@ -15,11 +15,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.compare
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.compare.ui.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.compare.ui;singleton:=tru
- e
+Bundle-SymbolicName: org.eclipse.papyrus.uml.compare.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

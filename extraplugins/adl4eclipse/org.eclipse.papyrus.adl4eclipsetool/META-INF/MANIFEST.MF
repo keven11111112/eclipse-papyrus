@@ -1,4 +1,14 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.adltool,
+ org.eclipse.papyrus.adltool.command,
+ org.eclipse.papyrus.adltool.designer,
+ org.eclipse.papyrus.adltool.reversible,
+ org.eclipse.papyrus.adltool.reversible.factory,
+ org.eclipse.papyrus.adltool.reversible.project
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.transaction,
@@ -13,24 +23,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.adl4eclipsetool,
  org.eclipse.equinox.registry,
  org.eclipse.emf.common
-Export-Package: org.eclipse.papyrus.adltool,
- org.eclipse.papyrus.adltool.command,
- org.eclipse.papyrus.adltool.designer,
- org.eclipse.papyrus.adltool.reversible,
- org.eclipse.papyrus.adltool.reversible.factory,
- org.eclipse.papyrus.adltool.reversible.project
 Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
+Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.adltool.Activator
 Bundle-ManifestVersion: 2
-Bundle-Description: The purpose of this plugin is to model the archite
- cture of eclipse-plugin into UML by using OSGI and ADL4Eclipse profil
- e. More details can be found in the docs directory.
-Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool;singleton:=tr
- ue
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Description: The purpose of this plugin is to model the architecture of eclipse-plugin into UML by using OSGI and ADL4Eclipse profile. More details can be found in the docs directory.
+Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool;singleton:=true
 Import-Package: org.eclipse.papyrus.adltool.reversible
-
