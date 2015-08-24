@@ -413,7 +413,13 @@
 			<layout>p2</layout>
 			<!-- manualUpdate -->
 			<url>http://download.eclipse.org/rmf/updates/releases</url>
-		</repository>		
+		</repository>
+		<repository>
+			<id>PapyrusRT</id>
+			<layout>p2</layout>
+			<!--  manualUpdate -->
+			<url>http://download.eclipse.org/papyrus-rt/updates/releases/mars/0.7.0/</url>
+		</repository>
 	</repositories>
 	<build>
 	
