@@ -9,6 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 402525, 323802, 431953, 433310, 434993
+ *  Christian W. Damus - bug 474610
  *
  *****************************************************************************/
 package org.eclipse.papyrus.tests;
@@ -106,6 +107,7 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.stereotypeproperty.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.wizards.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.modelrepair.Activator.PLUGIN_ID, "org.eclipse.papyrus.uml.modelrepair.tests.AllTests"));
+		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.profile.Activator.PLUGIN_ID, "org.eclipse.papyrus.uml.profile.tests.AllTests"));
 
 		/* uml diagrams */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.clazz.test.AllTests.class));
