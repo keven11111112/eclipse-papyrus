@@ -172,7 +172,7 @@
 			<id>emft-emffacet</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF Facet",0) -->
-			<url>http://download.eclipse.org/facet/updates/integration/0.4.2/I201412301440/</url>
+			<url>http://download.eclipse.org/facet/updates/release/0.4.2</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
