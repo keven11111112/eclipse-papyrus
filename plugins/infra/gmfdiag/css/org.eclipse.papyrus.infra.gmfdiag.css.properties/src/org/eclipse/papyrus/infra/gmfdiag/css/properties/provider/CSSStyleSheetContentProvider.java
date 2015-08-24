@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.provider;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class CSSStyleSheetContentProvider extends EMFContentProvider {
 	 * @param feature
 	 *            The object's feature being edited
 	 * @return
-	 *         A content provider returning all the values valid for the given feature
+	 * 		A content provider returning all the values valid for the given feature
 	 */
 	@Override
 	protected IStructuredContentProvider getSemanticProvider(EObject editedEObject, EStructuralFeature feature) {
@@ -51,7 +53,18 @@ public class CSSStyleSheetContentProvider extends EMFContentProvider {
 
 			public Object[] getElements() {
 				List<Object> result = new LinkedList<Object>();
-				for (Resource resource : CSSStyleSheetContentProvider.this.context.eResource().getResourceSet().getResources()) {
+				if (context == null || context.eResource() == null) {
+					return new Object[0];
+				}
+				Resource contextResource = context.eResource();
+				List<Resource> resources;
+				if (contextResource.getResourceSet() == null) {
+					resources = Collections.singletonList(contextResource);
+				} else {
+					resources = new ArrayList<Resource>(contextResource.getResourceSet().getResources());
+				}
+
+				for (Resource resource : resources) {
 					for (Object object : resource.getContents()) {
 						if (object instanceof ModelStyleSheets) {
 							ModelStyleSheets styleSheets = (ModelStyleSheets) object;
