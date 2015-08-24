@@ -61,7 +61,7 @@ for f in *linux*; do
 		bitness=32
 	fi
 
-	mv $rcpProductDir/$f $rcpProductDir/papyrus-linux-$bitness.tar.gz
+	mv $rcpProductDir/$f $rcpProductTempDir/papyrus-linux-$bitness.tar.gz
 done
 
 #Proceed with MacOSX
