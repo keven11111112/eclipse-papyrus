@@ -53,6 +53,7 @@ import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Deployment;
@@ -62,6 +63,7 @@ import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * @generated
@@ -485,8 +487,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
+		public boolean canCreateCommunicationPath_4011(
+				Package container, Type source, Type target) {
+			return canExistCommunicationPath_4011(
+					container, null, source, target);
+		}
+
+		/**
+			 * @generated
+			 */
 		public boolean canExistLink_4005() {
 			return true;
 		}
@@ -537,6 +548,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistDependency_4010(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
+			return true;
+		}
+
+		/**
+		* @generated
+		*/
+		public boolean canExistCommunicationPath_4011(
+				Package container, CommunicationPath linkInstance, Type source, Type target) {
 			return true;
 		}
 	}
