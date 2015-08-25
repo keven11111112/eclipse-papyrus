@@ -30,5 +30,6 @@ FULL_BUILD_ID=${BUILD_TYPE}${COMPACT_BUILD_ID}
 echo $FULL_BUILD_ID > $promoteDirName
 
 
-revision=$($SVN info svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus | grep '^Revision:' | awk '{print $2}')
+#revision=$($SVN info svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus | grep '^Revision:' | awk '{print $2}')
+revision=""
 echo "$revision" > "$WORKSPACE/revision.txt"
