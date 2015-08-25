@@ -288,7 +288,7 @@
     <!-- GEF -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GEF",0) -->
-     <rm:uri format="{0}/tools/gef/updates/milestones">
+      <rm:uri format="{0}/tools/gef/updates/releases/3.9.101_gef-maintenance_810">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
