@@ -15,11 +15,9 @@ Export-Package: org.eclipse.papyrus.domaincontextcodegen,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.domaincontextcodegen;singleto
- n:=true
+Bundle-SymbolicName: org.eclipse.papyrus.domaincontextcodegen;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

@@ -341,7 +341,8 @@ public class PapyrusCDTEditor extends CEditor {
 
 		URI uri = papyrusTextInstance.eResource().getURI();
 		Classifier classifier = (Classifier) papyrusTextInstance.getEditedObject();
-		srcFile = SyncModelToCDT.syncModelToCDT(classifier);
+		String generatorID = papyrusTextInstance.getGeneratorID();
+		srcFile = SyncModelToCDT.syncModelToCDT(classifier, generatorID);
 		if (srcFile == null || !srcFile.exists()) {
 			throw new PartInitException("Code generation before editing failed. Please check error log");
 		}
@@ -350,7 +351,7 @@ public class PapyrusCDTEditor extends CEditor {
 		// IStorage storage = new TextStorage(string);
 		super.doSetInput(newInput);
 
-		syncCpp = new SyncCDTtoModel(newInput, classifier, uri.segment(1));
+		syncCpp = new SyncCDTtoModel(newInput, classifier, uri.segment(1), generatorID);
 		m_input = newInput;
 		reveal = new RevealCurrentOperation(newInput, classifier, uri.segment(1));
 

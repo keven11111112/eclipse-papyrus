@@ -4,11 +4,11 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
  org.eclipse.emf.ecore;bundle-version="2.7.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.tools;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.1.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.tools;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.2.0"
 Export-Package: org.eclipse.papyrus.infra.elementtypesconfigurations,
  org.eclipse.papyrus.infra.elementtypesconfigurations.extensionpoints,
  org.eclipse.papyrus.infra.elementtypesconfigurations.factories,
@@ -23,7 +23,7 @@ Export-Package: org.eclipse.papyrus.infra.elementtypesconfigurations,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.elementtypesconfigurations.Activator

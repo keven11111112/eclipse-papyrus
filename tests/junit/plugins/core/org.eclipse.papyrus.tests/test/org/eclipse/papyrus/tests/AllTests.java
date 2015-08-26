@@ -13,6 +13,7 @@
  *  Christian W. Damus - bug 451230
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 463156
+ *  Christian W. Damus - bug 474610
  *
  *****************************************************************************/
 package org.eclipse.papyrus.tests;
@@ -44,7 +45,7 @@ public class AllTests {
 		/* **************** plugins *********************** */
 		/* developper */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.bundles.tests.AllTests.class));
-		
+
 		/* core */
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.core.tests.AllTests"));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.core.clipboard.tests.AllTests.class));
@@ -107,6 +108,7 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.stereotypeproperty.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.wizards.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.modelrepair.Activator.PLUGIN_ID, "org.eclipse.papyrus.uml.modelrepair.tests.AllTests"));
+		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.profile.Activator.PLUGIN_ID, "org.eclipse.papyrus.uml.profile.tests.AllTests"));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.decoratormodel.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.decoratormodel.controlmode.tests.AllTests.class));
 
@@ -135,6 +137,7 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.nattable.tests.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.nattable.generic.tests.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.nattable.stereotype.display.tests.tests.AllTests.class));
 
 		// uml textedit tests
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.textedit.port.tests.suites.AllTests.class));

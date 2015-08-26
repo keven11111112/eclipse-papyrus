@@ -423,6 +423,21 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Component_3055 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Component_3055"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Component_3056 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Component_3056"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Component_3057 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Component_3057"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Link_4016 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Link_4016"); //$NON-NLS-1$
 
 	/**
@@ -590,264 +605,187 @@ public class UMLElementTypes {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(Dependency_2014, UMLPackage.eINSTANCE.getDependency());
-
 
 			elements.put(AssociationClass_2013, UMLPackage.eINSTANCE.getAssociationClass());
 
-
 			elements.put(Association_2015, UMLPackage.eINSTANCE.getAssociation());
-
 
 			elements.put(InstanceSpecification_2001, UMLPackage.eINSTANCE.getInstanceSpecification());
 
-
 			elements.put(Component_2002, UMLPackage.eINSTANCE.getComponent());
-
 
 			elements.put(Signal_2003, UMLPackage.eINSTANCE.getSignal());
 
-
 			elements.put(Interface_2004, UMLPackage.eINSTANCE.getInterface());
-
 
 			elements.put(Model_2005, UMLPackage.eINSTANCE.getModel());
 
-
 			elements.put(Enumeration_2006, UMLPackage.eINSTANCE.getEnumeration());
-
 
 			elements.put(Package_2007, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(InformationItem_2099, UMLPackage.eINSTANCE.getInformationItem());
-
 
 			elements.put(Class_2008, UMLPackage.eINSTANCE.getClass_());
 
-
 			elements.put(PrimitiveType_2009, UMLPackage.eINSTANCE.getPrimitiveType());
-
 
 			elements.put(DataType_2010, UMLPackage.eINSTANCE.getDataType());
 
-
 			elements.put(Constraint_2011, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Comment_2012, UMLPackage.eINSTANCE.getComment());
 
-
 			elements.put(Diagram_2016, NotationPackage.eINSTANCE.getDiagram());
-
 
 			elements.put(DurationObservation_2095, UMLPackage.eINSTANCE.getDurationObservation());
 
-
 			elements.put(TimeObservation_2096, UMLPackage.eINSTANCE.getTimeObservation());
-
 
 			elements.put(NamedElement_2097, UMLPackage.eINSTANCE.getNamedElement());
 
-
 			elements.put(Property_3012, UMLPackage.eINSTANCE.getProperty());
-
 
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 
-
 			elements.put(Property_3005, UMLPackage.eINSTANCE.getProperty());
-
 
 			elements.put(Property_3006, UMLPackage.eINSTANCE.getProperty());
 
-
 			elements.put(Property_3041, UMLPackage.eINSTANCE.getProperty());
-
 
 			elements.put(Property_3018, UMLPackage.eINSTANCE.getProperty());
 
-
 			elements.put(Class_3014, UMLPackage.eINSTANCE.getClass_());
-
 
 			elements.put(Class_3004, UMLPackage.eINSTANCE.getClass_());
 
-
 			elements.put(Class_3008, UMLPackage.eINSTANCE.getClass_());
-
 
 			elements.put(Operation_3013, UMLPackage.eINSTANCE.getOperation());
 
-
 			elements.put(Operation_3003, UMLPackage.eINSTANCE.getOperation());
-
 
 			elements.put(Operation_3007, UMLPackage.eINSTANCE.getOperation());
 
-
 			elements.put(Operation_3042, UMLPackage.eINSTANCE.getOperation());
-
 
 			elements.put(Operation_3019, UMLPackage.eINSTANCE.getOperation());
 
-
 			elements.put(ConnectableElementTemplateParameter_3034, UMLPackage.eINSTANCE.getConnectableElementTemplateParameter());
-
 
 			elements.put(OperationTemplateParameter_3035, UMLPackage.eINSTANCE.getOperationTemplateParameter());
 
-
 			elements.put(ClassifierTemplateParameter_3031, UMLPackage.eINSTANCE.getClassifierTemplateParameter());
-
 
 			elements.put(TemplateParameter_3016, UMLPackage.eINSTANCE.getTemplateParameter());
 
-
 			elements.put(EnumerationLiteral_3017, UMLPackage.eINSTANCE.getEnumerationLiteral());
-
 
 			elements.put(Reception_3011, UMLPackage.eINSTANCE.getReception());
 
-
 			elements.put(Reception_3039, UMLPackage.eINSTANCE.getReception());
-
 
 			elements.put(Slot_3030, UMLPackage.eINSTANCE.getSlot());
 
-
 			elements.put(RedefinableTemplateSignature_3015, UMLPackage.eINSTANCE.getRedefinableTemplateSignature());
-
 
 			elements.put(TemplateSignature_3033, UMLPackage.eINSTANCE.getTemplateSignature());
 
-
 			elements.put(InstanceSpecification_3020, UMLPackage.eINSTANCE.getInstanceSpecification());
-
 
 			elements.put(Component_3021, UMLPackage.eINSTANCE.getComponent());
 
-
 			elements.put(Signal_3022, UMLPackage.eINSTANCE.getSignal());
-
 
 			elements.put(Interface_3023, UMLPackage.eINSTANCE.getInterface());
 
-
 			elements.put(Model_3024, UMLPackage.eINSTANCE.getModel());
-
 
 			elements.put(Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration());
 
-
 			elements.put(Package_3009, UMLPackage.eINSTANCE.getPackage());
-
 
 			elements.put(InformationItem_3040, UMLPackage.eINSTANCE.getInformationItem());
 
-
 			elements.put(Class_3010, UMLPackage.eINSTANCE.getClass_());
-
 
 			elements.put(PrimitiveType_3026, UMLPackage.eINSTANCE.getPrimitiveType());
 
-
 			elements.put(DataType_3027, UMLPackage.eINSTANCE.getDataType());
-
 
 			elements.put(Comment_3028, UMLPackage.eINSTANCE.getComment());
 
-
 			elements.put(Constraint_3029, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Interface_3036, UMLPackage.eINSTANCE.getInterface());
 
-
 			elements.put(Interface_3037, UMLPackage.eINSTANCE.getInterface());
-
 
 			elements.put(Interface_3038, UMLPackage.eINSTANCE.getInterface());
 
-
 			elements.put(Enumeration_3052, UMLPackage.eINSTANCE.getEnumeration());
-
 
 			elements.put(Enumeration_3053, UMLPackage.eINSTANCE.getEnumeration());
 
-
 			elements.put(Enumeration_3054, UMLPackage.eINSTANCE.getEnumeration());
-
 
 			elements.put(PrimitiveType_3047, UMLPackage.eINSTANCE.getPrimitiveType());
 
-
 			elements.put(PrimitiveType_3046, UMLPackage.eINSTANCE.getPrimitiveType());
-
 
 			elements.put(PrimitiveType_3048, UMLPackage.eINSTANCE.getPrimitiveType());
 
-
 			elements.put(DataType_3044, UMLPackage.eINSTANCE.getDataType());
-
 
 			elements.put(DataType_3045, UMLPackage.eINSTANCE.getDataType());
 
-
 			elements.put(DataType_3043, UMLPackage.eINSTANCE.getDataType());
-
 
 			elements.put(Signal_3050, UMLPackage.eINSTANCE.getSignal());
 
-
 			elements.put(Signal_3051, UMLPackage.eINSTANCE.getSignal());
-
 
 			elements.put(Signal_3049, UMLPackage.eINSTANCE.getSignal());
 
 
-			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
+			elements.put(Component_3055, UMLPackage.eINSTANCE.getComponent());
 
+
+			elements.put(Component_3056, UMLPackage.eINSTANCE.getComponent());
+
+
+			elements.put(Component_3057, UMLPackage.eINSTANCE.getComponent());
+
+
+			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
 
 			elements.put(Association_4001, UMLPackage.eINSTANCE.getAssociation());
 
-
 			elements.put(Association_4019, UMLPackage.eINSTANCE.getAssociation());
-
 
 			elements.put(Generalization_4002, UMLPackage.eINSTANCE.getGeneralization());
 
-
 			elements.put(InterfaceRealization_4003, UMLPackage.eINSTANCE.getInterfaceRealization());
-
 
 			elements.put(Substitution_4004, UMLPackage.eINSTANCE.getSubstitution());
 
-
 			elements.put(Realization_4005, UMLPackage.eINSTANCE.getRealization());
-
 
 			elements.put(Abstraction_4006, UMLPackage.eINSTANCE.getAbstraction());
 
-
 			elements.put(Usage_4007, UMLPackage.eINSTANCE.getUsage());
-
 
 			elements.put(Dependency_4008, UMLPackage.eINSTANCE.getDependency());
 
-
 			elements.put(Dependency_4018, UMLPackage.eINSTANCE.getDependency());
-
 
 			elements.put(ElementImport_4009, UMLPackage.eINSTANCE.getElementImport());
 
-
 			elements.put(PackageImport_4010, UMLPackage.eINSTANCE.getPackageImport());
 
-
 			elements.put(PackageMerge_4011, UMLPackage.eINSTANCE.getPackageMerge());
-
 
 			elements.put(ProfileApplication_4012, UMLPackage.eINSTANCE.getProfileApplication());
 
@@ -855,19 +793,15 @@ public class UMLElementTypes {
 
 			elements.put(ConstraintConstrainedElement_4014, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
-
 			elements.put(TemplateBinding_4015, UMLPackage.eINSTANCE.getTemplateBinding());
 
-
 			elements.put(GeneralizationSet_4020, UMLPackage.eINSTANCE.getGeneralizationSet());
-
 
 			elements.put(InstanceSpecification_4021, UMLPackage.eINSTANCE.getInstanceSpecification());
 
 			elements.put(TimeObservationEvent_4024, UMLPackage.eINSTANCE.getTimeObservation_Event());
 
 			elements.put(DurationObservationEvent_4025, UMLPackage.eINSTANCE.getDurationObservation_Event());
-
 
 			elements.put(InformationFlow_4026, UMLPackage.eINSTANCE.getInformationFlow());
 
@@ -962,6 +896,9 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Signal_3050);
 			KNOWN_ELEMENT_TYPES.add(Signal_3051);
 			KNOWN_ELEMENT_TYPES.add(Signal_3049);
+			KNOWN_ELEMENT_TYPES.add(Component_3055);
+			KNOWN_ELEMENT_TYPES.add(Component_3056);
+			KNOWN_ELEMENT_TYPES.add(Component_3057);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
 			KNOWN_ELEMENT_TYPES.add(Association_4001);
@@ -1153,6 +1090,12 @@ public class UMLElementTypes {
 			return Signal_3051;
 		case NestedSignalForInterfaceEditPart.VISUAL_ID:
 			return Signal_3049;
+		case NestedComponentForClassEditPart.VISUAL_ID:
+			return Component_3055;
+		case NestedComponentForInterfaceEditPart.VISUAL_ID:
+			return Component_3056;
+		case NestedComponentForComponentEditPart.VISUAL_ID:
+			return Component_3057;
 		case AssociationClassDashedLinkEditPart.VISUAL_ID:
 			return Link_4016;
 		case AssociationClassLinkEditPart.VISUAL_ID:

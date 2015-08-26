@@ -685,7 +685,7 @@
       name="UML::CommunicationPath"
       identifier="org.eclipse.papyrus.uml.CommunicationPath"
       hint="UML::CommunicationPath"
-      editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+      editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.CommunicationPathEditHelper">
     <iconEntry
         xmi:id="_Scbb21YCEeS0WsAAtVmToA"
         iconPath="/icons/full/obj16/CommunicationPath.gif"
@@ -3889,4 +3889,18 @@
       editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.TemplateableElementEditHelperAdvice"
       inheritance="all"
       target="_SdHYY1YCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations
+      xmi:id="_hjfH8DCzEeWM9ILC16rEvw"
+      name="UML Read-only Hints Advice"
+      description="Advice that tweaks requests to provide hints to the read-only advice"
+      identifier="org.eclipse.papyrus.uml.advice.UMLReadOnlyHints"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.UMLReadOnlyHintsAdvice"
+      inheritance="all"
+      target="_ScgUUFYCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations
+      xmi:id="_SJGO0DWbEeWdwYNHBiYLiA"
+      name="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice_CommunicationPath"
+      identifier="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice_CommunicationPath"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice"
+      target="_Scbb2lYCEeS0WsAAtVmToA"/>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

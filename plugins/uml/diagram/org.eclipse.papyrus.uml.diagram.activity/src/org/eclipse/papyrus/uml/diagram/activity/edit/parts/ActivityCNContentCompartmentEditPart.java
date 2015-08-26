@@ -72,8 +72,9 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNContentCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNContentCompartmentCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityParameterNodeInCompartmentCreationEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
@@ -94,6 +95,7 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
+
 		return super.getTargetEditPart(request);
 	}
 
@@ -103,7 +105,10 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);
@@ -119,7 +124,10 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(
+				this,
+				getFigure(),
+				new Rectangle(loc, size));
 	}
 
 	/**

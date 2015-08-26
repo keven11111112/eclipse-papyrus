@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.adltool;
 
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -24,8 +25,12 @@ public class Activator extends AbstractUIPlugin {
 	/** The plug-in ID **/
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.adl4eclipsetool"; //$NON-NLS-1$
 
+	/** The logging helper **/
+	public static LogHelper log;
+
 	// The shared instance
 	private static Activator plugin;
+
 	private BundleContext bundleContext;
 
 	/**
@@ -34,7 +39,6 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-
 	/**
 	 * @return the bundleContext
 	 */
@@ -42,7 +46,7 @@ public class Activator extends AbstractUIPlugin {
 		return bundleContext;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
@@ -51,11 +55,11 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		this.bundleContext = context;
-
+		bundleContext = context;
+		log = new LogHelper(plugin);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,26 +9,28 @@
  *
  * Contributors:
  *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus - bug 464647
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.test;
 
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite.DynamicClasses;
 import org.eclipse.papyrus.uml.diagram.deployment.test.canonical.AllCanonicalTests;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * All tests together.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
-// canonical
-AllCanonicalTests.class,
+		// canonical
+		AllCanonicalTests.class,
 
-// load
-//LoadTests.class
-//End
+		// load
+		// LoadTests.class,
 })
+@DynamicClasses("org.eclipse.papyrus.uml.diagram.deployment.test.AllGenTests")
 public class AllTests {
 
 }

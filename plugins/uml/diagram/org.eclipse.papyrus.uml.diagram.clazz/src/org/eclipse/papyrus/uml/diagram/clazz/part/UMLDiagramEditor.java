@@ -253,8 +253,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider =
-				new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
@@ -330,8 +329,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	public void providerChanged(ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
 		if (PapyrusPaletteService.getInstance().equals(event.getSource())) {
-			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
-					getDefaultPaletteContent());
+			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this, getDefaultPaletteContent());
 		}
 	}
 
@@ -423,7 +421,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 * whenever a key is released, and the Tool is in the proper state. Override
 						 * to support pressing the enter key to create a shape or connection
 						 * (between two selected shapes)
-						 *
+						 * 
 						 * @param event
 						 *            the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
@@ -473,7 +471,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						/**
 						 * Override to support double-clicking a palette tool entry to create a
 						 * shape or connection (between two selected shapes).
-						 *
+						 * 
 						 * @see MouseListener#mouseDoubleClick(MouseEvent)
 						 */
 						@Override
@@ -534,20 +532,19 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						// It is usual for the transfer data not to be set because it is available locally
-						return LocalSelectionTransfer.getTransfer().getSelection();
-					}
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				// It is usual for the transfer data not to be set because it is available locally
+				return LocalSelectionTransfer.getTransfer().getSelection();
+			}
 
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 
 	}
 

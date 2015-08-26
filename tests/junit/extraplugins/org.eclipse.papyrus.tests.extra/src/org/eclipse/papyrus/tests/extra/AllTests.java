@@ -59,16 +59,9 @@ public class AllTests {
 		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.diff.tests.AllTests.class));
 
 		/* **************** plugins *********************** */
-
-		/* Sysml 1.4 tests */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml14.service.types.tests.AllTests.class));
-
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml14.diagram.common.tests.AllTests.class));
-
-		/* AOF */
+		 /* AOF */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.core.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.emf.tests.AllTests.class));
-
 	}
 
 	/**

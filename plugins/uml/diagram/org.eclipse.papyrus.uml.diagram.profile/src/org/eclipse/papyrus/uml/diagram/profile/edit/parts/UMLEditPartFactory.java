@@ -358,6 +358,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ContextLinkEditPart.VISUAL_ID:
 				return new ContextLinkEditPart(view);
 
+			case ContextLinkAppliedStereotypeEditPart.VISUAL_ID:
+				return new ContextLinkAppliedStereotypeEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -378,8 +381,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
 			return new MultilineCellEditorLocator(
 					(IMultilineEditableFigure) source.getFigure());
-		}
-		else {
+		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
 		}

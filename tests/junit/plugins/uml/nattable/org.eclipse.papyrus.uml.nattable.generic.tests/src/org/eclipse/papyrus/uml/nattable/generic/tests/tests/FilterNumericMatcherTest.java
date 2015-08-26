@@ -42,41 +42,41 @@ public class FilterNumericMatcherTest extends AbstractFilterMatcherTest {
 	
 	@Test
 	public void test1() throws Exception{
-		checkFilter("1", 2, 2, nbElement, 1); //$NON-NLS-1$
+		checkFilterWithDataValidator("1", 2, 2, nbElement, 1); //$NON-NLS-1$
 	}
 	
 	@Test
 	public void test2() throws Exception{
-		checkFilter("-1", 2, 2, nbElement, 1); //$NON-NLS-1$
+		checkFilterWithDataValidator("-1", 2, 2, nbElement, 1); //$NON-NLS-1$
 	}
 	
 	@Test
 	public void test3() throws Exception{
-		checkFilter(">1", 2, 2, nbElement, 3); //$NON-NLS-1$
+		checkFilterWithDataValidator(">1", 2, 2, nbElement, 3); //$NON-NLS-1$
 	}
 	@Test
 	public void test4() throws Exception{
-		checkFilter(">=1", 2, 2, nbElement, 4); //$NON-NLS-1$
+		checkFilterWithDataValidator(">=1", 2, 2, nbElement, 4); //$NON-NLS-1$
 	}
 	
 	@Test
 	public void test5() throws Exception{
-		checkFilter("<0", 2, 2, nbElement, 3); //$NON-NLS-1$
+		checkFilterWithDataValidator("<0", 2, 2, nbElement, 3); //$NON-NLS-1$
 	}
 	
 	@Test
 	public void test6() throws Exception{
-		checkFilter("<=0", 2, 2, nbElement, 4); //$NON-NLS-1$
+		checkFilterWithDataValidator("<=0", 2, 2, nbElement, 4); //$NON-NLS-1$
 	}
 	
 	@Test
 	public void test7() throws Exception{
-		checkFilter("=0", 2, 2, nbElement, 1); //$NON-NLS-1$
+		checkFilterWithDataValidator("=0", 2, 2, nbElement, 1); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test8() throws Exception{
-		checkFilter("<>0", 2, 2, nbElement, 7); //$NON-NLS-1$
+		checkFilterWithDataValidator("<>0", 2, 2, nbElement, 7); //$NON-NLS-1$
 	}
 
 }

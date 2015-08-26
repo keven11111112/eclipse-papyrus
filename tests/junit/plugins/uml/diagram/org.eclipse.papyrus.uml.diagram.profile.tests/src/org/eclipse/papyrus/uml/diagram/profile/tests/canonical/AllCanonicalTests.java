@@ -16,6 +16,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestProfileDiagramTopNode.class, TestProfileDiagramChildNode.class, TestProfileDiagramLink.class, TestImportMetaClass.class, TestProfileDiagramExtension.class })
+@Suite.SuiteClasses({
+		TestProfileDiagramTopNode.class,
+		TestProfileDiagramChildNode.class,
+		TestProfileDiagramLink.class,
+		TestImportMetaClass.class,
+		TestProfileDiagramExtension.class,
+		TestProfileDiagramContextLink.class })
 public class AllCanonicalTests {
 }

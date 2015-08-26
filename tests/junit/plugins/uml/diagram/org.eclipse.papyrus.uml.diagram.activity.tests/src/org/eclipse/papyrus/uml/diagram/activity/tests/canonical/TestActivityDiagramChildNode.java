@@ -16,6 +16,8 @@ package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
+import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
+import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
@@ -223,6 +225,7 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 * Test to manage Activity
 	 */
 	@Test
+	@InteractiveTest 
 	public void testToManageActivity() {
 		testToManageNode(UMLElementTypes.Activity_3083, UMLPackage.eINSTANCE.getActivity(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}

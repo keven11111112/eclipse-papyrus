@@ -1,21 +1,15 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.PolygonDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GeneralOrderingItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.GeneralOrderingDescriptor;
 
 /**
  * @generated
@@ -40,8 +34,9 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new GeneralOrderingItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -105,56 +100,5 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	 */
 	public GeneralOrderingDescriptor getPrimaryShape() {
 		return (GeneralOrderingDescriptor) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class GeneralOrderingDescriptor extends PapyrusEdgeFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fAppliedStereotypeLabel;
-
-		/**
-		 * @generated
-		 */
-		public GeneralOrderingDescriptor() {
-			this.setLineStyle(Graphics.LINE_DASH);
-			this.setForegroundColor(ColorConstants.black);
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		@Override
-		public void resetStyle() {
-			super.resetStyle();
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolygonDecoration df = new PolygonDecoration();
-			df.setFill(true);
-			df.setForegroundColor(ColorConstants.black);
-			df.setBackgroundColor(ColorConstants.black);
-			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-			df.setTemplate(pl);
-			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
-			return df;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getAppliedStereotypeLabel() {
-			return fAppliedStereotypeLabel;
-		}
 	}
 }

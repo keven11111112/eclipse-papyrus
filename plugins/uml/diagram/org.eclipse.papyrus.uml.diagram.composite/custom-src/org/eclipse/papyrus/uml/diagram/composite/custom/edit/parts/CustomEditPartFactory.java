@@ -18,7 +18,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConnectorMultiplicitySourceEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConnectorMultiplicityTargetEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationObservationStereotypeLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ParameterAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortNameEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 
@@ -44,7 +48,14 @@ public class CustomEditPartFactory extends UMLEditPartFactory {
 				return new CustomConstraintEditPartCN(view);
 			case PortNameEditPart.VISUAL_ID:
 				return new CustomPortNameEditPart(view);
-
+			case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
+				return new CustomDurationObservationStereotypeLabelEditPart(view);
+			case ParameterAppliedStereotypeEditPart.VISUAL_ID:
+				return new CustomParameterAppliedStereotypeEditPart(view);
+			case PortAppliedStereotypeEditPart.VISUAL_ID:
+				return new CustomPortAppliedStereotypeEditPart(view);
+			case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
+				return new CustomTimeObservationStereotypeLabelEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);

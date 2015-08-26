@@ -26,7 +26,7 @@ public class PaletteLocalStackProxy extends PaletteContainerProxy {
 	protected String id;
 
 	/** icon for separators */
-	public static String STACK_ICON = "/icons/stack.gif";
+	public static final String STACK_ICON = "/icons/stack.gif";
 
 	/**
 	 * Creates a new PaletteLocalEntryProxy

@@ -232,7 +232,10 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 	@Override
 	public void unload() {
+		boolean logError = true;
 		try {
+			logError = view == null || !view.isClosed();
+
 			// CDOResources don't implement unload(), but we can remove adapters from
 			// all of the objects that we have loaded in this view
 			if (view != null && !view.isClosed()) {
@@ -241,6 +244,11 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 		} finally {
 			try {
 				super.unload();
+			} catch (Exception ex) {
+				if (logError)
+				{
+					Activator.log.error(ex);
+				}
 			} finally {
 				LifecycleUtil.deactivate(view);
 				CDOCheckoutViewProvider.disposeResourceSet(this);

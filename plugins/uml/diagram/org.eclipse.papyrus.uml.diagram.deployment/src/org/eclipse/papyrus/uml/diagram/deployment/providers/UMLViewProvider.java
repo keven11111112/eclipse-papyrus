@@ -74,6 +74,9 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentBodyEditPart
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPartCN;
@@ -421,6 +424,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createDependency_4004(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case DependencyBranchEditPart.VISUAL_ID:
 			return createDependency_4010(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+		case CommunicationPathEditPart.VISUAL_ID:
+			return createCommunicationPath_4011(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -1124,6 +1129,43 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//if (routing != null) {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
+
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createCommunicationPath_4011(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(CommunicationPathEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "CommunicationPath");
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+		Node label6001 = createLabel(edge, UMLVisualIDRegistry.getType(CommunicationPathNameEditPart.VISUAL_ID));
+		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6001 = (Location) label6001.getLayoutConstraint();
+		location6001.setX(0);
+		location6001.setY(40);
+		Node label6002 = createLabel(edge, UMLVisualIDRegistry.getType(CommunicationPathAppliedStereotypeEditPart.VISUAL_ID));
+		label6002.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6002 = (Location) label6002.getLayoutConstraint();
+		location6002.setX(0);
+		location6002.setY(60);
 
 		return edge;
 	}

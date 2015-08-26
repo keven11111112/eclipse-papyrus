@@ -30,6 +30,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
+			@Override
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.profile.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
@@ -38,6 +39,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 				return null;
 			}
 
+			@Override
 			@SuppressWarnings("rawtypes")
 			public Class[] getAdapterList() {
 				return supportedTypes;

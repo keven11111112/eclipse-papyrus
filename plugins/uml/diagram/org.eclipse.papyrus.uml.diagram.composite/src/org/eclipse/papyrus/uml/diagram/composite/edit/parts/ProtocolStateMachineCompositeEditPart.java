@@ -53,6 +53,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEd
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy;
@@ -96,7 +97,9 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
@@ -108,6 +111,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new SideAffixedNodesCreationEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -120,14 +124,14 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View) child.getModel();
+				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case ProtocolStateMachineCompositeFloatingLabelEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						@Override
 						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
@@ -137,7 +141,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -157,8 +161,9 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 * 
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
@@ -176,6 +181,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -187,38 +193,50 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.composite.custom.figures.ProtocolStateMachineCompositeFigure
+	 * 
 	 * @generated
 	 */
 	public ProtocolStateMachineCompositeFigure getPrimaryShape() {
-		return (ProtocolStateMachineCompositeFigure)primaryShape;
+		return (ProtocolStateMachineCompositeFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ProtocolStateMachineCompositeNameEditPart) {
-			((ProtocolStateMachineCompositeNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof ProtocolStateMachineCompositeNameEditPart) {
+			((ProtocolStateMachineCompositeNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
+
+
+		if (childEditPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ProtocolStateMachineCompositeCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((ProtocolStateMachineCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		//Papyrus Gencode :Affixed Port locator
-		if(childEditPart instanceof PortEditPart) {
+
+
+
+		// Papyrus Gencode :Affixed Port locator
+		if (childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((PortEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((PortEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		//Papyrus Gencode :Affixed Port locator
-		if(childEditPart instanceof ParameterEditPart) {
+
+
+
+
+		// Papyrus Gencode :Affixed Port locator
+		if (childEditPart instanceof ParameterEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -226,20 +244,20 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ProtocolStateMachineCompositeNameEditPart) {
+		if (childEditPart instanceof ProtocolStateMachineCompositeNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
+		if (childEditPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			pane.remove(((ProtocolStateMachineCompositeCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ProtocolStateMachineCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PortEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((PortEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof PortEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((PortEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ParameterEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ParameterEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ParameterEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ParameterEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -249,7 +267,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -259,7 +277,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -269,10 +287,10 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
+		if (editPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
 			return getPrimaryShape().getCompositeCompartmentFigure();
 		}
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -282,7 +300,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof ProtocolStateMachineCompositeFloatingLabelEditPart) {
+		if (borderItemEditPart instanceof ProtocolStateMachineCompositeFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -305,16 +323,19 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 */
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -326,7 +347,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -336,7 +357,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -352,8 +373,8 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

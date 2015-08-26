@@ -15,7 +15,8 @@
 package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.AbstractSettings;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
 import org.eclipse.papyrus.qompass.designer.core.listeners.PreCopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.uml2.uml.Class;
@@ -36,17 +37,19 @@ public class GatherConfigData implements PreCopyListener {
 	 * @param langSupport
 	 *            A reference to a class providing the language support interface
 	 */
-	public GatherConfigData(ILangSupport langSupport) {
+	public GatherConfigData(ILangProjectSupport langSupport) {
 		this.langSupport = langSupport;
 	}
 
 	@Override
 	public EObject preCopyEObject(LazyCopier copy, EObject sourceEObj) {
 		if (sourceEObj instanceof Class) {
-			langSupport.gatherConfigData((Class) sourceEObj);
+			langSupport.gatherConfigData((Class) sourceEObj, settings);
 		}
 		return sourceEObj;
 	}
 
-	private ILangSupport langSupport;
+	protected ILangProjectSupport langSupport;
+	
+	protected AbstractSettings settings;
 }

@@ -45,18 +45,18 @@ public class ImageUtil {
 	/**
 	 * ID of the EAnnotation where "expression" (used to select stereotype icon) is stored on image.
 	 */
-	public static String IMAGE_PAPYRUS_EA = "image_papyrus";
+	public static final String IMAGE_PAPYRUS_EA = "image_papyrus";
 
 	/**
 	 * KEY of the EAnnotation where "expression" (used to select stereotype icon) is stored on
 	 * image.
 	 */
-	public static String IMAGE_EXPR_KEY = "image_expr_key";
+	public static final String IMAGE_EXPR_KEY = "image_expr_key";
 
 	/**
 	 * KEY of the EAnnotation where "kind" (kind = icon/shape) is stored on image.
 	 */
-	public static String IMAGE_KIND_KEY = "image_kind_key";
+	public static final String IMAGE_KIND_KEY = "image_kind_key";
 
 	/**
 	 * KEY of the EAnnotation where the image's name is stored
@@ -64,7 +64,7 @@ public class ImageUtil {
 	 * @see {@link #getName(Image)}
 	 * @see {@link #setName(Image, String)}
 	 */
-	public static String IMAGE_NAME_KEY = "image_name_key";
+	public static final String IMAGE_NAME_KEY = "image_name_key";
 
 	/**
 	 * Set the content of an {@link Image} with a file (containing an image).
@@ -305,7 +305,7 @@ public class ImageUtil {
 	 * @param image
 	 *            the image
 	 * @return
-	 *         the name associated to the image
+	 * 		the name associated to the image
 	 */
 	public static String getName(Image image) {
 		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);

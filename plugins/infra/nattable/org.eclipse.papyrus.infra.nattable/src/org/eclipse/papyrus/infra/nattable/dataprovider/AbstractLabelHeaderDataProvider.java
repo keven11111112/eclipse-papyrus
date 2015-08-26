@@ -152,6 +152,7 @@ public abstract class AbstractLabelHeaderDataProvider extends AbstractDataProvid
 	@Override
 	public void dispose() {
 		removeListeners();
+		this.listenAxisConfiguration = null;
 		super.dispose();
 	}
 }

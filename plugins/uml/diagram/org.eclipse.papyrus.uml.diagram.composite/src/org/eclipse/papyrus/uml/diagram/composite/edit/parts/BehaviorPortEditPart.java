@@ -80,7 +80,9 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(BehaviorSymbolEditPolicy.BEHAVIOR_SYMBOL, new BehaviorSymbolEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new NoConnectableEditPolicy());
@@ -97,21 +99,21 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View) child.getModel();
+				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case BehaviorPortFloatingLabelEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						@Override
 						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
 					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -131,8 +133,9 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 * 
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
@@ -150,6 +153,7 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -161,17 +165,18 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
+	 * 
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
-		return (RoundedCompartmentFigure)primaryShape;
+		return (RoundedCompartmentFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof BehaviorPortFloatingLabelEditPart) {
+		if (borderItemEditPart instanceof BehaviorPortFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -194,12 +199,15 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 	 */
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -210,7 +218,7 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -220,7 +228,7 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -236,8 +244,8 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

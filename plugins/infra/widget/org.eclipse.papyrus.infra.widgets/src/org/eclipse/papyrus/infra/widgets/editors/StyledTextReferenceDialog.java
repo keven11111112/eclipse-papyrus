@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TECà nicolas.fauvergue@all4tec.net - Bug 459747
+ *  Nicolas FAUVERGUE (ALL4TECï¿½ nicolas.fauvergue@all4tec.net - Bug 459747
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -57,7 +57,7 @@ import org.eclipse.swt.widgets.Widget;
  * LabelProvider, describing the objects that can be referred by this property
  *
  * @author Vincent Lorenzo
- * 
+ *
  *         Duplicated code from {@link ReferenceDialog}, replacing CLabel by {@link StyledTextStringEditor}
  *
  */
@@ -116,25 +116,9 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 	protected ReferenceValueFactory valueFactory;
 
 	/**
-	 * Indicates whether the widget is read-only or not
-	 */
-	protected boolean readOnly;
-
-	/**
 	 * Boolean to detect direct creation.
 	 */
 	private boolean directCreation;
-
-	/**
-	 * Indicates whether the widget requires a value or not. If it is mandatory,
-	 * it cannot delete/unset its value
-	 */
-	protected boolean mandatory;
-
-	/**
-	 * The control decoration of the styled text.
-	 */
-	protected ControlDecoration controlDecoration;
 
 	/**
 	 * Determinate if an error occurred.
@@ -219,7 +203,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * This allow to create the styled text editor.
-	 * 
+	 *
 	 * @param parent
 	 *            The parent composite.
 	 * @param initialValue
@@ -236,7 +220,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * This allow to create the dialog.
-	 * 
+	 *
 	 * @param shell
 	 *            The current shell.
 	 * @return The created {@link ITreeSelectorDialog}.
@@ -365,6 +349,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 	/**
 	 * Updates the displayed label for the current value
 	 */
+	@Override
 	public void updateLabel() {
 		if (binding != null) {
 			binding.updateModelToTarget();
@@ -382,6 +367,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 	 *            The content provider used to retrieve the possible values for
 	 *            this Reference
 	 */
+	@Override
 	public void setContentProvider(final IStaticContentProvider provider) {
 		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
 		if (getValue() != null) {
@@ -399,6 +385,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 	 * @param provider
 	 *            The label provider
 	 */
+	@Override
 	public void setLabelProvider(final ILabelProvider provider) {
 		if (provider == null) {
 			setLabelProvider(new LabelProvider());
@@ -460,7 +447,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * Set the initial selection.
-	 * 
+	 *
 	 * @param initialValues
 	 *            The list of possible values.
 	 */
@@ -470,7 +457,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor#setModelObservable(org.eclipse.core.databinding.observable.value.IObservableValue)
 	 */
 	@Override
@@ -484,7 +471,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * This allow to create the widget observable value.
-	 * 
+	 *
 	 * @param modelProperty
 	 *            The current observable value.
 	 * @return The created {@link StyledTextReferenceDialogObservableValue}.
@@ -495,7 +482,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.widgets.Control#setToolTipText(java.lang.String)
 	 */
 	@Override
@@ -506,10 +493,11 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * Set the factory.
-	 * 
+	 *
 	 * @param factory
 	 *            The reference value factory.
 	 */
+	@Override
 	public void setValueFactory(final ReferenceValueFactory factory) {
 		valueFactory = factory;
 		updateControls();
@@ -517,7 +505,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 	 */
 	@Override
@@ -536,7 +524,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
 	 */
 	@Override
@@ -547,6 +535,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 	/**
 	 * Updates the buttons' status
 	 */
+	@Override
 	public void updateControls() {
 		// Check if the edit & create buttons should be displayed
 		boolean exclude = valueFactory == null || !valueFactory.canCreateObject();
@@ -575,7 +564,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.widgets.Control#update()
 	 */
 	@Override
@@ -586,10 +575,11 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * Set the direct creation value.
-	 * 
+	 *
 	 * @param directCreation
 	 *            Boolean to determinate the direct creation value.
 	 */
+	@Override
 	public void setDirectCreation(final boolean directCreation) {
 		this.directCreation = directCreation;
 		updateControls();
@@ -597,7 +587,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * Set the value.
-	 * 
+	 *
 	 * @param value
 	 *            The value object.
 	 */
@@ -629,17 +619,18 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * Set the mandatory.
-	 * 
+	 *
 	 * @param mandatory
 	 *            The mandatory boolean value.
 	 */
+	@Override
 	public void setMandatory(final boolean mandatory) {
 		this.mandatory = mandatory;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor#updateStatus(org.eclipse.core.runtime.IStatus)
 	 */
 	@Override
@@ -662,7 +653,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.widgets.Widget#dispose()
 	 */
 	@Override
@@ -690,7 +681,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#changeColorField()
 	 */
 	@Override

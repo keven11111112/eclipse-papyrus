@@ -26,7 +26,7 @@ public class PaletteLocalSeparatorProxy extends PaletteEntryProxy {
 	protected String id;
 
 	/** icon for separators */
-	public static String SEPARATOR_ICON = "/icons/separator.gif";
+	public static final String SEPARATOR_ICON = "/icons/separator.gif";
 
 	/**
 	 * Creates a new PaletteLocalEntryProxy

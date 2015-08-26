@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.extra.soaml.feature"
-      label="%featureName"
-      version="1.1.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.soaml.feature" label="%featureName" provider-name="%providerName" version="1.2.0.qualifier">
 
    <description>
       SoaML Modelling Tools
@@ -23,32 +18,12 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin
-         id="org.eclipse.papyrus.soaml.diagram.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.soaml.diagram.common" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.soaml.diagram.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.soaml.diagram.ui" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.soaml.profile"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.soaml.profile" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.soaml.profile.validation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.soaml.profile.validation" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

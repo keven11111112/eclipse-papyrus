@@ -521,14 +521,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintContext_8500(Constraint source, Namespace target) {
 			if (source != null) {
-				if (source.getContext()
-					!= null) {
+				if (source.getContext() != null) {
 					return false;
 				}
 			}
 			if (target != null && (target.getOwnedRules()
-					.contains(target)
-					)) {
+					.contains(target))) {
 				return false;
 			}
 
@@ -544,14 +542,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				// ExtensionSource
 				/**
 				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
-				 *
+				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
 				// ExtensionTarget
 
 				/**
 				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
-				 *
+				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
 				return true;

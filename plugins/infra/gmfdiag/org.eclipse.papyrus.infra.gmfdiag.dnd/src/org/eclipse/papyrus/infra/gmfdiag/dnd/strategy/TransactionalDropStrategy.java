@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
  */
 public abstract class TransactionalDropStrategy extends AbstractDropStrategy {
 
-	public final Command getCommand(Request request, EditPart targetEditPart) {
+	public Command getCommand(Request request, EditPart targetEditPart) {
 
 		final Command command = doGetCommand(request, targetEditPart);
 

@@ -110,8 +110,7 @@ public class UMLDiagramEditorUtil {
 	 * @generated
 	 */
 	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
-		return DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension,
-				DefaultDiagramEditorUtil.EXISTS_IN_WORKSPACE);
+		return DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension, DefaultDiagramEditorUtil.EXISTS_IN_WORKSPACE);
 	}
 
 	/**
@@ -144,14 +143,13 @@ public class UMLDiagramEditorUtil {
 		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				Package model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
-				Diagram diagram = ViewService.createDiagram(
-						model,
-						ModelEditPart.MODEL_ID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(model, ModelEditPart.MODEL_ID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);

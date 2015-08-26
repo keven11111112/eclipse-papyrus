@@ -58,14 +58,14 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  * @author Camille Letavernier
  *
  * @see #setContextElement(Object)
- * 
+ *
  * @deprecated use MultipleValueSelectionDialog instead
  * @since Papyrus 1.1
  */
 @Deprecated
 public class MultipleValueSelectorDialog extends SelectionDialog implements ISelectionChangedListener, IDoubleClickListener, IElementSelectionListener, SelectionListener {
 
-	public static int MANY = -1;
+	public static final int MANY = -1;
 
 	/**
 	 * The object selector
@@ -616,7 +616,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	 * Handles the "Delete" action
 	 */
 	protected void deleteAction() {
-		 //nothing to do here
+		// nothing to do here
 	}
 
 	/**

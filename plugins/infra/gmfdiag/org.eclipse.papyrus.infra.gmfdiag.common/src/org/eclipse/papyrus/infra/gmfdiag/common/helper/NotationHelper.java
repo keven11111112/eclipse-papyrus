@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -43,6 +44,10 @@ public class NotationHelper {
 			if (adapter instanceof View) {
 				return (View) adapter;
 			}
+		}
+
+		if (source != null) {
+			return Platform.getAdapterManager().getAdapter(source, View.class);
 		}
 
 		EObject obj = EMFHelper.getEObject(source);

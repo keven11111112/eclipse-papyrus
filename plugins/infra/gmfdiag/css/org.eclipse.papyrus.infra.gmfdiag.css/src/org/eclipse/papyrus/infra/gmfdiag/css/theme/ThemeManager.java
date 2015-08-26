@@ -59,10 +59,10 @@ import org.eclipse.ui.PlatformUI;
 public class ThemeManager {
 
 	/** Extension point ID. */
-	public static String EXTENSION_ID = Activator.PLUGIN_ID + ".theme";
+	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".theme";
 
 	/** Unique instance of manager. */
-	public static ThemeManager instance = new ThemeManager();
+	public static final ThemeManager instance = new ThemeManager();
 
 	/** All found themes in application. */
 	private Map<String, Theme> allThemes = null;
@@ -509,7 +509,7 @@ public class ThemeManager {
 
 	public static class EmptyTheme extends ThemeImpl {
 
-		public static Theme instance = new EmptyTheme();
+		public static final Theme instance = new EmptyTheme();
 
 		private EmptyTheme() {
 			setId("none");

@@ -34,14 +34,15 @@ import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindComposite;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindLabelProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
+import org.eclipse.papyrus.uml.diagram.wizards.profile.ProfileChooserComposite;
 import org.eclipse.papyrus.uml.diagram.wizards.template.ModelTemplateDescription;
 import org.eclipse.papyrus.uml.diagram.wizards.template.SelectModelTemplateComposite;
-import org.eclipse.papyrus.uml.diagram.wizards.widget.FileChooser;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
@@ -69,6 +70,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	/** the select diagram Kind composite */
 	private DiagramKindComposite diagramKindComposite;
 
+	private ProfileChooserComposite profileChooserComposite;
+
 	/** The my category provider. */
 	private final CategoryProvider myCategoryProvider;
 
@@ -77,8 +80,6 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/** The my creation command registry. */
 	private final ICreationCommandRegistry myCreationCommandRegistry;
-
-	private FileChooser filechooser;
 
 	private static EObject modelRoot;
 
@@ -159,13 +160,11 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	private void createProfileFileChooser(Composite parent) {
 		Group group = createGroup(parent, Messages.SelectDiagramKindPage_0);
-		filechooser = new FileChooser(group, false);
-		String[] filter = { "profile.uml" }; //$NON-NLS-1$
-		filechooser.setFilterExtensions(filter);
+		profileChooserComposite = new ProfileChooserComposite(group);
 	}
 
 	public String getProfileURI() {
-		return filechooser.getFilePath();
+		return profileChooserComposite.getProfileURI();
 	}
 
 	/**
@@ -181,6 +180,14 @@ public class SelectDiagramKindPage extends WizardPage {
 		if (visible) {
 			fillInTables(getDiagramCategories());
 			validatePage();
+			// Deactivates the viewer if its contained list is empty
+			Combo templateCombo = selectTemplateComposite.getTemplateCombo();
+			if (templateCombo.getItemCount() == 0) {
+				templateCombo.setEnabled(false);
+			} else {
+				templateCombo.setEnabled(true);
+			}
+
 			if (!allowTemplates) {
 				selectTemplateComposite.disable();
 			}
@@ -199,6 +206,8 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 		diagramKindComposite.setInput(categories);
 		selectTemplateComposite.setInput(categories);
+
+		getShell().pack(true);
 	}
 
 

@@ -20,6 +20,8 @@ public class HistoryUtil {
 	/**
 	 * Returns a String identifying the History of selected values for the given object/feature
 	 *
+	 * The HistoryID is scoped to a Resource (If editedObject has one)
+	 *
 	 * @param editedObject
 	 * @param feature
 	 * @return
@@ -32,13 +34,15 @@ public class HistoryUtil {
 	 * Returns a String identifying the History of selected values for the given object/feature,
 	 * and prepends the given prefix
 	 *
+	 * The HistoryID is scoped to a Resource (If editedObject has one)
+	 *
 	 * @param editedObject
 	 * @param feature
 	 * @return
 	 */
 	public static String getHistoryID(EObject editedObject, EStructuralFeature feature, String prefix) {
-		//		return String.format("history_%s:%s:%s", feature.getEType().getEPackage().getName(), feature.getEType().getName(), feature.getName()); //$NON-NLS-1$
-		if (editedObject.eResource() == null) {
+		// return String.format("history_%s:%s:%s", feature.getEType().getEPackage().getName(), feature.getEType().getName(), feature.getName()); //$NON-NLS-1$
+		if (editedObject == null || editedObject.eResource() == null) {
 			return String.format("history_%s_%s:%s", prefix, EMFHelper.getQualifiedName(feature.getEType(), ":"), feature.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 

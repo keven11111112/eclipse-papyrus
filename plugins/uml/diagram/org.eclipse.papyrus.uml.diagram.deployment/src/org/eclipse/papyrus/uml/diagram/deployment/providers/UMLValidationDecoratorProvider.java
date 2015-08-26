@@ -38,7 +38,8 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	@Override
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
-		if (editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
+		if (editPart instanceof GraphicalEditPart ||
+				editPart instanceof AbstractConnectionEditPart) {
 			Object model = editPart.getModel();
 			if ((model instanceof View)) {
 				View view = (View) model;

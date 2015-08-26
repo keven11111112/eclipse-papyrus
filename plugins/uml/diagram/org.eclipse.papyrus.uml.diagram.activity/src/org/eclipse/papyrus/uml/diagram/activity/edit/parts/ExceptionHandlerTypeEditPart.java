@@ -117,6 +117,7 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -258,7 +259,9 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			text = getParser().getPrintString(
+					new EObjectAdapter(parserElement),
+					getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -290,7 +293,9 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
+		return getParser().getEditString(
+				new EObjectAdapter(getParserElement()),
+				getParserOptions().intValue());
 	}
 
 	/**
@@ -313,7 +318,8 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+								new RunnableWithResult.Impl<java.lang.Object>() {
 
 							@Override
 							public void run() {
@@ -325,6 +331,7 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 						ie.printStackTrace();
 					}
 				}
+
 				// shouldn't get here
 				return null;
 			}
@@ -366,7 +373,9 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new MultilineLabelDirectEditManager(this,
+					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+					UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -416,7 +425,9 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 	 */
 	@Override
 	protected void performDirectEditRequest(Request request) {
+
 		final Request theRequest = request;
+
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -428,7 +439,9 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -449,6 +462,7 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 					return;
 				}
 				final Dialog finalDialog = dialog;
+
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -456,6 +470,7 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -477,11 +492,11 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
-
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+						if (request.getExtendedData().get(
+								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else {
@@ -534,7 +549,8 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
@@ -551,7 +567,8 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -562,9 +579,13 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(
+					style.getFontName(), style.getFontHeight(),
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
+							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -645,6 +666,7 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 		if (checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
+
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -657,7 +679,7 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement(), this);
 		}
 		return false;
 	}
@@ -681,9 +703,9 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
 			}
 		}
 	}
@@ -744,8 +766,10 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 			refreshUnderline();
 		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
@@ -762,6 +786,7 @@ public class ExceptionHandlerTypeEditPart extends PapyrusLabelEditPart implement
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

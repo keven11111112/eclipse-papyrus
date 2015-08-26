@@ -127,6 +127,7 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -277,7 +278,9 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			text = getParser().getPrintString(
+					new EObjectAdapter(parserElement),
+					getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -309,7 +312,9 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
+		return getParser().getEditString(
+				new EObjectAdapter(getParserElement()),
+				getParserOptions().intValue());
 	}
 
 	/**
@@ -332,7 +337,8 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+								new RunnableWithResult.Impl<java.lang.Object>() {
 
 							@Override
 							public void run() {
@@ -344,6 +350,7 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 						ie.printStackTrace();
 					}
 				}
+
 				// shouldn't get here
 				return null;
 			}
@@ -385,7 +392,9 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new MultilineLabelDirectEditManager(this,
+					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+					UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -435,7 +444,9 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	 */
 	@Override
 	protected void performDirectEditRequest(Request request) {
+
 		final Request theRequest = request;
+
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -447,7 +458,9 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -468,6 +481,7 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 					return;
 				}
 				final Dialog finalDialog = dialog;
+
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -475,6 +489,7 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -496,11 +511,11 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
-
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+						if (request.getExtendedData().get(
+								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else {
@@ -572,7 +587,8 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
@@ -589,7 +605,8 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -600,9 +617,13 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(
+					style.getFontName(), style.getFontHeight(),
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
+							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -683,6 +704,7 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		if (checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
+
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -695,7 +717,7 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement(), this);
 		}
 		return false;
 	}
@@ -719,9 +741,9 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
 			}
 		}
 	}
@@ -841,6 +863,8 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
+
+
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}

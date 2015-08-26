@@ -117,8 +117,7 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -154,8 +153,7 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -191,7 +189,6 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 			((InformationItemNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -247,8 +244,7 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 		if (borderItemEditPart instanceof InformationItemFloatingNameEditPartCN) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}

@@ -78,8 +78,9 @@ public class DefaultDiagramCopyCommand extends AbstractOverrideableCommand imple
 		if (pObjectsToPutInClipboard != null && !pObjectsToPutInClipboard.isEmpty()) {
 			IGraphicalEditPart next = pObjectsToPutInClipboard.iterator().next();
 			Diagram diagram = next.getNotationView().getDiagram();
-			String type = diagram.getType();
-			papyrusClipboard.setContainerType(type);
+			if(diagram != null){
+				papyrusClipboard.setContainerType(diagram.getType());
+			}
 		}
 
 	}

@@ -270,10 +270,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		if (req.getElementType() != null) {
 			commandService = ElementEditServiceUtils.getCommandProvider(req.getElementType());
 		}
+
 		if (commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
+
 		ICommand semanticCommand = commandService.getEditCommand(req);
+
 		if ((semanticCommand != null) && (semanticCommand.canExecute())) {
 			return getGEFWrapper(semanticCommand);
 		}
@@ -399,6 +402,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		} else {
 			return getGEFWrapper(new MoveElementsCommand(req));
 		}
+
 	}
 
 	/**
@@ -474,14 +478,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateActionLocalPrecondition_4001(Action source, Constraint target) {
 			if (source != null) {
-				if (source.getLocalPreconditions().contains(target)) {
+				if (source.getLocalPreconditions()
+						.contains(target)) {
 					return false;
 				}
 				if (source == target) {
 					return false;
 				}
 			}
-			return canExistActionLocalPrecondition_4001(source, target);
+
+			return canExistActionLocalPrecondition_4001(
+					source, target);
 		}
 
 		/**
@@ -489,35 +496,41 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateActionLocalPostcondition_4002(Action source, Constraint target) {
 			if (source != null) {
-				if (source.getLocalPostconditions().contains(target)) {
+				if (source.getLocalPostconditions()
+						.contains(target)) {
 					return false;
 				}
 				if (source == target) {
 					return false;
 				}
 			}
-			return canExistActionLocalPostcondition_4002(source, target);
+
+			return canExistActionLocalPostcondition_4002(
+					source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
-			return canExistObjectFlow_4003(container, null, source, target);
+			return canExistObjectFlow_4003(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
-			return canExistControlFlow_4004(container, null, source, target);
+			return canExistControlFlow_4004(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateExceptionHandler_4005(ExecutableNode container, ExecutableNode source, ObjectNode target) {
-			return canExistExceptionHandler_4005(container, null, source, target);
+			return canExistExceptionHandler_4005(
+					container, null, source, target);
 		}
 
 		/**
@@ -525,11 +538,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_4006(Comment source, Element target) {
 			if (source != null) {
-				if (source.getAnnotatedElements().contains(target)) {
+				if (source.getAnnotatedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
-			return canExistCommentAnnotatedElement_4006(source, target);
+
+			return canExistCommentAnnotatedElement_4006(
+					source, target);
 		}
 
 		/**
@@ -537,11 +553,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintConstrainedElement_4007(Constraint source, Element target) {
 			if (source != null) {
-				if (source.getConstrainedElements().contains(target)) {
+				if (source.getConstrainedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
-			return canExistConstraintConstrainedElement_4007(source, target);
+
+			return canExistConstraintConstrainedElement_4007(
+					source, target);
 		}
 
 		/**
@@ -774,7 +793,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					}
 				}
 				if (source instanceof MergeNode) {
-					// rule validateMergeNode_validateOneOutgoingEdge
+					//rule validateMergeNode_validateOneOutgoingEdge
 					if (!source.getOutgoings().isEmpty()) {
 						return false;
 					}

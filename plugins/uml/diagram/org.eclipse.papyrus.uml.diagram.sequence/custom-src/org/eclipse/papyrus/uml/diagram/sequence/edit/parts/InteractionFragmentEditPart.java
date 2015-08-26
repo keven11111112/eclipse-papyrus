@@ -25,10 +25,10 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.PartDecomposition;
 import org.eclipse.uml2.uml.UMLPackage;
 
-public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
+public abstract class InteractionFragmentEditPart extends RoundedCompartmentEditPart {
 
 	public InteractionFragmentEditPart(View view) {
 		super(view);

@@ -3,33 +3,28 @@ Export-Package: org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.provider
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.2.0",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.core;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.appearance;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.tools;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.0",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.profile;bundle-version="1.1.0",
- org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,4.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.appearance;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.2.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.profile;bundle-version="1.2.0",
+ org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,
+ 4.0.0)",
  org.eclipse.gmf.runtime.notation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.stereotype.edition.A
- ctivator
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.stereotype.edition.Activator
 Bundle-ManifestVersion: 2
-Bundle-Description: The pupose of this plugin is add the fucntionality
-  to display stereotype into compartment or into comment of applied st
- ereotype. More details (models and file.doc) has been store in the do
- cs directory.
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.stereotype.editio
- n;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Description: %pluginDescription
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.stereotype.edition;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

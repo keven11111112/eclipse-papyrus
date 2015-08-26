@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationConstraintInMessageItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationObservationConstraint;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**

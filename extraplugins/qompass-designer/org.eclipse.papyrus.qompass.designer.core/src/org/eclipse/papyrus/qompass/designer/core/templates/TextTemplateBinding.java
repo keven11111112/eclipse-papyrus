@@ -22,6 +22,20 @@ import org.eclipse.uml2.uml.NamedElement;
 public class TextTemplateBinding {
 
 	/**
+	 * Simple template expression that is replaced with the name of a named
+	 * element. Uses an Acceleo syntax
+	 * The objective is that the access to an element name is very common and does
+	 * not need an xtend script behind.
+	 */
+	private static final String NAME_IN_BRACKETS = "[name/]"; //$NON-NLS-1$
+
+	/**
+	 * Simple template expression that is replaced with the name of a named
+	 * element. Slight variation of the Acceleo syntax
+	 */
+	private static final String NAME_IN_BRACKETS_SIMPLE = "[name]"; //$NON-NLS-1$
+
+	/**
 	 * Execute a script passed as parameter. It will be executed in the context
 	 * of a base script that declares the meta-model (UML2) and has additional
 	 * imports (currently none).
@@ -53,11 +67,11 @@ public class TextTemplateBinding {
 		}
 		else if (element instanceof NamedElement) {
 			String name = ((NamedElement) element).getName();
-			if (templateStr.contains("[name/]")) {
-				return templateStr.replace("[name/]", name);
+			if (templateStr.contains(NAME_IN_BRACKETS)) {
+				return templateStr.replace(NAME_IN_BRACKETS, name);
 			}
-			else if (templateStr.contains("[name]")) {
-				return templateStr.replace("[name/]", name);
+			else if (templateStr.contains(NAME_IN_BRACKETS_SIMPLE)) {
+				return templateStr.replace(NAME_IN_BRACKETS_SIMPLE, name);
 			}
 		}
 		return templateStr;

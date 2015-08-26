@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipse.papyrus</groupId>
 	<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<parent>
 	    <groupId>org.eclipse.papyrus</groupId>
 	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
-	    <version>1.1.0-SNAPSHOT</version>
+	    <version>1.2.0-SNAPSHOT</version>
 	    <relativePath>..</relativePath>
     </parent>
 	<modules>
@@ -49,10 +49,7 @@
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.css.tests</module>
         <module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
         <module>../../tests/junit/plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
-        <module>../../tests/junit/plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.model.tests</module>
-		<module>../../tests/junit/plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.model.editor.tests</module>
-		<module>../../tests/junit/plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.tests</module>
-		<module>../../tests/junit/plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.views.tests</module>
+        <module>../../tests/junit/plugins/infra/nattable</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.labelprovider.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.resourceloading.tests</module>
@@ -61,8 +58,7 @@
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.internalblock.tests</module>
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.parametric.tests</module>
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.requirement.tests</module>
-		<module>../../tests/junit/plugins/sysml/nattable/org.eclipse.papyrus.sysml.nattable.requirement.tests</module>
-		<module>../../tests/junit/plugins/sysml/nattable/org.eclipse.papyrus.sysml.nattable.allocation.tests</module>
+		<module>../../tests/junit/plugins/sysml/nattable</module>
 		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.modelexplorer.tests</module>
 		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
 		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.tests</module>
@@ -70,31 +66,13 @@
         <module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests</module>
         <module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>
         <module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.controlmode.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.activity.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.clazz.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.statemachine.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.common.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.component.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.communication.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.composite.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.deployment.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.dnd.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.interactionoverview.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.profile.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.sequence.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.timing.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.usecase.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.wizards.tests</module>
+		<module>../../tests/junit/plugins/uml/diagram</module>
 		<module>../../tests/junit/plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer.tests</module>
-		<module>../../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.tests</module>
-		<module>../../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.generic.tests</module>
-		<module>../../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.clazz.config.tests</module>
+		<module>../../tests/junit/plugins/uml/nattable</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
         <module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.filters.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.modelrepair.tests</module>
+		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.profile.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.service.types.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.controlmode.tests</module>
 		<module>../../tests/junit/plugins/uml/tools/org.eclipse.papyrus.uml.tools.tests</module>
@@ -127,43 +105,43 @@
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF COMPARE",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201506080833</url>
+			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201508181443</url>
 		</repository>
 		<repository>
 			<id>emf-emf</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF (Core)",0) -->
-			<url>http://download.eclipse.org/modeling/emf/emf/updates/2.11milestones/</url>
+			<url>http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.0/R201505260335/mwe</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030321/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.0/R201505260456/mwe2lang/</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030411/mwe2lang/</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201506010221</url>
+			<url>http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201506010221</url>
 		</repository>
 		<repository>
 			<id>emf-validation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201505312255</url>
+			<url>http://download.eclipse.org/modeling/emf/validation/updates/releases/R201505312255</url>
 		</repository>
 		<repository>
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5RC4-201506032000/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M1-201508052000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -175,13 +153,13 @@
 			<id>gmp-gmf-notation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Notation",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201505312221</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201505312221</url>
 		</repository>
 		<repository>
 			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Runtime",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201506060219</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201506060219</url>
 		</repository>
 		<repository>
 			<id>gmf-tooling</id>
@@ -193,19 +171,19 @@
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201506080954</url>
+			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441</url>
 		</repository>
 		<repository>
 			<id>m2t-xpand</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T XPAND",0) -->
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201505260349/</url>
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201508180411/</url>
 		</repository>
 		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201506090403</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201508171259</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -235,13 +213,13 @@
 			<id>subversive</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Subversive",0) -->
-			<url>http://download.eclipse.org/technology/subversive/3.0/mars-site/</url>
+			<url>http://download.eclipse.org/technology/subversive/3.0/neon-site/</url>
 		</repository>
 		<repository>
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.8.3/</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/</url>
 		</repository>
 		<repository>
 			<id>swtbot</id>
@@ -253,13 +231,18 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/R-3.7.0-20150609111814/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M1-20150818010140/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
 			<layout>p2</layout>
 			<!-- updateFrom("XWT",0) -->
 			<url>http://download.eclipse.org/xwt/release-1.1.0</url>
+		</repository>
+		<repository>
+			<id>UPR</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/upr/0.9RC1/update/</url>
 		</repository>
 	</repositories>
 	<build>
@@ -342,6 +325,11 @@
 						 </environment>
 					 </environments>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
 			</plugin>
 			</plugins>
 		</pluginManagement>

@@ -188,4 +188,7 @@ public class CustomMessages extends NLS {
 
 	public static String StructuredActivityNodePreferencePage_showSpecificKeyword;
 	// TODO: put accessor fields manually
+
+	public static String BehaviorToCallBehaviorActionDropStrategy_Label;
+	public static String BehaviorToCallBehaviorActionDropStrategy_Description;
 }

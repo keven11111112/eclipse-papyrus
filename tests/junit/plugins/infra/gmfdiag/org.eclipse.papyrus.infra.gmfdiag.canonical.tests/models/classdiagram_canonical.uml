@@ -30,6 +30,17 @@
     </packagedElement>
     <packagedElement xmi:type="uml:DataType" xmi:id="_KR5MYMK4EeSkv8vaizVybg" name="Date"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_mS1QMNCxEeSgLrtEqH-xrA" client="_AINmoMK4EeSkv8vaizVybg" supplier="_KR5MYMK4EeSkv8vaizVybg"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_fSZ90ELVEeWmC5E_nIZ9vQ" name="Struct">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_gMoxcELVEeWmC5E_nIZ9vQ" name="name" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_i7uN4ELVEeWmC5E_nIZ9vQ" name="age" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_mHoJMELVEeWmC5E_nIZ9vQ" name="tag" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_pmtIkMK3EeSkv8vaizVybg" name="Super"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_qkgNkMK3EeSkv8vaizVybg" memberEnd="_qkgNkcK3EeSkv8vaizVybg _qkfmgMK3EeSkv8vaizVybg">

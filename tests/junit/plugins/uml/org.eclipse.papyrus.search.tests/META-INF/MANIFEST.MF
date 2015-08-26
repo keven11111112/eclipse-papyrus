@@ -4,10 +4,9 @@ Require-Bundle: org.eclipse.ui.ide;bundle-version="3.8.0",
 Export-Package: org.eclipse.papyrus.search.tests.suites
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.search.tests
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

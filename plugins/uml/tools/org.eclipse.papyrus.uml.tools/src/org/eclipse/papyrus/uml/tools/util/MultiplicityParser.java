@@ -24,33 +24,33 @@ public class MultiplicityParser {
 	/**
 	 * The 0..* multiplicity (Any)
 	 */
-	public static String ANY = "0..*"; //$NON-NLS-1$
+	public static final String ANY = "0..*"; //$NON-NLS-1$
 
 	/**
 	 * The * multiplicity (Any)
 	 * Equivalent to 0..*
 	 */
-	public static String STAR = "*"; //$NON-NLS-1$
+	public static final String STAR = "*"; //$NON-NLS-1$
 
 	/***
 	 * The 1 multiplicity (One)
 	 */
-	public static String ONE = "1"; //$NON-NLS-1$
+	public static final String ONE = "1"; //$NON-NLS-1$
 
 	/**
 	 * The 0..1 multiplicity (Optional)
 	 */
-	public static String OPTIONAL = "0..1"; //$NON-NLS-1$
+	public static final String OPTIONAL = "0..1"; //$NON-NLS-1$
 
 	/**
 	 * The 1..* multiplicity (One or more)
 	 */
-	public static String ONE_OR_MORE = "1..*"; //$NON-NLS-1$
+	public static final String ONE_OR_MORE = "1..*"; //$NON-NLS-1$
 
 	/**
 	 * The multiplicity separator (..)
 	 */
-	public static String SEPARATOR = ".."; //$NON-NLS-1$
+	public static final String SEPARATOR = ".."; //$NON-NLS-1$
 
 	/**
 	 * Parse the multiplicity and returns an array of int values [lower, upper]
@@ -58,7 +58,7 @@ public class MultiplicityParser {
 	 * @param value
 	 *            A string representing a multiplicity. Example of valid formats: 1, 0..12, 1..*, *
 	 * @return
-	 *         null if the string value cannot be parsed
+	 * 		null if the string value cannot be parsed
 	 */
 	public static int[] getBounds(String value) {
 		if (value == null) {
@@ -131,7 +131,7 @@ public class MultiplicityParser {
 	 * @param value
 	 *            A string representing a multiplicity
 	 * @return
-	 *         True if the string multiplicity has a valid format
+	 * 		True if the string multiplicity has a valid format
 	 */
 	public static boolean isValidMultiplicity(String value) {
 		int[] lowerUpper = getBounds(value);

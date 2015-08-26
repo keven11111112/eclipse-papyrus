@@ -57,6 +57,8 @@ public class DiagramKindComposite extends Composite {
 
 	public TableViewer viewer;
 
+	private GridData gridData;
+
 
 
 
@@ -71,8 +73,7 @@ public class DiagramKindComposite extends Composite {
 	public void createTableViewer(final Composite container) {
 
 		viewer = new TableViewer(container, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
-		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.minimumHeight = viewer.getTable().getItemHeight() * 3;
+		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		viewer.getTable().setLayoutData(gridData);
 
 		// viewer.setContentProvider(new ArrayContentProvider());
@@ -245,7 +246,7 @@ public class DiagramKindComposite extends Composite {
 				if (selectedDiagrams.containsKey(element)) {
 					return selectedDiagrams.get(element).toString();
 				}
-				//			return "0"; //$NON-NLS-1$
+				// return "0"; //$NON-NLS-1$
 				return ""; //$NON-NLS-1$
 			}
 		});
@@ -306,6 +307,15 @@ public class DiagramKindComposite extends Composite {
 
 	public void setInput(Object input) {
 		viewer.setInput(input);
+
+		// Resize the diagram table to minimize the space lost
+		int tableItemHeight = viewer.getTable().getItemHeight();
+		int tableItemCount = ((DiagramKindContentProvider) viewer.getContentProvider()).getElements(input).length;
+		gridData.minimumHeight = tableItemHeight * Math.max(3, Math.round((tableItemCount / 2)));
+		gridData.heightHint = tableItemHeight * Math.max(3, Math.round((tableItemCount / 2)));
+
+		// Notifies the shell that the layout needs to be resized
+		((Composite) viewer.getControl()).layout(true, true);
 	}
 
 	public ArrayList<ViewPrototype> getCheckElement() {

@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 468079
+ *  Christian W. Damus - bug 471836
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.handler;
@@ -17,9 +18,6 @@ package org.eclipse.papyrus.uml.developper.mde.handler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.papyrus.uml.developper.mde.I_DeveloperIDMStereotype;
 import org.eclipse.papyrus.uml.developper.mde.command.CreateDocumentModelCommand;
 import org.eclipse.papyrus.uml.developper.mde.transcription.HTMLTranscription;
@@ -54,21 +52,6 @@ public class GetHTMLTextHandler extends IDMAbstractHandler {
 		}
 
 		return null;
-	}
-
-	private IProject getCurrentProject() {
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IWorkspaceRoot root = workspace.getRoot();
-		IProject project = root.getProject();
-		String path = getSelection().eResource().getURI().path();
-		String tmpPath = path.replaceAll("/resource/", "");
-		for (IProject currentProject : root.getProjects()) {
-			if (tmpPath.startsWith(currentProject.getName())) {
-				project = currentProject;
-
-			}
-		}
-		return project;
 	}
 
 	@Override

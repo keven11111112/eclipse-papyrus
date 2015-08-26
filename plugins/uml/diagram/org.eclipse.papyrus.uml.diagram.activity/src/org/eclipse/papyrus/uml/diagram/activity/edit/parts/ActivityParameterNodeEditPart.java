@@ -78,9 +78,12 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new ActivityParameterMaskEditPolicy());
@@ -96,6 +99,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -149,6 +153,8 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 			((ParameterNodeNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -216,6 +222,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**

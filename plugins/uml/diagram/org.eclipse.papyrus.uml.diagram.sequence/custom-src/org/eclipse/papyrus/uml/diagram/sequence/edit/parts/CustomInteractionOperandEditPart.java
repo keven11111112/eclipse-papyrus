@@ -76,7 +76,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
@@ -86,6 +85,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGua
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandAppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionOperandItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
@@ -113,7 +113,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart, IPapyrusEditPart {
+public class CustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -236,7 +236,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		while (operationOwner != null && false == operationOwner instanceof CombinedFragment) {
 			operationOwner = operationOwner.getOwner();
 		}
-		
+
 		CombinedFragment enclosingCF = (CombinedFragment) operationOwner;
 		InteractionOperatorKind cfOperator = enclosingCF != null ? enclosingCF.getInteractionOperator() : InteractionOperatorKind.SEQ_LITERAL;
 		InteractionConstraint guard = interactionOperand.getGuard();
@@ -807,7 +807,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		}
 	}
 
-	public class CustomCustomInteractionOperandFigure extends CustomInteractionOperandFigure {
+	public class CustomCustomInteractionOperandFigure extends InteractionOperandFigure {
 
 		/**
 		 * Constructor.

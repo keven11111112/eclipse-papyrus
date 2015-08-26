@@ -40,7 +40,7 @@ public class DataSourceFactory {
 	/**
 	 * Singleton instance for DataSourceFactory
 	 */
-	public static DataSourceFactory instance = new DataSourceFactory();
+	public static final DataSourceFactory instance = new DataSourceFactory();
 
 	/**
 	 * Creates a new DataSource from a selection and a view.

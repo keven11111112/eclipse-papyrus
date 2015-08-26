@@ -36,17 +36,16 @@ import org.w3c.dom.Element;
  *
  * @see DiagramCSSEngine
  */
-@SuppressWarnings("restriction")
 public class BaseCSSEngine extends ExtendedCSSEngineImpl implements IRefreshHandlerPart {
 
 	/** Extension point ID. */
-	public static String EXTENSION_ID = Activator.PLUGIN_ID + ".userAgentStyleSheet"; //$NON-NLS-1$
+	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".userAgentStyleSheet"; //$NON-NLS-1$
 
 	private BaseCSSEngine() {
 		RefreshHandler.register(this);
 		try {
 			styleSheetURLs.add(new URL("platform:/plugin/" + Activator.PLUGIN_ID + "/resources/base.css")); //$NON-NLS-1$ //$NON-NLS-2$
-			//Loads contribution from extension point
+			// Loads contribution from extension point
 			loadCSSContributions();
 		} catch (MalformedURLException ex) {
 			Activator.log.error(ex);

@@ -13,47 +13,46 @@
  *****************************************************************************/
 package org.eclipse.papyrus.adl4eclipsetool.assistant;
 
-import java.util.ArrayList;
+import java.util.Set;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.adltool.command.SimpleFeaturesArchitectureSnapshotCommand;
-import org.eclipse.papyrus.adltool.designer.ArchitectureSnapshotDesigner;
-import org.eclipse.papyrus.adltool.designer.wizard.BundleSelectionPage;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.papyrus.adltool.ADL4EclipseUtils;
+import org.eclipse.papyrus.adltool.command.CompleteArchitectureSnapshotCommand;
+import org.eclipse.papyrus.adltool.designer.ReverseSettings;
+import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * this class is used to do the retro engineering from workspace plug-in. It adds only in the platform dependencies.
- *
+ * This class is used to do the reverse engineering from workspace feature. It adds only in the platform dependencies.
  */
-public class SimpleFeatureImport extends SimplePluginImport {
-	@Override
-	public void addPages() {
-		// look for all plug-ins from the workspace
-		ArrayList<Object> bundleList = new ArrayList<Object>();
-		bundleList.addAll(ArchitectureSnapshotDesigner.getWorkspaceFeature());
-		bundleSelectionPage = new BundleSelectionPage(bundleList);
-		addPage(bundleSelectionPage);
-	}
+public class SimpleFeatureImport extends AbstractImportWizard {
 
+	private static final boolean ADVANCED_MODE = false;
+
+	public SimpleFeatureImport() {
+		super(ADVANCED_MODE);
+
+		reversibleList = ADL4EclipseUtils.getWorkspaceFeatures();
+	}
 
 	@Override
 	public boolean performFinish() {
+		Set<ReversibleProject> selectedBundles = bundleSelectionPage.getResult();
 
-		// one bundle must be selected
-		if (getSelectedBundle().size() > 0) {
-			// get the domain in order to launch the command
-			TransactionalEditingDomain dom = modelSet.getTransactionalEditingDomain();
-			ArrayList<Element> selection = getSelectionSet();
+		// One bundle must be selected
+		if (selectedBundles.size() > 0) {
+			Package selection = bundleSelectionPage.getSelectedModel();
 
-			if ((selection.size() == 1) && (selection.get(0) instanceof Package)) {
-				// launch the simple retro engineering
-				SimpleFeaturesArchitectureSnapshotCommand comd = new SimpleFeaturesArchitectureSnapshotCommand(dom, (Package) selection.get(0), getSelectedBundle());
-				dom.getCommandStack().execute(comd);
+			if (selection != null) {
+				ReverseSettings reverseSettings = bundleSelectionPage.getReverseSettings();
+
+				// Launch the simple reverse engineering
+				CompleteArchitectureSnapshotCommand comd = new CompleteArchitectureSnapshotCommand(transactionalEditingDomain, selection, selectedBundles, reverseSettings);
+				transactionalEditingDomain.getCommandStack().execute(comd);
+
+				return true;
 			}
-			return true;
 		}
+
 		return false;
 	}
-
 }

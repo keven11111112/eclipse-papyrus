@@ -168,7 +168,7 @@ public class AbstractCSSCanonicalTest extends AbstractCanonicalTest {
 
 			CSSResource css = JUnitUtils.getAnnotation(description, CSSResource.class);
 			if (css != null) {
-				URL url = FrameworkUtil.getBundle(getClass()).getEntry(css.value());
+				URL url = FrameworkUtil.getBundle(AbstractCSSCanonicalTest.this.getClass()).getEntry(css.value());
 				try (InputStream contents = url.openStream()) {
 					cssFile = editor.getProject().getProject().getFile(URI.createURI(url.toExternalForm()).lastSegment());
 					cssFile.create(contents, false, null);

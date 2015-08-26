@@ -153,18 +153,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if (elementType != null) {
-				
+
 				if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 					return false; // foreign element type
 				}
-				
+
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				//if (domainElement != null && visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-				//	return false; // visual id for node EClass should match visual id from element type
-				//}
+				// if (domainElement != null && visualID != org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
+				// return false; // visual id for node EClass should match visual id from element type
+				// }
 			} else {
 				if (!ProfileDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
@@ -209,7 +209,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		
+
 		return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
 	}
 
@@ -237,11 +237,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		//int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
-		//EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		//if (domainElement != null && visualID != UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
-		//	return false; // visual id for link EClass should match visual id from element type
-		//}
+		// int visualID = org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.getVisualID(elementTypeHint);
+		// org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
+		// if (domainElement != null && visualID != org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
+		// return false; // visual id for link EClass should match visual id from element type
+		// }
 		return true;
 	}
 
@@ -1321,7 +1321,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
+		Node label8501 = createLabel(edge, UMLVisualIDRegistry.getType(ContextLinkAppliedStereotypeEditPart.VISUAL_ID));
+		label8501.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location8501 = (Location) label8501.getLayoutConstraint();
+		location8501.setX(0);
+		location8501.setY(60);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Undefined");
 		return edge;
 	}
 
@@ -1410,8 +1416,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FONT);
 
 		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (viewFontStyle != null)
-		{
+		if (viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
 			viewFontStyle.setFontName(fontData.getName());
 			viewFontStyle.setFontHeight(fontData.getHeight());

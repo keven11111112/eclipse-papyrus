@@ -125,8 +125,7 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -162,8 +161,7 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -199,7 +197,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 			((InstanceSpecificationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 
 		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
@@ -270,8 +267,7 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 		if (borderItemEditPart instanceof InstanceSpecificationFloatingNameEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}

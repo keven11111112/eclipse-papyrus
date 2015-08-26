@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.nattable.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -97,14 +98,35 @@ public class UMLTableUtils {
 			final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
 			final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQN);
 			final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
-			final String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
-
+			String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
+			final List<String> subPackages = new ArrayList<String>();
+			
 			// 1. we check if the profile is applied on the nearest package
 			if (element.getNearestPackage() != null) {
-				final Profile profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
+				Profile profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
+			
+				if(null == profile){
+					if (profileQN.contains(NamedElement.SEPARATOR)){
+						String[] split = profileQN.split(NamedElement.SEPARATOR);
+						profileQN = split[0];
+						for (int splitIndex=1;splitIndex<split.length;splitIndex++){
+							subPackages.add(split[splitIndex]);
+						}
+					}
+					profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
+				}
+
 				if (profile != null) {
-					final Stereotype ste = profile.getOwnedStereotype(stereotypeName);
-					return (Property) ste.getMember(propertyName);
+					Package currentPackage = profile;
+					Iterator<String> subPackagesIterator = subPackages.iterator();
+					while (null != currentPackage && subPackagesIterator.hasNext()){
+						NamedElement namedElement = currentPackage.getOwnedMember(subPackagesIterator.next());
+						currentPackage = namedElement instanceof Package ? (Package) namedElement : null;
+					}
+					if (null != currentPackage){
+						final Stereotype ste = currentPackage.getOwnedStereotype(stereotypeName);
+						return (Property) ste.getMember(propertyName);
+					}
 				}
 			}
 

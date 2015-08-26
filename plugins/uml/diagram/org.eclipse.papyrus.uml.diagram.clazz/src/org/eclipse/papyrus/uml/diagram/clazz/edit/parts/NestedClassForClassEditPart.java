@@ -227,8 +227,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure
-			figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -291,9 +290,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(
-					new EObjectAdapter(parserElement),
-					getParserOptions().intValue());
+			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -325,9 +322,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(
-				new EObjectAdapter(getParserElement()),
-				getParserOptions().intValue());
+		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
 	}
 
 	/**
@@ -350,15 +345,13 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid =
-								(IParserEditStatus) getEditingDomain().runExclusive(
-										new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
 
-											@Override
-											public void run() {
-												setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
-											}
-										});
+							@Override
+							public void run() {
+								setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+							}
+						});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
@@ -396,7 +389,8 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 	@Override
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Class_3014, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Class_3014, getParserElement(),
+					UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -406,9 +400,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this,
-					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-					UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -472,9 +464,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this,
-						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-						UMLEditPartFactory.getTextCellEditorLocator(this)));
+				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -487,11 +477,12 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
-				}
-				else if (configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
+					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
@@ -526,15 +517,14 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
+
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData().get(
-								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+						if (request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						}
-						else {
+						} else {
 							performDirectEdit();
 						}
 					}
@@ -571,8 +561,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 			if (view.isVisible()) {
 				setLabelTextHelper(getFigure(), getLabelText());
 				setLabelIconHelper(getFigure(), getLabelIcon());
-			}
-			else {
+			} else {
 				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
 				setLabelIconHelper(getFigure(), null);
 			}
@@ -591,17 +580,14 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if (resolveSemanticElement() instanceof Feature) {
 			if (((Feature) resolveSemanticElement()).isStatic()) {
 				((WrappingLabel) getFigure()).setTextUnderline(true);
-			}
-			else {
+			} else {
 				((WrappingLabel) getFigure()).setTextUnderline(false);
 			}
 		}
@@ -611,9 +597,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -624,14 +608,9 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(
-					style.getFontName(), style.getFontHeight(),
-					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
-							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -725,7 +704,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement(), this);
 		}
 		return false;
 	}
@@ -749,9 +728,9 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
 			}
 		}
 	}
@@ -762,11 +741,9 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
-				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
-					.eClass().getInstanceClassName());
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
@@ -788,8 +765,7 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 				public void run() {
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
@@ -836,18 +812,15 @@ public class NestedClassForClassEditPart extends UMLCompartmentEditPart implemen
 			refreshUnderline();
 		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
 			}
 			if (getParser() instanceof ISemanticParser) {
-				ISemanticParser modelParser =
-						(ISemanticParser) getParser();
+				ISemanticParser modelParser = (ISemanticParser) getParser();
 				if (modelParser.areSemanticElementsAffected(null, event)) {
 					removeSemanticListeners();
 					if (resolveSemanticElement() != null) {

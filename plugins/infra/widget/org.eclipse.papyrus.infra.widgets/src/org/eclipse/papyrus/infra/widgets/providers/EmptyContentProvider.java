@@ -23,7 +23,7 @@ public class EmptyContentProvider extends AbstractStaticContentProvider {
 	/**
 	 * Singleton instance
 	 */
-	public static EmptyContentProvider instance = new EmptyContentProvider();
+	public static final EmptyContentProvider instance = new EmptyContentProvider();
 
 	private final Object[] value = new Object[0];
 
@@ -35,7 +35,7 @@ public class EmptyContentProvider extends AbstractStaticContentProvider {
 	 * @see org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider#getElements()
 	 *
 	 * @return
-	 *         an empty array
+	 * 		an empty array
 	 */
 	@Override
 	public Object[] getElements() {

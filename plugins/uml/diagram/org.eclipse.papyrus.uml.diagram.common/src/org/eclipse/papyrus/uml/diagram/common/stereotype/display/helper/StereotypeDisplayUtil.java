@@ -258,7 +258,7 @@ public class StereotypeDisplayUtil {
 	 *            The Depth value (i.e: "-1" )
 	 * @return The stereotype Name with the proper Depth (i.e: "Blocks::Block")
 	 */
-	protected String getStereotypeNameWithDepth(String qualifiedName, String depth) {
+	public String getStereotypeNameWithDepth(String qualifiedName, String depth) {
 
 		if (depth != null && !EMPTY_STRING.equals(depth)) {
 			if (StereotypeDisplayConstant.DEPTH_MIN.equals(depth)) {

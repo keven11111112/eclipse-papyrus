@@ -172,34 +172,6 @@
       </editpartProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
-      <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.sequence.providers.UMLModelingAssistantProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart" id="Package_1000"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart" id="Interaction_2001"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart" id="ConsiderIgnoreFragment_3007"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart" id="CombinedFragment_3004"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart" id="InteractionOperand_3005"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart" id="InteractionUse_3002"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart" id="Continuation_3016"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart" id="Lifeline_3001"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart" id="ActionExecutionSpecification_3006"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart" id="BehaviorExecutionSpecification_3003"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart" id="StateInvariant_3017"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart" id="CombinedFragment_3018"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart" id="TimeConstraint_3019"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart" id="TimeObservation_3020"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart" id="DurationConstraint_3021"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart" id="DestructionOccurrenceSpecification_3022"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart" id="Constraint_3008"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart" id="Comment_3009"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart" id="DurationConstraint_3023"/>
-         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart" id="DurationObservation_3024"/>
-         <context elements="Package_1000,Interaction_2001,ConsiderIgnoreFragment_3007,CombinedFragment_3004,InteractionOperand_3005,InteractionUse_3002,Continuation_3016,Lifeline_3001,ActionExecutionSpecification_3006,BehaviorExecutionSpecification_3003,StateInvariant_3017,CombinedFragment_3018,TimeConstraint_3019,TimeObservation_3020,DurationConstraint_3021,DestructionOccurrenceSpecification_3022,Constraint_3008,Comment_3009,DurationConstraint_3023,DurationObservation_3024"/>
-      </modelingAssistantProvider>
-   </extension>
-
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
       <IconProvider class="org.eclipse.papyrus.uml.diagram.sequence.providers.UMLIconProvider">
@@ -1183,15 +1155,6 @@
 	</extension>
 
 
-<extension
-      point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
-   <modelingAssistantProvider
-         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomModelingAssistantProvider">
-      <Priority
-            name="Lowest">
-      </Priority>
-   </modelingAssistantProvider>
-</extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
       <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.sequence.providers.UMLMarkerNavigationProvider">
@@ -1414,15 +1377,6 @@
             viewClass="org.eclipse.gmf.runtime.notation.Edge">
       </context>
    </viewProvider>
-</extension>
-<extension
-      point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
-   <modelingAssistantProvider
-         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomModelingAssistantProvider">
-      <Priority
-            name="Medium">
-      </Priority>
-   </modelingAssistantProvider>
 </extension>
 <extension
       id="Sequence.custom"

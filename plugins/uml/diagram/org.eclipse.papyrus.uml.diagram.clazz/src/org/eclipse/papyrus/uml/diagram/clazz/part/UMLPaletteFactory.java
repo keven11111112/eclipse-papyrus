@@ -481,6 +481,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Component_2002);
 		types.add(UMLElementTypes.Component_3021);
+		types.add(UMLElementTypes.Component_3055);
+		types.add(UMLElementTypes.Component_3056);
+		types.add(UMLElementTypes.Component_3057);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

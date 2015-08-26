@@ -8,12 +8,15 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Benoit Maggi       - #474408 : order by identifier the generated file   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator
 
+import java.util.List
 import javax.inject.Inject
 import javax.inject.Singleton
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsFactory
 import org.eclipse.uml2.uml.Profile
@@ -42,13 +45,17 @@ class ConfigurationSetRule {
         name = umlProfile.name
         metamodelNsURI = baseUMLElementTypeSet?.metamodelNsURI ?: UMLPackage.eNS_URI;
 
+       val List<ElementTypeConfiguration> elementTypeConfigurationList = newArrayList()
+       val List<AdviceBindingConfiguration> adviceBindingConfigurationList = newArrayList()		
+		
         umlProfile.allExtensions.forEach[ext | 
-            elementTypeConfigurations.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.toElementType(it)])
+            elementTypeConfigurationList.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.toElementType(it)])
             
             // We only need to generate advice bindings for element types that won't inherit the from a parent semantic type
             val typesNeedingAdvice = ext.metaclass.diagramSpecificElementTypes.filter[!hasSemanticSupertype]
-            adviceBindingsConfigurations.addAll(typesNeedingAdvice.map[ext.stereotype.toAdviceConfiguration(ext, it)])
+            adviceBindingConfigurationList.addAll(typesNeedingAdvice.map[ext.stereotype.toAdviceConfiguration(ext, it)])
         ]
-        
+       adviceBindingsConfigurations.addAll(adviceBindingConfigurationList.sortBy[identifier])     
+       elementTypeConfigurations.addAll(elementTypeConfigurationList.sortBy[identifier])        
     }
 }

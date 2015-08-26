@@ -16,6 +16,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomDoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomEntryStateBehaviorEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomExitStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomFinalStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomPackageEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomPseudostateEntryPointEditPart;
@@ -32,6 +35,9 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomTrans
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomTransitionGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
@@ -79,6 +85,12 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomStateCompartmentEditPart(view);
 			case TransitionGuardEditPart.VISUAL_ID:
 				return new CustomTransitionGuardEditPart(view);
+			case EntryStateBehaviorEditPart.VISUAL_ID:
+				return new CustomEntryStateBehaviorEditPart(view);
+			case ExitStateBehaviorEditPart.VISUAL_ID:
+				return new CustomExitStateBehaviorEditPart(view);
+			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+				return new CustomDoActivityStateBehaviorStateEditPart(view);
 			case ConnectionPointReferenceNameEditPart.VISUAL_ID:
 				return new CustomConnectionPointReferenceNameEditPart(view);
 			case TransitionEditPart.VISUAL_ID:

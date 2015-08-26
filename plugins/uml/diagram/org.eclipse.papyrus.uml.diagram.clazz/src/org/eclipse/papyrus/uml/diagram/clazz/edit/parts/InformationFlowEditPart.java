@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.InformationFlowFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
@@ -46,7 +45,7 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -54,12 +53,10 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof InformationFlowConveyedLabelEditPart) {
-			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getConveyedLabel());
+			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConveyedLabel());
 		}
 		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
-			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

@@ -33,6 +33,7 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 * @return the column image
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnImage(java.lang.Object, int)
 	 */
+	@Override
 	public Image getColumnImage(Object element, int columnIndex) {
 		return null;
 	}
@@ -47,10 +48,11 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 * @return the column text
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object, int)
 	 */
+	@Override
 	public String getColumnText(Object element, int columnIndex) {
-		if(element instanceof ModelTemplateDescription) {
-			ModelTemplateDescription modelTemplate = (ModelTemplateDescription)element;
-			return Messages.bind(org.eclipse.papyrus.uml.diagram.wizards.messages.Messages.ModelTemplatesLabelProvider_model_template_description_text, modelTemplate.getName(), modelTemplate.getFileName());
+		if (element instanceof ModelTemplateDescription) {
+			ModelTemplateDescription modelTemplate = (ModelTemplateDescription) element;
+			return Messages.bind(org.eclipse.papyrus.uml.diagram.wizards.messages.Messages.ModelTemplatesLabelProvider_model_template_description_text, modelTemplate.getName());
 		}
 		return null;
 	}
@@ -62,6 +64,7 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 *            the listener
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
 	 */
+	@Override
 	public void addListener(ILabelProviderListener listener) {
 
 	}
@@ -71,6 +74,7 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 *
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
 	 */
+	@Override
 	public void dispose() {
 
 	}
@@ -85,6 +89,7 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 * @return true, if is label property
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
 	 */
+	@Override
 	public boolean isLabelProperty(Object element, String property) {
 
 		return false;
@@ -97,6 +102,7 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 *            the listener
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
 	 */
+	@Override
 	public void removeListener(ILabelProviderListener listener) {
 
 	}

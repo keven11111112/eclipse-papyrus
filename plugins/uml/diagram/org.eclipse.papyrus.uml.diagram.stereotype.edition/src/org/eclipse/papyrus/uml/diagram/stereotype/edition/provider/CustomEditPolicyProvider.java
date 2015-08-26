@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvide
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
@@ -51,7 +52,7 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 					}
 
 				}
-				if (editPart instanceof NamedElementEditPart) {
+				if (editPart instanceof NamedElementEditPart || editPart instanceof AbstractCommentEditPart) {
 					editPart.installEditPolicy(AppliedStereotypeCompartmentEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 
 

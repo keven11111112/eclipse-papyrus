@@ -617,7 +617,8 @@ public class ArtifactFloatingLabelEditPartCN extends
 		if (style != null) {
 			FontData fontData = new FontData(
 					style.getFontName(), style.getFontHeight(),
-					(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
+							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -804,8 +805,10 @@ public class ArtifactFloatingLabelEditPartCN extends
 			refreshUnderline();
 		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {

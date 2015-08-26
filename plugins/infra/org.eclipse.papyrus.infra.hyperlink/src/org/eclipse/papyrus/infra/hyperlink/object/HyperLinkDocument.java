@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.hyperlink.object;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import org.eclipse.core.filesystem.EFS;
@@ -53,20 +52,20 @@ public class HyperLinkDocument extends HyperLinkObject {
 		try {
 			URI originalURI = URIUtil.toURI(object);
 			URI relativeURI = null;
-			
+
 			if (originalURI != null && originalURI.isAbsolute()) {
 				relativeURI = org.eclipse.core.runtime.URIUtil.makeRelative(originalURI, getBaseURI());
 			} else {
 				relativeURI = new URI(object);
 			}
-			
+
 			super.setObject(relativeURI.toString());
 		} catch (Exception e) {
-			Activator.log.equals(e);
+			Activator.log.error(e);
 			super.setObject("");
 		}
 	}
-	
+
 	@Override
 	public void openLink() {
 		try {
@@ -78,7 +77,7 @@ public class HyperLinkDocument extends HyperLinkObject {
 
 			URI relativeURI = new URI(fileName);
 			URI absoluteURI = org.eclipse.core.runtime.URIUtil.makeAbsolute(relativeURI, getBaseURI());
-			
+
 			IFileStore fileStore = EFS.getStore(absoluteURI);
 
 			IDE.openEditorOnFileStore(page, fileStore); // Let eclipse determine the better editor type for our file
@@ -102,7 +101,7 @@ public class HyperLinkDocument extends HyperLinkObject {
 	public boolean needsOpenCommand() {
 		return false;
 	}
-	
+
 	private URI getBaseURI() {
 		return ResourcesPlugin.getWorkspace().getRoot().getLocationURI();
 	}

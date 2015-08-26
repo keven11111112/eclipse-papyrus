@@ -102,7 +102,8 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(Messages.UMLCreationWizardTitle);
-		setDefaultPageImageDescriptor(UMLDiagramEditorPlugin.getBundledImageDescriptor("icons/wizban/NewUMLWizard.gif")); //$NON-NLS-1$
+		setDefaultPageImageDescriptor(UMLDiagramEditorPlugin.getBundledImageDescriptor(
+				"icons/wizban/NewUMLWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
@@ -111,12 +112,14 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public void addPages() {
-		diagramModelFilePage = new UMLCreationWizardPage("DiagramModelFile", getSelection(), "PapyrusUMLProfile_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+		diagramModelFilePage = new UMLCreationWizardPage(
+				"DiagramModelFile", getSelection(), "PapyrusUMLProfile_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage.setTitle(Messages.UMLCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage.setDescription(Messages.UMLCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
-		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "PapyrusUMLProfile") { //$NON-NLS-1$ //$NON-NLS-2$
+		domainModelFilePage = new UMLCreationWizardPage(
+				"DomainModelFile", getSelection(), "PapyrusUMLProfile") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			@Override
 			public void setVisible(boolean visible) {
@@ -139,25 +142,24 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		IRunnableWithProgress op =
-				new WorkspaceModifyOperation(null) {
+		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
-					@Override
-					protected void execute(IProgressMonitor monitor)
-							throws CoreException, InterruptedException {
-						diagram = UMLDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(),
-								domainModelFilePage.getURI(),
-								monitor);
-						if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
-							try {
-								UMLDiagramEditorUtil.openDiagram(diagram);
-							} catch (PartInitException e) {
-								ErrorDialog.openError(getContainer().getShell(),
-										Messages.UMLCreationWizardOpenEditorError, null, e.getStatus());
-							}
-						}
+			@Override
+			protected void execute(IProgressMonitor monitor)
+					throws CoreException, InterruptedException {
+				diagram = UMLDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(),
+						domainModelFilePage.getURI(),
+						monitor);
+				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
+					try {
+						UMLDiagramEditorUtil.openDiagram(diagram);
+					} catch (PartInitException e) {
+						ErrorDialog.openError(getContainer().getShell(),
+								Messages.UMLCreationWizardOpenEditorError, null, e.getStatus());
 					}
-				};
+				}
+			}
+		};
 		try {
 			getContainer().run(false, true, op);
 		} catch (InterruptedException e) {
@@ -168,7 +170,8 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 						Messages.UMLCreationWizardCreationError, null,
 						((CoreException) e.getTargetException()).getStatus());
 			} else {
-				UMLDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError(
+						"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}

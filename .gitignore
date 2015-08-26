@@ -4,6 +4,7 @@ target/
 *.pyc
 .DS_Store
 *.xtendbin
+*.gmfgen.uml
 
 # Workspace metadata folder created by Oomph when launching tests.
 tests/**/.metadata/

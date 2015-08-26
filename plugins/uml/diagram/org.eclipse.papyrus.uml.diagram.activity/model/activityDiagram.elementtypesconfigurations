@@ -416,6 +416,10 @@
     <iconEntry xmi:id="_rAWcUb02EeSUmeqld4lnBQ" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_9dDiROsXEeS3WOZTeAfQLw" name="Value Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3203" hint="3203">
+    <iconEntry xmi:id="_9dDiResXEeS3WOZTeAfQLw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_rAXqcL02EeSUmeqld4lnBQ" name="Action Input Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3190" hint="3190">
     <iconEntry xmi:id="_rAXqcb02EeSUmeqld4lnBQ" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
@@ -734,6 +738,10 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_rB8-0L02EeSUmeqld4lnBQ" name="Action Local Precondition" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionLocalPrecondition_4001" hint="4001">
     <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_9dEJUOsXEeS3WOZTeAfQLw" name="Action Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionPin_3204" hint="3204">
+    <iconEntry xmi:id="_9dEJUesXEeS3WOZTeAfQLw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_rB8-0b02EeSUmeqld4lnBQ" name="Action Local Postcondition" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionLocalPostcondition_4002" hint="4002">
     <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>

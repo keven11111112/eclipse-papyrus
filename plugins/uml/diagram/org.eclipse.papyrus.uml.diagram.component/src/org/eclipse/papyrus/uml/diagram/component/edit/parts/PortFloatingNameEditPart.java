@@ -122,6 +122,7 @@ public class PortFloatingNameEditPart extends FloatingLabelEditPart implements I
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */

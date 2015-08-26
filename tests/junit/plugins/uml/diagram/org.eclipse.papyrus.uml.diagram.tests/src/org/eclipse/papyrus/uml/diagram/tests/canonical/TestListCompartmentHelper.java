@@ -73,6 +73,13 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		Command command = getCreateChildCommand(childVisualId, targetCompartmentEP);
 		Assert.assertFalse("The " + childVisualId + "-visualId can't be created in the " + targetCompartmentEP.getClass().getName(), command.canExecute());
 	}
+	
+	public void checkChildCreate(int targetVisualId, int targetCompartmentVisualId, int childVisualId) {
+		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 0);
+		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(targetEP, targetCompartmentVisualId);
+		Command command = getCreateChildCommand(childVisualId, targetCompartmentEP);
+		Assert.assertTrue("The " + childVisualId + "-visualId should be created in the " + targetCompartmentEP.getClass().getName(), command.canExecute());
+	}
 
 	public void checkUnexecutableDrop2Canvas(int targetVisualId, int targetCompartmentVisualId, int childVisualId) {
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 0);

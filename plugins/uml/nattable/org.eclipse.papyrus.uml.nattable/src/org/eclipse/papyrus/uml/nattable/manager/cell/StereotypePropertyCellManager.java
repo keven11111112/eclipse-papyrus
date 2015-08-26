@@ -29,18 +29,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
 import org.eclipse.papyrus.infra.nattable.paste.PastePostActionRegistry;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
 import org.eclipse.papyrus.infra.tools.converter.MultiConvertedValueContainer;
@@ -510,5 +504,33 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getUnsetCellValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Command getUnsetCellValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		if (isCellEditable(columnElement, rowElement)) {
+			final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, null);
+			final Element el = (Element) umlObjects.get(0);
+			final String id = (String) umlObjects.get(1);
+			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
+			List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id);
+			if (stereotypes.size() == 1) {
+				final EObject elementToEdit = el.getStereotypeApplication(stereotypes.get(0));
+				final EStructuralFeature editedFeature = elementToEdit.eClass().getEStructuralFeature(UML2Util.getValidJavaIdentifier(prop.getName()));
+				return doGetUnsetCellValueCommand(domain, elementToEdit, editedFeature, tableManager);
+			}
+			//other cases are not yet managed
+		}
+		return null;
 	}
 }

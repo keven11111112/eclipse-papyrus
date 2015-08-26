@@ -168,7 +168,7 @@ public class UmlUtils {
 			if (next instanceof EReference) {
 				EReference superset = (EReference) next;
 				if (superset.isChangeable() && result.add(superset)) {
-					EAnnotation recursive = (superset == null) ? null : superset.getEAnnotation(ANNOTATION_SUBSETS);
+					EAnnotation recursive = superset.getEAnnotation(ANNOTATION_SUBSETS);
 					if (recursive != null) {
 						collectChangeableSupersets(recursive.getReferences(), result);
 					}
@@ -215,7 +215,7 @@ public class UmlUtils {
 
 	/**
 	 * Obtains all supersets, including transitive supersets-of-supersets, of the specified {@code subset}.
-	 * 
+	 *
 	 * @param subset
 	 *            a subset reference
 	 * @return its supersets, or an empty iterable if it is not actually a subset of anything

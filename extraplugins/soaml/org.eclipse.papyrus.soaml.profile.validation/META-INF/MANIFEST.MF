@@ -4,12 +4,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.validation,
  org.eclipse.papyrus.uml.service.validation,
  org.eclipse.uml2.uml
+Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %Bundle-Name
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.soaml.profile.validation.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.soaml.profile.validation;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-Vendor: %Bundle-Vendor
-Bundle-Localization: plugin

@@ -10,7 +10,7 @@
       modelID="PapyrusUMLSequenceDiagram"
       domainFileExtension="PapyrusUMLSequence"
       dynamicTemplates="true"
-      templateDirectory="/org.eclipse.papyrus.def/dynamic-templates3.5/codegen">
+      templateDirectory="/org.eclipse.papyrus.def/xtend/">
     <audits>
       <categories
           id="org.eclipse.uml2.uml.util.UMLValidator.validate"
@@ -98,6 +98,10 @@
           xsi:type="gmfgen:CustomBehaviour"
           key="EditPolicyRoles.DRAG_DROP_ROLE"
           editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
+      <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.PackageItemSemanticEditPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
@@ -125,6 +129,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ConsiderIgnoreFragmentItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ConsiderIgnoreFragment"/>
@@ -173,6 +181,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment"/>
@@ -207,14 +219,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="InteractionOperandEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            layoutType="XY_LAYOUT"
-            className="CustomInteractionOperandFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CustomInteractionOperandFigure extends org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fInteractionConstraintLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CustomInteractionOperandFigure() {&#xA;&#x9;&#x9;this.setLayoutManager(new org.eclipse.draw2d.XYLayout());&#xA;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setLineStyle(&#xA;Graphics.LINE_DASH);&#xA;&#xA;&#xA;&#xA;&#xA;this.setBorder(&#xA;null);&#xA;&#xA;&#xA;&#xA;&#xA;this.setLineSeparator(&#xA;!firstOperand);&#xA;&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fInteractionConstraintLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fInteractionConstraintLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fInteractionConstraintLabel, &#xA;new org.eclipse.draw2d.geometry.Rectangle(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(200)&#xA;, getMapMode().DPtoLP(20)&#xA;)&#xA;);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getInteractionConstraintLabel() {&#xA;&#x9;&#x9;return fInteractionConstraintLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:ResizeConstraints"
-              resizeHandles="4"/>
-        </viewmap>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.LAYOUT_ROLE"
@@ -267,6 +273,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionUseRectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionUseItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionUse"/>
@@ -344,9 +354,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ContinuationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ContinuationFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ContinuationFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel fFigureContinuationNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ContinuationFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(50)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureContinuationNameLabel = new org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fFigureContinuationNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel getFigureContinuationNameLabel() {&#xA;&#x9;&#x9;return fFigureContinuationNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ContinuationItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Continuation"/>
@@ -432,6 +445,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineAppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Lifeline"/>
@@ -504,6 +521,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.COMPONENT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ActionExecutionSpecificationItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionExecutionSpecification"/>
@@ -546,6 +567,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.COMPONENT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.BehaviorExecutionSpecificationItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehaviorExecutionSpecification"/>
@@ -571,9 +596,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="StateInvariantEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ContinuationFigure"
-            classBody="/*** @generated */ public class ContinuationFigure extends org.eclipse.draw2d.RoundedRectangle { /*** @generated */ private org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel fFigureContinuationNameLabel; /*** @generated */ public ContinuationFigure() { org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout(); this.setLayoutManager(layoutThis); this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50))); createContents(); } /**  * @generated  */ private void createContents() {  fFigureContinuationNameLabel = new org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel();  this.add(fFigureContinuationNameLabel);  } /**  * @generated  */ public org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel getFigureContinuationNameLabel() {  return fFigureContinuationNameLabel; }  /**generated*/ public IFigure getInvariantFigure(){return this;}}"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.StateInvariantItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateInvariant"/>
@@ -647,6 +675,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragment2ItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment"/>
@@ -681,13 +713,16 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="TimeConstraintEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="TimeMarkElementFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TimeMarkElementFigure extends org.eclipse.draw2d.PolylineShape {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TimeMarkElementFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.setLocation(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.TimeMarkElementFigure" />
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="DeleteTimeElementWithoutEventPolicy.KEY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeConstraintItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeConstraint"/>
@@ -729,14 +764,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="MultilineLabelFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class MultilineLabelFigure extends org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public MultilineLabelFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setBackgroundColor(&#xD;&#xA;getBackgroundColor());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextWrap(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextJustification(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-            <attributes
-                xsi:type="gmfgen:LabelOffsetAttributes"
-                x="22"
-                y="-7"/>
-          </viewmap>
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure" />
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -780,14 +809,17 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="TimeObservationEditHelper"/>
-        <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="TimeMarkElementFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TimeMarkElementFigure extends org.eclipse.draw2d.PolylineShape {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TimeMarkElementFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.setLocation(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+       <viewmap
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.TimeMarkElementFigure" />
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="DeleteTimeElementWithoutEventPolicy.KEY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeObservationItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation"/>
@@ -814,14 +846,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="MultilineLabelFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class MultilineLabelFigure extends org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public MultilineLabelFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setBackgroundColor(&#xD;&#xA;getBackgroundColor());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextWrap(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextJustification(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-            <attributes
-                xsi:type="gmfgen:LabelOffsetAttributes"
-                x="22"
-                y="-7"/>
-          </viewmap>
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure" />
           <modelFacet
               parser="/0/@labelParsers/@implementations.7"/>
         </labels>
@@ -866,18 +892,16 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="DurationConstraintEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DurationConstraintFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationConstraintFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fDurationArrow; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationConstraintFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(-1)&#xA;));&#xA;this.setBorder(createBorder0());&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDurationArrow = new org.eclipse.draw2d.PolylineShape();&#xA;fDurationArrow.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fDurationArrow.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#xA;this.add(fDurationArrow);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Border createBorder0() {&#xA;&#x9;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder result = new org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder();&#xA;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;result.setSides(&#xA;PositionConstants.TOP | PositionConstants.BOTTOM);&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return result;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getDurationArrow() {&#xA;&#x9;&#x9;return fDurationArrow;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="-1"
-              height="-1"/>
-        </viewmap>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.DurationConstraintFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="DeleteTimeElementWithoutEventPolicy.KEY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DurationConstraintItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationConstraint"/>
@@ -919,14 +943,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="MultilineLabelFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class MultilineLabelFigure extends org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public MultilineLabelFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setAlignment(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setBackgroundColor(&#xD;&#xA;getBackgroundColor());&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextWrap(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.setTextJustification(&#xD;&#xA;PositionConstants.CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-            <attributes
-                xsi:type="gmfgen:LabelOffsetAttributes"
-                x="25"
-                y="45"/>
-          </viewmap>
+        	xsi:type="gmfgen:FigureViewmap"
+			figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure" />
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -981,6 +999,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.COMPONENT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionEventComponentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionOccurrenceSpecificationItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DestructionOccurrenceSpecification"/>
@@ -1018,6 +1040,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ConstraintItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -1107,6 +1133,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusReflowableShapeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CommentItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
@@ -1159,14 +1189,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.12/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DurationObservationConstraint"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDurationLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDurationLabel() {&#xA;&#x9;&#x9;return fDurationLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:LabelOffsetAttributes"
-              x="1"
-              y="20"/>
-        </viewmap>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.DurationObservationConstraint"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.COMPONENT_ROLE"
@@ -1179,6 +1203,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="DeleteTimeElementWithoutEventPolicy.KEY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DurationConstraintInMessageItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationConstraint"/>
@@ -1269,14 +1297,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="DurationObservationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DurationObservationConstraint"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDurationLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDurationLabel() {&#xA;&#x9;&#x9;return fDurationLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:LabelOffsetAttributes"
-              x="1"
-              y="20"/>
-        </viewmap>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.COMPONENT_ROLE"
@@ -1289,6 +1311,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="DeleteTimeElementWithoutEventPolicy.KEY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DurationObservationItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation"/>
@@ -1315,7 +1341,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getDurationLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
@@ -1454,6 +1480,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.1">
@@ -1548,6 +1578,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message2ItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.4">
@@ -1641,6 +1675,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message3ItemSemanticEditPolicy"/>    
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.7">
@@ -1734,6 +1772,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message4ItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.10">
@@ -1828,6 +1870,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message5ItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.13">
@@ -1921,6 +1967,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message6ItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.16">
@@ -2015,6 +2065,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message7ItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.19">
@@ -2092,6 +2146,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart.AnnotatedLinkDescriptor"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CommentAnnotatedElementItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
@@ -2112,6 +2170,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart.AnnotatedLinkDescriptor"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ConstraintConstrainedElementItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
@@ -2131,13 +2193,16 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="GeneralOrderingEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="GeneralOrderingDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GeneralOrderingDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fAppliedStereotypeLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GeneralOrderingDescriptor() {&#xA;&#x9;&#x9;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolygonDecoration df = new org.eclipse.draw2d.PolygonDecoration();&#xA;df.setFill(true);&#xA;&#x9;df.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;df.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;org.eclipse.draw2d.geometry.PointList pl = new org.eclipse.draw2d.geometry.PointList();&#xA;pl.addPoint(getMapMode().DPtoLP(-2)&#xA;, getMapMode().DPtoLP(2)&#xA;);&#xA;pl.addPoint(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;);&#xA;pl.addPoint(getMapMode().DPtoLP(-2)&#xA;, getMapMode().DPtoLP(-2)&#xA;);&#xA;pl.addPoint(getMapMode().DPtoLP(-2)&#xA;, getMapMode().DPtoLP(2)&#xA;);&#xA;df.setTemplate(pl);&#xA;df.setScale(getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(3)&#xA;);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getAppliedStereotypeLabel() {&#xA;&#x9;&#x9;return fAppliedStereotypeLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.GeneralOrderingDescriptor"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GeneralOrderingItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -2199,6 +2264,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ContextLinkItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
@@ -2268,6 +2337,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionInteractionCompartmentItemSemanticEditPolicy"/>
       </compartments>
       <compartments
           visualID="7004"
@@ -2286,6 +2359,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy"/>
       </compartments>
       <palette>
         <groups
@@ -7223,43 +7300,43 @@
           xsi:type="gmfgen:GenJavaExpressionProvider"
           injectExpressionBody="true">
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, &quot;t&quot;, &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, &quot;t&quot;, &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
             body="return &quot;&quot;;"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, &quot;d&quot;, &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, &quot;d&quot;, &quot;&quot;);"/>
         <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+            body="return getNamedElement(it, &quot;&quot;, it.eClass().getName(), &quot;&quot;);"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"/>

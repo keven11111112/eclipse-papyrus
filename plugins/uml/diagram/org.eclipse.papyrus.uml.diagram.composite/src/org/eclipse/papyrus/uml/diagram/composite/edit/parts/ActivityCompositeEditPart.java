@@ -53,6 +53,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEd
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy;
@@ -96,7 +97,9 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
@@ -108,6 +111,7 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new SideAffixedNodesCreationEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -120,14 +124,14 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View) child.getModel();
+				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case ActivityCompositeFloatingLabelEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						@Override
 						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
@@ -137,7 +141,7 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -177,6 +181,7 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -188,38 +193,50 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.composite.custom.figures.ActivityCompositeFigure
+	 * 
 	 * @generated
 	 */
 	public ActivityCompositeFigure getPrimaryShape() {
-		return (ActivityCompositeFigure)primaryShape;
+		return (ActivityCompositeFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActivityCompositeNameEditPart) {
-			((ActivityCompositeNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof ActivityCompositeNameEditPart) {
+			((ActivityCompositeNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof ActivityCompositeCompartmentEditPart) {
+
+
+		if (childEditPart instanceof ActivityCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ActivityCompositeCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((ActivityCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		//Papyrus Gencode :Affixed Port locator
-		if(childEditPart instanceof PortEditPart) {
+
+
+
+		// Papyrus Gencode :Affixed Port locator
+		if (childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((PortEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((PortEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		//Papyrus Gencode :Affixed Port locator
-		if(childEditPart instanceof ParameterEditPart) {
+
+
+
+
+		// Papyrus Gencode :Affixed Port locator
+		if (childEditPart instanceof ParameterEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -227,20 +244,20 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActivityCompositeNameEditPart) {
+		if (childEditPart instanceof ActivityCompositeNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ActivityCompositeCompartmentEditPart) {
+		if (childEditPart instanceof ActivityCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			pane.remove(((ActivityCompositeCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ActivityCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PortEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((PortEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof PortEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((PortEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ParameterEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ParameterEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ParameterEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ParameterEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -250,7 +267,7 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -260,7 +277,7 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -270,10 +287,10 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof ActivityCompositeCompartmentEditPart) {
+		if (editPart instanceof ActivityCompositeCompartmentEditPart) {
 			return getPrimaryShape().getCompositeCompartmentFigure();
 		}
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -283,7 +300,7 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof ActivityCompositeFloatingLabelEditPart) {
+		if (borderItemEditPart instanceof ActivityCompositeFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -306,16 +323,19 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 */
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -327,7 +347,7 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -337,7 +357,7 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -353,8 +373,8 @@ public class ActivityCompositeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

@@ -87,7 +87,7 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
 	 */
 	@SuppressWarnings("nls")
@@ -112,8 +112,13 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 					} else if (e instanceof SignalEvent) {
 						textToEdit = textToEdit + ((SignalEvent) e).getSignal().getName();
 					} else if (e instanceof ChangeEvent) {
-
-						textToEdit = textToEdit + "when \"" + retrieveBody((OpaqueExpression) ((ChangeEvent) e).getChangeExpression(), "Natural language") + "\"";
+						ValueSpecification specification = ((ChangeEvent) e).getChangeExpression();
+						if (specification instanceof OpaqueExpression) { // Partial fix for Bug 475719
+							String body = retrieveBody((OpaqueExpression) specification, "Natural language");
+							textToEdit = textToEdit + "when \"" + body + "\"";
+						} else {
+							// TODO: What if the specification of the ChangeEvent is not an OpaqueExpression?
+						}
 					} else if (e instanceof TimeEvent) {
 						String absRelPrefix = EMPTY + (((TimeEvent) e).isRelative() ? "after " : "at ");
 						textToEdit = textToEdit + absRelPrefix + "\"" + retrieveBody((OpaqueExpression) ((TimeEvent) e).getWhen().getExpr(), "Natural language") + "\"";
@@ -183,7 +188,7 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see
 		 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor
 		 * , org.eclipse.core.runtime.IAdaptable)
@@ -255,8 +260,7 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 						transition.getEffect().setName(behaviorName);
 					}
 				}
-			}
-			else {
+			} else {
 				// no effect, remove it.
 				Behavior effect = transition.getEffect();
 				transition.setEffect(null);

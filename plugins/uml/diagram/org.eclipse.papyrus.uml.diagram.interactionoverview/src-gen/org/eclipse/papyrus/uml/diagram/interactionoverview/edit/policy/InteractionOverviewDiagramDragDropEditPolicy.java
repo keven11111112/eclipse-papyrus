@@ -16,24 +16,23 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CommonDiagramDragDropEditPolicy;
+
 
 /**
  * Customization of the DND edit policy for the InteractionOverviewDiagram
  * Diagram
  */
-public class InteractionOverviewDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+@Deprecated // use CustomInteractionOverviewDiagramDragAndDropEditPolicy
+public class InteractionOverviewDiagramDragDropEditPolicy {
 
 	/** Default constructor. */
 	public InteractionOverviewDiagramDragDropEditPolicy() {
-		super(null);
 		// registry = new CustomGraphicalTypeRegistry();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected Set<String> getSpecificDropBehaviorTypes() {
 		return Collections.emptySet();
 	}
@@ -41,9 +40,8 @@ public class InteractionOverviewDiagramDragDropEditPolicy extends CommonDiagramD
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected ICommand getUnknownDropCommand(final DropObjectsRequest dropRequest, final EObject droppedEObject) {
-
-		return super.getUnknownDropCommand(dropRequest, droppedEObject);
+		return null;
 	}
+
 }

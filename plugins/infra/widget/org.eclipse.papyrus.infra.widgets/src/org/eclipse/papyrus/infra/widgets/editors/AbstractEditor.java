@@ -84,7 +84,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	/**
 	 * The factory for creating all the editors with a common style
 	 */
-	public static TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
+	public static final TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
 
 	static {
 		factory.setBackground(null);
@@ -300,7 +300,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	 * Tests whether this editor is read-only or not
 	 *
 	 * @return
-	 *         True if the editor is read-only
+	 * 		True if the editor is read-only
 	 */
 	public abstract boolean isReadOnly();
 
@@ -401,9 +401,9 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	public IAtomicOperationExecutor getOperationExecutor(Object context) {
 		IAtomicOperationExecutor result;
 		if (context instanceof IAdaptable) {
-			result = (IAtomicOperationExecutor) ((IAdaptable) context).getAdapter(IAtomicOperationExecutor.class);
+			result = ((IAdaptable) context).getAdapter(IAtomicOperationExecutor.class);
 		} else if (context != null) {
-			result = (IAtomicOperationExecutor) Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
+			result = Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
 		} else {
 			// We can't adapt null, of course, so we will have to settle for the default executor
 			result = null;

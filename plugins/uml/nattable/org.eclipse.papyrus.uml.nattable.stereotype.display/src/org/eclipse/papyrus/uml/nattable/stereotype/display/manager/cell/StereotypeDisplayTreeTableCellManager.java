@@ -58,7 +58,7 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	 */
 	@Override
 	public Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
-		Object result = null;
+		Object result = ICellManager.EMPTY_STRING;
 		Object element = AxisUtils.getRepresentedElement(columnElement);
 
 		if (element instanceof String) {

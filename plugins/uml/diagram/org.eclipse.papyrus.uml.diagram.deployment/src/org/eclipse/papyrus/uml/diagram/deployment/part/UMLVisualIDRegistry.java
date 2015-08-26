@@ -33,6 +33,9 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentBodyEditPart
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintNameEditPart;
@@ -842,6 +845,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case CommunicationPathEditPart.VISUAL_ID:
+			if (CommunicationPathNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (CommunicationPathAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -867,6 +878,9 @@ public class UMLVisualIDRegistry {
 		}
 		if (UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())) {
 			return DependencyBranchEditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getCommunicationPath().isSuperTypeOf(domainElement.eClass())) {
+			return CommunicationPathEditPart.VISUAL_ID;
 		}
 		return -1;
 	}

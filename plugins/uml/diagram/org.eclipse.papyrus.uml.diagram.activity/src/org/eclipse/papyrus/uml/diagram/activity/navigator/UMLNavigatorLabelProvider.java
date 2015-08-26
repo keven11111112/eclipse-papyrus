@@ -65,6 +65,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			UMLNavigatorGroup group = (UMLNavigatorGroup) element;
 			return UMLDiagramEditorPlugin.getInstance().getBundledImage(group.getIcon());
 		}
+
 		if (element instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem) element;
 			if (!isOwnView(navigatorItem.getView())) {
@@ -72,6 +73,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			}
 			return getImage(navigatorItem.getView());
 		}
+
+
 		return super.getImage(element);
 	}
 
@@ -92,6 +95,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			image = UMLElementTypes.getImage(elementType);
 			imageRegistry.put(key, image);
 		}
+
 		if (image == null) {
 			image = imageRegistry.get("Navigator?ImageNotFound"); //$NON-NLS-1$
 			imageRegistry.put(key, image);
@@ -108,6 +112,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			UMLNavigatorGroup group = (UMLNavigatorGroup) element;
 			return group.getGroupName();
 		}
+
 		if (element instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem) element;
 			if (!isOwnView(navigatorItem.getView())) {
@@ -115,6 +120,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			}
 			return getText(navigatorItem.getView());
 		}
+
+
 		return super.getText(element);
 	}
 

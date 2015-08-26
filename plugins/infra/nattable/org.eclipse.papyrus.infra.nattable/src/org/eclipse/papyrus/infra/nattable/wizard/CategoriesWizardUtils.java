@@ -53,7 +53,7 @@ public class CategoriesWizardUtils {
 	public static final boolean isDepthItem(ITreeItemAxis axis) {
 		if (axis instanceof IdTreeItemAxis) {
 			String element = ((IdTreeItemAxis) axis).getElement();
-			return TypeUtils.isIntegerValue(element);
+			return TypeUtils.isNaturalValue(element);
 		}
 		return false;
 	}

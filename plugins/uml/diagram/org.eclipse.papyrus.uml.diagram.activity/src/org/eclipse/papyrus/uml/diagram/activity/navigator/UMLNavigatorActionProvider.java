@@ -151,6 +151,7 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 			if (myDiagram == null || myDiagram.eResource() == null) {
 				return;
 			}
+
 			IEditorInput editorInput = getEditorInput(myDiagram);
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {

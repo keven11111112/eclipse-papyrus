@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
@@ -62,12 +61,13 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
@@ -81,7 +81,7 @@ import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
- * Manually extends to PapyrusLabelEditPart, modification has been applied to the gmfgen file. 
+ * 			Manually extends to PapyrusLabelEditPart, modification has been applied to the gmfgen file.
  */
 public class TimeConstraintLabelEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
 
@@ -123,6 +123,7 @@ public class TimeConstraintLabelEditPart extends PapyrusLabelEditPart implements
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -145,6 +146,7 @@ public class TimeConstraintLabelEditPart extends PapyrusLabelEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ExternalLabelPrimaryDragRoleEditPolicy());
 	}
 
 	/**
@@ -778,23 +780,5 @@ public class TimeConstraintLabelEditPart extends PapyrusLabelEditPart implements
 	 */
 	protected IFigure createFigurePrim() {
 		return new MultilineLabelFigure();
-	}
-
-	/**
-	 * @generated
-	 * Manually changed to PapyrusWrappingLabel modification has been applied to the gmfgen file. 
-	 */
-	public class MultilineLabelFigure extends PapyrusWrappingLabel {
-
-		/**
-		 * @generated
-		 */
-		public MultilineLabelFigure() {
-			this.setTextAlignment(PositionConstants.CENTER);
-			this.setAlignment(PositionConstants.CENTER);
-			this.setBackgroundColor(getBackgroundColor());
-			this.setTextWrap(true);
-			this.setTextJustification(PositionConstants.CENTER);
-		}
 	}
 }

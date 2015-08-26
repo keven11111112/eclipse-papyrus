@@ -83,7 +83,7 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 	 *
 	 * @see {@link ProjectScope}
 	 */
-	public static String PROJECT_STYLESHEETS = "stylesheets.xmi"; //$NON-NLS-1$
+	public static final String PROJECT_STYLESHEETS = "stylesheets.xmi"; //$NON-NLS-1$
 
 	/**
 	 * The Engine's project. May be null or closed, or may not exist

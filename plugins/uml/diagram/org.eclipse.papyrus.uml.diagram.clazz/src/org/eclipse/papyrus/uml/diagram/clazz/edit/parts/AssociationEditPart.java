@@ -19,10 +19,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AbstractAssociationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure;
 
 /**
  * @generated
@@ -50,8 +50,6 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-
-
 	}
 
 	/**
@@ -59,28 +57,22 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AppliedStereotypeAssociationEditPart) {
-			((AppliedStereotypeAssociationEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeAssociationLabel());
+			((AppliedStereotypeAssociationEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeAssociationLabel());
 		}
 		if (childEditPart instanceof AssociationNameEditPart) {
-			((AssociationNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAssociationNameLabel());
+			((AssociationNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 		}
 		if (childEditPart instanceof AssociationTargetNameEditPart) {
-			((AssociationTargetNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getRoleTargetLabel());
+			((AssociationTargetNameEditPart) childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 		}
 		if (childEditPart instanceof AssociationSourceNameEditPart) {
-			((AssociationSourceNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getRoleSourceLabel());
+			((AssociationSourceNameEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
 		if (childEditPart instanceof AssociationMultiplicitySourceEditPart) {
-			((AssociationMultiplicitySourceEditPart) childEditPart).setLabel(
-					getPrimaryShape().getMultiplicitySourceLabel());
+			((AssociationMultiplicitySourceEditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 		}
 		if (childEditPart instanceof AssociationMultiplicityTargetEditPart) {
-			((AssociationMultiplicityTargetEditPart) childEditPart).setLabel(
-					getPrimaryShape().getMultiplicityTargetLabel());
+			((AssociationMultiplicityTargetEditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 		}
 		return false;
 	}

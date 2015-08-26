@@ -68,7 +68,7 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 		private Collection<Command> possibleCommands;
 		private Command commandDone;
 
-		protected CreateEditBasedElementTransactionalCommand(TransactionalEditingDomain domain, String label, List affectedFiles) {
+		protected CreateEditBasedElementTransactionalCommand(TransactionalEditingDomain domain, String label, List<?> affectedFiles) {
 			super(domain, label, affectedFiles);
 		}
 
@@ -246,7 +246,7 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 	 */
 	protected CompositeEMFOperation compositeEMFOperation;
 
-	public static String ECLASS_HINT = "ECLASS_HINT";
+	public static final String ECLASS_HINT = "ECLASS_HINT";
 
 	protected EClass eClassHint = null;
 

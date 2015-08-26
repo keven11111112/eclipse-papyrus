@@ -60,6 +60,6 @@ public class TimeObservationEventEditPart extends ConnectionEditPart implements 
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure)getFigure();
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }

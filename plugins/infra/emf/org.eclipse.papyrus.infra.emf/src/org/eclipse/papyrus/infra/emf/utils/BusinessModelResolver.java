@@ -29,7 +29,7 @@ public class BusinessModelResolver {
 	/**
 	 * The unique instance
 	 */
-	public static BusinessModelResolver instance = new BusinessModelResolver();
+	public static final BusinessModelResolver instance = new BusinessModelResolver();
 
 	public BusinessModelResolver() {
 

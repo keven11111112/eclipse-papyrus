@@ -243,6 +243,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case NestedSignalForClassEditPart.VISUAL_ID:
 				case NestedSignalForComponentEditPart.VISUAL_ID:
 				case NestedSignalForInterfaceEditPart.VISUAL_ID:
+				case NestedComponentForClassEditPart.VISUAL_ID:
+				case NestedComponentForInterfaceEditPart.VISUAL_ID:
+				case NestedComponentForComponentEditPart.VISUAL_ID:
 					if (domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -460,6 +463,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createSignal_3051(domainElement, containerView, index, persisted, preferencesHint);
 		case NestedSignalForInterfaceEditPart.VISUAL_ID:
 			return createSignal_3049(domainElement, containerView, index, persisted, preferencesHint);
+		case NestedComponentForClassEditPart.VISUAL_ID:
+			return createComponent_3055(domainElement, containerView, index, persisted, preferencesHint);
+		case NestedComponentForInterfaceEditPart.VISUAL_ID:
+			return createComponent_3056(domainElement, containerView, index, persisted, preferencesHint);
+		case NestedComponentForComponentEditPart.VISUAL_ID:
+			return createComponent_3057(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -1897,6 +1906,51 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createComponent_3055(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(NestedComponentForClassEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createComponent_3056(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(NestedComponentForInterfaceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createComponent_3057(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(NestedComponentForComponentEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Edge createLink_4016(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -2874,8 +2928,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FONT);
 
 		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (viewFontStyle != null)
-		{
+		if (viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
 			viewFontStyle.setFontName(fontData.getName());
 			viewFontStyle.setFontHeight(fontData.getHeight());
@@ -2904,23 +2957,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String gradientColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_GRADIENT);
 		String gradientPolicyConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.GRADIENT_POLICY);
 
-
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
 
-
-		FillStyle fillStyle = (FillStyle) view
-				.getStyle(NotationPackage.Literals.FILL_STYLE);
-		fillStyle
-				.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
+		FillStyle fillStyle = (FillStyle) view.getStyle(NotationPackage.Literals.FILL_STYLE);
+		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
 
 		;
 		if (store.getBoolean(gradientPolicyConstant)) {
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-					store.getString(gradientColorConstant));
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store.getString(gradientColorConstant));
 			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
-			fillStyle
-					.setTransparency(gradientPreferenceConverter.getTransparency());
+			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 	}
 }

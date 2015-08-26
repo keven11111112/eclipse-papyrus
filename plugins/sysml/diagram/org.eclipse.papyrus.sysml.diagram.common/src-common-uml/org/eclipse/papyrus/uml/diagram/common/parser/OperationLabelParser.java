@@ -26,7 +26,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;

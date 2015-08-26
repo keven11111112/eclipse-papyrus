@@ -392,7 +392,7 @@
       </resource>
    </extension>
    <extension
-         point="org.eclipse.emf.cdo.explorer.ui.editorOpeners">
+         point="org.eclipse.emf.cdo.ui.editorOpeners">
       <editorOpener
             class="org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorOpener"
             icon="icons/full/obj16/papyrus_model.gif"

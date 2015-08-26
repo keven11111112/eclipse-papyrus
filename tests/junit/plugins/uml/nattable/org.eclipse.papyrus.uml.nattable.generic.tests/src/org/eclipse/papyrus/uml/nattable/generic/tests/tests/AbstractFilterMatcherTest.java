@@ -18,28 +18,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
+import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.command.UpdateDataCommand;
-import org.eclipse.papyrus.commands.OpenDiagramCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
+import org.eclipse.nebula.widgets.nattable.style.ConfigAttribute;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.filter.FilterPreferences;
+import org.eclipse.papyrus.infra.nattable.layer.FilterRowDataLayer;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
-import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
-import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
-import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.uml.nattable.generic.tests.Activator;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorPart;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.osgi.framework.Bundle;
@@ -122,6 +113,7 @@ public abstract class AbstractFilterMatcherTest extends AbstractGenericTableTest
 	}
 
 	/**
+	 * Check filter without data validator.
 	 * 
 	 * @param matchOn
 	 *            the filter value : the object on which we do the math
@@ -135,13 +127,56 @@ public abstract class AbstractFilterMatcherTest extends AbstractGenericTableTest
 	 *            the number of elements matching the filter
 	 * @throws Exception
 	 */
-	protected void checkFilter(Object matchOn, int columnPosition, int rowPosition, int nbElementsInTheTable, int nbMatchingElement) throws Exception {
+	protected void checkFilter(final Object matchOn, final int columnPosition, final int rowPosition, final int nbElementsInTheTable, final int nbMatchingElement) throws Exception {
+		checkFilter(matchOn, columnPosition, rowPosition, nbElementsInTheTable, nbMatchingElement, null);
+	}
+	
+	/**
+	 * Check filter with data validator.
+	 * 
+	 * @param matchOn
+	 *            the filter value : the object on which we do the math
+	 * @param columnPosition
+	 *            the position of the filtered column
+	 * @param rowPosition
+	 *            the row position of the filter
+	 * @param nbElementsInTheTable
+	 *            the initial number of elements in the table
+	 * @param nbMatchingElement
+	 *            the number of elements matching the filter
+	 * @throws Exception
+	 */
+	protected void checkFilterWithDataValidator(final Object matchOn, final int columnPosition, final int rowPosition, final int nbElementsInTheTable, final int nbMatchingElement) throws Exception {
+		checkFilter(matchOn, columnPosition, rowPosition, nbElementsInTheTable, nbMatchingElement, EditConfigAttributes.DATA_VALIDATOR);
+	}
+	
+	/**
+	 * 
+	 * @param matchOn
+	 *            the filter value : the object on which we do the math
+	 * @param columnPosition
+	 *            the position of the filtered column
+	 * @param rowPosition
+	 *            the row position of the filter
+	 * @param nbElementsInTheTable
+	 *            the initial number of elements in the table
+	 * @param nbMatchingElement
+	 *            the number of elements matching the filter
+	 * @param configAttribute The config attribute data validator.
+	 * @throws Exception
+	 */
+	protected void checkFilter(final Object matchOn, final int columnPosition, final int rowPosition, final int nbElementsInTheTable, final int nbMatchingElement, final ConfigAttribute<IDataValidator> configAttribute) throws Exception {
 		INattableModelManager manager = getTableManager();
 		List<Object> elements = manager.getRowElementsList();
 		Assert.assertEquals(nbElementsInTheTable, elements.size());
 		checkUnicityOfElements(elements);
 
 		NatTable natTable = getNatTable(manager);
+		
+		if (null != configAttribute) {
+			final IDataValidator dataValidator = natTable.getConfigRegistry().getConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, DisplayMode.NORMAL, FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX + "0");
+			Assert.assertTrue("Validator doesn't manage the value to set", dataValidator.validate(columnPosition, rowPosition, matchOn)); ////$NON-NLS-1$
+		}
 
 		// 1. we apply the filter
 		natTable.getLayer().doCommand(new UpdateDataCommand(natTable.getLayer(), columnPosition, rowPosition, matchOn));

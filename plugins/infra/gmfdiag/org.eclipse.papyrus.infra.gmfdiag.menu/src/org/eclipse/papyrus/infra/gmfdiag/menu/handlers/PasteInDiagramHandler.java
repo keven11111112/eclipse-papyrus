@@ -47,7 +47,7 @@ public class PasteInDiagramHandler extends AbstractGraphicalCommandHandler {
 	protected Command getCommand() {
 		PapyrusClipboard.getInstance().resetTarget();
 		List<IGraphicalEditPart> selectedElements = getSelectedElements();
-		if (selectedElements.size() == 1) { // Paste is only enabled on a simple selection
+		if (selectedElements.size() == 1 && (selectedElements.get(0) instanceof GraphicalEditPart)) { // Paste is only enabled on a simple selection
 			GraphicalEditPart targetOwnerEditPart = (GraphicalEditPart) selectedElements.get(0);
 			org.eclipse.gef.commands.CompoundCommand compoundCommand = new org.eclipse.gef.commands.CompoundCommand("Paste all elements"); //$NON-NLS-1$
 

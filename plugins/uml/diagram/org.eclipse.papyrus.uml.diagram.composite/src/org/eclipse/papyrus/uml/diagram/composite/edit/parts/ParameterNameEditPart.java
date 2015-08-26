@@ -68,6 +68,7 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.ParameterLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
@@ -126,6 +127,7 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -232,8 +234,7 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure
-			figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -279,7 +280,7 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 		if (parserElement == null) {
 			return null;
 		}
-		List<View> views = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for (View view : views) {
 			if (AppearanceHelper.showElementIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());
@@ -354,15 +355,14 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid =
-								(IParserEditStatus) getEditingDomain().runExclusive(
-										new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+								new RunnableWithResult.Impl<java.lang.Object>() {
 
-											@Override
-											public void run() {
-												setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
-											}
-										});
+							@Override
+							public void run() {
+								setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+							}
+						});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
@@ -491,8 +491,7 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
-				}
-				else if (configuration instanceof IAdvancedEditorConfiguration) {
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
 					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
@@ -537,8 +536,7 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						}
-						else {
+						} else {
 							performDirectEdit();
 						}
 					}
@@ -575,8 +573,7 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 			if (view.isVisible()) {
 				setLabelTextHelper(getFigure(), getLabelText());
 				setLabelIconHelper(getFigure(), getLabelIcon());
-			}
-			else {
+			} else {
 				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
 				setLabelIconHelper(getFigure(), null);
 			}
@@ -595,17 +592,15 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if (resolveSemanticElement() instanceof Feature) {
 			if (((Feature) resolveSemanticElement()).isStatic()) {
 				((WrappingLabel) getFigure()).setTextUnderline(true);
-			}
-			else {
+			} else {
 				((WrappingLabel) getFigure()).setTextUnderline(false);
 			}
 		}
@@ -615,9 +610,8 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -628,14 +622,12 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
 			FontData fontData = new FontData(
 					style.getFontName(), style.getFontHeight(),
-					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
-							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -729,7 +721,7 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement(), this);
 		}
 		return false;
 	}
@@ -753,9 +745,9 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
 			}
 		}
 	}
@@ -769,8 +761,7 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
-					.eClass().getInstanceClassName());
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
@@ -822,18 +813,15 @@ public class ParameterNameEditPart extends FloatingLabelEditPart implements ITex
 			refreshUnderline();
 		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
 			}
 			if (getParser() instanceof ISemanticParser) {
-				ISemanticParser modelParser =
-						(ISemanticParser) getParser();
+				ISemanticParser modelParser = (ISemanticParser) getParser();
 				if (modelParser.areSemanticElementsAffected(null, event)) {
 					removeSemanticListeners();
 					if (resolveSemanticElement() != null) {

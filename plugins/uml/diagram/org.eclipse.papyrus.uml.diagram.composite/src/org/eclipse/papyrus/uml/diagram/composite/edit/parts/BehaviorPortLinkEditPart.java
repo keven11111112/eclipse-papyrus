@@ -66,6 +66,6 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITre
 	 * @generated
 	 */
 	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx)getFigure();
+		return (PolylineConnectionEx) getFigure();
 	}
 }

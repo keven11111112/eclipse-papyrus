@@ -43,9 +43,9 @@ public abstract class TextReferencesHelper {
 
 	public static final String URI_REGEX = String.format("%s*#%s+", URI_CHARS, FRAGMENT_CHARS); // The base uri is optional. The fragment is required.
 
-	public static String UNKNOWN_ELEMENT = "UNKNOWN"; // Replacement text for unknown elements
+	public static final String UNKNOWN_ELEMENT = "UNKNOWN"; // Replacement text for unknown elements
 
-	public static String PROXY_ELEMENT = "PROXY"; // Replacement text for proxy elements
+	public static final String PROXY_ELEMENT = "PROXY"; // Replacement text for proxy elements
 
 	protected Resource baseResource;
 
@@ -117,7 +117,7 @@ public abstract class TextReferencesHelper {
 	 *            The position at which the reference must be inserted. 0 is the beginning, while text.length() is the end. For all "invalid" indexes (<0
 	 *            and > length()), the reference will be inserted at the end of the string
 	 * @return
-	 *         The text containing the new reference
+	 * 		The text containing the new reference
 	 */
 	public String insertReference(EObject toElement, String inText, int atPosition) {
 		String result = inText;

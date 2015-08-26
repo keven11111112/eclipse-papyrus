@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
  * @author Vincent Lorenzo
  *
  */
-public abstract class AbstractCellManager implements ICellManager {
+public abstract class AbstractCellManager implements ICellManager, IUnsetValueCellManager {
 
 	/**
 	 *
@@ -184,4 +184,36 @@ public abstract class AbstractCellManager implements ICellManager {
 	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueConverter, INattableModelManager tableManager, Map<?, ?> sharedMap) {
 		// do nothing
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.IUnsetValueCellManager#unsetCellValue(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 */
+	@Override
+	public void unsetCellValue(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		// nothing to do
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.IUnsetValueCellManager#getUnsetCellValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Command getUnsetCellValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		// nothing to do
+		return null;
+	}
+	
 }

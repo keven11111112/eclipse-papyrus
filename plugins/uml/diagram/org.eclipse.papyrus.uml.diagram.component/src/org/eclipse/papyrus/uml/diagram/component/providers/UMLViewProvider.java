@@ -1477,8 +1477,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FONT);
 
 		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (viewFontStyle != null)
-		{
+		if (viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
 			viewFontStyle.setFontName(fontData.getName());
 			viewFontStyle.setFontHeight(fontData.getHeight());

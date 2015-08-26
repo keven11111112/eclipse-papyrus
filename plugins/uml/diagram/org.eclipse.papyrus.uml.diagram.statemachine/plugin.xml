@@ -195,10 +195,7 @@
       </ParserProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
-      <?gmfgen generated="false"?>
-   </extension>
-
+   
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
       <clientContext id="org.eclipse.papyrus.uml.diagram.statemachine.TypeContext">
@@ -209,33 +206,6 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.statemachine.TypeContext">
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Package_1000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.StateMachine_2000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Region_3000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.FinalState_5000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.State_6000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_8000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_9000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_10000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_11000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_12000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_13000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_14000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_15000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_17000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.ConnectionPointReference_18000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineComment"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Constraint_668"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.InternalTransition_680"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.EntryStateBehavior_690"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.DoActivityStateBehavior_691"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.ExitStateBehavior_692"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.CommentAnnotatedElement_667"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.ConstraintConstrainedElement_670"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.ConstraintContext_8500"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -768,7 +738,7 @@
 			category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
 			class="org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CustomTransitionPreferencePage"
 			id="org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CustomTransitionPreferencePage_ID"
-			name="Transition options">
+			name="Transition and behavior options">
       </page>
 	</extension>
  

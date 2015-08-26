@@ -209,6 +209,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
+	@Override
 	public void refreshFeedback() {
 		refreshSelectionFeedback();
 		refreshFocusFeedback();
@@ -220,6 +221,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	private FigureListener getHostPositionListener() {
 		if (hostPositionListener == null) {
 			hostPositionListener = new FigureListener() {
+				@Override
 				public void figureMoved(IFigure source) {
 					refreshFeedback();
 				}
@@ -233,8 +235,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	 */
 	@Override
 	protected List<?> createSelectionHandles() {
-		MoveHandle moveHandle =
-				new MoveHandle((GraphicalEditPart) getHost());
+		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart) getHost());
 		moveHandle.setBorder(null);
 		moveHandle.setDragTracker(new DragEditPartsTrackerEx(getHost()));
 		return Collections.singletonList(moveHandle);

@@ -9,11 +9,13 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 451230
+ *  Christian W. Damus - bug 464647
  *****************************************************************************/
 package org.eclipse.papyrus.junit.framework.classification;
 
 import static org.eclipse.papyrus.junit.framework.classification.TestCategory.ExpensiveTest;
 import static org.eclipse.papyrus.junit.framework.classification.TestCategory.FailingTest;
+import static org.eclipse.papyrus.junit.framework.classification.TestCategory.GeneratedTest;
 import static org.eclipse.papyrus.junit.framework.classification.TestCategory.InteractiveTest;
 import static org.eclipse.papyrus.junit.framework.classification.TestCategory.InvalidTest;
 import static org.eclipse.papyrus.junit.framework.classification.TestCategory.NotImplemented;
@@ -29,6 +31,8 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
@@ -41,14 +45,14 @@ import com.google.common.collect.Sets;
  * <p>
  * Usage:
  * </p>
- *
+ * 
  * <pre>
  * ClassificationConfig.setExcludedTestCategories(TestCategory.InvalidTest, TestCategory.NotImplemented);
- *
+ * 
  * // or
- *
+ * 
  * ClassificationConfig.setIncludedTestCategories(TestCategory.Standard, TestCategory.NotImplemented);
- *
+ * 
  * // or
  * 
  * ClassificationConfig.setExcludedTestCategories(ClassificationConfig.FAILING_TESTS_CONFIG);
@@ -76,7 +80,7 @@ public enum ClassificationConfig implements Set<TestCategory> {
 	 *
 	 * This configuration may require a couple of hours to run
 	 */
-	CI_TESTS_CONFIG(NotImplemented, InvalidTest, FailingTest, InteractiveTest),
+	CI_TESTS_CONFIG(NotImplemented, InvalidTest, FailingTest, InteractiveTest, GeneratedTest),
 
 	/**
 	 * This tests configuration runs all tests which are already identified as failing.
@@ -84,13 +88,18 @@ public enum ClassificationConfig implements Set<TestCategory> {
 	 *
 	 * InteractiveTests are excluded as well, as this configuration is supposed to be executed on Hudson
 	 */
-	FAILING_TESTS_CONFIG(Standard, InteractiveTest),
+	FAILING_TESTS_CONFIG(Standard, InteractiveTest, GeneratedTest),
 
 	/**
 	 * This tests configuration is expected to run in ~15 minutes. This is useful for quick testing,
 	 * and validation through Gerrit
 	 */
-	LIGTHWEIGHT_TESTS_CONFIG(InteractiveTest, NotImplemented, FailingTest, InvalidTest, ExpensiveTest),
+	LIGTHWEIGHT_TESTS_CONFIG(InteractiveTest, NotImplemented, FailingTest, InvalidTest, ExpensiveTest, GeneratedTest),
+
+	/**
+	 * This test configuration runs all generated diagram tests only.
+	 */
+	GENERATED_TESTS_CONFIG(InteractiveTest, NotImplemented, FailingTest, InvalidTest, ExpensiveTest, Standard),
 
 	/**
 	 * This tests configuration is meant to execute all tests in an automated environment
@@ -182,9 +191,9 @@ public enum ClassificationConfig implements Set<TestCategory> {
 	 * Tests whether a method containing the given set of Annotations should be executed
 	 *
 	 * @param annotations
-	 *        The annotations applied to the Method
+	 *            The annotations applied to the Method
 	 * @return
-	 *         True if the test method should be executed, false if it should be ignored
+	 * 		True if the test method should be executed, false if it should be ignored
 	 */
 	public static boolean shouldRun(Annotation[] annotations) {
 		for (Annotation annotation : annotations) {
@@ -195,6 +204,16 @@ public enum ClassificationConfig implements Set<TestCategory> {
 		}
 
 		if (excludedTestCategories.contains(TestCategory.Standard)) {
+			// If it's just a test suite, then let the execution of its children be filtered
+			for (Annotation annotation : annotations) {
+				if (RunWith.class.isInstance(annotation)) {
+					RunWith runWith = (RunWith) annotation;
+					if (Suite.class.isAssignableFrom(runWith.value())) {
+						return true;
+					}
+				}
+			}
+
 			for (TestCategory testCategory : TestCategory.values()) {
 				if (testCategory == TestCategory.Standard) {
 					continue;

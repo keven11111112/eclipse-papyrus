@@ -29,15 +29,17 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart.CustomDurationConstraintFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeConstraintEditPart.TimeConstraintFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeObservationEditPart.TimeObservationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.TimeMarkElementFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.TimeObservationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
@@ -375,10 +377,10 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	 */
 	private void redrawTimeMarks(IFigure borderItem, Rectangle location) {
 		for (Object child : borderItem.getChildren()) {
-			if (child instanceof TimeConstraintFigure) {
-				((TimeConstraintFigure) child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
-			} else if (child instanceof TimeObservationFigure) {
-				((TimeObservationFigure) child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
+			if (child instanceof TimeObservationFigure) {
+				((TimeObservationFigure) child).setCurrentSideOfFigure(getCurrentSideOfParent(), location, editPart, TimeObservationLabelEditPart.VISUAL_ID);
+			} else if (child instanceof TimeMarkElementFigure) {
+				((TimeMarkElementFigure) child).setCurrentSideOfFigure(getCurrentSideOfParent(), location, editPart, TimeConstraintLabelEditPart.VISUAL_ID);
 			} else if (child instanceof CustomDurationConstraintFigure) {
 				((CustomDurationConstraintFigure) child).updateArrow(location.width, location.height);
 			} else if (child instanceof DefaultSizeNodeFigure) {

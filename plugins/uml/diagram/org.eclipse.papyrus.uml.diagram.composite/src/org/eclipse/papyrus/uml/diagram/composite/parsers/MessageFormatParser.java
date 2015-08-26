@@ -21,15 +21,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
+import org.eclipse.gmf.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.gmfdiag.common.parsers.AbstractElementTypeBasedAttributeParser;
 import org.eclipse.papyrus.uml.diagram.composite.part.Messages;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 
 /**
  * @generated
  */
-public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser {
+public class MessageFormatParser extends AbstractAttributeParser {
 
 	/**
 	 * @generated
@@ -74,10 +74,10 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @generated
 	 */
 	protected String getDefaultPattern() {
-		if(defaultPattern == null) {
+		if (defaultPattern == null) {
 			StringBuffer sb = new StringBuffer();
-			for(int i = 0; i < features.length; i++) {
-				if(i > 0) {
+			for (int i = 0; i < features.length; i++) {
+				if (i > 0) {
 					sb.append(' ');
 				}
 				sb.append('{');
@@ -109,7 +109,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @generated
 	 */
 	protected MessageFormat getViewProcessor() {
-		if(viewProcessor == null) {
+		if (viewProcessor == null) {
 			viewProcessor = new MessageFormat(getViewPattern() == null ? getDefaultPattern() : getViewPattern());
 		}
 		return viewProcessor;
@@ -119,7 +119,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @generated
 	 */
 	protected MessageFormat getEditorProcessor() {
-		if(editorProcessor == null) {
+		if (editorProcessor == null) {
 			editorProcessor = new MessageFormat(getEditorPattern() == null ? getDefaultEditablePattern() : getEditorPattern());
 		}
 		return editorProcessor;
@@ -129,10 +129,10 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @generated
 	 */
 	protected String getDefaultEditablePattern() {
-		if(defaultEditablePattern == null) {
+		if (defaultEditablePattern == null) {
 			StringBuffer sb = new StringBuffer();
-			for(int i = 0; i < editableFeatures.length; i++) {
-				if(i > 0) {
+			for (int i = 0; i < editableFeatures.length; i++) {
+				if (i > 0) {
 					sb.append(' ');
 				}
 				sb.append('{');
@@ -156,7 +156,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @generated
 	 */
 	protected MessageFormat getEditProcessor() {
-		if(editProcessor == null) {
+		if (editProcessor == null) {
 			editProcessor = new MessageFormat(getEditPattern() == null ? getDefaultEditablePattern() : getEditPattern());
 		}
 		return editProcessor;
@@ -166,7 +166,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @generated
 	 */
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
@@ -176,8 +176,13 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
-		if(values == null) {
-			return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.UNEDITABLE, NLS.bind(Messages.MessageFormatParser_InvalidInputError, new Integer(pos.getErrorIndex())));
+		if (values == null) {
+			return new ParserEditStatus(
+					UMLDiagramEditorPlugin.ID,
+					IParserEditStatus.UNEDITABLE,
+					NLS.bind(
+							Messages.MessageFormatParser_InvalidInputError,
+							new Integer(pos.getErrorIndex())));
 		}
 		return validateNewValues(values);
 	}
@@ -194,7 +199,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @generated
 	 */
 	public String getPrintString(IAdaptable adapter, int flags) {
-		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 }

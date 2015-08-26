@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AbstractAssociationBranchEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure;
 
 /**
  * @generated
@@ -54,12 +54,10 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AssociationBranchRoleEditPart) {
-			((AssociationBranchRoleEditPart) childEditPart).setLabel(
-					getPrimaryShape().getRoleSourceLabel());
+			((AssociationBranchRoleEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
 		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
-			((AssociationBranchMutliplicityEditPart) childEditPart).setLabel(
-					getPrimaryShape().getMultiplicitySourceLabel());
+			((AssociationBranchMutliplicityEditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 		}
 		return false;
 	}

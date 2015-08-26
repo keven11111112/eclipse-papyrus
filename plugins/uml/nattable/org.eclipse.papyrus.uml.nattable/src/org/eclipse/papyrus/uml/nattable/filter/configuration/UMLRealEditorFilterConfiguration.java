@@ -54,7 +54,9 @@ public class UMLRealEditorFilterConfiguration extends AbstractDoubleEditorFilter
 				final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), AxisUtils.getPropertyId(string));
 				if (prop != null) {
 					Type type = prop.getType();
-					return PrimitivesTypesUtils.UML_REAL.equals(type.getName());
+					if (null != type){
+						return PrimitivesTypesUtils.UML_REAL.equals(type.getName());
+					}
 				}
 			}
 		}

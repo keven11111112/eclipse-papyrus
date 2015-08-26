@@ -223,6 +223,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	/**
 	 * This method is used to avoid case conflicts between existing and newly created models
+	 * As well as to prevent the user to create a model outside a container
 	 * 
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
 	 *
@@ -245,6 +246,12 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 			this.setErrorMessage(Messages.NewModelFilePage_page_same_case_desc + existingModelName);
 		}
 
+		// Verify that the new model is created in a correct container
+		if (canFlip && (getContainerFullPath() == null || ResourcesPlugin.getWorkspace().getRoot().findMember(getContainerFullPath()) == null)) {
+			this.setMessage(Messages.NewModelFilePage_set_a_container);
+			canFlip = false;
+		}
+
 		return canFlip;
 	}
 
@@ -260,13 +267,14 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		try {
 			IResource rootResource = ResourcesPlugin.getWorkspace().getRoot().findMember(getContainerFullPath());
 			// Need to go through all the resources of the selected container to check if there is an homograph
-			if (rootResource.getType() == IResource.PROJECT) {
-				result.addAll(getMembersNames(((IProject) rootResource).members()));
+			if (rootResource != null) {
+				if (rootResource.getType() == IResource.PROJECT) {
+					result.addAll(getMembersNames(((IProject) rootResource).members()));
+				}
+				if (rootResource.getType() == IResource.FOLDER) {
+					result.addAll(getMembersNames(((IFolder) rootResource).members()));
+				}
 			}
-			if (rootResource.getType() == IResource.FOLDER) {
-				result.addAll(getMembersNames(((IFolder) rootResource).members()));
-			}
-
 		} catch (CoreException ce) {
 			Activator.log.error(ce);
 		}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,8 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
@@ -32,6 +31,8 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * This class adds the C++ profile as well as the ANSI-C library to your model.
+ * 
+ * TODO: currently not used.
  */
 public class AddProfileAndModelLibsHandler {
 
@@ -110,15 +111,9 @@ public class AddProfileAndModelLibsHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object addProfileAndImport(final Package selectedPkg) throws ExecutionException {
+	public void addProfileAndImport(final Package selectedPkg) throws ExecutionException {
 
-		final TransactionalEditingDomain domain;
-		try {
-			ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
-			domain = serviceUtils.getTransactionalEditingDomain();
-		} catch (ServiceException e) {
-			return null;
-		}
+		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(selectedPkg);
 		CommandStack stack = domain.getCommandStack();
 		stack.execute(new RecordingCommand(domain, "Add C++ profile & ANSI-C library") { //$NON-NLS-1$
 			@Override
@@ -130,7 +125,6 @@ public class AddProfileAndModelLibsHandler {
 				addCppProfile(selectedPkg, domain);
 			};
 		});
-		return null;
 	}
 
 	public static void addCppProfile(Package selectedPkg, TransactionalEditingDomain domain) {

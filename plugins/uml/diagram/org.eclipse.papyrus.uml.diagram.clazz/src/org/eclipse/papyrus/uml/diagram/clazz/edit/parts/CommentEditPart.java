@@ -150,7 +150,6 @@ public class CommentEditPart extends AbstractCommentEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 

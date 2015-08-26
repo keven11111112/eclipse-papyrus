@@ -334,11 +334,17 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3089((InputPin) domainElement)) {
 				return InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 				return OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3203((ValuePin) domainElement)) {
+				return ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3204((ActionInputPin) domainElement)) {
+				return ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
 			}
 			break;
 		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
@@ -2044,258 +2050,6 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isExpansionNode_3075(View containerView, ExpansionNode domainElement) {
-		return isExpansionNode_3075(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isExpansionNode_3074(View containerView, ExpansionNode domainElement) {
-		return isExpansionNode_3074(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isValuePin_3022(View containerView, ValuePin domainElement) {
-		return isValuePin_3022(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isValuePin_3025(View containerView, ValuePin domainElement) {
-		return isValuePin_3025(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isValuePin_3046(View containerView, ValuePin domainElement) {
-		return isValuePin_3046(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isValuePin_3049(View containerView, ValuePin domainElement) {
-		return isValuePin_3049(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isValuePin_3054(View containerView, ValuePin domainElement) {
-		return isValuePin_3054(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isValuePin_3060(View containerView, ValuePin domainElement) {
-		return isValuePin_3060(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3023(View containerView, InputPin domainElement) {
-		return isInputPin_3023(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3027(View containerView, InputPin domainElement) {
-		return isInputPin_3027(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3048(View containerView, InputPin domainElement) {
-		return isInputPin_3048(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3051(View containerView, InputPin domainElement) {
-		return isInputPin_3051(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3055(View containerView, InputPin domainElement) {
-		return isInputPin_3055(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3062(View containerView, InputPin domainElement) {
-		return isInputPin_3062(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isActionInputPin_3026(View containerView, ActionInputPin domainElement) {
-		return isActionInputPin_3026(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isActionInputPin_3021(View containerView, ActionInputPin domainElement) {
-		return isActionInputPin_3021(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isActionInputPin_3047(View containerView, ActionInputPin domainElement) {
-		return isActionInputPin_3047(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isActionInputPin_3050(View containerView, ActionInputPin domainElement) {
-		return isActionInputPin_3050(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isActionInputPin_3053(View containerView, ActionInputPin domainElement) {
-		return isActionInputPin_3053(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isActionInputPin_3061(View containerView, ActionInputPin domainElement) {
-		return isActionInputPin_3061(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isConstraint_3011(View containerView, Constraint domainElement) {
-		return isConstraint_3011(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isConstraint_3012(View containerView, Constraint domainElement) {
-		return isConstraint_3012(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isIntervalConstraint_3032(View containerView, IntervalConstraint domainElement) {
-		return isIntervalConstraint_3032(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isIntervalConstraint_3033(View containerView, IntervalConstraint domainElement) {
-		return isIntervalConstraint_3033(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isDurationConstraint_3034(View containerView, DurationConstraint domainElement) {
-		return isDurationConstraint_3034(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isDurationConstraint_3035(View containerView, DurationConstraint domainElement) {
-		return isDurationConstraint_3035(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isTimeConstraint_3036(View containerView, TimeConstraint domainElement) {
-		return isTimeConstraint_3036(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isTimeConstraint_3037(View containerView, TimeConstraint domainElement) {
-		return isTimeConstraint_3037(domainElement);
-	}
-
-	/**
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
@@ -3217,12 +2971,40 @@ public class UMLVisualIDRegistry {
 			if (OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			if (InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+			if (ValuePinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ValuePinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+			if (ActionPinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ActionPinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -5847,11 +5629,11 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
+	* User can change implementation of this method to handle some specific
+	* situations not covered by default logic.
+	* 
+	* @generated
+	*/
 	private static boolean isDiagram(Package element) {
 		return true;
 	}
@@ -6089,12 +5871,27 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * Redirect call to defined method
-	 *
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	* @generated
+	*/
+	private static boolean isInputPin_3089(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(157, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
 	 */
-	private static boolean isInputPin_3092(View containerView, InputPin domainElement) {
-		return isInputPin_3092(domainElement);
+	private static boolean isValuePin_3203(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(156, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isActionInputPin_3204(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(158, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
@@ -6103,13 +5900,6 @@ public class UMLVisualIDRegistry {
 	private static boolean isInputPin_3092(InputPin domainElement) {
 		Object result = UMLOCLFactory.getExpression(139, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3093(View containerView, InputPin domainElement) {
-		return isInputPin_3093(domainElement);
 	}
 
 	/**
@@ -6177,13 +5967,6 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3096(View containerView, InputPin domainElement) {
-		return isInputPin_3096(domainElement);
-	}
-
-	/**
 	 * @generated
 	 */
 	private static boolean isInputPin_3096(InputPin domainElement) {
@@ -6208,13 +5991,6 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isOutputPin_3098(View containerView, OutputPin domainElement) {
-		return isOutputPin_3098(domainElement);
-	}
-
-	/**
 	 * @generated
 	 */
 	private static boolean isOutputPin_3098(OutputPin domainElement) {
@@ -6223,25 +5999,11 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3100(View containerView, InputPin domainElement) {
-		return isInputPin_3100(domainElement);
-	}
-
-	/**
 	 * @generated
 	 */
 	private static boolean isInputPin_3100(InputPin domainElement) {
 		Object result = UMLOCLFactory.getExpression(133, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3101(View containerView, InputPin domainElement) {
-		return isInputPin_3101(domainElement);
 	}
 
 	/**
@@ -6282,13 +6044,6 @@ public class UMLVisualIDRegistry {
 	private static boolean isActionInputPin_3178(ActionInputPin domainElement) {
 		Object result = UMLOCLFactory.getExpression(129, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInputPin_3103(View containerView, InputPin domainElement) {
-		return isInputPin_3103(domainElement);
 	}
 
 	/**
@@ -6648,7 +6403,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			// unrecognized id is always bad
+			//unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);
@@ -6831,6 +6586,8 @@ public class UMLVisualIDRegistry {
 		case ValuePinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
 		case ActionPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
 		case OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID:
+		case ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+		case ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;
@@ -6842,7 +6599,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
-
 		/**
 		 * @generated
 		 */

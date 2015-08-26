@@ -223,7 +223,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	private FigureListener getHostPositionListener() {
 		if (hostPositionListener == null) {
 			hostPositionListener = new FigureListener() {
-
 				@Override
 				public void figureMoved(IFigure source) {
 					refreshFeedback();

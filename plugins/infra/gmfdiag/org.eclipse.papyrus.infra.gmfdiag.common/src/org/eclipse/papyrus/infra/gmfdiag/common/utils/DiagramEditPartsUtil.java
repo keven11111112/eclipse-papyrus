@@ -10,6 +10,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 473148
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
@@ -140,7 +141,7 @@ public class DiagramEditPartsUtil {
 	 * @param ep
 	 *            an edit part
 	 * @return
-	 *         all children edit part which are "top" semantic edit part
+	 * 		all children edit part which are "top" semantic edit part
 	 */
 	public static Collection<EditPart> getAllTopSemanticEditPart(final EditPart ep) {
 		final Collection<EditPart> editparts = new HashSet<EditPart>();
@@ -161,10 +162,10 @@ public class DiagramEditPartsUtil {
 	 * @param ep
 	 *            an editpart
 	 * @return
-	 *         the top edit part representing the same eobject or <code>null</code> if ep doesn't represent an editpart
+	 * 		the top edit part representing the same eobject or <code>null</code> if ep doesn't represent an editpart
 	 */
 	public static final EditPart getTopSemanticEditPart(final EditPart ep) {
-		final EObject currentEObject = (EObject) ep.getAdapter(EObject.class);
+		final EObject currentEObject = ep.getAdapter(EObject.class);
 		if (currentEObject != null) {
 			EditPart previousParent = ep;
 			EditPart parent = ep;
@@ -207,7 +208,7 @@ public class DiagramEditPartsUtil {
 			diagramPart = (IDiagramWorkbenchPart) part;
 
 		} else if (part != null) {
-			diagramPart = (IDiagramWorkbenchPart) part.getAdapter(IDiagramWorkbenchPart.class);
+			diagramPart = part.getAdapter(IDiagramWorkbenchPart.class);
 		}
 
 		return diagramPart;
@@ -218,7 +219,7 @@ public class DiagramEditPartsUtil {
 	 * @param anEditPart
 	 *            an edit part
 	 * @return
-	 *         the preference store for the diagram owning this edit part or <code>null</code> if not found
+	 * 		the preference store for the diagram owning this edit part or <code>null</code> if not found
 	 *
 	 */
 	public static final IPreferenceStore getDiagramWorkspacePreferenceStore(final EditPart anEditPart) {
@@ -251,7 +252,7 @@ public class DiagramEditPartsUtil {
 	 * @param anEditPart
 	 *            an edit part
 	 * @return
-	 *         the value of the grid spacing or -1 if not found
+	 * 		the value of the grid spacing or -1 if not found
 	 */
 	public static final double getDiagramGridSpacing(final EditPart anEditPart) {
 		final RootEditPart rootEP = anEditPart.getRoot();
@@ -569,11 +570,15 @@ public class DiagramEditPartsUtil {
 	 *
 	 * @return the e object views
 	 */
-	public static List getEObjectViews(EObject element) {
-		List views = new ArrayList();
+	public static List<View> getEObjectViews(EObject element) {
+		List<View> views = new ArrayList<View>();
 		if (element != null) {
 			EReference[] features = { NotationPackage.eINSTANCE.getView_Element() };
-			views.addAll(EMFCoreUtil.getReferencers(element, features));
+
+			// These can only be views according to the eReference
+			@SuppressWarnings("unchecked")
+			Collection<? extends View> referencingViews = EMFCoreUtil.getReferencers(element, features);
+			views.addAll(referencingViews);
 		}
 		return views;
 	}

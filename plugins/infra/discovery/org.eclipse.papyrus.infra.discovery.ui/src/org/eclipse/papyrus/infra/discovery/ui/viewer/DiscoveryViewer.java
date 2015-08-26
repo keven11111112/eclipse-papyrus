@@ -954,7 +954,8 @@ public class DiscoveryViewer {
 								.setToolTipText(Messages.ConnectorDiscoveryWizardMainPage_tooltip_showOverview);
 						hookTooltip(toolBar, infoButton,
 								categoryHeaderContainer, nameLabel, category
-										.eResource(), category.getOverview(),
+										.eResource(),
+								category.getOverview(),
 								null);
 						GridDataFactory.fillDefaults().align(SWT.END,
 								SWT.CENTER).applyTo(toolBar);
@@ -1021,7 +1022,7 @@ public class DiscoveryViewer {
 			return null;
 		}
 		String regex = filterText;
-		regex.replace("\\", "\\\\").replace("?", ".").replace("*", ".*?"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
+		regex = regex.replace("\\", "\\\\").replace("?", ".").replace("*", ".*?"); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 		return Pattern
 				.compile(regex, Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 	}
@@ -1322,7 +1323,7 @@ public class DiscoveryViewer {
 			if (!(filterMatches(descriptor.getName())
 					|| filterMatches(descriptor.getDescription())
 					|| filterMatches(descriptor.getProvider()) || filterMatches(descriptor
-						.getLicense()))) {
+							.getLicense()))) {
 				return true;
 			}
 		}

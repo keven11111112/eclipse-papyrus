@@ -2042,7 +2042,7 @@
       <command
             commandId="org.eclipse.papyrus.uml.diagram.menu.command.autosize"
             icon="icons/autosize.gif"
-            label="&amp;Autozise"
+            label="&amp;Autosize"
             style="push"
             tooltip="Auto Size">
          <visibleWhen>

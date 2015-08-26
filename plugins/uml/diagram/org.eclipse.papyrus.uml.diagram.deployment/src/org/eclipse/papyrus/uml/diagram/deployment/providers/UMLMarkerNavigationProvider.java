@@ -83,7 +83,8 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 			int markerSeverity = IMarker.SEVERITY_INFO;
 			if (statusSeverity == IStatus.WARNING) {
 				markerSeverity = IMarker.SEVERITY_WARNING;
-			} else if (statusSeverity == IStatus.ERROR || statusSeverity == IStatus.CANCEL) {
+			} else if (statusSeverity == IStatus.ERROR ||
+					statusSeverity == IStatus.CANCEL) {
 				markerSeverity = IMarker.SEVERITY_ERROR;
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);

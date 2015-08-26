@@ -37,14 +37,13 @@ import org.w3c.dom.Element;
  *
  * @see DiagramCSSEngine
  */
-@SuppressWarnings("restriction")
 public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 
 	private WorkspaceCSSEngine() {
 		super(BaseCSSEngine.INSTANCE);
 	}
 
-	public static ExtendedCSSEngine instance = new WorkspaceCSSEngine();
+	public static final ExtendedCSSEngine instance = new WorkspaceCSSEngine();
 
 	@Override
 	protected void reloadStyleSheets() {
