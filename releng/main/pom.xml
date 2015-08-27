@@ -240,6 +240,7 @@
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.dnd</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.icons</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.interactionoverview</module>
+		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.linklf</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.menu</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.modelexplorer</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.navigation</module>

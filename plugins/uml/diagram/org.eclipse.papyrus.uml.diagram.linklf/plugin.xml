@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+ Copyright (c) 2015 CEA and others.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors: 
+  Svyatoslav Kovalsky - Initial API and implementation
+-->
+<plugin>
+
+	<!-- UML diagrams -->
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.ActivityLinkLFEditPoliciyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLActivityDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.ClazzLinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLClassDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.CommunicationLinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLCommunicationDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.ComponentLinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLComponentDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="CompositeStructure"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.DeploymentLinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLDeploymentDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.ActivityLinkLFEditPoliciyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLInteractionOverviewDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLProfileDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="PapyrusUMLSequenceDiagram"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="UseCase"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+
+	<!-- SYSML diagrams -->
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+		<editpolicyProvider
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
+			<Priority name="Low"/>
+			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
+				<method name="getType()" value="InternalBlock"/>
+			</object>
+		</editpolicyProvider>
+	</extension>
+</plugin>
