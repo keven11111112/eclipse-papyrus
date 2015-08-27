@@ -39,6 +39,10 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsClassifierEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsNestedArtifactEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsPackageableElEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentEditPart;
@@ -142,6 +146,11 @@ public class UMLElementTypes {
 	public static final IElementType NamedElement_2012 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.NamedElement_2012"); //$NON-NLS-1$
 
 	/**
+	* @generated
+	*/
+	public static final IElementType DeploymentSpecification_2013 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.DeploymentSpecification_2013"); //$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	public static final IElementType Model_49 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Model_49"); //$NON-NLS-1$
@@ -205,6 +214,21 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Constraint_56 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.Constraint_56"); //$NON-NLS-1$
+
+	/**
+	* @generated
+	*/
+	public static final IElementType DeploymentSpecification_2014 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.DeploymentSpecification_2014"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DeploymentSpecification_2015 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.DeploymentSpecification_2015"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DeploymentSpecification_2016 = getElementType("org.eclipse.papyrus.uml.diagram.deployment.DeploymentSpecification_2016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -322,6 +346,9 @@ public class UMLElementTypes {
 			elements.put(NamedElement_2012, UMLPackage.eINSTANCE.getNamedElement());
 
 
+			elements.put(DeploymentSpecification_2013, UMLPackage.eINSTANCE.getDeploymentSpecification());
+
+
 			elements.put(Model_49, UMLPackage.eINSTANCE.getModel());
 
 
@@ -359,6 +386,15 @@ public class UMLElementTypes {
 
 
 			elements.put(Constraint_56, UMLPackage.eINSTANCE.getConstraint());
+
+
+			elements.put(DeploymentSpecification_2014, UMLPackage.eINSTANCE.getDeploymentSpecification());
+
+
+			elements.put(DeploymentSpecification_2015, UMLPackage.eINSTANCE.getDeploymentSpecification());
+
+
+			elements.put(DeploymentSpecification_2016, UMLPackage.eINSTANCE.getDeploymentSpecification());
 
 			elements.put(CommentAnnotatedElement_4008, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 
@@ -409,6 +445,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Artifact_2006);
 			KNOWN_ELEMENT_TYPES.add(Node_2008);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_2012);
+			KNOWN_ELEMENT_TYPES.add(DeploymentSpecification_2013);
 			KNOWN_ELEMENT_TYPES.add(Model_49);
 			KNOWN_ELEMENT_TYPES.add(Package_36);
 			KNOWN_ELEMENT_TYPES.add(Device_16);
@@ -422,6 +459,9 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Artifact_40);
 			KNOWN_ELEMENT_TYPES.add(Comment_54);
 			KNOWN_ELEMENT_TYPES.add(Constraint_56);
+			KNOWN_ELEMENT_TYPES.add(DeploymentSpecification_2014);
+			KNOWN_ELEMENT_TYPES.add(DeploymentSpecification_2015);
+			KNOWN_ELEMENT_TYPES.add(DeploymentSpecification_2016);
 			KNOWN_ELEMENT_TYPES.add(Link_4005);
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4008);
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4009);
@@ -472,6 +512,8 @@ public class UMLElementTypes {
 			return Node_2008;
 		case DefaultNamedElementEditPart.VISUAL_ID:
 			return NamedElement_2012;
+		case DeploymentSpecificationEditPart.VISUAL_ID:
+			return DeploymentSpecification_2013;
 		case ModelEditPartCN.VISUAL_ID:
 			return Model_49;
 		case PackageEditPartCN.VISUAL_ID:
@@ -498,6 +540,12 @@ public class UMLElementTypes {
 			return Comment_54;
 		case ConstraintEditPartCN.VISUAL_ID:
 			return Constraint_56;
+		case DeploymentSpecAsClassifierEditPart.VISUAL_ID:
+			return DeploymentSpecification_2014;
+		case DeploymentSpecAsPackageableElEditPart.VISUAL_ID:
+			return DeploymentSpecification_2015;
+		case DeploymentSpecAsNestedArtifactEditPart.VISUAL_ID:
+			return DeploymentSpecification_2016;
 		case LinkDescriptorEditPart.VISUAL_ID:
 			return Link_4005;
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

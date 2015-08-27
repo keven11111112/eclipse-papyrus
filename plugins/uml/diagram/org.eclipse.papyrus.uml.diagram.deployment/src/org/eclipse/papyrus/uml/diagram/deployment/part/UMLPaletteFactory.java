@@ -50,6 +50,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private final static String DEPLOYMENT_TOOL_DEVICE = "deployment.tool.device";//$NON-NLS-1$
 
 	/**
+	* @generated
+	*/
+	private final static String DEPLOYMENT_TOOL_DEPLOYMENTSPECIFICATION = "deployment.tool.deploymentspecification";//$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	private final static String DEPLOYMENT_TOOL_EXECUTIONENVIRONMENT = "deployment.tool.executionEnvironment";//$NON-NLS-1$
@@ -127,6 +132,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if (toolId.equals(DEPLOYMENT_TOOL_DEVICE)) {
 			return createDeviceCreationTool();
+		}
+		if (toolId.equals(DEPLOYMENT_TOOL_DEPLOYMENTSPECIFICATION)) {
+			return createDeploymentSpecification5CreationTool();
 		}
 		if (toolId.equals(DEPLOYMENT_TOOL_EXECUTIONENVIRONMENT)) {
 			return createExecutionEnvironmentCreationTool();
@@ -227,6 +235,19 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.Device_2003);
 		types.add(UMLElementTypes.Device_16);
 		types.add(UMLElementTypes.Device_44);
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	* @generated
+	*/
+	private Tool createDeploymentSpecification5CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(4);
+		types.add(UMLElementTypes.DeploymentSpecification_2013);
+		types.add(UMLElementTypes.DeploymentSpecification_2014);
+		types.add(UMLElementTypes.DeploymentSpecification_2015);
+		types.add(UMLElementTypes.DeploymentSpecification_2016);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

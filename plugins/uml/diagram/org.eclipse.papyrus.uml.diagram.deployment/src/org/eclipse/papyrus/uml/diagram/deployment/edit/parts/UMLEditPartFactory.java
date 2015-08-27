@@ -108,6 +108,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DefaultNamedElementNameEditPart.VISUAL_ID:
 				return new DefaultNamedElementNameEditPart(view);
 
+			case DeploymentSpecificationEditPart.VISUAL_ID:
+				return new DeploymentSpecificationEditPart(view);
+
+			case DeploymentSpecificationNameEditPart.VISUAL_ID:
+				return new DeploymentSpecificationNameEditPart(view);
+
+			case DeploymentSpecificationFloatingLabelEditPart.VISUAL_ID:
+				return new DeploymentSpecificationFloatingLabelEditPart(view);
+
 			case ModelEditPartCN.VISUAL_ID:
 				return new ModelEditPartCN(view);
 
@@ -194,6 +203,33 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ConstraintSpecificationEditPartCN.VISUAL_ID:
 				return new ConstraintSpecificationEditPartCN(view);
+
+			case DeploymentSpecAsClassifierEditPart.VISUAL_ID:
+				return new DeploymentSpecAsClassifierEditPart(view);
+
+			case DeploymentSpecAsClassifierNameEditPart.VISUAL_ID:
+				return new DeploymentSpecAsClassifierNameEditPart(view);
+
+			case DeploymentSpecAsClassifierFloatingLabelEditPart.VISUAL_ID:
+				return new DeploymentSpecAsClassifierFloatingLabelEditPart(view);
+
+			case DeploymentSpecAsPackageableElEditPart.VISUAL_ID:
+				return new DeploymentSpecAsPackageableElEditPart(view);
+
+			case DeploymentSpecAsPackageableElNameEditPart.VISUAL_ID:
+				return new DeploymentSpecAsPackageableElNameEditPart(view);
+
+			case DeploymentSpecAsPackageableElFloatingLabelEditPart.VISUAL_ID:
+				return new DeploymentSpecAsPackageableElFloatingLabelEditPart(view);
+
+			case DeploymentSpecAsNestedArtifactEditPart.VISUAL_ID:
+				return new DeploymentSpecAsNestedArtifactEditPart(view);
+
+			case DeploymentSpecAsNestedArtifactNameEditPart.VISUAL_ID:
+				return new DeploymentSpecAsNestedArtifactNameEditPart(view);
+
+			case DeploymentSpecAsNestedArtifactFloatingLabelEditPart.VISUAL_ID:
+				return new DeploymentSpecAsNestedArtifactFloatingLabelEditPart(view);
 
 			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
 				return new ModelPackageableElementCompartmentEditPart(view);

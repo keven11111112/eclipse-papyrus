@@ -317,6 +317,16 @@ public class Messages extends NLS {
 	public static String DeviceCreationTool_desc;
 
 	/**
+	* @generated
+	*/
+	public static String DeploymentSpecification5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DeploymentSpecification5CreationTool_desc;
+
+	/**
 	 * @generated
 	 */
 	public static String ExecutionEnvironmentCreationTool_title;
