@@ -49,7 +49,8 @@ TestListCompartmentIllegalElements.class,
 TestListCompartmentPropertiesOperationsDrop.class,
 TestEditableClassDiagramTopNode.class,
 TestClassDiagramAssociationClass.class,
-TestListCompartmentNestedChild.class
+TestListCompartmentNestedChild.class,
+TestClassDiagramAssociationLinkSemantic.class
 })
 public class AllCanonicalTests {
 }

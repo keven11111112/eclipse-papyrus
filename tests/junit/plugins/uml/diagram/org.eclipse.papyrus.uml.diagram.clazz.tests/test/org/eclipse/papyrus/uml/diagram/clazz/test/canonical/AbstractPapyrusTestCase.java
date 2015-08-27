@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.test.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.test.IClassDiagramTestsConstants;
 
 /**
  * The Class AbstractPapyrusTestCase.
@@ -24,5 +25,15 @@ public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.uml.di
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateClassDiagramCommand();
+	}
+
+	@Override
+	protected String getProjectName() {
+		return IClassDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IClassDiagramTestsConstants.FILE_NAME;
 	}
 }
