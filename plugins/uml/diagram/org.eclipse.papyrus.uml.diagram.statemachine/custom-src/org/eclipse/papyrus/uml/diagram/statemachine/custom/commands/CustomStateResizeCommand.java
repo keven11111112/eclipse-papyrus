@@ -113,6 +113,10 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 		it = stateCompartment.getChildren().iterator();
 		while (it.hasNext()) {
 			View view = (View) it.next();
+			if (Zone.isStereotype(view)) {
+				continue;
+			}
+
 			String zone = Zone.getZone(view);
 			switch (direction) {
 			case PositionConstants.WEST:
