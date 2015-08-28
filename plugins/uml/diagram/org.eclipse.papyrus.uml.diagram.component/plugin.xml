@@ -880,6 +880,22 @@
 				type="7011">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="6016">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6017">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6010">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6011">
+			</mapping>
+			<mapping
 				humanReadableType="Stereotype"
 				type="2">
 			</mapping>

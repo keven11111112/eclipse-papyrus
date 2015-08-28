@@ -1,19 +1,20 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -42,7 +43,6 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
@@ -58,10 +58,12 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLTextSelectionEditPolicy;
@@ -81,13 +83,12 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart,
-		IControlParserForDirectEdit {
+public class UsageAppliedStereotypeEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart, IControlParserForDirectEdit, ILabelRoleProvider {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5255;
+	public static final int VISUAL_ID = 6017;
 
 	/**
 	 * @generated
@@ -111,35 +112,49 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 *
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 *
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
 
+
 	/**
 	 * @generated
 	 */
-	public CommentBodyEditPart(View view) {
-		super(view);
+	static {
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 30));
 	}
 
 	/**
 	 * @generated
 	 */
+	public UsageAppliedStereotypeEditPart(View view) {
+		super(view);
+	}
+
+	/**
+	 * @generated Papyrus Generation
+	 */
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new DefaultNodeLabelDragPolicy());
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusLinkLabelDragPolicy());
 	}
+
+	/**
+	 * @generated
+	 */
+	public int getKeyPoint() {
+		return ConnectionLocator.MIDDLE;
+	}
+
 
 	/**
 	 * @generated
@@ -207,7 +222,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -215,7 +229,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -223,7 +236,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setParser(IParser parser) {
 		this.parser = parser;
 	}
@@ -262,7 +274,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -278,7 +289,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -298,7 +308,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -331,7 +340,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -342,7 +350,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -350,10 +357,9 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Comment_3201, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentBodyEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Usage_4001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageAppliedStereotypeEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -413,7 +419,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -503,7 +508,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -522,14 +526,8 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 			maskLabelPolicy = getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 		}
 		if (maskLabelPolicy == null) {
-			View view = (View) getModel();
-			if (view.isVisible()) {
-				setLabelTextHelper(getFigure(), getLabelText());
-				setLabelIconHelper(getFigure(), getLabelIcon());
-			} else {
-				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
-				setLabelIconHelper(getFigure(), null);
-			}
+			setLabelTextHelper(getFigure(), getLabelText());
+			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
@@ -573,7 +571,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
 				NotationPackage.eINSTANCE.getFontStyle());
@@ -589,7 +586,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -597,7 +593,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -613,7 +608,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -627,7 +621,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -650,7 +643,7 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -669,7 +662,7 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -682,7 +675,7 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -692,7 +685,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 
 	/**
 	 * Initializes the extended editor configuration
-	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -708,7 +700,6 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 
 	/**
 	 * Updates the preference configuration
-	 *
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -722,12 +713,10 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 * @generated
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -754,30 +743,11 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 		}
 	}
 
-	/**
-	 * @generated
-	 */
-	@Override
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
 
 	/**
 	 * @generated
 	 */
-	@Override
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
-		refreshLabel();
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
@@ -806,13 +776,13 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
@@ -821,40 +791,14 @@ public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
-	/**
-	 * @generated
-	 */
-	@Override
-	public void activate() {
-		super.activate();
-		addOwnerElementListeners();
+	public String getLabelRole() {
+		return "Stereotype";//$NON-NLS-1$
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void addOwnerElementListeners() {
-		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent().getModel()));
-
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	public void deactivate() {
-		removeOwnerElementListeners();
-		super.deactivate();
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeOwnerElementListeners() {
-		removeListenerFilter(ADD_PARENT_MODEL);
-
+	public String getIconPathRole() {
+		return "";//$NON-NLS-1$
 	}
 }

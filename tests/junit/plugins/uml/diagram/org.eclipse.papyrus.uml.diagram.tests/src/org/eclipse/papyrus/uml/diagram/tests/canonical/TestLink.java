@@ -121,7 +121,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	public void testViewDeletion(IElementType type) {
 		// DELETION OF THE VIEW
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
-		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
@@ -129,13 +129,13 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 0);
-		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(VIEW_DELETION + TEST_THE_UNDO, source.getSourceConnections().size() == 1);
-		assertTrue(VIEW_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(VIEW_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(VIEW_DELETION + TEST_THE_REDO, source.getSourceConnections().size() == 0);
-		assertTrue(VIEW_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(VIEW_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 	}
 
 	/**
@@ -165,7 +165,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		// DESTROY SEMANTIC+ VIEW
 		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
-		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
@@ -180,7 +180,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, source.getSourceConnections().size() == 1);
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		assertTrue(DESTROY_DELETION + TEST_THE_REDO, source.getSourceConnections().size() == 0);
@@ -196,11 +196,11 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	public void testDrop(IElementType type) {
 		// DROP
 		assertEquals(DROP + INITIALIZATION_TEST, 4, getDiagramEditPart().getChildren().size());
-		assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
-		list.add(getRootSemanticModel().getOwnedElements().get(4));
+		list.add(getRootSemanticModel().getOwnedElements().get(rootSemanticOwnedElements - 1));
 		dropObjectsRequest.setObjects(list);
 		dropObjectsRequest.setLocation(new Point(20, 20));
 		Command command = getDiagramEditPart().getCommand(dropObjectsRequest);
@@ -209,15 +209,15 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(DROP + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertEquals(DROP + TEST_THE_EXECUTION, initialEnvironmentChildsCount + createdChildsCount, getDiagramEditPart().getChildren().size());
-		assertTrue(DROP + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DROP + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		assertEquals(DROP + TEST_THE_EXECUTION, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(DROP + TEST_THE_UNDO, getDiagramEditPart().getChildren().size() == 4);
-		assertTrue(DROP + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DROP + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		assertTrue(DROP + TEST_THE_UNDO, ((Diagram) getRootView()).getEdges().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertEquals(DROP + TEST_THE_REDO, initialEnvironmentChildsCount + createdChildsCount, getDiagramEditPart().getChildren().size());
-		assertTrue(DROP + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DROP + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		assertTrue(DROP + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == createdEdgesCount);
 	}
 

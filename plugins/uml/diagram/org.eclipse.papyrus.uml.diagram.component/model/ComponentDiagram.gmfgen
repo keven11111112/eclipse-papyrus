@@ -1896,6 +1896,14 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.UsageLinkFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy"/>
         <modelFacet
@@ -1920,6 +1928,24 @@
           <targetMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
         </modelFacet>
+        <labels visualID="6016" editPartClassName="UsageNameEditPart" itemSemanticEditPolicyClassName="UsageNameItemSemanticEditPolicy">
+          <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getNameLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="60"/>
+          </viewmap>
+          <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="">
+            <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels visualID="6017" editPartClassName="UsageAppliedStereotypeEditPart" itemSemanticEditPolicyClassName="UsageAppliedStereotypeItemSemanticEditPolicy">
+          <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getAppliedStereotypeLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="30"/>
+          </viewmap>
+          <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.2" viewPattern="&lt;&lt;{0}>>" editorPattern="&lt;&lt;{0}>>" editPattern="&lt;&lt;{0}>>">
+            <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.0/@expressions.7"
             targetEnd="/0/@expressionProviders/@providers.0/@expressions.6"/>
@@ -1939,6 +1965,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.InterfaceRealizationLinkFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
@@ -1965,6 +1995,24 @@
           <targetMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InterfaceRealization/contract"/>
         </modelFacet>
+        <labels visualID="6010" editPartClassName="InterfaceRealizationNameEditPart" itemSemanticEditPolicyClassName="InterfaceRealizationNameItemSemanticEditPolicy">
+          <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getNameLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="60"/>
+          </viewmap>
+          <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0">
+            <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels visualID="6011" editPartClassName="InterfaceRealizationAppliedStereotypeEditPart" itemSemanticEditPolicyClassName="InterfaceRealizationAppliedStereotypeEditPartItemSemanticEditPolicy">
+          <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getAppliedStereotypeLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="30"/>
+          </viewmap>
+          <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.2" viewPattern="&lt;&lt;{0}>>" editorPattern="&lt;&lt;{0}>>" editPattern="&lt;&lt;{0}>>">
+            <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.0/@expressions.7"
             targetEnd="/0/@expressionProviders/@providers.0/@expressions.6"/>
@@ -3314,15 +3362,15 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.9/@labelModelFacet /0/@diagram/@childNodes.10/@labelModelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.1/@modelFacet /0/@diagram/@childNodes.3/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.1/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.9/@labelModelFacet /0/@diagram/@childNodes.10/@labelModelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.1/@modelFacet /0/@diagram/@childNodes.3/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.CommentParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@childNodes.0/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet"
-          qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
+       	  uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@childNodes.0/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet"
+       	  qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@topLevelNodes.6/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet"
@@ -3428,13 +3476,13 @@
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Name"
         role="Name"
-        linkLabels="/0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.3/@labels.0"
+        linkLabels="/0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.3/@labels.0 /0/@diagram/@links.1/@labels.0 /0/@diagram/@links.0/@labels.0"
         externalNodeLabels="/0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.0/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Stereotype"
         role="Stereotype"
-        linkLabels="/0/@diagram/@links.4/@labels.1 /0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.10/@labels.1"
+        linkLabels="/0/@diagram/@links.4/@labels.1 /0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.1/@labels.1 /0/@diagram/@links.0/@labels.1"
         externalNodeLabels="/0/@diagram/@childNodes.0/@labels.1"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificDiagramUpdater"

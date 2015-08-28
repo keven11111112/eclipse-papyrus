@@ -89,8 +89,8 @@ public class PropertyPartEditPartCN extends CustomPropertyPartEditPartCN {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.PropertyCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.PropertyCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
@@ -177,7 +177,7 @@ public class PropertyPartEditPartCN extends CustomPropertyPartEditPartCN {
 
 
 
-		// Papyrus Gencode :Affixed Port locator
+		//Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PortEditPart) childEditPart).getFigure(), locator);

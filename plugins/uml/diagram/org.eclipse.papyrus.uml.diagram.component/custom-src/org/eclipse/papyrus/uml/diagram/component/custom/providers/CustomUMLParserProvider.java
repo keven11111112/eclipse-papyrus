@@ -3,11 +3,9 @@ package org.eclipse.papyrus.uml.diagram.component.custom.providers;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLParserProvider;
 
 public class CustomUMLParserProvider extends UMLParserProvider {
@@ -29,6 +27,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAppliedStereotypeParser("manifestation"); //$NON-NLS-1$
 		case SubstitutionAppliedStereotypeEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser("substitution"); //$NON-NLS-1$
+		case UsageAppliedStereotypeEditPart.VISUAL_ID:
+			return getAppliedStereotypeParser("use"); //$NON-NLS-1$
 		}
 		return super.getParser(visualID);
 	}
