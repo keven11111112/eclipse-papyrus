@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.papyrus.infra.filters.FiltersPackage;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreateRelationshipMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelFactory;
@@ -107,6 +108,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+		FiltersPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theElementCreationMenuModelPackage.createPackageContents();
@@ -175,6 +177,15 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 */
 	public EAttribute getMenu_Visible() {
 		return (EAttribute)menuEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMenu_Filter() {
+		return (EReference)menuEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -257,6 +268,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		createEAttribute(menuEClass, MENU__LABEL);
 		createEAttribute(menuEClass, MENU__ICON);
 		createEAttribute(menuEClass, MENU__VISIBLE);
+		createEReference(menuEClass, MENU__FILTER);
 
 		creationMenuEClass = createEClass(CREATION_MENU);
 		createEAttribute(creationMenuEClass, CREATION_MENU__ELEMENT_TYPE_ID_REF);
@@ -291,6 +303,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		FiltersPackage theFiltersPackage = (FiltersPackage)EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -309,6 +322,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		initEAttribute(getMenu_Label(), theEcorePackage.getEString(), "label", null, 1, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMenu_Icon(), theEcorePackage.getEString(), "icon", null, 0, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMenu_Visible(), ecorePackage.getEBoolean(), "visible", "true", 0, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMenu_Filter(), theFiltersPackage.getFilter(), null, "filter", null, 0, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(creationMenuEClass, CreationMenu.class, "CreationMenu", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCreationMenu_ElementTypeIdRef(), theEcorePackage.getEString(), "elementTypeIdRef", null, 1, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

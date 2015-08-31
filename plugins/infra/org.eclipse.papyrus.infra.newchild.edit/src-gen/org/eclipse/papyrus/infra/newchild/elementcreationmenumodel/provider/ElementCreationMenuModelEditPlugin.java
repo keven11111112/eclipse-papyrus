@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.papyrus.infra.filters.provider.FiltersEditPlugin;
 
 /**
  * This is the central singleton for the ElementCreationMenuModel edit plugin.
@@ -49,6 +50,7 @@ public final class ElementCreationMenuModelEditPlugin extends EMFPlugin {
 		super
 		  (new ResourceLocator [] {
 		     EcoreEditPlugin.INSTANCE,
+		     FiltersEditPlugin.INSTANCE,
 		   });
 	}
 
