@@ -13,9 +13,12 @@
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.papyrus.infra.filters.Filter;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
 
@@ -30,6 +33,7 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.MenuImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.MenuImpl#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.MenuImpl#isVisible <em>Visible</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.MenuImpl#getFilter <em>Filter</em>}</li>
  * </ul>
  *
  * @generated
@@ -94,6 +98,16 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * @ordered
 	 */
 	protected boolean visible = VISIBLE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getFilter() <em>Filter</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected Filter filter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -182,6 +196,63 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Filter getFilter() {
+		return filter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFilter(Filter newFilter, NotificationChain msgs) {
+		Filter oldFilter = filter;
+		filter = newFilter;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ElementCreationMenuModelPackage.MENU__FILTER, oldFilter, newFilter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFilter(Filter newFilter) {
+		if (newFilter != filter) {
+			NotificationChain msgs = null;
+			if (filter != null)
+				msgs = ((InternalEObject)filter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ElementCreationMenuModelPackage.MENU__FILTER, null, msgs);
+			if (newFilter != null)
+				msgs = ((InternalEObject)newFilter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ElementCreationMenuModelPackage.MENU__FILTER, null, msgs);
+			msgs = basicSetFilter(newFilter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementCreationMenuModelPackage.MENU__FILTER, newFilter, newFilter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ElementCreationMenuModelPackage.MENU__FILTER:
+				return basicSetFilter(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -191,6 +262,8 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 				return getIcon();
 			case ElementCreationMenuModelPackage.MENU__VISIBLE:
 				return isVisible();
+			case ElementCreationMenuModelPackage.MENU__FILTER:
+				return getFilter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,6 +284,9 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 				return;
 			case ElementCreationMenuModelPackage.MENU__VISIBLE:
 				setVisible((Boolean)newValue);
+				return;
+			case ElementCreationMenuModelPackage.MENU__FILTER:
+				setFilter((Filter)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -233,6 +309,9 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 			case ElementCreationMenuModelPackage.MENU__VISIBLE:
 				setVisible(VISIBLE_EDEFAULT);
 				return;
+			case ElementCreationMenuModelPackage.MENU__FILTER:
+				setFilter((Filter)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -251,6 +330,8 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 				return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
 			case ElementCreationMenuModelPackage.MENU__VISIBLE:
 				return visible != VISIBLE_EDEFAULT;
+			case ElementCreationMenuModelPackage.MENU__FILTER:
+				return filter != null;
 		}
 		return super.eIsSet(featureID);
 	}

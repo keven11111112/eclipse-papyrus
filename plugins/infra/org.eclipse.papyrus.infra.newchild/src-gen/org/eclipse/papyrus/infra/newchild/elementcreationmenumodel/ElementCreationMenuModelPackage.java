@@ -104,13 +104,22 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	int MENU__VISIBLE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU__FILTER = 3;
+
+	/**
 	 * The number of structural features of the '<em>Menu</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MENU_FEATURE_COUNT = 3;
+	int MENU_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Menu</em>' class.
@@ -157,6 +166,15 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int FOLDER__VISIBLE = MENU__VISIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOLDER__FILTER = MENU__FILTER;
 
 	/**
 	 * The feature id for the '<em><b>Menu</b></em>' containment reference list.
@@ -221,6 +239,15 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CREATION_MENU__VISIBLE = MENU__VISIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CREATION_MENU__FILTER = MENU__FILTER;
 
 	/**
 	 * The feature id for the '<em><b>Element Type Id Ref</b></em>' attribute.
@@ -303,6 +330,15 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CREATE_RELATIONSHIP_MENU__VISIBLE = CREATION_MENU__VISIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CREATE_RELATIONSHIP_MENU__FILTER = CREATION_MENU__FILTER;
 
 	/**
 	 * The feature id for the '<em><b>Element Type Id Ref</b></em>' attribute.
@@ -412,6 +448,17 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMenu_Visible();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu#getFilter <em>Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Filter</em>'.
+	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu#getFilter()
+	 * @see #getMenu()
+	 * @generated
+	 */
+	EReference getMenu_Filter();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu <em>Creation Menu</em>}'.
@@ -540,6 +587,14 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MENU__VISIBLE = eINSTANCE.getMenu_Visible();
+
+		/**
+		 * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MENU__FILTER = eINSTANCE.getMenu_Filter();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.CreationMenuImpl <em>Creation Menu</em>}' class.
