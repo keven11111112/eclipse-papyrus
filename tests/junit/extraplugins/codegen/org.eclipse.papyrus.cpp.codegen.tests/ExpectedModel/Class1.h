@@ -25,7 +25,7 @@ public:
 	 * @param cSource 
 	 * @return this 
 	 */
-	Class1& operator =(const Class1 /*in*/& cSource);
+	Class1& operator =(const Class1& /*in*/cSource);
 
 	/**
 	 * Destructor
@@ -36,7 +36,7 @@ public:
 	 * Copy constructor
 	 * @param cSource 
 	 */
-	Class1(const Class1 /*in*/& cSource);
+	Class1(const Class1& /*in*/cSource);
 
 private:
 	/**
