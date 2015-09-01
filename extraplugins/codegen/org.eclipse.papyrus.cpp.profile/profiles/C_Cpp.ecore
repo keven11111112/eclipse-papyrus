@@ -179,13 +179,17 @@
   <eClassifiers xsi:type="ecore:EClass" name="StorageClass">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="storageClass" ordered="false"
         unique="false" lowerBound="1" eType="#//EStorageClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Property" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Parameter" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Volatile">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_parameter" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+        unique="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_property" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+        unique="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_operation" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
+        unique="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
   </eClassifiers>
 </ecore:EPackage>

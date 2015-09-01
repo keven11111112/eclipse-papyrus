@@ -46,7 +46,6 @@ import org.eclipse.papyrus.C_Cpp.Volatile;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.C_Cpp.C_CppPackage
  * @generated
  */
@@ -55,7 +54,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected static C_CppPackage modelPackage;
@@ -64,7 +62,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public C_CppAdapterFactory() {
@@ -78,7 +75,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -88,7 +84,7 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -97,145 +93,119 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected C_CppSwitch<Adapter> modelSwitch =
 			new C_CppSwitch<Adapter>() {
-				@Override
-				public Adapter casePtr(Ptr object) {
-					return createPtrAdapter();
-				}
-
-				@Override
-				public Adapter caseInclude(Include object) {
-					return createIncludeAdapter();
-				}
-
-				@Override
-				public Adapter caseManualGeneration(ManualGeneration object) {
-					return createManualGenerationAdapter();
-				}
-
-				@Override
-				public Adapter caseExternLibrary(ExternLibrary object) {
-					return createExternLibraryAdapter();
-				}
-
-				@Override
-				public Adapter caseNoCodeGen(NoCodeGen object) {
-					return createNoCodeGenAdapter();
-				}
-
-				@Override
-				public Adapter caseCppRoot(CppRoot object) {
-					return createCppRootAdapter();
-				}
-
-				@Override
-				public Adapter caseArray(Array object) {
-					return createArrayAdapter();
-				}
-
-				@Override
-				public Adapter caseConst(Const object) {
-					return createConstAdapter();
-				}
-
-				@Override
-				public Adapter caseRef(Ref object) {
-					return createRefAdapter();
-				}
-
-				@Override
-				public Adapter caseExternal(External object) {
-					return createExternalAdapter();
-				}
-
-				@Override
-				public Adapter caseConstInit(ConstInit object) {
-					return createConstInitAdapter();
-				}
-
-				@Override
-				public Adapter caseFriend(Friend object) {
-					return createFriendAdapter();
-				}
-
-				@Override
-				public Adapter caseInline(Inline object) {
-					return createInlineAdapter();
-				}
-
-				@Override
-				public Adapter caseVirtual(Virtual object) {
-					return createVirtualAdapter();
-				}
-
-				@Override
-				public Adapter caseTypedef(Typedef object) {
-					return createTypedefAdapter();
-				}
-
-				@Override
-				public Adapter caseVisibility(Visibility object) {
-					return createVisibilityAdapter();
-				}
-
-				@Override
-				public Adapter caseCppInit(CppInit object) {
-					return createCppInitAdapter();
-				}
-
-				@Override
-				public Adapter caseTemplate(Template object) {
-					return createTemplateAdapter();
-				}
-
-				@Override
-				public Adapter caseTemplateBinding(TemplateBinding object) {
-					return createTemplateBindingAdapter();
-				}
-
-				@Override
-				public Adapter caseTemplateParameter(TemplateParameter object) {
-					return createTemplateParameterAdapter();
-				}
-
-				@Override
-				public Adapter caseUnion(Union object) {
-					return createUnionAdapter();
-				}
-
-				@Override
-				public Adapter caseStorageClass(StorageClass object) {
-					return createStorageClassAdapter();
-				}
-
-				@Override
-				public Adapter caseVolatile(Volatile object) {
-					return createVolatileAdapter();
-				}
-
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+			@Override
+			public Adapter casePtr(Ptr object) {
+				return createPtrAdapter();
+			}
+			@Override
+			public Adapter caseInclude(Include object) {
+				return createIncludeAdapter();
+			}
+			@Override
+			public Adapter caseManualGeneration(ManualGeneration object) {
+				return createManualGenerationAdapter();
+			}
+			@Override
+			public Adapter caseExternLibrary(ExternLibrary object) {
+				return createExternLibraryAdapter();
+			}
+			@Override
+			public Adapter caseNoCodeGen(NoCodeGen object) {
+				return createNoCodeGenAdapter();
+			}
+			@Override
+			public Adapter caseCppRoot(CppRoot object) {
+				return createCppRootAdapter();
+			}
+			@Override
+			public Adapter caseArray(Array object) {
+				return createArrayAdapter();
+			}
+			@Override
+			public Adapter caseConst(Const object) {
+				return createConstAdapter();
+			}
+			@Override
+			public Adapter caseRef(Ref object) {
+				return createRefAdapter();
+			}
+			@Override
+			public Adapter caseExternal(External object) {
+				return createExternalAdapter();
+			}
+			@Override
+			public Adapter caseConstInit(ConstInit object) {
+				return createConstInitAdapter();
+			}
+			@Override
+			public Adapter caseFriend(Friend object) {
+				return createFriendAdapter();
+			}
+			@Override
+			public Adapter caseInline(Inline object) {
+				return createInlineAdapter();
+			}
+			@Override
+			public Adapter caseVirtual(Virtual object) {
+				return createVirtualAdapter();
+			}
+			@Override
+			public Adapter caseTypedef(Typedef object) {
+				return createTypedefAdapter();
+			}
+			@Override
+			public Adapter caseVisibility(Visibility object) {
+				return createVisibilityAdapter();
+			}
+			@Override
+			public Adapter caseCppInit(CppInit object) {
+				return createCppInitAdapter();
+			}
+			@Override
+			public Adapter caseTemplate(Template object) {
+				return createTemplateAdapter();
+			}
+			@Override
+			public Adapter caseTemplateBinding(TemplateBinding object) {
+				return createTemplateBindingAdapter();
+			}
+			@Override
+			public Adapter caseTemplateParameter(TemplateParameter object) {
+				return createTemplateParameterAdapter();
+			}
+			@Override
+			public Adapter caseUnion(Union object) {
+				return createUnionAdapter();
+			}
+			@Override
+			public Adapter caseStorageClass(StorageClass object) {
+				return createStorageClassAdapter();
+			}
+			@Override
+			public Adapter caseVolatile(Volatile object) {
+				return createVolatileAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param target
-	 *            the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 
@@ -245,7 +215,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Ptr
 	 * @generated
@@ -260,7 +229,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Include
 	 * @generated
@@ -275,7 +243,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.ManualGeneration
 	 * @generated
@@ -290,7 +257,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary
 	 * @generated
@@ -305,7 +271,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.NoCodeGen
 	 * @generated
@@ -320,7 +285,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.CppRoot
 	 * @generated
@@ -335,7 +299,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Array
 	 * @generated
@@ -350,7 +313,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Const
 	 * @generated
@@ -365,7 +327,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Ref
 	 * @generated
@@ -380,7 +341,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.External
 	 * @generated
@@ -395,7 +355,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.ConstInit
 	 * @generated
@@ -410,7 +369,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Friend
 	 * @generated
@@ -425,7 +383,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Inline
 	 * @generated
@@ -440,7 +397,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Virtual
 	 * @generated
@@ -455,7 +411,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Typedef
 	 * @generated
@@ -470,7 +425,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Visibility
 	 * @generated
@@ -485,7 +439,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.CppInit
 	 * @generated
@@ -500,7 +453,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Template
 	 * @generated
@@ -515,7 +467,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.TemplateBinding
 	 * @generated
@@ -530,7 +481,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.TemplateParameter
 	 * @generated
@@ -545,7 +495,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Union
 	 * @generated
@@ -560,7 +509,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.StorageClass
 	 * @generated
@@ -575,7 +523,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.C_Cpp.Volatile
 	 * @generated
@@ -589,7 +536,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @generated
 	 */
