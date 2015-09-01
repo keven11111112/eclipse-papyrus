@@ -197,8 +197,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			final EMFModelElement emfModelElement = (EMFModelElement) modelElement;
 			sourceElement = emfModelElement.getSource();
 			feature = emfModelElement.getFeature(getLocalPropertyPath());
-
-			createTableWidget(sourceElement, feature, null);
 		} else {
 			displayError("Invalid table context"); //$NON-NLS-1$
 			return;
