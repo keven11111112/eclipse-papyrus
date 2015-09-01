@@ -44,6 +44,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.DiagramExpansionImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.DiagramExpansionImpl#getLibraries <em>Libraries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.DiagramExpansionImpl#getID <em>ID</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.DiagramExpansionImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,6 +89,26 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,6 +179,27 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -183,6 +225,8 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 				return getLibraries();
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
 				return getID();
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -207,6 +251,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
 				setID((String)newValue);
 				return;
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -228,6 +275,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
 				setID(ID_EDEFAULT);
 				return;
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -246,6 +296,8 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 				return libraries != null && !libraries.isEmpty();
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -262,6 +314,8 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ID: ");
 		result.append(id);
+		result.append(", description: ");
+		result.append(description);
 		result.append(')');
 		return result.toString();
 	}

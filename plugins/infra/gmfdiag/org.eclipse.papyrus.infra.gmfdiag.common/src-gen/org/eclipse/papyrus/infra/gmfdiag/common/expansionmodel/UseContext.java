@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext#getRepresentations <em>Representations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext#getGmftRepresentations <em>Gmft Representations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext()
@@ -44,6 +45,9 @@ public interface UseContext extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * DT is a key that repreferences an existing diagram (such as class diagram) or a reference to a ViewPoint (view prototype identifier)
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Diagram Type</em>' attribute.
 	 * @see #setDiagramType(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext_DiagramType()
@@ -125,5 +129,31 @@ public interface UseContext extends EObject {
 	 * @generated
 	 */
 	EList<GMFT_BasedRepresentation> getGmftRepresentations();
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext_Description()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
 
 } // UseContext

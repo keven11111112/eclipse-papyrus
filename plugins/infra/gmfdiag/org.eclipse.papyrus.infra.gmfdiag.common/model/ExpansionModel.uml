@@ -3,7 +3,8 @@
   <uml:Model xmi:id="_haqhoNenEeSTpeYJP6Dwgg" name="expansionmodel">
     <packagedElement xmi:type="uml:Class" xmi:id="_32MTgNenEeSTpeYJP6Dwgg" name="Representation">
       <ownedComment xmi:type="uml:Comment" xmi:id="_aE-yQOREEeS-StSRs1u4zA" annotatedElement="_32MTgNenEeSTpeYJP6Dwgg">
-        <body>A representation is en element that is displyed on a diagram it is attached to a controler (see editpart) and to a notation structure( build bt the viewFactory)</body>
+        <body>A representation is an element that is displayed on a diagram.
+It is attached to a controler (see editpart) and to a notation structure (build by the viewFactory)</body>
       </ownedComment>
       <generalization xmi:type="uml:Generalization" xmi:id="_eZXCoN0fEeSNXY2BRFZeZg" general="_7eLO8N0aEeSNXY2BRFZeZg"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_tD7OUNeoEeSTpeYJP6Dwgg" name="graphicalElementType">
@@ -80,6 +81,9 @@ If is used, the graphical element is null.</body>
       <ownedEnd xmi:type="uml:Property" xmi:id="_ykX68NevEeSTpeYJP6Dwgg" name="representationlibrary" type="_zsTzYNevEeSTpeYJP6Dwgg" association="_ykWs0NevEeSTpeYJP6Dwgg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_zsTzYNevEeSTpeYJP6Dwgg" name="GraphicalElementLibrary">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_qkoYsFC6EeWVDv-g61eepg" annotatedElement="_zsTzYNevEeSTpeYJP6Dwgg">
+        <body>Is a container of representations that can be used in several UseContexts.</body>
+      </ownedComment>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_2H52oNewEeSTpeYJP6Dwgg" name="name">
         <ownedComment xmi:type="uml:Comment" xmi:id="_PdN3cORGEeS-StSRs1u4zA" annotatedElement="_2H52oNewEeSTpeYJP6Dwgg">
           <body>It is more like a comment, it is no used by interpretors.</body>
@@ -94,12 +98,20 @@ If is used, the graphical element is null.</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9Qk-8NevEeSTpeYJP6Dwgg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9QlmANevEeSTpeYJP6Dwgg" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_eJI7oFCqEeWVDv-g61eepg" name="description">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rfBXoFCqEeWVDv-g61eepg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rfDz4FCqEeWVDv-g61eepg" value="1"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_FvIfoNewEeSTpeYJP6Dwgg" name="UseContext">
       <ownedComment xmi:type="uml:Comment" xmi:id="_14NooOREEeS-StSRs1u4zA">
         <body>The use context is the point used to extend a diagram, it indicate for wich diagram all representation will be added or extended.</body>
       </ownedComment>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_IS8gMNewEeSTpeYJP6Dwgg" name="diagramType" visibility="public">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_COE8wFCbEeWVDv-g61eepg" annotatedElement="_IS8gMNewEeSTpeYJP6Dwgg">
+          <body>DT is a key that repreferences an existing diagram (such as class diagram) or a reference to a ViewPoint (view prototype identifier)</body>
+        </ownedComment>
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_L23S4dewEeSTpeYJP6Dwgg" name="representations" type="_32MTgNenEeSTpeYJP6Dwgg" association="_L22EwNewEeSTpeYJP6Dwgg">
@@ -119,6 +131,11 @@ If is used, the graphical element is null.</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__uwroNg-EeSLXqlejJgoBg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__ux5wNg-EeSLXqlejJgoBg" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_n0HMIFCqEeWVDv-g61eepg" name="description">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tbg5gFCqEeWVDv-g61eepg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tbiHoFCqEeWVDv-g61eepg" value="1"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_L22EwNewEeSTpeYJP6Dwgg" name="A_representation_usecontext" memberEnd="_L23S4dewEeSTpeYJP6Dwgg _L24hANewEeSTpeYJP6Dwgg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L22r0NewEeSTpeYJP6Dwgg" source="org.eclipse.papyrus">
@@ -128,8 +145,8 @@ If is used, the graphical element is null.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_mFdtwNewEeSTpeYJP6Dwgg" name="DiagramExpansion">
       <ownedComment xmi:type="uml:Comment" xmi:id="__1UK8OREEeS-StSRs1u4zA">
-        <body>This the root element model that can contain Use context or libraries. &#xD;
-An Id is associated in order to allow debbugging in the case of model is bad build.</body>
+        <body>This is the root element model that can contain UseContext or libraries. &#xD;
+An Id is associated in order to allow debbugging in the case of model is not valid.</body>
       </ownedComment>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_qaDvctewEeSTpeYJP6Dwgg" name="usages" type="_FvIfoNewEeSTpeYJP6Dwgg" aggregation="composite" association="_qaDIYNewEeSTpeYJP6Dwgg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s8U34NewEeSTpeYJP6Dwgg"/>
@@ -141,6 +158,11 @@ An Id is associated in order to allow debbugging in the case of model is bad bui
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_9cDqAORDEeS-StSRs1u4zA" name="ID" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_RTNyEFCqEeWVDv-g61eepg" name="description">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qtBS8FCqEeWVDv-g61eepg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qtEWQFCqEeWVDv-g61eepg" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_qaDIYNewEeSTpeYJP6Dwgg" name="A_usecontext_diagramexpansion" memberEnd="_qaDvctewEeSTpeYJP6Dwgg _qaDvc9ewEeSTpeYJP6Dwgg">
@@ -158,6 +180,9 @@ An Id is associated in order to allow debbugging in the case of model is bad bui
     <packagedElement xmi:type="uml:Class" xmi:id="_uzCKUNg-EeSLXqlejJgoBg" name="GMFT_BasedRepresentation">
       <ownedComment xmi:type="uml:Comment" xmi:id="_N-iIYORFEeS-StSRs1u4zA">
         <body>A GMF_BasedRepresentation is  reuse of an element generated by GMFT, for example well would to add compartments for class. we need to references class  of class diagram. this element is used o this.</body>
+      </ownedComment>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_PI8wYFCeEeWVDv-g61eepg" annotatedElement="_uzCKUNg-EeSLXqlejJgoBg">
+        <body>Usecase is for a specific diagram. In case of class diagram, the goal is to be able to extend existing diagrams based on gmf.</body>
       </ownedComment>
       <generalization xmi:type="uml:Generalization" xmi:id="_28b6YNg-EeSLXqlejJgoBg" general="_32MTgNenEeSTpeYJP6Dwgg"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_UiNH0NevEeSTpeYJP6Dwgg" name="reusedID">
@@ -238,9 +263,17 @@ An Id is associated in order to allow debbugging in the case of model is bad bui
         <ownedComment xmi:type="uml:Comment" xmi:id="__7nx0ORFEeS-StSRs1u4zA" annotatedElement="_gIUXcNhAEeSLXqlejJgoBg">
           <body>if the kind is filled, the view factory has to be filled. It references the factory of notation element see (model inside GEF framework)</body>
         </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Q_ftMFCcEeWVDv-g61eepg" annotatedElement="_gIUXcNhAEeSLXqlejJgoBg">
+          <body>Have alook to http://www-01.ibm.com/support/knowledgecenter/SS8PJ7_7.0.0/org.eclipse.gmf.doc/reference/api/runtime/org/eclipse/gmf/runtime/diagram/core/view/factories/ViewFactory.html</body>
+        </ownedComment>
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iXhgQN3uEeSNVdeGrY9mBA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iXiHUN3uEeSNVdeGrY9mBA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k4BOcFCqEeWVDv-g61eepg" name="description">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_samPEFCqEeWVDv-g61eepg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sam2IFCqEeWVDv-g61eepg" value="1"/>
       </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_RrkMEN9pEeS3V7Bu6N14fQ" name="validate">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_jsCu8N9pEeS3V7Bu6N14fQ" name="result" direction="return">

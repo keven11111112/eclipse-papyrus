@@ -18,6 +18,10 @@ package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel;
  * A representation of the model object '<em><b>GMFT Based Representation</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Usecase is for a specific diagram. In case of class diagram, the goal is to be able to extend existing diagrams based on gmf.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
