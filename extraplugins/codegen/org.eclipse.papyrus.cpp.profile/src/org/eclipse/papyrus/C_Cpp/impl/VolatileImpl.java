@@ -28,12 +28,12 @@ import org.eclipse.uml2.uml.Property;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.C_Cpp.impl.VolatileImpl#getBase_parameter <em>Base parameter</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.impl.VolatileImpl#getBase_property <em>Base property</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.impl.VolatileImpl#getBase_operation <em>Base operation</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.VolatileImpl#getBase_parameter <em>Base parameter</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.VolatileImpl#getBase_property <em>Base property</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.VolatileImpl#getBase_operation <em>Base operation</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -42,7 +42,6 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	 * The cached value of the '{@link #getBase_parameter() <em>Base parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBase_parameter()
 	 * @generated
 	 * @ordered
@@ -53,7 +52,6 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	 * The cached value of the '{@link #getBase_property() <em>Base property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBase_property()
 	 * @generated
 	 * @ordered
@@ -64,7 +62,6 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	 * The cached value of the '{@link #getBase_operation() <em>Base operation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBase_operation()
 	 * @generated
 	 * @ordered
@@ -74,7 +71,6 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected VolatileImpl() {
@@ -84,7 +80,6 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -95,18 +90,16 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Parameter getBase_parameter() {
 		if (base_parameter != null && base_parameter.eIsProxy()) {
-			InternalEObject oldBase_parameter = (InternalEObject) base_parameter;
-			base_parameter = (Parameter) eResolveProxy(oldBase_parameter);
+			InternalEObject oldBase_parameter = (InternalEObject)base_parameter;
+			base_parameter = (Parameter)eResolveProxy(oldBase_parameter);
 			if (base_parameter != oldBase_parameter) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, C_CppPackage.VOLATILE__BASE_PARAMETER, oldBase_parameter, base_parameter));
-				}
 			}
 		}
 		return base_parameter;
@@ -115,7 +108,6 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Parameter basicGetBase_parameter() {
@@ -125,33 +117,29 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setBase_parameter(Parameter newBase_parameter) {
 		Parameter oldBase_parameter = base_parameter;
 		base_parameter = newBase_parameter;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.VOLATILE__BASE_PARAMETER, oldBase_parameter, base_parameter));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Property getBase_property() {
 		if (base_property != null && base_property.eIsProxy()) {
-			InternalEObject oldBase_property = (InternalEObject) base_property;
-			base_property = (Property) eResolveProxy(oldBase_property);
+			InternalEObject oldBase_property = (InternalEObject)base_property;
+			base_property = (Property)eResolveProxy(oldBase_property);
 			if (base_property != oldBase_property) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, C_CppPackage.VOLATILE__BASE_PROPERTY, oldBase_property, base_property));
-				}
 			}
 		}
 		return base_property;
@@ -160,7 +148,6 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Property basicGetBase_property() {
@@ -170,33 +157,29 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setBase_property(Property newBase_property) {
 		Property oldBase_property = base_property;
 		base_property = newBase_property;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.VOLATILE__BASE_PROPERTY, oldBase_property, base_property));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Operation getBase_operation() {
 		if (base_operation != null && base_operation.eIsProxy()) {
-			InternalEObject oldBase_operation = (InternalEObject) base_operation;
-			base_operation = (Operation) eResolveProxy(oldBase_operation);
+			InternalEObject oldBase_operation = (InternalEObject)base_operation;
+			base_operation = (Operation)eResolveProxy(oldBase_operation);
 			if (base_operation != oldBase_operation) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, C_CppPackage.VOLATILE__BASE_OPERATION, oldBase_operation, base_operation));
-				}
 			}
 		}
 		return base_operation;
@@ -205,7 +188,6 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Operation basicGetBase_operation() {
@@ -215,42 +197,33 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setBase_operation(Operation newBase_operation) {
 		Operation oldBase_operation = base_operation;
 		base_operation = newBase_operation;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.VOLATILE__BASE_OPERATION, oldBase_operation, base_operation));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case C_CppPackage.VOLATILE__BASE_PARAMETER:
-			if (resolve) {
-				return getBase_parameter();
-			}
-			return basicGetBase_parameter();
-		case C_CppPackage.VOLATILE__BASE_PROPERTY:
-			if (resolve) {
-				return getBase_property();
-			}
-			return basicGetBase_property();
-		case C_CppPackage.VOLATILE__BASE_OPERATION:
-			if (resolve) {
-				return getBase_operation();
-			}
-			return basicGetBase_operation();
+			case C_CppPackage.VOLATILE__BASE_PARAMETER:
+				if (resolve) return getBase_parameter();
+				return basicGetBase_parameter();
+			case C_CppPackage.VOLATILE__BASE_PROPERTY:
+				if (resolve) return getBase_property();
+				return basicGetBase_property();
+			case C_CppPackage.VOLATILE__BASE_OPERATION:
+				if (resolve) return getBase_operation();
+				return basicGetBase_operation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,21 +231,20 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case C_CppPackage.VOLATILE__BASE_PARAMETER:
-			setBase_parameter((Parameter) newValue);
-			return;
-		case C_CppPackage.VOLATILE__BASE_PROPERTY:
-			setBase_property((Property) newValue);
-			return;
-		case C_CppPackage.VOLATILE__BASE_OPERATION:
-			setBase_operation((Operation) newValue);
-			return;
+			case C_CppPackage.VOLATILE__BASE_PARAMETER:
+				setBase_parameter((Parameter)newValue);
+				return;
+			case C_CppPackage.VOLATILE__BASE_PROPERTY:
+				setBase_property((Property)newValue);
+				return;
+			case C_CppPackage.VOLATILE__BASE_OPERATION:
+				setBase_operation((Operation)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -280,21 +252,20 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case C_CppPackage.VOLATILE__BASE_PARAMETER:
-			setBase_parameter((Parameter) null);
-			return;
-		case C_CppPackage.VOLATILE__BASE_PROPERTY:
-			setBase_property((Property) null);
-			return;
-		case C_CppPackage.VOLATILE__BASE_OPERATION:
-			setBase_operation((Operation) null);
-			return;
+			case C_CppPackage.VOLATILE__BASE_PARAMETER:
+				setBase_parameter((Parameter)null);
+				return;
+			case C_CppPackage.VOLATILE__BASE_PROPERTY:
+				setBase_property((Property)null);
+				return;
+			case C_CppPackage.VOLATILE__BASE_OPERATION:
+				setBase_operation((Operation)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -302,18 +273,17 @@ public class VolatileImpl extends MinimalEObjectImpl.Container implements Volati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case C_CppPackage.VOLATILE__BASE_PARAMETER:
-			return base_parameter != null;
-		case C_CppPackage.VOLATILE__BASE_PROPERTY:
-			return base_property != null;
-		case C_CppPackage.VOLATILE__BASE_OPERATION:
-			return base_operation != null;
+			case C_CppPackage.VOLATILE__BASE_PARAMETER:
+				return base_parameter != null;
+			case C_CppPackage.VOLATILE__BASE_PROPERTY:
+				return base_property != null;
+			case C_CppPackage.VOLATILE__BASE_OPERATION:
+				return base_operation != null;
 		}
 		return super.eIsSet(featureID);
 	}

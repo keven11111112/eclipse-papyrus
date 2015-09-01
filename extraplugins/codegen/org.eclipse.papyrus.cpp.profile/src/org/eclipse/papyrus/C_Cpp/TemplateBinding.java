@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.C_Cpp.TemplateBinding#getBinding <em>Binding</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.TemplateBinding#getBase_templatebinding <em>Base templatebinding</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.TemplateBinding#getBinding <em>Binding</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.TemplateBinding#getBase_templatebinding <em>Base templatebinding</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getTemplateBinding()
  * @model
@@ -39,7 +39,6 @@ public interface TemplateBinding extends EObject {
 	 * If the meaning of the '<em>Binding</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Binding</em>' attribute.
 	 * @see #setBinding(String)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getTemplateBinding_Binding()
@@ -52,9 +51,7 @@ public interface TemplateBinding extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.TemplateBinding#getBinding <em>Binding</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Binding</em>' attribute.
+	 * @param value the new value of the '<em>Binding</em>' attribute.
 	 * @see #getBinding()
 	 * @generated
 	 */
@@ -67,7 +64,6 @@ public interface TemplateBinding extends EObject {
 	 * If the meaning of the '<em>Base templatebinding</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base templatebinding</em>' reference.
 	 * @see #setBase_templatebinding(org.eclipse.uml2.uml.TemplateBinding)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getTemplateBinding_Base_templatebinding()
@@ -80,9 +76,7 @@ public interface TemplateBinding extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.TemplateBinding#getBase_templatebinding <em>Base templatebinding</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base templatebinding</em>' reference.
+	 * @param value the new value of the '<em>Base templatebinding</em>' reference.
 	 * @see #getBase_templatebinding()
 	 * @generated
 	 */
