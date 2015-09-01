@@ -218,7 +218,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 					Activator.log.error(e);
 					return CommandResult.newCancelledCommandResult();
 				}
-
+				targetEnd.setOwningAssociation(association);
 				return CommandResult.newOKCommandResult(association);
 			}
 		};

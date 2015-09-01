@@ -46,7 +46,8 @@ TestClassDiagramNestedClassifier.class,
 TestListCompartmentNodesChildDuplicates.class,
 //List Compartment illegal elements
 TestListCompartmentIllegalElements.class,
-TestListCompartmentPropertiesOperationsDrop.class
+TestListCompartmentPropertiesOperationsDrop.class,
+TestClassDiagramAssociationLinkSemantic.class
 })
 public class AllCanonicalTests {
 }
