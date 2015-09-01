@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Ansgar Radermacher - ansgar.radermacher@cea.fr CEA LIST - initial API and implementation
+ *
+ *******************************************************************************/
+
 package org.eclipse.papyrus.texteditor.cdt.sync;
 
 import org.eclipse.uml2.uml.Behavior;
@@ -6,6 +18,10 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Transition;
 
+/**
+ * Find the behavior in the model from a given method in the code. Used during the
+ * back synchronization from code to model.
+ */
 public class FindTransition {
 	
 	private static final String UNDERSCORE = "_"; //$NON-NLS-1$

@@ -52,15 +52,15 @@
          <attribute name="id" type="string">
             <annotation>
                <documentation>
-					ID of a code generator                  
+                  ID of a code generator, currently optional for backward compatibility.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="language" type="string" use="required">
             <annotation>
-         	      <documentation>
-    				Programming language supported by the code generator                  
-                  </documentation>
+               <documentation>
+                  Programming language supported by the code generator
+               </documentation>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
@@ -75,5 +75,10 @@
          </attribute>
       </complexType>
    </element>
+
+
+
+
+
 
 </schema>

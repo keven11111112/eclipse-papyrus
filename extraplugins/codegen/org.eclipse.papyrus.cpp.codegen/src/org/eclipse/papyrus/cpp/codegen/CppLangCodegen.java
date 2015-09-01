@@ -13,23 +13,30 @@ package org.eclipse.papyrus.cpp.codegen;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.codegen.base.ModelElementsCreator;
-import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen2;
+import org.eclipse.papyrus.codegen.extensionpoints.MethodInfo;
 import org.eclipse.papyrus.codegen.extensionpoints.SyncInformation;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
+import org.eclipse.papyrus.cpp.codegen.xtend.CppParameter;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 
 /**
  * C++ language support
  *
  */
-public class CppLangCodegen implements ILangCodegen {
+public class CppLangCodegen implements ILangCodegen2 {
 
 	protected ModelElementsCreator creator = null;
 
@@ -92,5 +99,26 @@ public class CppLangCodegen implements ILangCodegen {
 	@Override
 	public SyncInformation getSyncInformation(String methodName, String body) {
 		return null;
+	}
+
+	@Override
+	public MethodInfo getMethodInfo(NamedElement operationOrBehavior) {
+		MethodInfo mi = new MethodInfo(operationOrBehavior.getName());
+		EList<Parameter> parameters = null;
+		if (operationOrBehavior instanceof Operation) {
+			 parameters = ((Operation) operationOrBehavior).getOwnedParameters();
+		}
+		else if (operationOrBehavior instanceof Behavior) {
+			 parameters = ((Behavior) operationOrBehavior).getOwnedParameters();		
+		}
+		
+		if (parameters != null) {
+			for (Parameter parameter : parameters) {
+				if (parameter.getDirection() != ParameterDirectionKind.RETURN_LITERAL) {
+					mi.addParameterType(CppParameter.CppParameterForCDT(parameter).toString());
+				}
+			}
+		}
+		return mi;
 	}
 }

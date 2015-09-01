@@ -72,7 +72,7 @@ public class GeneratorSelectionDialog extends AbstractElementListSelectionDialog
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int index = fFilteredList.getSelectionIndex();
-				m_description.setText(getElement(index).getDescription());
+				updateDescription(getElement(index));
 			}
 			
 			@Override
@@ -89,9 +89,18 @@ public class GeneratorSelectionDialog extends AbstractElementListSelectionDialog
 
 		m_description = new Text(contents, SWT.NONE | SWT.WRAP | SWT.V_SCROLL | SWT.READ_ONLY);
 		m_description.setLayoutData(descriptionGD);
-		m_description.setText(getElement(0).getDescription());
+		updateDescription(getElement(0));
 		
 		return contents;
+	}
+
+	protected void updateDescription(ILangCodegen codegen) {
+		if (codegen instanceof ILangCodegen2) {
+			m_description.setText(((ILangCodegen2) codegen).getDescription());
+		}
+		else {
+			m_description.setText("not available"); //$NON-NLS-1$
+		}
 	}
 
 	/**

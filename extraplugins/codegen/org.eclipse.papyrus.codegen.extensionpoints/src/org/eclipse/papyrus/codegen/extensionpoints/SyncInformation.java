@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.codegen.extensionpoints;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Behavior;
 
 /**
@@ -9,7 +10,7 @@ import org.eclipse.uml2.uml.Behavior;
  */
 public class SyncInformation {
 	/**
-	 * true, iff the method has been added by the generate and does not need synchronization.
+	 * true, iff the method has been added by the generator and does not need synchronization.
 	 */
 	public boolean isGenerated;
 	
@@ -24,4 +25,15 @@ public class SyncInformation {
      * model, but it does not exist yet. Only one of the two attributes (behavior and createBehaviorName) must be set.
      */
 	public String createBehaviorName;
+	
+	/**
+	 * the element for which the CDT editor has been opened. This may for instance be the class that is edited.
+	 */
+	public EObject editedElement;
+	
+	/**
+	 * The method body gets filtered during default synchronization (text between generation markers is removed), but the filtered information might be
+	 * important for customized back-synchronization.
+	 */
+	public String unfilteredBody;
 }
