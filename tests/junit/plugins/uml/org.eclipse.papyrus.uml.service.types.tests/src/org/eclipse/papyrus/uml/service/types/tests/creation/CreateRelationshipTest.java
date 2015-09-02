@@ -291,19 +291,23 @@ public class CreateRelationshipTest extends AbstractCreateRelationshipTest {
 	/* DEPLOYMENT test cases */
 	@Test
 	public void testCreateDeploymentBetweenNodeAndArtifactInNode() throws Exception {
-		runCreationRelationshipTest(testNode1, testNode1, testArtifact1, UMLElementTypes.DEPLOYMENT, CAN_CREATE, RESULT_EXPECTED,null);
+		runCreationRelationshipTest(testNode1, testNode1, testArtifact1, UMLElementTypes.DEPLOYMENT, CAN_NOT_CREATE, RESULT_NOT_EXPECTED,null);
+	}
+	
+	@Test
+	public void testCreateDeploymentBetweenArtifactAndNodeInNode() throws Exception {
+		runCreationRelationshipTest(testNode1, testArtifact1, testNode1, UMLElementTypes.DEPLOYMENT, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
 	@Test
 	public void testCreateDeploymentBetweenNodeAndArtifactInArtifact() throws Exception {
-		runCreationRelationshipTest(testArtifact1, testNode1, testArtifact1, UMLElementTypes.DEPLOYMENT, CAN_CREATE, RESULT_EXPECTED,null);
+		runCreationRelationshipTest(testArtifact1, testNode1, testArtifact1, UMLElementTypes.DEPLOYMENT, CAN_NOT_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 	@Test
 	public void testCreateDeploymentBetweenArtifactAndNodeInArtifact() throws Exception {
-		runCreationRelationshipTest(testArtifact1, testArtifact1,testNode1, UMLElementTypes.DEPLOYMENT, CAN_NOT_CREATE, RESULT_EXPECTED,null);
+		runCreationRelationshipTest(testArtifact1, testArtifact1, testNode1, UMLElementTypes.DEPLOYMENT, CAN_CREATE, RESULT_EXPECTED,null);
 	}
-
 
 	/* ELEMENT_IMPORT test cases */
 	@Test
