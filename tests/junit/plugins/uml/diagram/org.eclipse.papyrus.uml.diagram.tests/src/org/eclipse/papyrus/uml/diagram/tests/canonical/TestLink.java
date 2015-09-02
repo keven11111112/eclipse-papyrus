@@ -10,6 +10,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440263
  *  Christian W. Damus - bug 459701
+ *  Christian W. Damus - bug 476436
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.tests.canonical;
@@ -57,7 +58,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
-import org.eclipse.papyrus.junit.utils.JUnitUtils;
+import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.ui.PlatformUI;
@@ -65,9 +66,6 @@ import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
 import org.junit.Rule;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -98,9 +96,11 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	public abstract DiagramUpdater getDiagramUpdater();
 
-	private FixtureEditPartConfigurator sourceConfigurator;
+	@Rule
+	public final AnnotationRule<FixtureEditPartConfigurator> sourceConfigurator = AnnotationRule.create(SourceConfigurator.class);
 
-	private FixtureEditPartConfigurator targetConfigurator;
+	@Rule
+	public final AnnotationRule<FixtureEditPartConfigurator> targetConfigurator = AnnotationRule.create(TargetConfigurator.class);
 
 	protected int rootSemanticOwnedElements = 5;
 
@@ -111,9 +111,6 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	protected int diagramChildrenSize = 5;
 
 	protected int initialEnvironmentChildsCount = 4;
-
-	@Rule
-	public final TestRule annotationRule = new AnnotationRule();
 
 	/**
 	 * Test view deletion.
@@ -146,6 +143,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 *
 	 * @return the editing domain (can be null)
 	 */
+	@Override
 	protected TransactionalEditingDomain getEditingDomain() {
 		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 		TransactionalEditingDomain editingDomain = null;
@@ -587,7 +585,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	}
 
 	private Command additionalConfig(Command additionalConfig, IGraphicalEditPart editPart, IElementType elementType, boolean isSource) {
-		FixtureEditPartConfigurator configurator = isSource ? sourceConfigurator : targetConfigurator;
+		FixtureEditPartConfigurator configurator = isSource ? sourceConfigurator.get() : targetConfigurator.get();
 		Command config = (configurator == null) ? null : configurator.configureFixtureEditPart(editPart, elementType, isSource);
 		return (additionalConfig == null) ? config : (config == null) ? additionalConfig : additionalConfig.chain(config);
 	}
@@ -626,33 +624,5 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface TargetConfigurator {
 		Class<? extends FixtureEditPartConfigurator>value();
-	}
-
-	private class AnnotationRule extends TestWatcher {
-		@Override
-		protected void starting(Description description) {
-			SourceConfigurator sourceConfiguratorDecl = JUnitUtils.getAnnotation(description, SourceConfigurator.class);
-			if (sourceConfiguratorDecl != null) {
-				try {
-					sourceConfigurator = sourceConfiguratorDecl.value().newInstance();
-				} catch (Exception e) {
-					throw new AssertionError("Bad source configurator annotation", e); //$NON-NLS-1$
-				}
-			}
-			TargetConfigurator targetConfiguratorDecl = JUnitUtils.getAnnotation(description, TargetConfigurator.class);
-			if (targetConfiguratorDecl != null) {
-				try {
-					targetConfigurator = targetConfiguratorDecl.value().newInstance();
-				} catch (Exception e) {
-					throw new AssertionError("Bad target configurator annotation", e); //$NON-NLS-1$
-				}
-			}
-		}
-
-		@Override
-		protected void finished(Description description) {
-			targetConfigurator = null;
-			sourceConfigurator = null;
-		}
 	}
 }

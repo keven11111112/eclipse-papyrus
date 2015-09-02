@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,13 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 476436
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.test.canonical;
+
+import static org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition.DEFAULT_DIRECT_EDITOR;
+import static org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition.EXTENDED_DIRECT_EDITOR;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.papyrus.commands.ICreationCommand;
@@ -19,6 +23,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.edition.AbstractEditableNodeTest;
+import org.eclipse.papyrus.uml.diagram.tests.edition.ExpectedDirectEditor;
 import org.junit.Test;
 
 /**
@@ -30,11 +35,12 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	public GraphicalEditPart getContainerEditPart() {
 		return getDiagramEditPart();
 	}
-	
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateClassDiagramCommand();
 	}
+
 	@Override
 	protected String getProjectName() {
 		return IClassDiagramTestsConstants.PROJECT_NAME;
@@ -121,6 +127,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage constraint.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageConstraint() {
 		testEdition(UMLElementTypes.Constraint_2011);
 	}
@@ -140,7 +147,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	public void testToManageInformationItem() {
 		testEdition(UMLElementTypes.InformationItem_2099);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
@@ -148,7 +155,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	public void testToManageInterface() {
 		testEdition(UMLElementTypes.Interface_2004);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
@@ -156,7 +163,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	public void testToManageTimeObservation() {
 		testEdition(UMLElementTypes.TimeObservation_2096);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
