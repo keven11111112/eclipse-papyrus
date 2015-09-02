@@ -12,7 +12,6 @@ import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
-@SuppressWarnings("restriction")
 public class BundleTestsUtils {
 
 	// This version number should be changed at each release
@@ -40,7 +39,9 @@ public class BundleTestsUtils {
 
 	public static final String JAVA_VERSION_7 = "JavaSE-1.7"; //$NON-NLS-1$
 
-	public static final String JAVA_VERSION_REGEX = JAVA_VERSION_5 + "|" + JAVA_VERSION_6 + "|" + JAVA_VERSION_7;
+	public static final String JAVA_VERSION_8 = "JavaSE-1.8"; //$NON-NLS-1$
+
+	public static final String JAVA_VERSION_REGEX = JAVA_VERSION_5 + "|" + JAVA_VERSION_6 + "|" + JAVA_VERSION_7 + "|" + JAVA_VERSION_8;
 
 	public static final String REQUIRE_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 
@@ -71,7 +72,7 @@ public class BundleTestsUtils {
 	 * @param bundle
 	 *            a bundle
 	 * @return
-	 *         <code>true</code> if the bundle represents a Java Project
+	 * 		<code>true</code> if the bundle represents a Java Project
 	 */
 	public static boolean isJavaProject(final Bundle bundle) {
 		// we are looking for folders "org/eclipse/papyrus" that contains classes. If not, it is not a Java project
@@ -82,7 +83,7 @@ public class BundleTestsUtils {
 	/**
 	 *
 	 * @return
-	 *         the list of the Papyrus features
+	 * 		the list of the Papyrus features
 	 */
 	public static List<Feature> getPapyrusFeature() {
 		final List<Feature> features = new ArrayList<Feature>();
