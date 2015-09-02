@@ -277,6 +277,8 @@ public class Messages extends NLS {
 
 	public static String PasteEObjectAxisInTableCommandProvider_PasteRows;
 
+	public static String PasteEObjectTreeAxisInNatTableCommandProvider_CantPasteColumnsInTreeTable;
+
 	public static String PasteImportStatusDialog_ImportPasteDialogTitle;
 
 	public static String PasteImportStatusDialog_PasteConfigurationMessage;
