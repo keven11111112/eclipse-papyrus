@@ -20,11 +20,10 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
+import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
-
-import static org.eclipse.papyrus.moka.fuml.Activator.logger;
 
 public class ObjectActivation {
 
@@ -86,20 +85,24 @@ public class ObjectActivation {
 	}
 
 	public void dispatchNextEvent() {
-		// Get the next signal instance out of the event pool.
-		// If there is one or more waiting event accepters with triggers that
-		// match the signal instance, then dispatch it to exactly one of those
-		// waiting accepters.
 		if (this.eventPool.size() > 0) {
-			int i = 0;
-			boolean dispatched = false;
 			SignalInstance signalInstance = this.getNextEvent();
-			while(!dispatched && i < this.classifierBehaviorExecutions.size()){
-				 dispatched = this.classifierBehaviorExecutions.get(i).dispatchEvent(signalInstance);
-				 i++;
+			Debug.println("[dispatchNextEvent] signalInstance = " + signalInstance);
+			List<Integer> matchingEventAccepterIndexes = new ArrayList<Integer>();
+			List<EventAccepter> waitingEventAccepters = this.waitingEventAccepters;
+			for (int i = 0; i < waitingEventAccepters.size(); i++) {
+				EventAccepter eventAccepter = waitingEventAccepters.get(i);
+				if (eventAccepter.match(signalInstance)) {
+					matchingEventAccepterIndexes.add(i);
+				}
 			}
-			if(!dispatched){
-				logger.debug("[Signal Lost] => "+signalInstance);
+			if (matchingEventAccepterIndexes.size() > 0) {
+				// *** Choose one matching event accepter non-deterministically.
+				// ***
+				int j = ((ChoiceStrategy) this.object.locus.factory.getStrategy("choice")).choose(matchingEventAccepterIndexes.size());
+				EventAccepter selectedEventAccepter = this.waitingEventAccepters.get(matchingEventAccepterIndexes.get(j - 1));
+				this.waitingEventAccepters.remove(j - 1);
+				selectedEventAccepter.accept(signalInstance);
 			}
 		}
 	}

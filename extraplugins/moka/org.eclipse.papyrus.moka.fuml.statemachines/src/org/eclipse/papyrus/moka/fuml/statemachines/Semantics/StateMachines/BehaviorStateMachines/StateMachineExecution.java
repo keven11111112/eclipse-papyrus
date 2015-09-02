@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Configuration.StateMachineConfiguration;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionSelectionStrategy;
@@ -114,38 +113,6 @@ public class StateMachineExecution extends Execution {
 			transitionActivation.fire();
 			fireableTransition = selectionStrategy.selectTransitions(this.configuration);
 		}
-	}
-	
-	public boolean dispatchEvent(SignalInstance signal){
-		boolean dispatched = false;
-		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
-		List<TransitionActivation> fireableTransition = selectionStrategy.selectTriggeredTransitions(this.configuration, signal);
-		if(!fireableTransition.isEmpty()){
-			TransitionChoiceStrategy choiceStrategy = (TransitionChoiceStrategy)this.locus.factory.getStrategy(TransitionChoiceStrategy.NAME);
-			TransitionActivation transitionActivation = choiceStrategy.choose(fireableTransition);
-			int i = 0;
-			TransitionEventAccepter accepter = null; 
-			while(accepter==null && i < this.context.objectActivation.waitingEventAccepters.size()){
-				accepter = (TransitionEventAccepter)this.context.objectActivation.waitingEventAccepters.get(i);
-				if(accepter.registrationContext!=this || accepter.getTransition()!=transitionActivation || !accepter.match(signal)){
-					i++;
-					accepter = null;
-				}
-			}
-			if(accepter!=null){
-				accepter.accept(signal);
-				this.context.objectActivation.unregister(accepter);
-				dispatched = true;
-			}
-			fireableTransition = selectionStrategy.selectTransitions(this.configuration);
-			while(!fireableTransition.isEmpty()){
-				choiceStrategy = (TransitionChoiceStrategy)this.locus.factory.getStrategy(TransitionChoiceStrategy.NAME);
-				transitionActivation = choiceStrategy.choose(fireableTransition);  
-				transitionActivation.fire();
-				fireableTransition = selectionStrategy.selectTransitions(this.configuration);
-			}
-		}
-		return dispatched;
 	}
 
 	@Override

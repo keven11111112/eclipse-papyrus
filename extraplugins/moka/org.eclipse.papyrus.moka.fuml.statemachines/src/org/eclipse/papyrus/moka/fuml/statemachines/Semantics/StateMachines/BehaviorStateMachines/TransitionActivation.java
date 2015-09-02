@@ -16,19 +16,23 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 
 import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
 
+import java.util.List;
+
+import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_SignalInstance;
 import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Evaluation;
-import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.SM_OpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.SM_SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.TransitionKind;
+import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 public class TransitionActivation extends SM_SemanticVisitor {
@@ -102,20 +106,39 @@ public class TransitionActivation extends SM_SemanticVisitor {
 	}
 	
 	/**
-	 * @return true if a trigger of this transition is enabled by an event in the event pool false in the other case
+	 * True if the transition has a trigger which matches the given signal type 
 	 */
-	public boolean hasTriggerEnabled(final SignalInstance signal){
-		boolean result = false;
-		Object_ context = this.getExecutionContext();
+	public boolean hasTrigger(final SignalInstance signal){
 		int i = 0;
-		while(i < context.objectActivation.waitingEventAccepters.size() && !result){
-			EventAccepter accepter = context.objectActivation.waitingEventAccepters.get(i);
-			if(((TransitionEventAccepter)accepter).getTransition()==this){
-				result = accepter.match(signal);
+		Transition transition = (Transition)this.node;
+		Trigger trigger = null;
+		while(i < transition.getTriggers().size() && trigger==null){
+			Trigger currentTrigger = transition.getTriggers().get(i);
+			/*1. Check that expected signal type and conforms to signal instance type*/
+			if(currentTrigger.getEvent()!=null && 
+					currentTrigger.getEvent() instanceof SignalEvent
+					&& ((SignalEvent)currentTrigger.getEvent()).getSignal()==signal.type){
+				/*1.1. The port from which the signal was emitted must be one which is referenced
+				 * in the trigger*/
+				if(currentTrigger.getPorts().size() > 0) {
+					List<Port> portsOfTrigger = currentTrigger.getPorts();
+					Port onPort = ((CS_SignalInstance)signal).interactionPoint.definingPort;
+					Boolean portMatches = false;
+					int j = 1;
+					while(!portMatches & j <= portsOfTrigger.size()) {
+						portMatches = onPort == portsOfTrigger.get(j - 1);
+						j = j + 1;
+					}
+					if(portMatches){
+						trigger = currentTrigger;
+					}
+				}else{
+					trigger = currentTrigger;
+				}
 			}
 			i++;
 		}
-		return result;
+		return trigger != null;
 	}
 	
 	/**

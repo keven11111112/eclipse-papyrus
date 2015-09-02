@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
@@ -42,16 +41,6 @@ public abstract class Execution extends Object_ {
 	public List<ParameterValue> parameterValues = new ArrayList<ParameterValue>();
 
 	public abstract void execute();
-	
-	/**
-	 * Called whenever a signal is dispatched through an object an need to be addressed to
-	 * an Execution representing the execution of a particular 
-	 * @param signal
-	 * @return
-	 */
-	public boolean dispatchEvent(SignalInstance signal){
-		return false;
-	}
 	
 	public void terminate() {
 		// Terminate an ongoing execution. By default, do nothing.

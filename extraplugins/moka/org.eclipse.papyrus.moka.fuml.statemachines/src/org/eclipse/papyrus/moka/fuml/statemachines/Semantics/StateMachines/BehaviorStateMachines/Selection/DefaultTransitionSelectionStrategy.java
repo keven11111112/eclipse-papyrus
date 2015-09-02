@@ -59,7 +59,8 @@ public class DefaultTransitionSelectionStrategy extends TransitionSelectionStrat
 	}
 
 	/**
-	 * TODO
+	 * Find for the given configuration the set of triggered transitions that can fire regarding the signal instance
+	 * provided in parameter.
 	 */
 	@Override
 	public List<TransitionActivation> selectTriggeredTransitions(StateMachineConfiguration configuration,
@@ -72,7 +73,7 @@ public class DefaultTransitionSelectionStrategy extends TransitionSelectionStrat
 			for(VertexActivation vertexActivation : cartography.get(i)){
 				for(TransitionActivation transitionActivation : vertexActivation.getOutgoingTransitions()){
 					if(transitionActivation.isTriggered() && 
-							transitionActivation.hasTriggerEnabled(signal)){
+							transitionActivation.hasTrigger(signal)){
 						fireableTransition.add(transitionActivation);
 					}
 				}

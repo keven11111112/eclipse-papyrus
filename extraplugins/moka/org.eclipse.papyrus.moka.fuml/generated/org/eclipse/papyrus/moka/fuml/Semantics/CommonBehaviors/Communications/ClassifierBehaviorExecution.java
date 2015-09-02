@@ -39,16 +39,6 @@ public class ClassifierBehaviorExecution {
 	 * The object activation that owns this classifier behavior execution.
 	 */
 	public ObjectActivation objectActivation;
-
-	/**
-	 * Try to dispatch the selected signal onto the execution governed
-	 * by this classifier behavior execution
-	 * @param The signal being dispatched
-	 * @return A flag making sure the signal was dispatched
-	 */
-	public boolean dispatchEvent(SignalInstance signal){
-		return this.execution.dispatchEvent(signal);
-	}
 	
 	public void execute(Class classifier, List<ParameterValue> inputs) {
 		// Set the classifier for this classifier behavior execution to the
