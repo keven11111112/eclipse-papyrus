@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://UTP_PROFILE/"
+            target="platform:/plugin/org.eclipse.papyrus.utp/resources/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="UML Testing Profile"
+            name="UML Testing Profile"
+            path="pathmap://UTP_PROFILE/utp_1.2.uml">
+      </profile>
+   </extension>
+
+</plugin>
