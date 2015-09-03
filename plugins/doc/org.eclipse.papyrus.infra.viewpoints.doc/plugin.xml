@@ -4,6 +4,10 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
+            file="target/generated-eclipse-help/viewpoints-main-toc.xml"
+            primary="false">
+      </toc>          
+      <toc
             file="target/generated-eclipse-help/viewpoints-toc.xml"
             primary="false">
       </toc>
