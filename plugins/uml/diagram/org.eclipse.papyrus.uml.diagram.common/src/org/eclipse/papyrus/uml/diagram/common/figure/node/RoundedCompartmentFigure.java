@@ -161,6 +161,12 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	}
 
 	/**
+	 * @return shadowWidth
+	 */
+	protected int getShadowWidth() {
+		return this.shadowWidth;
+	}
+	/**
 	 * @param isPackage
 	 *            the isPackage to set
 	 */
