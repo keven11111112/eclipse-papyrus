@@ -129,6 +129,9 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 		}
 	}
 
+	protected boolean getShadow() {
+		return this.shadow;
+	}
 	/**
 	 * Sets the border color.
 	 *

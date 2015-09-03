@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
 
 import java.util.Iterator;
 
-import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -37,8 +37,9 @@ import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.command.CreateBehaviorPortCommand;
-import org.eclipse.papyrus.uml.diagram.composite.custom.locators.BehaviorPortLocator;
+import org.eclipse.papyrus.uml.diagram.composite.custom.figures.PortFigure;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -62,20 +63,20 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 	protected void udaptePortBehavior() {
 		ShapeCompartmentEditPart targetEditPart = getPossibleCompartment(((GraphicalEditPart) getHost()).getParent());
 		if (targetEditPart != null) {
+			// remove old BehaviorPort presentation
 			View behaviorPort = getBehaviorPortNode();
-			if (hostSemanticElement.isBehavior() && behaviorPort == null) {
-				BehaviorPortLocator locator = new BehaviorPortLocator(((GraphicalEditPart) getHost().getParent()).getFigure(), PositionConstants.NONE);
-				locator.setBorderItemOffset(60);
-				Rectangle rectBehavior = locator.getPreferredLocation(((GraphicalEditPart) getHost()).getFigure().getBounds());
-				// obtain coordinate to put the behavior
-				Rectangle rectContainer = (targetEditPart).getContentPane().getParent().getBounds();
-				rectBehavior = rectBehavior.getTranslated(-rectContainer.x, -rectContainer.y);
-				executeBehaviorPortCreation(targetEditPart, (getHost()), ((GraphicalEditPart) getHost()).getEditingDomain(), rectBehavior);
-			}
-			else {
-				if (!hostSemanticElement.isBehavior()) {
-					// remove behaviorPort
-					executeBehaviorPortDeletion(((GraphicalEditPart) getHost()).getEditingDomain(), behaviorPort);
+			executeBehaviorPortDeletion(((GraphicalEditPart) getHost()).getEditingDomain(), behaviorPort);
+		}
+
+		if (getHost() instanceof PortEditPart) {
+			IFigure hostFigure = ((PortEditPart) getHost()).getContentPane();
+			if (hostFigure instanceof PortFigure) {
+				PortFigure port = (PortFigure) hostFigure;
+
+				if (hostSemanticElement.isBehavior()) {
+					port.restoreBehaviorFigure();
+				} else {
+					port.removeBehavior();
 				}
 			}
 		}
