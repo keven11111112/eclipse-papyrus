@@ -101,6 +101,22 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 		return defaultCommand;
 	}
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Command getConnectionAndRelationshipCreateCommand(CreateConnectionViewAndElementRequest request) {
+		// Add parameter (source view to the CreateRelationshipRequest)
+		CreateElementRequestAdapter requestAdapter = request.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
+		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
+
+		View sourceView = (View) request.getTargetEditPart().getModel();
+		createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_SOURCE_VIEW, sourceView);
+
+		return super.getConnectionAndRelationshipCreateCommand(request);
+	}
 
 	/**
 	 * {@inheritDoc}
