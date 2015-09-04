@@ -47,6 +47,7 @@ import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
+import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLNotationModelElement;
 import org.eclipse.papyrus.views.properties.contexts.Property;
@@ -334,7 +335,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		// Manage the construction of axis here because the table editing domain is null
-		if (null != rows && !rows.isEmpty()) {
+		if (TableHelper.isTreeTable(table) && null != rows && !rows.isEmpty()) {//add test on TreeTable to fix bug 476623
 			final AbstractAxisProvider axisProvider = table.getCurrentRowAxisProvider();
 			TableHeaderAxisConfiguration conf = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
 			AxisManagerRepresentation rep = conf.getAxisManagers().get(0);
