@@ -12,6 +12,10 @@
 package org.eclipse.papyrus.sysml.nattable.requirement.tests.tests;
 
 
+import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.AxisChangeIndexWithConfigurationTest;
+import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
+import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
+import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.without.service.edit.Bug443814_Enumeration;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -23,10 +27,14 @@ import org.junit.runners.Suite.SuiteClasses;
 	SortAxisRequirementTableTest.class,
 	InvertAxisRequirementTableTest.class,
 	EditAxisRequirementTableTest.class,
-	Bug443814_Enumeration.class, 
-	TableCreationInSysMLModelTest.class, 
-	OpenTableTest.class, 
-	TableCreationInUMLModel.class, 
+		Bug443814_Enumeration.class,
+		AxisChangeIndexWithConfigurationTest.class,
+		AxisChangeIndexWithoutConfigurationTest.class,
+		InvertedAxisChangeIndexWithConfigurationTest.class,
+		InvertedAxisChangeIndexWithoutConfigurationTest.class,
+		TableCreationInSysMLModelTest.class,
+		OpenTableTest.class,
+		TableCreationInUMLModel.class,
 	RevealRequirementTableTest.class,
 })
 public class AllTests {
