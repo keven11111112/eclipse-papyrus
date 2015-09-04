@@ -215,9 +215,16 @@ Class > Compartment[kind="symbol"] {
 
 Compartment[kind="structure"]{
     collapsed:true;
+}</source>
+
+
+To manage the name of the named element and its stereotype name, a specifier for the selector can be added :
+
+<source lang="css">Port > Label {
+    visible: false;
 }
 
-Port > Label {
+Port > Label:Stereotype {
     visible: false;
 }</source>
 

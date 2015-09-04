@@ -27,11 +27,11 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockLabelNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.CustomFlowPortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.AppliedStereotypeAffixedLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AppliedStereotypeLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelEditPart;
@@ -69,7 +69,7 @@ public class CustomEditPartProvider extends CustomAbstractEditPartProvider {
 		nodeMap.put(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID, BlockPropertyStructureCompartmentEditPart.class);
 		nodeMap.put(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID, StructureCompartmentEditPart.class);
 		nodeMap.put(SysMLGraphicalTypes.LABEL_SYSML_BLOCK_NAME_ID, BlockLabelNameEditPart.class);
-		nodeMap.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, AppliedStereotypeAffixedLabelEditPart.class);
+		nodeMap.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, CustomFlowPortAppliedStereotypeEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, PortAffixedLabelNameEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.LABEL_UML_PROPERTY_LABEL_ID, PropertyNodeLabelEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID, AppliedStereotypeLinkLabelEditPart.class);

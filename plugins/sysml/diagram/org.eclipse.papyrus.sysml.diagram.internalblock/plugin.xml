@@ -506,12 +506,12 @@
                       <!-- Link labels -->
 
       <mapping
-             humanReadableType="Label"
+             humanReadableType="Name"
              type="affixedlabel_sysml_flowport_label">
       </mapping>
       
       <mapping
-             humanReadableType="Name"
+             humanReadableType="Stereotype"
              type="affixedlabel_uml_appliedstereotype">
       </mapping>
       
