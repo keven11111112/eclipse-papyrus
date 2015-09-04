@@ -237,6 +237,13 @@
 		<module>../../extraplugins/aof/org.eclipse.papyrus.aof.core</module>
 		<module>../../extraplugins/aof/org.eclipse.papyrus.aof.emf</module>
 		<module>../../extraplugins/aof/org.eclipse.papyrus.aof.lang</module>
+		<module>../../extraplugins/aof/org.eclipse.papyrus.aof.gmf</module>
+		
+		<!-- AOF Synchronization -->
+		<module>../../extraplugins/aof/sync/org.eclipse.papyrus.aof.sync</module>
+		<module>../../extraplugins/aof/sync/org.eclipse.papyrus.aof.sync.gmf</module>
+		<module>../../extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml</module>
+		<module>../../extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml.ui</module>
 
 		<module>site</module>
 	</modules>

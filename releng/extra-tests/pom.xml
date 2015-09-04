@@ -32,6 +32,12 @@
     <!-- Tests for AOF -->
     <module>../../tests/junit/extraplugins/aof/org.eclipse.papyrus.aof.core.tests</module>
     <module>../../tests/junit/extraplugins/aof/org.eclipse.papyrus.aof.emf.tests</module>	
+	<module>../../tests/junit/extraplugins/aof/org.eclipse.papyrus.aof.gmf.tests</module>
+		
+	<!-- Tests for AOF Synchronization -->
+	<module>../../tests/junit/extraplugins/aof/sync/org.eclipse.papyrus.aof.sync.tests</module>
+	<module>../../tests/junit/extraplugins/aof/sync/org.eclipse.papyrus.aof.sync.gmf.tests</module>
+	<module>../../tests/junit/extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml.tests</module>
 	
    </modules>
 	<repositories>

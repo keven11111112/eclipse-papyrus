@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.papyrus.aof.sync.examples.uml
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.aof.sync.examples.uml.internal.Activator
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.11.0",
+ org.eclipse.uml2.uml;bundle-version="5.1.0";visibility:=reexport,
+ org.eclipse.papyrus.aof.sync;bundle-version="0.7.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.aof.sync.examples.uml.internal;x-friends:="org.eclipse.papyrus.aof.sync.examples.uml.ui",
+ org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings;x-friends:="org.eclipse.papyrus.aof.sync.examples.uml.ui",
+ org.eclipse.papyrus.aof.sync.examples.uml.internal.util;x-friends:="org.eclipse.papyrus.aof.sync.examples.uml.ui"

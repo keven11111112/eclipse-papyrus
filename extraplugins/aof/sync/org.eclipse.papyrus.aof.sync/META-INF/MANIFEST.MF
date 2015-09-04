@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.papyrus.aof.sync
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.aof.sync.internal.Activator
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.papyrus.aof.emf;bundle-version="0.7.0";visibility:=reexport,
+ com.google.inject;bundle-version="3.0.0";visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.aof.sync,
+ org.eclipse.papyrus.aof.sync.internal
