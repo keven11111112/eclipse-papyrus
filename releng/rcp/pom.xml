@@ -18,38 +18,37 @@
 		<xtext.version>2.7.3</xtext.version>
 		<java.source.version>1.7</java.source.version>
 		<java.target.version>1.7</java.target.version>
-		<papyrus.eclipse.target>mars</papyrus.eclipse.target>
+		<papyrus.eclipse.target>neon</papyrus.eclipse.target>
 		<mylyn.wikitext.version>2.4.0-SNAPSHOT</mylyn.wikitext.version>
 		<skipAllTests>false</skipAllTests>
 		<skipInnerTests>true</skipInnerTests>
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}</papyrus.repo.main>
+		<maven.resources.version>2.6</maven.resources.version>
+		<!-- Timestamp used in various places, e.g. the about dialog (see about.mappings) -->
+	    <eclipse.simultaneous.release.build>${maven.build.timestamp}</eclipse.simultaneous.release.build>
+	    <!-- Human readable name of the release, e.g. used in the about dialog (see about.mappings) -->
+	    <eclipse.simultaneous.release.name>Neon Milestone 1 (4.6.0M1)</eclipse.simultaneous.release.name>
 	</properties>
 	<repositories>
 
 		<!-- From Main Papyrus -->
 		<repository>
-			<id>ep</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5/R-4.5-201506032000/</url>
-		</repository>
-		<repository>
 			<id>emf-emf</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF (Core)",0) -->
-			<url>http://download.eclipse.org/modeling/emf/emf/updates/2.11milestones/</url>
+			<url>http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.0/R201505260335/mwe</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030321/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.0/R201505260456/mwe2lang/</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030411/mwe2lang/</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
@@ -62,6 +61,12 @@
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
 			<url>http://download.eclipse.org/modeling/emf/validation/updates/releases/R201505312255</url>
+		</repository>
+		<repository>
+			<id>ep</id>
+			<layout>p2</layout>
+			<!-- updateFrom("Eclipse",0) -->
+			<url>http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M1-201508052000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -91,13 +96,13 @@
 			<id>m2t-xpand</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T XPAND",0) -->
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201505260349/</url>
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201508180411/</url>
 		</repository>
 		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.0.0</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201508171259</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -134,13 +139,13 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.8.3/</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/R-3.7.0-20150609111814/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M1-20150818010140/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
@@ -152,8 +157,8 @@
 			<id>subversive</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Subversive",0) -->
-			<url>http://download.eclipse.org/technology/subversive/3.0/mars-site/</url>
-		</repository>
+			<url>http://download.eclipse.org/technology/subversive/3.0/neon-site/</url>
+		</repository>	
 
 
 		<!-- Modeling features -->
@@ -173,19 +178,19 @@
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF Compare",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201506080833</url>
+			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201508181443</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF CDO",0) -->
-			<url>http://download.eclipse.org/modeling/emf/cdo/drops/R20150610-1526</url>
+			<url>http://download.eclipse.org/modeling/emf/cdo/drops/S20150819-1258</url>
 		</repository>
 		<repository>
 			<id>egit</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EGIT",0) -->
-			<url>http://download.eclipse.org/egit/updates-4.0</url>
+			<url>http://download.eclipse.org/egit/updates-4.0.1</url>
 		</repository>
 		<repository>
 			<id>eef</id>
@@ -197,7 +202,7 @@
 			<id>acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("acceleo",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201506080954</url>
+			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441</url>
 		</repository>
 		<repository>
 			<id>epp-log</id>
@@ -209,7 +214,7 @@
 			<id>oomph</id>
 			<layout>p2</layout>
 			<!-- updateFrom("oomph",0) -->
-			<url>http://download.eclipse.org/oomph/drops/milestone/S20150610-124713-1.1.0-RC4</url>
+			<url>http://download.eclipse.org/oomph/drops/milestone/S20150819-113829-1.2.0-M1</url>
 		</repository>
 		<!--<repository>
 			<id>ecp</id>
@@ -301,4 +306,60 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>update-branding-plugins-about.mappings</id>
+			<activation>
+				<file>
+					<exists>${basedir}/about.mappings</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>${maven.resources.version}</version>
+						<executions>
+							<execution>
+								<id>process-about.mappings</id>
+								<phase>prepare-package</phase>
+								<configuration>
+									<outputDirectory>${project.build.directory}</outputDirectory>
+									<overwrite>true</overwrite>
+									<resources>
+										<resource>
+											<directory>${basedir}</directory>
+											<includes>
+												<include>about.mappings</include>
+											</includes>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-packaging-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<configuration>
+							<additionalFileSets>
+								<fileSet>
+									<directory>${project.build.directory}</directory>
+									<includes>
+										<include>about.mappings</include>
+									</includes>
+								</fileSet>
+							</additionalFileSets>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

@@ -27,8 +27,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <discovery label="Mars" url="http://download.eclipse.org/releases/mars/"/>
-      <discovery label="Eclipse Platform 4.5" url="http://download.eclipse.org/eclipse/updates/4.5"/>
+      <discovery label="Neon" url="http://download.eclipse.org/releases/neon/"/>
+      <discovery label="Eclipse Platform 4.6" url="http://download.eclipse.org/eclipse/updates/4.6"/>
    </url>
 
    <requires>
