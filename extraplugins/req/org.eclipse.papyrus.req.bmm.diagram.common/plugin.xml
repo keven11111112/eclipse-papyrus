@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+      <paletteDefinition
+            ID="org.eclipse.papyrus.req.bmm.diagram.common.paletteDefinition1"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+            name="Bmm palette"
+            path="palette/Palette_BmmPalette.xml">
+         <Priority
+               name="High">
+         </Priority>
+         <editor
+               id="org.eclipse.papyrus.uml.diagram.deployment">
+         </editor>
+      </paletteDefinition>
+   </extension>
+
+</plugin>
