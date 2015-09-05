@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 476683
  *****************************************************************************/
 package org.eclipse.papyrus.tests.extra;
 
@@ -36,7 +37,8 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.cdo.tests.AllTests.class));
 
 		/* CPP Codegen tests */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.cpp.codegen.tests.AllPapyrusCPPCodegenTests.class));
+		suiteClasses
+				.add(new PluginTestSuiteClass(org.eclipse.papyrus.cpp.codegen.tests.AllPapyrusCPPCodegenTests.class));
 
 		/* UmlRT tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.umlrt.validation.tests.AllTests.class));
@@ -48,17 +50,27 @@ public class AllTests {
 		/**
 		 * UML Compare tests have been temporarily disabled. See:
 		 *
-		 * 389811: [Papyrus Compare] The Papyrus Compare feature is not compatible with Kepler
+		 * 389811: [Papyrus Compare] The Papyrus Compare feature is not
+		 * compatible with Kepler
 		 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=389811
 		 */
-		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.tests.AllTests.class));
-		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.file.tests.AllTests.class));
-		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.diff.tests.AllTests.class));
+		// suiteClasses.add(new
+		// PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.tests.AllTests.class));
+		// suiteClasses.add(new
+		// PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.file.tests.AllTests.class));
+		// suiteClasses.add(new
+		// PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.diff.tests.AllTests.class));
 
 		/* **************** plugins *********************** */
-		 /* AOF */
+		/* AOF */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.core.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.emf.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.gmf.tests.AllTests.class));
+
+		/* AOF Synchronization */
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.sync.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.sync.gmf.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.sync.examples.uml.tests.AllTests.class));
 	}
 
 	/**
