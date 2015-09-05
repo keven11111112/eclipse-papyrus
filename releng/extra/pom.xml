@@ -12,6 +12,7 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<modules>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.aof.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.cdo.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.cpp.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.diagramtemplate.feature</module>
