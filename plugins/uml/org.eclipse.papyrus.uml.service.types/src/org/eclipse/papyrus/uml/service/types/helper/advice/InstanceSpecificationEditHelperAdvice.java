@@ -15,7 +15,7 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 		 * Case 0: Only the target is null
 		 */
 		if (source != null && target == null) {
-			return source instanceof InstanceSpecification && ((InstanceSpecification) source).getClassifiers().size() > 0;
+			return source instanceof InstanceSpecification;
 		}
 		/*
 		 * Case 1 : source and target != null
@@ -32,6 +32,7 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 		}
 		return true;
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
 	 *
@@ -40,23 +41,22 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 	 */
 	@Override
 	protected ICommand getAfterConfigureCommand(ConfigureRequest request) {
-	InstanceSpecification linkToEdit=null;
-	InstanceSpecification source=null;
-	InstanceSpecification target=null;
-	if(request.getElementToConfigure() instanceof InstanceSpecification){
-		linkToEdit=(InstanceSpecification)(request.getElementToConfigure());
-	}
-	if(request.getParameter(CreateRelationshipRequest.SOURCE)instanceof InstanceSpecification){
-		source=(InstanceSpecification)request.getParameter(CreateRelationshipRequest.SOURCE);
-	}
-	if(request.getParameter(CreateRelationshipRequest.TARGET)instanceof InstanceSpecification){
-		target=(InstanceSpecification)request.getParameter(CreateRelationshipRequest.TARGET);
-	}
-	if( source!=null && target!= null && linkToEdit !=null){
-		return new InstanceSpecificationLinkCreateCommand(request);
-	}
+		InstanceSpecification linkToEdit = null;
+		InstanceSpecification source = null;
+		InstanceSpecification target = null;
+		if (request.getElementToConfigure() instanceof InstanceSpecification) {
+			linkToEdit = (InstanceSpecification) (request.getElementToConfigure());
+		}
+		if (request.getParameter(CreateRelationshipRequest.SOURCE) instanceof InstanceSpecification) {
+			source = (InstanceSpecification) request.getParameter(CreateRelationshipRequest.SOURCE);
+		}
+		if (request.getParameter(CreateRelationshipRequest.TARGET) instanceof InstanceSpecification) {
+			target = (InstanceSpecification) request.getParameter(CreateRelationshipRequest.TARGET);
+		}
+		if (source != null && target != null && linkToEdit != null) {
+			return new InstanceSpecificationLinkCreateCommand(request);
+		}
 		return super.getAfterConfigureCommand(request);
 	}
-
 
 }
