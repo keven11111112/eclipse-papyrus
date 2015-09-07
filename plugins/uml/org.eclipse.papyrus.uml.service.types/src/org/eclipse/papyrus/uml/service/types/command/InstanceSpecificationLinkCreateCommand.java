@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.uml.service.types.command;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -21,7 +20,6 @@ import java.util.Set;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -124,83 +122,6 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 		return InstanceSpecificationEditHelperAdvice.canCreate(source, target);
 	}
 
-	/**
-	 * Gets the instance associations.
-	 *
-	 * @param instance
-	 *            the instance
-	 * @return the instance associations
-	 */
-	private HashSet<Association> getInstanceAssociations(InstanceSpecification instance) {
-		// Initialise set of associations
-		HashSet<Association> instanceAssociationsSet = new HashSet<Association>();
-		// Extract all associations of Instance Specification's classifiers
-		Iterator<Classifier> iterator = getSpecificationClassifier(instance).iterator();
-		while (iterator.hasNext()) {
-			Classifier classifier = iterator.next();
-			instanceAssociationsSet.addAll(classifier.getAssociations());
-		}
-		return instanceAssociationsSet;
-	}
-
-	/**
-	 * Gets the specification classifiers.
-	 *
-	 * @param instance
-	 *            the instance
-	 * @return the specification classifiers
-	 */
-	private Set<Classifier> getSpecificationClassifier(InstanceSpecification instance) {
-		// Initialise Set of Classifiers
-		Set<Classifier> specificationClassicfiersSet = new HashSet<Classifier>();
-		// Explore first rank classifiers
-		for (Classifier classifier : instance.getClassifiers()) {
-
-			// Explore only Classifier which are not already in Set
-			if (!specificationClassicfiersSet.contains(classifier)) {
-				specificationClassicfiersSet.add(classifier);
-				specificationClassicfiersSet.addAll(getInheritedClassifier(classifier, null));
-			}
-		}
-		return specificationClassicfiersSet;
-	}
-
-	/**
-	 * Gets the inherited classifier.
-	 *
-	 * @param classifier
-	 *            the classifier
-	 * @return the inherited classifier
-	 */
-	private Set<Classifier> getInheritedClassifier(Classifier classifier, Set<Classifier> alreadyParsedClassifier) {
-
-
-		// Initialise set of Classifier from Generalisation
-		Set<Classifier> generalizationClassifiers = new HashSet<Classifier>();
-
-
-		// Keep track of parsed Classifier to avoid loop
-		Set<Classifier> parsedClassifiersSet = new HashSet<Classifier>();
-		if (alreadyParsedClassifier != null) {
-			parsedClassifiersSet.addAll(alreadyParsedClassifier);
-		}
-
-		// Explore only Classifier which are not already parsed
-		if (!parsedClassifiersSet.contains(classifier)) {
-			parsedClassifiersSet.add(classifier);
-
-			// Explore all generalisation of Classifier
-			EList<Classifier> classifierGeneralizations = classifier.parents();
-			generalizationClassifiers.addAll(classifierGeneralizations);
-
-			for (Classifier generalClassifier : classifierGeneralizations) {
-				generalizationClassifiers.addAll(getInheritedClassifier(generalClassifier, parsedClassifiersSet));
-			}
-		}
-
-		return generalizationClassifiers;
-	}
-
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!useUI) {
@@ -213,19 +134,24 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 			Activator.log.error(e);
 			return CommandResult.newCancelledCommandResult();
 		}
-		AssociationSelectionDialog associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, getModelAssociations(), registry);
-		associationSelectionDialog.open();
-		Association selectedAssociation = associationSelectionDialog.getSelectedAssociation();
-		if (selectedAssociation == null && associationSelectionDialog.isCanceled()) {
-			return CommandResult.newCancelledCommandResult();
+		Association selectedAssociation = null;
+		if (InstanceSpecificationEditHelperAdvice.shouldSuppressDialog(getRequest())) {
+			selectedAssociation = InstanceSpecificationEditHelperAdvice.getSuppressedDialogResult(getRequest());
+		} else {
+			AssociationSelectionDialog associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, InstanceSpecificationEditHelperAdvice.getModelAssociations(source, target), registry);
+			associationSelectionDialog.open();
+			selectedAssociation = associationSelectionDialog.getSelectedAssociation();
+			if (selectedAssociation == null && associationSelectionDialog.isCanceled()) {
+				return CommandResult.newCancelledCommandResult();
+			}
 		}
 		/*
 		 * Creation of the instance specification link
 		 * with a name a container, and set the source and target
 		 */
 		InstanceSpecification instanceSpecification = (InstanceSpecification) getElementToEdit();
-		Set<Classifier> sourceSpecificationClassifiersSet = getSpecificationClassifier((InstanceSpecification) source);
-		Set<Classifier> targetSpecificationClassifiersSet = getSpecificationClassifier((InstanceSpecification) target);
+		Set<Classifier> sourceSpecificationClassifiersSet = InstanceSpecificationEditHelperAdvice.getSpecificationClassifier((InstanceSpecification) source);
+		Set<Classifier> targetSpecificationClassifiersSet = InstanceSpecificationEditHelperAdvice.getSpecificationClassifier((InstanceSpecification) target);
 		boolean revertEnds = false;
 		if (selectedAssociation != null) {
 			instanceSpecification.getClassifiers().add(selectedAssociation);
@@ -233,11 +159,11 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 			revertEnds = false == sourceSpecificationClassifiersSet.contains(sourceType);
 		}
 		if (revertEnds) {
-			addEnd(instanceSpecification, ((InstanceSpecification) target));
-			addEnd(instanceSpecification, ((InstanceSpecification) source));
+			addEnd(instanceSpecification, target);
+			addEnd(instanceSpecification, source);
 		} else {
-			addEnd(instanceSpecification, ((InstanceSpecification) source));
-			addEnd(instanceSpecification, ((InstanceSpecification) target));
+			addEnd(instanceSpecification, source);
+			addEnd(instanceSpecification, target);
 		}
 		setupSlots(selectedAssociation, instanceSpecification, sourceSpecificationClassifiersSet, targetSpecificationClassifiersSet);
 		return CommandResult.newOKCommandResult(instanceSpecification);
@@ -269,21 +195,6 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 			}
 		}
 	}
-
-	private Set<Association> getModelAssociations() {
-		if (source == null || target == null) {
-			return Collections.emptySet();
-		}
-		if (false == source instanceof InstanceSpecification || false == target instanceof InstanceSpecification) {
-			return Collections.emptySet();
-		}
-		Set<Association> result = new HashSet<Association>();
-		result.addAll(getInstanceAssociations((InstanceSpecification) source));
-		result.retainAll(getInstanceAssociations((InstanceSpecification) target));
-		return result;
-	}
-
-
 
 	/**
 	 * create an instanceValue for the slot (owner) with the reference to InstanceSpecification and the good type

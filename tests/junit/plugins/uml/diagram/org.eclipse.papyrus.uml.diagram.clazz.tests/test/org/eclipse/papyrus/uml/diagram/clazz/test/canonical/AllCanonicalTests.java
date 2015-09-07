@@ -50,7 +50,8 @@ TestListCompartmentPropertiesOperationsDrop.class,
 TestEditableClassDiagramTopNode.class,
 TestClassDiagramAssociationClass.class,
 TestListCompartmentNestedChild.class,
-TestClassDiagramAssociationLinkSemantic.class
+TestClassDiagramAssociationLinkSemantic.class,
+TestClassDiagramInstanceSpecification.class
 })
 public class AllCanonicalTests {
 }
