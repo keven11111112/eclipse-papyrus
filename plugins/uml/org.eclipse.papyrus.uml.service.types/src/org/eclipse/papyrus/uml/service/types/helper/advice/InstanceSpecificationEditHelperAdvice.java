@@ -28,7 +28,7 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 	 * It allows to emulate different user actions in tests
 	 */
 	private static final String PARAM_SUPPRESS_DIALOG_WITH_VALUE = InstanceSpecificationEditHelperAdvice.class.getName() + ":" + "AssociationSelectionDialogResult";
-	
+
 	public static boolean canCreate(EObject source, EObject target) {
 		/*
 		 * Case 0: Only the target is null
@@ -77,7 +77,7 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 		}
 		return super.getAfterConfigureCommand(request);
 	}
-	
+
 	public static boolean shouldSuppressDialog(IEditCommandRequest request) {
 		return request.getParameters().containsKey(PARAM_SUPPRESS_DIALOG_WITH_VALUE);
 	}

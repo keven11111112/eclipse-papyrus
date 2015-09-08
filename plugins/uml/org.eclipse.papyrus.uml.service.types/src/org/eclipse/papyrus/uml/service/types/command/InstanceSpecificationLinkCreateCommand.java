@@ -11,10 +11,8 @@
  */
 package org.eclipse.papyrus.uml.service.types.command;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -56,7 +54,7 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 	protected HashSet<Association> commonAssociations;
 	protected boolean useUI = true;
 
-	protected static final String INSTANCE_END = "InstanceEnd";//
+	public static final String INSTANCE_END = "InstanceEnd";//
 
 	public InstanceSpecificationLinkCreateCommand(ConfigureRequest request) {
 		super(request);
@@ -67,24 +65,6 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 			target = (InstanceSpecification) request.getParameter(CreateRelationshipRequest.TARGET);
 		}
 		useUI = ElementTypeUtils.useGUI(request);
-	}
-
-	/**
-	 *
-	 * @param instance
-	 *            link where instance end end are look for
-	 * @return a list of two elements that are instance specfication : ends of this instance Link
-	 *         if this is not an instance link : the size of the array list is 0
-	 */
-	protected List<InstanceSpecification> getEnds(InstanceSpecification instance) {
-		List<InstanceSpecification> array = new ArrayList<InstanceSpecification>();
-		EAnnotation endtypes = instance.getEAnnotation(INSTANCE_END);
-		if (endtypes != null) {
-			assert (endtypes.getReferences().size() == 2);
-			array.add((InstanceSpecification) endtypes.getReferences().get(0));
-			array.add((InstanceSpecification) endtypes.getReferences().get(1));
-		}
-		return array;
 	}
 
 	/**
