@@ -39,8 +39,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
 
 /**
- * @author damus
- *
+ * A Guice module for injection of dependencies into mapping-related tests.
  */
 public class TestModelModule extends AbstractModule {
 

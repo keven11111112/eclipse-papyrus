@@ -18,8 +18,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * @author damus
- *
+ * Test suite for the AOF-based synchronization of GMF diagrams.
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
@@ -29,7 +28,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		NodeMappingTest.class,
 		EdgeMappingTest.class,
 		DiagramMappingTest.class,
+		MemoryLeakTest.class,
 })
 public class AllTests {
-
+	// Suite specified by the annotation
 }

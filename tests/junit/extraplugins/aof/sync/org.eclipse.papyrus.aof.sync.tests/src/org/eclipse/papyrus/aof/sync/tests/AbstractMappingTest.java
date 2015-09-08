@@ -48,8 +48,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link AbstractMapping} class.
  */
 @InjectWith(TestModelModule.class)
 public class AbstractMappingTest extends AbstractTest {

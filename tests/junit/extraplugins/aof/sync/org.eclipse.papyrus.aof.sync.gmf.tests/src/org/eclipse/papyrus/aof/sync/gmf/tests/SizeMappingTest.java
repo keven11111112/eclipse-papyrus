@@ -15,11 +15,11 @@ package org.eclipse.papyrus.aof.sync.gmf.tests;
 
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Size;
+import org.eclipse.papyrus.aof.sync.gmf.internal.SizeMapping;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link SizeMapping} class.
  */
 public class SizeMappingTest extends AbstractMappingTest<Size> {
 

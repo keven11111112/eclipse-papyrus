@@ -18,14 +18,14 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * @author damus
- *
+ * Test suite for the UML state-machine synchronization example.
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		CapsuleMappingTest.class,
 		StateMachineMappingTest.class,
+		MemoryLeakTest.class,
 })
 public class AllTests {
-
+	// Suite specified by the annotation
 }

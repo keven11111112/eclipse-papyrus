@@ -18,8 +18,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * @author damus
- *
+ * Test suite for the core AOF-based synchronization framework.
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
@@ -28,7 +27,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		AbstractMappingTest.class,
 		CorrespondenceResolverTest.class,
 		InjectCachedTest.class,
+		MemoryLeakTest.class,
 })
 public class AllTests {
-
+	// Suite specified in the annotation
 }

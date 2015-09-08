@@ -15,11 +15,11 @@ package org.eclipse.papyrus.aof.sync.gmf.tests;
 
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.aof.sync.gmf.internal.LocationMapping;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link LocationMapping} class.
  */
 public class LocationMappingTest extends AbstractMappingTest<Location> {
 

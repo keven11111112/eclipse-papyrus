@@ -26,11 +26,11 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.aof.sync.gmf.internal.EdgeMapping;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link EdgeMapping} class.
  */
 public class EdgeMappingTest extends AbstractMappingTest<Edge> {
 

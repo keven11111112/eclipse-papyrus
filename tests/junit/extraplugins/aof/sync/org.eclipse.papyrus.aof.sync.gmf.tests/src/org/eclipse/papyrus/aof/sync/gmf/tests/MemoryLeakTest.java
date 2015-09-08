@@ -13,17 +13,28 @@
 
 package org.eclipse.papyrus.aof.sync.gmf.tests;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingModule;
-import org.eclipse.papyrus.aof.sync.tests.AbstractBaseMappingTest;
-import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule;
+import org.junit.Rule;
+import org.junit.Test;
 
 /**
- * An useful base class for tests of specific notation mappings.
+ * Test cases for verification of complete memory clean-up of models
+ * that employ AOF-based synchronization of diagrams.
  */
-@InjectWith({ DiagramMappingModule.class, GenericFixtureModule.class })
-public abstract class AbstractMappingTest<T extends EObject> extends AbstractBaseMappingTest<T> {
-	public AbstractMappingTest() {
-		super();
+public class MemoryLeakTest extends AbstractMappingTest<Diagram> {
+
+	@Rule
+	public final MemoryLeakRule memory = new MemoryLeakRule();
+
+	@Test
+	public void map() {
+		memory.add(getFrom());
+		memory.add(getTo());
+
+		memory.add(mapped.getLeft());
+		memory.add(mapped.getRight());
+		memory.add(mapped);
 	}
+
 }

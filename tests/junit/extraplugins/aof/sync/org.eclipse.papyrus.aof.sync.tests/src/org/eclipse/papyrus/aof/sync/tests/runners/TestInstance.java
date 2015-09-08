@@ -11,19 +11,25 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.aof.sync.gmf.tests;
+package org.eclipse.papyrus.aof.sync.tests.runners;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingModule;
-import org.eclipse.papyrus.aof.sync.tests.AbstractBaseMappingTest;
-import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+
+import javax.inject.Qualifier;
+
+import com.google.inject.Provides;
 
 /**
- * An useful base class for tests of specific notation mappings.
+ * A qualifier annotation for injection of the test instance, itself, as a dependency.
+ * This is only useful for injection providers, such as {@link Provides @Provides}
+ * methods of a Guice module.
  */
-@InjectWith({ DiagramMappingModule.class, GenericFixtureModule.class })
-public abstract class AbstractMappingTest<T extends EObject> extends AbstractBaseMappingTest<T> {
-	public AbstractMappingTest() {
-		super();
-	}
+@Retention(RUNTIME)
+@Qualifier
+@Documented
+public @interface TestInstance {
+	// Marker interface
 }

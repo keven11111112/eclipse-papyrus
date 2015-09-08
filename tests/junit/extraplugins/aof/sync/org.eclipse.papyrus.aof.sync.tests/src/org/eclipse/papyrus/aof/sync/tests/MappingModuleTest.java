@@ -31,8 +31,7 @@ import com.google.inject.Provider;
 import com.google.inject.TypeLiteral;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link MappingModule} class.
  */
 public class MappingModuleTest {
 

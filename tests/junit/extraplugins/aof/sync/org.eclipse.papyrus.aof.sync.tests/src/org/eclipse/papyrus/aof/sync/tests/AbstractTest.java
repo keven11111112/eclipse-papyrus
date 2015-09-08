@@ -26,8 +26,7 @@ import org.junit.Rule;
 import org.junit.runner.RunWith;
 
 /**
- * @author damus
- *
+ * An useful superclass for tests in the AOF-based synchronization framework test suite.
  */
 @RunWith(GuiceRunner.class)
 public abstract class AbstractTest {

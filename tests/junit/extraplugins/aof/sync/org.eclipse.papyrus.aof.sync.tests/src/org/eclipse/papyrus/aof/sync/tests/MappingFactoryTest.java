@@ -32,8 +32,7 @@ import org.eclipse.papyrus.aof.sync.MappingModule;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link MappingFactory} class.
  */
 public class MappingFactoryTest {
 

@@ -38,8 +38,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link ICorrespondenceResolver} interface's concrete methods.
  */
 @InjectWith(TestModelModule.class)
 public class CorrespondenceResolverTest extends AbstractTest {

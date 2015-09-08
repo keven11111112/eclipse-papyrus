@@ -27,8 +27,7 @@ import org.eclipse.papyrus.aof.sync.gmf.internal.NodeMapping;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link DiagramMappingFactory} class.
  */
 public class DiagramMappingFactoryTest {
 

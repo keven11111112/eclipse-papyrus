@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.aof.sync.gmf.internal.DiagramMapping;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link DiagramMapping} class.
  */
 public class DiagramMappingTest extends AbstractMappingTest<Diagram> {
 

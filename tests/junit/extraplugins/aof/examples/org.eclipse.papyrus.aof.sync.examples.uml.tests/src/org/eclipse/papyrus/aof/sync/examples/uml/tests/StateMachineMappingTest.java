@@ -24,10 +24,9 @@ import static org.junit.Assume.assumeThat;
 
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.papyrus.aof.sync.IMapping;
-import org.eclipse.papyrus.aof.sync.examples.uml.internal.UMLRTMappingFactory;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.CapsuleMapping;
-import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.aof.sync.tests.AbstractBaseMappingTest;
+import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.utils.rules.JavaResource;
 import org.eclipse.papyrus.junit.utils.rules.ResourceSetFixture;
 import org.eclipse.uml2.uml.Class;
@@ -41,33 +40,29 @@ import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import com.google.inject.Inject;
 
 /**
  * Tests the {@link CapsuleMapping} class.
  */
+@InjectWith(TestModelModule.class)
 @JavaResource("capsules-with-machines.uml")
-public class StateMachineMappingTest extends AbstractPapyrusTest {
-	static final UMLFactory UML = UMLFactory.eINSTANCE;
-
+public class StateMachineMappingTest extends AbstractBaseMappingTest<Class> {
 	@Rule
 	public final ResourceSetFixture rset = new ResourceSetFixture();
 
-	private IMapping<Class> fixture;
-
-	private Class capsule1;
-	private Class capsule2;
+	@Inject
+	private UMLFactory uml;
 
 	@Test
 	public void synchInitialRegionFromParent() {
-		fixture.map(capsule1, capsule2);
-
-		StateMachine parent = as(capsule1.getClassifierBehavior(), StateMachine.class);
+		StateMachine parent = as(getFrom().getClassifierBehavior(), StateMachine.class);
 		assumeThat(parent, notNullValue());
 
-		StateMachine child = as(capsule2.getClassifierBehavior(), StateMachine.class);
+		StateMachine child = as(getTo().getClassifierBehavior(), StateMachine.class);
 		assumeThat(child, notNullValue());
 		assumeThat(child, not(sameInstance(parent)));
 
@@ -97,15 +92,13 @@ public class StateMachineMappingTest extends AbstractPapyrusTest {
 
 	@Test
 	public void addVertexAndTransitionToParent() {
-		fixture.map(capsule1, capsule2);
-
-		StateMachine parent = as(capsule1.getClassifierBehavior(), StateMachine.class);
+		StateMachine parent = as(getFrom().getClassifierBehavior(), StateMachine.class);
 		assumeThat(parent, notNullValue());
 		final Region parentRegion = parent.getRegions().get(0);
 		final State parentOpen = as(parentRegion.getSubvertex("open"), State.class);
 		assumeThat(parentOpen, notNullValue());
 
-		StateMachine child = as(capsule2.getClassifierBehavior(), StateMachine.class);
+		StateMachine child = as(getTo().getClassifierBehavior(), StateMachine.class);
 		assumeThat(child, notNullValue());
 
 		assumeThat(child.getRegions().size(), is(1));
@@ -113,7 +106,7 @@ public class StateMachineMappingTest extends AbstractPapyrusTest {
 		final State open = as(region.getSubvertex("open"), State.class);
 		assumeThat(open, notNullValue());
 
-		FinalState parentEnd = UML.createFinalState();
+		FinalState parentEnd = uml.createFinalState();
 		parentEnd.setName("end");
 		rset.execute(AddCommand.create(rset.getEditingDomain(), parentRegion, UMLPackage.Literals.REGION__SUBVERTEX, parentEnd));
 
@@ -123,7 +116,7 @@ public class StateMachineMappingTest extends AbstractPapyrusTest {
 
 		// Create a transition by first setting its source and target verticies
 		// and then adding it to its region
-		Transition parentTransition = UML.createTransition();
+		Transition parentTransition = uml.createTransition();
 		parentTransition.setName("finish");
 		rset.execute(
 				SetCommand.create(rset.getEditingDomain(), parentTransition, UMLPackage.Literals.TRANSITION__SOURCE, parentOpen).chain(
@@ -139,15 +132,13 @@ public class StateMachineMappingTest extends AbstractPapyrusTest {
 
 	@Test
 	public void addVertexAndTransitionToParent2() {
-		fixture.map(capsule1, capsule2);
-
-		StateMachine parent = as(capsule1.getClassifierBehavior(), StateMachine.class);
+		StateMachine parent = as(getFrom().getClassifierBehavior(), StateMachine.class);
 		assumeThat(parent, notNullValue());
 		final Region parentRegion = parent.getRegions().get(0);
 		final State parentOpen = as(parentRegion.getSubvertex("open"), State.class);
 		assumeThat(parentOpen, notNullValue());
 
-		StateMachine child = as(capsule2.getClassifierBehavior(), StateMachine.class);
+		StateMachine child = as(getTo().getClassifierBehavior(), StateMachine.class);
 		assumeThat(child, notNullValue());
 
 		assumeThat(child.getRegions().size(), is(1));
@@ -155,7 +146,7 @@ public class StateMachineMappingTest extends AbstractPapyrusTest {
 		final State open = as(region.getSubvertex("open"), State.class);
 		assumeThat(open, notNullValue());
 
-		FinalState parentEnd = UML.createFinalState();
+		FinalState parentEnd = uml.createFinalState();
 		parentEnd.setName("end");
 		rset.execute(AddCommand.create(rset.getEditingDomain(), parentRegion, UMLPackage.Literals.REGION__SUBVERTEX, parentEnd));
 
@@ -165,7 +156,7 @@ public class StateMachineMappingTest extends AbstractPapyrusTest {
 
 		// Create a transition by first adding it to its region and then
 		// setting its source and target vertices
-		Transition parentTransition = UML.createTransition();
+		Transition parentTransition = uml.createTransition();
 		parentTransition.setName("finish");
 		rset.execute(
 				AddCommand.create(rset.getEditingDomain(), parentRegion, UMLPackage.Literals.REGION__TRANSITION, parentTransition).chain(
@@ -177,17 +168,5 @@ public class StateMachineMappingTest extends AbstractPapyrusTest {
 		assertThat(transition.getRedefinedTransition(), is(parentTransition));
 		assertThat(transition.getSource(), is(open));
 		assertThat(transition.getTarget(), is(end));
-	}
-
-	//
-	// Test framework
-	//
-
-	@Before
-	public void setup() {
-		fixture = new UMLRTMappingFactory().getCapsuleMapping();
-
-		capsule1 = (Class) rset.getModel().getOwnedType("Capsule1");
-		capsule2 = (Class) rset.getModel().getOwnedType("Capsule2");
 	}
 }

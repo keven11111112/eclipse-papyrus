@@ -22,16 +22,18 @@ import org.eclipse.gmf.runtime.notation.MeasurementUnit;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.Size;
+import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingModule;
 import org.eclipse.papyrus.aof.sync.internal.CustomInjectionModule;
 import org.eclipse.papyrus.aof.sync.tests.AbstractTest.From;
 import org.eclipse.papyrus.aof.sync.tests.AbstractTest.To;
+import org.eclipse.papyrus.aof.sync.tests.runners.TestScoped;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
 /**
- * @author damus
- *
+ * Guice configuration of test dependencies additional to those provided
+ * by the {@link DiagramMappingModule}.
  */
 public class GenericFixtureModule extends AbstractModule {
 
@@ -49,36 +51,42 @@ public class GenericFixtureModule extends AbstractModule {
 
 	@Provides
 	@From
+	@TestScoped
 	public Location provideFromLocation() {
 		return NotationFactory.eINSTANCE.createLocation();
 	}
 
 	@Provides
 	@To
+	@TestScoped
 	public Location provideToLocation() {
 		return NotationFactory.eINSTANCE.createLocation();
 	}
 
 	@Provides
 	@From
+	@TestScoped
 	public Size provideFromSize() {
 		return NotationFactory.eINSTANCE.createSize();
 	}
 
 	@Provides
 	@To
+	@TestScoped
 	public Size provideToSize() {
 		return NotationFactory.eINSTANCE.createSize();
 	}
 
 	@Provides
 	@From
+	@TestScoped
 	public Node provideFromNode() {
 		return createNode("2008", EcorePackage.Literals.EDATA_TYPE);
 	}
 
 	@Provides
 	@To
+	@TestScoped
 	public Node provideToNode() {
 		return createNode("2008", EcorePackage.Literals.EDATA_TYPE);
 	}
@@ -95,12 +103,14 @@ public class GenericFixtureModule extends AbstractModule {
 
 	@Provides
 	@From
+	@TestScoped
 	public Edge provideFromEdge() {
 		return provideEdge();
 	}
 
 	@Provides
 	@To
+	@TestScoped
 	public Edge provideToEdge() {
 		return provideEdge();
 	}
@@ -138,12 +148,14 @@ public class GenericFixtureModule extends AbstractModule {
 
 	@Provides
 	@From
+	@TestScoped
 	public Diagram provideFromDiagram() {
 		return provideFromEdge().getDiagram();
 	}
 
 	@Provides
 	@To
+	@TestScoped
 	public Diagram provideToDiagram() {
 		return provideToEdge().getDiagram();
 	}

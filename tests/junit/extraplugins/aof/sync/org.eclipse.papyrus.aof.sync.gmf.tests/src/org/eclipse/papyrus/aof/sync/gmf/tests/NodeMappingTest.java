@@ -30,11 +30,11 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Size;
+import org.eclipse.papyrus.aof.sync.gmf.internal.NodeMapping;
 import org.junit.Test;
 
 /**
- * @author damus
- *
+ * Test cases for the {@link NodeMapping} class.
  */
 public class NodeMappingTest extends AbstractMappingTest<Node> {
 
