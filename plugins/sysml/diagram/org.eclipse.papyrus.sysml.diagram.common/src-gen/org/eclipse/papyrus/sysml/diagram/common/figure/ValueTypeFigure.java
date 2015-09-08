@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 public class ValueTypeFigure extends ClassifierFigure {
 
 	public ValueTypeFigure() {
-		super("valuetype"); //$NON-NLS-1$
+		super(); //$NON-NLS-1$
 	}
 
 	@Override

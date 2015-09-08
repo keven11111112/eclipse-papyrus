@@ -439,11 +439,13 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 */
 	protected TransactionalEditingDomain getTableEditingDomain() {// Duplicated from NatTableModelManager
 		ServicesRegistry registry = null;
-		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableManager().getTable());
-			return registry.getService(TransactionalEditingDomain.class);
-		} catch (final ServiceException e) {
-			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
+		if(null != getTableManager() && null != getTableManager().getTable() && null != getTableManager().getTable().eResource()){
+			try {
+				registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableManager().getTable());
+				return registry.getService(TransactionalEditingDomain.class);
+			} catch (final ServiceException e) {
+				Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
+			}
 		}
 
 		return null;

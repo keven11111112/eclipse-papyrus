@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Object Flow Edge</b></em>'.
@@ -21,8 +20,8 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ObjectFlowEdge#getTransformationLabel <em>Transformation Label</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.ObjectFlowEdge#getSelectionLabel <em>Selection Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ObjectFlowEdge#getTransformationLabel <em>Transformation Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ObjectFlowEdge#getSelectionLabel <em>Selection Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getObjectFlowEdge()
@@ -38,14 +37,14 @@ public interface ObjectFlowEdge extends ActivityEdgeEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Transformation Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Transformation Label</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Transformation Label</em>' containment reference.
 	 * @see #setTransformationLabel(TransformationLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getObjectFlowEdge_TransformationLabel()
@@ -56,10 +55,13 @@ public interface ObjectFlowEdge extends ActivityEdgeEdge {
 	TransformationLabel getTransformationLabel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ObjectFlowEdge#getTransformationLabel <em>Transformation Label</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ObjectFlowEdge#getTransformationLabel <em>Transformation Label</em>}' containment
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transformation Label</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Transformation Label</em>' containment reference.
 	 * @see #getTransformationLabel()
 	 * @generated
 	 */
@@ -72,14 +74,14 @@ public interface ObjectFlowEdge extends ActivityEdgeEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Selection Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Selection Label</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Selection Label</em>' containment reference.
 	 * @see #setSelectionLabel(SelectionLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getObjectFlowEdge_SelectionLabel()
@@ -93,7 +95,9 @@ public interface ObjectFlowEdge extends ActivityEdgeEdge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ObjectFlowEdge#getSelectionLabel <em>Selection Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Selection Label</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Selection Label</em>' containment reference.
 	 * @see #getSelectionLabel()
 	 * @generated
 	 */

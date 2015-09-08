@@ -80,7 +80,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	 */
 	@Override
 	public String getText(Object element) {
-		final LabelProviderCellContextElementWrapper wrapper = (LabelProviderCellContextElementWrapper) element;
+		final ILabelProviderContextElementWrapper wrapper = (ILabelProviderContextElementWrapper) element;
 		final IConfigRegistry configRegistry = wrapper.getConfigRegistry();
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		final Table table = modelManager.getTable();
@@ -91,7 +91,10 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 			alias = ((FeatureAxis) value).getAlias();
 		}
 
-		ILabelProviderConfiguration conf = getLabelConfiguration(wrapper);
+		ILabelProviderConfiguration conf = null;
+		if (wrapper instanceof LabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper) wrapper);
+		}
 
 		String returnedValue = null;
 		if (conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration) conf).isDisplayLabel()) {

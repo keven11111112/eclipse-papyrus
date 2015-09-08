@@ -66,9 +66,9 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypePropertyDirectEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -410,7 +410,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 * @param eventLocation
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if (getManager() instanceof TextDirectEditManager) {
+		if (getManager() instanceof DirectEditManager) {
 			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
@@ -534,11 +534,8 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 									.getExtendedData()
 									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((request instanceof DirectEditRequest)
-								&& (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) request;
-							performDirectEdit(editRequest.getLocation());
-						} else {
+						}
+						 else {
 							performDirectEdit();
 						}
 					}
@@ -776,13 +773,12 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+						if (theRequest.getExtendedData().get(
+								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-							performDirectEdit(editRequest.getLocation());
-						} else {
+						}
+						else {
 							performDirectEdit();
 						}
 					}
@@ -933,7 +929,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	@Override
 	public Object getAdapter(Class key) {
 		if (key == AppliedStereotypeProperty.class) {
-			return new AppliedStereotypeProperty(((View) getNotationView().eContainer()).getElement(), (Property) resolveSemanticElement());
+			return new AppliedStereotypeProperty(stereotypeApplication, (Property) resolveSemanticElement());
 		} else if (key == View.class) {
 			View view = this.getNotationView();
 			return view;

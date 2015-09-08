@@ -21,7 +21,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Factory that creates panel given element type.
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class PanelFactory {
 
 	/** Singleton instance for this factory */

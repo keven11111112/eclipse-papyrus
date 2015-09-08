@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST) - Bug 468026
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
@@ -17,21 +17,22 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 
 /**
- * this a abstract editpart use to add listeners
+ * this abstract editpart is used to add listeners
  */
 public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditPart {
 
-	protected static final String ASSOCIATION_END_LISTENERS_SOURCE = "AssociationEndListenersSource";
+	protected static final String ASSOCIATION_END_LISTENERS_SOURCE = "AssociationEndListenersSource"; //$NON-NLS-1$
 
-	protected static final String ASSOCIATION_END_LISTENERS_TARGET = "AssociationEndListenersTarget";
+	protected static final String ASSOCIATION_END_LISTENERS_TARGET = "AssociationEndListenersTarget"; //$NON-NLS-1$
 
 	public AbstractAssociationEditPart(View view) {
 		super(view);
@@ -113,12 +114,14 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 				Association association = (Association) getUMLElement();
 				assert (association.getMemberEnds().size() >= 2);
 				if (association.getMemberEnds() != null && association.getMemberEnds().size() >= 2) {
-					if ((association.getMemberEnds().get(0)).getType().equals(((GraphicalEditPart) getSource()).resolveSemanticElement())) {
-						source = ((association.getMemberEnds().get(0)));
+					Property firstProperty = association.getMemberEnds().get(0);
+					Type firstPropertyType = firstProperty.getType();
+					if (firstPropertyType!= null && firstPropertyType.equals(((GraphicalEditPart) getSource()).resolveSemanticElement())) {
+						source = (firstProperty);
 						target = ((association.getMemberEnds().get(1)));
 					} else {
 						source = ((association.getMemberEnds().get(1)));
-						target = ((association.getMemberEnds().get(0)));
+						target = (firstProperty);
 					}
 					int sourceType = 0;
 					int targetType = 0;

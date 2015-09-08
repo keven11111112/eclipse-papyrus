@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class DeploymentDiagramImpl extends StructureDiagramImpl implements DeploymentDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DeploymentDiagramImpl() {
@@ -36,11 +38,11 @@ public class DeploymentDiagramImpl extends StructureDiagramImpl implements Deplo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DEPLOYMENT_DIAGRAM;
 	}
-
 } //DeploymentDiagramImpl

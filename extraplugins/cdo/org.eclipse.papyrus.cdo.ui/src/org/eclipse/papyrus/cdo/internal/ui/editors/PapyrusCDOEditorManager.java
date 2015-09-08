@@ -26,16 +26,21 @@ import java.util.concurrent.Future;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.internal.ui.InteractiveConflictHandlerSelector;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOInvalidRootAgent;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.internal.cdo.transaction.CDOHandlingConflictResolver;
 import org.eclipse.emf.spi.cdo.CDOMergingConflictResolver;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
@@ -84,7 +89,10 @@ public class PapyrusCDOEditorManager {
 
 	public static final PapyrusCDOEditorManager INSTANCE = new PapyrusCDOEditorManager();
 
+	private static final boolean INTERACTIVE_CONFLICT_RESOLUTION = "true".equalsIgnoreCase(System.getProperty("INTERACTIVE_CONFLICT_RESOLUTION"));
+
 	private final BiMap<IEditorPart, CDOView> editors = HashBiMap.create();
+
 	private final Map<IEditorPart, Map<IEditorPart, CDOInvalidRootAgent>> invalidRootAgents = new HashMap();
 
 	private final Cache<IWorkbenchPage, EditorListener> editorListeners = CacheBuilder.newBuilder().weakKeys().build(new CacheLoader<IWorkbenchPage, EditorListener>() {
@@ -104,7 +112,9 @@ public class PapyrusCDOEditorManager {
 	}
 
 	public IEditorPart openEditor(IWorkbenchPage page, CDOResource diResource) throws PartInitException {
-		return openEditor(page, diResource.getURI(), diResource.getURI().trimFileExtension().lastSegment());
+		URI uri = diResource.getURI();
+		String lastSegment = uri.trimFileExtension().lastSegment();
+		return openEditor(page, uri, lastSegment);
 	}
 
 	public IEditorPart openEditor(IWorkbenchPage page, URI uri, String name) throws PartInitException {
@@ -120,17 +130,47 @@ public class PapyrusCDOEditorManager {
 
 		IEditorPart result = page.openEditor(input, PapyrusMultiDiagramEditor.EDITOR_ID);
 
-		EditingDomain domain = result.getAdapter(EditingDomain.class);
+		final EditingDomain domain = result.getAdapter(EditingDomain.class);
 		ResourceSet resourceSet = domain.getResourceSet();
 
 		CDOView view = CDOUtil.getView(resourceSet);
-
-
 		add(view, result);
 
 		if (view instanceof CDOTransaction) {
 			CDOTransaction transaction = (CDOTransaction) view;
-			transaction.options().addConflictResolver(new CDOMergingConflictResolver());
+
+			// TODO Revisit interactive conflict resolution at commit time.
+			if (INTERACTIVE_CONFLICT_RESOLUTION) {
+				CDOHandlingConflictResolver conflictResolver = new CDOHandlingConflictResolver() {
+					@Override
+					protected boolean handleConflict(final ConflictHandler conflictHandler, final long lastNonConflictTimeStamp) {
+						if (domain instanceof TransactionalEditingDomain) {
+							TransactionalEditingDomain transactionalDomain = (TransactionalEditingDomain) domain;
+							final boolean[] handled = { false };
+
+							CommandStack commandStack = domain.getCommandStack();
+							commandStack.execute(new RecordingCommand(transactionalDomain) {
+								@Override
+								protected void doExecute() {
+									handled[0] = superHandleConflict(conflictHandler, lastNonConflictTimeStamp);
+								}
+							});
+
+							return handled[0];
+						}
+
+						return superHandleConflict(conflictHandler, lastNonConflictTimeStamp);
+					}
+
+					private boolean superHandleConflict(final ConflictHandler conflictHandler, final long lastNonConflictTimeStamp) {
+						return super.handleConflict(conflictHandler, lastNonConflictTimeStamp);
+					}
+				};
+				conflictResolver.setConflictHandlerSelector(new InteractiveConflictHandlerSelector());
+				transaction.options().addConflictResolver(conflictResolver);
+			} else {
+				transaction.options().addConflictResolver(new CDOMergingConflictResolver());
+			}
 
 			ServicesRegistry services = result.getAdapter(ServicesRegistry.class);
 			view.addListener(new PapyrusTransactionListener(services, resourceSet));
@@ -218,13 +258,14 @@ public class PapyrusCDOEditorManager {
 		if (graphicalViewer != null) {
 			CDOInvalidRootAgent invalidRootAgent = new CDOInvalidRootAgent(view) {
 				private Map<Object, Resource> temporaryResources = new HashMap<Object, Resource>();
+				private int lastID;
 
 				@Override
 				protected Object createEmptyRoot(CDOObject invalidRoot) {
 					Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 					diagram.setName("Unavailable");
 
-					Resource resource = new ResourceImpl(URI.createURI("dummy://huhu"));
+					Resource resource = new ResourceImpl(URI.createURI("unavailable://" + (++lastID)));
 					resource.getContents().add(diagram);
 
 					view.getResourceSet().getResources().add(resource);

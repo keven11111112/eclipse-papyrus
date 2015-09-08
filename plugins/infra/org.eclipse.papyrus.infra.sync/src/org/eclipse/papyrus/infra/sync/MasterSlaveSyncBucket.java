@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.sync;
 
+import org.eclipse.papyrus.infra.sync.policy.ISyncPolicy;
+
 /**
  * Represents a sync bucket for a synchronization from a master item to a set of slave items
  *
@@ -57,7 +59,9 @@ public abstract class MasterSlaveSyncBucket<M, T, X> extends SyncBucket<M, T, X>
 	@Override
 	protected void onNew(SyncItem<M, T> item) {
 		// sync the new element with master
-		for (SyncFeature<M, T, X> feature : getFeatures()) {
+		final ISyncPolicy policy = getSyncService().getSyncPolicy();
+		for (SyncFeature<M, T, X> feature : policy.filter(master, item, getFeatures())) {
+			policy.observe(item, feature); // Watch for triggers to override synchronization of this feature
 			feature.synchronize(master, item, null);
 		}
 	}
@@ -66,8 +70,11 @@ public abstract class MasterSlaveSyncBucket<M, T, X> extends SyncBucket<M, T, X>
 	protected void onNew(SyncFeature<M, T, X> feature) {
 		// observe the master
 		feature.observe(master);
+
 		// sync all slaves according to the feature
-		for (SyncItem<M, T> item : getItems()) {
+		final ISyncPolicy policy = getSyncService().getSyncPolicy();
+		for (SyncItem<M, T> item : policy.filter(master, getItems(), feature)) {
+			policy.observe(item, feature); // Watch for triggers to override synchronization of this feature
 			feature.synchronize(master, item, null);
 		}
 	}

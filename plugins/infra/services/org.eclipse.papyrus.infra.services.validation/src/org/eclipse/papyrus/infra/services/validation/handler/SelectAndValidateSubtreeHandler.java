@@ -15,6 +15,8 @@
 package org.eclipse.papyrus.infra.services.validation.handler;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.commands.SelectAndValidateSubtreeCommand;
@@ -27,6 +29,10 @@ public class SelectAndValidateSubtreeHandler extends AbstractCommandHandler {
 	@Override
 	protected Command getCommand() {
 		// not useful to cache command, since selected element may change
-		return new GMFtoEMFCommandWrapper(new SelectAndValidateSubtreeCommand(getSelectedElement(), new EcoreDiagnostician()));
+		EObject selectedElement = getSelectedElement();
+		if (selectedElement == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return new GMFtoEMFCommandWrapper(new SelectAndValidateSubtreeCommand(selectedElement, new EcoreDiagnostician()));
 	}
 }

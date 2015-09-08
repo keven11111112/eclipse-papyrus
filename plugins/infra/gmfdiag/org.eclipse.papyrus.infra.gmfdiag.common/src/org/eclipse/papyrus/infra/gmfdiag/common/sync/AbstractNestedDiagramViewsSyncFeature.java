@@ -122,6 +122,14 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 	}
 
 	/**
+	 * Filters the addition of new elements to add only those that are of the nested model element type.
+	 */
+	@Override
+	protected boolean shouldAdd(SyncItem<M, T> from, SyncItem<M, T> to, EObject newSource) {
+		return getNestedSyncRegistry().getModelType().isInstance(newSource);
+	}
+
+	/**
 	 * Override this one because we need to execute certain post-actions asynchronously.
 	 */
 	@Override
@@ -196,10 +204,10 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 			}
 
 			private void onDo() {
-				UISyncUtils.asyncExec(AbstractNestedDiagramViewsSyncFeature.this, new SyncServiceRunnable.Safe<T>() {
+				runAsync(new SyncServiceRunnable.Safe<T>() {
 					@Override
 					public T run(ISyncService syncService) {
-						child = retrieveChild(to.getBackend(), getTargetModel(from, to, objectToDrop));
+						child = findChild(to.getBackend(), getTargetModel(from, to, objectToDrop));
 						if (child != null) {
 							Command additional = onTargetAdded(from, newModel, to, child);
 							if (additional != null) {
@@ -226,7 +234,7 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 	 *            The model element to look for
 	 * @return The child edit part, or <code>null</code> if none is found
 	 */
-	private T retrieveChild(T parent, EObject model) {
+	protected T findChild(T parent, EObject model) {
 		if (parent == null || model == null) {
 			return null;
 		}
@@ -268,7 +276,7 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 
 				// Only notify of add if we had done that in the first place (this is not an initial sync that is being undone)
 				if (oldSource != null) {
-					UISyncUtils.asyncExec(AbstractNestedDiagramViewsSyncFeature.this, new SyncServiceRunnable.Safe<Command>() {
+					runAsync(new SyncServiceRunnable.Safe<Command>() {
 						@Override
 						public Command run(ISyncService syncService) {
 							// A new edit-part is always created when a deleted view is restored, so find it.

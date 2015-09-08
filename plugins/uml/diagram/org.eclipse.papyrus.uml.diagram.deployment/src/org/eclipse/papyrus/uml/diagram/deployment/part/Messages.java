@@ -292,6 +292,11 @@ public class Messages extends NLS {
 	public static String PackageCreationTool_desc;
 
 	/**
+	* @generated
+	*/
+	public static String CommunicationPath1CreationTool_title;
+
+	/**
 	 * @generated
 	 */
 	public static String NodeCreationTool_title;

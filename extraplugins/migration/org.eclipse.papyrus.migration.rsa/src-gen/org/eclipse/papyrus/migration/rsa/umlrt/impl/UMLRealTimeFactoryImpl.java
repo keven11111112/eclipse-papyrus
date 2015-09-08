@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.migration.rsa.umlrt.*;
 import org.eclipse.papyrus.migration.rsa.umlrt.Capsule;
 import org.eclipse.papyrus.migration.rsa.umlrt.CapsulePart;
 import org.eclipse.papyrus.migration.rsa.umlrt.Coregion;
@@ -105,6 +106,8 @@ public class UMLRealTimeFactoryImpl extends EFactoryImpl implements UMLRealTimeF
 			return createRTRedefinableElement();
 		case UMLRealTimePackage.TRIGGER:
 			return createTrigger();
+		case UMLRealTimePackage.RT_MESSAGE:
+			return createRTMessage();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -288,6 +291,18 @@ public class UMLRealTimeFactoryImpl extends EFactoryImpl implements UMLRealTimeF
 	public Trigger createTrigger() {
 		TriggerImpl trigger = new TriggerImpl();
 		return trigger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public RTMessage createRTMessage() {
+		RTMessageImpl rtMessage = new RTMessageImpl();
+		return rtMessage;
 	}
 
 	/**

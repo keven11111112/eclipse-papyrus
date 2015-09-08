@@ -36,8 +36,10 @@ public class SetNodeVisibilityCommand extends RecordingCommand {
 	 */
 	@Override
 	protected void doExecute() {
-		if (view.isVisible() != isVisible) {
-			view.setVisible(isVisible);
+		if (null != view) {
+			if (view.isVisible() != isVisible) {
+				view.setVisible(isVisible);
+			}
 		}
 	}
 }

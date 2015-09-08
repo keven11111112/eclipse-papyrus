@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class SignalShapeImpl extends ClassifierWithAttributesShapeImpl implements SignalShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SignalShapeImpl() {
@@ -36,11 +38,11 @@ public class SignalShapeImpl extends ClassifierWithAttributesShapeImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.SIGNAL_SHAPE;
 	}
-
 } //SignalShapeImpl

@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle#getEObjectValue <em>EObject Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle#getEObjectValue <em>EObject Value</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getEObjectValueStyle()
  * @model
@@ -39,7 +39,6 @@ public interface EObjectValueStyle extends NamedStyle {
 	 * If the meaning of the '<em>EObject Value</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>EObject Value</em>' reference.
 	 * @see #setEObjectValue(EObject)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#getEObjectValueStyle_EObjectValue()
@@ -49,13 +48,10 @@ public interface EObjectValueStyle extends NamedStyle {
 	EObject getEObjectValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle#getEObjectValue
-	 * <em>EObject Value</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle#getEObjectValue <em>EObject Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>EObject Value</em>' reference.
+	 * @param value the new value of the '<em>EObject Value</em>' reference.
 	 * @see #getEObjectValue()
 	 * @generated
 	 */

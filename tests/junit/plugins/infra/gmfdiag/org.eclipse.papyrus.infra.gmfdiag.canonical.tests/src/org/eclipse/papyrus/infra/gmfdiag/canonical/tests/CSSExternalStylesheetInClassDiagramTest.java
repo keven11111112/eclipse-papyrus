@@ -59,6 +59,7 @@ public class CSSExternalStylesheetInClassDiagramTest extends AbstractCSSCanonica
 		super();
 	}
 
+	@NeedsUIEvents
 	@Scenario({ "initial", "non-canonical", "canonical", "undo", "redo" })
 	public void editStylesheetRefresh() {
 		// The classes are canonical

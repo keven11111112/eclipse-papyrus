@@ -37,23 +37,21 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getContext <em>Context</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getOwner <em>Owner</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getPrototype <em>Prototype</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getTableConfiguration <em>Table Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#isInvertAxis <em>Invert Axis</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getColumnAxisProvidersHistory <em>Column Axis Providers History</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getRowAxisProvidersHistory <em>Row Axis Providers History</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis
- * Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getLocalColumnHeaderAxisConfiguration <em>Local Column Header Axis
- * Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCells <em>Cells</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getPrototype <em>Prototype</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getTableConfiguration <em>Table Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#isInvertAxis <em>Invert Axis</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getColumnAxisProvidersHistory <em>Column Axis Providers History</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getRowAxisProvidersHistory <em>Row Axis Providers History</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getLocalColumnHeaderAxisConfiguration <em>Local Column Header Axis Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCells <em>Cells</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -63,7 +61,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getContext()
 	 * @generated
 	 * @ordered
@@ -74,7 +71,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getOwner()
 	 * @generated
 	 * @ordered
@@ -85,7 +81,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getPrototype() <em>Prototype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getPrototype()
 	 * @generated
 	 * @ordered
@@ -96,7 +91,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getTableConfiguration() <em>Table Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getTableConfiguration()
 	 * @generated
 	 * @ordered
@@ -107,7 +101,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The default value of the '{@link #isInvertAxis() <em>Invert Axis</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isInvertAxis()
 	 * @generated
 	 * @ordered
@@ -118,7 +111,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #isInvertAxis() <em>Invert Axis</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isInvertAxis()
 	 * @generated
 	 * @ordered
@@ -129,7 +121,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getColumnAxisProvidersHistory() <em>Column Axis Providers History</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getColumnAxisProvidersHistory()
 	 * @generated
 	 * @ordered
@@ -140,7 +131,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getRowAxisProvidersHistory() <em>Row Axis Providers History</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getRowAxisProvidersHistory()
 	 * @generated
 	 * @ordered
@@ -151,7 +141,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getLocalRowHeaderAxisConfiguration() <em>Local Row Header Axis Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getLocalRowHeaderAxisConfiguration()
 	 * @generated
 	 * @ordered
@@ -159,11 +148,9 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	protected LocalTableHeaderAxisConfiguration localRowHeaderAxisConfiguration;
 
 	/**
-	 * The cached value of the '{@link #getLocalColumnHeaderAxisConfiguration() <em>Local Column Header Axis Configuration</em>}' containment
-	 * reference.
+	 * The cached value of the '{@link #getLocalColumnHeaderAxisConfiguration() <em>Local Column Header Axis Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getLocalColumnHeaderAxisConfiguration()
 	 * @generated
 	 * @ordered
@@ -174,7 +161,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getCurrentRowAxisProvider() <em>Current Row Axis Provider</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getCurrentRowAxisProvider()
 	 * @generated
 	 * @ordered
@@ -185,7 +171,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getCurrentColumnAxisProvider() <em>Current Column Axis Provider</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getCurrentColumnAxisProvider()
 	 * @generated
 	 * @ordered
@@ -196,7 +181,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * The cached value of the '{@link #getCells() <em>Cells</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getCells()
 	 * @generated
 	 * @ordered
@@ -206,7 +190,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected TableImpl() {
@@ -216,7 +199,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -227,18 +209,16 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject getContext() {
-		if(context != null && context.eIsProxy()) {
+		if (context != null && context.eIsProxy()) {
 			InternalEObject oldContext = (InternalEObject)context;
 			context = eResolveProxy(oldContext);
-			if(context != oldContext) {
-				if(eNotificationRequired()) {
+			if (context != oldContext) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__CONTEXT, oldContext, context));
-				}
 			}
 		}
 		return context;
@@ -247,7 +227,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EObject basicGetContext() {
@@ -257,33 +236,29 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setContext(EObject newContext) {
 		EObject oldContext = context;
 		context = newContext;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__CONTEXT, oldContext, context));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject getOwner() {
-		if(owner != null && owner.eIsProxy()) {
+		if (owner != null && owner.eIsProxy()) {
 			InternalEObject oldOwner = (InternalEObject)owner;
 			owner = eResolveProxy(oldOwner);
-			if(owner != oldOwner) {
-				if(eNotificationRequired()) {
+			if (owner != oldOwner) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__OWNER, oldOwner, owner));
-				}
 			}
 		}
 		return owner;
@@ -292,7 +267,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EObject basicGetOwner() {
@@ -302,33 +276,29 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setOwner(EObject newOwner) {
 		EObject oldOwner = owner;
 		owner = newOwner;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__OWNER, oldOwner, owner));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject getPrototype() {
-		if(prototype != null && prototype.eIsProxy()) {
+		if (prototype != null && prototype.eIsProxy()) {
 			InternalEObject oldPrototype = (InternalEObject)prototype;
 			prototype = eResolveProxy(oldPrototype);
-			if(prototype != oldPrototype) {
-				if(eNotificationRequired()) {
+			if (prototype != oldPrototype) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__PROTOTYPE, oldPrototype, prototype));
-				}
 			}
 		}
 		return prototype;
@@ -337,7 +307,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EObject basicGetPrototype() {
@@ -347,33 +316,29 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setPrototype(EObject newPrototype) {
 		EObject oldPrototype = prototype;
 		prototype = newPrototype;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__PROTOTYPE, oldPrototype, prototype));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public TableConfiguration getTableConfiguration() {
-		if(tableConfiguration != null && tableConfiguration.eIsProxy()) {
+		if (tableConfiguration != null && tableConfiguration.eIsProxy()) {
 			InternalEObject oldTableConfiguration = (InternalEObject)tableConfiguration;
 			tableConfiguration = (TableConfiguration)eResolveProxy(oldTableConfiguration);
-			if(tableConfiguration != oldTableConfiguration) {
-				if(eNotificationRequired()) {
+			if (tableConfiguration != oldTableConfiguration) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__TABLE_CONFIGURATION, oldTableConfiguration, tableConfiguration));
-				}
 			}
 		}
 		return tableConfiguration;
@@ -382,7 +347,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public TableConfiguration basicGetTableConfiguration() {
@@ -392,22 +356,19 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setTableConfiguration(TableConfiguration newTableConfiguration) {
 		TableConfiguration oldTableConfiguration = tableConfiguration;
 		tableConfiguration = newTableConfiguration;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__TABLE_CONFIGURATION, oldTableConfiguration, tableConfiguration));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -418,27 +379,24 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setInvertAxis(boolean newInvertAxis) {
 		boolean oldInvertAxis = invertAxis;
 		invertAxis = newInvertAxis;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__INVERT_AXIS, oldInvertAxis, invertAxis));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<AbstractAxisProvider> getColumnAxisProvidersHistory() {
-		if(columnAxisProvidersHistory == null) {
+		if (columnAxisProvidersHistory == null) {
 			columnAxisProvidersHistory = new EObjectContainmentEList<AbstractAxisProvider>(AbstractAxisProvider.class, this, NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY);
 		}
 		return columnAxisProvidersHistory;
@@ -447,12 +405,11 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<AbstractAxisProvider> getRowAxisProvidersHistory() {
-		if(rowAxisProvidersHistory == null) {
+		if (rowAxisProvidersHistory == null) {
 			rowAxisProvidersHistory = new EObjectContainmentEList<AbstractAxisProvider>(AbstractAxisProvider.class, this, NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY);
 		}
 		return rowAxisProvidersHistory;
@@ -461,7 +418,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -472,19 +428,14 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalRowHeaderAxisConfiguration(LocalTableHeaderAxisConfiguration newLocalRowHeaderAxisConfiguration, NotificationChain msgs) {
 		LocalTableHeaderAxisConfiguration oldLocalRowHeaderAxisConfiguration = localRowHeaderAxisConfiguration;
 		localRowHeaderAxisConfiguration = newLocalRowHeaderAxisConfiguration;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION, oldLocalRowHeaderAxisConfiguration, newLocalRowHeaderAxisConfiguration);
-			if(msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -492,32 +443,26 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setLocalRowHeaderAxisConfiguration(LocalTableHeaderAxisConfiguration newLocalRowHeaderAxisConfiguration) {
-		if(newLocalRowHeaderAxisConfiguration != localRowHeaderAxisConfiguration) {
+		if (newLocalRowHeaderAxisConfiguration != localRowHeaderAxisConfiguration) {
 			NotificationChain msgs = null;
-			if(localRowHeaderAxisConfiguration != null) {
+			if (localRowHeaderAxisConfiguration != null)
 				msgs = ((InternalEObject)localRowHeaderAxisConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION, null, msgs);
-			}
-			if(newLocalRowHeaderAxisConfiguration != null) {
+			if (newLocalRowHeaderAxisConfiguration != null)
 				msgs = ((InternalEObject)newLocalRowHeaderAxisConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION, null, msgs);
-			}
 			msgs = basicSetLocalRowHeaderAxisConfiguration(newLocalRowHeaderAxisConfiguration, msgs);
-			if(msgs != null) {
-				msgs.dispatch();
-			}
-		} else if(eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION, newLocalRowHeaderAxisConfiguration, newLocalRowHeaderAxisConfiguration));
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION, newLocalRowHeaderAxisConfiguration, newLocalRowHeaderAxisConfiguration));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -528,19 +473,14 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalColumnHeaderAxisConfiguration(LocalTableHeaderAxisConfiguration newLocalColumnHeaderAxisConfiguration, NotificationChain msgs) {
 		LocalTableHeaderAxisConfiguration oldLocalColumnHeaderAxisConfiguration = localColumnHeaderAxisConfiguration;
 		localColumnHeaderAxisConfiguration = newLocalColumnHeaderAxisConfiguration;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION, oldLocalColumnHeaderAxisConfiguration, newLocalColumnHeaderAxisConfiguration);
-			if(msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -548,43 +488,36 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setLocalColumnHeaderAxisConfiguration(LocalTableHeaderAxisConfiguration newLocalColumnHeaderAxisConfiguration) {
-		if(newLocalColumnHeaderAxisConfiguration != localColumnHeaderAxisConfiguration) {
+		if (newLocalColumnHeaderAxisConfiguration != localColumnHeaderAxisConfiguration) {
 			NotificationChain msgs = null;
-			if(localColumnHeaderAxisConfiguration != null) {
+			if (localColumnHeaderAxisConfiguration != null)
 				msgs = ((InternalEObject)localColumnHeaderAxisConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION, null, msgs);
-			}
-			if(newLocalColumnHeaderAxisConfiguration != null) {
+			if (newLocalColumnHeaderAxisConfiguration != null)
 				msgs = ((InternalEObject)newLocalColumnHeaderAxisConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION, null, msgs);
-			}
 			msgs = basicSetLocalColumnHeaderAxisConfiguration(newLocalColumnHeaderAxisConfiguration, msgs);
-			if(msgs != null) {
-				msgs.dispatch();
-			}
-		} else if(eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION, newLocalColumnHeaderAxisConfiguration, newLocalColumnHeaderAxisConfiguration));
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION, newLocalColumnHeaderAxisConfiguration, newLocalColumnHeaderAxisConfiguration));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public AbstractAxisProvider getCurrentRowAxisProvider() {
-		if(currentRowAxisProvider != null && currentRowAxisProvider.eIsProxy()) {
+		if (currentRowAxisProvider != null && currentRowAxisProvider.eIsProxy()) {
 			InternalEObject oldCurrentRowAxisProvider = (InternalEObject)currentRowAxisProvider;
 			currentRowAxisProvider = (AbstractAxisProvider)eResolveProxy(oldCurrentRowAxisProvider);
-			if(currentRowAxisProvider != oldCurrentRowAxisProvider) {
-				if(eNotificationRequired()) {
+			if (currentRowAxisProvider != oldCurrentRowAxisProvider) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER, oldCurrentRowAxisProvider, currentRowAxisProvider));
-				}
 			}
 		}
 		return currentRowAxisProvider;
@@ -593,7 +526,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public AbstractAxisProvider basicGetCurrentRowAxisProvider() {
@@ -603,33 +535,29 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setCurrentRowAxisProvider(AbstractAxisProvider newCurrentRowAxisProvider) {
 		AbstractAxisProvider oldCurrentRowAxisProvider = currentRowAxisProvider;
 		currentRowAxisProvider = newCurrentRowAxisProvider;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER, oldCurrentRowAxisProvider, currentRowAxisProvider));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public AbstractAxisProvider getCurrentColumnAxisProvider() {
-		if(currentColumnAxisProvider != null && currentColumnAxisProvider.eIsProxy()) {
+		if (currentColumnAxisProvider != null && currentColumnAxisProvider.eIsProxy()) {
 			InternalEObject oldCurrentColumnAxisProvider = (InternalEObject)currentColumnAxisProvider;
 			currentColumnAxisProvider = (AbstractAxisProvider)eResolveProxy(oldCurrentColumnAxisProvider);
-			if(currentColumnAxisProvider != oldCurrentColumnAxisProvider) {
-				if(eNotificationRequired()) {
+			if (currentColumnAxisProvider != oldCurrentColumnAxisProvider) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER, oldCurrentColumnAxisProvider, currentColumnAxisProvider));
-				}
 			}
 		}
 		return currentColumnAxisProvider;
@@ -638,7 +566,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public AbstractAxisProvider basicGetCurrentColumnAxisProvider() {
@@ -648,27 +575,24 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setCurrentColumnAxisProvider(AbstractAxisProvider newCurrentColumnAxisProvider) {
 		AbstractAxisProvider oldCurrentColumnAxisProvider = currentColumnAxisProvider;
 		currentColumnAxisProvider = newCurrentColumnAxisProvider;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER, oldCurrentColumnAxisProvider, currentColumnAxisProvider));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<Cell> getCells() {
-		if(cells == null) {
+		if (cells == null) {
 			cells = new EObjectContainmentEList<Cell>(Cell.class, this, NattablePackage.TABLE__CELLS);
 		}
 		return cells;
@@ -677,22 +601,21 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			return ((InternalEList<?>)getColumnAxisProvidersHistory()).basicRemove(otherEnd, msgs);
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			return ((InternalEList<?>)getRowAxisProvidersHistory()).basicRemove(otherEnd, msgs);
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			return basicSetLocalRowHeaderAxisConfiguration(null, msgs);
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			return basicSetLocalColumnHeaderAxisConfiguration(null, msgs);
-		case NattablePackage.TABLE__CELLS:
-			return ((InternalEList<?>)getCells()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				return ((InternalEList<?>)getColumnAxisProvidersHistory()).basicRemove(otherEnd, msgs);
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				return ((InternalEList<?>)getRowAxisProvidersHistory()).basicRemove(otherEnd, msgs);
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				return basicSetLocalRowHeaderAxisConfiguration(null, msgs);
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				return basicSetLocalColumnHeaderAxisConfiguration(null, msgs);
+			case NattablePackage.TABLE__CELLS:
+				return ((InternalEList<?>)getCells()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -700,54 +623,41 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablePackage.TABLE__CONTEXT:
-			if(resolve) {
-				return getContext();
-			}
-			return basicGetContext();
-		case NattablePackage.TABLE__OWNER:
-			if(resolve) {
-				return getOwner();
-			}
-			return basicGetOwner();
-		case NattablePackage.TABLE__PROTOTYPE:
-			if(resolve) {
-				return getPrototype();
-			}
-			return basicGetPrototype();
-		case NattablePackage.TABLE__TABLE_CONFIGURATION:
-			if(resolve) {
-				return getTableConfiguration();
-			}
-			return basicGetTableConfiguration();
-		case NattablePackage.TABLE__INVERT_AXIS:
-			return isInvertAxis();
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			return getColumnAxisProvidersHistory();
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			return getRowAxisProvidersHistory();
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			return getLocalRowHeaderAxisConfiguration();
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			return getLocalColumnHeaderAxisConfiguration();
-		case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
-			if(resolve) {
-				return getCurrentRowAxisProvider();
-			}
-			return basicGetCurrentRowAxisProvider();
-		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
-			if(resolve) {
-				return getCurrentColumnAxisProvider();
-			}
-			return basicGetCurrentColumnAxisProvider();
-		case NattablePackage.TABLE__CELLS:
-			return getCells();
+		switch (featureID) {
+			case NattablePackage.TABLE__CONTEXT:
+				if (resolve) return getContext();
+				return basicGetContext();
+			case NattablePackage.TABLE__OWNER:
+				if (resolve) return getOwner();
+				return basicGetOwner();
+			case NattablePackage.TABLE__PROTOTYPE:
+				if (resolve) return getPrototype();
+				return basicGetPrototype();
+			case NattablePackage.TABLE__TABLE_CONFIGURATION:
+				if (resolve) return getTableConfiguration();
+				return basicGetTableConfiguration();
+			case NattablePackage.TABLE__INVERT_AXIS:
+				return isInvertAxis();
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				return getColumnAxisProvidersHistory();
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				return getRowAxisProvidersHistory();
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				return getLocalRowHeaderAxisConfiguration();
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				return getLocalColumnHeaderAxisConfiguration();
+			case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
+				if (resolve) return getCurrentRowAxisProvider();
+				return basicGetCurrentRowAxisProvider();
+			case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
+				if (resolve) return getCurrentColumnAxisProvider();
+				return basicGetCurrentColumnAxisProvider();
+			case NattablePackage.TABLE__CELLS:
+				return getCells();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -755,52 +665,51 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablePackage.TABLE__CONTEXT:
-			setContext((EObject)newValue);
-			return;
-		case NattablePackage.TABLE__OWNER:
-			setOwner((EObject)newValue);
-			return;
-		case NattablePackage.TABLE__PROTOTYPE:
-			setPrototype((EObject)newValue);
-			return;
-		case NattablePackage.TABLE__TABLE_CONFIGURATION:
-			setTableConfiguration((TableConfiguration)newValue);
-			return;
-		case NattablePackage.TABLE__INVERT_AXIS:
-			setInvertAxis((Boolean)newValue);
-			return;
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			getColumnAxisProvidersHistory().clear();
-			getColumnAxisProvidersHistory().addAll((Collection<? extends AbstractAxisProvider>)newValue);
-			return;
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			getRowAxisProvidersHistory().clear();
-			getRowAxisProvidersHistory().addAll((Collection<? extends AbstractAxisProvider>)newValue);
-			return;
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			setLocalRowHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)newValue);
-			return;
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			setLocalColumnHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)newValue);
-			return;
-		case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
-			setCurrentRowAxisProvider((AbstractAxisProvider)newValue);
-			return;
-		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
-			setCurrentColumnAxisProvider((AbstractAxisProvider)newValue);
-			return;
-		case NattablePackage.TABLE__CELLS:
-			getCells().clear();
-			getCells().addAll((Collection<? extends Cell>)newValue);
-			return;
+		switch (featureID) {
+			case NattablePackage.TABLE__CONTEXT:
+				setContext((EObject)newValue);
+				return;
+			case NattablePackage.TABLE__OWNER:
+				setOwner((EObject)newValue);
+				return;
+			case NattablePackage.TABLE__PROTOTYPE:
+				setPrototype((EObject)newValue);
+				return;
+			case NattablePackage.TABLE__TABLE_CONFIGURATION:
+				setTableConfiguration((TableConfiguration)newValue);
+				return;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				setInvertAxis((Boolean)newValue);
+				return;
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				getColumnAxisProvidersHistory().clear();
+				getColumnAxisProvidersHistory().addAll((Collection<? extends AbstractAxisProvider>)newValue);
+				return;
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				getRowAxisProvidersHistory().clear();
+				getRowAxisProvidersHistory().addAll((Collection<? extends AbstractAxisProvider>)newValue);
+				return;
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				setLocalRowHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)newValue);
+				return;
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				setLocalColumnHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)newValue);
+				return;
+			case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
+				setCurrentRowAxisProvider((AbstractAxisProvider)newValue);
+				return;
+			case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
+				setCurrentColumnAxisProvider((AbstractAxisProvider)newValue);
+				return;
+			case NattablePackage.TABLE__CELLS:
+				getCells().clear();
+				getCells().addAll((Collection<? extends Cell>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -808,48 +717,47 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablePackage.TABLE__CONTEXT:
-			setContext((EObject)null);
-			return;
-		case NattablePackage.TABLE__OWNER:
-			setOwner((EObject)null);
-			return;
-		case NattablePackage.TABLE__PROTOTYPE:
-			setPrototype((EObject)null);
-			return;
-		case NattablePackage.TABLE__TABLE_CONFIGURATION:
-			setTableConfiguration((TableConfiguration)null);
-			return;
-		case NattablePackage.TABLE__INVERT_AXIS:
-			setInvertAxis(INVERT_AXIS_EDEFAULT);
-			return;
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			getColumnAxisProvidersHistory().clear();
-			return;
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			getRowAxisProvidersHistory().clear();
-			return;
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			setLocalRowHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)null);
-			return;
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			setLocalColumnHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)null);
-			return;
-		case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
-			setCurrentRowAxisProvider((AbstractAxisProvider)null);
-			return;
-		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
-			setCurrentColumnAxisProvider((AbstractAxisProvider)null);
-			return;
-		case NattablePackage.TABLE__CELLS:
-			getCells().clear();
-			return;
+		switch (featureID) {
+			case NattablePackage.TABLE__CONTEXT:
+				setContext((EObject)null);
+				return;
+			case NattablePackage.TABLE__OWNER:
+				setOwner((EObject)null);
+				return;
+			case NattablePackage.TABLE__PROTOTYPE:
+				setPrototype((EObject)null);
+				return;
+			case NattablePackage.TABLE__TABLE_CONFIGURATION:
+				setTableConfiguration((TableConfiguration)null);
+				return;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				setInvertAxis(INVERT_AXIS_EDEFAULT);
+				return;
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				getColumnAxisProvidersHistory().clear();
+				return;
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				getRowAxisProvidersHistory().clear();
+				return;
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				setLocalRowHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)null);
+				return;
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				setLocalColumnHeaderAxisConfiguration((LocalTableHeaderAxisConfiguration)null);
+				return;
+			case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
+				setCurrentRowAxisProvider((AbstractAxisProvider)null);
+				return;
+			case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
+				setCurrentColumnAxisProvider((AbstractAxisProvider)null);
+				return;
+			case NattablePackage.TABLE__CELLS:
+				getCells().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -857,36 +765,35 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablePackage.TABLE__CONTEXT:
-			return context != null;
-		case NattablePackage.TABLE__OWNER:
-			return owner != null;
-		case NattablePackage.TABLE__PROTOTYPE:
-			return prototype != null;
-		case NattablePackage.TABLE__TABLE_CONFIGURATION:
-			return tableConfiguration != null;
-		case NattablePackage.TABLE__INVERT_AXIS:
-			return invertAxis != INVERT_AXIS_EDEFAULT;
-		case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
-			return columnAxisProvidersHistory != null && !columnAxisProvidersHistory.isEmpty();
-		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
-			return rowAxisProvidersHistory != null && !rowAxisProvidersHistory.isEmpty();
-		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
-			return localRowHeaderAxisConfiguration != null;
-		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
-			return localColumnHeaderAxisConfiguration != null;
-		case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
-			return currentRowAxisProvider != null;
-		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
-			return currentColumnAxisProvider != null;
-		case NattablePackage.TABLE__CELLS:
-			return cells != null && !cells.isEmpty();
+		switch (featureID) {
+			case NattablePackage.TABLE__CONTEXT:
+				return context != null;
+			case NattablePackage.TABLE__OWNER:
+				return owner != null;
+			case NattablePackage.TABLE__PROTOTYPE:
+				return prototype != null;
+			case NattablePackage.TABLE__TABLE_CONFIGURATION:
+				return tableConfiguration != null;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				return invertAxis != INVERT_AXIS_EDEFAULT;
+			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:
+				return columnAxisProvidersHistory != null && !columnAxisProvidersHistory.isEmpty();
+			case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
+				return rowAxisProvidersHistory != null && !rowAxisProvidersHistory.isEmpty();
+			case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
+				return localRowHeaderAxisConfiguration != null;
+			case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+				return localColumnHeaderAxisConfiguration != null;
+			case NattablePackage.TABLE__CURRENT_ROW_AXIS_PROVIDER:
+				return currentRowAxisProvider != null;
+			case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
+				return currentColumnAxisProvider != null;
+			case NattablePackage.TABLE__CELLS:
+				return cells != null && !cells.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -894,14 +801,12 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (invertAxis: "); //$NON-NLS-1$
 		result.append(invertAxis);

@@ -8,6 +8,7 @@
    <extension-point id="model" name="plugin.xml.ModelName" schema="schema/model.exsd"/>
    <extension-point id="transactionalEditingDomainProvider" name="transactionalEditingDomainProvider" schema="schema/transactionalEditingDomainProvider.exsd"/>
    <extension-point id="sashModelProvider" name="Sash Model Providers" schema="schema/sashModelProvider.exsd"/>
+   <extension-point id="language" name="Modeling Language" schema="schema/language.exsd"/>
    
    <extension
          point="org.eclipse.ui.menus">
@@ -394,5 +395,14 @@
                 type="org.eclipse.papyrus.infra.core.services.IService">
           </adapter>
        </factory>
+    </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.core.service">
+       <service
+             classname="org.eclipse.papyrus.infra.core.internal.language.LanguageService"
+             id="org.eclipse.papyrus.infra.core.language.ILanguageService"
+             priority="10"
+             startKind="startup">
+       </service>
     </extension>
 </plugin>

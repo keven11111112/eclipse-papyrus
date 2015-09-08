@@ -97,8 +97,16 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 			WrappingLabel wl = cf.getNameLabel();
 			// display name
 			if (wl != null && container.getChildren().contains(wl)) {
-				if (wl.getPreferredSize().width > minimumWith) {
-					minimumWith = wl.getPreferredSize().width + 2;
+				int prefNameWidth = wl.getPreferredSize().width;
+				if (prefNameWidth > minimumWith) {
+					minimumWith = prefNameWidth + 2;
+				}
+			}
+			WrappingLabel stereotypeLabel = cf.getStereotypesLabel();
+			if (stereotypeLabel != null && container.getChildren().contains(stereotypeLabel)) {
+				int prefStereoWidth = stereotypeLabel.getPreferredSize().width;
+				if (prefStereoWidth > minimumWith) {
+					minimumWith = prefStereoWidth + 2;
 				}
 			}
 		}

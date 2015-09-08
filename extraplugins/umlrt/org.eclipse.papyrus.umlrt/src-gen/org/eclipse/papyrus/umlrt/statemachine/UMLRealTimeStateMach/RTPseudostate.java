@@ -26,10 +26,10 @@ import org.eclipse.uml2.uml.Pseudostate;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.RTPseudostate#getBase_Pseudostate <em>Base Pseudostate</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.UMLRealTimeStateMachPackage#getRTPseudostate()
  * @model

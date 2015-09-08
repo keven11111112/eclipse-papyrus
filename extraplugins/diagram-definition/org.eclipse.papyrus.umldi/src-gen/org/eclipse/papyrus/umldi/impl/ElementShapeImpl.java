@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.umldi.ElementShape;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 
@@ -24,9 +23,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public abstract class ElementShapeImpl extends UmlShapeImpl implements ElementShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ElementShapeImpl() {
@@ -36,11 +37,11 @@ public abstract class ElementShapeImpl extends UmlShapeImpl implements ElementSh
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ELEMENT_SHAPE;
 	}
-
 } //ElementShapeImpl

@@ -23,10 +23,10 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.IdAxisWrapper#getElement <em>Element</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.IdAxisWrapper#getElement <em>Element</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage#getIdAxisWrapper()
  * @model
@@ -41,7 +41,6 @@ public interface IdAxisWrapper extends ICellAxisWrapper {
 	 * <!-- begin-model-doc -->
 	 * The id used to identifies an element.
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Element</em>' attribute.
 	 * @see #setElement(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage#getIdAxisWrapper_Element()
@@ -52,13 +51,10 @@ public interface IdAxisWrapper extends ICellAxisWrapper {
 	String getElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.IdAxisWrapper#getElement <em>Element</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.IdAxisWrapper#getElement <em>Element</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Element</em>' attribute.
+	 * @param value the new value of the '<em>Element</em>' attribute.
 	 * @see #getElement()
 	 * @generated
 	 */

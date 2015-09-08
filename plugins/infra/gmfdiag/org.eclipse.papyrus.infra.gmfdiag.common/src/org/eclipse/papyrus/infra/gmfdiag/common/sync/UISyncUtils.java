@@ -41,19 +41,12 @@ public class UISyncUtils {
 	 *            a sync object
 	 * @param operation
 	 *            a sync-service operation
-	 * @return the result of the {@code operation}, if it completes without throwing
-	 * 
-	 * @throws X
-	 *             a checked exception that the {@code operation} may optionally declare
+	 * @return the future result of the {@code operation}
 	 * 
 	 * @see SyncServiceRunnable.Safe
 	 */
-	public static <V, X extends Exception> CheckedFuture<V, X> asyncExec(final ISyncObject syncObject, final SyncServiceRunnable<V, X> operation) throws X {
-		CheckedFuture<V, X> result = operation.asFuture(syncObject);
-
-		Display.getDefault().asyncExec((Runnable) result);
-
-		return result;
+	public static <V, X extends Exception> CheckedFuture<V, X> asyncExec(final ISyncObject syncObject, final SyncServiceRunnable<V, X> operation) {
+		return syncObject.runAsync(operation);
 	}
 
 	/**

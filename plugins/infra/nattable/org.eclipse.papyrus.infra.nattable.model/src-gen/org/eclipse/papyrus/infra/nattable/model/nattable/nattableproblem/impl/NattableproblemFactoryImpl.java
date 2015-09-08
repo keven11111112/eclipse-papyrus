@@ -26,7 +26,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringR
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class NattableproblemFactoryImpl extends EFactoryImpl implements NattableproblemFactory {
@@ -35,16 +34,16 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static NattableproblemFactory init() {
 		try {
 			NattableproblemFactory theNattableproblemFactory = (NattableproblemFactory)EPackage.Registry.INSTANCE.getEFactory(NattableproblemPackage.eNS_URI);
-			if(theNattableproblemFactory != null) {
+			if (theNattableproblemFactory != null) {
 				return theNattableproblemFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NattableproblemFactoryImpl();
@@ -54,7 +53,6 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattableproblemFactoryImpl() {
@@ -64,25 +62,21 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case NattableproblemPackage.PROBLEM:
-			return createProblem();
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM:
-			return createStringResolutionProblem();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch (eClass.getClassifierID()) {
+			case NattableproblemPackage.PROBLEM: return createProblem();
+			case NattableproblemPackage.STRING_RESOLUTION_PROBLEM: return createStringResolutionProblem();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -94,7 +88,6 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -106,7 +99,6 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -117,7 +109,6 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @deprecated
 	 * @generated
 	 */

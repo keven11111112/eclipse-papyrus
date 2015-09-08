@@ -21,11 +21,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.RequestConstants;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.sync.EMFDispatch;
 import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncFeature;
@@ -103,11 +104,7 @@ public class NodePositionSyncFeature<M extends EObject, T extends EditPart> exte
 
 		if (!locationFrom.equals(locationTo)) {
 			// compute the reaction command
-			ChangeBoundsRequest request = new ChangeBoundsRequest();
-			request.setType(RequestConstants.REQ_MOVE);
-			request.setEditParts(toEditPart);
-			request.setMoveDelta(new Point(locationFrom.x - locationTo.x, locationFrom.y - locationTo.y));
-			Command reaction = GEFtoEMFCommandWrapper.wrap(toEditPart.getCommand(request));
+			Command reaction = GMFtoEMFCommandWrapper.wrap(new SetBoundsCommand(getEditingDomain(), "Synchronize Node Location", toEditPart, locationFrom));
 
 			// dispatch the reaction
 			if (message == null) {
@@ -136,5 +133,25 @@ public class NodePositionSyncFeature<M extends EObject, T extends EditPart> exte
 		}
 
 		return result;
+	}
+
+	public static <M extends EObject, T extends EditPart> NotationSyncPolicyDelegate<M, T> createPolicyDelegate() {
+		return new NotationSyncPolicyDelegate<M, T>(NotationPackage.Literals.LOCATION.getName()) {
+
+			@Override
+			protected EMFDispatch createDispatcher(SyncItem<M, T> syncTarget) {
+				return new NodePositionSyncDispatcher<M, T>(syncTarget) {
+					@Override
+					public void onClear() {
+						// Nothing to do do
+					}
+
+					@Override
+					protected void onFilteredChange(Notification notification) {
+						overrideOccurred(this, getItem());
+					}
+				};
+			}
+		};
 	}
 }

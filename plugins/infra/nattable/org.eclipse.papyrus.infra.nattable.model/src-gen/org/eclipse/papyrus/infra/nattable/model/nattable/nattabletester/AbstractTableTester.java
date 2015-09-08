@@ -36,7 +36,6 @@ public interface AbstractTableTester extends StyledElement {
 	 * <!-- begin-model-doc -->
 	 * Returns an object representing the tester
 	 * <!-- end-model-doc -->
-	 *
 	 * @model kind="operation"
 	 * @generated
 	 */

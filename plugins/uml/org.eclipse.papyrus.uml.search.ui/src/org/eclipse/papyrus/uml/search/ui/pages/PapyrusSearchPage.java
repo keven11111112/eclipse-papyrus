@@ -1385,7 +1385,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					} else {
 						// One query per di file to avoid one single slow query on many files
 						ArrayList<AbstractPapyrusQuery> queries = new ArrayList<AbstractPapyrusQuery>(scope.size());
-						boolean delay = scope.size() > 1 ? false : true;
+						//boolean delay = scope.size() > 1 ? false : true;
+						boolean delay = false;
 						
 						for (URI uri : scope) {
 							Collection<URI> singleScope = new HashSet<URI>();

@@ -12,12 +12,21 @@
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.deployment.test.IDeploymentDiagramTestsConstants;
+import org.eclipse.uml2.uml.Element;
 import org.junit.Test;
 
 /**
@@ -29,11 +38,12 @@ public class TestDeploymentDiagramDeploymentLink extends TestWithoutReconnectAMu
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateDeploymentDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return IDeploymentDiagramTestsConstants.PROJECT_NAME;
@@ -43,14 +53,49 @@ public class TestDeploymentDiagramDeploymentLink extends TestWithoutReconnectAMu
 	protected String getFileName() {
 		return IDeploymentDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	/**
 	 * Test to manage Deployment
 	 */
 
 	@Test
 	public void testToManageDeployment() {
-		testToManageLink(UMLElementTypes.Node_2008, UMLElementTypes.Artifact_2006, UMLElementTypes.Deployment_4001, UMLElementTypes.Package_2009, true);
+		testToManageLink(UMLElementTypes.Artifact_2006, UMLElementTypes.Node_2008, UMLElementTypes.Deployment_4001, UMLElementTypes.Package_2009, false);
+	}
+
+	@Test
+	public void testUnexecutableNodeArtifactDeployment() {
+		testUnexecutableLink(UMLElementTypes.Node_2008, UMLElementTypes.Artifact_2006, UMLElementTypes.Deployment_4001);
+	}
+
+	@Test
+	public void testUnexecutableNodeNodeDeployment() {
+		testUnexecutableLink(UMLElementTypes.Node_2008, UMLElementTypes.Node_2008, UMLElementTypes.Deployment_4001);
+	}
+
+	@Test
+	public void testUnexecutableArtifactArtifactDeployment() {
+		testUnexecutableLink(UMLElementTypes.Artifact_2006, UMLElementTypes.Artifact_2006, UMLElementTypes.Deployment_4001);
+	}
+
+	@Override
+	protected void checkOwnedElementsAfterCreation(String prefix) {
+		assertTrue(prefix + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 4);
+		assertEquals(prefix + TEST_THE_EXECUTION, 0, ((Element) source.resolveSemanticElement()).getOwnedElements().size());
+		assertEquals(prefix + TEST_THE_EXECUTION, 1, ((Element) target.resolveSemanticElement()).getOwnedElements().size());
+	}
+
+	@Override
+	protected void checkOwnedElementsBeforeCreation(String prefix) {
+		assertTrue(prefix + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 4);
+		assertEquals(prefix + TEST_THE_UNDO, 0, ((Element) source.resolveSemanticElement()).getOwnedElements().size());
+		assertEquals(prefix + TEST_THE_UNDO, 0, ((Element) target.resolveSemanticElement()).getOwnedElements().size());
+	}
+
+	private void testUnexecutableLink(IElementType sourceType, IElementType targetType, IElementType linkType) {
+		installEnvironment(sourceType, targetType);
+		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
+		assertNull(CREATION + COMMAND_NULL, command);
 	}
 
 }

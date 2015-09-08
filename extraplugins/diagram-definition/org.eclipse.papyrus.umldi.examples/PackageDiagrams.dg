@@ -2,135 +2,63 @@
 <dg:RootCanvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dg="http://www.omg.org/spec/DD/20110901/DG" id="Packages">
   <member xsi:type="dg:Group">
     <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Group">
-      <member xsi:type="dg:Rectangle">
-        <bounds x="247.0" y="8.0" width="68.0" height="19.0"/>
-      </member>
-      <member xsi:type="dg:Rectangle">
-        <bounds x="247.0" y="27.0" width="287.0" height="147.0"/>
-      </member>
-      <member xsi:type="dg:Path">
-        <command xsi:type="dg:MoveTo">
-          <point x="305.0" y="13.0"/>
-        </command>
-        <command xsi:type="dg:LineTo">
-          <point x="300.0" y="21.0"/>
-        </command>
-        <command xsi:type="dg:LineTo">
-          <point x="310.0" y="21.0"/>
-        </command>
-        <command xsi:type="dg:LineTo">
-          <point x="305.0" y="13.0"/>
-        </command>
-      </member>
+    <member xsi:type="dg:Group"/>
+    <member xsi:type="dg:Text" data="DurationObservation1" anchor="middle">
+      <bounds x="680.0" y="172.0" width="122.0" height="13.0"/>
     </member>
-    <member xsi:type="dg:Text" data="Model" anchor="middle">
-      <bounds x="257.0" y="13.0" width="33.0" height="13.0"/>
+  </member>
+  <member xsi:type="dg:Group">
+    <style fontSize="11.0" fontName="Segoe UI"/>
+    <member xsi:type="dg:Path">
+      <command xsi:type="dg:MoveTo">
+        <point x="33.0" y="41.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="147.0" y="41.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="157.0" y="51.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="157.0" y="101.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="33.0" y="101.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="33.0" y="41.0"/>
+      </command>
+      <command xsi:type="dg:MoveTo">
+        <point x="147.0" y="41.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="147.0" y="51.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="157.0" y="51.0"/>
+      </command>
     </member>
-    <member xsi:type="dg:Group">
-      <member xsi:type="dg:Line">
-        <start x="247.0" y="27.0"/>
-        <end x="534.0" y="27.0"/>
-      </member>
-      <member xsi:type="dg:Group">
-        <style fontSize="11.0" fontName="Segoe UI"/>
-        <member xsi:type="dg:Group">
-          <member xsi:type="dg:Rectangle">
-            <bounds x="273.0" y="49.0" width="71.0" height="19.0"/>
-          </member>
-          <member xsi:type="dg:Rectangle">
-            <bounds x="273.0" y="68.0" width="200.0" height="82.0"/>
-          </member>
-        </member>
-        <member xsi:type="dg:Text" data="Package5" anchor="middle">
-          <bounds x="283.0" y="54.0" width="51.0" height="13.0"/>
-        </member>
-        <member xsi:type="dg:Group">
-          <member xsi:type="dg:Line">
-            <start x="273.0" y="68.0"/>
-            <end x="473.0" y="68.0"/>
-          </member>
-        </member>
-      </member>
+    <member xsi:type="dg:Text" data="{Constraint1: {OCL} self}">
+      <bounds x="34.0" y="42.0" width="114.0" height="50.0"/>
     </member>
   </member>
   <member xsi:type="dg:Group">
     <style fontSize="11.0" fontName="Segoe UI"/>
     <member xsi:type="dg:Group">
       <member xsi:type="dg:Rectangle">
-        <bounds x="517.0" y="192.0" width="71.0" height="19.0"/>
+        <bounds x="517.0" y="211.0" width="200.0" height="81.0"/>
       </member>
       <member xsi:type="dg:Rectangle">
-        <bounds x="517.0" y="211.0" width="200.0" height="82.0"/>
+        <bounds x="517.0" y="192.0" width="62.0" height="19.0"/>
       </member>
     </member>
     <member xsi:type="dg:Text" data="Package1" anchor="middle">
-      <bounds x="527.0" y="197.0" width="51.0" height="13.0"/>
+      <bounds x="522.0" y="195.0" width="51.0" height="13.0"/>
     </member>
     <member xsi:type="dg:Group">
       <member xsi:type="dg:Line">
         <start x="517.0" y="211.0"/>
         <end x="717.0" y="211.0"/>
-      </member>
-    </member>
-  </member>
-  <member xsi:type="dg:Group">
-    <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Group">
-      <member xsi:type="dg:Rectangle">
-        <bounds x="25.0" y="190.0" width="71.0" height="19.0"/>
-      </member>
-      <member xsi:type="dg:Rectangle">
-        <bounds x="25.0" y="209.0" width="328.0" height="163.0"/>
-      </member>
-    </member>
-    <member xsi:type="dg:Text" data="Package2" anchor="middle">
-      <bounds x="35.0" y="195.0" width="51.0" height="13.0"/>
-    </member>
-    <member xsi:type="dg:Group">
-      <member xsi:type="dg:Line">
-        <start x="25.0" y="209.0"/>
-        <end x="353.0" y="209.0"/>
-      </member>
-      <member xsi:type="dg:Group">
-        <style fontSize="11.0" fontName="Segoe UI"/>
-        <member xsi:type="dg:Group">
-          <member xsi:type="dg:Rectangle">
-            <bounds x="84.0" y="249.0" width="71.0" height="19.0"/>
-          </member>
-          <member xsi:type="dg:Rectangle">
-            <bounds x="84.0" y="268.0" width="200.0" height="82.0"/>
-          </member>
-        </member>
-        <member xsi:type="dg:Text" data="Package4" anchor="middle">
-          <bounds x="94.0" y="254.0" width="51.0" height="13.0"/>
-        </member>
-        <member xsi:type="dg:Group">
-          <member xsi:type="dg:Line">
-            <start x="84.0" y="268.0"/>
-            <end x="284.0" y="268.0"/>
-          </member>
-        </member>
-      </member>
-    </member>
-  </member>
-  <member xsi:type="dg:Group">
-    <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Group">
-      <member xsi:type="dg:Rectangle">
-        <bounds x="514.0" y="351.0" width="71.0" height="19.0"/>
-      </member>
-      <member xsi:type="dg:Rectangle">
-        <bounds x="514.0" y="370.0" width="200.0" height="82.0"/>
-      </member>
-    </member>
-    <member xsi:type="dg:Text" data="Package3" anchor="middle">
-      <bounds x="524.0" y="356.0" width="51.0" height="13.0"/>
-    </member>
-    <member xsi:type="dg:Group">
-      <member xsi:type="dg:Line">
-        <start x="514.0" y="370.0"/>
-        <end x="714.0" y="370.0"/>
       </member>
     </member>
   </member>
@@ -171,127 +99,123 @@
   </member>
   <member xsi:type="dg:Group">
     <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Path">
-      <command xsi:type="dg:MoveTo">
-        <point x="33.0" y="41.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="147.0" y="41.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="157.0" y="51.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="157.0" y="101.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="33.0" y="101.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="33.0" y="41.0"/>
-      </command>
-      <command xsi:type="dg:MoveTo">
-        <point x="147.0" y="41.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="147.0" y="51.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="157.0" y="51.0"/>
-      </command>
-    </member>
-    <member xsi:type="dg:Text" data="Constraint1" anchor="middle">
-      <bounds x="59.0" y="47.0" width="63.0" height="13.0"/>
-    </member>
-    <member xsi:type="dg:Text" data="{{OCL} self}">
-      <bounds x="39.0" y="60.0" width="103.0" height="13.0"/>
-    </member>
-  </member>
-  <member xsi:type="dg:Group">
-    <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Rectangle">
-      <bounds x="660.0" y="155.0" width="20.0" height="20.0"/>
-    </member>
-    <member xsi:type="dg:Text" data="DurationObservation1" anchor="middle">
-      <bounds x="685.0" y="158.0" width="122.0" height="13.0"/>
-    </member>
-  </member>
-  <member xsi:type="dg:Group">
-    <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Rectangle">
-      <bounds x="179.0" y="406.0" width="20.0" height="20.0"/>
-    </member>
+    <member xsi:type="dg:Group"/>
     <member xsi:type="dg:Text" data="TimeObservation1" anchor="middle">
-      <bounds x="204.0" y="409.0" width="102.0" height="13.0"/>
-    </member>
-  </member>
-  <member xsi:type="dg:Group">
-    <style fontSize="9.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Path">
-      <class>dotted</class>
-      <command xsi:type="dg:MoveTo">
-        <point x="609.0" y="89.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="534.0" y="89.0"/>
-      </command>
-    </member>
-  </member>
-  <member xsi:type="dg:Group">
-    <style fontSize="9.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.2">
-      <class>dashed</class>
-      <command xsi:type="dg:MoveTo">
-        <point x="353.0" y="294.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="517.0" y="242.0"/>
-      </command>
-    </member>
-    <member xsi:type="dg:Text" data="" anchor="middle">
-      <bounds x="453.0" y="325.0" width="0.0" height="11.0"/>
+      <bounds x="72.0" y="405.0" width="102.0" height="13.0"/>
     </member>
   </member>
   <member xsi:type="dg:Group">
     <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.2">
-      <class>dashed</class>
-      <command xsi:type="dg:MoveTo">
-        <point x="668.0" y="292.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="668.0" y="370.0"/>
-      </command>
+    <member xsi:type="dg:Group">
+      <member xsi:type="dg:Rectangle">
+        <bounds x="25.0" y="209.0" width="328.0" height="162.0"/>
+      </member>
+      <member xsi:type="dg:Rectangle">
+        <bounds x="25.0" y="190.0" width="62.0" height="19.0"/>
+      </member>
     </member>
-    <member xsi:type="dg:Text" data="&#xab;abstraction&#xbb;&#xA;" anchor="middle">
-      <bounds x="623.0" y="327.0" width="0.0" height="13.0"/>
+    <member xsi:type="dg:Text" data="Package2" anchor="middle">
+      <bounds x="30.0" y="193.0" width="51.0" height="13.0"/>
+    </member>
+    <member xsi:type="dg:Group">
+      <member xsi:type="dg:Line">
+        <start x="25.0" y="209.0"/>
+        <end x="353.0" y="209.0"/>
+      </member>
+      <member xsi:type="dg:Group">
+        <style fontSize="11.0" fontName="Segoe UI"/>
+        <member xsi:type="dg:Group">
+          <member xsi:type="dg:Rectangle">
+            <bounds x="84.0" y="268.0" width="200.0" height="81.0"/>
+          </member>
+          <member xsi:type="dg:Rectangle">
+            <bounds x="84.0" y="249.0" width="62.0" height="19.0"/>
+          </member>
+        </member>
+        <member xsi:type="dg:Text" data="Package4" anchor="middle">
+          <bounds x="89.0" y="252.0" width="51.0" height="13.0"/>
+        </member>
+        <member xsi:type="dg:Group">
+          <member xsi:type="dg:Line">
+            <start x="84.0" y="268.0"/>
+            <end x="284.0" y="268.0"/>
+          </member>
+        </member>
+      </member>
     </member>
   </member>
   <member xsi:type="dg:Group">
     <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.2">
-      <class>dashed</class>
-      <command xsi:type="dg:MoveTo">
-        <point x="353.0" y="359.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="514.0" y="359.0"/>
-      </command>
+    <member xsi:type="dg:Group">
+      <member xsi:type="dg:Rectangle">
+        <bounds x="514.0" y="370.0" width="200.0" height="81.0"/>
+      </member>
+      <member xsi:type="dg:Rectangle">
+        <bounds x="514.0" y="351.0" width="62.0" height="19.0"/>
+      </member>
     </member>
-    <member xsi:type="dg:Text" data="&#xab;import&#xbb;&#xA;" anchor="middle">
-      <bounds x="411.0" y="380.0" width="0.0" height="13.0"/>
+    <member xsi:type="dg:Text" data="Package3" anchor="middle">
+      <bounds x="519.0" y="354.0" width="51.0" height="13.0"/>
+    </member>
+    <member xsi:type="dg:Group">
+      <member xsi:type="dg:Line">
+        <start x="514.0" y="370.0"/>
+        <end x="714.0" y="370.0"/>
+      </member>
     </member>
   </member>
   <member xsi:type="dg:Group">
     <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Path">
-      <class>dotted</class>
-      <command xsi:type="dg:MoveTo">
-        <point x="157.0" y="65.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="247.0" y="65.0"/>
-      </command>
+    <member xsi:type="dg:Group">
+      <member xsi:type="dg:Rectangle">
+        <bounds x="247.0" y="27.0" width="287.0" height="146.0"/>
+      </member>
+      <member xsi:type="dg:Rectangle">
+        <bounds x="247.0" y="8.0" width="59.0" height="19.0"/>
+      </member>
+      <member xsi:type="dg:Path">
+        <command xsi:type="dg:MoveTo">
+          <point x="295.0" y="13.0"/>
+        </command>
+        <command xsi:type="dg:LineTo">
+          <point x="290.0" y="21.0"/>
+        </command>
+        <command xsi:type="dg:LineTo">
+          <point x="300.0" y="21.0"/>
+        </command>
+        <command xsi:type="dg:LineTo">
+          <point x="295.0" y="13.0"/>
+        </command>
+      </member>
+    </member>
+    <member xsi:type="dg:Text" data="Model" anchor="middle">
+      <bounds x="252.0" y="11.0" width="33.0" height="13.0"/>
+    </member>
+    <member xsi:type="dg:Group">
+      <member xsi:type="dg:Line">
+        <start x="247.0" y="27.0"/>
+        <end x="534.0" y="27.0"/>
+      </member>
+      <member xsi:type="dg:Group">
+        <style fontSize="11.0" fontName="Segoe UI"/>
+        <member xsi:type="dg:Group">
+          <member xsi:type="dg:Rectangle">
+            <bounds x="273.0" y="68.0" width="200.0" height="81.0"/>
+          </member>
+          <member xsi:type="dg:Rectangle">
+            <bounds x="273.0" y="49.0" width="62.0" height="19.0"/>
+          </member>
+        </member>
+        <member xsi:type="dg:Text" data="Package5" anchor="middle">
+          <bounds x="278.0" y="52.0" width="51.0" height="13.0"/>
+        </member>
+        <member xsi:type="dg:Group">
+          <member xsi:type="dg:Line">
+            <start x="273.0" y="68.0"/>
+            <end x="473.0" y="68.0"/>
+          </member>
+        </member>
+      </member>
     </member>
   </member>
   <member xsi:type="dg:Group">
@@ -308,19 +232,103 @@
   </member>
   <member xsi:type="dg:Group">
     <style fontSize="9.0" fontName="Segoe UI"/>
+    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.4">
+      <class>dashed</class>
+      <command xsi:type="dg:MoveTo">
+        <point x="353.0" y="294.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="517.0" y="242.0"/>
+      </command>
+    </member>
+    <member xsi:type="dg:Text" data="" anchor="middle">
+      <bounds x="453.0" y="325.0" width="0.0" height="11.0"/>
+    </member>
+  </member>
+  <member xsi:type="dg:Group">
+    <style fontSize="9.0" fontName="Segoe UI"/>
     <member xsi:type="dg:Path">
       <class>dotted</class>
       <command xsi:type="dg:MoveTo">
-        <point x="183.0" y="406.0"/>
+        <point x="609.0" y="89.0"/>
       </command>
       <command xsi:type="dg:LineTo">
-        <point x="183.0" y="371.0"/>
+        <point x="534.0" y="89.0"/>
       </command>
     </member>
   </member>
   <member xsi:type="dg:Group">
     <style fontSize="11.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.2">
+    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.4">
+      <class>dashed</class>
+      <command xsi:type="dg:MoveTo">
+        <point x="668.0" y="292.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="668.0" y="370.0"/>
+      </command>
+    </member>
+    <member xsi:type="dg:Text" data="&#xab;abstraction&#xbb;&#xA;" anchor="middle">
+      <bounds x="587.0" y="321.0" width="72.0" height="13.0"/>
+    </member>
+  </member>
+  <member xsi:type="dg:Group">
+    <style fontSize="9.0" fontName="Segoe UI"/>
+    <member xsi:type="dg:Path">
+      <class>dotted</class>
+      <command xsi:type="dg:MoveTo">
+        <point x="637.0" y="119.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="578.0" y="203.0"/>
+      </command>
+    </member>
+  </member>
+  <member xsi:type="dg:Group">
+    <style fontSize="9.0" fontName="Segoe UI"/>
+    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.4">
+      <class>dashed</class>
+      <command xsi:type="dg:MoveTo">
+        <point x="284.0" y="294.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="372.0" y="149.0"/>
+      </command>
+    </member>
+    <member xsi:type="dg:Text" data="" anchor="middle">
+      <bounds x="379.0" y="253.0" width="0.0" height="11.0"/>
+    </member>
+  </member>
+  <member xsi:type="dg:Group">
+    <style fontSize="11.0" fontName="Segoe UI"/>
+    <member xsi:type="dg:Path">
+      <class>dotted</class>
+      <command xsi:type="dg:MoveTo">
+        <point x="157.0" y="65.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="247.0" y="65.0"/>
+      </command>
+    </member>
+  </member>
+  <member xsi:type="dg:Group">
+    <style fontSize="11.0" fontName="Segoe UI"/>
+    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.4">
+      <class>dashed</class>
+      <command xsi:type="dg:MoveTo">
+        <point x="353.0" y="359.0"/>
+      </command>
+      <command xsi:type="dg:LineTo">
+        <point x="514.0" y="359.0"/>
+      </command>
+    </member>
+    <member xsi:type="dg:Text" data="&#xab;import&#xbb;&#xA;" anchor="middle">
+      <bounds x="411.0" y="380.0" width="0.0" height="13.0"/>
+    </member>
+  </member>
+  <member xsi:type="dg:Group">
+    <style fontSize="11.0" fontName="Segoe UI"/>
+    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.4">
       <class>dashed</class>
       <command xsi:type="dg:MoveTo">
         <point x="266.0" y="173.0"/>
@@ -335,28 +343,13 @@
   </member>
   <member xsi:type="dg:Group">
     <style fontSize="9.0" fontName="Segoe UI"/>
-    <member xsi:type="dg:Path" endMarker="//@definitions/@definition.2">
-      <class>dashed</class>
-      <command xsi:type="dg:MoveTo">
-        <point x="284.0" y="294.0"/>
-      </command>
-      <command xsi:type="dg:LineTo">
-        <point x="372.0" y="149.0"/>
-      </command>
-    </member>
-    <member xsi:type="dg:Text" data="" anchor="middle">
-      <bounds x="379.0" y="253.0" width="0.0" height="11.0"/>
-    </member>
-  </member>
-  <member xsi:type="dg:Group">
-    <style fontSize="9.0" fontName="Segoe UI"/>
     <member xsi:type="dg:Path">
       <class>dotted</class>
       <command xsi:type="dg:MoveTo">
-        <point x="637.0" y="119.0"/>
+        <point x="183.0" y="406.0"/>
       </command>
       <command xsi:type="dg:LineTo">
-        <point x="586.0" y="192.0"/>
+        <point x="183.0" y="371.0"/>
       </command>
     </member>
   </member>
@@ -385,6 +378,30 @@
       <size width="12.0" height="12.0"/>
       <reference x="12.0" y="6.0"/>
     </definition>
+    <definition xsi:type="dg:Marker" id="midSolidClosedArrow">
+      <member xsi:type="dg:Polygon">
+        <style>
+          <fill color="#000000"/>
+        </style>
+        <point x="1.0" y="1.0"/>
+        <point x="12.0" y="6.0"/>
+        <point x="1.0" y="11.0"/>
+      </member>
+      <size width="12.0" height="12.0"/>
+      <reference x="6.0" y="6.0"/>
+    </definition>
+    <definition xsi:type="dg:Marker" id="endSolidClosedArrowSmall">
+      <member xsi:type="dg:Polygon">
+        <style>
+          <fill color="#000000"/>
+        </style>
+        <point x="1.0" y="1.0"/>
+        <point x="8.0" y="4.0"/>
+        <point x="1.0" y="7.0"/>
+      </member>
+      <size width="8.0" height="8.0"/>
+      <reference x="8.0" y="4.0"/>
+    </definition>
     <definition xsi:type="dg:Marker" id="endOpenArrow">
       <member xsi:type="dg:Polyline">
         <point x="1.0" y="1.0"/>
@@ -394,6 +411,15 @@
       <size width="12.0" height="12.0"/>
       <reference x="12.0" y="6.0"/>
     </definition>
+    <definition xsi:type="dg:Marker" id="endOpenArrowSmall">
+      <member xsi:type="dg:Polyline">
+        <point x="1.0" y="1.0"/>
+        <point x="8.0" y="4.0"/>
+        <point x="1.0" y="7.0"/>
+      </member>
+      <size width="8.0" height="8.0"/>
+      <reference x="8.0" y="4.0"/>
+    </definition>
     <definition xsi:type="dg:Marker" id="endSolidCircleOpenArrow">
       <member xsi:type="dg:Circle" radius="3.0">
         <style>
@@ -402,6 +428,24 @@
         <center x="16.0" y="6.0"/>
       </member>
       <member xsi:type="dg:Polyline">
+        <point x="1.0" y="1.0"/>
+        <point x="12.0" y="6.0"/>
+        <point x="1.0" y="11.0"/>
+      </member>
+      <size width="20.0" height="12.0"/>
+      <reference x="20.0" y="6.0"/>
+    </definition>
+    <definition xsi:type="dg:Marker" id="endSolidCircleSolidClosedArrow">
+      <member xsi:type="dg:Circle" radius="3.0">
+        <style>
+          <fill color="#000000"/>
+        </style>
+        <center x="16.0" y="6.0"/>
+      </member>
+      <member xsi:type="dg:Polygon">
+        <style>
+          <fill color="#000000"/>
+        </style>
         <point x="1.0" y="1.0"/>
         <point x="12.0" y="6.0"/>
         <point x="1.0" y="11.0"/>
@@ -565,6 +609,16 @@
         <point x="19.0" y="11.0"/>
       </member>
       <size width="20.0" height="12.0"/>
+      <reference x="0.0" y="6.0"/>
+    </definition>
+    <definition xsi:type="dg:Marker" id="startSolidCircle">
+      <member xsi:type="dg:Circle" radius="3.0">
+        <style>
+          <fill color="#000000"/>
+        </style>
+        <center x="3.0" y="6.0"/>
+      </member>
+      <size width="7.0" height="12.0"/>
       <reference x="0.0" y="6.0"/>
     </definition>
     <definition xsi:type="dg:Marker" id="startSolidDiamond">

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
+ *  Christian W. Damus - bug 471836
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.handler;
@@ -16,9 +18,6 @@ package org.eclipse.papyrus.uml.developper.mde.handler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.papyrus.uml.developper.mde.I_DeveloperIDMStereotype;
 import org.eclipse.papyrus.uml.developper.mde.command.CreateDocumentModelCommand;
 import org.eclipse.papyrus.uml.developper.mde.transcription.TranscriptionEngine;
@@ -37,31 +36,20 @@ public class GetWikiTextHandler extends IDMAbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
 		System.err.println(getCurrentProject().getLocationURI().getPath());
-		IDMAbstractHandler.elt2DocElt.clear();
-		IDMAbstractHandler.Toc2DocElt.clear();
-		CreateDocumentModelCommand createDocumentModelCommand = new CreateDocumentModelCommand(transactionalEditingDomain, (Model) getSelection(), getCurrentProject().getLocationURI().getPath() + INTERNAL_DIRECTORY_NAME);
-		transactionalEditingDomain.getCommandStack().execute(createDocumentModelCommand);
-		IProject project = getCurrentProject();
-		TranscriptionEngine engine = new TranscriptionEngine((Model) getSelection(), project, new WikiTranscription());
-		engine.traduce();
+		IDMAbstractHandler.clear();
+
+		try {
+			CreateDocumentModelCommand createDocumentModelCommand = new CreateDocumentModelCommand(transactionalEditingDomain, (Model) getSelection(), getCurrentProject().getLocationURI().getPath() + INTERNAL_DIRECTORY_NAME);
+			transactionalEditingDomain.getCommandStack().execute(createDocumentModelCommand);
+			IProject project = getCurrentProject();
+			TranscriptionEngine engine = new TranscriptionEngine((Model) getSelection(), project, new WikiTranscription());
+			engine.traduce();
+		} finally {
+			IDMAbstractHandler.clear();
+		}
+
 		return null;
 	}
-
-
-	private IProject getCurrentProject() {
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IWorkspaceRoot root = workspace.getRoot();
-		IProject project = root.getProject();
-		String path = getSelection().eResource().getURI().path();
-		for (IProject currentProject : root.getProjects()) {
-			if (path.contains(currentProject.getName())) {
-				project = currentProject;
-			}
-		}
-		return project;
-	}
-
-
 
 	@Override
 	public boolean isEnabled() {

@@ -44,6 +44,7 @@ import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -68,10 +69,12 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 		boolean result = false;
 		if (object instanceof Property) {
 			final Property prop = (Property) object;
-			final Element owner = prop.getOwner();
-			result = owner instanceof Stereotype;
-			if (result) {
-				result = owner.getOwner() instanceof Profile;
+			Element owner = prop.getOwner();
+			if (owner instanceof Stereotype) {
+				while(owner.getOwner() instanceof Package && !result){
+					owner = owner.getOwner();
+					result = owner instanceof Profile;
+				}
 				if (result) {
 					result = EMFHelper.isReadOnly(prop);
 				}

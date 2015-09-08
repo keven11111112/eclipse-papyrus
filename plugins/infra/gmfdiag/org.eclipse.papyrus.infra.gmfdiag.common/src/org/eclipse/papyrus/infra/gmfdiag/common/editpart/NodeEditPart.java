@@ -23,7 +23,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -32,6 +31,7 @@ import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
+import org.eclipse.gmf.tooling.runtime.linklf.editparts.LinkLFBorderedShapeEditPart;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.FollowSVGSymbolEditPolicy;
@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusConnectionHa
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusPopupBarEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusResizableShapeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.LinkLFSVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.PapyrusDragEditPartsTrackerEx;
@@ -48,7 +49,7 @@ import org.w3c.dom.svg.SVGDocument;
 /**
  * this edit part can refresh shadow and gradient.
  */
-public abstract class NodeEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart {
+public abstract class NodeEditPart extends LinkLFBorderedShapeEditPart implements IPapyrusEditPart {
 
 	protected SVGNodePlateFigure svgNodePlate;
 
@@ -160,6 +161,10 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
 			refreshShadow();
+			// refresh root to avoid shadow artifact
+			if (AppearanceHelper.showShadow((View) getModel()) && getRoot() != null) {
+				getRoot().refresh();
+			}
 		}
 	}
 
@@ -291,8 +296,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 * @return the figure that allow following border of shape
 	 */
 	protected NodeFigure createSVGNodePlate() {
-
-		svgNodePlate = new SVGNodePlateFigure(-1, -1);
+		svgNodePlate = new LinkLFSVGNodePlateFigure(this, -1, -1).withLinkLFEnabled();
 		svgNodePlate.setDefaultNodePlate(createNodePlate());
 		return svgNodePlate;
 	}

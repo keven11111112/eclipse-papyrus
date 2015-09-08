@@ -10,101 +10,12 @@
  *  CEA LIST - Initial API and implementation
  */
 
-function validate(parent) {
-	layout(parent);
-	var children = getChildren(parent);
-	for (var i=0; i<children.length; i++)
-		validate(children[i]);
-}
+var svgNS = "http://www.w3.org/2000/svg";
 
-function layout(parent) {
-	var lm = parent.getAttribute("layout");
-	if (lm != null && lm.length>0)
-		eval(lm);
-	else if (parent.tagName == "text")
-		layoutText(parent);
-}
-
-function getChildren(parent) {
-	var children = [];
-	var elements = parent.childNodes;
-	for (var i=0; i<elements.length; i++) {
-		var element = elements.item(i);
-		if (element.tagName != "script" && element.tagName != "defs" && element.nodeType != 3)
-			children.push(element);
-	}
-	return children;
-}
-
-function getPreferredSize(parent) {
-	var lm = parent.getAttribute("layout");
-	if (lm != null && lm.length>0) {
-		var prefSize = eval("getPreferredSize_"+lm);
-		return prefSize;
-	} 
-	var bbox = parent.getBBox();
-	return new Dimension(bbox.width+10, bbox.height+10);
-}
-
-function getBounds(element) {
-	var bbox = element.getBBox();
-	return new Rectangle(bbox.x, bbox.y, bbox.width, bbox.height);
-}
-
-function setBounds(element, x, y, width, height) {
-	
-	if (element.tagName == "rect")
-		setRectBounds(element, x, y, width, height);
-	else if (element.tagName == "svg")
-		setSvgBounds(element, x, y, width, height);
-	else if (element.tagName == "g")
-		setGBounds(element, x, y, width, height);
-	else if (element.tagName == "circle")
-		setCircleBounds(element, x, y, width, height);
-	else if (element.tagName == "text")
-		setTextBounds(element, x, y, width, height);
-}
-
-function setSvgBounds(element, x, y, width, height) {
-	element.setAttribute("x", x);
-	element.setAttribute("y", y);
-	element.setAttribute("width", width+1);
-	element.setAttribute("height", height);
-}
-
-function setGBounds(element, x, y, width, height) {
-	element.setAttribute("x", x);
-	element.setAttribute("y", y);
-	element.setAttribute("width", width);
-	element.setAttribute("height", height);
-}
-
-function setRectBounds(element, x, y, width, height) {
-	element.setAttribute("x", x);
-	element.setAttribute("y", y);
-	element.setAttribute("width", width);
-	element.setAttribute("height", height);
-}
-
-function setCircleBounds(element, x, y, width, height) {
-	element.setAttribute("cx", x+width/2);
-	element.setAttribute("cy", y+height/2);
-	if (width <= height)
-		element.setAttribute("r", width/2);
-	else
-		element.setAttribute("r", height/2);
-}
-
-function setTextBounds(element, x, y, width, height) {
-	var bbox = element.getBBox();
-	var anchor = element.getAttribute("text-anchor");
-	if (anchor == "middle")
-		element.setAttribute("x", x+width/2);
-	else if (anchor == "end")
-		element.setAttribute("x", x+width);
-	else
-		element.setAttribute("x", x);
-	element.setAttribute("y", y+height/2);
+function validate() {
+	var elements = document.getElementsByTagName("text");
+	for (var i=0; i<elements.length; i++)
+		layoutText(elements.item(i))
 }
 
 function layoutText(element) {
@@ -117,11 +28,10 @@ function layoutText(element) {
 
 function layoutTextHorizontal(element) {
 	var x = +element.getAttribute("x");
-	var y = +element.getAttribute("y");
 	var width = +element.getAttribute("width");
 	var height = +element.getAttribute("height");
 	var anchor = element.getAttribute("text-anchor");
-	var text = element.getTextContent();
+	var text = element.textContent;
 
 	if (anchor == "middle")
 		x = x+width/2;
@@ -129,18 +39,54 @@ function layoutTextHorizontal(element) {
 		x = x+width;
 
 	element.setAttribute("x", x);
-	element.setAttribute("dy", "0.9em");
+	element.setAttribute("dy", "1em");
+	
+	var fontHeight = 0;
+	var bbox = element.getBBox();
+	if (bbox!=null) 
+		fontHeight = bbox.height;
 
-	var split = text.split("\\n");
-	element.setTextContent("");
-	for (var i=0; i<split.length; i++) {
-		var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
-		tspan.setTextContent(split[i]);
-		if (i > 0) {
+	if (height == 0)
+		height = fontHeight;
+
+	var lines = element.textContent.split('\\n');
+	element.textContent = "";
+	for(var k=0; k<lines.length && height >= fontHeight; k++)
+	{
+		var words = lines[k].split(' ');
+		                      
+		var tspan = document.createElementNS(svgNS, "tspan");
+		var text_node = document.createTextNode(words[0]);
+		tspan.appendChild(text_node);
+		element.appendChild(tspan);
+		if (k > 0) {
 			tspan.setAttribute("x", x);
 			tspan.setAttribute("dy", "1em");
 		}
-		element.appendChild(tspan);
+		height = height - fontHeight;
+
+		for(var i=1; i<words.length && height >= fontHeight; i++)
+		{
+	       	var len = tspan.firstChild.data.length;
+			tspan.firstChild.data += " " + words[i];
+
+			if (tspan.getComputedTextLength() > width)
+			{
+	           	tspan.firstChild.data = tspan.firstChild.data.slice(0, len);
+
+				tspan = document.createElementNS(svgNS, "tspan");
+				text_node = document.createTextNode(words[i]);
+				tspan.appendChild(text_node);
+				element.appendChild(tspan);
+				tspan.setAttribute("x", x);
+				tspan.setAttribute("dy", "1em");
+				height = height - fontHeight;
+			}
+		}
+		
+		if (height < fontHeight)
+			while (i < words.length)
+				tspan.firstChild.data += " " + words[i++];
 	}
 }
 
@@ -164,7 +110,7 @@ function layoutTextVertical(element) {
 	var split = text.split("\\n");
 	element.setTextContent("");
 	for (var i=0; i<split.length; i++) {
-		var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+		var tspan = document.createElementNS(svgNS, "tspan");
 		tspan.setTextContent(split[i]);
 		if (i > 0) {
 			tspan.setAttribute("y", y);
@@ -173,21 +119,4 @@ function layoutTextVertical(element) {
 		}
 		element.appendChild(tspan);
 	}
-}
-
-function Rectangle(x, y, width, height) {
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = height;
-}
-
-function Point(x, y) {
-	this.x = x;
-	this.y = y;
-}
-
-function Dimension(width, height) {
-	this.width = width;
-	this.height = height;
 }

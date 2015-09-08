@@ -347,41 +347,25 @@ Initiate the deployment and code generation with the pop-up &quot;Qompass: gener
       <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_ar8OsAPMEdyuUt-4qHuVvQ"/>
     </profileApplication>
   </uml:Model>
-  <FCM:DerivedElement xmi:id="_B9o7sP6yEd6Ie_kieu_3CQ">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
   <FCM:DerivedElement xmi:id="_DWb6oP6yEd6Ie_kieu_3CQ" base_Element="_TbIjUJYlEd6G9q9hwr11bw" source="_DGs6wDLgEd28fJKJJnUaeQ"/>
   <FCM:DerivedElement xmi:id="_DXK6cP6yEd6Ie_kieu_3CQ" base_Element="_4ZEZwHecEd6r18stFZxmFQ" source="_L8EY8DLgEd28fJKJJnUaeQ"/>
   <FCM:RuleApplication xmi:id="_DWIYoP6yEd6Ie_kieu_3CQ" base_Class="_oqZNUDLaEd2qeKRLMdIx_A">
     <containerRule xmi:type="FCM:ContainerRule" href="pathmap://QML_TRACE/tracing.uml#_RWQC8PwkEeGWn-a9PUOYcA"/>
-    <containerRule xmi:type="FCM:ContainerRule" href="pathmap://QML_TRACE/tracing.uml#_NtAukCqLEeKGrchWittz_g"/>
     <propagateRule>false</propagateRule>
     <interceptor href="pathmap://QML_TRACE/tracing.uml#_35od4DKrEd-z5o2wSoJ16A"/>
   </FCM:RuleApplication>
   <FCM:Port xmi:id="_GofhQP6yEd6Ie_kieu_3CQ" base_Port="_4KiE8DLbEd2qeKRLMdIx_A">
     <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_wySlkFRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
-  <FCM:Connector xmi:id="_K2_iAP6yEd6Ie_kieu_3CQ"/>
   <FCM:DeploymentPlan xmi:id="_6dGQgP6zEd6Ie_kieu_3CQ" mainInstance="_L9xhwDLjEd2RVeNawwNNzg" base_Package="_5Z7MEDLiEd2RVeNawwNNzg"/>
-  <FCM:DerivedElement xmi:id="_RwGb8P6_Ed6Zw96O-tCw7A" source="_DGs6wDLgEd28fJKJJnUaeQ"/>
-  <FCM:DerivedElement xmi:id="_RxVyEP6_Ed6Zw96O-tCw7A" source="_L8EY8DLgEd28fJKJJnUaeQ"/>
   <C_Cpp:Include xmi:id="_7SAnAP76Ed6Zw96O-tCw7A" body="#include &lt;unistd.h>&#xA;#include &lt;iostream>&#xA;using namespace std;" base_class="_IfjoETLbEd2qeKRLMdIx_A"/>
   <C_Cpp:Include xmi:id="_Sa4nEP77Ed6Zw96O-tCw7A" body="#include &lt;iostream>&#xA;using namespace std;" base_class="_oqZNUDLaEd2qeKRLMdIx_A"/>
-  <FCM:Connector xmi:id="_Tm9v0ACUEd-PD8FdFs7bpA"/>
-  <FCM:DeploymentPlan xmi:id="_lEueYGLEEd-seu3qyZgHfg"/>
-  <FCM:DeploymentPlan xmi:id="_u_ACgGSuEd-dQdK1-7wIFg"/>
-  <FCM:DeploymentPlan xmi:id="_YK67AGTgEd-rCOWJcspHOA"/>
   <FCM:Port xmi:id="_IWQqoP6yEd6Ie_kieu_3CQ" base_Port="_DtWn4DLcEd2qeKRLMdIx_A">
     <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_9Fif4FRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
-  <FCM:ContainerRule xmi:id="_lNrDwH4HEd-rD-b0gnx-AQ"/>
-  <FCM:Configuration xmi:id="_RM9kQH8UEd-7Bsdl4VhuEw" deploymentPlan="_6dGQgP6zEd6Ie_kieu_3CQ" base_Package="_BJc50H8TEd-7Bsdl4VhuEw">
-    <configOptions xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
-  </FCM:Configuration>
   <FCM:Configuration xmi:id="_Y10_QKDjEd-rLNbSWf1QuA" base_Class="_QT6okKDjEd-rLNbSWf1QuA" deploymentPlan="_6dGQgP6zEd6Ie_kieu_3CQ">
     <configOptions xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:Configuration>
-  <FCM:DerivedElement xmi:id="_1E0nUKFhEd-AoOVE_odazw"/>
   <FCM:Target xmi:id="_Et5N4LqQEd-BObGGoBbehA" base_Node="_MxayMP_BEd6628OhKk_dpg">
     <targetArch xmi:type="FCM:TargetArchitecture" href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
     <usedOS xmi:type="FCM:OperatingSystem" href="pathmap://QML_CORE/core.uml#_1eULwF0NEd-12d_h0i1xhQ"/>
@@ -394,9 +378,6 @@ Initiate the deployment and code generation with the pop-up &quot;Qompass: gener
     <targetArch xmi:type="FCM:TargetArchitecture" href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
     <usedOS xmi:type="FCM:OperatingSystem" href="pathmap://QML_CORE/core.uml#_1eULwF0NEd-12d_h0i1xhQ"/>
   </FCM:Target>
-  <FCM:Connector xmi:id="_cAkqIMKnEd-LE5cHpAvxBg">
-    <connector xmi:type="FCM:ConnectorImplGroup" href="pathmap://QML_DISTRIBUTION/distribution.uml#_DBP7QMKmEd-hj59jYY3RZQ"/>
-  </FCM:Connector>
   <Alloc:Allocate xmi:id="_hgh4IE0rEeGl_syZE5iOXA" base_Abstraction="_1Lv7AE0qEeGl_syZE5iOXA"/>
   <FCM:DerivedElement xmi:id="_rrmpkDVdEeKoYLVLZgpRiw" base_Element="_rrf74DVdEeKoYLVLZgpRiw" source="_rrbqcDVdEeKoYLVLZgpRiw"/>
   <FCM:DerivedElement xmi:id="_6EbL0DW2EeKyT6LlKoWJIA" base_Element="_6ERa0DW2EeKyT6LlKoWJIA" source="_6DewoDW2EeKyT6LlKoWJIA"/>

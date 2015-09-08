@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public abstract class BehaviorDiagramImpl extends UmlDiagramImpl implements BehaviorDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BehaviorDiagramImpl() {
@@ -36,11 +38,11 @@ public abstract class BehaviorDiagramImpl extends UmlDiagramImpl implements Beha
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.BEHAVIOR_DIAGRAM;
 	}
-
 } //BehaviorDiagramImpl

@@ -17,14 +17,17 @@ public class ChangePluginVersionHandler extends AbstractChangeProjectVersionHand
 
 	@Override
 	protected void setVersionNumber(final IProject project, final String newVersion, String notManagedProjectNames) {
-		if(project.isOpen()) {
+		if (project.isOpen()) {
 			try {
-				if(project.hasNature(Utils.PLUGIN_NATURE)) {
+				if (project.hasNature(Utils.PLUGIN_NATURE)) {
 					try {
 						final IManifestEditor editor = new ManifestEditor(project);
 						editor.init();
-						editor.setBundleVersion(newVersion);
-						editor.save();
+						// This test is necessary to bypass the plugins tagged 0.*.*
+						if (editor.getBundleVersion().matches("[1-9]+\\.[0-9]+\\.[0-9]+\\.qualifier")) {
+							editor.setBundleVersion(newVersion);
+							editor.save();
+						}
 					} catch (final IOException e) {
 						Activator.log.error(e);
 						notManagedProjectNames += NLS.bind("- {0} \n", project.getName());

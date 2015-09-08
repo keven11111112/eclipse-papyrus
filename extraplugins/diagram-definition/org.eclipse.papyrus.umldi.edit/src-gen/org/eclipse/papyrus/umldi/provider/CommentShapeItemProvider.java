@@ -16,19 +16,22 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.papyrus.umldi.CommentShape;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.CommentShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class CommentShapeItemProvider extends ElementWithBodyShapeItemProvider {
+public class CommentShapeItemProvider extends ElementShapeItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CommentShapeItemProvider(AdapterFactory adapterFactory) {
@@ -39,13 +42,13 @@ public class CommentShapeItemProvider extends ElementWithBodyShapeItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -54,6 +57,7 @@ public class CommentShapeItemProvider extends ElementWithBodyShapeItemProvider {
 	 * This returns CommentShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,11 +69,13 @@ public class CommentShapeItemProvider extends ElementWithBodyShapeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_CommentShape_type");
+		CommentShape commentShape = (CommentShape)object;
+		return getString("_UI_CommentShape_type") + " " + commentShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class CommentShapeItemProvider extends ElementWithBodyShapeItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +97,7 @@ public class CommentShapeItemProvider extends ElementWithBodyShapeItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

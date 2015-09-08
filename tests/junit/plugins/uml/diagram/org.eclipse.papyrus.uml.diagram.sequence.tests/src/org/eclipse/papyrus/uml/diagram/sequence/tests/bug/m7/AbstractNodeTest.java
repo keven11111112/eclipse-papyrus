@@ -259,6 +259,13 @@ public abstract class AbstractNodeTest extends TestTopNode {
 		EditPart targetEditPart = currentViewer.findObjectAtExcluding(endLocation, Collections.emptySet(), getTargetingConditional(request));;
 		return createLink(elementType, currentViewer, startLocation, sourceEditPart, endLocation, targetEditPart);
 	}
+	
+	protected EditPart createLink(IElementType elementType, EditPartViewer currentViewer, EditPart sourceEditPart, EditPart targetEditPart) {
+		Point startLocation = null;
+		Point endLocation = null;
+		
+		return createLink(elementType, currentViewer, startLocation, sourceEditPart, endLocation, targetEditPart);
+	}
 
 	protected EditPart createLink(IElementType elementType, EditPartViewer currentViewer, Point startLocation, EditPart sourceEditPart, Point endLocation, EditPart targetEditPart) {
 		assertNotNull("IElementType is null: ", elementType);

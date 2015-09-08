@@ -13,6 +13,7 @@ package org.eclipse.papyrus.dd.di.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -205,6 +206,26 @@ public class DIPackageImpl extends EPackageImpl implements DIPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getDiagramElement_Diagram() {
+		return (EReference)diagramElementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EOperation getDiagramElement__Diagram() {
+		return diagramElementEClass.getEOperations().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -342,6 +363,8 @@ public class DIPackageImpl extends EPackageImpl implements DIPackage {
 		createEReference(diagramElementEClass, DIAGRAM_ELEMENT__SHARED_STYLE);
 		createEReference(diagramElementEClass, DIAGRAM_ELEMENT__TARGET_EDGE);
 		createEReference(diagramElementEClass, DIAGRAM_ELEMENT__SOURCE_EDGE);
+		createEReference(diagramElementEClass, DIAGRAM_ELEMENT__DIAGRAM);
+		createEOperation(diagramElementEClass, DIAGRAM_ELEMENT___DIAGRAM);
 		styleEClass = createEClass(STYLE);
 		edgeEClass = createEClass(EDGE);
 		createEReference(edgeEClass, EDGE__SOURCE_DIAGRAM_ELEMENT);
@@ -395,6 +418,8 @@ public class DIPackageImpl extends EPackageImpl implements DIPackage {
 		initEReference(getDiagramElement_SharedStyle(), this.getStyle(), null, "sharedStyle", null, 0, 1, DiagramElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getDiagramElement_TargetEdge(), this.getEdge(), this.getEdge_TargetDiagramElement(), "targetEdge", null, 0, -1, DiagramElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getDiagramElement_SourceEdge(), this.getEdge(), this.getEdge_SourceDiagramElement(), "sourceEdge", null, 0, -1, DiagramElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getDiagramElement_Diagram(), this.getDiagram(), null, "diagram", null, 1, 1, DiagramElement.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEOperation(getDiagramElement__Diagram(), this.getDiagram(), "diagram", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		initEClass(styleEClass, Style.class, "Style", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEClass(edgeEClass, Edge.class, "Edge", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEdge_SourceDiagramElement(), this.getDiagramElement(), this.getDiagramElement_SourceEdge(), "sourceDiagramElement", null, 1, 1, Edge.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -409,8 +434,50 @@ public class DIPackageImpl extends EPackageImpl implements DIPackage {
 		// Create resource
 		createResource(eNS_URI);
 		// Create annotations
+		// http://www.eclipse.org/uml2/2.0.0/UML
+		createUMLAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL
+		createOCLAnnotations();
 		// union
 		createUnionAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/uml2/2.0.0/UML</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void createUMLAnnotations() {
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML";
+		addAnnotation(this, source, new String[]{ "originalName", "DI" });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation(this, source, new String[]{ "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL" });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void createOCLAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";
+		addAnnotation(getDiagramElement__Diagram(), source, new String[]{ "body", "if self.oclIsKindOf(Diagram) then \n\tself.oclAsType(Diagram)\nelse if self.owningDiagramElement->notEmpty() then\n\tself.owningDiagramElement.diagram\nelse\n\tnull\nendif endif" });
 	}
 
 	/**

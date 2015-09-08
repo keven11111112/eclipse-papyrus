@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 Soyatec, CEA, and others.
+ * Copyright (c) 2013, 2015 Soyatec, CEA, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *   Soyatec - Initial API and implementation
  *   Christian W. Damus (CEA) - don't maximize the workbench window
  *   Christian W. Damus (CEA) - fix messages for misaligned lifelines on Linux
+ *   Christian W. Damus - bug 473183
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
@@ -54,6 +55,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.StateNotShareable;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -81,6 +83,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.junit.Test;
 
+@StateNotShareable
 public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	public static final String REQ_ANNOTATED_LINK_END = "annotated link end";
@@ -105,7 +108,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	protected Event createMouseEvent(int x, int y, int button, int stateMask, int count) {
 		Event event = new Event();
-		event.time = (int)System.currentTimeMillis();
+		event.time = (int) System.currentTimeMillis();
 		event.widget = null;
 		event.display = Display.getDefault();
 		event.x = x;
@@ -118,7 +121,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	protected Event createEvent() {
 		Event event = new Event();
-		event.time = (int)System.currentTimeMillis();
+		event.time = (int) System.currentTimeMillis();
 		event.widget = null;
 		event.display = Display.getDefault();
 		return event;
@@ -155,8 +158,8 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		menu.notifyListeners(SWT.Show, event);
 		menu.setVisible(true);
 		MenuItem[] items = menu.getItems();
-		for(MenuItem it : items) {
-			if(it.getText().toLowerCase().contains(itemText)) {
+		for (MenuItem it : items) {
+			if (it.getText().toLowerCase().contains(itemText)) {
 				Event e = createEvent();
 				e.widget = it;
 
@@ -169,7 +172,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	private int getBorderSides(DurationConstraintEditPart dc) {
-		LinesBorder lb = (LinesBorder)dc.getPrimaryShape().getBorder();
+		LinesBorder lb = (LinesBorder) dc.getPrimaryShape().getBorder();
 		return lb.getSides();
 	}
 
@@ -182,30 +185,30 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	@Test
 	// test property view of duration link
 	public void testDurationLinkProperty() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), null);
 		assertNotNull(lifeline);
 		AbstractExecutionSpecificationEditPart es = createExecutionSpecification(lifeline, new Point(231, 150), null);
 		assertNotNull(es);
 
-		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
+		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
 		assertNotNull(dc);
 
-		//start connection
+		// start connection
 		Point fromLocation = getAbsoluteBounds(dc).getTop();
 		Point toLocation = getAbsoluteBounds(es).getTop();
 		CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
 		assertTrue(dc.getSourceConnections().size() == 1);
 
 		Control control = openPropertyView(linkPart);
-		Button automatic = (Button)getControl((Composite)control, Button.class, "Automatic", SWT.RADIO);
+		Button automatic = (Button) getControl((Composite) control, Button.class, "Automatic", SWT.RADIO);
 		assertNotNull("Could not found router in Properties: ", automatic);
 		assertTrue("Automatic router selected", automatic.getSelection());
 
-		Button manual = (Button)getControl((Composite)control, Button.class, "Manual", SWT.RADIO);
+		Button manual = (Button) getControl((Composite) control, Button.class, "Manual", SWT.RADIO);
 		assertNotNull("Could not found router in Properties: ", manual);
 		assertFalse("Manual router selected", manual.getSelection());
 
-		PolylineConnection conn = (PolylineConnection)linkPart.getFigure();
+		PolylineConnection conn = (PolylineConnection) linkPart.getFigure();
 		assertTrue("Automatic Router Connection Points", conn.getPoints().size() == 3);
 		selectRadio(manual, true); // switch to manual router
 		assertTrue("Manual Router Connection Points", conn.getPoints().size() == 2);
@@ -224,7 +227,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	public Control openPropertyView(EditPart linkPart) {
 		try {
 			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			PropertySheet propertySheet = (PropertySheet)activePage.showView(IPageLayout.ID_PROP_SHEET);
+			PropertySheet propertySheet = (PropertySheet) activePage.showView(IPageLayout.ID_PROP_SHEET);
 			IEditorPart activeEditor = activePage.getActiveEditor();
 			propertySheet.partActivated(activeEditor);
 			waitForComplete();
@@ -233,8 +236,8 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 			IPage currentPage = propertySheet.getCurrentPage();
 			assertTrue(currentPage instanceof TabbedPropertySheetPage);
 			waitForComplete();
-			TabbedPropertySheetPage page = (TabbedPropertySheetPage)currentPage;
-			//force select the operand
+			TabbedPropertySheetPage page = (TabbedPropertySheetPage) currentPage;
+			// force select the operand
 			page.selectionChanged(activePage.getActiveEditor(), new StructuredSelection(linkPart));
 			waitForComplete();
 			page.setSelectedTab("appearance");
@@ -255,20 +258,20 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	private Control getControl(Composite parent, Class<?> controlType, String name, int style) {
-		if(parent == null || parent.isDisposed()) {
+		if (parent == null || parent.isDisposed()) {
 			return null;
 		}
-		for(Control child : parent.getChildren()) {
-			if(child.getClass() == controlType) {
-				if(child instanceof Group && name.equals(((Group)child).getText())) {
+		for (Control child : parent.getChildren()) {
+			if (child.getClass() == controlType) {
+				if (child instanceof Group && name.equals(((Group) child).getText())) {
 					return child;
 				}
-				if(child instanceof Button && name.equals(((Button)child).getText()) && ((style & child.getStyle())) != 0) {
+				if (child instanceof Button && name.equals(((Button) child).getText()) && ((style & child.getStyle())) != 0) {
 					return child;
 				}
-			} else if(child instanceof Composite) {
-				Control control = getControl((Composite)child, controlType, name, style);
-				if(control != null) {
+			} else if (child instanceof Composite) {
+				Control control = getControl((Composite) child, controlType, name, style);
+				if (control != null) {
 					return control;
 				}
 			}
@@ -278,7 +281,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	@Test
 	public void testDurationRotate() {
-		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(100, 200), null);
+		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(100, 200), null);
 		assertNotNull(dc);
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, getBorderSides(dc) == (PositionConstants.TOP | PositionConstants.BOTTOM));
@@ -315,7 +318,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	@Test
 	public void testDurationCreation() {
-		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
+		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
 		assertNotNull(dc);
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 1);
 
@@ -333,20 +336,20 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	@Test
 	public void testDurationMoveResize() {
 		// test move
-		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
+		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
 		assertNotNull(dc);
 		moveEditPart(dc, new Point(50, 0));
 		moveEditPart(dc, new Point(-20, 0));
 
 		// test resize
 		int move = 30;
-		DurationConstraintEditPart dc2 = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(200, 100), null);
+		DurationConstraintEditPart dc2 = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(200, 100), null);
 		assertNotNull(dc2);
 		resize(dc2, getAbsoluteBounds(dc2).getLocation(), PositionConstants.NORTH, new Dimension(0, move));
 		resize(dc2, getAbsoluteBounds(dc2).getLocation(), PositionConstants.SOUTH, new Dimension(0, move));
 		waitForComplete();
 
-		DurationConstraintEditPart dc3 = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(300, 300), null);
+		DurationConstraintEditPart dc3 = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(300, 300), null);
 		assertNotNull(dc3);
 		resize(dc3, getAbsoluteBounds(dc3).getLocation(), PositionConstants.WEST, new Dimension(move, 0));
 		resize(dc3, getAbsoluteBounds(dc3).getLocation(), PositionConstants.EAST, new Dimension(move, 0));
@@ -355,7 +358,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	@Test
 	// test direct edit of duration expression
 	public void testDurationEditExpr() {
-		DurationConstraintEditPart dp = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
+		DurationConstraintEditPart dp = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
 		assertNotNull(dp);
 
 		// edit text
@@ -375,14 +378,14 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	@Test
 	// link to the top and bottom of execution specification on the single lifeline
 	public void testLinkingExecutionOnSameLifeline() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), null);
 		assertNotNull(lifeline);
 		AbstractExecutionSpecificationEditPart es = createExecutionSpecification(lifeline, new Point(231, 150), null);
 		assertNotNull(es);
 
-		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
+		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(400, 200), null);
 		assertNotNull(dc);
-		//start connection
+		// start connection
 		{
 			Point fromLocation = getAbsoluteBounds(dc).getTop();
 			Point toLocation = getAbsoluteBounds(es).getTop();
@@ -390,9 +393,9 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 			assertTrue(dc.getSourceConnections().size() == 1);
 			EditPart target = linkPart.getTarget();
 			assertTrue("the target is not a ExecutionSpecificationEndEditPart", target instanceof ExecutionSpecificationEndEditPart);
-			OccurrenceSpecification start = (OccurrenceSpecification)((ExecutionSpecificationEndEditPart)target).getNotationView().getElement();
+			OccurrenceSpecification start = (OccurrenceSpecification) ((ExecutionSpecificationEndEditPart) target).getNotationView().getElement();
 			assertTrue("the target is not start end", start.getName().contains("ActionExecSpecStart"));
-			DurationConstraint constraint = (DurationConstraint)dc.getNotationView().getElement();
+			DurationConstraint constraint = (DurationConstraint) dc.getNotationView().getElement();
 			assertTrue("constraint elements count", constraint.getConstrainedElements().size() == 1);
 			assertTrue("constraint element ", constraint.getConstrainedElements().contains(start));
 
@@ -408,10 +411,10 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 			assertTrue(dc.getSourceConnections().size() == 2);
 			EditPart target = linkPart.getTarget();
 			assertTrue("the target is not a ExecutionSpecificationEndEditPart", target instanceof ExecutionSpecificationEndEditPart);
-			OccurrenceSpecification end = (OccurrenceSpecification)((ExecutionSpecificationEndEditPart)target).getNotationView().getElement();
+			OccurrenceSpecification end = (OccurrenceSpecification) ((ExecutionSpecificationEndEditPart) target).getNotationView().getElement();
 			assertTrue("the target is not finish end", end.getName().contains("ActionExecSpecFinish"));
 
-			DurationConstraint constraint = (DurationConstraint)dc.getNotationView().getElement();
+			DurationConstraint constraint = (DurationConstraint) dc.getNotationView().getElement();
 			assertTrue("constraint elements count", constraint.getConstrainedElements().size() == 2);
 			assertTrue("constraint element ", constraint.getConstrainedElements().contains(end));
 
@@ -425,10 +428,10 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		clickMenuItem(dc, p, "rotate");
 		assertTrue("TEST_THE_EXECUTION", getBorderSides(dc) == (PositionConstants.LEFT | PositionConstants.RIGHT));
 
-		CommentAnnotatedElementEditPart linkPart = (CommentAnnotatedElementEditPart)dc.getSourceConnections().get(0);
+		CommentAnnotatedElementEditPart linkPart = (CommentAnnotatedElementEditPart) dc.getSourceConnections().get(0);
 		Point connectPoint = getAnchorPoint(dc, linkPart);
 		assertTrue("anchor is not at center", Math.abs(connectPoint.getDistance(getAbsoluteBounds(dc).getTopLeft()) - connectPoint.getDistance(getAbsoluteBounds(dc).getBottomLeft())) <= 2);
-		CommentAnnotatedElementEditPart linkPart2 = (CommentAnnotatedElementEditPart)dc.getSourceConnections().get(1);
+		CommentAnnotatedElementEditPart linkPart2 = (CommentAnnotatedElementEditPart) dc.getSourceConnections().get(1);
 		connectPoint = getAnchorPoint(dc, linkPart2);
 		assertTrue("anchor is not at center", Math.abs(connectPoint.getDistance(getAbsoluteBounds(dc).getTopRight()) - connectPoint.getDistance(getAbsoluteBounds(dc).getBottomRight())) <= 2);
 	}
@@ -436,27 +439,27 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	@Test
 	// link to different execution specification on two lifeline
 	public void testLinkingExecutionOnTwoLifeline() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(10, 100), null);
+		LifelineEditPart lifeline1 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(10, 100), null);
 		assertNotNull(lifeline1);
 		AbstractExecutionSpecificationEditPart es1 = createExecutionSpecification(lifeline1, new Point(41, 150), null);
 		assertNotNull(es1);
 
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline2 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline2);
 		AbstractExecutionSpecificationEditPart es2 = createExecutionSpecification(lifeline2, new Point(131, 150), null);
 		assertNotNull(es2);
 
-		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(50, 150), null);
+		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(50, 150), null);
 		assertNotNull(dc);
 
 		Point fromLocation = getAbsoluteBounds(dc).getTop();
 		Point toLocation = getAbsoluteBounds(es1).getTop();
-		//start connection
+		// start connection
 		CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
 		assertTrue(dc.getSourceConnections().size() == 1);
 		EditPart target = linkPart.getTarget();
 		assertTrue("the target is not a ExecutionSpecificationEndEditPart", target instanceof ExecutionSpecificationEndEditPart);
-		OccurrenceSpecification os = (OccurrenceSpecification)((ExecutionSpecificationEndEditPart)target).getNotationView().getElement();
+		OccurrenceSpecification os = (OccurrenceSpecification) ((ExecutionSpecificationEndEditPart) target).getNotationView().getElement();
 		assertTrue("the target is not start end", os.getName().contains("Start"));
 
 		fromLocation = getAbsoluteBounds(dc).getBottom();
@@ -465,20 +468,20 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		assertTrue(dc.getSourceConnections().size() == 2);
 		target = linkPart.getTarget();
 		assertTrue("the target is not a ExecutionSpecificationEndEditPart", target instanceof ExecutionSpecificationEndEditPart);
-		os = (OccurrenceSpecification)((ExecutionSpecificationEndEditPart)target).getNotationView().getElement();
+		os = (OccurrenceSpecification) ((ExecutionSpecificationEndEditPart) target).getNotationView().getElement();
 		assertTrue("the target is not finish end", os.getName().contains("Finish"));
 	}
 
 	// link to different messages on two lifeline
 	@Test
 	public void testLinkingMessageOnTwoLifeline() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(10, 80), null);
+		LifelineEditPart lifeline1 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(10, 80), null);
 		assertNotNull(lifeline1);
 
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 80), null);
+		LifelineEditPart lifeline2 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 80), null);
 		assertNotNull(lifeline2);
 
-		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(80, 170), null);
+		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(80, 170), null);
 		assertNotNull(dc);
 		waitForComplete();
 
@@ -497,25 +500,25 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 		{ // link duration top
 			fromLocation = getAbsoluteBounds(dc).getTop();
-			toLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100-offset);
+			toLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100 - offset);
 			CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
 			assertTrue(dc.getSourceConnections().size() == 1); // increase link count
 
 			EditPart target = linkPart.getTarget();
 			assertTrue("the target is not a MessageEndEditPart", target instanceof MessageEndEditPart);
-			MessageEnd end2 = (MessageEnd)((MessageEndEditPart)target).getNotationView().getElement();
+			MessageEnd end2 = (MessageEnd) ((MessageEndEditPart) target).getNotationView().getElement();
 			assertTrue("the target is not send end", end2.getName().contains("Send"));
 		}
 
 		{ // link duration bottom
 			fromLocation = getAbsoluteBounds(dc).getBottom();
-			toLocation = getAbsoluteBounds(lifeline2).getTop().translate(0, 100+offset);
+			toLocation = getAbsoluteBounds(lifeline2).getTop().translate(0, 100 + offset);
 			CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
 			assertTrue(dc.getSourceConnections().size() == 2); // increase link count
 
 			EditPart target = linkPart.getTarget();
 			assertTrue("the target is not a MessageEndEditPart", target instanceof MessageEndEditPart);
-			MessageEnd end2 = (MessageEnd)((MessageEndEditPart)target).getNotationView().getElement();
+			MessageEnd end2 = (MessageEnd) ((MessageEndEditPart) target).getNotationView().getElement();
 			assertTrue("the target is not receive end", end2.getName().contains("Recv"));
 		}
 	}
@@ -523,13 +526,13 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	@Test
 	// duration link to message and execution
 	public void testLinkingExecutionMessageOnTwoLifeline() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(10, 80), null);
+		LifelineEditPart lifeline1 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(10, 80), null);
 		assertNotNull(lifeline1);
 
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 80), null);
+		LifelineEditPart lifeline2 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 80), null);
 		assertNotNull(lifeline2);
 
-		DurationConstraintEditPart dc = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(80, 150), null);
+		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(80, 150), null);
 		assertNotNull(dc);
 		waitForComplete();
 
@@ -551,7 +554,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 			EditPart target = linkPart.getTarget();
 			assertTrue("the target is not a MessageEndEditPart", target instanceof MessageEndEditPart);
-			MessageEnd end2 = (MessageEnd)((MessageEndEditPart)target).getNotationView().getElement();
+			MessageEnd end2 = (MessageEnd) ((MessageEndEditPart) target).getNotationView().getElement();
 			assertTrue("the target is not send end", end2.getName().contains("Send"));
 		}
 
@@ -561,22 +564,22 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		assertTrue(dc.getSourceConnections().size() == 2);
 		EditPart target = linkPart.getTarget();
 		assertTrue("the target is not a ExecutionSpecificationEndEditPart", target instanceof ExecutionSpecificationEndEditPart);
-		OccurrenceSpecification os = (OccurrenceSpecification)((ExecutionSpecificationEndEditPart)target).getNotationView().getElement();
+		OccurrenceSpecification os = (OccurrenceSpecification) ((ExecutionSpecificationEndEditPart) target).getNotationView().getElement();
 		assertTrue("the target is not finish end", os.getName().contains("Finish"));
 	}
 
 	private void alignVertically(Point p1, Point p2) {
-		if(p1.y != p2.y) {
+		if (p1.y != p2.y) {
 			int y = (p1.y + p2.y) / 2;
 			p1.y = y;
 			p2.y = y;
 		}
 	}
-	
+
 	private void createConnection(EditPartViewer viewer, Point fromLocation, Point toLocation) {
 		EditPart sourceEditPart = null;
 		EditPart targetEditPart = null;
-		CreateConnectionViewRequest request = CreateViewRequestFactory.getCreateConnectionRequest(UMLElementTypes.Message_4004, ((IGraphicalEditPart)getDiagramEditPart()).getDiagramPreferencesHint());
+		CreateConnectionViewRequest request = CreateViewRequestFactory.getCreateConnectionRequest(UMLElementTypes.Message_4004, ((IGraphicalEditPart) getDiagramEditPart()).getDiagramPreferencesHint());
 		assertNotNull(request);
 		request.setLocation(fromLocation);
 		request.setType(RequestConstants.REQ_CONNECTION_START);
@@ -586,7 +589,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		request.setTargetEditPart(sourceEditPart);
 		Command command = sourceEditPart.getCommand(request);
 		assertNotNull(COMMAND_NULL, command);
-		//connect...
+		// connect...
 
 		request.setLocation(toLocation);
 		request.setType(RequestConstants.REQ_CONNECTION_END);
@@ -606,7 +609,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	private CommentAnnotatedElementEditPart createDurationLink(DurationConstraintEditPart dc, Point fromLocation, Point toLocation) {
 		EditPart sourceEditPart = dc;
 		EditPart targetEditPart = null;
-		CreateConnectionViewRequest request = CreateViewRequestFactory.getCreateConnectionRequest(UMLElementTypes.CommentAnnotatedElement_4010, ((IGraphicalEditPart)getDiagramEditPart()).getDiagramPreferencesHint());
+		CreateConnectionViewRequest request = CreateViewRequestFactory.getCreateConnectionRequest(UMLElementTypes.CommentAnnotatedElement_4010, ((IGraphicalEditPart) getDiagramEditPart()).getDiagramPreferencesHint());
 		assertNotNull(request);
 		request.setLocation(fromLocation);
 		request.setType(REQ_ANNOTATED_LINK_START);
@@ -615,7 +618,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		request.setTargetEditPart(sourceEditPart);
 		Command command = sourceEditPart.getCommand(request);
 		assertNotNull(COMMAND_NULL, command);
-		//connect...
+		// connect...
 		request.setLocation(toLocation);
 		request.setType(REQ_ANNOTATED_LINK_END);
 		targetEditPart = sourceEditPart.getViewer().findObjectAtExcluding(toLocation, Collections.emptySet(), getTargetingConditional(request));
@@ -636,37 +639,37 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		getDiagramCommandStack().redo();
 		assertTrue(connectionCount + 1 == dc.getSourceConnections().size());
 
-		//check result
-		View view = (View)request.getConnectionViewDescriptor().getAdapter(View.class);
+		// check result
+		View view = (View) request.getConnectionViewDescriptor().getAdapter(View.class);
 		assertNotNull("view not found", view);
-		EditPart editPart = (EditPart)targetEditPart.getViewer().getEditPartRegistry().get(view);
+		EditPart editPart = (EditPart) targetEditPart.getViewer().getEditPartRegistry().get(view);
 		assertNotNull("editpart not found", editPart);
 		assertTrue("not a CommentAnnotatedElementEditPart", editPart instanceof CommentAnnotatedElementEditPart);
 
-		return (CommentAnnotatedElementEditPart)editPart;
+		return (CommentAnnotatedElementEditPart) editPart;
 	}
 
 	protected WrappingLabel verifyEditText(DurationConstraintEditPart dp, String min, String max) {
-		DurationConstraintLabelEditPart lp = (DurationConstraintLabelEditPart)dp.getChildren().get(0);
+		DurationConstraintLabelEditPart lp = (DurationConstraintLabelEditPart) dp.getChildren().get(0);
 		WrappingLabel label = performEditRequest(lp);
 
-		Composite composite = (Composite)lp.getViewer().getControl();
+		Composite composite = (Composite) lp.getViewer().getControl();
 		Text editor = findEditor(composite, label);
 
 		editor.setText(min + SEP + max);
 		input(editor, SWT.CR);
 
-		DurationConstraint constraint = (DurationConstraint)dp.resolveSemanticElement();
+		DurationConstraint constraint = (DurationConstraint) dp.resolveSemanticElement();
 		ValueSpecification spec = constraint.getSpecification();
-		assertTrue(EDIT + TEST_THE_EXECUTION, min.equals(ValueSpecificationUtil.getSpecificationValue(((Interval)spec).getMin())));
-		assertTrue(EDIT + TEST_THE_EXECUTION, max.equals(ValueSpecificationUtil.getSpecificationValue(((Interval)spec).getMax())));
+		assertTrue(EDIT + TEST_THE_EXECUTION, min.equals(ValueSpecificationUtil.getSpecificationValue(((Interval) spec).getMin())));
+		assertTrue(EDIT + TEST_THE_EXECUTION, max.equals(ValueSpecificationUtil.getSpecificationValue(((Interval) spec).getMax())));
 
 		waitForComplete();
 		return label;
 	}
 
 	public WrappingLabel performEditRequest(LabelEditPart lp) {
-		WrappingLabel label = (WrappingLabel)lp.getFigure();
+		WrappingLabel label = (WrappingLabel) lp.getFigure();
 		Rectangle b = label.getBounds().getCopy();
 		label.translateToAbsolute(b);
 		DirectEditRequest req = new DirectEditRequest();
@@ -676,10 +679,10 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	public Text findEditor(Composite composite, WrappingLabel label) {
-		for(Control c : composite.getChildren()) {
-			if(c instanceof Text) {
-				if(label.getText().equals(((Text)c).getText())) {
-					return (Text)c;
+		for (Control c : composite.getChildren()) {
+			if (c instanceof Text) {
+				if (label.getText().equals(((Text) c).getText())) {
+					return (Text) c;
 				}
 			}
 		}
@@ -687,11 +690,11 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	public void input(Widget widget, char... character) {
-		if(widget.isDisposed()) {
+		if (widget.isDisposed()) {
 			return;
 		}
 
-		for(char c : character) {
+		for (char c : character) {
 			Event e = createKeyEvent(widget, 0, c);
 			e.type = SWT.KeyDown;
 			widget.notifyListeners(SWT.KeyDown, e);
@@ -709,7 +712,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	public Event createKeyEvent(Widget widget, int keyCode, char character) {
 		Event event = new Event();
-		event.time = (int)System.currentTimeMillis();
+		event.time = (int) System.currentTimeMillis();
 		event.widget = widget;
 		event.display = Display.getDefault();
 		event.keyCode = keyCode;
@@ -719,7 +722,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 
 	private AbstractExecutionSpecificationEditPart createExecutionSpecification(LifelineEditPart lifeline, Point location, Dimension size) {
-		return (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, location, size);
+		return (AbstractExecutionSpecificationEditPart) createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, location, size);
 	}
 
 	protected void moveEditPart(IGraphicalEditPart lifelineEP, Point moveDelta) {

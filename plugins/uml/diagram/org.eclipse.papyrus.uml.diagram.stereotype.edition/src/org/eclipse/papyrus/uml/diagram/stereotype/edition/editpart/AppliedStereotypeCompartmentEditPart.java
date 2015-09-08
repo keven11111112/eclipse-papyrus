@@ -77,8 +77,10 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 			Stereotype stereotype = (Stereotype) resolveSemanticElement();
 
 			if (stereotype != null) {
-				View label = helper.getStereotypeLabel((View) compartment.eContainer(), stereotype);
-				name = StereotypeDisplayConstant.QUOTE_LEFT + helper.getStereotypeName((DecorationNode) label) + StereotypeDisplayConstant.QUOTE_RIGHT;
+				//View label = helper.getStereotypeLabel((View) compartment.eContainer(), stereotype);
+				//change when the file is reopened the label is not created
+				//this editpart must not depends on a node that is not its parent.
+				name = StereotypeDisplayConstant.QUOTE_LEFT + stereotype.getName() + StereotypeDisplayConstant.QUOTE_RIGHT;
 			}
 		}
 		return name;

@@ -37,7 +37,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage
  * @generated
  */
@@ -47,7 +46,6 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected static NattableaxisconfigurationPackage modelPackage;
@@ -56,11 +54,10 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattableaxisconfigurationAdapterFactory() {
-		if(modelPackage == null) {
+		if (modelPackage == null) {
 			modelPackage = NattableaxisconfigurationPackage.eINSTANCE;
 		}
 	}
@@ -70,16 +67,15 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if(object instanceof EObject) {
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -89,94 +85,76 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected NattableaxisconfigurationSwitch<Adapter> modelSwitch = new NattableaxisconfigurationSwitch<Adapter>() {
-
-		@Override
-		public Adapter caseAbstractHeaderAxisConfiguration(AbstractHeaderAxisConfiguration object) {
-			return createAbstractHeaderAxisConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseAxisManagerRepresentation(AxisManagerRepresentation object) {
-			return createAxisManagerRepresentationAdapter();
-		}
-
-		@Override
-		public Adapter caseAxisManagerConfiguration(AxisManagerConfiguration object) {
-			return createAxisManagerConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseTableHeaderAxisConfiguration(TableHeaderAxisConfiguration object) {
-			return createTableHeaderAxisConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseLocalTableHeaderAxisConfiguration(LocalTableHeaderAxisConfiguration object) {
-			return createLocalTableHeaderAxisConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseIAxisConfiguration(IAxisConfiguration object) {
-			return createIAxisConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseFeatureAxisConfiguration(FeatureAxisConfiguration object) {
-			return createFeatureAxisConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseIFillingConfiguration(IFillingConfiguration object) {
-			return createIFillingConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseEStructuralFeatureValueFillingConfiguration(EStructuralFeatureValueFillingConfiguration object) {
-			return createEStructuralFeatureValueFillingConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseIPasteConfiguration(IPasteConfiguration object) {
-			return createIPasteConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter casePasteEObjectConfiguration(PasteEObjectConfiguration object) {
-			return createPasteEObjectConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseTreeFillingConfiguration(TreeFillingConfiguration object) {
-			return createTreeFillingConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseEModelElement(EModelElement object) {
-			return createEModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseStyledElement(StyledElement object) {
-			return createStyledElementAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseAbstractHeaderAxisConfiguration(AbstractHeaderAxisConfiguration object) {
+				return createAbstractHeaderAxisConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseAxisManagerRepresentation(AxisManagerRepresentation object) {
+				return createAxisManagerRepresentationAdapter();
+			}
+			@Override
+			public Adapter caseAxisManagerConfiguration(AxisManagerConfiguration object) {
+				return createAxisManagerConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseTableHeaderAxisConfiguration(TableHeaderAxisConfiguration object) {
+				return createTableHeaderAxisConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseLocalTableHeaderAxisConfiguration(LocalTableHeaderAxisConfiguration object) {
+				return createLocalTableHeaderAxisConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIAxisConfiguration(IAxisConfiguration object) {
+				return createIAxisConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseFeatureAxisConfiguration(FeatureAxisConfiguration object) {
+				return createFeatureAxisConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIFillingConfiguration(IFillingConfiguration object) {
+				return createIFillingConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseEStructuralFeatureValueFillingConfiguration(EStructuralFeatureValueFillingConfiguration object) {
+				return createEStructuralFeatureValueFillingConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIPasteConfiguration(IPasteConfiguration object) {
+				return createIPasteConfigurationAdapter();
+			}
+			@Override
+			public Adapter casePasteEObjectConfiguration(PasteEObjectConfiguration object) {
+				return createPasteEObjectConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseTreeFillingConfiguration(TreeFillingConfiguration object) {
+				return createTreeFillingConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseEModelElement(EModelElement object) {
+				return createEModelElementAdapter();
+			}
+			@Override
+			public Adapter caseStyledElement(StyledElement object) {
+				return createStyledElementAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param target
-	 *        the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -186,14 +164,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration
-	 * <em>Abstract Header Axis Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration <em>Abstract Header Axis Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration
 	 * @generated
@@ -203,14 +178,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation
-	 * <em>Axis Manager Representation</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation <em>Axis Manager Representation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation
 	 * @generated
@@ -220,14 +192,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration
-	 * <em>Axis Manager Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration <em>Axis Manager Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration
 	 * @generated
@@ -237,14 +206,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration
-	 * <em>Table Header Axis Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration <em>Table Header Axis Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration
 	 * @generated
@@ -254,14 +220,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration
-	 * <em>Local Table Header Axis Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration <em>Local Table Header Axis Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration
 	 * @generated
@@ -271,13 +234,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration <em>IAxis Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration <em>IAxis Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration
 	 * @generated
@@ -287,14 +248,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration
-	 * <em>Feature Axis Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration <em>Feature Axis Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration
 	 * @generated
@@ -304,13 +262,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IFillingConfiguration <em>IFilling Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IFillingConfiguration <em>IFilling Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IFillingConfiguration
 	 * @generated
@@ -320,14 +276,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration
-	 * <em>EStructural Feature Value Filling Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration <em>EStructural Feature Value Filling Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration
 	 * @generated
@@ -337,13 +290,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration <em>IPaste Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration <em>IPaste Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration
 	 * @generated
@@ -353,14 +304,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration
-	 * <em>Paste EObject Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration <em>Paste EObject Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration
 	 * @generated
@@ -370,14 +318,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration
-	 * <em>Tree Filling Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration <em>Tree Filling Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration
 	 * @generated
@@ -392,7 +337,6 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.ecore.EModelElement
 	 * @generated
@@ -402,13 +346,11 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
-	 * <em>Styled Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement <em>Styled Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
 	 * @generated
@@ -422,7 +364,6 @@ public class NattableaxisconfigurationAdapterFactory extends AdapterFactoryImpl 
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @generated
 	 */

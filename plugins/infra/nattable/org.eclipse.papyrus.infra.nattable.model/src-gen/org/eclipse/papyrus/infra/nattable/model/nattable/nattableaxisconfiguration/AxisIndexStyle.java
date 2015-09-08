@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-model-doc -->
  * Enumeration used to describe the possible style of the index of the headers.
  * <!-- end-model-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisIndexStyle()
  * @model
  * @generated
@@ -36,7 +35,6 @@ public enum AxisIndexStyle implements Enumerator {
 	 * The '<em><b>ALPHABETIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #ALPHABETIC_VALUE
 	 * @generated
 	 * @ordered
@@ -46,7 +44,6 @@ public enum AxisIndexStyle implements Enumerator {
 	 * The '<em><b>NUMERIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #NUMERIC_VALUE
 	 * @generated
 	 * @ordered
@@ -60,7 +57,6 @@ public enum AxisIndexStyle implements Enumerator {
 	 * <!-- begin-model-doc -->
 	 * Index Headers count will be : A-B-C-...Y-Z-AA-AB-...
 	 * <!-- end-model-doc -->
-	 *
 	 * @see #ALPHABETIC
 	 * @model
 	 * @generated
@@ -75,7 +71,6 @@ public enum AxisIndexStyle implements Enumerator {
 	 * <!-- begin-model-doc -->
 	 * Index Headers count will be : 1-2-3-...
 	 * <!-- end-model-doc -->
-	 *
 	 * @see #NUMERIC
 	 * @model
 	 * @generated
@@ -87,16 +82,17 @@ public enum AxisIndexStyle implements Enumerator {
 	 * An array of all the '<em><b>Axis Index Style</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	private static final AxisIndexStyle[] VALUES_ARRAY = new AxisIndexStyle[]{ ALPHABETIC, NUMERIC, };
+	private static final AxisIndexStyle[] VALUES_ARRAY = new AxisIndexStyle[] {
+			ALPHABETIC,
+			NUMERIC,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Axis Index Style</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static final List<AxisIndexStyle> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -105,13 +101,14 @@ public enum AxisIndexStyle implements Enumerator {
 	 * Returns the '<em><b>Axis Index Style</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static AxisIndexStyle get(String literal) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AxisIndexStyle result = VALUES_ARRAY[i];
-			if(result.toString().equals(literal)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -122,13 +119,14 @@ public enum AxisIndexStyle implements Enumerator {
 	 * Returns the '<em><b>Axis Index Style</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static AxisIndexStyle getByName(String name) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AxisIndexStyle result = VALUES_ARRAY[i];
-			if(result.getName().equals(name)) {
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -139,15 +137,14 @@ public enum AxisIndexStyle implements Enumerator {
 	 * Returns the '<em><b>Axis Index Style</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static AxisIndexStyle get(int value) {
-		switch(value) {
-		case ALPHABETIC_VALUE:
-			return ALPHABETIC;
-		case NUMERIC_VALUE:
-			return NUMERIC;
+		switch (value) {
+			case ALPHABETIC_VALUE: return ALPHABETIC;
+			case NUMERIC_VALUE: return NUMERIC;
 		}
 		return null;
 	}
@@ -155,7 +152,6 @@ public enum AxisIndexStyle implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final int value;
@@ -163,7 +159,6 @@ public enum AxisIndexStyle implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final String name;
@@ -171,7 +166,6 @@ public enum AxisIndexStyle implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final String literal;
@@ -180,7 +174,6 @@ public enum AxisIndexStyle implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private AxisIndexStyle(int value, String name, String literal) {
@@ -192,41 +185,37 @@ public enum AxisIndexStyle implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

@@ -27,8 +27,9 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
  * Utility function. Allow adaption to command stack
  *
  * @author ansgar
- *
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CommandSupport
 {
 	/**

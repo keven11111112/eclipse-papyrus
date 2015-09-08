@@ -27,6 +27,13 @@ public class EditPartSyncRegistry<M extends EObject, T extends EditPart> extends
 
 	public EditPartSyncRegistry() {
 		super();
+
+		initializeSyncPolicyDelegates();
+	}
+
+	private void initializeSyncPolicyDelegates() {
+		NodePositionSyncFeature.createPolicyDelegate().register(NodePositionSyncFeature.class);
+		NodeSizeSyncFeature.createPolicyDelegate().register(NodeSizeSyncFeature.class);
 	}
 
 	@Override

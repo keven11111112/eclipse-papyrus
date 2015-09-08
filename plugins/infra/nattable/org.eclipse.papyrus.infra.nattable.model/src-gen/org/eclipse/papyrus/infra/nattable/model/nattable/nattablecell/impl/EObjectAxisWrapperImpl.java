@@ -27,10 +27,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Nattablece
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.impl.EObjectAxisWrapperImpl#getElement <em>Element</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.impl.EObjectAxisWrapperImpl#getElement <em>Element</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -40,7 +40,6 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getElement()
 	 * @generated
 	 * @ordered
@@ -50,7 +49,6 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected EObjectAxisWrapperImpl() {
@@ -60,7 +58,6 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -71,18 +68,16 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject getElement() {
-		if(element != null && element.eIsProxy()) {
+		if (element != null && element.eIsProxy()) {
 			InternalEObject oldElement = (InternalEObject)element;
 			element = eResolveProxy(oldElement);
-			if(element != oldElement) {
-				if(eNotificationRequired()) {
+			if (element != oldElement) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT, oldElement, element));
-				}
 			}
 		}
 		return element;
@@ -91,7 +86,6 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EObject basicGetElement() {
@@ -101,32 +95,27 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setElement(EObject newElement) {
 		EObject oldElement = element;
 		element = newElement;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT, oldElement, element));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT:
-			if(resolve) {
-				return getElement();
-			}
-			return basicGetElement();
+		switch (featureID) {
+			case NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT:
+				if (resolve) return getElement();
+				return basicGetElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,15 +123,14 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT:
-			setElement((EObject)newValue);
-			return;
+		switch (featureID) {
+			case NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT:
+				setElement((EObject)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -150,15 +138,14 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT:
-			setElement((EObject)null);
-			return;
+		switch (featureID) {
+			case NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT:
+				setElement((EObject)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -166,14 +153,13 @@ public class EObjectAxisWrapperImpl extends EModelElementImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT:
-			return element != null;
+		switch (featureID) {
+			case NattablecellPackage.EOBJECT_AXIS_WRAPPER__ELEMENT:
+				return element != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.m2m.qvt.oml,
- org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="1.1.0",
+ org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="1.1.2",
  org.eclipse.core.runtime,
- org.eclipse.papyrus.java.generator.transfo.umltojdt;bundle-version="1.1.0",
+ org.eclipse.papyrus.java.generator.transfo.umltojdt;bundle-version="1.1.2",
  org.eclipse.jdt.core,
  org.eclipse.jface.text,
  org.eclipse.jdt.launching,
@@ -11,11 +11,9 @@ Require-Bundle: org.eclipse.uml2.uml,
 Export-Package: org.eclipse.papyrus.java.generator.jdtsynchronizer
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.java.generator.jdtsynchronize
- r;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.java.generator.jdtsynchronizer;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

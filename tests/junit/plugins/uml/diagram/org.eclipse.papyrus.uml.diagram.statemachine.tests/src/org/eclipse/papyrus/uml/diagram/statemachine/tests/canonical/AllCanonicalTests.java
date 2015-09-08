@@ -26,6 +26,7 @@ TestStateMachineDiagramChildNode.class,
 //test links
 //TestStateMachineDiagramLink.class,
 TestLinks.class,
+TestTransitionLinks.class,
 TestSemantic.class
  })
 public class AllCanonicalTests {

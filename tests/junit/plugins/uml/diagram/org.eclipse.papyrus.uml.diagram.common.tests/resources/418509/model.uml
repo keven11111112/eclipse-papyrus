@@ -19,6 +19,17 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RPZvo1B-EeSgfPW5hKItRA" value="1"/>
       </ownedEnd>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_AdMrcPirEeS1mqTIM9bodA" name="B1">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_D_PO0virEeS1mqTIM9bodA" name="b2_1" type="_BiNywPirEeS1mqTIM9bodA" aggregation="composite" association="_D_OnwPirEeS1mqTIM9bodA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_BiNywPirEeS1mqTIM9bodA" name="B2"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ChdCMPirEeS1mqTIM9bodA" name="B3"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_D_OnwPirEeS1mqTIM9bodA" name="Directed Composition" memberEnd="_D_PO0virEeS1mqTIM9bodA _D_P14PirEeS1mqTIM9bodA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_D_PO0PirEeS1mqTIM9bodA" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_D_PO0firEeS1mqTIM9bodA" key="nature" value="SysML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_D_P14PirEeS1mqTIM9bodA" name="b1_1" type="_AdMrcPirEeS1mqTIM9bodA" association="_D_OnwPirEeS1mqTIM9bodA"/>
+    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_YctE0FBzEeSwHc1gAhe1OQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YdP3YFBzEeSwHc1gAhe1OQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
@@ -42,4 +53,7 @@
   <Blocks:Block xmi:id="_bpAowFBzEeSwHc1gAhe1OQ" base_Class="_8kS-IE-vEeSh_JAKhK0MSw"/>
   <Blocks:Block xmi:id="_caRGkFBzEeSwHc1gAhe1OQ" base_Class="_--7NgE-vEeSh_JAKhK0MSw"/>
   <Blocks:Block xmi:id="_c7uN0FBzEeSwHc1gAhe1OQ" base_Class="_BEJNkE-wEeSh_JAKhK0MSw"/>
+  <Blocks:Block xmi:id="_AdPuwPirEeS1mqTIM9bodA" base_Class="_AdMrcPirEeS1mqTIM9bodA"/>
+  <Blocks:Block xmi:id="_BiOZ0PirEeS1mqTIM9bodA" base_Class="_BiNywPirEeS1mqTIM9bodA"/>
+  <Blocks:Block xmi:id="_ChdpQPirEeS1mqTIM9bodA" base_Class="_ChdCMPirEeS1mqTIM9bodA"/>
 </xmi:XMI>

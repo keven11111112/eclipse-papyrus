@@ -519,7 +519,7 @@ public class CDOUtils {
 	}
 
 	/**
-	 * Unloads aall of the objects in a {@code cdoView} (because {@link CDOResource}s don't implement unloading) by clearing thriw adapters.
+	 * Unloads all of the objects in a {@code cdoView} (because {@link CDOResource}s don't implement unloading) by clearing their adapters.
 	 *
 	 * @param cdoView
 	 *            a view to unload

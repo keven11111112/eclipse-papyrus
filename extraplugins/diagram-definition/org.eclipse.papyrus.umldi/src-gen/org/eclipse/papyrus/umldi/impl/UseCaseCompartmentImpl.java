@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UseCaseCompartment;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.UseCaseCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.UseCaseCompartmentImpl#getClassifierShape <em>Classifier Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.UseCaseCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.UseCaseCompartmentImpl#getClassifierShape <em>Classifier Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements UseCaseCompartment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UseCaseCompartmentImpl() {
@@ -53,6 +55,7 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ClassifierShape classifierShape = getClassifierShape();			
-		if (classifierShape != null) {
+		ClassifierShape classifierShape = getClassifierShape();
+		if(classifierShape != null) {
 			return classifierShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClassifierShape getClassifierShape() {
-		if (eContainerFeatureID() != UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE)
+			return null;
 		return (ClassifierShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetClassifierShape(ClassifierShape newClassifierShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setClassifierShape(ClassifierShape newClassifierShape) {
-		if (newClassifierShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE && newClassifierShape != null)) {
-			if (EcoreUtil.isAncestor(this, newClassifierShape))
+		if(newClassifierShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE && newClassifierShape != null)) {
+			if(EcoreUtil.isAncestor(this, newClassifierShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newClassifierShape != null)
+			if(newClassifierShape != null)
 				msgs = ((InternalEObject)newClassifierShape).eInverseAdd(this, UMLDIPackage.CLASSIFIER_SHAPE__USE_CASE_COMPARTMENT, ClassifierShape.class, msgs);
 			msgs = basicSetClassifierShape(newClassifierShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE, newClassifierShape, newClassifierShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetClassifierShape((ClassifierShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetClassifierShape((ClassifierShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
-				return basicSetClassifierShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
+			return basicSetClassifierShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.CLASSIFIER_SHAPE__USE_CASE_COMPARTMENT, ClassifierShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.CLASSIFIER_SHAPE__USE_CASE_COMPARTMENT, ClassifierShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
-				return getClassifierShape();
+		switch(featureID) {
+		case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
+			return getClassifierShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
-				setClassifierShape((ClassifierShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
+			setClassifierShape((ClassifierShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
-				setClassifierShape((ClassifierShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
+			setClassifierShape((ClassifierShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.USE_CASE_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
-				return getClassifierShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.USE_CASE_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE:
+			return getClassifierShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class UseCaseCompartmentImpl extends DiagramCompartmentImpl implements Us
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.USE_CASE_COMPARTMENT__CLASSIFIER_SHAPE);
 	}
-
 } //UseCaseCompartmentImpl

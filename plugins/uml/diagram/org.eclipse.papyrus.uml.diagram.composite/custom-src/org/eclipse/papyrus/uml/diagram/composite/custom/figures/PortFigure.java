@@ -14,6 +14,8 @@
 
 package org.eclipse.papyrus.uml.diagram.composite.custom.figures;
 
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AffixedNamedElementFigure;
 
 
@@ -22,4 +24,29 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.AffixedNamedElementFig
  */
 public class PortFigure extends AffixedNamedElementFigure {
 
+	/**
+	 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
+	 *
+	 * @param graphics
+	 */
+	@Override
+	public void paint(Graphics graphics) {
+		graphics.setClip(new Rectangle(0, 0, 101, 100));
+		graphics.drawOval(new Rectangle(0, 0, 101, 100));
+		graphics.restoreState();
+		super.paint(graphics);
+	}
+
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#paintBorder(org.eclipse.draw2d.Graphics)
+	 *
+	 * @param graphics
+	 */
+	@Override
+	protected void paintBorder(Graphics graphics) {
+		graphics.drawOval(new Rectangle(0, 0, 101, 100));
+		super.paintBorder(graphics);
+	}
 }

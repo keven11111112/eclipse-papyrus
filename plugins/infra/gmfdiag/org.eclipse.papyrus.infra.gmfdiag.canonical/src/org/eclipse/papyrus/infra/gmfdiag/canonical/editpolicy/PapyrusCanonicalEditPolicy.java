@@ -10,6 +10,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 420549
+ *  Christian W. Damus - bug 472155
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy;
@@ -19,6 +20,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.Callable;
@@ -676,6 +678,17 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 							// Didn't already get a self-edge from the source edges
 							edges.add(next);
 						}
+					}
+				}
+
+				// And filter out any edges that do not represent a semantic element (reference links, such as
+				// for Constraint::constrainedElement)
+				for (ListIterator<View> iter = edges.listIterator(); iter.hasNext();) {
+					View next = iter.next();
+
+					// An unset-null would mean that it represents the parent view's semantic element
+					if (next.isSetElement() && (next.getElement() == null)) {
+						iter.remove();
 					}
 				}
 				break;

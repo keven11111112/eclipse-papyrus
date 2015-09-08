@@ -13,8 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyleObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableList;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.PapyrusRoundedEditPartHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 
@@ -58,6 +68,56 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 	/** The Constant DEFAULT_SHADOW_WIDTH. */
 	private static final int DEFAULT_SHADOW_WIDTH = 4;
 
+	/** The namedStyle Listener */
+	private IChangeListener namedStyleListener = new IChangeListener() {
+
+		@Override
+		public void handleChange(ChangeEvent event) {
+			refresh();
+
+		}
+
+	};
+
+	/** The oval Observable */
+	private IObservableValue ovalObservable;
+
+	/** The borderStyle Observable */
+	private IObservableValue borderStyleObservable;
+
+	/** The hasHeader Observable */
+	private IObservableValue hasHeaderObservable;
+
+	/** The radiusHeight Observable */
+	private IObservableValue radiusObservableHeight;
+
+	/** The radiusWidth Observable */
+	private IObservableValue radiusObservableWidth;
+
+	/** The customDash Observable */
+	private IObservableList customDashObservable;
+
+	/** The isPackage Observable */
+	private IObservableValue isPackageObservable;
+
+	/** The shadowWidth Observable */
+	private IObservableValue shadowWidthObservable;
+
+	/** The shadowColor Observable */
+	private IObservableValue shadowColorObservable;
+
+	/** The alignment Observable */
+	private IObservableValue alignmentObservable;
+
+	/** The hasHeader Observable */
+	private IObservableValue isFloatingLabelContrainedObservable;
+
+	/** The radiusHeight Observable */
+	private IObservableValue floatingLabelOffsetObservableHeight;
+
+	/** The radiusWidth Observable */
+	private IObservableValue floatingLabelOffsetObservableWidth;
+
 	/**
 	 * Instantiates a new rounded compartment edit part.
 	 *
@@ -97,6 +157,80 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		PapyrusRoundedEditPartHelper.refreshPackage(this, getDefaultIsPackage());
 		PapyrusRoundedEditPartHelper.refreshShadowColor(this, getDefaultShadowColor());
 		super.refreshVisuals();
+	}
+
+
+	/**
+	 * Adds listener to handle named Style modifications.
+	 */
+	@Override
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+
+		View view = (View) getModel();
+		EditingDomain domain = EMFHelper.resolveEditingDomain(view);
+
+		radiusObservableWidth = new CustomIntStyleObservableValue(view, domain, RADIUS_WIDTH);
+		radiusObservableWidth.addChangeListener(namedStyleListener);
+
+		radiusObservableHeight = new CustomIntStyleObservableValue(view, domain, RADIUS_HEIGHT);
+		radiusObservableHeight.addChangeListener(namedStyleListener);
+
+		ovalObservable = new CustomBooleanStyleObservableValue(view, domain, IS_OVAL);
+		ovalObservable.addChangeListener(namedStyleListener);
+
+		borderStyleObservable = new CustomStringStyleObservableValue(view, domain, BORDER_STYLE);
+		borderStyleObservable.addChangeListener(namedStyleListener);
+
+		customDashObservable = new CustomStringStyleObservableList(view, domain, LINE_CUSTOM_VALUE);
+		customDashObservable.addChangeListener(namedStyleListener);
+
+		hasHeaderObservable = new CustomBooleanStyleObservableValue(view, domain, DISPLAY_HEADER);
+		hasHeaderObservable.addChangeListener(namedStyleListener);
+
+		isPackageObservable = new CustomBooleanStyleObservableValue(view, domain, IS_PACKAGE);
+		isPackageObservable.addChangeListener(namedStyleListener);
+
+		shadowWidthObservable = new CustomIntStyleObservableValue(view, domain, SHADOW_WIDTH);
+		shadowWidthObservable.addChangeListener(namedStyleListener);
+
+		shadowColorObservable = new CustomStringStyleObservableValue(view, domain, SHADOW_COLOR);
+		shadowColorObservable.addChangeListener(namedStyleListener);
+
+		alignmentObservable = new CustomStringStyleObservableValue(view, domain, TEXT_ALIGNMENT);
+		alignmentObservable.addChangeListener(namedStyleListener);
+
+		floatingLabelOffsetObservableHeight = new CustomIntStyleObservableValue(view, domain, FLOATING_LABEL_OFFSET_HEIGHT);
+		floatingLabelOffsetObservableHeight.addChangeListener(namedStyleListener);
+
+		floatingLabelOffsetObservableWidth = new CustomIntStyleObservableValue(view, domain, FLOATING_LABEL_OFFSET_WIDTH);
+		floatingLabelOffsetObservableWidth.addChangeListener(namedStyleListener);
+
+		isFloatingLabelContrainedObservable = new CustomBooleanStyleObservableValue(view, domain, FLOATING_LABEL_CONSTRAINED);
+		isFloatingLabelContrainedObservable.addChangeListener(namedStyleListener);
+	}
+
+	/**
+	 * Removes the notational listeners.
+	 *
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeNotationalListeners()
+	 */
+	@Override
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		radiusObservableWidth.dispose();
+		radiusObservableHeight.dispose();
+		ovalObservable.dispose();
+		borderStyleObservable.dispose();
+		customDashObservable.dispose();
+		hasHeaderObservable.dispose();
+		isPackageObservable.dispose();
+		shadowWidthObservable.dispose();
+		shadowColorObservable.dispose();
+		alignmentObservable.dispose();
+		floatingLabelOffsetObservableHeight.dispose();
+		floatingLabelOffsetObservableWidth.dispose();
+		isFloatingLabelContrainedObservable.dispose();
 	}
 
 	/**

@@ -68,7 +68,6 @@ public class AlfPopupEditor {
 	}
 
 	public void openEditor() {
-		AlfUtil.getInstance().clean();
 		// Creation of the parent shell
 		this.alfEditorParentComposite = new Shell(SWT.RESIZE | SWT.DIALOG_TRIM | SWT.ON_TOP);
 		String title = "";

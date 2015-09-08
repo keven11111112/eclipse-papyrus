@@ -34,10 +34,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StyledElementImpl#getStyles <em>Styles</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StyledElementImpl#getStyles <em>Styles</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -47,7 +47,6 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 * The cached value of the '{@link #getStyles() <em>Styles</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getStyles()
 	 * @generated
 	 * @ordered
@@ -57,7 +56,6 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected StyledElementImpl() {
@@ -67,7 +65,6 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -78,12 +75,11 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<Style> getStyles() {
-		if(styles == null) {
+		if (styles == null) {
 			styles = new EObjectContainmentEList<Style>(Style.class, this, NattablestylePackage.STYLED_ELEMENT__STYLES);
 		}
 		return styles;
@@ -150,14 +146,13 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case NattablestylePackage.STYLED_ELEMENT__STYLES:
-			return ((InternalEList<?>)getStyles()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case NattablestylePackage.STYLED_ELEMENT__STYLES:
+				return ((InternalEList<?>)getStyles()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -165,14 +160,13 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.STYLED_ELEMENT__STYLES:
-			return getStyles();
+		switch (featureID) {
+			case NattablestylePackage.STYLED_ELEMENT__STYLES:
+				return getStyles();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,17 +174,16 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.STYLED_ELEMENT__STYLES:
-			getStyles().clear();
-			getStyles().addAll((Collection<? extends Style>)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.STYLED_ELEMENT__STYLES:
+				getStyles().clear();
+				getStyles().addAll((Collection<? extends Style>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -198,15 +191,14 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.STYLED_ELEMENT__STYLES:
-			getStyles().clear();
-			return;
+		switch (featureID) {
+			case NattablestylePackage.STYLED_ELEMENT__STYLES:
+				getStyles().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,14 +206,13 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.STYLED_ELEMENT__STYLES:
-			return styles != null && !styles.isEmpty();
+		switch (featureID) {
+			case NattablestylePackage.STYLED_ELEMENT__STYLES:
+				return styles != null && !styles.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -229,18 +220,17 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch(operationID) {
-		case NattablestylePackage.STYLED_ELEMENT___GET_NAMED_STYLE__ECLASS_STRING:
-			return getNamedStyle((EClass)arguments.get(0), (String)arguments.get(1));
-		case NattablestylePackage.STYLED_ELEMENT___GET_STYLE__ECLASS:
-			return getStyle((EClass)arguments.get(0));
-		case NattablestylePackage.STYLED_ELEMENT___CREATE_STYLE__ECLASS:
-			return createStyle((EClass)arguments.get(0));
+		switch (operationID) {
+			case NattablestylePackage.STYLED_ELEMENT___GET_NAMED_STYLE__ECLASS_STRING:
+				return getNamedStyle((EClass)arguments.get(0), (String)arguments.get(1));
+			case NattablestylePackage.STYLED_ELEMENT___GET_STYLE__ECLASS:
+				return getStyle((EClass)arguments.get(0));
+			case NattablestylePackage.STYLED_ELEMENT___CREATE_STYLE__ECLASS:
+				return createStyle((EClass)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

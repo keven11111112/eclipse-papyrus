@@ -474,14 +474,6 @@
    </GlobalActionHandlerProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.hyperlink.tab.registration">
-   <hyperlinktab
-         position="250"
-         tab="org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.LocalDefaultLinkDiagramTab"
-         tabId="org.eclipse.papyrus.uml.diagram.common.heuristictab">
-   </hyperlinktab>
-</extension>
-<extension
       point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
    <editpolicyProvider
          class="org.eclipse.papyrus.uml.diagram.common.providers.CommentEditPolicyProvider">
@@ -556,5 +548,17 @@
          </with>
       </enablement>
    </defaultSemanticChildrenStrategy>
+   <visualChildrenStrategy
+         class="org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLVisualChildrenStrategy"
+         priority="10">
+      <enablement>
+         <with
+               variable="element">
+            <instanceof
+                  value="org.eclipse.uml2.uml.Element">
+            </instanceof>
+         </with>
+      </enablement>
+   </visualChildrenStrategy>
 </extension>
 </plugin>

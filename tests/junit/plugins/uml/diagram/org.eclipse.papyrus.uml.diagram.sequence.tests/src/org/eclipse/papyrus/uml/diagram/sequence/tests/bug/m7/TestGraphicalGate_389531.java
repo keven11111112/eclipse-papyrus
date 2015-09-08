@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 Soyatec, CEA, and others.
+ * Copyright (c) 2013, 2015 Soyatec, CEA, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *   Soyatec - Initial API and implementation
  *   Christian W. Damus (CEA) - don't maximize the workbench window
+ *   Christian W. Damus - bug 473183
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.StateNotShareable;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
@@ -62,6 +64,7 @@ import org.junit.Test;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
+@StateNotShareable
 public class TestGraphicalGate_389531 extends AbstractNodeTest {
 
 	@Override
@@ -286,24 +289,24 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 	 */
 	@Test
 	public void testGateCreateWithMessageSyncFromGate() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(100, 400));
-		//the lifeline2 should be covered by the CombinedFragment.
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(400, 100), new Dimension(100, 400));
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(300, 100), new Dimension(200, 200));
-		CombinedFragment combinedFragment = (CombinedFragment)cf.resolveSemanticElement();
-		Lifeline covered = (Lifeline)lifeline2.resolveSemanticElement();
+		LifelineEditPart lifeline1 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(100, 400));
+		// the lifeline2 should be covered by the CombinedFragment.
+		LifelineEditPart lifeline2 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(400, 100), new Dimension(100, 400));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(300, 100), new Dimension(200, 200));
+		CombinedFragment combinedFragment = (CombinedFragment) cf.resolveSemanticElement();
+		Lifeline covered = (Lifeline) lifeline2.resolveSemanticElement();
 		assertTrue("lifeline should be covered by CombinedFragment", combinedFragment.getCovereds().contains(covered));
 		Rectangle rect = getAbsoluteBounds(cf);
 		GateEditPart outerGateEditPart = createGate(cf, new Point(rect.x, rect.y + rect.height / 2));
 		assertNotNull("new Gate should be created", outerGateEditPart);
-		//Message from Gate(outer gate) of CombinedFragment to Lifeline1
+		// Message from Gate(outer gate) of CombinedFragment to Lifeline1
 		Rectangle r = getAbsoluteBounds(outerGateEditPart);
 		Point startLocation = r.getCenter();
 		Point endLocation = getAbsoluteBounds(lifeline1).getCenter().setY(startLocation.y);
-		MessageEditPart messageEditPart = (MessageEditPart)createLink(UMLElementTypes.Message_4003, lifeline1.getViewer(), startLocation, endLocation);
+		MessageEditPart messageEditPart = (MessageEditPart) createLink(UMLElementTypes.Message_4003, lifeline1.getViewer(), startLocation, endLocation);
 		assertNotNull("Message from Gate(outer gate) of CombinedFragment to Lifeline1 should be created", messageEditPart);
 	}
-	
+
 	/**
 	 * Test Async Message with inner gate and outer gate on CombinedFragment.
 	 * 1. message1: Lifeline1 --> CombinedFragment

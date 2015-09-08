@@ -23,10 +23,10 @@ import org.eclipse.uml2.uml.Connector;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTConnector#getBase_Connector <em>Base Connector</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.umlrt.UMLRealTime.UMLRealTimePackage#getRTConnector()
  * @model

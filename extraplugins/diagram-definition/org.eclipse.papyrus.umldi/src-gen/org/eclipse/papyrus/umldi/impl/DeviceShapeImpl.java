@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class DeviceShapeImpl extends NodeShapeImpl implements DeviceShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DeviceShapeImpl() {
@@ -36,11 +38,11 @@ public class DeviceShapeImpl extends NodeShapeImpl implements DeviceShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DEVICE_SHAPE;
 	}
-
 } //DeviceShapeImpl

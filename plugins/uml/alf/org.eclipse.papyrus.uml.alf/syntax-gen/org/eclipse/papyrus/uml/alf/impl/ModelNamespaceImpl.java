@@ -219,9 +219,16 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 		if (name != null && name.equals(this.modelUnitName)) {
 			members.add(this.modelUnitMember);
 		} else {
-			for (ElementReference reference : this.resolvePathName(name)) {
-				members.add(asMember(reference));
-			}
+			// NOTE: Use Alf name resolution implementation, because the Papyrus implementation
+			// doesn't handle name hiding correctly.
+			ExternalElementReference namespace = AlfFactory.eINSTANCE.createExternalElementReference();
+			namespace.setElement(this.getContextNamespace());
+	        for (ElementReference reference : namespace.resolve(name)) {
+	        	members.add(asMember(reference));
+	        }
+//			for (ElementReference reference : this.resolvePathName(name)) {
+//				members.add(asMember(reference));
+//			}
 		}
 		return members;
 	}

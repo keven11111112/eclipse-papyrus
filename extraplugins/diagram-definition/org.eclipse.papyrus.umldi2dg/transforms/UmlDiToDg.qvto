@@ -59,6 +59,8 @@ query UMLDI::UmlDiagramElement::isBorderShape() : Boolean {
 	return self.oclIsKindOf(UMLDI::PortShape);
 }
 
+//-----------------------------------------------------------------------------
+
 mapping UMLDI::UmlDiagram::diagramToRootCanvas() : DG::RootCanvas 
 	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
 {
@@ -66,6 +68,8 @@ mapping UMLDI::UmlDiagram::diagramToRootCanvas() : DG::RootCanvas
 	definitions := self.map diagramToDefinitions();
 	member += self.mapOwnedElementToGraphicalElement();
 }
+
+//-----------------------------------------------------------------------------
 
 mapping UMLDI::UmlShape::shapeToGroup() : DG::Group 
 	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
@@ -90,6 +94,8 @@ helper UMLDI::TemplateableElementShape::mapOwnedElementToGraphicalElement() : Co
 	return r;
 }
 
+//-----------------------------------------------------------------------------
+
 mapping UMLDI::UmlEdge::edgeToGroup() : DG::Group  
 	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
 {
@@ -99,14 +105,17 @@ mapping UMLDI::UmlEdge::edgeToGroup() : DG::Group
 
 mapping UMLDI::UmlEdge::edgeToPath() : DG::Path {  
 	init {
-		if (result.oclIsUndefined() and self.umlModelElement->size() = 1) then {
+		if (result.oclIsUndefined() and self.umlModelElement->notEmpty()) then {
 			result := self.umlModelElement.oclAsType(UML::Element).map edgeToPath(self);
 		} endif;
 	}
-	command += object DG::MoveTo { point := self.waypoint->first().clone().oclAsType(DC::Point) };
-	self.waypoint->excluding(self.waypoint->first())->forEach(p) {
-		command +=  object DG::LineTo { point := p.clone().oclAsType(DC::Point) };
-	};
+	
+	if command->isEmpty() then {
+		command += object DG::MoveTo { point := self.waypoint->first().clone().oclAsType(DC::Point) };
+		self.waypoint->excluding(self.waypoint->first())->forEach(p) {
+			command +=  object DG::LineTo { point := p.clone().oclAsType(DC::Point) };
+		}
+	} endif;
 }
 
 mapping UMLDI::ContainmentEdge::edgeToPath() : DG::Path 
@@ -128,6 +137,8 @@ mapping UMLDI::RepresentationEdge::edgeToPath() : DG::Path
 	endMarker := self.resolveDefinitions().getMarker("endOpenArrow");		
 }
 
+//-----------------------------------------------------------------------------
+
 mapping UMLDI::UmlCompartment::compartmentToGroup() : DG::Group 
 	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
 {
@@ -143,128 +154,36 @@ mapping UMLDI::UmlCompartment::compartmentToGraphicalElement() : DG::GraphicalEl
 	}
 }
 
-mapping UMLDI::TemplateParameterCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
-	init {
-		result := object DG::Rectangle {
-			bounds := self.bounds.clone().oclAsType(DC::Bounds);
-			_class := "dashed";
-		}
-	}
-}
-
-mapping UMLDI::RegionCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
-	init {
-		result := if self.topUmlDiagramElement->size() > 1 then
-			compartmentSeparator(self)
-		else			
-			object DG::Group {}
-		endif;
-	}
-}
-
-mapping UMLDI::SubPartitionCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
-	init {
-		result := if self.owningUmlDiagramElement.umlModelElement.oclAsType(UML::ActivityPartition).isDimension then
-			object DG::Group {}
-		else if self.owningUmlDiagramElement.oclAsType(UMLDI::ActivityPartitionShape).isVertical then		
-			compartmentSeparator(self)
-		else
-			compartmentSeparatorVertical(self)
-		endif endif;
-	}
-}
+//-----------------------------------------------------------------------------
 
 mapping UMLDI::UmlLabel::labelToGraphicalElement() : DG::GraphicalElement 
 	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
 {
 	init {
-		result := self.map labelToText();
-	}
-}
-
-mapping UMLDI::UmlLabel::labelToText() : DG::Text 
-{
-	init {
 		if (result.oclIsUndefined() and self.umlModelElement->size() = 1) then {
-			result := self.umlModelElement.oclAsType(UML::Element).map labelToText(self);
+			result := self.umlModelElement.oclAsType(UML::Element).map labelToGraphicalElement(self);
 		} else {
-			result := self.owningUmlDiagramElement.map labelToText(self);
+			result := self.owningUmlDiagramElement.map labelToGraphicalElement(self);
 		} endif;
 	}
-	bounds := self.bounds.clone().oclAsType(DC::Bounds);
 }
 
-mapping UMLDI::SelectionLabel::labelToGraphicalElement() : DG::GraphicalElement
-	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
-{
-	init {
-		result := self.map labelToNoteShape();
-	}
-} 
-
-mapping UMLDI::TransformationLabel::labelToGraphicalElement() : DG::GraphicalElement
-	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
-{
-	init {
-		result := self.map labelToNoteShape();
-	}
-} 
-
-mapping UMLDI::UmlLabel::labelToNoteShape() : DG::Group 
-{
-	init {
-		result := object DG::Group {
-			member += createNoteShape(self.bounds);
-			member += self.createNoteAttachment();
-			member += self.map labelToText();
-		};
+mapping UMLDI::UmlDiagramElement::labelToGraphicalElement(label : UmlLabel) : DG::GraphicalElement {
+	init {	
+		result := self.map labelToText(label);
 	}
 }
-
-helper UMLDI::UmlLabel::createNoteAttachment() : DG::Line {
-	var refX : Real, refY : Real;
-	var x1 : Real, y1 : Real;
-	if self.owningDiagramElement.oclIsKindOf(DI::Edge) then {
-		var w := self.owningDiagramElement.oclAsType(DI::Edge).waypoint;
-		refX := w->at(w->size()-1).x + (w->at(w->size()).x - w->at(w->size()-1).x) / 2;
-		refY := w->at(w->size()-1).y + (w->at(w->size()-1).y - w->at(w->size()-1).y) / 2;
-		x1 := refX;
-		y1 := refY;
-	} else {
-		var tb := self.owningDiagramElement.oclAsType(DI::Shape).bounds;
-		refX := tb.x + tb.width/2;
-		refY := tb.y + tb.height/2;
-		var sb := self.bounds;
-		var point1 := anchorPoint(tb, sb.x + sb.width/2, sb.y+sb.height/2);
-		x1 := point1.x;
-		y1 := point1.y;
-	} endif;
-
-	var point2 := anchorPoint(self.bounds, refX, refY);
-	var x2 := point2.x;
-	var y2 := point2.y;
-
-	return object DG::Line {
-		start := object DC::Point { x:=x1; y:=y1; };
-		_end := object DC::Point { x:=x2; y:=y2; };
-		_class := "dotted";
-	};
+	
+mapping UMLDI::UmlDiagramElement::labelToText(label : UmlLabel) : DG::Text {
+	anchor := DG::TextAnchor::middle;
+	bounds := label.bounds.clone().oclAsType(DC::Bounds);
 }
-
-mapping UMLDI::IconLabel::labelToGraphicalElement() : DG::GraphicalElement
-	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
+		
+mapping UMLDI::RepresentationEdge::labelToText(label : UmlLabel) : DG::Text 
+	inherits UMLDI::UmlDiagramElement::labelToText
 {
-	init {
-		var b := self.bounds;
-		result := object DG::Path {
-			command += object DG::MoveTo { point := object DC::Point { x := b.x; y := b.y; } };
-			command += object DG::LineTo { point := object DC::Point { x := b.x+b.width; y := b.y; } };
-			command += object DG::LineTo { point := object DC::Point { x := b.x; y := b.y+b.height; } };
-			command += object DG::LineTo { point := object DC::Point { x := b.x+b.width; y := b.y+b.height; } };
-			endMarker := self.resolveDefinitions().getMarker("endSolidClosedArrowSmall");		
-		};
-	}
-} 
+	data := '«representation»';
+}
 
 //---------------------------------------------------------------------
 
@@ -364,6 +283,18 @@ mapping UMLDI::UmlDiagram::diagramToDefinitions() : DG::Definitions {
 	};	
 	
 	definition += object DG::Marker {
+		id := "midSolidClosedArrow";
+		size := object DC::Dimension { width := 12; height := 12; };
+		reference := object DC::Point { x := 6; y := 6; };
+		member += object DG::Polygon {
+			point += object DC::Point { x := 1; y := 1; };
+			point += object DC::Point { x := 12; y := 6; };
+			point += object DC::Point { x := 1; y := 11; };
+			style := object DG::Style { fill := object DG::Paint { color := black } };
+		}
+	};	
+
+	definition += object DG::Marker {
 		id := "endSolidClosedArrowSmall";
 		size := object DC::Dimension { width := 8; height := 8; };
 		reference := object DC::Point { x := 8; y := 4; };
@@ -410,6 +341,23 @@ mapping UMLDI::UmlDiagram::diagramToDefinitions() : DG::Definitions {
 			point += object DC::Point { x := 1; y := 1; };
 			point += object DC::Point { x := 12; y := 6; };
 			point += object DC::Point { x := 1; y := 11; };
+		};
+	};	
+	
+	definition += object DG::Marker {
+		id := "endSolidCircleSolidClosedArrow";
+		size := object DC::Dimension { width := 20; height := 12; };
+		reference := object DC::Point { x := 20; y := 6; };
+		member += object DG::Circle {
+			center := object DC::Point { x := 16; y := 6; };
+			radius := 3;
+			style := object DG::Style { fill := object DG::Paint { color := black } };
+		};
+		member += object DG::Polygon {
+			point += object DC::Point { x := 1; y := 1; };
+			point += object DC::Point { x := 12; y := 6; };
+			point += object DC::Point { x := 1; y := 11; };
+			style := object DG::Style { fill := object DG::Paint { color := black } };
 		};
 	};	
 	
@@ -565,6 +513,17 @@ mapping UMLDI::UmlDiagram::diagramToDefinitions() : DG::Definitions {
 		};
 	};	
 	
+	definition += object DG::Marker {
+		id := "startSolidCircle";
+		size := object DC::Dimension { width := 7; height := 12; };
+		reference := object DC::Point { x := 0; y := 6; };
+		member += object DG::Circle {
+			center := object DC::Point { x := 3; y := 6; };
+			radius := 3;
+			style := object DG::Style { fill := object DG::Paint { color := black } };
+		};
+	};	
+
 	definition += object DG::Marker {
 		id := "startSolidDiamond";
 		size := object DC::Dimension { width := 16; height := 12; };

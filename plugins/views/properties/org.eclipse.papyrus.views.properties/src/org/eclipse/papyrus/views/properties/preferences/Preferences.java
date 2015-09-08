@@ -107,7 +107,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 	@Override
 	public void performDefaults() {
 		for (Context context : ConfigurationManager.getInstance().getContexts()) {
-			boolean applied = ConfigurationManager.getInstance().isPlugin(context);
+			boolean applied = ConfigurationManager.getInstance().isAppliedByDefault(context);
 			Button checkbox = checkboxes.get(context);
 			if (checkbox != null) {
 				checkbox.setSelection(applied);

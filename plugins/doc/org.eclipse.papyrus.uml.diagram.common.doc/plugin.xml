@@ -15,6 +15,10 @@
       		file="target/generated-eclipse-help/constraint-creation-toc.xml"
       		primary="false">
       </toc>
+      <toc
+            file="target/generated-eclipse-help/stereotype-display-toc.xml"
+            primary="false">
+      </toc>
    </extension>
 
 </plugin>

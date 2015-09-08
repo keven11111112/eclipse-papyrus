@@ -15,7 +15,9 @@ package org.eclipse.papyrus.req.reqif.transformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -49,7 +51,8 @@ public abstract class ReqIFBaseTransformation {
 	/** the transactional Editing doamin to acces to the service edit**/
 	public TransactionalEditingDomain domain = null;
 	protected ReqIF reqIFModel;
-	protected org.eclipse.uml2.uml.Package UMLModel;
+	protected org.eclipse.uml2.uml.Package targetUMLModel;
+	protected Package importRootUMLPackage = null;
 	protected HashMap<String,Stereotype> objectTypeStereotypesMap;
 	protected HashMap<String, Stereotype> specRelationTypeSterotypeMap;
 	/** The UML primitive  Type */
@@ -66,6 +69,23 @@ public abstract class ReqIFBaseTransformation {
 	protected HashMap<SpecObject, Element> SpecObject_UMLElementMap;
 	protected HashMap<String, Enumeration> profileEnumeration;
 
+	
+	/**
+	 * get Root package(model) of the given package(model)
+	 * @param element the currentPackage
+	 * @return the root package
+	 *  
+	 */
+	public static Package getRootModel( Package element) {
+			if(element.eContainer() instanceof Package){
+				return getRootModel((Package)element.eContainer());
+			}
+			if( element instanceof Package){
+				return (Package) element;
+			}
+
+			return null;
+	}
 	/**
 	 * 
 	 * Constructor.
@@ -75,7 +95,7 @@ public abstract class ReqIFBaseTransformation {
 	 */
 	public ReqIFBaseTransformation( TransactionalEditingDomain domain,Package UMLModel) {
 		this.domain=domain;
-		this.UMLModel=UMLModel;
+		this.targetUMLModel=UMLModel;
 		//get reference to Sysml Profile
 		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("SysML");
 		URI sysMLUri = registeredProfile.getUri();
@@ -100,7 +120,7 @@ public abstract class ReqIFBaseTransformation {
 	 */
 	protected HashMap<String, Enumeration> getAllPossibleEnumeration(Package uMLModel) {
 		HashMap<String, Enumeration> enumerationList= new  HashMap<String, Enumeration>();
-		for(Profile currentProfile : UMLModel.getAppliedProfiles()) {
+		for(Profile currentProfile : uMLModel.getAppliedProfiles()) {
 
 			for(PackageableElement packageableElement : currentProfile.getPackagedElements()) {
 				if( packageableElement instanceof Enumeration){
@@ -159,9 +179,9 @@ public abstract class ReqIFBaseTransformation {
 	 * @param uMLModel
 	 * @return map of all stereotypes that extends packages
 	 */
-	protected HashMap<String, Stereotype> getAllPossibleSpecRelationType() {
+	protected HashMap<String, Stereotype> getAllPossibleSpecRelationType(Package uMLModel) {
 		HashMap<String,Stereotype> SpecRelationStereotypes= new HashMap<String,Stereotype>();
-		for(Profile currentProfile : UMLModel.getAppliedProfiles()) {
+		for(Profile currentProfile : uMLModel.getAppliedProfiles()) {
 
 			for(Stereotype stereotype : currentProfile.getOwnedStereotypes()) {
 				if( isPossibleSpecRelationTypeStereotype(stereotype)){
@@ -200,7 +220,7 @@ public abstract class ReqIFBaseTransformation {
 	 */
 	protected HashMap<String, Stereotype> getAllPossibleSpecificationType(Package uMLModel) {
 		HashMap<String,Stereotype> specificationStereotypes= new HashMap<String,Stereotype>();
-		for(Profile currentProfile : UMLModel.getAppliedProfiles()) {
+		for(Profile currentProfile : uMLModel.getAppliedProfiles()) {
 
 			for(Stereotype stereotype : currentProfile.getOwnedStereotypes()) {
 				if( isPossibleSpecificationTypeStereotype(stereotype)){
@@ -247,9 +267,24 @@ public abstract class ReqIFBaseTransformation {
 	 * @param UMLModel the UML model
 	 * @return all applied profile that are local profiles
 	 */
+	protected ArrayList<Profile> getAllAppliedProfiles(org.eclipse.uml2.uml.Package  UMLModel) {
+		Package RootModel= getRootModel(UMLModel);
+		ArrayList<Profile> appliedProfiles= new ArrayList<Profile>();
+		for(Profile currentProfile : RootModel.getAppliedProfiles()) {
+				appliedProfiles.add(currentProfile);
+		}
+		return appliedProfiles;
+	}
+
+	/**
+	 * 
+	 * @param UMLModel the UML model
+	 * @return all applied profile that are local profiles
+	 */
 	protected ArrayList<Profile> getAllLocalProfiles(org.eclipse.uml2.uml.Package  UMLModel) {
+		Package RootModel= getRootModel(UMLModel);
 		ArrayList<Profile> localProfile= new ArrayList<Profile>();
-		for(Profile currentProfile : UMLModel.getAppliedProfiles()) {
+		for(Profile currentProfile : RootModel.getAppliedProfiles()) {
 			if(currentProfile.eResource().getURI().isPlatformResource()){
 				localProfile.add(currentProfile);
 			}

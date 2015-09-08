@@ -35,6 +35,7 @@ public class Activator extends AbstractUIPlugin {
 	public static final String ID = "org.eclipse.papyrus.infra.gmfdiag.common"; //$NON-NLS-1$
 
 	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
+	public static final String EXPANSION_TRACE=ID+"/debug/expansion";
 
 	private static Activator instance;
 

@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Nattablece
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage
  * @generated
  */
@@ -41,7 +40,6 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected static NattablecellPackage modelPackage;
@@ -50,11 +48,10 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NattablecellSwitch() {
-		if(modelPackage == null) {
+		if (modelPackage == null) {
 			modelPackage = NattablecellPackage.eINSTANCE;
 		}
 	}
@@ -63,8 +60,7 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -77,69 +73,43 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch(classifierID) {
-		case NattablecellPackage.CELL:
-		{
-			Cell cell = (Cell)theEObject;
-			T result = caseCell(cell);
-			if(result == null) {
-				result = caseEModelElement(cell);
+		switch (classifierID) {
+			case NattablecellPackage.CELL: {
+				Cell cell = (Cell)theEObject;
+				T result = caseCell(cell);
+				if (result == null) result = caseEModelElement(cell);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = defaultCase(theEObject);
+			case NattablecellPackage.ICELL_AXIS_WRAPPER: {
+				ICellAxisWrapper iCellAxisWrapper = (ICellAxisWrapper)theEObject;
+				T result = caseICellAxisWrapper(iCellAxisWrapper);
+				if (result == null) result = caseEModelElement(iCellAxisWrapper);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			return result;
-		}
-		case NattablecellPackage.ICELL_AXIS_WRAPPER:
-		{
-			ICellAxisWrapper iCellAxisWrapper = (ICellAxisWrapper)theEObject;
-			T result = caseICellAxisWrapper(iCellAxisWrapper);
-			if(result == null) {
-				result = caseEModelElement(iCellAxisWrapper);
+			case NattablecellPackage.EOBJECT_AXIS_WRAPPER: {
+				EObjectAxisWrapper eObjectAxisWrapper = (EObjectAxisWrapper)theEObject;
+				T result = caseEObjectAxisWrapper(eObjectAxisWrapper);
+				if (result == null) result = caseICellAxisWrapper(eObjectAxisWrapper);
+				if (result == null) result = caseEModelElement(eObjectAxisWrapper);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if(result == null) {
-				result = defaultCase(theEObject);
+			case NattablecellPackage.ID_AXIS_WRAPPER: {
+				IdAxisWrapper idAxisWrapper = (IdAxisWrapper)theEObject;
+				T result = caseIdAxisWrapper(idAxisWrapper);
+				if (result == null) result = caseICellAxisWrapper(idAxisWrapper);
+				if (result == null) result = caseEModelElement(idAxisWrapper);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			return result;
-		}
-		case NattablecellPackage.EOBJECT_AXIS_WRAPPER:
-		{
-			EObjectAxisWrapper eObjectAxisWrapper = (EObjectAxisWrapper)theEObject;
-			T result = caseEObjectAxisWrapper(eObjectAxisWrapper);
-			if(result == null) {
-				result = caseICellAxisWrapper(eObjectAxisWrapper);
-			}
-			if(result == null) {
-				result = caseEModelElement(eObjectAxisWrapper);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case NattablecellPackage.ID_AXIS_WRAPPER:
-		{
-			IdAxisWrapper idAxisWrapper = (IdAxisWrapper)theEObject;
-			T result = caseIdAxisWrapper(idAxisWrapper);
-			if(result == null) {
-				result = caseICellAxisWrapper(idAxisWrapper);
-			}
-			if(result == null) {
-				result = caseEModelElement(idAxisWrapper);
-			}
-			if(result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -149,9 +119,7 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Cell</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -166,9 +134,7 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>ICell Axis Wrapper</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -183,9 +149,7 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject Axis Wrapper</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -200,9 +164,7 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Id Axis Wrapper</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -217,9 +179,7 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -234,9 +194,7 @@ public class NattablecellSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

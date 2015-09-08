@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage
  * @generated
  */
@@ -29,7 +28,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	NattablestyleFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NattablestyleFactoryImpl.init();
@@ -38,7 +36,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Named Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Named Style</em>'.
 	 * @generated
 	 */
@@ -48,7 +45,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Font Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Font Style</em>'.
 	 * @generated
 	 */
@@ -58,7 +54,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Cell Text Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Cell Text Style</em>'.
 	 * @generated
 	 */
@@ -68,7 +63,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Int Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Int Value Style</em>'.
 	 * @generated
 	 */
@@ -78,7 +72,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Int List Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Int List Value Style</em>'.
 	 * @generated
 	 */
@@ -88,7 +81,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Boolean Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Boolean Value Style</em>'.
 	 * @generated
 	 */
@@ -98,7 +90,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Boolean List Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Boolean List Value Style</em>'.
 	 * @generated
 	 */
@@ -108,7 +99,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Double Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Double Value Style</em>'.
 	 * @generated
 	 */
@@ -118,7 +108,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Double List Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Double List Value Style</em>'.
 	 * @generated
 	 */
@@ -128,7 +117,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>String Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>String Value Style</em>'.
 	 * @generated
 	 */
@@ -138,7 +126,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>String List Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>String List Value Style</em>'.
 	 * @generated
 	 */
@@ -148,7 +135,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>Table Display Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>Table Display Style</em>'.
 	 * @generated
 	 */
@@ -158,7 +144,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>EObject Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>EObject Value Style</em>'.
 	 * @generated
 	 */
@@ -168,7 +153,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns a new object of class '<em>EObject List Value Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return a new object of class '<em>EObject List Value Style</em>'.
 	 * @generated
 	 */
@@ -178,7 +162,6 @@ public interface NattablestyleFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

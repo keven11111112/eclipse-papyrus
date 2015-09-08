@@ -54,7 +54,14 @@ abstract mapping Notation::Diagram::diagramToUmlDiagram() : UMLDI::UmlDiagram
 {
 	name := self.name;
 	topUmlDiagramElement += self.visibleChildren()->map toTopUmlDiagramElement();	
-	topUmlDiagramElement += self.visibleEdges()->map toTopUmlDiagramElement();	
+	topUmlDiagramElement += self.visibleEdges()->map toTopUmlDiagramElement();
+	
+	// look for applied stereotype comments and add them as sterotype labels
+	self.edges->select(e|getViewType(e) = appliedStereotypeEdgeType)->forEach(e) {
+		var topUmlDiagramElement := e.source.resolveone(UMLDI::TopUmlDiagramElement);
+		var stereotypeLabel := e.target.oclAsType(Notation::Node).map nodeToStereotypeLabel();
+		topUmlDiagramElement.stereotypeLabel := stereotypeLabel;
+	};
 }
 
 mapping Notation::Diagram::diagramToClassDiagram() : UMLDI::ClassDiagram 
@@ -92,11 +99,29 @@ mapping Notation::Diagram::diagramToStateMachineDiagram() : UMLDI::StateMachineD
 
 mapping Notation::Diagram::diagramToActivityDiagram() : UMLDI::ActivityDiagram 
 	inherits Notation::Diagram::diagramToUmlDiagram
-	when { getViewType(self) = activityDiagramType };
+	when { getViewType(self) = activityDiagramType }
+{
+	// convert local pre/post condition shapes into labels
+	self.edges->select(e|getViewType(e) = attachmentEdgeType and 
+		e.target.element.oclIsKindOf(UML::Constraint) and 
+			e.target.element.container() = e.source.element)->forEach(e) {
+		var actionShape := e.source.oclAsType(Notation::Node).resolveone(UMLDI::ActionShape); 	
+		actionShape.conditionLabel += e.target.oclAsType(Notation::Node).map nodeToConstraintLabel();
+	}
+	
+}
 
 mapping Notation::Diagram::diagramToSequenceDiagram() : UMLDI::SequenceDiagram 
 	inherits Notation::Diagram::diagramToUmlDiagram
-	when { getViewType(self) = sequenceDiagramType };
+	when { getViewType(self) = sequenceDiagramType }
+{
+	var children := self->closure(children)->select(oclIsKindOf(Notation::Shape) and element.oclIsKindOf(UML::TimeConstraint));
+	var compartment := result.ownedDiagramElement![UMLDI::InteractionShape].subfragmentCompartment;
+	children->forEach(c) {
+		var shape := c.oclAsType(Notation::Shape).map toTopUmlDiagramElement().oclAsType(UMLDI::UmlShape);
+		compartment.topUmlDiagramElement += shape;
+	};	
+}
 
 mapping Notation::Diagram::diagramToCommunicationDiagram() : UMLDI::CommunicationDiagram 
 	inherits Notation::Diagram::diagramToUmlDiagram
@@ -104,13 +129,31 @@ mapping Notation::Diagram::diagramToCommunicationDiagram() : UMLDI::Communicatio
 
 mapping Notation::Diagram::diagramToTimingDiagram() : UMLDI::TimingDiagram 
 	inherits Notation::Diagram::diagramToUmlDiagram
-	when { getViewType(self) = timingDiagramType };
+	when { getViewType(self) = timingDiagramType }
+{
+	var children := self->closure(children)->select(oclIsKindOf(Notation::Shape) and 
+		(element.oclIsKindOf(UML::IntervalConstraint) or element.oclIsKindOf(UML::Observation)));
+	var compartment := result.ownedDiagramElement![UMLDI::InteractionShape].subfragmentCompartment;
+	children->forEach(c) {
+		var shape := c.oclAsType(Notation::Shape).map toTopUmlDiagramElement().oclAsType(UMLDI::UmlShape);
+		compartment.topUmlDiagramElement += shape;
+	};
+}
 
 mapping Notation::Diagram::diagramToInteractionOverviewDiagram() : UMLDI::InteractionOverviewDiagram 
 	inherits Notation::Diagram::diagramToUmlDiagram
 	when { getViewType(self) = interactionOverviewDiagramType };
 
 //-------------------------------------------------------------------------------------
+
+abstract mapping Notation::View::viewToTopUmlDiagramElement() : UMLDI::TopUmlDiagramElement 
+	inherits Notation::View::viewToUmlDiagramElement
+{
+	showStereotypeAttributes := self.eAnnotations.details->any(key='StereotypePropertyLocation').value = 'With brace';
+
+	var label := self.visibleChildren()->selectOne(c|getViewType(c) = nameLabelType);
+	mainLabel := label.map nodeToMainLabel();
+}
 
 mapping Notation::View::toTopUmlDiagramElement() : UMLDI::TopUmlDiagramElement {
 	init {
@@ -121,7 +164,9 @@ mapping Notation::View::toTopUmlDiagramElement() : UMLDI::TopUmlDiagramElement {
 //-------------------------------------------------------------------------------------
 
 mapping Notation::Shape::toTopUmlDiagramElement() : UMLDI::TopUmlDiagramElement
-	disjuncts Notation::Shape::shapeToRegionShape,
+	disjuncts Notation::Shape::shapeToTimeExpressionShape,
+			  Notation::Shape::shapeToDurationShape,
+			  Notation::Shape::shapeToRegionShape,
 			  Notation::Shape::shapeToStateShape,
 			  Notation::Shape::shapeToPseudostateShape,
 			  Notation::Shape::shapeToAssociationClassShape,
@@ -155,6 +200,8 @@ mapping Notation::Shape::toTopUmlDiagramElement() : UMLDI::TopUmlDiagramElement
 			  Notation::Shape::shapeToProfileShape,
 			  Notation::Shape::shapeToModelShape,
 			  Notation::Shape::shapeToPackageShape,
+			  Notation::Shape::shapeToTimeConstraintShape,
+			  Notation::Shape::shapeToDurationConstraintShape,
 			  Notation::Shape::shapeToConstraintShape,
 			  Notation::Shape::shapeToCommentShape,
 			  Notation::Shape::shapeToInformationItemShape,
@@ -171,31 +218,39 @@ mapping Notation::Shape::toTopUmlDiagramElement() : UMLDI::TopUmlDiagramElement
 			  Notation::Shape::shapeToObjectNodeShape,
 			  Notation::Shape::shapeToActivityNodeShape,
 			  Notation::Shape::shapeToActivityPartitionShape,
-			  Notation::Shape::shapeToActivityGroupShape;
+			  Notation::Shape::shapeToActivityGroupShape,
+			  Notation::Shape::shapeToGateShape,
+			  Notation::Shape::shapeToLifelineShape,
+			  Notation::Shape::shapeToInteractionUseShape,
+			  Notation::Shape::shapeToCombinedFragmentShape,
+			  Notation::Shape::shapeToInteractionOperandShape,
+			  Notation::Shape::shapeToStateInvariantShape,
+			  Notation::Shape::shapeToDestructionOccurrenceSpecificationShape,
+			  Notation::Shape::shapeToInteractionFragmentShape;
 
 abstract mapping Notation::Shape::shapeToUmlShape() : UMLDI::UmlShape
-	inherits Notation::View::viewToUmlDiagramElement
+	inherits Notation::View::viewToTopUmlDiagramElement
 {
 	bounds := self.bounds();
 	localUmlStyle := object UMLDI::UmlStyle {
 		fontName := self.fontName;
 		fontSize := self.fontHeight;
-	}
+	};
+	
+	if self.eAnnotations.details->any(key='StereotypePropertyLocation').value = 'Compartment' then {
+		self.transientChildren->select(c|c.visible and getViewType(c) = appliedStereotypeCompartmentType)->forEach(c) {
+			var i := self.transientChildren->indexOf(c);
+			var s := self.eAnnotations.details->any(key='StereotypeList').value.tokenize(',')->at(i);
+			var e := self.element.oclAsType(UML::Element).getAppliedStereotype(s);
+			var compartment := c.map nodeToStereotypeCompartment();
+			compartment.umlModelElement := e;
+			stereotypeCompartment += compartment;
+		};
+	} endif;
 }
 
 abstract mapping Notation::Shape::shapeToElementShape() : UMLDI::ElementShape
-	inherits Notation::Shape::shapeToUmlShape
-{
-	var label = self.visibleChildren()->selectOne(c|getViewType(c) = nameLabelType);
-	mainLabel := label.oclAsType(Notation::DecorationNode).map nodeToMainLabel();
-}
-
-abstract mapping Notation::Shape::shapeToElementWithBodyShape() : UMLDI::ElementWithBodyShape
-	inherits Notation::Shape::shapeToElementShape
-{
-	var label = self.visibleChildren()->selectOne(c|getViewType(c) = bodyLabelType);
-	bodyLabel := label.oclAsType(Notation::DecorationNode).map nodeToBodyLabel();
-}
+	inherits Notation::Shape::shapeToUmlShape;
 
 abstract mapping Notation::Shape::shapeToTemplatableElementShape() : UMLDI::TemplateableElementShape
 	inherits Notation::Shape::shapeToElementShape
@@ -214,15 +269,15 @@ abstract mapping Notation::Shape::shapeToElementWithPackagedElementsShape() : UM
 	packagedElementCompartment := compartment.map nodeToPackagedElementCompartment();
 }
 
-abstract mapping Notation::Shape::shapeToElementWithInternalStructureShape() : UMLDI::ElementWithInternalStructureShape
+abstract mapping Notation::Shape::shapeToElementWithStructureShape() : UMLDI::ElementWithStructureShape
 	inherits Notation::Shape::shapeToElementShape
 {
 	var compartment = self.visibleChildren()->selectOne(c|internalStructueCompartmentType->includes(getViewType(c)));
-	internalStructureCompartment := compartment.map nodeToInternalStructureCompartment();
+	structureCompartment := compartment.map nodeToStructureCompartment();
 }
 
 abstract mapping Notation::Shape::shapeToElementWithPortsShape() : UMLDI::ElementWithPortsShape
-	inherits Notation::Shape::shapeToElementWithInternalStructureShape
+	inherits Notation::Shape::shapeToElementWithStructureShape
 {
 	var children = self.visibleChildren()->select(element.oclIsKindOf(UML::Port));
 	portShape += children.oclAsType(Notation::Shape)->map shapeToPortShape();	
@@ -247,7 +302,7 @@ abstract mapping Notation::Shape::shapeToClassifierWithAttributesShape() : UMLDI
 abstract mapping Notation::Shape::shapeToClassifierWithOperationsShape() : UMLDI::ClassifierWithOperationsShape
 	inherits Notation::Shape::shapeToClassifierWithAttributesShape
 {
-	var compartment = self.visibleChildren()->selectOne(c|getViewType(c) = operationCompartmentType);
+	var compartment := self.visibleChildren()->selectOne(c|getViewType(c) = operationCompartmentType);
 	if (compartment.visibleChildren()->isEmpty() or compartment.visibleChildren()->forAll(element.oclIsKindOf(UML::Operation))) {
 		operationCompartment := compartment.map nodeToOperationCompartment()
 	};
@@ -266,7 +321,7 @@ abstract mapping Notation::Shape::shapeToClassifierWithNestedClassifiersShape() 
 abstract mapping Notation::Shape::shapeToClassifierWithReceptionsShape() : UMLDI::ClassifierWithReceptionsShape 
 	inherits  Notation::Shape::shapeToClassifierWithOperationsShape
 {
-	var compartment : Notation::Node = self.visibleChildren()->selectOne(c|getViewType(c) = operationCompartmentType);
+	var compartment := self.visibleChildren()->selectOne(c|getViewType(c) = operationCompartmentType);
 	if (compartment.visibleChildren()->notEmpty() and compartment.visibleChildren()->forAll(element.oclIsKindOf(UML::Reception))) {
 		receptionCompartment := compartment.map nodeToReceptionCompartment()
 	};
@@ -300,7 +355,7 @@ mapping Notation::Shape::shapeToClassShape() : UMLDI::ClassShape
 
 mapping Notation::Shape::shapeToCollaborationShape() : UMLDI::CollaborationShape
 	inherits Notation::Shape::shapeToClassifierWithOperationsShape, 
-	 		 Notation::Shape::shapeToElementWithInternalStructureShape,
+	 		 Notation::Shape::shapeToElementWithStructureShape,
 	 		 Notation::Shape::shapeToBehavioredClassifierShape
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Collaboration) };
 
@@ -358,7 +413,15 @@ mapping Notation::Shape::shapeToDeploymentSpecificationShape() : UMLDI::Deployme
 
 mapping Notation::Shape::shapeToTimeObservationShape() : UMLDI::TimeObservationShape
 	inherits Notation::Shape::shapeToElementShape
-	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::TimeObservation) };
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::TimeObservation) }
+{
+	if result.mainLabel->notEmpty() then {
+		result.bounds.x := result.mainLabel.bounds.x;
+		result.bounds.y := result.mainLabel.bounds.y;
+		result.bounds.width := result.mainLabel.bounds.width;
+		result.bounds.height := result.mainLabel.bounds.height;
+	} endif;
+}
 
 mapping Notation::Shape::shapeToDurationObservationShape() : UMLDI::DurationObservationShape
 	inherits Notation::Shape::shapeToElementShape
@@ -393,11 +456,27 @@ mapping Notation::Shape::shapeToProfileShape() : UMLDI::ProfileShape
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Profile) };
 
 mapping Notation::Shape::shapeToConstraintShape() : UMLDI::ConstraintShape
-	inherits Notation::Shape::shapeToElementWithBodyShape
-	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Constraint) };
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Constraint) }
+{
+	if result.mainLabel->notEmpty() then {
+		result.mainLabel.bounds.x := result.bounds.x+1;
+		result.mainLabel.bounds.y := result.bounds.y+1;
+		result.mainLabel.bounds.width := result.bounds.width-10;
+		result.mainLabel.bounds.height := result.bounds.height-10;
+	} endif;
+}
+
+mapping Notation::Shape::shapeToTimeExpressionShape() : UMLDI::TimeExpressionShape
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::TimeExpression) };
+
+mapping Notation::Shape::shapeToDurationShape() : UMLDI::DurationShape
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Duration) };
 
 mapping Notation::Shape::shapeToCommentShape() : UMLDI::CommentShape
-	inherits Notation::Shape::shapeToElementWithBodyShape
+	inherits Notation::Shape::shapeToElementShape
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Comment) };
 
 mapping Notation::Shape::shapeToInstanceSpecificationShape() : UMLDI::InstanceSpecificationShape
@@ -470,11 +549,11 @@ mapping Notation::Shape::shapeToActivityShape() : UMLDI::ActivityShape
 	compartment := self.visibleChildren()->selectOne(c|getViewType(c) = postConditionCompartmentType);
 	postConditionCompartment := compartment.map nodeToPostConditionCompartment();
 
-	compartment := self.visibleChildren()->selectOne(c|contentCompartmentType->includes(getViewType(c)));
+	compartment := self.visibleChildren()->selectOne(c|activityNodeCompartmentType->includes(getViewType(c)));
 	if compartment.children.element->exists(oclIsKindOf(Activity)) and not compartment.children.element->exists(oclIsKindOf(ActivityNode)) then
 		ownedBehaviorCompartment := compartment.map nodeToOwnedBehaviorCompartment()
 	else
-		contentCompartment := compartment.map nodeToContentCompartment()
+		activityNodeCompartment := compartment.map nodeToActivityNodeCompartment()
 	endif;
 
 	var children = self.visibleChildren()->select(element.oclIsKindOf(UML::ActivityParameterNode));
@@ -482,7 +561,9 @@ mapping Notation::Shape::shapeToActivityShape() : UMLDI::ActivityShape
 }
 
 mapping Notation::Shape::shapeToInteractionShape() : UMLDI::InteractionShape
-	inherits Notation::Shape::shapeToClassShape
+	inherits Notation::Shape::shapeToClassShape, 
+			 Notation::Shape::shapeToInteractionFragmentWithSubfragmentsShape,
+			 Notation::Shape::shapeToInteractionFragmentWithGatesShape
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Interaction) };
 
 mapping Notation::Shape::shapeToStateMachineShape() : UMLDI::StateMachineShape
@@ -555,8 +636,8 @@ mapping Notation::Shape::shapeToActivityPartitionShape() : UMLDI::ActivityPartit
 	inherits Notation::Shape::shapeToActivityGroupShape
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::ActivityPartition) }
 {
-	var label := self.visibleChildren()->selectOne(c|subPartitionCompartmentType->includes(getViewType(c)));
-	subPartitionCompartment := label.map nodeToSubPartitionCompartment();
+	var label := self.visibleChildren()->selectOne(c|subpartitionCompartmentType->includes(getViewType(c)));
+	subpartitionCompartment := label.map nodeToSubpartitionCompartment();
 }
 
 mapping Notation::Shape::shapeToActivityNodeShape() : UMLDI::ActivityNodeShape
@@ -607,13 +688,17 @@ mapping Notation::Shape::shapeToActionShape() : UMLDI::ActionShape
 	pinShape += children.oclAsType(Notation::Shape)->map shapeToPinShape();
 }
 
-mapping Notation::Shape::shapeToStructuredActivityNodeShape() : UMLDI::StructuredActivityNodeShape
-	inherits Notation::Shape::shapeToActionShape, Notation::Shape::shapeToActivityGroupShape
-	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::StructuredActivityNode) }
+abstract mapping Notation::Shape::shapeToElementWithActivityNodesShape() : UMLDI::ElementWithActivityNodesShape
+	inherits Notation::Shape::shapeToElementShape
 {
-	var label := self.visibleChildren()->selectOne(c|contentCompartmentType->includes(getViewType(c)));
-	contentCompartment := label.map nodeToContentCompartment();
+	var label := self.visibleChildren()->selectOne(c|activityNodeCompartmentType->includes(getViewType(c)));
+	activityNodeCompartment := label.map nodeToActivityNodeCompartment();
+	localUmlStyle.fontName := getViewType(self.visibleChildren()->at(2));
 }
+
+mapping Notation::Shape::shapeToStructuredActivityNodeShape() : UMLDI::StructuredActivityNodeShape
+	inherits Notation::Shape::shapeToActionShape, Notation::Shape::shapeToActivityGroupShape, Notation::Shape::shapeToElementWithActivityNodesShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::StructuredActivityNode) };
 
 mapping Notation::Shape::shapeToExpansionRegionShape() : UMLDI::ExpansionRegionShape
 	inherits Notation::Shape::shapeToStructuredActivityNodeShape
@@ -621,6 +706,169 @@ mapping Notation::Shape::shapeToExpansionRegionShape() : UMLDI::ExpansionRegionS
 {
 	var children = self.visibleChildren()->select(element.oclIsKindOf(UML::ExpansionNode));
 	expansionNodeShape += children.oclAsType(Notation::Shape)->map shapeToExpansionNodeShape();
+}
+
+mapping Notation::Shape::shapeToGateShape() : UMLDI::GateShape
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Gate) };
+
+mapping Notation::Shape::shapeToLifelineShape() : UMLDI::LifelineShape
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Lifeline) }
+{
+	var children := self.visibleChildren()->select(element.oclIsKindOf(UML::InteractionFragment));
+	// Timing diagrams nest the fragments on lifelines in compartments, skip such compartments
+	if getViewType(self.diagram) = timingDiagramType then
+		children := self.visibleChildren().visibleChildren()->select(
+			element.oclIsKindOf(UML::StateInvariant) or 
+			element.oclIsKindOf(UML::DestructionOccurrenceSpecification))->asOrderedSet()
+	endif;
+	
+	subfragmentShape += children.oclAsType(Notation::Shape)->map toTopUmlDiagramElement().
+		oclAsType(UMLDI::InteractionFragmentShape);
+	
+	if getViewType(self.diagram) = timingDiagramType then	
+		subfragmentShape := subfragmentShape->sortedBy(bounds.x)
+	else if getViewType(self.diagram) = sequenceDiagramType then
+		subfragmentShape := subfragmentShape->sortedBy(bounds.y)
+	endif endif;
+		
+	children := self.visibleChildren()->select(oclIsKindOf(Notation::Shape) and element.oclIsKindOf(UML::Lifeline));
+	nestedLifelineShape += children.oclAsType(Notation::Shape)->map shapeToLifelineShape();
+	
+	var labels = self.visibleChildren().visibleChildren()->select(c|getViewType(c) = constraintLabelType);
+	labels->forEach(label) {
+		var id := label.eAnnotations.details->any(key='org.eclipse.papyrus.uml.diagram.timing.StateDefinitionViewID').value;
+		var si := self.element.oclAsType(UML::Lifeline).coveredBy->any(oclIsKindOf(UML::StateInvariant) and
+			eAnnotations.details->any(key='org.eclipse.papyrus.uml.diagram.timing.StateInvariantStateDefinitionId').value = id);
+		var constLabel = label.map nodeToConstraintLabel();
+		constLabel.umlModelElement := si;
+		constraintLabel += constLabel;
+	};
+}
+
+mapping Notation::Shape::shapeToInteractionFragmentShape() : UMLDI::InteractionFragmentShape
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::InteractionFragment) };
+
+mapping Notation::Shape::shapeToDestructionOccurrenceSpecificationShape() : UMLDI::InteractionFragmentShape
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::DestructionOccurrenceSpecification) }
+{
+	if getViewType(self.diagram) = timingDiagramType  then {
+		bounds.x := bounds.x - 5 + 3;		
+		bounds.y := bounds.y - 5;		
+		bounds.width := bounds.width + 10;		
+		bounds.height := bounds.height + 10;		
+	}endif;
+}
+
+abstract mapping Notation::Shape::shapeToInteractionFragmentWithGatesShape() : UMLDI::InteractionFragmentWithGatesShape
+	inherits Notation::Shape::shapeToInteractionFragmentShape
+{
+	var children = self.visibleChildren()->select(element.oclIsKindOf(UML::Gate));
+	gateShape += children.oclAsType(Notation::Shape)->map shapeToGateShape();
+}
+
+abstract mapping Notation::Shape::shapeToInteractionFragmentWithSubfragmentsShape() : UMLDI::InteractionFragmentWithSubfragmentsShape
+	inherits Notation::Shape::shapeToInteractionFragmentShape
+{
+	var compartment := self.visibleChildren()->selectOne(c|subfragmentCompartmentType->includes(getViewType(c)));
+	subfragmentCompartment := compartment.map nodeToSubfragmentCompartment();
+}
+
+mapping Notation::Shape::shapeToInteractionUseShape() : UMLDI::InteractionUseShape
+	inherits Notation::Shape::shapeToInteractionFragmentWithGatesShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::InteractionUse) }
+{
+	var label := self.visibleChildren()->selectOne(c|typeLabelType = getViewType(c));
+	typeLabel := label.map nodeToTypeLabel();
+}
+
+mapping Notation::Shape::shapeToCombinedFragmentShape() : UMLDI::CombinedFragmentShape
+	inherits Notation::Shape::shapeToInteractionFragmentWithGatesShape,
+			 Notation::Shape::shapeToInteractionFragmentWithSubfragmentsShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::CombinedFragment) }
+{
+	var cf := self.element.oclAsType(UML::CombinedFragment);
+	
+	// create the main (header) label of a combined fragment since it is not persisted in Papyrus (except for coregion)
+	if self.children->notEmpty() then {
+		mainLabel := object UMLDI::MainLabel {
+			umlModelElement := result.umlModelElement;
+			var b = getCombinedFragmentLabelBounds(self);
+			bounds := object DC::Bounds {
+				x := b.x; y := b.y; width := b.width; height := b.height;
+			};
+			// account for multiplicity on loop fragments by increasing the width
+			if self.element.oclAsType(UML::CombinedFragment).interactionOperator = UML::InteractionOperatorKind::loop then {
+				if cf.operand->notEmpty() and cf.operand.guard->notEmpty() then {
+					var g := cf.operand.guard;
+					if g.minint->notEmpty() and g.maxint->notEmpty() then
+						if g.minint.integerValue() = g.maxint.integerValue() then
+							bounds.width := bounds.width * 1.75
+						else
+							bounds.width := bounds.width * 2.25
+						endif
+					endif
+				} endif
+			} endif;
+		 };
+	} endif;
+}
+
+mapping Notation::Shape::shapeToInteractionOperandShape() : UMLDI::InteractionOperandShape
+	inherits Notation::Shape::shapeToInteractionFragmentWithSubfragmentsShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::InteractionOperand) }
+{
+	// treat the guard label as the main label of the operand
+	var label := self.visibleChildren()->selectOne(c|guardLabelType = getViewType(c));
+	mainLabel := label.map nodeToMainLabel();
+	mainLabel.umlModelElement := result.umlModelElement;
+	
+	subfragmentCompartment := object UMLDI::SubfragmentCompartment {
+		bounds := self.bounds();
+		umlModelElement := self.element.oclAsType(UML::InteractionOperand);
+		topUmlDiagramElement += self.visibleChildren()->excluding(label)->map toTopUmlDiagramElement();
+	};
+}
+
+mapping Notation::Shape::shapeToExecutionSpecificationShape() : UMLDI::ExecutionSpecificationShape
+	inherits Notation::Shape::shapeToInteractionFragmentShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::ExecutionSpecification) };
+
+mapping Notation::Shape::shapeToTimeConstraintShape() : UMLDI::TimeConstraintShape
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::TimeConstraint) }
+{
+	if result.mainLabel->notEmpty() then {
+		result.bounds.x := result.mainLabel.bounds.x;
+		result.bounds.y := result.mainLabel.bounds.y;
+		result.bounds.width := result.mainLabel.bounds.width;
+		result.bounds.height := result.mainLabel.bounds.height;
+	} endif;
+}
+
+mapping Notation::Shape::shapeToDurationConstraintShape() : UMLDI::DurationConstraintShape
+	inherits Notation::Shape::shapeToElementShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::DurationConstraint) };
+
+mapping Notation::Shape::shapeToStateInvariantShape() : UMLDI::StateInvariantShape
+	inherits Notation::Shape::shapeToInteractionFragmentShape
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::StateInvariant) }
+{
+	if getViewType(self.diagram) = sequenceDiagramType then {
+		var e := self.element.oclAsType(UML::StateInvariant);
+		useStateShape := e.name <> null and e.name.length()>0;
+	} else if getViewType(self.diagram) = timingDiagramType then {
+		useStateShape := getViewType(self) = compactStateInvariantShapeType;
+		var siblings := self.container().oclAsType(Notation::Node).children;
+		var inMiddle := siblings->subOrderedSet(siblings->indexOf(self)+1, siblings->size())->exists(element.oclIsKindOf(UML::StateInvariant));
+		if not useStateShape and inMiddle then {
+			bounds.x := bounds.x+2;
+			bounds.width := bounds.width+2;
+		} endif;
+	} endif endif;
 }
 
 //-------------------------------------------------------------------------------------
@@ -655,13 +903,21 @@ mapping Notation::Edge::toTopUmlDiagramElement() : UMLDI::TopUmlDiagramElement
 			  Notation::Edge::edgeToContainmentEdge,
 			  Notation::Edge::edgeToAttachmentEdge,
 			  Notation::Edge::edgeToRepresentationEdge,
+			  Notation::Edge::edgeToPathEdge,
 			  Notation::Edge::edgeToControlFlowEdge,
 			  Notation::Edge::edgeToObjectFlowEdge,
-			  Notation::Edge::edgeToExceptionHandlerEdge;
+			  Notation::Edge::edgeToExceptionHandlerEdge,
+			  Notation::Edge::edgeToMessageEdge,
+			  Notation::Edge::edgeToGeneralOrderingEdge;
 
 abstract mapping Notation::Edge::edgeToUmlEdge() : UMLDI::UmlEdge
-	inherits Notation::View::viewToUmlDiagramElement
+	inherits Notation::View::viewToTopUmlDiagramElement
 {
+	if mainLabel.oclIsUndefined() then {
+		var label := self.visibleChildren()->selectOne(c|getViewType(c) = stereotypeLabelType);
+		mainLabel := label.map nodeToMainLabel();
+	} endif;
+
 	getPoints(self)->forEach(p) {
 		waypoint += object DC::Point { x := p.x; y := p.y; };
 	};
@@ -675,29 +931,16 @@ abstract mapping Notation::Edge::edgeToUmlEdge() : UMLDI::UmlEdge
 }
 
 abstract mapping Notation::Edge::edgeToElementEdge() : UMLDI::ElementEdge
-	inherits Notation::Edge::edgeToUmlEdge
-{
-	var label := self.visibleChildren()->selectOne(c|getViewType(c) = nameLabelType);
-	mainLabel := label.oclAsType(Notation::DecorationNode).map nodeToMainLabel();
+	inherits Notation::Edge::edgeToUmlEdge;
 
-	if mainLabel.oclIsUndefined() then {
-		label := self.visibleChildren()->selectOne(c|getViewType(c) = stereotypeLabelType);
-		mainLabel := label.oclAsType(Notation::DecorationNode).map nodeToMainLabel();
-	} endif;
-}
-
-abstract mapping Notation::Edge::edgeToRelationshipWithGuardEdge() : UMLDI::RelationshipWithGuardEdge
+abstract mapping Notation::Edge::edgeToActivityEdgeEdge() : UMLDI::ActivityEdgeEdge
 	inherits Notation::Edge::edgeToElementEdge
 {
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = guardLabelType);
-	guardLabel := label.oclAsType(Notation::DecorationNode).map nodeToGuardLabel();
-}
+	guardLabel := label.map nodeToGuardLabel();
 
-abstract mapping Notation::Edge::edgeToActivityEdgeEdge() : UMLDI::ActivityEdgeEdge
-	inherits Notation::Edge::edgeToRelationshipWithGuardEdge
-{
-	var label := self.visibleChildren()->selectOne(c|getViewType(c) = weightLabelType);
-	weightLabel := label.oclAsType(Notation::DecorationNode).map nodeToWeightLabel();
+	label := self.visibleChildren()->selectOne(c|getViewType(c) = weightLabelType);
+	weightLabel := label.map nodeToWeightLabel();
 }
 
 mapping Notation::Edge::edgeToContainmentEdge() : UMLDI::ContainmentEdge
@@ -709,14 +952,33 @@ mapping Notation::Edge::edgeToContainmentEdge() : UMLDI::ContainmentEdge
 
 mapping Notation::Edge::edgeToAttachmentEdge() : UMLDI::AttachmentEdge
 	inherits Notation::Edge::edgeToUmlEdge
-	when { getViewType(self) = attachmentEdgeType };
+	when { getViewType(self) = attachmentEdgeType }
+{
+	// a special case for attachment of TimeObservation in SequenceDiagram
+	if self.source.container().oclAsType(Notation::Node).element.oclIsKindOf(UML::TimeObservation) then {
+		if sourceUmlDiagramElement->isEmpty() then
+			sourceUmlDiagramElement := self.source.container().late resolveone(UMLDI::UmlDiagramElement)
+		endif;
+		if targetUmlDiagramElement->isEmpty() then
+			targetUmlDiagramElement := self.target.container().late resolveone(UMLDI::UmlDiagramElement)
+		endif;
+	} endif
+}
 
 mapping Notation::Edge::edgeToRepresentationEdge() : UMLDI::RepresentationEdge
 	inherits Notation::Edge::edgeToUmlEdge
 	when { getViewType(self) = representationEdgeType }
 {
 	var label = self.visibleChildren()->selectOne(c|getViewType(c) = representationLabelType);
-	mainLabel := label.oclAsType(Notation::DecorationNode).map nodeToMainLabel();
+	mainLabel := label.map nodeToMainLabel();
+}
+
+mapping Notation::Edge::edgeToPathEdge() : UMLDI::PathEdge
+	inherits Notation::Edge::edgeToUmlEdge
+	when { getViewType(self) = pathEdgeType }
+{
+	var labels = self.visibleChildren()->select(element.oclIsKindOf(UML::Message));
+	messageLabel := labels->map nodeToMessageLabel();
 }
 
 mapping Notation::Edge::edgeToGeneralizationEdge() : UMLDI::GeneralizationEdge
@@ -729,7 +991,7 @@ mapping Notation::Edge::edgeToElementImportEdge() : UMLDI::ElementImportEdge
 {
 	if (mainLabel.oclIsUndefined()) {
 		var label = self.visibleChildren()->selectOne(c|getViewType(c) = aliasLabelType);
-		mainLabel := label.oclAsType(Notation::DecorationNode).map nodeToMainLabel();
+		mainLabel := label.map nodeToMainLabel();
 	}
 }
 
@@ -758,7 +1020,7 @@ mapping Notation::Edge::edgeToGeneralizationSetEdge() : UMLDI::GeneralizationSet
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::GeneralizationSet) }
 {
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = constraintLabelType);
-	constraintLabel := label.oclAsType(Notation::DecorationNode).map nodeToConstraintLabel();
+	constraintLabel := label.map nodeToConstraintLabel();
 }
 
 mapping Notation::Edge::edgeToInformationFlowEdge() : UMLDI::InformationFlowEdge
@@ -766,7 +1028,7 @@ mapping Notation::Edge::edgeToInformationFlowEdge() : UMLDI::InformationFlowEdge
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::InformationFlow) }
 {
 	var label := self.visibleChildren()->selectOne(c|conveyedLabelType->includes(getViewType(c)));
-	conveyedLabel := label.oclAsType(Notation::DecorationNode).map nodeToConveyedLabel();
+	conveyedLabel := label.map nodeToConveyedLabel();
 }
 
 mapping Notation::Edge::edgeToDependencyEdge() : UMLDI::DependencyEdge
@@ -776,7 +1038,7 @@ mapping Notation::Edge::edgeToDependencyEdge() : UMLDI::DependencyEdge
 	var boundProperty = self.element.oclAsType(UML::Dependency).client![UML::Property];
 
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = targetRoleLabelType);
-	roleLabel := label.oclAsType(Notation::DecorationNode).map nodeToRoleLabel();
+	roleLabel := label.map nodeToRoleLabel();
 	if (not roleLabel.oclIsUndefined()) {
 		roleLabel.umlModelElement := boundProperty;
 	}
@@ -838,14 +1100,14 @@ mapping Notation::Edge::edgeToPropertyEdge() : UMLDI::PropertyEdge
 
 	if (mainLabel.oclIsUndefined()) {
 		var label := self.visibleChildren()->selectOne(c|getViewType(c) = targetRoleLabelType);
-		mainLabel := label.oclAsType(Notation::DecorationNode).map nodeToMainLabel();
+		mainLabel := label.map nodeToMainLabel();
 		if (not mainLabel.oclIsUndefined()) {
 			mainLabel.umlModelElement := property_;
 		}
 	};
 	
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = targetMultiplicityLabelType);
-	multiplicityLabel := label.oclAsType(Notation::DecorationNode).map nodeToMultiplicityLabel();
+	multiplicityLabel := label.map nodeToMultiplicityLabel();
 	if (not multiplicityLabel.oclIsUndefined()) {
 		multiplicityLabel.umlModelElement := property_;
 	}
@@ -858,28 +1120,28 @@ mapping Notation::Edge::edgeToAssociationEdge() : UMLDI::AssociationEdge
 	var association = self.element.oclAsType(UML::Association);
 	
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = sourceRoleLabelType);
-	var newRoleLabel := label.oclAsType(Notation::DecorationNode).map nodeToRoleLabel();
+	var newRoleLabel := label.map nodeToRoleLabel();
 	if (not newRoleLabel.oclIsUndefined()) {
 		newRoleLabel.umlModelElement := association.memberEnd->at(2);
 		endRoleLabel += newRoleLabel;
 	};
 	
 	label := self.visibleChildren()->selectOne(c|getViewType(c) = targetRoleLabelType);
-	newRoleLabel := label.oclAsType(Notation::DecorationNode).map nodeToRoleLabel();
+	newRoleLabel := label.map nodeToRoleLabel();
 	if (not newRoleLabel.oclIsUndefined()) {
 		newRoleLabel.umlModelElement := association.memberEnd->at(1);
 		endRoleLabel += newRoleLabel;
 	};
 	
 	label := self.visibleChildren()->selectOne(c|getViewType(c) = sourceMultiplicityLabelType);
-	var newMultiplicityLabel := label.oclAsType(Notation::DecorationNode).map nodeToMultiplicityLabel();
+	var newMultiplicityLabel := label.map nodeToMultiplicityLabel();
 	if (not newMultiplicityLabel.oclIsUndefined()) {
 		newMultiplicityLabel.umlModelElement := association.memberEnd->at(1);
 		endMultiplicityLabel += newMultiplicityLabel;
 	};
 	
 	label := self.visibleChildren()->selectOne(c|getViewType(c) = targetMultiplicityLabelType);
-	newMultiplicityLabel := label.oclAsType(Notation::DecorationNode).map nodeToMultiplicityLabel();
+	newMultiplicityLabel := label.map nodeToMultiplicityLabel();
 	if (not newMultiplicityLabel.oclIsUndefined()) {
 		newMultiplicityLabel.umlModelElement := association.memberEnd->at(2);
 		endMultiplicityLabel += newMultiplicityLabel;
@@ -901,14 +1163,14 @@ mapping Notation::Edge::edgeToInstanceSpecificationEdge() : UMLDI::InstanceSpeci
 	var association = self.element.oclAsType(UML::InstanceSpecification).classifier![UML::Association];
 
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = sourceRoleLabelType);
-	var newRoleLabel := label.oclAsType(Notation::DecorationNode).map nodeToRoleLabel();
+	var newRoleLabel := label.map nodeToRoleLabel();
 	if (not newRoleLabel.oclIsUndefined()) {
 		newRoleLabel.umlModelElement := association.memberEnd->at(2);
 		endRoleLabel += newRoleLabel;
 	};
 	
 	label := self.visibleChildren()->selectOne(c|getViewType(c) = targetRoleLabelType);
-	newRoleLabel := label.oclAsType(Notation::DecorationNode).map nodeToRoleLabel();
+	newRoleLabel := label.map nodeToRoleLabel();
 	if (not newRoleLabel.oclIsUndefined()) {
 		newRoleLabel.umlModelElement := association.memberEnd->at(1);
 		endRoleLabel += newRoleLabel;
@@ -922,14 +1184,14 @@ mapping Notation::Edge::edgeToConnectorEdge() : UMLDI::ConnectorEdge
 	var connector = self.element.oclAsType(UML::Connector);
 	
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = sourceMultiplicityLabelType);
-	var newMultiplicityLabel := label.oclAsType(Notation::DecorationNode).map nodeToMultiplicityLabel();
+	var newMultiplicityLabel := label.map nodeToMultiplicityLabel();
 	if (not newMultiplicityLabel.oclIsUndefined()) {
 		newMultiplicityLabel.umlModelElement := connector._end->at(1);
 		endMultiplicityLabel += newMultiplicityLabel;
 	};
 	
 	label := self.visibleChildren()->selectOne(c|getViewType(c) = targetMultiplicityLabelType);
-	newMultiplicityLabel := label.oclAsType(Notation::DecorationNode).map nodeToMultiplicityLabel();
+	newMultiplicityLabel := label.map nodeToMultiplicityLabel();
 	if (not newMultiplicityLabel.oclIsUndefined()) {
 		newMultiplicityLabel.umlModelElement := connector._end->at(2);
 		endMultiplicityLabel += newMultiplicityLabel;
@@ -942,12 +1204,12 @@ mapping Notation::Edge::edgeToTemplateBindingEdge() : UMLDI::TemplateBindingEdge
 {
 	if (mainLabel.oclIsUndefined()) {
 		var label := self.visibleChildren()->selectOne(c|getViewType(c) = templateParameterSubstitutionLabelType);
-		mainLabel := label.oclAsType(Notation::DecorationNode).map nodeToMainLabel();
+		mainLabel := label.map nodeToMainLabel();
 	}
 }
 
 mapping Notation::Edge::edgeToTransitionEdge() : UMLDI::TransitionEdge
-	inherits Notation::Edge::edgeToRelationshipWithGuardEdge
+	inherits Notation::Edge::edgeToElementEdge
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Transition) };
 
 mapping Notation::Edge::edgeToControlFlowEdge() : UMLDI::ControlFlowEdge
@@ -959,10 +1221,10 @@ mapping Notation::Edge::edgeToObjectFlowEdge() : UMLDI::ObjectFlowEdge
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::ObjectFlow) }
 {
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = selectionLabelType);
-	selectionLabel := label.oclAsType(Notation::DecorationNode).map nodeToSelectionLabel();
+	selectionLabel := label.map nodeToSelectionLabel();
 
 	label := self.visibleChildren()->selectOne(c|getViewType(c) = transformationLabelType);
-	transformationLabel := label.oclAsType(Notation::DecorationNode).map nodeToTransformationLabel();
+	transformationLabel := label.map nodeToTransformationLabel();
 }
 
 mapping Notation::Edge::edgeToExceptionHandlerEdge() : UMLDI::ExceptionHandlerEdge
@@ -970,11 +1232,19 @@ mapping Notation::Edge::edgeToExceptionHandlerEdge() : UMLDI::ExceptionHandlerEd
 	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::ExceptionHandler) }
 {
 	var label := self.visibleChildren()->selectOne(c|getViewType(c) = typeLabelType);
-	typeLabel := label.oclAsType(Notation::DecorationNode).map nodeToTypeLabel();
+	typeLabel := label.map nodeToTypeLabel();
 
 	label := self.visibleChildren()->selectOne(c|getViewType(c) = iconLabelType);
-	iconLabel := label.oclAsType(Notation::DecorationNode).map nodeToIconLabel();
+	iconLabel := label.map nodeToIconLabel();
 }
+
+mapping Notation::Edge::edgeToMessageEdge() : UMLDI::MessageEdge
+	inherits Notation::Edge::edgeToElementEdge
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::Message) };
+
+mapping Notation::Edge::edgeToGeneralOrderingEdge() : UMLDI::GeneralOrderingEdge
+	inherits Notation::Edge::edgeToElementEdge
+	when { self.element->notEmpty() and self.element.oclIsKindOf(UML::GeneralOrdering) };
 
 //-------------------------------------------------------------------------------------
 
@@ -984,13 +1254,18 @@ abstract mapping Notation::Node::nodeToUmlLabel() : UMLDI::UmlLabel
 	bounds := self.bounds();
 }
 
-mapping Notation::Shape::shapeToListItemLabel() : UMLDI::ListItemLabel
-	inherits Notation::Node::nodeToUmlLabel
+mapping Notation::Node::nodeToListItemLabel() : UMLDI::ListItemLabel
+	inherits Notation::Node::nodeToUmlLabel;
+
+mapping Notation::Shape::nodeToListItemLabel() : UMLDI::ListItemLabel
+	inherits Notation::Node::nodeToListItemLabel
 {
-	localUmlStyle := object UMLDI::UmlStyle {
-		fontName := self.fontName;
-		fontSize := self.fontHeight;
-	}
+	if not self.container().oclAsType(Notation::Node).transientChildren->includes(self) then
+		localUmlStyle := object UMLDI::UmlStyle {
+			fontName := self.fontName;
+			fontSize := self.fontHeight;
+		}
+	endif;
 }
 
 mapping Notation::Node::nodeToMainLabel() : UMLDI::MainLabel
@@ -1006,9 +1281,6 @@ mapping Notation::Node::nodeToConstraintLabel() : UMLDI::ConstraintLabel
 	inherits Notation::Node::nodeToUmlLabel;
 
 mapping Notation::Node::nodeToConveyedLabel() : UMLDI::ConveyedLabel
-	inherits Notation::Node::nodeToUmlLabel;
-
-mapping Notation::Node::nodeToBodyLabel() : UMLDI::BodyLabel
 	inherits Notation::Node::nodeToUmlLabel;
 
 mapping Notation::Node::nodeToGuardLabel() : UMLDI::GuardLabel
@@ -1029,6 +1301,15 @@ mapping Notation::Node::nodeToTypeLabel() : UMLDI::TypeLabel
 mapping Notation::Node::nodeToIconLabel() : UMLDI::IconLabel
 	inherits Notation::Node::nodeToUmlLabel;
 
+mapping Notation::Node::nodeToMessageLabel() : UMLDI::MessageLabel
+	inherits Notation::Node::nodeToUmlLabel;
+
+mapping Notation::Node::nodeToStereotypeLabel() : UMLDI::StereotypeLabel
+	inherits Notation::Node::nodeToUmlLabel
+{
+	umlModelElement := self.styles![EObjectValueStyle].eObjectValue.oclAsType(UML::Element);
+}
+
 //-------------------------------------------------------------------------------------
 
 abstract mapping Notation::Node::nodeToUmlCompartment() : UMLDI::UmlCompartment
@@ -1040,7 +1321,7 @@ abstract mapping Notation::Node::nodeToUmlCompartment() : UMLDI::UmlCompartment
 abstract mapping Notation::Node::nodeToListCompartment() : UMLDI::ListCompartment
 	inherits Notation::Node::nodeToUmlCompartment
 {
-	listItemLabel += self.visibleChildren()[Notation::Shape]->map shapeToListItemLabel();	
+	listItemLabel += self.visibleChildren()->map nodeToListItemLabel();	
 }
 
 abstract mapping Notation::Node::nodeToDiagramCompartment() : UMLDI::DiagramCompartment
@@ -1057,7 +1338,7 @@ abstract mapping Notation::Node::nodeToClassifierCompartment() : UMLDI::Classifi
 		topUmlDiagramElement += self.visibleChildren()->map toTopUmlDiagramElement();
 	} else {
 		layout := UMLDI::CompartmentLayout::list;
-		listItemLabel += self.visibleChildren().oclAsType(Notation::Shape)->map shapeToListItemLabel();
+		listItemLabel += self.visibleChildren()->map nodeToListItemLabel();
 	};
 }
 
@@ -1085,7 +1366,7 @@ mapping Notation::Node::nodeToExtensionPointCompartment() : UMLDI::ExtensionPoin
 mapping Notation::Node::nodeToPackagedElementCompartment() : UMLDI::PackagedElementCompartment
 	inherits Notation::Node::nodeToDiagramCompartment;
 
-mapping Notation::Node::nodeToInternalStructureCompartment() : UMLDI::InternalStructureCompartment
+mapping Notation::Node::nodeToStructureCompartment() : UMLDI::StructureCompartment
 	inherits Notation::Node::nodeToDiagramCompartment;
 
 mapping Notation::Node::nodeToUseCaseCompartment() : UMLDI::UseCaseCompartment
@@ -1115,7 +1396,7 @@ mapping Notation::Node::nodeToSubvertexCompartment() : UMLDI::SubvertexCompartme
 mapping Notation::Node::nodeToInternalBehaviorCompartment() : UMLDI::InternalBehaviorCompartment
 	inherits Notation::Node::nodeToUmlCompartment
 {
-	listItemLabel += self.visibleChildren()[Notation::Shape]->select(element.oclIsKindOf(Behavior))->map shapeToListItemLabel();	
+	listItemLabel += self.visibleChildren()->select(element.oclIsKindOf(Behavior))->map nodeToListItemLabel();	
 	listItemLabel->forEach(label) { label.bounds.x := bounds.x + 3; };
 	var first := listItemLabel->at(1);
 	var last := listItemLabel->at(listItemLabel->size());
@@ -1126,7 +1407,7 @@ mapping Notation::Node::nodeToInternalBehaviorCompartment() : UMLDI::InternalBeh
 mapping Notation::Node::nodeToInternalTransitionCompartment() : UMLDI::InternalTransitionCompartment
 	inherits Notation::Node::nodeToUmlCompartment 
 {
-	listItemLabel += self.visibleChildren()[Notation::Shape]->select(element.oclIsKindOf(Transition))->map shapeToListItemLabel();	
+	listItemLabel += self.visibleChildren()->select(element.oclIsKindOf(Transition))->map nodeToListItemLabel();	
 	listItemLabel->forEach(label) { label.bounds.x := bounds.x + 3; };
 	var f := listItemLabel->at(1);
 	var l := listItemLabel->at(listItemLabel->size());
@@ -1152,35 +1433,70 @@ mapping Notation::Node::nodeToPostConditionCompartment() : UMLDI::PostConditionC
 	listItemLabel->forEach(label) { label.bounds.x := bounds.x; };
 }
 	
-mapping Notation::Node::nodeToContentCompartment() : UMLDI::ContentCompartment
-	inherits Notation::Node::nodeToDiagramCompartment
+mapping Notation::Node::nodeToActivityNodeCompartment() : UMLDI::ActivityNodeCompartment
+	inherits Notation::Node::nodeToUmlCompartment
 {
+	// do the following here instead of inheriting nodeToDiagramCompartment to filter out 
+	// localPre/PostCondition shapes (they are rather labels to actions) and their attachments
+	var directChildren := self.visibleChildren()->reject(element.oclIsKindOf(UML::Constraint) 
+		and element.container().oclIsKindOf(UML::Action));
+	topUmlDiagramElement += directChildren->map toTopUmlDiagramElement();
+	
 	// recursively collect nested subpartition compartments
-	var nestedCompartments := self->closure
-		(visibleChildren()->select(element.oclIsKindOf(UML::ActivityPartition)))
-		.visibleChildren()->select(c|subPartitionCompartmentType->includes(getViewType(c)));
+	var nestedCompartments := self->closure(visibleChildren()->select(element.oclIsKindOf(UML::ActivityPartition)))
+		.visibleChildren()->select(c|subpartitionCompartmentType->includes(getViewType(c)));
 	// collect nested interruptible activity region compartments
 	nestedCompartments += self.visibleChildren()->select(element.oclIsKindOf(UML::InterruptibleActivityRegion))
 		.visibleChildren()->select(c|interruptibleActivityRegionCompartmentType->includes(getViewType(c)));
-	// add the nodes contained in those nested compartments to this content compartment
+	// add the children contained in those nested compartments to this content compartment
 	topUmlDiagramElement += nestedCompartments.visibleChildren()
 		->select(not element.oclIsKindOf(UML::ActivityPartition))->map toTopUmlDiagramElement();
 }
 
-mapping Notation::Node::nodeToSubPartitionCompartment() : UMLDI::SubPartitionCompartment
+mapping Notation::Node::nodeToSubpartitionCompartment() : UMLDI::SubpartitionCompartment
 	inherits Notation::Node::nodeToUmlCompartment
 {
 	topUmlDiagramElement += self.visibleChildren()->select(element.oclIsKindOf(UML::ActivityPartition))->map toTopUmlDiagramElement();
 }
 
+mapping Notation::Node::nodeToSubfragmentCompartment() : UMLDI::SubfragmentCompartment
+	inherits Notation::Node::nodeToDiagramCompartment;
+
+mapping Notation::Node::nodeToStereotypeCompartment() : UMLDI::StereotypeCompartment
+	inherits Notation::Node::nodeToListCompartment
+{
+	listItemLabel += self.transientChildren->select(visible)->map nodeToListItemLabel();	
+}
+
 //-------------------------------------------------------------------------------------
 
 query Notation::View::visibleChildren() : OrderedSet(Notation::Node) {
-	return self.children->select(visible);
+	var visible := self.children->select(visible);
+
+	var a := self.eAnnotations->any(source='guard.visibility');
+	if a <> null and a.details->any(key='guard.visibility').value = 'false' then
+		visible := visible->reject(c|getViewType(c) = guardLabelType) 
+	endif;
+	
+	a := self.eAnnotations->any(source='displayBehavior');
+	if a <> null and a.details->any(key='displayBehavior').value = 'false' then
+		visible := visible->reject(c|getViewType(c) = nameLabelType) 
+	endif;
+	
+	return visible;
 }
 
 query Notation::Diagram::visibleEdges() : OrderedSet(Notation::Edge) {
-	return self.edges->select(visible);
+	var edges := self.edges->select(visible);
+	
+	// ignore attachments to local pre/post conditions shapes (they will be labels)
+	if getViewType(self) = activityDiagramType then
+		edges := edges->reject(e|getViewType(e) = attachmentEdgeType and 
+			e.target.element.oclIsKindOf(UML::Constraint) and 
+				e.target.element.container() = e.source.element)
+	endif;
+	
+	return edges;
 }
 
 query Notation::Node::bounds() : DC::Bounds {
@@ -1196,3 +1512,23 @@ query Notation::Edge::centerPoint() : DC::Bounds {
 	var e := points->at(points->size());
 	return object DC::Bounds { x:= s.x+(e.x-s.x)/2; y:=s.y+(e.y-s.y)/2 };
 }
+
+query max(n1 : Real, n2 : Real) : Real {
+	return if (n1 > n2) then n1 else n2 endif;
+}
+
+query abs(n : Real) : Real {
+	return if (n<0) then -n else n endif;
+}
+
+query anchorPoint(bounds : Bounds, refX : Real, refY : Real) : Tuple(x: Real, y : Real) {
+	var centerX := bounds.x + bounds.width/2;
+	var centerY := bounds.y + bounds.height/2;
+	var dx = refX - centerX;
+	var dy = refY - centerY;
+	var scale = 0.5 / max(abs(dx) / bounds.width, abs(dy) / bounds.height);
+	dx := dx * scale;
+	dy := dy * scale;
+	return Tuple {x=centerX+dx, y=centerY+dy};
+}
+

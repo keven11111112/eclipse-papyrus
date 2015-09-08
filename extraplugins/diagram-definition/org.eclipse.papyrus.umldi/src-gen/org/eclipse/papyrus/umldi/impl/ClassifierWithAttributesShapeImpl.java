@@ -36,17 +36,19 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ClassifierWithAttributesShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ClassifierWithAttributesShapeImpl#getAttributeCompartment <em>Attribute Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ClassifierWithAttributesShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ClassifierWithAttributesShapeImpl#getAttributeCompartment <em>Attribute Compartment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeImpl implements ClassifierWithAttributesShape {
+
 	/**
 	 * The cached value of the '{@link #getAttributeCompartment() <em>Attribute Compartment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAttributeCompartment()
 	 * @generated
 	 * @ordered
@@ -56,6 +58,7 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClassifierWithAttributesShapeImpl() {
@@ -65,6 +68,7 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +79,7 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,15 +91,17 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__MAIN_LABEL, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__OWNED_USE_CASE_COMPARTMENT, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__USE_CASE_COMPARTMENT, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT};
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__STEREOTYPE_LABEL, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__MAIN_LABEL, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__STEREOTYPE_COMPARTMENT, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__OWNED_USE_CASE_COMPARTMENT, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__USE_CASE_COMPARTMENT, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT };
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AttributeCompartment getAttributeCompartment() {
@@ -104,14 +111,18 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAttributeCompartment(AttributeCompartment newAttributeCompartment, NotificationChain msgs) {
 		AttributeCompartment oldAttributeCompartment = attributeCompartment;
 		attributeCompartment = newAttributeCompartment;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT, oldAttributeCompartment, newAttributeCompartment);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -119,34 +130,36 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAttributeCompartment(AttributeCompartment newAttributeCompartment) {
-		if (newAttributeCompartment != attributeCompartment) {
+		if(newAttributeCompartment != attributeCompartment) {
 			NotificationChain msgs = null;
-			if (attributeCompartment != null)
+			if(attributeCompartment != null)
 				msgs = ((InternalEObject)attributeCompartment).eInverseRemove(this, UMLDIPackage.ATTRIBUTE_COMPARTMENT__CLASSIFIER_WITH_ATTRIBUTES_SHAPE, AttributeCompartment.class, msgs);
-			if (newAttributeCompartment != null)
+			if(newAttributeCompartment != null)
 				msgs = ((InternalEObject)newAttributeCompartment).eInverseAdd(this, UMLDIPackage.ATTRIBUTE_COMPARTMENT__CLASSIFIER_WITH_ATTRIBUTES_SHAPE, AttributeCompartment.class, msgs);
 			msgs = basicSetAttributeCompartment(newAttributeCompartment, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT, newAttributeCompartment, newAttributeCompartment));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
-				if (attributeCompartment != null)
-					msgs = ((InternalEObject)attributeCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT, null, msgs);
-				return basicSetAttributeCompartment((AttributeCompartment)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
+			if(attributeCompartment != null)
+				msgs = ((InternalEObject)attributeCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT, null, msgs);
+			return basicSetAttributeCompartment((AttributeCompartment)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -154,13 +167,14 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
-				return basicSetAttributeCompartment(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
+			return basicSetAttributeCompartment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -168,13 +182,14 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
-				return getAttributeCompartment();
+		switch(featureID) {
+		case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
+			return getAttributeCompartment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,14 +197,15 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
-				setAttributeCompartment((AttributeCompartment)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
+			setAttributeCompartment((AttributeCompartment)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -197,14 +213,15 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
-				setAttributeCompartment((AttributeCompartment)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
+			setAttributeCompartment((AttributeCompartment)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,15 +229,16 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
-				return isSetOwnedUmlDiagramElement();
-			case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
-				return attributeCompartment != null;
+		switch(featureID) {
+		case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
+			return isSetOwnedUmlDiagramElement();
+		case UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT:
+			return attributeCompartment != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -228,12 +246,11 @@ public abstract class ClassifierWithAttributesShapeImpl extends ClassifierShapeI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT);
+		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.CLASSIFIER_WITH_ATTRIBUTES_SHAPE__ATTRIBUTE_COMPARTMENT);
 	}
-
 } //ClassifierWithAttributesShapeImpl

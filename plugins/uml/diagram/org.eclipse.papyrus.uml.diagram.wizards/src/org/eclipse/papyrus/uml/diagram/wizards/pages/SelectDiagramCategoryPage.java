@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,15 +9,21 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus - bug 466850
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -39,6 +45,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
 
 
@@ -59,10 +66,16 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	/** The Constant DEFAULT_EXTENSION. */
 	public static final String DEFAULT_EXTENSION = "uml"; //$NON-NLS-1$
 
+	/** uml core languages label */
+	private static final List<String> umlCore = Arrays.asList("UML", "Profile"); //$NON-NLS-1$ //$NON-NLS-2$
+
 	/** The my allow several categories. */
 	private final boolean myAllowSeveralCategories;
 
 	private SettingsHelper settingsHelper;
+
+	private final Collator collator = Collator.getInstance();
+
 
 	/**
 	 * Instantiates a new select diagram category page.
@@ -96,7 +109,9 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		super.setWizard(newWizard);
 		settingsHelper = new SettingsHelper(getDialogSettings());
 		String[] defaultDiagramCategory = settingsHelper.getDefaultDiagramCategories();
+
 		if (defaultDiagramCategory != null && defaultDiagramCategory.length > 0) {
+			String defaultSelection = Arrays.asList(defaultDiagramCategory).contains(DEFAULT_EXTENSION) ? DEFAULT_EXTENSION : defaultDiagramCategory[0];
 			if (myAllowSeveralCategories) {
 				setDefaultDiagramCategories(defaultDiagramCategory);
 			} else {
@@ -105,7 +120,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 				if (settingsHelper.rememberCurrentSelection(getDialogSettings()) && previousSelection != null) {
 					setDefaultDiagramCategories(new String[] { previousSelection });
 				} else {
-					setDefaultDiagramCategories(new String[] { defaultDiagramCategory[0] });
+					setDefaultDiagramCategories(new String[] { defaultSelection });
 				}
 			}
 		}
@@ -127,7 +142,15 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		plate.setLayout(gridLayout);
 		setControl(plate);
 		createDiagramCategoryForm(plate);
-		setPageComplete(validatePage());
+
+		// Bug(466850): Do this later because the new-file page's resource group is not yet created
+		plate.getDisplay().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				setPageComplete(validatePage());
+			}
+		});
 	}
 
 	@Override
@@ -176,6 +199,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		if (!validateFileExtension(categories)) {
 			return false;
 		}
+
 		return true;
 	}
 
@@ -220,6 +244,30 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	private void createDiagramCategoryForm(Composite composite) {
 		Group group = createGroup(composite, Messages.SelectDiagramCategoryPage_diagram_language_group);
 
+		// To sort the different languages by name
+		collator.setStrength(Collator.SECONDARY);
+		Comparator<DiagramCategoryDescriptor> setComparator = new Comparator<DiagramCategoryDescriptor>() {
+
+			@Override
+			public int compare(DiagramCategoryDescriptor descriptor1, DiagramCategoryDescriptor descriptor2) {
+				String button1Data = descriptor1.getLabel();
+				String button2Data = descriptor2.getLabel();
+				// Special consideration for the UML language as it should always be on top
+				if (button2Data.equalsIgnoreCase(DEFAULT_EXTENSION)) {
+					return 1;
+				} else if (button1Data.equalsIgnoreCase(DEFAULT_EXTENSION)) {
+					return -1;
+				} else {
+					// This if the usual sorting method
+					return collator.compare(button1Data, button2Data);
+				}
+			}
+
+		};
+		// To store the different languages and display them
+		SortedSet<DiagramCategoryDescriptor> descriptorUMLSet = new TreeSet<DiagramCategoryDescriptor>(setComparator);
+		SortedSet<DiagramCategoryDescriptor> descriptorDSMLSet = new TreeSet<DiagramCategoryDescriptor>(setComparator);
+
 		SelectionListener listener = new SelectionListener() {
 
 			private SelectionEvent prevEvent;
@@ -241,11 +289,50 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		};
 
 		for (DiagramCategoryDescriptor diagramCategoryDescriptor : getDiagramCategoryMap().values()) {
+			String descriptorLabel = diagramCategoryDescriptor.getLabel();
+			if (umlCore.contains(descriptorLabel)) {
+				descriptorUMLSet.add(diagramCategoryDescriptor);
+			} else {
+				descriptorDSMLSet.add(diagramCategoryDescriptor);
+			}
+		}
+
+		Label coreLabel = new Label(group, SWT.NONE);
+		coreLabel.setText(Messages.SelectDiagramCategoryPage_umlGroup);
+		for (DiagramCategoryDescriptor diagramCategoryDescriptor : descriptorUMLSet) {
 			Button button = createCategoryButton(diagramCategoryDescriptor, group);
 			button.addSelectionListener(listener);
 			myDiagramKindButtons.add(button);
 		}
+
+		Label dsmlLabel = new Label(group, SWT.NONE);
+		dsmlLabel.setText(Messages.SelectDiagramCategoryPage_dsmlGroup);
+		for (DiagramCategoryDescriptor diagramCategoryDescriptor : descriptorDSMLSet) {
+			Button button = createCategoryButton(diagramCategoryDescriptor, group);
+			button.addSelectionListener(listener);
+			myDiagramKindButtons.add(button);
+		}
+
 		checkDiagramCategoryButtons();
+		// Initialize the first selection upon opening the wizard
+		setDefaultSelection(DEFAULT_EXTENSION);
+	}
+
+	/**
+	 * Sets the default language selection based on the DEFAULT_EXTENSION parameter
+	 * 
+	 * @param defaultExtension
+	 */
+	private void setDefaultSelection(String defaultExtension) {
+		String previousSelection = settingsHelper.getPreviousSelection();
+		String defaultSelection = previousSelection != null ? previousSelection : defaultExtension;
+
+		for (Button button : myDiagramKindButtons) {
+			if (defaultSelection.equalsIgnoreCase((String) button.getData())) {
+				button.setSelection(true);
+				diagramCategorySelected(defaultSelection, button.getSelection());
+			}
+		}
 	}
 
 	/**
@@ -266,8 +353,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 
 		// Notifies the settings file that the selection has been set and to what
-		settingsHelper.saveRememberCurrentSelection(true);
 		settingsHelper.setCurrentSelection(category);
+		settingsHelper.saveRememberCurrentSelection(true);
 	}
 
 	/**
@@ -289,7 +376,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 		for (Button button : myDiagramKindButtons) {
 			for (String diagramCategory : diagramCategories) {
-				if (diagramCategory.equals(button.getData())) {
+				if (diagramCategory.equalsIgnoreCase((String) button.getData())) {
 					button.setSelection(true);
 				}
 			}

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -22,6 +23,7 @@ import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
@@ -30,7 +32,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.EventListHelper;
+import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 
 import ca.odell.glazedlists.EventList;
 
@@ -75,7 +79,6 @@ public class CompositeTreeAxisManagerForEventList extends CompositeAxisManagerFo
 	public void manageEvent(Notification notification) {
 		super.manageEvent(notification);
 		// must not be done here -> to many call to refresh
-		// getTableManager().refreshNatTable();
 	}
 
 
@@ -186,13 +189,17 @@ public class CompositeTreeAxisManagerForEventList extends CompositeAxisManagerFo
 		// we are modifying the model, so we need to do the expand is a command, but this action must not be done in the stack (and must not be available in the history)
 		final SetCommand cmd = new SetCommand(getTableEditingDomain(), element, NattableaxisPackage.eINSTANCE.getITreeItemAxis_Expanded(), expanded);
 		try {
-			GMFUnsafe.write(getTableEditingDomain(), new Runnable() {
-
-				@Override
-				public void run() {
-					cmd.execute();
-				}
-			});
+			if(null != getTableEditingDomain()){
+				GMFUnsafe.write(getTableEditingDomain(), new Runnable() {
+	
+					@Override
+					public void run() {
+						cmd.execute();
+					}
+				});
+			}else{
+				cmd.execute();
+			}
 		} catch (InterruptedException e) {
 			Activator.log.error(e);
 		} catch (RollbackException e) {
@@ -238,6 +245,30 @@ public class CompositeTreeAxisManagerForEventList extends CompositeAxisManagerFo
 			if (current instanceof ITreeItemAxisManagerForEventList) {
 				((ITreeItemAxisManagerForEventList) current).managedHideShowCategoriesForDepth(toHide, toShow);
 			}
+		}
+		// required
+		getTableManager().refreshNatTable();
+	}
+	
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.CompositeAxisManagerForEventList#fillingConfigurationsHaveChanged()
+	 *
+	 */
+	@Override
+	public void fillingConfigurationsHaveChanged() {
+		super.fillingConfigurationsHaveChanged();
+		
+		//fix for the bug 467723: [Tree Table] changing categories when categories are hidden empty the table
+		//we reset the visibility status for all depths to true
+		List<Integer> depths = new ArrayList<Integer>();
+		for(int i=0;i<=FillingConfigurationUtils.getMaxDepthForTree(getTableManager().getTable());i++){
+			depths.add(Integer.valueOf(i));
+		}
+		((TreeNattableModelManager) getTableManager()).hideShowCategories(null, depths);
+		List<Integer> hiddenDepth = StyleUtils.getHiddenDepths(getTableManager());
+		if (hiddenDepth.size() > 0) {
+			//we reset the hidden depth (allow to expand hidden category too (fix the bug 
+			((TreeNattableModelManager) getTableManager()).hideShowCategories(hiddenDepth, null);
 		}
 		// required
 		getTableManager().refreshNatTable();

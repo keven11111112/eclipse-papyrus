@@ -20,6 +20,8 @@ import java.util.Map;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Menu;
@@ -60,9 +62,23 @@ public class CreateRowStereotypePropertyMenuFactory extends AbstractCreateStereo
 	 * @param tableManager
 	 * @param initialSelection
 	 * @param nameToPropertyMap
+	 * @deprecated
 	 */
 	@Override
-	protected void fillMenu(final Menu menu, final INattableModelManager tableManager, final Collection<String> initialSelection, final Map<String, Property> nameToPropertyMap) {
+	protected void fillMenu(Menu menu, INattableModelManager tableManager, Collection<String> initialSelection, Map<String, Property> nameToPropertyMap) {
+
+	}
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.uml.nattable.menu.AbstractCreateStereotypePropertyMenuFactory#fillMenu(org.eclipse.swt.widgets.Menu, java.util.Collection, java.util.Map)
+	 *
+	 * @param menu
+	 * @param initialSelection
+	 * @param nameToPropertyMap
+	 */
+	@Override
+	protected void fillMenu(final Menu menu, final Collection<String> initialSelection, final Map<String, Property> nameToPropertyMap) {
 		for (final String current : nameToPropertyMap.keySet()) {
 			final MenuItem menuItem = new MenuItem(menu, SWT.CHECK);
 			menuItem.setText(current);
@@ -76,10 +92,10 @@ public class CreateRowStereotypePropertyMenuFactory extends AbstractCreateStereo
 					final boolean toAdd = menuItem.getSelection();
 					if (toAdd) {
 						Collection<Object> toAdds = Collections.singleton((Object) nameToPropertyMap.get(current));
-						tableManager.addRows(toAdds);
+						getTableManager().addRows(toAdds);
 					} else {
 						Collection<Object> toRemove = Collections.singleton((Object) nameToPropertyMap.get(current));
-						tableManager.removeRows(toRemove);
+						getTableManager().removeRows(toRemove);
 					}
 				}
 

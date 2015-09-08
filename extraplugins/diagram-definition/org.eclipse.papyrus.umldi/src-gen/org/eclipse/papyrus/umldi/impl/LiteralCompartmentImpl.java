@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.LiteralCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.LiteralCompartmentImpl#getEnumerationShape <em>Enumeration Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.LiteralCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.LiteralCompartmentImpl#getEnumerationShape <em>Enumeration Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class LiteralCompartmentImpl extends ListCompartmentImpl implements LiteralCompartment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LiteralCompartmentImpl() {
@@ -53,6 +55,7 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		EnumerationShape enumerationShape = getEnumerationShape();			
-		if (enumerationShape != null) {
+		EnumerationShape enumerationShape = getEnumerationShape();
+		if(enumerationShape != null) {
 			return enumerationShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EnumerationShape getEnumerationShape() {
-		if (eContainerFeatureID() != UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE)
+			return null;
 		return (EnumerationShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetEnumerationShape(EnumerationShape newEnumerationShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEnumerationShape(EnumerationShape newEnumerationShape) {
-		if (newEnumerationShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE && newEnumerationShape != null)) {
-			if (EcoreUtil.isAncestor(this, newEnumerationShape))
+		if(newEnumerationShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE && newEnumerationShape != null)) {
+			if(EcoreUtil.isAncestor(this, newEnumerationShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newEnumerationShape != null)
+			if(newEnumerationShape != null)
 				msgs = ((InternalEObject)newEnumerationShape).eInverseAdd(this, UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT, EnumerationShape.class, msgs);
 			msgs = basicSetEnumerationShape(newEnumerationShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE, newEnumerationShape, newEnumerationShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetEnumerationShape((EnumerationShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetEnumerationShape((EnumerationShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
-				return basicSetEnumerationShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
+			return basicSetEnumerationShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT, EnumerationShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT, EnumerationShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
-				return getEnumerationShape();
+		switch(featureID) {
+		case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
+			return getEnumerationShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
-				setEnumerationShape((EnumerationShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
+			setEnumerationShape((EnumerationShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
-				setEnumerationShape((EnumerationShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
+			setEnumerationShape((EnumerationShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.LITERAL_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
-				return getEnumerationShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.LITERAL_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE:
+			return getEnumerationShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class LiteralCompartmentImpl extends ListCompartmentImpl implements Liter
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE);
 	}
-
 } //LiteralCompartmentImpl

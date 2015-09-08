@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.eclipse.papyrus.umldi.ExceptionHandlerEdge;
+import org.eclipse.papyrus.umldi.InteractionUseShape;
 import org.eclipse.papyrus.umldi.TypeLabel;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 import org.eclipse.papyrus.umldi.UmlDiagramElement;
@@ -34,16 +35,19 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.TypeLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.TypeLabelImpl#getExceptionHandlerEdge <em>Exception Handler Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.TypeLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.TypeLabelImpl#getInteractionUseShape <em>Interaction Use Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.TypeLabelImpl#getExceptionHandlerEdge <em>Exception Handler Edge</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TypeLabelImpl() {
@@ -53,6 +57,7 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +68,7 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +80,17 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ExceptionHandlerEdge exceptionHandlerEdge = getExceptionHandlerEdge();			
-		if (exceptionHandlerEdge != null) {
+		InteractionUseShape interactionUseShape = getInteractionUseShape();
+		if(interactionUseShape != null) {
+			return interactionUseShape;
+		}
+		ExceptionHandlerEdge exceptionHandlerEdge = getExceptionHandlerEdge();
+		if(exceptionHandlerEdge != null) {
 			return exceptionHandlerEdge;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +99,64 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public InteractionUseShape getInteractionUseShape() {
+		if(eContainerFeatureID() != UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE)
+			return null;
+		return (InteractionUseShape)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetInteractionUseShape(InteractionUseShape newInteractionUseShape, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newInteractionUseShape, UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setInteractionUseShape(InteractionUseShape newInteractionUseShape) {
+		if(newInteractionUseShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE && newInteractionUseShape != null)) {
+			if(EcoreUtil.isAncestor(this, newInteractionUseShape))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if(newInteractionUseShape != null)
+				msgs = ((InternalEObject)newInteractionUseShape).eInverseAdd(this, UMLDIPackage.INTERACTION_USE_SHAPE__TYPE_LABEL, InteractionUseShape.class, msgs);
+			msgs = basicSetInteractionUseShape(newInteractionUseShape, msgs);
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE, newInteractionUseShape, newInteractionUseShape));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ExceptionHandlerEdge getExceptionHandlerEdge() {
-		if (eContainerFeatureID() != UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE)
+			return null;
 		return (ExceptionHandlerEdge)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetExceptionHandlerEdge(ExceptionHandlerEdge newExceptionHandlerEdge, NotificationChain msgs) {
@@ -108,36 +167,42 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setExceptionHandlerEdge(ExceptionHandlerEdge newExceptionHandlerEdge) {
-		if (newExceptionHandlerEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE && newExceptionHandlerEdge != null)) {
-			if (EcoreUtil.isAncestor(this, newExceptionHandlerEdge))
+		if(newExceptionHandlerEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE && newExceptionHandlerEdge != null)) {
+			if(EcoreUtil.isAncestor(this, newExceptionHandlerEdge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newExceptionHandlerEdge != null)
+			if(newExceptionHandlerEdge != null)
 				msgs = ((InternalEObject)newExceptionHandlerEdge).eInverseAdd(this, UMLDIPackage.EXCEPTION_HANDLER_EDGE__TYPE_LABEL, ExceptionHandlerEdge.class, msgs);
 			msgs = basicSetExceptionHandlerEdge(newExceptionHandlerEdge, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE, newExceptionHandlerEdge, newExceptionHandlerEdge));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetExceptionHandlerEdge((ExceptionHandlerEdge)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetInteractionUseShape((InteractionUseShape)otherEnd, msgs);
+		case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetExceptionHandlerEdge((ExceptionHandlerEdge)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +210,16 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
-				return basicSetExceptionHandlerEdge(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE:
+			return basicSetInteractionUseShape(null, msgs);
+		case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
+			return basicSetExceptionHandlerEdge(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +227,16 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.EXCEPTION_HANDLER_EDGE__TYPE_LABEL, ExceptionHandlerEdge.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.INTERACTION_USE_SHAPE__TYPE_LABEL, InteractionUseShape.class, msgs);
+		case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.EXCEPTION_HANDLER_EDGE__TYPE_LABEL, ExceptionHandlerEdge.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +244,16 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
-				return getExceptionHandlerEdge();
+		switch(featureID) {
+		case UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE:
+			return getInteractionUseShape();
+		case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
+			return getExceptionHandlerEdge();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +261,18 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
-				setExceptionHandlerEdge((ExceptionHandlerEdge)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE:
+			setInteractionUseShape((InteractionUseShape)newValue);
+			return;
+		case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
+			setExceptionHandlerEdge((ExceptionHandlerEdge)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +280,18 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
-				setExceptionHandlerEdge((ExceptionHandlerEdge)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE:
+			setInteractionUseShape((InteractionUseShape)null);
+			return;
+		case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
+			setExceptionHandlerEdge((ExceptionHandlerEdge)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +299,18 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.TYPE_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
-				return getExceptionHandlerEdge() != null;
+		switch(featureID) {
+		case UMLDIPackage.TYPE_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE:
+			return getInteractionUseShape() != null;
+		case UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE:
+			return getExceptionHandlerEdge() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +318,11 @@ public class TypeLabelImpl extends UmlLabelImpl implements TypeLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.TYPE_LABEL__INTERACTION_USE_SHAPE) || eIsSet(UMLDIPackage.TYPE_LABEL__EXCEPTION_HANDLER_EDGE);
 	}
-
 } //TypeLabelImpl

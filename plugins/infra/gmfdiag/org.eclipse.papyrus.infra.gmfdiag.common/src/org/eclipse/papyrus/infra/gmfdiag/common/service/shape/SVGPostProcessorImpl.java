@@ -18,6 +18,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart;
+import org.eclipse.ui.IEditorPart;
 import org.w3c.dom.svg.SVGDocument;
 
 /**
@@ -26,7 +28,7 @@ import org.w3c.dom.svg.SVGDocument;
  * @author Camille Letavernier
  *
  */
-public class SVGPostProcessorImpl implements SVGPostProcessor {
+public class SVGPostProcessorImpl implements SVGPostProcessor, IRefreshHandlerPart {
 
 	protected final List<SVGPostProcessor> processors;
 
@@ -60,6 +62,20 @@ public class SVGPostProcessorImpl implements SVGPostProcessor {
 	public void postProcess(EObject view, SVGDocument document) {
 		for (SVGPostProcessor processor : processors) {
 			processor.postProcess(view, document);
+		}
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart#refresh(org.eclipse.ui.IEditorPart)
+	 *
+	 * @param editorPart
+	 */
+	@Override
+	public void refresh(IEditorPart editorPart) {
+		for (SVGPostProcessor processor : processors) {
+			if (processor instanceof IRefreshHandlerPart)
+				((IRefreshHandlerPart) processor).refresh(editorPart);
 		}
 	}
 

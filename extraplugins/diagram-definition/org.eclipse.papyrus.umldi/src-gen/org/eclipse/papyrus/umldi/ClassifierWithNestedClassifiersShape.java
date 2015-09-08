@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Classifier With Nested Classifiers Shape</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ClassifierWithNestedClassifiersShape#getNestedClassifierCompartment <em>Nested Classifier Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ClassifierWithNestedClassifiersShape#getNestedClassifierCompartment <em>Nested Classifier Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getClassifierWithNestedClassifiersShape()
@@ -29,21 +28,24 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface ClassifierWithNestedClassifiersShape extends ClassifierWithReceptionsShape {
+
 	/**
 	 * Returns the value of the '<em><b>Nested Classifier Compartment</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.NestedClassifierCompartment#getClassifierWithNestedClassifiersShape <em>Classifier With Nested Classifiers Shape</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.NestedClassifierCompartment#getClassifierWithNestedClassifiersShape
+	 * <em>Classifier With Nested Classifiers Shape</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Nested Classifier Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Nested Classifier Compartment</em>' containment reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Nested Classifier Compartment</em>' containment reference.
 	 * @see #setNestedClassifierCompartment(NestedClassifierCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getClassifierWithNestedClassifiersShape_NestedClassifierCompartment()
@@ -54,13 +56,15 @@ public interface ClassifierWithNestedClassifiersShape extends ClassifierWithRece
 	NestedClassifierCompartment getNestedClassifierCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ClassifierWithNestedClassifiersShape#getNestedClassifierCompartment <em>Nested Classifier Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ClassifierWithNestedClassifiersShape#getNestedClassifierCompartment
+	 * <em>Nested Classifier Compartment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nested Classifier Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Nested Classifier Compartment</em>' containment reference.
 	 * @see #getNestedClassifierCompartment()
 	 * @generated
 	 */
 	void setNestedClassifierCompartment(NestedClassifierCompartment value);
-
 } // ClassifierWithNestedClassifiersShape

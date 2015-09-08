@@ -2721,6 +2721,9 @@
 				<behaviour xsi:type="gmfgen:CustomBehaviour"
 					key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
 					editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy" />
+				<behaviour xsi:type="gmfgen:CustomBehaviour"
+            		key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            		editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy"/>
 				<modelFacet>
 					<metaClass
 						href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity" />
@@ -2805,6 +2808,9 @@
 				<behaviour xsi:type="gmfgen:CustomBehaviour"
 					key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
 					editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy" />
+				<behaviour xsi:type="gmfgen:CustomBehaviour"
+            		key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            		editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy"/>
 				<modelFacet>
 					<metaClass
 						href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction" />
@@ -2890,6 +2896,9 @@
 				<behaviour xsi:type="gmfgen:CustomBehaviour"
 					key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
 					editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy" />
+				<behaviour xsi:type="gmfgen:CustomBehaviour"
+            		key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            		editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy"/>
 				<modelFacet>
 					<metaClass
 						href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProtocolStateMachine" />
@@ -2974,6 +2983,9 @@
 				<behaviour xsi:type="gmfgen:CustomBehaviour"
 					key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
 					editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy" />
+				<behaviour xsi:type="gmfgen:CustomBehaviour"
+            		key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            		editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy"/>
 				<modelFacet>
 					<metaClass
 						href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateMachine" />
@@ -3560,6 +3572,9 @@
 				<behaviour xsi:type="gmfgen:CustomBehaviour"
 					key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
 					editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy" />
+				<behaviour xsi:type="gmfgen:CustomBehaviour"
+            		key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            		editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy"/>
 				<modelFacet>
 					<metaClass
 						href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class" />

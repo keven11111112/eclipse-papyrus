@@ -37,7 +37,7 @@ import org.junit.Test;
  * @author VL222926
  *
  */
-@PluginResource("resources/contents_and_expand_tests_resources/ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.di")//$NON-NLS-1$
+@PluginResource("resources/contents_and_expand_tests_resources/ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.di") //$NON-NLS-1$
 public class ContentsAndExpandWithoutCategories_H0_H1_H2_Tests {
 
 	@Rule
@@ -71,12 +71,19 @@ public class ContentsAndExpandWithoutCategories_H0_H1_H2_Tests {
 		// we check the initial contents
 		((NattableModelManager) this.manager).selectAll();
 		((NattableModelManager) this.manager).copyToClipboard();
-		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
+		String clipboard = getClipboardContent();
 		Assert.assertNotNull(clipboard);
-		String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), "ContentsAndExpandContentsAndExpandWithoutCategories_H0_H1_H2_Tests_testInitialDisplayedContent_Result.txt", "\n");//$NON-NLS-1$
-		// remove the last \n added by the the previous method
-		str = str.substring(0, str.length() - 1);
+		String str = getWantedString("ContentsAndExpandContentsAndExpandWithoutCategories_H0_H1_H2_Tests_testInitialDisplayedContent_Result.txt");//$NON-NLS-1$
 		Assert.assertEquals(str, clipboard);
+	}
+
+	protected String getClipboardContent() {
+		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
+		return clipboard;
+	}
+
+	protected String getWantedString(String fileName) {
+		return FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName, System.getProperty("line.separator"));//$NON-NLS-1$
 	}
 
 	/**
@@ -91,12 +98,9 @@ public class ContentsAndExpandWithoutCategories_H0_H1_H2_Tests {
 		manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		((NattableModelManager) this.manager).selectAll();
 		((NattableModelManager) this.manager).copyToClipboard();
-		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
+		String clipboard = getClipboardContent();
 		Assert.assertNotNull(clipboard);
-		String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), "ContentsAndExpandContentsAndExpandWithoutCategories_H0_H1_H2_Tests_testExpandAll_Result.txt", "\n");//$NON-NLS-1$
-		str = str.substring(0, str.length() - 1);
-		// remove the last \n added by the the previous method
-		str = str.substring(0, str.length() - 1);
+		String str = getWantedString("ContentsAndExpandContentsAndExpandWithoutCategories_H0_H1_H2_Tests_testExpandAll_Result.txt");//$NON-NLS-1$
 		Assert.assertEquals(str, clipboard);
 	}
 
@@ -106,11 +110,9 @@ public class ContentsAndExpandWithoutCategories_H0_H1_H2_Tests {
 		manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.COLLAPSE_ALL, null);
 		((NattableModelManager) this.manager).selectAll();
 		((NattableModelManager) this.manager).copyToClipboard();
-		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
+		String clipboard = getClipboardContent();
 		Assert.assertNotNull(clipboard);
-		String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), "ContentsAndExpandContentsAndExpandWithoutCategories_H0_H1_H2_Tests_testCollapseAll_Result.txt", "\n");//$NON-NLS-1$
-		// remove the last \n added by the the previous method
-		str = str.substring(0, str.length() - 1);
+		String str = getWantedString("ContentsAndExpandContentsAndExpandWithoutCategories_H0_H1_H2_Tests_testCollapseAll_Result.txt");//$NON-NLS-1$
 		Assert.assertEquals(str, clipboard);
 	}
 }

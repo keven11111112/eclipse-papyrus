@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class InteractionOverviewDiagramImpl extends InteractionDiagramImpl implements InteractionOverviewDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected InteractionOverviewDiagramImpl() {
@@ -36,11 +38,11 @@ public class InteractionOverviewDiagramImpl extends InteractionDiagramImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.INTERACTION_OVERVIEW_DIAGRAM;
 	}
-
 } //InteractionOverviewDiagramImpl

@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.core.clipboard.tests;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,7 +27,7 @@ import org.junit.Test;
  * @author Vincent Lorenzo
  *         This tests classes tests provides clipboard reading and wrintg tests into the clipboard
  */
-public class ClipboardTests {
+public class ClipboardTests extends AbstractPapyrusTest{
 
 	/**
 	 * the string used to fill the clipboard. We don't use \n or \r\n, because it seems me than the implements AWT/SWT changes them and it is not the goal of these tests
@@ -40,8 +42,17 @@ public class ClipboardTests {
 		SWTClipboardUtils.fillClipboard(testedString.toString());
 		String read = SWTClipboardUtils.getClipboardContents();
 		Assert.assertNotNull(read);
-		Assert.assertEquals(testedString.toString(), read);	}
+		Assert.assertEquals(testedString.toString(), read);
+	}
 
+	/**
+	 * 467554: filling clipboard with SWT and reading it with AWT doesn't work on Linux
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=467554
+	 * 
+	 * @throws UnsupportedFlavorException
+	 * @throws IOException
+	 */
+	@FailingTest
 	@Test
 	public void fillSWT_readAWT() throws UnsupportedFlavorException, IOException {
 		StringBuffer testedString = new StringBuffer(CLIPBOARD_CONTENTS);
@@ -49,7 +60,8 @@ public class ClipboardTests {
 		SWTClipboardUtils.fillClipboard(testedString.toString());
 		String read = AWTClipboardUtils.getClipboardContents();
 		Assert.assertNotNull(read);
-		Assert.assertEquals(testedString.toString(), read);	}
+		Assert.assertEquals(testedString.toString(), read);
+	}
 
 	@Test
 	public void fillAWT_readAWT() throws UnsupportedFlavorException, IOException {

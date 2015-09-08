@@ -706,6 +706,67 @@ public interface UMLRealTimePackage extends EPackage {
 	int TRIGGER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rsa.umlrt.impl.RTMessageImpl <em>RT Message</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.migration.rsa.umlrt.impl.RTMessageImpl
+	 * @see org.eclipse.papyrus.migration.rsa.umlrt.impl.UMLRealTimePackageImpl#getRTMessage()
+	 * @generated
+	 */
+	int RT_MESSAGE = 14;
+
+	/**
+	 * The feature id for the '<em><b>Receive Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int RT_MESSAGE__RECEIVE_PORT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Send Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int RT_MESSAGE__SEND_PORT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Base Message</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int RT_MESSAGE__BASE_MESSAGE = 2;
+
+	/**
+	 * The number of structural features of the '<em>RT Message</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int RT_MESSAGE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>RT Message</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int RT_MESSAGE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rsa.umlrt.PortRegistrationType <em>Port Registration Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -714,7 +775,7 @@ public interface UMLRealTimePackage extends EPackage {
 	 * @see org.eclipse.papyrus.migration.rsa.umlrt.impl.UMLRealTimePackageImpl#getPortRegistrationType()
 	 * @generated
 	 */
-	int PORT_REGISTRATION_TYPE = 14;
+	int PORT_REGISTRATION_TYPE = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rsa.umlrt.HistoryKind <em>History Kind</em>}' enum.
@@ -725,7 +786,7 @@ public interface UMLRealTimePackage extends EPackage {
 	 * @see org.eclipse.papyrus.migration.rsa.umlrt.impl.UMLRealTimePackageImpl#getHistoryKind()
 	 * @generated
 	 */
-	int HISTORY_KIND = 15;
+	int HISTORY_KIND = 16;
 
 
 	/**
@@ -1099,6 +1160,53 @@ public interface UMLRealTimePackage extends EPackage {
 	EReference getTrigger_Base_Operation();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rsa.umlrt.RTMessage <em>RT Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>RT Message</em>'.
+	 * @see org.eclipse.papyrus.migration.rsa.umlrt.RTMessage
+	 * @generated
+	 */
+	EClass getRTMessage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rsa.umlrt.RTMessage#getReceivePort <em>Receive Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Receive Port</em>'.
+	 * @see org.eclipse.papyrus.migration.rsa.umlrt.RTMessage#getReceivePort()
+	 * @see #getRTMessage()
+	 * @generated
+	 */
+	EAttribute getRTMessage_ReceivePort();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rsa.umlrt.RTMessage#getSendPort <em>Send Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Send Port</em>'.
+	 * @see org.eclipse.papyrus.migration.rsa.umlrt.RTMessage#getSendPort()
+	 * @see #getRTMessage()
+	 * @generated
+	 */
+	EAttribute getRTMessage_SendPort();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.migration.rsa.umlrt.RTMessage#getBase_Message <em>Base Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Base Message</em>'.
+	 * @see org.eclipse.papyrus.migration.rsa.umlrt.RTMessage#getBase_Message()
+	 * @see #getRTMessage()
+	 * @generated
+	 */
+	EReference getRTMessage_Base_Message();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.migration.rsa.umlrt.PortRegistrationType <em>Port Registration Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1460,6 +1568,44 @@ public interface UMLRealTimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRIGGER__BASE_OPERATION = eINSTANCE.getTrigger_Base_Operation();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.migration.rsa.umlrt.impl.RTMessageImpl <em>RT Message</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.migration.rsa.umlrt.impl.RTMessageImpl
+		 * @see org.eclipse.papyrus.migration.rsa.umlrt.impl.UMLRealTimePackageImpl#getRTMessage()
+		 * @generated
+		 */
+		EClass RT_MESSAGE = eINSTANCE.getRTMessage();
+
+		/**
+		 * The meta object literal for the '<em><b>Receive Port</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute RT_MESSAGE__RECEIVE_PORT = eINSTANCE.getRTMessage_ReceivePort();
+
+		/**
+		 * The meta object literal for the '<em><b>Send Port</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute RT_MESSAGE__SEND_PORT = eINSTANCE.getRTMessage_SendPort();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Message</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference RT_MESSAGE__BASE_MESSAGE = eINSTANCE.getRTMessage_Base_Message();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.migration.rsa.umlrt.PortRegistrationType <em>Port Registration Type</em>}' enum.

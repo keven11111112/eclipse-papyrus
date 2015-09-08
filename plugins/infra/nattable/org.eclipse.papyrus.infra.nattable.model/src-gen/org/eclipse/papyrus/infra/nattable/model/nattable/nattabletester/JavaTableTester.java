@@ -18,17 +18,16 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * This class allows to references a JavaTableTester. The Java class is declared with an id, using the extension point
- * org.eclipse.papyrus.infra.nattable.tester.
+ * This class allows to references a JavaTableTester. The Java class is declared with an id, using the extension point org.eclipse.papyrus.infra.nattable.tester.
  * The field tester must be the id declared in this extension point.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester <em>Tester</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester <em>Tester</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage#getJavaTableTester()
  * @model
@@ -43,7 +42,6 @@ public interface JavaTableTester extends AbstractTableTester {
 	 * <!-- begin-model-doc -->
 	 * The id of the java tester declared using the extension point org.eclispe.papyrus.infra.nattable.tester
 	 * <!-- end-model-doc -->
-	 *
 	 * @return the value of the '<em>Tester</em>' attribute.
 	 * @see #setTester(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage#getJavaTableTester_Tester()
@@ -54,13 +52,10 @@ public interface JavaTableTester extends AbstractTableTester {
 	String getTester();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester <em>Tester</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester <em>Tester</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *        the new value of the '<em>Tester</em>' attribute.
+	 * @param value the new value of the '<em>Tester</em>' attribute.
 	 * @see #getTester()
 	 * @generated
 	 */

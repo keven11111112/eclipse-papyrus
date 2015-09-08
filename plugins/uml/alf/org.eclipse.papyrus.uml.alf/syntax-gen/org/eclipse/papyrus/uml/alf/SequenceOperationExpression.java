@@ -141,7 +141,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The effective left-hand side corresponding to the primary expression, if
-	 * the sequence operation is “in place” (that is, has a first parameter with
+	 * the sequence operation is ?in place? (that is, has a first parameter with
 	 * direction inout).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Left Hand Side</em>' reference.
@@ -377,8 +377,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * parameter is given by the primary expression of a sequence operation
 	 * expression, not in its tuple).
 	 * <!-- end-model-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameters = self.InvocationExpression_parameterElements() in\n          if parameters->size() < 2 then OrderedSet(ElementReference){}\n          else parameters->subOrderedSet(2, parameters->size())\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameters = self.InvocationExpression_parameterElements() in\n          if parameters->size() < 2 then OrderedSet(ElementReference){}\n          else parameters->subOrderedSet(2, parameters->size())\n          endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parameterElements();

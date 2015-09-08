@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -33,6 +34,7 @@ import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -40,6 +42,11 @@ import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.StringValueStyle;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -69,8 +76,10 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * Executes a batch of {@link ImportTransformation}s, then restores the dependencies (References)
@@ -591,6 +600,11 @@ public class ImportTransformationLauncher {
 			}
 		}
 
+		IStatus repairDisplayStatus = repairStereotypeDisplay(modelSet, resourcesToRepair);
+		if (! repairDisplayStatus.isOK()){
+			return repairDisplayStatus;
+		}
+
 		try {
 
 			for (Resource resource : resourcesToRepair) {
@@ -625,6 +639,125 @@ public class ImportTransformationLauncher {
 			Activator.log.error(ex);
 		} catch (InterruptedException ex) {
 			Activator.log.error(ex);
+		}
+
+		return Status.OK_STATUS;
+	}
+
+	protected IStatus repairStereotypeDisplay(ModelSet modelSet, Collection<Resource> resourcesToRepair) {
+
+		Map<View, List<DecorationNode>> nodesToCreate = new HashMap<View, List<DecorationNode>>();
+
+		final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
+
+		InternalTransactionalEditingDomain internalDomain = (InternalTransactionalEditingDomain) domain;
+
+		Map<String, Object> options = new HashMap<String, Object>();
+		options.put(Transaction.OPTION_NO_UNDO, true);
+		options.put(Transaction.OPTION_NO_VALIDATION, true);
+		options.put(Transaction.OPTION_NO_TRIGGERS, true);
+		options.put(Transaction.OPTION_UNPROTECTED, true);
+
+		List<StringValueStyle> stylesToDelete = new LinkedList<StringValueStyle>();
+
+		try {
+
+			// We're in a batch environment, with no undo/redo support. Run a vanilla transaction to improve performances
+			Transaction fastTransaction = internalDomain.startTransaction(false, options);
+
+			for (Resource resource : resourcesToRepair) {
+				if ("notation".equals(resource.getURI().fileExtension())) {
+					TreeIterator<EObject> contents = resource.getAllContents();
+					while (contents.hasNext()) {
+						EObject next = contents.next();
+
+						if (next instanceof StringValueStyle) {
+							StringValueStyle style = (StringValueStyle) next;
+							if ("stereotypeDisplayBackup".equals(style.getName())) {
+								stylesToDelete.add(style); // Cannot use iterator.remove(), it is not supported. Store and delete later
+								continue;
+							}
+						}
+
+						if (!(next instanceof View)) {
+							contents.prune();
+							continue;
+						}
+
+						View content = (View) next;
+						StringValueStyle stereotypeDisplay = (StringValueStyle) content.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), "stereotypeDisplayBackup");
+						if (stereotypeDisplay == null) {
+							continue;
+						}
+
+						final String value = stereotypeDisplay.getStringValue();
+						if (value == null) {
+							continue;
+						}
+
+						switch (value) {
+						case "None": // Other values not handled yet //$NON-NLS-1$
+							EObject semanticElement = content.getElement();
+							if (!(semanticElement instanceof Element)) {
+								continue;
+							}
+
+							Element umlElement = (Element) semanticElement;
+
+							List<Stereotype> stereotypes = umlElement.getAppliedStereotypes();
+
+							List<DecorationNode> childNodesToCreate = new LinkedList<DecorationNode>();
+							nodesToCreate.put(content, childNodesToCreate);
+
+							for (Stereotype appliedStereotype : stereotypes) {
+								DecorationNode stereotypeLabel = NotationFactory.eINSTANCE.createDecorationNode();
+								stereotypeLabel.setType("StereotypeLabel");
+								stereotypeLabel.setVisible(false);
+
+								StringValueStyle stereotypeStyle = (StringValueStyle) stereotypeLabel.createStyle(NotationPackage.eINSTANCE.getStringValueStyle());
+								stereotypeStyle.setName("stereotype");
+								stereotypeStyle.setStringValue(appliedStereotype.getQualifiedName());
+								stereotypeLabel.setElement(appliedStereotype);
+
+								stereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+
+								childNodesToCreate.add(stereotypeLabel);
+							}
+							break;
+						default:
+							// Not handled
+						}
+					}
+				}
+			}
+
+			for (Entry<View, List<DecorationNode>> toCreate : nodesToCreate.entrySet()) {
+				View parent = toCreate.getKey();
+				for (DecorationNode decorationNode : toCreate.getValue()) {
+					parent.getPersistedChildren().add(decorationNode);
+				}
+			}
+
+			//Simple delete for performances (These styles don't have any incoming reference other than the containment)
+			for (StringValueStyle styleToDelete : stylesToDelete) {
+				EObject container = styleToDelete.eContainer();
+				EReference feature = styleToDelete.eContainmentFeature();
+
+				if (container != null && feature != null) {
+					
+					if (feature.isMany()) {
+						List<?> values = (List<?>) container.eGet(feature);
+						values.remove(styleToDelete);
+					} else {
+						container.eUnset(feature);
+					}
+				}
+			}
+
+			fastTransaction.commit();
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An error occurred while trying to migrate Stereotype Display", ex);
 		}
 
 		return Status.OK_STATUS;

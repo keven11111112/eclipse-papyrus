@@ -194,6 +194,13 @@
          properties="hasEditPolicy"
          type="org.eclipse.gef.EditPart">
    </propertyTester>   
+   <propertyTester
+         class="org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramPropertyTester"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.diagramProperties"
+         namespace="org.eclipse.papyrus.infra.gmfdiag.common"
+         properties="diagramType"
+         type="org.eclipse.gmf.runtime.notation.View">
+   </propertyTester>   
 </extension>
 <extension
       point="org.eclipse.ui.menus">
@@ -490,6 +497,7 @@
             uri="http:///expansionmodel.ecore">
       </factory>
    </extension>
+   
    <extension
          point="org.eclipse.papyrus.infra.sync.triggers">
       <syncTrigger
@@ -500,6 +508,19 @@
             </instanceof>
          </enablement>
       </syncTrigger>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.gmfdiag.common.internal.sync.UISyncServiceInitializer"
+            description="UI-specific initializer of the synchronization service"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.internal.sync.UISyncServiceInitializer"
+            priority="10"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.sync.service.ISyncService">
+         </dependsOn>
+      </service>
    </extension>
 
 </plugin>

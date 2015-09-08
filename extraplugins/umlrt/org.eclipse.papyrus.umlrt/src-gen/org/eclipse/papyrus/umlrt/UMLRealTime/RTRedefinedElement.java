@@ -31,11 +31,11 @@ import org.eclipse.uml2.uml.RedefinableElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTRedefinedElement#getBase_RedefinableElement <em>Base Redefinable Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.umlrt.UMLRealTime.RTRedefinedElement#getRootFragment <em>Root Fragment</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.umlrt.UMLRealTime.UMLRealTimePackage#getRTRedefinedElement()
  * @model

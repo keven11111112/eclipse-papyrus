@@ -80,5 +80,15 @@
             class="org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage"
             genModel="model/ProfileExternalization.profile.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.ProfileIndex"
+            id="org.eclipse.papyrus.uml.tools.profile.index.IProfileIndex"
+            priority="10"
+            startKind="lazy"
+            description="The profile application index for workspace resources">
+      </service>
+   </extension>
 
 </plugin>

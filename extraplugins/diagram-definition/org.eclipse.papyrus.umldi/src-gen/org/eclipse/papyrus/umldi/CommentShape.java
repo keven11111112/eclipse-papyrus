@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Comment Shape</b></em>'.
@@ -22,5 +21,5 @@ package org.eclipse.papyrus.umldi;
  * @model
  * @generated
  */
-public interface CommentShape extends ElementWithBodyShape {
+public interface CommentShape extends ElementShape {
 } // CommentShape

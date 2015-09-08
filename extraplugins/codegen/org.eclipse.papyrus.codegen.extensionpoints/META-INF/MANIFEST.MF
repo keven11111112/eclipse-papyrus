@@ -7,13 +7,10 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.codegen.extensionpoints
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.codegen.extensionpoints.Activato
- r
-Bundle-SymbolicName: org.eclipse.papyrus.codegen.extensionpoints;singl
- eton:=true
+Bundle-Activator: org.eclipse.papyrus.codegen.extensionpoints.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.codegen.extensionpoints;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

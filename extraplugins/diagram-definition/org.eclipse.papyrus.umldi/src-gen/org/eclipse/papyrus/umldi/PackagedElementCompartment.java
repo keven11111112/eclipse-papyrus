@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Packaged Element Compartment</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.PackagedElementCompartment#getElementWithPackagedElementsShape <em>Element With Packaged Elements Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.PackagedElementCompartment#getElementWithPackagedElementsShape <em>Element With Packaged Elements Shape</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPackagedElementCompartment()
@@ -29,21 +28,24 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface PackagedElementCompartment extends DiagramCompartment {
+
 	/**
 	 * Returns the value of the '<em><b>Element With Packaged Elements Shape</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ElementWithPackagedElementsShape#getPackagedElementCompartment <em>Packaged Element Compartment</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ElementWithPackagedElementsShape#getPackagedElementCompartment
+	 * <em>Packaged Element Compartment</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Element With Packaged Elements Shape</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Element With Packaged Elements Shape</em>' container reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Element With Packaged Elements Shape</em>' container reference.
 	 * @see #setElementWithPackagedElementsShape(ElementWithPackagedElementsShape)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPackagedElementCompartment_ElementWithPackagedElementsShape()
@@ -54,13 +56,15 @@ public interface PackagedElementCompartment extends DiagramCompartment {
 	ElementWithPackagedElementsShape getElementWithPackagedElementsShape();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.PackagedElementCompartment#getElementWithPackagedElementsShape <em>Element With Packaged Elements Shape</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.PackagedElementCompartment#getElementWithPackagedElementsShape
+	 * <em>Element With Packaged Elements Shape</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element With Packaged Elements Shape</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Element With Packaged Elements Shape</em>' container reference.
 	 * @see #getElementWithPackagedElementsShape()
 	 * @generated
 	 */
 	void setElementWithPackagedElementsShape(ElementWithPackagedElementsShape value);
-
 } // PackagedElementCompartment

@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 
 /**
@@ -37,9 +38,12 @@ public class ColumnDestroyAxisElementHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final IAxisManager axisManager = getColumnAxisManager();
-		if (axisManager != null) {
-			axisManager.destroyAxisElement(getFullSelectedColumnsIndex(this.eventData));
+		NatEventData eventData = getNatEventData();
+		if (eventData != null) {
+			final IAxisManager axisManager = getColumnAxisManager();
+			if (axisManager != null) {
+				axisManager.destroyAxisElement(getFullSelectedColumnsIndex(eventData));
+			}
 		}
 		return null;
 	}
@@ -52,14 +56,16 @@ public class ColumnDestroyAxisElementHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
+		super.setEnabled(evaluationContext);
+		NatEventData eventData = getNatEventData();
 		boolean enabled = false;
-		final IAxisManager axisManager = getColumnAxisManager();
-		if (axisManager != null) {
-			this.eventData = getNatEventData(evaluationContext);
-			final List<Integer> col = getFullSelectedColumnsIndex(this.eventData);
-			enabled = axisManager.canDestroyAxisElement(col);
+		if (isEnabled() && eventData != null) {
+			final IAxisManager axisManager = getColumnAxisManager();
+			if (axisManager != null) {
+				final List<Integer> col = getFullSelectedColumnsIndex(eventData);
+				enabled = axisManager.canDestroyAxisElement(col);
+			}
 		}
 		setBaseEnabled(enabled);
-
 	}
 }

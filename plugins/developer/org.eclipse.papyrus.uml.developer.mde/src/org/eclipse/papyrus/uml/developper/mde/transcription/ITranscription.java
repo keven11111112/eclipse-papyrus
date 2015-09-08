@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,13 +9,17 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.transcription;
 
+import org.eclipse.papyrus.uml.developper.mde.LinkUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
+
+import com.google.common.base.Function;
 
 
 /**
@@ -23,6 +27,13 @@ import org.eclipse.uml2.uml.Stereotype;
  *
  */
 public interface ITranscription {
+
+	/**
+	 * Obtains a function that generates the output format of an element hyperlink.
+	 * 
+	 * @return
+	 */
+	public abstract Function<? super LinkUtil.Hyperlink, String> getHyperlinkTranscoder();
 
 	/**
 	 * finalize the document
@@ -57,7 +68,7 @@ public interface ITranscription {
 	 * @param packageableElement
 	 *            the package
 	 */
-	public abstract void writesectionTitle(StringBuffer out, int level, Element packageableElement);
+	public abstract void writeSectionTitle(StringBuffer out, int level, Element packageableElement);
 
 	/**
 	 * write a image
@@ -85,8 +96,8 @@ public interface ITranscription {
 	 * @return the name of the document to generate
 	 */
 	public abstract String getNameFile();
-	
-	
+
+
 	/**
 	 * write the beginning of the table (header, style)
 	 * 
@@ -94,21 +105,21 @@ public interface ITranscription {
 	 * @param tableCaption
 	 */
 	public abstract void writeTable(StringBuffer out, String tableCaption);
-	
+
 	/**
 	 * write line in the table
 	 * 
 	 * @param out
-	 * @param uri 
-	 * 			represents the uri of the referent element
+	 * @param uri
+	 *            represents the uri of the referent element
 	 * @param referenceName
-	 * 			name of the referent element
+	 *            name of the referent element
 	 * @param text
-	 * 			represents content of the line
+	 *            represents content of the line
 	 */
 	public abstract void writeLine(StringBuffer out, String uri, String referenceName, String text);
-	
-	
+
+
 	/**
 	 * 
 	 * write the beginning of a line
@@ -116,95 +127,95 @@ public interface ITranscription {
 	 * @param out
 	 */
 	public abstract void writeBeginTRTag(StringBuffer out);
-	
+
 	/**
 	 * write the ending of a line
 	 * 
 	 * @param out
 	 */
 	public abstract void writeEndTRTag(StringBuffer out);
-	
+
 	/**
 	 * finalize the table
 	 * 
 	 * @param out
 	 */
 	public abstract void writeEndingTable(StringBuffer out);
-	
+
 	/**
 	 * write the beginning of a column
 	 * 
 	 * @param out
 	 */
 	public abstract void writeBeginTDTag(StringBuffer out);
-	
+
 	/**
 	 * write the ending of a column
 	 * 
 	 * @param out
 	 */
 	public abstract void writeEndTDTag(StringBuffer out);
-	
+
 	public abstract void writeBeginTOC(StringBuffer out);
-	
+
 	public abstract void writeEndTOC(StringBuffer out);
-	
-	
+
+
 	/**
 	 * write the requirements which aren't covered
 	 * 
 	 * @param out
 	 * @param uri
-	 * 		represents the uri of the Requirements Doc Element
+	 *            represents the uri of the Requirements Doc Element
 	 * @param requirementName
-	 * 		the requirement name
+	 *            the requirement name
 	 * @param reqID
-	 * 		id of the requirement
+	 *            id of the requirement
 	 */
 	public abstract void writeRefContent(StringBuffer out, String uri, String requirementName, String reqID);
-	
+
 	/**
 	 * write beginning of a paragraph
 	 * 
 	 * @param out
 	 */
 	public abstract void writeBeginParagraph(StringBuffer out);
-	
+
 	/**
 	 * write ending of a paragraph
 	 * 
 	 * @param out
 	 */
 	public abstract void writeEndingParagraph(StringBuffer out);
-	
+
 	/**
 	 * write section in table of contents
 	 * 
 	 * @param out
 	 * @param chapterName
-	 * 		represents the name of the section
+	 *            represents the name of the section
 	 * @param uri
-	 * 		represents the uri of the Section Doc Element
+	 *            represents the uri of the Section Doc Element
 	 */
-	
+
 	public abstract void writeTOCSection(StringBuffer out, String chapterName, String uri);
-	
+
 	/**
 	 * 
 	 * @param out
 	 * @param subSectionName
-	 * 		represents the name of the sub section
+	 *            represents the name of the sub section
 	 * @param uri
-	 * 		represents the uri of the sub section doc element
+	 *            represents the uri of the sub section doc element
 	 */
 	public abstract void writeTOCSubSection(StringBuffer out, String subSectionName, String uri);
-	
+
 	/**
 	 * 
 	 * @param out
 	 */
 	public abstract void writeNewLine(StringBuffer out);
-	
 
-	
+
+
 }

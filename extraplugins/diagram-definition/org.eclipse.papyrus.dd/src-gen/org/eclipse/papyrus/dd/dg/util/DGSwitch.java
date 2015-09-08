@@ -24,6 +24,7 @@ import org.eclipse.papyrus.dd.dg.*;
  * starting with the actual class of the object and proceeding up the
  * inheritance hierarchy until a non-null result is returned, which is the
  * result of the switch. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.dd.dg.DGPackage
  * @generated
  */
@@ -32,6 +33,7 @@ public class DGSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static DGPackage modelPackage;
@@ -40,10 +42,11 @@ public class DGSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DGSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = DGPackage.eINSTANCE;
 		}
 	}
@@ -65,335 +68,487 @@ public class DGSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case DGPackage.CANVAS: {
-				Canvas canvas = (Canvas)theEObject;
-				T result = caseCanvas(canvas);
-				if (result == null) result = caseGroup(canvas);
-				if (result == null) result = caseGraphicalElement(canvas);
-				if (result == null) result = caseDefinition(canvas);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.GROUP: {
-				Group group = (Group)theEObject;
-				T result = caseGroup(group);
-				if (result == null) result = caseGraphicalElement(group);
-				if (result == null) result = caseDefinition(group);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.GRAPHICAL_ELEMENT: {
-				GraphicalElement graphicalElement = (GraphicalElement)theEObject;
-				T result = caseGraphicalElement(graphicalElement);
-				if (result == null) result = caseDefinition(graphicalElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.DEFINITION: {
-				Definition definition = (Definition)theEObject;
-				T result = caseDefinition(definition);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.MOVE_TO: {
-				MoveTo moveTo = (MoveTo)theEObject;
-				T result = caseMoveTo(moveTo);
-				if (result == null) result = casePathCommand(moveTo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.PATH_COMMAND: {
-				PathCommand pathCommand = (PathCommand)theEObject;
-				T result = casePathCommand(pathCommand);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.CLIP_PATH: {
-				ClipPath clipPath = (ClipPath)theEObject;
-				T result = caseClipPath(clipPath);
-				if (result == null) result = caseGroup(clipPath);
-				if (result == null) result = caseGraphicalElement(clipPath);
-				if (result == null) result = caseDefinition(clipPath);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.STYLE: {
-				Style style = (Style)theEObject;
-				T result = caseStyle(style);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.PAINT: {
-				Paint paint = (Paint)theEObject;
-				T result = casePaint(paint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.PAINT_SERVER: {
-				PaintServer paintServer = (PaintServer)theEObject;
-				T result = casePaintServer(paintServer);
-				if (result == null) result = caseDefinition(paintServer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.TRANSFORM: {
-				Transform transform = (Transform)theEObject;
-				T result = caseTransform(transform);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.CIRCLE: {
-				Circle circle = (Circle)theEObject;
-				T result = caseCircle(circle);
-				if (result == null) result = caseGraphicalElement(circle);
-				if (result == null) result = caseDefinition(circle);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.CLOSE_PATH: {
-				ClosePath closePath = (ClosePath)theEObject;
-				T result = caseClosePath(closePath);
-				if (result == null) result = casePathCommand(closePath);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.CUBIC_CURVE_TO: {
-				CubicCurveTo cubicCurveTo = (CubicCurveTo)theEObject;
-				T result = caseCubicCurveTo(cubicCurveTo);
-				if (result == null) result = casePathCommand(cubicCurveTo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.DEFINITIONS: {
-				Definitions definitions = (Definitions)theEObject;
-				T result = caseDefinitions(definitions);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.STYLE_SHEET: {
-				StyleSheet styleSheet = (StyleSheet)theEObject;
-				T result = caseStyleSheet(styleSheet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.STYLE_RULE: {
-				StyleRule styleRule = (StyleRule)theEObject;
-				T result = caseStyleRule(styleRule);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.STYLE_SELECTOR: {
-				StyleSelector styleSelector = (StyleSelector)theEObject;
-				T result = caseStyleSelector(styleSelector);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.ELLIPSE: {
-				Ellipse ellipse = (Ellipse)theEObject;
-				T result = caseEllipse(ellipse);
-				if (result == null) result = caseGraphicalElement(ellipse);
-				if (result == null) result = caseDefinition(ellipse);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.ELLIPTICAL_ARC_TO: {
-				EllipticalArcTo ellipticalArcTo = (EllipticalArcTo)theEObject;
-				T result = caseEllipticalArcTo(ellipticalArcTo);
-				if (result == null) result = casePathCommand(ellipticalArcTo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.QUADRATIC_CURVE_TO: {
-				QuadraticCurveTo quadraticCurveTo = (QuadraticCurveTo)theEObject;
-				T result = caseQuadraticCurveTo(quadraticCurveTo);
-				if (result == null) result = casePathCommand(quadraticCurveTo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.GRADIENT: {
-				Gradient gradient = (Gradient)theEObject;
-				T result = caseGradient(gradient);
-				if (result == null) result = casePaintServer(gradient);
-				if (result == null) result = caseDefinition(gradient);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.GRADIENT_STOP: {
-				GradientStop gradientStop = (GradientStop)theEObject;
-				T result = caseGradientStop(gradientStop);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.IMAGE: {
-				Image image = (Image)theEObject;
-				T result = caseImage(image);
-				if (result == null) result = caseGraphicalElement(image);
-				if (result == null) result = caseDefinition(image);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.LINE: {
-				Line line = (Line)theEObject;
-				T result = caseLine(line);
-				if (result == null) result = caseMarkedElement(line);
-				if (result == null) result = caseGraphicalElement(line);
-				if (result == null) result = caseDefinition(line);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.MARKED_ELEMENT: {
-				MarkedElement markedElement = (MarkedElement)theEObject;
-				T result = caseMarkedElement(markedElement);
-				if (result == null) result = caseGraphicalElement(markedElement);
-				if (result == null) result = caseDefinition(markedElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.MARKER: {
-				Marker marker = (Marker)theEObject;
-				T result = caseMarker(marker);
-				if (result == null) result = caseGroup(marker);
-				if (result == null) result = caseGraphicalElement(marker);
-				if (result == null) result = caseDefinition(marker);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.LINEAR_GRADIENT: {
-				LinearGradient linearGradient = (LinearGradient)theEObject;
-				T result = caseLinearGradient(linearGradient);
-				if (result == null) result = caseGradient(linearGradient);
-				if (result == null) result = casePaintServer(linearGradient);
-				if (result == null) result = caseDefinition(linearGradient);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.LINE_TO: {
-				LineTo lineTo = (LineTo)theEObject;
-				T result = caseLineTo(lineTo);
-				if (result == null) result = casePathCommand(lineTo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.MATRIX: {
-				Matrix matrix = (Matrix)theEObject;
-				T result = caseMatrix(matrix);
-				if (result == null) result = caseTransform(matrix);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.PATH: {
-				Path path = (Path)theEObject;
-				T result = casePath(path);
-				if (result == null) result = caseMarkedElement(path);
-				if (result == null) result = caseGraphicalElement(path);
-				if (result == null) result = caseDefinition(path);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.PATTERN: {
-				Pattern pattern = (Pattern)theEObject;
-				T result = casePattern(pattern);
-				if (result == null) result = casePaintServer(pattern);
-				if (result == null) result = caseDefinition(pattern);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.POLYGON: {
-				Polygon polygon = (Polygon)theEObject;
-				T result = casePolygon(polygon);
-				if (result == null) result = caseMarkedElement(polygon);
-				if (result == null) result = caseGraphicalElement(polygon);
-				if (result == null) result = caseDefinition(polygon);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.POLYLINE: {
-				Polyline polyline = (Polyline)theEObject;
-				T result = casePolyline(polyline);
-				if (result == null) result = caseMarkedElement(polyline);
-				if (result == null) result = caseGraphicalElement(polyline);
-				if (result == null) result = caseDefinition(polyline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.RADIAL_GRADIENT: {
-				RadialGradient radialGradient = (RadialGradient)theEObject;
-				T result = caseRadialGradient(radialGradient);
-				if (result == null) result = caseGradient(radialGradient);
-				if (result == null) result = casePaintServer(radialGradient);
-				if (result == null) result = caseDefinition(radialGradient);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.RECTANGLE: {
-				Rectangle rectangle = (Rectangle)theEObject;
-				T result = caseRectangle(rectangle);
-				if (result == null) result = caseGraphicalElement(rectangle);
-				if (result == null) result = caseDefinition(rectangle);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.ROOT_CANVAS: {
-				RootCanvas rootCanvas = (RootCanvas)theEObject;
-				T result = caseRootCanvas(rootCanvas);
-				if (result == null) result = caseCanvas(rootCanvas);
-				if (result == null) result = caseGroup(rootCanvas);
-				if (result == null) result = caseGraphicalElement(rootCanvas);
-				if (result == null) result = caseDefinition(rootCanvas);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.ROTATE: {
-				Rotate rotate = (Rotate)theEObject;
-				T result = caseRotate(rotate);
-				if (result == null) result = caseTransform(rotate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.SCALE: {
-				Scale scale = (Scale)theEObject;
-				T result = caseScale(scale);
-				if (result == null) result = caseTransform(scale);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.SKEW: {
-				Skew skew = (Skew)theEObject;
-				T result = caseSkew(skew);
-				if (result == null) result = caseTransform(skew);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.TEXT: {
-				Text text = (Text)theEObject;
-				T result = caseText(text);
-				if (result == null) result = caseGraphicalElement(text);
-				if (result == null) result = caseDefinition(text);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.TRANSLATE: {
-				Translate translate = (Translate)theEObject;
-				T result = caseTranslate(translate);
-				if (result == null) result = caseTransform(translate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DGPackage.USE: {
-				Use use = (Use)theEObject;
-				T result = caseUse(use);
-				if (result == null) result = caseGraphicalElement(use);
-				if (result == null) result = caseDefinition(use);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		switch(classifierID) {
+		case DGPackage.CANVAS:
+		{
+			Canvas canvas = (Canvas)theEObject;
+			T result = caseCanvas(canvas);
+			if(result == null)
+				result = caseGroup(canvas);
+			if(result == null)
+				result = caseGraphicalElement(canvas);
+			if(result == null)
+				result = caseDefinition(canvas);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.GROUP:
+		{
+			Group group = (Group)theEObject;
+			T result = caseGroup(group);
+			if(result == null)
+				result = caseGraphicalElement(group);
+			if(result == null)
+				result = caseDefinition(group);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.GRAPHICAL_ELEMENT:
+		{
+			GraphicalElement graphicalElement = (GraphicalElement)theEObject;
+			T result = caseGraphicalElement(graphicalElement);
+			if(result == null)
+				result = caseDefinition(graphicalElement);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.DEFINITION:
+		{
+			Definition definition = (Definition)theEObject;
+			T result = caseDefinition(definition);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.MOVE_TO:
+		{
+			MoveTo moveTo = (MoveTo)theEObject;
+			T result = caseMoveTo(moveTo);
+			if(result == null)
+				result = casePathCommand(moveTo);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.PATH_COMMAND:
+		{
+			PathCommand pathCommand = (PathCommand)theEObject;
+			T result = casePathCommand(pathCommand);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.CLIP_PATH:
+		{
+			ClipPath clipPath = (ClipPath)theEObject;
+			T result = caseClipPath(clipPath);
+			if(result == null)
+				result = caseGroup(clipPath);
+			if(result == null)
+				result = caseGraphicalElement(clipPath);
+			if(result == null)
+				result = caseDefinition(clipPath);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.STYLE:
+		{
+			Style style = (Style)theEObject;
+			T result = caseStyle(style);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.PAINT:
+		{
+			Paint paint = (Paint)theEObject;
+			T result = casePaint(paint);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.PAINT_SERVER:
+		{
+			PaintServer paintServer = (PaintServer)theEObject;
+			T result = casePaintServer(paintServer);
+			if(result == null)
+				result = caseDefinition(paintServer);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.TRANSFORM:
+		{
+			Transform transform = (Transform)theEObject;
+			T result = caseTransform(transform);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.CIRCLE:
+		{
+			Circle circle = (Circle)theEObject;
+			T result = caseCircle(circle);
+			if(result == null)
+				result = caseGraphicalElement(circle);
+			if(result == null)
+				result = caseDefinition(circle);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.CLOSE_PATH:
+		{
+			ClosePath closePath = (ClosePath)theEObject;
+			T result = caseClosePath(closePath);
+			if(result == null)
+				result = casePathCommand(closePath);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.CUBIC_CURVE_TO:
+		{
+			CubicCurveTo cubicCurveTo = (CubicCurveTo)theEObject;
+			T result = caseCubicCurveTo(cubicCurveTo);
+			if(result == null)
+				result = casePathCommand(cubicCurveTo);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.DEFINITIONS:
+		{
+			Definitions definitions = (Definitions)theEObject;
+			T result = caseDefinitions(definitions);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.STYLE_SHEET:
+		{
+			StyleSheet styleSheet = (StyleSheet)theEObject;
+			T result = caseStyleSheet(styleSheet);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.STYLE_RULE:
+		{
+			StyleRule styleRule = (StyleRule)theEObject;
+			T result = caseStyleRule(styleRule);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.STYLE_SELECTOR:
+		{
+			StyleSelector styleSelector = (StyleSelector)theEObject;
+			T result = caseStyleSelector(styleSelector);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.ELLIPSE:
+		{
+			Ellipse ellipse = (Ellipse)theEObject;
+			T result = caseEllipse(ellipse);
+			if(result == null)
+				result = caseGraphicalElement(ellipse);
+			if(result == null)
+				result = caseDefinition(ellipse);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.ELLIPTICAL_ARC_TO:
+		{
+			EllipticalArcTo ellipticalArcTo = (EllipticalArcTo)theEObject;
+			T result = caseEllipticalArcTo(ellipticalArcTo);
+			if(result == null)
+				result = casePathCommand(ellipticalArcTo);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.QUADRATIC_CURVE_TO:
+		{
+			QuadraticCurveTo quadraticCurveTo = (QuadraticCurveTo)theEObject;
+			T result = caseQuadraticCurveTo(quadraticCurveTo);
+			if(result == null)
+				result = casePathCommand(quadraticCurveTo);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.GRADIENT:
+		{
+			Gradient gradient = (Gradient)theEObject;
+			T result = caseGradient(gradient);
+			if(result == null)
+				result = casePaintServer(gradient);
+			if(result == null)
+				result = caseDefinition(gradient);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.GRADIENT_STOP:
+		{
+			GradientStop gradientStop = (GradientStop)theEObject;
+			T result = caseGradientStop(gradientStop);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.IMAGE:
+		{
+			Image image = (Image)theEObject;
+			T result = caseImage(image);
+			if(result == null)
+				result = caseGraphicalElement(image);
+			if(result == null)
+				result = caseDefinition(image);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.LINE:
+		{
+			Line line = (Line)theEObject;
+			T result = caseLine(line);
+			if(result == null)
+				result = caseMarkedElement(line);
+			if(result == null)
+				result = caseGraphicalElement(line);
+			if(result == null)
+				result = caseDefinition(line);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.MARKED_ELEMENT:
+		{
+			MarkedElement markedElement = (MarkedElement)theEObject;
+			T result = caseMarkedElement(markedElement);
+			if(result == null)
+				result = caseGraphicalElement(markedElement);
+			if(result == null)
+				result = caseDefinition(markedElement);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.MARKER:
+		{
+			Marker marker = (Marker)theEObject;
+			T result = caseMarker(marker);
+			if(result == null)
+				result = caseGroup(marker);
+			if(result == null)
+				result = caseGraphicalElement(marker);
+			if(result == null)
+				result = caseDefinition(marker);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.LINEAR_GRADIENT:
+		{
+			LinearGradient linearGradient = (LinearGradient)theEObject;
+			T result = caseLinearGradient(linearGradient);
+			if(result == null)
+				result = caseGradient(linearGradient);
+			if(result == null)
+				result = casePaintServer(linearGradient);
+			if(result == null)
+				result = caseDefinition(linearGradient);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.LINE_TO:
+		{
+			LineTo lineTo = (LineTo)theEObject;
+			T result = caseLineTo(lineTo);
+			if(result == null)
+				result = casePathCommand(lineTo);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.MATRIX:
+		{
+			Matrix matrix = (Matrix)theEObject;
+			T result = caseMatrix(matrix);
+			if(result == null)
+				result = caseTransform(matrix);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.PATH:
+		{
+			Path path = (Path)theEObject;
+			T result = casePath(path);
+			if(result == null)
+				result = caseMarkedElement(path);
+			if(result == null)
+				result = caseGraphicalElement(path);
+			if(result == null)
+				result = caseDefinition(path);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.PATTERN:
+		{
+			Pattern pattern = (Pattern)theEObject;
+			T result = casePattern(pattern);
+			if(result == null)
+				result = casePaintServer(pattern);
+			if(result == null)
+				result = caseDefinition(pattern);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.POLYGON:
+		{
+			Polygon polygon = (Polygon)theEObject;
+			T result = casePolygon(polygon);
+			if(result == null)
+				result = caseMarkedElement(polygon);
+			if(result == null)
+				result = caseGraphicalElement(polygon);
+			if(result == null)
+				result = caseDefinition(polygon);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.POLYLINE:
+		{
+			Polyline polyline = (Polyline)theEObject;
+			T result = casePolyline(polyline);
+			if(result == null)
+				result = caseMarkedElement(polyline);
+			if(result == null)
+				result = caseGraphicalElement(polyline);
+			if(result == null)
+				result = caseDefinition(polyline);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.RADIAL_GRADIENT:
+		{
+			RadialGradient radialGradient = (RadialGradient)theEObject;
+			T result = caseRadialGradient(radialGradient);
+			if(result == null)
+				result = caseGradient(radialGradient);
+			if(result == null)
+				result = casePaintServer(radialGradient);
+			if(result == null)
+				result = caseDefinition(radialGradient);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.RECTANGLE:
+		{
+			Rectangle rectangle = (Rectangle)theEObject;
+			T result = caseRectangle(rectangle);
+			if(result == null)
+				result = caseGraphicalElement(rectangle);
+			if(result == null)
+				result = caseDefinition(rectangle);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.ROOT_CANVAS:
+		{
+			RootCanvas rootCanvas = (RootCanvas)theEObject;
+			T result = caseRootCanvas(rootCanvas);
+			if(result == null)
+				result = caseCanvas(rootCanvas);
+			if(result == null)
+				result = caseGroup(rootCanvas);
+			if(result == null)
+				result = caseGraphicalElement(rootCanvas);
+			if(result == null)
+				result = caseDefinition(rootCanvas);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.ROTATE:
+		{
+			Rotate rotate = (Rotate)theEObject;
+			T result = caseRotate(rotate);
+			if(result == null)
+				result = caseTransform(rotate);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.SCALE:
+		{
+			Scale scale = (Scale)theEObject;
+			T result = caseScale(scale);
+			if(result == null)
+				result = caseTransform(scale);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.SKEW:
+		{
+			Skew skew = (Skew)theEObject;
+			T result = caseSkew(skew);
+			if(result == null)
+				result = caseTransform(skew);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.TEXT:
+		{
+			Text text = (Text)theEObject;
+			T result = caseText(text);
+			if(result == null)
+				result = caseGraphicalElement(text);
+			if(result == null)
+				result = caseDefinition(text);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.TRANSLATE:
+		{
+			Translate translate = (Translate)theEObject;
+			T result = caseTranslate(translate);
+			if(result == null)
+				result = caseTransform(translate);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DGPackage.USE:
+		{
+			Use use = (Use)theEObject;
+			T result = caseUse(use);
+			if(result == null)
+				result = caseGraphicalElement(use);
+			if(result == null)
+				result = caseDefinition(use);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -402,7 +557,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Canvas</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -416,7 +573,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -430,7 +589,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Graphical Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -444,7 +605,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -458,7 +621,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Clip Path</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -472,7 +637,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -486,7 +653,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Paint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -500,7 +669,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Paint Server</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -514,7 +685,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Transform</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -528,7 +701,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Definitions</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -542,7 +717,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Cubic Curve To</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -556,7 +733,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Path Command</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -570,7 +749,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Marker</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -584,7 +765,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Style Sheet</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -598,7 +781,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Style Rule</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -612,7 +797,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Style Selector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -626,7 +813,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Circle</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -640,7 +829,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Close Path</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -654,7 +845,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Ellipse</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -668,7 +861,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Elliptical Arc To</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -682,7 +877,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Quadratic Curve To</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -696,7 +893,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Gradient</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -710,7 +909,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Gradient Stop</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -724,7 +925,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Image</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -753,7 +956,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Marked Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -767,7 +972,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Linear Gradient</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -781,7 +988,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Line To</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -795,7 +1004,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Matrix</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -809,7 +1020,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Move To</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -838,7 +1051,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Pattern</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -852,7 +1067,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Polygon</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -866,7 +1083,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Polyline</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -880,7 +1099,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Radial Gradient</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -894,7 +1115,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Rectangle</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -908,7 +1131,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Root Canvas</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -922,7 +1147,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Rotate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -936,7 +1163,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Scale</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -980,7 +1209,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Translate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -1009,7 +1240,9 @@ public class DGSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch, but this is
 	 * the last case anyway. <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

@@ -11,6 +11,7 @@
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 458197
  *  Christian W. Damus - bug 459613
+ *  Christian W. Damus - bug 468030
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.helper;
@@ -778,6 +779,32 @@ public class DecoratorModelUtils {
 	}
 
 	/**
+	 * Queries whether a given {@code file} is a decorator model resource.
+	 * <p>
+	 * This method does <em>not</em> access the decorator model index.
+	 * 
+	 * @param file
+	 *            a workspace file
+	 * 
+	 * @return whether the fileexists and is a decorator model
+	 */
+	public static boolean isDecoratorModel(IFile file) {
+		boolean result = false;
+
+		if (file.isAccessible()) {
+			try {
+				IContentDescription desc = file.exists() ? file.getContentDescription() : null;
+				result = (desc != null) && (desc.getContentType() != null) && desc.getContentType().isKindOf(DECORATOR_MODEL_CONTENT_TYPE);
+			} catch (CoreException e) {
+				// Couldn't determine content description? Then it cannot be our type
+				Activator.getDefault().getLog().log(e.getStatus());
+			}
+		}
+
+		return result;
+	}
+
+	/**
 	 * Whether the resource indicated by the given URI is a decorator model resource.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
@@ -794,13 +821,7 @@ public class DecoratorModelUtils {
 			// Let the workspace's content-type manager handle it (which can cache the information)
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
 
-			try {
-				IContentDescription desc = file.exists() ? file.getContentDescription() : null;
-				result = (desc != null) && (desc.getContentType() != null) && desc.getContentType().isKindOf(DECORATOR_MODEL_CONTENT_TYPE);
-			} catch (CoreException e) {
-				// Couldn't determine content description? Then it cannot be our type
-				Activator.getDefault().getLog().log(e.getStatus());
-			}
+			result = isDecoratorModel(file);
 		} else {
 			// Work it out the hard way
 			InputStream input = null;

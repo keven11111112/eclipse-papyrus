@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.tools.utils;
 
 import org.eclipse.uml2.uml.LiteralInteger;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -24,22 +25,59 @@ import org.eclipse.uml2.uml.ValueSpecification;
 public class MultiplicityElementUtil {
 
 	/**
+	 * The quote character representation.
+	 */
+	private static final String QUOTE = "\"";
+
+	/**
 	 * The string representing the multiplicity with space " [x..y]"
 	 * Clients should format the spaces at the calling side, but this method left here for backward compatibility
+	 * 
+	 * @param element
+	 *            The multiplicity element to parse.
 	 */
 	@Deprecated
-	public static String getMultiplicityAsString(MultiplicityElement element) {
-		String multiplicity = formatMultiplicity(element);
+	public static String getMultiplicityAsString(final MultiplicityElement element) {
+		return getMultiplicityAsString(element, false);
+	}
+
+	/**
+	 * The string representing the multiplicity with space " [x..y]"
+	 * Clients should format the spaces at the calling side, but this method left here for backward compatibility (with quote edition for LiteralString).
+	 * 
+	 * @param element
+	 *            The multiplicity element to parse.
+	 * @param isEdition
+	 *            Boolean to determinate if the quote will be added for the LiteralString
+	 */
+	@Deprecated
+	public static String getMultiplicityAsString(final MultiplicityElement element, final boolean isEdition) {
+		String multiplicity = formatMultiplicity(element, isEdition);
 		return multiplicity == null || multiplicity.isEmpty() ? "" : " " + multiplicity;
 	}
 
 	/**
 	 * Return the multiplicity of the element "[x..y]"
 	 *
+	 * @param element
+	 *            The multiplicity element to parse.
 	 * @return the string representing the multiplicity
 	 */
-	public static String formatMultiplicity(MultiplicityElement element) {
-		String multiplicityStr = formatMultiplicityNoBrackets(element);
+	public static String formatMultiplicity(final MultiplicityElement element) {
+		return formatMultiplicity(element, false);
+	}
+	
+	/**
+	 * Return the multiplicity of the element "[x..y]" (with quote edition for LiteralString).
+	 *
+	 * @param element
+	 *            The multiplicity element to parse.
+	 * @param isEdition
+	 *            Boolean to determinate if the quote will be added for the LiteralString
+	 * @return the string representing the multiplicity
+	 */
+	public static String formatMultiplicity(final MultiplicityElement element, final boolean isEdition) {
+		String multiplicityStr = formatMultiplicityNoBrackets(element, isEdition);
 		if (multiplicityStr == null || multiplicityStr.isEmpty()) {
 			return "";
 		}
@@ -53,9 +91,24 @@ public class MultiplicityElementUtil {
 	/**
 	 * Returns the String corresponding to the multiplicity without square brackets
 	 *
+	 * @param element
+	 *            The multiplicity element to parse.
 	 * @return the string representing the multiplicity, without square brackets
 	 */
-	public static String formatMultiplicityNoBrackets(MultiplicityElement element) {
+	public static String formatMultiplicityNoBrackets(final MultiplicityElement element) {
+		return formatMultiplicityNoBrackets(element, false);
+	}
+
+	/**
+	 * Returns the String corresponding to the multiplicity without square brackets (with quote edition for LiteralString).
+	 *
+	 * @param element
+	 *            The multiplicity element to parse.
+	 * @param isEdition
+	 *            Boolean to determinate if the quote will be added for the LiteralString
+	 * @return the string representing the multiplicity, without square brackets
+	 */
+	public static String formatMultiplicityNoBrackets(final MultiplicityElement element, final boolean isEdition) {
 		ValueSpecification lowerSpecification = element.getLowerValue();
 		ValueSpecification upperSpecification = element.getUpperValue();
 		if (lowerSpecification == null && upperSpecification == null) {
@@ -70,7 +123,7 @@ public class MultiplicityElementUtil {
 		if (lowerSpecification instanceof LiteralInteger && upperSpecification instanceof LiteralUnlimitedNatural) {
 			return setupMultiplicityAsInteger(((LiteralInteger) lowerSpecification).integerValue(), ((LiteralUnlimitedNatural) upperSpecification).unlimitedValue());
 		}
-		return setupMultiplicityAsString(element, lowerSpecification, upperSpecification);
+		return setupMultiplicityAsString(element, lowerSpecification, upperSpecification, isEdition);
 	}
 
 	private static String setupMultiplicityAsInteger(int lower, int upper) {
@@ -86,12 +139,12 @@ public class MultiplicityElementUtil {
 		}
 	}
 
-	private static String setupMultiplicityAsString(MultiplicityElement element, ValueSpecification lower, ValueSpecification upper) {
-		String lowerStr = ValueSpecificationUtil.getSpecificationValue(lower);
+	private static String setupMultiplicityAsString(final MultiplicityElement element, final ValueSpecification lower, final ValueSpecification upper, final boolean isEdition) {
+		String lowerStr = getStringSpecificationValue(lower, isEdition);
 		if ("*".equals(lowerStr)) {
 			return "";
 		}
-		String upperStr = ValueSpecificationUtil.getSpecificationValue(upper);
+		String upperStr = getStringSpecificationValue(upper, isEdition);
 		if (lowerStr != null && false == lowerStr.isEmpty() && lowerStr.equalsIgnoreCase(upperStr)) {
 			return lowerStr;
 		}
@@ -144,6 +197,27 @@ public class MultiplicityElementUtil {
 			}
 		}
 		return new int[] { lower, upper };
+	}
+
+	/**
+	 * This allow to get the value specification (with the quote management for the edition mode).
+	 * 
+	 * @param valueSpecification
+	 *            The value specification.
+	 * @param isEdition
+	 *            Boolean to determinate if the quote will be added for the LiteralString
+	 * @return The string representing the value specification
+	 */
+	private static String getStringSpecificationValue(final ValueSpecification valueSpecification, final boolean isEdition) {
+		String boundStr = ValueSpecificationUtil.getSpecificationValue(valueSpecification);
+		if (isEdition && valueSpecification instanceof LiteralString) {
+			final StringBuffer buffer = new StringBuffer();
+			buffer.append(QUOTE);
+			buffer.append(boundStr);
+			buffer.append(QUOTE);
+			boundStr = buffer.toString();
+		}
+		return boundStr;
 	}
 
 }

@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
@@ -41,7 +40,6 @@ public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TableDisplayStyleItemProvider(AdapterFactory adapterFactory) {
@@ -52,7 +50,6 @@ public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,30 +66,28 @@ public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Display Style feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDisplayStylePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TableDisplayStyle_displayStyle_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_TableDisplayStyle_displayStyle_feature", "_UI_TableDisplayStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						NattablestylePackage.Literals.TABLE_DISPLAY_STYLE__DISPLAY_STYLE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableDisplayStyle_displayStyle_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableDisplayStyle_displayStyle_feature", "_UI_TableDisplayStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablestylePackage.Literals.TABLE_DISPLAY_STYLE__DISPLAY_STYLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns TableDisplayStyle.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,16 +99,15 @@ public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		DisplayStyle labelValue = ((TableDisplayStyle) object).getDisplayStyle();
+		DisplayStyle labelValue = ((TableDisplayStyle)object).getDisplayStyle();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-				getString("_UI_TableDisplayStyle_type") : //$NON-NLS-1$
-				getString("_UI_TableDisplayStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_TableDisplayStyle_type") : //$NON-NLS-1$
+			getString("_UI_TableDisplayStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -121,7 +115,6 @@ public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,9 +122,9 @@ public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TableDisplayStyle.class)) {
-		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -141,7 +134,6 @@ public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,7 +145,6 @@ public class TableDisplayStyleItemProvider extends EModelElementItemProvider {
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

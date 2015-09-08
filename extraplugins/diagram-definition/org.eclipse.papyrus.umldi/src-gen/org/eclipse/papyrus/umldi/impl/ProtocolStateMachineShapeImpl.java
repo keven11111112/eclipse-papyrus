@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ProtocolStateMachineShapeImpl extends StateMachineShapeImpl implements ProtocolStateMachineShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProtocolStateMachineShapeImpl() {
@@ -36,11 +38,11 @@ public class ProtocolStateMachineShapeImpl extends StateMachineShapeImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.PROTOCOL_STATE_MACHINE_SHAPE;
 	}
-
 } //ProtocolStateMachineShapeImpl

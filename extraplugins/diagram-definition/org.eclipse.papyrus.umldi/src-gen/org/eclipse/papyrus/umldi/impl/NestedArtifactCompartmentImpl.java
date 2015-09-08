@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.NestedArtifactCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.NestedArtifactCompartmentImpl#getArtifactShape <em>Artifact Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.NestedArtifactCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.NestedArtifactCompartmentImpl#getArtifactShape <em>Artifact Shape</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl implements NestedArtifactCompartment {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NestedArtifactCompartmentImpl() {
@@ -53,6 +55,7 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ArtifactShape artifactShape = getArtifactShape();			
-		if (artifactShape != null) {
+		ArtifactShape artifactShape = getArtifactShape();
+		if(artifactShape != null) {
 			return artifactShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ArtifactShape getArtifactShape() {
-		if (eContainerFeatureID() != UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE)
+			return null;
 		return (ArtifactShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetArtifactShape(ArtifactShape newArtifactShape, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setArtifactShape(ArtifactShape newArtifactShape) {
-		if (newArtifactShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE && newArtifactShape != null)) {
-			if (EcoreUtil.isAncestor(this, newArtifactShape))
+		if(newArtifactShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE && newArtifactShape != null)) {
+			if(EcoreUtil.isAncestor(this, newArtifactShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newArtifactShape != null)
+			if(newArtifactShape != null)
 				msgs = ((InternalEObject)newArtifactShape).eInverseAdd(this, UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT, ArtifactShape.class, msgs);
 			msgs = basicSetArtifactShape(newArtifactShape, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE, newArtifactShape, newArtifactShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetArtifactShape((ArtifactShape)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetArtifactShape((ArtifactShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
-				return basicSetArtifactShape(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
+			return basicSetArtifactShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT, ArtifactShape.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.ARTIFACT_SHAPE__NESTED_ARTIFACT_COMPARTMENT, ArtifactShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
-				return getArtifactShape();
+		switch(featureID) {
+		case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
+			return getArtifactShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
-				setArtifactShape((ArtifactShape)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
+			setArtifactShape((ArtifactShape)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
-				setArtifactShape((ArtifactShape)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
+			setArtifactShape((ArtifactShape)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
-				return getArtifactShape() != null;
+		switch(featureID) {
+		case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE:
+			return getArtifactShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class NestedArtifactCompartmentImpl extends ClassifierCompartmentImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.NESTED_ARTIFACT_COMPARTMENT__ARTIFACT_SHAPE);
 	}
-
 } //NestedArtifactCompartmentImpl

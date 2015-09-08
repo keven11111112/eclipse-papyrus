@@ -22,9 +22,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndMultiplicityLabel <em>End Multiplicity Label</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndConstraintLabel <em>End Constraint Label</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndRoleLabel <em>End Role Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndMultiplicityLabel <em>End Multiplicity Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndConstraintLabel <em>End Constraint Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndRoleLabel <em>End Role Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getAssociationEdge()
@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface AssociationEdge extends ElementEdge {
+
 	/**
 	 * Returns the value of the '<em><b>End Multiplicity Label</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.MultiplicityLabel}.
@@ -40,18 +41,19 @@ public interface AssociationEdge extends ElementEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>End Multiplicity Label</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>End Multiplicity Label</em>' containment reference list isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>End Multiplicity Label</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getAssociationEdge_EndMultiplicityLabel()
 	 * @see org.eclipse.papyrus.umldi.MultiplicityLabel#getAssociationEdge
-	 * @model opposite="associationEdge" containment="true" upper="2" ordered="false"
+	 * @model opposite="associationEdge" containment="true" upper="2"
 	 * @generated
 	 */
 	EList<MultiplicityLabel> getEndMultiplicityLabel();
@@ -64,18 +66,19 @@ public interface AssociationEdge extends ElementEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>End Constraint Label</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>End Constraint Label</em>' containment reference list isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>End Constraint Label</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getAssociationEdge_EndConstraintLabel()
 	 * @see org.eclipse.papyrus.umldi.ConstraintLabel#getAssociationEdge
-	 * @model opposite="associationEdge" containment="true" upper="2" ordered="false"
+	 * @model opposite="associationEdge" containment="true" upper="2"
 	 * @generated
 	 */
 	EList<ConstraintLabel> getEndConstraintLabel();
@@ -88,20 +91,19 @@ public interface AssociationEdge extends ElementEdge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>End Role Label</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>End Role Label</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>End Role Label</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getAssociationEdge_EndRoleLabel()
 	 * @see org.eclipse.papyrus.umldi.RoleLabel#getAssociationEdge
-	 * @model opposite="associationEdge" containment="true" upper="2" ordered="false"
+	 * @model opposite="associationEdge" containment="true" upper="2"
 	 * @generated
 	 */
 	EList<RoleLabel> getEndRoleLabel();
-
 } // AssociationEdge

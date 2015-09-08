@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public abstract class InteractionDiagramImpl extends BehaviorDiagramImpl implements InteractionDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected InteractionDiagramImpl() {
@@ -36,11 +38,11 @@ public abstract class InteractionDiagramImpl extends BehaviorDiagramImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.INTERACTION_DIAGRAM;
 	}
-
 } //InteractionDiagramImpl

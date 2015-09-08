@@ -31,6 +31,7 @@ import org.eclipse.papyrus.umldi.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.umldi.UMLDIPackage
  * @generated
  */
@@ -40,6 +41,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static UMLDIPackage modelPackage;
@@ -48,10 +50,11 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UMLDIAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = UMLDIPackage.eINSTANCE;
 		}
 	}
@@ -61,15 +64,16 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
+		if(object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -79,716 +83,999 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UMLDISwitch<Adapter> modelSwitch = new UMLDISwitch<Adapter>() {
-			@Override
-			public Adapter caseUmlDiagram(UmlDiagram object) {
-				return createUmlDiagramAdapter();
-			}
-			@Override
-			public Adapter caseUmlDiagramElement(UmlDiagramElement object) {
-				return createUmlDiagramElementAdapter();
-			}
-			@Override
-			public Adapter caseUmlStyle(UmlStyle object) {
-				return createUmlStyleAdapter();
-			}
-			@Override
-			public Adapter caseUmlEdge(UmlEdge object) {
-				return createUmlEdgeAdapter();
-			}
-			@Override
-			public Adapter caseTopUmlDiagramElement(TopUmlDiagramElement object) {
-				return createTopUmlDiagramElementAdapter();
-			}
-			@Override
-			public Adapter caseDiagramCompartment(DiagramCompartment object) {
-				return createDiagramCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseUmlCompartment(UmlCompartment object) {
-				return createUmlCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseMainLabel(MainLabel object) {
-				return createMainLabelAdapter();
-			}
-			@Override
-			public Adapter caseUmlLabel(UmlLabel object) {
-				return createUmlLabelAdapter();
-			}
-			@Override
-			public Adapter caseUmlShape(UmlShape object) {
-				return createUmlShapeAdapter();
-			}
-			@Override
-			public Adapter caseClassDiagram(ClassDiagram object) {
-				return createClassDiagramAdapter();
-			}
-			@Override
-			public Adapter caseStructureDiagram(StructureDiagram object) {
-				return createStructureDiagramAdapter();
-			}
-			@Override
-			public Adapter caseClassifierShape(ClassifierShape object) {
-				return createClassifierShapeAdapter();
-			}
-			@Override
-			public Adapter caseTemplateableElementShape(TemplateableElementShape object) {
-				return createTemplateableElementShapeAdapter();
-			}
-			@Override
-			public Adapter caseElementShape(ElementShape object) {
-				return createElementShapeAdapter();
-			}
-			@Override
-			public Adapter caseTemplateParameterCompartment(TemplateParameterCompartment object) {
-				return createTemplateParameterCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseListCompartment(ListCompartment object) {
-				return createListCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseListItemLabel(ListItemLabel object) {
-				return createListItemLabelAdapter();
-			}
-			@Override
-			public Adapter caseOwnedUseCaseCompartment(OwnedUseCaseCompartment object) {
-				return createOwnedUseCaseCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseClassifierCompartment(ClassifierCompartment object) {
-				return createClassifierCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseUseCaseCompartment(UseCaseCompartment object) {
-				return createUseCaseCompartmentAdapter();
-			}
-			@Override
-			public Adapter casePackageShape(PackageShape object) {
-				return createPackageShapeAdapter();
-			}
-			@Override
-			public Adapter caseElementWithPackagedElementsShape(ElementWithPackagedElementsShape object) {
-				return createElementWithPackagedElementsShapeAdapter();
-			}
-			@Override
-			public Adapter casePackagedElementCompartment(PackagedElementCompartment object) {
-				return createPackagedElementCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseConstraintShape(ConstraintShape object) {
-				return createConstraintShapeAdapter();
-			}
-			@Override
-			public Adapter caseElementWithBodyShape(ElementWithBodyShape object) {
-				return createElementWithBodyShapeAdapter();
-			}
-			@Override
-			public Adapter caseBodyLabel(BodyLabel object) {
-				return createBodyLabelAdapter();
-			}
-			@Override
-			public Adapter caseAttributeCompartment(AttributeCompartment object) {
-				return createAttributeCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseClassifierWithAttributesShape(ClassifierWithAttributesShape object) {
-				return createClassifierWithAttributesShapeAdapter();
-			}
-			@Override
-			public Adapter caseOperationCompartment(OperationCompartment object) {
-				return createOperationCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseClassifierWithOperationsShape(ClassifierWithOperationsShape object) {
-				return createClassifierWithOperationsShapeAdapter();
-			}
-			@Override
-			public Adapter caseReceptionCompartment(ReceptionCompartment object) {
-				return createReceptionCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseClassifierWithReceptionsShape(ClassifierWithReceptionsShape object) {
-				return createClassifierWithReceptionsShapeAdapter();
-			}
-			@Override
-			public Adapter caseLiteralCompartment(LiteralCompartment object) {
-				return createLiteralCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseEnumerationShape(EnumerationShape object) {
-				return createEnumerationShapeAdapter();
-			}
-			@Override
-			public Adapter caseRoleLabel(RoleLabel object) {
-				return createRoleLabelAdapter();
-			}
-			@Override
-			public Adapter caseAssociationEdge(AssociationEdge object) {
-				return createAssociationEdgeAdapter();
-			}
-			@Override
-			public Adapter caseElementEdge(ElementEdge object) {
-				return createElementEdgeAdapter();
-			}
-			@Override
-			public Adapter caseMultiplicityLabel(MultiplicityLabel object) {
-				return createMultiplicityLabelAdapter();
-			}
-			@Override
-			public Adapter casePropertyEdge(PropertyEdge object) {
-				return createPropertyEdgeAdapter();
-			}
-			@Override
-			public Adapter caseConstraintLabel(ConstraintLabel object) {
-				return createConstraintLabelAdapter();
-			}
-			@Override
-			public Adapter caseGeneralizationSetEdge(GeneralizationSetEdge object) {
-				return createGeneralizationSetEdgeAdapter();
-			}
-			@Override
-			public Adapter casePowerLabel(PowerLabel object) {
-				return createPowerLabelAdapter();
-			}
-			@Override
-			public Adapter caseObjectNodeShape(ObjectNodeShape object) {
-				return createObjectNodeShapeAdapter();
-			}
-			@Override
-			public Adapter caseActivityNodeShape(ActivityNodeShape object) {
-				return createActivityNodeShapeAdapter();
-			}
-			@Override
-			public Adapter caseSelectionLabel(SelectionLabel object) {
-				return createSelectionLabelAdapter();
-			}
-			@Override
-			public Adapter caseObjectFlowEdge(ObjectFlowEdge object) {
-				return createObjectFlowEdgeAdapter();
-			}
-			@Override
-			public Adapter caseActivityEdgeEdge(ActivityEdgeEdge object) {
-				return createActivityEdgeEdgeAdapter();
-			}
-			@Override
-			public Adapter caseRelationshipWithGuardEdge(RelationshipWithGuardEdge object) {
-				return createRelationshipWithGuardEdgeAdapter();
-			}
-			@Override
-			public Adapter caseGuardLabel(GuardLabel object) {
-				return createGuardLabelAdapter();
-			}
-			@Override
-			public Adapter caseWeightLabel(WeightLabel object) {
-				return createWeightLabelAdapter();
-			}
-			@Override
-			public Adapter caseTransformationLabel(TransformationLabel object) {
-				return createTransformationLabelAdapter();
-			}
-			@Override
-			public Adapter caseConnectorEdge(ConnectorEdge object) {
-				return createConnectorEdgeAdapter();
-			}
-			@Override
-			public Adapter caseInstanceSpecificationEdge(InstanceSpecificationEdge object) {
-				return createInstanceSpecificationEdgeAdapter();
-			}
-			@Override
-			public Adapter caseDependencyEdge(DependencyEdge object) {
-				return createDependencyEdgeAdapter();
-			}
-			@Override
-			public Adapter caseInstanceSpecificationShape(InstanceSpecificationShape object) {
-				return createInstanceSpecificationShapeAdapter();
-			}
-			@Override
-			public Adapter caseDeploymentTargetShape(DeploymentTargetShape object) {
-				return createDeploymentTargetShapeAdapter();
-			}
-			@Override
-			public Adapter caseDeployedArtifactCompartment(DeployedArtifactCompartment object) {
-				return createDeployedArtifactCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseSlotCompartment(SlotCompartment object) {
-				return createSlotCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseClassShape(ClassShape object) {
-				return createClassShapeAdapter();
-			}
-			@Override
-			public Adapter caseElementWithPortsShape(ElementWithPortsShape object) {
-				return createElementWithPortsShapeAdapter();
-			}
-			@Override
-			public Adapter caseElementWithInternalStructureShape(ElementWithInternalStructureShape object) {
-				return createElementWithInternalStructureShapeAdapter();
-			}
-			@Override
-			public Adapter caseInternalStructureCompartment(InternalStructureCompartment object) {
-				return createInternalStructureCompartmentAdapter();
-			}
-			@Override
-			public Adapter casePortShape(PortShape object) {
-				return createPortShapeAdapter();
-			}
-			@Override
-			public Adapter caseClassifierWithNestedClassifiersShape(ClassifierWithNestedClassifiersShape object) {
-				return createClassifierWithNestedClassifiersShapeAdapter();
-			}
-			@Override
-			public Adapter caseNestedClassifierCompartment(NestedClassifierCompartment object) {
-				return createNestedClassifierCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseBehavioredClassifierShape(BehavioredClassifierShape object) {
-				return createBehavioredClassifierShapeAdapter();
-			}
-			@Override
-			public Adapter caseOwnedBehaviorCompartment(OwnedBehaviorCompartment object) {
-				return createOwnedBehaviorCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseInterfaceShape(InterfaceShape object) {
-				return createInterfaceShapeAdapter();
-			}
-			@Override
-			public Adapter caseDataTypeShape(DataTypeShape object) {
-				return createDataTypeShapeAdapter();
-			}
-			@Override
-			public Adapter casePrimitiveTypeShape(PrimitiveTypeShape object) {
-				return createPrimitiveTypeShapeAdapter();
-			}
-			@Override
-			public Adapter caseSignalShape(SignalShape object) {
-				return createSignalShapeAdapter();
-			}
-			@Override
-			public Adapter caseModelShape(ModelShape object) {
-				return createModelShapeAdapter();
-			}
-			@Override
-			public Adapter caseContainmentEdge(ContainmentEdge object) {
-				return createContainmentEdgeAdapter();
-			}
-			@Override
-			public Adapter caseGeneralizationEdge(GeneralizationEdge object) {
-				return createGeneralizationEdgeAdapter();
-			}
-			@Override
-			public Adapter caseRealizationEdge(RealizationEdge object) {
-				return createRealizationEdgeAdapter();
-			}
-			@Override
-			public Adapter caseAbstractionEdge(AbstractionEdge object) {
-				return createAbstractionEdgeAdapter();
-			}
-			@Override
-			public Adapter caseInterfaceRealizationEdge(InterfaceRealizationEdge object) {
-				return createInterfaceRealizationEdgeAdapter();
-			}
-			@Override
-			public Adapter caseUsageEdge(UsageEdge object) {
-				return createUsageEdgeAdapter();
-			}
-			@Override
-			public Adapter caseElementImportEdge(ElementImportEdge object) {
-				return createElementImportEdgeAdapter();
-			}
-			@Override
-			public Adapter casePackageImportEdge(PackageImportEdge object) {
-				return createPackageImportEdgeAdapter();
-			}
-			@Override
-			public Adapter casePackageMergeEdge(PackageMergeEdge object) {
-				return createPackageMergeEdgeAdapter();
-			}
-			@Override
-			public Adapter caseSubstitutionEdge(SubstitutionEdge object) {
-				return createSubstitutionEdgeAdapter();
-			}
-			@Override
-			public Adapter caseInformationFlowEdge(InformationFlowEdge object) {
-				return createInformationFlowEdgeAdapter();
-			}
-			@Override
-			public Adapter caseConveyedLabel(ConveyedLabel object) {
-				return createConveyedLabelAdapter();
-			}
-			@Override
-			public Adapter caseAssociationClassEdge(AssociationClassEdge object) {
-				return createAssociationClassEdgeAdapter();
-			}
-			@Override
-			public Adapter caseCommentShape(CommentShape object) {
-				return createCommentShapeAdapter();
-			}
-			@Override
-			public Adapter caseAttachmentEdge(AttachmentEdge object) {
-				return createAttachmentEdgeAdapter();
-			}
-			@Override
-			public Adapter caseAssociationClassShape(AssociationClassShape object) {
-				return createAssociationClassShapeAdapter();
-			}
-			@Override
-			public Adapter caseComponentShape(ComponentShape object) {
-				return createComponentShapeAdapter();
-			}
-			@Override
-			public Adapter caseInformationItemShape(InformationItemShape object) {
-				return createInformationItemShapeAdapter();
-			}
-			@Override
-			public Adapter caseRepresentationEdge(RepresentationEdge object) {
-				return createRepresentationEdgeAdapter();
-			}
-			@Override
-			public Adapter caseAssociationShape(AssociationShape object) {
-				return createAssociationShapeAdapter();
-			}
-			@Override
-			public Adapter caseDependencyShape(DependencyShape object) {
-				return createDependencyShapeAdapter();
-			}
-			@Override
-			public Adapter caseTimeObservationShape(TimeObservationShape object) {
-				return createTimeObservationShapeAdapter();
-			}
-			@Override
-			public Adapter caseDurationObservationShape(DurationObservationShape object) {
-				return createDurationObservationShapeAdapter();
-			}
-			@Override
-			public Adapter casePackageDiagram(PackageDiagram object) {
-				return createPackageDiagramAdapter();
-			}
-			@Override
-			public Adapter caseProfileDiagram(ProfileDiagram object) {
-				return createProfileDiagramAdapter();
-			}
-			@Override
-			public Adapter caseCompositeStructureDiagram(CompositeStructureDiagram object) {
-				return createCompositeStructureDiagramAdapter();
-			}
-			@Override
-			public Adapter caseDeploymentDiagram(DeploymentDiagram object) {
-				return createDeploymentDiagramAdapter();
-			}
-			@Override
-			public Adapter caseComponentDiagram(ComponentDiagram object) {
-				return createComponentDiagramAdapter();
-			}
-			@Override
-			public Adapter caseObjectDiagram(ObjectDiagram object) {
-				return createObjectDiagramAdapter();
-			}
-			@Override
-			public Adapter caseProfileShape(ProfileShape object) {
-				return createProfileShapeAdapter();
-			}
-			@Override
-			public Adapter caseProfileApplicationEdge(ProfileApplicationEdge object) {
-				return createProfileApplicationEdgeAdapter();
-			}
-			@Override
-			public Adapter caseExtensionEdge(ExtensionEdge object) {
-				return createExtensionEdgeAdapter();
-			}
-			@Override
-			public Adapter caseBehaviorDiagram(BehaviorDiagram object) {
-				return createBehaviorDiagramAdapter();
-			}
-			@Override
-			public Adapter caseUseCaseDiagram(UseCaseDiagram object) {
-				return createUseCaseDiagramAdapter();
-			}
-			@Override
-			public Adapter caseArtifactShape(ArtifactShape object) {
-				return createArtifactShapeAdapter();
-			}
-			@Override
-			public Adapter caseNestedArtifactCompartment(NestedArtifactCompartment object) {
-				return createNestedArtifactCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseComponentRealizationEdge(ComponentRealizationEdge object) {
-				return createComponentRealizationEdgeAdapter();
-			}
-			@Override
-			public Adapter caseManifestationEdge(ManifestationEdge object) {
-				return createManifestationEdgeAdapter();
-			}
-			@Override
-			public Adapter casePropertyShape(PropertyShape object) {
-				return createPropertyShapeAdapter();
-			}
-			@Override
-			public Adapter caseCollaborationShape(CollaborationShape object) {
-				return createCollaborationShapeAdapter();
-			}
-			@Override
-			public Adapter caseCollaborationUseShape(CollaborationUseShape object) {
-				return createCollaborationUseShapeAdapter();
-			}
-			@Override
-			public Adapter caseTemplateBindingEdge(TemplateBindingEdge object) {
-				return createTemplateBindingEdgeAdapter();
-			}
-			@Override
-			public Adapter caseStereotypeShape(StereotypeShape object) {
-				return createStereotypeShapeAdapter();
-			}
-			@Override
-			public Adapter caseNodeShape(NodeShape object) {
-				return createNodeShapeAdapter();
-			}
-			@Override
-			public Adapter caseNestedNodeCompartment(NestedNodeCompartment object) {
-				return createNestedNodeCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseDeviceShape(DeviceShape object) {
-				return createDeviceShapeAdapter();
-			}
-			@Override
-			public Adapter caseExecutionEnvironmentShape(ExecutionEnvironmentShape object) {
-				return createExecutionEnvironmentShapeAdapter();
-			}
-			@Override
-			public Adapter caseActivityShape(ActivityShape object) {
-				return createActivityShapeAdapter();
-			}
-			@Override
-			public Adapter caseParameterCompartment(ParameterCompartment object) {
-				return createParameterCompartmentAdapter();
-			}
-			@Override
-			public Adapter casePostConditionCompartment(PostConditionCompartment object) {
-				return createPostConditionCompartmentAdapter();
-			}
-			@Override
-			public Adapter casePreConditionCompartment(PreConditionCompartment object) {
-				return createPreConditionCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseContentCompartment(ContentCompartment object) {
-				return createContentCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseStructuredActivityNodeShape(StructuredActivityNodeShape object) {
-				return createStructuredActivityNodeShapeAdapter();
-			}
-			@Override
-			public Adapter caseActionShape(ActionShape object) {
-				return createActionShapeAdapter();
-			}
-			@Override
-			public Adapter casePinShape(PinShape object) {
-				return createPinShapeAdapter();
-			}
-			@Override
-			public Adapter caseActivityGroupShape(ActivityGroupShape object) {
-				return createActivityGroupShapeAdapter();
-			}
-			@Override
-			public Adapter caseActivityParameterNodeShape(ActivityParameterNodeShape object) {
-				return createActivityParameterNodeShapeAdapter();
-			}
-			@Override
-			public Adapter caseInteractionShape(InteractionShape object) {
-				return createInteractionShapeAdapter();
-			}
-			@Override
-			public Adapter caseOpaqueBehaviorShape(OpaqueBehaviorShape object) {
-				return createOpaqueBehaviorShapeAdapter();
-			}
-			@Override
-			public Adapter caseFunctionBehaviorShape(FunctionBehaviorShape object) {
-				return createFunctionBehaviorShapeAdapter();
-			}
-			@Override
-			public Adapter caseStateMachineShape(StateMachineShape object) {
-				return createStateMachineShapeAdapter();
-			}
-			@Override
-			public Adapter caseBaseStateShape(BaseStateShape object) {
-				return createBaseStateShapeAdapter();
-			}
-			@Override
-			public Adapter casePseudostateShape(PseudostateShape object) {
-				return createPseudostateShapeAdapter();
-			}
-			@Override
-			public Adapter caseRegionCompartment(RegionCompartment object) {
-				return createRegionCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseProtocolStateMachineShape(ProtocolStateMachineShape object) {
-				return createProtocolStateMachineShapeAdapter();
-			}
-			@Override
-			public Adapter caseDeploymentSpecificationShape(DeploymentSpecificationShape object) {
-				return createDeploymentSpecificationShapeAdapter();
-			}
-			@Override
-			public Adapter caseCommunicationPathEdge(CommunicationPathEdge object) {
-				return createCommunicationPathEdgeAdapter();
-			}
-			@Override
-			public Adapter caseDeploymentEdge(DeploymentEdge object) {
-				return createDeploymentEdgeAdapter();
-			}
-			@Override
-			public Adapter caseActorShape(ActorShape object) {
-				return createActorShapeAdapter();
-			}
-			@Override
-			public Adapter caseExtensionPointCompartment(ExtensionPointCompartment object) {
-				return createExtensionPointCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseUseCaseShape(UseCaseShape object) {
-				return createUseCaseShapeAdapter();
-			}
-			@Override
-			public Adapter caseIncludeEdge(IncludeEdge object) {
-				return createIncludeEdgeAdapter();
-			}
-			@Override
-			public Adapter caseExtendEdge(ExtendEdge object) {
-				return createExtendEdgeAdapter();
-			}
-			@Override
-			public Adapter caseStateMachineDiagram(StateMachineDiagram object) {
-				return createStateMachineDiagramAdapter();
-			}
-			@Override
-			public Adapter caseActivityDiagram(ActivityDiagram object) {
-				return createActivityDiagramAdapter();
-			}
-			@Override
-			public Adapter caseSequenceDiagram(SequenceDiagram object) {
-				return createSequenceDiagramAdapter();
-			}
-			@Override
-			public Adapter caseInteractionDiagram(InteractionDiagram object) {
-				return createInteractionDiagramAdapter();
-			}
-			@Override
-			public Adapter caseCommunicationDiagram(CommunicationDiagram object) {
-				return createCommunicationDiagramAdapter();
-			}
-			@Override
-			public Adapter caseTimingDiagram(TimingDiagram object) {
-				return createTimingDiagramAdapter();
-			}
-			@Override
-			public Adapter caseInteractionOverviewDiagram(InteractionOverviewDiagram object) {
-				return createInteractionOverviewDiagramAdapter();
-			}
-			@Override
-			public Adapter caseInternalBehaviorCompartment(InternalBehaviorCompartment object) {
-				return createInternalBehaviorCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseStateShape(StateShape object) {
-				return createStateShapeAdapter();
-			}
-			@Override
-			public Adapter caseConnectionPointReferenceShape(ConnectionPointReferenceShape object) {
-				return createConnectionPointReferenceShapeAdapter();
-			}
-			@Override
-			public Adapter caseInternalTransitionCompartment(InternalTransitionCompartment object) {
-				return createInternalTransitionCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseDeferrableTriggerCompartment(DeferrableTriggerCompartment object) {
-				return createDeferrableTriggerCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseRegionShape(RegionShape object) {
-				return createRegionShapeAdapter();
-			}
-			@Override
-			public Adapter caseSubvertexCompartment(SubvertexCompartment object) {
-				return createSubvertexCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseTransitionEdge(TransitionEdge object) {
-				return createTransitionEdgeAdapter();
-			}
-			@Override
-			public Adapter caseControlFlowEdge(ControlFlowEdge object) {
-				return createControlFlowEdgeAdapter();
-			}
-			@Override
-			public Adapter caseExceptionHandlerEdge(ExceptionHandlerEdge object) {
-				return createExceptionHandlerEdgeAdapter();
-			}
-			@Override
-			public Adapter caseTypeLabel(TypeLabel object) {
-				return createTypeLabelAdapter();
-			}
-			@Override
-			public Adapter caseIconLabel(IconLabel object) {
-				return createIconLabelAdapter();
-			}
-			@Override
-			public Adapter caseSubPartitionCompartment(SubPartitionCompartment object) {
-				return createSubPartitionCompartmentAdapter();
-			}
-			@Override
-			public Adapter caseActivityPartitionShape(ActivityPartitionShape object) {
-				return createActivityPartitionShapeAdapter();
-			}
-			@Override
-			public Adapter caseExpansionRegionShape(ExpansionRegionShape object) {
-				return createExpansionRegionShapeAdapter();
-			}
-			@Override
-			public Adapter caseExpansionNodeShape(ExpansionNodeShape object) {
-				return createExpansionNodeShapeAdapter();
-			}
-			@Override
-			public Adapter caseDiagramElement(DiagramElement object) {
-				return createDiagramElementAdapter();
-			}
-			@Override
-			public Adapter caseShape(Shape object) {
-				return createShapeAdapter();
-			}
-			@Override
-			public Adapter caseDiagram(Diagram object) {
-				return createDiagramAdapter();
-			}
-			@Override
-			public Adapter caseStyle(Style object) {
-				return createStyleAdapter();
-			}
-			@Override
-			public Adapter caseEdge(Edge object) {
-				return createEdgeAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+
+		@Override
+		public Adapter caseUmlDiagram(UmlDiagram object) {
+			return createUmlDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseUmlDiagramElement(UmlDiagramElement object) {
+			return createUmlDiagramElementAdapter();
+		}
+
+		@Override
+		public Adapter caseUmlStyle(UmlStyle object) {
+			return createUmlStyleAdapter();
+		}
+
+		@Override
+		public Adapter caseUmlEdge(UmlEdge object) {
+			return createUmlEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseTopUmlDiagramElement(TopUmlDiagramElement object) {
+			return createTopUmlDiagramElementAdapter();
+		}
+
+		@Override
+		public Adapter caseStereotypedDiagramElement(StereotypedDiagramElement object) {
+			return createStereotypedDiagramElementAdapter();
+		}
+
+		@Override
+		public Adapter caseStereotypeLabel(StereotypeLabel object) {
+			return createStereotypeLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseUmlLabel(UmlLabel object) {
+			return createUmlLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseDiagramCompartment(DiagramCompartment object) {
+			return createDiagramCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseUmlCompartment(UmlCompartment object) {
+			return createUmlCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseMainLabel(MainLabel object) {
+			return createMainLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseUmlShape(UmlShape object) {
+			return createUmlShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseStereotypeCompartment(StereotypeCompartment object) {
+			return createStereotypeCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseListCompartment(ListCompartment object) {
+			return createListCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseListItemLabel(ListItemLabel object) {
+			return createListItemLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseClassDiagram(ClassDiagram object) {
+			return createClassDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseStructureDiagram(StructureDiagram object) {
+			return createStructureDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseClassifierShape(ClassifierShape object) {
+			return createClassifierShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseTemplateableElementShape(TemplateableElementShape object) {
+			return createTemplateableElementShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseElementShape(ElementShape object) {
+			return createElementShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseTemplateParameterCompartment(TemplateParameterCompartment object) {
+			return createTemplateParameterCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseOwnedUseCaseCompartment(OwnedUseCaseCompartment object) {
+			return createOwnedUseCaseCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseClassifierCompartment(ClassifierCompartment object) {
+			return createClassifierCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseUseCaseCompartment(UseCaseCompartment object) {
+			return createUseCaseCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter casePackageShape(PackageShape object) {
+			return createPackageShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseElementWithPackagedElementsShape(ElementWithPackagedElementsShape object) {
+			return createElementWithPackagedElementsShapeAdapter();
+		}
+
+		@Override
+		public Adapter casePackagedElementCompartment(PackagedElementCompartment object) {
+			return createPackagedElementCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseConstraintShape(ConstraintShape object) {
+			return createConstraintShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseAttributeCompartment(AttributeCompartment object) {
+			return createAttributeCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseClassifierWithAttributesShape(ClassifierWithAttributesShape object) {
+			return createClassifierWithAttributesShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseOperationCompartment(OperationCompartment object) {
+			return createOperationCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseClassifierWithOperationsShape(ClassifierWithOperationsShape object) {
+			return createClassifierWithOperationsShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseReceptionCompartment(ReceptionCompartment object) {
+			return createReceptionCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseClassifierWithReceptionsShape(ClassifierWithReceptionsShape object) {
+			return createClassifierWithReceptionsShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseLiteralCompartment(LiteralCompartment object) {
+			return createLiteralCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseEnumerationShape(EnumerationShape object) {
+			return createEnumerationShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseRoleLabel(RoleLabel object) {
+			return createRoleLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseAssociationEdge(AssociationEdge object) {
+			return createAssociationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseElementEdge(ElementEdge object) {
+			return createElementEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseMultiplicityLabel(MultiplicityLabel object) {
+			return createMultiplicityLabelAdapter();
+		}
+
+		@Override
+		public Adapter casePropertyEdge(PropertyEdge object) {
+			return createPropertyEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseConstraintLabel(ConstraintLabel object) {
+			return createConstraintLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseGeneralizationSetEdge(GeneralizationSetEdge object) {
+			return createGeneralizationSetEdgeAdapter();
+		}
+
+		@Override
+		public Adapter casePowerLabel(PowerLabel object) {
+			return createPowerLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseObjectNodeShape(ObjectNodeShape object) {
+			return createObjectNodeShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityNodeShape(ActivityNodeShape object) {
+			return createActivityNodeShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseSelectionLabel(SelectionLabel object) {
+			return createSelectionLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseObjectFlowEdge(ObjectFlowEdge object) {
+			return createObjectFlowEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityEdgeEdge(ActivityEdgeEdge object) {
+			return createActivityEdgeEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseGuardLabel(GuardLabel object) {
+			return createGuardLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseWeightLabel(WeightLabel object) {
+			return createWeightLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseTransformationLabel(TransformationLabel object) {
+			return createTransformationLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseLifelineShape(LifelineShape object) {
+			return createLifelineShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseInteractionFragmentShape(InteractionFragmentShape object) {
+			return createInteractionFragmentShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseActionShape(ActionShape object) {
+			return createActionShapeAdapter();
+		}
+
+		@Override
+		public Adapter casePinShape(PinShape object) {
+			return createPinShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseConnectorEdge(ConnectorEdge object) {
+			return createConnectorEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseInstanceSpecificationEdge(InstanceSpecificationEdge object) {
+			return createInstanceSpecificationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseDependencyEdge(DependencyEdge object) {
+			return createDependencyEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseInstanceSpecificationShape(InstanceSpecificationShape object) {
+			return createInstanceSpecificationShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDeploymentTargetShape(DeploymentTargetShape object) {
+			return createDeploymentTargetShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDeployedArtifactCompartment(DeployedArtifactCompartment object) {
+			return createDeployedArtifactCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseSlotCompartment(SlotCompartment object) {
+			return createSlotCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseClassShape(ClassShape object) {
+			return createClassShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseElementWithPortsShape(ElementWithPortsShape object) {
+			return createElementWithPortsShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseElementWithStructureShape(ElementWithStructureShape object) {
+			return createElementWithStructureShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseStructureCompartment(StructureCompartment object) {
+			return createStructureCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter casePortShape(PortShape object) {
+			return createPortShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseClassifierWithNestedClassifiersShape(ClassifierWithNestedClassifiersShape object) {
+			return createClassifierWithNestedClassifiersShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseNestedClassifierCompartment(NestedClassifierCompartment object) {
+			return createNestedClassifierCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseBehavioredClassifierShape(BehavioredClassifierShape object) {
+			return createBehavioredClassifierShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseOwnedBehaviorCompartment(OwnedBehaviorCompartment object) {
+			return createOwnedBehaviorCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseInterfaceShape(InterfaceShape object) {
+			return createInterfaceShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDataTypeShape(DataTypeShape object) {
+			return createDataTypeShapeAdapter();
+		}
+
+		@Override
+		public Adapter casePrimitiveTypeShape(PrimitiveTypeShape object) {
+			return createPrimitiveTypeShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseSignalShape(SignalShape object) {
+			return createSignalShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseModelShape(ModelShape object) {
+			return createModelShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseContainmentEdge(ContainmentEdge object) {
+			return createContainmentEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseGeneralizationEdge(GeneralizationEdge object) {
+			return createGeneralizationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseRealizationEdge(RealizationEdge object) {
+			return createRealizationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractionEdge(AbstractionEdge object) {
+			return createAbstractionEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseInterfaceRealizationEdge(InterfaceRealizationEdge object) {
+			return createInterfaceRealizationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseUsageEdge(UsageEdge object) {
+			return createUsageEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseElementImportEdge(ElementImportEdge object) {
+			return createElementImportEdgeAdapter();
+		}
+
+		@Override
+		public Adapter casePackageImportEdge(PackageImportEdge object) {
+			return createPackageImportEdgeAdapter();
+		}
+
+		@Override
+		public Adapter casePackageMergeEdge(PackageMergeEdge object) {
+			return createPackageMergeEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseSubstitutionEdge(SubstitutionEdge object) {
+			return createSubstitutionEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseInformationFlowEdge(InformationFlowEdge object) {
+			return createInformationFlowEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseConveyedLabel(ConveyedLabel object) {
+			return createConveyedLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseAssociationClassEdge(AssociationClassEdge object) {
+			return createAssociationClassEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseCommentShape(CommentShape object) {
+			return createCommentShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseAttachmentEdge(AttachmentEdge object) {
+			return createAttachmentEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseAssociationClassShape(AssociationClassShape object) {
+			return createAssociationClassShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseComponentShape(ComponentShape object) {
+			return createComponentShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseInformationItemShape(InformationItemShape object) {
+			return createInformationItemShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseRepresentationEdge(RepresentationEdge object) {
+			return createRepresentationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseAssociationShape(AssociationShape object) {
+			return createAssociationShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDependencyShape(DependencyShape object) {
+			return createDependencyShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseTimeObservationShape(TimeObservationShape object) {
+			return createTimeObservationShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseTimeObservationShape_TimeObservationShape(TimeObservationShape_TimeObservationShape object) {
+			return createTimeObservationShape_TimeObservationShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDurationObservationShape(DurationObservationShape object) {
+			return createDurationObservationShapeAdapter();
+		}
+
+		@Override
+		public Adapter casePackageDiagram(PackageDiagram object) {
+			return createPackageDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseProfileDiagram(ProfileDiagram object) {
+			return createProfileDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseCompositeStructureDiagram(CompositeStructureDiagram object) {
+			return createCompositeStructureDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseDeploymentDiagram(DeploymentDiagram object) {
+			return createDeploymentDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseComponentDiagram(ComponentDiagram object) {
+			return createComponentDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseObjectDiagram(ObjectDiagram object) {
+			return createObjectDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseProfileShape(ProfileShape object) {
+			return createProfileShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseProfileApplicationEdge(ProfileApplicationEdge object) {
+			return createProfileApplicationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseExtensionEdge(ExtensionEdge object) {
+			return createExtensionEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseBehaviorDiagram(BehaviorDiagram object) {
+			return createBehaviorDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseUseCaseDiagram(UseCaseDiagram object) {
+			return createUseCaseDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseArtifactShape(ArtifactShape object) {
+			return createArtifactShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseNestedArtifactCompartment(NestedArtifactCompartment object) {
+			return createNestedArtifactCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseComponentRealizationEdge(ComponentRealizationEdge object) {
+			return createComponentRealizationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseManifestationEdge(ManifestationEdge object) {
+			return createManifestationEdgeAdapter();
+		}
+
+		@Override
+		public Adapter casePropertyShape(PropertyShape object) {
+			return createPropertyShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseCollaborationShape(CollaborationShape object) {
+			return createCollaborationShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseCollaborationUseShape(CollaborationUseShape object) {
+			return createCollaborationUseShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseTemplateBindingEdge(TemplateBindingEdge object) {
+			return createTemplateBindingEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseStereotypeShape(StereotypeShape object) {
+			return createStereotypeShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseNodeShape(NodeShape object) {
+			return createNodeShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseNestedNodeCompartment(NestedNodeCompartment object) {
+			return createNestedNodeCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseDeviceShape(DeviceShape object) {
+			return createDeviceShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseExecutionEnvironmentShape(ExecutionEnvironmentShape object) {
+			return createExecutionEnvironmentShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityShape(ActivityShape object) {
+			return createActivityShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseElementWithActivityNodesShape(ElementWithActivityNodesShape object) {
+			return createElementWithActivityNodesShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityNodeCompartment(ActivityNodeCompartment object) {
+			return createActivityNodeCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseParameterCompartment(ParameterCompartment object) {
+			return createParameterCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter casePostConditionCompartment(PostConditionCompartment object) {
+			return createPostConditionCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter casePreConditionCompartment(PreConditionCompartment object) {
+			return createPreConditionCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityParameterNodeShape(ActivityParameterNodeShape object) {
+			return createActivityParameterNodeShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseInteractionShape(InteractionShape object) {
+			return createInteractionShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseInteractionFragmentWithSubfragmentsShape(InteractionFragmentWithSubfragmentsShape object) {
+			return createInteractionFragmentWithSubfragmentsShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseSubfragmentCompartment(SubfragmentCompartment object) {
+			return createSubfragmentCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseInteractionFragmentWithGatesShape(InteractionFragmentWithGatesShape object) {
+			return createInteractionFragmentWithGatesShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseGateShape(GateShape object) {
+			return createGateShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseOpaqueBehaviorShape(OpaqueBehaviorShape object) {
+			return createOpaqueBehaviorShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseFunctionBehaviorShape(FunctionBehaviorShape object) {
+			return createFunctionBehaviorShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseStateMachineShape(StateMachineShape object) {
+			return createStateMachineShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseBaseStateShape(BaseStateShape object) {
+			return createBaseStateShapeAdapter();
+		}
+
+		@Override
+		public Adapter casePseudostateShape(PseudostateShape object) {
+			return createPseudostateShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseRegionCompartment(RegionCompartment object) {
+			return createRegionCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseProtocolStateMachineShape(ProtocolStateMachineShape object) {
+			return createProtocolStateMachineShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDeploymentSpecificationShape(DeploymentSpecificationShape object) {
+			return createDeploymentSpecificationShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseCommunicationPathEdge(CommunicationPathEdge object) {
+			return createCommunicationPathEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseDeploymentEdge(DeploymentEdge object) {
+			return createDeploymentEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseActorShape(ActorShape object) {
+			return createActorShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseExtensionPointCompartment(ExtensionPointCompartment object) {
+			return createExtensionPointCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseUseCaseShape(UseCaseShape object) {
+			return createUseCaseShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseIncludeEdge(IncludeEdge object) {
+			return createIncludeEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseExtendEdge(ExtendEdge object) {
+			return createExtendEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseStateMachineDiagram(StateMachineDiagram object) {
+			return createStateMachineDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityDiagram(ActivityDiagram object) {
+			return createActivityDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseSequenceDiagram(SequenceDiagram object) {
+			return createSequenceDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseInteractionDiagram(InteractionDiagram object) {
+			return createInteractionDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseCommunicationDiagram(CommunicationDiagram object) {
+			return createCommunicationDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseTimingDiagram(TimingDiagram object) {
+			return createTimingDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseInteractionOverviewDiagram(InteractionOverviewDiagram object) {
+			return createInteractionOverviewDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseInternalBehaviorCompartment(InternalBehaviorCompartment object) {
+			return createInternalBehaviorCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseStateShape(StateShape object) {
+			return createStateShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseConnectionPointReferenceShape(ConnectionPointReferenceShape object) {
+			return createConnectionPointReferenceShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseInternalTransitionCompartment(InternalTransitionCompartment object) {
+			return createInternalTransitionCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseDeferrableTriggerCompartment(DeferrableTriggerCompartment object) {
+			return createDeferrableTriggerCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseRegionShape(RegionShape object) {
+			return createRegionShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseSubvertexCompartment(SubvertexCompartment object) {
+			return createSubvertexCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseTransitionEdge(TransitionEdge object) {
+			return createTransitionEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseControlFlowEdge(ControlFlowEdge object) {
+			return createControlFlowEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityGroupShape(ActivityGroupShape object) {
+			return createActivityGroupShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseExceptionHandlerEdge(ExceptionHandlerEdge object) {
+			return createExceptionHandlerEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseTypeLabel(TypeLabel object) {
+			return createTypeLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseInteractionUseShape(InteractionUseShape object) {
+			return createInteractionUseShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseIconLabel(IconLabel object) {
+			return createIconLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseSubpartitionCompartment(SubpartitionCompartment object) {
+			return createSubpartitionCompartmentAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityPartitionShape(ActivityPartitionShape object) {
+			return createActivityPartitionShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseStructuredActivityNodeShape(StructuredActivityNodeShape object) {
+			return createStructuredActivityNodeShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseExpansionRegionShape(ExpansionRegionShape object) {
+			return createExpansionRegionShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseExpansionNodeShape(ExpansionNodeShape object) {
+			return createExpansionNodeShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseMessageEdge(MessageEdge object) {
+			return createMessageEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseGeneralOrderingEdge(GeneralOrderingEdge object) {
+			return createGeneralOrderingEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseCombinedFragmentShape(CombinedFragmentShape object) {
+			return createCombinedFragmentShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseInteractionOperandShape(InteractionOperandShape object) {
+			return createInteractionOperandShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseExecutionSpecificationShape(ExecutionSpecificationShape object) {
+			return createExecutionSpecificationShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDurationConstraintShape(DurationConstraintShape object) {
+			return createDurationConstraintShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseTimeConstraintShape(TimeConstraintShape object) {
+			return createTimeConstraintShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseTimeExpressionShape(TimeExpressionShape object) {
+			return createTimeExpressionShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDurationShape(DurationShape object) {
+			return createDurationShapeAdapter();
+		}
+
+		@Override
+		public Adapter casePathEdge(PathEdge object) {
+			return createPathEdgeAdapter();
+		}
+
+		@Override
+		public Adapter caseMessageLabel(MessageLabel object) {
+			return createMessageLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseStateInvariantShape(StateInvariantShape object) {
+			return createStateInvariantShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDiagramElement(DiagramElement object) {
+			return createDiagramElementAdapter();
+		}
+
+		@Override
+		public Adapter caseShape(Shape object) {
+			return createShapeAdapter();
+		}
+
+		@Override
+		public Adapter caseDiagram(Diagram object) {
+			return createDiagramAdapter();
+		}
+
+		@Override
+		public Adapter caseStyle(Style object) {
+			return createStyleAdapter();
+		}
+
+		@Override
+		public Adapter caseEdge(Edge object) {
+			return createEdgeAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param target the object to adapt.
+	 * 
+	 * @param target
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -803,6 +1090,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UmlDiagram
 	 * @generated
@@ -817,6 +1105,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UmlDiagramElement
 	 * @generated
@@ -831,6 +1120,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UmlStyle
 	 * @generated
@@ -845,6 +1135,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UmlEdge
 	 * @generated
@@ -859,6 +1150,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TopUmlDiagramElement
 	 * @generated
@@ -868,11 +1160,28 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.StereotypedDiagramElement <em>Stereotyped Diagram Element</em>}
+	 * '.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.StereotypedDiagramElement
+	 * @generated
+	 */
+	public Adapter createStereotypedDiagramElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DiagramCompartment <em>Diagram Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DiagramCompartment
 	 * @generated
@@ -887,6 +1196,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UmlCompartment
 	 * @generated
@@ -896,11 +1206,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ElementWithPackagedElementsShape <em>Element With Packaged Elements Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ElementWithPackagedElementsShape
+	 * <em>Element With Packaged Elements Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ElementWithPackagedElementsShape
 	 * @generated
@@ -915,6 +1227,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UmlLabel
 	 * @generated
@@ -929,6 +1242,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ElementEdge
 	 * @generated
@@ -938,39 +1252,12 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InternalStructureCompartment <em>Internal Structure Compartment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.umldi.InternalStructureCompartment
-	 * @generated
-	 */
-	public Adapter createInternalStructureCompartmentAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ElementWithInternalStructureShape <em>Element With Internal Structure Shape</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.umldi.ElementWithInternalStructureShape
-	 * @generated
-	 */
-	public Adapter createElementWithInternalStructureShapeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierCompartment <em>Classifier Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ClassifierCompartment
 	 * @generated
@@ -985,6 +1272,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ClassDiagram
 	 * @generated
@@ -999,6 +1287,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.StructureDiagram
 	 * @generated
@@ -1013,6 +1302,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ClassifierShape
 	 * @generated
@@ -1027,6 +1317,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PackageShape
 	 * @generated
@@ -1041,6 +1332,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TemplateableElementShape
 	 * @generated
@@ -1055,6 +1347,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ElementShape
 	 * @generated
@@ -1064,11 +1357,27 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.StereotypeCompartment <em>Stereotype Compartment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.StereotypeCompartment
+	 * @generated
+	 */
+	public Adapter createStereotypeCompartmentAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ConstraintShape <em>Constraint Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ConstraintShape
 	 * @generated
@@ -1078,25 +1387,12 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ElementWithBodyShape <em>Element With Body Shape</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.umldi.ElementWithBodyShape
-	 * @generated
-	 */
-	public Adapter createElementWithBodyShapeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.AttributeCompartment <em>Attribute Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.AttributeCompartment
 	 * @generated
@@ -1111,6 +1407,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.OperationCompartment
 	 * @generated
@@ -1125,6 +1422,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ReceptionCompartment
 	 * @generated
@@ -1139,6 +1437,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.LiteralCompartment
 	 * @generated
@@ -1148,11 +1447,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.PackagedElementCompartment <em>Packaged Element Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.PackagedElementCompartment
+	 * <em>Packaged Element Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PackagedElementCompartment
 	 * @generated
@@ -1167,6 +1468,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PropertyEdge
 	 * @generated
@@ -1181,6 +1483,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ConstraintLabel
 	 * @generated
@@ -1190,11 +1493,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InstanceSpecificationEdge <em>Instance Specification Edge</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InstanceSpecificationEdge <em>Instance Specification Edge</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InstanceSpecificationEdge
 	 * @generated
@@ -1204,25 +1509,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.BodyLabel <em>Body Label</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InstanceSpecificationShape
+	 * <em>Instance Specification Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.umldi.BodyLabel
-	 * @generated
-	 */
-	public Adapter createBodyLabelAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InstanceSpecificationShape <em>Instance Specification Shape</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InstanceSpecificationShape
 	 * @generated
@@ -1237,6 +1530,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DeploymentTargetShape
 	 * @generated
@@ -1246,11 +1540,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DeployedArtifactCompartment <em>Deployed Artifact Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DeployedArtifactCompartment
+	 * <em>Deployed Artifact Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DeployedArtifactCompartment
 	 * @generated
@@ -1265,6 +1561,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.SlotCompartment
 	 * @generated
@@ -1279,6 +1576,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ClassShape
 	 * @generated
@@ -1293,6 +1591,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ElementWithPortsShape
 	 * @generated
@@ -1302,11 +1601,43 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ElementWithStructureShape <em>Element With Structure Shape</em>}
+	 * '.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.ElementWithStructureShape
+	 * @generated
+	 */
+	public Adapter createElementWithStructureShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.StructureCompartment <em>Structure Compartment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.StructureCompartment
+	 * @generated
+	 */
+	public Adapter createStructureCompartmentAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.PortShape <em>Port Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PortShape
 	 * @generated
@@ -1316,11 +1647,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierWithNestedClassifiersShape <em>Classifier With Nested Classifiers Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierWithNestedClassifiersShape
+	 * <em>Classifier With Nested Classifiers Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ClassifierWithNestedClassifiersShape
 	 * @generated
@@ -1330,11 +1663,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.NestedClassifierCompartment <em>Nested Classifier Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.NestedClassifierCompartment
+	 * <em>Nested Classifier Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.NestedClassifierCompartment
 	 * @generated
@@ -1344,11 +1679,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.BehavioredClassifierShape <em>Behaviored Classifier Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.BehavioredClassifierShape <em>Behaviored Classifier Shape</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.BehavioredClassifierShape
 	 * @generated
@@ -1363,6 +1700,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.OwnedBehaviorCompartment
 	 * @generated
@@ -1372,11 +1710,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierWithReceptionsShape <em>Classifier With Receptions Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierWithReceptionsShape
+	 * <em>Classifier With Receptions Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ClassifierWithReceptionsShape
 	 * @generated
@@ -1386,11 +1726,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierWithAttributesShape <em>Classifier With Attributes Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierWithAttributesShape
+	 * <em>Classifier With Attributes Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ClassifierWithAttributesShape
 	 * @generated
@@ -1400,11 +1742,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierWithOperationsShape <em>Classifier With Operations Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ClassifierWithOperationsShape
+	 * <em>Classifier With Operations Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ClassifierWithOperationsShape
 	 * @generated
@@ -1419,6 +1763,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InterfaceShape
 	 * @generated
@@ -1433,6 +1778,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DataTypeShape
 	 * @generated
@@ -1447,6 +1793,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PrimitiveTypeShape
 	 * @generated
@@ -1461,6 +1808,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.EnumerationShape
 	 * @generated
@@ -1475,6 +1823,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.RoleLabel
 	 * @generated
@@ -1489,6 +1838,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.SignalShape
 	 * @generated
@@ -1503,6 +1853,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ModelShape
 	 * @generated
@@ -1517,6 +1868,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ContainmentEdge
 	 * @generated
@@ -1531,6 +1883,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.GeneralizationEdge
 	 * @generated
@@ -1545,6 +1898,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.AssociationEdge
 	 * @generated
@@ -1559,6 +1913,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.MultiplicityLabel
 	 * @generated
@@ -1573,6 +1928,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.RealizationEdge
 	 * @generated
@@ -1587,6 +1943,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.AbstractionEdge
 	 * @generated
@@ -1601,6 +1958,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DependencyEdge
 	 * @generated
@@ -1615,6 +1973,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InterfaceRealizationEdge
 	 * @generated
@@ -1629,6 +1988,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UsageEdge
 	 * @generated
@@ -1643,6 +2003,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ElementImportEdge
 	 * @generated
@@ -1657,6 +2018,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PackageImportEdge
 	 * @generated
@@ -1671,6 +2033,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PackageMergeEdge
 	 * @generated
@@ -1685,6 +2048,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.SubstitutionEdge
 	 * @generated
@@ -1699,6 +2063,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InformationFlowEdge
 	 * @generated
@@ -1713,6 +2078,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ConveyedLabel
 	 * @generated
@@ -1727,6 +2093,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.AssociationClassEdge
 	 * @generated
@@ -1741,6 +2108,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.GeneralizationSetEdge
 	 * @generated
@@ -1755,6 +2123,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PowerLabel
 	 * @generated
@@ -1769,6 +2138,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ConnectorEdge
 	 * @generated
@@ -1783,6 +2153,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.CommentShape
 	 * @generated
@@ -1797,6 +2168,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.AttachmentEdge
 	 * @generated
@@ -1811,6 +2183,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.AssociationClassShape
 	 * @generated
@@ -1825,6 +2198,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ComponentShape
 	 * @generated
@@ -1839,6 +2213,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InformationItemShape
 	 * @generated
@@ -1853,6 +2228,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.RepresentationEdge
 	 * @generated
@@ -1867,6 +2243,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.AssociationShape
 	 * @generated
@@ -1881,6 +2258,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DependencyShape
 	 * @generated
@@ -1895,6 +2273,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TimeObservationShape
 	 * @generated
@@ -1904,11 +2283,28 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.TimeObservationShape_TimeObservationShape
+	 * <em>Time Observation Shape Time Observation Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.TimeObservationShape_TimeObservationShape
+	 * @generated
+	 */
+	public Adapter createTimeObservationShape_TimeObservationShapeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DurationObservationShape <em>Duration Observation Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DurationObservationShape
 	 * @generated
@@ -1923,6 +2319,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PackageDiagram
 	 * @generated
@@ -1937,6 +2334,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ProfileDiagram
 	 * @generated
@@ -1946,11 +2344,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.CompositeStructureDiagram <em>Composite Structure Diagram</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.CompositeStructureDiagram <em>Composite Structure Diagram</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.CompositeStructureDiagram
 	 * @generated
@@ -1965,6 +2365,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DeploymentDiagram
 	 * @generated
@@ -1979,6 +2380,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ComponentDiagram
 	 * @generated
@@ -1993,6 +2395,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ObjectDiagram
 	 * @generated
@@ -2007,6 +2410,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ProfileShape
 	 * @generated
@@ -2021,6 +2425,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ProfileApplicationEdge
 	 * @generated
@@ -2035,6 +2440,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ExtensionEdge
 	 * @generated
@@ -2049,6 +2455,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.BehaviorDiagram
 	 * @generated
@@ -2063,6 +2470,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UseCaseDiagram
 	 * @generated
@@ -2077,6 +2485,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ArtifactShape
 	 * @generated
@@ -2086,11 +2495,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.NestedArtifactCompartment <em>Nested Artifact Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.NestedArtifactCompartment <em>Nested Artifact Compartment</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.NestedArtifactCompartment
 	 * @generated
@@ -2105,6 +2516,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ComponentRealizationEdge
 	 * @generated
@@ -2119,6 +2531,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ManifestationEdge
 	 * @generated
@@ -2133,6 +2546,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PropertyShape
 	 * @generated
@@ -2147,6 +2561,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.CollaborationShape
 	 * @generated
@@ -2161,6 +2576,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.CollaborationUseShape
 	 * @generated
@@ -2175,6 +2591,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TemplateBindingEdge
 	 * @generated
@@ -2189,6 +2606,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.StereotypeShape
 	 * @generated
@@ -2203,6 +2621,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.NodeShape
 	 * @generated
@@ -2217,6 +2636,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.NestedNodeCompartment
 	 * @generated
@@ -2231,6 +2651,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DeviceShape
 	 * @generated
@@ -2240,11 +2661,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ExecutionEnvironmentShape <em>Execution Environment Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ExecutionEnvironmentShape <em>Execution Environment Shape</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ExecutionEnvironmentShape
 	 * @generated
@@ -2259,6 +2682,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActivityShape
 	 * @generated
@@ -2268,11 +2692,43 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ElementWithActivityNodesShape
+	 * <em>Element With Activity Nodes Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.ElementWithActivityNodesShape
+	 * @generated
+	 */
+	public Adapter createElementWithActivityNodesShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ActivityNodeCompartment <em>Activity Node Compartment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.ActivityNodeCompartment
+	 * @generated
+	 */
+	public Adapter createActivityNodeCompartmentAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ParameterCompartment <em>Parameter Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ParameterCompartment
 	 * @generated
@@ -2287,6 +2743,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PostConditionCompartment
 	 * @generated
@@ -2301,6 +2758,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PreConditionCompartment
 	 * @generated
@@ -2310,25 +2768,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ContentCompartment <em>Content Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.StructuredActivityNodeShape
+	 * <em>Structured Activity Node Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.umldi.ContentCompartment
-	 * @generated
-	 */
-	public Adapter createContentCompartmentAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.StructuredActivityNodeShape <em>Structured Activity Node Shape</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.StructuredActivityNodeShape
 	 * @generated
@@ -2338,11 +2784,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ActivityParameterNodeShape <em>Activity Parameter Node Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ActivityParameterNodeShape
+	 * <em>Activity Parameter Node Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActivityParameterNodeShape
 	 * @generated
@@ -2357,6 +2805,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InteractionShape
 	 * @generated
@@ -2366,11 +2815,89 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InteractionFragmentWithSubfragmentsShape
+	 * <em>Interaction Fragment With Subfragments Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.InteractionFragmentWithSubfragmentsShape
+	 * @generated
+	 */
+	public Adapter createInteractionFragmentWithSubfragmentsShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InteractionFragmentShape <em>Interaction Fragment Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.InteractionFragmentShape
+	 * @generated
+	 */
+	public Adapter createInteractionFragmentShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.SubfragmentCompartment <em>Subfragment Compartment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.SubfragmentCompartment
+	 * @generated
+	 */
+	public Adapter createSubfragmentCompartmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InteractionFragmentWithGatesShape
+	 * <em>Interaction Fragment With Gates Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.InteractionFragmentWithGatesShape
+	 * @generated
+	 */
+	public Adapter createInteractionFragmentWithGatesShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.GateShape <em>Gate Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.GateShape
+	 * @generated
+	 */
+	public Adapter createGateShapeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.OpaqueBehaviorShape <em>Opaque Behavior Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.OpaqueBehaviorShape
 	 * @generated
@@ -2385,6 +2912,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.FunctionBehaviorShape
 	 * @generated
@@ -2399,6 +2927,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.StateMachineShape
 	 * @generated
@@ -2413,6 +2942,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.BaseStateShape
 	 * @generated
@@ -2427,6 +2957,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PseudostateShape
 	 * @generated
@@ -2441,6 +2972,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.RegionCompartment
 	 * @generated
@@ -2450,11 +2982,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ProtocolStateMachineShape <em>Protocol State Machine Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ProtocolStateMachineShape <em>Protocol State Machine Shape</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ProtocolStateMachineShape
 	 * @generated
@@ -2464,11 +2998,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DeploymentSpecificationShape <em>Deployment Specification Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DeploymentSpecificationShape
+	 * <em>Deployment Specification Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DeploymentSpecificationShape
 	 * @generated
@@ -2483,6 +3019,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.CommunicationPathEdge
 	 * @generated
@@ -2497,6 +3034,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DeploymentEdge
 	 * @generated
@@ -2511,6 +3049,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActorShape
 	 * @generated
@@ -2520,11 +3059,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ExtensionPointCompartment <em>Extension Point Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ExtensionPointCompartment <em>Extension Point Compartment</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ExtensionPointCompartment
 	 * @generated
@@ -2539,6 +3080,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UseCaseShape
 	 * @generated
@@ -2553,6 +3095,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.IncludeEdge
 	 * @generated
@@ -2567,6 +3110,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ExtendEdge
 	 * @generated
@@ -2581,6 +3125,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.StateMachineDiagram
 	 * @generated
@@ -2595,6 +3140,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActivityDiagram
 	 * @generated
@@ -2609,6 +3155,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.SequenceDiagram
 	 * @generated
@@ -2623,6 +3170,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InteractionDiagram
 	 * @generated
@@ -2637,6 +3185,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.CommunicationDiagram
 	 * @generated
@@ -2651,6 +3200,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TimingDiagram
 	 * @generated
@@ -2660,11 +3210,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InteractionOverviewDiagram <em>Interaction Overview Diagram</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InteractionOverviewDiagram
+	 * <em>Interaction Overview Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InteractionOverviewDiagram
 	 * @generated
@@ -2674,11 +3226,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InternalBehaviorCompartment <em>Internal Behavior Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InternalBehaviorCompartment
+	 * <em>Internal Behavior Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InternalBehaviorCompartment
 	 * @generated
@@ -2693,6 +3247,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.StateShape
 	 * @generated
@@ -2702,11 +3257,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ConnectionPointReferenceShape <em>Connection Point Reference Shape</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ConnectionPointReferenceShape
+	 * <em>Connection Point Reference Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ConnectionPointReferenceShape
 	 * @generated
@@ -2716,11 +3273,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InternalTransitionCompartment <em>Internal Transition Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InternalTransitionCompartment
+	 * <em>Internal Transition Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.InternalTransitionCompartment
 	 * @generated
@@ -2730,11 +3289,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DeferrableTriggerCompartment <em>Deferrable Trigger Compartment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DeferrableTriggerCompartment
+	 * <em>Deferrable Trigger Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.DeferrableTriggerCompartment
 	 * @generated
@@ -2749,6 +3310,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.RegionShape
 	 * @generated
@@ -2763,6 +3325,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TransitionEdge
 	 * @generated
@@ -2777,6 +3340,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActivityEdgeEdge
 	 * @generated
@@ -2791,6 +3355,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.WeightLabel
 	 * @generated
@@ -2805,6 +3370,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ControlFlowEdge
 	 * @generated
@@ -2819,6 +3385,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ObjectFlowEdge
 	 * @generated
@@ -2833,6 +3400,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActivityGroupShape
 	 * @generated
@@ -2847,6 +3415,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ExceptionHandlerEdge
 	 * @generated
@@ -2861,6 +3430,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TypeLabel
 	 * @generated
@@ -2875,6 +3445,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.IconLabel
 	 * @generated
@@ -2884,25 +3455,12 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.SubPartitionCompartment <em>Sub Partition Compartment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.umldi.SubPartitionCompartment
-	 * @generated
-	 */
-	public Adapter createSubPartitionCompartmentAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ActivityPartitionShape <em>Activity Partition Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActivityPartitionShape
 	 * @generated
@@ -2917,6 +3475,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ExpansionRegionShape
 	 * @generated
@@ -2931,6 +3490,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ExpansionNodeShape
 	 * @generated
@@ -2940,11 +3500,223 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.LifelineShape <em>Lifeline Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.LifelineShape
+	 * @generated
+	 */
+	public Adapter createLifelineShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ExecutionSpecificationShape
+	 * <em>Execution Specification Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.ExecutionSpecificationShape
+	 * @generated
+	 */
+	public Adapter createExecutionSpecificationShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DurationConstraintShape <em>Duration Constraint Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.DurationConstraintShape
+	 * @generated
+	 */
+	public Adapter createDurationConstraintShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.TimeConstraintShape <em>Time Constraint Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.TimeConstraintShape
+	 * @generated
+	 */
+	public Adapter createTimeConstraintShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.TimeExpressionShape <em>Time Expression Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.TimeExpressionShape
+	 * @generated
+	 */
+	public Adapter createTimeExpressionShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.DurationShape <em>Duration Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.DurationShape
+	 * @generated
+	 */
+	public Adapter createDurationShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.PathEdge <em>Path Edge</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.PathEdge
+	 * @generated
+	 */
+	public Adapter createPathEdgeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.MessageLabel <em>Message Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.MessageLabel
+	 * @generated
+	 */
+	public Adapter createMessageLabelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.StateInvariantShape <em>State Invariant Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.StateInvariantShape
+	 * @generated
+	 */
+	public Adapter createStateInvariantShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.MessageEdge <em>Message Edge</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.MessageEdge
+	 * @generated
+	 */
+	public Adapter createMessageEdgeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.GeneralOrderingEdge <em>General Ordering Edge</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.GeneralOrderingEdge
+	 * @generated
+	 */
+	public Adapter createGeneralOrderingEdgeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.CombinedFragmentShape <em>Combined Fragment Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.CombinedFragmentShape
+	 * @generated
+	 */
+	public Adapter createCombinedFragmentShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InteractionUseShape <em>Interaction Use Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.InteractionUseShape
+	 * @generated
+	 */
+	public Adapter createInteractionUseShapeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.InteractionOperandShape <em>Interaction Operand Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.InteractionOperandShape
+	 * @generated
+	 */
+	public Adapter createInteractionOperandShapeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ActionShape <em>Action Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActionShape
 	 * @generated
@@ -2959,6 +3731,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.PinShape
 	 * @generated
@@ -2968,11 +3741,27 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.SubpartitionCompartment <em>Subpartition Compartment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.SubpartitionCompartment
+	 * @generated
+	 */
+	public Adapter createSubpartitionCompartmentAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.ObjectNodeShape <em>Object Node Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ObjectNodeShape
 	 * @generated
@@ -2987,6 +3776,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.SelectionLabel
 	 * @generated
@@ -3001,6 +3791,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TransformationLabel
 	 * @generated
@@ -3015,6 +3806,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.GuardLabel
 	 * @generated
@@ -3029,6 +3821,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ActivityNodeShape
 	 * @generated
@@ -3043,6 +3836,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.SubvertexCompartment
 	 * @generated
@@ -3052,25 +3846,13 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.RelationshipWithGuardEdge <em>Relationship With Guard Edge</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.TemplateParameterCompartment
+	 * <em>Template Parameter Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.umldi.RelationshipWithGuardEdge
-	 * @generated
-	 */
-	public Adapter createRelationshipWithGuardEdgeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.TemplateParameterCompartment <em>Template Parameter Compartment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.TemplateParameterCompartment
 	 * @generated
@@ -3085,6 +3867,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ListCompartment
 	 * @generated
@@ -3099,6 +3882,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.ListItemLabel
 	 * @generated
@@ -3108,11 +3892,27 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.StereotypeLabel <em>Stereotype Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.umldi.StereotypeLabel
+	 * @generated
+	 */
+	public Adapter createStereotypeLabelAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.umldi.OwnedUseCaseCompartment <em>Owned Use Case Compartment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.OwnedUseCaseCompartment
 	 * @generated
@@ -3127,6 +3927,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UseCaseCompartment
 	 * @generated
@@ -3141,6 +3942,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.UmlShape
 	 * @generated
@@ -3155,6 +3957,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.umldi.MainLabel
 	 * @generated
@@ -3169,6 +3972,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.dd.di.DiagramElement
 	 * @generated
@@ -3183,6 +3987,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.dd.di.Shape
 	 * @generated
@@ -3197,6 +4002,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.dd.di.Diagram
 	 * @generated
@@ -3211,6 +4017,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.dd.di.Style
 	 * @generated
@@ -3225,6 +4032,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.dd.di.Edge
 	 * @generated
@@ -3238,6 +4046,7 @@ public class UMLDIAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.uml.export.feature" label="Papyrus Export Profiles Feature (Incubation)" provider-name="Eclipse Modeling Project" version="1.1.0.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.uml.export.feature" label="Papyrus Export Profiles Feature (Incubation)" provider-name="Eclipse Modeling Project" version="1.1.2.qualifier">
 
    <description url="http://www.example.com/description">
       This feature enables expoting and installing applied profiles from worksapce
@@ -18,7 +18,5 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.export" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.eclipse.project.editors" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

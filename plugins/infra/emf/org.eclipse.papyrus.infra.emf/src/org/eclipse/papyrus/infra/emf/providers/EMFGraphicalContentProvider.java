@@ -128,6 +128,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 		editor.addCommitListener(new ICommitListener() {
 
+			@Override
 			public void commit(AbstractEditor editor) {
 				String filterPattern = (String) ((StringEditor) editor).getValue();
 				((PatternViewerFilter) patternFilter).setPattern(filterPattern);
@@ -230,6 +231,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection selection = (IStructuredSelection) historyViewer.getSelection();
 				Object selectedObject = selection.getFirstElement();
@@ -429,6 +431,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		}
 	}
 
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		selectedObject = ((IStructuredSelection) event.getSelection()).getFirstElement();
 		updateDetailLabel();
@@ -477,6 +480,8 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	@Override
 	public void dispose() {
 		super.dispose();
-		viewer.removeSelectionChangedListener(this);
+		if (viewer != null) {
+			viewer.removeSelectionChangedListener(this);
+		}
 	}
 }

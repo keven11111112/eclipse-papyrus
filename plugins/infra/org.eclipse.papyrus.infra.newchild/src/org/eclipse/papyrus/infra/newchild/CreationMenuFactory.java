@@ -45,6 +45,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.filters.Filter;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreateRelationshipMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
@@ -93,7 +94,7 @@ public class CreationMenuFactory {
 	 * @return true if sub-menu has been added
 	 */
 	public boolean populateMenu(Menu menu, Folder folder, EObject selectedObject, int index, Map<?, ?> adviceCache) {
-		if (selectedObject != null && folder != null && folder.isVisible()) {
+		if (selectedObject != null && folder != null && folder.isVisible() && filterMatches(folder, selectedObject)) {
 			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu, SWT.CASCADE, index);
 			topMenuItem.setText(folder.getLabel());
 			if (folder.getIcon() != null && folder.getIcon().length() > 0) {
@@ -115,7 +116,7 @@ public class CreationMenuFactory {
 				boolean result = false;
 				if (currentMenu instanceof Folder) {
 					result = populateMenu(topMenu, (Folder) currentMenu, selectedObject, topMenu.getItemCount(), adviceCache);
-				} else if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible()) {
+				} else if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible() && filterMatches((CreationMenu) currentMenu, selectedObject)) {
 					CreationMenu currentCreationMenu = (CreationMenu) currentMenu;
 					EReference reference = null;
 					String role = currentCreationMenu.getRole();
@@ -147,6 +148,23 @@ public class CreationMenuFactory {
 		}
 		return false;
 
+	}
+
+	/**
+	 * Checks if the optional filter of the menu is matching or not the selected EObject
+	 * 
+	 * @param menu
+	 *            the menu to filter
+	 * @param selectedObject
+	 *            the object on which the menu is opened
+	 * @return <code>true</code> if there is no filter or if the filter is matching the EObject
+	 */
+	protected boolean filterMatches(org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu menu, EObject selectedObject) {
+		Filter filter = menu.getFilter();
+		if (filter == null) {
+			return true;
+		}
+		return filter.matches(selectedObject);
 	}
 
 	/**

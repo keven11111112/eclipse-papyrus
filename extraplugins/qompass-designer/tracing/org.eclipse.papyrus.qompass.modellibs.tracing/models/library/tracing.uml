@@ -570,16 +570,15 @@ return processID;</body>
         <packagedElement xmi:type="uml:Class" xmi:id="_P2j04CmiEeKp-eCvZDLsaw" name="LTTngCreateDestroy">
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__CHDcCmlEeKp-eCvZDLsaw" name="LTTngCreateDestroy" specification="_UvQpMCmiEeKp-eCvZDLsaw">
             <language>C/C++</language>
-            <body>TRACEPOINT_EVENT([tpName/], createClass, [clazz.qualifiedName /])</body>
+            <body>!xtend TraceLTTng.declareTracepointEventCreateClass</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_B-fVACmmEeKp-eCvZDLsaw" name="LTTngCreateDestroy" specification="_VUW6UCmiEeKp-eCvZDLsaw">
             <language>C/C++</language>
-            <body>TRACEPOINT_EVENT([tpName/], destroyClass, [clazz.qualifiedName /])</body>
+            <body>!xtend TraceLTTng.declareTracepointEventDestroyClass</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_UvQpMCmiEeKp-eCvZDLsaw" name="LTTngCreateDestroy" method="__CHDcCmlEeKp-eCvZDLsaw"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_VUW6UCmiEeKp-eCvZDLsaw" name="LTTngCreateDestroy" method="_B-fVACmmEeKp-eCvZDLsaw"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_C4FREDV7EeKGAYOVxzQeAg" name="InitLttng"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_HkxCkDY_EeKxVvAop17bHw" name="traceInterceptorPort">
@@ -588,33 +587,23 @@ return processID;</body>
       </packageMerge>
       <packagedElement xmi:type="uml:Package" xmi:id="_5gDNYPwkEeGWn-a9PUOYcA" name="lttng">
         <ownedComment xmi:type="uml:Comment" xmi:id="_r8PXYPxWEeGOK9t90vpALA" annotatedElement="_pwl_MPxWEeGOK9t90vpALA">
-          <body>Interceptor</body>
+          <body>Interceptor for LTTng calls</body>
         </ownedComment>
         <ownedComment xmi:type="uml:Comment" xmi:id="_ttvxQPxWEeGOK9t90vpALA" annotatedElement="_rGPjgPxWEeGOK9t90vpALA">
-          <body>Trace Provider
+          <body>Trace Provider class. Delegates to LTTng xtend file for code generation
 </body>
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_pwl_MPxWEeGOK9t90vpALA" name="LTTngInterceptor">
           <generalization xmi:type="uml:Generalization" xmi:id="_1963sPxWEeGOK9t90vpALA" general="_dcP9gDaSEeKxVvAop17bHw"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qLhLMPxXEeGOK9t90vpALA" name="[name/]" specification="_YU5H4PxXEeGOK9t90vpALA">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
-[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
-[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]
-
-[template public anOperation(operation : Operation)]
-
-// create event with operationID/portID and pass call
-[operation.invokeTP()/]
-[if not (type = null)]return [/if]rconn->[operation.cppCall()/];
-[/template]</body>
+            <body>!xtend TraceLTTng.invokeTP</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_YU5H4PxXEeGOK9t90vpALA" name="[name/]" method="_qLhLMPxXEeGOK9t90vpALA"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Usage" xmi:id="_BV2G4PzTEeGKDvxFM1SZ_g" name="Usage1" client="_pwl_MPxWEeGOK9t90vpALA" supplier="_v-VBcPzSEeGKDvxFM1SZ_g"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_gveqADHKEeKt1a2SZnJmwg" name="LTTngIntfTP"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_9ygUUDHKEeKt1a2SZnJmwg" name="Dependency1" client="_pwl_MPxWEeGOK9t90vpALA" supplier="_gveqADHKEeKt1a2SZnJmwg"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_c0nqkDWGEeKGAYOVxzQeAg" name="Dependency2" client="_pwl_MPxWEeGOK9t90vpALA" supplier="_C4FREDV7EeKGAYOVxzQeAg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_dcP9gDaSEeKxVvAop17bHw" name="TracePort" isAbstract="true">
         <generalization xmi:type="uml:Generalization" xmi:id="_dcP9gTaSEeKxVvAop17bHw">
@@ -657,12 +646,8 @@ return processID;</body>
     <formalParam xmi:type="uml:Interface" href="pathmap://QML_CORE/core.uml#_ZzlzMPfBEd2TbIfwytOyPA"/>
     <templateParam xmi:type="uml:Interface" href="pathmap://QML_CORE/core.uml#_ZzlzMPfBEd2TbIfwytOyPA"/>
   </FCM:Template>
-  <FCM:DerivedElement xmi:id="_Adb_0DgvEd-9wq2wHPy3lw">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
-  </FCM:DerivedElement>
   <FCM:Singleton xmi:id="_AdBwIDgvEd-9wq2wHPy3lw" base_Class="_apuYoDNwEd-1k-POY2IaLg"/>
   <C_Cpp:Include xmi:id="_ZWEQwDj0Ed-nsvkE2JvSTg" body="#include &lt;otflib/otf.h>" base_class="_aF1w4DKeEd-WprEKTCaiMA"/>
-  <C_Cpp:External xmi:id="_ZVArYDj1Ed-nsvkE2JvSTg" name="otflib/OTF_Writer.h" base_class="_W0t44Dj1Ed-nsvkE2JvSTg"/>
   <C_Cpp:Ptr xmi:id="_9n7OYDj2Ed-nsvkE2JvSTg" base_parameter="_v6J20Dj2Ed-nsvkE2JvSTg"/>
   <FCM:DerivedElement xmi:id="_UdG9MD1nEd-Bk-AHd6yyoA" base_Element="_Ucl_0D1nEd-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_WHyq4Dz6Ed-v9PxuTj6Elw"/>
@@ -714,16 +699,9 @@ return processID;</body>
   <FCM:DerivedElement xmi:id="_JK-qwF2qEd-12d_h0i1xhQ" base_Element="_UdpIsD1nEd-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
-  <C_Cpp:ExternLibrary xmi:id="_Sv6AMIKiEd-XA4A2KZ9L7Q" base_Package="_IewAUDguEd-9wq2wHPy3lw">
-    <libPaths>/OTF-1.5/otflib/.libs</libPaths>
-    <libs>otf</libs>
-    <includes>/OTF-1.5</includes>
-    <includes>otflib/includes.h</includes>
-  </C_Cpp:ExternLibrary>
   <FCM:ContainerRule xmi:id="_ISo6gLdwEd-CtfrGQre34Q" base_Class="_GVZxwLdwEd-CtfrGQre34Q" extensionKind="InterceptAllPorts" interceptor="_35od4DKrEd-z5o2wSoJ16A">
     <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
-  <C_Cpp:External xmi:id="_AGg3EPT8Ed-jjdbo8hMhwA" name="otflib/OTF_FileManager.h" base_class="_LjsBkDwLEd-CbfVdCYNz6Q"/>
   <C_Cpp:Include xmi:id="_mk_ccD5sEeC-VMxjm_qUAg" body="#include &lt;OS_AL/Sets/SetOf.h>&#xA;OS_AL::Sets::SetOf &lt;int> processSet;" base_class="_apuYoDNwEd-1k-POY2IaLg"/>
   <FCM:ContainerRule xmi:id="_6FqQoKAdEeCF0uoVQbVQRg" base_Class="_wHuA0KAdEeCF0uoVQbVQRg" extensionKind="InterceptAllPorts" interceptor="_JvP0oKAeEeCF0uoVQbVQRg" propagate="true">
     <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
@@ -743,16 +721,13 @@ return processID;</body>
     <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
   <FCM:InterceptionRule xmi:id="_m-L0sPwkEeGWn-a9PUOYcA" interceptionKind="InterceptAll" base_Property="_d7If0PwkEeGWn-a9PUOYcA"/>
-  <C_Cpp:Include xmi:id="__rP4oPxWEeGOK9t90vpALA" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(clazz : Class)]&#xA;[clazz.declareTP()/]&#xA;[/template]" base_class="_rGPjgPxWEeGOK9t90vpALA"/>
+  <C_Cpp:Include xmi:id="__rP4oPxWEeGOK9t90vpALA" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE" header="!xtend TraceLTTng.declareTP" base_class="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:Template xmi:id="_bKW5IPxXEeGOK9t90vpALA" base_Element="_YU5H4PxXEeGOK9t90vpALA" kind="LoopOperations">
     <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_nLe_sHJDEeOMF7YEvnQt5g"/>
   </FCM:Template>
-  <C_Cpp:ExternLibrary xmi:id="_t_sHUPzOEeGKDvxFM1SZ_g" base_Package="_nAkZEPzOEeGKDvxFM1SZ_g">
-    <libs>lttng-ust</libs>
-    <libs>dl</libs>
-  </C_Cpp:ExternLibrary>
-  <C_Cpp:External xmi:id="_1PAQ4PzSEeGKDvxFM1SZ_g" name="lttng/tracepoint.h" base_class="_v-VBcPzSEeGKDvxFM1SZ_g"/>
-  <FCM:Template xmi:id="_flfM8PzhEeGe5LUTfvP5hQ" base_Element="_rGPjgPxWEeGOK9t90vpALA"/>
+  <FCM:Template xmi:id="_flfM8PzhEeGe5LUTfvP5hQ" base_Element="_rGPjgPxWEeGOK9t90vpALA">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_mFUQALsMEeO0n5elMxN1LQ"/>
+  </FCM:Template>
   <FCM:InteractionComponent xmi:id="__yL98PzhEeGe5LUTfvP5hQ" base_Class="_pwl_MPxWEeGOK9t90vpALA"/>
   <C_Cpp:ManualGeneration xmi:id="_KSTlgCdaEeKGdt7FoegMYA" extensionBody="c" base_Class="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:InterceptionRule xmi:id="_vt_HYSdbEeKGdt7FoegMYA" interceptionKind="InterceptAllIn" base_Property="_vt7dASdbEeKGdt7FoegMYA"/>
@@ -767,12 +742,9 @@ return processID;</body>
   <FCM:UseInstanceConfigurator xmi:id="_5FYwcC8CEeKwPrQVP28AQw" base_Class="_I2OioPwkEeGWn-a9PUOYcA" configurator="_nTMOYKbnEeC0_qP7CUZIiQ"/>
   <FCM:UseInstanceConfigurator xmi:id="_gH1RQC8DEeKwPrQVP28AQw" base_Class="_If04ACqLEeKGrchWittz_g" configurator="_nTMOYKbnEeC0_qP7CUZIiQ"/>
   <FCM:InstanceConfigurator xmi:id="_nUB1YC8HEeKwPrQVP28AQw" base_Class="_nUAnQC8HEeKwPrQVP28AQw"/>
-  <C_Cpp:Include xmi:id="_gvf4IDHKEeKt1a2SZnJmwg" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(intf : Interface)]&#xA;[intf.declareTP()/]&#xA;[/template]" base_class="_gveqADHKEeKt1a2SZnJmwg"/>
+  <C_Cpp:Include xmi:id="_gvf4IDHKEeKt1a2SZnJmwg" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE" header="!xtend TraceLTTng.declareTP" base_class="_gveqADHKEeKt1a2SZnJmwg"/>
   <FCM:Template xmi:id="_gvnM4DHKEeKt1a2SZnJmwg" base_Element="_gveqADHKEeKt1a2SZnJmwg">
     <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_mFUQALsMEeO0n5elMxN1LQ"/>
   </FCM:Template>
   <C_Cpp:ManualGeneration xmi:id="_gvnz8DHKEeKt1a2SZnJmwg" extensionBody="c" base_Class="_gveqADHKEeKt1a2SZnJmwg"/>
-  <C_Cpp:ManualGeneration xmi:id="_WUbVADV7EeKGAYOVxzQeAg" extensionBody="c" base_Class="_C4FREDV7EeKGAYOVxzQeAg"/>
-  <C_Cpp:Include xmi:id="_ZdHkQDV7EeKGAYOVxzQeAg" header="[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]&#xA;[import org::eclipse::papyrus::qompass::designer::core::acceleo::TransformationContext/]&#xA;&#xA;[template public LTTngTP(cl : Classifier)]&#xA;#include &lt;lttng/tracepoint.h>&#xA;&#xA;TRACEPOINT_MODEL_EMF_URI(UMLmodel, starting, &quot;[getSourceRoot().getURI()/]&quot;)&#xA;[/template]&#xA;" base_class="_C4FREDV7EeKGAYOVxzQeAg"/>
-  <FCM:Template xmi:id="_HOvQ0DWSEeKGAYOVxzQeAg" base_Element="_C4FREDV7EeKGAYOVxzQeAg" kind="PassClassifier"/>
 </xmi:XMI>

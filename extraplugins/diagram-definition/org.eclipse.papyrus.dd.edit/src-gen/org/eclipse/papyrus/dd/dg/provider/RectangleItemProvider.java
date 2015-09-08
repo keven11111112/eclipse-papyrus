@@ -28,6 +28,7 @@ import org.eclipse.papyrus.dd.dg.Rectangle;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Rectangle} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class RectangleItemProvider extends GraphicalElementItemProvider {
@@ -50,9 +51,8 @@ public class RectangleItemProvider extends GraphicalElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 			addCornerRadiusPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -65,19 +65,7 @@ public class RectangleItemProvider extends GraphicalElementItemProvider {
 	 * @generated
 	 */
 	protected void addCornerRadiusPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Rectangle_cornerRadius_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Rectangle_cornerRadius_feature", "_UI_Rectangle_type"),
-				 DGPackage.Literals.RECTANGLE__CORNER_RADIUS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rectangle_cornerRadius_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rectangle_cornerRadius_feature", "_UI_Rectangle_type"), DGPackage.Literals.RECTANGLE__CORNER_RADIUS, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -85,11 +73,12 @@ public class RectangleItemProvider extends GraphicalElementItemProvider {
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DGPackage.Literals.RECTANGLE__BOUNDS);
 		}
@@ -98,19 +87,20 @@ public class RectangleItemProvider extends GraphicalElementItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
 	/**
 	 * This returns Rectangle.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,14 +112,13 @@ public class RectangleItemProvider extends GraphicalElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Rectangle)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Rectangle_type") :
-			getString("_UI_Rectangle_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Rectangle_type") : getString("_UI_Rectangle_type") + " " + label;
 	}
 
 	/**
@@ -137,19 +126,19 @@ public class RectangleItemProvider extends GraphicalElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Rectangle.class)) {
-			case DGPackage.RECTANGLE__CORNER_RADIUS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case DGPackage.RECTANGLE__BOUNDS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(Rectangle.class)) {
+		case DGPackage.RECTANGLE__CORNER_RADIUS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case DGPackage.RECTANGLE__BOUNDS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -164,10 +153,6 @@ public class RectangleItemProvider extends GraphicalElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DGPackage.Literals.RECTANGLE__BOUNDS,
-				 DCFactory.eINSTANCE.createBounds()));
+		newChildDescriptors.add(createChildParameter(DGPackage.Literals.RECTANGLE__BOUNDS, DCFactory.eINSTANCE.createBounds()));
 	}
 }

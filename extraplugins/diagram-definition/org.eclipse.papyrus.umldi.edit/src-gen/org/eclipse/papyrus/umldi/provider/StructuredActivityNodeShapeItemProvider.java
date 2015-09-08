@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -31,13 +30,16 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.StructuredActivityNodeShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class StructuredActivityNodeShapeItemProvider extends ActionShapeItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StructuredActivityNodeShapeItemProvider(AdapterFactory adapterFactory) {
@@ -48,13 +50,13 @@ public class StructuredActivityNodeShapeItemProvider extends ActionShapeItemProv
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -65,13 +67,14 @@ public class StructuredActivityNodeShapeItemProvider extends ActionShapeItemProv
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(UMLDIPackage.Literals.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT);
+			childrenFeatures.add(UMLDIPackage.Literals.ELEMENT_WITH_ACTIVITY_NODES_SHAPE__ACTIVITY_NODE_COMPARTMENT);
 		}
 		return childrenFeatures;
 	}
@@ -79,13 +82,13 @@ public class StructuredActivityNodeShapeItemProvider extends ActionShapeItemProv
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
-
 		return super.getChildFeature(object, child);
 	}
 
@@ -93,6 +96,7 @@ public class StructuredActivityNodeShapeItemProvider extends ActionShapeItemProv
 	 * This returns StructuredActivityNodeShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,29 +108,30 @@ public class StructuredActivityNodeShapeItemProvider extends ActionShapeItemProv
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_StructuredActivityNodeShape_type");
+		StructuredActivityNodeShape structuredActivityNodeShape = (StructuredActivityNodeShape)object;
+		return getString("_UI_StructuredActivityNodeShape_type") + " " + structuredActivityNodeShape.isShowStereotypeAttributes();
 	}
-	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(StructuredActivityNodeShape.class)) {
-			case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(StructuredActivityNodeShape.class)) {
+		case UMLDIPackage.STRUCTURED_ACTIVITY_NODE_SHAPE__ACTIVITY_NODE_COMPARTMENT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -136,16 +141,12 @@ public class StructuredActivityNodeShapeItemProvider extends ActionShapeItemProv
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLDIPackage.Literals.STRUCTURED_ACTIVITY_NODE_SHAPE__CONTENT_COMPARTMENT,
-				 UMLDIFactory.eINSTANCE.createContentCompartment()));
+		newChildDescriptors.add(createChildParameter(UMLDIPackage.Literals.ELEMENT_WITH_ACTIVITY_NODES_SHAPE__ACTIVITY_NODE_COMPARTMENT, UMLDIFactory.eINSTANCE.createActivityNodeCompartment()));
 	}
-
 }

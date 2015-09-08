@@ -25,8 +25,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Abstract Axis Provider</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -35,7 +33,6 @@ public abstract class AbstractAxisProviderImpl extends TableNamedElementImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected AbstractAxisProviderImpl() {
@@ -45,7 +42,6 @@ public abstract class AbstractAxisProviderImpl extends TableNamedElementImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -56,7 +52,6 @@ public abstract class AbstractAxisProviderImpl extends TableNamedElementImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -69,14 +64,13 @@ public abstract class AbstractAxisProviderImpl extends TableNamedElementImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch(operationID) {
-		case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER___GET_AXIS:
-			return getAxis();
+		switch (operationID) {
+			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER___GET_AXIS:
+				return getAxis();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

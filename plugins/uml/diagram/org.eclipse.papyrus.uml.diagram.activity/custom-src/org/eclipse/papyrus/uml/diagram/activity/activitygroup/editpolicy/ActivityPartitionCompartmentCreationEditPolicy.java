@@ -1,12 +1,12 @@
 package org.eclipse.papyrus.uml.diagram.activity.activitygroup.editpolicy;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCompartmentCreationEditPolicy;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityPartition;
 
 
-public class ActivityPartitionCompartmentCreationEditPolicy extends PapyrusCreationEditPolicy {
+public class ActivityPartitionCompartmentCreationEditPolicy extends ActivityCompartmentCreationEditPolicy {
 
 	/**
 	 * Elements graphically shown inside partitions are semantically owned by the activity.

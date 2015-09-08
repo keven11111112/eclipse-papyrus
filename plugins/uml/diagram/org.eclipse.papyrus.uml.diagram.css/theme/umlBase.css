@@ -57,30 +57,45 @@ StateMachineDiagram Pseudostate[kind="junction"],
 ActivityDiagram InitialNode,
 InteractionOverviewDiagram InitialNode
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_full.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_full.svg";
 }
 
 ActivityDiagram ActivityFinalNode, 
 InteractionOverviewDiagram ActivityFinalNode,
 StateMachineDiagram FinalState
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_with_dot.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_with_dot.svg";
 }
 
 ActivityDiagram FlowFinalNode,
 InteractionOverviewDiagram FlowFinalNode
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_with_cross.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_with_cross.svg";
 }
 
 ActivityDiagram SendSignalAction
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/arrow.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/arrow.svg";
 }
+
+ActivityDiagram AcceptEventAction[isTimeEventAction=true]
+{
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/hourglass.svg";
+	maintainSymbolRatio:true;
+	displayName:true;
+}
+
+ActivityDiagram AcceptEventAction[isTimeEventAction=false]
+{
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/flag.svg";
+	maintainSymbolRatio:false;
+	displayName:true;
+}
+
 
 StateMachineDiagram Pseudostate[kind="terminate"]
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/cross.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/cross.svg";
 }
 
 ActivityDiagram MergeNode,
@@ -90,32 +105,32 @@ InteractionOverviewDiagram DecisionNode,
 StateMachineDiagram Pseudostate[kind="choice"],
 ClassDiagram Association
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/diamond.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/diamond.svg";
 }
 
 Actor
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/stickman.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/stickman.svg";
 }
 
 DurationObservation 
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/durationObservation.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/durationObservation.svg";
 }
 
 TimeObservation 
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/timeObservation.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/timeObservation.svg";
 }
 
 StateMachineDiagram Pseudostate[kind="shallowHistory"]
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/shallowHistory.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/shallowHistory.svg";
 }
 
 StateMachineDiagram Pseudostate[kind="deepHistory"]
 {
-svgFile:"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/deepHistory.svg";
+	svgFile:"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/deepHistory.svg";
 }
 
 /*---------- Activity Diagram ----------*/
@@ -175,11 +190,14 @@ ActivityDiagram JoinNode > Label
 	 visible:true;
 }
 
-ActivityDiagram SendSignalAction, 
-ActivityDiagram AcceptEventAction
+ActivityDiagram SendSignalAction
 {
 	maintainSymbolRatio:false;
 	displayName:true;
+}
+
+ActivityDiagram AcceptEventAction[isTimeEventAction=true]{
+	displayName: false;
 }
 
 ActivityDiagram Activity

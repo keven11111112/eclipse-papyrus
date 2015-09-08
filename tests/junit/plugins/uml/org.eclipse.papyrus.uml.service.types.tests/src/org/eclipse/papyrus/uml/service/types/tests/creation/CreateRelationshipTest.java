@@ -34,7 +34,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
@@ -44,7 +43,6 @@ import org.eclipse.papyrus.infra.newchild.SetTargetAndRelationshipCommand;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.ITreeSelectorDialog;
-import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
@@ -76,12 +74,7 @@ import org.junit.Test;
 /**
  * Test creation of UML elements (Creation / Undo / redo)
  */
-public class CreateRelationshipTest extends AbstractPapyrusTest {
-	private static final boolean RESULT_EXPECTED = true;
-	private static final boolean RESULT_NOT_EXPECTED = false;
-	private static final boolean CAN_CREATE = true;
-	private static final boolean CAN_NOT_CREATE = false;
-
+public class CreateRelationshipTest extends AbstractCreateRelationshipTest {
 
 	@ClassRule
 	public static final HouseKeeper.Static houseKeeper = new HouseKeeper.Static();
@@ -90,15 +83,11 @@ public class CreateRelationshipTest extends AbstractPapyrusTest {
 
 	private static IFile copyPapyrusModel;
 
-	private static IMultiDiagramEditor openPapyrusEditor;
-
 	private static ModelSet modelset;
 
 	private static UmlModel umlIModel;
 
 	private static Model rootModel;
-
-	private static TransactionalEditingDomain transactionalEditingDomain;
 
 	private static Class testClass1;
 
@@ -534,13 +523,17 @@ public class CreateRelationshipTest extends AbstractPapyrusTest {
 	/* EXTENSION test cases */
 	@Test
 	public void testCreateExtensionBetweenClassAndNullInNull() throws Exception {
-		runCreationRelationshipTest(null, testClass1, null , UMLElementTypes.EXTENSION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
+		// not possible to create an extension from a class. Only starting from a stereotype
+		runCreationRelationshipTest(null, testClass1, null, UMLElementTypes.EXTENSION, CAN_NOT_CREATE, RESULT_NOT_EXPECTED, null);
 	}
 
 	@Test
 	public void testCreateExtensionBetweenClassAndNullInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, null , UMLElementTypes.EXTENSION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
+		// not possible to create an extension from a class. Only starting from a stereotype
+		runCreationRelationshipTest(testClass1, testClass1, null, UMLElementTypes.EXTENSION, CAN_NOT_CREATE, RESULT_NOT_EXPECTED, null);
 	}
+
+
 
 	/* TRANSITION test cases */
 	@Test @Ignore //TODO - enable when the issue is fixed
@@ -576,6 +569,26 @@ public class CreateRelationshipTest extends AbstractPapyrusTest {
 	// TBD
 
 
+	/**
+	 * Runs the test on pure semantic creation of the relationship
+	 * 
+	 * @param container
+	 *            the container of the link. It can be <code>null</code>
+	 * @param source
+	 *            the source of the link. It should not be <code>null</code>
+	 * @param target
+	 *            the target of the link. It can be <code>null</code>
+	 * @param hintedType
+	 *            the type of the link to create
+	 * @param canCreate
+	 *            indicates if the link can be created or not.
+	 * @param resultExpected
+	 *            indicates if there should be a command result of the request of creation or not.
+	 * @param aux
+	 *            auxiliary tests on the created element
+	 * @throws Exception
+	 *             exception thrown if anything goes wrong
+	 */
 	protected void runCreationRelationshipTest(EObject container, EObject source, EObject target, IHintedType hintedType, boolean canCreate, boolean resultExpected,IAuxTest aux) throws Exception {
 		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
 		Command command = getCreateRelationshipCommand(container, source, target, hintedType, canCreate);

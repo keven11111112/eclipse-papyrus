@@ -18,6 +18,7 @@ import java.util.Locale;
 
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.views.properties.Activator;
+import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
 import org.eclipse.papyrus.views.properties.runtime.preferences.Preferences;
 
@@ -87,6 +88,20 @@ class PreferencesMigrator {
 				// deletion unapplied the context
 				if (!next.isApplied() && manager.getContext(next.getName()) == null) {
 					next.setDeleted(true);
+				}
+			}
+		}
+	}
+
+	void migrateFrom2To3(Preferences preferences) {
+		// new version3 introduce appliedByDefault, by default only context defined by plugin are applied
+		for (ContextDescriptor next : new java.util.ArrayList<ContextDescriptor>(preferences.getContexts())) {
+			Context context = manager.getContext(next.getName());
+			if (context != null) {
+				if (ConfigurationManager.getInstance().isPlugin(context)) {
+					next.setAppliedByDefault(true);
+				} else {
+					next.setAppliedByDefault(false);
 				}
 			}
 		}

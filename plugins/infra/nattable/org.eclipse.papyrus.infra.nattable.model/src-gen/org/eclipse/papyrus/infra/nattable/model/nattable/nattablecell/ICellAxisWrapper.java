@@ -36,7 +36,6 @@ public interface ICellAxisWrapper extends EModelElement {
 	 * <!-- begin-model-doc -->
 	 * Return the wrapped object
 	 * <!-- end-model-doc -->
-	 *
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */

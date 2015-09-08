@@ -60,6 +60,7 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		setWindowTitle(Messages.NewPapyrusProjectWizard_new_papyrus_project);
 		setMyProjectPage(new PapyrusProjectCreationPage(Messages.NewPapyrusProjectWizard_0));
 		getMyProjectPage().setDescription(Messages.NewPapyrusProjectWizard_1);
+		setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/papyrus/PapyrusProjectWizban_75x66.gif")); //$NON-NLS-1$
 	}
 
 

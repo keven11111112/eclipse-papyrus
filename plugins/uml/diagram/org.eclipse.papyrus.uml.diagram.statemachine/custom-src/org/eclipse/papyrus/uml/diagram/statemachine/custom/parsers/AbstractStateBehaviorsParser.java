@@ -32,8 +32,10 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.OpaqueBehavior;
 
 /**
  * Abstract Parser for States behavior (Entry , Do , Exit)
@@ -132,7 +134,13 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		Object obj = element.getAdapter(Behavior.class);
+		Object obj = element.getAdapter(EObject.class);
+		View view = null;
+		if (obj instanceof View) {
+			// retrieve view from passed adaptable
+			view = (View) obj;
+			obj = view.getElement();
+		}
 		if (obj instanceof Behavior) {
 			final Behavior behavior = ((Behavior) obj);
 			StringBuilder result = new StringBuilder();
@@ -140,12 +148,25 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 			String keyWord = getParserType().getKeyWord();
 			result.append(keyWord);
 			addExtraSpace(result, keyWord);
-			// Append kind
-			String kind = behavior.eClass().getName();
-			result.append(kind);
-			addExtraSpace(result, kind);
-			// Append behavior name
-			result.append(behavior.getName());
+			String body = null;
+			if (behavior instanceof OpaqueBehavior) {
+				OpaqueBehavior ob = (OpaqueBehavior) obj;
+				if (ob.getBodies().size() > 0) {
+					// return body of behavior (only handle case of a single body)
+					body = OpaqueBehaviorViewUtil.retrieveBody(view, ob);
+				}
+			}
+			if (body != null && !body.equals(OpaqueBehaviorViewUtil.DOTS)) {
+				result.append(body);
+			}
+			else {
+				// Append kind
+				String kind = behavior.eClass().getName();
+				result.append(kind);
+				addExtraSpace(result, kind);
+				// Append behavior name
+				result.append(behavior.getName());
+			}
 			return result.toString();
 		}
 		return EMPTY_STRING;

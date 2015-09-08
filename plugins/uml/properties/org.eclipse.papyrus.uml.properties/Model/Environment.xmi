@@ -94,6 +94,12 @@
       widgetClass="MultiplicityDialog"
       namespace="//@namespaces.0"
       type="Reference"/>
+  <propertyEditorTypes
+      label="Multi Reference Table"
+      widgetClass="NattablePropertyEditor"
+      namespace="//@namespaces.0"
+      type="Reference"
+      multiplicity="-1"/>
   <namespaces
       name="uml"
       value="org.eclipse.papyrus.uml.properties.widgets"/>

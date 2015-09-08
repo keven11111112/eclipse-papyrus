@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 
 /**
@@ -38,8 +39,9 @@ public class RowDestroyAxisHandler extends AbstractTableHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final IAxisManager axisManager = getRowAxisManager();
-		if (axisManager != null) {
-			axisManager.destroyAxis(getFullSelectedRowsIndex(this.eventData));
+		NatEventData eventData = getNatEventData();
+		if (axisManager != null && eventData!=null) {
+			axisManager.destroyAxis(getFullSelectedRowsIndex(eventData));
 		}
 		return null;
 	}
@@ -52,11 +54,12 @@ public class RowDestroyAxisHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
+		super.setEnabled(evaluationContext);
 		final IAxisManager axisManager = getRowAxisManager();
 		boolean enabled = false;
-		if (axisManager != null) {
-			this.eventData = getNatEventData(evaluationContext);
-			final List<Integer> rows = getFullSelectedRowsIndex(this.eventData);
+		NatEventData eventData = getNatEventData();
+		if (isEnabled() && axisManager != null && eventData!=null) {
+			final List<Integer> rows = getFullSelectedRowsIndex(eventData);
 			enabled = axisManager.canDestroyAxis(rows);
 		}
 		setBaseEnabled(enabled);

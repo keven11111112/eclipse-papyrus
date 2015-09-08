@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.uml.diagram.component.test.canonical;
 
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceOperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.OperationForInterfaceEditPart;
@@ -38,20 +37,16 @@ public class TestListCompartmentNodeChildDuplicates extends AbstractPapyrusTestC
 		return IComponentDiagramTestsConstants.FILE_NAME;
 	}
 
-	@FailingTest
 	@Test
 	public void testInterfaceVsOperation() throws Exception {
 		getHelper().checkDuplicate(RectangleInterfaceEditPart.VISUAL_ID, InterfaceOperationCompartmentEditPart.VISUAL_ID, OperationForInterfaceEditPart.VISUAL_ID);
 	}
 
-	@FailingTest
 	@Test
 	public void testInterfaceVsProperty() throws Exception {
 		getHelper().checkDuplicate(RectangleInterfaceEditPart.VISUAL_ID, InterfaceAttributeCompartmentEditPart.VISUAL_ID, PropertyForInterfaceEditPart.VISUAL_ID);
 	}
 
-
-	@FailingTest
 	@Test
 	public void testInterfaceVsReception() throws Exception {
 		getHelper().checkDuplicate(RectangleInterfaceEditPart.VISUAL_ID, InterfaceOperationCompartmentEditPart.VISUAL_ID, ReceptionInInterfaceEditPart.VISUAL_ID);

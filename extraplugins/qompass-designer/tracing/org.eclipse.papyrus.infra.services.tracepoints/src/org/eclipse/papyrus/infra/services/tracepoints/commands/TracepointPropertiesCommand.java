@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
 import org.eclipse.papyrus.infra.services.tracepoints.dialogs.TraceActionSelection;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -50,7 +50,7 @@ public class TracepointPropertiesCommand extends AbstractTracepointCommand {
 		IMarker marker = findMarker(TracepointConstants.tpOrbpMarker);
 		if (marker != null) {
 			// should normally always hold, since this is checked in canExecute
-			TraceActionSelection tad = new TraceActionSelection(new Shell(), marker, (Element) selectedElement);
+			TraceActionSelection tad = new TraceActionSelection(Display.getDefault().getActiveShell(), marker, (Element) selectedElement);
 			tad.open();
 			if (tad.getReturnCode() == IDialogConstants.OK_ID) {
 				Object[] result = tad.getResult();

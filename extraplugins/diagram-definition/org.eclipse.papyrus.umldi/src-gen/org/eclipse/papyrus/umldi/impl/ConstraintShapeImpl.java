@@ -23,10 +23,12 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  *
  * @generated
  */
-public class ConstraintShapeImpl extends ElementWithBodyShapeImpl implements ConstraintShape {
+public class ConstraintShapeImpl extends ElementShapeImpl implements ConstraintShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ConstraintShapeImpl() {
@@ -36,11 +38,11 @@ public class ConstraintShapeImpl extends ElementWithBodyShapeImpl implements Con
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.CONSTRAINT_SHAPE;
 	}
-
 } //ConstraintShapeImpl

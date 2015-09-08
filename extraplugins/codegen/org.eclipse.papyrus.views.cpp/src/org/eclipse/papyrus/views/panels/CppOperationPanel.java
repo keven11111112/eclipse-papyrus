@@ -46,7 +46,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  *
  * TODO: instead of keeping isAbstract and pureVirtual Stereotype synchronized, pure virtual
  * could be removed from the panel
+ * @deprecated This view will be replaced by a XWT view for the C++ profile
  */
+@Deprecated
 public class CppOperationPanel extends CppAbstractPanel {
 
 	@SuppressWarnings("unused")
@@ -80,10 +82,10 @@ public class CppOperationPanel extends CppAbstractPanel {
 
 	private Operation selectedOperation;
 
-	private Button verifyAcceleo;
-
 	Element selectedEOwner;
 
+	protected String origBody;
+	
 	public CppOperationPanel(Composite parent, int style) {
 		super(parent, style);
 	}
@@ -255,6 +257,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 
 					// Body
 					setCppBody(selectedOperation, docBody.get());
+					origBody = docBody.get();
 				}
 			});
 		}
@@ -485,9 +488,8 @@ public class CppOperationPanel extends CppAbstractPanel {
 			return true;
 		}
 
-		String methodBody = getCppBody(selectedOperation);
-
-		if (!(docBody.get().equals(methodBody))) {
+		// String methodBody = getCppBody(selectedOperation);
+		if (!(docBody.get().equals(origBody))) {
 			return true;
 		}
 
@@ -518,6 +520,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 				}
 
 				String body = getCppBody(selectedOperation);
+				origBody = body;
 				docBody.set(body);
 
 				// Combo Box

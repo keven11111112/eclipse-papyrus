@@ -174,7 +174,7 @@ public class NewModelPage extends WizardPage {
 	public URI createSelectedElementURI() {
 		if (selectedElement instanceof CDOCheckout) {
 			CDOCheckout checkout = (CDOCheckout) selectedElement;
-			return checkout.createResourceURI(null);
+			return checkout.getURI();
 		}
 
 		if (selectedElement instanceof CDOResourceNode) {

@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Parameter Compartment</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ParameterCompartment#getActivityShape <em>Activity Shape</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ParameterCompartment#getActivityShape <em>Activity Shape</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getParameterCompartment()
@@ -29,21 +28,23 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface ParameterCompartment extends ListCompartment {
+
 	/**
 	 * Returns the value of the '<em><b>Activity Shape</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ActivityShape#getParameterCompartment <em>Parameter Compartment</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ActivityShape#getParameterCompartment <em>Parameter Compartment</em>}
+	 * '.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Activity Shape</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Activity Shape</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Activity Shape</em>' container reference.
 	 * @see #setActivityShape(ActivityShape)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getParameterCompartment_ActivityShape()
@@ -57,10 +58,11 @@ public interface ParameterCompartment extends ListCompartment {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ParameterCompartment#getActivityShape <em>Activity Shape</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Activity Shape</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Activity Shape</em>' container reference.
 	 * @see #getActivityShape()
 	 * @generated
 	 */
 	void setActivityShape(ActivityShape value);
-
 } // ParameterCompartment

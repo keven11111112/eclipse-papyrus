@@ -10,14 +10,17 @@
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *	Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
+ *  Benoit Maggi  (CEA LIST) - #473480 Allow selection of more than one template  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.template;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -25,6 +28,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -37,6 +41,8 @@ public class SelectModelTemplateComposite extends Composite {
 	private ComboViewer singleTemplateCombo;
 
 	private ModelTemplateDescription selectedTemplate;
+
+	private GridData gridTable;
 
 	/**
 	 * Instantiates a new select model template composite.
@@ -103,16 +109,11 @@ public class SelectModelTemplateComposite extends Composite {
 		});
 
 		templateTableViewer = CheckboxTableViewer.newCheckList(composite, SWT.V_SCROLL);
-		GridData gridTable = new GridData(SWT.FILL, SWT.TOP, true, false);
+		gridTable = new GridData(SWT.FILL, SWT.TOP, true, false);
 		templateTableViewer.getTable().setLayoutData(gridTable);
 		templateTableViewer.getTable().setBackground(composite.getBackground());
 		templateTableViewer.setContentProvider(new ModelTemplateTransfoProvider());
 		templateTableViewer.setLabelProvider(new ModelTemplatesLabelProvider());
-		// Sets a minimum height for the tableViewer
-		// gridTable.minimumHeight = templateTableViewer.getTable().getItemHeight() * 2;
-		// Sets an arbitrary height for the tableViewer
-		gridTable.heightHint = templateTableViewer.getTable().getItemHeight() * 2;
-
 	}
 
 	/**
@@ -187,11 +188,13 @@ public class SelectModelTemplateComposite extends Composite {
 		return null;
 	}
 
-
+	/**
+	 * @return the list of model template description for each transformation template
+	 */
 	public List<ModelTemplateDescription> getTemplateTransfoPath() {
 		if (templateTableViewer != null) {
 			Object[] selection = templateTableViewer.getCheckedElements();
-			if (selection.length <= 1) {
+			if (selection.length > 0) {
 				List<ModelTemplateDescription> templatePath = new ArrayList<ModelTemplateDescription>();
 				for (Object currentObject : selection) {
 					templatePath.add((ModelTemplateDescription) currentObject);
@@ -199,51 +202,71 @@ public class SelectModelTemplateComposite extends Composite {
 				return templatePath;
 			}
 		}
-		return null;
+		return new ArrayList<ModelTemplateDescription>();
 	}
 
-
+	/**
+	 * @return the list of di path for each transformation template
+	 */
 	public List<String> getDiTemplateTransfoPath() {
-		if (templateTableViewer != null) {
-			Object[] selection = templateTableViewer.getCheckedElements();
-			if (selection.length <= 1) {
-				List<String> templatePath = new ArrayList<String>();
-				for (Object currentObject : selection) {
-					templatePath.add(((ModelTemplateDescription) currentObject).getDi_path());
+		List<String> diPathList = new ArrayList<String>();
+		List<ModelTemplateDescription> templateTransfoPath = getTemplateTransfoPath();
+		if (templateTransfoPath != null) {
+			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
+				String diPath = modelTemplateDescription.getDi_path();
+				if (diPath != null){
+					diPathList.add(diPath);
 				}
-				return templatePath;
 			}
 		}
-		return null;
+		return diPathList;
 	}
 
+	/**
+	 * @return the list of notation path for each transformation template
+	 */
 	public List<String> getNotationTemplateTransfoPath() {
-		if (templateTableViewer != null) {
-			Object[] selection = templateTableViewer.getCheckedElements();
-			if (selection.length <= 1) {
-				List<String> templatePath = new ArrayList<String>();
-				for (Object currentObject : selection) {
-					templatePath.add(((ModelTemplateDescription) currentObject).getNotation_path());
+		List<String> notationPathList = new ArrayList<String>();
+		List<ModelTemplateDescription> templateTransfoPath = getTemplateTransfoPath();
+		if (templateTransfoPath != null) {
+			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
+				String notationPath = modelTemplateDescription.getNotation_path();
+				if (notationPath != null){
+					notationPathList.add(notationPath);
 				}
-				return templatePath;
 			}
 		}
-		return null;
+		return notationPathList;		
 	}
 
+	/**
+	 * @return the list of plugin id for each transformation template
+	 */
 	public List<String> getTemplateTransfoPluginID() {
-		if (templateTableViewer != null) {
-			Object[] selection = templateTableViewer.getCheckedElements();
-			if (selection.length <= 1) {
-				List<String> templatePath = new ArrayList<String>();
-				for (Object currentObject : selection) {
-					templatePath.add(((ModelTemplateDescription) currentObject).getPluginId());
+		List<String> pluginIdList = new ArrayList<String>();
+		List<ModelTemplateDescription> templateTransfoPath = getTemplateTransfoPath();
+		if (templateTransfoPath != null) {
+			for (ModelTemplateDescription modelTemplateDescription : templateTransfoPath) {
+				String pluginId = modelTemplateDescription.getPluginId();
+				if (pluginId != null){
+					pluginIdList.add(pluginId);
 				}
-				return templatePath;
 			}
 		}
-		return null;
+		return pluginIdList;			
 	}
+
+
+	/**
+	 * Used to check the number of items displayed by the viewer
+	 * 
+	 * @return
+	 * 		The viewer's Combo
+	 */
+	public Combo getTemplateCombo() {
+		return singleTemplateCombo.getCombo();
+	}
+
 
 	/**
 	 * Sets the input.
@@ -256,7 +279,15 @@ public class SelectModelTemplateComposite extends Composite {
 			templateTableViewer.setInput(input);
 		}
 		singleTemplateCombo.setInput(input);
-	}
 
+		// Resize the template table to minimize the space lost
+		int tableItemHeight = templateTableViewer.getTable().getItemHeight();
+		int tableItemCount = ((ModelTemplateTransfoProvider) templateTableViewer.getContentProvider()).getElements(input).length;
+		gridTable.minimumHeight = tableItemCount != 0 ? tableItemHeight * Math.max(1, Math.round((tableItemCount / 2))) : 0;
+		gridTable.heightHint = tableItemCount != 0 ? tableItemHeight * Math.max(1, Math.round((tableItemCount / 2))) : 0;
+
+		// Notifies the shell that the layout needs to be resized
+		((Composite) templateTableViewer.getControl()).layout(true, true);
+	}
 
 }

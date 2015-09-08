@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class TimingDiagramImpl extends InteractionDiagramImpl implements TimingDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TimingDiagramImpl() {
@@ -36,11 +38,11 @@ public class TimingDiagramImpl extends InteractionDiagramImpl implements TimingD
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.TIMING_DIAGRAM;
 	}
-
 } //TimingDiagramImpl

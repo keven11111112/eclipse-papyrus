@@ -27,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreSelectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.locator.LinkedBehaviorLocator;
 import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 
 public class CustomDataStoreNodeEditPart extends DataStoreNodeEditPart {
@@ -57,13 +58,23 @@ public class CustomDataStoreNodeEditPart extends DataStoreNodeEditPart {
 	 */
 	@Override
 	protected void refreshLabelDisplay() {
-		// TODO Auto-generated method stub
 		super.refreshLabelDisplay();
 		// Allow multiline
 		getPrimaryShape().getNameLabel().setTextWrap(true);
 		// Center text
 		getPrimaryShape().getNameLabel().setTextJustification(PositionConstants.CENTER);
 		getPrimaryShape().getNameLabel().setAlignment(PositionConstants.CENTER);
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart#createNodeShape()
+	 *
+	 * @return
+	 */
+	@Override
+	protected IFigure createNodeShape() {
+		return primaryShape = new RoundedCompartmentFigure("datastore");//$NON-NLS-1$
 	}
 
 	/**

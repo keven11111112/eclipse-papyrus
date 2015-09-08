@@ -16,6 +16,8 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndSourceMultiplicityLabelHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 
 /**
@@ -31,6 +33,16 @@ public class DisplayAssociationEndSourceMultiplicityEditPolicy extends DisplayAs
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
-		return Collections.singleton(ICustomAppearance.DISP_MULTIPLICITY);
+		return Collections.singleton(ICustomAppearance.DISP_MULTIPLICITY_NO_BRACKETS);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndEditPolicy#createPropertyLabelHelper()
+	 *
+	 * @return
+	 */
+	@Override
+	protected PropertyLabelHelper createPropertyLabelHelper() {
+		return AssociationEndSourceMultiplicityLabelHelper.getInstance();
 	}
 }

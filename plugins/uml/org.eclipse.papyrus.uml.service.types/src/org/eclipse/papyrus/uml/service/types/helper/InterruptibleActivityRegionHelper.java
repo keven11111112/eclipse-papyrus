@@ -9,6 +9,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.uml.service.types.command.NotContainmentMoveCommand;
@@ -92,6 +93,8 @@ public class InterruptibleActivityRegionHelper extends ActivityGroupHelper {
 				result.add(new SetValueCommand(new SetRequest(nonContainmentContainer, featureToSetReference, o)));
 			}
 		}
+		result.compose(ActivityNodeHelper.getMoveOutFromPartitionCommand(req));
+		result.compose(ActivityNodeHelper.getMoveOutFromInterruptibleActivityRegionCommand(req));
 		return result;
 	}
 
@@ -112,5 +115,13 @@ public class InterruptibleActivityRegionHelper extends ActivityGroupHelper {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	protected boolean approveRequest(IEditCommandRequest request) {
+		if (false == request instanceof CreateElementRequest) {
+			return super.approveRequest(request);
+		}
+		return approveNonContainmentActivityNode((CreateElementRequest)request);
 	}
 }

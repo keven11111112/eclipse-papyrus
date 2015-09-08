@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - Handle dynamic profile applications in CDO
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 451613
+ *  Christian W. Damus - bug 474610
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -31,6 +32,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Association;
@@ -115,13 +118,14 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 
 					// don't just test that the EPackage definitions are the
 					// same object because in the CDO context they are not, even
-					// though they are "the same package". Comparing the NSURIs
+					// though they are "the same package". Comparing the URIs
 					// should suffice
+					final URIConverter converter = pkge_resourceSet.getURIConverter();
 					if ((appliedProfileDefinition == null)
 							|| (fileProfileDefinition == null)
 							|| !UML2Util.safeEquals(
-									appliedProfileDefinition.getNsURI(),
-									fileProfileDefinition.getNsURI())) {
+									converter.normalize(EcoreUtil.getURI(appliedProfileDefinition)),
+									converter.normalize(EcoreUtil.getURI(fileProfileDefinition)))) {
 
 						isDirty = true;
 					}

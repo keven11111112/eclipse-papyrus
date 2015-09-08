@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.umldi.ActivityNodeShape;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 
@@ -23,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ActivityNodeShapeImpl extends ElementShapeImpl implements ActivityNodeShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActivityNodeShapeImpl() {
@@ -35,11 +38,11 @@ public class ActivityNodeShapeImpl extends ElementShapeImpl implements ActivityN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ACTIVITY_NODE_SHAPE;
 	}
-
 } //ActivityNodeShapeImpl

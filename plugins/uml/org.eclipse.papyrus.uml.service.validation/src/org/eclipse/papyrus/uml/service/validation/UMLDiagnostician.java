@@ -60,6 +60,14 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 		return super.createDefaultDiagnostic(eObject);
 	}
 
+	/**
+	 * Explicitly validate stereotype applications.
+	 * 
+	 * @param eObject the eObject to validate
+	 * @param diagnostics the diagnostic chain
+	 * @param context the context
+	 * @return
+	 */
 	protected boolean doValidateStereotypeApplications(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (validateStereotype) {
 			// this function is called recursively. Avoid trying to obtain stereotype applications, if we are

@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Properties;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.papyrus.infra.tools.Activator;
@@ -43,12 +42,24 @@ public class FileUtils {
 
 	public static final String CSV_EXTENSIOn = "csv";//$NON-NLS-1$
 
+	public static final String UNDERSCORE = "_";//$NON-NLS-1$
+
+	public static final String LINE_SEPARATOR = "line.separator";//$NON-NLS-1$
+
 	private FileUtils() {
 		// to prevent instanciation
+	}
+	
+	/**
+	 * return the system property line seperator
+	 */
+	public static final String getSystemPropertyLineSeparator(){
+		return System.getProperty(LINE_SEPARATOR);
 	}
 
 	/**
 	 * this method read a file and return a string, the line separator used will we System.getProperty("line.separator")
+	 * 
 	 * @param pluginName
 	 *            the name of the plugin owning the file
 	 * @param filePath
@@ -98,11 +109,14 @@ public class FileUtils {
 			url = new URL(pathBuilder.toString());
 			InputStream inputStream = url.openConnection().getInputStream();
 			BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-			String inputLine;
+			String inputLine = in.readLine();
 
-			while ((inputLine = in.readLine()) != null) {
+			while (inputLine != null) {
 				builder.append(inputLine);
-				builder.append(lineSeparator); //$NON-NLS-1$
+				inputLine = in.readLine();
+				if (inputLine != null) {
+					builder.append(lineSeparator); // $NON-NLS-1$
+				}
 			}
 
 			in.close();

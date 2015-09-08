@@ -27,10 +27,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectListValueStyleImpl#getEObjectValue <em>EObject Value</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectListValueStyleImpl#getEObjectValue <em>EObject Value</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -40,7 +40,6 @@ public class EObjectListValueStyleImpl extends NamedStyleImpl implements EObject
 	 * The cached value of the '{@link #getEObjectValue() <em>EObject Value</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getEObjectValue()
 	 * @generated
 	 * @ordered
@@ -50,7 +49,6 @@ public class EObjectListValueStyleImpl extends NamedStyleImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected EObjectListValueStyleImpl() {
@@ -60,7 +58,6 @@ public class EObjectListValueStyleImpl extends NamedStyleImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -71,12 +68,11 @@ public class EObjectListValueStyleImpl extends NamedStyleImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<EObject> getEObjectValue() {
-		if(eObjectValue == null) {
+		if (eObjectValue == null) {
 			eObjectValue = new EObjectResolvingEList<EObject>(EObject.class, this, NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE);
 		}
 		return eObjectValue;
@@ -85,14 +81,13 @@ public class EObjectListValueStyleImpl extends NamedStyleImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE:
-			return getEObjectValue();
+		switch (featureID) {
+			case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE:
+				return getEObjectValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -100,17 +95,16 @@ public class EObjectListValueStyleImpl extends NamedStyleImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE:
-			getEObjectValue().clear();
-			getEObjectValue().addAll((Collection<? extends EObject>)newValue);
-			return;
+		switch (featureID) {
+			case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE:
+				getEObjectValue().clear();
+				getEObjectValue().addAll((Collection<? extends EObject>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -118,15 +112,14 @@ public class EObjectListValueStyleImpl extends NamedStyleImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE:
-			getEObjectValue().clear();
-			return;
+		switch (featureID) {
+			case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE:
+				getEObjectValue().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -134,14 +127,13 @@ public class EObjectListValueStyleImpl extends NamedStyleImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE:
-			return eObjectValue != null && !eObjectValue.isEmpty();
+		switch (featureID) {
+			case NattablestylePackage.EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE:
+				return eObjectValue != null && !eObjectValue.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

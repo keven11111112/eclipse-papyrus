@@ -27,10 +27,10 @@ import org.eclipse.uml2.uml.Region;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl.RTRegionImpl#getBase_Region <em>Base Region</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

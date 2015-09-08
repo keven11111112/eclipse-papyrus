@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.emf.nattable.manager.cell;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -185,23 +187,6 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 			final INattableModelManager tableManager) {
 		final CompositeCommand result = new CompositeCommand("Set Value Command"); //$NON-NLS-1$
 
-		// we need to destroy associated cell problem, if any.
-		final Cell cell = tableManager.getCell(columnElement, rowElement);
-		StringResolutionProblem stringPb = null;// we assume that there is only one string resolution problem for a cell
-		if (cell != null && cell.getProblems().size() > 0) {
-			for (final Problem current : cell.getProblems()) {
-				if (current instanceof StringResolutionProblem) {
-					stringPb = (StringResolutionProblem) current;
-					break;
-				}
-			}
-		}
-		if (stringPb != null) {
-			final DestroyElementRequest destroyRequest = new DestroyElementRequest(domain, stringPb, false);
-			final IElementEditService commandProvider2 = ElementEditServiceUtils.getCommandProvider(stringPb);
-			result.add(commandProvider2.getEditCommand(destroyRequest));
-		}
-
 		// 426731: [Table 2] Opening then closing cells editors without modifying values execute a command in the stack
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426731
 		// 1. we verify that the new value is not the same as the current value
@@ -298,34 +283,9 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		final EObject editedObject = (EObject) objects.get(0);
 		final EStructuralFeature editedFeature = (EStructuralFeature) objects.get(1);
 		ConvertedValueContainer<?> solvedValue = valueSolver.deduceValueFromString(editedFeature, newValue);
-		final CompositeCommand cmd = new CompositeCommand("Set Value As String Command"); //$NON-NLS-1$
 		Object convertedValue = solvedValue.getConvertedValue();
 		Command setValueCommand = getSetValueCommand(domain, editedObject, editedFeature, convertedValue, columnElement, rowElement, tableManager);
-		if (setValueCommand != null) {
-			cmd.add(new EMFtoGMFCommandWrapper(setValueCommand));
-		}
-		final Command createProblemCommand = getCreateStringResolutionProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
-		if (createProblemCommand != null) {
-			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
-		} else {
-			// we need to destroy associated cell problem
-			final Cell cell = tableManager.getCell(columnElement, rowElement);
-			StringResolutionProblem stringPb = null;// we assume that there is only one string resolution problem for a cell
-			if (cell != null && cell.getProblems().size() > 0) {
-				for (final Problem current : cell.getProblems()) {
-					if (current instanceof StringResolutionProblem) {
-						stringPb = (StringResolutionProblem) current;
-						break;
-					}
-				}
-			}
-			if (stringPb != null) {
-				final DestroyElementRequest destroyRequest = new DestroyElementRequest(domain, stringPb, false);
-				final IElementEditService commandProvider2 = ElementEditServiceUtils.getCommandProvider(stringPb);
-				cmd.add(commandProvider2.getEditCommand(destroyRequest));
-			}
-		}
-		return cmd.isEmpty() ? null : new GMFtoEMFCommandWrapper(cmd);
+		return setValueCommand;
 	}
 
 
@@ -405,7 +365,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @param valueContainer
 	 * @param sharedMap
 	 */
-	@Deprecated
+	@Deprecated //problem must no be managed here, since Eclipse Mars
 	// use CellHelper.createStringResolutionProblem
 	protected void createStringResolutionProblem(final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer, final Map<?, ?> sharedMap) {
 		CellHelper.createStringResolutionProblem(tableManager, columnElement, rowElement, pastedText, valueContainer, sharedMap);
@@ -437,7 +397,123 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		} else {
 			editedObject.eSet(editedFeature, solvedValue.getConvertedValue());
 		}
+	}
 
-		createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#unsetCellValue(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 */
+	@Override
+	public void unsetCellValue(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		Command cmd = getUnsetCellValueCommand(domain, columnElement, rowElement, tableManager);
+		if (cmd != null && cmd.canExecute()) {
+			domain.getCommandStack().execute(cmd);
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#getUnsetCellValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Command getUnsetCellValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		if (isCellEditable(columnElement, rowElement)) {
+			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
+			final EObject elementToEdit = (EObject) objects.get(0);
+			final EStructuralFeature editedFeature = (EStructuralFeature) objects.get(1);
+			return doGetUnsetCellValueCommand(domain, elementToEdit, editedFeature, tableManager);
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param domain
+	 *            the editing domain to use
+	 * 
+	 * @param elementToEdit
+	 *            the edited element
+	 * @param editedFeature
+	 *            the edited feature
+	 * @param tableManager
+	 *            the table manager
+	 * @return
+	 * 		the command to use to do the unset
+	 */
+	protected Command doGetUnsetCellValueCommand(TransactionalEditingDomain domain, EObject elementToEdit, EStructuralFeature editedFeature, INattableModelManager tableManager) {
+		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
+		CompositeCommand cc = new CompositeCommand("Unset cell value"); //$NON-NLS-1$
+
+		// manage many features
+		if (editedFeature.isMany()) {
+			if (editedFeature instanceof EReference && ((EReference) editedFeature).isContainment()) {
+				// we need to destroy existing value
+				for (Object current : (Collection<?>) elementToEdit.eGet(editedFeature)) {
+					if (current instanceof EObject) {
+						DestroyElementRequest request = new DestroyElementRequest(domain, (EObject) current, false);
+						ICommand command = provider.getEditCommand(request);
+						if (command != null && command.canExecute()) {
+							cc.add(command);
+						}
+					}
+				}
+			} else {
+				// we clean the list
+				SetRequest request = new SetRequest(domain, elementToEdit, editedFeature, Collections.emptyList());
+				ICommand command = provider.getEditCommand(request);
+				if (command != null && command.canExecute()) {
+					cc.add(command);
+				}
+			}
+		}
+
+		// we reset the default value
+		ICommand setDefaultValueCommand = getSetDefaultValueCommand(domain, elementToEdit, editedFeature);
+		if (setDefaultValueCommand != null && setDefaultValueCommand.canExecute()) {
+			cc.add(setDefaultValueCommand);
+		}
+		if (!cc.isEmpty() && cc.canExecute()) {
+			return new GMFtoEMFCommandWrapper(cc);
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param domain
+	 *            the editing domain to use
+	 * @param elementToEdit
+	 *            the edited element
+	 * @param editedFeature
+	 *            the edited feature
+	 * @return
+	 * 		the command to use to reset the default value
+	 */
+	protected final ICommand getSetDefaultValueCommand(TransactionalEditingDomain domain, EObject elementToEdit, EStructuralFeature editedFeature) {
+		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
+		Object defaultValue = editedFeature.getDefaultValue();
+		String defaultLiteralValue = editedFeature.getDefaultValueLiteral();
+		ICommand cmd = null;
+		if (defaultValue != null) {
+			SetRequest setRequest = new SetRequest(domain, elementToEdit, editedFeature, defaultValue);
+			cmd = provider.getEditCommand(setRequest);
+		}
+		if (cmd == null || !cmd.canExecute()) {
+			SetRequest setRequest = new SetRequest(domain, elementToEdit, editedFeature, defaultLiteralValue);
+			cmd = provider.getEditCommand(setRequest);
+		}
+		return cmd;
 	}
 }

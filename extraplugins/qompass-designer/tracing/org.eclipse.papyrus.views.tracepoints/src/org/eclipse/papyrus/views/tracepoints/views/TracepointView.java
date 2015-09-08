@@ -64,7 +64,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISelectionListener;
@@ -447,7 +446,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 					IMarker marker = (IMarker) obj;
 					EObject eobj = MarkerUtils.getEObjectOfMarker(marker);
 					if (eobj instanceof Element) {
-						TraceActionSelection tad = new TraceActionSelection(new Shell(), (IMarker) obj, (Element) eobj);
+						TraceActionSelection tad = new TraceActionSelection(Display.getDefault().getActiveShell(), (IMarker) obj, (Element) eobj);
 						tad.open();
 						if (tad.getReturnCode() == IDialogConstants.OK_ID) {
 							Object[] result = tad.getResult();

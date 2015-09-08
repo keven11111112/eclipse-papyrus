@@ -54,9 +54,9 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Inits the.
 	 *
 	 * @param workbench
-	 *        the workbench
+	 *            the workbench
 	 * @param selection
-	 *        the selection {@inheritDoc}
+	 *            the selection {@inheritDoc}
 	 */
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
@@ -64,7 +64,7 @@ public class InitModelWizard extends CreateModelWizard {
 		isInitFromExistingDomainModel = isSupportedDomainModelResource(uri);
 		super.init(workbench, selection);
 		selectRootElementPage = createSelectRootElementPage(selection);
-		if(isCreateFromExistingDomainModel()) {
+		if (isCreateFromExistingDomainModel()) {
 			// Init Model not Create a new one
 			setWindowTitle(Messages.InitModelWizard_init_papyrus_diagram);
 		}
@@ -74,11 +74,11 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Creates the select root element page.
 	 *
 	 * @param selection
-	 *        the initial workbench selection
+	 *            the initial workbench selection
 	 * @return the select root element page
 	 */
 	protected SelectRootElementPage createSelectRootElementPage(IStructuredSelection selection) {
-		if(!isCreateFromExistingDomainModel()) {
+		if (!isCreateFromExistingDomainModel()) {
 			// create model - nothing to choose from
 			return null;
 		}
@@ -92,15 +92,17 @@ public class InitModelWizard extends CreateModelWizard {
 	 */
 	@Override
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
-		if(isCreateFromExistingDomainModel()) {
+		if (isCreateFromExistingDomainModel()) {
 			return new SelectDiagramKindPage(false, new CategoryProvider() {
 
+				@Override
 				public String[] getCurrentCategories() {
 					return getDiagramCategoryIds();
 				}
 
 			}, SelectDiagramKindPage.DEFAULT_CREATION_COMMAND_REGISTRY);
-		};
+		}
+		;
 		return super.createSelectDiagramKindPage();
 	}
 
@@ -112,19 +114,20 @@ public class InitModelWizard extends CreateModelWizard {
 	@Override
 	public void addPages() {
 		super.addPages();
-		addPageIfNotNull(selectRootElementPage);
+		// remove the page from the view
+		// addPageIfNotNull(selectRootElementPage);
 	};
 
 	/**
 	 * Returns true is the file can be served as a model model for the diagram.
 	 *
 	 * @param file
-	 *        the file
+	 *            the file
 	 * @return true, if is supported domain model file
 	 */
 	public static boolean isSupportedDomainModelFile(IFile file) {
-		//		if(file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension())){System.err.println("is SupportedDomainModelFile");}
-		//		else {System.err.println("not SupportedDomainModelFile");}
+		// if(file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension())){System.err.println("is SupportedDomainModelFile");}
+		// else {System.err.println("not SupportedDomainModelFile");}
 		return file != null && isSupportedDomainModelResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
 	}
 
@@ -132,7 +135,7 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Returns true if the resource can be served as a model model for the diagram.
 	 *
 	 * @param uri
-	 *        the resource's URI
+	 *            the resource's URI
 	 * @return true, if is supported domain model resource
 	 */
 	public static boolean isSupportedDomainModelResource(URI uri) {
@@ -143,7 +146,7 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Checks if is supported domain model file.
 	 *
 	 * @param sselection
-	 *        the sselection
+	 *            the sselection
 	 * @return true, if is supported domain model file
 	 */
 	public static boolean isSupportedDomainModelFile(IStructuredSelection sselection) {
@@ -155,13 +158,13 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Creates the papyrus models.
 	 *
 	 * @param diResourceSet
-	 *        the di resource set
+	 *            the di resource set
 	 * @param newURI
-	 *        the URI of the new model's principal resource
+	 *            the URI of the new model's principal resource
 	 */
 	@Override
 	protected void createPapyrusModels(ModelSet modelSet, URI newURI) {
-		if(isCreateFromExistingDomainModel()) {
+		if (isCreateFromExistingDomainModel()) {
 			RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(modelSet, newURI, getRoot());
 			getCommandStack(modelSet).execute(command);
 		} else {
@@ -173,15 +176,15 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Inits the domain model.
 	 *
 	 * @param diResourceSet
-	 *        the di resource set
+	 *            the di resource set
 	 * @param newURI
-	 *        the URI of the new model's principal resource
+	 *            the URI of the new model's principal resource
 	 * @param diagramCategoryId
-	 *        the diagram category id {@inheritDoc}
+	 *            the diagram category id {@inheritDoc}
 	 */
 	@Override
 	protected void initDomainModel(ModelSet modelSet, final URI newURI, String diagramCategoryId) {
-		if(isCreateFromExistingDomainModel()) {
+		if (isCreateFromExistingDomainModel()) {
 			// do nothing
 		} else {
 			super.initDomainModel(modelSet, newURI, diagramCategoryId);
@@ -192,9 +195,9 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Inits the diagrams.
 	 *
 	 * @param diResourceSet
-	 *        the di resource set
+	 *            the di resource set
 	 * @param categoryId
-	 *        the category id {@inheritDoc}
+	 *            the category id {@inheritDoc}
 	 */
 	@Override
 	protected void initDiagrams(ModelSet modelSet, String categoryId) {
@@ -212,7 +215,7 @@ public class InitModelWizard extends CreateModelWizard {
 
 	@Override
 	public String getDiagramFileExtension(String diagramCategoryId) {
-		if(isCreateFromExistingDomainModel()) {
+		if (isCreateFromExistingDomainModel()) {
 			return NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
 		}
 		return super.getDiagramFileExtension(diagramCategoryId);
@@ -224,8 +227,9 @@ public class InitModelWizard extends CreateModelWizard {
 	 * @return the root
 	 */
 	private EObject getRoot() {
-		if(selectRootElementPage != null) {
-			return selectRootElementPage.getModelElement();
+		if (selectRootElementPage != null) {
+			// return selectRootElementPage.getModelElement();
+			return SelectDiagramKindPage.getModelRoot();
 		}
 		return null;
 	}

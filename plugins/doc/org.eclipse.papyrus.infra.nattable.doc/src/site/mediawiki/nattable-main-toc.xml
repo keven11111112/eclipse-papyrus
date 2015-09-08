@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<toc label="Nattable" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
-   <topic href="target/site/generated-eclipse-help/tablemetamodeldocumentation.html" label="Nattable">
-      <link toc="target/site/generated-eclipse-help/tablemetamodeldocumentation-toc.xml"/>
-      <anchor id="nattable"/>
-   </topic>	
+<toc label="Papyrus Nattable" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
+  <topic label="Papyrus Nattable" >
+     <link toc="target/site/generated-eclipse-help/tablemetamodeldocumentation-toc.xml"/>
+     <anchor id="tableMetamodel"/>
+     <link toc="target/site/generated-eclipse-help/tableUserDoc-toc.xml"/>
+     <anchor id="tableUserDoc"/>
+  </topic>
 </toc>

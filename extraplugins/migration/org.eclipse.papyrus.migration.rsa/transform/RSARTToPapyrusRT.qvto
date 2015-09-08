@@ -44,6 +44,7 @@ main() {
 	semantics.objectsOfType(Region).map applyRTRegion();
 	semantics.objectsOfType(State).map applyRTState();
 	semantics.objectsOfType(Pseudostate).map applyRTPseudostate();
+	semantics.objectsOfType(Operation).map setGuarded();
 	
 	semantics.rootObjects()[sourcert::Capsule].map toCapsule();
 	semantics.rootObjects()[sourcert::CapsulePart].map toCapsulePart();
@@ -93,20 +94,21 @@ mapping sourcert::ProtocolContainer::toMessageSets() : Interface{
 	
 	result.name := protocolName+"IO";
 	result.map createMessageSet(RTMessageKind::inOut);
-	result.map createKeyword('ProtocolRole');
+	
+	//Create generalizations from the source interface to the target interface
+	var generalizations := self.base_Package.packagedElement->selectByKind(uml::Collaboration).generalization;
+	generalizations.map toGeneralization(result); 
 }
 
-/*
-<eAnnotations xmi:id="_6bqisD5hEeSYUNuTXCumiw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <details xmi:id="_6brJwD5hEeSYUNuTXCumiw" key="ProtocolRole"/>
-</eAnnotations>
-*/
-mapping inout Element::createKeyword(keyword : String) : EAnnotation{
-	self.eAnnotations += result;
-	result.source := 'http://www.eclipse.org/uml2/2.0.0/UML';
-	result.details += object EStringToStringMapEntry {
-		key := 'ProtocolRole';
-	}
+mapping inout Generalization::toGeneralization(inoutInterface : Interface) : Generalization {
+	result.specific := inoutInterface;
+	
+	var generalCollaboration := self.general;
+	
+	var generalProtocolContainer := semantics.objectsOfType(sourcert::ProtocolContainer)![base_Package = generalCollaboration.getNearestPackage()];
+	var generalIOInterface : Interface := generalProtocolContainer.map toMessageSets();
+	
+	result.general := generalIOInterface;
 }
 
 query sourcert::ProtocolContainer::findInInterface() : Interface {
@@ -120,6 +122,7 @@ query sourcert::ProtocolContainer::findOutInterface() : Interface {
 mapping inout Interface::createMessageSet(direction : RTMessageKind) : RTMessageSet {
 	result.base_Interface := self;
 	result.rtMsgKind := direction;
+	self.removeKeyword("ProtocolRole");
 }
 
 mapping sourcert::Capsule::toCapsule() : umlrt::Capsule when {
@@ -209,8 +212,8 @@ query sourcert::PortRegistrationType::getPapyrusType() : umlrt::PortRegistration
 			umlrt::PortRegistrationType::Automatic;
 		case (self = sourcert::PortRegistrationType::Application) 
 			umlrt::PortRegistrationType::Application;
-		else 
-			umlrt::PortRegistrationType::ApplicationLocked;
+		else
+			umlrt::PortRegistrationType::AutomaticLocked;
 	};
 }
 
@@ -239,6 +242,13 @@ mapping State::applyRTState() : RTState when {
 	result.base_State := self;
 }
 
+/** RT Operations (in a Capsule) should be guarded */ 
+mapping inout Operation::setGuarded() when {
+	self.isRT()
+} {
+	self.concurrency := CallConcurrencyKind::guarded;
+}
+
 mapping Pseudostate::applyRTPseudostate() : RTPseudostate when {
 	self.isRT()
 }{
@@ -251,8 +261,12 @@ mapping Region::applyRTRegion() : RTRegion when {
 	result.base_Region := self;
 }
 
+query Classifier::isRT() : Boolean {
+	return semantics.rootObjects()[sourcert::Capsule]->exists(c | c.base_Class = self);
+}
+
 query StateMachine::isRT() : Boolean {
-	return semantics.rootObjects()[sourcert::Capsule]->exists(c | c.base_Class = self.getClassifier());
+	return self.getClassifier().isRT();
 }
 
 query StateMachine::getClassifier() : BehavioredClassifier {
@@ -288,6 +302,14 @@ query Pseudostate::isRT() : Boolean {
 		case (self.owner.oclIsKindOf(State)) self.owner.oclAsType(State).isRT();
 		else false;
 	};
+}
+
+query Operation::isRT() : Boolean {
+	return if self.owner.oclIsKindOf(Classifier) then
+		self.owner.oclAsType(Classifier).isRT()
+	else
+		false
+	endif;
 }
 
 /** Profile application */

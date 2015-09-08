@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Artifact Shape</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ArtifactShape#getNestedArtifactCompartment <em>Nested Artifact Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ArtifactShape#getNestedArtifactCompartment <em>Nested Artifact Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getArtifactShape()
@@ -29,6 +28,7 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface ArtifactShape extends ClassifierWithOperationsShape {
+
 	/**
 	 * Returns the value of the '<em><b>Nested Artifact Compartment</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.NestedArtifactCompartment#getArtifactShape <em>Artifact Shape</em>}'.
@@ -36,14 +36,15 @@ public interface ArtifactShape extends ClassifierWithOperationsShape {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Nested Artifact Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Nested Artifact Compartment</em>' containment reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Nested Artifact Compartment</em>' containment reference.
 	 * @see #setNestedArtifactCompartment(NestedArtifactCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getArtifactShape_NestedArtifactCompartment()
@@ -54,13 +55,15 @@ public interface ArtifactShape extends ClassifierWithOperationsShape {
 	NestedArtifactCompartment getNestedArtifactCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ArtifactShape#getNestedArtifactCompartment <em>Nested Artifact Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ArtifactShape#getNestedArtifactCompartment <em>Nested Artifact Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nested Artifact Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Nested Artifact Compartment</em>' containment reference.
 	 * @see #getNestedArtifactCompartment()
 	 * @generated
 	 */
 	void setNestedArtifactCompartment(NestedArtifactCompartment value);
-
 } // ArtifactShape

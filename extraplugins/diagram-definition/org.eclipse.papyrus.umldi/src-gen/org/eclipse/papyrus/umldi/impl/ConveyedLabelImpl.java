@@ -34,16 +34,18 @@ import org.eclipse.papyrus.umldi.UmlDiagramElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ConveyedLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.ConveyedLabelImpl#getInformationFlowEdge <em>Information Flow Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ConveyedLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.ConveyedLabelImpl#getInformationFlowEdge <em>Information Flow Edge</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ConveyedLabelImpl() {
@@ -53,6 +55,7 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,12 +78,13 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		InformationFlowEdge informationFlowEdge = getInformationFlowEdge();			
-		if (informationFlowEdge != null) {
+		InformationFlowEdge informationFlowEdge = getInformationFlowEdge();
+		if(informationFlowEdge != null) {
 			return informationFlowEdge;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -88,16 +93,19 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InformationFlowEdge getInformationFlowEdge() {
-		if (eContainerFeatureID() != UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE)
+			return null;
 		return (InformationFlowEdge)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInformationFlowEdge(InformationFlowEdge newInformationFlowEdge, NotificationChain msgs) {
@@ -108,36 +116,38 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInformationFlowEdge(InformationFlowEdge newInformationFlowEdge) {
-		if (newInformationFlowEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE && newInformationFlowEdge != null)) {
-			if (EcoreUtil.isAncestor(this, newInformationFlowEdge))
+		if(newInformationFlowEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE && newInformationFlowEdge != null)) {
+			if(EcoreUtil.isAncestor(this, newInformationFlowEdge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newInformationFlowEdge != null)
+			if(newInformationFlowEdge != null)
 				msgs = ((InternalEObject)newInformationFlowEdge).eInverseAdd(this, UMLDIPackage.INFORMATION_FLOW_EDGE__CONVEYED_LABEL, InformationFlowEdge.class, msgs);
 			msgs = basicSetInformationFlowEdge(newInformationFlowEdge, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE, newInformationFlowEdge, newInformationFlowEdge));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetInformationFlowEdge((InformationFlowEdge)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetInformationFlowEdge((InformationFlowEdge)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,13 +155,14 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
-				return basicSetInformationFlowEdge(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
+			return basicSetInformationFlowEdge(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,13 +170,14 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.INFORMATION_FLOW_EDGE__CONVEYED_LABEL, InformationFlowEdge.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.INFORMATION_FLOW_EDGE__CONVEYED_LABEL, InformationFlowEdge.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -173,13 +185,14 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
-				return getInformationFlowEdge();
+		switch(featureID) {
+		case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
+			return getInformationFlowEdge();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,14 +200,15 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
-				setInformationFlowEdge((InformationFlowEdge)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
+			setInformationFlowEdge((InformationFlowEdge)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,14 +216,15 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
-				setInformationFlowEdge((InformationFlowEdge)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
+			setInformationFlowEdge((InformationFlowEdge)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,15 +232,16 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.CONVEYED_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
-				return getInformationFlowEdge() != null;
+		switch(featureID) {
+		case UMLDIPackage.CONVEYED_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE:
+			return getInformationFlowEdge() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,12 +249,11 @@ public class ConveyedLabelImpl extends UmlLabelImpl implements ConveyedLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.CONVEYED_LABEL__INFORMATION_FLOW_EDGE);
 	}
-
 } //ConveyedLabelImpl

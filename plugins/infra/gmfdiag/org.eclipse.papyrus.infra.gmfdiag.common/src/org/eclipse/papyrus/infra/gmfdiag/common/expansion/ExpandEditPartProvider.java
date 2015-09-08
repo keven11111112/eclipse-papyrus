@@ -17,11 +17,8 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -33,8 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.commands.Activator;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
@@ -51,8 +47,8 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 	 * 
 	 */
 	private static final String DEBUG_PREFIX = "[EXPANSION_DIAGRAM]";
-	private static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
-			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
+	//	private static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
+	//			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
 	/** Map containing node view types supported by this provider */
 	protected Map<String, Class<?>> nodeMap = new HashMap<String, Class<?>>();
 
@@ -102,9 +98,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 				}
 
 				String graphicalType = newView.getType();
-				if(DEBUG_EXPANSION){
-					Activator.log.debug(DEBUG_PREFIX+this.getClass().getName()+" view appears with the type "+graphicalType);
-				}
+				Activator.log.trace(Activator.EXPANSION_TRACE,""+this.getClass().getName()+" view appears with the type "+graphicalType);
 
 				if(diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType)!=null){
 					return true;
@@ -130,9 +124,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 
 
 		String graphicalType = view.getType();
-		if(DEBUG_EXPANSION){
-			Activator.log.debug(DEBUG_PREFIX+this.getClass().getName()+" view appears with the type "+graphicalType);
-		}
+		Activator.log.trace(Activator.EXPANSION_TRACE,""+ this.getClass().getName()+" view appears with the type "+graphicalType);
 		EObject eObject= diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType);
 		Class editpartClass=null;
 		String editpartQualifiedName=null;
@@ -155,7 +147,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 		if( graphicEditPart==null){
 			String errorMessage= "The model expand does not reference an edit part for the element "+graphicalType;
 			if( editpartQualifiedName!=null){
-				 errorMessage= "The editpart provide does not succed to find "+editpartQualifiedName+" class for the element "+graphicalType;
+				errorMessage= "The editpart provide does not succed to find "+editpartQualifiedName+" class for the element "+graphicalType;
 			}
 			org.eclipse.papyrus.infra.gmfdiag.common.Activator.log.error(errorMessage, new NullPointerException(errorMessage));
 		}

@@ -237,7 +237,7 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 		// add the resize ability to the window
 		setShellStyle(SWT.RESIZE | super.getShellStyle());
 
-		// set the text for labels ubove elements lists
+		// set the text for labels above elements lists
 		if (possibleText != null) {
 			this.possibleText = possibleText; // set possible Text
 		}
@@ -301,7 +301,6 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 
 		// set fonts for elements that require fonts
 		setFonts();
-
 
 		// set table viewers
 		setTableViewers();
@@ -473,8 +472,8 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 		ContentProposalAdapter adapter = new ContentProposalAdapter(possibleElementsText, new TextContentAdapter(), getContentProposalProvider(), keyStroke, autoActivationCharacters);
 		adapter.setAutoActivationDelay(autoActivationDelay);
 
-		// filter proposals as keys are pressed and proposals popup is present
-		adapter.setFilterStyle(ContentProposalAdapter.FILTER_CUMULATIVE);
+		// Filtering is already in proposal provider, don't use additional filtering here
+		adapter.setFilterStyle(ContentProposalAdapter.FILTER_NONE);
 
 		// replace all text
 		adapter.setProposalAcceptanceStyle(ContentProposalAdapter.PROPOSAL_REPLACE);

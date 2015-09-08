@@ -13,16 +13,11 @@ package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eclipse.papyrus.umldi.ActivityEdgeEdge;
-import org.eclipse.papyrus.umldi.RelationshipWithGuardEdge;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 import org.eclipse.papyrus.umldi.UmlDiagramElement;
 import org.eclipse.papyrus.umldi.WeightLabel;
@@ -35,27 +30,18 @@ import org.eclipse.papyrus.umldi.WeightLabel;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.WeightLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.WeightLabelImpl#getRelationshipWithGuardEdge <em>Relationship With Guard Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.WeightLabelImpl#getActivityEdgeEdge <em>Activity Edge Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.WeightLabelImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.WeightLabelImpl#getActivityEdgeEdge <em>Activity Edge Edge</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
-	/**
-	 * The cached value of the '{@link #getRelationshipWithGuardEdge() <em>Relationship With Guard Edge</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelationshipWithGuardEdge()
-	 * @generated
-	 * @ordered
-	 */
-	protected RelationshipWithGuardEdge relationshipWithGuardEdge;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WeightLabelImpl() {
@@ -65,6 +51,7 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +62,7 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,15 +74,13 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		if (eIsSet(UMLDIPackage.WEIGHT_LABEL__RELATIONSHIP_WITH_GUARD_EDGE)) {
-			return basicGetRelationshipWithGuardEdge();
-		}
-		ActivityEdgeEdge activityEdgeEdge = getActivityEdgeEdge();			
-		if (activityEdgeEdge != null) {
+		ActivityEdgeEdge activityEdgeEdge = getActivityEdgeEdge();
+		if(activityEdgeEdge != null) {
 			return activityEdgeEdge;
 		}
 		return super.basicGetOwningUmlDiagramElement();
@@ -103,54 +89,19 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RelationshipWithGuardEdge getRelationshipWithGuardEdge() {
-		if (relationshipWithGuardEdge != null && relationshipWithGuardEdge.eIsProxy()) {
-			InternalEObject oldRelationshipWithGuardEdge = (InternalEObject)relationshipWithGuardEdge;
-			relationshipWithGuardEdge = (RelationshipWithGuardEdge)eResolveProxy(oldRelationshipWithGuardEdge);
-			if (relationshipWithGuardEdge != oldRelationshipWithGuardEdge) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLDIPackage.WEIGHT_LABEL__RELATIONSHIP_WITH_GUARD_EDGE, oldRelationshipWithGuardEdge, relationshipWithGuardEdge));
-			}
-		}
-		return relationshipWithGuardEdge;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RelationshipWithGuardEdge basicGetRelationshipWithGuardEdge() {
-		return relationshipWithGuardEdge;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRelationshipWithGuardEdge(RelationshipWithGuardEdge newRelationshipWithGuardEdge) {
-		RelationshipWithGuardEdge oldRelationshipWithGuardEdge = relationshipWithGuardEdge;
-		relationshipWithGuardEdge = newRelationshipWithGuardEdge;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.WEIGHT_LABEL__RELATIONSHIP_WITH_GUARD_EDGE, oldRelationshipWithGuardEdge, relationshipWithGuardEdge));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityEdgeEdge getActivityEdgeEdge() {
-		if (eContainerFeatureID() != UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE) return null;
+		if(eContainerFeatureID() != UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE)
+			return null;
 		return (ActivityEdgeEdge)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetActivityEdgeEdge(ActivityEdgeEdge newActivityEdgeEdge, NotificationChain msgs) {
@@ -161,36 +112,38 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setActivityEdgeEdge(ActivityEdgeEdge newActivityEdgeEdge) {
-		if (newActivityEdgeEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE && newActivityEdgeEdge != null)) {
-			if (EcoreUtil.isAncestor(this, newActivityEdgeEdge))
+		if(newActivityEdgeEdge != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE && newActivityEdgeEdge != null)) {
+			if(EcoreUtil.isAncestor(this, newActivityEdgeEdge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newActivityEdgeEdge != null)
+			if(newActivityEdgeEdge != null)
 				msgs = ((InternalEObject)newActivityEdgeEdge).eInverseAdd(this, UMLDIPackage.ACTIVITY_EDGE_EDGE__WEIGHT_LABEL, ActivityEdgeEdge.class, msgs);
 			msgs = basicSetActivityEdgeEdge(newActivityEdgeEdge, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE, newActivityEdgeEdge, newActivityEdgeEdge));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetActivityEdgeEdge((ActivityEdgeEdge)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetActivityEdgeEdge((ActivityEdgeEdge)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -198,13 +151,14 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
-				return basicSetActivityEdgeEdge(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
+			return basicSetActivityEdgeEdge(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -212,13 +166,14 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
-				return eInternalContainer().eInverseRemove(this, UMLDIPackage.ACTIVITY_EDGE_EDGE__WEIGHT_LABEL, ActivityEdgeEdge.class, msgs);
+		switch(eContainerFeatureID()) {
+		case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
+			return eInternalContainer().eInverseRemove(this, UMLDIPackage.ACTIVITY_EDGE_EDGE__WEIGHT_LABEL, ActivityEdgeEdge.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -226,16 +181,14 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.WEIGHT_LABEL__RELATIONSHIP_WITH_GUARD_EDGE:
-				if (resolve) return getRelationshipWithGuardEdge();
-				return basicGetRelationshipWithGuardEdge();
-			case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
-				return getActivityEdgeEdge();
+		switch(featureID) {
+		case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
+			return getActivityEdgeEdge();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,17 +196,15 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.WEIGHT_LABEL__RELATIONSHIP_WITH_GUARD_EDGE:
-				setRelationshipWithGuardEdge((RelationshipWithGuardEdge)newValue);
-				return;
-			case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
-				setActivityEdgeEdge((ActivityEdgeEdge)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
+			setActivityEdgeEdge((ActivityEdgeEdge)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -261,17 +212,15 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.WEIGHT_LABEL__RELATIONSHIP_WITH_GUARD_EDGE:
-				setRelationshipWithGuardEdge((RelationshipWithGuardEdge)null);
-				return;
-			case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
-				setActivityEdgeEdge((ActivityEdgeEdge)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
+			setActivityEdgeEdge((ActivityEdgeEdge)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -279,17 +228,16 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.WEIGHT_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
-				return isSetOwningUmlDiagramElement();
-			case UMLDIPackage.WEIGHT_LABEL__RELATIONSHIP_WITH_GUARD_EDGE:
-				return relationshipWithGuardEdge != null;
-			case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
-				return getActivityEdgeEdge() != null;
+		switch(featureID) {
+		case UMLDIPackage.WEIGHT_LABEL__OWNING_UML_DIAGRAM_ELEMENT:
+			return isSetOwningUmlDiagramElement();
+		case UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE:
+			return getActivityEdgeEdge() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -297,13 +245,11 @@ public class WeightLabelImpl extends UmlLabelImpl implements WeightLabel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.WEIGHT_LABEL__RELATIONSHIP_WITH_GUARD_EDGE)
-			|| eIsSet(UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE);
+		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.WEIGHT_LABEL__ACTIVITY_EDGE_EDGE);
 	}
-
 } //WeightLabelImpl

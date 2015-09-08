@@ -13,12 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
@@ -295,6 +298,23 @@ public class TableHelper {
 			}
 		}
 		return declaration;
+	}
+	
+
+	/**
+	 *
+	 * @see ca.odell.glazedlists.TreeList.Format#getPath(java.util.List, java.lang.Object)
+	 *
+	 * @param path
+	 * @param element
+	 */
+	public static final void getPath(List<ITreeItemAxis> path, ITreeItemAxis element) {
+		path.add(element);
+		ITreeItemAxis parent = element.getParent();
+		while (parent != null) {
+			path.add(0, parent);
+			parent = parent.getParent();
+		}
 	}
 
 }

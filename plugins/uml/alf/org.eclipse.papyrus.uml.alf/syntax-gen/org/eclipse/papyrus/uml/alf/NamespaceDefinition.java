@@ -141,7 +141,7 @@ public interface NamespaceDefinition extends MemberDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false" nameRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.member->select(m | m.definition.actualName() = name)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.member->select(m | m.definition.actualName() = name)->asSet()'"
 	 * @generated
 	 */
 	EList<Member> resolveInScope(String name);
@@ -229,7 +229,7 @@ public interface NamespaceDefinition extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * Returns the members of this namespace definition that are template parameters.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            self.ownedMember.definition->select(oclIsKindOf(ClassifierTemplateParameter)).\n              oclAsType(ClassifierTemplateParameter)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            self.ownedMember.definition->select(oclIsKindOf(ClassifierTemplateParameter)).\n              oclAsType(ClassifierTemplateParameter)->asOrderedSet()'"
 	 * @generated
 	 */
 	EList<ClassifierTemplateParameter> templateParameters();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 465899
  *
  */
 package org.eclipse.papyrus.infra.emf.advice;
@@ -47,6 +48,10 @@ import com.google.common.collect.Sets;
  * Advice that vetoes edits that would modify objects that are read-only and could not reasonably be made writable.
  */
 public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
+	// We don't have visibility of the RequestParameterConstants type in this bundle.
+	// TODO: It would seem the advice is defined in the wrong bundle?
+	private static final String AFFECTS_SOURCE = "papyrus.affectsSource"; //$NON-NLS-1$
+	private static final String AFFECTS_TARGET = "papyrus.affectsTarget"; //$NON-NLS-1$
 
 	public ReadOnlyObjectEditAdvice() {
 		super();
@@ -106,20 +111,59 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 		return super.getBeforeCreateCommand(request);
 	}
 
+	/**
+	 * This must be an after advice because we need the configure-request command for the new
+	 * relationship to have a chance first to set up the request parameters with affected-source
+	 * and -target hints. Also, some editing tools initially guess at the container (which may
+	 * be read-only) of the new relationship before later determining the correct container.
+	 */
 	@Override
-	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
+	protected ICommand getAfterCreateRelationshipCommand(CreateRelationshipRequest request) {
 		EObject container = request.getContainer();
+		EObject source = request.getSource();
+		EObject target = request.getTarget();
 
-		if ((container != null) && isUneditable(request, container)) {
-			return getRefusal();
-		}
+		// Only test once source and target are both known, because until then we can't
+		// complete the relationship anyways so read-only state is moot
+		if ((source != null) && (target != null)) {
+			if ((container != null) && isUneditable(request, container)) {
+				return getRefusal();
+			}
 
-		if (isUneditable(request, request.getSource())) {
-			return getRefusal();
+			if (willSourceBeModified(request) && isUneditable(request, request.getSource())) {
+				return getRefusal();
+			}
+
+			if (willTargetBeModified(request) && isUneditable(request, request.getTarget())) {
+				return getRefusal();
+			}
 		}
-		// Assume that the target (as in most cases) will not have an inverse reference to the new relationship
 
 		return super.getBeforeCreateRelationshipCommand(request);
+	}
+
+	protected boolean willSourceBeModified(CreateRelationshipRequest request) {
+		// Assume that the source (as in many cases) will have an inverse reference to the new relationship
+		boolean result = true;
+
+		Object value = request.getParameter(AFFECTS_SOURCE);
+		if (value instanceof Boolean) {
+			result = (Boolean) value;
+		}
+
+		return result;
+	}
+
+	protected boolean willTargetBeModified(CreateRelationshipRequest request) {
+		// Assume that the target (as in most cases) will not have an inverse reference to the new relationship
+		boolean result = false;
+
+		Object value = request.getParameter(AFFECTS_TARGET);
+		if (value instanceof Boolean) {
+			result = (Boolean) value;
+		}
+
+		return result;
 	}
 
 	@Override

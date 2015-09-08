@@ -27,8 +27,8 @@ import org.eclipse.papyrus.dd.dc.Point;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.LinearGradient#getStart <em>Start</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.LinearGradient#getEnd <em>End</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.LinearGradient#getStart <em>Start</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.LinearGradient#getEnd <em>End</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getLinearGradient()
@@ -54,7 +54,9 @@ public interface LinearGradient extends Gradient {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.LinearGradient#getStart <em>Start</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Start</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Start</em>' containment reference.
 	 * @see #getStart()
 	 * @generated
 	 */
@@ -77,7 +79,9 @@ public interface LinearGradient extends Gradient {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.LinearGradient#getEnd <em>End</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>End</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>End</em>' containment reference.
 	 * @see #getEnd()
 	 * @generated
 	 */

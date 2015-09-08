@@ -35,23 +35,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getIndexStyle <em>
- * Index Style</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayLabel <em>
- * Display Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayFilter
- * <em>Display Filter</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayIndex <em>
- * Display Index</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedLabelConfigurations
- * <em>Owned Label Configurations</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedAxisConfigurations
- * <em>Owned Axis Configurations</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getIndexStyle <em>Index Style</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayFilter <em>Display Filter</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayIndex <em>Display Index</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedLabelConfigurations <em>Owned Label Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedAxisConfigurations <em>Owned Axis Configurations</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -61,7 +53,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The default value of the '{@link #getIndexStyle() <em>Index Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIndexStyle()
 	 * @generated
 	 * @ordered
@@ -72,7 +63,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The cached value of the '{@link #getIndexStyle() <em>Index Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIndexStyle()
 	 * @generated
 	 * @ordered
@@ -83,7 +73,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The default value of the '{@link #isDisplayLabel() <em>Display Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayLabel()
 	 * @generated
 	 * @ordered
@@ -94,7 +83,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The cached value of the '{@link #isDisplayLabel() <em>Display Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayLabel()
 	 * @generated
 	 * @ordered
@@ -105,7 +93,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The default value of the '{@link #isDisplayFilter() <em>Display Filter</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayFilter()
 	 * @generated
 	 * @ordered
@@ -116,7 +103,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The cached value of the '{@link #isDisplayFilter() <em>Display Filter</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayFilter()
 	 * @generated
 	 * @ordered
@@ -127,7 +113,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The default value of the '{@link #isDisplayIndex() <em>Display Index</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayIndex()
 	 * @generated
 	 * @ordered
@@ -138,7 +123,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The cached value of the '{@link #isDisplayIndex() <em>Display Index</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isDisplayIndex()
 	 * @generated
 	 * @ordered
@@ -149,7 +133,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The cached value of the '{@link #getOwnedLabelConfigurations() <em>Owned Label Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getOwnedLabelConfigurations()
 	 * @generated
 	 * @ordered
@@ -160,7 +143,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 * The cached value of the '{@link #getOwnedAxisConfigurations() <em>Owned Axis Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getOwnedAxisConfigurations()
 	 * @generated
 	 * @ordered
@@ -170,7 +152,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected AbstractHeaderAxisConfigurationImpl() {
@@ -180,7 +161,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -191,7 +171,6 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -202,22 +181,19 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setIndexStyle(AxisIndexStyle newIndexStyle) {
 		AxisIndexStyle oldIndexStyle = indexStyle;
 		indexStyle = newIndexStyle == null ? INDEX_STYLE_EDEFAULT : newIndexStyle;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE, oldIndexStyle, indexStyle));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -228,22 +204,19 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setDisplayLabel(boolean newDisplayLabel) {
 		boolean oldDisplayLabel = displayLabel;
 		displayLabel = newDisplayLabel;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL, oldDisplayLabel, displayLabel));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -254,22 +227,19 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setDisplayFilter(boolean newDisplayFilter) {
 		boolean oldDisplayFilter = displayFilter;
 		displayFilter = newDisplayFilter;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER, oldDisplayFilter, displayFilter));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -280,27 +250,24 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setDisplayIndex(boolean newDisplayIndex) {
 		boolean oldDisplayIndex = displayIndex;
 		displayIndex = newDisplayIndex;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX, oldDisplayIndex, displayIndex));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<ILabelProviderConfiguration> getOwnedLabelConfigurations() {
-		if(ownedLabelConfigurations == null) {
+		if (ownedLabelConfigurations == null) {
 			ownedLabelConfigurations = new EObjectContainmentEList<ILabelProviderConfiguration>(ILabelProviderConfiguration.class, this, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS);
 		}
 		return ownedLabelConfigurations;
@@ -309,12 +276,11 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<IAxisConfiguration> getOwnedAxisConfigurations() {
-		if(ownedAxisConfigurations == null) {
+		if (ownedAxisConfigurations == null) {
 			ownedAxisConfigurations = new EObjectContainmentEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS);
 		}
 		return ownedAxisConfigurations;
@@ -323,16 +289,15 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
-			return ((InternalEList<?>)getOwnedLabelConfigurations()).basicRemove(otherEnd, msgs);
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
-			return ((InternalEList<?>)getOwnedAxisConfigurations()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				return ((InternalEList<?>)getOwnedLabelConfigurations()).basicRemove(otherEnd, msgs);
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				return ((InternalEList<?>)getOwnedAxisConfigurations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -340,24 +305,23 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
-			return getIndexStyle();
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
-			return isDisplayLabel();
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
-			return isDisplayFilter();
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
-			return isDisplayIndex();
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
-			return getOwnedLabelConfigurations();
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
-			return getOwnedAxisConfigurations();
+		switch (featureID) {
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
+				return getIndexStyle();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
+				return isDisplayLabel();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
+				return isDisplayFilter();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				return isDisplayIndex();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				return getOwnedLabelConfigurations();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				return getOwnedAxisConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -365,33 +329,32 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
-			setIndexStyle((AxisIndexStyle)newValue);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
-			setDisplayLabel((Boolean)newValue);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
-			setDisplayFilter((Boolean)newValue);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
-			setDisplayIndex((Boolean)newValue);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
-			getOwnedLabelConfigurations().clear();
-			getOwnedLabelConfigurations().addAll((Collection<? extends ILabelProviderConfiguration>)newValue);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
-			getOwnedAxisConfigurations().clear();
-			getOwnedAxisConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
-			return;
+		switch (featureID) {
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
+				setIndexStyle((AxisIndexStyle)newValue);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
+				setDisplayLabel((Boolean)newValue);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
+				setDisplayFilter((Boolean)newValue);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				setDisplayIndex((Boolean)newValue);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				getOwnedLabelConfigurations().clear();
+				getOwnedLabelConfigurations().addAll((Collection<? extends ILabelProviderConfiguration>)newValue);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				getOwnedAxisConfigurations().clear();
+				getOwnedAxisConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -399,30 +362,29 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
-			setIndexStyle(INDEX_STYLE_EDEFAULT);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
-			setDisplayLabel(DISPLAY_LABEL_EDEFAULT);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
-			setDisplayFilter(DISPLAY_FILTER_EDEFAULT);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
-			setDisplayIndex(DISPLAY_INDEX_EDEFAULT);
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
-			getOwnedLabelConfigurations().clear();
-			return;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
-			getOwnedAxisConfigurations().clear();
-			return;
+		switch (featureID) {
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
+				setIndexStyle(INDEX_STYLE_EDEFAULT);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
+				setDisplayLabel(DISPLAY_LABEL_EDEFAULT);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
+				setDisplayFilter(DISPLAY_FILTER_EDEFAULT);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				setDisplayIndex(DISPLAY_INDEX_EDEFAULT);
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				getOwnedLabelConfigurations().clear();
+				return;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				getOwnedAxisConfigurations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -430,24 +392,23 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
-			return indexStyle != INDEX_STYLE_EDEFAULT;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
-			return displayLabel != DISPLAY_LABEL_EDEFAULT;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
-			return displayFilter != DISPLAY_FILTER_EDEFAULT;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
-			return displayIndex != DISPLAY_INDEX_EDEFAULT;
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
-			return ownedLabelConfigurations != null && !ownedLabelConfigurations.isEmpty();
-		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
-			return ownedAxisConfigurations != null && !ownedAxisConfigurations.isEmpty();
+		switch (featureID) {
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
+				return indexStyle != INDEX_STYLE_EDEFAULT;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
+				return displayLabel != DISPLAY_LABEL_EDEFAULT;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
+				return displayFilter != DISPLAY_FILTER_EDEFAULT;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				return displayIndex != DISPLAY_INDEX_EDEFAULT;
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				return ownedLabelConfigurations != null && !ownedLabelConfigurations.isEmpty();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				return ownedAxisConfigurations != null && !ownedAxisConfigurations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -455,14 +416,12 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (indexStyle: "); //$NON-NLS-1$
 		result.append(indexStyle);

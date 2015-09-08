@@ -84,7 +84,18 @@ class TransactionPrecommitExecutor implements Executor, TransactionalEditingDoma
 
 	@Override
 	public void transactionStarted(TransactionalEditingDomainEvent event) {
-		writeActive.set(!event.getTransaction().isReadOnly());
+		// We should only attempt to record triggers in a transaction that has triggers enabled.
+		// In particular, unprotected writes are in an otherwise read-only context and should be
+		// treated as such
+		final Transaction transaction = event.getTransaction();
+		writeActive.set(!transaction.isReadOnly() && hasTriggersEnabled(transaction));
+	}
+
+	private boolean hasTriggersEnabled(Transaction transaction) {
+		final Map<?, ?> options = transaction.getOptions();
+		return !Boolean.TRUE.equals(options.get(Transaction.OPTION_UNPROTECTED))
+				&& !Boolean.TRUE.equals(options.get(Transaction.OPTION_NO_TRIGGERS))
+				&& !Boolean.TRUE.equals(options.get(Transaction.OPTION_IS_UNDO_REDO_TRANSACTION));
 	}
 
 	@Override

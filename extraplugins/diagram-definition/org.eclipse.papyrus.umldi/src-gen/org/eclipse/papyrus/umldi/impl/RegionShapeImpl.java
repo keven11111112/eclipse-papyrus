@@ -41,18 +41,20 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.RegionShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.RegionShapeImpl#getPlacement <em>Placement</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.impl.RegionShapeImpl#getSubvertexCompartment <em>Subvertex Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.RegionShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.RegionShapeImpl#getPlacement <em>Placement</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.impl.RegionShapeImpl#getSubvertexCompartment <em>Subvertex Compartment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
+
 	/**
 	 * The cached value of the '{@link #getPlacement() <em>Placement</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPlacement()
 	 * @generated
 	 * @ordered
@@ -63,6 +65,7 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	 * The cached value of the '{@link #getSubvertexCompartment() <em>Subvertex Compartment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSubvertexCompartment()
 	 * @generated
 	 * @ordered
@@ -72,6 +75,7 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RegionShapeImpl() {
@@ -81,6 +85,7 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,6 +96,7 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,19 +108,21 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.REGION_SHAPE__MAIN_LABEL, UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT};
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.REGION_SHAPE__STEREOTYPE_LABEL, UMLDIPackage.REGION_SHAPE__MAIN_LABEL, UMLDIPackage.REGION_SHAPE__STEREOTYPE_COMPARTMENT, UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT };
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Placement> getPlacement() {
-		if (placement == null) {
+		if(placement == null) {
 			placement = new EDataTypeEList<Placement>(Placement.class, this, UMLDIPackage.REGION_SHAPE__PLACEMENT);
 		}
 		return placement;
@@ -123,6 +131,7 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SubvertexCompartment getSubvertexCompartment() {
@@ -132,14 +141,18 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSubvertexCompartment(SubvertexCompartment newSubvertexCompartment, NotificationChain msgs) {
 		SubvertexCompartment oldSubvertexCompartment = subvertexCompartment;
 		subvertexCompartment = newSubvertexCompartment;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT, oldSubvertexCompartment, newSubvertexCompartment);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -147,34 +160,36 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSubvertexCompartment(SubvertexCompartment newSubvertexCompartment) {
-		if (newSubvertexCompartment != subvertexCompartment) {
+		if(newSubvertexCompartment != subvertexCompartment) {
 			NotificationChain msgs = null;
-			if (subvertexCompartment != null)
+			if(subvertexCompartment != null)
 				msgs = ((InternalEObject)subvertexCompartment).eInverseRemove(this, UMLDIPackage.SUBVERTEX_COMPARTMENT__REGION_SHAPE, SubvertexCompartment.class, msgs);
-			if (newSubvertexCompartment != null)
+			if(newSubvertexCompartment != null)
 				msgs = ((InternalEObject)newSubvertexCompartment).eInverseAdd(this, UMLDIPackage.SUBVERTEX_COMPARTMENT__REGION_SHAPE, SubvertexCompartment.class, msgs);
 			msgs = basicSetSubvertexCompartment(newSubvertexCompartment, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT, newSubvertexCompartment, newSubvertexCompartment));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
-				if (subvertexCompartment != null)
-					msgs = ((InternalEObject)subvertexCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT, null, msgs);
-				return basicSetSubvertexCompartment((SubvertexCompartment)otherEnd, msgs);
+		switch(featureID) {
+		case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
+			if(subvertexCompartment != null)
+				msgs = ((InternalEObject)subvertexCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT, null, msgs);
+			return basicSetSubvertexCompartment((SubvertexCompartment)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -182,13 +197,14 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
-				return basicSetSubvertexCompartment(null, msgs);
+		switch(featureID) {
+		case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
+			return basicSetSubvertexCompartment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -196,15 +212,16 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDIPackage.REGION_SHAPE__PLACEMENT:
-				return getPlacement();
-			case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
-				return getSubvertexCompartment();
+		switch(featureID) {
+		case UMLDIPackage.REGION_SHAPE__PLACEMENT:
+			return getPlacement();
+		case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
+			return getSubvertexCompartment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -212,19 +229,20 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDIPackage.REGION_SHAPE__PLACEMENT:
-				getPlacement().clear();
-				getPlacement().addAll((Collection<? extends Placement>)newValue);
-				return;
-			case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
-				setSubvertexCompartment((SubvertexCompartment)newValue);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.REGION_SHAPE__PLACEMENT:
+			getPlacement().clear();
+			getPlacement().addAll((Collection<? extends Placement>)newValue);
+			return;
+		case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
+			setSubvertexCompartment((SubvertexCompartment)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -232,17 +250,18 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.REGION_SHAPE__PLACEMENT:
-				getPlacement().clear();
-				return;
-			case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
-				setSubvertexCompartment((SubvertexCompartment)null);
-				return;
+		switch(featureID) {
+		case UMLDIPackage.REGION_SHAPE__PLACEMENT:
+			getPlacement().clear();
+			return;
+		case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
+			setSubvertexCompartment((SubvertexCompartment)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -250,17 +269,18 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDIPackage.REGION_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
-				return isSetOwnedUmlDiagramElement();
-			case UMLDIPackage.REGION_SHAPE__PLACEMENT:
-				return placement != null && !placement.isEmpty();
-			case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
-				return subvertexCompartment != null;
+		switch(featureID) {
+		case UMLDIPackage.REGION_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
+			return isSetOwnedUmlDiagramElement();
+		case UMLDIPackage.REGION_SHAPE__PLACEMENT:
+			return placement != null && !placement.isEmpty();
+		case UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT:
+			return subvertexCompartment != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -268,12 +288,13 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
+		if(eIsProxy())
+			return super.toString();
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (placement: ");
 		result.append(placement);
@@ -284,12 +305,11 @@ public class RegionShapeImpl extends ElementShapeImpl implements RegionShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement()
-			|| eIsSet(UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT);
+		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.REGION_SHAPE__SUBVERTEX_COMPARTMENT);
 	}
-
 } //RegionShapeImpl

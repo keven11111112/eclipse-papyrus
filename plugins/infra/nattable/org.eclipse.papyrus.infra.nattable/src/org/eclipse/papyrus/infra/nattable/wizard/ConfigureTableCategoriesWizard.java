@@ -219,6 +219,8 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 
 		private NatTable natTable;
 
+		private LabelProviderContextElementWrapper wrapper;
+		
 		/**
 		 * 
 		 * Constructor.
@@ -228,6 +230,8 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		public ITreeItemWrappedObjectLabelProvider(ILabelProvider wrappedProvider, NatTable natTable) {
 			this.wrappedLabelprovider = wrappedProvider;
 			this.natTable = natTable;
+			wrapper = new LabelProviderContextElementWrapper();
+			wrapper.setConfigRegistry(natTable.getConfigRegistry());
 		}
 
 		/**
@@ -297,7 +301,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 			ITreeItemAxis axis = (ITreeItemAxis) arg0;
 			Object element = axis.getElement();
 			if (element instanceof String) {
-				if (TypeUtils.isIntegerValue((String) element)) {
+				if (TypeUtils.isNaturalValue((String) element)) {
 					Integer value = Integer.parseInt((String) element);
 					int depth = value;
 					if (depth == 0 && axis.getChildren().isEmpty()) {
@@ -307,7 +311,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 					}
 				}
 			}
-			LabelProviderContextElementWrapper wrapper = new LabelProviderContextElementWrapper(axis, natTable.getConfigRegistry());
+			wrapper.setObject(axis);
 			final LabelProviderService serv = this.natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			ILabelProvider p = serv.getLabelProvider(wrapper);
 			p = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
@@ -401,7 +405,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	private String getLabelProviderContextForTreeFillingConfiguration(Table table) {
-		return Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_CONFIGURATION_CONTEXT;
+		return Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_FEATURE_CONFIGURATION_CONTEXT;
 	}
 
 

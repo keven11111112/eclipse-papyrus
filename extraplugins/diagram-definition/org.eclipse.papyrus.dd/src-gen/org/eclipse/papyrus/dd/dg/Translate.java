@@ -22,8 +22,8 @@ package org.eclipse.papyrus.dd.dg;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Translate#getDeltaX <em>Delta X</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Translate#getDeltaY <em>Delta Y</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Translate#getDeltaX <em>Delta X</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Translate#getDeltaY <em>Delta Y</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getTranslate()
@@ -50,7 +50,9 @@ public interface Translate extends Transform {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Translate#getDeltaX <em>Delta X</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Delta X</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Delta X</em>' attribute.
 	 * @see #getDeltaX()
 	 * @generated
 	 */
@@ -74,7 +76,9 @@ public interface Translate extends Transform {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Translate#getDeltaY <em>Delta Y</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Delta Y</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Delta Y</em>' attribute.
 	 * @see #getDeltaY()
 	 * @generated
 	 */

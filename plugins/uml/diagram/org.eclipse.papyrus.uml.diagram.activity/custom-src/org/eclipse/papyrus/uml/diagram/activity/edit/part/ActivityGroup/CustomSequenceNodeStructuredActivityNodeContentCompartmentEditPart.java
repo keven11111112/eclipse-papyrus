@@ -14,9 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.part.ActivityGroup;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ScrollPane;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart;
 
@@ -30,23 +27,6 @@ public class CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart 
 
 	public CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);
-	}
-
-	/**
-	 * remove the top border,hide scrollbar
-	 */
-	@Override
-	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
-		result.setTitleVisibility(false);
-		// remove the top border
-		result.setBorder(null);
-		// Hide scrollBar
-		result.getScrollPane().setEnabled(false);
-		result.getScrollPane().setHorizontalScrollBar(null);
-		result.getScrollPane().setVerticalScrollBar(null);
-		result.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
-		return result;
 	}
 
 	/**

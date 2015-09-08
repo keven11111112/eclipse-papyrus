@@ -39,19 +39,21 @@ public class MessageUtils {
 		CallEvent result = null;
 
 		Package nearestPackage = operation.getNearestPackage();
-		for (Element element : nearestPackage.getOwnedElements()) {
-			if (element instanceof CallEvent) {
-				final CallEvent callEvent = (CallEvent) element;
-				if (callEvent.getOperation().equals(operation)) {
-					result = callEvent;
-					break;
+		if (nearestPackage != null) {
+			for (Element element : nearestPackage.getOwnedElements()) {
+				if (element instanceof CallEvent) {
+					final CallEvent callEvent = (CallEvent) element;
+					if (callEvent.getOperation().equals(operation)) {
+						result = callEvent;
+						break;
+					}
 				}
 			}
 		}
 
 		return result;
 	}
-	
+
 	public static MoveElementsCommand createMoveCallEventCommand(final MoveRequest request, final CallEvent callEvent) {
 		MoveElementsCommand moveElementsCommand = new MoveElementsCommand(request) {
 			/**

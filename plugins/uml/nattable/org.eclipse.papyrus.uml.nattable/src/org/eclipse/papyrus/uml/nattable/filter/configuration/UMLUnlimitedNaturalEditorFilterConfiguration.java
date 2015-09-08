@@ -60,7 +60,9 @@ public class UMLUnlimitedNaturalEditorFilterConfiguration extends AbstractNatura
 				final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), AxisUtils.getPropertyId(string));
 				if (prop != null) {
 					Type type = prop.getType();
-					return PrimitivesTypesUtils.UML_UNLIMITED_NATURAL.equals(type.getName());
+					if (null != type){
+						return PrimitivesTypesUtils.UML_UNLIMITED_NATURAL.equals(type.getName());
+					}
 				}
 			}
 		}
@@ -91,8 +93,20 @@ public class UMLUnlimitedNaturalEditorFilterConfiguration extends AbstractNatura
 
 	/**
 	 * @return the id
+	 * @deprecated since Eclipse Mars
 	 */
+	@Deprecated
 	public static String getId() {
 		return ID;
 	};
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.filter.configuration.TextEditorFilterConfiguration#getConfigurationId()
+	 *
+	 * @return
+	 */
+	@Override
+	public String getConfigurationId() {
+		return ID;
+	}
 }

@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
@@ -60,14 +61,27 @@ public class TransitionEditHelper extends ElementEditHelper {
 		if (false == target instanceof Vertex) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
-		setContainerAndFeature(req, (Vertex) source);
+		Region container = findRegionContainer((Vertex) source);
+		if (container == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		setContainerAndFeature(req, container);
 		return super.getCreateRelationshipCommand(req);
 	}
 
-	private void setContainerAndFeature(CreateRelationshipRequest req, Vertex vertex) {
-		req.setContainer(vertex.getContainer());
+	private void setContainerAndFeature(CreateRelationshipRequest req, Region container) {
+		req.setContainer(container);
 		req.setContainmentFeature(UMLPackage.eINSTANCE.getRegion_Transition());
+	}
+
+	private Region findRegionContainer(Vertex source) {
+		if (source == null || source.eContainer() == null) {
+			return null;
+		}
+		if (source.eContainer() instanceof Vertex) {
+			return findRegionContainer((Vertex) source.eContainer());
+		}
+		return source.eContainer() instanceof Region ? (Region) source.eContainer() : null;
 	}
 
 	/**
@@ -80,10 +94,10 @@ public class TransitionEditHelper extends ElementEditHelper {
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				EObject elementToConfigure = req.getElementToConfigure();
 				if (!(elementToConfigure instanceof Transition)) {
-					return CommandResult.newErrorCommandResult("This configure command should be run against a transition. element to configure was: "+elementToConfigure);
+					return CommandResult.newErrorCommandResult("This configure command should be run against a transition. element to configure was: " + elementToConfigure);
 				}
 				Transition transition = (Transition) elementToConfigure;
-				
+
 				Object source = req.getParameter(CreateRelationshipRequest.SOURCE);
 				Object target = req.getParameter(CreateRelationshipRequest.TARGET);
 				if (source instanceof Vertex) {

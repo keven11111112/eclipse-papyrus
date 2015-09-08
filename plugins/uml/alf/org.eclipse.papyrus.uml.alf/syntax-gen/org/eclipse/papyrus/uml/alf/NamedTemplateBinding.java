@@ -44,7 +44,7 @@ public interface NamedTemplateBinding extends TemplateBinding {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            \'<\' + \n            self.substitution->iterate(substitution : TemplateParameterSubstitution; s : Types::String = \'\' | \n              if s = \'\' then substitution.toString()\n              else s + \',\' + substitution.toString()\n              endif\n            ) + \n            \'>\''"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            \'<\' + \n            self.substitution->iterate(substitution : TemplateParameterSubstitution; s : String = \'\' | \n              if s = \'\' then substitution.toString()\n              else s + \',\' + substitution.toString()\n              endif\n            ) + \n            \'>\''"
 	 * @generated
 	 */
 	String toString();

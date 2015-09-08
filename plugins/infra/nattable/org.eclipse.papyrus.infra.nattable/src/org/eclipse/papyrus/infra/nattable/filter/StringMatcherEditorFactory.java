@@ -38,6 +38,8 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
 import ca.odell.glazedlists.BasicEventList;
@@ -297,10 +299,18 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 		return new TextFilterator<T>() {
 			@Override
 			public void getFilterStrings(List<String> objectAsListOfStrings, T rowObject) {
+				Object representedObject = AxisUtils.getRepresentedElement(rowObject);
+				if(representedObject instanceof TreeFillingConfiguration){
+					return ;
+				}
 				INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 				int index = manager.getRowElementsList().indexOf(rowObject);
 				BodyLayerStack stack = manager.getBodyLayerStack();
 				ILayerCell cell = stack.getBodyDataLayer().getCellByPosition(columnIndex, index);
+				if(cell==null){
+					//we probably have a problem
+					return;
+				}
 				Object value = CellManagerFactory.INSTANCE.getCrossValue(manager.getColumnElement(columnIndex), rowObject, manager);
 				final IDisplayConverter displayConverter = configRegistry.getConfigAttribute(FILTER_DISPLAY_CONVERTER, NORMAL, FILTER_ROW_COLUMN_LABEL_PREFIX + columnIndex);
 				Object res = displayConverter.canonicalToDisplayValue(cell, configRegistry, value);

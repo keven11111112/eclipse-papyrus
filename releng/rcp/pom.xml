@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.eclipse.papyrus</groupId>
+	<artifactId>org.eclipse.papyrus.rcp.releng</artifactId>
+	<version>1.1.2-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>org.eclipse.papyrus.rcp</module>
+		<module>org.eclipse.papyrus.rcp.feature</module>
+		<module>org.eclipse.papyrus.rcp.product</module>
+	</modules>
+	<properties>
+		<tycho-version>0.23.0</tycho-version>
+		<tychoExtrasVersion>0.23.0</tychoExtrasVersion>
+	</properties>
+	<repositories>
+		<repository>
+			<id>emf-emf</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF (Core)",0) -->
+			<url>http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/</url>
+		</repository>
+		<repository>
+			<id>emft-mwe[0]</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMFT MWE",0) -->
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030321/mwe</url>
+		</repository>
+		<repository>
+			<id>emft-mwe[1]</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMFT MWE",1) -->
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030411/mwe2lang/</url>
+		</repository>
+		<repository>
+			<id>emf-transaction</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF TRANSACTION",0) -->
+			<url>http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201506010221</url>
+		</repository>
+		<repository>
+			<id>emf-validation</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF VALIDATION",0) -->
+			<url>http://download.eclipse.org/modeling/emf/validation/updates/releases/R201505312255</url>
+		</repository>
+		<repository>
+			<id>ep</id>
+			<layout>p2</layout>
+			<!-- updateFrom("Eclipse",0) -->
+			<url>http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M1-201508052000/</url>
+		</repository>
+		<repository>
+			<id>gef</id>
+			<layout>p2</layout>
+			<!-- updateFrom("GEF",0) -->
+			<url>http://download.eclipse.org/tools/gef/updates/milestones</url>
+		</repository>
+		<repository>
+			<id>gmp-gmf-notation</id>
+			<layout>p2</layout>
+			<!-- updateFrom("GMF Notation",0) -->
+			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201505312221</url>
+		</repository>
+		<repository>
+			<id>gmp-gmf-runtime</id>
+			<layout>p2</layout>
+			<!-- updateFrom("GMF Runtime",0) -->
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201506060219</url>
+		</repository>
+		<repository>
+			<id>gmf-tooling</id>
+			<layout>p2</layout>
+			<!-- updateFrom("GMF Tooling",0) -->
+			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/S201506090500</url>
+		</repository>
+		<repository>
+			<id>m2t-xpand</id>
+			<layout>p2</layout>
+			<!-- updateFrom("M2T XPAND",0) -->
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201508180411/</url>
+		</repository>
+		<repository>
+			<id>mdt-ocl</id>
+			<layout>p2</layout>
+			<!-- updateFrom("MDT OCL 6.0",0) -->
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201508171259</url>
+		</repository>
+		<repository>
+			<id>mdt-uml2</id>
+			<layout>p2</layout>
+			<!-- updateFrom("MDT UML2",0) -->
+			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.1</url>
+		</repository>
+		<repository>
+			<id>mmt-qvto</id>
+			<layout>p2</layout>
+			<!-- updateFrom("QVT Operational",0) -->
+			<url>http://download.eclipse.org/mmt/qvto/updates/releases/3.5.0</url>
+		</repository>
+		<repository>
+			<id>nattable</id>
+			<layout>p2</layout>
+			<!-- manualUpdate -->
+			<url>http://download.eclipse.org/nattable/releases/1.3.0/repository/</url>
+		</repository>
+		<repository>
+			<id>orbit</id>
+			<layout>p2</layout>
+			<!-- manualUpdate -->
+			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20150519210750/repository</url>
+		</repository>
+		<repository>
+			<id>tmf-xtext</id>
+			<layout>p2</layout>
+			<!-- updateFrom("Xtext, Xtend",0) -->
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/</url>
+		</repository>
+		<repository>
+			<id>webtools</id>
+			<layout>p2</layout>
+			<!-- updateFrom("WebTools",0) -->
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M1-20150818010140/repository/</url>
+		</repository>
+		<repository>
+			<id>XWT</id>
+			<layout>p2</layout>
+			<!-- updateFrom("XWT",0) -->
+			<url>http://download.eclipse.org/xwt/release-1.1.0</url>
+		</repository>	
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<!-- enable tycho build extension -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-versions-plugin</artifactId>
+				<version>${tycho-version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+			<!-- enable source bundle generation -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

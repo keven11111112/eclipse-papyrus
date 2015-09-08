@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 LIFL and others.
+ * Copyright (c) 2011, 2015 LIFL, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 468030
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services;
@@ -30,7 +31,7 @@ public class ServiceException extends Exception {
 	 * Constructor.
 	 */
 	public ServiceException() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	/**
@@ -40,7 +41,6 @@ public class ServiceException extends Exception {
 	 */
 	public ServiceException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -50,7 +50,6 @@ public class ServiceException extends Exception {
 	 */
 	public ServiceException(Throwable cause) {
 		super(cause);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -61,7 +60,35 @@ public class ServiceException extends Exception {
 	 */
 	public ServiceException(String message, Throwable cause) {
 		super(message, cause);
-		// TODO Auto-generated constructor stub
 	}
 
+	public ServiceException chain(Throwable next) {
+		return (next == null) ? this : new ServiceMultiException().chain(next);
+	}
+
+	public ServiceException chain(String identifier, Throwable next) {
+		return (next == null) ? this : new ServiceMultiException().chain(identifier, next);
+	}
+
+	public static ServiceException chain(ServiceException serviceException, Throwable next) {
+		if (serviceException != null) {
+			return serviceException.chain(next);
+		} else if (next instanceof ServiceException) {
+			return (ServiceException) next;
+		} else if (next != null) {
+			return new ServiceMultiException().chain(next);
+		} else {
+			return serviceException;
+		}
+	}
+
+	public static ServiceException chain(ServiceException serviceException, String identifier, Throwable next) {
+		if (serviceException != null) {
+			return serviceException.chain(identifier, next);
+		} else if (next != null) {
+			return new ServiceMultiException().chain(identifier, next);
+		} else {
+			return serviceException;
+		}
+	}
 }

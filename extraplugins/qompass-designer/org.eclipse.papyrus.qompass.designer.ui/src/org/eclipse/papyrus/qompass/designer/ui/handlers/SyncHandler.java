@@ -28,6 +28,7 @@ import org.eclipse.papyrus.qompass.designer.core.sync.InterfaceSync;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
@@ -100,7 +101,7 @@ public class SyncHandler extends CmdHandler {
 							CompImplSync.syncRealizations(selectedClass);
 						}
 						catch (TransformationRTException e) {
-							MessageDialog.openWarning(new Shell(), "Problems during synchronization", e.getMessage());
+							MessageDialog.openWarning(Display.getDefault().getActiveShell(), "Problems during synchronization", e.getMessage());
 							return CommandResult.newErrorCommandResult(e.getMessage());
 						}
 
@@ -115,7 +116,7 @@ public class SyncHandler extends CmdHandler {
 					@Override
 					public void run() {
 						if (!CompImplSync.syncViaType(selectedClass, false)) {
-							MessageDialog.openWarning(new Shell(), "Warning: ineffective command",
+							MessageDialog.openWarning(Display.getDefault().getActiveShell(), "Warning: ineffective command",
 									"Synchronization applied on a component type (abstract class) will synchronize all implementations, i.e. non-abstract classes inheriting from it. However, the selected type has no implementations");
 						}
 						// CompImplSync.syncContextOps (selectedClass, true);
@@ -134,7 +135,7 @@ public class SyncHandler extends CmdHandler {
 						return CommandResult.newOKCommandResult();
 					}
 					catch (TransformationRTException e) {
-						Shell shell = new Shell();
+						Shell shell = Display.getDefault().getActiveShell();
 						MessageDialog.openError(shell, "Can not synchronize deployment plan", e.getMessage());
 						return CommandResult.newErrorCommandResult(e.getMessage());
 					}

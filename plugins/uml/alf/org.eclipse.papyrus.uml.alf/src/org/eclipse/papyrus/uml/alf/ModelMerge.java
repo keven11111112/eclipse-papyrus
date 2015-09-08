@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013-2015 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  IJI - Initial implementation
+ *  Ed Seidewitz (IJI, MDS)
+ *  Jeremie Tatibouet (CEA)
  * 
  *****************************************************************************/
 
@@ -16,7 +17,6 @@ package org.eclipse.papyrus.uml.alf;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +63,9 @@ public class ModelMerge {
 			Package targetPackage = (Package) target;
 			updateStereotypes(targetPackage, sourcePackage);
 			setList(targetPackage.getOwnedComments(), sourcePackage.getOwnedComments());
-			targetPackage.setVisibility(sourcePackage.getVisibility());
+			if (sourcePackage.isSetVisibility()) {
+				targetPackage.setVisibility(sourcePackage.getVisibility());
+			}
 			targetPackage.setName(nameOf(sourcePackage));
 			if (notStub(sourcePackage)) {
 				this.updateCollection(targetPackage.getPackagedElements(), sourcePackage.getPackagedElements());
@@ -75,24 +77,21 @@ public class ModelMerge {
 			this.updateClassifier(targetActivity, sourceActivity);
 			this.updateCollection(targetActivity.getOwnedParameters(), sourceActivity.getOwnedParameters());
 			targetActivity.setIsActive(sourceActivity.isActive());
+			BehavioralFeature specification = sourceActivity.getSpecification();
+			// NOTE: Removes the source activity as a method of its former specification.
+			sourceActivity.setSpecification(null);
+			targetActivity.setSpecification(specification);
 			
-			/*
-			 * FIXME: null test avoid the activity to be removed from the method list of an operation. The specification 
-			 * is always null when an activity playing the role of a method is compiled.
-			 * */
-			BehavioralFeature newSpecification = sourceActivity.getSpecification();			
-			if(newSpecification!=null){ 
-				sourceActivity.setSpecification(null);
-				targetActivity.setSpecification(newSpecification);
+			if (notStub(sourceActivity)) {
+				// NOTE: the elements contained in the activity (i.e., nodes and edges) are not preserved between two compilations
+				/*1. Destroy elements*/
+				targetActivity.getNodes().clear();
+				targetActivity.getEdges().clear();
+				/*2. Create them from the mapped specification*/
+				this.updateCollection(targetActivity.getOwnedNodes(), sourceActivity.getOwnedNodes());
+				this.updateCollection(targetActivity.getStructuredNodes(), sourceActivity.getStructuredNodes());
+				this.updateCollection(targetActivity.getEdges(), sourceActivity.getEdges());
 			}
-			
-			// NOTE: the elements contained in the activity (i.e., nodes and edges) are not preserved between two compilations
-			/*1. Destroy elements*/
-			targetActivity.getNodes().clear();
-			targetActivity.getEdges().clear();
-			/*2. Create them from the mapped specification*/
-			this.updateCollection(targetActivity.getOwnedNodes(), sourceActivity.getNodes());
-			this.updateCollection(targetActivity.getEdges(), sourceActivity.getEdges());
 		} else if (source instanceof Class && target instanceof Class) {
 			Class sourceClass = (Class) source;
 			Class targetClass = (Class) target;
@@ -238,17 +237,36 @@ public class ModelMerge {
 		}
 	}
 
+	private void updateComments(List<Comment> targetComments, List<Comment> sourceComments){
+		Comment targetSpecification = getTextualRepresentation(targetComments);
+		Comment sourceSpecification = getTextualRepresentation(sourceComments);
+		if(targetSpecification!=null){
+			if(sourceSpecification==null){
+				targetComments.remove(targetSpecification);
+				setList(targetComments, sourceComments);
+				targetComments.add(targetSpecification);
+			}else{
+				setList(targetComments, sourceComments);
+			}
+		}else{
+			setList(targetComments, sourceComments);
+		}
+	}
+	
 	protected void updateClassifier(Classifier target, Classifier source) {
 		this.addReplacement(source, target);
 		updateStereotypes(target, source);
 		setList(target.getGeneralizations(), source.getGeneralizations());
 		setList(target.getTemplateBindings(), source.getTemplateBindings());
 		target.setName(nameOf(source));
-		target.setVisibility(source.getVisibility());
+		if (source.isSetVisibility()) {
+			target.setVisibility(source.getVisibility());
+		}
 		target.setIsAbstract(source.isAbstract());
 		target.setOwnedTemplateSignature(source.getOwnedTemplateSignature());
 		if (notStub(source)) {
-			setList(target.getOwnedComments(), source.getOwnedComments());
+			//setList(target.getOwnedComments(), source.getOwnedComments());
+			this.updateComments(target.getOwnedComments(), source.getOwnedComments());
 		} else {
 			List<Comment> targetComments = target.getOwnedComments();
 			List<Comment> sourceComments = source.getOwnedComments();
@@ -332,7 +350,7 @@ public class ModelMerge {
 		}
 		return null;
 	}
-	
+	/*
 	protected static Operation findOwnedOperationWithName(String name, Class clazz){
 		Operation operation = null;
 		Iterator<Operation> iteratorOperation = clazz.getOwnedOperations().iterator();
@@ -345,7 +363,7 @@ public class ModelMerge {
 		return null;
 	}
 	
-	/*protected static boolean isCohesive(Operation operation, Behavior ownedBehavior){
+	protected static boolean isCohesive(Operation operation, Behavior ownedBehavior){
 		boolean cohesive = true;
 		int parameterCount = operation.getOwnedParameters().size();
 		if(parameterCount==ownedBehavior.getOwnedParameters().size()){

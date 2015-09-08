@@ -8,11 +8,16 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- * 
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
@@ -27,6 +32,19 @@ public class FloatingLabelEditPart extends PapyrusLabelEditPart implements Named
 
 	/** The Constant DEFAULT_LABEL_DISPLAYED. */
 	private static final boolean DEFAULT_LABEL_DISPLAYED = false;
+
+	/** The isLabelDisplayed Observable */
+	private IObservableValue labelDisplayedObservable;
+
+	/** The namedStyle Listener */
+	private IChangeListener namedStyleListener = new IChangeListener() {
+
+		@Override
+		public void handleChange(ChangeEvent event) {
+			refresh();
+		}
+
+	};
 
 	/**
 	 * Instantiates a new floating label edit part.
@@ -69,6 +87,28 @@ public class FloatingLabelEditPart extends PapyrusLabelEditPart implements Named
 	 */
 	protected boolean getDefaultLabelVisibility() {
 		return DEFAULT_LABEL_DISPLAYED;
+	}
+
+	/**
+	 * Adds listener to handle named Style modifications.
+	 */
+	@Override
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+
+		labelDisplayedObservable = new CustomBooleanStyleObservableValue((View) getModel(), EMFHelper.resolveEditingDomain(getModel()), DISPLAY_FLOATING_LABEL);
+		labelDisplayedObservable.addChangeListener(namedStyleListener);
+
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeNotationalListeners()
+	 *
+	 */
+	@Override
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		labelDisplayedObservable.dispose();
 	}
 
 }

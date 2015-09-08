@@ -153,6 +153,16 @@ public interface UMLRealTimeFactory extends EFactory {
 	Trigger createTrigger();
 
 	/**
+	 * Returns a new object of class '<em>RT Message</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>RT Message</em>'.
+	 * @generated
+	 */
+	RTMessage createRTMessage();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

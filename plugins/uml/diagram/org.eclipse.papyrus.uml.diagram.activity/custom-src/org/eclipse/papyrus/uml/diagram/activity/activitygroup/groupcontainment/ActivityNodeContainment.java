@@ -68,8 +68,6 @@ public class ActivityNodeContainment extends AbstractContainerNodeDescriptor {
 	public List<EReference> getParentReferences() {
 		if (parentReferences == null) {
 			parentReferences = new ArrayList<EReference>();
-			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
-			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__ACTIVITY);
 		}

@@ -18,6 +18,7 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -64,13 +65,31 @@ public class DefaultCreationEditPolicy extends CreationEditPolicy {
 		while (descriptors.hasNext()) {
 
 			CreateViewRequest.ViewDescriptor descriptor = descriptors.next();
-			CreateCommand createCommand = new CreateViewCommand(editingDomain, descriptor, (View) (getHost().getModel()));
+			ICommand createCommand = new CreateViewCommand(editingDomain, descriptor, (View) (getHost().getModel()));
+			ICommand setBoundsCommand = getSetBoundsCommand(request, descriptor);
+			if (setBoundsCommand != null) {
+				// Add SetBounds
+				createCommand = CompositeCommand.compose(createCommand, setBoundsCommand);
+			}
 			cc.compose(createCommand);
 
 		}
 
 		return new ICommandProxy(cc.reduce());
 
+	}
+
+	/**
+	 * Get a SetBoundsCommand to move a new view at current mouse position.
+	 *
+	 * @param request
+	 *            The creation request.
+	 * @param descriptor
+	 *            The descriptor of the new element.
+	 * @return The set bounds command.
+	 */
+	protected ICommand getSetBoundsCommand(CreateViewRequest request, CreateViewRequest.ViewDescriptor descriptor) {
+		return null;
 	}
 
 	/**

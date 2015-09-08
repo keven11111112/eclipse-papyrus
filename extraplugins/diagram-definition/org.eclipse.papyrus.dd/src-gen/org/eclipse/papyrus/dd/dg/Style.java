@@ -29,17 +29,17 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getFill <em>Fill</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getFillOpacity <em>Fill Opacity</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getStroke <em>Stroke</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getStrokeWidth <em>Stroke Width</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getStrokeOpacity <em>Stroke Opacity</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getStrokeDashLengths <em>Stroke Dash Length</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getFontSize <em>Font Size</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getFontName <em>Font Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#isFontItalic <em>Font Italic</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#isFontBold <em>Font Bold</em>}</li>
- *   <li>{@link org.eclipse.papyrus.dd.dg.Style#getFontDecoration <em>Font Decoration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getFill <em>Fill</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getFillOpacity <em>Fill Opacity</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getStroke <em>Stroke</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getStrokeWidth <em>Stroke Width</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getStrokeOpacity <em>Stroke Opacity</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getStrokeDashLengths <em>Stroke Dash Length</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getFontSize <em>Font Size</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getFontName <em>Font Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#isFontItalic <em>Font Italic</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#isFontBold <em>Font Bold</em>}</li>
+ * <li>{@link org.eclipse.papyrus.dd.dg.Style#getFontDecoration <em>Font Decoration</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getStyle()
@@ -68,7 +68,9 @@ public interface Style extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFill <em>Fill</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Fill</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Fill</em>' containment reference.
 	 * @see #isSetFill()
 	 * @see #unsetFill()
 	 * @see #getFill()
@@ -80,6 +82,7 @@ public interface Style extends EObject {
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFill <em>Fill</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isSetFill()
 	 * @see #getFill()
 	 * @see #setFill(Paint)
@@ -123,7 +126,9 @@ public interface Style extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFillOpacity <em>Fill Opacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Fill Opacity</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Fill Opacity</em>' attribute.
 	 * @see #isSetFillOpacity()
 	 * @see #unsetFillOpacity()
 	 * @see #getFillOpacity()
@@ -135,6 +140,7 @@ public interface Style extends EObject {
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFillOpacity <em>Fill Opacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isSetFillOpacity()
 	 * @see #getFillOpacity()
 	 * @see #setFillOpacity(double)
@@ -146,6 +152,7 @@ public interface Style extends EObject {
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFillOpacity <em>Fill Opacity</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Fill Opacity</em>' attribute is set.
 	 * @see #unsetFillOpacity()
 	 * @see #getFillOpacity()
@@ -174,7 +181,9 @@ public interface Style extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStroke <em>Stroke</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Stroke</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Stroke</em>' containment reference.
 	 * @see #isSetStroke()
 	 * @see #unsetStroke()
 	 * @see #getStroke()
@@ -185,6 +194,7 @@ public interface Style extends EObject {
 	/**
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStroke <em>Stroke</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isSetStroke()
 	 * @see #getStroke()
 	 * @see #setStroke(Paint)
@@ -228,7 +238,9 @@ public interface Style extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeWidth <em>Stroke Width</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Stroke Width</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Stroke Width</em>' attribute.
 	 * @see #isSetStrokeWidth()
 	 * @see #unsetStrokeWidth()
 	 * @see #getStrokeWidth()
@@ -240,6 +252,7 @@ public interface Style extends EObject {
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeWidth <em>Stroke Width</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isSetStrokeWidth()
 	 * @see #getStrokeWidth()
 	 * @see #setStrokeWidth(double)
@@ -251,6 +264,7 @@ public interface Style extends EObject {
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeWidth <em>Stroke Width</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Stroke Width</em>' attribute is set.
 	 * @see #unsetStrokeWidth()
 	 * @see #getStrokeWidth()
@@ -281,7 +295,9 @@ public interface Style extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeOpacity <em>Stroke Opacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Stroke Opacity</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Stroke Opacity</em>' attribute.
 	 * @see #isSetStrokeOpacity()
 	 * @see #unsetStrokeOpacity()
 	 * @see #getStrokeOpacity()
@@ -293,6 +309,7 @@ public interface Style extends EObject {
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeOpacity <em>Stroke Opacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isSetStrokeOpacity()
 	 * @see #getStrokeOpacity()
 	 * @see #setStrokeOpacity(double)
@@ -304,6 +321,7 @@ public interface Style extends EObject {
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeOpacity <em>Stroke Opacity</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Stroke Opacity</em>' attribute is set.
 	 * @see #unsetStrokeOpacity()
 	 * @see #getStrokeOpacity()
@@ -336,6 +354,7 @@ public interface Style extends EObject {
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeDashLengths <em>Stroke Dash Length</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isSetStrokeDashLengths()
 	 * @see #getStrokeDashLengths()
 	 * @generated
@@ -343,9 +362,11 @@ public interface Style extends EObject {
 	void unsetStrokeDashLengths();
 
 	/**
-	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeDashLengths <em>Stroke Dash Length</em>}' attribute list is set.
+	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getStrokeDashLengths <em>Stroke Dash Length</em>}' attribute list is
+	 * set.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Stroke Dash Length</em>' attribute list is set.
 	 * @see #unsetStrokeDashLengths()
 	 * @see #getStrokeDashLengths()
@@ -373,7 +394,9 @@ public interface Style extends EObject {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontSize <em>Font Size</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Font Size</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Font Size</em>' attribute.
 	 * @see #isSetFontSize()
 	 * @see #unsetFontSize()
 	 * @see #getFontSize()
@@ -384,6 +407,7 @@ public interface Style extends EObject {
 	/**
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontSize <em>Font Size</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isSetFontSize()
 	 * @see #getFontSize()
 	 * @see #setFontSize(double)
@@ -394,6 +418,7 @@ public interface Style extends EObject {
 	/**
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontSize <em>Font Size</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Font Size</em>' attribute is set.
 	 * @see #unsetFontSize()
 	 * @see #getFontSize()
@@ -422,7 +447,9 @@ public interface Style extends EObject {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontName <em>Font Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Font Name</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Font Name</em>' attribute.
 	 * @see #isSetFontName()
 	 * @see #unsetFontName()
 	 * @see #getFontName()
@@ -433,6 +460,7 @@ public interface Style extends EObject {
 	/**
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontName <em>Font Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isSetFontName()
 	 * @see #getFontName()
 	 * @see #setFontName(String)
@@ -443,6 +471,7 @@ public interface Style extends EObject {
 	/**
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontName <em>Font Name</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Font Name</em>' attribute is set.
 	 * @see #unsetFontName()
 	 * @see #getFontName()
@@ -471,7 +500,9 @@ public interface Style extends EObject {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#isFontItalic <em>Font Italic</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Font Italic</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Font Italic</em>' attribute.
 	 * @see #isSetFontItalic()
 	 * @see #unsetFontItalic()
 	 * @see #isFontItalic()
@@ -482,6 +513,7 @@ public interface Style extends EObject {
 	/**
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#isFontItalic <em>Font Italic</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isSetFontItalic()
 	 * @see #isFontItalic()
 	 * @see #setFontItalic(boolean)
@@ -492,6 +524,7 @@ public interface Style extends EObject {
 	/**
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#isFontItalic <em>Font Italic</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Font Italic</em>' attribute is set.
 	 * @see #unsetFontItalic()
 	 * @see #isFontItalic()
@@ -534,6 +567,7 @@ public interface Style extends EObject {
 	/**
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#isFontBold <em>Font Bold</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isSetFontBold()
 	 * @see #isFontBold()
 	 * @see #setFontBold(boolean)
@@ -544,6 +578,7 @@ public interface Style extends EObject {
 	/**
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#isFontBold <em>Font Bold</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Font Bold</em>' attribute is set.
 	 * @see #unsetFontBold()
 	 * @see #isFontBold()
@@ -574,7 +609,9 @@ public interface Style extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontDecoration <em>Font Decoration</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Font Decoration</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Font Decoration</em>' attribute.
 	 * @see org.eclipse.papyrus.dd.dg.FontDecoration
 	 * @see #isSetFontDecoration()
 	 * @see #unsetFontDecoration()
@@ -587,6 +624,7 @@ public interface Style extends EObject {
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontDecoration <em>Font Decoration</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isSetFontDecoration()
 	 * @see #getFontDecoration()
 	 * @see #setFontDecoration(FontDecoration)
@@ -598,6 +636,7 @@ public interface Style extends EObject {
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Style#getFontDecoration <em>Font Decoration</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Font Decoration</em>' attribute is set.
 	 * @see #unsetFontDecoration()
 	 * @see #getFontDecoration()

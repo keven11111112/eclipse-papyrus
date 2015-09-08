@@ -22,6 +22,7 @@ import org.eclipse.papyrus.umldi.InformationItemShape;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.umldi.InformationItemShape} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InformationItemShapeItemProvider extends ClassifierShapeItemProvider {
@@ -30,6 +31,7 @@ public class InformationItemShapeItemProvider extends ClassifierShapeItemProvide
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InformationItemShapeItemProvider(AdapterFactory adapterFactory) {
@@ -40,13 +42,13 @@ public class InformationItemShapeItemProvider extends ClassifierShapeItemProvide
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
 		}
 		return itemPropertyDescriptors;
 	}
@@ -55,6 +57,7 @@ public class InformationItemShapeItemProvider extends ClassifierShapeItemProvide
 	 * This returns InformationItemShape.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,12 +69,13 @@ public class InformationItemShapeItemProvider extends ClassifierShapeItemProvide
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		InformationItemShape informationItemShape = (InformationItemShape)object;
-		return getString("_UI_InformationItemShape_type") + " " + informationItemShape.isUseClassifierNotation();
+		return getString("_UI_InformationItemShape_type") + " " + informationItemShape.isShowStereotypeAttributes();
 	}
 
 	/**
@@ -79,6 +83,7 @@ public class InformationItemShapeItemProvider extends ClassifierShapeItemProvide
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +97,7 @@ public class InformationItemShapeItemProvider extends ClassifierShapeItemProvide
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

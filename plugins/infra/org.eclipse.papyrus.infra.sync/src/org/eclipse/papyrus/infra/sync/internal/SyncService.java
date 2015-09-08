@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.sync.internal;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
@@ -33,11 +35,15 @@ import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.sync.Activator;
 import org.eclipse.papyrus.infra.sync.EMFDispatch;
 import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
 import org.eclipse.papyrus.infra.sync.EMFListener;
 import org.eclipse.papyrus.infra.sync.SyncRegistry;
+import org.eclipse.papyrus.infra.sync.policy.DefaultSyncPolicy;
+import org.eclipse.papyrus.infra.sync.policy.ISyncPolicy;
+import org.eclipse.papyrus.infra.sync.policy.SyncPolicyDelegate;
 import org.eclipse.papyrus.infra.sync.service.ISyncAction;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.ISyncTrigger;
@@ -45,6 +51,8 @@ import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
 import com.google.common.collect.Maps;
+import com.google.common.util.concurrent.CheckedFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * Default implementation of the synchronization service.
@@ -60,6 +68,12 @@ public class SyncService implements ISyncService {
 	private RootTrigger rootTrigger = new RootTrigger();
 
 	private EMFListener emfListener;
+
+	private SyncPolicyDelegateRegistryImpl policyDelegates;
+
+	private ISyncPolicy policy;
+
+	private Executor executor;
 
 	private final Map<Class<? extends SyncRegistry<?, ?, ?>>, SyncRegistry<?, ?, ?>> syncRegistries = Maps.newHashMap();
 
@@ -79,6 +93,17 @@ public class SyncService implements ISyncService {
 	@Override
 	public void startService() throws ServiceException {
 		editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(services);
+
+		setAsyncExecutor(TransactionHelper.createTransactionExecutor(editingDomain, MoreExecutors.sameThreadExecutor()));
+
+		policy = new SyncServiceOperation<ISyncPolicy>(this) {
+			@Override
+			protected ISyncPolicy doCall() throws Exception {
+				policyDelegates = new SyncPolicyDelegateRegistryImpl(editingDomain);
+				return new DefaultSyncPolicy(policyDelegates);
+			}
+		}.safeCall(ServiceException.class);
+
 		rootTrigger.install(editingDomain);
 	}
 
@@ -87,8 +112,15 @@ public class SyncService implements ISyncService {
 		// No disposal protocol for these
 		syncRegistries.clear();
 
+		policy = null;
+
+		if (policyDelegates != null) {
+			policyDelegates.dispose();
+			policyDelegates = null;
+		}
+
 		if (emfListener != null) {
-			editingDomain.removeResourceSetListener(emfListener);
+			emfListener.dispose();
 			emfListener = null;
 		}
 
@@ -96,6 +128,12 @@ public class SyncService implements ISyncService {
 			rootTrigger.uninstall(editingDomain);
 		}
 		editingDomain = null;
+
+		if (executor instanceof ExecutorService) {
+			// No sense in running any pending operations because the whole editing environment is gone
+			((ExecutorService) executor).shutdownNow();
+		}
+		executor = null;
 	}
 
 	@Override
@@ -264,6 +302,69 @@ public class SyncService implements ISyncService {
 				domain.getCommandStack().execute(command);
 			}
 		}
+	}
+
+	@Override
+	public ISyncPolicy getSyncPolicy() {
+		return policy;
+	}
+
+	@Override
+	public void setSyncPolicy(ISyncPolicy syncPolicy) {
+		this.policy = (syncPolicy == null) ? new NullSyncPolicy() : syncPolicy;
+	}
+
+	/**
+	 * Registers a synchronization policy delegate with me.
+	 * 
+	 * @param policyDelegate
+	 *            the policy delegate to register
+	 * @param featureType
+	 *            the feature type on which to register it
+	 * 
+	 * @return the listener on which the policy delegate must attach dispatchers for reacting to changes in the synchronized feature(s)
+	 */
+	public EMFListener register(SyncPolicyDelegate<?, ?> policyDelegate, Class<?> featureType) {
+		policyDelegates.register(policyDelegate, featureType);
+		return policyDelegates.getEMFListener();
+	}
+
+	/**
+	 * De-registers a former synchronization policy delegate.
+	 * 
+	 * @param policyDelegate
+	 *            the policy delegate to de-register
+	 * @param featureType
+	 *            the feature type from which to de-register it
+	 */
+	public void deregister(SyncPolicyDelegate<?, ?> policyDelegate, Class<?> featureType) {
+		policyDelegates.deregister(policyDelegate, featureType);
+	}
+
+	@Override
+	public synchronized Executor getAsyncExecutor() {
+		return executor;
+	}
+
+	@Override
+	public synchronized void setAsyncExecutor(Executor executor) {
+		if (executor == null) {
+			throw new IllegalArgumentException("null executor");
+		}
+
+		if (executor != this.executor) {
+			if (this.executor instanceof ExecutorService) {
+				((ExecutorService) this.executor).shutdown();
+			}
+			this.executor = executor;
+		}
+	}
+
+	@Override
+	public <V, X extends Exception> CheckedFuture<V, X> runAsync(SyncServiceRunnable<V, X> operation) {
+		CheckedFuture<V, X> result = operation.asFuture(this);
+		getAsyncExecutor().execute((Runnable) result);
+		return result;
 	}
 
 	//

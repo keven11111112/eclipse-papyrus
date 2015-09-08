@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class StateMachineDiagramImpl extends BehaviorDiagramImpl implements StateMachineDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StateMachineDiagramImpl() {
@@ -36,11 +38,11 @@ public class StateMachineDiagramImpl extends BehaviorDiagramImpl implements Stat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.STATE_MACHINE_DIAGRAM;
 	}
-
 } //StateMachineDiagramImpl

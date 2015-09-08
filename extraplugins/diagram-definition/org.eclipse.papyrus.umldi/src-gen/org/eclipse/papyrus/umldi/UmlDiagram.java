@@ -28,7 +28,7 @@ import org.eclipse.papyrus.dd.di.Diagram;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.UmlDiagram#getTopUmlDiagramElement <em>Top Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.UmlDiagram#getTopUmlDiagramElement <em>Top Uml Diagram Element</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlDiagram()
@@ -36,6 +36,7 @@ import org.eclipse.papyrus.dd.di.Diagram;
  * @generated
  */
 public interface UmlDiagram extends UmlDiagramElement, Diagram {
+
 	/**
 	 * Returns the value of the '<em><b>Top Uml Diagram Element</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.umldi.TopUmlDiagramElement}.
@@ -44,20 +45,20 @@ public interface UmlDiagram extends UmlDiagramElement, Diagram {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Top Uml Diagram Element</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Top Uml Diagram Element</em>' containment reference list isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Top Uml Diagram Element</em>' containment reference list.
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlDiagram_TopUmlDiagramElement()
 	 * @see org.eclipse.papyrus.umldi.TopUmlDiagramElement#getUmlDiagram
-	 * @model opposite="umlDiagram" containment="true" ordered="false"
+	 * @model opposite="umlDiagram" containment="true"
 	 * @generated
 	 */
 	EList<TopUmlDiagramElement> getTopUmlDiagramElement();
-
 } // UmlDiagram

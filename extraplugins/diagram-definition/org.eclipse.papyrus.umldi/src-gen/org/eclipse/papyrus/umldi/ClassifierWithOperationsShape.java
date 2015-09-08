@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Classifier With Operations Shape</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.ClassifierWithOperationsShape#getOperationCompartment <em>Operation Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.ClassifierWithOperationsShape#getOperationCompartment <em>Operation Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getClassifierWithOperationsShape()
@@ -29,21 +28,23 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface ClassifierWithOperationsShape extends ClassifierWithAttributesShape {
+
 	/**
 	 * Returns the value of the '<em><b>Operation Compartment</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.OperationCompartment#getClassifierWithOperationsShape <em>Classifier With Operations Shape</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.OperationCompartment#getClassifierWithOperationsShape
+	 * <em>Classifier With Operations Shape</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Operation Compartment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Operation Compartment</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Operation Compartment</em>' containment reference.
 	 * @see #setOperationCompartment(OperationCompartment)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getClassifierWithOperationsShape_OperationCompartment()
@@ -54,13 +55,15 @@ public interface ClassifierWithOperationsShape extends ClassifierWithAttributesS
 	OperationCompartment getOperationCompartment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ClassifierWithOperationsShape#getOperationCompartment <em>Operation Compartment</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.ClassifierWithOperationsShape#getOperationCompartment <em>Operation Compartment</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operation Compartment</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Operation Compartment</em>' containment reference.
 	 * @see #getOperationCompartment()
 	 * @generated
 	 */
 	void setOperationCompartment(OperationCompartment value);
-
 } // ClassifierWithOperationsShape

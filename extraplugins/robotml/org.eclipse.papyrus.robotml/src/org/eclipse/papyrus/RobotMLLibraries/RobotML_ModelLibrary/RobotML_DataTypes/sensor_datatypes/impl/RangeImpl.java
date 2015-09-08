@@ -19,14 +19,14 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getULTRASOUND <em>ULTRASOUND</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getINFRARED <em>INFRARED</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getHeader <em>Header</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getRadiation_type <em>Radiation type</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getField_of_view <em>Field of view</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getMin_range <em>Min range</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getMax_range <em>Max range</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getRange <em>Range</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getULTRASOUND <em>ULTRASOUND</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getINFRARED <em>INFRARED</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getHeader <em>Header</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getRadiation_type <em>Radiation type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getField_of_view <em>Field of view</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getMin_range <em>Min range</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getMax_range <em>Max range</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RangeImpl#getRange <em>Range</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,51 +37,46 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	 * The default value of the '{@link #getULTRASOUND() <em>ULTRASOUND</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getULTRASOUND()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char ULTRASOUND_EDEFAULT = '\u0000';
+	protected static final Object ULTRASOUND_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getULTRASOUND() <em>ULTRASOUND</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getULTRASOUND()
 	 * @generated
 	 * @ordered
 	 */
-	protected char ultrasound = ULTRASOUND_EDEFAULT;
+	protected Object ultrasound = ULTRASOUND_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getINFRARED() <em>INFRARED</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getINFRARED()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char INFRARED_EDEFAULT = '\u0000';
+	protected static final Object INFRARED_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getINFRARED() <em>INFRARED</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getINFRARED()
 	 * @generated
 	 * @ordered
 	 */
-	protected char infrared = INFRARED_EDEFAULT;
+	protected Object infrared = INFRARED_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getHeader() <em>Header</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getHeader()
 	 * @generated
 	 * @ordered
@@ -92,116 +87,105 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	 * The default value of the '{@link #getRadiation_type() <em>Radiation type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getRadiation_type()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char RADIATION_TYPE_EDEFAULT = '\u0000';
+	protected static final Object RADIATION_TYPE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRadiation_type() <em>Radiation type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getRadiation_type()
 	 * @generated
 	 * @ordered
 	 */
-	protected char radiation_type = RADIATION_TYPE_EDEFAULT;
+	protected Object radiation_type = RADIATION_TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getField_of_view() <em>Field of view</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getField_of_view()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float FIELD_OF_VIEW_EDEFAULT = 0.0F;
+	protected static final Object FIELD_OF_VIEW_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getField_of_view() <em>Field of view</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getField_of_view()
 	 * @generated
 	 * @ordered
 	 */
-	protected float field_of_view = FIELD_OF_VIEW_EDEFAULT;
+	protected Object field_of_view = FIELD_OF_VIEW_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMin_range() <em>Min range</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getMin_range()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float MIN_RANGE_EDEFAULT = 0.0F;
+	protected static final Object MIN_RANGE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getMin_range() <em>Min range</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getMin_range()
 	 * @generated
 	 * @ordered
 	 */
-	protected float min_range = MIN_RANGE_EDEFAULT;
+	protected Object min_range = MIN_RANGE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMax_range() <em>Max range</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getMax_range()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float MAX_RANGE_EDEFAULT = 0.0F;
+	protected static final Object MAX_RANGE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getMax_range() <em>Max range</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getMax_range()
 	 * @generated
 	 * @ordered
 	 */
-	protected float max_range = MAX_RANGE_EDEFAULT;
+	protected Object max_range = MAX_RANGE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRange() <em>Range</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getRange()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float RANGE_EDEFAULT = 0.0F;
+	protected static final Object RANGE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getRange() <em>Range</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getRange()
 	 * @generated
 	 * @ordered
 	 */
-	protected float range = RANGE_EDEFAULT;
+	protected Object range = RANGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected RangeImpl() {
@@ -211,7 +195,6 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -222,55 +205,48 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public char getULTRASOUND() {
+	public Object getULTRASOUND() {
 		return ultrasound;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setULTRASOUND(char newULTRASOUND) {
-		char oldULTRASOUND = ultrasound;
+	public void setULTRASOUND(Object newULTRASOUND) {
+		Object oldULTRASOUND = ultrasound;
 		ultrasound = newULTRASOUND;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__ULTRASOUND, oldULTRASOUND, ultrasound));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public char getINFRARED() {
+	public Object getINFRARED() {
 		return infrared;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setINFRARED(char newINFRARED) {
-		char oldINFRARED = infrared;
+	public void setINFRARED(Object newINFRARED) {
+		Object oldINFRARED = infrared;
 		infrared = newINFRARED;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__INFRARED, oldINFRARED, infrared));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Header getHeader() {
@@ -280,7 +256,6 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetHeader(Header newHeader, NotificationChain msgs) {
@@ -288,11 +263,7 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 		header = newHeader;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__HEADER, oldHeader, newHeader);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -300,159 +271,137 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setHeader(Header newHeader) {
 		if (newHeader != header) {
 			NotificationChain msgs = null;
-			if (header != null) {
-				msgs = ((InternalEObject) header).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Sensor_datatypesPackage.RANGE__HEADER, null, msgs);
-			}
-			if (newHeader != null) {
-				msgs = ((InternalEObject) newHeader).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Sensor_datatypesPackage.RANGE__HEADER, null, msgs);
-			}
+			if (header != null)
+				msgs = ((InternalEObject)header).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Sensor_datatypesPackage.RANGE__HEADER, null, msgs);
+			if (newHeader != null)
+				msgs = ((InternalEObject)newHeader).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Sensor_datatypesPackage.RANGE__HEADER, null, msgs);
 			msgs = basicSetHeader(newHeader, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
+			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) {
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__HEADER, newHeader, newHeader));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public char getRadiation_type() {
+	public Object getRadiation_type() {
 		return radiation_type;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setRadiation_type(char newRadiation_type) {
-		char oldRadiation_type = radiation_type;
+	public void setRadiation_type(Object newRadiation_type) {
+		Object oldRadiation_type = radiation_type;
 		radiation_type = newRadiation_type;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__RADIATION_TYPE, oldRadiation_type, radiation_type));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public float getField_of_view() {
+	public Object getField_of_view() {
 		return field_of_view;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setField_of_view(float newField_of_view) {
-		float oldField_of_view = field_of_view;
+	public void setField_of_view(Object newField_of_view) {
+		Object oldField_of_view = field_of_view;
 		field_of_view = newField_of_view;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW, oldField_of_view, field_of_view));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public float getMin_range() {
+	public Object getMin_range() {
 		return min_range;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setMin_range(float newMin_range) {
-		float oldMin_range = min_range;
+	public void setMin_range(Object newMin_range) {
+		Object oldMin_range = min_range;
 		min_range = newMin_range;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__MIN_RANGE, oldMin_range, min_range));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public float getMax_range() {
+	public Object getMax_range() {
 		return max_range;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setMax_range(float newMax_range) {
-		float oldMax_range = max_range;
+	public void setMax_range(Object newMax_range) {
+		Object oldMax_range = max_range;
 		max_range = newMax_range;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__MAX_RANGE, oldMax_range, max_range));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public float getRange() {
+	public Object getRange() {
 		return range;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setRange(float newRange) {
-		float oldRange = range;
+	public void setRange(Object newRange) {
+		Object oldRange = range;
 		range = newRange;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.RANGE__RANGE, oldRange, range));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.RANGE__HEADER:
-			return basicSetHeader(null, msgs);
+			case Sensor_datatypesPackage.RANGE__HEADER:
+				return basicSetHeader(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -460,28 +409,27 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.RANGE__ULTRASOUND:
-			return getULTRASOUND();
-		case Sensor_datatypesPackage.RANGE__INFRARED:
-			return getINFRARED();
-		case Sensor_datatypesPackage.RANGE__HEADER:
-			return getHeader();
-		case Sensor_datatypesPackage.RANGE__RADIATION_TYPE:
-			return getRadiation_type();
-		case Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW:
-			return getField_of_view();
-		case Sensor_datatypesPackage.RANGE__MIN_RANGE:
-			return getMin_range();
-		case Sensor_datatypesPackage.RANGE__MAX_RANGE:
-			return getMax_range();
-		case Sensor_datatypesPackage.RANGE__RANGE:
-			return getRange();
+			case Sensor_datatypesPackage.RANGE__ULTRASOUND:
+				return getULTRASOUND();
+			case Sensor_datatypesPackage.RANGE__INFRARED:
+				return getINFRARED();
+			case Sensor_datatypesPackage.RANGE__HEADER:
+				return getHeader();
+			case Sensor_datatypesPackage.RANGE__RADIATION_TYPE:
+				return getRadiation_type();
+			case Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW:
+				return getField_of_view();
+			case Sensor_datatypesPackage.RANGE__MIN_RANGE:
+				return getMin_range();
+			case Sensor_datatypesPackage.RANGE__MAX_RANGE:
+				return getMax_range();
+			case Sensor_datatypesPackage.RANGE__RANGE:
+				return getRange();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -489,36 +437,35 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.RANGE__ULTRASOUND:
-			setULTRASOUND((Character) newValue);
-			return;
-		case Sensor_datatypesPackage.RANGE__INFRARED:
-			setINFRARED((Character) newValue);
-			return;
-		case Sensor_datatypesPackage.RANGE__HEADER:
-			setHeader((Header) newValue);
-			return;
-		case Sensor_datatypesPackage.RANGE__RADIATION_TYPE:
-			setRadiation_type((Character) newValue);
-			return;
-		case Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW:
-			setField_of_view((Float) newValue);
-			return;
-		case Sensor_datatypesPackage.RANGE__MIN_RANGE:
-			setMin_range((Float) newValue);
-			return;
-		case Sensor_datatypesPackage.RANGE__MAX_RANGE:
-			setMax_range((Float) newValue);
-			return;
-		case Sensor_datatypesPackage.RANGE__RANGE:
-			setRange((Float) newValue);
-			return;
+			case Sensor_datatypesPackage.RANGE__ULTRASOUND:
+				setULTRASOUND((Object)newValue);
+				return;
+			case Sensor_datatypesPackage.RANGE__INFRARED:
+				setINFRARED((Object)newValue);
+				return;
+			case Sensor_datatypesPackage.RANGE__HEADER:
+				setHeader((Header)newValue);
+				return;
+			case Sensor_datatypesPackage.RANGE__RADIATION_TYPE:
+				setRadiation_type((Object)newValue);
+				return;
+			case Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW:
+				setField_of_view((Object)newValue);
+				return;
+			case Sensor_datatypesPackage.RANGE__MIN_RANGE:
+				setMin_range((Object)newValue);
+				return;
+			case Sensor_datatypesPackage.RANGE__MAX_RANGE:
+				setMax_range((Object)newValue);
+				return;
+			case Sensor_datatypesPackage.RANGE__RANGE:
+				setRange((Object)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -526,36 +473,35 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.RANGE__ULTRASOUND:
-			setULTRASOUND(ULTRASOUND_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.RANGE__INFRARED:
-			setINFRARED(INFRARED_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.RANGE__HEADER:
-			setHeader((Header) null);
-			return;
-		case Sensor_datatypesPackage.RANGE__RADIATION_TYPE:
-			setRadiation_type(RADIATION_TYPE_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW:
-			setField_of_view(FIELD_OF_VIEW_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.RANGE__MIN_RANGE:
-			setMin_range(MIN_RANGE_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.RANGE__MAX_RANGE:
-			setMax_range(MAX_RANGE_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.RANGE__RANGE:
-			setRange(RANGE_EDEFAULT);
-			return;
+			case Sensor_datatypesPackage.RANGE__ULTRASOUND:
+				setULTRASOUND(ULTRASOUND_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.RANGE__INFRARED:
+				setINFRARED(INFRARED_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.RANGE__HEADER:
+				setHeader((Header)null);
+				return;
+			case Sensor_datatypesPackage.RANGE__RADIATION_TYPE:
+				setRadiation_type(RADIATION_TYPE_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW:
+				setField_of_view(FIELD_OF_VIEW_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.RANGE__MIN_RANGE:
+				setMin_range(MIN_RANGE_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.RANGE__MAX_RANGE:
+				setMax_range(MAX_RANGE_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.RANGE__RANGE:
+				setRange(RANGE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -563,28 +509,27 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.RANGE__ULTRASOUND:
-			return ultrasound != ULTRASOUND_EDEFAULT;
-		case Sensor_datatypesPackage.RANGE__INFRARED:
-			return infrared != INFRARED_EDEFAULT;
-		case Sensor_datatypesPackage.RANGE__HEADER:
-			return header != null;
-		case Sensor_datatypesPackage.RANGE__RADIATION_TYPE:
-			return radiation_type != RADIATION_TYPE_EDEFAULT;
-		case Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW:
-			return field_of_view != FIELD_OF_VIEW_EDEFAULT;
-		case Sensor_datatypesPackage.RANGE__MIN_RANGE:
-			return min_range != MIN_RANGE_EDEFAULT;
-		case Sensor_datatypesPackage.RANGE__MAX_RANGE:
-			return max_range != MAX_RANGE_EDEFAULT;
-		case Sensor_datatypesPackage.RANGE__RANGE:
-			return range != RANGE_EDEFAULT;
+			case Sensor_datatypesPackage.RANGE__ULTRASOUND:
+				return ULTRASOUND_EDEFAULT == null ? ultrasound != null : !ULTRASOUND_EDEFAULT.equals(ultrasound);
+			case Sensor_datatypesPackage.RANGE__INFRARED:
+				return INFRARED_EDEFAULT == null ? infrared != null : !INFRARED_EDEFAULT.equals(infrared);
+			case Sensor_datatypesPackage.RANGE__HEADER:
+				return header != null;
+			case Sensor_datatypesPackage.RANGE__RADIATION_TYPE:
+				return RADIATION_TYPE_EDEFAULT == null ? radiation_type != null : !RADIATION_TYPE_EDEFAULT.equals(radiation_type);
+			case Sensor_datatypesPackage.RANGE__FIELD_OF_VIEW:
+				return FIELD_OF_VIEW_EDEFAULT == null ? field_of_view != null : !FIELD_OF_VIEW_EDEFAULT.equals(field_of_view);
+			case Sensor_datatypesPackage.RANGE__MIN_RANGE:
+				return MIN_RANGE_EDEFAULT == null ? min_range != null : !MIN_RANGE_EDEFAULT.equals(min_range);
+			case Sensor_datatypesPackage.RANGE__MAX_RANGE:
+				return MAX_RANGE_EDEFAULT == null ? max_range != null : !MAX_RANGE_EDEFAULT.equals(max_range);
+			case Sensor_datatypesPackage.RANGE__RANGE:
+				return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT.equals(range);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -592,14 +537,11 @@ public class RangeImpl extends MinimalEObjectImpl.Container implements Range {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ULTRASOUND: ");

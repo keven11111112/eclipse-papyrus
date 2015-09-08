@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class CommunicationPathEdgeImpl extends AssociationEdgeImpl implements CommunicationPathEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CommunicationPathEdgeImpl() {
@@ -36,11 +38,11 @@ public class CommunicationPathEdgeImpl extends AssociationEdgeImpl implements Co
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.COMMUNICATION_PATH_EDGE;
 	}
-
 } //CommunicationPathEdgeImpl

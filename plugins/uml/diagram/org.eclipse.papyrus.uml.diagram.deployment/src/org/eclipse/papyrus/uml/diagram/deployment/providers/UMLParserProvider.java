@@ -34,6 +34,8 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactNameEditPar
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentBodyEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommunicationPathNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintSpecificationEditPart;
@@ -704,6 +706,40 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
+	* @generated
+	*/
+	private IParser communicationPathName_6001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommunicationPathName_6001Parser() {
+		if (communicationPathName_6001Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			communicationPathName_6001Parser = parser;
+		}
+		return communicationPathName_6001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser communicationPathName_6002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommunicationPathName_6002Parser() {
+		if (communicationPathName_6002Parser == null) {
+			communicationPathName_6002Parser = new AppliedStereotypeParser();
+		}
+		return communicationPathName_6002Parser;
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IParser getParser(int visualID) {
@@ -809,6 +845,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDependencyName_15Parser();
 
 
+		case CommunicationPathNameEditPart.VISUAL_ID:
+			return getCommunicationPathName_6001Parser();
+		case CommunicationPathAppliedStereotypeEditPart.VISUAL_ID:
+			return getCommunicationPathName_6002Parser();
+
 		}
 		return null;
 	}
@@ -831,8 +872,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if (vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view =
-				(View) hint.getAdapter(View.class);
+		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}
@@ -845,8 +885,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	@Override
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
-			IAdaptable hint =
-					((GetParserOperation) operation).getHint();
+			IAdaptable hint = ((GetParserOperation) operation).getHint();
 			if (UMLElementTypes.getElement(hint) == null) {
 				return false;
 			}

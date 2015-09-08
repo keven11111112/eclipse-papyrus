@@ -36,6 +36,7 @@ import org.eclipse.nebula.widgets.nattable.selection.event.ISelectionEvent;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
+import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.ui.services.IDisposable;
 
 /**
@@ -44,7 +45,7 @@ import org.eclipse.ui.services.IDisposable;
  * ModelExplorer
  *
  */
-public class TableSelectionProvider implements ISelectionProvider, IDisposable {
+public class TableSelectionProvider implements ISelectionProvider, IDisposable, ILayerListener {
 
 	/**
 	 * the selection layer used in the table
@@ -72,6 +73,11 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 	private INattableModelManager manager;
 
 	/**
+	 * boolean indicating than the class is disposed
+	 */
+	private boolean isDisposed = false;
+
+	/**
 	 *
 	 * Constructor.
 	 *
@@ -81,15 +87,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 	 */
 	public TableSelectionProvider(final INattableModelManager manager, final SelectionLayer selectionLayer) {
 		this.selectionLayer = selectionLayer;
-		this.selectionListener = new ILayerListener() {
-
-			@Override
-			public void handleLayerEvent(final ILayerEvent event) {
-				if (event instanceof ISelectionEvent) {
-					calculateAndStoreNewSelection(event);
-				}
-			}
-		};
+		this.selectionListener = this;
 		this.selectionLayer.addLayerListener(this.selectionListener);
 		this.currentSelection = new StructuredSelection();
 		this.listeners = new ArrayList<ISelectionChangedListener>();
@@ -166,7 +164,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 			// 2- we add in the selection elements represented by fully selected columns
 			// 3- we add in the selection the contents of selected cell which are not included in the fully selected axis
 
-			final Collection<PositionCoordinate> selectedCells = Arrays.asList(this.selectionLayer.getSelectedCellPositions());
+			final Collection<PositionCoordinate> selectedCells =ListHelper.asList(this.selectionLayer.getSelectedCellPositions());
 			final Map<Integer, Object> fullySelectedRows = new HashMap<Integer, Object>();
 			final Map<Integer, Object> fullySelectedColumns = new HashMap<Integer, Object>();
 
@@ -174,20 +172,22 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 
 			final List<Integer> selectedRowsIndexes = new ArrayList<Integer>();
 			for (int i : this.selectionLayer.getFullySelectedRowPositions()) {
-				selectedRowsIndexes.add(new Integer(i));
-				Object el = this.manager.getRowElement(i);
+				int rowIndex = this.selectionLayer.getRowIndexByPosition(i);
+				selectedRowsIndexes.add(new Integer(rowIndex));
+				Object el = this.manager.getRowElement(rowIndex);
 				if (el != null) {
-					fullySelectedRows.put(Integer.valueOf(i), el);
+					fullySelectedRows.put(Integer.valueOf(rowIndex), el);
 					el = AxisUtils.getRepresentedElement(el);
 					selection.add(el);
 				}
 			}
 			final List<Integer> selectedColumnsIndexes = new ArrayList<Integer>();
 			for (int i : this.selectionLayer.getFullySelectedColumnPositions()) {
-				selectedColumnsIndexes.add(new Integer(i));
-				Object el = this.manager.getColumnElement(i);
+				int columnIndex = this.selectionLayer.getColumnIndexByPosition(i);
+				selectedColumnsIndexes.add(new Integer(columnIndex));
+				Object el = this.manager.getColumnElement(columnIndex);
 				if (el != null) {
-					fullySelectedColumns.put(Integer.valueOf(i), el);
+					fullySelectedColumns.put(Integer.valueOf(columnIndex), el);
 					el = AxisUtils.getRepresentedElement(el);
 					selection.add(el);
 				}
@@ -196,7 +196,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 			for (final PositionCoordinate cellLocation : selectedCells) {
 				final int colPos = cellLocation.getColumnPosition();
 				final int rowPos = cellLocation.getRowPosition();
-				if (!selectedColumnsIndexes.contains(new Integer(colPos)) && !selectedRowsIndexes.contains(new Integer(rowPos))) {
+				if (!selectedColumnsIndexes.contains(new Integer(this.selectionLayer.getColumnIndexByPosition(colPos))) && !selectedRowsIndexes.contains(new Integer(this.selectionLayer.getRowIndexByPosition(rowPos)))) {
 					final ILayerCell cell = this.selectionLayer.getCellByPosition(colPos, rowPos);
 					if (cell != null) {
 						final Object value = cell.getDataValue();
@@ -223,6 +223,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 	}
 
 
+
 	/**
 	 *
 	 * @see org.eclipse.ui.services.IDisposable#dispose()
@@ -230,7 +231,28 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 	 */
 	@Override
 	public void dispose() {
-		this.selectionLayer.removeLayerListener(this.selectionListener);
-		this.selectionLayer = null;
+		this.isDisposed = true;
+		this.manager = null;
+		//to be sure, to fix the bug 469376: [Table] Memory Leak : (Tree)NattableWidgetManager, EObjectTreeItemAxis and others objects are not disposed when the table is closed
+//		https://bugs.eclipse.org/bugs/show_bug.cgi?id=469376
+		setSelection(StructuredSelection.EMPTY);
+		
+		if (this.selectionLayer != null) {
+			this.selectionLayer.removeLayerListener(this.selectionListener);
+			this.selectionLayer = null;
+		}
+		this.listeners.clear();
+	}
+
+	/**
+	 * @see org.eclipse.nebula.widgets.nattable.layer.ILayerListener#handleLayerEvent(org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent)
+	 *
+	 * @param event
+	 */
+	@Override
+	public void handleLayerEvent(ILayerEvent event) {
+		if (!isDisposed && event instanceof ISelectionEvent) {
+			calculateAndStoreNewSelection(event);
+		}
 	}
 }

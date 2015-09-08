@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.command;
@@ -17,12 +18,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
@@ -37,18 +43,25 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.uml.developper.mde.I_DeveloperIDMStereotype;
 import org.eclipse.papyrus.uml.developper.mde.I_DocumentStereotype;
+import org.eclipse.papyrus.uml.developper.mde.LinkUtil;
 import org.eclipse.papyrus.uml.developper.mde.handler.IDMAbstractHandler;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -57,6 +70,17 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UseCase;
+import org.eclipse.uml2.uml.profile.standard.Trace;
+import org.eclipse.uml2.uml.util.UMLUtil;
+
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
+import com.google.common.base.Strings;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 
 /**
  * this command transform a model to document model
@@ -78,6 +102,11 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 	protected int nbUnverifiedRequirement = 0;
 	protected int nbRequirement = 0;
 
+	private AdapterFactory adapterFactory;
+
+	private LinkUtil linkUtil;
+
+	private BiMap<Diagram, String> diagramFileNames = HashBiMap.create();
 
 	/**
 	 *
@@ -97,6 +126,14 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 
 		hyperLinkHelpers.addAll(HyperLinkHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkHelper());
 		hyperlinkHelperFactory = new HyperLinkHelperFactory(hyperLinkHelpers);
+
+		adapterFactory = ((AdapterFactoryEditingDomain) domain).getAdapterFactory();
+		linkUtil = new LinkUtil(new Function<NamedElement, String>() {
+			@Override
+			public String apply(NamedElement input) {
+				return title(input);
+			}
+		});
 	}
 
 	@Override
@@ -151,7 +188,7 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 
 		// Get the requirements model package from the model
 		Model requirementsModel = getStereotypedPackage(I_DeveloperIDMStereotype.REQUIREMENTS_STEREOTYPE);
-		//  For each requirements, creates a line in the table
+		// For each requirements, creates a line in the table
 		if (requirementsModel != null) {
 			Package requirementsCoverageOUT = createSection(documentModel, "Requirements Coverage");
 			generateTableCoverage(requirementsModel, requirementsCoverageOUT);
@@ -159,6 +196,8 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 
 		// Generate content of the Table of Contents package
 		generateTableOfContents(documentModel);
+
+		diagramFileNames.clear();
 	}
 
 
@@ -177,8 +216,8 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 				Package toc = (Package) documentModel.getPackagedElement("Table of Contents");
 				Stereotype tableOfContentStereotype = toc.getAppliedStereotype(I_DocumentStereotype.TABLEOFCONTENT_STEREOTYPE);
 				if (!(section.isStereotypeApplied(tableOfContentStereotype))) {
-					Package chapter = createSection(toc, ((Package)section).getName());
-					IDMAbstractHandler.Toc2DocElt.put(chapter, (Package) section);
+					Package chapter = createSection(toc, ((Package) section).getName());
+					IDMAbstractHandler.putTOCPackage(chapter, (Package) section);
 					setTableOfContents(section, chapter);
 				}
 			}
@@ -200,10 +239,10 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 				Element cddElement = elements.next();
 				Stereotype sectionStereotype = cddElement.getAppliedStereotype(I_DocumentStereotype.SECTION_STEREOTYPE);
 				if (sectionStereotype != null) {
-					Package chapter = createSection(chapterPackage, ((Package)cddElement).getName());
-					IDMAbstractHandler.Toc2DocElt.put(chapter, (Package) cddElement);
+					Package chapter = createSection(chapterPackage, ((Package) cddElement).getName());
+					IDMAbstractHandler.putTOCPackage(chapter, (Package) cddElement);
 					setTableOfContents(cddElement, chapter);
-				} 
+				}
 			}
 		}
 	}
@@ -213,14 +252,14 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		for (Iterator<EObject> itereq = requirementsIn.eAllContents(); itereq.hasNext();) {
 			EObject packageableElement = itereq.next();
 			if (packageableElement instanceof PackageImport) {
-				PackageImport importedPackage = (PackageImport)packageableElement;
+				PackageImport importedPackage = (PackageImport) packageableElement;
 				if (importedPackage.getAppliedStereotype(I_DeveloperIDMStereotype.REQUIREMENTS_STEREOTYPE) != null) {
 					Model importedRequirementPackageIn = (Model) importedPackage.getImportedPackage();
 					generateRequirements(importedRequirementPackageIn, requirementsOUT);
 				}
-			} else if (packageableElement instanceof Element){
+			} else if (packageableElement instanceof Element) {
 				Element currentReq = (Element) packageableElement;
-				Stereotype reqStereotype = currentReq.getApplicableStereotype(SYS_ML_REQUIREMENTS_REQUIREMENT);
+				Stereotype reqStereotype = currentReq.getAppliedStereotype(SYS_ML_REQUIREMENTS_REQUIREMENT);
 				if (reqStereotype != null) {
 					String out = "- " + ((org.eclipse.uml2.uml.Class) currentReq).getName() + " (id=" + currentReq.getValue(reqStereotype, "id") + "): "; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 					out = out + "\n " + currentReq.getValue(reqStereotype, "text"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -229,7 +268,7 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 					Stereotype contentStereotype = comment.getApplicableStereotype(I_DocumentStereotype.CONTENT_STEREOTYPE);
 					comment.applyStereotype(contentStereotype);
 					comment.setBody(out);
-					IDMAbstractHandler.elt2DocElt.put(currentReq, comment);
+					IDMAbstractHandler.putDocElement(currentReq, comment);
 				}
 			}
 		}
@@ -248,17 +287,15 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		}
 
 		for (PackageableElement packageableElement : useCaseIN.getPackagedElements()) {
-			if( (packageableElement instanceof Classifier) &&(!(packageableElement instanceof Actor)) &&(!(packageableElement instanceof Association) )){
+			if ((packageableElement instanceof Classifier) && (!(packageableElement instanceof Actor)) && (!(packageableElement instanceof Association))) {
 				Classifier subjectIn = (Classifier) packageableElement;
 				Package subSectionOUT = createSection(useCaseModelOUT, subjectIn.getName());
 				generateUseCaseFromSubject(copyImageUtil, subjectIn, subSectionOUT);
 			}
 		}
-
-
 	}
 
-	protected void generateUseCaseFromSubject(CopyToImageUtil copyImageUtil, Classifier subjectIN, Package useCaseModelOUT){
+	protected void generateUseCaseFromSubject(CopyToImageUtil copyImageUtil, Classifier subjectIN, Package useCaseModelOUT) {
 		// createRef diagram
 		if (containedDiagrams(subjectIN).size() > 0) {
 			Diagram currentDiagram = containedDiagrams(subjectIN).get(0);
@@ -273,14 +310,16 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		for (Iterator<EObject> iterator = subjectIN.eAllContents(); iterator.hasNext();) {
 			EObject packageableElement = iterator.next();
 			if (packageableElement instanceof UseCase) {
-				Package useCaseSectionOUT = createSection(useCaseModelOUT, ((UseCase) packageableElement).getName());
+				UseCase useCase = (UseCase) packageableElement;
+				Package useCaseSectionOUT = createSection(useCaseModelOUT, useCase.getName());
+				generateTraceability(useCaseSectionOUT, useCase);
 
-				for (Iterator<Comment> iteComment = ((UseCase) packageableElement).getOwnedComments().iterator(); iteComment.hasNext();) {
+				for (Iterator<Comment> iteComment = useCase.getOwnedComments().iterator(); iteComment.hasNext();) {
 					Comment currentComment = iteComment.next();
 					transformToContentWithUser(copyImageUtil, useCaseSectionOUT, currentComment);
 				}
 			} else if (packageableElement instanceof PackageImport) {
-				PackageImport importedPackage = (PackageImport)packageableElement;
+				PackageImport importedPackage = (PackageImport) packageableElement;
 				if (importedPackage.getAppliedStereotype(I_DeveloperIDMStereotype.USECASES_STEREOTYPE) != null) {
 					Model importedUseCasesPackageIn = (Model) importedPackage.getImportedPackage();
 					generateUseCases(copyImageUtil, importedUseCasesPackageIn, useCaseModelOUT);
@@ -299,8 +338,7 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 			}
 			transformToContentComment(HowToSection, currentComment);
 			createImageFromHyperLink(copyImageUtil, HowToSection, currentComment);
-		}
-		else {
+		} else {
 			transformToContentComment(useCaseSectionOUT, currentComment);
 			createImageFromHyperLink(copyImageUtil, useCaseSectionOUT, currentComment);
 		}
@@ -308,12 +346,12 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 
 	protected void generateDesign(CopyToImageUtil copyImageUtil, Package designPackageIn, Package designPackageOUT) {
 
-		if(designPackageIn.getPackageImports().size()>0){
+		if (designPackageIn.getPackageImports().size() > 0) {
 			for (PackageImport packageImport : designPackageIn.getPackageImports()) {
 				if (packageImport.getAppliedStereotype(I_DeveloperIDMStereotype.DESIGN_STEREOTYPE) != null) {
-					Package importedDesignPackageIn = (Package) packageImport.getImportedPackage();
+					Package importedDesignPackageIn = packageImport.getImportedPackage();
 					Package subSectionOUT = createSection(designPackageOUT, importedDesignPackageIn.getName());
-					IDMAbstractHandler.elt2DocElt.put((Element) importedDesignPackageIn, subSectionOUT);
+					IDMAbstractHandler.putDocElement(importedDesignPackageIn, subSectionOUT);
 					generateDesign(copyImageUtil, importedDesignPackageIn, subSectionOUT);
 				}
 			}
@@ -332,27 +370,183 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 
 		for (Iterator<PackageableElement> iterator = designPackageIn.getPackagedElements().iterator(); iterator.hasNext();) {
 			EObject packageableElement = iterator.next();
-			if (packageableElement instanceof Class) {
-				Package designSectionOUT = createSection(designPackageOUT, ((Class)packageableElement).getName());
-				IDMAbstractHandler.elt2DocElt.put((Element) packageableElement, designSectionOUT);
-				for (Iterator<Comment> iteComment = ((Class) packageableElement).getOwnedComments().iterator(); iteComment.hasNext();) {
+			if ((packageableElement instanceof Class) || (packageableElement instanceof Interface) || (packageableElement instanceof DataType)) {
+				final Classifier classifier = (Classifier) packageableElement;
+				Package designSectionOUT = createSection(designPackageOUT, title(classifier));
+				IDMAbstractHandler.putDocElement(classifier, designSectionOUT);
+				generateTaxonomy(designSectionOUT, classifier);
+				generateTraceability(designSectionOUT, classifier);
+				for (Iterator<Comment> iteComment = classifier.getOwnedComments().iterator(); iteComment.hasNext();) {
 					Comment currentComment = iteComment.next();
 					transformToContentWithUser(copyImageUtil, designSectionOUT, currentComment);
 				}
 			}
+
+			if (packageableElement instanceof Collaboration) {
+				generateDesignCollaboration(copyImageUtil, designPackageOUT, (Collaboration) packageableElement);
+			}
+
 			if (packageableElement instanceof Package) {
-				Package designSectionOUT = createSection(designPackageOUT, ((Package)packageableElement).getName());
-				IDMAbstractHandler.elt2DocElt.put((Element) packageableElement, designSectionOUT);
-				generateDesign(copyImageUtil, (Package)packageableElement, designSectionOUT);
+				Package package_ = (Package) packageableElement;
+				Package designSectionOUT = createSection(designPackageOUT, title(package_));
+				generateTraceability(designSectionOUT, package_);
+				IDMAbstractHandler.putDocElement(package_, designSectionOUT);
+				generateDesign(copyImageUtil, package_, designSectionOUT);
 			}
 
 		}
 
 	}
 
+	protected void generateDesignCollaboration(CopyToImageUtil copyImageUtil, Package designPackage, Collaboration collaboration) {
+		Package designSectionOUT = createSection(designPackage, title(collaboration));
+		IDMAbstractHandler.putDocElement(collaboration, designSectionOUT);
+
+		generateTraceability(designSectionOUT, collaboration);
+
+		for (Diagram diagram : containedDiagrams(collaboration)) {
+			generateImg(copyImageUtil, designSectionOUT, diagram);
+		}
+
+		for (Comment comment : collaboration.getOwnedComments()) {
+			transformToContentWithUser(copyImageUtil, designSectionOUT, comment);
+		}
+
+		// Look for interaction diagrams
+
+		for (Behavior behavior : collaboration.getOwnedBehaviors()) {
+			Package behaviorSection = createSection(designSectionOUT, title(behavior));
+			IDMAbstractHandler.putDocElement(behavior, behaviorSection);
+
+			for (Comment comment : behavior.getOwnedComments()) {
+				transformToContentWithUser(copyImageUtil, behaviorSection, comment);
+			}
+			for (Diagram diagram : containedDiagrams(behavior)) {
+				generateImg(copyImageUtil, behaviorSection, diagram);
+			}
+		}
+	}
+
+	protected String title(NamedElement element) {
+		return String.format("%s %s", getMetaclassLabel(element), element.getLabel());
+	}
+
+	protected String getMetaclassLabel(Element element) {
+		String result;
+
+		// If the element has a stereotype, prefer that
+		Stereotype stereotype = Iterables.getFirst(element.getAppliedStereotypes(), null);
+		if (stereotype != null) {
+			result = stereotype.getLabel();
+		} else {
+			EModelElementItemProvider itemProvider = TypeUtils.as(adapterFactory.adapt(element, IItemLabelProvider.class), EModelElementItemProvider.class);
+			if (itemProvider == null) {
+				result = element.eClass().getName();
+			} else {
+				result = itemProvider.getResourceLocator().getString(String.format("_UI_%s_type", element.eClass().getName())); //$NON-NLS-1$
+			}
+		}
+
+		return result;
+	}
+
+	protected void generateTaxonomy(Package designSection, Classifier classifier) {
+		String taxonomy = ""; //$NON-NLS-1$
+
+		if (!classifier.getGenerals().isEmpty()) {
+			taxonomy = taxonomy + "  - specializes " + Joiner.on(", ").join(
+					Iterables.transform(classifier.getGenerals(), linkUtil.getHyperlinkFunction()));
+		}
+
+		if (classifier instanceof BehavioredClassifier) {
+			BehavioredClassifier behaviored = (BehavioredClassifier) classifier;
+			if (!behaviored.getImplementedInterfaces().isEmpty()) {
+				if (!taxonomy.isEmpty()) {
+					taxonomy = taxonomy + "\n\n"; //$NON-NLS-1$
+				}
+
+				taxonomy = taxonomy + "  - realizes " + Joiner.on(", ").join(
+						Iterables.transform(behaviored.getImplementedInterfaces(), linkUtil.getHyperlinkFunction()));
+			}
+		}
+
+		if (!taxonomy.isEmpty()) {
+			Comment comment = designSection.createOwnedComment();
+			Stereotype contentStereotype = comment.getApplicableStereotype(I_DocumentStereotype.CONTENT_STEREOTYPE);
+			comment.applyStereotype(contentStereotype);
+			comment.setBody(taxonomy);
+		}
+	}
+
+	protected void generateTraceability(Package sectionPackage, NamedElement concept) {
+		String traceability = ""; //$NON-NLS-1$
+
+		List<NamedElement> traceTo = getTracesTo(concept);
+		if (!traceTo.isEmpty()) {
+			traceability = traceability + "  - traces to " + Joiner.on(", ").join(
+					Iterables.transform(traceTo, linkUtil.getHyperlinkFunction()));
+		}
+
+		List<NamedElement> traceFrom = getTracesFrom(concept);
+		if (!traceFrom.isEmpty()) {
+			if (!traceability.isEmpty()) {
+				traceability = traceability + "\n\n"; //$NON-NLS-1$
+			}
+
+			traceability = traceability + "  - traces from " + Joiner.on(", ").join(
+					Iterables.transform(traceFrom, linkUtil.getHyperlinkFunction()));
+		}
+
+		if (!traceability.isEmpty()) {
+			Comment comment = sectionPackage.createOwnedComment();
+			Stereotype contentStereotype = comment.getApplicableStereotype(I_DocumentStereotype.CONTENT_STEREOTYPE);
+			comment.applyStereotype(contentStereotype);
+			comment.setBody(traceability);
+		}
+	}
+
+	/**
+	 * Gets the elements that a {@code concept} traces to via {@literal «trace» Abstractions}.
+	 * 
+	 * @param concept
+	 *            a concept in the model
+	 * @return its trace-to elements
+	 */
+	protected List<NamedElement> getTracesTo(NamedElement concept) {
+		ImmutableList.Builder<NamedElement> result = ImmutableList.builder();
+
+		for (DirectedRelationship next : concept.getSourceDirectedRelationships()) {
+			Trace trace = UMLUtil.getStereotypeApplication(next, Trace.class);
+			if (trace != null) {
+				result.addAll(trace.getBase_Abstraction().getSuppliers());
+			}
+		}
+
+		return result.build();
+	}
+
+	/**
+	 * Gets the elements that a {@code concept} traces from via {@literal «trace» Abstractions}.
+	 * 
+	 * @param concept
+	 *            a concept in the model
+	 * @return its trace-from elements
+	 */
+	protected List<NamedElement> getTracesFrom(NamedElement concept) {
+		ImmutableList.Builder<NamedElement> result = ImmutableList.builder();
+
+		for (DirectedRelationship next : concept.getTargetDirectedRelationships()) {
+			Trace trace = UMLUtil.getStereotypeApplication(next, Trace.class);
+			if (trace != null) {
+				result.addAll(trace.getBase_Abstraction().getClients());
+			}
+		}
+
+		return result.build();
+	}
 
 	protected void generateTests(CopyToImageUtil copyImageUtil, Package testIN, Package testModelOUT) {
-		if(testIN.getPackageImports().size()>0){
+		if (testIN.getPackageImports().size() > 0) {
 			for (PackageImport packageImport : testIN.getPackageImports()) {
 				if (packageImport.getAppliedStereotype(I_DeveloperIDMStereotype.EXECUTABLETEST_STEREOTYPE) != null
 						|| packageImport.getAppliedStereotype(SYS_ML_REQUIREMENTS_TESTCASE) != null
@@ -370,31 +564,26 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		}
 		for (Iterator<Comment> iteComment = (testIN).getOwnedComments().iterator(); iteComment.hasNext();) {
 			Comment currentComment = iteComment.next();
-			createImageFromHyperLink(copyImageUtil, testModelOUT, currentComment);
 			transformToContentComment(testModelOUT, currentComment);
+			createImageFromHyperLink(copyImageUtil, testModelOUT, currentComment);
 		}
 
 		for (Iterator<PackageableElement> iterator = testIN.getPackagedElements().iterator(); iterator.hasNext();) {
 			EObject packageableElement = iterator.next();
 
 			if (packageableElement instanceof Package) {
-				Package testCaseSectionOUT = createSection(testModelOUT, ((Package) packageableElement).getName());
-				IDMAbstractHandler.elt2DocElt.put((Element) packageableElement, testCaseSectionOUT);
-				generateTests(copyImageUtil, (Package)packageableElement, testCaseSectionOUT);
-				for (Iterator<Comment> iteComment = ((Package) packageableElement).getOwnedComments().iterator(); iteComment.hasNext();) {
+				Package package_ = (Package) packageableElement;
+				Package testCaseSectionOUT = createSection(testModelOUT, title(package_));
+				IDMAbstractHandler.putDocElement(package_, testCaseSectionOUT);
+				generateTests(copyImageUtil, package_, testCaseSectionOUT);
+			} else if (packageableElement instanceof Classifier && !(packageableElement instanceof Association)) {
+				Classifier classifier = (Classifier) packageableElement;
+				Package testCaseSectionOUT = createSection(testModelOUT, title(classifier));
+				IDMAbstractHandler.putDocElement(classifier, testCaseSectionOUT);
+				for (Iterator<Comment> iteComment = classifier.getOwnedComments().iterator(); iteComment.hasNext();) {
 					Comment currentComment = iteComment.next();
-					createImageFromHyperLink(copyImageUtil, testCaseSectionOUT, currentComment);
 					transformToContentComment(testCaseSectionOUT, currentComment);
-				}
-			}
-			else if	(packageableElement instanceof Behavior ||packageableElement instanceof Classifier) {
-
-				Package testCaseSectionOUT = createSection(testModelOUT, ((NamedElement) packageableElement).getName());
-				IDMAbstractHandler.elt2DocElt.put((Element) packageableElement, testCaseSectionOUT);
-				for (Iterator<Comment> iteComment = ((NamedElement) packageableElement).getOwnedComments().iterator(); iteComment.hasNext();) {
-					Comment currentComment = iteComment.next();
 					createImageFromHyperLink(copyImageUtil, testCaseSectionOUT, currentComment);
-					transformToContentComment(testCaseSectionOUT, currentComment);
 				}
 			}
 
@@ -404,14 +593,14 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 	/**
 	 * 
 	 * Generate the Requirements Coverage "Section" Package in the document model.
-	 * First, retrieves the requirements package in the model. 
+	 * First, retrieves the requirements package in the model.
 	 * Then, for each requirement, create a comment with "Line" stereotype.
 	 * A line has cells, and those cells are represented by a comment with the "Cell" stereotype.
 	 * And a cell has contents, those contents are represented by a comment with the "CellContent" stereotype
 	 * 
 	 * @param documentModel
 	 */
-	protected void generateTableCoverage(Model requirementsModel, Package requirementsCoverageOUT) {		
+	protected void generateTableCoverage(Model requirementsModel, Package requirementsCoverageOUT) {
 
 		// Create the comment with the table stereotype
 		Comment table = requirementsCoverageOUT.createOwnedComment();
@@ -443,11 +632,11 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		Stereotype cellStereotype = table.getApplicableStereotype(I_DocumentStereotype.CELL_STEREOTYPE);
 		Stereotype lineStereotype = table.getApplicableStereotype(I_DocumentStereotype.LINE_STEREOTYPE);
 
-		// Iterates for each requirements 
+		// Iterates for each requirements
 		for (Iterator<EObject> itereq = requirementsModel.eAllContents(); itereq.hasNext();) {
 			EObject packageableElement = itereq.next();
 			if (packageableElement instanceof PackageImport) {
-				PackageImport importedPackage = (PackageImport)packageableElement;
+				PackageImport importedPackage = (PackageImport) packageableElement;
 				if (importedPackage.getAppliedStereotype(I_DeveloperIDMStereotype.REQUIREMENTS_STEREOTYPE) != null) {
 					Model importedRequirementPackageIn = (Model) importedPackage.getImportedPackage();
 					setTableCoverage(importedRequirementPackageIn, requirementsCoverageOUT, table, unsatisfiedRequirementComment, unverifiedRequirementComment);
@@ -488,7 +677,8 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 					@SuppressWarnings("unchecked")
 					List<NamedElement> cddSatisfiedBy = (List<NamedElement>) currentReq.getValue(reqStereotype, "satisfiedBy");
 
-					/* If the requirement is unsatisfied,
+					/*
+					 * If the requirement is unsatisfied,
 					 * add it to the unsatisfiedRequirement list (for tracability)
 					 * creates a comment with the cellContentStereotype (to add reference in the documentation)
 					 */
@@ -501,14 +691,16 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 						unsatisfiedReq.setBody((String) currentReq.getValue(reqStereotype, "id"));
 					}
 
-					/* Iterate on satisfied elements of the requirements.
+					/*
+					 * Iterate on satisfied elements of the requirements.
 					 * For each one, create the cellContent.
-					 * Then, add it to the SatisfiedBy cell of the table */
+					 * Then, add it to the SatisfiedBy cell of the table
+					 */
 					for (Iterator<NamedElement> iterSatisified = cddSatisfiedBy.iterator(); iterSatisified.hasNext();) {
 						NamedElement satisfiedElement = iterSatisified.next();
 
 						Comment satisfiedByCellContent = satisfiedByCell.createOwnedComment();
-						satisfiedByCellContent.applyStereotype(refContentStereotype);		
+						satisfiedByCellContent.applyStereotype(refContentStereotype);
 						satisfiedByCellContent.setValue(refContentStereotype, I_DocumentStereotype.REF_CONTENT_REF_ATT, satisfiedElement);
 
 						satisfiedByCellContent.setBody(satisfiedElement.getName());
@@ -516,14 +708,15 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 
 					satisfiedByCell.setBody("Satisfied elements");
 
-					// Generate VerifiedBy cell of the table			
+					// Generate VerifiedBy cell of the table
 					Comment verifiedByCell = lineComment.createOwnedComment();
 					verifiedByCell.applyStereotype(cellStereotype);
 
 					@SuppressWarnings("unchecked")
 					List<NamedElement> cddVerifiededBy = (List<NamedElement>) currentReq.getValue(reqStereotype, "verifiedBy");
 
-					/* If the requirement is unverified,
+					/*
+					 * If the requirement is unverified,
 					 * add it to the unverifiedRequirement list (for tracability)
 					 * creates a comment with the cellContentStereotype (to add reference in the documentation)
 					 */
@@ -536,24 +729,25 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 						unverifiedReq.setBody((String) currentReq.getValue(reqStereotype, "id"));
 					}
 
-					/* Iterate on verified elements of the requirements.
+					/*
+					 * Iterate on verified elements of the requirements.
 					 * For each one, create the cellContent.
-					 * Then, add it to the VerifiedBy cell of the table 
+					 * Then, add it to the VerifiedBy cell of the table
 					 */
 					for (Iterator<NamedElement> iterVerified = cddVerifiededBy.iterator(); iterVerified.hasNext();) {
 						NamedElement verifiedElement = iterVerified.next();
 
 						Comment verifiedByCellContent = verifiedByCell.createOwnedComment();
-						verifiedByCellContent.applyStereotype(refContentStereotype);		
+						verifiedByCellContent.applyStereotype(refContentStereotype);
 						verifiedByCellContent.setValue(refContentStereotype, I_DocumentStereotype.REF_CONTENT_REF_ATT, verifiedElement);
 
-						verifiedByCellContent.setBody(verifiedElement.getName()) ;
+						verifiedByCellContent.setBody(verifiedElement.getName());
 					}
 
 					verifiedByCell.setBody("Verified elements");
 				}
 
-				unsatisfiedRequirementComment.setBody("Unsatisfied requirements (" + nbUnsatisfiedRequirement  + " out of " + nbRequirement + ") : ");
+				unsatisfiedRequirementComment.setBody("Unsatisfied requirements (" + nbUnsatisfiedRequirement + " out of " + nbRequirement + ") : ");
 				unverifiedRequirementComment.setBody("Unverified requirements (" + nbUnverifiedRequirement + " out of " + nbRequirement + ") : ");
 			}
 		}
@@ -626,11 +820,11 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 							Comment commentImg = designPackageOUT.createOwnedComment();
 							Stereotype refStereotype = commentImg.getApplicableStereotype(I_DocumentStereotype.IMAGEREF_STEREOTYPE);
 							commentImg.applyStereotype(refStereotype);
-							String tmpDirectoryPath=directoryPath.substring(1);
-							String path=IMGpath.replace("\\", "/").toString();
-							int index=path.indexOf(tmpDirectoryPath);
-							if(index==0){
-								path="."+path.substring(tmpDirectoryPath.length());
+							String tmpDirectoryPath = directoryPath.substring(1);
+							String path = IMGpath.replace("\\", "/").toString();
+							int index = path.indexOf(tmpDirectoryPath);
+							if (index == 0) {
+								path = "." + path.substring(tmpDirectoryPath.length());
 							}
 							commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, path);
 							commentImg.setBody(hyperLinkObject.getTooltipText());
@@ -695,7 +889,7 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 	 * @param currentDiagram
 	 */
 	protected void generateImg(CopyToImageUtil copyImageUtil, Package currentModel, Diagram currentDiagram) {
-		Path imagePath = new Path("" + directoryPath + File.separator + "imgDOC" + File.separator + currentDiagram.getName().replaceAll(" ", "_") + ".png"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		Path imagePath = new Path("" + directoryPath + File.separator + "imgDOC" + File.separator + getDiagramImageFileName(currentDiagram)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 		try {
 
 			copyImageUtil.copyToImage(currentDiagram,
@@ -710,14 +904,29 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		Comment commentImg = currentModel.createOwnedComment();
 		Stereotype refStereotype = commentImg.getApplicableStereotype(I_DocumentStereotype.IMAGEREF_STEREOTYPE);
 		commentImg.applyStereotype(refStereotype);
-		String tmpDirectoryPath=directoryPath.substring(1);
-		String path=imagePath.toString();
-		int index=path.indexOf(tmpDirectoryPath);
-		if(index==0){
-			path="."+path.substring(tmpDirectoryPath.length());
+		String tmpDirectoryPath = directoryPath.substring(1);
+		String path = imagePath.toString();
+		int index = path.indexOf(tmpDirectoryPath);
+		if (index == 0) {
+			path = "." + path.substring(tmpDirectoryPath.length());
 		}
 		commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, path);
 		commentImg.setBody(currentDiagram.getName());
+	}
+
+	protected String getDiagramImageFileName(Diagram diagram) {
+		String result = diagramFileNames.get(diagram);
+
+		if (result == null) {
+			String base = Strings.nullToEmpty(diagram.getName()).replaceAll(" ", "_");
+			result = base;
+			for (int i = 1; diagramFileNames.containsValue(result); i++) {
+				result = base + '_' + i;
+			}
+			diagramFileNames.put(diagram, result);
+		}
+
+		return result + ".png";
 	}
 
 	/**

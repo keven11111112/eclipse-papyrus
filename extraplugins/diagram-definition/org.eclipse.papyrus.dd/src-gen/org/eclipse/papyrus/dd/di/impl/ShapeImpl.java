@@ -28,11 +28,11 @@ import org.eclipse.papyrus.dd.di.Shape;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Shape</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.dd.di.impl.ShapeImpl#getBounds <em>Bounds</em>}</li>
  * </ul>
- * </p>
- * 
+ *
  * @generated
  */
 public abstract class ShapeImpl extends DiagramElementImpl implements Shape {

@@ -190,6 +190,9 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
 			// test if the type is an EObject
 			if (currentElement instanceof EObject) {
 				EObject currentEObject = (EObject) currentElement;
+				if (currentEObject.eIsProxy()) {
+					continue; // Cannot be revealed
+				}
 				// the content provider exist?
 				if (provider != null) {
 					// need the root in order to find all element in the tree

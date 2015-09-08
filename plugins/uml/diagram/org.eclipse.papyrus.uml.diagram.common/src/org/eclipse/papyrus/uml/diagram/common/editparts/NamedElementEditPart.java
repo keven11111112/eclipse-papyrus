@@ -244,32 +244,27 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 		if (svgNodePlate != null) {
 			if (svgNodePlate.hasLabelBounds()) {
 				figure.getNameLabel().setTextWrap(true);
-			}
-			else {
+			} else {
 				figure.getNameLabel().setTextWrap(false);
 			}
 		}
+
+		// refresh the Label of Stereotypes according to the alignment, opacity and position
+		figure.restoreStereotypeLabel();
+
 		// Get NamedStyle display preferences
 		BooleanValueStyle displayNameStyle = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), NameDisplayEditPolicy.DISPLAY_NAME);
-		BooleanValueStyle displayStereotypes = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_STEREOTYPES);
 		BooleanValueStyle displayTags = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_TAGS);
+
 
 
 		// Manage the display of Name Label
 		if (displayNameStyle != null && !displayNameStyle.isBooleanValue()) {
 			figure.removeNameLabel();
-			figure.removeStereotypeLabel();
 			figure.removeTaggedLabel();
 		} else {
 			figure.restoreNameLabel();
 
-			// Manage the display of Stereotypes Label
-			if (displayStereotypes != null && !displayStereotypes.isBooleanValue()) {
-				figure.removeStereotypeLabel();
-			} else {
-				figure.restoreStereotypeLabel();
-
-			}
 
 			// Manage the display of the Stereotypes Properties Label
 			if (displayTags != null && !displayTags.isBooleanValue()) {

@@ -59,8 +59,6 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 	@Override
 	public List<EReference> getChildrenReferences() {
 		List<EReference> references = new ArrayList<EReference>(3);
-		references.add(UMLPackage.eINSTANCE.getActivityPartition_Node());
-		references.add(UMLPackage.eINSTANCE.getActivityPartition_Edge());
 		references.add(UMLPackage.eINSTANCE.getActivityPartition_Subpartition());
 		references.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 		return references;

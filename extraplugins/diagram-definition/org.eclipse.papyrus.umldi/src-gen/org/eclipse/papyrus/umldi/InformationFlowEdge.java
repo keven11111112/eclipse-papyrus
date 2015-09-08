@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.umldi;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Information Flow Edge</b></em>'.
@@ -21,7 +20,7 @@ package org.eclipse.papyrus.umldi;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.InformationFlowEdge#getConveyedLabel <em>Conveyed Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.InformationFlowEdge#getConveyedLabel <em>Conveyed Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getInformationFlowEdge()
@@ -29,21 +28,23 @@ package org.eclipse.papyrus.umldi;
  * @generated
  */
 public interface InformationFlowEdge extends ElementEdge {
+
 	/**
 	 * Returns the value of the '<em><b>Conveyed Label</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ConveyedLabel#getInformationFlowEdge <em>Information Flow Edge</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ConveyedLabel#getInformationFlowEdge <em>Information Flow Edge</em>}
+	 * '.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Conveyed Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Conveyed Label</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Conveyed Label</em>' containment reference.
 	 * @see #setConveyedLabel(ConveyedLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getInformationFlowEdge_ConveyedLabel()
@@ -57,10 +58,11 @@ public interface InformationFlowEdge extends ElementEdge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.InformationFlowEdge#getConveyedLabel <em>Conveyed Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Conveyed Label</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Conveyed Label</em>' containment reference.
 	 * @see #getConveyedLabel()
 	 * @generated
 	 */
 	void setConveyedLabel(ConveyedLabel value);
-
 } // InformationFlowEdge

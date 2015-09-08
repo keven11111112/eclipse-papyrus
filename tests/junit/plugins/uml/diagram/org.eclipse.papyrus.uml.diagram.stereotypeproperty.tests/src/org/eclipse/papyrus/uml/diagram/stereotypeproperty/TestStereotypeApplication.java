@@ -37,14 +37,15 @@ import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
+import org.eclipse.papyrus.junit.utils.DisplayUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayCommandExecution;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeUserActionHelper;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeEmptyEditPart;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
@@ -171,10 +172,9 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		stereotypeTest = class1.getAppliedStereotypes().get(0);
 
 		{// display stereotype1
-			RecordingCommand displayStereotypeCommand = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(diagramEditor.getEditingDomain(), NotationClass1, stereotypeTest.getQualifiedName(),
-					UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
-
+			RecordingCommand displayStereotypeCommand = StereotypeUserActionHelper.getAddAppliedStereotypeCommand(diagramEditor.getEditingDomain(), NotationClass1, stereotypeTest.getName());
 			diagramEditor.getEditingDomain().getCommandStack().execute(displayStereotypeCommand);
+
 			org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure nodePlate = (org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure) ((BorderedNodeFigure) classEditPart.getFigure()).getChildren().get(0);
 
 			// get the label
@@ -184,7 +184,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		}
 
 		{// test display of property of stereotype in compartment
-			RecordingCommand displayPropertyStereotypeCommand = AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(diagramEditor.getEditingDomain(), NotationClass1, stereotypeTest.getQualifiedName() + ".testInt");
+			RecordingCommand displayPropertyStereotypeCommand = StereotypeUserActionHelper.getAddAppliedStereotypeCommand(diagramEditor.getEditingDomain(), NotationClass1, stereotypeTest.getQualifiedName() + ".testInt");
 			diagramEditor.getEditingDomain().getCommandStack().execute(displayPropertyStereotypeCommand);
 
 			// the compartment must be visible
@@ -215,8 +215,6 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(papyrusEditor.getServicesRegistry());
 		AppliedProfileCommand appliedProfileCommand = new AppliedProfileCommand(domain, root, profile);
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(appliedProfileCommand));
-
-
 	}
 
 	/**
@@ -310,18 +308,15 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		stereotypeTest = package1.getAppliedStereotypes().get(0);
 
 		{// display stereotype1
-			RecordingCommand displayStereotypeCommand = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(diagramEditor.getEditingDomain(), Notationpackage1, stereotypeTest.getQualifiedName(),
-					UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
+			StereotypeDisplayCommandExecution.getInstance().setVisibility(diagramEditor.getEditingDomain(), appliedStereotypeLabelNotation, true, true);
 
-			diagramEditor.getEditingDomain().getCommandStack().execute(displayStereotypeCommand);
 			org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure nodePlate = (org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure) ((BorderedNodeFigure) package1EditPart.getFigure()).getChildren().get(0);
-
+			DisplayUtils.flushEventLoop();
 			// get the label
 			PapyrusWrappingLabel stereotypeLabel = ((PackageFigure) nodePlate.getChildren().get(0)).getStereotypesLabel();
 			assertTrue("stereotype label must be not null", stereotypeLabel != null);
 			assertTrue("text of stereotype label be equals to " + ST_LEFT + "Stereotype1" + ST_RIGHT, stereotypeLabel.getText().equals(ST_LEFT + "Stereotype1" + ST_RIGHT));
 		}
-
 
 		// the compartment must be visible
 		assertTrue("the compartment must not be visible", appliedStereotypeCompartmentNotation.isVisible() == false);
@@ -333,8 +328,5 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		// look for view that represents the property of the applied stereotype
 		stereotypePropertyView = (View) appliedStereotypeCompartmentNotation.getChildren().get(0);
 		assertNotNull("the view of the applied stereotype property must be created", stereotypePropertyView);
-
-
-
 	}
 }

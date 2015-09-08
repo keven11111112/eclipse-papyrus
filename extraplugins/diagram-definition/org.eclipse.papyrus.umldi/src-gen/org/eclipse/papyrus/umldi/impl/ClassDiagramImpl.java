@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ClassDiagramImpl extends StructureDiagramImpl implements ClassDiagram {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClassDiagramImpl() {
@@ -36,11 +38,11 @@ public class ClassDiagramImpl extends StructureDiagramImpl implements ClassDiagr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.CLASS_DIAGRAM;
 	}
-
 } //ClassDiagramImpl

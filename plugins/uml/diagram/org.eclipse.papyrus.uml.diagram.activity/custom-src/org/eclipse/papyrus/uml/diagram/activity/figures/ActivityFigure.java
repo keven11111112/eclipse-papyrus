@@ -41,7 +41,7 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 	 * this is the layout manager in charge to place element in the enumeration
 	 *
 	 */
-	private class ActivityLayoutManager extends AbstractLayout {
+	protected class ActivityLayoutManager extends AbstractLayout {
 
 		/**
 		 * ---------------------------------------------------| |sterotypeLabel|
@@ -56,7 +56,7 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 		 * {@inheritDoc}
 		 */
 		@Override
-		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
+		protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
 			int minimumWith = 0;
 			int minimumHeight = 0;
 			// take in account the content of the figure activity
@@ -77,6 +77,7 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 					minimumWith = getHeaderSingleExecution().getBounds().getTopRight().x;
 				}
 			}
+
 			return new Dimension(minimumWith, minimumHeight);
 		}
 
@@ -191,34 +192,16 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 		}
 	}
 
-	/**
-	 * @generated
-	 */
 	private WrappingLabel fHeaderLabel;
 
-	/**
-	 * @generated
-	 */
 	private RectangleFigure fActivityParametersCompartment;
 
-	/**
-	 * @generated
-	 */
 	private RectangleFigure fActivityPreconditionsCompartment;
 
-	/**
-	 * @generated
-	 */
 	private RectangleFigure fActivityPostconditionsCompartment;
 
-	/**
-	 * @generated
-	 */
 	protected WrappingLabel fHeaderSingleExecution;
 
-	/**
-	 * @generated
-	 */
 	private RectangleFigure fCompartmentFigure;
 
 	private RectangleFigure shapeCompartment;
@@ -229,9 +212,6 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 
 	private RectangleFigure parameterFigure;
 
-	/**
-	 * @generated
-	 */
 	public ActivityFigure() {
 		super();
 		setLayoutManager(new ActivityLayoutManager());
@@ -294,9 +274,6 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
 	private void createContents() {
 		RoundedRectangle activityBorderFigure0 = new RoundedRectangle();
 		this.add(activityBorderFigure0, BorderLayout.CENTER);
@@ -430,44 +407,26 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 		activityBorderFigure0.add(fCompartmentFigure, constraintFCompartmentFigure);
 	}
 
-	/**
-	 * @generated
-	 */
 	public WrappingLabel getHeaderLabel() {
 		return fHeaderLabel;
 	}
 
-	/**
-	 * @generated
-	 */
 	public RectangleFigure getActivityParametersCompartment() {
 		return fActivityParametersCompartment;
 	}
 
-	/**
-	 * @generated
-	 */
 	public RectangleFigure getActivityPreconditionsCompartment() {
 		return fActivityPreconditionsCompartment;
 	}
 
-	/**
-	 * @generated
-	 */
 	public RectangleFigure getActivityPostconditionsCompartment() {
 		return fActivityPostconditionsCompartment;
 	}
 
-	/**
-	 * @generated
-	 */
 	public WrappingLabel getHeaderSingleExecution() {
 		return fHeaderSingleExecution;
 	}
 
-	/**
-	 * @generated
-	 */
 	public RectangleFigure getCompartmentFigure() {
 		return fCompartmentFigure;
 	}

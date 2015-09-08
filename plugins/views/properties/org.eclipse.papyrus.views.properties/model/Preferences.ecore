@@ -17,6 +17,7 @@
         <details key="documentation" value="Whether the context was explicitly deleted by the user.  If not explicitly deleted, and there isn't currently a matching context available, then the context is deemed to be missing."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="appliedByDefault" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Preferences">
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"

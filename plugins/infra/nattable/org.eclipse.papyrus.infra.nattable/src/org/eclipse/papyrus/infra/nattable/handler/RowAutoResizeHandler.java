@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.resize.command.InitializeAutoResizeRowsCommand;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.nebula.widgets.nattable.util.GCFactory;
 
 /**
@@ -37,8 +38,11 @@ public class RowAutoResizeHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final NatTable natTable = this.eventData.getNatTable();
-		natTable.doCommand(new InitializeAutoResizeRowsCommand(natTable, this.eventData.getRowPosition(), natTable.getConfigRegistry(), new GCFactory(natTable)));
+		NatEventData eventData = getNatEventData();
+		if (eventData != null) {
+			final NatTable natTable = eventData.getNatTable();
+			natTable.doCommand(new InitializeAutoResizeRowsCommand(natTable, eventData.getRowPosition(), natTable.getConfigRegistry(), new GCFactory(natTable)));
+		}
 		return null;
 	}
 

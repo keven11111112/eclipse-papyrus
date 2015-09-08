@@ -34,8 +34,9 @@ import org.eclipse.uml2.uml.Element;
 
 
 /**
- *
+ * @deprecated This view will be replaced by a XWT view for the C++ profile
  */
+@Deprecated
 public abstract class CppAbstractPanel extends Composite {
 
 	static final Font pluginFont = new Font(null, "Bitstream Vera Sans Mono", 10, SWT.NORMAL);

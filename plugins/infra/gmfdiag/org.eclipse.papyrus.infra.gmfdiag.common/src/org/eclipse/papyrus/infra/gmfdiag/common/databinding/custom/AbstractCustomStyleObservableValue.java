@@ -117,9 +117,14 @@ public abstract class AbstractCustomStyleObservableValue extends AbstractObserva
 
 	@Override
 	public void dispose() {
-		source.eAdapters().remove(listener);
-		listener.dispose();
-		listener = null;
+		if (isDisposed()) {
+			return;
+		}
+		if (listener != null) {
+			source.eAdapters().remove(listener);
+			listener.dispose();
+			listener = null;
+		}
 		super.dispose();
 	}
 }

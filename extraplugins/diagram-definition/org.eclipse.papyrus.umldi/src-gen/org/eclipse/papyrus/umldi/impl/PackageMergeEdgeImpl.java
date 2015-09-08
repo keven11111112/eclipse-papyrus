@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class PackageMergeEdgeImpl extends ElementEdgeImpl implements PackageMergeEdge {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PackageMergeEdgeImpl() {
@@ -36,11 +38,11 @@ public class PackageMergeEdgeImpl extends ElementEdgeImpl implements PackageMerg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.PACKAGE_MERGE_EDGE;
 	}
-
 } //PackageMergeEdgeImpl

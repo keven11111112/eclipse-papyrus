@@ -894,7 +894,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *
 	 * @return a corrected sizeDelta
 	 */
-	protected final static Dimension adaptSizeDeltaToMaxHeight(IFigure figure, Dimension sizeDelta) {
+	public final static Dimension adaptSizeDeltaToMaxHeight(IFigure figure, Dimension sizeDelta) {
 		Dimension newSizeDelta = new Dimension(sizeDelta);
 		int figureHeight = figure.getBounds().height;
 		int maximunFigureHeight = figure.getMaximumSize().height;
@@ -974,7 +974,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * @return true if the rectangles of both figures touch and the right figure is really on the
 	 *         right. False otherwise
 	 */
-	protected final static boolean isAffixedToRight(Rectangle leftFigure, Rectangle rightFigure) {
+	public final static boolean isAffixedToRight(Rectangle leftFigure, Rectangle rightFigure) {
 		// return leftFigure.touches(rightFigure) && leftFigure.x < rightFigure.x;
 		return leftFigure.contains(rightFigure.getLocation()) && leftFigure.x < rightFigure.x;
 	}
@@ -1037,7 +1037,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *
 	 * @return The real MoveDelta applied
 	 */
-	protected final static Rectangle getRealMoveDelta(Rectangle oldRelativeBounds, Rectangle newRelativeBounds) {
+	public final static Rectangle getRealMoveDelta(Rectangle oldRelativeBounds, Rectangle newRelativeBounds) {
 		Rectangle realMoveDelta = new Rectangle();
 		realMoveDelta.x = newRelativeBounds.x - oldRelativeBounds.x;
 		realMoveDelta.y = newRelativeBounds.y - oldRelativeBounds.y;
@@ -1054,7 +1054,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *
 	 * @return The relative bounds regarding it's parent figure
 	 */
-	protected final static Rectangle getRelativeBounds(IFigure figure) {
+	public final static Rectangle getRelativeBounds(IFigure figure) {
 		Rectangle relBounds = figure.getBounds().getCopy();
 		Rectangle parentRectangle = figure.getParent().getBounds();
 		relBounds.x -= parentRectangle.x;

@@ -86,22 +86,14 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 	 */
 	@Override
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
-
-		List<Object> rowSpan = ArrayUtil.asList(manager.getBodyLayerStack().getSelectionLayer().getSelectedRowPositions().toArray());
-		final List<Integer> columnSpan = ArrayUtil.asIntegerList(manager.getBodyLayerStack().getSelectionLayer().getSelectedColumnPositions());
-		final List<Integer> rowSpanRange = ArrayUtil.asList(((Range) rowSpan.get(0)).getMembers().toArray(new Integer[0]));
-
 		RecordingCommand recordUpdate = new RecordingCommand(this.contextDomain) {
 
 			@Override
 			protected void doExecute() {
-
-				for (Integer indexY : rowSpanRange) {
-					for (Integer indexX : columnSpan) {
-						// AbstractCellManager's setValue() takes care of the compatibility between the cell and the edit types
-						PapyrusSpanningDataLayer.super.setDataValue(indexX, indexY, newValue);
-					}
-				}
+				// AbstractCellManager's setValue() takes care of the compatibility between the cell and the edit types
+				// 469109: [Tree Table] set value problem when categories are hidden
+				// https://bugs.eclipse.org/bugs/show_bug.cgi?id=469109
+				PapyrusSpanningDataLayer.super.setDataValue(columnIndex, rowIndex, newValue);
 			}
 		};
 		this.contextDomain.getCommandStack().execute(recordUpdate);

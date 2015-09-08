@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class DurationObservationShapeImpl extends ElementShapeImpl implements DurationObservationShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DurationObservationShapeImpl() {
@@ -36,11 +38,11 @@ public class DurationObservationShapeImpl extends ElementShapeImpl implements Du
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DURATION_OBSERVATION_SHAPE;
 	}
-
 } //DurationObservationShapeImpl

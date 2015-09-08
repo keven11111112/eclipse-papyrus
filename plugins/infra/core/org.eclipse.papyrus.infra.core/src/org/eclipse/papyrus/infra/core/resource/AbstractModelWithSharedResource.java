@@ -157,8 +157,12 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	 */
 	@SuppressWarnings("unchecked")
 	public T getModelRoot() {
+		Resource resource = getResource();
+		if (resource == null) {
+			return null;
+		}
 
-		for (EObject object : getResource().getContents()) {
+		for (EObject object : resource.getContents()) {
 
 			if (isModelRoot(object)) {
 				return (T) object;

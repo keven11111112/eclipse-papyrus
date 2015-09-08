@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -201,6 +202,11 @@ public class Zone {
 		while (it.hasNext()) {
 			View view = it.next();
 			// get the zone of current region
+			if (isStereotype(view)) {
+				// stereotype comment not display
+				continue;
+			}
+
 			String zone = Zone.getZone(view);
 			String zoneLastPart = (zone.length() <= initPattern.length()) ? "" : zone.substring(initPattern.length());
 			if (zone.startsWith(initPattern) && !zoneLastPart.contains(excludingZoneInFinalPattern)) {
@@ -208,6 +214,10 @@ public class Zone {
 			}
 		}
 		return matchingRegions;
+	}
+
+	public static boolean isStereotype(View view) {
+		return StereotypeDisplayUtil.getInstance().isStereotypeComment(view);
 	}
 
 	/**

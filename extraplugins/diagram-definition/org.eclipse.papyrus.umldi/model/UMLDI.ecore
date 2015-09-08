@@ -11,8 +11,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The most general class for UML diagrams."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="topUmlDiagramElement" ordered="false"
-        upperBound="-1" eType="#//TopUmlDiagramElement" containment="true" eOpposite="#//TopUmlDiagramElement/umlDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topUmlDiagramElement" upperBound="-1"
+        eType="#//TopUmlDiagramElement" containment="true" eOpposite="#//TopUmlDiagramElement/umlDiagram">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -120,10 +120,6 @@
       </eAnnotations>
       <eAnnotations source="subsets" references="../../org.eclipse.papyrus.dd/model/DI.ecore#//Edge/sourceDiagramElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mainLabel" ordered="false"
-        eType="#//MainLabel" containment="true" eOpposite="#//MainLabel/umlEdge">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetUmlDiagramElement"
         ordered="false" lowerBound="1" eType="#//UmlDiagramElement" eOpposite="#//UmlDiagramElement/targetUmlEdge">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -133,7 +129,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TopUmlDiagramElement" abstract="true"
-      eSuperTypes="#//UmlDiagramElement">
+      eSuperTypes="#//StereotypedDiagramElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="umlDiagram" ordered="false"
         eType="#//UmlDiagram" eOpposite="#//UmlDiagram/topUmlDiagramElement">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
@@ -142,7 +138,28 @@
         eType="#//DiagramCompartment" eOpposite="#//DiagramCompartment/topUmlDiagramElement">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mainLabel" ordered="false"
+        eType="#//MainLabel" containment="true" eOpposite="#//MainLabel/topUmlDiagramElement">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StereotypedDiagramElement" abstract="true"
+      eSuperTypes="#//UmlDiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="showStereotypeAttributes"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.papyrus.dd/model/DC.ecore#//Boolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeLabel" ordered="false"
+        eType="#//StereotypeLabel" containment="true" eOpposite="#//StereotypeLabel/stereotypedDiagramElement">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StereotypeLabel" eSuperTypes="#//UmlLabel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypedDiagramElement"
+        ordered="false" eType="#//StereotypedDiagramElement" eOpposite="#//StereotypedDiagramElement/stereotypeLabel">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UmlLabel" abstract="true" eSuperTypes="#//UmlDiagramElement ../../org.eclipse.papyrus.dd/model/DI.ecore#//Shape"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiagramCompartment" abstract="true"
       eSuperTypes="#//UmlCompartment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="topUmlDiagramElement" upperBound="-1"
@@ -152,23 +169,36 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UmlCompartment" abstract="true" eSuperTypes="#//UmlDiagramElement ../../org.eclipse.papyrus.dd/model/DI.ecore#//Shape"/>
   <eClassifiers xsi:type="ecore:EClass" name="MainLabel" eSuperTypes="#//UmlLabel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="umlShape" ordered="false"
-        eType="#//UmlShape" eOpposite="#//UmlShape/mainLabel">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="umlEdge" ordered="false"
-        eType="#//UmlEdge" eOpposite="#//UmlEdge/mainLabel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topUmlDiagramElement" ordered="false"
+        eType="#//TopUmlDiagramElement" eOpposite="#//TopUmlDiagramElement/mainLabel">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UmlLabel" abstract="true" eSuperTypes="#//UmlDiagramElement ../../org.eclipse.papyrus.dd/model/DI.ecore#//Shape"/>
   <eClassifiers xsi:type="ecore:EClass" name="UmlShape" abstract="true" eSuperTypes="#//TopUmlDiagramElement ../../org.eclipse.papyrus.dd/model/DI.ecore#//Shape">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The most general class for UML diagram elements that are not rendered as lines."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mainLabel" ordered="false"
-        eType="#//MainLabel" containment="true" eOpposite="#//MainLabel/umlShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeCompartment"
+        upperBound="-1" eType="#//StereotypeCompartment" containment="true" eOpposite="#//StereotypeCompartment/umlShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StereotypeCompartment" eSuperTypes="#//ListCompartment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="umlShape" ordered="false"
+        eType="#//UmlShape" eOpposite="#//UmlShape/stereotypeCompartment">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListCompartment" abstract="true" eSuperTypes="#//UmlCompartment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="listItemLabel" upperBound="-1"
+        eType="#//ListItemLabel" containment="true" eOpposite="#//ListItemLabel/listCompartment">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListItemLabel" eSuperTypes="#//StereotypedDiagramElement #//UmlLabel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="listCompartment" ordered="false"
+        eType="#//ListCompartment" eOpposite="#//ListCompartment/listItemLabel">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="#//StructureDiagram"/>
@@ -198,18 +228,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterCompartment" eSuperTypes="#//ListCompartment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="templateableElementShape"
         ordered="false" eType="#//TemplateableElementShape" eOpposite="#//TemplateableElementShape/templateParameterCompartment">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ListCompartment" abstract="true" eSuperTypes="#//UmlCompartment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="listItemLabel" upperBound="-1"
-        eType="#//ListItemLabel" containment="true" eOpposite="#//ListItemLabel/listCompartment">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ListItemLabel" eSuperTypes="#//UmlLabel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="listCompartment" ordered="false"
-        eType="#//ListCompartment" eOpposite="#//ListCompartment/listItemLabel">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -248,20 +266,7 @@
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstraintShape" eSuperTypes="#//ElementWithBodyShape"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementWithBodyShape" abstract="true"
-      eSuperTypes="#//ElementShape">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyLabel" ordered="false"
-        eType="#//BodyLabel" containment="true" eOpposite="#//BodyLabel/elementWithBodyShape">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BodyLabel" eSuperTypes="#//UmlLabel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elementWithBodyShape" ordered="false"
-        eType="#//ElementWithBodyShape" eOpposite="#//ElementWithBodyShape/bodyLabel">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstraintShape" eSuperTypes="#//ElementShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeCompartment" eSuperTypes="#//ListCompartment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="classifierWithAttributesShape"
         ordered="false" eType="#//ClassifierWithAttributesShape" eOpposite="#//ClassifierWithAttributesShape/attributeCompartment">
@@ -328,16 +333,16 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationEdge" eSuperTypes="#//ElementEdge">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endMultiplicityLabel" ordered="false"
-        upperBound="2" eType="#//MultiplicityLabel" containment="true" eOpposite="#//MultiplicityLabel/associationEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endMultiplicityLabel" upperBound="2"
+        eType="#//MultiplicityLabel" containment="true" eOpposite="#//MultiplicityLabel/associationEdge">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endConstraintLabel" ordered="false"
-        upperBound="2" eType="#//ConstraintLabel" containment="true" eOpposite="#//ConstraintLabel/associationEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endConstraintLabel" upperBound="2"
+        eType="#//ConstraintLabel" containment="true" eOpposite="#//ConstraintLabel/associationEdge">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endRoleLabel" ordered="false"
-        upperBound="2" eType="#//RoleLabel" containment="true" eOpposite="#//RoleLabel/associationEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endRoleLabel" upperBound="2"
+        eType="#//RoleLabel" containment="true" eOpposite="#//RoleLabel/associationEdge">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -377,6 +382,14 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="objectNodeShape" ordered="false"
         eType="#//ObjectNodeShape" eOpposite="#//ObjectNodeShape/constraintLabel">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifelineShape" ordered="false"
+        eType="#//LifelineShape" eOpposite="#//LifelineShape/constraintLabel">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionShape" ordered="false"
+        eType="#//ActionShape" eOpposite="#//ActionShape/conditionLabel">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyEdge" ordered="false"
@@ -431,30 +444,23 @@
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActivityEdgeEdge" abstract="true" eSuperTypes="#//RelationshipWithGuardEdge">
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityEdgeEdge" abstract="true" eSuperTypes="#//ElementEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guardLabel" ordered="false"
+        eType="#//GuardLabel" containment="true" eOpposite="#//GuardLabel/activityEdgeEdge">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="weightLabel" ordered="false"
         eType="#//WeightLabel" containment="true" eOpposite="#//WeightLabel/activityEdgeEdge">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RelationshipWithGuardEdge" abstract="true"
-      eSuperTypes="#//ElementEdge">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="guardLabel" ordered="false"
-        eType="#//GuardLabel" containment="true" eOpposite="#//GuardLabel/relationshipWithGuardEdge">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuardLabel" eSuperTypes="#//UmlLabel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relationshipWithGuardEdge"
-        ordered="false" eType="#//RelationshipWithGuardEdge" eOpposite="#//RelationshipWithGuardEdge/guardLabel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activityEdgeEdge" ordered="false"
+        eType="#//ActivityEdgeEdge" eOpposite="#//ActivityEdgeEdge/guardLabel">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WeightLabel" eSuperTypes="#//UmlLabel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relationshipWithGuardEdge"
-        ordered="false" eType="#//RelationshipWithGuardEdge">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityEdgeEdge" ordered="false"
         eType="#//ActivityEdgeEdge" eOpposite="#//ActivityEdgeEdge/weightLabel">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
@@ -466,9 +472,49 @@
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LifelineShape" eSuperTypes="#//ElementShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subfragmentShape" upperBound="-1"
+        eType="#//InteractionFragmentShape" containment="true" eOpposite="#//InteractionFragmentShape/lifelineShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestingLifelineShape" ordered="false"
+        eType="#//LifelineShape" eOpposite="#//LifelineShape/nestedLifelineShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedLifelineShape" upperBound="-1"
+        eType="#//LifelineShape" containment="true" eOpposite="#//LifelineShape/nestingLifelineShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintLabel" upperBound="-1"
+        eType="#//ConstraintLabel" containment="true" eOpposite="#//ConstraintLabel/lifelineShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionFragmentShape" eSuperTypes="#//ElementShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifelineShape" ordered="false"
+        eType="#//LifelineShape" eOpposite="#//LifelineShape/subfragmentShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionShape" eSuperTypes="#//ActivityNodeShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pinShape" upperBound="-1"
+        eType="#//PinShape" containment="true" eOpposite="#//PinShape/actionShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionLabel" upperBound="-1"
+        eType="#//ConstraintLabel" containment="true" eOpposite="#//ConstraintLabel/actionShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PinShape" eSuperTypes="#//ObjectNodeShape #//ActivityNodeShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionShape" ordered="false"
+        eType="#//ActionShape" eOpposite="#//ActionShape/pinShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectorEdge" eSuperTypes="#//ElementEdge">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endMultiplicityLabel" ordered="false"
-        upperBound="2" eType="#//MultiplicityLabel" containment="true" eOpposite="#//MultiplicityLabel/connectorEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endMultiplicityLabel" upperBound="2"
+        eType="#//MultiplicityLabel" containment="true" eOpposite="#//MultiplicityLabel/connectorEdge">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -512,23 +558,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassShape" eSuperTypes="#//ClassifierWithNestedClassifiersShape #//BehavioredClassifierShape #//ElementWithPortsShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="ElementWithPortsShape" abstract="true"
-      eSuperTypes="#//ElementWithInternalStructureShape">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="portShape" ordered="false"
-        upperBound="-1" eType="#//PortShape" containment="true" eOpposite="#//PortShape/elementWithPortsShape">
+      eSuperTypes="#//ElementWithStructureShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="portShape" upperBound="-1"
+        eType="#//PortShape" containment="true" eOpposite="#//PortShape/elementWithPortsShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementWithInternalStructureShape" abstract="true"
+  <eClassifiers xsi:type="ecore:EClass" name="ElementWithStructureShape" abstract="true"
       eSuperTypes="#//ElementShape">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="internalStructureCompartment"
-        ordered="false" eType="#//InternalStructureCompartment" containment="true"
-        eOpposite="#//InternalStructureCompartment/elementWithInternalStructureShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="structureCompartment" ordered="false"
+        eType="#//StructureCompartment" containment="true" eOpposite="#//StructureCompartment/elementWithStructureShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InternalStructureCompartment" eSuperTypes="#//DiagramCompartment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elementWithInternalStructureShape"
-        ordered="false" eType="#//ElementWithInternalStructureShape" eOpposite="#//ElementWithInternalStructureShape/internalStructureCompartment">
+  <eClassifiers xsi:type="ecore:EClass" name="StructureCompartment" eSuperTypes="#//DiagramCompartment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementWithStructureShape"
+        ordered="false" eType="#//ElementWithStructureShape" eOpposite="#//ElementWithStructureShape/structureCompartment">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -593,7 +638,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationClassEdge" eSuperTypes="#//AssociationEdge"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CommentShape" eSuperTypes="#//ElementWithBodyShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CommentShape" eSuperTypes="#//ElementShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="AttachmentEdge" eSuperTypes="#//UmlEdge"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationClassShape" eSuperTypes="#//ClassShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentShape" eSuperTypes="#//ClassShape #//ElementWithPackagedElementsShape"/>
@@ -602,6 +647,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="AssociationShape" eSuperTypes="#//ClassifierShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="DependencyShape" eSuperTypes="#//ElementShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="TimeObservationShape" eSuperTypes="#//ElementShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeObservationShape_TimeObservationShape"
+      eSuperTypes="#//ElementShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="DurationObservationShape" eSuperTypes="#//ElementShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="PackageDiagram" eSuperTypes="#//StructureDiagram"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProfileDiagram" eSuperTypes="#//StructureDiagram"/>
@@ -629,7 +676,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ComponentRealizationEdge" eSuperTypes="#//RealizationEdge"/>
   <eClassifiers xsi:type="ecore:EClass" name="ManifestationEdge" eSuperTypes="#//AbstractionEdge"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyShape" eSuperTypes="#//ElementWithPortsShape #//DeploymentTargetShape"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CollaborationShape" eSuperTypes="#//ClassifierWithOperationsShape #//BehavioredClassifierShape #//ElementWithInternalStructureShape">
+  <eClassifiers xsi:type="ecore:EClass" name="CollaborationShape" eSuperTypes="#//ClassifierWithOperationsShape #//BehavioredClassifierShape #//ElementWithStructureShape">
     <eStructuralFeatures xsi:type="ecore:EReference" name="receptionCompartment" ordered="false"
         eType="#//ReceptionCompartment" containment="true">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
@@ -652,7 +699,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeviceShape" eSuperTypes="#//NodeShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionEnvironmentShape" eSuperTypes="#//NodeShape"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ActivityShape" eSuperTypes="#//ClassShape">
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityShape" eSuperTypes="#//ClassShape #//ElementWithActivityNodesShape">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterCompartment" ordered="false"
         eType="#//ParameterCompartment" containment="true" eOpposite="#//ParameterCompartment/activityShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
@@ -665,14 +712,22 @@
         ordered="false" eType="#//PreConditionCompartment" containment="true" eOpposite="#//PreConditionCompartment/activityShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contentCompartment" ordered="false"
-        eType="#//ContentCompartment" containment="true" eOpposite="#//ContentCompartment/activityShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activityParameterNodeShape"
+        upperBound="-1" eType="#//ActivityParameterNodeShape" containment="true" eOpposite="#//ActivityParameterNodeShape/activityShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activityParameterNodeShape"
-        ordered="false" upperBound="-1" eType="#//ActivityParameterNodeShape" containment="true"
-        eOpposite="#//ActivityParameterNodeShape/activityShape">
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementWithActivityNodesShape" abstract="true"
+      eSuperTypes="#//ElementShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activityNodeCompartment"
+        ordered="false" eType="#//ActivityNodeCompartment" containment="true" eOpposite="#//ActivityNodeCompartment/elementWithActivityNodesShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityNodeCompartment" eSuperTypes="#//DiagramCompartment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementWithActivityNodesShape"
+        ordered="false" eType="#//ElementWithActivityNodesShape" eOpposite="#//ElementWithActivityNodesShape/activityNodeCompartment">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterCompartment" eSuperTypes="#//ListCompartment">
@@ -693,48 +748,45 @@
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContentCompartment" eSuperTypes="#//DiagramCompartment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="structuredActivityNodeShape"
-        ordered="false" eType="#//StructuredActivityNodeShape" eOpposite="#//StructuredActivityNodeShape/contentCompartment">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activityShape" ordered="false"
-        eType="#//ActivityShape" eOpposite="#//ActivityShape/contentCompartment">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructuredActivityNodeShape" eSuperTypes="#//ActionShape #//ActivityGroupShape">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contentCompartment" ordered="false"
-        eType="#//ContentCompartment" containment="true" eOpposite="#//ContentCompartment/structuredActivityNodeShape">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActionShape" eSuperTypes="#//ActivityNodeShape">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pinShape" ordered="false"
-        upperBound="-1" eType="#//PinShape" containment="true" eOpposite="#//PinShape/actionShape">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PinShape" eSuperTypes="#//ObjectNodeShape #//ActivityNodeShape">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actionShape" ordered="false"
-        eType="#//ActionShape" eOpposite="#//ActionShape/pinShape">
-      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActivityGroupShape" eSuperTypes="#//ElementShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityParameterNodeShape" eSuperTypes="#//ObjectNodeShape">
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityShape" ordered="false"
         eType="#//ActivityShape" eOpposite="#//ActivityShape/activityParameterNodeShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InteractionShape" eSuperTypes="#//ClassShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionShape" eSuperTypes="#//ClassShape #//InteractionFragmentWithGatesShape #//InteractionFragmentWithSubfragmentsShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionFragmentWithSubfragmentsShape"
+      abstract="true" eSuperTypes="#//InteractionFragmentShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subfragmentCompartment"
+        ordered="false" eType="#//SubfragmentCompartment" containment="true" eOpposite="#//SubfragmentCompartment/interactionFragmentWithSubfragmentsShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubfragmentCompartment" eSuperTypes="#//DiagramCompartment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interactionFragmentWithSubfragmentsShape"
+        ordered="false" eType="#//InteractionFragmentWithSubfragmentsShape" eOpposite="#//InteractionFragmentWithSubfragmentsShape/subfragmentCompartment">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionFragmentWithGatesShape" abstract="true"
+      eSuperTypes="#//InteractionFragmentShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gateShape" upperBound="-1"
+        eType="#//GateShape" containment="true" eOpposite="#//GateShape/interactionFragmentWithGatesShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GateShape" eSuperTypes="#//ElementShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interactionFragmentWithGatesShape"
+        ordered="false" eType="#//InteractionFragmentWithGatesShape" eOpposite="#//InteractionFragmentWithGatesShape/gateShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehaviorShape" eSuperTypes="#//ClassShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionBehaviorShape" eSuperTypes="#//OpaqueBehaviorShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="StateMachineShape" eSuperTypes="#//ClassShape #//BaseStateShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="BaseStateShape" abstract="true" eSuperTypes="#//ElementShape">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPointShape" ordered="false"
-        upperBound="-1" eType="#//PseudostateShape" containment="true" eOpposite="#//PseudostateShape/baseStateShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPointShape" upperBound="-1"
+        eType="#//PseudostateShape" containment="true" eOpposite="#//PseudostateShape/baseStateShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="regionCompartment" ordered="false"
@@ -789,7 +841,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateShape" eSuperTypes="#//BaseStateShape">
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPointReferenceShape"
-        ordered="false" upperBound="-1" eType="#//ConnectionPointReferenceShape" containment="true"
+        upperBound="-1" eType="#//ConnectionPointReferenceShape" containment="true"
         eOpposite="#//ConnectionPointReferenceShape/stateShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
@@ -847,8 +899,9 @@
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TransitionEdge" eSuperTypes="#//RelationshipWithGuardEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TransitionEdge" eSuperTypes="#//ElementEdge"/>
   <eClassifiers xsi:type="ecore:EClass" name="ControlFlowEdge" eSuperTypes="#//ActivityEdgeEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityGroupShape" eSuperTypes="#//ElementShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExceptionHandlerEdge" eSuperTypes="#//ElementEdge">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeLabel" ordered="false"
         eType="#//TypeLabel" containment="true" eOpposite="#//TypeLabel/exceptionHandlerEdge">
@@ -860,9 +913,19 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeLabel" eSuperTypes="#//UmlLabel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interactionUseShape" ordered="false"
+        eType="#//InteractionUseShape" eOpposite="#//InteractionUseShape/typeLabel">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exceptionHandlerEdge" ordered="false"
         eType="#//ExceptionHandlerEdge" eOpposite="#//ExceptionHandlerEdge/typeLabel">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionUseShape" eSuperTypes="#//InteractionFragmentWithGatesShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeLabel" ordered="false"
+        eType="#//TypeLabel" containment="true" eOpposite="#//TypeLabel/interactionUseShape">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IconLabel" eSuperTypes="#//UmlLabel">
@@ -871,9 +934,9 @@
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubPartitionCompartment" eSuperTypes="#//DiagramCompartment">
+  <eClassifiers xsi:type="ecore:EClass" name="SubpartitionCompartment" eSuperTypes="#//DiagramCompartment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityPartitionShape"
-        ordered="false" eType="#//ActivityPartitionShape" eOpposite="#//ActivityPartitionShape/subPartitionCompartment">
+        ordered="false" eType="#//ActivityPartitionShape" eOpposite="#//ActivityPartitionShape/subpartitionCompartment">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -881,14 +944,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVertical" ordered="false"
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.papyrus.dd/model/DC.ecore#//Boolean"
         defaultValueLiteral="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subPartitionCompartment"
-        ordered="false" eType="#//SubPartitionCompartment" containment="true" eOpposite="#//SubPartitionCompartment/activityPartitionShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subpartitionCompartment"
+        ordered="false" eType="#//SubpartitionCompartment" containment="true" eOpposite="#//SubpartitionCompartment/activityPartitionShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructuredActivityNodeShape" eSuperTypes="#//ActionShape #//ElementWithActivityNodesShape #//ActivityGroupShape"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExpansionRegionShape" eSuperTypes="#//StructuredActivityNodeShape">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expansionNodeShape" ordered="false"
-        upperBound="-1" eType="#//ExpansionNodeShape" containment="true" eOpposite="#//ExpansionNodeShape/expansionRegionShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expansionNodeShape" upperBound="-1"
+        eType="#//ExpansionNodeShape" containment="true" eOpposite="#//ExpansionNodeShape/expansionRegionShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -897,5 +961,31 @@
         eType="#//ExpansionRegionShape" eOpposite="#//ExpansionRegionShape/expansionNodeShape">
       <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessageEdge" eSuperTypes="#//ElementEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GeneralOrderingEdge" eSuperTypes="#//ElementEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CombinedFragmentShape" eSuperTypes="#//InteractionFragmentWithGatesShape #//InteractionFragmentWithSubfragmentsShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionOperandShape" eSuperTypes="#//InteractionFragmentWithSubfragmentsShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionSpecificationShape" eSuperTypes="#//InteractionFragmentShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DurationConstraintShape" eSuperTypes="#//ConstraintShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeConstraintShape" eSuperTypes="#//ConstraintShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeExpressionShape" eSuperTypes="#//ElementShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DurationShape" eSuperTypes="#//ElementShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PathEdge" eSuperTypes="#//UmlEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messageLabel" upperBound="-1"
+        eType="#//MessageLabel" containment="true" eOpposite="#//MessageLabel/pathEdge">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/ownedUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessageLabel" eSuperTypes="#//UmlLabel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pathEdge" ordered="false"
+        eType="#//PathEdge" eOpposite="#//PathEdge/messageLabel">
+      <eAnnotations source="subsets" references="#//UmlDiagramElement/owningUmlDiagramElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateInvariantShape" eSuperTypes="#//InteractionFragmentShape">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="useStateShape" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.papyrus.dd/model/DC.ecore#//Boolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
 </ecore:EPackage>

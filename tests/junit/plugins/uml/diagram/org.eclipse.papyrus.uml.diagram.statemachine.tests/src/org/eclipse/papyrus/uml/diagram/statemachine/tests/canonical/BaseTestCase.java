@@ -13,14 +13,7 @@
 
 package org.eclipse.papyrus.uml.diagram.statemachine.tests.canonical;
 
-import static org.junit.Assert.assertNotNull;
-
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.CreateStateMachineDiagramCommand;
@@ -30,9 +23,9 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompa
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.statemachine.tests.IStateMachineDiagramTestsConstants;
-import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusSemanticTestCase;
 
-public class BaseTestCase extends AbstractPapyrusTestCase {
+public class BaseTestCase extends AbstractPapyrusSemanticTestCase {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
@@ -49,34 +42,15 @@ public class BaseTestCase extends AbstractPapyrusTestCase {
 		return IStateMachineDiagramTestsConstants.FILE_NAME;
 	}
 
-	/**
-	 * create childNodeEditPart in parentEditPart
-	 */
-	protected IGraphicalEditPart createChild(int childVID, IGraphicalEditPart container) {
-		final CreateViewRequest requestcreation = createRequest(childVID, container);
-		Command cmd = container.getCommand(requestcreation);
-		executeOnUIThread(cmd);
-		return findChildBySemanticHint(container, childVID);
-	}
-
-	protected CreateViewRequest createRequest(int childVID, IGraphicalEditPart container) {
-		final IElementType childType = UMLElementTypes.getElementType(childVID);
-		final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(childType, container.getDiagramPreferencesHint());
-		requestcreation.setSize(new Dimension(1, 1));
-		requestcreation.setLocation(new Point(10, 10));
-		return requestcreation;
-	}
-	
-	protected IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
-		IGraphicalEditPart childEP = parent.getChildBySemanticHint(Integer.toString(vid));
-		assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);
-		return childEP;
-	}
-
 	protected IGraphicalEditPart getRegionCompartmentEditPart() {
 		IGraphicalEditPart sm = findChildBySemanticHint(getDiagramEditPart(), StateMachineEditPart.VISUAL_ID);
 		IGraphicalEditPart smCompartment = findChildBySemanticHint(sm, StateMachineCompartmentEditPart.VISUAL_ID);
 		IGraphicalEditPart region = findChildBySemanticHint(smCompartment, RegionEditPart.VISUAL_ID);
 		return findChildBySemanticHint(region, RegionCompartmentEditPart.VISUAL_ID);
+	}
+
+	@Override
+	protected IElementType getTypeByID(int vid) {
+		return UMLElementTypes.getElementType(vid);
 	}
 }

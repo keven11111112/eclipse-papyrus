@@ -122,9 +122,12 @@ public class DynamicNewChild extends ContributionItem {
 	 */
 	protected EObject getSelection() {
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
+		if (selectionService == null) {
+			return null;
+		}
 		ISelection selection = selectionService.getSelection();
 
-		if (selection.isEmpty()) {
+		if (selection == null || selection.isEmpty()) {
 			return null;
 		}
 

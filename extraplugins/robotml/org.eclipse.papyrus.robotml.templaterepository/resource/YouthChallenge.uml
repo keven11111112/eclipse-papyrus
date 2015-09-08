@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <uml:Model xmi:id="_k0Lj4DiAEeKDAMEjnOLmPA" name="YouthChallengeModel">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_k0Lj4TiAEeKDAMEjnOLmPA">
       <importedPackage xmi:type="uml:Package" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_dt_y4AHtEeCQQOKrhO_fIQ"/>
@@ -2075,25 +2075,25 @@ transform the velocities from the operational space to the articular space (left
             <value xmi:type="uml:InstanceValue" xmi:id="_KvM-TjiwEeKFHpsdOC1X1Q" instance="_KvM-RjiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KttwgDiwEeKFHpsdOC1X1Q" clientDependency="_j6kagDiwEeKFHpsdOC1X1Q" name="mainInstance.pathPlanner" classifier="_k0LoFDiAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KttwgDiwEeKFHpsdOC1X1Q" name="mainInstance.pathPlanner" classifier="_k0LoFDiAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_KuKccDiwEeKFHpsdOC1X1Q" definingFeature="_k0LoITiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KuKccTiwEeKFHpsdOC1X1Q" instance="_KttwgTiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KttwgTiwEeKFHpsdOC1X1Q" name="mainInstance.pathPlanner.path_Planner" classifier="_k0LoBTiAEeKDAMEjnOLmPA"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuUNcjiwEeKFHpsdOC1X1Q" clientDependency="_kcVq0DiwEeKFHpsdOC1X1Q" name="mainInstance.missionGenerator" classifier="_k0Ln9ziAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuUNcjiwEeKFHpsdOC1X1Q" name="mainInstance.missionGenerator" classifier="_k0Ln9ziAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_KuUNdDiwEeKFHpsdOC1X1Q" definingFeature="_k0Ln_DiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KudXYDiwEeKFHpsdOC1X1Q" instance="_KuUNcziwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuUNcziwEeKFHpsdOC1X1Q" name="mainInstance.missionGenerator.mission" classifier="_k0Ln8jiAEeKDAMEjnOLmPA"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KudXYziwEeKFHpsdOC1X1Q" clientDependency="_k-HiMDiwEeKFHpsdOC1X1Q" name="mainInstance.navigator" classifier="_k0LoVjiAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KudXYziwEeKFHpsdOC1X1Q" name="mainInstance.navigator" classifier="_k0LoVjiAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_KudXZTiwEeKFHpsdOC1X1Q" definingFeature="_k0LoXziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KudXZjiwEeKFHpsdOC1X1Q" instance="_KudXZDiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KudXZDiwEeKFHpsdOC1X1Q" name="mainInstance.navigator.navigator" classifier="_k0LoQDiAEeKDAMEjnOLmPA"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KunIYjiwEeKFHpsdOC1X1Q" clientDependency="_lnLGQDiwEeKFHpsdOC1X1Q" name="mainInstance.pilot" classifier="_k0LoqziAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KunIYjiwEeKFHpsdOC1X1Q" name="mainInstance.pilot" classifier="_k0LoqziAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_KunIZDiwEeKFHpsdOC1X1Q" definingFeature="_k0LotDiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KunIZTiwEeKFHpsdOC1X1Q" instance="_KunIYziwEeKFHpsdOC1X1Q"/>
           </slot>
@@ -2103,7 +2103,7 @@ transform the velocities from the operational space to the articular space (left
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KunIYziwEeKFHpsdOC1X1Q" name="mainInstance.pilot.Pilot" classifier="_k0LohziAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KunIZjiwEeKFHpsdOC1X1Q" name="mainInstance.pilot.IKM" classifier="_k0LooTiAEeKDAMEjnOLmPA"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSUDiwEeKFHpsdOC1X1Q" clientDependency="_Yxf0UDiwEeKFHpsdOC1X1Q" name="mainInstance.servoing" classifier="_k0Lo-jiAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSUDiwEeKFHpsdOC1X1Q" name="mainInstance.servoing" classifier="_k0Lo-jiAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_KuwSUjiwEeKFHpsdOC1X1Q" definingFeature="_k0Lo_ziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KuwSUziwEeKFHpsdOC1X1Q" instance="_KuwSUTiwEeKFHpsdOC1X1Q"/>
           </slot>
@@ -2113,7 +2113,7 @@ transform the velocities from the operational space to the articular space (left
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSUTiwEeKFHpsdOC1X1Q" name="mainInstance.servoing.Servoings" classifier="_k0Lo7DiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSVDiwEeKFHpsdOC1X1Q" name="mainInstance.servoing.Frame_In" classifier="_k0Lo9TiAEeKDAMEjnOLmPA"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSWTiwEeKFHpsdOC1X1Q" clientDependency="_WxjV0DiwEeKFHpsdOC1X1Q" name="mainInstance.sensors" classifier="_k0LndTiAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSWTiwEeKFHpsdOC1X1Q" name="mainInstance.sensors" classifier="_k0LndTiAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_Ku6DUDiwEeKFHpsdOC1X1Q" definingFeature="_k0LnijiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_Ku6DUTiwEeKFHpsdOC1X1Q" instance="_KuwSWjiwEeKFHpsdOC1X1Q"/>
           </slot>
@@ -2139,7 +2139,7 @@ transform the velocities from the operational space to the articular space (left
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ku6DWDiwEeKFHpsdOC1X1Q" name="mainInstance.sensors.IMU" classifier="_k0LnZDiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ku6DWziwEeKFHpsdOC1X1Q" name="mainInstance.sensors.LaserRange" classifier="_k0LnaTiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ku6DXjiwEeKFHpsdOC1X1Q" name="mainInstance.sensors.camera_FireWire" classifier="_k0LnbziAEeKDAMEjnOLmPA"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvD0VDiwEeKFHpsdOC1X1Q" clientDependency="_mELyYDiwEeKFHpsdOC1X1Q" name="mainInstance.proximetry" classifier="_k0LmxDiAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvD0VDiwEeKFHpsdOC1X1Q" name="mainInstance.proximetry" classifier="_k0LmxDiAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_KvD0VjiwEeKFHpsdOC1X1Q" definingFeature="_k0Lm2jiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvD0VziwEeKFHpsdOC1X1Q" instance="_KvD0VTiwEeKFHpsdOC1X1Q"/>
           </slot>
@@ -2153,13 +2153,13 @@ transform the velocities from the operational space to the articular space (left
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvD0VTiwEeKFHpsdOC1X1Q" name="mainInstance.proximetry.superDKM" classifier="_k0LmkTiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvD0WDiwEeKFHpsdOC1X1Q" name="mainInstance.proximetry.proximetric_Map" classifier="_k0LmrjiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvD0WziwEeKFHpsdOC1X1Q" name="mainInstance.proximetry.amer_Identif" classifier="_k0LmuTiAEeKDAMEjnOLmPA"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvM-QDiwEeKFHpsdOC1X1Q" clientDependency="_mhfZcDiwEeKFHpsdOC1X1Q" name="mainInstance.global_map" classifier="_k0LmBDiAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvM-QDiwEeKFHpsdOC1X1Q" name="mainInstance.global_map" classifier="_k0LmBDiAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_KvM-QjiwEeKFHpsdOC1X1Q" definingFeature="_k0LmBTiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvM-QziwEeKFHpsdOC1X1Q" instance="_KvM-QTiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvM-QTiwEeKFHpsdOC1X1Q" name="mainInstance.global_map.global_Map" classifier="_k0Ll8jiAEeKDAMEjnOLmPA"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvM-RjiwEeKFHpsdOC1X1Q" clientDependency="_nLJacDiwEeKFHpsdOC1X1Q" name="mainInstance.local_Map" classifier="_k0LmTjiAEeKDAMEjnOLmPA">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvM-RjiwEeKFHpsdOC1X1Q" name="mainInstance.local_Map" classifier="_k0LmTjiAEeKDAMEjnOLmPA">
           <slot xmi:type="uml:Slot" xmi:id="_KvM-SDiwEeKFHpsdOC1X1Q" definingFeature="_k0LmTziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvM-STiwEeKFHpsdOC1X1Q" instance="_KvM-RziwEeKFHpsdOC1X1Q"/>
           </slot>
@@ -2293,8 +2293,6 @@ transform the velocities from the operational space to the articular space (left
   <RobotML:DataFlowPort xmi:id="_k0VU6TiAEeKDAMEjnOLmPA" base_Port="_k0LndDiAEeKDAMEjnOLmPA" direction="out"/>
   <RobotML:DataFlowPort xmi:id="_k0VU6jiAEeKDAMEjnOLmPA" base_Port="_k0LnbjiAEeKDAMEjnOLmPA" direction="out"/>
   <RobotML:DataFlowPort xmi:id="_k0VU6ziAEeKDAMEjnOLmPA" base_Port="_k0LmwziAEeKDAMEjnOLmPA" bufferSize="6"/>
-  <RobotML:DataFlowPort xmi:id="_k0VU7DiAEeKDAMEjnOLmPA" bufferSize="6"/>
-  <RobotML:DataFlowPort xmi:id="_k0VU7TiAEeKDAMEjnOLmPA" bufferSize="6"/>
   <RobotML:DataFlowPort xmi:id="_k0VU7jiAEeKDAMEjnOLmPA" base_Port="_k0LouDiAEeKDAMEjnOLmPA" bufferSize="6"/>
   <RobotML:DataFlowPort xmi:id="_k0VU7ziAEeKDAMEjnOLmPA" base_Port="_k0LouTiAEeKDAMEjnOLmPA" bufferSize="6"/>
   <RobotML:DataFlowPort xmi:id="_k0VU8DiAEeKDAMEjnOLmPA" base_Port="_k0LoYDiAEeKDAMEjnOLmPA" bufferSize="6"/>
@@ -2333,7 +2331,6 @@ transform the velocities from the operational space to the articular space (left
   <RobotML:RoboticMiddleware xmi:id="_iFHmsDiuEeKFHpsdOC1X1Q" base_Class="_iBPzUDiuEeKFHpsdOC1X1Q"/>
   <RobotML:BlenderMorse xmi:id="_u55gwDiuEeKFHpsdOC1X1Q" base_Class="_rlJygDiuEeKFHpsdOC1X1Q" debugMode="true"/>
   <RobotML:Platform xmi:id="_HSZVrDivEeKFHpsdOC1X1Q" base_Class="_HR8psDivEeKFHpsdOC1X1Q"/>
-  <FCM:DeploymentPlan xmi:id="_KtkmkDiwEeKFHpsdOC1X1Q" mainInstance="_KtkmkTiwEeKFHpsdOC1X1Q" base_Package="_Kta1kDiwEeKFHpsdOC1X1Q"/>
   <RobotML:Allocate xmi:id="_WxtG0DiwEeKFHpsdOC1X1Q" base_Abstraction="_WxjV0DiwEeKFHpsdOC1X1Q"/>
   <RobotML:Allocate xmi:id="_Yxf0UTiwEeKFHpsdOC1X1Q" base_Abstraction="_Yxf0UDiwEeKFHpsdOC1X1Q"/>
   <RobotML:Allocate xmi:id="_j6uLgDiwEeKFHpsdOC1X1Q" base_Abstraction="_j6kagDiwEeKFHpsdOC1X1Q"/>

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.service.types.helper;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -43,6 +44,21 @@ public class ActivityGroupHelper extends ElementEditHelper {
 
 	protected boolean isActivityNode(IElementType type) {
 		return type.getEClass() != null && UMLPackage.eINSTANCE.getActivityNode().isSuperTypeOf(type.getEClass());
+	}
+
+	/**
+	 * Activity nodes creation relies on substitution of the containment feature from advices. 
+	 * So in contrast to base class logic, we need to approve creation requests even if the actually passed feature is not a containment. 
+	 */
+	protected boolean approveNonContainmentActivityNode(CreateElementRequest request) {
+		IElementType type = request.getElementType();
+		if (type == null || type.getEClass() == null) {
+			return false;
+		}
+		if (UMLPackage.eINSTANCE.getActivityNode().isSuperTypeOf(type.getEClass())) {
+			return true;
+		}
+		return super.approveRequest(request);
 	}
 
 }

@@ -15,39 +15,36 @@ import org.eclipse.papyrus.RobotML.RobotMLPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotML.impl.RobotImpl#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.RobotImpl#getWidth <em>Width</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RobotImpl extends AgentImpl implements Robot {
+public class RobotImpl extends SystemImpl implements Robot {
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float WIDTH_EDEFAULT = 0.0F;
+	protected static final Object WIDTH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
 	 */
-	protected float width = WIDTH_EDEFAULT;
+	protected Object width = WIDTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected RobotImpl() {
@@ -57,7 +54,6 @@ public class RobotImpl extends AgentImpl implements Robot {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -68,38 +64,34 @@ public class RobotImpl extends AgentImpl implements Robot {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public float getWidth() {
+	public Object getWidth() {
 		return width;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public void setWidth(float newWidth) {
-		float oldWidth = width;
+	public void setWidth(Object newWidth) {
+		Object oldWidth = width;
 		width = newWidth;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.ROBOT__WIDTH, oldWidth, width));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RobotMLPackage.ROBOT__WIDTH:
-			return getWidth();
+			case RobotMLPackage.ROBOT__WIDTH:
+				return getWidth();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,15 +99,14 @@ public class RobotImpl extends AgentImpl implements Robot {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RobotMLPackage.ROBOT__WIDTH:
-			setWidth((Float) newValue);
-			return;
+			case RobotMLPackage.ROBOT__WIDTH:
+				setWidth((Object)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -123,15 +114,14 @@ public class RobotImpl extends AgentImpl implements Robot {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RobotMLPackage.ROBOT__WIDTH:
-			setWidth(WIDTH_EDEFAULT);
-			return;
+			case RobotMLPackage.ROBOT__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -139,14 +129,13 @@ public class RobotImpl extends AgentImpl implements Robot {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RobotMLPackage.ROBOT__WIDTH:
-			return width != WIDTH_EDEFAULT;
+			case RobotMLPackage.ROBOT__WIDTH:
+				return WIDTH_EDEFAULT == null ? width != null : !WIDTH_EDEFAULT.equals(width);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -154,14 +143,11 @@ public class RobotImpl extends AgentImpl implements Robot {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (width: ");

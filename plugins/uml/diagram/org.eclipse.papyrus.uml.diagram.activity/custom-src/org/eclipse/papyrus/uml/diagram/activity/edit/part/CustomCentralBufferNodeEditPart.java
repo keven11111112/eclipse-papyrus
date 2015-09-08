@@ -27,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeEdit
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeSelectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.locator.LinkedBehaviorLocator;
 import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 
 public class CustomCentralBufferNodeEditPart extends CentralBufferNodeEditPart {
@@ -52,12 +53,21 @@ public class CustomCentralBufferNodeEditPart extends CentralBufferNodeEditPart {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart#createNodeShape()
+	 *
+	 * @return
+	 */
+	@Override
+	protected IFigure createNodeShape() {
+		return primaryShape = new RoundedCompartmentFigure("centralBuffer");//$NON-NLS-1$
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#refreshLabelDisplay()
 	 *
 	 */
 	@Override
 	protected void refreshLabelDisplay() {
-		// TODO Auto-generated method stub
 		super.refreshLabelDisplay();
 		// Allow multiline
 		getPrimaryShape().getNameLabel().setTextWrap(true);

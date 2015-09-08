@@ -26,9 +26,8 @@ import org.eclipse.papyrus.dd.di.Edge;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.UmlEdge#getSourceUmlDiagramElement <em>Source Uml Diagram Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.UmlEdge#getMainLabel <em>Main Label</em>}</li>
- *   <li>{@link org.eclipse.papyrus.umldi.UmlEdge#getTargetUmlDiagramElement <em>Target Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.UmlEdge#getSourceUmlDiagramElement <em>Source Uml Diagram Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.UmlEdge#getTargetUmlDiagramElement <em>Target Uml Diagram Element</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlEdge()
@@ -36,6 +35,7 @@ import org.eclipse.papyrus.dd.di.Edge;
  * @generated
  */
 public interface UmlEdge extends TopUmlDiagramElement, Edge {
+
 	/**
 	 * Returns the value of the '<em><b>Source Uml Diagram Element</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getSourceUmlEdge <em>Source Uml Edge</em>}'.
@@ -43,13 +43,14 @@ public interface UmlEdge extends TopUmlDiagramElement, Edge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.dd.di.Edge#getSourceDiagramElement() <em>Source Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.dd.di.Edge#getSourceDiagramElement() <em>Source Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Restricts the sources of UMLEdges to UMLDiagramElements.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Source Uml Diagram Element</em>' reference.
 	 * @see #setSourceUmlDiagramElement(UmlDiagramElement)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlEdge_SourceUmlDiagramElement()
@@ -63,45 +64,13 @@ public interface UmlEdge extends TopUmlDiagramElement, Edge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.UmlEdge#getSourceUmlDiagramElement <em>Source Uml Diagram Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Uml Diagram Element</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Source Uml Diagram Element</em>' reference.
 	 * @see #getSourceUmlDiagramElement()
 	 * @generated
 	 */
 	void setSourceUmlDiagramElement(UmlDiagramElement value);
-
-	/**
-	 * Returns the value of the '<em><b>Main Label</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.MainLabel#getUmlEdge <em>Uml Edge</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Main Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Main Label</em>' containment reference.
-	 * @see #setMainLabel(MainLabel)
-	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlEdge_MainLabel()
-	 * @see org.eclipse.papyrus.umldi.MainLabel#getUmlEdge
-	 * @model opposite="umlEdge" containment="true" ordered="false"
-	 * @generated
-	 */
-	MainLabel getMainLabel();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.UmlEdge#getMainLabel <em>Main Label</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Main Label</em>' containment reference.
-	 * @see #getMainLabel()
-	 * @generated
-	 */
-	void setMainLabel(MainLabel value);
 
 	/**
 	 * Returns the value of the '<em><b>Target Uml Diagram Element</b></em>' reference.
@@ -110,13 +79,14 @@ public interface UmlEdge extends TopUmlDiagramElement, Edge {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.dd.di.Edge#getTargetDiagramElement() <em>Target Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.dd.di.Edge#getTargetDiagramElement() <em>Target Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Restricts the targets of UMLEdges to UMLDiagramElements.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Target Uml Diagram Element</em>' reference.
 	 * @see #setTargetUmlDiagramElement(UmlDiagramElement)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlEdge_TargetUmlDiagramElement()
@@ -130,10 +100,11 @@ public interface UmlEdge extends TopUmlDiagramElement, Edge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.UmlEdge#getTargetUmlDiagramElement <em>Target Uml Diagram Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Uml Diagram Element</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Target Uml Diagram Element</em>' reference.
 	 * @see #getTargetUmlDiagramElement()
 	 * @generated
 	 */
 	void setTargetUmlDiagramElement(UmlDiagramElement value);
-
 } // UmlEdge

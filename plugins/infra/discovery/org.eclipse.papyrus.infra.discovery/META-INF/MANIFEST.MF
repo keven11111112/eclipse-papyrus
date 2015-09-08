@@ -7,13 +7,11 @@ Export-Package: org.eclipse.papyrus.infra.discovery,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.discovery.Activator$Implem
- entation
+Bundle-Activator: org.eclipse.papyrus.infra.discovery.Activator$Implementation
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.discovery;singleton:=tr
- ue
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Description: %pluginDescription
+Bundle-SymbolicName: org.eclipse.papyrus.infra.discovery;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

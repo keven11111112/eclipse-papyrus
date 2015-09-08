@@ -13,16 +13,21 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
-
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
+import org.eclipse.uml2.uml.AcceptEventAction;
+import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.InterruptibleActivityRegion;
+import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,6 +52,77 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		return findChildBySemanticHint(activityEP, ActivityActivityContentCompartmentEditPart.VISUAL_ID);
 	}
 	
+
+	@Test
+	public void testResetInRegionWhenResizeGraphicalRepresentationElements() {
+		IGraphicalEditPart regionEP = createChild(InterruptibleActivityRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+
+		InterruptibleActivityRegion region = (InterruptibleActivityRegion) regionEP.resolveSemanticElement();
+		OpaqueAction opaque = (OpaqueAction) opaqueEP.resolveSemanticElement();
+		SetValueCommand setInRegionCommand = new SetValueCommand(new SetRequest(region, UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node(), opaque));
+
+		executeOnUIThread(new GMFtoGEFCommandWrapper(setInRegionCommand));
+
+		checkListElementReferenceSemantic(opaqueEP, regionEP, UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node());
+		checkListElementReferenceSemantic(regionEP, opaqueEP, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion());
+
+		ChangeBoundsRequest reqResizeOpaque = new ChangeBoundsRequest(org.eclipse.gef.RequestConstants.REQ_RESIZE);
+		reqResizeOpaque.setEditParts(opaqueEP);
+		reqResizeOpaque.setSizeDelta(new Dimension(1, 1));
+
+		Command resizeOpaqueEP = opaqueEP.getCommand(reqResizeOpaque);
+		executeOnUIThread(resizeOpaqueEP);
+
+		checkListElementReferenceSemantic(opaqueEP, regionEP, UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node());
+		checkListElementReferenceSemantic(regionEP, opaqueEP, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion());
+
+		ChangeBoundsRequest reqResizeRegion = new ChangeBoundsRequest(org.eclipse.gef.RequestConstants.REQ_RESIZE);
+		reqResizeRegion.setEditParts(regionEP);
+		reqResizeRegion.setSizeDelta(new Dimension(1, 1));
+
+		Command resizeRegionEP = regionEP.getCommand(reqResizeRegion);
+		executeOnUIThread(resizeRegionEP);
+
+		checkListElementReferenceSemantic(opaqueEP, regionEP, UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node());
+		checkListElementReferenceSemantic(regionEP, opaqueEP, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion());
+	}
+
+	@Test
+	public void testResetInPartitionWhenResizeGraphicalRepresentationElements() {
+		IGraphicalEditPart partitionEP = createChild(ActivityPartitionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart acceptEP = createChild(AcceptEventActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+
+		ActivityPartition partition = (ActivityPartition) partitionEP.resolveSemanticElement();
+		AcceptEventAction accept = (AcceptEventAction) acceptEP.resolveSemanticElement();
+		SetValueCommand setInPartitionCommand = new SetValueCommand(new SetRequest(partition, UMLPackage.eINSTANCE.getActivityPartition_Node(), accept));
+
+		executeOnUIThread(new GMFtoGEFCommandWrapper(setInPartitionCommand));
+
+		checkListElementReferenceSemantic(acceptEP, partitionEP, UMLPackage.eINSTANCE.getActivityPartition_Node());
+		checkListElementReferenceSemantic(partitionEP, acceptEP, UMLPackage.eINSTANCE.getActivityNode_InPartition());
+
+		ChangeBoundsRequest reqResizeAccept = new ChangeBoundsRequest(org.eclipse.gef.RequestConstants.REQ_RESIZE);
+		reqResizeAccept.setEditParts(acceptEP);
+		reqResizeAccept.setSizeDelta(new Dimension(1, 1));
+
+		Command resizeAcceptCommand = acceptEP.getCommand(reqResizeAccept);
+		executeOnUIThread(resizeAcceptCommand);
+
+		checkListElementReferenceSemantic(acceptEP, partitionEP, UMLPackage.eINSTANCE.getActivityPartition_Node());
+		checkListElementReferenceSemantic(partitionEP, acceptEP, UMLPackage.eINSTANCE.getActivityNode_InPartition());
+
+		ChangeBoundsRequest reqResizePartition = new ChangeBoundsRequest(org.eclipse.gef.RequestConstants.REQ_RESIZE);
+		reqResizePartition.setEditParts(partitionEP);
+		reqResizePartition.setSizeDelta(new Dimension(1, 1));
+
+		Command resizePartitionCommand = partitionEP.getCommand(reqResizePartition);
+		executeOnUIThread(resizePartitionCommand);
+
+		checkListElementReferenceSemantic(acceptEP, partitionEP, UMLPackage.eINSTANCE.getActivityPartition_Node());
+		checkListElementReferenceSemantic(partitionEP, acceptEP, UMLPackage.eINSTANCE.getActivityNode_InPartition());
+	}
+
 	@Test
 	public void testFeatureActivityInActivity() {
 		IGraphicalEditPart activity = createChild(ActivityEditPartCN.VISUAL_ID, getActivityCompartmentEditPart());
@@ -1215,34 +1291,5 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	public void assertValuePinType(IGraphicalEditPart pinEP) {
 		EObject valuePin = getSemanticElement(pinEP);
 		Assert.assertSame(valuePin.eClass(), UMLPackage.eINSTANCE.getValuePin());
-	}
-
-	public void checkListElementReferenceSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP, EReference... expectedFeature) {
-		EObject child = getSemanticElement(childEP);
-		EObject parent = getSemanticElement(parentEP);
-		for (EReference feature: expectedFeature) {
-			Object objectList = parent.eGet(feature);
-			Assert.assertTrue("Feature result should be list", objectList instanceof List<?>);
-			List<?> children = (List<?>) objectList;
-			Assert.assertTrue(getAssertMasageForContainChild(parent, child, feature), children.contains(child));
-		}
-	}
-	
-	public void checkOneElementReferenceSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP, EReference feature) {
-		EObject child = getSemanticElement(childEP);
-		EObject parent = getSemanticElement(parentEP);
-
-		Object objectChildElement = parent.eGet(feature);
-		Assert.assertEquals(getAssertMasageForContainChild(child, parent, feature), child, objectChildElement);
-	}
-	
-	protected EObject getSemanticElement(IGraphicalEditPart ep) {
-		EObject activityNode = ep.resolveSemanticElement();
-		assertNotNull("Primary view of " + ep.getNotationView() + " must have EObject element", activityNode);
-		return activityNode;
-	}
-	
-	private String getAssertMasageForContainChild(EObject child, EObject parent, EReference feature) {
-		return "Element:" + parent.getClass().getSimpleName() +  "should contein child:" + child.getClass().getSimpleName()  + " in feature: " + feature.getName();
 	}
 }

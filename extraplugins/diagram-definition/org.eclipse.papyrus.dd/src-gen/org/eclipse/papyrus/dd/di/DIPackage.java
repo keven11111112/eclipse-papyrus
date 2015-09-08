@@ -13,6 +13,7 @@ package org.eclipse.papyrus.dd.di;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -150,13 +151,33 @@ public interface DIPackage extends EPackage {
 	int DIAGRAM_ELEMENT__SOURCE_EDGE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Diagram</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM_ELEMENT__DIAGRAM = 7;
+
+	/**
 	 * The number of structural features of the '<em>Diagram Element</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM_ELEMENT_FEATURE_COUNT = 7;
+	int DIAGRAM_ELEMENT_FEATURE_COUNT = 8;
+
+	/**
+	 * The operation id for the '<em>Diagram</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM_ELEMENT___DIAGRAM = 0;
 
 	/**
 	 * The number of operations of the '<em>Diagram Element</em>' class. <!--
@@ -165,7 +186,7 @@ public interface DIPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM_ELEMENT_OPERATION_COUNT = 0;
+	int DIAGRAM_ELEMENT_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.dd.di.impl.StyleImpl <em>Style</em>}' class.
@@ -273,6 +294,16 @@ public interface DIPackage extends EPackage {
 	int EDGE__SOURCE_EDGE = DIAGRAM_ELEMENT__SOURCE_EDGE;
 
 	/**
+	 * The feature id for the '<em><b>Diagram</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__DIAGRAM = DIAGRAM_ELEMENT__DIAGRAM;
+
+	/**
 	 * The feature id for the '<em><b>Source Diagram Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -309,6 +340,16 @@ public interface DIPackage extends EPackage {
 	 * @ordered
 	 */
 	int EDGE_FEATURE_COUNT = DIAGRAM_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Diagram</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE___DIAGRAM = DIAGRAM_ELEMENT___DIAGRAM;
 
 	/**
 	 * The number of operations of the '<em>Edge</em>' class. <!--
@@ -397,6 +438,16 @@ public interface DIPackage extends EPackage {
 	int SHAPE__SOURCE_EDGE = DIAGRAM_ELEMENT__SOURCE_EDGE;
 
 	/**
+	 * The feature id for the '<em><b>Diagram</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SHAPE__DIAGRAM = DIAGRAM_ELEMENT__DIAGRAM;
+
+	/**
 	 * The feature id for the '<em><b>Bounds</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -413,6 +464,16 @@ public interface DIPackage extends EPackage {
 	 * @ordered
 	 */
 	int SHAPE_FEATURE_COUNT = DIAGRAM_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Diagram</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SHAPE___DIAGRAM = DIAGRAM_ELEMENT___DIAGRAM;
 
 	/**
 	 * The number of operations of the '<em>Shape</em>' class. <!--
@@ -501,6 +562,16 @@ public interface DIPackage extends EPackage {
 	int DIAGRAM__SOURCE_EDGE = SHAPE__SOURCE_EDGE;
 
 	/**
+	 * The feature id for the '<em><b>Diagram</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__DIAGRAM = SHAPE__DIAGRAM;
+
+	/**
 	 * The feature id for the '<em><b>Bounds</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -544,6 +615,16 @@ public interface DIPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM_FEATURE_COUNT = SHAPE_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Diagram</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___DIAGRAM = SHAPE___DIAGRAM;
 
 	/**
 	 * The number of operations of the '<em>Diagram</em>' class. <!--
@@ -646,6 +727,29 @@ public interface DIPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDiagramElement_SourceEdge();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.dd.di.DiagramElement#getDiagram <em>Diagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Diagram</em>'.
+	 * @see org.eclipse.papyrus.dd.di.DiagramElement#getDiagram()
+	 * @see #getDiagramElement()
+	 * @generated
+	 */
+	EReference getDiagramElement_Diagram();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.dd.di.DiagramElement#diagram() <em>Diagram</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the '<em>Diagram</em>' operation.
+	 * @see org.eclipse.papyrus.dd.di.DiagramElement#diagram()
+	 * @generated
+	 */
+	EOperation getDiagramElement__Diagram();
 
 	/**
 	 * Returns the meta object for class ' {@link org.eclipse.papyrus.dd.di.Style <em>Style</em>}'. <!--
@@ -862,6 +966,24 @@ public interface DIPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DIAGRAM_ELEMENT__SOURCE_EDGE = eINSTANCE.getDiagramElement_SourceEdge();
+
+		/**
+		 * The meta object literal for the '<em><b>Diagram</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference DIAGRAM_ELEMENT__DIAGRAM = eINSTANCE.getDiagramElement_Diagram();
+
+		/**
+		 * The meta object literal for the '<em><b>Diagram</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EOperation DIAGRAM_ELEMENT___DIAGRAM = eINSTANCE.getDiagramElement__Diagram();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.dd.di.impl.StyleImpl <em>Style</em>}' class.

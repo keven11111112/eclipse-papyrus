@@ -11,6 +11,7 @@
  */
 package org.eclipse.papyrus.umldi;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.dd.di.Shape;
 
 /**
@@ -26,7 +27,7 @@ import org.eclipse.papyrus.dd.di.Shape;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.umldi.UmlShape#getMainLabel <em>Main Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.umldi.UmlShape#getStereotypeCompartment <em>Stereotype Compartment</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlShape()
@@ -34,38 +35,29 @@ import org.eclipse.papyrus.dd.di.Shape;
  * @generated
  */
 public interface UmlShape extends TopUmlDiagramElement, Shape {
+
 	/**
-	 * Returns the value of the '<em><b>Main Label</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.MainLabel#getUmlShape <em>Uml Shape</em>}'.
+	 * Returns the value of the '<em><b>Stereotype Compartment</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.umldi.StereotypeCompartment}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.StereotypeCompartment#getUmlShape <em>Uml Shape</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Main Label</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Stereotype Compartment</em>' containment reference list isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Main Label</em>' containment reference.
-	 * @see #setMainLabel(MainLabel)
-	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlShape_MainLabel()
-	 * @see org.eclipse.papyrus.umldi.MainLabel#getUmlShape
-	 * @model opposite="umlShape" containment="true" ordered="false"
+	 * 
+	 * @return the value of the '<em>Stereotype Compartment</em>' containment reference list.
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlShape_StereotypeCompartment()
+	 * @see org.eclipse.papyrus.umldi.StereotypeCompartment#getUmlShape
+	 * @model opposite="umlShape" containment="true"
 	 * @generated
 	 */
-	MainLabel getMainLabel();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.UmlShape#getMainLabel <em>Main Label</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Main Label</em>' containment reference.
-	 * @see #getMainLabel()
-	 * @generated
-	 */
-	void setMainLabel(MainLabel value);
-
+	EList<StereotypeCompartment> getStereotypeCompartment();
 } // UmlShape

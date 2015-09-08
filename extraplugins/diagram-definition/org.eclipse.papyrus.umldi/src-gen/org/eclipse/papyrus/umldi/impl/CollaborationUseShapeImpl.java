@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class CollaborationUseShapeImpl extends ElementShapeImpl implements CollaborationUseShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CollaborationUseShapeImpl() {
@@ -36,11 +38,11 @@ public class CollaborationUseShapeImpl extends ElementShapeImpl implements Colla
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.COLLABORATION_USE_SHAPE;
 	}
-
 } //CollaborationUseShapeImpl

@@ -29,7 +29,9 @@ import org.eclipse.uml2.uml.Parameter;
 
 /**
  * Panel displayed when a Parameter is selected
+ * @deprecated This view will be replaced by an XWT view for the C++ profile
  */
+@Deprecated
 public class CppParameterPanel extends CppAbstractPanel {
 
 	private Button isConst;

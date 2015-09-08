@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -7,7 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *    CEA LIST - initial API and implementation
+ *    Christian W. Damus - bug 473183
+ *    
  *****************************************************************************/
+
 package org.eclipse.papyrus.uml.diagram.interactionoverview.tests.canonical;
 
 import static org.junit.Assert.assertTrue;
@@ -21,25 +26,27 @@ import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramCreateCommand;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.StateNotShareable;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Before;
 import org.junit.Test;
 
+@StateNotShareable
 public class TestInteractionOverviewDiagramChildNode extends AbstractInteractionOverviewDiagramTestCase {
 
 	@Before
 	@Override
 	public void setUp() throws Exception {
 		projectCreation();
-//		createActivity();
+		// createActivity();
 
 		assertTrue(AbstractPapyrusTestCase.CREATION + AbstractPapyrusTestCase.INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
-		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
+		GraphicalEditPart containerEditPart = (GraphicalEditPart) getDiagramEditPart().getChildren().get(0);
 		rootCompartment = null;
 		int index = 0;
-		while(rootCompartment == null && index < containerEditPart.getChildren().size()) {
-			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
-				rootCompartment = (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
+		while (rootCompartment == null && index < containerEditPart.getChildren().size()) {
+			if ((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
+				rootCompartment = (ShapeCompartmentEditPart) (containerEditPart.getChildren().get(index));
 			}
 			index++;
 		}

@@ -35,10 +35,7 @@ constructor StatementActivityGraph::StatementActivityGraph(node : StructuredActi
 }
 
 constructor StatementActivityGraph::StatementActivityGraph(structuredNodeName : String) {
-	structuredNode := object StructuredActivityNode {
-		name := structuredNodeName;
-	};
-	nodes += structuredNode;
+	nodes += structuredNode := new StructuredActivityNode(structuredNodeName);
 }
 
 helper StatementActivityGraph::addTo(inout activity : Activity) {
@@ -67,10 +64,8 @@ helper StatementActivityGraph::addToExpansionRegion(inout graph : StatementActiv
 }
 
 helper createStructuredNode(inout graph : StatementActivityGraph, nodeName : String) {
-	graph.structuredNode := object StructuredActivityNode {
-		name := nodeName;
-		node := graph.nodes;
-	};
+	graph.structuredNode := new StructuredActivityNode(nodeName);
+	graph.structuredNode.node := graph.nodes;
 	graph.nodes := Set{graph.structuredNode};
 	graph.edges := addEdgesToStructuredNode(graph.structuredNode, graph.edges);
 }
@@ -91,7 +86,7 @@ helper addToLoopNode(inout graph : StatementActivityGraph, nodes : Set(ActivityN
 				loopNode.loopVariableInput->at(i).incoming.source->includes(flow.source)
 			]->forEach(i) {
 				// Redirect the flow to be from the fork node for the loop variable.
-				flow.source := loopNode.loopVariable->at(i).outgoing->any(true).target;
+				flow.source := loopNode.loopVariable->at(i).outgoing![true].target;
 				graph.edges := graph.edges->excluding(flow);
 				loopNode.edge += flow;
 			}
@@ -103,41 +98,11 @@ query ActivityNode::isContainedIn(elements : Set(Element)) : Boolean {
 	return elements[Action].allOwnedNodes()->includes(self)
 }
 
-helper createPassthruNode (sourceName : String, sourceType : Type, lowerValue : Integer, upperValue : Integer) : StructuredActivityNode {
-	var nodeName := 
-		if sourceName = null or sourceName.oclIsInvalid() then "Passthru" 
-		else "Passthru(" + sourceName + ")" endif;
-	var inputPin := object InputPin {
-		name := nodeName + ".input";
-		type := sourceType;
-		lower := lowerValue;
-		upper := upperValue;
-	};
-	var outputPin := object OutputPin {
-		name := nodeName + ".output";
-		type := sourceType;
-		lower := lowerValue;
-		upper := upperValue;
-	};
-	return object StructuredActivityNode {
-		name := nodeName;
-		structuredNodeInput += inputPin;
-		structuredNodeOutput += outputPin;
-		edge += object ObjectFlow {
-			source := inputPin;
-			target := outputPin;
-		};
-	};
-}
-
 // BLOCKS
 
 mapping Block::toActivity(inout activity : Activity) {
   var graph := mapToActivityGraph(self.statement, false);
-  createStructuredNode(graph, 
-  	if activity.name = null then "Body"
-  	else "Body(" + activity.name + ")" endif
-  );
+  createStructuredNode(graph, "Body");
   graph.addTo(activity);
   
   // Connect final output parameter assigned sources to corresponding 
@@ -158,10 +123,10 @@ mapping Block::toActivity(inout activity : Activity) {
   				new ObjectFlow(graph.structuredNode, source, pin);
   			} else {
   				graph.structuredNode.node += var passthruNode ::= 
-  					createPassthruNode(source.name, pin.type, pin.lower, pin.upper);
-  				new ObjectFlow(activity, source, passthruNode.structuredNodeInput->any(true));
+  					createPassthruNode(nameOf(source), pin.type, pin.lower, pin.upper);
+  				new ObjectFlow(activity, source, passthruNode.structuredNodeInput![true]);
   				new ObjectFlow(activity, 
-  					passthruNode.structuredNodeOutput->any(true), getOutputParameterNode(activity, parameter));
+  					passthruNode.structuredNodeOutput![true], getOutputParameterNode(activity, parameter));
   			} endif;
   			new ObjectFlow(activity, pin, getOutputParameterNode(activity, parameter));
   		} endif;
@@ -286,35 +251,13 @@ init {
 }
 
 abstract mapping Statement::toActivityGraph() : StatementActivityGraph {
-	structuredNode := self.createStructuredNode();
-	nodes += structuredNode; 
+	nodes += structuredNode := self.createStructuredNode();
 };
 
 helper Statement::createStructuredNode() : StructuredActivityNode {
-	return self.Statement_createStructuredNode();
+	return new StructuredActivityNode("");
 }
 
-helper Statement::Statement_createStructuredNode() : StructuredActivityNode {
-	return object StructuredActivityNode {};
-}
-
-mapping Statement::statementToActivityGraph() : StatementActivityGraph
-	disjuncts
-		InLineStatement::toActivityGraph,
-		BlockStatement::toActivityGraph,
-		EmptyStatement::toActivityGraph,
-		LocalNameDeclarationStatement::toActivityGraph,
-		ExpressionStatement::toActivityGraph,
-		IfStatement::toActivityGraph,
-		SwitchStatement::toActivityGraph,
-		WhileStatement::toActivityGraph,
-		DoStatement::toActivityGraph,
-		ForStatement::toActivityGraph,
-		BreakStatement::toActivityGraph,
-	  ReturnStatement::toActivityGraph,
-		AcceptStatement::toActivityGraph,
-		ClassifyStatement::toActivityGraph;
-		
 // In-line Statements
 
 mapping InLineStatement::toActivityGraph() : StatementActivityGraph 
@@ -388,20 +331,15 @@ helper SyntaxElement::createClause(inout graph : StatementActivityGraph,
 	assignments : Set(AssignedSource), assignedNames : Sequence(String),
 	predecessorClauses : Set(Clause)) : Clause {
 	var bodyOutputs := mapBodyOutputs(bodyGraph, assignments, assignedNames);
-	var clause := object Clause {
-		test := testNodes[ExecutableNode];
-		body := bodyGraph.nodes[ExecutableNode];
-		bodyOutput := bodyOutputs;
-		predecessorClause := predecessorClauses;
-	};
+	var clause := new Clause(testNodes[ExecutableNode], bodyGraph.nodes[ExecutableNode], bodyOutputs, predecessorClauses);
 	if (testNodes->notEmpty() and decider.oclIsKindOf(OutputPin)) then {
 	  clause.decider := decider.oclAsType(OutputPin);
 	} else {
-		var passthruNode := createPassthruNode(decider.name, self.booleanType().toUml().oclAsType(Type), 1, 1);
+		var passthruNode := createPassthruNode(nameOf(decider), self.booleanType().toUml().oclAsType(Type), 1, 1);
 		clause.test += passthruNode;
-		clause.decider := passthruNode.structuredNodeOutput->any(true);
+		clause.decider := passthruNode.structuredNodeOutput![true];
 		testNodes += passthruNode;
-		testEdges += new ObjectFlow(decider, passthruNode.structuredNodeInput->any(true));
+		testEdges += new ObjectFlow(decider, passthruNode.structuredNodeInput![true]);
 	} endif;
 	addToStructuredNode(graph, testNodes, testEdges);
 	bodyGraph.addToStructuredNode(graph);
@@ -420,10 +358,10 @@ helper mapBodyOutputs(inout bodyGraph : StatementActivityGraph, assignments : Se
 					if assignment.type = null then null
 					else assignment.type.map toUml().oclAsType(Type)
 					endif;
-				var passthruNode := createPassthruNode(bodyOutput.name, type, assignment.lower, assignment.upper);
+				var passthruNode := createPassthruNode(nameOf(bodyOutput), type, assignment.lower, assignment.upper);
 				bodyGraph.nodes += passthruNode;
-				bodyGraph.edges += new ObjectFlow(bodyOutput, passthruNode.structuredNodeInput->any(true));
-				bodyOutput := passthruNode.structuredNodeOutput->any(true);
+				bodyGraph.edges += new ObjectFlow(bodyOutput, passthruNode.structuredNodeInput![true]);
+				bodyOutput := passthruNode.structuredNodeOutput![true];
 			} endif;
 			bodyOutputs += bodyOutput.oclAsType(OutputPin);
 		} endif;
@@ -434,15 +372,12 @@ helper mapBodyOutputs(inout bodyGraph : StatementActivityGraph, assignments : Se
 // if Statements
 
 helper IfStatement::createStructuredNode() : StructuredActivityNode {
-	return object ConditionalNode {};
+	return new ConditionalNode("IfStatement", self.isAssured, self.isDeterminate);
 }
 
 mapping IfStatement::toActivityGraph() : StatementActivityGraph 
 	inherits Statement::toActivityGraph {
-	structuredNode.name := "IfStatement";
 	var conditionalNode := structuredNode.oclAsType(ConditionalNode);
-	conditionalNode.isAssured := self.isAssured;
-	conditionalNode.isDeterminate := self.isDeterminate;
 	var assignedNames := self.mapAssignedValueSources(result, false);
 	var clauses : Set(Clause) := Set{};
 	var i := 1;
@@ -498,13 +433,9 @@ mapping SwitchStatement::toActivityGraph() : StatementActivityGraph
 	result.nodes += expressionGraph.nodes;
 	result.edges += expressionGraph.edges;
 	
-	var conditionalNode := object ConditionalNode {
-		name := "SwitchConditionalNode";
-		isAssured := self.isAssured;
-		isDeterminate := self.isDeterminate;
-	};
+	var conditionalNode := new ConditionalNode("SwitchConditionalNode", self.isAssured, self.isDeterminate);
 	var graph := new StatementActivityGraph(conditionalNode);	
-	var forkNode := new ForkNode(graph.structuredNode, expressionGraph.resultSource.name);
+	var forkNode := new ForkNode(graph.structuredNode, nameOf(expressionGraph.resultSource));
 	graph.edges += new ObjectFlow(expressionGraph.resultSource, forkNode);
 	
 	var assignedNames := self.mapAssignedValueSources(graph, false);
@@ -531,8 +462,8 @@ init {
 		var testGraph := switchCase.map toActivityGraph();
 		testNodes += testGraph.nodes;
 		testEdges += testGraph.edges;
-		var testActionName := "Case(" + testGraph.resultSource.name + ")";
-		testNodes += var testAction ::= new TestIdentityAction("Case(" + testGraph.resultSource.name + ")", booleanType);
+		var testActionName := "Case(" + nameOf(testGraph.resultSource) + ")";
+		testNodes += var testAction ::= new TestIdentityAction("Case(" + nameOf(testGraph.resultSource) + ")", booleanType);
 		testEdges += new ObjectFlow(switchSource, testAction.first);
 		testEdges += new ObjectFlow(testGraph.resultSource, testAction.second);
 		if testSource = null then {
@@ -632,13 +563,13 @@ mapping Statement::LoopStatement_toActivityGraph() : StatementActivityGraph
     	loopNode.decider := testGraph.resultSource.oclAsType(OutputPin);
     } else {
     	var passthruNode := createPassthruNode(
-    		testGraph.resultSource.name, self.booleanType().toUml().oclAsType(Type), 1, 1);
+    		nameOf(testGraph.resultSource), self.booleanType().toUml().oclAsType(Type), 1, 1);
     	object loopNode: {
     		test += passthruNode;
     		node += passthruNode;
-    		decider := passthruNode.structuredNodeOutput->any(true);
+    		decider := passthruNode.structuredNodeOutput![true];
     	};
-    	bodyGraph.edges += new ObjectFlow(testGraph.resultSource, passthruNode.structuredNodeInput->any(true));
+    	bodyGraph.edges += new ObjectFlow(testGraph.resultSource, passthruNode.structuredNodeInput![true]);
     } endif;
     
     var bodyOutputs = mapBodyOutputs(bodyGraph, self.assignments(), assignedNames);
@@ -665,10 +596,7 @@ query Statement::assignments() : Set(AssignedSource) {
 // while Statements
 
 helper WhileStatement::createStructuredNode() : StructuredActivityNode {
-	return object LoopNode {
-		name := "WhileStatement";
-		isTestedFirst := true;
-	};
+	return new LoopNode("WhileStatement", true);
 }
 
 helper WhileStatement::mapAssignment(inout graph : StatementActivityGraph,
@@ -694,10 +622,7 @@ query WhileStatement::assignments() : Set(AssignedSource) {
 // do Statements
 
 helper DoStatement::createStructuredNode() : StructuredActivityNode {
-	return object LoopNode {
-		name := "DoStatement";
-		isTestedFirst := false;
-	};
+	return new LoopNode("DoStatement", false);
 }
 
 helper DoStatement::mapAssignment(inout graph : StatementActivityGraph,
@@ -733,18 +658,11 @@ helper ForStatement::createStructuredNode() : StructuredActivityNode {
 	    // If this is a parallel for statement, or the first loop variable
 	    // definition is not a sequence construction shortcut and there
 	    // are no new assignments in the body, map as an expansion region.
-			object ExpansionRegion {
-				name := "ForStatement";
-				mode := 
-					if self.isParallel then ExpansionKind::parallel
-					else ExpansionKind::iterative endif;
-			}
+	    new ExpansionRegion("ForStatement",
+				if self.isParallel then ExpansionKind::parallel else ExpansionKind::iterative endif)
 		else
 			// If not mapped as an expansion region, map as a loop node;
-			object LoopNode {
-				name := "ForStatement";
-				isTestedFirst := true;
-			}
+			new LoopNode("ForStatement", true)
 		endif;
 }
 
@@ -757,12 +675,10 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
 	inherits Statement::toActivityGraph {
 
 	// Map loop variable definitions, but don't add to loop mapping yet.
-	var setupSubgraph = object StatementActivityGraph {};
+	var setupSubgraph = new StatementActivityGraph();
 	
 	var firstDefinition := self.variableDefinition->at(1);
 	firstDefinition.map toActivityGraph(self.isParallel, true).addTo(setupSubgraph);
-	var resultSource1 := firstDefinition.resultSource1;
-	var resultSource2 := firstDefinition.resultSource2;
 
 	var m = self.variableDefinition->size();
 	if m > 1 then {
@@ -811,10 +727,10 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     var assignedNames := self.mapAssignedValueSources(result, true);
     
     // Create a loop variable pin corresponding to each loop variable definition.
+		var resultSource1 := firstDefinition.resultSource1;
+		var resultSource2 := firstDefinition.resultSource2;
     var n = loopNode.loopVariable->size();
-    setupSubgraph.nodes += var forkNode ::= object ForkNode {
-    	name := "Fork(" + resultSource1.name + ")";
-    };
+    setupSubgraph.nodes += var forkNode ::= new ForkNode(nameOf(resultSource1));
     self.variableDefinition->forEach(definition) {
     	addLoopVariable(result, 
     		definition.variable, 
@@ -863,9 +779,9 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     // loop iteration count upper bound.
   	setupSubgraph.nodes += var valueAction ::= new ValueSpecificationAction(self.literalNatural(1));
   	addLoopVariable(result, "counter", self.integerType().toType(), 1, 1, valueAction.result);
-  	var counterFork := loopNode.loopVariable->last().outgoing->any(true).target;
+  	var counterFork := loopNode.loopVariable->last().outgoing![true].target;
   	addLoopVariable(result, "upper", self.integerType().toType(), 1, 1, callAction.result->at(1));
-  	var upperFork := loopNode.loopVariable->last().outgoing->any(true).target;
+  	var upperFork := loopNode.loopVariable->last().outgoing![true].target;
   	
   	// Map the test "count <= upper".
   	var testCall := new CallBehaviorAction(self.functionLessThanOrEqual());
@@ -879,10 +795,10 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
   	// Determine the assigned value source for each loop variable within the
   	// body of the for statement.
   	var i := n + 1;
-  	var valueGraph := object StatementActivityGraph {};
+  	var valueGraph := new StatementActivityGraph();
   	self.variableDefinition->forEach(definition) {
   		var loopVariable := loopNode.loopVariable->at(i);
-  		var variableFork := loopVariable.outgoing->any(true).target;
+  		var variableFork := loopVariable.outgoing![true].target;
   		if i = n + 1 and definition.resultSource2 <> null then {
         // If this is the first loop variable, and its definition
         // is a sequence construction shorthand, then its assigned
@@ -940,7 +856,7 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     i := n + 1;
     self.variableDefinition->forEach(definition) {
     	var loopVariable := loopNode.loopVariable->at(i);
-    	var variableFork := loopVariable.outgoing->any(true).target;
+    	var variableFork := loopVariable.outgoing![true].target;
     	if i = n + 1 and definition.resultSource2 <> null then {
 	      // If the this is the first loop variable, and its
 	      // definition is a sequence construction shorthand, then
@@ -954,8 +870,8 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     		// Otherwise, the loop variable input list must simply be passed through
     		// to the next iteration unchanged.
     		bodyGraph.nodes += var passthruNode ::= createPassthruNode(loopVariable.name, loopVariable.type, 0, -1);
-    		bodyGraph.edges += new ObjectFlow(variableFork, passthruNode.structuredNodeInput->any(true));
-    		loopNode.bodyOutput += passthruNode.structuredNodeOutput->any(true);
+    		bodyGraph.edges += new ObjectFlow(variableFork, passthruNode.structuredNodeInput![true]);
+    		loopNode.bodyOutput += passthruNode.structuredNodeOutput![true];
     	} endif;
     	i := i + 1;
     };
@@ -968,9 +884,9 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     loopNode.bodyOutput += callAction.result->at(1);
     
     // Map the passing through of the upper bound value.
-    bodyGraph.nodes += var passthruNode ::= createPassthruNode("upper", self.integerType().toType(), 1, 1);
-    bodyGraph.edges += new ObjectFlow(upperFork, passthruNode.structuredNodeInput->any(true));
-    loopNode.bodyOutput += passthruNode.structuredNodeOutput->any(true);
+    bodyGraph.nodes += var passthruNode ::= createPassthruNode("upper", self.typeInteger(), 1, 1);
+    bodyGraph.edges += new ObjectFlow(upperFork, passthruNode.structuredNodeInput![true]);
+    loopNode.bodyOutput += passthruNode.structuredNodeOutput![true];
     
     bodyGraph.addToLoopNode(result);
     loopNode.bodyPart += bodyGraph.nodes[ExecutableNode];    
@@ -1002,19 +918,22 @@ mapping LoopVariableDefinition::toActivityGraph(isParallel : Boolean, isFirst : 
 	nodes := graph1.nodes;
 	edges := graph1.edges;
 	if self.expression2 = null then {
-		self.mapConversions(graph1, self.expression1.type, true, false);
+		self.mapConversions(graph1, self.expression1.type, self.isCollectionConversion, false);
 		self.resultSource1 := graph1.resultSource;
 	} else {
-		self.resultSource1 := graph1.resultSource;
 		var graph2 := self.expression2.map toActivityGraph();
 		nodes += graph2.nodes;
 		edges += graph2.edges;
 		if not isParallel and self.isFirst then {
+			self.resultSource1 := graph1.resultSource;
 			self.resultSource2 := graph2.resultSource;
 		} else {
-			self.resultSource1 := mapSequenceRangeLoop(
-				nodes, edges, self.resultSource1, graph2.resultSource,
+			var loopGraph := self.mapSequenceRangeLoop(
+				graph1.resultSource, graph2.resultSource,
 				"SequenceRange(LoopVariable(" + self.variable + ")");
+			nodes += loopGraph.nodes;
+			edges += loopGraph.edges;
+			self.resultSource1 := loopGraph.resultSource;
 		} endif;
 	} endif;
 }
@@ -1043,11 +962,11 @@ mapping BreakStatement::toActivityGraph() : StatementActivityGraph
 					// NOTE: This check ensures that the assigned source before the break is not
 					// already the final assigned source for the output.
 					assignments->excludesAll(bodyAssignments->select(name = bodyOutput.name)) then {
-				var assignment = assignments->any(true);
+				var assignment = assignments![true];
 				structuredNode.node += var passthruNode ::= 
 					createPassthruNode(bodyOutput.name, bodyOutput.type, 1, 1);
-				edges += new ObjectFlow(assignment.map toActivityNode(), passthruNode.structuredNodeInput->any(true));
-				edges += new ObjectFlow(passthruNode.structuredNodeOutput->any(true), bodyOutput);
+				edges += new ObjectFlow(assignment.map toActivityNode(), passthruNode.structuredNodeInput![true]);
+				edges += new ObjectFlow(passthruNode.structuredNodeOutput![true], bodyOutput);
 			} endif;			
 		};
 	} endif;
@@ -1057,7 +976,7 @@ mapping BreakStatement::toActivityGraph() : StatementActivityGraph
 helper getFinalNode(inout graph : StatementActivityGraph) : ActivityFinalNode {
 	var finalNodes := graph.structuredNode.node[ActivityFinalNode];
 	return
-		if finalNodes->notEmpty() then finalNodes->any(true)
+		if finalNodes->notEmpty() then finalNodes![true]
 		else new ActivityFinalNode(graph.structuredNode) endif;
 }
 
@@ -1070,7 +989,7 @@ mapping ReturnStatement::toActivityGraph() : StatementActivityGraph
 	var behavior = self.behavior.toUml();
   var activity =
   	if behavior.oclIsKindOf(Activity) then behavior.oclAsType(Activity)
-  	else behavior.oclAsType(Operation).method->any(true).oclAsType(Activity) endif;
+  	else behavior.oclAsType(Operation).method![true].oclAsType(Activity) endif;
   
   edges += new ControlFlow(structuredNode, getFinalNode(activity));
   
@@ -1096,14 +1015,14 @@ mapping ReturnStatement::toActivityGraph() : StatementActivityGraph
 helper mapOutput(inout graph : StatementActivityGraph,
 	source : ActivityNode, type : Type, lower : Integer, upper : Integer,
 	activity : Activity, parameter : Parameter) {
-	var pin := new OutputPin(graph.structuredNode, graph.structuredNode.name + ".output(" + source.name + ")", type, lower, upper);
+	var pin := new OutputPin(graph.structuredNode, graph.structuredNode.name + ".output(" + nameOf(source) + ")", type, lower, upper);
 	
 	if graph.structuredNode.allOwnedNodes()->includes(source) then {
 		graph.structuredNode.edge += new ObjectFlow(source, pin);
 	} else {
-		graph.structuredNode.node += var passthruNode ::= createPassthruNode(source.name, type, lower, upper);
-		graph.edges += new ObjectFlow(source, passthruNode.structuredNodeInput->any(true));
-		graph.structuredNode.edge += new ObjectFlow(passthruNode.structuredNodeOutput->any(true), pin);
+		graph.structuredNode.node += var passthruNode ::= createPassthruNode(nameOf(source), type, lower, upper);
+		graph.edges += new ObjectFlow(source, passthruNode.structuredNodeInput![true]);
+		graph.structuredNode.edge += new ObjectFlow(passthruNode.structuredNodeOutput![true], pin);
 	} endif;
 	
 	var parameterNode := getOutputParameterNode(activity, parameter);
@@ -1113,7 +1032,7 @@ helper mapOutput(inout graph : StatementActivityGraph,
 helper getFinalNode(inout activity : Activity) : ActivityFinalNode {
 	var finalNodes := activity.node[ActivityFinalNode];
 	return
-		if finalNodes->notEmpty() then finalNodes->any(true)
+		if finalNodes->notEmpty() then finalNodes![true]
 		else new ActivityFinalNode(activity) endif;
 }
 
@@ -1125,7 +1044,7 @@ mapping AcceptStatement::toActivityGraph() : StatementActivityGraph
 	inherits Statement::toActivityGraph {
 	structuredNode.name := "AcceptStatement";
 	
-	var hasOutput := not self.isSimple or self.acceptBlock->any(true).name <> null;
+	var hasOutput := not self.isSimple or self.acceptBlock![true].name <> null;
 	
 	// NOTE: This must be set before the mapping of the accept blocks;
 	if hasOutput then {
@@ -1136,7 +1055,7 @@ mapping AcceptStatement::toActivityGraph() : StatementActivityGraph
 	if not self.isSimple then {
 		assignedNames := self.mapAssignedValueSources(result, false) 
 	} else if hasOutput then {
-		self.assignedValueSourceMap->put(self.acceptBlock->any(true).name, self.signalSourceNode);
+		self.assignedValueSourceMap->put(self.acceptBlock![true].name, self.signalSourceNode);
 	} endif endif;
 	
 	var signals : Set(Signal) := Set{};
@@ -1176,7 +1095,7 @@ mapping AcceptBlock::toActivityGraph(parent : AcceptStatement, previousNode : Ac
 			} endif;
 			signalNames := signalNames + signal.name;
 			
-			nodes += var testAction ::= new ReadIsClassifiedObjectAction(signal, false, self.booleanType().toType());
+			nodes += var testAction ::= new ReadIsClassifiedObjectAction(signal, false, self.typeBoolean());
 			edges += new ObjectFlow(parent.signalSourceNode, testAction._'object');
 			
 			var decisionGraph := createControlDecisionGraph(
@@ -1196,13 +1115,13 @@ mapping AcceptBlock::toActivityGraph(parent : AcceptStatement, previousNode : Ac
 			if assignment <> null then {
 				var source := assignment.map toActivityNode();
 				if allOwnedNodes->includes(source) then {
-					edges += new ObjectFlow(source, parent.assignedValueSource(assignedName).incoming->any(true).source);
+					edges += new ObjectFlow(source, parent.assignedValueSource(assignedName).incoming![true].source);
 				} else {
 					structuredNode.node += var passthruNode ::= 
 						createPassthruNode(assignedName, toType(assignment.type), assignment.lower, assignment.upper);
 					edges += new ObjectFlow(source, passthruNode.input->at(1));
 					edges += new ObjectFlow(passthruNode.output->at(1), 
-						parent.assignedValueSource(assignedName).incoming->any(true).source);
+						parent.assignedValueSource(assignedName).incoming![true].source);
 				} endif;
 			} endif;
 		}
@@ -1239,7 +1158,7 @@ mapping ClassifyStatement::toActivityGraph() : StatementActivityGraph
   var activeClasses := reclassifyAction.newClassifier[Class][isActive];
   if activeClasses->notEmpty() then {
   	activeClasses += (activeClasses.allParents()->asSet()->excluding(type) - type.allParents())[Class][isActive];
-		graph.nodes += var fork ::= new ForkNode(expressionGraph.resultSource.name);
+		graph.nodes += var fork ::= new ForkNode(nameOf(expressionGraph.resultSource));
 		graph.edges += new ObjectFlow(expressionGraph.resultSource, fork);			
 		activeClasses->forEach(activeClass) {
 			graph.nodes += var startAction ::= new StartObjectBehaviorAction(activeClass);

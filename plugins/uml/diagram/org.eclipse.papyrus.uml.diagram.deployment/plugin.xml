@@ -155,7 +155,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Comment"
@@ -165,7 +165,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Constraint"
@@ -175,7 +175,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Device"
@@ -185,7 +185,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new ExecutionEnvironment"
@@ -195,7 +195,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a model"
@@ -205,7 +205,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Node"
@@ -215,7 +215,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Package"
@@ -225,7 +225,17 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
-					</entry>
+				</entry>
+				<entry
+				      defineOnly="true"
+				      description=""
+				      id="deployment.tool.communicationpath"
+				      kind="tool"
+				      label="CommunicationPath"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif">
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Dependency"
@@ -235,7 +245,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a dependency branch"
@@ -245,7 +255,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Deployment"
@@ -255,7 +265,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Generalization"
@@ -265,7 +275,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Link (Comment / Constraint)"
@@ -275,7 +285,7 @@
 				      large_icon="icons/obj16/Link.gif"
 				      path=""
 				      small_icon="icons/obj16/Link.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Manifestation"
@@ -285,7 +295,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
-					</entry>
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -362,6 +372,10 @@
 		         force="true">
 		   </expand>
 		</entry>
+		<predefinedEntry
+		        id="deployment.tool.communicationpath"
+				path="/deployment.group.links">
+		  </predefinedEntry>
 		<predefinedEntry
 		        id="deployment.tool.dependency"
 				path="/deployment.group.links">
@@ -494,7 +508,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLDeploymentDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2010,2009,2005,2001,2002,2003,2006,2008,2012,49,36,16,44,21,46,23,42,25,28,40,54,56"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4005,4008,4009,4001,4002,4003,4004,4010"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4005,4008,4009,4001,4002,4003,4004,4010,4011"/>
       </viewProvider>
    </extension>
 
@@ -509,7 +523,7 @@
             <method name="getType()" value="2011,2010,2009,2005,2001,2002,2003,2006,2008,2012,49,36,16,44,21,46,23,42,25,28,40,54,56"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4005,4008,4009,4001,4002,4003,4004,4010"/>
+            <method name="getType()" value="4005,4008,4009,4001,4002,4003,4004,4010,4011"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="7,48,35,2,3,1,5,6,8,61,9,53,50,37,20,45,22,47,24,43,27,59,29,60,41,55,57,58"/>
@@ -531,290 +545,6 @@
 
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Package_1000"
-               name="%metatype.name.Package_1000"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Package"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.ModelEditHelper">
-            <param name="semanticHint" value="1000"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Dependency_2011"
-               name="%metatype.name.Dependency_2011"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Dependency"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.DependencyEditHelper">
-            <param name="semanticHint" value="2011"/>
-         </metamodelType>
-      </metamodel>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Model_2010"
-               name="%metatype.name.Model_2010"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="2010"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Package_2009"
-               name="%metatype.name.Package_2009"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="2009"/>
-         </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Constraint_2005"
-               name="%metatype.name.Constraint_2005"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Constraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.ConstraintEditHelper">
-            <param name="semanticHint" value="2005"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Comment_2001"
-               name="%metatype.name.Comment_2001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Comment"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.CommentEditHelper">
-            <param name="semanticHint" value="2001"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.ExecutionEnvironment_2002"
-               name="%metatype.name.ExecutionEnvironment_2002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ExecutionEnvironment"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.ExecutionEnvironmentEditHelper">
-            <param name="semanticHint" value="2002"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Device_2003"
-               name="%metatype.name.Device_2003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Device"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.DeviceEditHelper">
-            <param name="semanticHint" value="2003"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Artifact_2006"
-               name="%metatype.name.Artifact_2006"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Artifact"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.ArtifactEditHelper">
-            <param name="semanticHint" value="2006"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Node_2008"
-               name="%metatype.name.Node_2008"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Node"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.NodeEditHelper">
-            <param name="semanticHint" value="2008"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.NamedElement_2012"
-               name="%metatype.name.NamedElement_2012"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="NamedElement"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.DefaultNamedElementEditHelper">
-            <param name="semanticHint" value="2012"/>
-         </metamodelType>
-      </metamodel>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Model_49"
-               name="%metatype.name.Model_49"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="49"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Package_36"
-               name="%metatype.name.Package_36"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="36"/>
-         </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Device_16"
-               name="%metatype.name.Device_16"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Device_2003"/>
-            <param name="semanticHint" value="16"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Device_44"
-               name="%metatype.name.Device_44"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Device_2003"/>
-            <param name="semanticHint" value="44"/>
-         </specializationType>
-      </metamodel>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.ExecutionEnvironment_21"
-               name="%metatype.name.ExecutionEnvironment_21"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="21"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.ExecutionEnvironment_46"
-               name="%metatype.name.ExecutionEnvironment_46"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="46"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Node_23"
-               name="%metatype.name.Node_23"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="23"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Node_42"
-               name="%metatype.name.Node_42"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="42"/>
-         </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Artifact_25"
-               name="%metatype.name.Artifact_25"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Artifact_2006"/>
-            <param name="semanticHint" value="25"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Artifact_28"
-               name="%metatype.name.Artifact_28"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Artifact_2006"/>
-            <param name="semanticHint" value="28"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Artifact_40"
-               name="%metatype.name.Artifact_40"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Artifact_2006"/>
-            <param name="semanticHint" value="40"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Comment_54"
-               name="%metatype.name.Comment_54"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Comment"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.CommentEditHelper">
-            <param name="semanticHint" value="54"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Constraint_56"
-               name="%metatype.name.Constraint_56"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Constraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.ConstraintEditHelper">
-            <param name="semanticHint" value="56"/>
-         </metamodelType>
-      </metamodel>
-      <specializationType
-            id="org.eclipse.papyrus.uml.diagram.deployment.Link_4005"
-            name="%metatype.name.Link_4005"
-            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
-         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="4005"/>
-      </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.CommentAnnotatedElement_4006"
-               name="%metatype.name.CommentAnnotatedElement_4008"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4008"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.ConstraintConstrainedElement_4007"
-               name="%metatype.name.ConstraintConstrainedElement_4009"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4009"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Deployment_4001"
-               name="%metatype.name.Deployment_4001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Deployment"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.DeploymentEditHelper">
-            <param name="semanticHint" value="4001"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Manifestation_4002"
-               name="%metatype.name.Manifestation_4002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Manifestation"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.ManifestationEditHelper">
-            <param name="semanticHint" value="4002"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Generalization_4003"
-               name="%metatype.name.Generalization_4003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Generalization"
-               edithelper="org.eclipse.papyrus.uml.diagram.deployment.edit.helpers.GeneralizationEditHelper">
-            <param name="semanticHint" value="4003"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Dependency_4004"
-               name="%metatype.name.Dependency_4004"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Dependency_2011"/>
-            <param name="semanticHint" value="4004"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.deployment.Dependency_4010"
-               name="%metatype.name.Dependency_4010"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.deployment.Dependency_2011"/>
-            <param name="semanticHint" value="4010"/>
-         </specializationType>
-      </metamodel>
    </extension>
 
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -859,6 +589,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.deployment.Generalization_4003"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.deployment.Dependency_4004"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.deployment.Dependency_4010"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.deployment.CommunicationPath_4011"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -889,97 +620,90 @@
       <?gmfgen generated="true"?>
    </extension>
 
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
    <?gmfgen generated="true"?>
-		<diagramMappings diagramID="PapyrusUMLDeploymentDiagram">
-			<mapping type="PapyrusUMLDeploymentDiagram" humanReadableType="DeploymentDiagram"/>
-			
-	<mapping
-		humanReadableType="Model"
-		type="51">
-	</mapping>
-	<mapping
-		humanReadableType="PackageableElement"
-		type="38">
-	</mapping>
-	<mapping
-		humanReadableType="DeviceComposite"
-		type="17">
-	</mapping>
-	<mapping
-		humanReadableType="ExecutionEnvironmentComposite"
-		type="18">
-	</mapping>
-	<mapping
-		humanReadableType="Composite"
-		type="19">
-	</mapping>
-
-	<mapping
-		humanReadableType="ArtifactComposite"
-		type="26">
-	</mapping>
-	<mapping
-		humanReadableType="Model"
-		type="52">
-	</mapping>
-
-	<mapping
-		humanReadableType="PackageableElement"
-		type="39">
-	</mapping>
-
-	<mapping
-		humanReadableType="DeviceComposite"
-		type="30">
-	</mapping>
-	<mapping
-		humanReadableType="ExecutionEnvironmentComposite"
-		type="31">
-	</mapping>
-
-	<mapping
-		humanReadableType="Composite"
-		type="32">
-	</mapping>
-	<mapping
-		humanReadableType="ArtifactComposite"
-		type="33">
-	</mapping>
-	<mapping
-		humanReadableType="ArtifactComposite"
-		type="34">
-	</mapping>
-	<mapping
-		humanReadableType="Name"
-		type="13">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="14">
-	</mapping>
-	<mapping
-		humanReadableType="Name"
-		type="10">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="11">
-	</mapping>
-	<mapping
-		humanReadableType="Stereotype"
-		type="4">
-	</mapping>
-	<mapping
-		humanReadableType="Name"
-		type="12">
-	</mapping>
-	<mapping
-		humanReadableType="Stereotype"
-		type="15">
-	</mapping>
+   <diagramMappings diagramID="PapyrusUMLDeploymentDiagram">
+   	<mapping type="PapyrusUMLDeploymentDiagram" humanReadableType="DeploymentDiagram"/>
+			<mapping
+				humanReadableType="Model"
+				type="51">
+			</mapping>
+			<mapping
+				humanReadableType="PackageableElement"
+				type="38">
+			</mapping>
+			<mapping
+				humanReadableType="DeviceComposite"
+				type="17">
+			</mapping>
+			<mapping
+				humanReadableType="ExecutionEnvironmentComposite"
+				type="18">
+			</mapping>
+			<mapping
+				humanReadableType="Composite"
+				type="19">
+			</mapping>
+			<mapping
+				humanReadableType="ArtifactComposite"
+				type="26">
+			</mapping>
+			<mapping
+				humanReadableType="Model"
+				type="52">
+			</mapping>
+			<mapping
+				humanReadableType="PackageableElement"
+				type="39">
+			</mapping>
+			<mapping
+				humanReadableType="DeviceComposite"
+				type="30">
+			</mapping>
+			<mapping
+				humanReadableType="ExecutionEnvironmentComposite"
+				type="31">
+			</mapping>
+			<mapping
+				humanReadableType="Composite"
+				type="32">
+			</mapping>
+			<mapping
+				humanReadableType="ArtifactComposite"
+				type="33">
+			</mapping>
+			<mapping
+				humanReadableType="ArtifactComposite"
+				type="34">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="13">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="14">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="10">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="11">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="4">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="12">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="15">
+			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="59">
@@ -1014,6 +738,12 @@
          target="1.1.0">
    </diagramReconciler>
 </extension>
-
+<extension
+      point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+   <elementTypeSet
+         id="org.eclipse.papyrus.uml.diagram.deployment.elementTypeSet"
+         path="model/DeploymentDiagram.elementtypesconfigurations">
+   </elementTypeSet>
+</extension>
    <!-- optionally, specify keybindings -->
 </plugin>

@@ -72,7 +72,13 @@ public class InvariantContainerRule extends AbstractInvariantRule<InvariantConta
 					} else {
 						// this is not strict
 						// so any super metamodeltype of permission type that matches newContainerElementType is OK
-						isValid = Arrays.asList(newContainerElementType.getAllSuperTypes()).contains(permissionContainerType) ? isPermitted : !isPermitted;
+						// the type itself can also match...
+						if (newContainerElementType.equals(permissionContainerType)) {
+							isValid = isPermitted;
+						} else {
+							isValid = Arrays.asList(newContainerElementType.getAllSuperTypes()).contains(permissionContainerType) ? isPermitted : !isPermitted;
+						}
+
 					}
 				} else if (permissionContainerType instanceof ISpecializationType) {
 					IElementMatcher matcher = ((ISpecializationType) permissionContainerType).getMatcher();

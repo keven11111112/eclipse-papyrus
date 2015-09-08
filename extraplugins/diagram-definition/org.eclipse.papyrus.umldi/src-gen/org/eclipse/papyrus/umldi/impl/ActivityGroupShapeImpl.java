@@ -24,9 +24,11 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * @generated
  */
 public class ActivityGroupShapeImpl extends ElementShapeImpl implements ActivityGroupShape {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActivityGroupShapeImpl() {
@@ -36,11 +38,11 @@ public class ActivityGroupShapeImpl extends ElementShapeImpl implements Activity
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ACTIVITY_GROUP_SHAPE;
 	}
-
 } //ActivityGroupShapeImpl

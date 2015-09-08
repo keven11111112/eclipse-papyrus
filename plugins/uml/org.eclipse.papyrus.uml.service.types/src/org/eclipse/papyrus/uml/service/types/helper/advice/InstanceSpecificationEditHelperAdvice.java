@@ -1,18 +1,11 @@
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
-import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.service.types.command.InstanceSpecificationLinkCreateCommand;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -37,27 +30,33 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 		if (false == target instanceof InstanceSpecification) {
 			return false;
 		}
-		return ((InstanceSpecification) source).getClassifiers().size() > 0 && ((InstanceSpecification) target).getClassifiers().size() > 0;
+		return true;
 	}
-
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
 	@Override
-	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
-		List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(UMLElementTypes.INSTANCE_SPECIFICATION.getId()));
-		if (!subs.contains(request.getElementType())) {
-			return IdentityCommand.INSTANCE;
-		}
-		EObject source = request.getSource();
-		EObject target = request.getTarget();
-		boolean noSourceOrTarget = (source == null || target == null);
-		boolean noSourceAndTarget = (source == null && target == null);
-		if (!noSourceAndTarget && !canCreate(source, target)) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		if (noSourceOrTarget && !noSourceAndTarget) {
-			// The request isn't complete yet. Return the identity command so
-			// that the create relationship gesture is enabled.
-			return IdentityCommand.INSTANCE;
-		}
+	protected ICommand getAfterConfigureCommand(ConfigureRequest request) {
+	InstanceSpecification linkToEdit=null;
+	InstanceSpecification source=null;
+	InstanceSpecification target=null;
+	if(request.getElementToConfigure() instanceof InstanceSpecification){
+		linkToEdit=(InstanceSpecification)(request.getElementToConfigure());
+	}
+	if(request.getParameter(CreateRelationshipRequest.SOURCE)instanceof InstanceSpecification){
+		source=(InstanceSpecification)request.getParameter(CreateRelationshipRequest.SOURCE);
+	}
+	if(request.getParameter(CreateRelationshipRequest.TARGET)instanceof InstanceSpecification){
+		target=(InstanceSpecification)request.getParameter(CreateRelationshipRequest.TARGET);
+	}
+	if( source!=null && target!= null && linkToEdit !=null){
 		return new InstanceSpecificationLinkCreateCommand(request);
 	}
+		return super.getAfterConfigureCommand(request);
+	}
+
+
 }

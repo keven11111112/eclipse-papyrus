@@ -18,10 +18,10 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.JointStateImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.JointStateImpl#getPosition <em>Position</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.JointStateImpl#getVelocity <em>Velocity</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.JointStateImpl#getEffort <em>Effort</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.JointStateImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.JointStateImpl#getPosition <em>Position</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.JointStateImpl#getVelocity <em>Velocity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.JointStateImpl#getEffort <em>Effort</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,50 +32,45 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> name;
+	protected EList<Object> name;
 
 	/**
 	 * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getPosition()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> position;
+	protected EList<Object> position;
 
 	/**
 	 * The cached value of the '{@link #getVelocity() <em>Velocity</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getVelocity()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> velocity;
+	protected EList<Object> velocity;
 
 	/**
 	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> effort;
+	protected EList<Object> effort;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected JointStateImpl() {
@@ -85,7 +80,6 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -96,12 +90,11 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public EList<String> getName() {
+	public EList<Object> getName() {
 		if (name == null) {
-			name = new EDataTypeUniqueEList<String>(String.class, this, Sensor_datatypesPackage.JOINT_STATE__NAME);
+			name = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOINT_STATE__NAME);
 		}
 		return name;
 	}
@@ -109,12 +102,11 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public EList<Double> getPosition() {
+	public EList<Object> getPosition() {
 		if (position == null) {
-			position = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.JOINT_STATE__POSITION);
+			position = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOINT_STATE__POSITION);
 		}
 		return position;
 	}
@@ -122,12 +114,11 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public EList<Double> getVelocity() {
+	public EList<Object> getVelocity() {
 		if (velocity == null) {
-			velocity = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.JOINT_STATE__VELOCITY);
+			velocity = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOINT_STATE__VELOCITY);
 		}
 		return velocity;
 	}
@@ -135,12 +126,11 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public EList<Double> getEffort() {
+	public EList<Object> getEffort() {
 		if (effort == null) {
-			effort = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.JOINT_STATE__EFFORT);
+			effort = new EDataTypeUniqueEList<Object>(Object.class, this, Sensor_datatypesPackage.JOINT_STATE__EFFORT);
 		}
 		return effort;
 	}
@@ -148,20 +138,19 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.JOINT_STATE__NAME:
-			return getName();
-		case Sensor_datatypesPackage.JOINT_STATE__POSITION:
-			return getPosition();
-		case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
-			return getVelocity();
-		case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
-			return getEffort();
+			case Sensor_datatypesPackage.JOINT_STATE__NAME:
+				return getName();
+			case Sensor_datatypesPackage.JOINT_STATE__POSITION:
+				return getPosition();
+			case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
+				return getVelocity();
+			case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
+				return getEffort();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,29 +158,28 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.JOINT_STATE__NAME:
-			getName().clear();
-			getName().addAll((Collection<? extends String>) newValue);
-			return;
-		case Sensor_datatypesPackage.JOINT_STATE__POSITION:
-			getPosition().clear();
-			getPosition().addAll((Collection<? extends Double>) newValue);
-			return;
-		case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
-			getVelocity().clear();
-			getVelocity().addAll((Collection<? extends Double>) newValue);
-			return;
-		case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
-			getEffort().clear();
-			getEffort().addAll((Collection<? extends Double>) newValue);
-			return;
+			case Sensor_datatypesPackage.JOINT_STATE__NAME:
+				getName().clear();
+				getName().addAll((Collection<? extends Object>)newValue);
+				return;
+			case Sensor_datatypesPackage.JOINT_STATE__POSITION:
+				getPosition().clear();
+				getPosition().addAll((Collection<? extends Object>)newValue);
+				return;
+			case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
+				getVelocity().clear();
+				getVelocity().addAll((Collection<? extends Object>)newValue);
+				return;
+			case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
+				getEffort().clear();
+				getEffort().addAll((Collection<? extends Object>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -199,24 +187,23 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.JOINT_STATE__NAME:
-			getName().clear();
-			return;
-		case Sensor_datatypesPackage.JOINT_STATE__POSITION:
-			getPosition().clear();
-			return;
-		case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
-			getVelocity().clear();
-			return;
-		case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
-			getEffort().clear();
-			return;
+			case Sensor_datatypesPackage.JOINT_STATE__NAME:
+				getName().clear();
+				return;
+			case Sensor_datatypesPackage.JOINT_STATE__POSITION:
+				getPosition().clear();
+				return;
+			case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
+				getVelocity().clear();
+				return;
+			case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
+				getEffort().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -224,20 +211,19 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Sensor_datatypesPackage.JOINT_STATE__NAME:
-			return name != null && !name.isEmpty();
-		case Sensor_datatypesPackage.JOINT_STATE__POSITION:
-			return position != null && !position.isEmpty();
-		case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
-			return velocity != null && !velocity.isEmpty();
-		case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
-			return effort != null && !effort.isEmpty();
+			case Sensor_datatypesPackage.JOINT_STATE__NAME:
+				return name != null && !name.isEmpty();
+			case Sensor_datatypesPackage.JOINT_STATE__POSITION:
+				return position != null && !position.isEmpty();
+			case Sensor_datatypesPackage.JOINT_STATE__VELOCITY:
+				return velocity != null && !velocity.isEmpty();
+			case Sensor_datatypesPackage.JOINT_STATE__EFFORT:
+				return effort != null && !effort.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -245,14 +231,11 @@ public class JointStateImpl extends MinimalEObjectImpl.Container implements Join
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

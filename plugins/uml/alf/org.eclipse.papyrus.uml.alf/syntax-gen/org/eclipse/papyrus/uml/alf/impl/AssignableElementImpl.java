@@ -274,9 +274,9 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void isConformantWithType(ElementReference sourceType) {
+	public boolean isConformantWithType(ElementReference sourceType) {
 		try {
-			IS_CONFORMANT_WITH_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{sourceType}));
+			return (Boolean)IS_CONFORMANT_WITH_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{sourceType}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -332,8 +332,7 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 			case AlfPackage.ASSIGNABLE_ELEMENT___IS_TYPE_CONFORMANT_WITH__ASSIGNABLEELEMENT:
 				return isTypeConformantWith((AssignableElement)arguments.get(0));
 			case AlfPackage.ASSIGNABLE_ELEMENT___IS_CONFORMANT_WITH_TYPE__ELEMENTREFERENCE:
-				isConformantWithType((ElementReference)arguments.get(0));
-				return null;
+				return isConformantWithType((ElementReference)arguments.get(0));
 			case AlfPackage.ASSIGNABLE_ELEMENT___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT:
 				return isMultiplicityConformantWith((AssignableElement)arguments.get(0));
 		}

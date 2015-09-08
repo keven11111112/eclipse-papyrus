@@ -62,6 +62,7 @@ import org.eclipse.papyrus.uml.diagram.wizards.command.InitFromTemplateCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.command.NewPapyrusModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.PapyrusProjectCreationPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage.CategoryProvider;
@@ -71,7 +72,6 @@ import org.eclipse.papyrus.uml.diagram.wizards.providers.NewModelStorageProvider
 import org.eclipse.papyrus.uml.diagram.wizards.providers.WorkspaceNewModelStorageProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.template.ModelTemplateDescription;
 import org.eclipse.papyrus.uml.diagram.wizards.transformation.IGenerator;
-import org.eclipse.papyrus.uml.diagram.wizards.transformation.QVToGenerator;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.commands.RenameElementCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -86,7 +86,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.services.IEvaluationService;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 
@@ -141,6 +140,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	public CreateModelWizard() {
 		super();
 		setWindowTitle(Messages.CreateModelWizard_new_papyrus_model_title);
+		setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/papyrus/PapyrusWizban_75x66.gif")); //$NON-NLS-1$
 		// setHelpAvailable(true);
 
 	}
@@ -257,7 +257,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		createAndOpenPapyrusModel(newURI, diagramCategoryId);
 
-
 		return true;
 	}
 
@@ -301,14 +300,15 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 			initDiagramModel(modelSet, diagramCategoryId);
 
-
-
 			initProfile(modelSet);
 			initTemplate(modelSet);
 			openDiagram(newURI);
+
 		} catch (ServiceException e) {
 			Activator.log.error(e);
+			this.selectDiagramKindPage.setErrorMessage(e.getMessage());
 			return false;
+
 		} finally {
 			try {
 				registry.disposeRegistry();
@@ -458,15 +458,14 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected void applyProfile(ModelSet modelSet) {
-		Resource myModelUMLResource = UmlUtils.getUmlResource(modelSet);
-		Model model = (Model) myModelUMLResource.getContents().get(0);
 		String profilePath = selectDiagramKindPage.getProfileURI();
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(profilePath, true), true);
+		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
 		Profile profile = (Profile) resource.getContents().get(0);
-		getCommandStack(modelSet).execute(new ApplyProfileCommand(model, profile, modelSet.getTransactionalEditingDomain()));
 
-
+		Resource myModelUMLResource = UmlUtils.getUmlResource(modelSet);
+		org.eclipse.uml2.uml.Package manipulatedModel = (org.eclipse.uml2.uml.Package) myModelUMLResource.getContents().get(0);
+		getCommandStack(modelSet).execute(new ApplyProfileCommand(manipulatedModel, profile, modelSet.getTransactionalEditingDomain()));
 	}
 
 	protected void applyTemplateTransfo(ModelSet modelSet) {
@@ -625,6 +624,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *            the di resource set
 	 */
 	private void saveDiagram(ModelSet modelSet) {
+		// TODO verify that there are no conflicts with the existing files and the newly created one
 		try {
 			modelSet.save(new NullProgressMonitor());
 		} catch (IOException e) {
@@ -914,6 +914,16 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		for (int i = endProviderPageIndex; result && (i < allPages.length); i++) {
 			result = allPages[i].isPageComplete();
+		}
+
+		// This takes care of the case problems when creating a model with the same name but different case
+		for (IWizardPage page : allPages) {
+			if (page instanceof NewModelFilePage) {
+				return page.canFlipToNextPage();
+			}
+			if (page instanceof PapyrusProjectCreationPage) {
+				return page.canFlipToNextPage();
+			}
 		}
 
 		return result;

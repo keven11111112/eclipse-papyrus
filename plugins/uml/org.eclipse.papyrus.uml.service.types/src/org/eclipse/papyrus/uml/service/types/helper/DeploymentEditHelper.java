@@ -34,7 +34,7 @@ public class DeploymentEditHelper extends DependencyEditHelper {
 	 */
 	@Override
 	protected EReference getSourceReference() {
-		return UMLPackage.eINSTANCE.getDeployment_Location();
+		return UMLPackage.eINSTANCE.getDeployment_DeployedArtifact();
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class DeploymentEditHelper extends DependencyEditHelper {
 	 */
 	@Override
 	protected EReference getTargetReference() {
-		return UMLPackage.eINSTANCE.getDeployment_DeployedArtifact();
+		return UMLPackage.eINSTANCE.getDeployment_Location();
 	}
 
 	/**
@@ -51,11 +51,11 @@ public class DeploymentEditHelper extends DependencyEditHelper {
 	@Override
 	protected boolean canCreate(EObject source, EObject target) {
 
-		if ((source != null) && !(source instanceof DeploymentTarget)) {
+		if ((source != null) && !(source instanceof DeployedArtifact)) {
 			return false;
 		}
 
-		if ((target != null) && !(target instanceof DeployedArtifact)) {
+		if ((target != null) && !(target instanceof DeploymentTarget)) {
 			return false;
 		}
 

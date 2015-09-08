@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 468079
+ *  Christian W. Damus - bug 471836
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.developper.mde.handler;
@@ -16,10 +18,17 @@ package org.eclipse.papyrus.uml.developper.mde.handler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
@@ -41,9 +50,10 @@ public abstract class IDMAbstractHandler extends AbstractHandler {
 
 	protected TransactionalEditingDomain transactionalEditingDomain = null;
 	protected PapyrusMultiDiagramEditor papyrusEditor;
-	public static HashMap<Element, Element> elt2DocElt = new HashMap<Element, Element>();
-	public static HashMap<Package, Package> Toc2DocElt = new HashMap<Package, Package>();
-	
+	private static Map<Element, Element> elt2DocElt = new HashMap<Element, Element>();
+	private static Map<String, String> href2DocHREF = new HashMap<String, String>();
+	private static Map<Package, Package> Toc2DocElt = new HashMap<Package, Package>();
+
 	/**
 	 * get the root package
 	 *
@@ -116,5 +126,39 @@ public abstract class IDMAbstractHandler extends AbstractHandler {
 
 		}
 		return selectedSet;
+	}
+
+	protected IProject getCurrentProject() {
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IWorkspaceRoot root = workspace.getRoot();
+		IPath path = new Path(getSelection().eResource().getURI().toPlatformString(true));
+		return root.getProject(path.segment(0));
+	}
+
+	public static void clear() {
+		elt2DocElt.clear();
+		href2DocHREF.clear();
+		Toc2DocElt.clear();
+	}
+
+	public static Element getDocElement(Element modelElement) {
+		return elt2DocElt.get(modelElement);
+	}
+
+	public static String getDocHREF(String href) {
+		return href2DocHREF.get(href);
+	}
+
+	public static void putDocElement(Element modelElement, Element docElement) {
+		elt2DocElt.put(modelElement, docElement);
+		href2DocHREF.put(modelElement.eResource().getURIFragment(modelElement), docElement.eResource().getURIFragment(docElement));
+	}
+
+	public static Package getDocPackageForTOC(Package tocPackage) {
+		return Toc2DocElt.get(tocPackage);
+	}
+
+	public static void putTOCPackage(Package tocPackage, Package docPackage) {
+		Toc2DocElt.put(tocPackage, docPackage);
 	}
 }
