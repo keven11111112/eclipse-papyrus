@@ -19,10 +19,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.InjectCached;
@@ -43,13 +41,10 @@ abstract class ViewMapping<V extends View> extends AbstractMapping<V> {
 
 	@Override
 	protected void mapProperties(IOne<V> from, IOne<V> to) {
-		IPair<IBox<EObject>, IBox<EObject>> mapping = mapCorresponding(from, to, NotationPackage.Literals.VIEW__ELEMENT, elementCorrespondence);
+		mapCorresponding(from, to, NotationPackage.Literals.VIEW__ELEMENT, elementCorrespondence);
 
-		// New views are always added to the diagram before their semantic elements are
-		// set, so be sure to propagate the element reference
-		mapping.getRight().bind(mapping.getLeft()).setAutoDisable(true);
-
-		// Likewise the type
-		property(to, NotationPackage.Literals.VIEW__TYPE).bind(property(from, NotationPackage.Literals.VIEW__TYPE));
+		// Ensure the same type
+		property(to, NotationPackage.Literals.VIEW__TYPE).bind(property(from, NotationPackage.Literals.VIEW__TYPE))
+				.setAutoDisable(true);
 	}
 }

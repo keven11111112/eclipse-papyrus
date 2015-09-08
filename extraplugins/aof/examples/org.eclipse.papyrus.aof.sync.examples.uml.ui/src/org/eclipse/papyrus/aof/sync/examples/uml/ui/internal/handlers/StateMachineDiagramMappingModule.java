@@ -13,7 +13,11 @@
 
 package org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers;
 
+import static org.eclipse.papyrus.aof.gmf.util.ViewUtil.SEMANTIC_CORRESPONDENCE;
+
 import java.util.function.BiPredicate;
+
+import javax.inject.Named;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -80,6 +84,7 @@ public class StateMachineDiagramMappingModule extends AbstractModule {
 	 * redefinition relationship, not identity, of the semantic elements of views.
 	 */
 	@Provides
+	@Named(SEMANTIC_CORRESPONDENCE)
 	public BiPredicate<EObject, EObject> provideSemanticCorrespondencePredicate() {
 		return new BiPredicate<EObject, EObject>() {
 			@Override
