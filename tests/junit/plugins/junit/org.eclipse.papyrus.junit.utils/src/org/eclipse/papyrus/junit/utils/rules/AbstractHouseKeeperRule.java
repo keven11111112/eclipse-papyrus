@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,15 +8,21 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 476683
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
 
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
@@ -91,6 +97,7 @@ public abstract class AbstractHouseKeeperRule {
 
 			private final Function<Object, Disposer<?>> nullFunction = Functions.constant(null);
 
+			@Override
 			public Disposer<Object> apply(Object input) {
 				Function<Object, Disposer<?>> resultFunction = nullFunction;
 
@@ -263,6 +270,7 @@ public abstract class AbstractHouseKeeperRule {
 
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					result[0] = cleanUpLater(EditorUtils.openEditor(file), EditorDisposer.INSTANCE);
@@ -289,6 +297,7 @@ public abstract class AbstractHouseKeeperRule {
 
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					result[0] = cleanUpLater(EditorUtils.openPapyrusEditor(file), EditorDisposer.INSTANCE);
@@ -312,7 +321,10 @@ public abstract class AbstractHouseKeeperRule {
 	 *            the field to access now and clear later
 	 *
 	 * @return the value of the field
+	 * 
+	 * @deprecated Use the {@link CleanUp @CleanUp} annotation on the field and access it directly.
 	 */
+	@Deprecated
 	public <T> T getField(String fieldName) {
 		try {
 			Field field = field(fieldName);
@@ -359,7 +371,10 @@ public abstract class AbstractHouseKeeperRule {
 	 *            the value to set
 	 *
 	 * @return the new value of the field
+	 * 
+	 * @deprecated Use the {@link CleanUp @CleanUp} annotation on the field and access it directly.
 	 */
+	@Deprecated
 	public <T> T setField(String fieldName, T value) {
 		try {
 			Field field = field(fieldName);
@@ -377,6 +392,55 @@ public abstract class AbstractHouseKeeperRule {
 
 	abstract Class<?> getTestClass();
 
+
+	void registerAutoCleanups() {
+		try {
+			final boolean staticFields = isStatic();
+
+			// Get all inherited fields, too
+			for (Class<?> next = getTestClass(); (next != null) && (next != Object.class); next = next.getSuperclass()) {
+				for (Field field : next.getDeclaredFields()) {
+					CleanUp cleanUp = field.getAnnotation(CleanUp.class);
+
+					if ((cleanUp != null) && (Modifier.isStatic(field.getModifiers()) == staticFields) && !Modifier.isFinal(field.getModifiers())) {
+						try {
+							field.setAccessible(true);
+
+							Class<? extends Disposer<?>> disposerClass = cleanUp.value();
+							if (disposerClass == FieldDisposer.class) {
+								// Default case
+								cleanUpLater(field, new FieldDisposer());
+							} else {
+								// Custom case
+
+								// Handle inner classes
+								Constructor<? extends Disposer<?>> ctor;
+								Object[] args;
+								if (disposerClass.getDeclaringClass() != null && ((disposerClass.getModifiers() & Modifier.STATIC) == 0)) {
+									ctor = disposerClass.getDeclaredConstructor(disposerClass.getDeclaringClass());
+									args = new Object[] { this };
+								} else {
+									ctor = disposerClass.getConstructor();
+									args = new Object[0];
+								}
+								ctor.setAccessible(true);
+
+								@SuppressWarnings("unchecked")
+								Disposer<Object> disposer = (Disposer<Object>) ctor.newInstance(args);
+								cleanUpLater(field.get(test), disposer);
+							}
+						} catch (Exception e) {
+							// Can't make it accessible? Then it's of no use.
+							// Likewise any problem in creating the disposer
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			// We tried our best. Don't propagate as a test failure because the test didn't ask for this
+		}
+	}
 
 	void cleanUp() throws Exception {
 		cleanUpLeakProneFields();
@@ -462,6 +526,20 @@ public abstract class AbstractHouseKeeperRule {
 	// Nested types
 	//
 
+	/**
+	 * Annotates fields for automatic clean-up.
+	 */
+	@Retention(RUNTIME)
+	@Target(FIELD)
+	public @interface CleanUp {
+		/**
+		 * Optionally specifies a disposer class to instantiate to clean
+		 * up the annotated field. By default, the field is simply
+		 * cleared to {@code null}.
+		 */
+		Class<? extends Disposer<?>>value() default FieldDisposer.class;
+	}
+
 	private static final class CleanUpAction implements Runnable {
 
 		private final Object target;
@@ -474,6 +552,7 @@ public abstract class AbstractHouseKeeperRule {
 			this.disposer = (Disposer<Object>) disposer;
 		}
 
+		@Override
 		public void run() {
 			try {
 				disposer.dispose(target);
@@ -495,6 +574,7 @@ public abstract class AbstractHouseKeeperRule {
 			disposers.put(ResourceSet.class, Functions.<Disposer<?>> constant(INSTANCE));
 		}
 
+		@Override
 		public void dispose(ResourceSet object) {
 			if (object instanceof ModelSet) {
 				((ModelSet) object).unload();
@@ -517,6 +597,7 @@ public abstract class AbstractHouseKeeperRule {
 			disposers.put(TransactionalEditingDomain.class, Functions.<Disposer<?>> constant(INSTANCE));
 		}
 
+		@Override
 		public void dispose(TransactionalEditingDomain object) {
 			object.dispose();
 		}
@@ -524,6 +605,7 @@ public abstract class AbstractHouseKeeperRule {
 
 	private final class FieldDisposer implements Disposer<Field> {
 
+		@Override
 		public void dispose(Field object) throws Exception {
 			object.set(test, null);
 		}
@@ -537,6 +619,7 @@ public abstract class AbstractHouseKeeperRule {
 			disposers.put(IResource.class, Functions.<Disposer<?>> constant(INSTANCE));
 		}
 
+		@Override
 		public void dispose(IResource object) throws Exception {
 			switch (object.getType()) {
 			case IResource.PROJECT:
@@ -560,9 +643,11 @@ public abstract class AbstractHouseKeeperRule {
 			disposers.put(IEditorPart.class, Functions.<Disposer<?>> constant(INSTANCE));
 		}
 
+		@Override
 		public void dispose(final IEditorPart object) throws Exception {
 			Display.getDefault().syncExec(new Runnable() {
 
+				@Override
 				public void run() {
 					IWorkbenchPage page = (object.getSite() == null) ? null : object.getSite().getPage();
 					if (page != null) {
@@ -585,6 +670,7 @@ public abstract class AbstractHouseKeeperRule {
 			disposers.put(Collection.class, Functions.<Disposer<?>> constant(INSTANCE));
 		}
 
+		@Override
 		public void dispose(final Collection<?> object) throws Exception {
 			object.clear();
 		}
@@ -598,6 +684,7 @@ public abstract class AbstractHouseKeeperRule {
 			disposers.put(Map.class, Functions.<Disposer<?>> constant(INSTANCE));
 		}
 
+		@Override
 		public void dispose(final Map<?, ?> object) throws Exception {
 			object.clear();
 		}
@@ -619,6 +706,7 @@ public abstract class AbstractHouseKeeperRule {
 		static void register(Map<Class<?>, Function<Object, Disposer<?>>> disposers) {
 			disposers.put(Object.class, new Function<Object, Disposer<?>>() {
 
+				@Override
 				public Disposer<?> apply(Object input) {
 					Duck duck = new Duck(input);
 
@@ -627,6 +715,7 @@ public abstract class AbstractHouseKeeperRule {
 			});
 		}
 
+		@Override
 		public void dispose(Object object) throws Exception {
 			new Duck(object).quack(disposeMethod, arguments);
 		}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 476683
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -59,6 +60,7 @@ public class HouseKeeper extends AbstractHouseKeeperRule implements MethodRule {
 	// Rule protocol
 	//
 
+	@Override
 	public Statement apply(final Statement base, final FrameworkMethod method, final Object target) {
 		return new Statement() {
 
@@ -68,6 +70,7 @@ public class HouseKeeper extends AbstractHouseKeeperRule implements MethodRule {
 				testName = method.getName();
 
 				try {
+					registerAutoCleanups();
 					base.evaluate();
 				} finally {
 					cleanUp();
@@ -101,9 +104,10 @@ public class HouseKeeper extends AbstractHouseKeeperRule implements MethodRule {
 
 		@Override
 		Class<?> getTestClass() {
-			return (Class<?>)test;
+			return (Class<?>) test;
 		}
 
+		@Override
 		public Statement apply(final Statement base, final Description description) {
 			return new Statement() {
 
@@ -114,6 +118,7 @@ public class HouseKeeper extends AbstractHouseKeeperRule implements MethodRule {
 					testName = description.getMethodName();
 
 					try {
+						registerAutoCleanups();
 						base.evaluate();
 					} finally {
 						cleanUp();
@@ -123,8 +128,8 @@ public class HouseKeeper extends AbstractHouseKeeperRule implements MethodRule {
 				Class<?> findTestClass(Description description) {
 					Class<?> result = description.getTestClass();
 
-					if(result == null) {
-						for(Iterator<Description> iter = description.getChildren().iterator(); (result == null) && iter.hasNext();) {
+					if (result == null) {
+						for (Iterator<Description> iter = description.getChildren().iterator(); (result == null) && iter.hasNext();) {
 							result = findTestClass(iter.next());
 						}
 					}
