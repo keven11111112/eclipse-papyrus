@@ -24,11 +24,9 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * Common interface to generate code. Supports for multiple target languages via
@@ -132,11 +130,9 @@ public class LanguageCodegen {
 	 */
 	public static List<ILangCodegen> getEligibleGeneratorList(Pattern languagePattern, Classifier classifier) {
 		List<ILangCodegen> eligibleGenerators = new ArrayList<ILangCodegen>();
-		Package modelRoot = PackageUtil.getRootPackage(classifier);
-
 		for (ILangCodegen generator : getCodegenList(languagePattern)) {
 			if (generator instanceof ILangCodegen2) {
-				if (((ILangCodegen2) generator).isEligible(modelRoot)) {
+				if (((ILangCodegen2) generator).isEligible(classifier)) {
 					eligibleGenerators.add(generator);
 				}
 			}
