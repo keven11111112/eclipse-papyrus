@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -164,7 +165,7 @@ public class ViewUtil {
 	 *            the contextual node view in which to look for or create the corresponding layout constraint
 	 * 
 	 * @return the constraint in the specified context corresponding to the given {@code constraint}, or
-	 *         {@code null} the contextual node already has a constraint and it is of a type incompatible with the
+	 *         {@code null} if the contextual node already has a constraint and it is of a type incompatible with the
 	 *         original {@code constraint}'s
 	 */
 	public <L extends LayoutConstraint> L getCorrespondingLayoutConstraint(L constraint, Node inNode) {
@@ -181,6 +182,36 @@ public class ViewUtil {
 				result = type.cast(existing);
 			} else if (existing == null) {
 				result = type.cast(EcoreUtil.copy(constraint));
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Obtains the attached style object in a specified view corresponding to the given {@code style}.
+	 * 
+	 * @param style
+	 *            the discrete style for which to look for a correspondent
+	 * @param inView
+	 *            the contextual view in which to look for or create the corresponding style
+	 * 
+	 * @return the style in the specified context corresponding to the given {@code style}
+	 */
+	public <S extends Style> S getCorrespondingStyle(S style, View inView) {
+		S result = null;
+
+		// Style is null when calculating default result of an active operation
+		if (style != null) {
+			// Construction of the copy is type-safe
+			@SuppressWarnings("unchecked")
+			Class<? extends S> type = (Class<? extends S>) style.getClass();
+
+			Style existing = inView.getStyle(style.eClass());
+			if (type.isInstance(existing)) {
+				result = type.cast(existing);
+			} else {
+				result = type.cast(EcoreUtil.copy(style));
 			}
 		}
 

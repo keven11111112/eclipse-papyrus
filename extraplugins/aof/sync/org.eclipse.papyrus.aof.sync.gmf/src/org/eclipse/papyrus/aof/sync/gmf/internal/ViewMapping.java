@@ -17,12 +17,16 @@ import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.InjectCached;
 
 /**
@@ -33,6 +37,12 @@ abstract class ViewMapping<V extends View> extends AbstractMapping<V> {
 
 	@InjectCached
 	private ICorrespondenceResolver<EObject, View> elementCorrespondence;
+
+	@Inject
+	private IMapping<Style> styles;
+
+	@Inject
+	private ICorrespondenceResolver<Style, View> styleCorrespondence;
 
 	@Inject
 	public ViewMapping(EClass type, IFactory factory) {
@@ -46,5 +56,22 @@ abstract class ViewMapping<V extends View> extends AbstractMapping<V> {
 		// Ensure the same type
 		property(to, NotationPackage.Literals.VIEW__TYPE).bind(property(from, NotationPackage.Literals.VIEW__TYPE))
 				.setAutoDisable(true);
+
+		// One-way synch all inherited (not attached by distinct style objects) style attributes
+		from.get().eClass().getEAllAttributes().stream()
+				.filter(attr -> NotationPackage.Literals.STYLE.isSuperTypeOf(attr.getEContainingClass()))
+				.forEach(attr -> bindProperty(from, to, attr));
+
+		// Also attached discrete Style objects such as FontStyle for DecorationNodes
+		IBox<Style> fromStyles = property(from, NotationPackage.Literals.VIEW__STYLES);
+		fromStyles = fromStyles.select(this::isStandardStyle);
+		IBox<Style> toStyles = property(to, NotationPackage.Literals.VIEW__STYLES);
+		toStyles = toStyles.select(this::isStandardStyle);
+
+		mapCorresponding(fromStyles, toStyles, to, styleCorrespondence, styles);
+	}
+
+	boolean isStandardStyle(Style style) {
+		return !(style instanceof NamedStyle) && (style.eClass().getEPackage() == NotationPackage.eINSTANCE);
 	}
 }

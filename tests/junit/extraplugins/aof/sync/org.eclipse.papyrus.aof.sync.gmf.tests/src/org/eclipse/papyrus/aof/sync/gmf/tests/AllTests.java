@@ -27,6 +27,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		SizeMappingTest.class,
 		NodeMappingTest.class,
 		EdgeMappingTest.class,
+		StyleMappingTest.class,
 		DiagramMappingTest.class,
 		MemoryLeakTest.class,
 })

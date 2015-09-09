@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.aof.sync.gmf.tests;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -25,11 +26,15 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.CanonicalStyle;
+import org.eclipse.gmf.runtime.notation.DescriptionStyle;
+import org.eclipse.gmf.runtime.notation.ImageStyle;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Size;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.papyrus.aof.sync.gmf.internal.NodeMapping;
 import org.junit.Test;
 
@@ -81,10 +86,10 @@ public class NodeMappingTest extends AbstractMappingTest<Node> {
 	}
 
 	Node createAttrNode(EObject element) {
-		Node result = NotationFactory.eINSTANCE.createNode();
+		Node result = notation.createNode();
 		result.setType("3001");
 		result.setElement(element);
-		result.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		result.setLayoutConstraint(notation.createBounds());
 		return result;
 	}
 
@@ -110,5 +115,82 @@ public class NodeMappingTest extends AbstractMappingTest<Node> {
 
 		assertFeature(fromSize, toSize, NotationPackage.Literals.SIZE__WIDTH, 42, 17);
 		assertFeature(fromSize, toSize, NotationPackage.Literals.SIZE__HEIGHT, 42, 17);
+	}
+
+	@Test
+	public void mapInheritedStyleAttributes() {
+		assertFeature(NotationPackage.Literals.FONT_STYLE__FONT_NAME, "Garamond", "Futura");
+		assertFeature(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT, 10, 18);
+	}
+
+	@Test
+	public void mapAttachedDiscreteStyles() {
+		EStructuralFeature feature = NotationPackage.Literals.VIEW__STYLES;
+
+		CanonicalStyle fromCanonicalStyle = notation.createCanonicalStyle();
+		fromCanonicalStyle.setCanonical(false);
+		ImageStyle fromImageStyle = notation.createImageStyle();
+		fromImageStyle.setMaintainAspectRatio(false);
+
+		List<Style> styles = Arrays.asList(fromCanonicalStyle, fromImageStyle);
+
+		assumeThat(getFrom().eGet(feature), is(Collections.EMPTY_LIST));
+		assumeThat(getTo().eGet(feature), is(getFrom().eGet(feature)));
+
+		getFrom().eSet(feature, styles);
+
+		@SuppressWarnings("unchecked")
+		List<Style> toStyles = (List<Style>) getTo().eGet(feature);
+		assertThat(toStyles.size(), is(2));
+		assertThat(toStyles.get(0), instanceOf(CanonicalStyle.class));
+		assertThat(((CanonicalStyle) toStyles.get(0)).isCanonical(), is(false));
+		assertThat(toStyles.get(1), instanceOf(ImageStyle.class));
+		assertThat(((ImageStyle) toStyles.get(1)).getMaintainAspectRatio(), is(false));
+
+		// But, they are not actually the same style instances!
+		assertThat(toStyles, not(styles));
+
+		// The reverse direction does not sync
+
+		toStyles.add(notation.createFilteringStyle());
+
+		assertThat(getFrom().eGet(feature), is(styles));
+	}
+
+	@Test
+	public void ignoreAttachedNamedStyles() {
+		EStructuralFeature feature = NotationPackage.Literals.VIEW__STYLES;
+
+		CanonicalStyle fromCanonicalStyle = notation.createCanonicalStyle();
+		fromCanonicalStyle.setCanonical(false);
+		BooleanValueStyle okStyle = notation.createBooleanValueStyle();
+		okStyle.setName("ok");
+		okStyle.setBooleanValue(true);
+		ImageStyle fromImageStyle = notation.createImageStyle();
+		fromImageStyle.setMaintainAspectRatio(false);
+
+		List<Style> styles = Arrays.asList(fromCanonicalStyle, okStyle, fromImageStyle);
+
+		assumeThat(getFrom().eGet(feature), is(Collections.EMPTY_LIST));
+		assumeThat(getTo().eGet(feature), is(getFrom().eGet(feature)));
+
+		getFrom().eSet(feature, styles);
+
+		// The named style is invisible to synchronization
+		@SuppressWarnings("unchecked")
+		List<Style> toStyles = (List<Style>) getTo().eGet(feature);
+		assertThat(toStyles.size(), is(2));
+		assertThat(toStyles.get(0), instanceOf(CanonicalStyle.class));
+		assertThat(toStyles.get(1), instanceOf(ImageStyle.class));
+
+		// Add a named style to the target
+		getTo().createStyle(NotationPackage.Literals.STRING_VALUE_STYLE);
+
+		// Because named styles are invisible, they don't stop forward synchronization
+		((DescriptionStyle) getFrom().createStyle(NotationPackage.Literals.DESCRIPTION_STYLE)).setDescription("This is a test");
+		assertThat(toStyles.size(), is(4));
+		// The new style is inserted after the last that is visible to synchronization
+		assertThat(toStyles.get(2), instanceOf(DescriptionStyle.class));
+		assertThat(((DescriptionStyle) toStyles.get(2)).getDescription(), is("This is a test"));
 	}
 }

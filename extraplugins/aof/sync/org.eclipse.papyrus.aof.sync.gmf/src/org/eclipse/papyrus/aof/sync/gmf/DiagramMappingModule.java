@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.gmf.DiagramFactory;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.aof.sync.gmf.internal.EdgeMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.LocationMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.NodeMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.SizeMapping;
+import org.eclipse.papyrus.aof.sync.gmf.internal.StyleMapping;
 
 import com.google.inject.Provides;
 
@@ -73,6 +75,10 @@ public class DiagramMappingModule extends MappingModule {
 		return SizeMapping.class;
 	}
 
+	public Class<? extends IMapping<Style>> getStyleMappingBinding() {
+		return StyleMapping.class;
+	}
+
 	@Provides
 	public ICorrespondenceResolver<Node, View> provideNodeResolver(ViewUtil viewUtil) {
 		return viewUtil::getCorrespondingNode;
@@ -96,6 +102,11 @@ public class DiagramMappingModule extends MappingModule {
 	@Provides
 	public ICorrespondenceResolver<Size, Node> provideSizeResolver(ViewUtil viewUtil) {
 		return viewUtil::getCorrespondingLayoutConstraint;
+	}
+
+	@Provides
+	public ICorrespondenceResolver<Style, View> provideStyleResolver(ViewUtil viewUtil) {
+		return viewUtil::getCorrespondingStyle;
 	}
 
 	@Provides

@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.aof.sync.gmf.internal.EdgeMapping;
 import org.junit.Test;
@@ -79,10 +78,10 @@ public class EdgeMappingTest extends AbstractMappingTest<Edge> {
 	}
 
 	Node createNode(String type, EObject element) {
-		Node result = NotationFactory.eINSTANCE.createNode();
+		Node result = notation.createNode();
 		result.setType(type);
 		result.setElement(element);
-		result.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		result.setLayoutConstraint(notation.createBounds());
 		return result;
 	}
 }

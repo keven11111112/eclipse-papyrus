@@ -288,6 +288,31 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 		IBox<E> fromElements = property(fromContext, property);
 		IBox<E> toElements = property(toContext, property);
 
+		return mapCorresponding(fromElements, toElements, toContext, resolvedWith, mappedWith);
+	}
+
+	/**
+	 * Maps the objects in some {@code property} from one contextual object to another, according to some
+	 * biject correspondence relation, and optionally mapping them recursively.
+	 * 
+	 * @param fromElements
+	 *            a box of elements from the mapping source
+	 * @param toElements
+	 *            a box of elements in the mapping target
+	 * @param toContext
+	 *            a boxed object that is the mapping target
+	 * @param resolvedWith
+	 *            a bijective correspondence relation between objects in the {@code fromElements}
+	 *            and objects in the same {@code toElements} of the {@code toContext}
+	 * @param mappedWith
+	 *            an optional mapping to apply recursively to the mapped objects in the
+	 *            {@code fromElements} and the {@code toElements}. May be {@code null}
+	 * 
+	 * @return a pairing of the the boxed objects that are mapped
+	 */
+	protected <E> IPair<IBox<E>, IBox<E>> mapCorresponding(IBox<E> fromElements, IBox<E> toElements,
+			IOne<T> toContext, ICorrespondenceResolver<E, ? super T> resolvedWith, IMapping<? super E> mappedWith) {
+
 		IBox<E> mapping = fromElements.collectTo(
 				(E e) -> getCorresponding(e, toContext.get(), resolvedWith));
 
