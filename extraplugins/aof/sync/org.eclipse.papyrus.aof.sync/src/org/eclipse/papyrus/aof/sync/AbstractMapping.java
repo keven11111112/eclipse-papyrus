@@ -257,8 +257,8 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <E> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<T> fromContext, IOne<T> toContext, Object property,
-			ICorrespondenceResolver<E, ? super T> resolvedWith) {
+	protected <E, U extends T> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<U> fromContext, IOne<U> toContext, Object property,
+			ICorrespondenceResolver<E, ? super U> resolvedWith) {
 
 		return mapCorresponding(fromContext, toContext, property, resolvedWith, null);
 	}
@@ -282,8 +282,8 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <E> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<T> fromContext, IOne<T> toContext, Object property,
-			ICorrespondenceResolver<E, ? super T> resolvedWith, IMapping<? super E> mappedWith) {
+	protected <E, U extends T> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<U> fromContext, IOne<U> toContext, Object property,
+			ICorrespondenceResolver<E, ? super U> resolvedWith, IMapping<? super E> mappedWith) {
 
 		IBox<E> fromElements = property(fromContext, property);
 		IBox<E> toElements = property(toContext, property);
@@ -310,8 +310,8 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <E> IPair<IBox<E>, IBox<E>> mapCorresponding(IBox<E> fromElements, IBox<E> toElements,
-			IOne<T> toContext, ICorrespondenceResolver<E, ? super T> resolvedWith, IMapping<? super E> mappedWith) {
+	protected <E, U extends T> IPair<IBox<E>, IBox<E>> mapCorresponding(IBox<E> fromElements, IBox<E> toElements,
+			IOne<U> toContext, ICorrespondenceResolver<E, ? super U> resolvedWith, IMapping<? super E> mappedWith) {
 
 		IBox<E> mapping = fromElements.collectTo(
 				(E e) -> getCorresponding(e, toContext.get(), resolvedWith));

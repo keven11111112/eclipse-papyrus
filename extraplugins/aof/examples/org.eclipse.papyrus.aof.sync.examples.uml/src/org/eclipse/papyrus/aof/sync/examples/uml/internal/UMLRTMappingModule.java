@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.aof.sync.examples.uml.internal;
 
+import java.util.Optional;
+
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
@@ -31,6 +33,7 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Vertex;
@@ -80,6 +83,11 @@ public class UMLRTMappingModule extends MappingModule {
 	}
 
 	@Provides
+	public ICorrespondenceResolver<Region, State> provideCompositeStateRegionRedefResolver() {
+		return RedefinitionUtil::getRedefiningCompositeStateRegion;
+	}
+
+	@Provides
 	public ICorrespondenceResolver<Vertex, Region> provideVertexRedefResolver() {
 		return RedefinitionUtil::getRedefiningVertex;
 	}
@@ -87,6 +95,11 @@ public class UMLRTMappingModule extends MappingModule {
 	@Provides
 	public ICorrespondenceResolver<Transition, Region> provideTransitionRedefResolver() {
 		return RedefinitionUtil::getRedefiningTransition;
+	}
+
+	@Provides
+	public ICorrespondenceResolver<Vertex, Transition> provideTransitionEndRedefResolver() {
+		return RedefinitionUtil::getRedefiningEnd;
 	}
 
 	public java.lang.Class<? extends ICorrespondenceResolver<EObject, EObject>> getRedefResolverBinding() {
@@ -113,10 +126,16 @@ public class UMLRTMappingModule extends MappingModule {
 		private ICorrespondenceResolver<Region, StateMachine> region;
 
 		@Inject
+		private ICorrespondenceResolver<Region, State> compositeStateRegion;
+
+		@Inject
 		private ICorrespondenceResolver<Vertex, Region> vertex;
 
 		@Inject
 		private ICorrespondenceResolver<Transition, Region> transition;
+
+		@Inject
+		private ICorrespondenceResolver<Vertex, Transition> transitionEnd;
 
 		@Inject
 		private ICorrespondenceResolver<Transition, StateMachine> transitionInStateMachine;
@@ -140,18 +159,42 @@ public class UMLRTMappingModule extends MappingModule {
 
 				@Override
 				public EObject caseRegion(Region object) {
-					StateMachine context = (parentContext instanceof Region)
-							? ((Region) parentContext).getStateMachine()
-							: (StateMachine) parentContext;
-					return region.getCorrespondent(object, context);
+					return new UMLSwitch<Optional<Region>>() {
+						@Override
+						public Optional<Region> caseStateMachine(StateMachine machine) {
+							return Optional.ofNullable(region.getCorrespondent(object, machine));
+						}
+
+						@Override
+						public Optional<Region> caseState(State state) {
+							return Optional.ofNullable(compositeStateRegion.getCorrespondent(object, state));
+						}
+
+						@Override
+						public Optional<Region> caseRegion(Region region) {
+							return doSwitch(region.eContainer());
+						}
+					}.doSwitch(parentContext).orElse(null);
 				}
 
 				@Override
 				public EObject caseVertex(Vertex object) {
-					Region context = (parentContext instanceof Vertex)
-							? ((Vertex) parentContext).getContainer()
-							: (Region) parentContext;
-					return vertex.getCorrespondent(object, context);
+					return new UMLSwitch<Optional<Vertex>>() {
+						@Override
+						public Optional<Vertex> caseRegion(Region region) {
+							return Optional.ofNullable(vertex.getCorrespondent(object, region));
+						}
+
+						@Override
+						public Optional<Vertex> caseTransition(Transition transition) {
+							return Optional.ofNullable(transitionEnd.getCorrespondent(object, transition));
+						}
+
+						@Override
+						public Optional<Vertex> caseVertex(Vertex vertex) {
+							return doSwitch(vertex.getContainer());
+						}
+					}.doSwitch(parentContext).orElse(null);
 				}
 
 				@Override

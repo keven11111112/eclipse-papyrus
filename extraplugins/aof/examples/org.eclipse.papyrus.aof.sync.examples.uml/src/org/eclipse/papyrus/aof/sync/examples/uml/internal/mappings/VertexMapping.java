@@ -18,6 +18,10 @@ import javax.inject.Singleton;
 
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
+import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.uml2.uml.Pseudostate;
+import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
@@ -28,6 +32,12 @@ import org.eclipse.uml2.uml.Vertex;
 @Singleton
 public class VertexMapping extends NamedElementMapping<Vertex> {
 	@Inject
+	private ICorrespondenceResolver<Region, State> regionRedef;
+
+	@Inject
+	private IMapping<Region> regions;
+
+	@Inject
 	public VertexMapping(IFactory factory) {
 		super(UMLPackage.Literals.VERTEX, factory);
 	}
@@ -37,5 +47,8 @@ public class VertexMapping extends NamedElementMapping<Vertex> {
 		super.mapProperties(parentVertex, childVertex);
 
 		bindPropertyValue(parentVertex.select(State.class), childVertex.select(State.class), UMLPackage.Literals.STATE, UMLPackage.Literals.STATE__REDEFINED_STATE);
+		bindProperty(parentVertex.select(Pseudostate.class), childVertex.select(Pseudostate.class), UMLPackage.Literals.PSEUDOSTATE__KIND);
+
+		mapCorresponding(parentVertex.select(State.class).asOne(null), childVertex.select(State.class).asOne(null), UMLPackage.Literals.STATE__REGION, regionRedef, regions);
 	}
 }

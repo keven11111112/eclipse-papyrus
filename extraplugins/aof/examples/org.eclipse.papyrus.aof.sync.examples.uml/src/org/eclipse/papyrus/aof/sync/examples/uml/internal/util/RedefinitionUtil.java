@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.aof.sync.examples.uml.internal.util;
 
 import static org.eclipse.papyrus.aof.sync.examples.uml.internal.util.NamedElements.shallowCopy;
+import static org.eclipse.papyrus.infra.tools.util.StreamUtil.asStream;
+import static org.eclipse.papyrus.infra.tools.util.StreamUtil.select;
 
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -63,6 +65,16 @@ public class RedefinitionUtil {
 	public static Region getRedefiningRegion(Region region, StateMachine context) {
 		return getInverseReferencers(region, UMLPackage.Literals.REGION__EXTENDED_REGION, Region.class)
 				.filter(r -> r.getStateMachine() == context)
+				.findFirst().orElseGet(() -> shallowCopy(region));
+	}
+
+	/**
+	 * Finds the region in a given {@code context} that redefines the specified {@code region},
+	 * or creates a new one if it doesn't yet exist.
+	 */
+	public static Region getRedefiningCompositeStateRegion(Region region, State context) {
+		return getInverseReferencers(region, UMLPackage.Literals.REGION__EXTENDED_REGION, Region.class)
+				.filter(r -> r.getState() == context)
 				.findFirst().orElseGet(() -> shallowCopy(region));
 	}
 
@@ -117,6 +129,26 @@ public class RedefinitionUtil {
 		return getInverseReferencers(transition, UMLPackage.Literals.TRANSITION__REDEFINED_TRANSITION, Transition.class)
 				.filter(t -> t.containingStateMachine() == context)
 				.findFirst().orElse(null);
+	}
+
+	/**
+	 * Finds the end of a given {@code context} that redefines the specified {@code vertex}.
+	 */
+	public static <V extends Vertex> V getRedefiningEnd(V vertex, Transition context) {
+		V result = null;
+
+		// Vertex is null when computing default result of an active operation
+		if (vertex != null) {
+			@SuppressWarnings("unchecked")
+			final Class<V> type = (Class<V>) vertex.getClass();
+
+			result = select(asStream(context.containingStateMachine().eAllContents()), type)
+					.filter(v -> redefines(v, vertex))
+					.findFirst()
+					.orElse(null);
+		}
+
+		return result;
 	}
 
 	/**

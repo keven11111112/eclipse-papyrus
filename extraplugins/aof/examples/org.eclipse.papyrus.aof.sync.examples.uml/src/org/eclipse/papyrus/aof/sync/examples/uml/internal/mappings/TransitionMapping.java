@@ -16,11 +16,9 @@ package org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
@@ -31,7 +29,7 @@ import org.eclipse.uml2.uml.Vertex;
 @Singleton
 public class TransitionMapping extends NamedElementMapping<Transition> {
 	@Inject
-	private ICorrespondenceResolver<Vertex, Region> vertexRedef;
+	private ICorrespondenceResolver<Vertex, Transition> transitionEndRedef;
 
 	@Inject
 	public TransitionMapping(IFactory factory) {
@@ -44,32 +42,7 @@ public class TransitionMapping extends NamedElementMapping<Transition> {
 
 		bindPropertyValue(parentTransition, childTransition, UMLPackage.Literals.TRANSITION__REDEFINED_TRANSITION);
 
-		IBox<Vertex> parentSource = property(parentTransition, UMLPackage.Literals.TRANSITION__SOURCE);
-		IBox<Vertex> childSource = property(childTransition, UMLPackage.Literals.TRANSITION__SOURCE);
-		IBox<Vertex> sourceMapping = parentSource.collectTo(v -> getCorrespondingSource(v, childTransition.get()));
-		childSource.bind(sourceMapping).setAutoDisable(true);
-
-		IBox<Vertex> parentTarget = property(parentTransition, UMLPackage.Literals.TRANSITION__TARGET);
-		IBox<Vertex> childtarget = property(childTransition, UMLPackage.Literals.TRANSITION__TARGET);
-		IBox<Vertex> targetMapping = parentTarget.collectTo(v -> getCorrespondingTarget(v, childTransition.get()));
-		childtarget.bind(targetMapping).setAutoDisable(true);
-	}
-
-	protected Vertex getCorrespondingSource(Vertex parentVertex, Transition childTransition) {
-		if (parentVertex == null) {
-			// This happens when getting the IOne's default value
-			return null;
-		}
-
-		return vertexRedef.getCorrespondent(parentVertex, childTransition.getContainer());
-	}
-
-	protected Vertex getCorrespondingTarget(Vertex parentVertex, Transition childTransition) {
-		if (parentVertex == null) {
-			// This happens when getting the IOne's default value
-			return null;
-		}
-
-		return vertexRedef.getCorrespondent(parentVertex, childTransition.getContainer());
+		mapCorresponding(parentTransition, childTransition, UMLPackage.Literals.TRANSITION__SOURCE, transitionEndRedef);
+		mapCorresponding(parentTransition, childTransition, UMLPackage.Literals.TRANSITION__TARGET, transitionEndRedef);
 	}
 }

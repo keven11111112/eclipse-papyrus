@@ -411,12 +411,12 @@ public class AbstractMappingTest extends AbstractTest {
 		}
 
 		@Override
-		protected <E> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<EObject> parentContext, IOne<EObject> childContext, Object property, ICorrespondenceResolver<E, ? super EObject> resolvedWith) {
+		protected <E, U extends EObject> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<U> parentContext, IOne<U> childContext, Object property, ICorrespondenceResolver<E, ? super U> resolvedWith) {
 			return super.mapCorresponding(parentContext, childContext, property, resolvedWith);
 		}
 
 		@Override
-		protected <E> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<EObject> parentContext, IOne<EObject> childContext, Object property, ICorrespondenceResolver<E, ? super EObject> resolvedWith, IMapping<? super E> mappedWith) {
+		protected <E, U extends EObject> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<U> parentContext, IOne<U> childContext, Object property, ICorrespondenceResolver<E, ? super U> resolvedWith, IMapping<? super E> mappedWith) {
 			return super.mapCorresponding(parentContext, childContext, property, resolvedWith, mappedWith);
 		}
 
