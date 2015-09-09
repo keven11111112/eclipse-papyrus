@@ -8,12 +8,14 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Bonnabesse Fanch (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476838
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.wizard;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.widgets.Activator;
@@ -50,7 +52,7 @@ public abstract class AbstractTableWizard extends Wizard {
 	 * @param selection
 	 *            the current selection
 	 * @return
-	 *         the nattable manager to use to do the import
+	 * 		the nattable manager to use to do the import
 	 */
 	private INattableModelManager getNattableModelManager(final IWorkbench workbench, final IStructuredSelection selection) {
 		final IEditorPart editorPart = workbench.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -63,19 +65,24 @@ public abstract class AbstractTableWizard extends Wizard {
 	/**
 	 * 
 	 * @return
-	 *         the nattable manager to use in the wizard
+	 * 		the nattable manager to use in the wizard
 	 */
 	public final INattableModelManager getNatTableModelManager() {
 		return this.manager;
 	}
 
 	/**
-	 * @see org.eclipse.jface.wizard.Wizard#addPages()
+	 * @see org.eclipse.jface.wizard.Wizard#setContainer(org.eclipse.jface.wizard.IWizardContainer)
 	 *
+	 * @param wizardContainer
 	 */
 	@Override
-	public void addPages() {
-		getShell().setImage(Activator.getDefault().getImage(ImageConstants.PAPYRUS_ICON_PATH)); //$NON-NLS-1$
+	public void setContainer(final IWizardContainer wizardContainer) {
+		super.setContainer(wizardContainer);
+		// Bug 476838: the container was null using getShell() of this wizard.
+		if (null != wizardContainer) {
+			wizardContainer.getShell().setImage(Activator.getDefault().getImage(ImageConstants.PAPYRUS_ICON_PATH)); // $NON-NLS-1$
+		}
 	}
 
 }
