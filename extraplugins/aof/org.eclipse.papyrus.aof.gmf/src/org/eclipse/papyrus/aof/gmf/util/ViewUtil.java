@@ -142,7 +142,7 @@ public class ViewUtil {
 
 		// View is null when calculating default result of an active operation
 		if (view != null) {
-			result = select(inParent.getChildren().stream(), View.class)
+			result = select(inParent.eContents().stream(), View.class)
 					.filter(v -> correspondsTo(v, view))
 					.findFirst()
 					.orElseGet(() -> shallowCopy(view));
@@ -152,7 +152,8 @@ public class ViewUtil {
 	}
 
 	private boolean correspondsTo(View one, View other) {
-		return Objects.equals(one.getType(), other.getType())
+		return (one.eClass() == other.eClass())
+				&& Objects.equals(one.getType(), other.getType())
 				&& semanticCorrespondence.test(one, other);
 	}
 

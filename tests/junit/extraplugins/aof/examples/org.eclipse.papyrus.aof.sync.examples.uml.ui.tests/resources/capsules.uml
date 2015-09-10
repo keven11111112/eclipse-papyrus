@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_y6HYYEazEeWmLf_x1xmVLQ" name="capsules">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_P7eusFcvEeWgZPw-oAB41w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1azMcEazEeWmLf_x1xmVLQ" name="Capsule1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_4MuhgEazEeWmLf_x1xmVLQ" name="Capsule2">
+    <generalization xmi:type="uml:Generalization" xmi:id="_6XUJwEazEeWmLf_x1xmVLQ" general="_1azMcEazEeWmLf_x1xmVLQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_AFbcAFcvEeWgZPw-oAB41w" name="SomeClass">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_I_WqEFcvEeWgZPw-oAB41w" name="isOK" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+  </packagedElement>
+</uml:Package>

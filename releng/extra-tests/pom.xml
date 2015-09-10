@@ -38,6 +38,7 @@
 	<module>../../tests/junit/extraplugins/aof/sync/org.eclipse.papyrus.aof.sync.tests</module>
 	<module>../../tests/junit/extraplugins/aof/sync/org.eclipse.papyrus.aof.sync.gmf.tests</module>
 	<module>../../tests/junit/extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml.tests</module>
+	<module>../../tests/junit/extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml.ui.tests</module>
 	
    </modules>
 	<repositories>

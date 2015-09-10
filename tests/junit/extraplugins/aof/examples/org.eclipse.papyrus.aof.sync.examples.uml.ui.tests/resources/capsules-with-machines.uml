@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_y6HYYEazEeWmLf_x1xmVLQ" name="capsules">
+  <packagedElement xmi:type="uml:Class" xmi:id="_1azMcEazEeWmLf_x1xmVLQ" name="Capsule1" classifierBehavior="_2IrL0EbDEeWb8p1dD1BTTw">
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_2IrL0EbDEeWb8p1dD1BTTw" name="Lifecycle">
+      <region xmi:type="uml:Region" xmi:id="_AYmjgEbEEeWb8p1dD1BTTw" name="region1">
+        <transition xmi:type="uml:Transition" xmi:id="_IK7QUEbEEeWb8p1dD1BTTw" name="attach" source="_CCR3EEbEEeWb8p1dD1BTTw" target="_EuKOgEbEEeWb8p1dD1BTTw"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_CCR3EEbEEeWb8p1dD1BTTw" name="start"/>
+        <subvertex xmi:type="uml:State" xmi:id="_EuKOgEbEEeWb8p1dD1BTTw" name="open"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_4MuhgEazEeWmLf_x1xmVLQ" name="Capsule2" classifierBehavior="_FFkDUFdWEeWXC6PTANZtKA">
+    <generalization xmi:type="uml:Generalization" xmi:id="_6XUJwEazEeWmLf_x1xmVLQ" general="_1azMcEazEeWmLf_x1xmVLQ"/>
+    <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_FFkDUFdWEeWXC6PTANZtKA" name="Lifecycle" extendedStateMachine="_2IrL0EbDEeWb8p1dD1BTTw">
+      <region xmi:type="uml:Region" xmi:id="_FFkDUVdWEeWXC6PTANZtKA" name="region1" extendedRegion="_AYmjgEbEEeWb8p1dD1BTTw">
+        <transition xmi:type="uml:Transition" xmi:id="_FFkDUldWEeWXC6PTANZtKA" name="attach" redefinedTransition="_IK7QUEbEEeWb8p1dD1BTTw" source="_FFkDU1dWEeWXC6PTANZtKA" target="_FFkDVFdWEeWXC6PTANZtKA"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_FFkDU1dWEeWXC6PTANZtKA" name="start"/>
+        <subvertex xmi:type="uml:State" xmi:id="_FFkDVFdWEeWXC6PTANZtKA" name="open" redefinedState="_EuKOgEbEEeWb8p1dD1BTTw"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+</uml:Package>

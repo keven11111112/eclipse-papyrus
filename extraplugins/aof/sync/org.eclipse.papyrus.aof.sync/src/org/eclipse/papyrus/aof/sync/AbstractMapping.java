@@ -316,11 +316,13 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 		IBox<E> mapping = fromElements.collectTo(
 				(E e) -> getCorresponding(e, toContext.get(), resolvedWith));
 
+		// Bind the elements before mapping them, so that, if the property is a containment
+		// reference, the they will be attached to the model before we recursively map anything
+		toElements.bind(mapping).setAutoDisable(true);
+
 		if (mappedWith != null) {
 			mappedWith.map(fromElements, toElements);
 		}
-
-		toElements.bind(mapping).setAutoDisable(true);
 
 		return getFactory().createPair(fromElements, toElements);
 	}

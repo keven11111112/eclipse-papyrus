@@ -9,7 +9,7 @@
     <relativePath>../../../../../../releng/extra-tests</relativePath>
   </parent>
   <groupId>org.eclipse.papyrus</groupId>
-  <artifactId>org.eclipse.papyrus.aof.sync.examples.uml.tests</artifactId>
+  <artifactId>org.eclipse.papyrus.aof.sync.examples.uml.ui.tests</artifactId>
   <version>0.7.0-SNAPSHOT</version>
   <packaging>eclipse-test-plugin</packaging>
 </project>

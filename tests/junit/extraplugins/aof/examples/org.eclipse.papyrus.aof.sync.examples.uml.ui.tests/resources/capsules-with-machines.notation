@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <notation:Diagram xmi:id="_IZi8kFdWEeWXC6PTANZtKA" type="PapyrusUMLStateMachineDiagram" name="Lifecycle" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_IZi8kVdWEeWXC6PTANZtKA" type="2000">
+      <children xmi:type="notation:DecorationNode" xmi:id="_IZjjoFdWEeWXC6PTANZtKA" type="2001">
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IZjjoVdWEeWXC6PTANZtKA" width="700" height="16"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_IZjjoldWEeWXC6PTANZtKA" type="2002">
+        <children xmi:type="notation:Shape" xmi:id="_IZjjo1dWEeWXC6PTANZtKA" type="3000">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IZjjpFdWEeWXC6PTANZtKA" source="RegionAnnotationKey">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IZjjpVdWEeWXC6PTANZtKA" key="RegionZoneKey" value=""/>
+          </eAnnotations>
+          <children xmi:type="notation:DecorationNode" xmi:id="_IZjjpldWEeWXC6PTANZtKA" type="3002">
+            <children xmi:type="notation:Shape" xmi:id="_P5jKUFdWEeWXC6PTANZtKA" type="8000">
+              <children xmi:type="notation:DecorationNode" xmi:id="_P5jxYFdWEeWXC6PTANZtKA" type="8001">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_P5jxYVdWEeWXC6PTANZtKA" x="25" y="3"/>
+              </children>
+              <children xmi:type="notation:DecorationNode" xmi:id="_P5jxYldWEeWXC6PTANZtKA" type="8002">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_P5jxY1dWEeWXC6PTANZtKA" x="25" y="-10"/>
+              </children>
+              <element xmi:type="uml:Pseudostate" href="capsules-with-machines.uml#_CCR3EEbEEeWb8p1dD1BTTw"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P5jKUVdWEeWXC6PTANZtKA" x="57" y="37"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_Q2GSIFdWEeWXC6PTANZtKA" type="6000">
+              <children xmi:type="notation:DecorationNode" xmi:id="_Q2G5MFdWEeWXC6PTANZtKA" type="6001">
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Q2vyYFdWEeWXC6PTANZtKA" width="65" height="16"/>
+              </children>
+              <children xmi:type="notation:DecorationNode" xmi:id="_Q2G5MVdWEeWXC6PTANZtKA" type="19003">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_Q2G5MldWEeWXC6PTANZtKA" x="40"/>
+              </children>
+              <children xmi:type="notation:DecorationNode" xmi:id="_Q2G5M1dWEeWXC6PTANZtKA" type="6002">
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Q2G5NFdWEeWXC6PTANZtKA" y="16" width="65" height="27"/>
+              </children>
+              <element xmi:type="uml:State" href="capsules-with-machines.uml#_EuKOgEbEEeWb8p1dD1BTTw"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Q2GSIVdWEeWXC6PTANZtKA" x="119" y="173" width="65" height="43"/>
+            </children>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IZjjp1dWEeWXC6PTANZtKA"/>
+          </children>
+          <element xmi:type="uml:Region" href="capsules-with-machines.uml#_AYmjgEbEEeWb8p1dD1BTTw"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IZjjqFdWEeWXC6PTANZtKA" width="700" height="287"/>
+        </children>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IZjjqVdWEeWXC6PTANZtKA" y="16" width="700" height="287"/>
+      </children>
+      <element xmi:type="uml:StateMachine" href="capsules-with-machines.uml#_2IrL0EbDEeWb8p1dD1BTTw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IZjjqldWEeWXC6PTANZtKA" x="30" y="30" width="700" height="303"/>
+    </children>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_IZjjq1dWEeWXC6PTANZtKA" name="diagram_compatibility_version" stringValue="1.1.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_IZjjrFdWEeWXC6PTANZtKA"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_IZjjrVdWEeWXC6PTANZtKA">
+      <owner xmi:type="uml:Class" href="capsules-with-machines.uml#_1azMcEazEeWmLf_x1xmVLQ"/>
+    </styles>
+    <element xmi:type="uml:StateMachine" href="capsules-with-machines.uml#_2IrL0EbDEeWb8p1dD1BTTw"/>
+    <edges xmi:type="notation:Connector" xmi:id="_SrUHUFdWEeWXC6PTANZtKA" type="7000" source="_P5jKUFdWEeWXC6PTANZtKA" target="_Q2GSIFdWEeWXC6PTANZtKA">
+      <children xmi:type="notation:DecorationNode" xmi:id="_SrUuYFdWEeWXC6PTANZtKA" type="7001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_SrUuYVdWEeWXC6PTANZtKA" x="3" y="-21"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_SrUuYldWEeWXC6PTANZtKA" type="7002">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_SrUuY1dWEeWXC6PTANZtKA"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_SrUuZFdWEeWXC6PTANZtKA" type="7003">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_SrUuZVdWEeWXC6PTANZtKA" y="60"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_SrUHUVdWEeWXC6PTANZtKA"/>
+      <element xmi:type="uml:Transition" href="capsules-with-machines.uml#_IK7QUEbEEeWb8p1dD1BTTw"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SrUHUldWEeWXC6PTANZtKA" points="[4, 7, -80, -140]$[72, 126, -12, -21]"/>
+    </edges>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_NnqAMFdWEeWXC6PTANZtKA" type="PapyrusUMLStateMachineDiagram" name="Doppelgangers" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_NnqnQFdWEeWXC6PTANZtKA" type="2000">
+      <children xmi:type="notation:DecorationNode" xmi:id="_NnqnQVdWEeWXC6PTANZtKA" type="2001">
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NnqnQldWEeWXC6PTANZtKA" width="700" height="16"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_NnqnQ1dWEeWXC6PTANZtKA" type="2002">
+        <children xmi:type="notation:Shape" xmi:id="_NnqnRFdWEeWXC6PTANZtKA" type="3000">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NnqnRVdWEeWXC6PTANZtKA" source="RegionAnnotationKey">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NnqnRldWEeWXC6PTANZtKA" key="RegionZoneKey" value=""/>
+          </eAnnotations>
+          <children xmi:type="notation:DecorationNode" xmi:id="_NnqnR1dWEeWXC6PTANZtKA" type="3002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NnqnSFdWEeWXC6PTANZtKA"/>
+          </children>
+          <element xmi:type="uml:Region" href="capsules-with-machines.uml#_FFkDUVdWEeWXC6PTANZtKA"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NnqnSVdWEeWXC6PTANZtKA" width="700" height="287"/>
+        </children>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NnqnSldWEeWXC6PTANZtKA" y="16" width="700" height="287"/>
+      </children>
+      <element xmi:type="uml:StateMachine" href="capsules-with-machines.uml#_FFkDUFdWEeWXC6PTANZtKA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NnqnS1dWEeWXC6PTANZtKA" x="30" y="30" width="700" height="303"/>
+    </children>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_NnqnTFdWEeWXC6PTANZtKA" name="diagram_compatibility_version" stringValue="1.1.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_NnqnTVdWEeWXC6PTANZtKA"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_NnqnTldWEeWXC6PTANZtKA">
+      <owner xmi:type="uml:StateMachine" href="capsules-with-machines.uml#_FFkDUFdWEeWXC6PTANZtKA"/>
+    </styles>
+    <element xmi:type="uml:StateMachine" href="capsules-with-machines.uml#_FFkDUFdWEeWXC6PTANZtKA"/>
+  </notation:Diagram>
+</xmi:XMI>
