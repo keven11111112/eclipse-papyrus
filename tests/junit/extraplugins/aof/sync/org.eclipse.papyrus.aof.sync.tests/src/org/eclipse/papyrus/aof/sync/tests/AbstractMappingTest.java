@@ -105,7 +105,7 @@ public class AbstractMappingTest extends AbstractTest {
 	}
 
 	@Test
-	public void map_boxes() {
+	public void mapBoxes() {
 		IOne<EObject> left = Boxes.immutableOne(from);
 		IOne<EObject> right = Boxes.immutableOne(to);
 

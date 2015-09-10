@@ -26,6 +26,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		MappingFactoryTest.class,
 		AbstractMappingTest.class,
 		CorrespondenceResolverTest.class,
+		MappingContextTest.class,
 		InjectCachedTest.class,
 		MemoryLeakTest.class,
 })
