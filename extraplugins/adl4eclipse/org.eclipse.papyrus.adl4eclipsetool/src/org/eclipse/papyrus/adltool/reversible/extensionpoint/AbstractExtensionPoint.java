@@ -11,10 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.adltool.reversible.extensionpoint;
 
-import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
+import org.eclipse.papyrus.adl4eclipse.org.ADL4Eclipse_Stereotypes;
 import org.eclipse.papyrus.adltool.reversible.AbstractReversible;
 import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
-import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -38,12 +37,12 @@ public abstract class AbstractExtensionPoint extends AbstractReversible<Componen
 
 	@Override
 	public String getStereotypeName() {
-		return IADL4ECLIPSE_Stereotype.EXTENSION_POINT_STEREOTYPE;
+		return ADL4Eclipse_Stereotypes.EXTENSION_POINT_STEREOTYPE;
 	}
 
 	@Override
 	public String getDependencyStereotypeName() {
-		return IOSGIStereotype.EXTENSION_POINT_REFERENCE;
+		return ADL4Eclipse_Stereotypes.EXTENSION_POINT_REFERENCE;
 	}
 
 	@Override

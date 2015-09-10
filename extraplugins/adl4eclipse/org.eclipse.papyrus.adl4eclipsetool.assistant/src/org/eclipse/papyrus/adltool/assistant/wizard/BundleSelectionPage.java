@@ -193,8 +193,9 @@ public class BundleSelectionPage extends WizardPage {
 
 	private void createAdvancedProperties() {
 		Group grpSettings = new Group(composite, SWT.NONE);
-		grpSettings.setLayout(new GridLayout(4, false));
+		grpSettings.setLayout(new GridLayout(5, false));
 		GridData groupSettingsGridData = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
+		groupSettingsGridData.exclude = !advanced;
 		grpSettings.setLayoutData(groupSettingsGridData);
 		grpSettings.setText("Reverse settings");
 
@@ -205,6 +206,10 @@ public class BundleSelectionPage extends WizardPage {
 		final Button btnCheckExportPackages = new Button(grpSettings, SWT.CHECK);
 		btnCheckExportPackages.setText("Exported packages");
 		btnCheckExportPackages.setSelection(settings.reverseExportPackages());
+
+		final Button btnCheckImportPackages = new Button(grpSettings, SWT.CHECK);
+		btnCheckImportPackages.setText("Imported packages");
+		btnCheckImportPackages.setSelection(settings.reverseImportPackages());
 
 		final Button btnCheckExtensionPoints = new Button(grpSettings, SWT.CHECK);
 		btnCheckExtensionPoints.setText("Extension points");
@@ -251,6 +256,17 @@ public class BundleSelectionPage extends WizardPage {
 				boolean reverseExportPackages = ((Button) event.getSource()).getSelection();
 
 				settings.setReverseExportPackages(reverseExportPackages);
+			}
+
+		});
+
+		btnCheckImportPackages.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				boolean reverseImportPackages = ((Button) event.getSource()).getSelection();
+
+				settings.setReverseImportPackages(reverseImportPackages);
 			}
 
 		});

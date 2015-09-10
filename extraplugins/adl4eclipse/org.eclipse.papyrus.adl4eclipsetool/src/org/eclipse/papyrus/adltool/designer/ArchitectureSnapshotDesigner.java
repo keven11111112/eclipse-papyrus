@@ -17,15 +17,18 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
+import org.eclipse.papyrus.adl4eclipse.org.ADL4Eclipse_Stereotypes;
 import org.eclipse.papyrus.adltool.ADLConstants;
+import org.eclipse.papyrus.adltool.reversible.project.StereotypeVersion;
 import org.eclipse.papyrus.adltool.reversible.project.ReversiblePlugin;
 import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
-import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
+import org.eclipse.papyrus.osgi.profile.OSGIStereotypes;
 import org.eclipse.papyrus.adltool.reversible.extension.SchemaElement;
 import org.eclipse.papyrus.adltool.reversible.extension.SchemaAttribute;
+import org.eclipse.papyrus.adltool.reversible.Reversible;
 import org.eclipse.papyrus.adltool.reversible.extension.ReversibleExtension;
 import org.eclipse.papyrus.adltool.reversible.extensionpoint.ReversibleExtensionPoint;
+import org.eclipse.papyrus.adltool.reversible.packages.ReversiblePackage;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
@@ -50,18 +53,20 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class ArchitectureSnapshotDesigner {
 
-	private static final String DEPENDENCY_NAME_SUFFIX = "dep_";
-	private static final String EXTENSION_POINT_DEPENDENCY_NAME_SUFFIX = "ext_";
-
 	/**
 	 * Set containing the projects that have been reversed during the current import.
 	 */
 	private Set<ReversibleProject> reversedProjects;
 
 	/**
-	 * List of projects to be reversed.
+	 * Set of projects to be reversed.
 	 */
 	private Set<ReversibleProject> reversibles;
+
+	/**
+	 * Set of reversibles that need to apply and fill their stereotypes.
+	 */
+	private Set<Reversible<?>> postponedReversibles;
 
 	/**
 	 * Reverse settings containing the depth level of dependencies to reverse.
@@ -90,10 +95,11 @@ public class ArchitectureSnapshotDesigner {
 		this.reversibles = reversibles;
 
 		reversedProjects = new HashSet<>();
+		postponedReversibles = new HashSet<>();
 	}
 
 	/**
-	 * Launches the import of bundle into the model.
+	 * Launches the import of bundles into the model.
 	 */
 	public void runImportBundles() {
 		initModel();
@@ -102,25 +108,34 @@ public class ArchitectureSnapshotDesigner {
 		for (ReversibleProject project : reversibles) {
 			reverseProject(project);
 		}
+
+		// Fill the reversibles' stereotypes
+		for (Reversible<?> reversible : postponedReversibles) {
+			reversible.fillStereotype();
+		}
 	}
 
 	/**
 	 * Ensures that the ADL4Eclipse and OSGi profiles have been applied.
 	 */
 	private void initModel() {
-		applyProfile(IADL4ECLIPSE_Stereotype.ADL4ECLIPSE);
-		applyProfile(IOSGIStereotype.OSGI);
+		applyProfile(OSGIStereotypes.OSGI);
+		applyProfile(ADL4Eclipse_Stereotypes.ADL4ECLIPSE);
 	}
 
 	private void applyProfile(String profileName) {
-		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile(profileName);
+		Profile appliedProfile = model.getAppliedProfile(profileName);
 
-		if (registeredProfile != null) {
-			URI modelUri = registeredProfile.getUri();
-			Resource modelResource = Util.createTemporaryResourceSet().getResource(modelUri, true);
-			Profile profile = (Profile) modelResource.getContents().get(0);
+		if (appliedProfile == null) {
+			IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile(profileName);
 
-			PackageUtil.applyProfile(model, profile, false);
+			if (registeredProfile != null) {
+				URI modelUri = registeredProfile.getUri();
+				Resource modelResource = Util.createTemporaryResourceSet().getResource(modelUri, true);
+				Profile profile = (Profile) modelResource.getContents().get(0);
+
+				PackageUtil.applyProfile(model, profile, true);
+			}
 		}
 	}
 
@@ -144,6 +159,14 @@ public class ArchitectureSnapshotDesigner {
 	}
 
 	/**
+	 * Saves the reversible to fill its properties at the end of the reverse.
+	 * @param reversible
+	 */
+	private void postPoneFillStereotype(Reversible<?> reversible) {
+		postponedReversibles.add(reversible);
+	}
+
+	/**
 	 * Reverses a project and, if the {@link ReverseSettings} allows it, its
 	 * dependencies, exported packages, extension points and extensions.
 	 *
@@ -158,12 +181,9 @@ public class ArchitectureSnapshotDesigner {
 		setReversed(project);
 
 		// Reverse the children
-		if (project instanceof ReversibleProject) {
-			if (settings.reverseDependencies()) {
-
-				for (ReversibleProject child : project.getDependencies()) {
-					reverseChildProject(project, child, settings.getReverseDepth());
-				}
+		if (settings.reverseDependencies()) {
+			for (ReversibleProject child : project.getDependencies()) {
+				reverseChildProject(project, child, settings.getReverseDepth());
 			}
 		}
 
@@ -172,8 +192,15 @@ public class ArchitectureSnapshotDesigner {
 
 			// Reverse exported packages
 			if (settings.reverseExportPackages()) {
-				for (String exportedPackageName : reversiblePlugin.getExportedPackages()) {
-					reverseExportedPackage(project, exportedPackageName);
+				for (ReversiblePackage exportedPackageName : reversiblePlugin.getExportedPackages()) {
+					reversePackage(project, exportedPackageName);
+				}
+			}
+
+			// Reverse imported packages
+			if (settings.reverseImportPackages()) {
+				for (ReversiblePackage importedPackage : reversiblePlugin.getImportedPackages()) {
+					reversePackage(project, importedPackage);
 				}
 			}
 
@@ -193,7 +220,7 @@ public class ArchitectureSnapshotDesigner {
 		}
 
 		// Fill stereotype properties
-		project.fillStereotype();
+		postPoneFillStereotype(project);
 	}
 
 	/**
@@ -213,8 +240,6 @@ public class ArchitectureSnapshotDesigner {
 			insertInModel(child);
 			setReversed(child);
 
-			createDependency(parent, child);
-
 			// Reverse the sub-children if we are in infinite mode or the depth is not reached
 			if (currentDepth == ADLConstants.INFINITE_DEPTH_OPTION || currentDepth > 1) {
 				int newDepth = currentDepth == ADLConstants.INFINITE_DEPTH_OPTION ? currentDepth : currentDepth - 1;
@@ -224,31 +249,70 @@ public class ArchitectureSnapshotDesigner {
 				}
 			}
 
-			// Fill stereotype
-			child.fillStereotype();
+			// Apply stereotype
+			child.applyStereotype();
+			postPoneFillStereotype(child);
 		}
+
+		createDependency(parent, child);
 	}
 
 	/**
-	 * Reverses an exported package inside a reversible project. <br />
-	 * A reversed exported package is a package inside the project's component.
+	 * Reverses an reversible package inside a reversible project, creates a dependency between the package and the project
+	 * and applies the stereotypes on the created elements.
 	 *
-	 * @param project the project containing the exported packages
-	 * @param exportedPackageName the exported package name
+	 * @param project the project containing the imported packages
+	 * @param reversiblePackage the imported package name
 	 */
-	private void reverseExportedPackage(ReversibleProject project, String exportedPackageName) {
+	private void reversePackage(ReversibleProject project, ReversiblePackage reversiblePackage) {
 		Component reversedProject = project.getRepresentation();
+		Package reversedPackage = project.getElement(reversiblePackage);
 
-		// Add the package if it does not exist
-		if (project.getElement(exportedPackageName, Package.class) == null) {
-			Package exportedPackage = UMLFactory.eINSTANCE.createPackage();
+		if (reversedPackage == null) {
+			reversedPackage = reversiblePackage.getRepresentation();
+			reversedProject.getPackagedElements().add(reversedPackage);
+		} else {
+			reversiblePackage.setRepresentation(reversedPackage);
+		}
 
-			exportedPackage.setName(exportedPackageName);
-			reversedProject.getPackagedElements().add(exportedPackage);
+		reversiblePackage.applyStereotype();
 
-			String stereotypeName = IADL4ECLIPSE_Stereotype.ECLIPSE_EXPORTEDPACKAGE_STEREOTYPE;
-			Stereotype exportedPackageStereotype = exportedPackage.getApplicableStereotype(stereotypeName);
-			exportedPackage.applyStereotype(exportedPackageStereotype);
+		Dependency packageDependency = project.getElement(reversiblePackage.getId(), Dependency.class);
+
+		if (packageDependency == null) {
+			// Create the dependency link
+			packageDependency = createDependency(reversiblePackage.getId(), reversedProject, reversedPackage);
+			reversedProject.getPackagedElements().add(packageDependency);
+		}
+
+		String dependencyStereotypeName = reversiblePackage.getDependencyStereotypeName();
+		Stereotype dependencyStereotype = packageDependency.getAppliedStereotype(dependencyStereotypeName);
+
+		if (dependencyStereotype == null) {
+			// Apply the PackageReference stereotype on the link
+			dependencyStereotype = packageDependency.getApplicableStereotype(OSGIStereotypes.PACKAGE_REFERENCE);
+
+			if (dependencyStereotype != null) {
+				packageDependency.applyStereotype(dependencyStereotype);
+			}
+		}
+
+		// Fill dependency stereotype
+		StereotypeVersion dependencyVersion = project.getReversibleVersion(reversiblePackage);
+
+		if (dependencyVersion != null) {
+			String floor = dependencyVersion.getFloor();
+			String ceiling = dependencyVersion.getCeiling();
+			boolean includeFloor = dependencyVersion.includeFloor();
+			boolean includeCeiling = dependencyVersion.includeCeiling();
+
+			packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_FLOOR_ATT, floor);
+			packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_INCLUDEFLOOR_ATT, includeFloor);
+
+			if (ceiling != null) {
+				packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_CEILING_ATT, ceiling);
+				packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_INCLUDECEILING_ATT, includeCeiling);
+			}
 		}
 	}
 
@@ -277,8 +341,9 @@ public class ArchitectureSnapshotDesigner {
 
 		reverseExtensionPointElements(extensionPoint);
 
-		// Fill stereotype
-		extensionPoint.fillStereotype();
+		// Apply stereotype
+		extensionPoint.applyStereotype();
+		postPoneFillStereotype(extensionPoint);
 	}
 
 	/**
@@ -307,6 +372,8 @@ public class ArchitectureSnapshotDesigner {
 				extension.setRepresentation(reversedExtension);
 			}
 
+			// TODO: Create a Usage link
+
 			// Make sure the extension point's elements are reversed
 			reverseExtensionPointElements(extensionPoint);
 
@@ -323,7 +390,7 @@ public class ArchitectureSnapshotDesigner {
 						LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
 						value.setValue(schemaAttribute.getValue());
 
-						// TODO: Refactor this
+						// TODO: This might need some refactoring
 						for (Property attribute : reversedElement.getOwnedAttributes()) {
 							if (attribute.getName().equals(schemaAttribute.getName())) {
 								Slot slot = reversedExtension.createSlot();
@@ -344,8 +411,9 @@ public class ArchitectureSnapshotDesigner {
 			createExtensionPointDependency(project, extensionPoint);
 		}
 
-		// Fill stereotype
-		extension.fillStereotype();
+		// Apply stereotype
+		extension.applyStereotype();
+		postPoneFillStereotype(extension);
 	}
 
 	/**
@@ -369,7 +437,7 @@ public class ArchitectureSnapshotDesigner {
 		Component reversedExtensionPoint = extensionPoint.getRepresentation();
 
 		// Add the extension point definer in the model
-		if (model.getPackagedElement(parent.getId()) == null) {
+		if (searchRepresentation(parent) == null) {
 			model.getPackagedElements().add(parentRepresentation);
 		}
 
@@ -379,8 +447,11 @@ public class ArchitectureSnapshotDesigner {
 		}
 
 		// Ensure the stereotype are applied
-		parent.fillStereotype();
-		extensionPoint.fillStereotype();
+		parent.applyStereotype();
+		extensionPoint.applyStereotype();
+
+		postPoneFillStereotype(parent);
+		postPoneFillStereotype(extensionPoint);
 
 		// The project's port was created before this method is called
 		Port extensionPort = project.getElement(extensionPoint.getId(), Port.class);
@@ -390,7 +461,7 @@ public class ArchitectureSnapshotDesigner {
 			extensionPointPort = parentRepresentation.createOwnedPort(extensionPoint.getId(), reversedExtensionPoint);
 		}
 
-		String dependencyName = EXTENSION_POINT_DEPENDENCY_NAME_SUFFIX + extensionPoint.getId();
+		String dependencyName = extensionPoint.getId();
 		Dependency dependency = project.getElement(dependencyName, Dependency.class);
 
 		if (dependency != null) {
@@ -421,19 +492,41 @@ public class ArchitectureSnapshotDesigner {
 		Component parentComponent = parent.getRepresentation();
 		Component childComponent = child.getRepresentation();
 
-		String dependencyName = DEPENDENCY_NAME_SUFFIX + child.getId();
+		String dependencyName = child.getId();
 		Dependency dependency = parent.getElement(dependencyName, Dependency.class);
 
+		// Create the dependency if it does not exist
 		if (dependency == null) {
 			dependency = createDependency(dependencyName, parentComponent, childComponent);
 
 			parentComponent.getPackagedElements().add(dependency);
 			parentComponent.createOwnedAttribute(child.getId(), childComponent);
+		}
 
-			String depStereotypeName = child.getDependencyStereotypeName();
-			Stereotype depStereotype = dependency.getApplicableStereotype(depStereotypeName);
+		// Apply the stereotype
+		String depStereotypeName = child.getDependencyStereotypeName();
+		Stereotype depStereotype = dependency.getApplicableStereotype(depStereotypeName);
 
+		if (dependency.getAppliedStereotype(depStereotypeName) == null) {
 			dependency.applyStereotype(depStereotype);
+		}
+
+		// Get the version to fill the stereotype
+		StereotypeVersion dependencyVersionRange = parent.getReversibleVersion(child);
+
+		if (dependencyVersionRange != null) {
+			String floor = dependencyVersionRange.getFloor();
+			String ceiling = dependencyVersionRange.getCeiling();
+			boolean includeFloor = dependencyVersionRange.includeFloor();
+			boolean includeCeiling = dependencyVersionRange.includeCeiling();
+
+			dependency.setValue(depStereotype, OSGIStereotypes.VERSIONRANGE_FLOOR_ATT, floor);
+			dependency.setValue(depStereotype, OSGIStereotypes.VERSIONRANGE_INCLUDEFLOOR_ATT, includeFloor);
+
+			if (ceiling != null) {
+				dependency.setValue(depStereotype, OSGIStereotypes.VERSIONRANGE_CEILING_ATT, ceiling);
+				dependency.setValue(depStereotype, OSGIStereotypes.VERSIONRANGE_INCLUDECEILING_ATT, includeCeiling);
+			}
 		}
 
 		return dependency;
@@ -465,7 +558,7 @@ public class ArchitectureSnapshotDesigner {
 	 * @param project
 	 */
 	private void insertInModel(ReversibleProject project) {
-		PackageableElement representation = model.getPackagedElement(project.getId());
+		PackageableElement representation = searchRepresentation(project);
 
 		if (representation instanceof Component) {
 			project.setRepresentation((Component) representation);
@@ -516,7 +609,7 @@ public class ArchitectureSnapshotDesigner {
 		// Apply the stereotype if it is not already applied
 		for (PackageableElement element : reversedExtensionPoint.getPackagedElements()) {
 			if (element instanceof Component) {
-				String stereotypeName = IADL4ECLIPSE_Stereotype.ELEMENT_STEREOTYPE;
+				String stereotypeName = ADL4Eclipse_Stereotypes.ELEMENT_STEREOTYPE;
 				Stereotype elementStereotype = element.getAppliedStereotype(stereotypeName);
 
 				if (elementStereotype == null) {
@@ -525,6 +618,28 @@ public class ArchitectureSnapshotDesigner {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Returns a reversible project's representation in the model.
+	 * This method checks if the representation has the same name of the reversible's id
+	 * and if the reversible's stereotype is applied on it.
+	 *
+	 * @param reversible
+	 * @return the representation or null if it does not exists
+	 */
+	private PackageableElement searchRepresentation(ReversibleProject reversible) {
+		for (PackageableElement element : model.getPackagedElements()) {
+			if (element.getName().equals(reversible.getId())) {
+				Stereotype appliedStereotype = element.getAppliedStereotype(reversible.getStereotypeName());
+
+				if (appliedStereotype != null) {
+					return element;
+				}
+			}
+		}
+
+		return null;
 	}
 
 }

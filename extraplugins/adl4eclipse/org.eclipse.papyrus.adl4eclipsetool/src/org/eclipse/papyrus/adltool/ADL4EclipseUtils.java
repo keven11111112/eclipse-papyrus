@@ -14,9 +14,7 @@ package org.eclipse.papyrus.adltool;
 import static org.eclipse.papyrus.adltool.Activator.log;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.PropertyResourceBundle;
 import java.util.Set;
 
@@ -30,14 +28,11 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.spi.RegistryContributor;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
-import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
-import org.eclipse.papyrus.adltool.reversible.extensionpoint.ReversibleExtensionPoint;
 import org.eclipse.papyrus.adltool.reversible.factory.ReversibleFactory;
-import org.eclipse.pde.core.IIdentifiable;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginExtensionPoint;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
@@ -52,15 +47,14 @@ import org.eclipse.pde.internal.core.ischema.ISchema;
 import org.eclipse.pde.internal.core.schema.SchemaRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Stereotype;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
+import org.osgi.framework.Version;
 
 /**
  * This static class holds all the reversible projects that are loaded in the
@@ -70,18 +64,45 @@ import org.osgi.framework.ServiceReference;
 public class ADL4EclipseUtils {
 
 	static {
-		// These methods are called once (on plug-in startup) to populate the reversible library
-		// by creating an adapter for each loaded and workspace plug-ins/features
-		getLoadedPlugins();
-		getLoadedFeatures();
-		getWorkspacePlugins();
-		getWorkspaceFeatures();
+		// Populate the factory on plug-in startup with the loaded plug-ins/features.
+		populateReversibleFactory();
 	}
 
 	/**
 	 * Constructor. Private to prevent instantiation.
 	 */
 	private ADL4EclipseUtils() {
+	}
+
+	/**
+	 * Populates the reversible library by creating an adapter for each loaded
+	 * and workspace plug-in/feature
+	 */
+	public static void populateReversibleFactory() {
+		getLoadedPlugins();
+		getReversibleFeatures();
+		getWorkspacePlugins();
+		getWorkspaceFeatures();
+		//getReversibleFragments();
+	}
+
+	/**
+	 * Gets the list of reversible features in the platform.
+	 *
+	 * @return The list reversible features
+	 */
+	public static Set<ReversibleProject> getReversibleFeatures() {
+		Set<ReversibleProject> featureList = new HashSet<>();
+		IFeatureModel[] featureModels = PDECore.getDefault().getFeatureModelManager().getModels();
+
+		for (IFeatureModel featureModel : featureModels) {
+			IFeature feature = featureModel.getFeature();
+			ReversibleProject reversibleFeature = ReversibleFactory.getInstance().makeReversible(feature);
+
+			featureList.add(reversibleFeature);
+		}
+
+		return featureList;
 	}
 
 	/**
@@ -100,25 +121,6 @@ public class ADL4EclipseUtils {
 		}
 
 		return bundleList;
-	}
-
-	/**
-	 * Gets the list of reversible features loaded in the platform.
-	 *
-	 * @return The list of bundle description contained in the workspace
-	 */
-	private static Set<ReversibleProject> getLoadedFeatures() {
-		Set<ReversibleProject> featureList = new HashSet<>();
-		IFeatureModel[] featureModels = PDECore.getDefault().getFeatureModelManager().getModels();
-
-		for (IFeatureModel featureModel : featureModels) {
-			IFeature feature = featureModel.getFeature();
-			ReversibleProject reversibleFeature = ReversibleFactory.getInstance().makeReversible(feature);
-
-			featureList.add(reversibleFeature);
-		}
-
-		return featureList;
 	}
 
 	/**
@@ -166,6 +168,36 @@ public class ADL4EclipseUtils {
 	}
 
 	/**
+	 * Gets the list of reversible fragments in the platform.
+	 *
+	 * @return the list of reversible plug-ins
+	 */
+	public static Set<ReversibleProject> getReversibleFragments() {
+		Set<ReversibleProject> reversiblePlugins = new HashSet<>();
+
+		// Include fragment, set to false to retrieve only plug-ins from the workspace and the target Platform
+		boolean includeFragments = true;
+
+		IPluginModelBase[] activeModels = PDECore.getDefault().getModelManager().getActiveModels(includeFragments);
+
+		for (IPluginModelBase activeModel : activeModels) {
+			BundleDescription bundleDescription = activeModel.getBundleDescription();
+
+			if (bundleDescription != null) {
+				String bundleName = bundleDescription.getName();
+				ReversibleProject reversiblePlugin = ReversibleFactory.getInstance().getPlugin(bundleName);
+				if (reversiblePlugin == null) {
+					ReversibleProject reversibleFragment = ReversibleFactory.getInstance().makeReversible(bundleDescription);
+
+					reversiblePlugins.add(reversibleFragment);
+				}
+			}
+		}
+
+		return reversiblePlugins;
+	}
+
+	/**
 	 * Gets the IBundleProjectDescription of a project.
 	 *
 	 * @param project
@@ -194,7 +226,7 @@ public class ADL4EclipseUtils {
 	 * Returns an {@link org.eclipse.swt.graphics.Image} identified by its key.
 	 * <br />
 	 * By default, it returns a default image. This image is the image placed in
-	 * the directory <em>resources/icons/default.gif</em>
+	 * the <em>resources/icons</em> directory.
 	 *
 	 * @param key the key of the image
 	 *
@@ -214,33 +246,30 @@ public class ADL4EclipseUtils {
 	}
 
 	/**
+	 * Returns a property resource bundle from a bundle.
 	 *
 	 * @param bundle
-	 * @return
+	 * @return the property resource of the bundle or null
 	 */
 	public static PropertyResourceBundle getNLSFilesFor(IBundleProjectDescription bundle) {
-		PropertyResourceBundle bundleproperties = null;
-		// get the base localization path from the target
+		// Get the base localization path from the target
 		String localization = bundle.getHeader(Constants.BUNDLE_LOCALIZATION);
+
 		if (localization != null) {
-			// we do a simple check to make sure the default nls path exists in
-			// the target;
-			// this is for performance reasons, but I'm not sure it is valid
-			// because a target could ship without the default nls properties
-			// file but this seems very unlikely
+			// We do a simple check to make sure the default NLS path exists in the target;
+			// This is for performance reasons, but I'm not sure it is valid because a target
+			// could ship without the default NLS properties file but this seems very unlikely
 			IFile file = bundle.getProject().getFile(localization + ".properties");
 			if (file != null) {
 				try {
-					bundleproperties = new PropertyResourceBundle(file.getContents());
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (CoreException e) {
+					return new PropertyResourceBundle(file.getContents());
+				} catch (IOException | CoreException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 
-		return bundleproperties;
+		return null;
 	}
 
 	/**
@@ -296,90 +325,15 @@ public class ADL4EclipseUtils {
 	}
 
 	/**
+	 * Gets the PDE schema object of an extension point.
 	 *
-	 * @param extPointID
-	 * @return
+	 * @param extPointID the extension point's identifier
+	 * @return the schema or null if it does not exist
 	 */
 	public static ISchema getSchema(String extPointID) {
 		SchemaRegistry schemaRegistry = PDECore.getDefault().getSchemaRegistry();
 
 		return schemaRegistry.getSchema(extPointID);
-	}
-
-	/**
-	 * Gets a list of feature stereotyped applications from a list of identifiables.
-	 *
-	 * @param identifiables
-	 * @return
-	 */
-	public static List<EObject> getFeatureStereotypeApplication(IIdentifiable[] identifiables) {
-		List<EObject> result = new ArrayList<>();
-
-		for (IIdentifiable identifiable : identifiables) {
-			ReversibleProject feature = ReversibleFactory.getInstance().getFeature(identifiable.getId());
-
-			if (feature != null) {
-				Component featureRepresentation = feature.getRepresentation();
-				Stereotype stereotype = featureRepresentation.getAppliedStereotype(IADL4ECLIPSE_Stereotype.FEATURE_STEREOTYPE);
-
-				if (stereotype != null) {
-					result.add(featureRepresentation.getStereotypeApplication(stereotype));
-				}
-			}
-		}
-
-		return result;
-	}
-
-	/**
-	 * Gets a list of plug-in stereotyped applications from a list of identifiables.
-	 *
-	 * @param identifiables
-	 * @return
-	 */
-	public static List<EObject> getPluginStereotypeApplications(IIdentifiable[] identifiables) {
-		List<EObject> result = new ArrayList<>();
-
-		for (IIdentifiable identifiable : identifiables) {
-			ReversibleProject plugin = ReversibleFactory.getInstance().getPlugin(identifiable.getId());
-
-			if (plugin != null) {
-				Component pluginRepresentation = plugin.getRepresentation();
-				Stereotype stereotype = pluginRepresentation.getAppliedStereotype(IADL4ECLIPSE_Stereotype.PLUGIN_STEREOTYPE);
-
-				if (stereotype != null) {
-					result.add(pluginRepresentation.getStereotypeApplication(stereotype));
-				}
-			}
-		}
-
-		return result;
-	}
-
-	/**
-	 * Gets a list of extension point stereotyped applications from a list of identifiables.
-	 *
-	 * @param component
-	 * @param identifiables
-	 * @return
-	 */
-	public static List<EObject> getExtensionPointStereotypeApplication(IIdentifiable[] identifiables) {
-		List<EObject> result = new ArrayList<>();
-
-		for (IIdentifiable identifiable : identifiables) {
-			ReversibleExtensionPoint extensionPoint = ReversibleFactory.getInstance().getExtensionPoint(identifiable.getId());
-
-			if (extensionPoint != null) {
-				Component extensionPointRepresentation = extensionPoint.getRepresentation();
-				Stereotype stereotype = extensionPointRepresentation.getAppliedStereotype(IADL4ECLIPSE_Stereotype.EXTENSION_POINT_STEREOTYPE);
-
-				if (stereotype != null) {
-					result.add(extensionPointRepresentation.getStereotypeApplication(stereotype));
-				}
-			}
-		}
-
-		return result;
 	}
 
 	/**
@@ -398,27 +352,14 @@ public class ADL4EclipseUtils {
 		return model instanceof Model ? (Model) model : null;
 	}
 
-	public static List<EObject> getBundleStereotypeApplications(List<String> requireBundleIds) {
-		List<EObject> result = new ArrayList<>();
-
-		for (String bundleId : requireBundleIds) {
-			//System.out.println(bundleId);
-			ReversibleProject plugin = ReversibleFactory.getInstance().getPlugin(bundleId);
-
-			if (plugin != null) {
-				Component pluginRepresentation = plugin.getRepresentation();
-				Stereotype stereotype = pluginRepresentation.getApplicableStereotype(IADL4ECLIPSE_Stereotype.PLUGIN_STEREOTYPE);
-
-				if (stereotype != null) {
-					// TODO: Get EObject instead of DynamicEObject
-					// (this method needs to be called when the representations are in the model explorer)
-					//EObject stereotypeApplication = pluginRepresentation.getStereotypeApplication(stereotype);
-					//result.add(stereotypeApplication);
-				}
-			}
-		}
-
-		return result;
+	/**
+	 * Formats a OSGi version in the x.x.x format.
+	 *
+	 * @param version
+	 * @return the formatted version
+	 */
+	public static String formatVersion(Version version) {
+		return version.getMajor() + "." + version.getMinor() + "." + version.getMicro();
 	}
 
 }

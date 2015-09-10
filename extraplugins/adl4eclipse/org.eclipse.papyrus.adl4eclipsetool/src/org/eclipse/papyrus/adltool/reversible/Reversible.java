@@ -21,8 +21,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * <ul>
  * <li>an identifier that corresponds to the adapted class identifier,</li>
  * <li>a UML representation that should extend the
- * {@link org.eclipse.uml2.uml.NamedElement NamedElement} interface,
- * </li>
+ * {@link org.eclipse.uml2.uml.NamedElement NamedElement} interface,</li>
  * <li>a type,</li>
  * <li>a stereotype name that will be applied to its representation,</li>
  * <li>and a stereotype that will be applied to the dependency links to this
@@ -33,7 +32,7 @@ import org.eclipse.uml2.uml.NamedElement;
 public interface Reversible<T extends NamedElement> {
 
 	enum Type {
-		BUNDLE, FEATURE, PLUGIN, EXTENSION_POINT, EXTENSION
+		BUNDLE, FEATURE, PLUGIN, EXTENSION_POINT, EXTENSION, IMPORT_PACKAGE, EXPORT_PACKAGE
 	};
 
 	/**
@@ -84,7 +83,15 @@ public interface Reversible<T extends NamedElement> {
 	void setRepresentation(T representation);
 
 	/**
-	 * Applies the stereotype and fills its values.
+	 * Applies the reversible's stereotype on its representation. Returns true
+	 * if the stereotype is applied, false if not exist.
+	 *
+	 * @return true if the stereotype is applied, false if not
+	 */
+	boolean applyStereotype();
+
+	/**
+	 * Ensures the stereotype is applied and fills its values.
 	 */
 	void fillStereotype();
 

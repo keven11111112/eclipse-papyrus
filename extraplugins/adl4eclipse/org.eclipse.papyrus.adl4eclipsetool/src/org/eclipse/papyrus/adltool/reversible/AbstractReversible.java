@@ -104,13 +104,8 @@ public abstract class AbstractReversible<T extends NamedElement> implements Reve
 		return false;
 	}
 
-	/**
-	 * Ensures the stereotype is applied. If not, applies it. Returns true if
-	 * the stereotype is applied, false if the stereotype does not exist.
-	 *
-	 * @return
-	 */
-	protected boolean applyStereotype() {
+	@Override
+	public boolean applyStereotype() {
 		// The getRepresentation() method instantiates the field and avoids null pointer
 		stereotype = getRepresentation().getAppliedStereotype(getStereotypeName());
 

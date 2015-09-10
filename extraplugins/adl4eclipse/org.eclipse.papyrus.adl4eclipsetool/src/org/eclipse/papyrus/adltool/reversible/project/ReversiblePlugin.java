@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.adltool.reversible.extension.ReversibleExtension;
 import org.eclipse.papyrus.adltool.reversible.extensionpoint.ReversibleExtensionPoint;
+import org.eclipse.papyrus.adltool.reversible.packages.ReversiblePackage;
 
 /**
  * Projects that implements that interface are reversible plug-ins that
@@ -23,17 +24,45 @@ import org.eclipse.papyrus.adltool.reversible.extensionpoint.ReversibleExtension
 public interface ReversiblePlugin extends ReversibleProject {
 
 	/**
+	 * Returns whether the plug-in is a singleton or not.
+	 *
+	 * @return true if the plug-in is a singleton, false of not
+	 */
+	boolean isSingleton();
+
+	/**
 	 * Returns a list containing all the exported packages names.
 	 *
-	 * @return
+	 * @return the list of reversible exported packages
 	 */
-	List<String> getExportedPackages();
+	List<ReversiblePackage> getExportedPackages();
+
+	/**
+	 * Sets the list of exported package.
+	 *
+	 * @param exportedPackages
+	 */
+	void setExportedPackages(List<ReversiblePackage> exportedPackages);
+
+	/**
+	 * Returns a list containing all the imported packages names.
+	 *
+	 * @return the list of reversible imported packages
+	 */
+	List<ReversiblePackage> getImportedPackages();
+
+	/**
+	 * Sets the list of imported package.
+	 *
+	 * @param exportedPackages
+	 */
+	void setImportedPackages(List<ReversiblePackage> importedPackages);
 
 	/**
 	 * Returns a list of reversible corresponding to the project's extension
 	 * points.
 	 *
-	 * @return
+	 * @return the list of reversible extension points
 	 */
 	List<ReversibleExtensionPoint> getExtensionPoints();
 
@@ -47,7 +76,7 @@ public interface ReversiblePlugin extends ReversibleProject {
 	/**
 	 * Returns a list of extensions.
 	 *
-	 * @return
+	 * @return the list of reversible extensions
 	 */
 	List<ReversibleExtension> getExtensions();
 

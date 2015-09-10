@@ -60,19 +60,21 @@ public class WorkspaceExtensionPoint extends AbstractExtensionPoint {
 		List<SchemaElement> result = new ArrayList<>();
 		ISchema schema = ADL4EclipseUtils.getSchema(getId());
 
-		for (ISchemaElement element : schema.getElements()) {
-			String elementName = element.getName();
-			SchemaElement schemaElement = new SchemaElement(elementName);
+		if (schema != null) {
+			for (ISchemaElement element : schema.getElements()) {
+				String elementName = element.getName();
+				SchemaElement schemaElement = new SchemaElement(elementName);
 
-			schemaElement.setType(element.getType().getName());
-			schemaElement.setMinOccurs(element.getMinOccurs());
-			schemaElement.setMaxOccurs(element.getMaxOccurs());
+				schemaElement.setType(element.getType().getName());
+				schemaElement.setMinOccurs(element.getMinOccurs());
+				schemaElement.setMaxOccurs(element.getMaxOccurs());
 
-			for (ISchemaAttribute attribute : element.getAttributes()) {
-				schemaElement.addAttribute(new SchemaAttribute(attribute.getName()));
+				for (ISchemaAttribute attribute : element.getAttributes()) {
+					schemaElement.addAttribute(new SchemaAttribute(attribute.getName()));
+				}
+
+				result.add(schemaElement);
 			}
-
-			result.add(schemaElement);
 		}
 
 		return result;

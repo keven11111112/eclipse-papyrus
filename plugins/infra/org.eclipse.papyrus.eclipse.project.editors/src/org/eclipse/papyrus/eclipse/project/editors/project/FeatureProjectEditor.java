@@ -41,23 +41,45 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
 public class FeatureProjectEditor extends ProjectEditor implements IFeatureProjectEditor {
+
+	/** the name of the file feature.xml */
+	public static final String FRAGMENT_XML_FILE = "feature.xml"; //$NON-NLS-1$
+
+	private static final String ID = "id"; //$NON-NLS-1$
+	private static final String LABEL = "label"; //$NON-NLS-1$
+	private static final String VERSION = "version"; //$NON-NLS-1$
+	private static final String PROVIDER = "provider-name"; //$NON-NLS-1$
+
+	private static final String URL = "url"; //$NON-NLS-1$
+	private static final String COPYRIGHT = "copyright"; //$NON-NLS-1$
+	private static final String LICENSE = "license"; //$NON-NLS-1$
+	private static final String DESCRIPTION = "description"; //$NON-NLS-1$
+
+	private static final String OS = "os"; //$NON-NLS-1$
+	private static final String WS = "ws"; //$NON-NLS-1$
+	private static final String NL = "nl"; //$NON-NLS-1$
+	private static final String ARCH = "arch"; //$NON-NLS-1$
+	private static final String UPDATE = "update"; //$NON-NLS-1$
+
+	private static final String PLUGIN = "plugin"; //$NON-NLS-1$
+	private static final String IMPORT = "import"; //$NON-NLS-1$
+	private static final String INCLUDES = "includes"; //$NON-NLS-1$
+	private static final String REQUIRES = "requires"; //$NON-NLS-1$
+	private static final String FEATURE = "feature"; //$NON-NLS-1$
 
 	// TODO pour l'externalization : utiliser l'éditeur de Properties! dans java Utils
 
-	private Document fragmentXML;;
+	private Document fragmentXML;
 
-	private IFile fragmentFile;;
+	private IFile fragmentFile;
 
-	private Element fragmentRoot;;
+	private Element fragmentRoot;
 
 	/**
-	 *
 	 * Constructor.
 	 *
-	 * @param project
-	 *            the eclipse project
+	 * @param project the eclipse project
 	 * @throws ParserConfigurationException
 	 * @throws SAXException
 	 * @throws IOException
@@ -67,22 +89,15 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		super(project);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#init()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public void init() {
-		this.fragmentFile = getPlugin();
-		if ((this.fragmentFile != null) && this.fragmentFile.exists()) {
+		fragmentFile = getFeature();
+		if (fragmentFile != null && fragmentFile.exists()) {
 			final DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder;
 			try {
-				documentBuilder = documentFactory.newDocumentBuilder();
-				this.fragmentXML = documentBuilder.parse(this.fragmentFile.getLocation().toOSString());
-				this.fragmentRoot = this.fragmentXML.getDocumentElement();
+				DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+				fragmentXML = documentBuilder.parse(fragmentFile.getLocation().toOSString());
+				fragmentRoot = fragmentXML.getDocumentElement();
 			} catch (final ParserConfigurationException e) {
 				Activator.log.error(e);
 			} catch (final SAXException e) {
@@ -93,65 +108,44 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		}
 	}
 
-	/**
-	 * Create the file plugin.xml
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#createFiles(Set)
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public void createFiles(final Set<String> files) {
-		// TODO
-		// throw new UnsupportedOperationException();
+		if (files.contains(FRAGMENT_XML_FILE)) {
+			fragmentFile = getProject().getFile(FRAGMENT_XML_FILE);
+			if (!fragmentFile.exists()) {
+				InputStream content = getInputStream("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<feature>\n</feature>\n\n"); //$NON-NLS-1$
+
+				try {
+					fragmentFile.create(content, true, null);
+				} catch (CoreException e) {
+					Activator.log.error(e);
+				}
+			}
+		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor.plugin.AbstractEditor#exists()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public boolean exists() {
-		final IFile plugin = getProject().getFile(FRAGMENT_XML_FILE);
-		return plugin.exists() && super.exists();
+		return getFeature().exists() && super.exists();
 	}
 
-
-
-
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor#setAttribute(org.w3c.dom.Element, java.lang.String, java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
 	public void setAttribute(final Element element, final String attributeName, final String attributeValue) {
 		element.setAttribute(attributeName, attributeValue);
 	}
 
-
 	/**
-	 *
-	 * @return
-	 *         the plugin file if it exists
+	 * @return the feature.xml file if it exists
 	 */
-	private IFile getPlugin() {
-		final IFile plugin = getProject().getFile(FRAGMENT_XML_FILE);
-		if (plugin.exists()) {
-			return plugin;
+	private IFile getFeature() {
+		final IFile fragment = getProject().getFile(FRAGMENT_XML_FILE);
+
+		if (fragment.exists()) {
+			return fragment;
 		}
+
 		return null;
 	}
 
-
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#save()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public void save() {
 		if (exists()) {
@@ -160,11 +154,11 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 				final Transformer transformer = transformerFactory.newTransformer();
 				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8"); //$NON-NLS-1$
 				final StreamResult result = new StreamResult(new StringWriter());
-				final DOMSource source = new DOMSource(this.fragmentXML);
+				final DOMSource source = new DOMSource(fragmentXML);
 				transformer.transform(source, result);
 
 				final InputStream inputStream = getInputStream(result.getWriter().toString());
-				this.fragmentFile.setContents(inputStream, true, true, null);
+				fragmentFile.setContents(inputStream, true, true, null);
 			} catch (final TransformerException ex) {
 				Activator.log.error(ex);
 			} catch (final CoreException ex) {
@@ -174,132 +168,59 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		super.save();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#getMissingNature()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingNature() {
-		return Collections.EMPTY_SET;
 		// TODO
+		return Collections.emptySet();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#getMissingFiles()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingFiles() {
-		return Collections.EMPTY_SET;
 		// TODO
+		return Collections.emptySet();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.file.AbstractFileEditor#getMissingBuildCommand()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingBuildCommand() {
-		return Collections.emptySet();
 		// TODO
+		return Collections.emptySet();
 	}
 
-	/**
-	 * @return The XML Document associated to this plugin.xml file
-	 * @see PluginProjectEditor#init()
-	 * @see PluginProjectEditor#create()
-	 */
 	public Document getDocument() {
-		return this.fragmentXML;
+		return fragmentXML;
 	}
 
-	public void setLabel(final String label) {
-		this.fragmentRoot.setAttribute(LABEL, label);
-
-	}
-
-	public void setVersion(final String version) {
-		this.fragmentRoot.setAttribute(VERSION, version);
-
-	}
-
-	public void setProviderName(final String providerName) {
-		this.fragmentRoot.setAttribute(PROVIDER, providerName);
-
-	}
-
-	public static final String DESCRIPTION = "description";
-
-	public static final String URL = "url";
-
-	public void setDescription(final String copyrightURL, final String copyrightDesc) {
-		if (exists()) {
-			// this.fragmentRoot.getChildNodes():AttributeNode(name)
-			// getDescriptionNode(DESCRIPTION);
-			Element extension = getNode(DESCRIPTION);
-			;// this.fragmentXML.getgetElementById(DESCRIPTION);
-			if (extension == null) {
-				extension = this.fragmentXML.createElement(DESCRIPTION);
-				extension.setAttribute(URL, copyrightURL);
-				extension.setTextContent(copyrightDesc);
-				this.fragmentRoot.appendChild(extension);
-			} else {
-				extension.setAttribute(URL, copyrightURL + "erase");
-				extension.setTextContent(copyrightDesc + "erase");
-			}
-		}
-	}
-
-	public void setLicense(final String licenseURL, final String licenseDesc) {
-		setURLNode(LICENSE, licenseURL, licenseDesc);
-	}
-
-	protected void setURLNode(final String nodeName, final String url, final String description) {
-		if (exists()) {
-			Element extension = getNode(nodeName);
-			if (extension == null) {
-				extension = this.fragmentXML.createElement(nodeName);
-				if (url != null) {
-					extension.setAttribute(URL, url);
-				}
-				extension.setTextContent(description);
-				this.fragmentRoot.appendChild(extension);
-			} else {
-				if (url != null) {
-					extension.setAttribute(URL, url);
-				}
-				extension.setTextContent(description);
-			}
-		}
+	public String getId() {
+		return fragmentRoot.getAttribute(ID);
 	}
 
 	public String getLabel() {
-		return this.fragmentRoot.getAttribute(LABEL);
+		return fragmentRoot.getAttribute(LABEL);
 	}
 
 	public String getVersion() {
-		return this.fragmentRoot.getAttribute(VERSION);
+		return fragmentRoot.getAttribute(VERSION);
 	}
 
 	public String getProviderName() {
-		return this.fragmentRoot.getAttribute(PROVIDER);
+		return fragmentRoot.getAttribute(PROVIDER);
 	}
 
-	public void setCopyright(final String copyrightURL, final String copyrightDesc) {
-		setURLNode(COPYRIGHT, copyrightURL, copyrightDesc);
+	public String getDescriptionText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getDescriptionURL() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public String getCopyrightURL() {
 		final Element copyrightNode = getNode(COPYRIGHT);
 		if (copyrightNode != null) {
 			final String value = copyrightNode.getAttribute("url");
-			if ((value != null) && value.startsWith("%")) {
+			if (value != null && value.startsWith("%")) {
 				final IFile file = getProject().getFile("feature.properties");
 				final Properties prop = new Properties(); // TODO create a method to use Properties for others fields too
 				try {
@@ -319,29 +240,261 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		return null;
 	}
 
-
 	public String getCopyrightText() {
 		final Element copyrightNode = getNode(COPYRIGHT);
-		if (copyrightNode != null) {
-			return copyrightNode.getTextContent();
-		}
-		return null;
+
+		return copyrightNode != null ? copyrightNode.getTextContent() : null;
 	}
 
-	public String getLicense() {
+	public String getLicenseText() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/**
-	 *
-	 * @param nodeName
-	 *            the node name
-	 * @return
-	 */
-	public Element getNode(final String nodeName) {
+	public String getLicenceURL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getOS() {
+		return fragmentRoot.getAttribute(OS);
+	}
+
+	public String getWS() {
+		return fragmentRoot.getAttribute(WS);
+	}
+
+	public String getNL() {
+		return fragmentRoot.getAttribute(NL);
+	}
+
+	public String getArch() {
+		return fragmentRoot.getAttribute(ARCH);
+	}
+
+	public void setId(final String id) {
+		fragmentRoot.setAttribute(ID, id);
+	}
+
+	public void setLabel(final String label) {
+		fragmentRoot.setAttribute(LABEL, label);
+	}
+
+	public void setVersion(final String version) {
+		fragmentRoot.setAttribute(VERSION, version);
+	}
+
+	public void setProviderName(final String providerName) {
+		fragmentRoot.setAttribute(PROVIDER, providerName);
+	}
+
+	public void setDescription(final String descriptionURL, final String description) {
 		if (exists()) {
-			final NodeList nodes = this.fragmentRoot.getChildNodes();
+			Element extension = getNode(DESCRIPTION);
+
+			if (extension == null) {
+				extension = fragmentXML.createElement(DESCRIPTION);
+				fragmentRoot.appendChild(extension);
+			}
+
+			extension.setAttribute(URL, descriptionURL);
+			extension.setTextContent(description);
+		}
+	}
+
+	public void setCopyright(final String copyrightURL, final String copyrightDesc) {
+		setURLNode(COPYRIGHT, copyrightURL, copyrightDesc);
+	}
+
+	public void setLicense(final String licenseURL, final String licenseDesc) {
+		setURLNode(LICENSE, licenseURL, licenseDesc);
+	}
+
+	public void setOS(final String os) {
+		fragmentRoot.setAttribute(OS, os);
+	}
+
+	public void setWS(final String ws) {
+		fragmentRoot.setAttribute(WS, ws);
+	}
+
+	public void setNL(final String nl) {
+		fragmentRoot.setAttribute(NL, nl);
+	}
+
+	public void setArch(final String architecture) {
+		fragmentRoot.setAttribute(ARCH, architecture);
+	}
+
+	public void setUpdateURL(final String urlLabel, final String url) {
+		Element urlNode = getNode(URL);
+
+		if (urlNode == null) {
+			urlNode = createElement(URL);
+			fragmentRoot.appendChild(urlNode);
+		}
+
+		Element updateNode = getNodeChild(UPDATE, urlNode);
+		if (updateNode == null) {
+			updateNode = createElement(UPDATE);
+			urlNode.appendChild(updateNode);
+		}
+
+		updateNode.setAttribute(LABEL, urlLabel);
+		updateNode.setAttribute(URL, url);
+	}
+
+	public void addPlugin(final String pluginName) {
+		// Get the plug-in element or create it if it does not exist
+		Element pluginNode = getPlugin(pluginName);
+
+		if (pluginNode == null) {
+			pluginNode = createElement(PLUGIN);
+			fragmentRoot.appendChild(pluginNode);
+		}
+
+		// Set the id on the element
+		pluginNode.setAttribute(ID, pluginName);
+	}
+
+	public void addRequiredFeature(final String featureName, final String version) {
+		// Make sure the "requires" element exists
+		Element requires = getNode(REQUIRES);
+
+		if (requires == null) {
+			requires = createElement(REQUIRES);
+			fragmentRoot.appendChild(requires);
+		}
+
+		// Get or create the required feature element
+		Element feature = getRequiredFeature(featureName);
+
+		if (feature == null) {
+			feature = createElement(IMPORT);
+			requires.appendChild(feature);
+		}
+
+		// Set the element values
+		feature.setAttribute(FEATURE, featureName);
+		feature.setAttribute(VERSION, version);
+	}
+
+	public void addRequiredPlugin(final String pluginName) {
+		// Make sure the "requires" element exists
+		Element requires = getNode(REQUIRES);
+
+		if (requires == null) {
+			requires = createElement(REQUIRES);
+			fragmentRoot.appendChild(requires);
+		}
+
+		// Get or create the plug-in element
+		Element plugin = getRequiredPlugin(pluginName);
+
+		if (plugin == null) {
+			plugin = createElement(IMPORT);
+			requires.appendChild(plugin);
+		}
+
+		plugin.setAttribute(PLUGIN, pluginName);
+	}
+
+	public void addInclude(final String featureName, final String version) {
+		Element includeNode = getInclude(featureName);
+
+		if (includeNode == null) {
+			includeNode = createElement(INCLUDES);
+			fragmentRoot.appendChild(includeNode);
+		}
+
+		includeNode.setAttribute(ID, featureName);
+		includeNode.setAttribute(VERSION, version);
+	}
+
+	/**
+	 * Creates an element and returns it.
+	 *
+	 * @param elementName the name of the element to create
+	 * @return the created element
+	 */
+	private Element createElement(String elementName) {
+		return fragmentXML.createElement(elementName);
+	}
+
+	protected void setURLNode(final String nodeName, final String url, final String description) {
+		if (exists()) {
+			Element extension = getNode(nodeName);
+			if (extension == null) {
+				extension = fragmentXML.createElement(nodeName);
+				if (url != null) {
+					extension.setAttribute(URL, url);
+				}
+				extension.setTextContent(description);
+				fragmentRoot.appendChild(extension);
+			} else {
+				if (url != null) {
+					extension.setAttribute(URL, url);
+				}
+				extension.setTextContent(description);
+			}
+		}
+	}
+
+	/**
+	 * Gets an element inside a parent element.
+	 *
+	 * @param parentElement
+	 * @param nodeName the node name of the element
+	 * @param attributeValue the value of the element's attribute to retrieve
+	 * @return the element or null if it does not exist
+	 */
+	private Element getElement(final Element parentElement, final String nodeName, final String attributeName, final String attributeValue) {
+		NodeList childNodes = parentElement.getChildNodes();
+
+		for (int i = 0; i < childNodes.getLength(); i++) {
+			Node item = childNodes.item(i);
+
+			if (nodeName.equals(item.getNodeName())) {
+				if (attributeValue.equals(getNodeAttribute(item, attributeName))) {
+					if (item instanceof Element) {
+						return (Element) item;
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
+	private Element getNodeChild(final String childName, final Element node) {
+		NodeList childNodes = node.getChildNodes();
+
+		if (childNodes == null) {
+			return null;
+		}
+
+		for (int i = 0; i < childNodes.getLength(); i++) {
+			Node item = childNodes.item(i);
+
+			if (item.getNodeName().equals(childName)) {
+				if (item instanceof Element) {
+					return (Element) item;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Gets a node element inside the root element.
+	 *
+	 * @param nodeName the node name
+	 * @return the node element or null if it does not exist.
+	 */
+	private Element getNode(final String nodeName) {
+		if (exists()) {
+			final NodeList nodes = fragmentRoot.getChildNodes();
 			for (int i = 0; i < nodes.getLength(); i++) {
 				final Node item = nodes.item(i);
 				if (item instanceof NodeList) {
@@ -354,6 +507,46 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 				}
 			}
 		}
+
 		return null;
 	}
+
+	private Element getPlugin(String pluginName) {
+		return getElement(fragmentRoot, PLUGIN, ID, pluginName);
+	}
+
+	private Element getInclude(String featureName) {
+		return getElement(fragmentRoot, INCLUDES, ID, featureName);
+	}
+
+	/**
+	 * @param pluginName
+	 * @return
+	 */
+	private Element getRequiredPlugin(String pluginName) {
+		Element requires = getNode(REQUIRES);
+
+		if (requires != null) {
+			return getElement(requires, IMPORT, PLUGIN, pluginName);
+		}
+
+		return null;
+	}
+
+	private String getNodeAttribute(Node node, String name) {
+		Node attribute = node.getAttributes().getNamedItem(name);
+
+		return attribute != null ? attribute.getNodeValue() : null;
+	}
+
+	private Element getRequiredFeature(String featureName) {
+		Element requires = getNode(REQUIRES);
+
+		if (requires != null) {
+			return getElement(requires, IMPORT, FEATURE, featureName);
+		}
+
+		return null;
+	}
+
 }

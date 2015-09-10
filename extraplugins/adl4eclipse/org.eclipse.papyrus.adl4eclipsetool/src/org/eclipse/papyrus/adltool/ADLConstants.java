@@ -13,33 +13,42 @@ package org.eclipse.papyrus.adltool;
 
 import org.eclipse.core.runtime.Path;
 
-public interface ADLConstants {
+public class ADLConstants {
 
 	/* Projects natures */
-	final String FEATURE_NATURE = "org.eclipse.pde.FeatureNature";
-	final String JAVA_NATURE = "org.eclipse.jdt.core.javanature";
-	final String PLUGIN_NATURE = "org.eclipse.pde.PluginNature";
+	public static final String FEATURE_NATURE = "org.eclipse.pde.FeatureNature";
+	public static final String JAVA_NATURE = "org.eclipse.jdt.core.javanature";
+	public static final String PLUGIN_NATURE = "org.eclipse.pde.PluginNature";
 
 	/* Projects builders */
-	final String FEATURE_BUILDER_ID = "org.eclipse.pde.FeatureBuilder";
-	final String MANIFEST_BUILDER_ID = "org.eclipse.pde.ManifestBuilder";
-	final String SCHEMA_BUILDER_ID = "org.eclipse.pde.SchemaBuilder";
+	public static final String FEATURE_BUILDER_ID = "org.eclipse.pde.FeatureBuilder";
+	public static final String MANIFEST_BUILDER_ID = "org.eclipse.pde.ManifestBuilder";
+	public static final String SCHEMA_BUILDER_ID = "org.eclipse.pde.SchemaBuilder";
 
 	/* Plug-in container path */
-	final Path REQUIRED_PLUGINS_CONTAINER_PATH = new Path("org.eclipse.pde.core.requiredPlugins");
+	public static final Path REQUIRED_PLUGINS_CONTAINER_PATH = new Path("org.eclipse.pde.core.requiredPlugins");
 
 	/* Plug-in stereotype */
-	final String ECLIPSE_BUDDY_LOADER = "Eclipse-BuddyPolicy"; //$NON-NLS-1$
-	final String ECLIPSE_BUNDLE_SHAPE = "Eclipse-BundleShape";
-	final String ECLIPSE_GENERICCAPABILITY = "Eclipse-GenericCapability";
-	final String ECLIPSE_GENERICREQUIRE = "Eclipse-GenericRequire";
-	final String ECLIPSE_LAZYSTART = "Eclipse-LazyStart";
-	final String ECLIPSE_PLATFORMFILTER = "Eclipse-PlatformFilter";
-	final String ECLIPSE_REGISTERBUDDY = "Eclipse-RegisterBuddy";
+	public static final String ECLIPSE_BUDDY_POLICY = "Eclipse-BuddyPolicy"; //$NON-NLS-1$
+	public static final String ECLIPSE_BUNDLE_SHAPE = "Eclipse-BundleShape";
 
-	final String PLUGINS_PACKAGE = "Plugins";
-	final String FEATURES_PACKAGE = "Features";
-	final String EXTENSION_POINTS_PACKAGE = "ExtensionPoints";
+	public static final String ECLIPSE_GENERIC_CAPABILITY = "Eclipse-GenericCapability";
+	public static final String ECLIPSE_GENERIC_REQUIRE = "Eclipse-GenericRequire";
+	public static final String ECLIPSE_LAZYSTART = "Eclipse-LazyStart";
 
-	final int INFINITE_DEPTH_OPTION = -1;
+	public static final String ECLIPSE_PLATFORMFILTER = "Eclipse-PlatformFilter";
+	public static final String ECLIPSE_REGISTERBUDDY = "Eclipse-RegisterBuddy";
+
+	public static final String PLUGINS_PACKAGE = "Plugins";
+	public static final String FEATURES_PACKAGE = "Features";
+	public static final String EXTENSION_POINTS_PACKAGE = "ExtensionPoints";
+
+	public static final int INFINITE_DEPTH_OPTION = -1;
+
+	/**
+	 * Private constructor to prevent instantiation.
+	 */
+	private ADLConstants() {
+	}
+
 }

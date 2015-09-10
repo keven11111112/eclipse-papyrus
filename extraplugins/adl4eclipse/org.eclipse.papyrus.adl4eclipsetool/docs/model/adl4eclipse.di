@@ -25,6 +25,12 @@
         <children>
           <emfPageIdentifier href="adl4eclipse.notation#_QH1qkNn6EeSINLpSHYvWhw"/>
         </children>
+        <children>
+          <emfPageIdentifier href="adl4eclipse.notation#_wGSZcDt8EeWw5YMn7oPf2g"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="adl4eclipse.notation#_17k8YDt9EeWw5YMn7oPf2g"/>
+        </children>
       </children>
     </windows>
   </sashModel>

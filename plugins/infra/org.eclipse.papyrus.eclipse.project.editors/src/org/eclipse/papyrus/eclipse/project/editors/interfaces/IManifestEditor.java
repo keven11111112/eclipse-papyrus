@@ -39,7 +39,7 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	public static final String REQUIRED_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 
 	/** the key for the bundle version */
-	public static final String BUNDLE_VERSION = "bundle-version"; //$NON-NLS-1$
+	public static final String BUNDLE_VERSION = "Bundle-Version"; //$NON-NLS-1$
 
 	/** the key for the bundle vendor */
 	public static final String BUNDLE_VENDOR = "Bundle-Vendor"; //$NON-NLS-1$
@@ -49,7 +49,7 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 
 	/** the key for the bundle localization */
 	public static final String BUNDLE_LOCALIZATION = "Bundle-Localization"; //$NON-NLS-1$
-	
+
 	/**
 	 * Add a dependency to the MANIFEST
 	 * @param dependency
@@ -195,4 +195,35 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 *            the version for the dependency
 	 */
 	public void setDependenciesVersion(final String dependencyPattern, final String newVersion);
+
+	/**
+	 * Adds an import package to the MANIFEST.
+	 *
+	 * @param packageName the package name to add
+	 */
+	public void addImportPackage(String packageName);
+
+	/**
+	 * Adds an import package and its version to the MANIFEST.
+	 *
+	 * @param packageName the package name to add
+	 * @param version the package version
+	 */
+	public void addImportPackage(String packageName, String version);
+
+	/**
+	 * Adds an export package to the MANFIEST.
+	 *
+	 * @param packageName the package name to add
+	 */
+	public void addExportPackage(String packageName);
+
+	/**
+	 * Adds an export package and its version to the MANIFEST.
+	 *
+	 * @param packageName the package name to add
+	 * @param version the package version
+	 */
+	public void addExportPackage(String packageName, String version);
+
 }

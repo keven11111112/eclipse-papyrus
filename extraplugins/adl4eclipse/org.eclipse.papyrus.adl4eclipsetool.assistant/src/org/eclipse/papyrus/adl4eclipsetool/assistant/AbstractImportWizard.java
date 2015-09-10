@@ -17,19 +17,22 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
+import org.eclipse.papyrus.adl4eclipse.org.ADL4Eclipse_Stereotypes;
 import org.eclipse.papyrus.adltool.ADL4EclipseUtils;
 import org.eclipse.papyrus.adltool.assistant.wizard.BundleSelectionPage;
+import org.eclipse.papyrus.adltool.command.CompleteArchitectureSnapshotCommand;
+import org.eclipse.papyrus.adltool.designer.ReverseSettings;
 import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
+import org.eclipse.papyrus.osgi.profile.OSGIStereotypes;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.ISelectionService;
@@ -83,6 +86,11 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 	protected ModelSet modelSet;
 
 	/**
+	 * The command used to launch the reverse.
+	 */
+	protected RecordingCommand command;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param advanced true to launch the wizard in advanced mode.
@@ -101,6 +109,7 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		reversibleList = getReversibleList();
 		bundleSelectionPage = new BundleSelectionPage(reversibleList, advanced);
 
 		Package rootModel = null;
@@ -126,23 +135,24 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 			}
 		}
 
-		if (rootModel != null) {
+		if (rootModel != null && !rootModel.isModelLibrary()) {
 			// Check if the required profiles are applied to the rootModel to initialize the modelSet
-			Profile adlProfile = rootModel.getAppliedProfile(IADL4ECLIPSE_Stereotype.ADL4ECLIPSE);
-			Profile osgiProfile = rootModel.getAppliedProfile(IOSGIStereotype.OSGI);
+			Profile adlProfile = rootModel.getAppliedProfile(ADL4Eclipse_Stereotypes.ADL4ECLIPSE);
+			Profile osgiProfile = rootModel.getAppliedProfile(OSGIStereotypes.OSGI);
 
-			if (adlProfile != null && osgiProfile != null) {
-				try {
-					// Initialize the modelSet and the TransactionalEditingDomain
-					modelSet = ServiceUtilsForResource.getInstance().getModelSet(rootModel.eResource());
-					transactionalEditingDomain = modelSet.getTransactionalEditingDomain();
-					bundleSelectionPage.setSelectedModel(rootModel);
-				} catch (ServiceException e) {
-					e.printStackTrace();
-				}
-			} else {
-				bundleSelectionPage.setErrorMessage("The selected model does not have the ADL and OSGI profiles applied.");
+			if (adlProfile == null && osgiProfile == null) {
+				bundleSelectionPage.setMessage("Info: The selected model does not have the ADL and OSGI profiles applied.");
 			}
+
+			try {
+				// Initialize the modelSet and the TransactionalEditingDomain
+				modelSet = ServiceUtilsForResource.getInstance().getModelSet(rootModel.eResource());
+				transactionalEditingDomain = modelSet.getTransactionalEditingDomain();
+				bundleSelectionPage.setSelectedModel(rootModel);
+			} catch (ServiceException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
@@ -186,5 +196,26 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 	 * @return true if the command has launched, false if not
 	 */
 	@Override
-	public abstract boolean performFinish();
+	public boolean performFinish() {
+		Set<ReversibleProject> selectedBundles = bundleSelectionPage.getResult();
+
+		// One bundle must be selected
+		if (selectedBundles.size() > 0) {
+			Package selection = bundleSelectionPage.getSelectedModel();
+
+			if (selection != null) {
+				ReverseSettings reverseSettings = bundleSelectionPage.getReverseSettings();
+
+				// Launch the advanced reverse engineering
+				command = new CompleteArchitectureSnapshotCommand(transactionalEditingDomain, selection, selectedBundles, reverseSettings);
+				transactionalEditingDomain.getCommandStack().execute(command);
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	protected abstract Set<ReversibleProject> getReversibleList();
 }
