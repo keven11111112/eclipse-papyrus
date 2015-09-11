@@ -32,7 +32,7 @@ import org.eclipse.papyrus.aof.gmf.DiagramFactory;
 import org.eclipse.papyrus.aof.gmf.util.ViewUtil;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
-import org.eclipse.papyrus.aof.sync.MappingModule;
+import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
 import org.eclipse.papyrus.aof.sync.gmf.internal.DiagramMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.EdgeMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.LocationMapping;
@@ -45,7 +45,7 @@ import com.google.inject.Provides;
 /**
  * Guice module for configuration of diagram mappings.
  */
-public class DiagramMappingModule extends MappingModule {
+public class DiagramMappingModule extends EMFMappingModule {
 	public DiagramMappingModule() {
 		super();
 	}

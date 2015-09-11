@@ -11,23 +11,19 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.aof.sync.tests.runners;
+package org.eclipse.papyrus.aof.sync.emf.tests;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import com.google.inject.Module;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * Annotates a test suite or test case to specify the Guice modules to
- * be used to configure the injector.
+ * Test suite for the AOF-based synchronization of GMF diagrams.
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.TYPE, ElementType.METHOD })
-@Inherited
-public @interface InjectWith {
-	Class<? extends Module>[]value();
+@RunWith(ClassificationSuite.class)
+@SuiteClasses({
+		EMFMappingModuleTest.class,
+})
+public class AllTests {
+	// Suite specified by the annotation
 }

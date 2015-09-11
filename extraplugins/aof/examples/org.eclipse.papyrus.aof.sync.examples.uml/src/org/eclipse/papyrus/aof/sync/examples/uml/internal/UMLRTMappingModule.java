@@ -18,11 +18,9 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.aof.core.IFactory;
-import org.eclipse.papyrus.aof.emf.EMFFactory;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
-import org.eclipse.papyrus.aof.sync.MappingModule;
+import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.CapsuleMapping;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.RegionMapping;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.StateMachineMapping;
@@ -45,12 +43,7 @@ import com.google.inject.Provides;
  * Guice mapping module for configuration of capsule semantic model (esp. state machine)
  * mappings, inspired by UML-RT.
  */
-public class UMLRTMappingModule extends MappingModule {
-
-	@Override
-	public IFactory provideFactory() {
-		return EMFFactory.INSTANCE;
-	}
+public class UMLRTMappingModule extends EMFMappingModule {
 
 	public java.lang.Class<? extends IMapping<Class>> getCapsuleMappingBinding() {
 		return CapsuleMapping.class;

@@ -41,6 +41,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
+import com.google.inject.Module;
 import com.google.inject.Provider;
 import com.google.inject.Scope;
 
@@ -123,12 +124,17 @@ public class GuiceRunner extends ClassificationRunner {
 			testInjector.set(suiteInjector.get());
 		}
 
+		TestScope scope = new TestScope();
+		testScope.set(scope);
+
 		try {
 			super.runChild(method, notifier);
 		} finally {
 			testInstance.remove();
 			testInjector.remove();
+
 			testScope.remove();
+			scope.dispose();
 		}
 	}
 
@@ -152,7 +158,7 @@ public class GuiceRunner extends ClassificationRunner {
 	}
 
 	protected Injector createInjector(InjectWith injectWith, Description description) {
-		List<AbstractModule> modules = Stream.of(injectWith.value())
+		List<Module> modules = Stream.of(injectWith.value())
 				.map(this::createModule).collect(Collectors.toList());
 
 		modules.add(new TestMetadataModule(description));
@@ -160,7 +166,7 @@ public class GuiceRunner extends ClassificationRunner {
 		return Guice.createInjector(modules);
 	}
 
-	private AbstractModule createModule(Class<? extends AbstractModule> class_) {
+	private Module createModule(Class<? extends Module> class_) {
 		try {
 			return class_.newInstance();
 		} catch (Exception e) {
@@ -239,7 +245,19 @@ public class GuiceRunner extends ClassificationRunner {
 			bind(Object.class).annotatedWith(TestInstance.class).toProvider(getTestInstanceProvider());
 
 			// Bind the test scope, which is only plausibly defined for test cases
-			bindScope(TestScoped.class, new TestScope());
+			bindScope(TestScoped.class, new Scope() {
+
+				@Override
+				public <T> Provider<T> scope(Key<T> key, Provider<T> unscoped) {
+					return new Provider<T>() {
+						@Override
+						public T get() {
+							// Delegate to whatever is the currently active test scope
+							return testScope.get().scope(key, unscoped).get();
+						}
+					};
+				}
+			});
 		}
 
 		private <A extends Annotation> void bindAnnotation(Class<? extends Annotation> type, A annotation) {
@@ -267,8 +285,6 @@ public class GuiceRunner extends ClassificationRunner {
 
 		TestScope() {
 			super();
-
-			testScope.set(this);
 		}
 
 		@Override

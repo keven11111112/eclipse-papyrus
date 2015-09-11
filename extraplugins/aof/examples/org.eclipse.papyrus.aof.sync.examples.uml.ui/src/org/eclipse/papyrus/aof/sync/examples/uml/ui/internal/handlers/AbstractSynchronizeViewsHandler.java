@@ -23,8 +23,10 @@ import java.util.stream.Collectors;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandWrapper;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
@@ -32,7 +34,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.emf.MappingCommand;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.UMLRTMappingModule;
 import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingFactory;
 import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingModule;
@@ -83,7 +85,6 @@ public abstract class AbstractSynchronizeViewsHandler<V extends View, E extends 
 	 */
 	public void synchronize(Collection<? extends E> selectedEditParts) {
 		DiagramMappingFactory mappingFactory = getMappingFactory();
-		IMapping<V> mapping = mappingFactory.getMapping(viewType);
 
 		ICorrespondenceResolver<EObject, EObject> correspondence = mappingFactory.getInstance(
 				ICorrespondenceResolver.class, EObject.class, EObject.class);
@@ -91,10 +92,13 @@ public abstract class AbstractSynchronizeViewsHandler<V extends View, E extends 
 		List<E> selection = StreamUtil.select(selectedEditParts.stream(), editPartType).collect(Collectors.toList());
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain((View) selection.get(0).getModel());
 
-		domain.getCommandStack().execute(new RecordingCommand(domain, "Synchronize Views") {
+		domain.getCommandStack().execute(new CommandWrapper("Synchronize Views") {
 
 			@Override
-			protected void doExecute() {
+			protected Command createCommand() {
+				MappingCommand.Factory<V> commandFactory = mappingFactory.getInstance(MappingCommand.Factory.class, viewType);
+				CompoundCommand result = new CompoundCommand(getLabel(), getDescription());
+
 				selection.forEach(ep -> {
 					View view = (View) ep.getModel();
 					Diagram diagram = view.getDiagram();
@@ -112,13 +116,15 @@ public abstract class AbstractSynchronizeViewsHandler<V extends View, E extends 
 											&& Objects.equal(view.getType(), otherView.getType())) {
 
 										// Of course the other is the same kind of edit part if it has a view of the same type
-										mapping.map(viewType.cast(ep.getModel()), viewType.cast(other.getModel()));
+										result.append(commandFactory.create(viewType.cast(ep.getModel()), viewType.cast(other.getModel())));
 									}
 								}
 							});
 						});
 					}
 				});
+
+				return result.unwrap();
 			}
 		});
 	}

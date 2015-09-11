@@ -14,9 +14,12 @@
 package org.eclipse.papyrus.aof.sync;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.papyrus.aof.sync.internal.CustomInjectionModule;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
@@ -38,7 +41,16 @@ public class MappingFactory {
 	public MappingFactory(Module... module) {
 		super();
 
-		guice = Guice.createInjector(Modules.override(new CustomInjectionModule()).with(module));
+		List<Module> myModules = Arrays.asList(new CustomInjectionModule(), new AbstractModule() {
+
+			@Override
+			protected void configure() {
+				// Make myself available for injection
+				bind(MappingFactory.class).toInstance(MappingFactory.this);
+			}
+		});
+
+		guice = Guice.createInjector(Modules.override(myModules).with(module));
 	}
 
 	/**
@@ -49,7 +61,7 @@ public class MappingFactory {
 	 * 
 	 * @return the mapping
 	 */
-	public final <T> IMapping<T> getMapping(Class<T> type) {
+	public final <T> IMapping<T> getMapping(Type type) {
 		return getInstance(IMapping.class, type);
 	}
 

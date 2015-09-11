@@ -69,6 +69,7 @@ public class AllTests {
 
 		/* AOF Synchronization */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.sync.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.sync.emf.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.sync.gmf.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.sync.examples.uml.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.aof.sync.examples.uml.ui.tests.AllTests.class));

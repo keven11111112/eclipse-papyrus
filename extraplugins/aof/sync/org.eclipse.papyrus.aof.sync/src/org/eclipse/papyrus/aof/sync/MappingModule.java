@@ -88,6 +88,9 @@ public class MappingModule extends AbstractModule {
 	public static <T> Key<T> key(java.lang.Class<?> baseType, Type... arguments) {
 		if (arguments.length == 0) {
 			return Key.get((Class<T>) baseType);
+		} else if (baseType.getDeclaringClass() != null) {
+			return (Key<T>) Key.get(Types.newParameterizedTypeWithOwner(
+					baseType.getDeclaringClass(), baseType, arguments));
 		} else {
 			return (Key<T>) Key.get(Types.newParameterizedType(baseType, arguments));
 		}

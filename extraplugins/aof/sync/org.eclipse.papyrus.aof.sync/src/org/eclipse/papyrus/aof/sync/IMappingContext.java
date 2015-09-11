@@ -13,8 +13,16 @@
 
 package org.eclipse.papyrus.aof.sync;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Collection;
+import java.util.Objects;
+import java.util.concurrent.Callable;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.papyrus.aof.core.IBinding;
 import org.eclipse.papyrus.aof.core.ObserverTracker;
 
@@ -94,5 +102,55 @@ public interface IMappingContext {
 		} finally {
 			close();
 		}
+	}
+
+	default <T> void run(T input, Consumer<? super T> block) {
+		run(() -> block.accept(input));
+	}
+
+	default <T, U> void run(T input1, U input2, BiConsumer<? super T, ? super U> block) {
+		run(() -> block.accept(input1, input2));
+	}
+
+	default <V, X extends Exception> V call(Class<X> expected, Callable<V> block) throws X {
+		Objects.requireNonNull(expected, "expected");
+
+		Object[] result = { null };
+
+		try {
+			run(() -> {
+				try {
+					result[0] = block.call();
+				} catch (Exception e) {
+					throw new WrappedException(e);
+				}
+			});
+		} catch (WrappedException e) {
+			Exception wrapped = e.exception();
+
+			if (expected.isInstance(wrapped)) {
+				throw expected.cast(wrapped);
+			} else if (wrapped instanceof RuntimeException) {
+				throw (RuntimeException) wrapped;
+			} else {
+				throw new UndeclaredThrowableException(wrapped);
+			}
+		}
+
+		@SuppressWarnings("unchecked")
+		V vResult = (V) result[0];
+		return vResult;
+	}
+
+	default <V> V call(Callable<V> block) {
+		return call(RuntimeException.class, block);
+	}
+
+	default <F, T> T call(F input, Function<? super F, ? extends T> function) {
+		return call(() -> function.apply(input));
+	}
+
+	default <F, G, T> T call(F input1, G input2, BiFunction<? super F, ? super G, ? extends T> function) {
+		return call(() -> function.apply(input1, input2));
 	}
 }

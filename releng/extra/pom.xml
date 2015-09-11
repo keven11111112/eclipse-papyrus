@@ -242,6 +242,7 @@
 		
 		<!-- AOF Synchronization -->
 		<module>../../extraplugins/aof/sync/org.eclipse.papyrus.aof.sync</module>
+		<module>../../extraplugins/aof/sync/org.eclipse.papyrus.aof.sync.emf</module>
 		<module>../../extraplugins/aof/sync/org.eclipse.papyrus.aof.sync.gmf</module>
 		<module>../../extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml</module>
 		<module>../../extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml.ui</module>
