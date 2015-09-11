@@ -79,7 +79,9 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 			@Override
 			public void createModel(URI uri) {
 				try {
-					resourceURI = myRoot.eResource().getURI();
+					URI rootURI = myURIWithoutExtension.trimSegments(1);
+					resourceURI = rootURI.appendSegment(myRoot.eResource().getURI().lastSegment());
+
 					// as resource already exists, use rs.getResource() not rs.createResource() here
 					try {
 						resource = getResourceSet().getResource(resourceURI, true);
@@ -105,5 +107,4 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 		// snippets.performStart(this);
 		// END OF WORKAROUND for #315083
 	}
-
 }
