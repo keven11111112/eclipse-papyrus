@@ -51,7 +51,7 @@ public class UMLOCLFactory {
 		this.expressionBodies = new String[] {
 				"self.name.concat(\'.file\') ", //$NON-NLS-1$
 				"self.oclIsKindOf(DeploymentTarget)", //$NON-NLS-1$
-				"self.oclIsTypeOf(Artifact)", //$NON-NLS-1$
+				"not self.oclIsKindOf(DeploymentSpecification)", //$NON-NLS-1$
 		};
 	}
 

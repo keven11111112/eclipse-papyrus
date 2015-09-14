@@ -3573,7 +3573,7 @@
             body="self.oclIsKindOf(DeploymentTarget)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsTypeOf(Artifact)"/>
+            body="not self.oclIsKindOf(DeploymentSpecification)"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenJavaExpressionProvider"
