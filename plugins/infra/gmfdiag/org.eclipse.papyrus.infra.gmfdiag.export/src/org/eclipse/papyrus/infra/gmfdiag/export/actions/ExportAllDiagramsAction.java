@@ -106,8 +106,14 @@ public class ExportAllDiagramsAction extends AbstractHandler {
 		URI uriFile = null;
 		if (file != null) {
 			IContainer parentResource = file.getParent();
-			parentResource = ResourcesPlugin.getWorkspace().getRoot().getContainerForLocation(parentResource.getLocation());
-			uriFile = URI.createPlatformResourceURI(parentResource.getLocation().toString(), true);
+			IContainer containerForParentLocation = ResourcesPlugin.getWorkspace().getRoot().getContainerForLocation(parentResource.getLocation());
+			if (containerForParentLocation != null) { 
+				parentResource = containerForParentLocation;
+				uriFile = URI.createPlatformResourceURI(parentResource.getLocation().toString(), true);
+			} else {
+				//linked resource
+				uriFile = URI.createPlatformResourceURI(parentResource.getFullPath().toString(), true);
+			}
 
 		}
 
