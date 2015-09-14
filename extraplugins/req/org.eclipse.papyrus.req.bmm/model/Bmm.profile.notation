@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:css="http://www.eclipse.org/papyrus/infra/gmfdiag/css" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_kXjO8DFLEeWsyJCx_AYaQA" type="PapyrusUMLProfileDiagram" name="The End Concepts" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_nhgCcDFLEeWsyJCx_AYaQA" type="1026">
       <children xmi:type="notation:DecorationNode" xmi:id="_nhpzcDFLEeWsyJCx_AYaQA" type="1034"/>
@@ -91,7 +91,7 @@
     <styles xmi:type="style:PapyrusViewStyle" xmi:id="_kXjO8zFLEeWsyJCx_AYaQA">
       <owner xmi:type="uml:Profile" href="Bmm.profile.uml#_bNz28BEEEeWdY8_QZO32Xg"/>
     </styles>
-    <styles xmi:type="notation:EObjectListValueStyle" xmi:id="_jwvTsDaHEeWpuOEwisBHxw" name="css_stylesheets" eObjectListValue="_jwyXADaHEeWpuOEwisBHxw"/>
+    <styles xmi:type="notation:EObjectListValueStyle" xmi:id="_jwvTsDaHEeWpuOEwisBHxw" name="css_stylesheets"/>
     <element xmi:type="uml:Profile" href="Bmm.profile.uml#_bNz28BEEEeWdY8_QZO32Xg"/>
     <edges xmi:type="notation:Connector" xmi:id="_p01XADFLEeWsyJCx_AYaQA" type="4002" source="_o6Yg8DFLEeWsyJCx_AYaQA" target="_nhgCcDFLEeWsyJCx_AYaQA" routing="Tree">
       <children xmi:type="notation:DecorationNode" xmi:id="_p01-EDFLEeWsyJCx_AYaQA" visible="false" type="6007">
@@ -594,7 +594,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cESQSjaFEeWpuOEwisBHxw"/>
       </children>
       <element xmi:type="uml:Stereotype" href="Bmm.profile.uml#_bN2ThhEEEeWdY8_QZO32Xg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cEQbETaFEeWpuOEwisBHxw" x="203" y="139"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cEQbETaFEeWpuOEwisBHxw" x="203" y="138"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_eA9YUDaFEeWpuOEwisBHxw" type="1026">
       <children xmi:type="notation:DecorationNode" xmi:id="_eA9_YDaFEeWpuOEwisBHxw" type="1034"/>
@@ -715,7 +715,7 @@
       <element xmi:type="uml:Generalization" href="Bmm.profile.uml#_bN2ThxEEEeWdY8_QZO32Xg"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_cX2sgjaFEeWpuOEwisBHxw" points="[0, 0, -63, -60]$[63, 60, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uMhA8DaFEeWpuOEwisBHxw" id="(0.5,1.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uMhoADaFEeWpuOEwisBHxw" id="(0.32710280373831774,0.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uMhoADaFEeWpuOEwisBHxw" id="(0.4953271028037383,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_eeQYUDaFEeWpuOEwisBHxw" type="4002" source="_eA9YUDaFEeWpuOEwisBHxw" target="_Vzg1wDaFEeWpuOEwisBHxw" routing="Tree">
       <children xmi:type="notation:DecorationNode" xmi:id="_eeQ_YDaFEeWpuOEwisBHxw" visible="false" type="6007">
@@ -1060,7 +1060,6 @@
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YogzUDaNEeWpuOEwisBHxw" id="(0.7428571428571429,0.0)"/>
     </edges>
   </notation:Diagram>
-  <css:StyleSheetReference xmi:id="_jwyXADaHEeWpuOEwisBHxw" path="/org.eclipse.papyrus.req.bmm/css/BmmProfileDiagramsStyle.css"/>
   <notation:Diagram xmi:id="_7Q3jEDa8EeWpuOEwisBHxw" type="PapyrusUMLProfileDiagram" name="Setting Enforcement Level" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_8yML4Da8EeWpuOEwisBHxw" type="1026">
       <children xmi:type="notation:DecorationNode" xmi:id="_8yMy8Da8EeWpuOEwisBHxw" type="1034"/>
