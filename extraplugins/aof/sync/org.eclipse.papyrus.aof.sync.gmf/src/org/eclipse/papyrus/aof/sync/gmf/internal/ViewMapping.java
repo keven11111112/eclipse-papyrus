@@ -24,25 +24,25 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.AbstractMapping;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.InjectCached;
+import org.eclipse.papyrus.aof.sync.SyncMapping;
 
 /**
  * Abstract mapping of views, taking care of properties such as type (the "visual ID") and the
  * reference to the semantic element.
  */
-abstract class ViewMapping<V extends View> extends AbstractMapping<V> {
+abstract class ViewMapping<V extends View> extends SyncMapping<V> {
 
 	@InjectCached
-	private ICorrespondenceResolver<EObject, View> elementCorrespondence;
+	private ISyncCorrespondenceResolver<EObject, View> elementCorrespondence;
 
 	@Inject
-	private IMapping<Style> styles;
+	private ISyncMapping<Style> styles;
 
 	@Inject
-	private ICorrespondenceResolver<Style, View> styleCorrespondence;
+	private ISyncCorrespondenceResolver<Style, View> styleCorrespondence;
 
 	@Inject
 	public ViewMapping(EClass type, IFactory factory) {

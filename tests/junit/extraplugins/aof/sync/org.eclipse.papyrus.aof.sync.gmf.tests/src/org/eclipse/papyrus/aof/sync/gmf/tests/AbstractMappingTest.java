@@ -25,7 +25,7 @@ import com.google.inject.Inject;
  * An useful base class for tests of specific notation mappings.
  */
 @InjectWith({ DiagramMappingModule.class, GenericFixtureModule.class })
-public abstract class AbstractMappingTest<T extends EObject> extends AbstractBaseMappingTest<T> {
+public abstract class AbstractMappingTest<T extends EObject> extends AbstractBaseMappingTest<T, T> {
 	@Inject
 	protected NotationFactory notation;
 

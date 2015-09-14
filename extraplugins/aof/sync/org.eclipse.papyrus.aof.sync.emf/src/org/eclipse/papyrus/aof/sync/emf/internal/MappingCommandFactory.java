@@ -25,32 +25,32 @@ import com.google.inject.MembersInjector;
  * Default implementation of the injectable {@link MappingCommand}
  * {@linkplain MappingCommand.Factory factory} protocol.
  */
-public class MappingCommandFactory<E extends EObject> implements Factory<E> {
+public class MappingCommandFactory<F extends EObject, T extends EObject> implements Factory<F, T> {
 	@Inject
-	private MembersInjector<MappingCommand<E>> commandInjector;
+	private MembersInjector<MappingCommand<F, T>> commandInjector;
 
 	public MappingCommandFactory() {
 		super();
 	}
 
-	private MappingCommand<E> inject(MappingCommand<E> command) {
+	private MappingCommand<F, T> inject(MappingCommand<F, T> command) {
 		commandInjector.injectMembers(command);
 
 		return command;
 	}
 
 	@Override
-	public MappingCommand<E> create(E from, E to) {
+	public MappingCommand<F, T> create(F from, T to) {
 		return inject(new MappingCommand<>(from, to));
 	}
 
 	@Override
-	public MappingCommand<E> create(E from, E to, String label) {
+	public MappingCommand<F, T> create(F from, T to, String label) {
 		return inject(new MappingCommand<>(from, to, label));
 	}
 
 	@Override
-	public MappingCommand<E> create(E from, E to, String label, String description) {
+	public MappingCommand<F, T> create(F from, T to, String label, String description) {
 		return inject(new MappingCommand<>(from, to, label, description));
 	}
 

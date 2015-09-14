@@ -60,7 +60,7 @@ public class SynchronizeCapsulesHandler extends AbstractHandler {
 		Class to = pair[1];
 
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(from);
-		MappingCommand.Factory<Class> commandFactory = new UMLRTMappingFactory().getInstance(MappingCommand.Factory.class, Class.class);
+		MappingCommand.Factory<Class, Class> commandFactory = new UMLRTMappingFactory().getInstance(MappingCommand.Factory.class, Class.class, Class.class);
 
 		domain.getCommandStack().execute(commandFactory.create(from, to, "Synchronize Capsules"));
 	}

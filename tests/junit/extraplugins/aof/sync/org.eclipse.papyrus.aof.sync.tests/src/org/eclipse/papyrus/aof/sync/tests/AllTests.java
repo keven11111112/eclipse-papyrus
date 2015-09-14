@@ -28,6 +28,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		CorrespondenceResolverTest.class,
 		MappingContextTest.class,
 		InjectCachedTest.class,
+		SyncMappingAdapterTest.class,
+		SyncCorrespondenceAdapterTest.class,
 		MemoryLeakTest.class,
 })
 public class AllTests {

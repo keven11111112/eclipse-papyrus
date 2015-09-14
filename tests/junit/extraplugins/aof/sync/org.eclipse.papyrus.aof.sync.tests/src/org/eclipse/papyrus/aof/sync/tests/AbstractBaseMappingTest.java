@@ -26,27 +26,29 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IPair;
+import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
 import org.junit.Before;
 
 /**
  * An useful base class for tests of specific notation mappings.
  */
-public abstract class AbstractBaseMappingTest<T extends EObject> extends AbstractTest {
+public abstract class AbstractBaseMappingTest<F extends EObject, T extends EObject> extends AbstractTest {
 
 	@Inject
 	private IFactory aof;
 
 	@Inject
-	private IMapping<T> fixture;
+	private IMapping<F, T> fixture;
 
 	@CleanUp
-	protected IPair<IBox<T>, IBox<T>> mapped;
+	protected IPair<IBox<F>, IBox<T>> mapped;
 
 	@Inject
 	@From
-	private Provider<T> from;
+	private Provider<F> from;
 
 	@Inject
 	@To
@@ -65,7 +67,7 @@ public abstract class AbstractBaseMappingTest<T extends EObject> extends Abstrac
 		return aof;
 	}
 
-	protected final T getFrom() {
+	protected final F getFrom() {
 		return from.get();
 	}
 
@@ -73,7 +75,7 @@ public abstract class AbstractBaseMappingTest<T extends EObject> extends Abstrac
 		return to.get();
 	}
 
-	protected final IBox<T> getFromBox() {
+	protected final IBox<F> getFromBox() {
 		return mapped.getLeft();
 	}
 

@@ -23,26 +23,26 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.AbstractMapping;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
+import org.eclipse.papyrus.aof.sync.SyncMapping;
 
 /**
  * Mapping of diagrams, including their contained top-level nodes and edges.
  */
 @Singleton
-public class DiagramMapping extends AbstractMapping<Diagram> {
+public class DiagramMapping extends SyncMapping<Diagram> {
 	@Inject
-	private IMapping<Node> nodes;
+	private ISyncMapping<Node> nodes;
 
 	@Inject
-	private IMapping<Edge> edges;
+	private ISyncMapping<Edge> edges;
 
 	@Inject
-	private ICorrespondenceResolver<Node, View> nodeCorrespondence;
+	private ISyncCorrespondenceResolver<Node, View> nodeCorrespondence;
 
 	@Inject
-	private ICorrespondenceResolver<Edge, Diagram> edgeCorrespondence;
+	private ISyncCorrespondenceResolver<Edge, Diagram> edgeCorrespondence;
 
 	@Inject
 	public DiagramMapping(IFactory factory) {

@@ -33,7 +33,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.emf.MappingCommand;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.UMLRTMappingModule;
 import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingFactory;
@@ -86,8 +86,8 @@ public abstract class AbstractSynchronizeViewsHandler<V extends View, E extends 
 	public void synchronize(Collection<? extends E> selectedEditParts) {
 		DiagramMappingFactory mappingFactory = getMappingFactory();
 
-		ICorrespondenceResolver<EObject, EObject> correspondence = mappingFactory.getInstance(
-				ICorrespondenceResolver.class, EObject.class, EObject.class);
+		ISyncCorrespondenceResolver<EObject, EObject> correspondence = mappingFactory.getInstance(
+				ISyncCorrespondenceResolver.class, EObject.class, EObject.class);
 
 		List<E> selection = StreamUtil.select(selectedEditParts.stream(), editPartType).collect(Collectors.toList());
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain((View) selection.get(0).getModel());
@@ -96,7 +96,7 @@ public abstract class AbstractSynchronizeViewsHandler<V extends View, E extends 
 
 			@Override
 			protected Command createCommand() {
-				MappingCommand.Factory<V> commandFactory = mappingFactory.getInstance(MappingCommand.Factory.class, viewType);
+				MappingCommand.Factory<V, V> commandFactory = mappingFactory.getInstance(MappingCommand.Factory.class, viewType, viewType);
 				CompoundCommand result = new CompoundCommand(getLabel(), getDescription());
 
 				selection.forEach(ep -> {

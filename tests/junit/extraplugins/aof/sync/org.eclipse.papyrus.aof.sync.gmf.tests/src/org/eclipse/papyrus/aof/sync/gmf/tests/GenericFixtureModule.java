@@ -26,10 +26,10 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.impl.NotationFactoryImpl;
+import org.eclipse.papyrus.aof.sync.From;
+import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingModule;
 import org.eclipse.papyrus.aof.sync.internal.CustomInjectionModule;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.From;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.To;
 import org.eclipse.papyrus.aof.sync.tests.runners.TestScoped;
 
 import com.google.inject.AbstractModule;

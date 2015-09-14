@@ -22,9 +22,14 @@ import org.eclipse.papyrus.aof.core.IPair;
  * the "to" object with the "from" object. The features of the "to" object that are
  * synchronized under this mapping may be changed independently, in which case it ceases to be
  * maintained by the mapping.
+ * 
+ * @param <F>
+ *            the type on the source or "from" side of the mapping
+ * @param <T>
+ *            the type on the target or "to" side of the mapping
  */
 @FunctionalInterface
-public interface IMapping<T> {
+public interface IMapping<F, T> {
 	/**
 	 * Establishes a live transformation of some features of an object {@code from} another.
 	 * 
@@ -38,7 +43,7 @@ public interface IMapping<T> {
 	 *         {@linkplain IPair#getLeft() left}) and {@code to} (the
 	 *         {@linkplain IPair#getRight() right} objects
 	 */
-	IPair<IBox<T>, IBox<T>> map(T from, T to);
+	IPair<IBox<F>, IBox<T>> map(F from, T to);
 
 	/**
 	 * Drills into {@linkplain IBox boxes} encapsulating mapped objects to establish
@@ -52,7 +57,7 @@ public interface IMapping<T> {
 	 * @return a box containing the same number of mapping pairs, per the
 	 *         {@link #map(Object, Object)} primitive operation
 	 */
-	default <U extends T> IBox<IPair<IBox<T>, IBox<T>>> map(IBox<U> from, IBox<U> to) {
-		return to.zipWith(from, (U t, U f) -> map(f, t));
+	default <G extends F, U extends T> IBox<IPair<IBox<F>, IBox<T>>> map(IBox<G> from, IBox<U> to) {
+		return to.zipWith(from, (U t, G f) -> map(f, t));
 	}
 }

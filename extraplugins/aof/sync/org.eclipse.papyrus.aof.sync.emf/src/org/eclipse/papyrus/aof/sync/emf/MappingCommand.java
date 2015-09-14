@@ -30,31 +30,31 @@ import org.eclipse.papyrus.aof.sync.IMappingContext;
  * A command that provides undoable and redoable set-up of
  * mappings on EMF models.
  */
-public class MappingCommand<E extends EObject> extends CommandWrapper {
-	private E from;
-	private E to;
+public class MappingCommand<F extends EObject, T extends EObject> extends CommandWrapper {
+	private F from;
+	private T to;
 
-	private IMapping<E> mapping;
+	private IMapping<F, T> mapping;
 
 	private IMappingContext context;
 
 	private Collection<ObserverTracker> trackers;
 
-	public MappingCommand(E from, E to) {
+	public MappingCommand(F from, T to) {
 		super();
 
 		this.from = from;
 		this.to = to;
 	}
 
-	public MappingCommand(E from, E to, String label) {
+	public MappingCommand(F from, T to, String label) {
 		super(label);
 
 		this.from = from;
 		this.to = to;
 	}
 
-	public MappingCommand(E from, E to, String label, String description) {
+	public MappingCommand(F from, T to, String label, String description) {
 		super(label, description);
 
 		this.from = from;
@@ -62,7 +62,7 @@ public class MappingCommand<E extends EObject> extends CommandWrapper {
 	}
 
 	@Inject
-	void setMapping(IMapping<E> mapping) {
+	void setMapping(IMapping<F, T> mapping) {
 		this.mapping = mapping;
 	}
 
@@ -117,11 +117,11 @@ public class MappingCommand<E extends EObject> extends CommandWrapper {
 	/**
 	 * Protocol for injectable mapping command factories.
 	 */
-	public interface Factory<E extends EObject> {
-		MappingCommand<E> create(E from, E to);
+	public interface Factory<F extends EObject, T extends EObject> {
+		MappingCommand<F, T> create(F from, T to);
 
-		MappingCommand<E> create(E from, E to, String label);
+		MappingCommand<F, T> create(F from, T to, String label);
 
-		MappingCommand<E> create(E from, E to, String label, String description);
+		MappingCommand<F, T> create(F from, T to, String label, String description);
 	}
 }

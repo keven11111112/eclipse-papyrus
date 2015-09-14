@@ -15,12 +15,17 @@ package org.eclipse.papyrus.aof.sync.internal;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Type;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 import javax.inject.Qualifier;
 
 import com.google.inject.BindingAnnotation;
+import com.google.inject.Key;
+import com.google.inject.binder.AnnotatedBindingBuilder;
+import com.google.inject.binder.LinkedBindingBuilder;
+import com.google.inject.binder.ScopedBindingBuilder;
 import com.google.inject.spi.TypeEncounter;
 
 /**
@@ -64,5 +69,35 @@ public class GuiceUtil {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Create a key like the given {@code key}, having the same annotation details (if any)
+	 * but the different new type.
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> Key<T> keyLike(Key<?> key, Type newType) {
+		return (key.getAnnotation() != null)
+				? (Key<T>) Key.get(newType, key.getAnnotation())
+				: (key.getAnnotationType() != null)
+						? (Key<T>) Key.get(newType, key.getAnnotationType())
+						: (Key<T>) Key.get(newType);
+	}
+
+	/**
+	 * Obtains a view of the specified {@code builder} that exposes only the {@link ScopedBindingBuilder}
+	 * protocol, not also {@link LinkedBindingBuilder}.
+	 * 
+	 * @param builder
+	 *            a scoped binding builder
+	 * 
+	 * @return only a scoped binding builder
+	 */
+	public static ScopedBindingBuilder scopedOnly(ScopedBindingBuilder builder) {
+		return !(builder instanceof LinkedBindingBuilder<?>) ? builder : new ScopedBindingBuilderProxy(builder);
+	}
+
+	public static <T> AnnotatedBindingBuilder<T> nullBindingBuilder() {
+		return NullBindingBuilder.getInstance();
 	}
 }

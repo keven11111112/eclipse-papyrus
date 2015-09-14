@@ -23,8 +23,8 @@ import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 
 /**
  * Mapping of nodes as children of other views.
@@ -32,19 +32,19 @@ import org.eclipse.papyrus.aof.sync.IMapping;
 @Singleton
 public class NodeMapping extends ViewMapping<Node> {
 	@Inject
-	private IMapping<Location> location;
+	private ISyncMapping<Location> location;
 
 	@Inject
-	private IMapping<Size> size;
+	private ISyncMapping<Size> size;
 
 	@Inject
-	private ICorrespondenceResolver<Node, View> nodeCorrespondence;
+	private ISyncCorrespondenceResolver<Node, View> nodeCorrespondence;
 
 	@Inject
-	private ICorrespondenceResolver<Location, Node> locationCorrespondence;
+	private ISyncCorrespondenceResolver<Location, Node> locationCorrespondence;
 
 	@Inject
-	private ICorrespondenceResolver<Size, Node> sizeCorrespondence;
+	private ISyncCorrespondenceResolver<Size, Node> sizeCorrespondence;
 
 	@Inject
 	public NodeMapping(IFactory factory) {

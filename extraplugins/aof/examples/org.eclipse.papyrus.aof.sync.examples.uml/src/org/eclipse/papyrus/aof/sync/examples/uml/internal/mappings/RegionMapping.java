@@ -18,8 +18,8 @@ import javax.inject.Singleton;
 
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -32,16 +32,16 @@ import org.eclipse.uml2.uml.Vertex;
 @Singleton
 public class RegionMapping extends NamedElementMapping<Region> {
 	@Inject
-	private IMapping<Vertex> vertex;
+	private ISyncMapping<Vertex> vertex;
 
 	@Inject
-	private IMapping<Transition> transition;
+	private ISyncMapping<Transition> transition;
 
 	@Inject
-	private ICorrespondenceResolver<Vertex, Region> vertexRedef;
+	private ISyncCorrespondenceResolver<Vertex, Region> vertexRedef;
 
 	@Inject
-	private ICorrespondenceResolver<Transition, Region> transitionRedef;
+	private ISyncCorrespondenceResolver<Transition, Region> transitionRedef;
 
 	@Inject
 	public RegionMapping(IFactory factory) {

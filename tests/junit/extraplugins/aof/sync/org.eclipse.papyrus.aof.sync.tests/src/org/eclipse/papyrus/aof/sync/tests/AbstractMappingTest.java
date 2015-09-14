@@ -40,8 +40,11 @@ import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.core.utils.Boxes;
 import org.eclipse.papyrus.aof.sync.AbstractMapping;
+import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.SyncMapping;
+import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.matchers.MoreMatchers;
 import org.junit.Before;
@@ -69,7 +72,7 @@ public class AbstractMappingTest extends AbstractTest {
 	private EAttribute attribute;
 
 	@Inject
-	private ICorrespondenceResolver<EObject, EObject> correspondence;
+	private ICorrespondenceResolver<EObject, EObject, EObject> correspondence;
 
 	@Inject
 	@From
@@ -106,8 +109,8 @@ public class AbstractMappingTest extends AbstractTest {
 
 	@Test
 	public void mapBoxes() {
-		IOne<EObject> left = Boxes.immutableOne(from);
-		IOne<EObject> right = Boxes.immutableOne(to);
+		IOne<EObject> left = Boxes.with(aof).immutableOne(from);
+		IOne<EObject> right = Boxes.with(aof).immutableOne(to);
 
 		IBox<IPair<IBox<EObject>, IBox<EObject>>> pairBox = fixture.map(left, right);
 
@@ -131,15 +134,8 @@ public class AbstractMappingTest extends AbstractTest {
 	}
 
 	@Test
-	public void one() {
-		IOne<EObject> one = fixture.one(from);
-
-		assertThat(one.get(), is(from));
-	}
-
-	@Test
 	public void property() {
-		IBox<EObject> box = Boxes.immutableOne(from);
+		IBox<EObject> box = Boxes.with(aof).immutableOne(from);
 		IBox<String> name = fixture.property(box, this.name);
 
 		assertThat(name, matches(IConstraints.ONE));
@@ -151,8 +147,8 @@ public class AbstractMappingTest extends AbstractTest {
 	 */
 	@Test
 	public void mapProperty() {
-		IOne<EObject> left = Boxes.immutableOne(from);
-		IOne<EObject> right = Boxes.immutableOne(to);
+		IOne<EObject> left = Boxes.with(aof).immutableOne(from);
+		IOne<EObject> right = Boxes.with(aof).immutableOne(to);
 
 		@SuppressWarnings("unchecked")
 		EList<EObject> fromRef = (EList<EObject>) from.eGet(reference);
@@ -180,8 +176,8 @@ public class AbstractMappingTest extends AbstractTest {
 
 	@Test
 	public void bindProperty() {
-		IOne<EObject> left = Boxes.immutableOne(from);
-		IOne<EObject> right = Boxes.immutableOne(to);
+		IOne<EObject> left = Boxes.with(aof).immutableOne(from);
+		IOne<EObject> right = Boxes.with(aof).immutableOne(to);
 
 		assumeThat(from.eGet(attribute), is(0));
 		assumeThat(to.eGet(attribute), is(0));
@@ -199,7 +195,7 @@ public class AbstractMappingTest extends AbstractTest {
 	@Test
 	public void bindPropertyValue() {
 		IOne<Integer> left = aof.createOne(42);
-		IOne<EObject> right = Boxes.immutableOne(to);
+		IOne<EObject> right = Boxes.with(aof).immutableOne(to);
 
 		assumeThat(to.eGet(attribute), is(0));
 
@@ -217,8 +213,8 @@ public class AbstractMappingTest extends AbstractTest {
 
 	@Test
 	public void mapCorresponding() {
-		IOne<EObject> left = Boxes.immutableOne(from);
-		IOne<EObject> right = Boxes.immutableOne(to);
+		IOne<EObject> left = Boxes.with(aof).immutableOne(from);
+		IOne<EObject> right = Boxes.with(aof).immutableOne(to);
 
 		@SuppressWarnings("unchecked")
 		EList<EObject> fromRef = (EList<EObject>) from.eGet(reference);
@@ -248,8 +244,8 @@ public class AbstractMappingTest extends AbstractTest {
 
 	@Test
 	public void mapCorresponding_mapRecursive() {
-		IOne<EObject> left = Boxes.immutableOne(from);
-		IOne<EObject> right = Boxes.immutableOne(to);
+		IOne<EObject> left = Boxes.with(aof).immutableOne(from);
+		IOne<EObject> right = Boxes.with(aof).immutableOne(to);
 
 		@SuppressWarnings("unchecked")
 		EList<EObject> fromRef = (EList<EObject>) from.eGet(reference);
@@ -344,7 +340,7 @@ public class AbstractMappingTest extends AbstractTest {
 		name = (EAttribute) eClass.getEStructuralFeature("name");
 	}
 
-	static class TestMapping extends AbstractMapping<EObject> {
+	static class TestMapping extends SyncMapping<EObject> {
 
 		@Inject
 		private EReference reference;
@@ -353,7 +349,7 @@ public class AbstractMappingTest extends AbstractTest {
 		private EAttribute attribute;
 
 		@Inject
-		private ICorrespondenceResolver<EObject, EObject> correspondence;
+		private ICorrespondenceResolver<EObject, EObject, EObject> correspondence;
 
 		@Inject
 		public TestMapping(EClass type, IFactory factory) {
@@ -376,22 +372,17 @@ public class AbstractMappingTest extends AbstractTest {
 		}
 
 		@Override
-		protected IOne<EObject> one(EObject element) {
-			return super.one(element);
-		}
-
-		@Override
 		protected <P> IBox<P> property(IBox<? extends EObject> ofBox, Object identifiedBy) {
 			return super.property(ofBox, identifiedBy);
 		}
 
 		@Override
-		protected <P> IBox<P> property(IBox<? extends EObject> ofBox, Object ofType, Object identifiedBy) {
+		protected <P, E> IBox<P> property(IBox<E> ofBox, Object ofType, Object identifiedBy) {
 			return super.property(ofBox, ofType, identifiedBy);
 		}
 
 		@Override
-		protected <P> IPair<IBox<P>, IBox<P>> mapProperty(IBox<? extends EObject> fromBox, IBox<? extends EObject> toBox, Object identifiedBy, IMapping<? super P> using) {
+		protected <P, R> IPair<IBox<P>, IBox<R>> mapProperty(IBox<? extends EObject> fromBox, IBox<? extends EObject> toBox, Object identifiedBy, IMapping<? super P, ? super R> using) {
 			return super.mapProperty(fromBox, toBox, identifiedBy, using);
 		}
 
@@ -411,23 +402,23 @@ public class AbstractMappingTest extends AbstractTest {
 		}
 
 		@Override
-		protected <E, U extends EObject> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<U> parentContext, IOne<U> childContext, Object property, ICorrespondenceResolver<E, ? super U> resolvedWith) {
-			return super.mapCorresponding(parentContext, childContext, property, resolvedWith);
+		protected <D, E, G extends EObject, U extends EObject> IPair<IBox<D>, IBox<E>> mapCorresponding(IOne<G> fromContext, IOne<U> toContext, Object property, ICorrespondenceResolver<D, E, ? super U> resolvedWith) {
+			return super.mapCorresponding(fromContext, toContext, property, resolvedWith);
 		}
 
 		@Override
-		protected <E, U extends EObject> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<U> parentContext, IOne<U> childContext, Object property, ICorrespondenceResolver<E, ? super U> resolvedWith, IMapping<? super E> mappedWith) {
-			return super.mapCorresponding(parentContext, childContext, property, resolvedWith, mappedWith);
+		protected <D, E, G extends EObject, U extends EObject> IPair<IBox<D>, IBox<E>> mapCorresponding(IOne<G> fromContext, IOne<U> toContext, Object property, ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<? super D, ? super E> mappedWith) {
+			return super.mapCorresponding(fromContext, toContext, property, resolvedWith, mappedWith);
 		}
 
 		@Override
-		protected <E, C> E getCorresponding(E fromParent, C toContext, ICorrespondenceResolver<E, ? super C> resolvedWith) {
-			return super.getCorresponding(fromParent, toContext, resolvedWith);
+		protected <D, E, C> E getCorresponding(D from, C toContext, ICorrespondenceResolver<D, E, ? super C> resolvedWith) {
+			return super.getCorresponding(from, toContext, resolvedWith);
 		}
 
 		@Override
-		protected <E, C> E getCorresponding(E fromParent, C toContext, ICorrespondenceResolver<E, ? super C> resolvedWith, IMapping<? super E> mappedWith) {
-			return super.getCorresponding(fromParent, toContext, resolvedWith, mappedWith);
+		protected <D, E, C> E getCorresponding(D from, C toContext, ICorrespondenceResolver<D, E, ? super C> resolvedWith, IMapping<? super D, ? super E> mappedWith) {
+			return super.getCorresponding(from, toContext, resolvedWith, mappedWith);
 		}
 
 	}

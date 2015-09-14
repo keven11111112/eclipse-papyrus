@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.core.IBox;
+import org.eclipse.papyrus.aof.core.impl.BaseFactory;
 import org.eclipse.papyrus.aof.core.utils.Functions;
 import org.eclipse.papyrus.aof.emf.impl.EMFMetaClass;
 import org.eclipse.papyrus.aof.emf.impl.PropertyAccessor;
@@ -33,8 +34,8 @@ import org.eclipse.papyrus.aof.gmf.DiagramFactory;
  */
 public class DiagramMetaClass<C extends View> extends EMFMetaClass<C> {
 
-	public DiagramMetaClass(EClass ecoreClass) {
-		super(ecoreClass);
+	public DiagramMetaClass(BaseFactory factory, EClass ecoreClass) {
+		super(factory, ecoreClass);
 	}
 
 	@Override

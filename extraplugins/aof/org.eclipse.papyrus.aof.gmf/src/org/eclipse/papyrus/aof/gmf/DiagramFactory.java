@@ -34,6 +34,7 @@ import org.eclipse.papyrus.aof.core.IUnaryFunction;
 import org.eclipse.papyrus.aof.core.impl.BaseFactory;
 import org.eclipse.papyrus.aof.emf.EMFFactory;
 import org.eclipse.papyrus.aof.gmf.internal.DiagramMetaClass;
+import org.eclipse.papyrus.aof.gmf.internal.MetaclassWrapper;
 
 /**
  * An AOF factory for metaclasses in the domain of GMF Notation views (diagrams).
@@ -51,7 +52,7 @@ public class DiagramFactory extends BaseFactory {
 	private final IFactory aof = AOFFactory.INSTANCE;
 	private final IFactory emf = EMFFactory.INSTANCE;
 
-	private final Map<EClass, IMetaClass<?>> metaclasses = new HashMap<>();
+	private final Map<Object, IMetaClass<?>> metaclasses = new HashMap<>();
 
 	public DiagramFactory() {
 		super();
@@ -70,33 +71,30 @@ public class DiagramFactory extends BaseFactory {
 	public <C> IMetaClass<C> getMetaClass(Object platformClass) {
 		IMetaClass<C> result;
 
-		if (platformClass instanceof Class<?>) {
-			Class<C> javaClass = (Class<C>) platformClass;
-			if (isNotationViewClass(javaClass) || isLayoutConstraintClass(javaClass)) {
-				EClass eClass = getNotationEClass(javaClass);
-				result = (IMetaClass<C>) metaclasses.get(eClass);
-				if (result == null) {
-					result = new DiagramMetaClass(eClass);
-					metaclasses.put(eClass, result);
+		result = (IMetaClass<C>) metaclasses.get(platformClass);
+		if (result == null) {
+			if (platformClass instanceof Class<?>) {
+				Class<C> javaClass = (Class<C>) platformClass;
+				if (isNotationViewClass(javaClass) || isLayoutConstraintClass(javaClass)) {
+					EClass eClass = getNotationEClass(javaClass);
+					result = new DiagramMetaClass(this, eClass);
+				} else {
+					// Other metamodel
+					result = new MetaclassWrapper<>(this, aof.getMetaClass(platformClass));
+				}
+			} else if (platformClass instanceof EClass) {
+				EClass eclass = (EClass) platformClass;
+				if (isNotationViewClass(eclass) || isLayoutConstraintClass(eclass)) {
+					result = new DiagramMetaClass(this, eclass);
+				} else {
+					// Other metamodel
+					result = new MetaclassWrapper<>(this, emf.getMetaClass(platformClass));
 				}
 			} else {
-				result = aof.getMetaClass(platformClass);
+				throw new IllegalArgumentException("Invalid platform class: " + platformClass);
 			}
-		} else if (platformClass instanceof EClass) {
-			EClass eclass = (EClass) platformClass;
-			if (isNotationViewClass(eclass) || isLayoutConstraintClass(eclass)) {
-				// Get the DiagramMetaClass
-				result = (IMetaClass<C>) metaclasses.get(eclass);
-				if (result == null) {
-					result = new DiagramMetaClass(eclass);
-					metaclasses.put(eclass, result);
-				}
-			} else {
-				// Other model
-				result = emf.getMetaClass(platformClass);
-			}
-		} else {
-			throw new IllegalArgumentException("Invalid platform class: " + platformClass);
+
+			metaclasses.put(platformClass, result);
 		}
 
 		return result;

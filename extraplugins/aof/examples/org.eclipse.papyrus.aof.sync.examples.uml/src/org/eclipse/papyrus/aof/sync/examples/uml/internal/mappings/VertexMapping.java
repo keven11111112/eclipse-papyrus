@@ -18,8 +18,8 @@ import javax.inject.Singleton;
 
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
@@ -32,10 +32,10 @@ import org.eclipse.uml2.uml.Vertex;
 @Singleton
 public class VertexMapping extends NamedElementMapping<Vertex> {
 	@Inject
-	private ICorrespondenceResolver<Region, State> regionRedef;
+	private ISyncCorrespondenceResolver<Region, State> regionRedef;
 
 	@Inject
-	private IMapping<Region> regions;
+	private ISyncMapping<Region> regions;
 
 	@Inject
 	public VertexMapping(IFactory factory) {

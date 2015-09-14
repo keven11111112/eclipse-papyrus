@@ -54,6 +54,21 @@ public class MappingFactory {
 	}
 
 	/**
+	 * Obtains a mapping relation between objects of the specified
+	 * {@code fromType} and {@code toType}.
+	 * 
+	 * @param fromType
+	 *            the mapping source type
+	 * @param toType
+	 *            the mapping target type
+	 * 
+	 * @return the mapping
+	 */
+	public final <F, T> IMapping<F, T> getMapping(Type fromType, Type toType) {
+		return getInstance(IMapping.class, fromType, toType);
+	}
+
+	/**
 	 * Obtains a mapping relation between objects of the specified {@code type}.
 	 * 
 	 * @param type
@@ -61,8 +76,20 @@ public class MappingFactory {
 	 * 
 	 * @return the mapping
 	 */
-	public final <T> IMapping<T> getMapping(Type type) {
-		return getInstance(IMapping.class, type);
+	public final <E> IMapping<E, E> getMapping(Type type) {
+		return getMapping(type, type);
+	}
+
+	/**
+	 * Obtains a simple mapping relation between objects of the specified {@code type}.
+	 * 
+	 * @param type
+	 *            the mapping type
+	 * 
+	 * @return the mapping
+	 */
+	public final <E> ISyncMapping<E> getSyncMapping(Type type) {
+		return getInstance(ISyncMapping.class, type);
 	}
 
 	/**

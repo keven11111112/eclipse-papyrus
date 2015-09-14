@@ -31,12 +31,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.AbstractMapping;
+import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.SyncMapping;
+import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.From;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.To;
 import org.eclipse.papyrus.aof.sync.tests.runners.TestScoped;
 
 import com.google.inject.Provides;
@@ -56,20 +56,20 @@ public class TestFixtureModule extends EMFMappingModule {
 	protected void configure() {
 		super.configure();
 
-		bind(new TypeLiteral<IMapping<EClass>>() {
+		bind(new TypeLiteral<IMapping<EClass, EClass>>() {
 		}).annotatedWith(Names.named("unused")).to(EClassMapping.class);
 	}
 
-	public Class<? extends IMapping<EPackage>> getEPackageMappingBinding() {
+	public Class<? extends IMapping<EPackage, EPackage>> getEPackageMappingBinding() {
 		return EPackageMapping.class;
 	}
 
-	public Class<? extends IMapping<EClass>> getEClassMappingBinding() {
+	public Class<? extends IMapping<EClass, EClass>> getEClassMappingBinding() {
 		return EClassMapping.class;
 	}
 
 	@Named("ignore me")
-	public Class<? extends IMapping<EClass>> getIgnoredBinding() {
+	public Class<? extends IMapping<EClass, EClass>> getIgnoredBinding() {
 		return EClassMapping.class;
 	}
 
@@ -79,7 +79,7 @@ public class TestFixtureModule extends EMFMappingModule {
 	}
 
 	@Provides
-	public ICorrespondenceResolver<EClass, EPackage> provideEClassCorrespondence() {
+	public ICorrespondenceResolver<EClass, EClass, EPackage> provideEClassCorrespondence() {
 		return TestFixtureModule::getCorrespondingEClass;
 	}
 
@@ -202,13 +202,13 @@ public class TestFixtureModule extends EMFMappingModule {
 	// Nested types
 	//
 
-	static class EPackageMapping extends AbstractMapping<EPackage> {
+	static class EPackageMapping extends SyncMapping<EPackage> {
 
 		@Inject
-		private ICorrespondenceResolver<EClass, EPackage> eclassResolver;
+		private ICorrespondenceResolver<EClass, EClass, EPackage> eclassResolver;
 
 		@Inject
-		private IMapping<EClass> eclassMapping;
+		private IMapping<EClass, EClass> eclassMapping;
 
 		@Inject
 		public EPackageMapping(IFactory factory) {
@@ -224,7 +224,7 @@ public class TestFixtureModule extends EMFMappingModule {
 		}
 	}
 
-	static class EClassMapping extends AbstractMapping<EClass> {
+	static class EClassMapping extends SyncMapping<EClass> {
 
 		@Inject
 		public EClassMapping(IFactory factory) {

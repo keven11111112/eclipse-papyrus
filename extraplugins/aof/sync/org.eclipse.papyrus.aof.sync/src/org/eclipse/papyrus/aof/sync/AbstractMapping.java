@@ -26,30 +26,38 @@ import org.eclipse.papyrus.aof.core.utils.Functions;
  * services for the binding of properties of the mapped objects and establishing
  * correspondences.
  */
-public abstract class AbstractMapping<T> implements IMapping<T> {
+public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 
-	private final Object type;
-	private final IFactory factory;
+	private final Object fromType;
+	private final IFactory fromFactory;
+	private final Object toType;
+	private final IFactory toFactory;
 
-	public AbstractMapping(Object type, IFactory factory) {
+	public AbstractMapping(Object fromType, IFactory fromFactory, Object toType, IFactory toFactory) {
 		super();
 
-		this.type = type;
-		this.factory = factory;
+		this.fromType = fromType;
+		this.fromFactory = fromFactory;
+		this.toType = toType;
+		this.toFactory = toFactory;
 	}
 
-	protected final IFactory getFactory() {
-		return factory;
+	protected final IFactory getFromFactory() {
+		return fromFactory;
+	}
+
+	protected final IFactory getToFactory() {
+		return toFactory;
 	}
 
 	@Override
-	public IPair<IBox<T>, IBox<T>> map(T from, T to) {
-		IOne<T> fromBox = one(from);
-		IOne<T> toBox = one(to);
+	public IPair<IBox<F>, IBox<T>> map(F from, T to) {
+		IOne<F> fromBox = getFromFactory().createOne(from);
+		IOne<T> toBox = getToFactory().createOne(to);
 
 		mapProperties(fromBox, toBox);
 
-		return getFactory().createPair(fromBox, toBox);
+		return getToFactory().createPair(fromBox, toBox);
 	}
 
 	/**
@@ -61,26 +69,7 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * @param to
 	 *            the target object of the mapping
 	 */
-	protected abstract void mapProperties(IOne<T> from, IOne<T> to);
-
-	/** Creates a "one" box on an object. */
-	protected IOne<T> one(T element) {
-		return getFactory().createOne(element);
-	}
-
-	/**
-	 * Obtains a box encapsulating a property of a boxed object as identified by some meta-object.
-	 * 
-	 * @param ofBox
-	 *            a box of objects for which to get the property
-	 * @param identifiedBy
-	 *            the meta-object of the object's domain/platform identifying the property
-	 * 
-	 * @return the boxed property value
-	 */
-	protected <P> IBox<P> property(IBox<? extends T> ofBox, Object identifiedBy) {
-		return property(ofBox, type, identifiedBy);
-	}
+	protected abstract void mapProperties(IOne<F> from, IOne<T> to);
 
 	/**
 	 * Obtains a box encapsulating a property of a boxed object as identified by some meta-object.
@@ -94,8 +83,8 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return the boxed property value
 	 */
-	protected <P> IBox<P> property(IBox<? extends T> ofBox, Object ofType, Object identifiedBy) {
-		return ofBox.collectMutable(getFactory(), ofType, identifiedBy);
+	protected <P, E> IBox<P> property(IBox<E> ofBox, Object ofType, Object identifiedBy) {
+		return ofBox.collectMutable(ofBox.getFactory(), ofType, identifiedBy);
 	}
 
 	/**
@@ -103,17 +92,19 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @param fromBox
 	 *            a box of objects that are the mapping source
+	 * @param fromIdentifiedBy
+	 *            the meta-object of the source objects' domain/platform identifying the property to be bound
 	 * @param toBox
 	 *            a box of objects that are the mapping target
-	 * @param identifiedBy
-	 *            the meta-object of the objects' domain/platform identifying the property to be mapped
+	 * @param toIdentifiedBy
+	 *            the meta-object of the target objects' domain/platform identifying the property to be mapped
 	 * @param using
 	 *            the mapping rule for the property
 	 * 
 	 * @return a pairing of the the boxed property values that are mapped
 	 */
-	protected <P> IPair<IBox<P>, IBox<P>> mapProperty(IBox<? extends T> fromBox, IBox<? extends T> toBox, Object identifiedBy, IMapping<? super P> using) {
-		IPair<IBox<P>, IBox<P>> result = getFactory().createPair(property(fromBox, identifiedBy), property(toBox, identifiedBy));
+	protected <P, R> IPair<IBox<P>, IBox<R>> mapProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy, IMapping<? super P, ? super R> using) {
+		IPair<IBox<P>, IBox<R>> result = getToFactory().createPair(property(fromBox, fromType, fromIdentifiedBy), property(toBox, toType, toIdentifiedBy));
 		using.map(result.getLeft(), result.getRight());
 		return result;
 	}
@@ -123,15 +114,17 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @param fromBox
 	 *            a box of objects that are the binding source
+	 * @param fromIdentifiedBy
+	 *            the meta-object of the source objects' domain/platform identifying the property to be bound
 	 * @param toBox
 	 *            a box of objects that are the binding target
-	 * @param identifiedBy
-	 *            the meta-object of the objects' domain/platform identifying the property to be bound
+	 * @param toIdentifiedBy
+	 *            the meta-object of the target objects' domain/platform identifying the property to be bound
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P> IPair<IBox<P>, IBox<P>> bindProperty(IBox<? extends T> fromBox, IBox<? extends T> toBox, Object identifiedBy) {
-		IPair<IBox<P>, IBox<P>> result = getFactory().createPair(property(fromBox, identifiedBy), property(toBox, identifiedBy));
+	protected <P> IPair<IBox<P>, IBox<P>> bindProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy) {
+		IPair<IBox<P>, IBox<P>> result = getToFactory().createPair(property(fromBox, fromType, fromIdentifiedBy), property(toBox, toType, toIdentifiedBy));
 		result.getRight().bind(result.getLeft()).setAutoDisable(true);
 		return result;
 	}
@@ -144,14 +137,12 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * @param toBox
 	 *            a box of objects that are the binding target
 	 * @param identifiedBy
-	 *            the meta-object of the objects' domain/platform identifying the property to be bound
+	 *            the meta-object of the target objects' domain/platform identifying the property to be bound
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
 	protected <P> IPair<IBox<P>, IBox<P>> bindPropertyValue(IBox<P> fromBox, IBox<? extends T> toBox, Object identifiedBy) {
-		IPair<IBox<P>, IBox<P>> result = getFactory().createPair(fromBox, property(toBox, identifiedBy));
-		result.getRight().bind(result.getLeft()).setAutoDisable(true);
-		return result;
+		return bindPropertyValue(fromBox, toBox, toType, identifiedBy);
 	}
 
 	/**
@@ -164,12 +155,12 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * @param ofType
 	 *            the type of object in the {@code toBox}, as a meta-object of the object's domain/platform
 	 * @param identifiedBy
-	 *            the meta-object of the objects' domain/platform identifying the property to be bound
+	 *            the meta-object of the target objects' domain/platform identifying the property to be bound
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
 	protected <P> IPair<IBox<P>, IBox<P>> bindPropertyValue(IBox<P> fromBox, IBox<? extends T> toBox, Object ofType, Object identifiedBy) {
-		IPair<IBox<P>, IBox<P>> result = getFactory().createPair(fromBox, property(toBox, ofType, identifiedBy));
+		IPair<IBox<P>, IBox<P>> result = getToFactory().createPair(fromBox, property(toBox, ofType, identifiedBy));
 		result.getRight().bind(result.getLeft()).setAutoDisable(true);
 		return result;
 	}
@@ -179,10 +170,12 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @param fromBox
 	 *            a box of objects that are the binding source
+	 * @param fromIdentifiedBy
+	 *            the meta-object of the source objects' domain/platform identifying the property to be bound
 	 * @param toBox
 	 *            a box of objects that are the binding target
-	 * @param identifiedBy
-	 *            the meta-object of the objects' domain/platform identifying the property to be bound
+	 * @param toIdentifiedBy
+	 *            the meta-object of the target objects' domain/platform identifying the property to be bound
 	 * @param transformation
 	 *            an transformation of "from" property box elements to "to" property box elements.
 	 *            Pass a {@code null} to indicate that the from property should be bound as is
@@ -191,12 +184,12 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P> IConditionalBinding<P, P> bindPropertyConditionally(IBox<? extends T> fromBox, IBox<? extends T> toBox, Object identifiedBy,
-			IUnaryFunction<? super P, ? extends P> transformation, IUnaryFunction<? super IBox<? extends P>, Boolean> condition) {
+	protected <P, R extends P> IConditionalBinding<P, R> bindPropertyConditionally(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy,
+			IUnaryFunction<? super P, ? extends R> transformation, IUnaryFunction<? super IBox<? extends P>, Boolean> condition) {
 
-		IBox<P> fromProperty = property(fromBox, identifiedBy);
-		IBox<P> initialValue = (transformation == null) ? fromProperty : fromProperty.collectTo(transformation);
-		IBox<P> toProperty = property(toBox, identifiedBy);
+		IBox<R> fromProperty = property(fromBox, fromType, fromIdentifiedBy);
+		IBox<R> initialValue = (transformation == null) ? fromProperty : fromProperty.collectTo(transformation);
+		IBox<P> toProperty = property(toBox, toType, toIdentifiedBy);
 		return toProperty.bindConditionally(initialValue, condition);
 	}
 
@@ -207,20 +200,22 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @param fromBox
 	 *            a box of objects that are the binding source
+	 * @param fromIdentifiedBy
+	 *            the meta-object of the source objects' domain/platform identifying the property to be bound
 	 * @param toBox
 	 *            a box of objects that are the binding target
-	 * @param identifiedBy
-	 *            the meta-object of the objects' domain/platform identifying the property to be bound
+	 * @param toIdentifiedBy
+	 *            the meta-object of the target objects' domain/platform identifying the property to be bound
 	 * @param initializer
 	 *            an transformation of "from" property box elements to "to" property box elements.
 	 *            Pass a {@code null} to indicate that the "to" property should be initialized from the "from" property as is
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P> IConditionalBinding<P, P> initProperty(IBox<? extends T> fromBox, IBox<? extends T> toBox, Object identifiedBy,
-			IUnaryFunction<? super P, ? extends P> initializer) {
+	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy,
+			IUnaryFunction<? super P, ? extends R> initializer) {
 
-		return bindPropertyConditionally(fromBox, toBox, identifiedBy, initializer, Functions.emptyOrNull());
+		return bindPropertyConditionally(fromBox, fromIdentifiedBy, toBox, toIdentifiedBy, initializer, Functions.emptyOrNull());
 	}
 
 	/**
@@ -230,15 +225,17 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @param fromBox
 	 *            a box of objects that are the binding source
+	 * @param fromIdentifiedBy
+	 *            the meta-object of the source objects' domain/platform identifying the property to be bound
 	 * @param toBox
 	 *            a box of objects that are the binding target
-	 * @param identifiedBy
-	 *            the meta-object of the objects' domain/platform identifying the property to be bound
+	 * @param toIdentifiedBy
+	 *            the meta-object of the target objects' domain/platform identifying the property to be bound
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P> IConditionalBinding<P, P> initProperty(IBox<? extends T> fromBox, IBox<? extends T> toBox, Object identifiedBy) {
-		return initProperty(fromBox, toBox, identifiedBy, null);
+	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy) {
+		return initProperty(fromBox, fromIdentifiedBy, toBox, toIdentifiedBy, null);
 	}
 
 	/**
@@ -247,9 +244,11 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @param fromContext
 	 *            a boxed object that is the mapping source
+	 * @param fromProperty
+	 *            the meta-object of the source objects' domain/platform identifying the property to be bound
 	 * @param toContext
 	 *            a boxed object that is the mapping target
-	 * @param identifiedBy
+	 * @param toProperty
 	 *            the meta-object of the objects' domain/platform identifying the property to be mapped
 	 * @param resolvedWith
 	 *            a bijective correspondence relation between objects in the {@code property} of the
@@ -257,10 +256,10 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <E, U extends T> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<U> fromContext, IOne<U> toContext, Object property,
-			ICorrespondenceResolver<E, ? super U> resolvedWith) {
+	protected <D, E, G extends F, U extends T> IPair<IBox<D>, IBox<E>> mapCorresponding(IOne<G> fromContext, Object fromProperty, IOne<U> toContext, Object toProperty,
+			ICorrespondenceResolver<D, E, ? super U> resolvedWith) {
 
-		return mapCorresponding(fromContext, toContext, property, resolvedWith, null);
+		return mapCorresponding(fromContext, fromProperty, toContext, toProperty, resolvedWith, null);
 	}
 
 	/**
@@ -269,9 +268,11 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @param fromContext
 	 *            a boxed object that is the mapping source
+	 * @param fromProperty
+	 *            the meta-object of the source objects' domain/platform identifying the property to be bound
 	 * @param toContext
 	 *            a boxed object that is the mapping target
-	 * @param identifiedBy
+	 * @param toProperty
 	 *            the meta-object of the objects' domain/platform identifying the property to be mapped
 	 * @param resolvedWith
 	 *            a bijective correspondence relation between objects in the {@code property} of the
@@ -282,11 +283,11 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <E, U extends T> IPair<IBox<E>, IBox<E>> mapCorresponding(IOne<U> fromContext, IOne<U> toContext, Object property,
-			ICorrespondenceResolver<E, ? super U> resolvedWith, IMapping<? super E> mappedWith) {
+	protected <D, E, G extends F, U extends T> IPair<IBox<D>, IBox<E>> mapCorresponding(IOne<G> fromContext, Object fromProperty, IOne<U> toContext, Object toProperty,
+			ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<? super D, ? super E> mappedWith) {
 
-		IBox<E> fromElements = property(fromContext, property);
-		IBox<E> toElements = property(toContext, property);
+		IBox<D> fromElements = property(fromContext, fromType, fromProperty);
+		IBox<E> toElements = property(toContext, toType, toProperty);
 
 		return mapCorresponding(fromElements, toElements, toContext, resolvedWith, mappedWith);
 	}
@@ -310,11 +311,11 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <E, U extends T> IPair<IBox<E>, IBox<E>> mapCorresponding(IBox<E> fromElements, IBox<E> toElements,
-			IOne<U> toContext, ICorrespondenceResolver<E, ? super U> resolvedWith, IMapping<? super E> mappedWith) {
+	protected <D, E, U extends T> IPair<IBox<D>, IBox<E>> mapCorresponding(IBox<D> fromElements, IBox<E> toElements,
+			IOne<U> toContext, ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<? super D, ? super E> mappedWith) {
 
 		IBox<E> mapping = fromElements.collectTo(
-				(E e) -> getCorresponding(e, toContext.get(), resolvedWith));
+				(D d) -> getCorresponding(d, toContext.get(), resolvedWith));
 
 		// Bind the elements before mapping them, so that, if the property is a containment
 		// reference, the they will be attached to the model before we recursively map anything
@@ -324,7 +325,7 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 			mappedWith.map(fromElements, toElements);
 		}
 
-		return getFactory().createPair(fromElements, toElements);
+		return getToFactory().createPair(fromElements, toElements);
 	}
 
 	/**
@@ -340,7 +341,7 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return the object corresponding to {@code from} in the {@code toContext}
 	 */
-	protected <E, C> E getCorresponding(E from, C toContext, ICorrespondenceResolver<E, ? super C> resolvedWith) {
+	protected <D, E, C> E getCorresponding(D from, C toContext, ICorrespondenceResolver<D, E, ? super C> resolvedWith) {
 		return getCorresponding(from, toContext, resolvedWith, null);
 	}
 
@@ -359,7 +360,7 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 	 * 
 	 * @return the object corresponding to {@code from} in the {@code toContext}
 	 */
-	protected <E, C> E getCorresponding(E from, C toContext, ICorrespondenceResolver<E, ? super C> resolvedWith, IMapping<? super E> mappedWith) {
+	protected <D, E, C> E getCorresponding(D from, C toContext, ICorrespondenceResolver<D, E, ? super C> resolvedWith, IMapping<? super D, ? super E> mappedWith) {
 		E result = resolvedWith.getCorrespondent(from, toContext);
 
 		if (mappedWith != null) {
@@ -368,4 +369,13 @@ public abstract class AbstractMapping<T> implements IMapping<T> {
 
 		return result;
 	}
+
+	final Object getFromType() {
+		return fromType;
+	}
+
+	final Object getToType() {
+		return toType;
+	}
+
 }

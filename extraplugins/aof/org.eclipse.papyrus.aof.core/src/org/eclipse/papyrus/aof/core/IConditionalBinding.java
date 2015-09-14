@@ -35,9 +35,9 @@ package org.eclipse.papyrus.aof.core;
  * </p>
  * 
  * @param <E>
- *            type of the elements of the bound box
+ *            type of the elements of the bound (target or "to") box
  * @param <F>
- *            type of the elements of the binding box
+ *            type of the elements of the binding (source or "from") box
  */
 public interface IConditionalBinding<E, F extends E> extends IPair<IBox<E>, IBox<F>> {
 	/**

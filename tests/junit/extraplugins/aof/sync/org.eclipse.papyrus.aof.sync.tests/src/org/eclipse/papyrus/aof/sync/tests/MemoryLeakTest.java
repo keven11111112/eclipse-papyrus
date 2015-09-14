@@ -18,6 +18,8 @@ import javax.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IPair;
+import org.eclipse.papyrus.aof.sync.From;
+import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.tests.AbstractMappingTest.TestMapping;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule;

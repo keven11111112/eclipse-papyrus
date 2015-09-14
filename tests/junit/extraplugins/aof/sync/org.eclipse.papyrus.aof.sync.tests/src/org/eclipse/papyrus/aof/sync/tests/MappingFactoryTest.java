@@ -25,10 +25,11 @@ import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IPair;
-import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.MappingFactory;
 import org.eclipse.papyrus.aof.sync.MappingModule;
+import org.eclipse.papyrus.aof.sync.SyncMapping;
 import org.junit.Test;
 
 /**
@@ -71,7 +72,7 @@ public class MappingFactoryTest {
 			protected void configure() {
 				super.configure();
 
-				bind(key(IMapping.class, Integer.class)).to(IntMapping.class);
+				bind(key(IMapping.class, Integer.class, Integer.class)).to(IntMapping.class);
 			}
 		});
 	}
@@ -92,7 +93,7 @@ public class MappingFactoryTest {
 
 	<T> void assertMappingInjected(T left, T right, Class<T> type, MappingModule module) {
 		MappingFactory factory = new MappingFactory(module);
-		IMapping<T> mapping = factory.getMapping(type);
+		ISyncMapping<T> mapping = factory.getSyncMapping(type);
 		IPair<IBox<T>, IBox<T>> pair = mapping.map(left, right);
 		assertThat(pair.getLeft().get(0), is(left));
 		assertThat(pair.getRight().get(0), is(right));
@@ -102,7 +103,7 @@ public class MappingFactoryTest {
 	// Nested types
 	//
 
-	static class IntMapping extends AbstractMapping<Integer> {
+	static class IntMapping extends SyncMapping<Integer> {
 		@Inject
 		IntMapping(IFactory factory) {
 			super(Integer.class, factory);

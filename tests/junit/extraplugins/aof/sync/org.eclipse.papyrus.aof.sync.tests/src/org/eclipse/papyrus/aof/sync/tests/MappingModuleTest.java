@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.MappingModule;
 import org.junit.Test;
 
@@ -45,16 +46,16 @@ public class MappingModuleTest {
 	@Test
 	public void testGetCorrespondenceResolver() {
 		int methodCount = MappingModuleTest.class.getMethods().length;
-		ICorrespondenceResolver<MutableInteger, MappingModuleTest> resolver = (value, test) -> {
+		ISyncCorrespondenceResolver<MutableInteger, MappingModuleTest> resolver = (value, test) -> {
 			return new MutableInteger(value.intValue() + test.getClass().getMethods().length);
 		};
 
 		assertInjected(new MutableInteger(42 + methodCount), Number.class, new MappingModule() {
 			@Override
 			protected void configure() {
-				Provider<ICorrespondenceResolver<MutableInteger, MappingModuleTest>> provider = getCorrespondenceResolver(MutableInteger.class, MappingModuleTest.class);
+				Provider<ICorrespondenceResolver<MutableInteger, MutableInteger, MappingModuleTest>> provider = getCorrespondenceResolver(MutableInteger.class, MappingModuleTest.class);
 
-				bind(key(ICorrespondenceResolver.class, MutableInteger.class, MappingModuleTest.class)).toInstance(resolver);
+				bind(key(ICorrespondenceResolver.class, MutableInteger.class, MutableInteger.class, MappingModuleTest.class)).toInstance(resolver);
 
 				bind(Number.class).toProvider((Provider<Number>) () -> {
 					return provider.get().getCorrespondent(new MutableInteger(42), MappingModuleTest.this);

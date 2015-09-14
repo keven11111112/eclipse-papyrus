@@ -29,7 +29,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.matchers.MoreMatchers;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
@@ -53,7 +55,7 @@ public class CorrespondenceResolverTest extends AbstractTest {
 	private EReference reference;
 
 	@Inject
-	private ICorrespondenceResolver<EObject, EObject> fixture;
+	private ICorrespondenceResolver<EObject, EObject, EObject> fixture;
 
 	@Inject
 	@From
@@ -156,7 +158,7 @@ public class CorrespondenceResolverTest extends AbstractTest {
 
 		EObject newBetty = resolved;
 
-		ICorrespondenceResolver<EObject, EObject> inverse = fixture.inverse();
+		ICorrespondenceResolver<EObject, EObject, EObject> inverse = fixture.inverse();
 
 		resolved = inverse.getCorrespondent(newAlice, to);
 		assertThat(resolved, sameInstance(alice));
@@ -167,15 +169,15 @@ public class CorrespondenceResolverTest extends AbstractTest {
 
 	@Test
 	public void reinvertible() {
-		ICorrespondenceResolver<EObject, EObject> cached = fixture.cached();
-		ICorrespondenceResolver<EObject, EObject> inverse = cached.inverse();
+		ICorrespondenceResolver<EObject, EObject, EObject> cached = fixture.cached();
+		ICorrespondenceResolver<EObject, EObject, EObject> inverse = cached.inverse();
 
 		assertThat(inverse.inverse(), sameInstance(cached));
 	}
 
 	@Test
 	public void recached() {
-		ICorrespondenceResolver<EObject, EObject> cached = fixture.cached();
+		ICorrespondenceResolver<EObject, EObject, EObject> cached = fixture.cached();
 
 		assertThat(cached.cached(), sameInstance(cached));
 	}

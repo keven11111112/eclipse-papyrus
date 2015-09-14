@@ -16,7 +16,7 @@ package org.eclipse.papyrus.aof.sync.gmf;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.MappingFactory;
 
 import com.google.inject.Module;
@@ -34,15 +34,15 @@ public class DiagramMappingFactory extends MappingFactory {
 		super(module);
 	}
 
-	public IMapping<Diagram> getDiagramMapping() {
-		return getMapping(Diagram.class);
+	public ISyncMapping<Diagram> getDiagramMapping() {
+		return getSyncMapping(Diagram.class);
 	}
 
-	public IMapping<Node> getNodeMapping() {
-		return getMapping(Node.class);
+	public ISyncMapping<Node> getNodeMapping() {
+		return getSyncMapping(Node.class);
 	}
 
-	public IMapping<Edge> getEdgeMapping() {
-		return getMapping(Edge.class);
+	public ISyncMapping<Edge> getEdgeMapping() {
+		return getSyncMapping(Edge.class);
 	}
 }

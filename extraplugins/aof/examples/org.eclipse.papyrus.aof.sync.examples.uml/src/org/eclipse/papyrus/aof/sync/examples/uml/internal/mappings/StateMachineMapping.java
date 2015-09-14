@@ -18,8 +18,8 @@ import javax.inject.Singleton;
 
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -30,10 +30,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 @Singleton
 public class StateMachineMapping extends NamedElementMapping<StateMachine> {
 	@Inject
-	private IMapping<Region> region;
+	private ISyncMapping<Region> region;
 
 	@Inject
-	private ICorrespondenceResolver<Region, StateMachine> regionRedef;
+	private ISyncCorrespondenceResolver<Region, StateMachine> regionRedef;
 
 	@Inject
 	public StateMachineMapping(IFactory factory) {

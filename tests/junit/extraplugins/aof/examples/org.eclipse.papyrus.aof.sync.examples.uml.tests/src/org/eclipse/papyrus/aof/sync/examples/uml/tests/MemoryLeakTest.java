@@ -45,7 +45,7 @@ import com.google.inject.Inject;
  */
 @InjectWith(TestModelModule.class)
 @JavaResource("capsules-with-machines.uml")
-public class MemoryLeakTest extends AbstractBaseMappingTest<Class> {
+public class MemoryLeakTest extends AbstractBaseMappingTest<Class, Class> {
 
 	// This must be the outermost rule!
 	@Rule

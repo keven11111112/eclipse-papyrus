@@ -18,7 +18,7 @@ import javax.inject.Singleton;
 
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.Vertex;
 @Singleton
 public class TransitionMapping extends NamedElementMapping<Transition> {
 	@Inject
-	private ICorrespondenceResolver<Vertex, Transition> transitionEndRedef;
+	private ISyncCorrespondenceResolver<Vertex, Transition> transitionEndRedef;
 
 	@Inject
 	public TransitionMapping(IFactory factory) {

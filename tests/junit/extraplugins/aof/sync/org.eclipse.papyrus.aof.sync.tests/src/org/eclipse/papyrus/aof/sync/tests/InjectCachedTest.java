@@ -27,18 +27,18 @@ import javax.inject.Inject;
 import javax.inject.Qualifier;
 
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.InjectCached;
+import org.eclipse.papyrus.aof.sync.MappingModule;
 import org.eclipse.papyrus.aof.sync.internal.CustomInjectionModule;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.BindingAnnotation;
 import com.google.inject.ConfigurationException;
 import com.google.inject.Injector;
-import com.google.inject.Provides;
 
 /**
  * Test cases for custom injection via the {@link InjectCached @InjectCached} annotation.
@@ -58,7 +58,7 @@ public class InjectCachedTest {
 	public void injectField() {
 		class InjectField {
 			@InjectCached
-			ICorrespondenceResolver<Integer, String> injectedField;
+			ISyncCorrespondenceResolver<Integer, String> injectedField;
 		}
 		InjectField injectField = new InjectField();
 		injector.injectMembers(injectField);
@@ -69,10 +69,10 @@ public class InjectCachedTest {
 	@Test
 	public void injectMethod() {
 		class InjectMethod {
-			private ICorrespondenceResolver<Integer, String> injectedByMethod;
+			private ICorrespondenceResolver<Integer, Integer, String> injectedByMethod;
 
 			@InjectCached
-			void setInjectedByMethod(ICorrespondenceResolver<Integer, String> correspondence) {
+			void setInjectedByMethod(ICorrespondenceResolver<Integer, Integer, String> correspondence) {
 				this.injectedByMethod = correspondence;
 			}
 		}
@@ -108,7 +108,7 @@ public class InjectCachedTest {
 	public void injectMultiParametersMethod() {
 		Object injectee = new Object() {
 			@InjectCached
-			void setNow(ICorrespondenceResolver<Integer, String> correspondence, String bogus) {
+			void setNow(ISyncCorrespondenceResolver<Integer, String> correspondence, String bogus) {
 				// Pass
 			}
 		};
@@ -121,7 +121,7 @@ public class InjectCachedTest {
 		class InjectField {
 			@InjectCached
 			@Special
-			ICorrespondenceResolver<Integer, String> injectedField;
+			ISyncCorrespondenceResolver<Integer, String> injectedField;
 		}
 		InjectField injectField = new InjectField();
 		injector.injectMembers(injectField);
@@ -134,7 +134,7 @@ public class InjectCachedTest {
 		class InjectField {
 			@InjectCached
 			@Guicy
-			ICorrespondenceResolver<Integer, String> injectedField;
+			ICorrespondenceResolver<Integer, Integer, String> injectedField;
 		}
 		InjectField injectField = new InjectField();
 		injector.injectMembers(injectField);
@@ -145,10 +145,10 @@ public class InjectCachedTest {
 	@Test
 	public void injectQualifiedMethod() {
 		class InjectMethod {
-			private ICorrespondenceResolver<Integer, String> injectedByMethod;
+			private ICorrespondenceResolver<Integer, Integer, String> injectedByMethod;
 
 			@InjectCached
-			void setInjectedByMethod(@Special ICorrespondenceResolver<Integer, String> correspondence) {
+			void setInjectedByMethod(@Special ICorrespondenceResolver<Integer, Integer, String> correspondence) {
 				this.injectedByMethod = correspondence;
 			}
 		}
@@ -161,10 +161,10 @@ public class InjectCachedTest {
 	@Test
 	public void injectAnnotatedMethod() {
 		class InjectMethod {
-			private ICorrespondenceResolver<Integer, String> injectedByMethod;
+			private ISyncCorrespondenceResolver<Integer, String> injectedByMethod;
 
 			@InjectCached
-			void setInjectedByMethod(@Guicy ICorrespondenceResolver<Integer, String> correspondence) {
+			void setInjectedByMethod(@Guicy ISyncCorrespondenceResolver<Integer, String> correspondence) {
 				this.injectedByMethod = correspondence;
 			}
 		}
@@ -178,7 +178,7 @@ public class InjectCachedTest {
 	public void injectThrowsCheckedMethod() {
 		Object injectee = new Object() {
 			@InjectCached
-			void setNow(ICorrespondenceResolver<Integer, String> correspondence) throws ExecutionException {
+			void setNow(ICorrespondenceResolver<Integer, Integer, String> correspondence) throws ExecutionException {
 				// Pass
 			}
 		};
@@ -192,7 +192,7 @@ public class InjectCachedTest {
 			@InjectCached
 			@Special
 			@Guicy
-			ICorrespondenceResolver<Integer, String> injectedField;
+			ISyncCorrespondenceResolver<Integer, String> injectedField;
 		}
 		InjectField injectField = new InjectField();
 		injector.injectMembers(injectField);
@@ -202,7 +202,7 @@ public class InjectCachedTest {
 	public void injectOverqualifiedMethod() {
 		class InjectMethod {
 			@InjectCached
-			void setInjectedByMethod(@Special @Guicy ICorrespondenceResolver<Integer, String> correspondence) {
+			void setInjectedByMethod(@Special @Guicy ICorrespondenceResolver<Integer, Integer, String> correspondence) {
 				// Pass
 			}
 		}
@@ -214,46 +214,45 @@ public class InjectCachedTest {
 	// Test framework
 	//
 
-	void basicAssertInjection(ICorrespondenceResolver<Integer, String> correspondence) {
+	void basicAssertInjection(ICorrespondenceResolver<Integer, Integer, String> correspondence) {
 		assertThat("Not injected", correspondence, notNullValue());
 		assertThat("Not cached", correspondence.cached(), sameInstance(correspondence));
 	}
 
-	void assertInjection(ICorrespondenceResolver<Integer, String> correspondence) {
+	void assertInjection(ICorrespondenceResolver<Integer, Integer, String> correspondence) {
 		basicAssertInjection(correspondence);
 		assertThat("Wrong instance injected", correspondence.getCorrespondent(1, "hello"), is((int) 'e'));
 	}
 
-	void assertSpecialInjection(ICorrespondenceResolver<Integer, String> correspondence) {
+	void assertSpecialInjection(ICorrespondenceResolver<Integer, Integer, String> correspondence) {
 		basicAssertInjection(correspondence);
 		assertThat("Wrong instance injected", correspondence.getCorrespondent(1, "hello"), is(-(int) 'e'));
 	}
 
-	void assertGuicyInjection(ICorrespondenceResolver<Integer, String> correspondence) {
+	void assertGuicyInjection(ICorrespondenceResolver<Integer, Integer, String> correspondence) {
 		basicAssertInjection(correspondence);
 		assertThat("Wrong instance injected", correspondence.getCorrespondent(1, "hello"), is(5));
 	}
 
-	public static class TestModule extends AbstractModule {
+	public static class TestModule extends MappingModule {
 		@Override
 		protected void configure() {
+			super.configure();
+
 			binder().install(new CustomInjectionModule());
 		}
 
-		@Provides
-		public ICorrespondenceResolver<Integer, String> provideIntegerCorrespondenceInStrings() {
+		public ISyncCorrespondenceResolver<Integer, String> getBasicBinding() {
 			return (element, context) -> context.codePointAt(element);
 		}
 
-		@Provides
 		@Special
-		public ICorrespondenceResolver<Integer, String> provideSpecialIntegerCorrespondenceInStrings() {
+		public ISyncCorrespondenceResolver<Integer, String> getSpecialBinding() {
 			return (element, context) -> -context.codePointAt(element);
 		}
 
-		@Provides
 		@Guicy
-		public ICorrespondenceResolver<Integer, String> provideGuicyIntegerCorrespondenceInStrings() {
+		public ISyncCorrespondenceResolver<Integer, String> getGuicyBinding() {
 			return (element, context) -> context.length();
 		}
 	}

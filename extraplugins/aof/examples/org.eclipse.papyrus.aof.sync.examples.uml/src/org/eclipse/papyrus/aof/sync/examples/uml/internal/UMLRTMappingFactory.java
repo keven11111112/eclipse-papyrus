@@ -13,7 +13,7 @@
 
 package org.eclipse.papyrus.aof.sync.examples.uml.internal;
 
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.MappingFactory;
 import org.eclipse.papyrus.aof.sync.MappingModule;
 import org.eclipse.uml2.uml.Class;
@@ -31,7 +31,7 @@ public class UMLRTMappingFactory extends MappingFactory {
 		super(module);
 	}
 
-	public IMapping<Class> getCapsuleMapping() {
-		return getInstance(IMapping.class, Class.class);
+	public ISyncMapping<Class> getCapsuleMapping() {
+		return getSyncMapping(Class.class);
 	}
 }

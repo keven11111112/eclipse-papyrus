@@ -19,8 +19,8 @@ import javax.inject.Singleton;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Class;
@@ -34,10 +34,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 @Singleton
 public class CapsuleMapping extends NamedElementMapping<Class> {
 	@Inject
-	private IMapping<StateMachine> stateMachine;
+	private ISyncMapping<StateMachine> stateMachine;
 
 	@Inject
-	private ICorrespondenceResolver<Behavior, BehavioredClassifier> behaviorRedef;
+	private ISyncCorrespondenceResolver<Behavior, BehavioredClassifier> behaviorRedef;
 
 	@Inject
 	public CapsuleMapping(IFactory factory) {

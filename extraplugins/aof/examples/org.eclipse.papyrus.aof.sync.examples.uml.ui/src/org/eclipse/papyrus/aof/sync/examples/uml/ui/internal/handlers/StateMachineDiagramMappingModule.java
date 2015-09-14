@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.gmf.DiagramFactory;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.util.RedefinitionUtil;
 import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingFactory;
 import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingModule;
@@ -59,9 +59,9 @@ public class StateMachineDiagramMappingModule extends AbstractModule {
 	 * of elements in a redefinition relationship.
 	 */
 	@Provides
-	public ICorrespondenceResolver<EObject, View> provideVisualCorrespondence(ICorrespondenceResolver<EObject, EObject> semanticCorrespondence) {
-		return new ICorrespondenceResolver<EObject, View>() {
-			private ICorrespondenceResolver<EObject, EObject> correspondence = semanticCorrespondence.cached();
+	public ISyncCorrespondenceResolver<EObject, View> provideVisualCorrespondence(ISyncCorrespondenceResolver<EObject, EObject> semanticCorrespondence) {
+		return new ISyncCorrespondenceResolver<EObject, View>() {
+			private ISyncCorrespondenceResolver<EObject, EObject> correspondence = semanticCorrespondence.cached();
 
 			@Override
 			public EObject getCorrespondent(EObject element, View parentContext) {

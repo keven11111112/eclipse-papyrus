@@ -20,13 +20,13 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.AbstractMapping;
+import org.eclipse.papyrus.aof.sync.SyncMapping;
 
 /**
  * Mapping of size layout constraints on nodes.
  */
 @Singleton
-public class SizeMapping extends AbstractMapping<Size> {
+public class SizeMapping extends SyncMapping<Size> {
 	@Inject
 	public SizeMapping(IFactory factory) {
 		super(NotationPackage.Literals.SIZE, factory);

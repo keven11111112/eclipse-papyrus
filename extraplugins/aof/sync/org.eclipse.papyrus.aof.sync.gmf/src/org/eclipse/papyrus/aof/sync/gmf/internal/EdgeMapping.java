@@ -25,8 +25,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.gmf.DiagramFactory;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 
 /**
  * Mapping of edges, including the nodes that they attach to (not yet supporting
@@ -36,13 +36,13 @@ import org.eclipse.papyrus.aof.sync.IMapping;
 public class EdgeMapping extends ViewMapping<Edge> {
 
 	@Inject
-	private ICorrespondenceResolver<Node, Edge> endpointCorrespondence;
+	private ISyncCorrespondenceResolver<Node, Edge> endpointCorrespondence;
 
 	@Inject
-	private ICorrespondenceResolver<Node, View> labelCorrespondence;
+	private ISyncCorrespondenceResolver<Node, View> labelCorrespondence;
 
 	@Inject
-	private IMapping<Node> labelMapping;
+	private ISyncMapping<Node> labelMapping;
 
 	@Inject
 	public EdgeMapping(IFactory factory) {
@@ -57,7 +57,7 @@ public class EdgeMapping extends ViewMapping<Edge> {
 		mapCorresponding(from, to, NotationPackage.Literals.EDGE__TARGET, endpointCorrespondence);
 		mapCorresponding(from, to, DiagramFactory.CHILDREN_PROPERTY, labelCorrespondence, labelMapping);
 
-		this.<Anchor> initProperty(from, to, NotationPackage.Literals.EDGE__SOURCE_ANCHOR, EcoreUtil::copy);
-		this.<Anchor> initProperty(from, to, NotationPackage.Literals.EDGE__TARGET_ANCHOR, EcoreUtil::copy);
+		this.<Anchor, Anchor> initProperty(from, to, NotationPackage.Literals.EDGE__SOURCE_ANCHOR, EcoreUtil::copy);
+		this.<Anchor, Anchor> initProperty(from, to, NotationPackage.Literals.EDGE__TARGET_ANCHOR, EcoreUtil::copy);
 	}
 }

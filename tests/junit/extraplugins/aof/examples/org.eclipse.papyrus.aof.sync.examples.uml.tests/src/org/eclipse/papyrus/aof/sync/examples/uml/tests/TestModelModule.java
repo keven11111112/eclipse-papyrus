@@ -15,9 +15,9 @@ package org.eclipse.papyrus.aof.sync.examples.uml.tests;
 
 import java.lang.reflect.Field;
 
+import org.eclipse.papyrus.aof.sync.From;
+import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.UMLRTMappingModule;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.From;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.To;
 import org.eclipse.papyrus.aof.sync.tests.runners.TestInstance;
 import org.eclipse.papyrus.junit.utils.rules.ResourceSetFixture;
 import org.eclipse.uml2.uml.Class;

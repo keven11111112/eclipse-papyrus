@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.aof.sync.From;
+import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.emf.MappingCommand;
 import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.From;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.To;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
@@ -55,11 +55,11 @@ public class EMFMappingModuleTest {
 	protected EcoreFactory ecore;
 
 	@Inject
-	protected MappingCommand.Factory<EPackage> commandFactory;
+	protected MappingCommand.Factory<EPackage, EPackage> commandFactory;
 
 	@Inject
 	@Named("ignore me")
-	protected MappingCommand.Factory<EClass> ignoreMe;
+	protected MappingCommand.Factory<EClass, EClass> ignoreMe;
 
 	@Inject
 	protected EditingDomain domain;

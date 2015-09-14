@@ -13,12 +13,11 @@
 
 package org.eclipse.papyrus.aof.sync.emf.internal;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
+import static org.eclipse.papyrus.aof.sync.internal.GuiceUtil.scopedOnly;
+
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Proxy;
 import java.lang.reflect.Type;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.aof.core.IFactory;
@@ -26,11 +25,11 @@ import org.eclipse.papyrus.aof.emf.EMFFactory;
 import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.MappingModule;
 import org.eclipse.papyrus.aof.sync.emf.MappingCommand;
+import org.eclipse.papyrus.aof.sync.internal.GuiceUtil;
 
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
-import com.google.inject.binder.AnnotatedBindingBuilder;
-import com.google.inject.binder.LinkedBindingBuilder;
+import com.google.inject.binder.ScopedBindingBuilder;
 import com.google.inject.util.Types;
 
 /**
@@ -46,84 +45,38 @@ public class EMFMappingModule extends MappingModule {
 	}
 
 	@Override
-	public IFactory provideFactory() {
+	protected IFactory getDefaultFactory() {
 		return EMFFactory.INSTANCE;
 	}
 
-	/**
-	 * Overridden to intercept mapping bindings to auto-discover the mappings
-	 * for which we may need command factories.
-	 */
 	@Override
-	protected <T> LinkedBindingBuilder<T> bind(Key<T> key) {
-		LinkedBindingBuilder<T> result = super.bind(key);
+	protected <T> Stream<? extends ScopedBindingBuilder> getCorollaries(Key<T> key, TypeLiteral<?> implementation) {
+		Stream<? extends ScopedBindingBuilder> basic = super.getCorollaries(key, implementation);
+
+		return Stream.concat(basic, getMappingFactories(key));
+	}
+
+	protected <F extends EObject, T extends EObject> Stream<? extends ScopedBindingBuilder> getMappingFactories(Key<?> key) {
+		Stream<ScopedBindingBuilder> result;
 
 		// If the key is a mapping type, bind the corresponding command factory
-		if (key.getTypeLiteral().getRawType() == IMapping.class) {
-			bindMappingCommandFactory(key);
+		if (key.getTypeLiteral().getRawType() != IMapping.class) {
+			result = Stream.empty();
+		} else {
+			ParameterizedType mappingType = (ParameterizedType) key.getTypeLiteral().getType();
+			Type fromType = mappingType.getActualTypeArguments()[0];
+			Type toType = mappingType.getActualTypeArguments()[1];
+			Type factoryType = Types.newParameterizedTypeWithOwner(MappingCommand.class, MappingCommand.Factory.class, fromType, toType);
+			Type implementationType = Types.newParameterizedType(MappingCommandFactory.class, fromType, toType);
+
+			Key<MappingCommand.Factory<F, T>> factoryKey = GuiceUtil.keyLike(key, factoryType);
+
+			@SuppressWarnings("unchecked")
+			Key<MappingCommandFactory<F, T>> implementationKey = (Key<MappingCommandFactory<F, T>>) Key.get(implementationType);
+
+			result = Stream.of(scopedOnly(basicBind(factoryKey).to(implementationKey)));
 		}
 
 		return result;
-	}
-
-	/**
-	 * Overridden to intercept mapping bindings to auto-discover the mappings
-	 * for which we may need command factories.
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	protected <T> AnnotatedBindingBuilder<T> bind(TypeLiteral<T> type) {
-		AnnotatedBindingBuilder<T> result = super.bind(type);
-
-		// If the key is a mapping type, bind the corresponding command factory
-		if (type.getRawType() == IMapping.class) {
-			AnnotatedBindingBuilder<T> delegate = result;
-			result = (AnnotatedBindingBuilder<T>) Proxy.newProxyInstance(getClass().getClassLoader(), new Class<?>[] { AnnotatedBindingBuilder.class }, new InvocationHandler() {
-
-				@Override
-				public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-					Object result = method.invoke(delegate, args);
-
-					if (method.getDeclaringClass() == AnnotatedBindingBuilder.class) {
-						Object annotation = args[0];
-						Key<?> key = (annotation instanceof Annotation)
-								? Key.get(type, (Annotation) annotation)
-								: Key.get(type, (Class<? extends Annotation>) annotation);
-
-						bindMappingCommandFactory(key);
-					} else {
-						bindMappingCommandFactory(Key.get(type));
-					}
-
-					return result;
-				}
-			});
-		}
-
-		return result;
-	}
-
-	/**
-	 * Binds the mapping command factory for the specified mapping key.
-	 * 
-	 * @param mappingKey
-	 *            an <tt>{@literal IMapping<E>}</tt> key
-	 */
-	protected <T, E extends EObject> void bindMappingCommandFactory(Key<T> mappingKey) {
-		ParameterizedType mappingType = (ParameterizedType) mappingKey.getTypeLiteral().getType();
-		Type elementType = mappingType.getActualTypeArguments()[0];
-		Type factoryType = Types.newParameterizedTypeWithOwner(MappingCommand.class, MappingCommand.Factory.class, elementType);
-		Type implementationType = Types.newParameterizedType(MappingCommandFactory.class, elementType);
-
-		@SuppressWarnings("unchecked")
-		Key<MappingCommand.Factory<E>> factoryKey = (Key<MappingCommand.Factory<E>>) //
-		((mappingKey.getAnnotation() != null) ? Key.get(factoryType, mappingKey.getAnnotation())
-				: (mappingKey.getAnnotationType() != null) ? Key.get(factoryType, mappingKey.getAnnotationType())
-						: Key.get(factoryType));
-
-		@SuppressWarnings("unchecked")
-		Key<MappingCommandFactory<E>> implementationKey = (Key<MappingCommandFactory<E>>) Key.get(implementationType);
-
-		bind(factoryKey).to(implementationKey);
 	}
 }

@@ -23,6 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		EMFMappingModuleTest.class,
+		CrossMetamodelMappingTest.class,
 })
 public class AllTests {
 	// Suite specified by the annotation

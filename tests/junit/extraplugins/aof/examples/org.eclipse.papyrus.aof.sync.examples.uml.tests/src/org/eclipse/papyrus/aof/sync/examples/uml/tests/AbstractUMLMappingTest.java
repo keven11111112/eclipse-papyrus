@@ -36,7 +36,7 @@ import com.google.inject.Inject;
  * Common structure of UML example mapping tests.
  */
 @InjectWith(TestModelModule.class)
-public abstract class AbstractUMLMappingTest<T extends EObject> extends AbstractBaseMappingTest<T> {
+public abstract class AbstractUMLMappingTest<T extends EObject> extends AbstractBaseMappingTest<T, T> {
 
 	@Rule
 	public final ResourceSetFixture rset = new ResourceSetFixture();

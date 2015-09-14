@@ -30,8 +30,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.gmf.DiagramFactory;
 import org.eclipse.papyrus.aof.gmf.util.ViewUtil;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
 import org.eclipse.papyrus.aof.sync.gmf.internal.DiagramMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.EdgeMapping;
@@ -51,66 +51,66 @@ public class DiagramMappingModule extends EMFMappingModule {
 	}
 
 	@Override
-	public IFactory provideFactory() {
+	protected IFactory getDefaultFactory() {
 		return DiagramFactory.INSTANCE;
 	}
 
-	public Class<? extends IMapping<Diagram>> getDiagramMappingBinding() {
+	public Class<? extends ISyncMapping<Diagram>> getDiagramMappingBinding() {
 		return DiagramMapping.class;
 	}
 
-	public Class<? extends IMapping<Node>> getNodeMappingBinding() {
+	public Class<? extends ISyncMapping<Node>> getNodeMappingBinding() {
 		return NodeMapping.class;
 	}
 
-	public Class<? extends IMapping<Edge>> getEdgeMappingBinding() {
+	public Class<? extends ISyncMapping<Edge>> getEdgeMappingBinding() {
 		return EdgeMapping.class;
 	}
 
-	public Class<? extends IMapping<Location>> getLocationMappingBinding() {
+	public Class<? extends ISyncMapping<Location>> getLocationMappingBinding() {
 		return LocationMapping.class;
 	}
 
-	public Class<? extends IMapping<Size>> getSizeMappingBinding() {
+	public Class<? extends ISyncMapping<Size>> getSizeMappingBinding() {
 		return SizeMapping.class;
 	}
 
-	public Class<? extends IMapping<Style>> getStyleMappingBinding() {
+	public Class<? extends ISyncMapping<Style>> getStyleMappingBinding() {
 		return StyleMapping.class;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Node, View> provideNodeResolver(ViewUtil viewUtil) {
+	public ISyncCorrespondenceResolver<Node, View> provideNodeResolver(ViewUtil viewUtil) {
 		return viewUtil::getCorrespondingNode;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Edge, Diagram> provideEdgeResolver(ViewUtil viewUtil) {
+	public ISyncCorrespondenceResolver<Edge, Diagram> provideEdgeResolver(ViewUtil viewUtil) {
 		return viewUtil::getCorrespondingEdge;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Node, Edge> provideEndPointResolver(ViewUtil viewUtil) {
+	public ISyncCorrespondenceResolver<Node, Edge> provideEndPointResolver(ViewUtil viewUtil) {
 		return viewUtil::getCorrespondingEndpoint;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Location, Node> provideLocationResolver(ViewUtil viewUtil) {
+	public ISyncCorrespondenceResolver<Location, Node> provideLocationResolver(ViewUtil viewUtil) {
 		return viewUtil::getCorrespondingLayoutConstraint;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Size, Node> provideSizeResolver(ViewUtil viewUtil) {
+	public ISyncCorrespondenceResolver<Size, Node> provideSizeResolver(ViewUtil viewUtil) {
 		return viewUtil::getCorrespondingLayoutConstraint;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Style, View> provideStyleResolver(ViewUtil viewUtil) {
+	public ISyncCorrespondenceResolver<Style, View> provideStyleResolver(ViewUtil viewUtil) {
 		return viewUtil::getCorrespondingStyle;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<EObject, EObject> provideSemanticCorrespondence() {
+	public ISyncCorrespondenceResolver<EObject, EObject> provideSemanticCorrespondence() {
 		return (element, inParent) -> element;
 	}
 
@@ -124,7 +124,7 @@ public class DiagramMappingModule extends EMFMappingModule {
 	 * @return the visual correspondence resolver
 	 */
 	@Provides
-	public ICorrespondenceResolver<EObject, View> provideVisualCorrespondence(ICorrespondenceResolver<EObject, EObject> semanticCorrespondence) {
+	public ISyncCorrespondenceResolver<EObject, View> provideVisualCorrespondence(ISyncCorrespondenceResolver<EObject, EObject> semanticCorrespondence) {
 		return (element, inParent) -> element;
 	}
 

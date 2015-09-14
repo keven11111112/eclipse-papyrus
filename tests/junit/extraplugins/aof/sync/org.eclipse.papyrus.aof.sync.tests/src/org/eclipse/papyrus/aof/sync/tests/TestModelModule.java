@@ -16,6 +16,8 @@ package org.eclipse.papyrus.aof.sync.tests;
 import java.util.Arrays;
 import java.util.Objects;
 
+import javax.inject.Named;
+
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -31,73 +33,113 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.emf.EMFFactory;
+import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.From;
-import org.eclipse.papyrus.aof.sync.tests.AbstractTest.To;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.MappingModule;
+import org.eclipse.papyrus.aof.sync.To;
+import org.eclipse.papyrus.aof.sync.tests.runners.TestScoped;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.TypeLiteral;
+import com.google.inject.Provides;
 
 /**
  * A Guice module for injection of dependencies into mapping-related tests.
  */
-public class TestModelModule extends AbstractModule {
+public class TestModelModule extends MappingModule {
 
 	public TestModelModule() {
 		super();
 	}
 
 	@Override
-	protected void configure() {
-		bind(IFactory.class).toInstance(EMFFactory.INSTANCE);
+	protected IFactory getDefaultFactory() {
+		return EMFFactory.INSTANCE;
+	}
 
+	@Provides
+	@TestScoped
+	public EPackage provideEPackage() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
 		epackage.setName("test");
-		bind(EPackage.class).toInstance(epackage);
-		bind(EFactory.class).toInstance(epackage.getEFactoryInstance());
+		return epackage;
+	}
 
+	@Provides
+	@TestScoped
+	public EFactory provideEFactory(EPackage ePackage) {
+		return ePackage.getEFactoryInstance();
+	}
+
+	@Provides
+	@TestScoped
+	public EClass providePersonClass(EPackage ePackage) {
 		EClass person = EcoreFactory.eINSTANCE.createEClass();
 		person.setName("Person");
-		epackage.getEClassifiers().add(person);
-		bind(EClass.class).toInstance(person);
+		ePackage.getEClassifiers().add(person);
+		return person;
+	}
 
+	@Provides
+	@TestScoped
+	@Named("name")
+	public EAttribute provideNameAttribute(EClass person) {
 		EAttribute name = EcoreFactory.eINSTANCE.createEAttribute();
 		name.setName("name");
 		name.setEType(EcorePackage.Literals.ESTRING);
 		person.getEStructuralFeatures().add(name);
+		return name;
+	}
 
+	@Provides
+	@TestScoped
+	public EAttribute provideAgeAttribute(EClass person) {
 		EAttribute age = EcoreFactory.eINSTANCE.createEAttribute();
 		age.setName("age");
 		age.setEType(EcorePackage.Literals.EINT);
 		person.getEStructuralFeatures().add(age);
-		bind(EAttribute.class).toInstance(age);
+		return age;
+	}
 
+	@Provides
+	@TestScoped
+	public EReference provideAcquaintancesReference(EClass person) {
 		EReference acquaintances = EcoreFactory.eINSTANCE.createEReference();
 		acquaintances.setName("acquaintances");
 		acquaintances.setEType(person);
 		acquaintances.setLowerBound(0);
 		acquaintances.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
 		person.getEStructuralFeatures().add(acquaintances);
-		bind(EReference.class).toInstance(acquaintances);
+		return acquaintances;
+	}
 
-		// Create a new "from" instance for every test
-		bind(EObject.class).annotatedWith(From.class).toProvider(() -> {
-			EObject result = create(person, name, "From");
+	@Provides
+	@TestScoped
+	@From
+	public EObject provideFromPerson(EClass person, @Named("name") EAttribute name, EReference acquaintances) {
+		EObject result = create(person, name, "From");
 
-			@SuppressWarnings("unchecked")
-			EList<EObject> fromsAcquaintances = (EList<EObject>) result.eGet(acquaintances);
-			EObject alice = create(person, name, "Alice");
-			EObject betty = create(person, name, "Betty");
-			EObject caroline = create(person, name, "Caroline");
-			ECollections.setEList(fromsAcquaintances, Arrays.asList(alice, betty, caroline));
+		@SuppressWarnings("unchecked")
+		EList<EObject> fromsAcquaintances = (EList<EObject>) result.eGet(acquaintances);
+		EObject alice = create(person, name, "Alice");
+		EObject betty = create(person, name, "Betty");
+		EObject caroline = create(person, name, "Caroline");
+		ECollections.setEList(fromsAcquaintances, Arrays.asList(alice, betty, caroline));
 
-			return result;
-		});
+		return result;
+	}
 
-		// Create a new "to" instance for every test
-		bind(EObject.class).annotatedWith(To.class).toProvider(() -> create(person, name, "To"));
+	@Provides
+	@TestScoped
+	@To
+	public EObject provideToPerson(EClass person, @Named("name") EAttribute name, EReference acquaintances) {
+		EObject result = create(person, name, "To");
 
-		ICorrespondenceResolver<EObject, EObject> correspondence = (element, context) -> {
+		return result;
+	}
+
+	@Provides
+	public ICorrespondenceResolver<EObject, EObject, EObject> providePersonCorrespondence(EClass person, @Named("name") EAttribute name, EReference acquaintances) {
+		ISyncCorrespondenceResolver<EObject, EObject> correspondence = (element, context) -> {
 			@SuppressWarnings("unchecked")
 			EList<EObject> list = (EList<EObject>) context.eGet(acquaintances);
 			return list.stream()
@@ -105,8 +147,8 @@ public class TestModelModule extends AbstractModule {
 					.findFirst()
 					.orElseGet(() -> create(person, name, element.eGet(name)));
 		};
-		bind(new TypeLiteral<ICorrespondenceResolver<EObject, EObject>>() {
-		}).toInstance(correspondence);
+
+		return correspondence;
 	}
 
 	static EObject create(EClass eclass, Object... features) {

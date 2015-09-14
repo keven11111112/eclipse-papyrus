@@ -18,8 +18,8 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
+import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.CapsuleMapping;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.RegionMapping;
@@ -45,57 +45,57 @@ import com.google.inject.Provides;
  */
 public class UMLRTMappingModule extends EMFMappingModule {
 
-	public java.lang.Class<? extends IMapping<Class>> getCapsuleMappingBinding() {
+	public java.lang.Class<? extends ISyncMapping<Class>> getCapsuleMappingBinding() {
 		return CapsuleMapping.class;
 	}
 
-	public java.lang.Class<? extends IMapping<StateMachine>> getStateMachineMappingBinding() {
+	public java.lang.Class<? extends ISyncMapping<StateMachine>> getStateMachineMappingBinding() {
 		return StateMachineMapping.class;
 	}
 
-	public java.lang.Class<? extends IMapping<Region>> getRegionMappingBinding() {
+	public java.lang.Class<? extends ISyncMapping<Region>> getRegionMappingBinding() {
 		return RegionMapping.class;
 	}
 
-	public java.lang.Class<? extends IMapping<Vertex>> getVertexMappingBinding() {
+	public java.lang.Class<? extends ISyncMapping<Vertex>> getVertexMappingBinding() {
 		return VertexMapping.class;
 	}
 
-	public java.lang.Class<? extends IMapping<Transition>> getTransitionMappingBinding() {
+	public java.lang.Class<? extends ISyncMapping<Transition>> getTransitionMappingBinding() {
 		return TransitionMapping.class;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Behavior, BehavioredClassifier> provideBehaviorRedefResolver() {
+	public ISyncCorrespondenceResolver<Behavior, BehavioredClassifier> provideBehaviorRedefResolver() {
 		return RedefinitionUtil::getRedefiningBehavior;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Region, StateMachine> provideRegionRedefResolver() {
+	public ISyncCorrespondenceResolver<Region, StateMachine> provideRegionRedefResolver() {
 		return RedefinitionUtil::getRedefiningRegion;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Region, State> provideCompositeStateRegionRedefResolver() {
+	public ISyncCorrespondenceResolver<Region, State> provideCompositeStateRegionRedefResolver() {
 		return RedefinitionUtil::getRedefiningCompositeStateRegion;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Vertex, Region> provideVertexRedefResolver() {
+	public ISyncCorrespondenceResolver<Vertex, Region> provideVertexRedefResolver() {
 		return RedefinitionUtil::getRedefiningVertex;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Transition, Region> provideTransitionRedefResolver() {
+	public ISyncCorrespondenceResolver<Transition, Region> provideTransitionRedefResolver() {
 		return RedefinitionUtil::getRedefiningTransition;
 	}
 
 	@Provides
-	public ICorrespondenceResolver<Vertex, Transition> provideTransitionEndRedefResolver() {
+	public ISyncCorrespondenceResolver<Vertex, Transition> provideTransitionEndRedefResolver() {
 		return RedefinitionUtil::getRedefiningEnd;
 	}
 
-	public java.lang.Class<? extends ICorrespondenceResolver<EObject, EObject>> getRedefResolverBinding() {
+	public java.lang.Class<? extends ISyncCorrespondenceResolver<EObject, EObject>> getRedefResolverBinding() {
 		return CorrespondenceResolverSwitch.class;
 	}
 
@@ -103,7 +103,7 @@ public class UMLRTMappingModule extends EMFMappingModule {
 	 * This is used to resolve the matching transition when mapping the notation of a diagram.
 	 */
 	@Provides
-	public ICorrespondenceResolver<Transition, StateMachine> provideTransitionInStatemachineRedefResolver() {
+	public ISyncCorrespondenceResolver<Transition, StateMachine> provideTransitionInStatemachineRedefResolver() {
 		return RedefinitionUtil::getRedefiningTransition;
 	}
 
@@ -111,27 +111,27 @@ public class UMLRTMappingModule extends EMFMappingModule {
 	// Nested types
 	//
 
-	private static class CorrespondenceResolverSwitch implements ICorrespondenceResolver<EObject, EObject> {
+	private static class CorrespondenceResolverSwitch implements ISyncCorrespondenceResolver<EObject, EObject> {
 		@Inject
-		private ICorrespondenceResolver<Behavior, BehavioredClassifier> behavior;
+		private ISyncCorrespondenceResolver<Behavior, BehavioredClassifier> behavior;
 
 		@Inject
-		private ICorrespondenceResolver<Region, StateMachine> region;
+		private ISyncCorrespondenceResolver<Region, StateMachine> region;
 
 		@Inject
-		private ICorrespondenceResolver<Region, State> compositeStateRegion;
+		private ISyncCorrespondenceResolver<Region, State> compositeStateRegion;
 
 		@Inject
-		private ICorrespondenceResolver<Vertex, Region> vertex;
+		private ISyncCorrespondenceResolver<Vertex, Region> vertex;
 
 		@Inject
-		private ICorrespondenceResolver<Transition, Region> transition;
+		private ISyncCorrespondenceResolver<Transition, Region> transition;
 
 		@Inject
-		private ICorrespondenceResolver<Vertex, Transition> transitionEnd;
+		private ISyncCorrespondenceResolver<Vertex, Transition> transitionEnd;
 
 		@Inject
-		private ICorrespondenceResolver<Transition, StateMachine> transitionInStateMachine;
+		private ISyncCorrespondenceResolver<Transition, StateMachine> transitionInStateMachine;
 
 		@Override
 		public EObject getCorrespondent(EObject element, EObject parentContext) {

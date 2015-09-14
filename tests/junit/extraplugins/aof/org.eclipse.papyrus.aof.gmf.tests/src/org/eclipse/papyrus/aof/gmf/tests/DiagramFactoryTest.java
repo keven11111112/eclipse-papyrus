@@ -8,6 +8,7 @@
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
  *     Christian W. Damus - initial tests for GMF implementation of AOF
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.gmf.tests;
 
@@ -87,7 +88,7 @@ public class DiagramFactoryTest extends FactoryTest {
 		EList<Node> children = shape.getPersistedChildren();
 		children.add(child);
 
-		assertThat(box, sameAs(Boxes.immutableOrderedSet(child)));
+		assertThat(box, sameAs(Boxes.with(factory).immutableOrderedSet(child)));
 	}
 
 	@Test
@@ -104,7 +105,7 @@ public class DiagramFactoryTest extends FactoryTest {
 
 		shape.setLayoutConstraint(bounds);
 
-		assertThat(option, sameAs(Boxes.immutableOption(bounds)));
+		assertThat(option, sameAs(Boxes.with(factory).immutableOption(bounds)));
 
 		IBox<Integer> x = option.collectMutable(factory, epackage.getLocation(), epackage.getLocation_X());
 		assertThat(x.get(0), is(42));
@@ -124,7 +125,7 @@ public class DiagramFactoryTest extends FactoryTest {
 
 		shape.setLayoutConstraint(bounds);
 
-		assertThat(option, sameAs(Boxes.immutableOption(bounds)));
+		assertThat(option, sameAs(Boxes.with(factory).immutableOption(bounds)));
 
 		IBox<Integer> width = option.collectMutable(factory, epackage.getSize(), epackage.getSize_Width());
 		assertThat(width.get(0), is(42));

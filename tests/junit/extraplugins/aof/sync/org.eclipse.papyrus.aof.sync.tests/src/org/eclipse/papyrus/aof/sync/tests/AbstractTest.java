@@ -13,13 +13,6 @@
 
 package org.eclipse.papyrus.aof.sync.tests;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-
-import javax.inject.Qualifier;
-
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.junit.Rule;
@@ -34,27 +27,4 @@ public abstract class AbstractTest {
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
 
-	//
-	// Nested types
-	//
-
-	/**
-	 * Annotates the injection point of the "from" element of a mapping fixture.
-	 */
-	@Retention(RUNTIME)
-	@Qualifier
-	@Documented
-	public @interface From {
-		// Empty
-	}
-
-	/**
-	 * Annotates the injection point of the "to" element of a mapping fixture.
-	 */
-	@Retention(RUNTIME)
-	@Qualifier
-	@Documented
-	public @interface To {
-		// Empty
-	}
 }
