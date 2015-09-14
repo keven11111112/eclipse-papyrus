@@ -101,6 +101,14 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	private FixtureEditPartConfigurator sourceConfigurator;
 
 	private FixtureEditPartConfigurator targetConfigurator;
+	
+	protected int createdEdgesCount = 1;
+
+	protected int createdChildsCount = 0;
+
+	protected int diagramChildrenSize = 5;
+
+	protected int initialEnvironmentChildsCount = 4;
 
 	@Rule
 	public final TestRule annotationRule = new AnnotationRule();
@@ -155,7 +163,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 */
 	public void testDestroy(IElementType type) {
 		// DESTROY SEMANTIC+ VIEW
-		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
@@ -167,10 +175,10 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 0);
 		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 4);
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 4, getRootSemanticModel().getOwnedElements().size());
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, diagramEditor.getDiagramEditDomain().getDiagramCommandStack().canUndo() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, source.getSourceConnections().size() == 1);
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 5);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
@@ -187,7 +195,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 */
 	public void testDrop(IElementType type) {
 		// DROP
-		assertTrue(DROP + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
+		assertEquals(DROP + INITIALIZATION_TEST, 4, getDiagramEditPart().getChildren().size());
 		assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
 		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
@@ -200,17 +208,17 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(DROP + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(DROP + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(DROP + TEST_THE_EXECUTION, getDiagramEditPart().getChildren().size() == 4);
+		assertEquals(DROP + TEST_THE_EXECUTION, initialEnvironmentChildsCount + createdChildsCount, getDiagramEditPart().getChildren().size());
 		assertTrue(DROP + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 5);
-		assertTrue(DROP + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertEquals(DROP + TEST_THE_EXECUTION, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(DROP + TEST_THE_UNDO, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(DROP + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 5);
 		assertTrue(DROP + TEST_THE_UNDO, ((Diagram) getRootView()).getEdges().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(DROP + TEST_THE_REDO, getDiagramEditPart().getChildren().size() == 4);
+		assertEquals(DROP + TEST_THE_REDO, initialEnvironmentChildsCount + createdChildsCount, getDiagramEditPart().getChildren().size());
 		assertTrue(DROP + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 5);
-		assertTrue(DROP + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertTrue(DROP + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == createdEdgesCount);
 	}
 
 	/**
@@ -292,13 +300,14 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertEquals(CREATION + INITIALIZATION_TEST, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertEquals(CREATION + INITIALIZATION_TEST, initialEnvironmentChildsCount + createdChildsCount, getDiagramEditPart().getChildren().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, getRootView().getChildren().size() == 4);
 		assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 4);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(CREATION + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertEquals(CREATION + TEST_THE_REDO, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		assertTrue(CREATION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 5);
 		ConnectionEditPart linkEditPart = (ConnectionEditPart) getDiagramEditPart().getConnections().get(0);
 		testLinkEditPart(linkEditPart, initialName);
