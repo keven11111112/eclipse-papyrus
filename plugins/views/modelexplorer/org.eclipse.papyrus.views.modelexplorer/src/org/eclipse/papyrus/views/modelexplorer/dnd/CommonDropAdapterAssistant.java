@@ -421,11 +421,15 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				Object object = it.next();
 				EObject eObjectchild = EMFHelper.getEObject(object);
 
+				if (eObjectchild == null) {
+					continue;
+				}
+
 				if (ViewPrototype.isViewObject(eObjectchild) && getEditors(targetEObject).contains(eObjectchild)) {
 					result.add(getDropViewCommands(getEditingDomain(targetEObject), targetEObject, eObjectchild));
 				}
 				// test if object is an eobject
-				else if (eObjectchild != null) {
+				else {
 					result.addAll(getDropIntoCommand(getEditingDomain(targetEObject), targetEObject, eObjectchild, eref));
 				}
 
