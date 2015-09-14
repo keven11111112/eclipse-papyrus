@@ -809,10 +809,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					CollaborationHelper helper = new CollaborationHelper(getEditingDomain());
 					cc.add(helper.dropCollaborationAsCollaborationUse((GraphicalEditPart) getHost(), (Collaboration) droppedObject, location));
 
-				} else if (droppedObject instanceof Class) {
-					TypeHelper helper = new TypeHelper(getEditingDomain());
-					cc.add(helper.dropTypeAsTypedProperty((GraphicalEditPart) getHost(), (Class) droppedObject, location));
-
 				}
 
 			} else if (graphicalParentObject instanceof StructuredClassifier) {
@@ -821,13 +817,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					CollaborationHelper helper = new CollaborationHelper(getEditingDomain());
 					cc.add(helper.dropCollaborationAsCollaborationUse((GraphicalEditPart) getHost(), (Collaboration) droppedObject, location));
 
-				} else if (droppedObject instanceof Classifier && !(droppedObject instanceof Association)) { // Properties of association type are nonsense
-					TypeHelper helper = new TypeHelper(getEditingDomain());
-					// clarify action name in order to facilitate selection of command
-					// (context: alternative actions proposed by DND service, see bug 402717)
-					cc.setLabel("Drop type as typed property");
-					cc.add(helper.dropTypeAsTypedProperty((GraphicalEditPart) getHost(), (Classifier) droppedObject, location));
-				}
+				} 
 
 			} else if (graphicalParentObject instanceof TypedElement) {
 
