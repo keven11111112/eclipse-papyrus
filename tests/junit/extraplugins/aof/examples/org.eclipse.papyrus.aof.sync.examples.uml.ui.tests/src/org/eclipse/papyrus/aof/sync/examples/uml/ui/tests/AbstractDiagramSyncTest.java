@@ -20,11 +20,13 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
+import static org.junit.Assume.assumeThat;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -37,6 +39,7 @@ import javax.inject.Inject;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
@@ -81,6 +84,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
+import org.eclipse.papyrus.infra.tools.util.StreamUtil;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
@@ -475,18 +479,13 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 		EditPart regionEditPart = requireEditPart(container);
 		EditPart contentsEditPart = getShapeCompartment(regionEditPart);
 
-		Command command = findNodeCreationCommand(contentsEditPart, container,
+		Command createCommand = findNodeCreationCommand(contentsEditPart, container,
 				UMLPackage.Literals.FINAL_STATE,
 				org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes::isKnownElementType);
 
-		assertThat("No executable command provided to create final state", command, notNullValue());
-		execute(command);
+		assertThat("No executable command provided to create final state", createCommand, notNullValue());
 
-		FinalState result = getNewObject(command, FinalState.class);
-
-		execute(SetCommand.create(editor.getEditingDomain(), result, UMLPackage.Literals.NAMED_ELEMENT__NAME, name));
-
-		return result;
+		return create(FinalState.class, createCommand, name);
 	}
 
 	protected EditPart getShapeCompartment(EditPart parent) {
@@ -501,18 +500,13 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 		EditPart sourceEditPart = requireEditPart(source);
 		EditPart targetEditPart = requireEditPart(target);
 
-		Command command = findConnectionCreationCommand(sourceEditPart, targetEditPart,
+		Command createCommand = findConnectionCreationCommand(sourceEditPart, targetEditPart,
 				UMLPackage.Literals.TRANSITION,
 				org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes::isKnownElementType);
 
-		assertThat("No executable command provided to create transition", command, notNullValue());
-		execute(command);
+		assertThat("No executable command provided to create transition", createCommand, notNullValue());
 
-		Transition result = getNewObject(command, Transition.class);
-
-		execute(SetCommand.create(editor.getEditingDomain(), result, UMLPackage.Literals.NAMED_ELEMENT__NAME, name));
-
-		return result;
+		return create(Transition.class, createCommand, name);
 	}
 
 	/**
@@ -538,9 +532,11 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 
 		if (object instanceof ENamedElement) {
 			result = ((UMLUtil.getQualifiedName((ENamedElement) object, NamedElement.SEPARATOR)));
-		} else {
+		} else if (object != null) {
 			IItemLabelProvider labels = (IItemLabelProvider) adapterFactory.adapt(object, IItemLabelProvider.class);
 			result = (labels == null) ? String.valueOf(object) : labels.getText(object);
+		} else {
+			result = String.valueOf(object);
 		}
 
 		return result;
@@ -609,6 +605,11 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 	protected void assertNoView(EObject object) {
 		View view = getView(object);
 		assertThat("View exists for " + label(object), view, nullValue());
+	}
+
+	protected void assumeNoView(EObject object) {
+		View view = getView(object);
+		assumeThat("View exists for " + label(object), view, nullValue());
 	}
 
 	protected Map<EObject, View> getViews(Iterable<? extends EObject> objects) {
@@ -686,6 +687,19 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 		assertDetached(Lists.asList(first, second, rest));
 	}
 
+	protected void assumeDetached(EObject element) {
+		assumeThat("Model must not contain " + label(element), element.eResource(), nullValue());
+	}
+
+	protected <E extends NamedElement> E create(Class<E> resultType, Command creationCommand, String name) {
+		CreateAndConfigureCommand<E> command = new CreateAndConfigureCommand<>(resultType, creationCommand,
+				newObject -> SetCommand.create(editor.getEditingDomain(), newObject, UMLPackage.Literals.NAMED_ELEMENT__NAME, name));
+
+		execute(command);
+
+		return command.getNewObject();
+	}
+
 	//
 	// Nested types
 	//
@@ -694,5 +708,66 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 	@Target({ ElementType.TYPE, ElementType.METHOD })
 	protected @interface NeedsUIEvents {
 		// Empty
+	}
+
+	public class CreateAndConfigureCommand<E extends EObject> extends org.eclipse.emf.common.command.CompoundCommand {
+		private final Command creationCommand;
+		private final Class<E> resultType;
+		private final Function<? super E, org.eclipse.emf.common.command.Command> configureCommandFunction;
+
+		public CreateAndConfigureCommand(Class<E> resultType, Command creationCommand, Function<? super E, org.eclipse.emf.common.command.Command> configureCommandFunction) {
+			super(org.eclipse.emf.common.command.CompoundCommand.LAST_COMMAND_ALL, creationCommand.getLabel());
+
+			this.creationCommand = creationCommand;
+			this.resultType = resultType;
+			this.configureCommandFunction = configureCommandFunction;
+
+			append(GEFtoEMFCommandWrapper.wrap(creationCommand));
+		}
+
+		public E getNewObject() {
+			return StreamUtil.select(getResult().stream(), resultType).findFirst().orElse(null);
+		}
+
+		@Override
+		protected boolean prepare() {
+			boolean result = super.prepare();
+
+			if (result) {
+				append(new CommandWrapper() {
+
+					E newObject;
+
+					@Override
+					public boolean canExecute() {
+						return true;
+					}
+
+					@Override
+					public void execute() {
+						assertThat(prepare(), is(true));
+						super.execute();
+					}
+
+					@Override
+					protected org.eclipse.emf.common.command.Command createCommand() {
+						newObject = AbstractDiagramSyncTest.this.getNewObject(creationCommand, resultType);
+
+						return createConfigureCommand(newObject);
+					}
+
+					@Override
+					public Collection<?> getResult() {
+						return Collections.singletonList(newObject);
+					}
+				});
+			}
+
+			return result;
+		}
+
+		protected org.eclipse.emf.common.command.Command createConfigureCommand(E newObject) {
+			return configureCommandFunction.apply(newObject);
+		}
 	}
 }

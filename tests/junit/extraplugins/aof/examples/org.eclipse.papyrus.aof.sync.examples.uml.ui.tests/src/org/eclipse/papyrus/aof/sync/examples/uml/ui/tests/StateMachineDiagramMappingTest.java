@@ -17,6 +17,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
@@ -25,6 +26,7 @@ import java.util.Arrays;
 import org.eclipse.gef.ui.views.palette.PaletteView;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers.SynchronizeCapsulesHandler;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
@@ -138,6 +140,139 @@ public class StateMachineDiagramMappingTest extends AbstractDiagramSyncTest {
 		assertThat(otherBounds.getHeight(), is(newH));
 	}
 
+	@Test
+	public void undoSynchronizedChange() {
+		// Add a new shape in the original diagram
+		editor.activateDiagram(LIFECYCLE);
+		FinalState capsule1End = createFinalStateWithView(capsule1Region, "end");
+
+		// Assume the new shape in the other (verified by another test case)
+		editor.activateDiagram(DOPPELGANGERS);
+		assumeThat(capsule2Region.getSubvertex("end"), instanceOf(FinalState.class));
+		FinalState capsule2End = (FinalState) capsule2Region.getSubvertex("end");
+		View capsule2EndView = getView(capsule2End);
+		assumeThat(capsule2EndView, notNullValue());
+
+		// Undo the creation
+		undo();
+
+		// Verify both diagrams
+		assertDetached(capsule2EndView);
+		assertDetached(capsule2End);
+		editor.activateDiagram(LIFECYCLE);
+		assertDetached(capsule1End);
+		assertNoView(capsule1End);
+	}
+
+	@Test
+	public void redoSynchronizedChange() {
+		// Add a new shape in the original diagram
+		editor.activateDiagram(LIFECYCLE);
+		FinalState capsule1End = createFinalStateWithView(capsule1Region, "end");
+
+		// Assume the new shape in the other (verified by another test case)
+		editor.activateDiagram(DOPPELGANGERS);
+		assumeThat(capsule2Region.getSubvertex("end"), instanceOf(FinalState.class));
+		FinalState capsule2End = (FinalState) capsule2Region.getSubvertex("end");
+		View capsule2EndView = getView(capsule2End);
+		assumeThat(capsule2EndView, notNullValue());
+
+		// Undo the creation
+		undo();
+
+		// Assume both diagrams (verified by another test case)
+		assumeDetached(capsule2EndView);
+		assumeDetached(capsule2End);
+		editor.activateDiagram(LIFECYCLE);
+		assumeDetached(capsule1End);
+		assumeNoView(capsule1End);
+
+		// Redo the creation
+		redo();
+
+		editor.activateDiagram(DOPPELGANGERS);
+		assertThat(capsule2Region.getSubvertex("end"), instanceOf(FinalState.class));
+		capsule2End = (FinalState) capsule2Region.getSubvertex("end");
+		requireView(capsule2End);
+	}
+
+	@Test
+	public void undoSynchronization() {
+		// Add a new shape in the original diagram
+		editor.activateDiagram(LIFECYCLE);
+		FinalState capsule1End = createFinalStateWithView(capsule1Region, "end");
+
+		// Assume the new shape in the other (verified by another test case)
+		editor.activateDiagram(DOPPELGANGERS);
+		assumeThat(capsule2Region.getSubvertex("end"), instanceOf(FinalState.class));
+		FinalState capsule2End = (FinalState) capsule2Region.getSubvertex("end");
+		View capsule2EndView = getView(capsule2End);
+		assumeThat(capsule2EndView, notNullValue());
+
+		// Undo the creation
+		undo();
+
+		// Assume both diagrams (verified by another test case)
+		assumeThat(capsule2EndView.eResource(), nullValue());
+		assumeThat(capsule2End.eResource(), nullValue());
+		editor.activateDiagram(LIFECYCLE);
+		assumeThat(capsule1End.eResource(), nullValue());
+		assumeThat(getView(capsule1End), nullValue());
+
+		// Undo the synchronization set-up
+		undo();
+
+		// Repeat the creation
+		editor.activateDiagram(LIFECYCLE);
+		capsule1End = createFinalStateWithView(capsule1Region, "end");
+
+		// The doppelganger is no longer synchronized (but the state machine semantics is!)
+		editor.activateDiagram(DOPPELGANGERS);
+		assertThat(capsule2Region.getSubvertex("end"), instanceOf(FinalState.class));
+		capsule2End = (FinalState) capsule2Region.getSubvertex("end");
+		assertNoView(capsule2End);
+	}
+
+	@Test
+	public void redoSynchronization() {
+		// Add a new shape in the original diagram
+		editor.activateDiagram(LIFECYCLE);
+		FinalState capsule1End = createFinalStateWithView(capsule1Region, "end");
+
+		// Assume the new shape in the other (verified by another test case)
+		editor.activateDiagram(DOPPELGANGERS);
+		assumeThat(capsule2Region.getSubvertex("end"), instanceOf(FinalState.class));
+		FinalState capsule2End = (FinalState) capsule2Region.getSubvertex("end");
+		View capsule2EndView = getView(capsule2End);
+		assumeThat(capsule2EndView, notNullValue());
+
+		// Undo the creation
+		undo();
+
+		// Assume both diagrams (verified by another test case)
+		assumeThat(capsule2EndView.eResource(), nullValue());
+		assumeThat(capsule2End.eResource(), nullValue());
+		editor.activateDiagram(LIFECYCLE);
+		assumeThat(capsule1End.eResource(), nullValue());
+		assumeThat(getView(capsule1End), nullValue());
+
+		// Undo the synchronization set-up
+		undo();
+
+		// Redo it
+		redo();
+
+		// Repeat the creation
+		editor.activateDiagram(LIFECYCLE);
+		capsule1End = createFinalStateWithView(capsule1Region, "end");
+
+		// The doppelganger is once again synchronized
+		editor.activateDiagram(DOPPELGANGERS);
+		assertThat(capsule2Region.getSubvertex("end"), instanceOf(FinalState.class));
+		capsule2End = (FinalState) capsule2Region.getSubvertex("end");
+		requireView(capsule2End);
+	}
+
 	//
 	// Test framework
 	//
@@ -147,8 +282,8 @@ public class StateMachineDiagramMappingTest extends AbstractDiagramSyncTest {
 		editor.activateDiagram(DOPPELGANGERS);
 	}
 
-	@Before
-	public void gatherElements() {
+	@Override
+	public void synchronizeActiveDiagram() {
 		Class capsule1 = (Class) editor.getModel().getOwnedType("Capsule1");
 		capsule1Behavior = (StateMachine) capsule1.getClassifierBehavior();
 		capsule1Region = capsule1Behavior.getRegions().get(0);
@@ -163,5 +298,8 @@ public class StateMachineDiagramMappingTest extends AbstractDiagramSyncTest {
 
 		// Synchronize the capsules for creation of new elements
 		new SynchronizeCapsulesHandler().synchronize(Arrays.asList(capsule1, capsule2));
+
+		// Synchronize the diagram
+		super.synchronizeActiveDiagram();
 	}
 }

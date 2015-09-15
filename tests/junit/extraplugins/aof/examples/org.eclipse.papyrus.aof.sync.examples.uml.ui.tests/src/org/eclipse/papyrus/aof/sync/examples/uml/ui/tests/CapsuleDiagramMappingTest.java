@@ -121,6 +121,195 @@ public class CapsuleDiagramMappingTest extends AbstractDiagramSyncTest {
 		assertThat(otherBounds.getHeight(), is(newH));
 	}
 
+	@Test
+	public void undoSynchronizedChange() {
+		// First, grab the original location of the doppelganger
+		editor.activateDiagram(DOPPELGANGERS);
+		Shape other = requireShape(capsule1);
+		Bounds otherBounds = (Bounds) other.getLayoutConstraint();
+		final int oldX = otherBounds.getX();
+		final int oldY = otherBounds.getY();
+
+		// Move a capsule in the original diagram
+		editor.activateDiagram(CAPSULES);
+		Shape original = requireShape(capsule1);
+
+		Bounds bounds = (Bounds) original.getLayoutConstraint();
+		int newX = bounds.getX() + 30;
+		int newY = bounds.getY() + 30;
+		execute(() -> {
+			bounds.setX(newX);
+			bounds.setY(newY);
+		});
+
+		// Assume the new location in the other (verified by another test case)
+		editor.activateDiagram(DOPPELGANGERS);
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assumeThat(otherBounds.getX(), is(newX));
+		assumeThat(otherBounds.getY(), is(newY));
+
+		// Undo the move
+		undo();
+
+		// Verify both diagrams
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assertThat(otherBounds.getX(), is(oldX));
+		assertThat(otherBounds.getY(), is(oldY));
+		Bounds originalBounds = (Bounds) original.getLayoutConstraint();
+		assertThat(originalBounds.getX(), not(newX));
+		assertThat(originalBounds.getY(), not(newY));
+	}
+
+	@Test
+	public void redoSynchronizedChange() {
+		// First, grab the original location of the doppelganger
+		editor.activateDiagram(DOPPELGANGERS);
+		Shape other = requireShape(capsule1);
+		Bounds otherBounds = (Bounds) other.getLayoutConstraint();
+		final int oldX = otherBounds.getX();
+		final int oldY = otherBounds.getY();
+
+		// Move a capsule in the original diagram
+		editor.activateDiagram(CAPSULES);
+		Shape original = requireShape(capsule1);
+
+		Bounds bounds = (Bounds) original.getLayoutConstraint();
+		int newX = bounds.getX() + 30;
+		int newY = bounds.getY() + 30;
+		execute(() -> {
+			bounds.setX(newX);
+			bounds.setY(newY);
+		});
+
+		// Assume the new location in the other (verified by another test case)
+		editor.activateDiagram(DOPPELGANGERS);
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assumeThat(otherBounds.getX(), is(newX));
+		assumeThat(otherBounds.getY(), is(newY));
+
+		// Undo the move
+		undo();
+
+		// Assume both diagrams (verified by another test case)
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assumeThat(otherBounds.getX(), is(oldX));
+		assumeThat(otherBounds.getY(), is(oldY));
+		Bounds originalBounds = (Bounds) original.getLayoutConstraint();
+		assumeThat(originalBounds.getX(), not(newX));
+		assumeThat(originalBounds.getY(), not(newY));
+
+		// Redo the move
+		redo();
+
+		editor.activateDiagram(DOPPELGANGERS);
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assertThat(otherBounds.getX(), is(newX));
+		assertThat(otherBounds.getY(), is(newY));
+	}
+
+	@Test
+	public void undoSynchronization() {
+		// First, grab the original location of the doppelganger
+		editor.activateDiagram(DOPPELGANGERS);
+		Shape other = requireShape(capsule1);
+		Bounds otherBounds = (Bounds) other.getLayoutConstraint();
+		final int oldX = otherBounds.getX();
+		final int oldY = otherBounds.getY();
+
+		// Move a capsule in the original diagram
+		editor.activateDiagram(CAPSULES);
+		Shape original = requireShape(capsule1);
+
+		Bounds bounds = (Bounds) original.getLayoutConstraint();
+		int newX = bounds.getX() + 30;
+		int newY = bounds.getY() + 30;
+		execute(() -> {
+			bounds.setX(newX);
+			bounds.setY(newY);
+		});
+
+		// Assume the new location in the other (verified by another test case)
+		editor.activateDiagram(DOPPELGANGERS);
+		assumeThat(otherBounds.getX(), is(newX));
+		assumeThat(otherBounds.getY(), is(newY));
+
+		// Undo the move
+		undo();
+
+		// Assume the old location in the other (verified by another test case)
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assumeThat(otherBounds.getX(), is(oldX));
+		assumeThat(otherBounds.getY(), is(oldY));
+
+		// Undo the synchronization set-up
+		undo();
+
+		// Repeat the move
+		editor.activateDiagram(CAPSULES);
+		execute(() -> {
+			bounds.setX(newX);
+			bounds.setY(newY);
+		});
+
+		// The doppelganger is no longer synchronized
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assertThat(otherBounds.getX(), is(oldX));
+		assertThat(otherBounds.getY(), is(oldY));
+	}
+
+	@Test
+	public void redoSynchronization() {
+		// First, grab the original location of the doppelganger
+		editor.activateDiagram(DOPPELGANGERS);
+		Shape other = requireShape(capsule1);
+		Bounds otherBounds = (Bounds) other.getLayoutConstraint();
+		final int oldX = otherBounds.getX();
+		final int oldY = otherBounds.getY();
+
+		// Move a capsule in the original diagram
+		editor.activateDiagram(CAPSULES);
+		Shape original = requireShape(capsule1);
+
+		Bounds bounds = (Bounds) original.getLayoutConstraint();
+		int newX = bounds.getX() + 30;
+		int newY = bounds.getY() + 30;
+		execute(() -> {
+			bounds.setX(newX);
+			bounds.setY(newY);
+		});
+
+		// Assume the new location in the other (verified by another test case)
+		editor.activateDiagram(DOPPELGANGERS);
+		assumeThat(otherBounds.getX(), is(newX));
+		assumeThat(otherBounds.getY(), is(newY));
+
+		// Undo the move
+		undo();
+
+		// Assume the old location in the other (verified by another test case)
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assumeThat(otherBounds.getX(), is(oldX));
+		assumeThat(otherBounds.getY(), is(oldY));
+
+		// Undo the synchronization set-up
+		undo();
+
+		// Redo it
+		redo();
+
+		// Repeat the move
+		editor.activateDiagram(CAPSULES);
+		execute(() -> {
+			bounds.setX(newX);
+			bounds.setY(newY);
+		});
+
+		// The doppelganger is once again synchronized
+		otherBounds = (Bounds) other.getLayoutConstraint();
+		assertThat(otherBounds.getX(), is(newX));
+		assertThat(otherBounds.getY(), is(newY));
+	}
+
 	//
 	// Test framework
 	//
