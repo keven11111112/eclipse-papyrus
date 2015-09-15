@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
@@ -44,13 +45,13 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		CreateElementRequest semanticRequest = new CreateElementRequest(UMLElementTypes.Classifier_2015);
+		final CreateElementRequest semanticRequest = new CreateElementRequest(UMLElementTypes.Classifier_2015);
 		semanticRequest.setParameter(CreateEditBasedElementCommand.ECLASS_HINT, UMLPackage.eINSTANCE.getClass_());
 
-		ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(
+		final ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(
 				new CreateElementRequestAdapter(semanticRequest),
 				Node.class, ((IHintedType) UMLElementTypes.Classifier_2015).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
-		CreateViewRequest requestcreation = new CreateViewAndElementRequest(viewDescriptor);
+		final CreateViewRequest requestcreation = new CreateViewAndElementRequest(viewDescriptor);
 		return requestcreation;
 	}
 

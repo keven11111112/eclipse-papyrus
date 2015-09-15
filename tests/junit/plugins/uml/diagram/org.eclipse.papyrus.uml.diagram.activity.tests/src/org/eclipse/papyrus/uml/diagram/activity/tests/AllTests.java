@@ -19,6 +19,7 @@ import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite.Dy
 import org.eclipse.papyrus.uml.diagram.activity.tests.canonical.AllCanonicalTests;
 import org.eclipse.papyrus.uml.diagram.activity.tests.edit.helper.ExpansionRegionHelperTest;
 import org.eclipse.papyrus.uml.diagram.activity.tests.edit.part.ExpansionRegionCompartmentEPTest;
+import org.eclipse.papyrus.uml.diagram.activity.tests.edit.part.RoundedCompartmentTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
