@@ -121,7 +121,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.1/S-3.7.1RC3-20150908020029/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.1/R-3.7.1-20150915020029/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>

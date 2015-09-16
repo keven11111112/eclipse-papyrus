@@ -67,13 +67,13 @@
 			<id>emf-cdo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF CDO",0) -->
-			<url>http://download.eclipse.org/modeling/emf/cdo/drops/S20150819-1306</url>
+			<url>http://download.eclipse.org/modeling/emf/cdo/drops/R20150915-0508</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF COMPARE",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201509010903</url>
+			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201509120604</url>
 		</repository>
 		<repository>
 			<id>emf-emf</id>
@@ -139,7 +139,7 @@
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201509020627</url>
+			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201509091420</url>
 		</repository>
 		<repository>
 			<id>m2t-xpand</id>
@@ -193,7 +193,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.1/S-3.7.1RC3-20150908020029/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.1/R-3.7.1-20150915020029/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
