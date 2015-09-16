@@ -97,7 +97,6 @@ import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart.StateInvariantLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
@@ -857,7 +856,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 					continue;
 				}
 				View view = (View) ref.getEObject();
-				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, this);
+				EditPart part = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.getEditPartFromView(view, this);
 				if (!(part instanceof GraphicalEditPart)) {
 					continue;
 				}
