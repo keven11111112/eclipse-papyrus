@@ -1,6 +1,8 @@
 package org.eclipse.papyrus.uml.diagram.tests.canonical;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +11,13 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -25,6 +29,8 @@ import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusT
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.AttributeOwner;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
@@ -73,7 +79,7 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		Command command = getCreateChildCommand(childVisualId, targetCompartmentEP);
 		Assert.assertFalse("The " + childVisualId + "-visualId can't be created in the " + targetCompartmentEP.getClass().getName(), command.canExecute());
 	}
-	
+
 	public void checkChildCreate(int targetVisualId, int targetCompartmentVisualId, int childVisualId) {
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 0);
 		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(targetEP, targetCompartmentVisualId);
@@ -103,14 +109,62 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		Assert.assertTrue(ddCommand.canExecute());
 	}
 
+	public void checkDropAssociationPropertyFromModelExplorer(int targetVisualId, int targetCompartmentVisualId, IElementType associationType) throws Exception {
+		IGraphicalEditPart sourceEP = createChild(targetVisualId, myDiagramEditPart, 0);
+		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 1);
+		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(sourceEP, targetCompartmentVisualId);
+		IGraphicalEditPart associationEP = createAssociationLink(associationType, sourceEP, targetEP);
+		assertNotNull(associationEP);
+		EObject sourceSemantic = sourceEP.resolveSemanticElement();
+		assertTrue("Source should be StructuredClassifier.", sourceSemantic instanceof AttributeOwner);
+		List<Property> sourceProperties = ((AttributeOwner) sourceSemantic).getOwnedAttributes();
+		assertEquals("Source owned attributes", 1, sourceProperties.size());
+		Property sourceProperty = sourceProperties.get(0);
+		List<EObject> forDrop = new ArrayList<EObject>();
+		forDrop.add(sourceProperty);
+		Command ddCommand = createDropCommandFromModelExplorer(forDrop, targetCompartmentEP);
+		Assert.assertTrue(ddCommand == null || false == ddCommand.canExecute());
+	}
+
+	private IGraphicalEditPart createAssociationLink(IElementType type, EditPart source, EditPart target) {
+		Command endCommand = target.getCommand(createConnectionViewRequest(type, source, target));
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, myDiagramEditPart.getConnections().size());
+		IGraphicalEditPart association = (IGraphicalEditPart) myDiagramEditPart.getConnections().get(0);
+		Assert.assertTrue(association.resolveSemanticElement() instanceof Association);
+		return association;
+	}
+
+	private CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target) {
+		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, myDiagramEditPart.getDiagramPreferencesHint());
+		connectionRequest.setSourceEditPart(null);
+		connectionRequest.setTargetEditPart(source);
+		connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
+		source.getCommand(connectionRequest);
+		connectionRequest.setSourceEditPart(source);
+		connectionRequest.setTargetEditPart(target);
+		connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
+		return connectionRequest;
+	}
+
 	private Command createDropCommandFromModelExplorer2Canvas(List<EObject> elements) {
+		return myDiagramEditPart.getCommand(createDropRequestFromModelExplorer(elements));
+	}
+
+	private Command createDropCommandFromModelExplorer(List<EObject> elements, IGraphicalEditPart target) {
+		return target.getCommand(createDropRequestFromModelExplorer(elements));
+	}
+
+	private DropObjectsRequest createDropRequestFromModelExplorer(List<EObject> elements) {
 		DropObjectsRequest req = new DropObjectsRequest();
 		req.setObjects(elements);
 		req.setAllowedDetail(DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK);
 		req.setLocation(new Point(15, 15));
 		req.setRequiredDetail(DND.DROP_COPY);
 		req.setType(RequestConstants.REQ_DROP_OBJECTS);
-		return myDiagramEditPart.getCommand(req);
+		return req;
 	}
 
 	private Command getCreateChildCommand(int childVID, IGraphicalEditPart container) {

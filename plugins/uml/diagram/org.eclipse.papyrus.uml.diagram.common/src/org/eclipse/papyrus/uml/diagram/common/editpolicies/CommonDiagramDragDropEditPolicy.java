@@ -67,10 +67,12 @@ import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.diagram.common.helper.Element2IAdaptableRegistryHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
+import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * This class is used to execute the drag and drop from the outline. It can
@@ -328,6 +330,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 */
 	protected boolean isDropNonCanvasNodeAllowed(IGraphicalEditPart parent, EObject droppedObject) {
 		if (isListCompartmentContainsDroppedObject(parent, droppedObject)) {
+			return false;
+		}
+		if (droppedObject instanceof Property && AssociationUtil.isAssociationEndProperty((Property) droppedObject)) {
 			return false;
 		}
 		return true;
