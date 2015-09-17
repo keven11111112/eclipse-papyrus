@@ -3564,12 +3564,6 @@
               url="${base.downloads.url}/upr/nightly/standardized/update/"/>
         </repositoryList>
       </targlet>
-      <targlet
-          name="TEMPORARY work-around for broken XWT">
-        <requirement
-            name="org.eclipse.swt"
-            versionRange="[3.104.0,3.104.0.v20150805-1901]"/>
-      </targlet>
     </setupTask>
     <setupTask
         xsi:type="setup.p2:P2Task"
