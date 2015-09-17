@@ -27,8 +27,8 @@
          <menu
                icon="images/Papyrus_Req_logo_16x16.bmp"
                id="org.eclipse.papyrus.req.sysml.menu"
-               label="%menu.label.0"
-               tooltip="%menu.tooltip.0">
+               label="%menu.label"
+               tooltip="%menu.tooltip">
          </menu>
       </menuContribution>
       <menuContribution
@@ -118,6 +118,23 @@
                </with>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.DecomposeReqHandler"
+               label="%command.label.4"
+               style="push"
+               tooltip="%command.tooltip.4">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -151,6 +168,12 @@
             defaultHandler="org.eclipse.papyrus.req.sysml.assistant.handler.AddDerivedLinkReqHandler"
             id="org.eclipse.papyrus.req.sysml.assistant.handler.AddDerivedLinkReqHandler"
             name="%command.name.3">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.req.sysml.assistant.handler.DecomposeReqHandler"
+            id="org.eclipse.papyrus.req.sysml.assistant.handler.DecomposeReqHandler"
+            name="%command.name.4">
       </command>
    </extension>
    <extension
