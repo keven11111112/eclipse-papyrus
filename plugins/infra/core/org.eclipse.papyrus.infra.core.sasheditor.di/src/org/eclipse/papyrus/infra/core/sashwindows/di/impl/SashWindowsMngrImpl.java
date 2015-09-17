@@ -23,11 +23,11 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashWindowsMngrImpl#getPageList <em>Page List</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashWindowsMngrImpl#getSashModel <em>Sash Model</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -127,8 +127,7 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST, newPageList, newPageList));
 		}
 	}
@@ -184,8 +183,7 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL, newSashModel, newSashModel));
 		}
 	}

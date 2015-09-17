@@ -25,10 +25,10 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl#getChildren <em>Children</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -104,6 +104,17 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 		PageRef newPage = DiFactory.eINSTANCE.createPageRef();
 		newPage.setPageIdentifier(pageIdentifier);
 		getChildren().add(index, newPage);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	@Override
+	public void addPage(PageRef pageRef) {
+		getChildren().add(pageRef);
 	}
 
 	/**

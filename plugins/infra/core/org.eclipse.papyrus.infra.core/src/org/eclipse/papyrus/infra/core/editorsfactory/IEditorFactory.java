@@ -36,4 +36,22 @@ public interface IEditorFactory {
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier);
 
+	/**
+	 * The ID of this factory
+	 * 
+	 * @return
+	 */
+	default String getFactoryID() {
+		return getClass().getName();
+	}
+
+	/**
+	 * The display label of this factory
+	 * 
+	 * @return
+	 */
+	default String getLabel() {
+		return getClass().getSimpleName();
+	}
+
 }

@@ -106,9 +106,9 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 	/**
 	 * Reload the Diagram
 	 * This used when a resource is reloaded, the related diagrams are reloaded as well
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.services.controlmode.listener.LoadResourceSnippet
-	 * 
+	 *
 	 * @param diagramProxy
 	 *            Identifier of the page to reload
 	 */
@@ -192,12 +192,13 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager#getAssociatedPages(org.eclipse.emf.common.util.URI)
 	 *
 	 * @param uriTrim
 	 * @return
 	 */
+	@Override
 	public List<Object> getAssociatedPages(Object uriTrim) {
 
 		List<Object> list = new ArrayList<Object>();
@@ -223,7 +224,7 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 							uriContainer = pageID.eResource().getURI().trimFileExtension();
 						}
 						if (uriTrim instanceof URI) {
-							if (uriContainer.equals((URI) uriTrim)) {
+							if (uriContainer.equals(uriTrim)) {
 								list.add(pageID);
 							}
 						}
@@ -283,6 +284,20 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 	@Override
 	public void openPage(Object pageIdentifier) {
 		diSashModel.getSashModel().addPage(getCurrentFolder(), pageIdentifier);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager#openPage(java.lang.Object, java.lang.String)
+	 *
+	 * @param pageIdentifier
+	 * @param editorID
+	 */
+	@Override
+	public void openPage(Object pageIdentifier, String editorID) {
+		PageRef newPage = DiFactory.eINSTANCE.createPageRef();
+		newPage.setFavoriteEditor(editorID);
+		newPage.setPageIdentifier(pageIdentifier);
+		diSashModel.getSashModel().addPage(getCurrentFolder(), newPage);
 	}
 
 	/**

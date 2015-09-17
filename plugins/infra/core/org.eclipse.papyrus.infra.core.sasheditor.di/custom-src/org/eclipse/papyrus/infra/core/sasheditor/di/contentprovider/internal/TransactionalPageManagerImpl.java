@@ -121,6 +121,21 @@ public class TransactionalPageManagerImpl extends PageManagerImpl {
 	}
 
 	@Override
+	public void openPage(final Object pageIdentifier, final String editorID) {
+		try {
+			TransactionHelper.run(getEditingDomain(), new Runnable() {
+
+				@Override
+				public void run() {
+					TransactionalPageManagerImpl.super.openPage(pageIdentifier, editorID);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
+	}
+
+	@Override
 	public void closeAllOpenedPages(final Object pageIdentifier) {
 		try {
 			TransactionHelper.run(getEditingDomain(), new Runnable() {

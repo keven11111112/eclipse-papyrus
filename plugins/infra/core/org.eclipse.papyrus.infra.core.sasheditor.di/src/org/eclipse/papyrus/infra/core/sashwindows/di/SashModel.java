@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#getWindows <em>Windows</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#getCurrentSelection <em>Current Selection</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashModel()
  * @model
@@ -84,19 +84,9 @@ public interface SashModel extends EObject {
 	 *
 	 * @model pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
 	 * @generated
-	 * @deprecated use {@link #addPage(TabFolder, Object)}
 	 */
 	@Deprecated
 	void addPage(Object pageIdentifier);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @model pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
-	 * @generated
-	 */
-	void addPage(TabFolder folder, Object pageIdentifier);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,6 +114,24 @@ public interface SashModel extends EObject {
 	 * @generated
 	 */
 	void setCurrentSelectionSilently(TabFolder selection);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @model folderRequired="true" folderOrdered="false" pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
+	 * @generated
+	 */
+	void addPage(TabFolder folder, Object pageIdentifier);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @model folderRequired="true" folderOrdered="false" pageRefRequired="true" pageRefOrdered="false"
+	 * @generated
+	 */
+	void addPage(TabFolder folder, PageRef pageRef);
 
 	/**
 	 * <!-- begin-user-doc -->

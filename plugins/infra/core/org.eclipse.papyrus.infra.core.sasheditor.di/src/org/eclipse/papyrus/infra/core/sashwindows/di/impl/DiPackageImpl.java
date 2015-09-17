@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Size;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
+import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -167,10 +168,15 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	private EDataType booleanEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#eNS_URI
@@ -193,7 +199,9 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link DiPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link DiPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -212,6 +220,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDiPackage.createPackageContents();
@@ -488,8 +497,19 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getPageRef_FavoriteEditor() {
+		return (EAttribute) pageRefEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EReference getPageRef_Parent() {
-		return (EReference) pageRefEClass.getEStructuralFeatures().get(3);
+		return (EReference) pageRefEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -710,6 +730,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		createEReference(pageRefEClass, PAGE_REF__EMF_PAGE_IDENTIFIER);
 		createEAttribute(pageRefEClass, PAGE_REF__PAGE_IDENTIFIER);
 		createEAttribute(pageRefEClass, PAGE_REF__OBJECT_PAGE_IDENTIFIER);
+		createEAttribute(pageRefEClass, PAGE_REF__FAVORITE_EDITOR);
 		createEReference(pageRefEClass, PAGE_REF__PARENT);
 
 		sashPanelEClass = createEClass(SASH_PANEL);
@@ -761,6 +782,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
@@ -822,6 +844,14 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		op = addEOperation(sashModelEClass, null, "setCurrentSelectionSilently", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getTabFolder(), "selection", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
+		op = addEOperation(sashModelEClass, null, "addPage", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTabFolder(), "folder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(sashModelEClass, null, "addPage", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTabFolder(), "folder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getPageRef(), "pageRef", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(windowEClass, Window.class, "Window", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWindow_Position(), this.getPosition(), null, "position", null, 1, 1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getWindow_Size(), this.getSize(), null, "size", null, 1, 1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -861,11 +891,19 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		op = addEOperation(tabFolderEClass, null, "removePage", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getint(), "pageIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
+		op = addEOperation(tabFolderEClass, null, "addPage", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theTypesPackage.getInteger(), "index", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(tabFolderEClass, null, "addPage", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getPageRef(), "pageRef", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(pageRefEClass, PageRef.class, "PageRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPageRef_EmfPageIdentifier(), theEcorePackage.getEObject(), null, "emfPageIdentifier", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED,
 				!IS_ORDERED);
 		initEAttribute(getPageRef_PageIdentifier(), this.getJavaObject(), "pageIdentifier", null, 1, 1, PageRef.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getPageRef_ObjectPageIdentifier(), this.getJavaObject(), "objectPageIdentifier", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPageRef_FavoriteEditor(), theTypesPackage.getString(), "favoriteEditor", null, 0, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPageRef_Parent(), this.getTabFolder(), this.getTabFolder_Children(), "parent", null, 0, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED,
 				!IS_ORDERED);
 
@@ -897,7 +935,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(sashWindowsMngrEClass, SashWindowsMngr.class, "SashWindowsMngr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSashWindowsMngr_PageList(), this.getPageList(), null, "pageList", null, 0, 1, SashWindowsMngr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSashWindowsMngr_PageList(), this.getPageList(), null, "pageList", null, 1, 1, SashWindowsMngr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSashWindowsMngr_SashModel(), this.getSashModel(), null, "sashModel", null, 1, 1, SashWindowsMngr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED,
 				!IS_ORDERED);
 
@@ -913,6 +951,8 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		// Create annotations
 		// resource=XMI
 		createResourceXMIAnnotations();
+		// http://www.eclipse.org/uml2/2.0.0/UML
+		createUMLAnnotations();
 	}
 
 	/**
@@ -927,6 +967,22 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		addAnnotation(this,
 				source,
 				new String[] {
+				});
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/uml2/2.0.0/UML</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void createUMLAnnotations() {
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML";
+		addAnnotation(intEDataType,
+				source,
+				new String[] {
+						"originalName", "Integer"
 				});
 	}
 

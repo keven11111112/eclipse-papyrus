@@ -68,7 +68,7 @@ public class TabFolderModel implements ITabFolderModel {
 
 		Object pageIdentifier = pageRef.getPageIdentifier();
 		if (pageIdentifier != null) {
-			return pageModelFactory.createIPageModel(pageIdentifier);
+			return pageModelFactory.createIPageModel(pageIdentifier, pageRef.getFavoriteEditor());
 		} else {
 			return null;
 		}

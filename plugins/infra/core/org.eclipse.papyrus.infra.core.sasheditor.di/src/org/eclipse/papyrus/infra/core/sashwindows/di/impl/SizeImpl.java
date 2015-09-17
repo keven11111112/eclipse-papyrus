@@ -19,11 +19,11 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.Size;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SizeImpl#getWidth <em>Width</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SizeImpl#getLength <em>Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

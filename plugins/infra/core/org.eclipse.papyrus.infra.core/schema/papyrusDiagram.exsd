@@ -95,6 +95,13 @@ The &lt;code&gt;org.eclipse.papyrus.infra.core.papyrusDiagram&lt;/code&gt; exten
                </appInfo>
             </annotation>
          </attribute>
+         <attribute name="order" type="string" use="default" value="0">
+            <annotation>
+               <documentation>
+                  The order of this factory. The order is used when several factories can handle the same element. An order of 0 is a very high priority, whereas an order of 50 is lower. Factories with a higher order (lower priority) can still be used e.g. via the Open with... menu
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

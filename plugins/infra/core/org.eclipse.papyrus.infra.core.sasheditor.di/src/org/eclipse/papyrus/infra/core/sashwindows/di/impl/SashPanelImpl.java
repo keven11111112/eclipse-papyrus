@@ -28,12 +28,12 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashPanelImpl#getChildren <em>Children</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashPanelImpl#getSashPosition <em>Sash Position</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashPanelImpl#getDirection <em>Direction</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

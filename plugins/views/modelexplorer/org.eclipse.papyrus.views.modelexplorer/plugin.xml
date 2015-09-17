@@ -182,6 +182,10 @@
        <visibleWhen checkEnabled="true">
        </visibleWhen>
     </command>
+    <dynamic
+          class="org.eclipse.papyrus.views.modelexplorer.actions.OpenWithMenu"
+          id="org.eclipse.papyrus.views.modelexplorer.dynamicOpenWith">
+    </dynamic>
     <command commandId="org.eclipse.papyrus.views.modelexplorer.popup.close.command" icon="icons/etool16/close.png" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.close" label="&amp;Close" style="push" tooltip="Close">
        <visibleWhen checkEnabled="true">
        </visibleWhen>

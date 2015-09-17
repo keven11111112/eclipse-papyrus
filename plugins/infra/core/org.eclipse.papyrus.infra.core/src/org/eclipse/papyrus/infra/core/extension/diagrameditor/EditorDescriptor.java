@@ -47,6 +47,12 @@ public class EditorDescriptor {
 	private String iconPath;
 
 	/**
+	 * The order of this factory. Used when several factories match the same element (Diagram...)
+	 * The lower the order, the higher the priority of this factory
+	 */
+	private int order;
+
+	/**
 	 * Constructor.
 	 */
 	public EditorDescriptor() {
@@ -119,6 +125,14 @@ public class EditorDescriptor {
 			return "[nestedEditor  editorFactory:" + editorFactoryClass + "(null)]";
 		}
 		return "[nestedEditor  editorFactory:" + editorFactoryClass.getName() + "]";
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
 	}
 
 	/**

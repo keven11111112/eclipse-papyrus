@@ -15,13 +15,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getEmfPageIdentifier <em>Emf Page Identifier</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getPageIdentifier <em>Page Identifier</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getObjectPageIdentifier <em>Object Page Identifier</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getFavoriteEditor <em>Favorite Editor</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getParent <em>Parent</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getPageRef()
  * @model
@@ -113,6 +114,35 @@ public interface PageRef extends EObject {
 	 * @generated
 	 */
 	void setObjectPageIdentifier(Object value);
+
+	/**
+	 * Returns the value of the '<em><b>Favorite Editor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Favorite Editor</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Favorite Editor</em>' attribute.
+	 * @see #setFavoriteEditor(String)
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getPageRef_FavoriteEditor()
+	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
+	 * @generated
+	 */
+	String getFavoriteEditor();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getFavoriteEditor <em>Favorite Editor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>Favorite Editor</em>' attribute.
+	 * @see #getFavoriteEditor()
+	 * @generated
+	 */
+	void setFavoriteEditor(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' container reference.
