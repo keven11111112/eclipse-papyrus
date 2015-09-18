@@ -742,11 +742,11 @@ public class ShapeCustomisationTest extends AbstractPapyrusTest {
 					.execute(new CustomStyleValueCommand((View) editPart.getModel(), !isPackageDefaultValue, NotationPackage.eINSTANCE.getBooleanValueStyle(), NotationPackage.eINSTANCE.getBooleanValueStyle_BooleanValue(),
 							NamedStyleProperties.IS_PACKAGE));
 
-			Assert.assertEquals("Package not well set on IRoundedRectangleFigure", !isPackageDefaultValue, isPackageDefaultValue ? !isPackage((IPapyrusNodeFigure) primaryShape) : isPackage((IPapyrusNodeFigure) primaryShape));
+			Assert.assertEquals("Package not well set on IRoundedRectangleFigure", !isPackageDefaultValue, isPackage((IPapyrusNodeFigure) primaryShape));
 			getCommandStack().undo();
-			Assert.assertEquals("Package not well undo on IRoundedRectangleFigure", isPackageDefaultValue, isPackageDefaultValue ? !isPackage((IPapyrusNodeFigure) primaryShape) : isPackage((IPapyrusNodeFigure) primaryShape));
+			Assert.assertEquals("Package not well undo on IRoundedRectangleFigure", isPackageDefaultValue, isPackage((IPapyrusNodeFigure) primaryShape));
 			getCommandStack().redo();
-			Assert.assertEquals("Package not well redo on IRoundedRectangleFigure", !isPackageDefaultValue, isPackageDefaultValue ? !isPackage((IPapyrusNodeFigure) primaryShape) : isPackage((IPapyrusNodeFigure) primaryShape));
+			Assert.assertEquals("Package not well redo on IRoundedRectangleFigure", !isPackageDefaultValue, isPackage((IPapyrusNodeFigure) primaryShape));
 			getCommandStack().undo();
 		}
 	}
@@ -784,7 +784,7 @@ public class ShapeCustomisationTest extends AbstractPapyrusTest {
 	 * @return true, if is package
 	 */
 	private boolean isPackage(IPapyrusNodeFigure primaryShape) {
-		return !((IRoundedRectangleFigure) primaryShape).getPackageHeader().equals(0, 0, 0, 0);
+		return !((IRoundedRectangleFigure) primaryShape).getPackageHeader().isEmpty();
 	}
 
 	/**
