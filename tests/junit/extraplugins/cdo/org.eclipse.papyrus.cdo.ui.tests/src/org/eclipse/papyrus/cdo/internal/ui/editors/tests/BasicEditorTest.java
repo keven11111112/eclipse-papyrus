@@ -38,6 +38,8 @@ import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Class;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -52,6 +54,17 @@ public class BasicEditorTest extends AbstractPapyrusCDOUITest {
 
 	@Rule
 	public final MemoryLeakRule memory = new MemoryLeakRule();
+
+
+	@BeforeClass
+	public static void beforeClass() {
+		System.setProperty("cdo.interactive.conflict.resolution", "false");
+	}
+
+	@AfterClass
+	public static void afterClass() {
+		System.clearProperty("cdo.interactive.conflict.resolution");
+	}
 
 	public BasicEditorTest() {
 		super();
@@ -118,7 +131,6 @@ public class BasicEditorTest extends AbstractPapyrusCDOUITest {
 
 	@Test
 	public void isConflicting() throws Exception {
-
 		openEditor();
 
 		final Class foo = expectElement("Foo", Class.class);
