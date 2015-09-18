@@ -24,7 +24,7 @@ import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.aof.core.ObserverTracker;
+import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.IMappingContext;
 import org.eclipse.papyrus.aof.sync.MappingContext;
@@ -58,7 +58,7 @@ public class MappingContextTest extends AbstractTest {
 
 	@Test
 	public void unmap() {
-		context.run(() -> {
+		ObserverTracker tracker = context.run(() -> {
 			fixture.map(from, to);
 		});
 
@@ -69,8 +69,8 @@ public class MappingContextTest extends AbstractTest {
 		from.eSet(age, 42);
 		assumeThat(to.eGet(age), is(42));
 
-		assertThat(context.getObserverTrackers(), hasItem(anything()));
-		context.detachObserverTrackers().forEach(ObserverTracker::dispose);
+		assertThat(tracker.isEmpty(), is(false));
+		tracker.dispose();
 
 		// Mapping is now inactive
 		from.eSet(age, 17);

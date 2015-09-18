@@ -91,7 +91,7 @@ public class AbstractMappingTest extends AbstractTest {
 
 	@Test
 	public void map() {
-		IPair<IBox<EObject>, IBox<EObject>> pair = fixture.map(from, to);
+		IMapping.Instance<EObject, EObject> pair = fixture.map(from, to);
 		assertThat(pair.getLeft(), matches(IConstraints.ONE));
 		assertThat(pair.getRight(), matches(IConstraints.ONE));
 
@@ -112,14 +112,14 @@ public class AbstractMappingTest extends AbstractTest {
 		IOne<EObject> left = Boxes.with(aof).immutableOne(from);
 		IOne<EObject> right = Boxes.with(aof).immutableOne(to);
 
-		IBox<IPair<IBox<EObject>, IBox<EObject>>> pairBox = fixture.map(left, right);
+		IBox<IMapping.Instance<EObject, EObject>> instanceBox = fixture.map(left, right);
 
-		assertThat(pairBox, matches(IConstraints.ONE));
+		assertThat(instanceBox, matches(IConstraints.ONE));
 
-		IPair<IBox<EObject>, IBox<EObject>> pair = pairBox.get(0);
+		IMapping.Instance<EObject, EObject> instance = instanceBox.get(0);
 
-		assertThat(pair.getLeft(), matches(IConstraints.ONE));
-		assertThat(pair.getRight(), matches(IConstraints.ONE));
+		assertThat(instance.getLeft(), matches(IConstraints.ONE));
+		assertThat(instance.getRight(), matches(IConstraints.ONE));
 
 		@SuppressWarnings("unchecked")
 		EList<? extends EObject> fromRef = (EList<? extends EObject>) from.eGet(reference);
@@ -331,6 +331,64 @@ public class AbstractMappingTest extends AbstractTest {
 		assertThat(toRef, not(hasItem(resolved)));
 	}
 
+	@Test
+	public void mappingInstance() {
+		@SuppressWarnings("unchecked")
+		EList<EObject> fromRef = (EList<EObject>) from.eGet(reference);
+		assumeThat(fromRef.size(), is(3));
+
+		@SuppressWarnings("unchecked")
+		EList<EObject> toRef = (EList<EObject>) to.eGet(reference);
+		assumeThat(toRef, MoreMatchers.emptyIterable());
+
+		IMapping.Instance<EObject, EObject> instance = fixture.map(from, to);
+
+		EObject leftAlice = fromRef.get(0);
+		leftAlice.eSet(attribute, 42);
+		EObject leftBetty = fromRef.get(1);
+		leftBetty.eSet(attribute, 17);
+		EObject leftCaroline = fromRef.get(2);
+		leftCaroline.eSet(attribute, 3);
+
+		// These are verified by another test case
+		assumeThat(toRef.size(), is(3));
+		assumeThat(toRef.get(1).eGet(name), is("Betty"));
+		assumeThat(toRef.get(1).eGet(attribute), is(17));
+
+		EObject leftPeter = EcoreUtil.create(eClass);
+		leftPeter.eSet(name, "Peter");
+		@SuppressWarnings("unchecked")
+		EList<EObject> leftBettyRef = (EList<EObject>) leftBetty.eGet(reference);
+		leftBettyRef.add(leftPeter);
+
+		// ... in the mean-time, the new object has been mapped to the right side ...
+
+		leftPeter.eSet(attribute, 13);
+
+		// The mapping has added something new on the right side
+		EObject rightBetty = toRef.get(1);
+		@SuppressWarnings("unchecked")
+		EList<EObject> rightBettyRef = (EList<EObject>) rightBetty.eGet(reference);
+
+		assertThat(rightBettyRef.size(), is(1));
+		EObject rightPeter = rightBettyRef.get(0);
+		assertThat(rightPeter.eGet(name), is("Peter"));
+
+		// The mapping was instantiated on the new object, recursively
+		assertThat(rightPeter.eGet(attribute), is(13));
+
+		// Recursively destroy this mapping
+		instance.destroy();
+
+		// This was mapped when the mapping was first established
+		leftBetty.eSet(attribute, 51);
+		assertThat(rightBetty.eGet(attribute), is(17));
+
+		// This is a later consequent
+		leftPeter.eSet(attribute, 21);
+		assertThat(rightPeter.eGet(attribute), is(13));
+	}
+
 	//
 	// Test framework
 	//
@@ -382,7 +440,7 @@ public class AbstractMappingTest extends AbstractTest {
 		}
 
 		@Override
-		protected <P, R> IPair<IBox<P>, IBox<R>> mapProperty(IBox<? extends EObject> fromBox, IBox<? extends EObject> toBox, Object identifiedBy, IMapping<? super P, ? super R> using) {
+		protected <P, R> IBox<IMapping.Instance<P, R>> mapProperty(IOne<? extends EObject> fromBox, IOne<? extends EObject> toBox, Object identifiedBy, IMapping<P, R> using) {
 			return super.mapProperty(fromBox, toBox, identifiedBy, using);
 		}
 
@@ -402,12 +460,12 @@ public class AbstractMappingTest extends AbstractTest {
 		}
 
 		@Override
-		protected <D, E, G extends EObject, U extends EObject> IPair<IBox<D>, IBox<E>> mapCorresponding(IOne<G> fromContext, IOne<U> toContext, Object property, ICorrespondenceResolver<D, E, ? super U> resolvedWith) {
+		protected <D, E, G extends EObject, U extends EObject> IBox<? extends IPair<IOne<D>, IOne<E>>> mapCorresponding(IOne<G> fromContext, IOne<U> toContext, Object property, ICorrespondenceResolver<D, E, ? super U> resolvedWith) {
 			return super.mapCorresponding(fromContext, toContext, property, resolvedWith);
 		}
 
 		@Override
-		protected <D, E, G extends EObject, U extends EObject> IPair<IBox<D>, IBox<E>> mapCorresponding(IOne<G> fromContext, IOne<U> toContext, Object property, ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<? super D, ? super E> mappedWith) {
+		protected <D, E, G extends EObject, U extends EObject> IBox<? extends IPair<IOne<D>, IOne<E>>> mapCorresponding(IOne<G> fromContext, IOne<U> toContext, Object property, ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<D, E> mappedWith) {
 			return super.mapCorresponding(fromContext, toContext, property, resolvedWith, mappedWith);
 		}
 

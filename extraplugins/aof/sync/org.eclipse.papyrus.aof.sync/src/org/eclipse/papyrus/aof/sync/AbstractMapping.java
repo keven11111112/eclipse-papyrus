@@ -13,13 +13,22 @@
 
 package org.eclipse.papyrus.aof.sync;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.eclipse.papyrus.aof.core.IBinaryFunction;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConditionalBinding;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
+import org.eclipse.papyrus.aof.core.impl.Pair;
 import org.eclipse.papyrus.aof.core.utils.Functions;
+import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 
 /**
  * A convenient base class for {@link IMapping} implementations, providing various
@@ -32,6 +41,9 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	private final IFactory fromFactory;
 	private final Object toType;
 	private final IFactory toFactory;
+
+	@Inject
+	private IMappingContext context;
 
 	public AbstractMapping(Object fromType, IFactory fromFactory, Object toType, IFactory toFactory) {
 		super();
@@ -51,13 +63,15 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	}
 
 	@Override
-	public IPair<IBox<F>, IBox<T>> map(F from, T to) {
+	public final Instance<F, T> map(F from, T to) {
 		IOne<F> fromBox = getFromFactory().createOne(from);
 		IOne<T> toBox = getToFactory().createOne(to);
 
-		mapProperties(fromBox, toBox);
+		InstanceImpl result = new InstanceImpl(fromBox, toBox);
+		ObserverTracker tracker = context.run(result, this::mapProperties);
+		result.setTracker(tracker);
 
-		return getToFactory().createPair(fromBox, toBox);
+		return result;
 	}
 
 	/**
@@ -103,10 +117,9 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * 
 	 * @return a pairing of the the boxed property values that are mapped
 	 */
-	protected <P, R> IPair<IBox<P>, IBox<R>> mapProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy, IMapping<? super P, ? super R> using) {
+	protected <P, R> IBox<IMapping.Instance<P, R>> mapProperty(IOne<? extends F> fromBox, Object fromIdentifiedBy, IOne<? extends T> toBox, Object toIdentifiedBy, IMapping<P, R> using) {
 		IPair<IBox<P>, IBox<R>> result = getToFactory().createPair(property(fromBox, fromType, fromIdentifiedBy), property(toBox, toType, toIdentifiedBy));
-		using.map(result.getLeft(), result.getRight());
-		return result;
+		return using.map(result.getLeft(), result.getRight());
 	}
 
 	/**
@@ -184,7 +197,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P, R extends P> IConditionalBinding<P, R> bindPropertyConditionally(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy,
+	protected <P, R extends P> IConditionalBinding<P, R> bindPropertyConditionally(IOne<? extends F> fromBox, Object fromIdentifiedBy, IOne<? extends T> toBox, Object toIdentifiedBy,
 			IUnaryFunction<? super P, ? extends R> transformation, IUnaryFunction<? super IBox<? extends P>, Boolean> condition) {
 
 		IBox<R> fromProperty = property(fromBox, fromType, fromIdentifiedBy);
@@ -212,7 +225,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy,
+	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IOne<? extends F> fromBox, Object fromIdentifiedBy, IOne<? extends T> toBox, Object toIdentifiedBy,
 			IUnaryFunction<? super P, ? extends R> initializer) {
 
 		return bindPropertyConditionally(fromBox, fromIdentifiedBy, toBox, toIdentifiedBy, initializer, Functions.emptyOrNull());
@@ -234,7 +247,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy) {
+	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IOne<? extends F> fromBox, Object fromIdentifiedBy, IOne<? extends T> toBox, Object toIdentifiedBy) {
 		return initProperty(fromBox, fromIdentifiedBy, toBox, toIdentifiedBy, null);
 	}
 
@@ -256,7 +269,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <D, E, G extends F, U extends T> IPair<IBox<D>, IBox<E>> mapCorresponding(IOne<G> fromContext, Object fromProperty, IOne<U> toContext, Object toProperty,
+	protected <D, E, G extends F, U extends T> IBox<? extends IPair<IOne<D>, IOne<E>>> mapCorresponding(IOne<G> fromContext, Object fromProperty, IOne<U> toContext, Object toProperty,
 			ICorrespondenceResolver<D, E, ? super U> resolvedWith) {
 
 		return mapCorresponding(fromContext, fromProperty, toContext, toProperty, resolvedWith, null);
@@ -283,8 +296,8 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <D, E, G extends F, U extends T> IPair<IBox<D>, IBox<E>> mapCorresponding(IOne<G> fromContext, Object fromProperty, IOne<U> toContext, Object toProperty,
-			ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<? super D, ? super E> mappedWith) {
+	protected <D, E, G extends F, U extends T> IBox<? extends IPair<IOne<D>, IOne<E>>> mapCorresponding(IOne<G> fromContext, Object fromProperty, IOne<U> toContext, Object toProperty,
+			ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<D, E> mappedWith) {
 
 		IBox<D> fromElements = property(fromContext, fromType, fromProperty);
 		IBox<E> toElements = property(toContext, toType, toProperty);
@@ -311,8 +324,8 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <D, E, U extends T> IPair<IBox<D>, IBox<E>> mapCorresponding(IBox<D> fromElements, IBox<E> toElements,
-			IOne<U> toContext, ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<? super D, ? super E> mappedWith) {
+	protected <D, E, U extends T> IBox<? extends IPair<IOne<D>, IOne<E>>> mapCorresponding(IBox<D> fromElements, IBox<E> toElements,
+			IOne<U> toContext, ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<D, E> mappedWith) {
 
 		IBox<E> mapping = fromElements.collectTo(
 				(D d) -> getCorresponding(d, toContext.get(), resolvedWith));
@@ -321,11 +334,16 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 		// reference, the they will be attached to the model before we recursively map anything
 		toElements.bind(mapping).setAutoDisable(true);
 
+		IBox<? extends IPair<IOne<D>, IOne<E>>> result;
+
 		if (mappedWith != null) {
-			mappedWith.map(fromElements, toElements);
+			// Ensure that the parent context of this mapping instance is propagated
+			result = mappedWith.map(fromElements, toElements);
+		} else {
+			result = toElements.zipWith(fromElements, (IBinaryFunction<E, D, ? extends IPair<IOne<D>, IOne<E>>>) (e, d) -> Pair.of(getFromFactory().createOne(d), getToFactory().createOne(e)));
 		}
 
-		return getToFactory().createPair(fromElements, toElements);
+		return result;
 	}
 
 	/**
@@ -378,4 +396,57 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 		return toType;
 	}
 
+	//
+	// Nested types
+	//
+
+	private class InstanceImpl implements Instance<F, T> {
+		private final IOne<F> from;
+		private final IOne<T> to;
+
+		private ObserverTracker tracker;
+		private final List<Instance<?, ?>> consequents = new ArrayList<>(3);
+
+		InstanceImpl(IOne<F> from, IOne<T> to) {
+			super();
+
+			this.from = from;
+			this.to = to;
+		}
+
+		@Override
+		public IMapping<F, T> getType() {
+			return AbstractMapping.this;
+		}
+
+		@Override
+		public IOne<F> getLeft() {
+			return from;
+		}
+
+		@Override
+		public IOne<T> getRight() {
+			return to;
+		}
+
+		void setTracker(ObserverTracker tracker) {
+			this.tracker = tracker;
+		}
+
+		@Override
+		public Iterator<Instance<?, ?>> iterator() {
+			return consequents.iterator();
+		}
+
+		@Override
+		public void addConsequent(Instance<?, ?> consequent) {
+			consequents.add(consequent);
+		}
+
+		@Override
+		public void destroy() {
+			tracker.dispose();
+			this.forEach(Instance::destroy);
+		}
+	}
 }

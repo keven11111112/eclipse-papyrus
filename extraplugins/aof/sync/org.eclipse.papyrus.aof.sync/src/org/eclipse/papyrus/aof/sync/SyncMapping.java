@@ -66,7 +66,7 @@ public abstract class SyncMapping<E> extends AbstractMapping<E, E>implements ISy
 	 * 
 	 * @return a pairing of the the boxed property values that are mapped
 	 */
-	protected <P, R> IPair<IBox<P>, IBox<R>> mapProperty(IBox<? extends E> fromBox, IBox<? extends E> toBox, Object identifiedBy, IMapping<? super P, ? super R> using) {
+	protected <P, R> IBox<IMapping.Instance<P, R>> mapProperty(IOne<? extends E> fromBox, IOne<? extends E> toBox, Object identifiedBy, IMapping<P, R> using) {
 		return mapProperty(fromBox, identifiedBy, toBox, identifiedBy, using);
 	}
 
@@ -103,7 +103,7 @@ public abstract class SyncMapping<E> extends AbstractMapping<E, E>implements ISy
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P, R extends P> IConditionalBinding<P, R> bindPropertyConditionally(IBox<? extends E> fromBox, IBox<? extends E> toBox, Object identifiedBy,
+	protected <P, R extends P> IConditionalBinding<P, R> bindPropertyConditionally(IOne<? extends E> fromBox, IOne<? extends E> toBox, Object identifiedBy,
 			IUnaryFunction<? super P, ? extends R> transformation, IUnaryFunction<? super IBox<? extends P>, Boolean> condition) {
 
 		return bindPropertyConditionally(fromBox, identifiedBy, toBox, identifiedBy, transformation, condition);
@@ -126,7 +126,7 @@ public abstract class SyncMapping<E> extends AbstractMapping<E, E>implements ISy
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IBox<? extends E> fromBox, IBox<? extends E> toBox, Object identifiedBy,
+	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IOne<? extends E> fromBox, IOne<? extends E> toBox, Object identifiedBy,
 			IUnaryFunction<? super P, ? extends R> initializer) {
 
 		return initProperty(fromBox, identifiedBy, toBox, identifiedBy, initializer);
@@ -146,7 +146,7 @@ public abstract class SyncMapping<E> extends AbstractMapping<E, E>implements ISy
 	 * 
 	 * @return a pairing of the the boxed property values that are bound
 	 */
-	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IBox<? extends E> fromBox, IBox<? extends E> toBox, Object identifiedBy) {
+	protected <P, R extends P> IConditionalBinding<P, R> initProperty(IOne<? extends E> fromBox, IOne<? extends E> toBox, Object identifiedBy) {
 		return initProperty(fromBox, identifiedBy, toBox, identifiedBy);
 	}
 
@@ -166,7 +166,7 @@ public abstract class SyncMapping<E> extends AbstractMapping<E, E>implements ISy
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <A, B, G extends E, H extends E> IPair<IBox<A>, IBox<B>> mapCorresponding(IOne<G> fromContext, IOne<H> toContext, Object property,
+	protected <A, B, G extends E, H extends E> IBox<? extends IPair<IOne<A>, IOne<B>>> mapCorresponding(IOne<G> fromContext, IOne<H> toContext, Object property,
 			ICorrespondenceResolver<A, B, ? super H> resolvedWith) {
 
 		return mapCorresponding(fromContext, property, toContext, property, resolvedWith);
@@ -191,8 +191,8 @@ public abstract class SyncMapping<E> extends AbstractMapping<E, E>implements ISy
 	 * 
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
-	protected <A, B, G extends E, H extends E> IPair<IBox<A>, IBox<B>> mapCorresponding(IOne<G> fromContext, IOne<H> toContext, Object property,
-			ICorrespondenceResolver<A, B, ? super H> resolvedWith, IMapping<? super A, ? super B> mappedWith) {
+	protected <A, B, G extends E, H extends E> IBox<? extends IPair<IOne<A>, IOne<B>>> mapCorresponding(IOne<G> fromContext, IOne<H> toContext, Object property,
+			ICorrespondenceResolver<A, B, ? super H> resolvedWith, IMapping<A, B> mappedWith) {
 
 		return mapCorresponding(fromContext, property, toContext, property, resolvedWith, mappedWith);
 	}

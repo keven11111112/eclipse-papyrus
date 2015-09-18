@@ -21,15 +21,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import javax.inject.Inject;
 
 import org.eclipse.papyrus.aof.core.AOFFactory;
-import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.IFactory;
-import org.eclipse.papyrus.aof.core.IPair;
+import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.tests.matchers.BoxMatchers;
+import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.MappingModule;
+import org.eclipse.papyrus.aof.sync.SyncMapping;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.junit.Test;
@@ -107,12 +108,12 @@ public class SyncMappingAdapterTest {
 	<L, R> void assertInjection(IMapping<L, R> mapping, L left, R right) {
 		assertThat("Not injected", mapping, notNullValue());
 
-		IPair<IBox<L>, IBox<R>> pair = mapping.map(left, right);
+		IMapping.Instance<L, R> instance = mapping.map(left, right);
 
-		assertThat(pair.getLeft(), BoxMatchers.matches(IConstraints.ONE));
-		assertThat(pair.getLeft().get(0), is(left));
-		assertThat(pair.getRight(), BoxMatchers.matches(IConstraints.ONE));
-		assertThat(pair.getRight().get(0), is(right));
+		assertThat(instance.getLeft(), BoxMatchers.matches(IConstraints.ONE));
+		assertThat(instance.getLeft().get(0), is(left));
+		assertThat(instance.getRight(), BoxMatchers.matches(IConstraints.ONE));
+		assertThat(instance.getRight().get(0), is(right));
 	}
 
 	public static class TestModule extends MappingModule {
@@ -120,19 +121,33 @@ public class SyncMappingAdapterTest {
 		private static IFactory factory = AOFFactory.INSTANCE;
 
 		public IMapping<Integer, Integer> getCouldHaveBeenSyncMappingBinding() {
-			return this::trivialMap;
+			return trivialMapping(Integer.class, Integer.class);
 		}
 
 		public IMapping<Integer, String> getNonSyncMappingBinding() {
-			return this::trivialMap;
+			return trivialMapping(Integer.class, String.class);
 		}
 
 		public ISyncMapping<String> getSyncMappingBinding() {
-			return this::trivialMap;
+			return trivialMapping(String.class);
 		}
 
-		private <L, R> IPair<IBox<L>, IBox<R>> trivialMap(L left, R right) {
-			return factory.createPair(factory.createOne(left), factory.createOne(right));
+		private <L, R> IMapping<L, R> trivialMapping(Class<L> left, Class<R> right) {
+			return new AbstractMapping<L, R>(left, factory, right, factory) {
+				@Override
+				protected void mapProperties(IOne<L> from, IOne<R> to) {
+					// Pass
+				}
+			};
+		}
+
+		private <T> ISyncMapping<T> trivialMapping(Class<T> type) {
+			return new SyncMapping<T>(type, factory) {
+				@Override
+				protected void mapProperties(IOne<T> from, IOne<T> to) {
+					// Pass
+				}
+			};
 		}
 	}
 }

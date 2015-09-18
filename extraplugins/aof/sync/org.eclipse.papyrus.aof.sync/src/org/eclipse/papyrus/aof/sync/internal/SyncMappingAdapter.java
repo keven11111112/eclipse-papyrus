@@ -15,8 +15,6 @@ package org.eclipse.papyrus.aof.sync.internal;
 
 import javax.inject.Inject;
 
-import org.eclipse.papyrus.aof.core.IBox;
-import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
 
@@ -35,7 +33,7 @@ public final class SyncMappingAdapter<E> implements ISyncMapping<E> {
 	}
 
 	@Override
-	public IPair<IBox<E>, IBox<E>> map(E from, E to) {
+	public Instance<E, E> map(E from, E to) {
 		return delegate.map(from, to);
 	}
 }

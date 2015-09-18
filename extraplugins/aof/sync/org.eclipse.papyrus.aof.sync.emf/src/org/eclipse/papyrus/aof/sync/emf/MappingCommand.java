@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.aof.sync.emf;
 
-import java.util.Collection;
-
 import javax.inject.Inject;
 
 import org.eclipse.emf.common.command.Command;
@@ -22,9 +20,7 @@ import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.papyrus.aof.core.ObserverTracker;
 import org.eclipse.papyrus.aof.sync.IMapping;
-import org.eclipse.papyrus.aof.sync.IMappingContext;
 
 /**
  * A command that provides undoable and redoable set-up of
@@ -36,9 +32,7 @@ public class MappingCommand<F extends EObject, T extends EObject> extends Comman
 
 	private IMapping<F, T> mapping;
 
-	private IMappingContext context;
-
-	private Collection<ObserverTracker> trackers;
+	private IMapping.Instance<F, T> mappingInstance;
 
 	public MappingCommand(F from, T to) {
 		super();
@@ -66,11 +60,6 @@ public class MappingCommand<F extends EObject, T extends EObject> extends Comman
 		this.mapping = mapping;
 	}
 
-	@Inject
-	void setContext(IMappingContext context) {
-		this.context = context;
-	}
-
 	@Override
 	protected Command createCommand() {
 		return new RecordingCommand(TransactionUtil.getEditingDomain(from)) {
@@ -84,7 +73,7 @@ public class MappingCommand<F extends EObject, T extends EObject> extends Comman
 
 	@Override
 	public void undo() {
-		disposeTrackers();
+		destroyMapping();
 
 		super.undo();
 	}
@@ -99,15 +88,14 @@ public class MappingCommand<F extends EObject, T extends EObject> extends Comman
 	}
 
 	void doMapping() {
-		context.run(from, to, mapping::map);
-		trackers = context.detachObserverTrackers();
+		mappingInstance = mapping.map(from, to);
 	}
 
-	void disposeTrackers() {
-		for (ObserverTracker next : trackers) {
-			next.dispose();
+	void destroyMapping() {
+		if (mappingInstance != null) {
+			mappingInstance.destroy();
+			mappingInstance = null;
 		}
-		trackers = null;
 	}
 
 	//

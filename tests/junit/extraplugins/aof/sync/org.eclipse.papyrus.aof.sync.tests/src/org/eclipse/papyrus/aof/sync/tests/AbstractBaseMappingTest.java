@@ -23,9 +23,8 @@ import javax.inject.Provider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
-import org.eclipse.papyrus.aof.core.IPair;
+import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.To;
@@ -44,7 +43,7 @@ public abstract class AbstractBaseMappingTest<F extends EObject, T extends EObje
 	private IMapping<F, T> fixture;
 
 	@CleanUp
-	protected IPair<IBox<F>, IBox<T>> mapped;
+	protected IMapping.Instance<F, T> mapped;
 
 	@Inject
 	@From
@@ -75,11 +74,11 @@ public abstract class AbstractBaseMappingTest<F extends EObject, T extends EObje
 		return to.get();
 	}
 
-	protected final IBox<F> getFromBox() {
+	protected final IOne<? extends F> getFromBox() {
 		return mapped.getLeft();
 	}
 
-	protected final IBox<T> getToBox() {
+	protected final IOne<? extends T> getToBox() {
 		return mapped.getRight();
 	}
 
