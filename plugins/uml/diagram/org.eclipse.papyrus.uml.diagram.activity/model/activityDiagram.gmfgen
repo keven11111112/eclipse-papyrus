@@ -20162,7 +20162,7 @@
         iD="org.eclipse.papyrus.uml.diagram.activity"
         name="Papyrus activity editor Plugin"
         provider="Papyrus"
-        version="1.1.0.qualifier">
+        version="1.2.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.uml.diagram.common</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>

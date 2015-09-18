@@ -8109,7 +8109,7 @@
 			</preferencePages>
 		</diagram>
 		<plugin iD="org.eclipse.papyrus.uml.diagram.composite" name="Papyrus Composite Structure Diagram "
-			provider="Eclipse Modeling Project" version="1.1.0.qualifier">
+			provider="Eclipse Modeling Project" version="1.2.0.qualifier">
 			<requiredPlugins>org.eclipse.draw2d</requiredPlugins>
 			<requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
 		</plugin>
