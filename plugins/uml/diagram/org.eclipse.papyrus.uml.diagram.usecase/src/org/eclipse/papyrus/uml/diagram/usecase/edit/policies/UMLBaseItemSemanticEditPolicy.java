@@ -590,8 +590,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return true;
 
 					}
-				}
-				else {
+				} else {
 					return false;
 				}
 				if ((source instanceof Class) || (source instanceof Component) || (source instanceof Actor) || (source instanceof UseCase)) {
@@ -603,8 +602,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return true;
 
 					}
-				}
-				else {
+				} else {
 					return false;
 				}
 				return true;

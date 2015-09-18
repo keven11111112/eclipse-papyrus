@@ -112,8 +112,7 @@ public class ActorInPackageEditPart extends RoundedCompartmentEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -186,17 +185,19 @@ public class ActorInPackageEditPart extends RoundedCompartmentEditPart {
 		if (borderItemEditPart instanceof ActorInPackageNameEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof ActorInPackageAppliedStereotypeEditPart) {
+		} else
+			if (borderItemEditPart instanceof ActorInPackageAppliedStereotypeEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof ActorQualifiedNameInPEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof ActorInPackageFloatingLabelEditPart) {
-			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else
-		{
+				if (borderItemEditPart instanceof ActorQualifiedNameInPEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else
+					if (borderItemEditPart instanceof ActorInPackageFloatingLabelEditPart) {
+			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}

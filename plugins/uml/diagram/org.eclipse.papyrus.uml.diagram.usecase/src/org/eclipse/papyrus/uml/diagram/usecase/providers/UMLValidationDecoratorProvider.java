@@ -65,8 +65,7 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 		if (!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
-		IDecoratorTarget decoratorTarget =
-				((CreateDecoratorsOperation) operation).getDecoratorTarget();
+		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
 		View view = (View) decoratorTarget.getAdapter(
 				View.class);
 		return view != null && UseCaseDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));

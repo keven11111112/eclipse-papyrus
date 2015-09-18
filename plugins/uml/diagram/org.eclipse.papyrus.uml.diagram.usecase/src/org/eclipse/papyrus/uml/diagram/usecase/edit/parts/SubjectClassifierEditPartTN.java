@@ -115,8 +115,7 @@ public class SubjectClassifierEditPartTN extends SubjectNodeEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -193,7 +192,7 @@ public class SubjectClassifierEditPartTN extends SubjectNodeEditPart {
 
 		if (childEditPart instanceof SubjectComponentUsecasesEditPart) {
 			IFigure pane = getPrimaryShape().getUseCasesContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((SubjectComponentUsecasesEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -260,8 +259,7 @@ public class SubjectClassifierEditPartTN extends SubjectNodeEditPart {
 		if (borderItemEditPart instanceof SubjectClassifierFloatingLabelEditPartTN) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
