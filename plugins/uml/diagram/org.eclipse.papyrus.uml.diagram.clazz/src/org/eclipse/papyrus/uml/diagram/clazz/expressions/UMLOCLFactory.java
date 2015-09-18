@@ -47,9 +47,11 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[2];
-		this.expressionBodies = new String[] { "\' \'", //$NON-NLS-1$
+		this.expressions = new UMLAbstractExpression[3];
+		this.expressionBodies = new String[] {
+				"\' \'", //$NON-NLS-1$
 				"not self.oclIsTypeOf(EnumerationLiteral)", //$NON-NLS-1$
+				"self.association.oclIsUndefined()", //$NON-NLS-1$
 		};
 	}
 
