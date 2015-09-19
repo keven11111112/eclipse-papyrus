@@ -91,6 +91,10 @@ public class StateMachineExecution extends Execution {
 	
 	@Override
 	public void execute() {
+		/*0. Initialization*/
+		if(this.context!=null && this.context.objectActivation!=null){
+			this.context.register(new SM_EventAccepter(this));
+		}
 		this.initRegions();
 		/*1. Create visitors for all vertices*/
 		for(RegionActivation activation: this.regionActivation){
