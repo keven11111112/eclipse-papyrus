@@ -144,8 +144,8 @@ public class ActivityNodeActivationGroup {
 
 	public void terminateAll() {
 		// Terminate all node activations in the group.
-		Debug.println("[terminateAll] Terminating activation group for "
-				+ (this.activityExecution != null ? "activity " + this.activityExecution.getTypes().get(0).getName() : this.containingNodeActivation != null ? "node " + this.containingNodeActivation.node.getName() : "expansion region") + ".");
+		//Debug.println("[terminateAll] Terminating activation group for "
+		//		+ (this.activityExecution != null ? "activity " + this.activityExecution.getTypes().get(0).getName() : this.containingNodeActivation != null ? "node " + this.containingNodeActivation.node.getName() : "expansion region") + ".");
 		List<ActivityNodeActivation> nodeActivations = this.nodeActivations;
 		for (int i = 0; i < nodeActivations.size(); i++) {
 			ActivityNodeActivation nodeActivation = nodeActivations.get(i);
