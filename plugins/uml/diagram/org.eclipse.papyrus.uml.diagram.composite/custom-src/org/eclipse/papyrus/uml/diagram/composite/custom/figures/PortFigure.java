@@ -79,12 +79,12 @@ public class PortFigure extends AffixedNamedElementFigure {
 	}
 
 	public void removeBehavior() {
-		if (myBehavior == null) {
+		if (myBehavior != null) {
 			if (getBorderItemContainer().getChildren().contains(myBehavior)) {
 				getBorderItemContainer().remove(myBehavior);
 			}
 		}
-		if (myLineDecor == null) {
+		if (myLineDecor != null) {
 			if (getBorderItemContainer().getChildren().contains(myLineDecor)) {
 				getBorderItemContainer().remove(myLineDecor);
 			}
