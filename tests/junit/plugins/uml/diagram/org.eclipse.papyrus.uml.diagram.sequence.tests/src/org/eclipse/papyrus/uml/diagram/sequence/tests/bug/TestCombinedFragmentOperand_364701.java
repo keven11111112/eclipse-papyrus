@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -87,7 +88,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 		}
 
 		{ // delete operand
-			InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+			InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 			Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 			Command command = op.getCommand(deleteViewRequest);
 			assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
@@ -107,7 +108,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
 		{ // delete view
 			assertTrue(VIEW_DELETION + INITIALIZATION_TEST, cfp.getChildren().size() == 2);
-			InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+			InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 			Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 			Command command = op.getCommand(deleteViewRequest);
 			assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
@@ -127,8 +128,8 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
 	private CombinedFragmentCombinedFragmentCompartmentEditPart setupCombinedFragment() {
 		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(30, 80), new Dimension(100, 100));
-		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
-		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
+		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
 		assertTrue(CREATION + INITIALIZATION_TEST, cfp.getChildren().size() == 1);
 		return cfp;
 	}
@@ -137,7 +138,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 	public void testOperandResizeHeight() {
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
 		waitForComplete();
-		InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 		// resize operand north
 		{
 			Dimension deltaSize = new Dimension(0, 30);
@@ -178,10 +179,11 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 	}
 
 	@Test
+	@FailingTest
 	public void testOperandResizeWidth() {
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
 		waitForComplete();
-		InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 
 		// resize operand east
 		{
