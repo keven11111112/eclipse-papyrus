@@ -1178,10 +1178,18 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 	@Override
 	protected void refreshBounds() {
 		super.refreshBounds();
+		adjustParentLayoutConstraint();
 		if (LifelineResizeHelper.isManualSize(this)) {
 			LifelineFigure primaryShape = getPrimaryShape();
 			// Once the minimum size is set, the main figure will not be expanded by itself.
 			primaryShape.setMinimumSize(new Dimension(1, -1));
+		}
+	}
+
+	private void adjustParentLayoutConstraint() {
+		Rectangle constraint = (Rectangle) ((GraphicalEditPart) getParent()).getContentPane().getLayoutManager().getConstraint(getFigure());
+		if (constraint.x == -1) {
+			constraint.setX(0);
 		}
 	}
 
@@ -1274,7 +1282,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 			LifelineFigure lFigure = (LifelineFigure) nodeShape;
 			return lFigure.getFigureLifelineDotLineFigure();
 		}
-		return setupContentPane(nodeShape);
+		return super.setupContentPane(nodeShape);
 	}
 
 	@Override
@@ -1488,4 +1496,5 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 			rect.height = getFigure().getPreferredSize().height;
 		}
 	}
+
 }

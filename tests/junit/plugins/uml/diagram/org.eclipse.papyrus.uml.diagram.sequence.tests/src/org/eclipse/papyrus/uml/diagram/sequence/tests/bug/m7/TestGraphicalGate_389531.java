@@ -324,7 +324,6 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 	 * 4.1 message4.name == message3.name
 	 */
 	@Test
-	@FailingTest
 	public void testGateCreateWithMessageAsyncOnCombinedFragment() {
 		LifelineEditPart lifeline1 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(10, 100), new Dimension(75, 400));
 		// the lifeline2 should be covered by the CombinedFragment.
