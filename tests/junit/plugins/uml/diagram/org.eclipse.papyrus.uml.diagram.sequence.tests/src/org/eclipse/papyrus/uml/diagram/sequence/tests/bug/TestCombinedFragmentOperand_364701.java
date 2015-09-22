@@ -36,7 +36,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -179,7 +178,6 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 	}
 
 	@Test
-	@FailingTest
 	public void testOperandResizeWidth() {
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
 		waitForComplete();
@@ -195,9 +193,12 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() == getAbsoluteBounds(cfp).width());
 		}
 
+		Rectangle hostLocation = ((IGraphicalEditPart) cfp.getParent()).getFigure().getBounds();
 		// resize operand west
 		{
-			Dimension deltaSize = new Dimension(20, 0);
+			Dimension deltaSize = new Dimension(hostLocation.x, 0);
+			Rectangle before = getAbsoluteBounds(op);
+			assertTrue(OPERAND_RESIZE + INITIALIZATION_TEST, before.width() == getAbsoluteBounds(cfp).width());
 			resizeWest(op, deltaSize);
 			Rectangle after = getAbsoluteBounds(op);
 			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() == getAbsoluteBounds(cfp).width());
