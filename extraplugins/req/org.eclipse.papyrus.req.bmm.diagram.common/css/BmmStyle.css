@@ -77,3 +77,42 @@ Dependency {
 [appliedStereotypes~="Bmm::BusinessProcess"]{	
 	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/BusinessProcess.svg";
 }
+[appliedStereotypes~="Bmm::OrganizationCategory"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::InfluencingOrganization"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::InfluencerCategory"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::AssessmentCategory"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::DesiredResult"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::DesiredResultCategory"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::Directive"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::FixedAsset"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::Influencer"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::Liability"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::Offering"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::Regulation"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
+[appliedStereotypes~="Bmm::Resource"]{	
+	svgFile: "platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/shapes/DefaultShape.svg";
+}
