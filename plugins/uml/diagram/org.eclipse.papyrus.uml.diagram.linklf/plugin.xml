@@ -119,17 +119,6 @@
 				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
 			<Priority name="Low"/>
 			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
-				<method name="getType()" value="PapyrusUMLSequenceDiagram"/>
-			</object>
-		</editpolicyProvider>
-	</extension>
-
-	<extension
-			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-		<editpolicyProvider
-				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
-			<Priority name="Low"/>
-			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
 				<method name="getType()" value="UseCase"/>
 			</object>
 		</editpolicyProvider>
@@ -139,7 +128,7 @@
 	<extension
 			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
 		<editpolicyProvider
-				class="org.eclipse.papyrus.uml.diagram.linklf.providers.SysmlLinkLFEditPolicyProvider" >
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
 			<Priority name="Low"/>
 			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
 				<method name="getType()" value="InternalBlock"/>
@@ -150,7 +139,7 @@
 	<extension
 			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
 		<editpolicyProvider
-				class="org.eclipse.papyrus.uml.diagram.linklf.providers.SysmlLinkLFEditPolicyProvider" >
+				class="org.eclipse.papyrus.uml.diagram.linklf.providers.LinksLFEditPolicyProvider" >
 			<Priority name="Low"/>
 			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
 				<method name="getType()" value="BlockDefinition"/>
