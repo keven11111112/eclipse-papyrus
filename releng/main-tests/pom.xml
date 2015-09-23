@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipse.papyrus</groupId>
 	<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
 	<version>1.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<parent>
-	    <groupId>org.eclipse.papyrus</groupId>
-	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
-	    <version>1.2.0-SNAPSHOT</version>
-	    <relativePath>..</relativePath>
-    </parent>
+		<groupId>org.eclipse.papyrus</groupId>
+		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
+		<version>1.2.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
 	<modules>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.tests</module>
-        <module>../../tests/junit/plugins/suites/org.eclipse.papyrus.tests.diagramassistants</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.core.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.nattable.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.services.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.diagram.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.nattable.feature</module>
-        <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.assistants.feature</module>
-        <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.decoratormodel.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.diagram.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.nattable.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.tools.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.views.feature</module>
-	    <module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.textedit.tests.feature</module>
-    	<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.alf.tests.feature</module>
+		<module>../../tests/junit/plugins/suites/org.eclipse.papyrus.tests.diagramassistants</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.core.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.nattable.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.services.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.diagram.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.nattable.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.assistants.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.decoratormodel.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.diagram.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.nattable.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.tools.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.views.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.textedit.tests.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.alf.tests.feature</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.editor.integration.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.clipboard.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.di.tests</module>
@@ -39,7 +40,7 @@
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.elementtypesconfigurations.tests</module>
 		<module>../../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
-        <module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
+		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.tools.tests</module>
 		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly.tests</module>
 		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.tests</module>
@@ -47,13 +48,13 @@
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.css.tests</module>
-        <module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
-        <module>../../tests/junit/plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
-        <module>../../tests/junit/plugins/infra/nattable</module>
+		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
+		<module>../../tests/junit/plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
+		<module>../../tests/junit/plugins/infra/nattable</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.labelprovider.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.resourceloading.tests</module>
-        <module>../../tests/junit/plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration.tests</module>
+		<module>../../tests/junit/plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration.tests</module>
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.blockdefinition.tests</module>
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.internalblock.tests</module>
 		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.parametric.tests</module>
@@ -62,15 +63,15 @@
 		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.modelexplorer.tests</module>
 		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
 		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.tests</module>
-        <module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator.tests</module>
-        <module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests</module>
-        <module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>
-        <module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.controlmode.tests</module>
+		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator.tests</module>
+		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests</module>
+		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>
+		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.controlmode.tests</module>
 		<module>../../tests/junit/plugins/uml/diagram</module>
 		<module>../../tests/junit/plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer.tests</module>
 		<module>../../tests/junit/plugins/uml/nattable</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
-        <module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.filters.tests</module>
+		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.filters.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.modelrepair.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.profile.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.service.types.tests</module>
@@ -88,7 +89,8 @@
 	</modules>
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
-        <testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
+		<testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
+		<jacoco.version>0.7.5.201505241946</jacoco.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -127,82 +129,87 @@
 	</repositories>
 	<build>
 		<pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>2.6</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
-				<configuration>
-					<source>${java.source.version}</source>
-					<target>${java.target.version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.xtend</groupId>
-				<artifactId>xtend-maven-plugin</artifactId>
-				<version>${xtext.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-compiler-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					<optimize>true</optimize>
-					<showWarnings>true</showWarnings>
-                    <!-- Tycho build using the project's JDT settings. -->
-                    <useProjectSettings>true</useProjectSettings>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					 <environments>
-						 <environment>
-							 <os>win32</os>
-							 <ws>win32</ws>
-							 <arch>x86</arch>
-						 </environment>
-						 <environment>
-							 <os>win32</os>
-							 <ws>win32</ws>
-							 <arch>x86_64</arch>
-						 </environment>
-						 <environment>
-							 <os>linux</os>
-							 <ws>gtk</ws>
-							 <arch>x86</arch>
-						 </environment>
-						 <environment>
-							 <os>linux</os>
-							 <ws>gtk</ws>
-							 <arch>x86_64</arch>
-						 </environment>
-						 <environment>
-							 <os>macosx</os>
-							 <ws>cocoa</ws>
-							 <arch>x86_64</arch>
-						 </environment>
-					 </environments>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.4.0</version>
-			</plugin>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<source>${java.source.version}</source>
+						<target>${java.target.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.xtend</groupId>
+					<artifactId>xtend-maven-plugin</artifactId>
+					<version>${xtext.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<optimize>true</optimize>
+						<showWarnings>true</showWarnings>
+						<!-- Tycho build using the project's JDT settings. -->
+						<useProjectSettings>true</useProjectSettings>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>target-platform-configuration</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<environments>
+							<environment>
+								<os>win32</os>
+								<ws>win32</ws>
+								<arch>x86</arch>
+							</environment>
+							<environment>
+								<os>win32</os>
+								<ws>win32</ws>
+								<arch>x86_64</arch>
+							</environment>
+							<environment>
+								<os>linux</os>
+								<ws>gtk</ws>
+								<arch>x86</arch>
+							</environment>
+							<environment>
+								<os>linux</os>
+								<ws>gtk</ws>
+								<arch>x86_64</arch>
+							</environment>
+							<environment>
+								<os>macosx</os>
+								<ws>cocoa</ws>
+								<arch>x86_64</arch>
+							</environment>
+						</environments>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.4.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco-version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -226,6 +233,31 @@
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-p2-repository-plugin</artifactId>
 				<version>${tycho-version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-prepare-agent-integration</id>
+						<goals>
+							<goal>prepare-agent-integration</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
