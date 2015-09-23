@@ -16,11 +16,13 @@ package org.eclipse.papyrus.aof.sync.examples.uml.internal;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
-import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
+import org.eclipse.papyrus.aof.sync.emf.EMFMappingModule;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.CapsuleMapping;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.RegionMapping;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings.StateMachineMapping;
@@ -44,6 +46,22 @@ import com.google.inject.Provides;
  * mappings, inspired by UML-RT.
  */
 public class UMLRTMappingModule extends EMFMappingModule {
+	private final Provider<EditingDomain> editingDomain;
+
+	public UMLRTMappingModule() {
+		this(() -> null);
+	}
+
+	public UMLRTMappingModule(Provider<EditingDomain> editingDomain) {
+		super();
+
+		this.editingDomain = editingDomain;
+	}
+
+	@Override
+	public Provider<? extends EditingDomain> getEditingDomainBinding() {
+		return editingDomain;
+	}
 
 	public java.lang.Class<? extends ISyncMapping<Class>> getCapsuleMappingBinding() {
 		return CapsuleMapping.class;

@@ -19,7 +19,7 @@ import javax.inject.Singleton;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.SyncMapping;
+import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Mapping of named elements, synchronizing their names.
  */
 @Singleton
-public class NamedElementMapping<T extends NamedElement> extends SyncMapping<T> {
+public class NamedElementMapping<T extends NamedElement> extends EMFSyncMapping<T> {
 	@Inject
 	public NamedElementMapping(EClass type, IFactory factory) {
 		super(type, factory);

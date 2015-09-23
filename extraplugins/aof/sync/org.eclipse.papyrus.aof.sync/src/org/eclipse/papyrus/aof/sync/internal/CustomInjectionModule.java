@@ -13,7 +13,7 @@
 
 package org.eclipse.papyrus.aof.sync.internal;
 
-import static org.eclipse.papyrus.aof.sync.internal.GuiceUtil.findBindingAnnotation;
+import static org.eclipse.papyrus.aof.sync.internal.GuiceUtil.findQualifierAnnotation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -63,7 +63,7 @@ public class CustomInjectionModule extends AbstractModule {
 					if (field.isAnnotationPresent(InjectCached.class)) {
 						Method cacheMethod = getCacheMethod(field.getType());
 						if (cacheMethod != null) {
-							Annotation annotation = findBindingAnnotation(field, encounter);
+							Annotation annotation = findQualifierAnnotation(field, encounter);
 							Key<?> key = (annotation == null) ? Key.get(field.getGenericType()) : Key.get(field.getGenericType(), annotation);
 							encounter.register(new CachingFieldInjector<I>(field, encounter.getProvider(key), cacheMethod));
 						} else {
@@ -84,7 +84,7 @@ public class CustomInjectionModule extends AbstractModule {
 								Parameter param = method.getParameters()[0];
 								Method cacheMethod = getCacheMethod(param.getType());
 								if (cacheMethod != null) {
-									Annotation annotation = findBindingAnnotation(param, encounter);
+									Annotation annotation = findQualifierAnnotation(param, encounter);
 									Key<?> key = (annotation == null) ? Key.get(param.getParameterizedType()) : Key.get(param.getParameterizedType(), annotation);
 									encounter.register(new CachingMethodInjector<I>(method, encounter.getProvider(key), cacheMethod));
 								} else {

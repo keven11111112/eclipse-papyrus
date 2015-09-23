@@ -18,8 +18,10 @@ import static org.eclipse.papyrus.aof.gmf.util.ViewUtil.SEMANTIC_CORRESPONDENCE;
 import java.util.function.BiPredicate;
 
 import javax.inject.Named;
+import javax.inject.Provider;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Location;
@@ -32,7 +34,7 @@ import org.eclipse.papyrus.aof.gmf.DiagramFactory;
 import org.eclipse.papyrus.aof.gmf.util.ViewUtil;
 import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
-import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
+import org.eclipse.papyrus.aof.sync.emf.EMFMappingModule;
 import org.eclipse.papyrus.aof.sync.gmf.internal.DiagramMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.EdgeMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.LocationMapping;
@@ -46,13 +48,26 @@ import com.google.inject.Provides;
  * Guice module for configuration of diagram mappings.
  */
 public class DiagramMappingModule extends EMFMappingModule {
+	private final Provider<EditingDomain> editingDomain;
+
 	public DiagramMappingModule() {
+		this(() -> null);
+	}
+
+	public DiagramMappingModule(Provider<EditingDomain> editingDomain) {
 		super();
+
+		this.editingDomain = editingDomain;
 	}
 
 	@Override
 	protected IFactory getDefaultFactory() {
 		return DiagramFactory.INSTANCE;
+	}
+
+	@Override
+	public Provider<? extends EditingDomain> getEditingDomainBinding() {
+		return editingDomain;
 	}
 
 	public Class<? extends ISyncMapping<Diagram>> getDiagramMappingBinding() {

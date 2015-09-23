@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.aof.sync.examples.uml.internal;
 
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -27,31 +28,26 @@ public class Activator extends Plugin {
 	// The shared instance
 	private static Activator plugin;
 
-	/**
-	 * The constructor
-	 */
+	/** Logging helper */
+	public static LogHelper log;
+
 	public Activator() {
+		super();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+
+		log = new LogHelper(this);
 		plugin = this;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
+		log = null;
+
 		super.stop(context);
 	}
 

@@ -40,7 +40,7 @@ public abstract class AbstractBaseMappingTest<F extends EObject, T extends EObje
 	private IFactory aof;
 
 	@Inject
-	private IMapping<F, T> fixture;
+	private Provider<IMapping<F, T>> fixture;
 
 	@CleanUp
 	protected IMapping.Instance<F, T> mapped;
@@ -59,7 +59,7 @@ public abstract class AbstractBaseMappingTest<F extends EObject, T extends EObje
 
 	@Before
 	public void performMapping() {
-		mapped = fixture.map(from.get(), to.get());
+		mapped = fixture.get().map(from.get(), to.get());
 	}
 
 	protected final IFactory getAOF() {

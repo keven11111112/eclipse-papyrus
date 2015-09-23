@@ -24,6 +24,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		CapsuleMappingTest.class,
 		StateMachineMappingTest.class,
+		CapsuleSyncServiceDelegateTest.class,
 		MemoryLeakTest.class,
 })
 public class AllTests {

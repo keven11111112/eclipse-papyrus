@@ -246,6 +246,7 @@
 		<module>../../extraplugins/aof/sync/org.eclipse.papyrus.aof.sync.gmf</module>
 		<module>../../extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml</module>
 		<module>../../extraplugins/aof/examples/org.eclipse.papyrus.aof.sync.examples.uml.ui</module>
+		<module>../../extraplugins/aof/sync/org.eclipse.papyrus.sync</module>
 
 		<module>site</module>
 	</modules>

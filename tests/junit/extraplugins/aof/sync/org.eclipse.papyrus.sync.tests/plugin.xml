@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.sync.syncDelegates">
+      <syncDelegate
+            class="org.eclipse.papyrus.sync.tests.TestSyncDelegate"
+            priority="50">
+      </syncDelegate>
+   </extension>
+
+</plugin>

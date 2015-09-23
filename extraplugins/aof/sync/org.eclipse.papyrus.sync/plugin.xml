@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2015 Christian W. Damus and others.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+   Christian W. Damus - Initial API and implementation
+-->
+
+<plugin>
+   <extension-point id="syncDelegates" name="Synchronization Service Delegates" schema="schema/syncDelegates.exsd"/>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.sync.internal.SyncServiceImpl"
+            description="Generic model synchronization service"
+            id="org.eclipse.papyrus.sync.ISyncService"
+            priority="10"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
+         </dependsOn>
+      </service>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.model">
+      <model
+            classname="org.eclipse.papyrus.sync.internal.SyncMappingModel"
+            description="Synchronization mappings model"
+            fileExtension="syncmapping">
+      </model>
+   </extension>
+
+</plugin>

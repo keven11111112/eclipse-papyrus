@@ -18,9 +18,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assume.assumeThat;
 
+import javax.inject.Inject;
+
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.papyrus.aof.sync.tests.AbstractBaseMappingTest;
+import org.eclipse.papyrus.aof.sync.tests.ModelFixtureRuleModule;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule;
 import org.eclipse.papyrus.junit.utils.rules.JavaResource;
@@ -37,13 +40,11 @@ import org.eclipse.uml2.uml.Vertex;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.google.inject.Inject;
-
 /**
  * Test cases for verification of complete memory clean-up of models
  * that employ AOF-based synchronization of UML.
  */
-@InjectWith(TestModelModule.class)
+@InjectWith({ ModelFixtureRuleModule.class, TestModelModule.class })
 @JavaResource("capsules-with-machines.uml")
 public class MemoryLeakTest extends AbstractBaseMappingTest<Class, Class> {
 
@@ -51,8 +52,9 @@ public class MemoryLeakTest extends AbstractBaseMappingTest<Class, Class> {
 	@Rule
 	public final MemoryLeakRule memory = new MemoryLeakRule();
 
+	@Inject
 	@Rule
-	public final ResourceSetFixture rset = new ResourceSetFixture();
+	public ResourceSetFixture rset;
 
 	@Inject
 	private UMLFactory uml;

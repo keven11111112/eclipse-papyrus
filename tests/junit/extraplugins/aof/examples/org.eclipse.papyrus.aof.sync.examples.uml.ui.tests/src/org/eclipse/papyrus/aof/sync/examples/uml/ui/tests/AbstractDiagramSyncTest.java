@@ -74,6 +74,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers.AbstractSynchronizeViewsHandler;
+import org.eclipse.papyrus.aof.sync.tests.ModelFixtureRuleModule;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
@@ -117,7 +118,7 @@ import com.google.common.util.concurrent.Futures;
  * Common implementation of diagram synchronization test cases.
  */
 @RunWith(GuiceRunner.class)
-@InjectWith(TestDiagramModule.class)
+@InjectWith({ ModelFixtureRuleModule.class, TestDiagramModule.class })
 public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();

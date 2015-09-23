@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.aof.sync.emf.tests;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -24,24 +25,29 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.To;
-import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
+import org.eclipse.papyrus.aof.sync.emf.EMFMapping;
+import org.eclipse.papyrus.aof.sync.emf.EMFMappingModule;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingFactory;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.util.SyncMappingResource;
 import org.eclipse.papyrus.aof.sync.tests.runners.TestScoped;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 import com.google.inject.Provides;
 
@@ -105,21 +111,44 @@ public class UML2EcoreMappingModule extends EMFMappingModule {
 		return (EClass) ((EPackage) resource.getContents().get(0)).getEClassifier("To");
 	}
 
+	@Override
+	@TestScoped
+	public Provider<? extends EditingDomain> getEditingDomainBinding() {
+		return TransactionalEditingDomain.Factory.INSTANCE::createEditingDomain;
+	}
+
 	@Provides
 	@TestScoped
-	public EditingDomain provideEditingDomain() {
-		return TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
+	public SyncMappingResource provideSyncMappingResource(TransactionalEditingDomain domain) {
+		URI uri = URI.createURI("sync:/test.syncmapping", true);
+		ResourceSet rset = domain.getResourceSet();
+		SyncMappingResource result = (SyncMappingResource) rset.getResource(uri, false);
+		if (result == null) {
+			rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put(SyncMappingResource.FILE_EXTENSION, SyncMappingResource.Factory.INSTANCE);
+			result = (SyncMappingResource) rset.createResource(uri);
+
+			MappingModel model = SyncMappingFactory.eINSTANCE.createMappingModel();
+			domain.getCommandStack().execute(new AddCommand(domain, result.getContents(), model));
+		}
+
+		return result;
+	}
+
+	@Provides
+	@TestScoped
+	public MappingModel provideMappingModel(SyncMappingResource resource) {
+		return (MappingModel) EcoreUtil.getObjectByType(resource.getContents(), SyncMappingPackage.Literals.MAPPING_MODEL);
 	}
 
 	@Provides
 	@From
 	@TestScoped
-	public Resource provideFromResource(EditingDomain domain, UMLFactory uml) {
+	public Resource provideFromResource(TransactionalEditingDomain domain, UMLFactory uml) {
 		URI uri = URI.createURI("test:/from.uml", true);
 		ResourceSet rset = domain.getResourceSet();
 		Resource result = rset.getResource(uri, false);
 		if (result == null) {
-			rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
+			rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 			result = rset.createResource(uri);
 
 			Package package_ = uml.createPackage();
@@ -130,14 +159,7 @@ public class UML2EcoreMappingModule extends EMFMappingModule {
 			from.setName("From");
 			package_.getPackagedElements().add(from);
 
-			Resource resource = result;
-			domain.getCommandStack().execute(new RecordingCommand((TransactionalEditingDomain) domain, "Initialize \"from\" Fixture") {
-
-				@Override
-				protected void doExecute() {
-					resource.getContents().add(package_);
-				}
-			});
+			domain.getCommandStack().execute(new AddCommand(domain, result.getContents(), package_));
 		}
 
 		return result;
@@ -146,7 +168,7 @@ public class UML2EcoreMappingModule extends EMFMappingModule {
 	@Provides
 	@To
 	@TestScoped
-	public Resource provideToResource(EditingDomain domain, EcoreFactory ecore) {
+	public Resource provideToResource(TransactionalEditingDomain domain, EcoreFactory ecore) {
 		URI uri = URI.createURI("test:/to.ecore", true);
 		ResourceSet rset = domain.getResourceSet();
 		Resource result = rset.getResource(uri, false);
@@ -163,7 +185,7 @@ public class UML2EcoreMappingModule extends EMFMappingModule {
 			epackage.getEClassifiers().add(from);
 
 			Resource resource = result;
-			domain.getCommandStack().execute(new RecordingCommand((TransactionalEditingDomain) domain, "Initialize \"to\" Fixture") {
+			domain.getCommandStack().execute(new RecordingCommand(domain, "Initialize \"to\" Fixture") {
 
 				@Override
 				protected void doExecute() {
@@ -217,7 +239,7 @@ public class UML2EcoreMappingModule extends EMFMappingModule {
 	// Nested types
 	//
 
-	static class PackageMapping extends AbstractMapping<Package, EPackage> {
+	static class PackageMapping extends EMFMapping<Package, EPackage> {
 
 		@Inject
 		private ICorrespondenceResolver<Class, EClass, EPackage> classResolver;
@@ -239,7 +261,7 @@ public class UML2EcoreMappingModule extends EMFMappingModule {
 		}
 	}
 
-	static class ClassMapping extends AbstractMapping<Class, EClass> {
+	static class ClassMapping extends EMFMapping<Class, EClass> {
 
 		@Inject
 		public ClassMapping(@From IFactory fromFactory, @To IFactory toFactory) {

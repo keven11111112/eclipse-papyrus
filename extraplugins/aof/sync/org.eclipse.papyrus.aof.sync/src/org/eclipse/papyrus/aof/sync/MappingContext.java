@@ -16,6 +16,8 @@ package org.eclipse.papyrus.aof.sync;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
+import javax.inject.Singleton;
+
 import org.eclipse.papyrus.aof.core.IObserver;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.impl.utils.cache.IBinaryCache;
@@ -29,6 +31,7 @@ import org.eclipse.papyrus.aof.sync.IMapping.Instance;
 /**
  * Default implementation of the mapping context protocol.
  */
+@Singleton
 public class MappingContext implements IMappingContext {
 
 	private final AtomicInteger openDepth = new AtomicInteger();
@@ -47,7 +50,7 @@ public class MappingContext implements IMappingContext {
 		openDepth.incrementAndGet();
 
 		IMapping.Instance<?, ?> context = currentMappingInstance.get();
-		Observers.pushObserverIntercept((IObserver<?> o) -> (IObserver<?>) wrapObserver(o, context));
+		Observers.pushObserverIntercept((IObserver<?> o) -> wrapObserver(o, context));
 	}
 
 	@Override
@@ -102,6 +105,7 @@ public class MappingContext implements IMappingContext {
 
 		return result;
 	}
+
 	//
 	// Nested types
 	//

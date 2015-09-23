@@ -67,11 +67,15 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 		IOne<F> fromBox = getFromFactory().createOne(from);
 		IOne<T> toBox = getToFactory().createOne(to);
 
-		InstanceImpl result = new InstanceImpl(fromBox, toBox);
+		InternalInstance<F, T> result = createMappingInstance(fromBox, toBox);
 		ObserverTracker tracker = context.run(result, this::mapProperties);
 		result.setTracker(tracker);
 
 		return result;
+	}
+
+	protected InternalInstance<F, T> createMappingInstance(IOne<F> from, IOne<T> to) {
+		return new InstanceImpl(from, to);
 	}
 
 	/**
@@ -400,7 +404,11 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	// Nested types
 	//
 
-	private class InstanceImpl implements Instance<F, T> {
+	public interface InternalInstance<F, T> extends Instance<F, T> {
+		void setTracker(ObserverTracker tracker);
+	}
+
+	private class InstanceImpl implements InternalInstance<F, T> {
 		private final IOne<F> from;
 		private final IOne<T> to;
 
@@ -429,7 +437,8 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 			return to;
 		}
 
-		void setTracker(ObserverTracker tracker) {
+		@Override
+		public void setTracker(ObserverTracker tracker) {
 			this.tracker = tracker;
 		}
 
@@ -445,7 +454,9 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 
 		@Override
 		public void destroy() {
-			tracker.dispose();
+			if (tracker != null) {
+				tracker.dispose();
+			}
 			this.forEach(Instance::destroy);
 		}
 	}

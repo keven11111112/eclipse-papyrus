@@ -16,6 +16,7 @@ package org.eclipse.papyrus.aof.sync;
 import static org.eclipse.papyrus.aof.sync.internal.GuiceUtil.nullBindingBuilder;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -23,6 +24,7 @@ import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import javax.inject.Named;
@@ -45,6 +47,7 @@ import com.google.inject.TypeLiteral;
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.binder.LinkedBindingBuilder;
 import com.google.inject.binder.ScopedBindingBuilder;
+import com.google.inject.util.Providers;
 import com.google.inject.util.Types;
 
 /**
@@ -149,7 +152,7 @@ public class MappingModule extends AbstractModule {
 	 *            the base type of the injected type signature
 	 * @param arguments
 	 *            optional sequence of types substituted for the generic type parameters of the {@code baseType}
-	 * @return
+	 * @return the binding key
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Key<T> key(java.lang.Class<?> baseType, Type... arguments) {
@@ -172,7 +175,7 @@ public class MappingModule extends AbstractModule {
 	 *            the base type of the injected type signature
 	 * @param arguments
 	 *            optional sequence of types substituted for the generic type parameters of the {@code baseType}
-	 * @return
+	 * @return the binding key
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Key<T> key(Annotation annotation, java.lang.Class<?> baseType, Type... arguments) {
@@ -293,7 +296,7 @@ public class MappingModule extends AbstractModule {
 
 	@SuppressWarnings("unchecked")
 	private void bindReflective(Method bindingMethod) {
-		Annotation annotation = GuiceUtil.findBindingAnnotation(bindingMethod);
+		Annotation qualifier = GuiceUtil.findQualifierAnnotation(bindingMethod);
 
 		Type type = getSimplifiedType((ParameterizedType) bindingMethod.getGenericReturnType());
 
@@ -302,18 +305,24 @@ public class MappingModule extends AbstractModule {
 
 			if (type instanceof Class<?>) {
 				// Instance binding
-				Key<?> key = (annotation == null) ? Key.get(type) : Key.get(type, annotation);
+				Key<?> key = (qualifier == null) ? Key.get(type) : Key.get(type, qualifier);
 				bind((Key<Object>) key).toInstance(binding);
 			} else if (type instanceof ParameterizedType) {
 				ParameterizedType typeSignature = (ParameterizedType) type;
-				if (typeSignature.getRawType() == Class.class) {
-					// Linked binding
-					Type boundType = ((ParameterizedType) type).getActualTypeArguments()[0];
-					Key<?> key = (annotation == null) ? Key.get(boundType) : Key.get(boundType, annotation);
-					bind((Key<Object>) key).to((Class<Object>) binding);
+				Function<Key<?>, ScopedBindingBuilder> bindingFunction = getDynamicBinding(binding);
+				if (bindingFunction != null) {
+					// Linked/Provider/Constructor binding
+					Type boundType = typeSignature.getActualTypeArguments()[0];
+					Key<?> key = (qualifier == null) ? Key.get(boundType) : Key.get(boundType, qualifier);
+
+					ScopedBindingBuilder builder = bindingFunction.apply(key);
+					Annotation scope = GuiceUtil.findScopeAnnotation(bindingMethod);
+					if (scope != null) {
+						builder.in(scope.annotationType());
+					}
 				} else {
 					// Instance binding
-					Key<?> key = (annotation == null) ? Key.get(type) : Key.get(type, annotation);
+					Key<?> key = (qualifier == null) ? Key.get(type) : Key.get(type, qualifier);
 					bind((Key<Object>) key).toInstance(binding);
 				}
 			}
@@ -328,6 +337,24 @@ public class MappingModule extends AbstractModule {
 				throw (RuntimeException) cause;
 			}
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	Function<Key<?>, ScopedBindingBuilder> getDynamicBinding(Object binding) {
+		Function<Key<?>, ScopedBindingBuilder> result = null;
+
+		if (binding instanceof Class<?>) {
+			// Linked binding
+			result = key -> bind((Key<Object>) key).to((Class<Object>) binding);
+		} else if (binding instanceof javax.inject.Provider) {
+			// Provider binding
+			result = key -> bind((Key<Object>) key).toProvider(Providers.guicify((javax.inject.Provider<Object>) binding));
+		} else if ((binding instanceof Constructor<?>)) {
+			// Constructor binding
+			result = key -> bind((Key<Object>) key).toConstructor((Constructor<Object>) binding);
+		}
+
+		return result;
 	}
 
 	private static boolean isBindingDeclaration(Method method) {

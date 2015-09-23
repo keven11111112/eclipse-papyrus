@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.aof.sync.emf.tests;
 
 import javax.inject.Inject;
-import javax.inject.Named;
+import javax.inject.Provider;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
@@ -34,9 +34,13 @@ import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
-import org.eclipse.papyrus.aof.sync.SyncMapping;
 import org.eclipse.papyrus.aof.sync.To;
-import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
+import org.eclipse.papyrus.aof.sync.emf.EMFMappingModule;
+import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingFactory;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.util.SyncMappingResource;
 import org.eclipse.papyrus.aof.sync.tests.runners.TestScoped;
 
 import com.google.inject.Provides;
@@ -65,11 +69,6 @@ public class TestFixtureModule extends EMFMappingModule {
 	}
 
 	public Class<? extends IMapping<EClass, EClass>> getEClassMappingBinding() {
-		return EClassMapping.class;
-	}
-
-	@Named("ignore me")
-	public Class<? extends IMapping<EClass, EClass>> getIgnoredBinding() {
 		return EClassMapping.class;
 	}
 
@@ -111,10 +110,33 @@ public class TestFixtureModule extends EMFMappingModule {
 		return (EClass) ((EPackage) resource.getContents().get(0)).getEClassifier("To");
 	}
 
+	@Override
+	@TestScoped
+	public Provider<? extends EditingDomain> getEditingDomainBinding() {
+		return TransactionalEditingDomain.Factory.INSTANCE::createEditingDomain;
+	}
+
 	@Provides
 	@TestScoped
-	public EditingDomain provideEditingDomain() {
-		return TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
+	public SyncMappingResource provideSyncMappingResource(EditingDomain domain) {
+		URI uri = URI.createURI("sync:/test.syncmapping", true);
+		ResourceSet rset = domain.getResourceSet();
+		SyncMappingResource result = (SyncMappingResource) rset.getResource(uri, false);
+		if (result == null) {
+			rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put(SyncMappingResource.FILE_EXTENSION, SyncMappingResource.Factory.INSTANCE);
+			result = (SyncMappingResource) rset.createResource(uri);
+
+			MappingModel model = SyncMappingFactory.eINSTANCE.createMappingModel();
+			domain.getCommandStack().execute(new AddCommand(domain, result.getContents(), model));
+		}
+
+		return result;
+	}
+
+	@Provides
+	@TestScoped
+	public MappingModel provideMappingModel(SyncMappingResource resource) {
+		return (MappingModel) EcoreUtil.getObjectByType(resource.getContents(), SyncMappingPackage.Literals.MAPPING_MODEL);
 	}
 
 	@Provides
@@ -147,14 +169,7 @@ public class TestFixtureModule extends EMFMappingModule {
 			from.setName(className);
 			epackage.getEClassifiers().add(from);
 
-			Resource resource = result;
-			domain.getCommandStack().execute(new RecordingCommand((TransactionalEditingDomain) domain, String.format("Initialize \"%s\" Fixture", packageName)) {
-
-				@Override
-				protected void doExecute() {
-					resource.getContents().add(epackage);
-				}
-			});
+			domain.getCommandStack().execute(new AddCommand(domain, result.getContents(), epackage));
 		}
 
 		return result;
@@ -202,7 +217,7 @@ public class TestFixtureModule extends EMFMappingModule {
 	// Nested types
 	//
 
-	static class EPackageMapping extends SyncMapping<EPackage> {
+	static class EPackageMapping extends EMFSyncMapping<EPackage> {
 
 		@Inject
 		private ICorrespondenceResolver<EClass, EClass, EPackage> eclassResolver;
@@ -224,7 +239,7 @@ public class TestFixtureModule extends EMFMappingModule {
 		}
 	}
 
-	static class EClassMapping extends SyncMapping<EClass> {
+	static class EClassMapping extends EMFSyncMapping<EClass> {
 
 		@Inject
 		public EClassMapping(IFactory factory) {

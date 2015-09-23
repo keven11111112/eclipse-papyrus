@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Mmm1QGFOEeWMrJQjk4OtCw" name="sync-example" URI="http://www.eclipse.org/schema/papyrus/2015/examples/sync-uml" metaclassReference="_ZUv70GFOEeWMrJQjk4OtCw">
+  <eAnnotations xmi:id="_iuUTQGFOEeWMrJQjk4OtCw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_iuUTQWFOEeWMrJQjk4OtCw" name="syncexample" nsURI="http://www.eclipse.org/schema/papyrus/2015/examples/sync-uml" nsPrefix="syncexample">
+      <eAnnotations xmi:id="_iuU6UGFOEeWMrJQjk4OtCw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details xmi:id="_iuU6UWFOEeWMrJQjk4OtCw" key="originalName" value="sync-example"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_iuU6UmFOEeWMrJQjk4OtCw" name="Capsule">
+        <eAnnotations xmi:id="_iuU6U2FOEeWMrJQjk4OtCw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_anYoYGFOEeWMrJQjk4OtCw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iuU6VGFOEeWMrJQjk4OtCw" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_ZUv70GFOEeWMrJQjk4OtCw">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_anYoYGFOEeWMrJQjk4OtCw" name="Capsule">
+    <ownedAttribute xmi:id="_gW36wmFOEeWMrJQjk4OtCw" name="base_Class" association="_gW36wGFOEeWMrJQjk4OtCw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_gW36wGFOEeWMrJQjk4OtCw" name="Class_Capsule" memberEnd="_gW36wWFOEeWMrJQjk4OtCw _gW36wmFOEeWMrJQjk4OtCw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_gW36wWFOEeWMrJQjk4OtCw" name="extension_Capsule" type="_anYoYGFOEeWMrJQjk4OtCw" aggregation="composite" association="_gW36wGFOEeWMrJQjk4OtCw"/>
+  </packagedElement>
+</uml:Profile>

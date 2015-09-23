@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.junit.utils;bundle-version="1.1.0",
  com.google.inject;bundle-version="3.0.0";visibility:=reexport,
  org.eclipse.papyrus.aof.sync;bundle-version="0.7.0",
- org.eclipse.papyrus.aof.core.tests;bundle-version="0.7.0"
+ org.eclipse.papyrus.aof.core.tests;bundle-version="0.7.0",
+ org.eclipse.emf.transaction;bundle-version="1.9.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.aof.sync.tests,

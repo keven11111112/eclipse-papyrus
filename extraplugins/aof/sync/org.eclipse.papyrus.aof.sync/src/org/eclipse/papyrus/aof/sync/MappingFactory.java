@@ -14,10 +14,13 @@
 package org.eclipse.papyrus.aof.sync;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.papyrus.aof.sync.internal.CustomInjectionModule;
+import org.eclipse.papyrus.aof.sync.internal.GuiceUtil;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -38,7 +41,7 @@ public class MappingFactory {
 		this(new MappingModule());
 	}
 
-	public MappingFactory(Module... module) {
+	public MappingFactory(Module module, Module... more) {
 		super();
 
 		List<Module> myModules = Arrays.asList(new CustomInjectionModule(), new AbstractModule() {
@@ -50,7 +53,11 @@ public class MappingFactory {
 			}
 		});
 
-		guice = Guice.createInjector(Modules.override(myModules).with(module));
+		List<Module> userModules = new ArrayList<>(1 + more.length);
+		userModules.add(module);
+		Collections.addAll(userModules, more);
+
+		guice = Guice.createInjector(Modules.override(myModules).with(userModules));
 	}
 
 	/**
@@ -68,6 +75,10 @@ public class MappingFactory {
 		return getInstance(IMapping.class, fromType, toType);
 	}
 
+	public final boolean hasMapping(Type fromType, Type toType) {
+		return !guice.findBindingsByType(GuiceUtil.getTypeLiteral(IMapping.class, fromType, toType)).isEmpty();
+	}
+
 	/**
 	 * Obtains a mapping relation between objects of the specified {@code type}.
 	 * 
@@ -78,6 +89,10 @@ public class MappingFactory {
 	 */
 	public final <E> IMapping<E, E> getMapping(Type type) {
 		return getMapping(type, type);
+	}
+
+	public final boolean hasMapping(Type type) {
+		return hasMapping(type, type);
 	}
 
 	/**

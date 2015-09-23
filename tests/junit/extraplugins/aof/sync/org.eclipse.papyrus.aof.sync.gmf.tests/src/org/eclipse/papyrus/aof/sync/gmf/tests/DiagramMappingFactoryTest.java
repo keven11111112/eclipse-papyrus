@@ -16,6 +16,7 @@ package org.eclipse.papyrus.aof.sync.gmf.tests;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -31,7 +32,7 @@ import org.junit.Test;
  */
 public class DiagramMappingFactoryTest {
 
-	private DiagramMappingFactory fixture = new DiagramMappingFactory();
+	private DiagramMappingFactory fixture = new DiagramMappingFactory(TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain());
 
 	public DiagramMappingFactoryTest() {
 		super();

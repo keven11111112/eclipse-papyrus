@@ -20,12 +20,16 @@ import java.util.stream.Collectors;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.aof.sync.emf.MappingCommand;
+import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.UMLRTMappingFactory;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.sync.ISyncMappingModel;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.Class;
 
@@ -60,8 +64,17 @@ public class SynchronizeCapsulesHandler extends AbstractHandler {
 		Class to = pair[1];
 
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(from);
-		MappingCommand.Factory<Class, Class> commandFactory = new UMLRTMappingFactory().getInstance(MappingCommand.Factory.class, Class.class, Class.class);
+		ModelSet modelSet = (ModelSet) domain.getResourceSet();
 
-		domain.getCommandStack().execute(commandFactory.create(from, to, "Synchronize Capsules"));
+		domain.getCommandStack().execute(new RecordingCommand(domain, "Synchronize Capsules") {
+
+			@Override
+			protected void doExecute() {
+				IMapping<Class, Class> mapping = new UMLRTMappingFactory(domain).getMapping(Class.class, Class.class);
+				MappingModel model = ISyncMappingModel.getInstance(modelSet).getMappingModel();
+
+				model.getMappings().add(mapping.map(from, to));
+			}
+		});
 	}
 }

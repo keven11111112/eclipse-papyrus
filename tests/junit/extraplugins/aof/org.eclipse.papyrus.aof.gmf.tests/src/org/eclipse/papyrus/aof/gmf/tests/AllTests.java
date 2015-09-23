@@ -18,8 +18,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * @author damus
- *
+ * Master test suite for the GMF AOF integration bundle.
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({

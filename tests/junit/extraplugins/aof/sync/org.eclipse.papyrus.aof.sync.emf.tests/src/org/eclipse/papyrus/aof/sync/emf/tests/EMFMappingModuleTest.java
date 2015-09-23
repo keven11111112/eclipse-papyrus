@@ -18,8 +18,6 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
-import javax.inject.Named;
-
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -28,11 +26,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.aof.sync.From;
+import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.To;
-import org.eclipse.papyrus.aof.sync.emf.MappingCommand;
-import org.eclipse.papyrus.aof.sync.emf.internal.EMFMappingModule;
+import org.eclipse.papyrus.aof.sync.emf.EMFMappingModule;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
@@ -55,14 +55,13 @@ public class EMFMappingModuleTest {
 	protected EcoreFactory ecore;
 
 	@Inject
-	protected MappingCommand.Factory<EPackage, EPackage> commandFactory;
+	protected MappingModel mappingModel;
 
 	@Inject
-	@Named("ignore me")
-	protected MappingCommand.Factory<EClass, EClass> ignoreMe;
+	protected IMapping<EPackage, EPackage> mapping;
 
 	@Inject
-	protected EditingDomain domain;
+	protected TransactionalEditingDomain domain;
 
 	@Inject
 	@From
@@ -86,7 +85,7 @@ public class EMFMappingModuleTest {
 
 	@Test
 	public void createMapping() {
-		execute(commandFactory.create(from, to, "Test Create Mapping"));
+		executeMapping();
 
 		assumeThat(toClass.getName(), not("Foo"));
 
@@ -97,7 +96,7 @@ public class EMFMappingModuleTest {
 
 	@Test
 	public void undoMapping() {
-		execute(commandFactory.create(from, to, "Test Undo Mapping"));
+		executeMapping();
 		set(fromClass, EcorePackage.Literals.ENAMED_ELEMENT__NAME, "Foo");
 		assumeThat("Mapping is not in effect", toClass.getName(), is("Foo"));
 
@@ -118,7 +117,7 @@ public class EMFMappingModuleTest {
 
 	@Test
 	public void redoMapping() {
-		execute(commandFactory.create(from, to, "Test Redo Mapping"));
+		executeMapping();
 		set(fromClass, EcorePackage.Literals.ENAMED_ELEMENT__NAME, "Foo");
 		assumeThat("Mapping is not in effect", toClass.getName(), is("Foo"));
 
@@ -144,6 +143,17 @@ public class EMFMappingModuleTest {
 	//
 	// Test framework
 	//
+
+	protected void executeMapping() {
+		domain.getCommandStack().execute(new RecordingCommand(domain, "Do Mapping") {
+
+			@Override
+			protected void doExecute() {
+				IMapping.Instance<EPackage, EPackage> instance = mapping.map(from, to);
+				mappingModel.getMappings().add(instance);
+			}
+		});
+	}
 
 	protected void execute(Command command) {
 		domain.getCommandStack().execute(command);

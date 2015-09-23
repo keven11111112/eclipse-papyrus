@@ -20,13 +20,13 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.SyncMapping;
+import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
 
 /**
  * Mapping of a discrete style attached to a view.
  */
 @Singleton
-public class StyleMapping extends SyncMapping<Style> {
+public class StyleMapping extends EMFSyncMapping<Style> {
 	@Inject
 	public StyleMapping(IFactory factory) {
 		super(NotationPackage.Literals.STYLE, factory);

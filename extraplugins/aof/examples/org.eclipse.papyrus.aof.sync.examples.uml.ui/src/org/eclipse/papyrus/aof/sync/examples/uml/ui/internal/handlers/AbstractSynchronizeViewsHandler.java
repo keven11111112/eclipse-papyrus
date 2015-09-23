@@ -20,32 +20,37 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.inject.Provider;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandWrapper;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
-import org.eclipse.papyrus.aof.sync.emf.MappingCommand;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.UMLRTMappingModule;
 import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingFactory;
 import org.eclipse.papyrus.aof.sync.gmf.DiagramMappingModule;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.tools.util.StreamUtil;
+import org.eclipse.papyrus.sync.ISyncMappingModel;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.common.base.Objects;
 import com.google.inject.util.Modules;
+import com.google.inject.util.Providers;
 
 /**
  * Partial implementation of a command handler for synchronization of diagrams.
@@ -84,20 +89,21 @@ public abstract class AbstractSynchronizeViewsHandler<V extends View, E extends 
 	 *            a selection of one or more edit-parts
 	 */
 	public void synchronize(Collection<? extends E> selectedEditParts) {
-		DiagramMappingFactory mappingFactory = getMappingFactory();
+		List<E> selection = StreamUtil.select(selectedEditParts.stream(), editPartType).collect(Collectors.toList());
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain((View) selection.get(0).getModel());
+		ModelSet modelSet = (ModelSet) domain.getResourceSet();
+
+		DiagramMappingFactory mappingFactory = getMappingFactory(domain);
 
 		ISyncCorrespondenceResolver<EObject, EObject> correspondence = mappingFactory.getInstance(
 				ISyncCorrespondenceResolver.class, EObject.class, EObject.class);
 
-		List<E> selection = StreamUtil.select(selectedEditParts.stream(), editPartType).collect(Collectors.toList());
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain((View) selection.get(0).getModel());
-
-		domain.getCommandStack().execute(new CommandWrapper("Synchronize Views") {
+		domain.getCommandStack().execute(new RecordingCommand(domain, "Synchronize Views") {
 
 			@Override
-			protected Command createCommand() {
-				MappingCommand.Factory<V, V> commandFactory = mappingFactory.getInstance(MappingCommand.Factory.class, viewType, viewType);
-				CompoundCommand result = new CompoundCommand(getLabel(), getDescription());
+			protected void doExecute() {
+				IMapping<V, V> mapping = mappingFactory.getMapping(viewType, viewType);
+				MappingModel model = ISyncMappingModel.getInstance(modelSet).getMappingModel();
 
 				selection.forEach(ep -> {
 					View view = (View) ep.getModel();
@@ -116,23 +122,23 @@ public abstract class AbstractSynchronizeViewsHandler<V extends View, E extends 
 											&& Objects.equal(view.getType(), otherView.getType())) {
 
 										// Of course the other is the same kind of edit part if it has a view of the same type
-										result.append(commandFactory.create(viewType.cast(ep.getModel()), viewType.cast(other.getModel())));
+										model.getMappings().add(mapping.map(viewType.cast(ep.getModel()), viewType.cast(other.getModel())));
 									}
 								}
 							});
 						});
 					}
 				});
-
-				return result.unwrap();
 			}
 		});
 	}
 
-	DiagramMappingFactory getMappingFactory() {
+	DiagramMappingFactory getMappingFactory(TransactionalEditingDomain editingDomain) {
+		Provider<EditingDomain> editingDomainProvider = Providers.of(editingDomain);
+
 		return new DiagramMappingFactory(
-				Modules.override(new DiagramMappingModule())
-						.with(Modules.override(new UMLRTMappingModule())
+				Modules.override(new DiagramMappingModule(editingDomainProvider))
+						.with(Modules.override(new UMLRTMappingModule(editingDomainProvider))
 								.with(new StateMachineDiagramMappingModule())));
 	}
 

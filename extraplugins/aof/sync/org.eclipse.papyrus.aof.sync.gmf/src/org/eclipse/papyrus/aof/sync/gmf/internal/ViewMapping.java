@@ -27,13 +27,13 @@ import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.InjectCached;
-import org.eclipse.papyrus.aof.sync.SyncMapping;
+import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
 
 /**
  * Abstract mapping of views, taking care of properties such as type (the "visual ID") and the
  * reference to the semantic element.
  */
-abstract class ViewMapping<V extends View> extends SyncMapping<V> {
+abstract class ViewMapping<V extends View> extends EMFSyncMapping<V> {
 
 	@InjectCached
 	private ISyncCorrespondenceResolver<EObject, View> elementCorrespondence;

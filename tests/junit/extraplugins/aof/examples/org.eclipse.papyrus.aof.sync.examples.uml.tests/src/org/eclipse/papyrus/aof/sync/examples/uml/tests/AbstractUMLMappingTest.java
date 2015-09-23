@@ -17,6 +17,8 @@ package org.eclipse.papyrus.aof.sync.examples.uml.tests;
 
 import java.util.function.Consumer;
 
+import javax.inject.Inject;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -24,18 +26,17 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.papyrus.aof.sync.tests.AbstractBaseMappingTest;
+import org.eclipse.papyrus.aof.sync.tests.ModelFixtureRuleModule;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.utils.rules.ResourceSetFixture;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.Rule;
 
-import com.google.inject.Inject;
-
 /**
  * Common structure of UML example mapping tests.
  */
-@InjectWith(TestModelModule.class)
+@InjectWith({ ModelFixtureRuleModule.class, TestModelModule.class })
 public abstract class AbstractUMLMappingTest<T extends EObject> extends AbstractBaseMappingTest<T, T> {
 
 	@Rule
@@ -49,7 +50,7 @@ public abstract class AbstractUMLMappingTest<T extends EObject> extends Abstract
 	}
 
 	//
-	// test framework
+	// Test framework
 	//
 
 	protected CommandBuilder exec() {

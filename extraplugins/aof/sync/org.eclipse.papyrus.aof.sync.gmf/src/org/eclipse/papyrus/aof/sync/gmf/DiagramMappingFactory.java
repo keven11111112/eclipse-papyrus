@@ -13,6 +13,9 @@
 
 package org.eclipse.papyrus.aof.sync.gmf;
 
+import java.util.function.Supplier;
+
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -20,6 +23,7 @@ import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.MappingFactory;
 
 import com.google.inject.Module;
+import com.google.inject.util.Providers;
 
 /**
  * Mapping factory for diagram mappings.
@@ -30,8 +34,16 @@ public class DiagramMappingFactory extends MappingFactory {
 		this(new DiagramMappingModule());
 	}
 
-	public DiagramMappingFactory(Module... module) {
-		super(module);
+	public DiagramMappingFactory(TransactionalEditingDomain editingDomain) {
+		this(new DiagramMappingModule(Providers.of(editingDomain)));
+	}
+
+	public DiagramMappingFactory(Supplier<? extends TransactionalEditingDomain> editingDomainSupplier) {
+		this(new DiagramMappingModule(editingDomainSupplier::get));
+	}
+
+	public DiagramMappingFactory(Module module, Module... more) {
+		super(module, more);
 	}
 
 	public ISyncMapping<Diagram> getDiagramMapping() {

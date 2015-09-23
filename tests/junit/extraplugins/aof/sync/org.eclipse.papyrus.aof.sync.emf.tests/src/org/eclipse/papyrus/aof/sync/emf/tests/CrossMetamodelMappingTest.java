@@ -25,10 +25,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.aof.sync.From;
+import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.To;
-import org.eclipse.papyrus.aof.sync.emf.MappingCommand;
+import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
@@ -58,10 +60,13 @@ public class CrossMetamodelMappingTest {
 	protected EcoreFactory ecore;
 
 	@Inject
-	protected MappingCommand.Factory<Package, EPackage> commandFactory;
+	protected MappingModel mappingModel;
 
 	@Inject
-	protected EditingDomain domain;
+	protected IMapping<Package, EPackage> mapping;
+
+	@Inject
+	protected TransactionalEditingDomain domain;
 
 	@Inject
 	@From
@@ -85,7 +90,7 @@ public class CrossMetamodelMappingTest {
 
 	@Test
 	public void createMapping() {
-		execute(commandFactory.create(from, to, "Test Create Mapping"));
+		executeMapping();
 
 		assumeThat(toClass.getName(), not("Foo"));
 
@@ -96,7 +101,7 @@ public class CrossMetamodelMappingTest {
 
 	@Test
 	public void undoMapping() {
-		execute(commandFactory.create(from, to, "Test Undo Mapping"));
+		executeMapping();
 		set(fromClass, UMLPackage.Literals.NAMED_ELEMENT__NAME, "Foo");
 		assumeThat("Mapping is not in effect", toClass.getName(), is("Foo"));
 
@@ -117,7 +122,7 @@ public class CrossMetamodelMappingTest {
 
 	@Test
 	public void redoMapping() {
-		execute(commandFactory.create(from, to, "Test Redo Mapping"));
+		executeMapping();
 		set(fromClass, UMLPackage.Literals.NAMED_ELEMENT__NAME, "Foo");
 		assumeThat("Mapping is not in effect", toClass.getName(), is("Foo"));
 
@@ -143,6 +148,17 @@ public class CrossMetamodelMappingTest {
 	//
 	// Test framework
 	//
+
+	protected void executeMapping() {
+		domain.getCommandStack().execute(new RecordingCommand(domain, "Do Mapping") {
+
+			@Override
+			protected void doExecute() {
+				IMapping.Instance<Package, EPackage> instance = mapping.map(from, to);
+				mappingModel.getMappings().add(instance);
+			}
+		});
+	}
 
 	protected void execute(Command command) {
 		domain.getCommandStack().execute(command);

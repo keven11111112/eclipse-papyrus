@@ -18,7 +18,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.aof.sync.examples.uml.ui.tests;bundle-version="0.7.0",
  org.eclipse.papyrus.aof.sync.emf.tests;bundle-version="0.7.0",
  org.eclipse.papyrus.aof.sync.gmf.tests;bundle-version="0.7.0",
- org.eclipse.papyrus.aof.sync.tests;bundle-version="0.7.0"
+ org.eclipse.papyrus.aof.sync.tests;bundle-version="0.7.0",
+ org.eclipse.papyrus.sync.tests;bundle-version="0.7.0"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

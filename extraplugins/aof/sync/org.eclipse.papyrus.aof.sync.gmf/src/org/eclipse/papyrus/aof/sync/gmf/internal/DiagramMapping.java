@@ -25,13 +25,13 @@ import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
-import org.eclipse.papyrus.aof.sync.SyncMapping;
+import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
 
 /**
  * Mapping of diagrams, including their contained top-level nodes and edges.
  */
 @Singleton
-public class DiagramMapping extends SyncMapping<Diagram> {
+public class DiagramMapping extends EMFSyncMapping<Diagram> {
 	@Inject
 	private ISyncMapping<Node> nodes;
 

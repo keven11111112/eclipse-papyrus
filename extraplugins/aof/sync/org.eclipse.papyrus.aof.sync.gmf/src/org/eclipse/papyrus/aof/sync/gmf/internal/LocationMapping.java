@@ -20,13 +20,13 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.SyncMapping;
+import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
 
 /**
  * Mapping of location layout constraints on nodes.
  */
 @Singleton
-public class LocationMapping extends SyncMapping<Location> {
+public class LocationMapping extends EMFSyncMapping<Location> {
 	@Inject
 	public LocationMapping(IFactory factory) {
 		super(NotationPackage.Literals.LOCATION, factory);
