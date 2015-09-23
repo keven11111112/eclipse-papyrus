@@ -18,6 +18,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
@@ -455,8 +456,13 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 	 */
 	@Override
 	public Object getAdapter(Class key) {
-		if (IResource.class == key && getParent() == null) {
-			return null;
+		if (getParent() == null) {
+			if (key == IMarker.class) {
+				return null;
+			}
+			if (key == IResource.class) {
+				return null;
+			}
 		}
 		return super.getAdapter(key);
 	}
