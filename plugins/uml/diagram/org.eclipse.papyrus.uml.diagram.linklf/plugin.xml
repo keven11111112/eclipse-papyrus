@@ -24,7 +24,7 @@
 			</object>
 		</editpolicyProvider>
 	</extension>
-
+	
 	<extension
 			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
 		<editpolicyProvider
@@ -145,5 +145,28 @@
 				<method name="getType()" value="BlockDefinition"/>
 			</object>
 		</editpolicyProvider>
+	</extension>
+	
+	<extension
+			point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+		<editpartProvider
+        	class="org.eclipse.gmf.tooling.runtime.linklf.router.LinkLFDiagramRootEditPartProvider">
+			<Priority name="Medium"/>
+			<context providesRootEditPart="true"/>
+			<!-- uml -->
+			<applicable-diagram type="PapyrusUMLActivityDiagram"/>
+			<applicable-diagram type="PapyrusUMLClassDiagram"/>
+			<applicable-diagram type="PapyrusUMLCommunicationDiagram"/>
+			<applicable-diagram type="PapyrusUMLComponentDiagram"/>
+			<applicable-diagram type="CompositeStructure"/>
+			<applicable-diagram type="PapyrusUMLDeploymentDiagram"/>
+			<applicable-diagram type="PapyrusUMLInteractionOverviewDiagram"/>
+			<applicable-diagram type="PapyrusUMLProfileDiagram"/>
+			<applicable-diagram type="PapyrusUMLStateMachineDiagram"/>
+			<applicable-diagram type="UseCase"/>
+			<!-- sysml -->
+			<applicable-diagram type="InternalBlock"/>
+			<applicable-diagram type="BlockDefinition"/>
+		</editpartProvider>
 	</extension>
 </plugin>
