@@ -48,14 +48,14 @@ public class ComponentLinksLFEditPolicyProvider extends LinksLFEditPolicyProvide
 
 	@Override
 	protected void installGraphicalNodeEditPolicy(INodeEditPart nodeEP) {
-		if (shouldInstallCostomComponent(nodeEP)) {
+		if (shouldInstallCustomComponent(nodeEP)) {
 			nodeEP.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ComponentLinksLFEditPolicy());
 		} else {
 			super.installGraphicalNodeEditPolicy(nodeEP);
 		}
 	}
 
-	protected boolean shouldInstallCostomComponent(INodeEditPart graphicalEP) {
+	protected boolean shouldInstallCustomComponent(INodeEditPart graphicalEP) {
 		return graphicalEP instanceof DependencyNodeEditPart || graphicalEP instanceof ComponentEditPart
 				|| graphicalEP instanceof ModelEditPart || graphicalEP instanceof PackageEditPart
 				|| graphicalEP instanceof CommentEditPart || graphicalEP instanceof ConstraintEditPart

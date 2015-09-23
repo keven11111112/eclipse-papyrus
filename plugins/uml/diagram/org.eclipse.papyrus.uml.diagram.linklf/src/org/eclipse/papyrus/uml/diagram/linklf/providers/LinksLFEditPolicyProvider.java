@@ -33,7 +33,7 @@ import org.eclipse.gmf.tooling.runtime.linklf.editparts.LinkLFConnectionNodeEdit
 import org.eclipse.gmf.tooling.runtime.linklf.policies.AdjustBorderItemAnchorsEditPolicy;
 import org.eclipse.gmf.tooling.runtime.linklf.policies.AdjustImplicitlyMovedLinksEditPolicy;
 import org.eclipse.gmf.tooling.runtime.linklf.policies.AdjustSyntheticBendpointsEditPolicy;
-import org.eclipse.gmf.tooling.runtime.linklf.policies.LinksLFGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.linklf.policy.graphicalnode.DefaultLinksLFEditPolicy;
 
 public class LinksLFEditPolicyProvider extends AbstractProvider implements
 		IEditPolicyProvider, IExecutableExtension {
@@ -105,8 +105,9 @@ public class LinksLFEditPolicyProvider extends AbstractProvider implements
 	}
 
 	protected void installGraphicalNodeEditPolicy(INodeEditPart nodeEP) {
-		nodeEP.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new LinksLFGraphicalNodeEditPolicy());
+		if (nodeEP.getEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE) != null) {
+			nodeEP.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultLinksLFEditPolicy());
+		}
 	}
 
 	@Override
@@ -119,10 +120,10 @@ public class LinksLFEditPolicyProvider extends AbstractProvider implements
 		String classAttr = config.getAttribute("class");
 		if (DIAGRAM_NOTATION_CLASS.equals(classAttr)) {
 			myDiagramID = getValue(config);
-		} 
+		}
 		IConfigurationElement[] children = config.getChildren();
 		if (children != null) {
-			for (IConfigurationElement child: children) {
+			for (IConfigurationElement child : children) {
 				initFromIConfig(child);
 			}
 		}
