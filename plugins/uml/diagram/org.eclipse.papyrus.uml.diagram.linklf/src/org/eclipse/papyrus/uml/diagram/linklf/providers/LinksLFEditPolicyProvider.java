@@ -33,6 +33,10 @@ import org.eclipse.gmf.tooling.runtime.linklf.editparts.LinkLFConnectionNodeEdit
 import org.eclipse.gmf.tooling.runtime.linklf.policies.AdjustBorderItemAnchorsEditPolicy;
 import org.eclipse.gmf.tooling.runtime.linklf.policies.AdjustImplicitlyMovedLinksEditPolicy;
 import org.eclipse.gmf.tooling.runtime.linklf.policies.AdjustSyntheticBendpointsEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.linklf.common.LinkLabelPositionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.linklf.common.LinksLFConnectionLabelControlEditPolicy;
+import org.eclipse.papyrus.uml.diagram.linklf.common.Node2ConnectionLabelControlEditPolicy;
 import org.eclipse.papyrus.uml.diagram.linklf.policy.graphicalnode.DefaultLinksLFEditPolicy;
 
 public class LinksLFEditPolicyProvider extends AbstractProvider implements
@@ -78,11 +82,14 @@ public class LinksLFEditPolicyProvider extends AbstractProvider implements
 			installLinkEditPolicies((LinkLFConnectionNodeEditPart) editPart);
 		} else if (editPart instanceof INodeEditPart) {
 			installNodeEditPolicies((INodeEditPart) editPart);
+		} else if (graphicalEP instanceof PapyrusLabelEditPart) {
+			installPapyrusLabelPolicy((PapyrusLabelEditPart)graphicalEP);
 		}
 	}
 
 	protected void installLinkEditPolicies(LinkLFConnectionNodeEditPart linkEP) {
 		linkEP.setLinkLFEnabled(true);
+		linkEP.installEditPolicy(LinksLFConnectionLabelControlEditPolicy.KEY, new LinksLFConnectionLabelControlEditPolicy());
 	}
 
 	protected void installNodeEditPolicies(INodeEditPart nodeEP) {
@@ -102,11 +109,19 @@ public class LinksLFEditPolicyProvider extends AbstractProvider implements
 			nodeEP.installEditPolicy(AdjustBorderItemAnchorsEditPolicy.ROLE,
 					new AdjustBorderItemAnchorsEditPolicy());
 		}
+
+		nodeEP.installEditPolicy(Node2ConnectionLabelControlEditPolicy.KEY, new Node2ConnectionLabelControlEditPolicy());
 	}
 
 	protected void installGraphicalNodeEditPolicy(INodeEditPart nodeEP) {
 		if (nodeEP.getEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE) != null) {
 			nodeEP.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultLinksLFEditPolicy());
+		}
+	}
+
+	protected void installPapyrusLabelPolicy(PapyrusLabelEditPart labelEP) {
+		if (labelEP.getParent() instanceof LinkLFConnectionNodeEditPart) {
+			labelEP.installEditPolicy(LinkLabelPositionEditPolicy.KEY, new LinkLabelPositionEditPolicy());
 		}
 	}
 

@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.figures.ResizableLabelLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
@@ -52,7 +53,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelPrimarySelecti
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.RefreshTextAlignmentEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.locator.IPapyrusBorderItemLocator;
-import org.eclipse.papyrus.infra.gmfdiag.common.locator.LabelViewConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.locator.LabelViewConstantsEx;
 import org.eclipse.papyrus.infra.gmfdiag.common.locator.PapyrusLabelLocator;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
@@ -472,19 +473,28 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 	}
 
 	public Point getReferencePoint() {
+		NamedStyle style = getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), PapyrusLabelLocator.IS_UPDATED_POSITION); 
+		Boolean updated = style == null ? false : (Boolean) style.eGet(NotationPackage.eINSTANCE.getBooleanValueStyle_BooleanValue());
+		return updated ? getUpdatedRefencePoint() : getBaseReferencePoint();
+	}
+
+	public Point getBaseReferencePoint() {
+		return super.getReferencePoint();
+	}
+
+	public Point getUpdatedRefencePoint() {
 		if (getParent() instanceof AbstractConnectionEditPart) {
 			switch (getKeyPoint()) {
 				case ConnectionLocator.TARGET:
-					return calculateRefPoint(LabelViewConstants.SOURCE_LOCATION);
+					return calculateRefPoint(LabelViewConstantsEx.SOURCE_LOCATION);
 				case ConnectionLocator.SOURCE:
-					return calculateRefPoint(LabelViewConstants.TARGET_LOCATION);
+					return calculateRefPoint(LabelViewConstantsEx.TARGET_LOCATION);
 				case ConnectionLocator.MIDDLE:
-					return calculateRefPoint(LabelViewConstants.MIDDLE_LOCATION);
+					return calculateRefPoint(LabelViewConstantsEx.MIDDLE_LOCATION);
 				default:
-					return calculateRefPoint(LabelViewConstants.MIDDLE_LOCATION);
+					return calculateRefPoint(LabelViewConstantsEx.MIDDLE_LOCATION);
 			}
-		} 
-		
+		}
 		return ((AbstractGraphicalEditPart)getParent()).getFigure().getBounds().getTopLeft();
 	}
 

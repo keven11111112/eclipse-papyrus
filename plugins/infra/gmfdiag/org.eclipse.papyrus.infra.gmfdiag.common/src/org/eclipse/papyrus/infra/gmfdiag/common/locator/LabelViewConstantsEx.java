@@ -13,8 +13,7 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.common.locator;
 
-
-public interface LabelViewConstants {
+public interface LabelViewConstantsEx {
 
 	public static final int SOURCE_LOCATION = 0;
 
