@@ -40,9 +40,9 @@
      inkscape:window-height="1118"
      id="namedview6"
      showgrid="false"
-     inkscape:zoom="2.6074563"
-     inkscape:cx="170.33025"
-     inkscape:cy="-30.499962"
+     inkscape:zoom="3.6875001"
+     inkscape:cx="-58.260677"
+     inkscape:cy="21.61521"
      inkscape:window-x="481"
      inkscape:window-y="138"
      inkscape:window-maximized="0"
@@ -62,7 +62,7 @@
          sodipodi:nodetypes="cssccssssc"
          style="fill:#4d4d4d"
          inkscape:connector-curvature="0"
-         id="PapyrusPath"
+         id="Fondo"
          d="m 996.13961,799.247 -438.286,-767 C 546.45861,12.306 525.25261,0 502.28561,0 c -22.967,0 -44.173,12.306 -55.567,32.247 l -438.2860041,767 c -11.319,19.809 -11.238,44.144 0.213,63.876 C 20.096606,882.855 41.184606,895 63.999606,895 l 876.572004,0 c 22.814,0 43.903,-12.145 55.354,-31.877 11.45099,-19.732 11.53299,-44.067 0.214,-63.876 z" />
       <path
          id="path4161"
@@ -90,4 +90,10 @@
          style="fill:#ffdd55;fill-opacity:1" />
     </g>
   </g>
+  <path
+     sodipodi:nodetypes="ccccccccccccccccccc"
+     style="fill:none;fill-opacity:1;stroke:none"
+     inkscape:connector-curvature="0"
+     id="PapyrusPath"
+     d="M 99.601472,79.633169 88.69415,60.545367 77.786827,41.457566 66.879504,22.369764 55.972182,3.2819629 50.440652,0.07192686 44.909221,3.2819629 34.001898,22.369764 23.094576,41.457566 12.187253,60.545367 1.2799308,79.633169 l 0.021203,6.358553 5.5102278,3.173204 21.8146444,0 21.814645,0 21.814645,0 21.814645,0 5.510228,-3.173204 z" />
 </svg>

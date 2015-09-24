@@ -38,9 +38,9 @@
      inkscape:window-height="954"
      id="namedview11"
      showgrid="false"
-     inkscape:zoom="4.9166667"
-     inkscape:cx="20.003838"
-     inkscape:cy="52.355146"
+     inkscape:zoom="3.4766084"
+     inkscape:cx="-34.169366"
+     inkscape:cy="54.713938"
      inkscape:window-x="291"
      inkscape:window-y="153"
      inkscape:window-maximized="0"
@@ -62,4 +62,9 @@
        inkscape:connector-curvature="0"
        d="m 2.656,12.4 0,11.184 C 2.656,23.815 2.84,24 3.07,24 l 8.324,0 0,-11.6 -8.738,0 z"
        id="path9"
-       style="fill:#008080" /></g></svg>
+       style="fill:#008080" /></g><path
+     style="opacity:0.16000001;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     d="m 0.28763667,0.46556383 24.37720733,0 24.377206,0 24.377207,0 24.377207,0 0,25.02438917 0,25.024389 0,25.024389 0,25.024389 -24.377207,0 -24.377207,0 -24.377206,0 -24.37720733,0 0,-25.024389 0,-25.024389 0,-25.024389 z"
+     id="PapyrusPath"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccccccccccccccc" /></svg>
