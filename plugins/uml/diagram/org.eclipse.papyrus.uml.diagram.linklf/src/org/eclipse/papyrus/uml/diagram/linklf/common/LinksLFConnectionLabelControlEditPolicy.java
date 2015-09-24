@@ -33,7 +33,7 @@ public class LinksLFConnectionLabelControlEditPolicy extends AbstractEditPolicy 
 	@Override
 	public Command getCommand(Request _request) {
 		CompoundCommand compound = new CompoundCommand();
-		compound.add(super.getCommand(_request));
+
 		if (_request instanceof BendpointRequest) {
 			for (Object child : getHost().getChildren()) {
 				if (child instanceof PapyrusLabelEditPart) {
@@ -41,6 +41,6 @@ public class LinksLFConnectionLabelControlEditPolicy extends AbstractEditPolicy 
 				}
 			}
 		}
-		return compound;
+		return compound.isEmpty() ? null : compound;
 	}
 }
