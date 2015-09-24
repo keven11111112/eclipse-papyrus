@@ -36,6 +36,23 @@
       <paletteRules xmi:id="_7wLmotxhEeOqHvRyiN87hA" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_7wLmo9xhEeOqHvRyiN87hA" element=""/>
     </modelKinds>
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_VfwtMAUKEeW3SfunLNmDmg" name="Inner Usecase Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.usecase/icons/obj16/Diagram_UseCase.gif" implementationID="UseCase" categories="_7wNb4txhEeOqHvRyiN87hA">
+      <modelRules xmi:id="_KuatsAUOEeW3SfunLNmDmg">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//UseCase"/>
+      </modelRules>
+      <owningRules xmi:id="_LhJLIAUOEeW3SfunLNmDmg">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//UseCase"/>
+      </owningRules>
+      <paletteRules xmi:id="_eBem4AUbEeW3SfunLNmDmg" element="usecase.tool.extensionpoint"/>
+      <paletteRules xmi:id="_dSNtIAUbEeW3SfunLNmDmg" element="usecase.tool.usecase"/>
+      <paletteRules xmi:id="_-_BR4AUOEeW3SfunLNmDmg" element="usecase.tool.include"/>
+      <paletteRules xmi:id="_GPpFMAUiEeW3SfunLNmDmg" element="usecase.tool.extend"/>
+      <paletteRules xmi:id="_qxLvgAUiEeW3SfunLNmDmg" element="usecase.tool.association"/>
+      <paletteRules xmi:id="_GzDUQAUiEeW3SfunLNmDmg" element="usecase.tool.dependency"/>
+      <paletteRules xmi:id="_HXznIAUiEeW3SfunLNmDmg" element="usecase.tool.abstraction"/>
+      <paletteRules xmi:id="_ICtlUAUiEeW3SfunLNmDmg" element="usecase.tool.realization"/>
+      <paletteRules xmi:id="_9OkA4AUOEeW3SfunLNmDmg" permit="false" element="usecase.tool.*"/>
+    </modelKinds>
     <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wLmpNxhEeOqHvRyiN87hA" name="Package Diagram" icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Diagram_Package.gif" implementationID="PapyrusUMLClassDiagram" categories="_7wNb4txhEeOqHvRyiN87hA">
       <modelRules xmi:id="_7wLmpdxhEeOqHvRyiN87hA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
