@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.infra.nattable.layer;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,10 +20,10 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.command.ILayerCommand;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiRowShowCommand;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.RowHideCommand;
+import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.IUniqueIndexLayer;
 import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
@@ -182,9 +180,8 @@ public class PapyrusTreeLayer extends TreeLayer {
 	 *            the nattable widget
 	 * @param hideShowLayer
 	 *            the hide show row layer
-	 * @deprecated
 	 */
-	protected void manageInsertEvent(final int index, final NatTable natTable, final RowHideShowLayer rowHideShowLayer) {
+	protected void manageInsertEvent(final int index, NatTable natTable, final RowHideShowLayer rowHideShowLayer) {
 		if (index != -1) {
 			// we notify the layer than a row has been added
 			if (natTable != null) {
@@ -215,57 +212,12 @@ public class PapyrusTreeLayer extends TreeLayer {
 				if (StyleUtils.getHiddenDepths(getTableManager()).contains(Integer.valueOf(conf.getDepth()))) {
 					int realIndex = rowHideShowLayer.underlyingToLocalRowPosition(natTable, index);
 					if (realIndex != -1) {
-						// see bug 469619: [Tree Table] New inserted element not displayed when categories are hidden
-						natTable.doCommand(new TreeExpandToLevelCommand(tableManager.getRowElementsList().indexOf(element), 1));
-
-						// hide the row
+						 //see bug 469619: [Tree Table] New inserted element not displayed when categories are hidden
+					    natTable.doCommand(new TreeExpandToLevelCommand(tableManager.getRowElementsList().indexOf(element), 1));
+					    
+					    //hide the row
 						natTable.doCommand(new RowHideCommand(rowHideShowLayer, realIndex));
-
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * This method do the stuff for insert event
-	 * 
-	 * @param ranges
-	 *            the modified ranges
-	 * @param natTable
-	 *            the nattable widget
-	 * @param hideShowLayer
-	 *            the hide show row layer
-	 */
-	protected void manageInsertEvent(final Collection<Range> ranges, final NatTable natTable, final RowHideShowLayer rowHideShowLayer) {
-		if (!ranges.isEmpty()) {
-			// we notify the layer than a row has been added
-			if (natTable != null) {
-				RowInsertEvent event = new RowInsertEvent(PapyrusTreeLayer.this, ranges);
-				rowHideShowLayer.handleLayerEvent(event);
-			}
-
-			for (Range range : ranges) {
-				for (int index = range.start; index <= range.end; index++) {
-					Object element = getTableManager().getRowElement(index);
-					if (!(element instanceof IAxis)) {
-						return;
-					}
-					Object representedElement = ((IAxis) element).getElement();
-					// we hide the concerned row if required
-					if (representedElement instanceof TreeFillingConfiguration) {
-						TreeFillingConfiguration conf = (TreeFillingConfiguration) representedElement;
-						if (StyleUtils.getHiddenDepths(getTableManager()).contains(Integer.valueOf(conf.getDepth()))) {
-							int realIndex = rowHideShowLayer.underlyingToLocalRowPosition(natTable, index);
-							if (realIndex != -1) {
-								// see bug 469619: [Tree Table] New inserted element not displayed when categories are hidden
-								natTable.doCommand(new TreeExpandToLevelCommand(tableManager.getRowElementsList().indexOf(element), 1));
-
-								// hide the row
-								natTable.doCommand(new RowHideCommand(rowHideShowLayer, realIndex));
-
-							}
-						}
+						
 					}
 				}
 			}
@@ -281,23 +233,8 @@ public class PapyrusTreeLayer extends TreeLayer {
 	 *            the nattable widget
 	 * @param hideShowLayer
 	 *            the hide show row layer
-	 * @deprecated
 	 */
-	protected void manageUpdateEvent(final int index, final NatTable natTable, final RowHideShowLayer hideShowLayer) {
-		// nothing to do?
-	}
-
-	/**
-	 * This method do the stuff for update event
-	 * 
-	 * @param ranges
-	 *            the modified ranges
-	 * @param natTable
-	 *            the nattable widget
-	 * @param hideShowLayer
-	 *            the hide show row layer
-	 */
-	protected void manageUpdateEvent(final Collection<Range> ranges, final NatTable natTable, final RowHideShowLayer hideShowLayer) {
+	protected void manageUpdateEvent(int index, NatTable natTable, RowHideShowLayer hideShowLayer) {
 		// nothing to do?
 	}
 
@@ -310,9 +247,8 @@ public class PapyrusTreeLayer extends TreeLayer {
 	 *            the nattable widget
 	 * @param hideShowLayer
 	 *            the hide show row layer
-	 * @deprecated
 	 */
-	protected void manageDeleteEvent(final int index, final NatTable natTable, final RowHideShowLayer rowHideShowLayer) {
+	protected void manageDeleteEvent(int index, NatTable natTable, RowHideShowLayer rowHideShowLayer) {
 		if (index != -1) {
 			// we notify that a row has be deleted
 			RowDeleteEvent event = new RowDeleteEvent(this, index);
@@ -336,45 +272,6 @@ public class PapyrusTreeLayer extends TreeLayer {
 	}
 
 	/**
-	 * This method do the stuff for delete event
-	 * 
-	 * @param ranges
-	 *            the modified ranges
-	 * @param natTable
-	 *            the nattable widget
-	 * @param hideShowLayer
-	 *            the hide show row layer
-	 */
-	protected void manageDeleteEvent(final Collection<Range> ranges, final NatTable natTable, final RowHideShowLayer rowHideShowLayer) {
-		if (!ranges.isEmpty()) {
-			// we notify that a row has be deleted
-			if (natTable != null) {
-				RowDeleteEvent event = new RowDeleteEvent(this, ranges);
-				rowHideShowLayer.handleLayerEvent(event);
-			}
-
-			for (Range range : ranges) {
-				for (int index = range.start; index <= range.end; index++) {
-					Object element = getTableManager().getRowElement(index);
-					if (!(element instanceof IAxis)) {
-						return;
-					}
-					Object representedElement = ((IAxis) element).getElement();
-					if (representedElement instanceof TreeFillingConfiguration) {
-						TreeFillingConfiguration conf = (TreeFillingConfiguration) representedElement;
-						if (StyleUtils.getHiddenDepths(getTableManager()).contains(Integer.valueOf(conf.getDepth()))) {
-							int realIndex = rowHideShowLayer.underlyingToLocalRowPosition(natTable, index);
-							if (realIndex != -1) {
-								natTable.doCommand(new MultiRowShowCommand(Collections.singletonList(realIndex)));
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	/**
 	 *
 	 * @param listChanges
 	 */
@@ -388,53 +285,25 @@ public class PapyrusTreeLayer extends TreeLayer {
 			return;
 		}
 
-		// Bug 476559 : Manage the row event by ranges to avoid the cache indexes
-		// Initialize the list of ranges
-		final List<Range> deleteRanges = new ArrayList<Range>(0);
-		final List<Range> updateRanges = new ArrayList<Range>(0);
-		final List<Range> insertRanges = new ArrayList<Range>(0);
-
-		// Add the ranges in the ranges list by event (delete, update or insert)
 		while (listChanges.hasNext()) {
 			listChanges.next();
 			int index = listChanges.getIndex();
-			if (ListEvent.DELETE == listChanges.getType()) {
-				addIndexRange(deleteRanges, index);
-			} else if (ListEvent.UPDATE == listChanges.getType()) {
-				addIndexRange(updateRanges, index);
-			} else if (ListEvent.INSERT == listChanges.getType()) {
-				addIndexRange(insertRanges, index);
+			switch (listChanges.getType()) {
+			case ListEvent.DELETE:
+				manageDeleteEvent(index, natTable, rowHideShowLayer);
+				break;
+			case ListEvent.UPDATE:
+				manageUpdateEvent(index, natTable, rowHideShowLayer);
+				// nothing to do
+				break;
+			case ListEvent.INSERT:
+				manageInsertEvent(index, natTable, rowHideShowLayer);
+				break;
+			default:
+				break;
 			}
 		}
-
-		// Manage the event ranges
-		manageDeleteEvent(deleteRanges, natTable, rowHideShowLayer);
-		manageUpdateEvent(updateRanges, natTable, rowHideShowLayer);
-		manageInsertEvent(insertRanges, natTable, rowHideShowLayer);
-
-		// Refresh the nattable
 		getTableManager().refreshNatTable();
-	}
-
-	/**
-	 * This allow to add the index in the ranges (creating if not continue or insert in existing range otherwise).
-	 * 
-	 * @param ranges
-	 *            The list of existing ranges.
-	 * @param index
-	 *            The index to add.
-	 */
-	protected void addIndexRange(final List<Range> ranges, final int index) {
-		if (ranges.isEmpty()) {
-			ranges.add(new Range(index, index));
-		} else {
-			final Range lastRange = ranges.get(ranges.size() - 1);
-			if (lastRange.end == index - 1) {
-				lastRange.end = index;
-			} else {
-				ranges.add(new Range(index, index));
-			}
-		}
 	}
 
 	/**
