@@ -2885,63 +2885,63 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
    <diagramMappings diagramID="PapyrusUMLActivityDiagram">
    	<mapping type="PapyrusUMLActivityDiagram" humanReadableType="ActivityDiagram"/>
 			<mapping
-				humanReadableType="ActivityFigureParameter"
+				humanReadableType="parameters"
 				type="7001">
 			</mapping>
 			<mapping
-				humanReadableType="ActivityFigurePrecondition"
+				humanReadableType="pre conditions"
 				type="7002">
 			</mapping>
 			<mapping
-				humanReadableType="ActivityFigurePostCondtion"
+				humanReadableType="post conditions"
 				type="7003">
 			</mapping>
 			<mapping
-				humanReadableType="ActivityFigureContent"
+				humanReadableType="content"
 				type="7004">
 			</mapping>
 			<mapping
-				humanReadableType="StructuredActivityNodeContent"
+				humanReadableType="content"
 				type="7008">
 			</mapping>
 			<mapping
-				humanReadableType="StructuredActivityNodeContent"
+				humanReadableType="content"
 				type="7009">
 			</mapping>
 			<mapping
-				humanReadableType="StructuredActivityNodeContent"
+				humanReadableType="content"
 				type="7010">
 			</mapping>
 			<mapping
-				humanReadableType="StructuredActivityNodeContent"
+				humanReadableType="content"
 				type="7012">
 			</mapping>
 			<mapping
-				humanReadableType="StructuredActivityNodeContent"
+				humanReadableType="content"
 				type="7005">
 			</mapping>
 			<mapping
-				humanReadableType="ActivityPartitionContent"
+				humanReadableType="content"
 				type="7006">
 			</mapping>
 			<mapping
-				humanReadableType="InterruptibleActivityRegionContent"
+				humanReadableType="content"
 				type="7007">
 			</mapping>
 			<mapping
-				humanReadableType="ActivityFigureParameter"
+				humanReadableType="parameters"
 				type="7014">
 			</mapping>
 			<mapping
-				humanReadableType="ActivityFigurePrecondition"
+				humanReadableType="pre conditions"
 				type="7015">
 			</mapping>
 			<mapping
-				humanReadableType="ActivityFigurePostCondtion"
+				humanReadableType="post conditions"
 				type="7016">
 			</mapping>
 			<mapping
-				humanReadableType="ActivityFigureContent"
+				humanReadableType="content"
 				type="7013">
 			</mapping>
 			<mapping
