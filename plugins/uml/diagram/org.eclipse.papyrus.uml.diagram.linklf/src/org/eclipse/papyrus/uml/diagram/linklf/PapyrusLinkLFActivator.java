@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.linklf;
 
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.LinkLFSVGNodePlateFigure;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -26,6 +27,8 @@ public class PapyrusLinkLFActivator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static PapyrusLinkLFActivator plugin;
+
+	private String linkLFEnabledBefore;
 
 	/**
 	 * The constructor
@@ -42,6 +45,8 @@ public class PapyrusLinkLFActivator extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		linkLFEnabledBefore = System.getProperty(LinkLFSVGNodePlateFigure.ENABLE_LINKLF, null);
+		System.setProperty(LinkLFSVGNodePlateFigure.ENABLE_LINKLF, String.valueOf(true));
 		plugin = this;
 	}
 
@@ -53,6 +58,12 @@ public class PapyrusLinkLFActivator extends AbstractUIPlugin {
 	 * )
 	 */
 	public void stop(BundleContext context) throws Exception {
+		if (linkLFEnabledBefore == null) {
+			System.clearProperty(LinkLFSVGNodePlateFigure.ENABLE_LINKLF);
+		} else {
+			System.setProperty(LinkLFSVGNodePlateFigure.ENABLE_LINKLF, linkLFEnabledBefore);
+		}
+		linkLFEnabledBefore = null;
 		plugin = null;
 		super.stop(context);
 	}
