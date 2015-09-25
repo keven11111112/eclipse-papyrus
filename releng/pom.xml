@@ -102,7 +102,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.6-I-builds/I20150825-0800/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M2-201509162000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
