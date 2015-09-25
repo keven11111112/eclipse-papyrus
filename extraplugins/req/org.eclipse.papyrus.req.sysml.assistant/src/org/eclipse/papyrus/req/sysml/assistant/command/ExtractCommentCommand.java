@@ -47,6 +47,7 @@ public class ExtractCommentCommand extends RecordingCommand {
 	protected void parseAndExecute(Class req){
 		Stereotype reqStereotype= req.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
 		String text= (String)req.getValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_TEXT_ATT);
+		if(text == null) return;
 		text= text.trim();
 		if(text.startsWith("[")){
 			//stakeholders detected

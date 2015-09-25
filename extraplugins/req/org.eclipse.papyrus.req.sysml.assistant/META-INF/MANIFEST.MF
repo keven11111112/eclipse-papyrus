@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools;bundle-version="1.1.2";resolution:=optional,
  org.eclipse.papyrus.infra.widgets;bundle-version="1.1.2";resolution:=optional,
  org.eclipse.papyrus.infra.core;bundle-version="1.1.2";resolution:=optional,
- org.eclipse.papyrus.editor;bundle-version="1.1.2";resolution:=optional
+ org.eclipse.papyrus.editor;bundle-version="1.1.2";resolution:=optional,
+ org.eclipse.core.expressions;bundle-version="3.5.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.7.0.qualifier
