@@ -91,6 +91,8 @@
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
 		<testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
 		<jacoco.version>0.7.5.201505241946</jacoco.version>
+		<!-- Separate property for test argLine seems to be required when running Jacoco + Surefire -->
+		<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</test.argLine>
 	</properties>
 	<repositories>
 		<repository>
@@ -269,7 +271,7 @@
 					<useUIThread>true</useUIThread>
 					<testFailureIgnore>true</testFailureIgnore>
 					<!-- ${tycho.testArgLine} is populated by JaCoCo and is required to enable code coverage -->
-					<argLine>${tycho.testArgLine} -Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</argLine>
+					<argLine>${tycho.testArgLine} ${test.argLine}</argLine>
 					<appArgLine>-testConfig=${testConfig}</appArgLine>
 					<product>org.eclipse.sdk.ide</product>
 					<skipTests>${skipInnerTests}</skipTests>

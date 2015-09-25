@@ -6,7 +6,7 @@ Export-Package: org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider,
  org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query,
  org.eclipse.papyrus.infra.core.sasheditor.di.tests
 Bundle-Vendor: %Bundle-Vendor
-Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="0.10.0"
+Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="1.2.0"
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2

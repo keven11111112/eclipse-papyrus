@@ -21,7 +21,7 @@ Export-Package: org.eclipse.papyrus.infra.core.sasheditor.contentprovider,
  org.eclipse.papyrus.infra.core.sasheditor.tests.utils.trace,
  org.eclipse.papyrus.infra.core.sasheditor.utils
 Bundle-Vendor: %providerName
-Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0"
+Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.2.0"
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: fragment

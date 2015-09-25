@@ -9,7 +9,7 @@ Export-Package: org.eclipse.papyrus.infra.services.resourceloading.tests,
  org.eclipse.papyrus.infra.services.resourceloading.tests.testModel1,
  org.eclipse.papyrus.infra.services.resourceloading.tests.testModel2
 Bundle-Vendor: %providerName
-Fragment-Host: org.eclipse.papyrus.infra.services.resourceloading;bundle-version="0.10.0"
+Fragment-Host: org.eclipse.papyrus.infra.services.resourceloading;bundle-version="1.2.0"
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %fragmentName
 Bundle-Localization: fragment
