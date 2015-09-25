@@ -135,6 +135,23 @@
                </with>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.AddSatisfiedLinkHandler"
+               label="%command.label.5"
+               style="push"
+               tooltip="%command.tooltip.5">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -174,6 +191,12 @@
             defaultHandler="org.eclipse.papyrus.req.sysml.assistant.handler.DecomposeReqHandler"
             id="org.eclipse.papyrus.req.sysml.assistant.handler.DecomposeReqHandler"
             name="%command.name.4">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.req.sysml.assistant.handler.AddSatisfiedLinkHandler"
+            id="org.eclipse.papyrus.req.sysml.assistant.handler.AddSatisfiedLinkHandler"
+            name="%command.name.5">
       </command>
    </extension>
    <extension
