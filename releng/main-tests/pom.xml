@@ -268,7 +268,8 @@
 					<useUIHarness>true</useUIHarness>
 					<useUIThread>true</useUIThread>
 					<testFailureIgnore>true</testFailureIgnore>
-					<argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</argLine>
+					<!-- ${tycho.testArgLine} is populated by JaCoCo and is required to enable code coverage -->
+					<argLine>${tycho.testArgLine} -Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</argLine>
 					<appArgLine>-testConfig=${testConfig}</appArgLine>
 					<product>org.eclipse.sdk.ide</product>
 					<skipTests>${skipInnerTests}</skipTests>
