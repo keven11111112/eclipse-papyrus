@@ -551,10 +551,14 @@ helper InvocationExpression::mapFeature(inout graph : ExpressionGraph, action : 
 		  	graph.resultSource := region.outputElement![incoming![true].source = graph.resultSource];
 		  } endif;
 		  
-		  // Wrap the feature expression in a structured activity node as the source of
-		  // a control flow to the expansion region.
-		  var featureNode := featureGraph.addStructuredActivityNodeTo(graph, "Feature(" + nameOf(featureGraph.resultSource) + ")");
-		  graph.edges += new ControlFlow(featureNode, region);
+		  if featureGraph.nodes->isEmpty() then {
+		  	graph.edges += featureGraph.edges;
+		  } else {
+			  // Wrap the feature expression in a structured activity node as the source of
+			  // a control flow to the expansion region.
+			  var featureNode := featureGraph.addStructuredActivityNodeTo(graph, "Feature(" + nameOf(featureGraph.resultSource) + ")");
+			  graph.edges += new ControlFlow(featureNode, region);
+		  } endif;
 	
 	  } else {
 			featureGraph.addTo(graph);  	
@@ -654,7 +658,7 @@ mapping _Tuple::toActivityGraph(inout graph : ExpressionGraph, action : Action, 
 	    // with no input.
 	    if i <= action.input->size() then {
 		    var inputPin := action.input->at(i);
-		    edges += new ObjectFlow(inputGraph.resultSource, inputPin);
+		    graph.edges += new ObjectFlow(inputGraph.resultSource, inputPin);
 	
 		    // Check for an index on the argument name (as opposed to the argument expression itself).
 		    var index := input.index;

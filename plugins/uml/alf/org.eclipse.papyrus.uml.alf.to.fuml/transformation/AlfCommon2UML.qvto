@@ -840,7 +840,6 @@ helper addEdgesToStructuredNode(inout structuredNode : StructuredActivityNode, i
 
 helper addToExpansionRegion(inout region : ExpansionRegion, nodes : Set(ActivityNode), edges : Set(ActivityEdge)) : Set(ActivityEdge) {
 	region.node += nodes;
-	var outerEdges : Set(ActivityEdge);
 	var allOwnedNodes := region.allOwnedNodes();
 	edges->forEach(edge) {
 		var sourceIsContained := allOwnedNodes->includes(edge.source);
@@ -854,30 +853,30 @@ helper addToExpansionRegion(inout region : ExpansionRegion, nodes : Set(Activity
 		} else {
 			if targetIsContained then {
 				// If an edge crosses into the region, then redirect its target.
-				edge.target :=
-					if edge.oclIsKindOf(ControlFlow) then region
-					else {
-						var inputPin := new InputPin (region,
-							region.name + ".input(" + nameOf(edge.source) + ")",
-							if edge.target.oclIsKindOf(ObjectNode) then edge.target.oclAsType(ObjectNode).type
-							else null endif,
-							if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).lower
-							else 0 endif,
-							if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).upper
-							else -1 endif
-						);
-						new ObjectFlow(region, inputPin, edge.target);
-						inputPin		
-					} endif;
+				if edge.oclIsKindOf(ControlFlow) then {
+					edge.target := region;
+				} else {
+					var inputPin := new InputPin (region,
+						region.name + ".input(" + nameOf(edge.source) + ")",
+						if edge.target.oclIsKindOf(ObjectNode) then edge.target.oclAsType(ObjectNode).type
+						else null endif,
+						if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).lower
+						else 0 endif,
+						if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).upper
+						else -1 endif
+					);
+					new ObjectFlow(region, inputPin, edge.target);
+					edge.target := inputPin;
+				} endif;
 			} else if sourceIsContained then {
 				// If an edge crosses out of the region, then redirect its source.
-				edge.source :=
-					if edge.oclIsKindOf(ControlFlow) then region
-					else {
-						var outputNode ::= new ExpansionNode(nameOf(edge.source), region, false);
-						new ObjectFlow(region, edge.source, outputNode);
-						outputNode
-					} endif;
+				if edge.oclIsKindOf(ControlFlow) then {
+					edge.source := region;
+				} else {
+					var outputNode := new ExpansionNode(nameOf(edge.source), region, false);
+					new ObjectFlow(region, edge.source, outputNode);
+					edge.source := outputNode;
+				} endif;
 			} endif endif;
 		} endif;
 	};
