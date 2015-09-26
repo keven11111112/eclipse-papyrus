@@ -2072,11 +2072,13 @@ helper SyntaxElement::mapPropertyAssignment(property_ : Property, objectSource :
   	region.edge := graph.edges;
   	
   	var objectInputPin := new InputPin(region, region.name + ".input(" + nameOf(objectSource) + ")", featuringClassifier, 1, 1);
+	  var inputNode := new ExpansionNode(nameOf(valueSource), region, true);
   	new ObjectFlow(region, objectInputPin, writeAction._'object');
+  	new ObjectFlow(region, inputNode, writeAction.value);
   	
   	graph.nodes := region;
-  	graph.nodes += var inputNode ::= new ExpansionNode(nameOf(valueSource), region, true);
-  	graph.edges += new ObjectFlow(objectSource, objectInputPin);
+  	graph.nodes += inputNode;
+  	graph.edges := new ObjectFlow(objectSource, objectInputPin);
   	graph.edges += new ObjectFlow(valueSource, inputNode);
   	
   } else {
@@ -2203,7 +2205,7 @@ helper LeftHandSide::mapFeatureLeftHandSide(inout graph : LhsGraph, objectSource
 		if objectResultSource = null then {
 			var expressionGraph := feature.expression.map toActivityGraph();
 			objectResultSource := expressionGraph.resultSource;
-			graph.controlTarget := expressionGraph.addStructuredActivityNodeTo(graph, "Expression(LeftHandSide(" + nameOf(objectResultSource) + "))");
+			graph.controlTarget := expressionGraph.addStructuredActivityNodeTo(graph, "Expression(LeftHandSide(" + property_.qualifiedName + "))");
 		} endif;
 		var index := self.index();
 		var resultNode : ActivityNode;
@@ -2216,7 +2218,7 @@ helper LeftHandSide::mapFeatureLeftHandSide(inout graph : LhsGraph, objectSource
 			if rhsUpper = 0 then {
 				resultNode := clearAction.result;
 			} else {
-				graph.nodes += graph.resultSource := new ForkNode("LeftHandSide(" + nameOf(objectResultSource) + ")");
+				graph.nodes += graph.resultSource := new ForkNode("LeftHandSide(" + property_.qualifiedName + ")");
 				graph.assignmentTarget := graph.resultSource;
 				
 				// Place the property assignment mapping in a structured activity node to insure
@@ -2234,7 +2236,7 @@ helper LeftHandSide::mapFeatureLeftHandSide(inout graph : LhsGraph, objectSource
 			var indexResultSource := indexSource;
 			if indexResultSource = null then {
 				var indexGraph := index.map toActivityGraph();
-				var indexNode := indexGraph.addStructuredActivityNodeTo(graph, "Index(LeftHandSide(" + nameOf(objectResultSource) + ")");
+				var indexNode := indexGraph.addStructuredActivityNodeTo(graph, "Index(LeftHandSide(" + property_.qualifiedName + ")");
 				if graph.controlTarget = null then {
 					graph.controlTarget := indexNode;
 				} else {
@@ -2260,7 +2262,7 @@ helper LeftHandSide::mapFeatureLeftHandSide(inout graph : LhsGraph, objectSource
 				graph.edges += new ObjectFlow(indexFork, removeAction.removeAt);
 				
 				graph.nodes += var writeAction ::= new AddStructuralFeatureValueAction(property_, false, unlimitedNaturalType);
-				graph.nodes += graph.assignmentTarget := graph.resultSource := new ForkNode("LeftHandSide(" + nameOf(objectResultSource) + ")");
+				graph.nodes += graph.assignmentTarget := graph.resultSource := new ForkNode("LeftHandSide(" + property_.qualifiedName + ")");
 				graph.edges += new ObjectFlow(removeAction.result, writeAction._'object');
 				graph.edges += new ObjectFlow(graph.resultSource, writeAction.value);
 				resultNode := writeAction.result;
