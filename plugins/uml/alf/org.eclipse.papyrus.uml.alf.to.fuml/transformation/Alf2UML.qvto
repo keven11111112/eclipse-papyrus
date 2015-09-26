@@ -496,7 +496,7 @@ mapping ClassDefinition::toClass() : Class
 		  
 		  // Create initialization operation.
 		  var initializationOperationName := uniqueName(self.actualName() + "$initialization", result);
-		  var initializationMethod := self.createInitializationMethod(result, initializationFlag, initializationOperationName);
+		  var initializationMethod := self.createInitializationMethod(result, initializationFlag);
 		  var initializationOperation := object Operation {
 		  	name := initializationOperationName;
 		  	visibility := VisibilityKind::protected;
@@ -562,9 +562,9 @@ query uniqueName(name : String, namespace : Namespace) : String {
   };
 }
 
-helper ClassDefinition::createInitializationMethod(class_ : Class, initializationFlag : Property, operationName: String) : Activity {
+helper ClassDefinition::createInitializationMethod(class_ : Class, initializationFlag : Property) : Activity {
 	var method := object Activity {
-	  name := operationName;
+	  name := uniqueName(class_.name + "$initialization$method", class_);
 	  visibility := VisibilityKind::protected;
 	};
 	
@@ -600,7 +600,8 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
   	  var graph := self.mapPropertyAssignment(attribute, selfFork, callAction._'result'->at(1));
   	  initializationNode.node += var node ::= new StructuredActivityNode("Initialization(" + attribute.name + ")");
   	  node.node := graph.nodes;
-  	  initializationNode.edge += graph.edges;
+  	  initializationNode.edge += graph.edges[source != selfFork];
+  	  method.edge += graph.edges[source = selfFork];
   	  if previousNode <> null then {
   	  	new ObjectFlow(initializationNode, previousNode, node);
   	  } endif;
@@ -630,7 +631,7 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
   new ObjectFlow(method, valueAction.result, testAction.second);
   
   method.ownedNode += var initialNode ::= new InitialNode("InitialNode");
-  createObjectDecisionGraph(
+  createControlDecisionGraph(
   	"Test(" + initializationFlag.name + ")",
   	initialNode, testAction.result,
   	initializationNode, null
