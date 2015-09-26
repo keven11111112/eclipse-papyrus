@@ -1438,12 +1438,23 @@ mapping CastExpression::toActivityGraph() : ExpressionGraph
 	var operandGraph := self.operand.map toActivityGraph();
 	operandGraph.addTo(result);
 	if type = null or 
-                    
+	
+	  // Check for an upcast that does not require a real conversion.
 		operandType <> null and operandType.conformsTo(self.type) and
 	    // The following condition is to treat up-casting of
 	    // naturals to unlimited naturals as a real conversion, 
 	    // because naturals are represented as integers.
 		 	not(self.isNaturalType(operandType) and self.isUnlimitedNaturalType(type)) or
+		
+		// Check for types with the same primitive representation, for which no
+		// real conversion is required. (But not for a natural type, since that
+		// requires either a non-zero check for downcast from Integer or a real
+		// conversion for downcast from unlimited natural.)
+		self.isIntegerType(type) and not self.isNaturalType(type) and self.isIntegerType(operandType) or
+    self.isUnlimitedNaturalType(type) and not self.isNaturalType(type) and 
+    	self.isUnlimitedNaturalType(operandType) and not self.isNaturalType(operandType) or
+    self.isBooleanType(type) and self.isBooleanType(operandType) or
+    self.isStringType(type) and self.isStringType(operandType) or
 	 	
     // The following condition is an optimization to avoid 
     // generating an expansion region when the operand is known
@@ -1455,7 +1466,7 @@ mapping CastExpression::toActivityGraph() : ExpressionGraph
 		
 		then {
 			
-		// Up-cast, no conversion is necessary.
+		// No conversion is necessary.
 		resultSource := operandGraph.resultSource;
 		if resultSource.oclIsKindOf(Pin) then {
 			resultSource.oclAsType(Pin).type := self.type.toType();
@@ -1496,7 +1507,7 @@ helper CastExpression::mapNestedGraph(inout nestedGraph : ExpressionGraph, label
     // addClassificationDecision.
     
     if self.isIntegerType(type) then {
-    	// For downcast to Natural (other than from UnlimitedNatural), ass a check that
+    	// For downcast to Natural (other than from UnlimitedNatural), add a check that
     	// the operand is greater than or equal to zero.
     	if self.isNaturalType(type) and not self.isUnlimitedNaturalType(operandType) then {
     		target := self.addNaturalCheck(nestedGraph);
@@ -1507,11 +1518,6 @@ helper CastExpression::mapNestedGraph(inout nestedGraph : ExpressionGraph, label
     	} endif;
     	
     	if source = null then {
-	      // NOTE: For Integer, the test for an UnlimitedNatural operand
-	      // must come after the test of for an Integer operand
-	      // in order to properly handle Natural values. Even though 
-	      // Natural is a subtype of both Integer and UnlimitedNatural, 
-	      // Natural values are represented as integers.
 	      if operandType = null or self.isUnlimitedNaturalType(operandType) then {
 	      	source := self.addClassificationDecision(
 	      		nestedGraph, self.typeUnlimitedNatural(), target, source, 
