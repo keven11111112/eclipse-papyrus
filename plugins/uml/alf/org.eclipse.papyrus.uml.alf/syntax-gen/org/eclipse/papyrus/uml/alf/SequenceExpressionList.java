@@ -89,7 +89,7 @@ public interface SequenceExpressionList extends SequenceElements {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let lowerBounds = self.element.lower in\n          if lowerBounds->includes(-1) then -1\n          else lowerBounds->sum()\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let upperBounds = self.element.upper in\n          if upperBounds->includes(-1) then -1\n          else upperBounds->sum()\n          endif'"
 	 * @generated
 	 */
 	BigInteger upper();
