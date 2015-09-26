@@ -9,6 +9,7 @@
 	<properties>
 		<tycho-version>0.23.1</tycho-version>
 		<tychoExtrasVersion>0.23.1</tychoExtrasVersion>
+		<tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/papyrus/org.eclipse.papyrus</tycho.scmUrl>
 		<jarSignerVersion>1.1.2</jarSignerVersion>
 		<findbugs.version>3.0.1</findbugs.version>
 		<xtext.version>2.7.3</xtext.version>
