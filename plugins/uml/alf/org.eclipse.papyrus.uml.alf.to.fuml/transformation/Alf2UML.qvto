@@ -514,6 +514,7 @@ mapping ClassDefinition::toClass() : Class
 		  	ownedBehavior += var activity ::= object Activity {
 		  		name := uniqueName(self.actualName() + "$method", result);
 		      ownedParameter := object Parameter {
+		      	name := "";
 		        type := result;
 		        lower := 1;
 		        upper := 1;
@@ -524,6 +525,7 @@ mapping ClassDefinition::toClass() : Class
 		      name := self.actualName();
 		      method := activity;
 		      ownedParameter := object Parameter {
+		      	name := "";
 		      	type := result;
 		      	lower := 1;
 		      	upper := 1;
