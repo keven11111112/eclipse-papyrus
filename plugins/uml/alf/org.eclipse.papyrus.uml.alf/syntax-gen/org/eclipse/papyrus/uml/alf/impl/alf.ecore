@@ -6782,7 +6782,7 @@
     </eOperations>
     <eOperations name="upper" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let lowerBounds = self.element.lower in&#xA;          if lowerBounds->includes(-1) then -1&#xA;          else lowerBounds->sum()&#xA;          endif"/>
+        <details key="body" value="&#xA;        let upperBounds = self.element.upper in&#xA;          if upperBounds->includes(-1) then -1&#xA;          else upperBounds->sum()&#xA;          endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="sequenceExpressionListLowerDerivation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
