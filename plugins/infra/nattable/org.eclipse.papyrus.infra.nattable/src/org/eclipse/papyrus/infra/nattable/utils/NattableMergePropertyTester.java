@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -42,6 +42,10 @@ public class NattableMergePropertyTester extends PropertyTester {
 		HashMap<String, Boolean> mergeMap = new HashMap<String, Boolean>();
 		// the manager of the table
 		INattableModelManager manager = getNattableModelManager();
+		if (manager == null) {
+			return false;
+		}
+
 		// the row Headers where the merge booleans concerning the allRows and allColumns merges and their values
 		AbstractHeaderAxisConfiguration rowHeader = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisConfigurationUsedInTable(manager.getTable());
 		AbstractHeaderAxisConfiguration columnHeader = HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(manager.getTable());
