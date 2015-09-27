@@ -25,14 +25,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.junit.Assert;
@@ -44,8 +52,42 @@ public class TestClassDiagramAssociationLinkSemantic extends AbstractPapyrusTest
 	public void testAssociationLink() {
 		IGraphicalEditPart source = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 0);
 		IGraphicalEditPart target = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 1);
-		IGraphicalEditPart association = createLink(UMLElementTypes.Association_4001, source, target);
-		assertNotNull(association);
+		Association association = createAssociation(source, target);
+		checkAssociationSemantic(source, target, association);
+	}
+
+	@Test
+	@FailingTest
+	public void testAssociationLinkReorient() {
+		IGraphicalEditPart source = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 0);
+		IGraphicalEditPart target = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 1);
+		Association association = createAssociation(source, target);
+		checkAssociationSemantic(source, target, association);
+		IGraphicalEditPart newSource = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 2);
+		IElementEditService service = ElementEditServiceUtils.getCommandProvider(association);
+		ReorientRelationshipRequest req = new ReorientRelationshipRequest(getEditingDomain(), association, newSource.resolveSemanticElement(), source.resolveSemanticElement(), ReorientRequest.REORIENT_SOURCE);
+		ICommand cmd = service.getEditCommand(req);
+		assertNotNull(cmd);
+		assertTrue(cmd.canExecute());
+		executeOnUIThread(GMFtoGEFCommandWrapper.wrap(cmd));
+		association = findAssociation(newSource);
+		checkAssociationSemantic(newSource, target, association);
+	}
+
+	private Association findAssociation(IGraphicalEditPart source) {
+		assertEquals(1, getDiagramEditPart().getConnections().size());
+		assertEquals(1, ((Classifier) source.resolveSemanticElement()).getAssociations().size());
+		Association associationFromClassifier = ((Classifier) source.resolveSemanticElement()).getAssociations().get(0);
+		Object connection = getDiagramEditPart().getConnections().get(0);
+		assertNotNull(connection);
+		Assert.assertTrue(connection instanceof AssociationEditPart);
+		EObject associationSemantic = ((AssociationEditPart) connection).resolveSemanticElement();
+		assertTrue("Created link is not association.", associationSemantic instanceof Association);
+		assertTrue("Diagram contains two different associations.", associationSemantic == associationFromClassifier);
+		return (Association) associationSemantic;
+	}
+
+	private void checkAssociationSemantic(IGraphicalEditPart source, IGraphicalEditPart target, Association association) {
 		// check source semantic
 		EObject sourceSemantic = source.resolveSemanticElement();
 		assertTrue("Source should be StructuredClassifier.", sourceSemantic instanceof StructuredClassifier);
@@ -58,12 +100,10 @@ public class TestClassDiagramAssociationLinkSemantic extends AbstractPapyrusTest
 		assertTrue("Target should be StructuredClassifier.", targetSemantic instanceof StructuredClassifier);
 		assertEquals("Target owned attributes", 0, ((StructuredClassifier) targetSemantic).getOwnedAttributes().size());
 		// check association semantic
-		EObject associationSemantic = association.resolveSemanticElement();
-		assertTrue("Created link is not association.", associationSemantic instanceof Association);
-		List<Property> associationProperties = ((Association) associationSemantic).getOwnedEnds();
+		List<Property> associationProperties = association.getOwnedEnds();
 		assertEquals("Association owned attributes", 1, associationProperties.size());
 		Property associationProperty = associationProperties.get(0);
-		assertEquals("Association property owner", associationSemantic, associationProperty.eContainer());
+		assertEquals("Association property owner", association, associationProperty.eContainer());
 		assertEquals("Association property type", sourceSemantic, associationProperty.getType());
 	}
 
@@ -77,15 +117,17 @@ public class TestClassDiagramAssociationLinkSemantic extends AbstractPapyrusTest
 		return (IGraphicalEditPart) getDiagramEditPart().getChildren().get(num);
 	}
 
-	private IGraphicalEditPart createLink(IElementType type, EditPart source, EditPart target) {
+	private Association createAssociation(IGraphicalEditPart source, IGraphicalEditPart target) {
+		createLink(UMLElementTypes.Association_4001, source, target);
+		return findAssociation(source);
+	}
+
+	private void createLink(IElementType type, EditPart source, EditPart target) {
 		Command endCommand = target.getCommand(createConnectionViewRequest(type, source, target));
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 		executeOnUIThread(endCommand);
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
-		IGraphicalEditPart association = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
-		Assert.assertTrue(association instanceof AssociationEditPart);
-		return association;
 	}
 
 	private CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target) {
