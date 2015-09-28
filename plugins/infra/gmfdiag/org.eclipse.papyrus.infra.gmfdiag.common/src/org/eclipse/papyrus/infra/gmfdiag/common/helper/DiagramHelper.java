@@ -11,6 +11,7 @@
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 461629
  *  Christian W. Damus - bug 466997
+ *  Christian W. Damus - bug 478556
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
@@ -21,6 +22,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -173,12 +175,20 @@ public class DiagramHelper {
 
 				@Override
 				public void run() {
-					if (setNeedsRefresh(diagram, false) && diagram.isActive() && (diagram.getViewer() != null)) {
+					// Don't refresh a diagram that has been deleted (is no longer
+					// attached to a resoure)
+					if (setNeedsRefresh(diagram, false) && diagram.isActive()
+							&& (diagram.getViewer() != null) && isAttached(diagram.getModel())) {
+
 						refresh(diagram, true);
 					}
 				}
 			});
 		}
+	}
+
+	private static boolean isAttached(Object diagramView) {
+		return (diagramView instanceof EObject) && (((EObject) diagramView).eResource() != null);
 	}
 
 	private static boolean setNeedsRefresh(DiagramEditPart diagram, boolean refresh) {
