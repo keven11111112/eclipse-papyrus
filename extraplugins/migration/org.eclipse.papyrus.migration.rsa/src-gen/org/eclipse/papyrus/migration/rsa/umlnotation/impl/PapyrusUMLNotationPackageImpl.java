@@ -102,10 +102,15 @@ public class PapyrusUMLNotationPackageImpl extends EPackageImpl implements Papyr
 	private EClass umlClassifierShapeEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.migration.rsa.umlnotation.PapyrusUMLNotationPackage#eNS_URI
@@ -128,7 +133,9 @@ public class PapyrusUMLNotationPackageImpl extends EPackageImpl implements Papyr
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link PapyrusUMLNotationPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!--
+	 * This method is used to initialize {@link PapyrusUMLNotationPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 *
 	 * @see #eNS_URI
@@ -148,8 +155,8 @@ public class PapyrusUMLNotationPackageImpl extends EPackageImpl implements Papyr
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		NotationPackageImpl theNotationPackage = (NotationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI) instanceof NotationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI)
-				: NotationPackage.eINSTANCE);
+		NotationPackageImpl theNotationPackage = (NotationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI) instanceof NotationPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI) : NotationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePapyrusUMLNotationPackage.createPackageContents();
@@ -307,6 +314,17 @@ public class PapyrusUMLNotationPackageImpl extends EPackageImpl implements Papyr
 	 * @generated
 	 */
 	@Override
+	public EAttribute getUMLView_ShowListStereotype() {
+		return (EAttribute) umlViewEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EClass getUMLComponent() {
 		return umlComponentEClass;
 	}
@@ -395,6 +413,7 @@ public class PapyrusUMLNotationPackageImpl extends EPackageImpl implements Papyr
 		createEAttribute(umlViewEClass, UML_VIEW__SHOW_LIST_SIGNATURE);
 		createEAttribute(umlViewEClass, UML_VIEW__ALIGNMENT);
 		createEAttribute(umlViewEClass, UML_VIEW__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT);
+		createEAttribute(umlViewEClass, UML_VIEW__SHOW_LIST_STEREOTYPE);
 
 		umlComponentEClass = createEClass(UML_COMPONENT);
 		createEAttribute(umlComponentEClass, UML_COMPONENT__SHOW_WHITEBOX);
@@ -458,7 +477,8 @@ public class PapyrusUMLNotationPackageImpl extends EPackageImpl implements Papyr
 		initEClass(umlFrameEClass, UMLFrame.class, "UMLFrame", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(umlShapeCompartmentEClass, UMLShapeCompartment.class, "UMLShapeCompartment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUMLShapeCompartment_VerticalAlignment(), ecorePackage.getEBoolean(), "verticalAlignment", "true", 0, 1, UMLShapeCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUMLShapeCompartment_VerticalAlignment(), ecorePackage.getEBoolean(), "verticalAlignment", "true", 0, 1, UMLShapeCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(umlShapeEClass, UMLShape.class, "UMLShape", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -471,6 +491,7 @@ public class PapyrusUMLNotationPackageImpl extends EPackageImpl implements Papyr
 		initEAttribute(getUMLView_Alignment(), ecorePackage.getEString(), "alignment", null, 0, 1, UMLView.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUMLView_ShowStereotypeAttributeCompartment(), ecorePackage.getEString(), "showStereotypeAttributeCompartment", null, 0, 1, UMLView.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getUMLView_ShowListStereotype(), ecorePackage.getEString(), "showListStereotype", null, 0, 1, UMLView.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(umlComponentEClass, UMLComponent.class, "UMLComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUMLComponent_ShowWhitebox(), ecorePackage.getEBoolean(), "showWhitebox", null, 0, 1, UMLComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -19,10 +19,10 @@ package org.eclipse.papyrus.migration.rsa.umlnotation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLClassifierShape#isUseClassifierShape <em>Use Classifier Shape</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.migration.rsa.umlnotation.PapyrusUMLNotationPackage#getUMLClassifierShape()
  * @model
