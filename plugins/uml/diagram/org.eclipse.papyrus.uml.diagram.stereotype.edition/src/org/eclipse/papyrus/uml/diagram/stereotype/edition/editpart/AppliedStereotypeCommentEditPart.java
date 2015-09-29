@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommentShapeForAppliedStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentForCommentShapeEditPolicy;
 
 // TODO: Auto-generated Javadoc
@@ -220,4 +221,19 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 		return command;
 	}
 
+	@Override
+	protected void refreshVisibility() {
+		super.refreshVisibility();
+
+		boolean havVisibleCompartent = false;
+		for (Object child: getNotationView().getVisibleChildren()) {
+			if (StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE.equals(((View)child).getType())) {
+				havVisibleCompartent = true;
+				break;
+			}
+		}
+		if (!havVisibleCompartent) {
+			setVisibility(havVisibleCompartent);
+		}
+	}
 }
