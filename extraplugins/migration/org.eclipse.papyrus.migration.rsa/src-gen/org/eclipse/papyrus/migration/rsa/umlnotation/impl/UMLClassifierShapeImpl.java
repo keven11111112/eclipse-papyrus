@@ -23,10 +23,10 @@ import org.eclipse.papyrus.migration.rsa.umlnotation.UMLClassifierShape;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLClassifierShapeImpl#isUseClassifierShape <em>Use Classifier Shape</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
