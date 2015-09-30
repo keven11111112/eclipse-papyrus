@@ -49,7 +49,9 @@ public abstract class BasePortChildLocator implements IBorderItemLocator {
 		if (xPortLocation == parent.x + parent.width) {
 			side = side | PositionConstants.EAST;
 		}
-		return side;
+
+		//side == 0 the port located not on the board of the parent
+		return side == 0 ? PositionConstants.NORTH : side;
 	}
 
 	private Rectangle getParentBounds() {
