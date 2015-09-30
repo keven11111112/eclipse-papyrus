@@ -252,7 +252,7 @@
 			<id>cdt</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDT",0) -->
-			<url>http://download.eclipse.org/tools/cdt/builds/mars/milestones</url>
+			<url>http://download.eclipse.org/tools/cdt/builds/neon/milestones</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
@@ -264,7 +264,7 @@
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF COMPARE",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201508181443</url>
+			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201509300604</url>
 		</repository>
 		<repository>
 			<id>emf-query</id>
@@ -276,7 +276,7 @@
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441</url>
+			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201509300618</url>
 		</repository>
 		<repository>
 			<id>EEF</id>

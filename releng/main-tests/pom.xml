@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipse.papyrus</groupId>
 	<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
@@ -104,18 +103,6 @@
 			<id>papyrus-dev</id>
 			<layout>p2</layout>
 			<url>${papyrus.repo.dev}</url>
-		</repository>
-		<repository>
-			<id>emf-compare</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF COMPARE",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201508181443</url>
-		</repository>
-		<repository>
-			<id>m2t-acceleo</id>
-			<layout>p2</layout>
-			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441</url>
 		</repository>
 		<repository>
 			<id>swtbot</id>
