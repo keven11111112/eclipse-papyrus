@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
-*     CEA LIST. - initial API and implementation
-*******************************************************************************/
+ *     CEA LIST. - initial API and implementation
+ *     Mauricio Alférez (mauricio.alferez@cea.fr) CEA LIST - Bugs 477726, 478595
+ *     
+ *******************************************************************************/
 
 package org.eclipse.papyrus.req.sysml.preferences;
 
@@ -46,9 +48,9 @@ public class PreferencePage  extends FieldEditorPreferencePage implements IWorkb
 	public void createFieldEditors() {
 		
 		Group dmGroup = createGroup("Requirement");
-		addField(new StringFieldEditor(PreferenceConstants.REQUIREMENT_ID_PREFIX,"Prefix for Requirement ID",dmGroup));
-		addField(new IntegerFieldEditor(PreferenceConstants.REQUIREMENT_ID_DIGIT,"Number of digits for Requirement ID",dmGroup));
-		
+		addField(new StringFieldEditor(PreferenceConstants.REQUIREMENT_ID_PREFIX,"Prefix for requirement ID",dmGroup));
+		addField(new IntegerFieldEditor(PreferenceConstants.REQUIREMENT_ID_DIGIT,"Number of digits for requirement ID",dmGroup));
+		addField(new StringFieldEditor(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR,"Separator between parent and child requirements IDs",dmGroup));
 	}
 
 	/*
