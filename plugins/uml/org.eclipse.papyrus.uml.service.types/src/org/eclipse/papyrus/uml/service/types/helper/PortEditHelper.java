@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -58,9 +57,7 @@ public class PortEditHelper extends ElementEditHelper {
 			CreateElementRequest createRequest = (CreateElementRequest) req.getEditCommandRequest();
 			EObject container = createRequest.getContainer();
 			// Allow Port creation on typed part
-			if (container instanceof Property && ((Property) container).getType() != null) {
-				container = ((Property) container).getType();
-			}
+
 			if (container instanceof EncapsulatedClassifier) {
 				return super.getEditContextCommand(req);
 			}
@@ -78,6 +75,7 @@ public class PortEditHelper extends ElementEditHelper {
 
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 				Port element = (Port) req.getElementToConfigure();
