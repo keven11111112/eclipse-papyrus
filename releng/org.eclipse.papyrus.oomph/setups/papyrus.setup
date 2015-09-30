@@ -134,14 +134,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030321/mwe">
+        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201509290600/mwe">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMFT MWE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030411/mwe2lang/">
+        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201509290840/mwe2lang/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMFT MWE:1</value>
@@ -155,14 +155,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441">
+        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201509300618">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T ACCELEO</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201508171259">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201509281333">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT OCL 6.0</value>
@@ -176,21 +176,21 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201508180411/">
+        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201509290912/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T XPAND</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/">
+        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/I201509281643/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Xtext, Xtend</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201508181443">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201509300604">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>
