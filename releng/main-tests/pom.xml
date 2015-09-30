@@ -105,6 +105,18 @@
 			<url>${papyrus.repo.dev}</url>
 		</repository>
 		<repository>
+			<id>emf-compare</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF COMPARE",0) -->
+			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201509300604</url>
+		</repository>
+		<repository>
+			<id>m2t-acceleo</id>
+			<layout>p2</layout>
+			<!-- updateFrom("M2T ACCELEO",0) -->
+			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201509300618</url>
+		</repository>
+		<repository>
 			<id>swtbot</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
