@@ -188,6 +188,9 @@ public class ActionPinInReadStructuralFeatureAsObjectEditPart extends AbstractPi
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;

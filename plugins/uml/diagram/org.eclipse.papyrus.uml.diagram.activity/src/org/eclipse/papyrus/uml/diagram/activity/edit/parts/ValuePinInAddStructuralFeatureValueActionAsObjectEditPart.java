@@ -187,6 +187,9 @@ public class ValuePinInAddStructuralFeatureValueActionAsObjectEditPart extends A
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;

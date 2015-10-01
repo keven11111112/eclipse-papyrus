@@ -182,6 +182,9 @@ public class OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart ext
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;

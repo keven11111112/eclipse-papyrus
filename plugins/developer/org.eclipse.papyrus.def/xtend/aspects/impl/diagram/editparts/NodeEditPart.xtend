@@ -192,6 +192,7 @@ override addFixedChild (GenNode it)'''
 //	'''
 
 	override createNodePlate(GenNode it) '''
+	«generatedMemberComment»
 	«IF it.eResource.allContents.filter(typeof(SpecificNodePlate)).filter[v |v.editParts.contains(it) && v.nodePlateQualifiedName!=null].size != 0»
 		«val  editPart = it.eResource.allContents.filter(typeof(SpecificNodePlate)).filter[v |v.editParts.contains(it) && v.nodePlateQualifiedName!=null].head»
 		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
