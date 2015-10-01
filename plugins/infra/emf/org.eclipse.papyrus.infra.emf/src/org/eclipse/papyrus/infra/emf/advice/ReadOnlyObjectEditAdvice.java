@@ -189,7 +189,7 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 
 		// Handle the case where the reference has an opposite
 		EReference ref = request.getContainingFeature();
-		if (ref.getEOpposite() != null) {
+		if (ref != null && ref.getEOpposite() != null) {
 			// The object being removed will have its inverse reference removed, also
 			EObject referenced = request.getReferencedObject();
 			if ((referenced != null) && isUneditable(request, referenced)) {

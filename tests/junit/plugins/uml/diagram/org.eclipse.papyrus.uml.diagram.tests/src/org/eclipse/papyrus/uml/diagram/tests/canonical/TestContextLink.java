@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -26,6 +27,15 @@ public abstract class TestContextLink extends TestLink {
 		testToManageLink(sourceType, targetType, linkType, containerType, false, null);
 		checkUnexecutableCreateLinkCommand(linkType, source, target);
 		checkUnexecutableCreateLinkCommand(linkType, source, targetPlayer);
+		testDestroy(linkType);
+		checkExecutableCreateLinkCommand(linkType, source, target);
+		checkExecutableCreateLinkCommand(linkType, source, targetPlayer);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		testViewDeletion(linkType);
+		checkExecutableCreateLinkCommand(linkType, source, target);
+		checkExecutableCreateLinkCommand(linkType, source, targetPlayer);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		testToManageDropConstraint();
 	}
 
 	@Override
@@ -37,12 +47,49 @@ public abstract class TestContextLink extends TestLink {
 	public void testToManageLink(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType containerType, boolean allowedOntheSame, String initialName) {
 		installEnvironment(sourceType, targetType);
 		testToCreateALink(linkType, initialName);
-		testToManageDropConstraint();
+		testDestroy(linkType);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		testViewDeletion(linkType);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 	}
 
-	private void testToManageDropConstraint() {
+	protected void testToManageDropConstraint() {
 		testConstraintViewDeletion();
 		testDropConstraint();
+	}
+
+	public void testViewDeletion(IElementType type) {
+		testDestroy(type);
+	}
+
+	@Override
+	public void testDestroy(IElementType type) {
+		// DESTROY SEMANTIC+ VIEW
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, source.getSourceConnections().size());
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, getDiagramEditPart().getConnections().size());
+		ConnectionEditPart linkEditPart = (ConnectionEditPart) getDiagramEditPart().getConnections().get(0);
+
+		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
+		Command command = linkEditPart.getCommand(deleteViewRequest);
+		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
+		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 0, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 0, source.getSourceConnections().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 4, getRootSemanticModel().getOwnedElements().size());
+		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, diagramEditor.getDiagramEditDomain().getDiagramCommandStack().canUndo());
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, createdEdgesCount, source.getSourceConnections().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, 0, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO, 0, source.getSourceConnections().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO, 4, getRootSemanticModel().getOwnedElements().size());
 	}
 
 	private void testConstraintViewDeletion() {
@@ -109,5 +156,10 @@ public abstract class TestContextLink extends TestLink {
 	private void checkUnexecutableCreateLinkCommand(IElementType linkType, GraphicalEditPart source, GraphicalEditPart target) {
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
 		assertNull("Creation of the second context link from the constraint should be forbidden.", command);
+	}
+
+	private void checkExecutableCreateLinkCommand(IElementType linkType, GraphicalEditPart source, GraphicalEditPart target) {
+		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
+		assertTrue(command != null && command.canExecute());
 	}
 }
