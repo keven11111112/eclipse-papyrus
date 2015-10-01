@@ -190,6 +190,9 @@ public class InteractionConstraintEditPartCN extends AbstractConstraintEditPart 
 		return getContentPane();
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;

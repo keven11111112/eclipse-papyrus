@@ -210,6 +210,9 @@ public class PackageEditPartTN extends PackageEditPart {
 		return getContentPane();
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(150, 150);

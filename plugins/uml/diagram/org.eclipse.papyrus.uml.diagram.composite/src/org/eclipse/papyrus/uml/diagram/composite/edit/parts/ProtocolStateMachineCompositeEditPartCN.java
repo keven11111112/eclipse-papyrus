@@ -306,6 +306,9 @@ public class ProtocolStateMachineCompositeEditPartCN extends RoundedCompartmentE
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;

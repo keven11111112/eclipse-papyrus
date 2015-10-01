@@ -207,6 +207,9 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 		return getContentPane();
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(200, 400);

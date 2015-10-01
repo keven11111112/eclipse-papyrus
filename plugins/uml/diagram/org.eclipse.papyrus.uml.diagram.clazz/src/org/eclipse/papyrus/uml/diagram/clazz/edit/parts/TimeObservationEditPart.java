@@ -200,6 +200,9 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);

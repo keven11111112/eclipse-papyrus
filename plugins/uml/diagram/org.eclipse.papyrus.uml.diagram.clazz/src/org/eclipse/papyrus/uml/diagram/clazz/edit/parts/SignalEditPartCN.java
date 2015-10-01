@@ -299,6 +299,9 @@ public class SignalEditPartCN extends ClassifierEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 100);

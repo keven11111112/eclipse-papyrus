@@ -264,6 +264,9 @@ public class SubjectClassifierEditPartTN extends SubjectNodeEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(200, 400);

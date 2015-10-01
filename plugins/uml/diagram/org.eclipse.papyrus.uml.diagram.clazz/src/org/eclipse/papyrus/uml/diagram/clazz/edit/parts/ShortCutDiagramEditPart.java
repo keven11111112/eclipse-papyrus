@@ -189,6 +189,9 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(20, 20);

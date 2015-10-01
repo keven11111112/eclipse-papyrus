@@ -202,6 +202,9 @@ public class ActorInPackageEditPart extends RoundedCompartmentEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(30, 50);

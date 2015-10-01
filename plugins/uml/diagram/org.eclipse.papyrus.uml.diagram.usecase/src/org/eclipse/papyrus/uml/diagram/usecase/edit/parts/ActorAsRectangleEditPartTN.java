@@ -165,6 +165,9 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 		return getContentPane();
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(60, 80);

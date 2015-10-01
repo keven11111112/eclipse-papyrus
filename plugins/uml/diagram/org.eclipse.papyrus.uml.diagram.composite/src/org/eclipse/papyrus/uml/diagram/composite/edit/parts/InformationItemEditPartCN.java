@@ -243,6 +243,9 @@ public class InformationItemEditPartCN extends RoundedCompartmentEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(80, 40);
 		return result;

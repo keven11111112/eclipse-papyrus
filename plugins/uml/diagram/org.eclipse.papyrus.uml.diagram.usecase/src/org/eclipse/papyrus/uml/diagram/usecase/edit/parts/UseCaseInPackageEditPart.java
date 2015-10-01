@@ -272,6 +272,9 @@ public class UseCaseInPackageEditPart extends UseCaseNodeEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(140, 60);

@@ -272,6 +272,9 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		final RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 100);
