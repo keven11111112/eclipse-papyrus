@@ -28,14 +28,14 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
- * This class creates a set of Satisfy links
+ * This class creates a set of Verify links
  */
-public class AddSatisfyLinkCommand extends RecordingCommand {
+public class AddVerifyLinkCommand extends RecordingCommand {
 	protected Element selectedElement;
 	TransactionalEditingDomain domain;
 
-	public AddSatisfyLinkCommand(TransactionalEditingDomain domain, Element selectedElement) {
-		super(domain,"Add Satisfy Link Command" );
+	public AddVerifyLinkCommand(TransactionalEditingDomain domain, Element selectedElement) {
+		super(domain,"Add Verify Link Command" );
 		this.selectedElement=selectedElement;
 		this.domain=domain;
 	}
@@ -54,19 +54,19 @@ public class AddSatisfyLinkCommand extends RecordingCommand {
 			ReferenceSelector selector = new ReferenceSelector();
 			selector.setLabelProvider(new UMLLabelProvider());
 			selector.setContentProvider(provider);
-			MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(Display.getDefault().getActiveShell(),selector,"Choose the model elements that satisfy the requirement");
+			MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(Display.getDefault().getActiveShell(),selector,"Choose the model elements that verify the requirement");
 		
 			dialog.setLabelProvider(new UMLLabelProvider());
-			//dialog.setMessage("Choose the model elements that satisfy the requirement");
-			//dialog.setTitle("Choose the model elements that satisfy the requirement");
+			//dialog.setMessage("Choose the model elements that verify the requirement");
+			//dialog.setTitle("Choose the model elements that verify the requirement");
 			dialog.create();
 			if(dialog.open() == org.eclipse.jface.window.Window.OK) {
 				Object[] result = dialog.getResult();
 
 				for (int i = 0; i < result.length; i++) {
 					Element currentElement = (Element) result[i];
-						SatisfyCreateCommand satisfyCreateCommand= new SatisfyCreateCommand(domain,(NamedElement) currentElement,(NamedElement) selectedElement);
-						satisfyCreateCommand.execute();
+						VerifyCreateCommand verifyCreateCommand= new VerifyCreateCommand(domain,(NamedElement) currentElement,(NamedElement) selectedElement);
+						verifyCreateCommand.execute();
 				}
 			}
 		}

@@ -152,6 +152,23 @@
                </with>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.AddVerifyLinkHandler"
+               label="%command.label.6"
+               style="push"
+               tooltip="%command.tooltip.6">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -194,9 +211,15 @@
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.req.sysml.assistant.handler.AddSatisfiedLinkHandler"
+            defaultHandler="org.eclipse.papyrus.req.sysml.assistant.handler.AddSatisfyLinkHandler"
             id="org.eclipse.papyrus.req.sysml.assistant.handler.AddSatisfiedLinkHandler"
             name="%command.name.5">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.req.sysml.assistant.handler.AddVerifyLinkHandler"
+            id="org.eclipse.papyrus.req.sysml.assistant.handler.AddVerifyLinkHandler"
+            name="%command.name.6">
       </command>
    </extension>
    <extension

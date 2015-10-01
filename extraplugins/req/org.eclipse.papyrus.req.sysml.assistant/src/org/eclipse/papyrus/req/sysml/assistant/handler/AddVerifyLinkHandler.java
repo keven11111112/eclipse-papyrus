@@ -16,16 +16,16 @@ import java.util.ArrayList;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.req.sysml.assistant.command.AddSatisfyLinkCommand;
-import org.eclipse.papyrus.req.sysml.assistant.command.SatisfyCreateCommand;
+import org.eclipse.papyrus.req.sysml.assistant.command.AddVerifyLinkCommand;
+import org.eclipse.papyrus.req.sysml.assistant.command.VerifyCreateCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * This class executes Satisfy link 
+ * This class executes Verify link 
  */
 
-public class AddSatisfiedLinkHandler extends PapyrusReqSysMLAbstractHandler { 
+public class AddVerifyLinkHandler extends PapyrusReqSysMLAbstractHandler { 
 
 
 
@@ -33,15 +33,15 @@ public class AddSatisfiedLinkHandler extends PapyrusReqSysMLAbstractHandler {
 		super.execute(event);
 		ArrayList<Element> selectedElements=getSelectionSet();
 		if( selectedElements.size()==2){
-			SatisfyCreateCommand addSatisfyCreateCommand= new SatisfyCreateCommand(transactionalEditingDomain,(NamedElement)selectedElements.get(1),(NamedElement) selectedElements.get(0));
-			transactionalEditingDomain.getCommandStack().execute(addSatisfyCreateCommand);
+			VerifyCreateCommand addVerifyCreateCommand= new VerifyCreateCommand(transactionalEditingDomain,(NamedElement)selectedElements.get(1),(NamedElement) selectedElements.get(0));
+			transactionalEditingDomain.getCommandStack().execute(addVerifyCreateCommand);
 		}
 		else{
 
 			Element selectedElement=getSelection();
 			if( selectedElement!=null){
-				AddSatisfyLinkCommand addAddSatisfyLinkCommand= new AddSatisfyLinkCommand(transactionalEditingDomain,selectedElement);
-				transactionalEditingDomain.getCommandStack().execute(addAddSatisfyLinkCommand);
+				AddVerifyLinkCommand addAddVerifyLinkCommand= new AddVerifyLinkCommand(transactionalEditingDomain,selectedElement);
+				transactionalEditingDomain.getCommandStack().execute(addAddVerifyLinkCommand);
 			}
 		}
 		return null;

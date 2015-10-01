@@ -24,10 +24,10 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 
 /**
- * This command is used to create a "Satisfy" link between a requirement and a namedElement
+ * This command is used to create a "Verify" link between a requirement and a namedElement
  *
  */
-public class SatisfyCreateCommand extends RecordingCommand {
+public class VerifyCreateCommand extends RecordingCommand {
 	private NamedElement source;
 	private NamedElement target;
 	/**
@@ -37,7 +37,7 @@ public class SatisfyCreateCommand extends RecordingCommand {
 	 * @param target the target of the abstraction (the more abstract element)
 
 	 */
-	public SatisfyCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target){ 
+	public VerifyCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target){ 
 		super(domain,"Create an Abstraction");
 		this.source=source;
 		this.target=target;
@@ -49,9 +49,9 @@ public class SatisfyCreateCommand extends RecordingCommand {
 		source.getNearestPackage().getPackagedElements().add(theAbstraction);
 		theAbstraction.getSuppliers().add(target);
 		theAbstraction.getClients().add(source);
-		theAbstraction.setName("Satisfies_"+this.target.getName());
-		Stereotype satisfyStereotype= theAbstraction.getApplicableStereotype(I_SysMLStereotype.SATISFY_STEREOTYPE);
-		theAbstraction.applyStereotype(satisfyStereotype);
+		theAbstraction.setName("Verifies_"+this.target.getName());
+		Stereotype verifyStereotype= theAbstraction.getApplicableStereotype(I_SysMLStereotype.VERIFY_STEREOTYPE);
+		theAbstraction.applyStereotype(verifyStereotype);
 	}
 
 }
