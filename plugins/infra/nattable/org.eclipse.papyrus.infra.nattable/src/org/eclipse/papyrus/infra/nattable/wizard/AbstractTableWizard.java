@@ -18,6 +18,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.util.ImageConstants;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 
@@ -70,12 +71,13 @@ public abstract class AbstractTableWizard extends Wizard {
 	}
 
 	/**
-	 * @see org.eclipse.jface.wizard.Wizard#addPages()
+	 * @see org.eclipse.jface.wizard.Wizard#createPageControls(org.eclipse.swt.widgets.Composite)
 	 *
+	 * @param pageContainer
 	 */
 	@Override
-	public void addPages() {
-		getShell().setImage(Activator.getDefault().getImage(ImageConstants.PAPYRUS_ICON_PATH)); //$NON-NLS-1$
+	public void createPageControls(Composite pageContainer) {
+		super.createPageControls(pageContainer);
+		getShell().setImage(Activator.getDefault().getImage(ImageConstants.PAPYRUS_ICON_PATH));
 	}
-
 }
