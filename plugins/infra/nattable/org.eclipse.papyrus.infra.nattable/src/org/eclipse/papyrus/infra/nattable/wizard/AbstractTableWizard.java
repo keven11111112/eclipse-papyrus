@@ -15,11 +15,11 @@
 package org.eclipse.papyrus.infra.nattable.wizard;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.util.ImageConstants;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 
@@ -70,19 +70,17 @@ public abstract class AbstractTableWizard extends Wizard {
 	public final INattableModelManager getNatTableModelManager() {
 		return this.manager;
 	}
-
+	
 	/**
-	 * @see org.eclipse.jface.wizard.Wizard#setContainer(org.eclipse.jface.wizard.IWizardContainer)
+	 * @see org.eclipse.jface.wizard.Wizard#createPageControls(org.eclipse.swt.widgets.Composite)
 	 *
-	 * @param wizardContainer
+	 * @param pageContainer
 	 */
 	@Override
-	public void setContainer(final IWizardContainer wizardContainer) {
-		super.setContainer(wizardContainer);
-		// Bug 476838: the container was null using getShell() of this wizard.
-		if (null != wizardContainer) {
-			wizardContainer.getShell().setImage(Activator.getDefault().getImage(ImageConstants.PAPYRUS_ICON_PATH)); // $NON-NLS-1$
-		}
+	public void createPageControls(Composite pageContainer) {
+		super.createPageControls(pageContainer);
+		getShell().setImage(Activator.getDefault().getImage(ImageConstants.PAPYRUS_ICON_PATH));
 	}
+
 
 }
