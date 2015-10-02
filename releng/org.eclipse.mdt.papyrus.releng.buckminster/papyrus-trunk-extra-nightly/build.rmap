@@ -323,12 +323,12 @@
     </rm:provider>
     
     <!-- EMF Facet -->
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <!-- updateFrom("EMF Facet",0) -->
-      <rm:uri format="{0}/facet/updates/integration/0.4.2/I201412301440/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
+<!--     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false"> -->
+<!--       updateFrom("EMF Facet",0) -->
+<!--       <rm:uri format="{0}/facet/updates/integration/0.4.2/I201412301440/"> -->
+<!--         <bc:propertyRef key="eclipse.downloads"/> -->
+<!--       </rm:uri> -->
+<!--     </rm:provider> -->
     
     <!-- MDT UML2 -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
@@ -455,7 +455,15 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.4/R-4.4.2-201502041700/">
+		<rm:uri format="{0}/eclipse/updates/4.4/">
+			<bc:propertyRef key="eclipse.downloads"/>
+		</rm:uri>
+	</rm:provider>
+	
+	<!-- Eclipse Luna Simrel -->
+	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		<!-- updateFrom("Eclipse",0) -->
+		<rm:uri format="{0}/releases/luna/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
