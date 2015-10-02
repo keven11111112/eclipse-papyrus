@@ -159,6 +159,9 @@
    <feature url="features/org.eclipse.papyrus.umldi.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.umldi.feature.source" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.dd.category"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.req.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.req.feature" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.req"/>
+   </feature>
    <bundle id="org.eclipse.papyrusrt.umlrt.profile" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </bundle>
@@ -191,6 +194,11 @@
    <category-def name="org.eclipse.papyrus.extra.dd.category" label="Papyrus Diagram Definition">
       <description>
          Diagram Definition Category
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.papyrus.extra.req" label="Papyrus Req">
+      <description>
+         Papyrus Req is a module to manage SysML requirements
       </description>
    </category-def>
 </site>
