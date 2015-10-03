@@ -599,7 +599,7 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
   	if attribute.defaultValue <> null then {
   	  var defaultBehavior := attribute.defaultValue.oclAsType(OpaqueExpression).behavior;
   	  initializationNode.node += var callAction ::= new CallBehaviorAction(defaultBehavior);
-  	  var graph := self.mapPropertyAssignment(attribute, selfFork, callAction._'result'->at(1));
+  	  var graph := self.mapPropertyAssignment(attribute, class_, selfFork, callAction._'result'->at(1));
   	  initializationNode.node += var node ::= new StructuredActivityNode("Initialization(" + attribute.name + ")");
   	  node.node := graph.nodes;
   	  initializationNode.edge += graph.edges[source != selfFork];
@@ -1019,7 +1019,7 @@ helper Class::mapDestructionOf(property_ : Property) : StructuredActivityNode {
 				structuredNode.node += var region ::= new ExpansionRegion("DestroyAll(" + property_.name + ")", ExpansionKind::iterative);
 				region.node += callAction;
 				new ControlFlow(structuredNode, readAction, region);
-				structuredNode.node += var inputNode ::= new ExpansionNode(null, region, true);
+				structuredNode.node += var inputNode ::= new ExpansionNode(null, readAction.result.type, region, true);
 				new ObjectFlow(structuredNode, readAction.result, inputNode);
 				new ObjectFlow(structuredNode, inputNode, callAction.target);
 			} endif;

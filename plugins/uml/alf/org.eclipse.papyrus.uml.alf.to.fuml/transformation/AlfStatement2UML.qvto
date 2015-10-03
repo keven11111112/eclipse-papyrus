@@ -694,7 +694,7 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     // value source for the loop variable within the body).
 		self.variableDefinition->forEach(definition) {
 			var variable = definition.variable;
-			nodes += var inputNode ::= new ExpansionNode(variable, region, true);
+			nodes += var inputNode ::= new ExpansionNode(variable, definition.type.toType(), region, true);
 			edges += new ObjectFlow(definition.resultSource1, inputNode);
 			region.node += var forkNode ::= new ForkNode(variable);
 			region.edge += new ObjectFlow(inputNode, forkNode);
@@ -708,7 +708,7 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
     // expansion nodes are also available for mapping @parallel names
     // used as targets of add calls within the body.)
 		self.parallelNames()->forEach(parallelName) {
-			nodes += var outputNode ::= new ExpansionNode(parallelName, region, false);
+			nodes += var outputNode ::= new ExpansionNode(parallelName, null, region, false);
 			nodes += var forkNode ::= new ForkNode(parallelName);
 			edges += new ObjectFlow(outputNode, forkNode);
 			self.assignedValueSourceMap->put(parallelName, forkNode);			
