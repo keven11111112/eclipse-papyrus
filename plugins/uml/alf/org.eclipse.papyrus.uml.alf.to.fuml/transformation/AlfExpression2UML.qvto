@@ -830,7 +830,7 @@ helper InstanceCreationExpression::mapTarget(inout graph : ExpressionGraph) : Ac
 		// so that the node can act as the action with input pins to which the results of the
 		// tuple mapping are connected.
 		
-		graph.nodes += var structuredNode ::= new StructuredActivityNode("Create(" + nameOf(dataType) + ")");
+		graph.nodes += action := var structuredNode ::= new StructuredActivityNode("Create(" + nameOf(dataType) + ")");
 		dataType.allAttributes()->forEach(attribute) {
 			var qualifiedName := attribute.qualifiedName;
 			var valuePin := new InputPin(structuredNode, 
