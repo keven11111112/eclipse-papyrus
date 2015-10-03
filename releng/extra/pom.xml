@@ -239,6 +239,14 @@
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.traceabilityassistant</module>
 		
+		<!-- Papyrus BPMN -->
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.common</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.process</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.ui</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bpmn.extra.feature</module>
+
 		<module>site</module>
 	</modules>
 	<properties>

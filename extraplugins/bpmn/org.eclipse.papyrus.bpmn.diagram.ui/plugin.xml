@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="false"
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.bpmn.diagram.ui.NewBpmnModelWizard"
+            finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+            icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/bpmn_32x32.png"
+            id="org.eclipse.papyrus.wizards.createbpmnmodel"
+            name="%wizard.name">
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+      <wizard
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.bpmn.diagram.ui.NewBpmnProjectWizard"
+            finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+            icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/bpmn_32x32.png"
+            id="org.eclipse.papyrus.wizards.createbpmnwizard"
+            name="%wizard.name.0"
+            project="true">
+         <description>
+            %wizard.description
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         name="%extension.name"
+         point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel
+            model="model/BpmnNewChildMenu.xmi">
+      </menuCreationModel>
+   </extension>
+  <!-- 
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.wizards.templates">
+      <template
+            file="org.eclipse.papyrus.bpmn.diagram.ui.template1"
+            id="org.eclipse.papyrus.bpmn.diagram.ui.template1"
+            language="org.eclipse.papyrus.bpmn.diagram.ui.template1"
+            name="Empty Process BPMN Model">
+      </template>
+   </extension>
+   -->
+</plugin>
