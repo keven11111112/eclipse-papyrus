@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 479041
  *
  *****************************************************************************/
 
@@ -17,6 +18,7 @@ package org.eclipse.papyrus.uml.xtext.integration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.utils.DisplayUtils;
 import org.eclipse.uml2.uml.Element;
@@ -129,10 +131,15 @@ public class CompletionProposalUtils {
 	 * @param model
 	 * @return the qualified name label
 	 */
-	public static String getQualifiedNameLabelWithSufficientDepth(NamedElement namedElement, Namespace model) {
-		String label = "";
+	public static String getQualifiedNameLabelWithSufficientDepth(final NamedElement namedElement, final Namespace model) {
+		Assert.isNotNull(namedElement);
 
-		List<Package> importedPackages = new ArrayList<Package>(model.getImportedPackages());
+		StringBuffer label = new StringBuffer();
+
+		List<Package> importedPackages = null;
+		if (null != model) {
+			importedPackages = new ArrayList<Package>(model.getImportedPackages());
+		}
 
 		List<Namespace> visitedNamespaces = new ArrayList<Namespace>();
 		Namespace currentNamespace = namedElement.getNamespace();
@@ -142,25 +149,32 @@ public class CompletionProposalUtils {
 
 		while (currentNamespace != null && !rootFound) {
 			visitedNamespaces.add(currentNamespace);
-			if (importedPackages.contains(currentNamespace) || currentNamespace == model) {
+
+			if (null != importedPackages && (importedPackages.contains(currentNamespace) || currentNamespace.equals(model))) {
 				rootFound = true;
-				if (currentNamespace == model) {
+				if (currentNamespace.equals(model)) {
 					modelIsTheRoot = true;
 				}
 			}
+
 			Element owner = currentNamespace.getOwner();
-			while (owner != null && !(owner instanceof Namespace)) {
+			while (null != owner && !(owner instanceof Namespace)) {
 				owner = owner.getOwner();
 			}
 
 			currentNamespace = owner != null ? (Namespace) owner : null;
 		}
 
-		for (int i = visitedNamespaces.size() - 1 - (modelIsTheRoot ? 1 : 0); i >= 0; i--) {
-			label += visitedNamespaces.get(i).getName() + "::";
+		int qualifiedNameDepht = visitedNamespaces.size() - 1 - (modelIsTheRoot ? 1 : 0);
+
+		for (int i = qualifiedNameDepht; i >= 0; i--) {
+			label.append(visitedNamespaces.get(i).getName());
+			label.append("::");//$NON-NLS-1$
 		}
 
-		return label + namedElement.getName();
+		label.append(namedElement.getName());
+
+		return label.toString();
 	}
 
 }
