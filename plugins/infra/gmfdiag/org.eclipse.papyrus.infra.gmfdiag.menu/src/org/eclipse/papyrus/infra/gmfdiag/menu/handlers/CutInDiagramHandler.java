@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.gmfdiag.menu.utils.DeleteActionUtil;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -94,7 +95,12 @@ public class CutInDiagramHandler extends AbstractGraphicalCommandHandler {
 
 			if (!(editPart instanceof DiagramEditPart)) {
 				// Look for the GMF deletion command
-				Command curCommand = editPart.getCommand(new EditCommandRequestWrapper(new DestroyElementRequest(false)));
+				Command curCommand = null;
+				if (DeleteActionUtil.isSemanticDeletion(editPart)) {
+					curCommand = editPart.getCommand(new EditCommandRequestWrapper(new DestroyElementRequest(false)));
+				} else {
+					curCommand = DeleteActionUtil.getDeleteFromDiagramCommand(editPart);
+				}
 				if (curCommand != null) {
 					command.compose(new CommandProxy(curCommand));
 				}
