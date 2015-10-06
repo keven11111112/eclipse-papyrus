@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
-*     CEA LIST. - initial API and implementation
-*******************************************************************************/
+ *     CEA LIST. - initial API and implementation
+ *     Mauricio Alférez (mauricio.alferez@cea.fr) CEA LIST - Bugs 477726, 478595
+ *     
+ ******************************************************************************/
 package org.eclipse.papyrus.req.sysml.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
@@ -28,7 +30,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		store.setDefault(PreferenceConstants.REQUIREMENT_ID_PREFIX, "REQ_");
 		store.setDefault(PreferenceConstants.REQUIREMENT_ID_DIGIT, 3);
-
+		store.setDefault(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR, "_");
 	}
 
 }

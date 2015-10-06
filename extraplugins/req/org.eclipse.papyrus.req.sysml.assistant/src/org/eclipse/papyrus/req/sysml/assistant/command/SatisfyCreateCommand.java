@@ -9,7 +9,7 @@
  *
  * Contributors:
  * 
- * 		Patrick Tessier (patrick.tessier@cea.fr) CEA LIST - Initial API and implementation
+ * 		Mauricio Alférez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.req.sysml.assistant.command;
@@ -22,11 +22,12 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 
+
 /**
- * this command is used to create a "DerivedReq" link between requirements
+ * This command is used to create a "Satisfy" link between a requirement and a namedElement
  *
  */
-public class DerivationReqCreateCommand extends RecordingCommand {
+public class SatisfyCreateCommand extends RecordingCommand {
 	private NamedElement source;
 	private NamedElement target;
 	/**
@@ -36,7 +37,7 @@ public class DerivationReqCreateCommand extends RecordingCommand {
 	 * @param target the target of the abstraction (the more abstract element)
 
 	 */
-	public DerivationReqCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target){ 
+	public SatisfyCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target){ 
 		super(domain,"Create an Abstraction");
 		this.source=source;
 		this.target=target;
@@ -48,8 +49,8 @@ public class DerivationReqCreateCommand extends RecordingCommand {
 		source.getNearestPackage().getPackagedElements().add(theAbstraction);
 		theAbstraction.getSuppliers().add(target);
 		theAbstraction.getClients().add(source);
-		theAbstraction.setName("DeriveFrom_"+this.target.getName());
-		Stereotype satisfyStereotype= theAbstraction.getApplicableStereotype(I_SysMLStereotype.DERIVEREQT_STEREOTYPE);
+		theAbstraction.setName("Satisfies_"+this.target.getName());
+		Stereotype satisfyStereotype= theAbstraction.getApplicableStereotype(I_SysMLStereotype.SATISFY_STEREOTYPE);
 		theAbstraction.applyStereotype(satisfyStereotype);
 	}
 
