@@ -3021,6 +3021,7 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="alf.ecore#//ModelNamespace">
+      <genOperations ecoreOperation="alf.ecore#//ModelNamespace/context"/>
       <genOperations ecoreOperation="alf.ecore#//ModelNamespace/outerScope"/>
       <genOperations ecoreOperation="alf.ecore#//ModelNamespace/modelScope"/>
       <genOperations ecoreOperation="alf.ecore#//ModelNamespace/qualifiedName"/>
@@ -3040,9 +3041,6 @@
       <genOperations ecoreOperation="alf.ecore#//ModelNamespace/appliedProfiles"/>
       <genOperations ecoreOperation="alf.ecore#//ModelNamespace/stubFor">
         <genParameters ecoreParameter="alf.ecore#//ModelNamespace/stubFor/unit"/>
-      </genOperations>
-      <genOperations ecoreOperation="alf.ecore#//ModelNamespace/ModelNamespace_stubFor">
-        <genParameters ecoreParameter="alf.ecore#//ModelNamespace/ModelNamespace_stubFor/unit"/>
       </genOperations>
       <genOperations ecoreOperation="alf.ecore#//ModelNamespace/ModelNamespace_appliedProfiles"/>
     </genClasses>

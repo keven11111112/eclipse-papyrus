@@ -112,6 +112,17 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ElementReference context() {
+		ExternalElementReference reference = AlfFactory.eINSTANCE.createExternalElementReference();
+		reference.setElement(this.getContextNamespace());
+		return reference;
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #outerScope() <em>Outer Scope</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,19 +279,6 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	 * 
 	 * @generated NOT
 	 */
-	public ElementReference ModelNamespace_stubFor(UnitDefinition unit) {
-		ExternalElementReference namespaceReference =
-				AlfFactory.eINSTANCE.createExternalElementReference();
-		namespaceReference.setElement(this.getContextNamespace());
-		return namespaceReference.stubFor(unit);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
 	public EList<ElementReference> ModelNamespace_appliedProfiles() {
 		EList<ElementReference> profiles = new BasicEList<ElementReference>();
 		org.eclipse.uml2.uml.Package nearestPackage = this.getContextNamespace().getNearestPackage();
@@ -403,6 +401,8 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case AlfPackage.MODEL_NAMESPACE___CONTEXT:
+				return context();
 			case AlfPackage.MODEL_NAMESPACE___OUTER_SCOPE:
 				return outerScope();
 			case AlfPackage.MODEL_NAMESPACE___MODEL_SCOPE:
@@ -421,8 +421,6 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 				return appliedProfiles();
 			case AlfPackage.MODEL_NAMESPACE___STUB_FOR__UNITDEFINITION:
 				return stubFor((UnitDefinition)arguments.get(0));
-			case AlfPackage.MODEL_NAMESPACE___MODEL_NAMESPACE_STUB_FOR__UNITDEFINITION:
-				return ModelNamespace_stubFor((UnitDefinition)arguments.get(0));
 			case AlfPackage.MODEL_NAMESPACE___MODEL_NAMESPACE_APPLIED_PROFILES:
 				return ModelNamespace_appliedProfiles();
 		}

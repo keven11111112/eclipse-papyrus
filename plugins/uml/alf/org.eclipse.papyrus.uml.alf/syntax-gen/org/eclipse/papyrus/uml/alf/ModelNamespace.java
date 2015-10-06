@@ -22,6 +22,17 @@ public interface ModelNamespace extends PackageDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * EXTERNAL
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	ElementReference context();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -96,21 +107,10 @@ public interface ModelNamespace extends PackageDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model unitRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='ModelNamespace_stubFor(unit)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.context().stubFor(unit)'"
 	 * @generated
 	 */
 	ElementReference stubFor(UnitDefinition unit);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * EXTERNAL
-	 * <!-- end-model-doc -->
-	 * @model unitRequired="true"
-	 * @generated
-	 */
-	ElementReference ModelNamespace_stubFor(UnitDefinition unit);
 
 	/**
 	 * <!-- begin-user-doc -->
