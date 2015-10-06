@@ -36,6 +36,7 @@
             locationURI="popup:org.eclipse.papyrus.req.sysml.menu">
          <command
                commandId="org.eclipse.papyrus.req.sysml.assistant.handler.PapyrusReqSysMLRequirementHandler"
+               icon="images/Requirement.gif"
                label="%command.label"
                style="push"
                tooltip="%command.tooltip">
@@ -51,75 +52,8 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.AddDerivedLinkReqHandler"
-               label="%command.label.0"
-               style="push"
-               tooltip="%command.tooltip.0">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
-                        value="true">
-                  </test>
-               </with>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.InitDerivedReqHandler"
-               label="%command.label.1"
-               style="push"
-               tooltip="%command.tooltip.1">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
-                        value="true">
-                  </test>
-               </with>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.CommentReqHandler"
-               label="%command.label.2"
-               style="push"
-               tooltip="%command.tooltip.2">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
-                        value="true">
-                  </test>
-               </with>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.ExtractCommentsHandler"
-               label="%command.label.3"
-               style="push"
-               tooltip="%command.tooltip.3">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
-                        value="true">
-                  </test>
-               </with>
-            </visibleWhen>
-         </command>
-         <command
                commandId="org.eclipse.papyrus.req.sysml.assistant.handler.DecomposeReqHandler"
+               icon="images/ContainmentConnection.gif"
                label="%command.label.4"
                style="push"
                tooltip="%command.tooltip.4">
@@ -136,7 +70,44 @@
             </visibleWhen>
          </command>
          <command
+               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.InitDerivedReqHandler"
+               icon="images/DeriveReqt.gif"
+               label="%command.label.1"
+               style="push"
+               tooltip="%command.tooltip.1">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.AddDerivedLinkReqHandler"
+               icon="images/DeriveReqt.gif"
+               label="%command.label.0"
+               style="push"
+               tooltip="%command.tooltip.0">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
                commandId="org.eclipse.papyrus.req.sysml.assistant.handler.AddSatisfiedLinkHandler"
+               icon="images/Satisfy.gif"
                label="%command.label.5"
                style="push"
                tooltip="%command.tooltip.5">
@@ -154,9 +125,46 @@
          </command>
          <command
                commandId="org.eclipse.papyrus.req.sysml.assistant.handler.AddVerifyLinkHandler"
+               icon="images/Verify.gif"
                label="%command.label.6"
                style="push"
                tooltip="%command.tooltip.6">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.CommentReqHandler"
+               icon="images/Comment.gif"
+               label="%command.label.2"
+               style="push"
+               tooltip="%command.tooltip.2">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.ExtractCommentsHandler"
+               icon="images/Link.gif"
+               label="%command.label.3"
+               style="push"
+               tooltip="%command.tooltip.3">
             <visibleWhen
                   checkEnabled="false">
                <with
@@ -239,6 +247,5 @@
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
-
 </plugin>
 
