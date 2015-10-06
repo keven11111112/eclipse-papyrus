@@ -83,14 +83,13 @@ public class ModelMerge {
 			targetActivity.setSpecification(specification);
 			
 			if (notStub(sourceActivity)) {
-				// NOTE: the elements contained in the activity (i.e., nodes and edges) are not preserved between two compilations
-				/*1. Destroy elements*/
+				// Replace the nodes and edges of the target activity with those from the source activity.
+				// The nodes and edges contained in an activity are not preserved between two compilations.
 				targetActivity.getNodes().clear();
 				targetActivity.getEdges().clear();
-				/*2. Create them from the mapped specification*/
-				this.updateCollection(targetActivity.getOwnedNodes(), sourceActivity.getOwnedNodes());
-				this.updateCollection(targetActivity.getStructuredNodes(), sourceActivity.getStructuredNodes());
-				this.updateCollection(targetActivity.getEdges(), sourceActivity.getEdges());
+				targetActivity.getOwnedNodes().addAll(sourceActivity.getOwnedNodes());
+				targetActivity.getStructuredNodes().addAll(sourceActivity.getStructuredNodes());
+				targetActivity.getEdges().addAll(sourceActivity.getEdges());
 			}
 		} else if (source instanceof Class && target instanceof Class) {
 			Class sourceClass = (Class) source;
