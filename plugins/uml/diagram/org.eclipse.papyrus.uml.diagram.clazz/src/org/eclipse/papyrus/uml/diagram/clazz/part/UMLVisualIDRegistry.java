@@ -206,6 +206,11 @@ public class UMLVisualIDRegistry {
 				return TemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
+		case EnumerationEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
 		case PackageEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
@@ -215,6 +220,11 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
+		case PrimitiveTypeEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
@@ -247,6 +257,11 @@ public class UMLVisualIDRegistry {
 				return TemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
+		case EnumerationEditPartCN.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
 		case PackageEditPartCN.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
@@ -256,6 +271,11 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassEditPartCN.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
@@ -959,6 +979,9 @@ public class UMLVisualIDRegistry {
 			if (EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PackageEditPart.VISUAL_ID:
 			if (PackageNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -1013,6 +1036,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1171,6 +1197,9 @@ public class UMLVisualIDRegistry {
 			if (EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PackageEditPartCN.VISUAL_ID:
 			if (PackageNameEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -1225,6 +1254,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

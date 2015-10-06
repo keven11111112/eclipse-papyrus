@@ -1725,6 +1725,7 @@
           editPartClassName="EnumerationEditPartCN"
           itemSemanticEditPolicyClassName="EnumerationItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="EnumerationCanonicalEditPolicyCN"
+          childNodes="/0/@diagram/@childNodes.22"
           compartments="/0/@diagram/@compartments.16"
           graphicalNodeEditPolicyClassName="EnumerationGraphicalNodeEditPolicyCN"
           createCommandClassName="EnumerationCreateCommandCN"
@@ -2124,6 +2125,7 @@
           editPartClassName="PrimitiveTypeEditPartCN"
           itemSemanticEditPolicyClassName="PrimitiveTypeItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="PrimitiveTypeCanonicalEditPolicyCN"
+          childNodes="/0/@diagram/@childNodes.22"
           compartments="/0/@diagram/@compartments.10 /0/@diagram/@compartments.11"
           graphicalNodeEditPolicyClassName="PrimitiveTypeGraphicalNodeEditPolicyCN"
           createCommandClassName="PrimitiveTypeCreateCommandCN"
@@ -4346,6 +4348,7 @@
           editPartClassName="EnumerationEditPart"
           itemSemanticEditPolicyClassName="EnumerationItemSemanticEditPolicy"
           canonicalEditPolicyClassName="EnumerationCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.22"
           compartments="/0/@diagram/@compartments.36"
           graphicalNodeEditPolicyClassName="EnumerationGraphicalNodeEditPolicy"
           createCommandClassName="EnumerationCreateCommand">
@@ -4732,6 +4735,7 @@
           editPartClassName="PrimitiveTypeEditPart"
           itemSemanticEditPolicyClassName="PrimitiveTypeItemSemanticEditPolicy"
           canonicalEditPolicyClassName="PrimitiveTypeCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.22"
           compartments="/0/@diagram/@compartments.27 /0/@diagram/@compartments.28"
           graphicalNodeEditPolicyClassName="PrimitiveTypeGraphicalNodeEditPolicy"
           createCommandClassName="PrimitiveTypeCreateCommand">

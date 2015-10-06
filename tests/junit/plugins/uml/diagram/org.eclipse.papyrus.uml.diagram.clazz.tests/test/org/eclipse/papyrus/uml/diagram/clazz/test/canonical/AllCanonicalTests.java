@@ -51,7 +51,8 @@ TestEditableClassDiagramTopNode.class,
 TestClassDiagramAssociationClass.class,
 TestListCompartmentNestedChild.class,
 TestClassDiagramAssociationLinkSemantic.class,
-TestClassDiagramInstanceSpecification.class
+TestClassDiagramInstanceSpecification.class,
+TestRedefinableTemplateSignature.class
 })
 public class AllCanonicalTests {
 }
