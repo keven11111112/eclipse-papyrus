@@ -43,7 +43,7 @@ import org.eclipse.uml2.uml.Stereotype;
 public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 
 	/** constant for this edit policy role */
-	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeCompartmentEditPolicy"; //$NON-NLS-1$
+	public final static String STEREOTYPE_COMPARTMENT_POLICY = "AppliedStereotypeCompartmentEditPolicy"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new AppliedStereotype display edit policy
