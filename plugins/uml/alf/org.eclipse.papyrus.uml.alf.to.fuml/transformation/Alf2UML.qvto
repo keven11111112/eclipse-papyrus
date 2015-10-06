@@ -345,7 +345,16 @@ mapping MemberDefinition::toFeature() : Feature
 // Namespace Definitions
 
 mapping NamespaceDefinition::toNamespace() : Namespace
-  disjuncts ClassifierDefinition::toNamespace, PackageDefinition::toPackage;
+  disjuncts 
+  	ClassifierDefinition::toNamespace, 
+  	ModelNamespace::toNamespace, 
+  	PackageDefinition::toPackage;
+  
+mapping ModelNamespace::toNamespace() : Namespace {
+init {
+	result := self.context().toUml().oclAsType(Namespace);
+}
+}
   
 // Package Definitions
 

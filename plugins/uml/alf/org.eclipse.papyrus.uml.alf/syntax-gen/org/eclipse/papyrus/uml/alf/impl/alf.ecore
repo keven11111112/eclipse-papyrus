@@ -8444,6 +8444,7 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelNamespace" eSuperTypes="#//PackageDefinition">
+    <eOperations name="context" eType="#//ElementReference"/>
     <eOperations name="outerScope" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="null"/>
@@ -8485,11 +8486,8 @@
     </eOperations>
     <eOperations name="stubFor" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="ModelNamespace_stubFor(unit)"/>
+        <details key="body" value="self.context().stubFor(unit)"/>
       </eAnnotations>
-      <eParameters name="unit" lowerBound="1" eType="#//UnitDefinition"/>
-    </eOperations>
-    <eOperations name="ModelNamespace_stubFor" eType="#//ElementReference">
       <eParameters name="unit" lowerBound="1" eType="#//UnitDefinition"/>
     </eOperations>
     <eOperations name="ModelNamespace_appliedProfiles" ordered="false" upperBound="-1"

@@ -14583,7 +14583,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelNamespace__OuterScope() {
+	public EOperation getModelNamespace__Context() {
         return getModelNamespace().getEOperations().get(0);
 	}
 
@@ -14592,8 +14592,8 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelNamespace__ResolveInRoot__String() {
-        return getModelNamespace().getEOperations().get(4);
+	public EOperation getModelNamespace__OuterScope() {
+        return getModelNamespace().getEOperations().get(1);
 	}
 
 	/**
@@ -14601,7 +14601,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelNamespace__ResolvePathName__String() {
+	public EOperation getModelNamespace__ResolveInRoot__String() {
         return getModelNamespace().getEOperations().get(5);
 	}
 
@@ -14610,7 +14610,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelNamespace__ResolveAssociationEnd__ElementReference_String() {
+	public EOperation getModelNamespace__ResolvePathName__String() {
         return getModelNamespace().getEOperations().get(6);
 	}
 
@@ -14619,7 +14619,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelNamespace__AppliedProfiles() {
+	public EOperation getModelNamespace__ResolveAssociationEnd__ElementReference_String() {
         return getModelNamespace().getEOperations().get(7);
 	}
 
@@ -14628,7 +14628,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelNamespace__StubFor__UnitDefinition() {
+	public EOperation getModelNamespace__AppliedProfiles() {
         return getModelNamespace().getEOperations().get(8);
 	}
 
@@ -14637,7 +14637,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelNamespace__ModelNamespace_stubFor__UnitDefinition() {
+	public EOperation getModelNamespace__StubFor__UnitDefinition() {
         return getModelNamespace().getEOperations().get(9);
 	}
 
@@ -14656,15 +14656,6 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * @generated
 	 */
 	public EOperation getModelNamespace__ModelScope() {
-        return getModelNamespace().getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModelNamespace__QualifiedName() {
         return getModelNamespace().getEOperations().get(2);
 	}
 
@@ -14673,8 +14664,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelNamespace__ResolveInScope__String() {
+	public EOperation getModelNamespace__QualifiedName() {
         return getModelNamespace().getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelNamespace__ResolveInScope__String() {
+        return getModelNamespace().getEOperations().get(4);
 	}
 
 	/**
