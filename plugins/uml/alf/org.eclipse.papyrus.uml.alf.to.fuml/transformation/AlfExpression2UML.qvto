@@ -865,7 +865,7 @@ helper InstanceCreationExpression::mapTarget(inout graph : ExpressionGraph) : Ac
 
 // Link Operation Expressions
 
-helper LinkOperationExpression::mapTarget(inout graph : ActivityGraph) : Action {
+helper LinkOperationExpression::mapTarget(inout graph : ExpressionGraph) : Action {
 	var association := self.referent.toUml().oclAsType(Association);
 	var unlimitedNaturalType := self.typeUnlimitedNatural();
 	graph.nodes += var action ::=
