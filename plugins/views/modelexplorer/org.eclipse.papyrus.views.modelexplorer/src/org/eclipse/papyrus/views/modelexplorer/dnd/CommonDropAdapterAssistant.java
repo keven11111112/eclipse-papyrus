@@ -600,7 +600,9 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 							}
 						}
-
+						if (setRequest == null) {
+							continue;
+						}
 						Command requestCommand = getRequestCommand(targetContainer, setRequest);
 						if (requestCommand != null) {
 							separateCommand.add(requestCommand);
