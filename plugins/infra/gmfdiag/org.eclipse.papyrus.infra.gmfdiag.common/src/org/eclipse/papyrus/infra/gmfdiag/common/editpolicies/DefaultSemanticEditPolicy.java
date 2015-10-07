@@ -70,7 +70,6 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 		return super.getCommand(request);
 	}
 
-
 	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
@@ -146,9 +145,12 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 
 
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return getDefaultSemanticCommand(req);
+		return getDestroyReferenceCommand(req, null);
 	}
 
+	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req, Object context) {
+		return getDefaultSemanticCommand(req, context);
+	}
 
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		return null;
