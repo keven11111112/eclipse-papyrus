@@ -22,10 +22,11 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.papyrus.uml.service.types.utils.ConnectorUtils;
-import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -70,34 +71,51 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 	 * Constructor.
 	 */
 	public ConnectorReorientSemanticCommand(final ReorientRelationshipRequest request) {
-		super(request.getLabel(), request.getRelationship(), request);
-		this.reorientDirection = request.getDirection();
-		this.newEnd = request.getNewRelationshipEnd();
-		if (getElementToEdit() instanceof Connector) {
-			this.oppositeEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? ((Connector) getElementToEdit()).getEnds().get(1).getRole() : ((Connector) getElementToEdit()).getEnds().get(0).getRole();
-			this.oppositePartWithPort = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? ((Connector) getElementToEdit()).getEnds().get(1).getPartWithPort() : ((Connector) getElementToEdit()).getEnds().get(0).getPartWithPort();
-		} else {
-			this.oppositeEnd = null;
-			this.oppositePartWithPort = null;
-		}
-		initFields();
+		this(request, request.getRelationship());
 	}
 
+	/**
+	 * Constructor.
+	 */
 	public ConnectorReorientSemanticCommand(final ReorientReferenceRelationshipRequest request) {
-		super(request.getLabel(), null, request);
-		this.reorientDirection = request.getDirection();
-		this.newEnd = request.getNewRelationshipEnd();
-
-		if (getElementToEdit() instanceof Connector) {
-			this.oppositeEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? ((Connector) getElementToEdit()).getEnds().get(1).getRole() : ((Connector) getElementToEdit()).getEnds().get(0).getRole();
-			this.oppositePartWithPort = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? ((Connector) getElementToEdit()).getEnds().get(1).getPartWithPort() : ((Connector) getElementToEdit()).getEnds().get(0).getPartWithPort();
-		} else {
-			this.oppositeEnd = null;
-			this.oppositePartWithPort = null;
-		}
-		initFields();
+		this(request, null);
 	}
 
+	/**
+	 * Constructor.
+	 */
+	private ConnectorReorientSemanticCommand(ReorientRequest request, EObject element2Edit) {
+		super(request.getLabel(), element2Edit, request);
+		this.reorientDirection = request.getDirection();
+		this.newEnd = request.getNewRelationshipEnd();
+		setupFields();
+	}
+
+	/**
+	 * setup command fields
+	 * 
+	 * @param request
+	 */
+	private void setupFields() {
+		this.oppositeEnd = null;
+		this.oppositePartWithPort = null;
+		if (getElementToEdit() instanceof Connector) {
+			ConnectorEnd source = getLink().getEnds().get(0);
+			ConnectorEnd target = getLink().getEnds().get(1);
+			this.oppositeEnd = isSourceRedirect() ? target.getRole() : source.getRole();
+			this.oppositePartWithPort = isSourceRedirect() ? target.getPartWithPort() : source.getPartWithPort();
+		}
+		initFields();
+	}	
+	/**
+	 * @return
+	 * 		<code>true</code> if the source end is redirecting
+	 *         <code>false</code> if the target end is redirecting
+	 */
+	private boolean isSourceRedirect() {
+		return getLink().getEnds().get(0).getRole() == ((ReorientRequest) getRequest()).getOldRelationshipEnd();
+	}	
+	
 	/**
 	 * This method allows to init the fields which can't be initialized in the constructor
 	 */
@@ -123,8 +141,7 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 		if (!(getElementToEdit() instanceof Connector)) {
 			return false;
 		}
-		// TODO
-		// in fact, in UML ends>2 is allowed, but it is forbidden in SysML
+		// FIXME in fact, in UML ends>2 is allowed, but it is forbidden in SysML
 		if (getLink().getEnds().size() != 2) {
 			return false;
 		}
@@ -148,13 +165,7 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 			return false;
 		}
 
-		if (newRole != null && oppositeRole != null) {
-			// the 2 roles must be not be equals
-			/*
-			 * if(newRole == oppositeRole) { // ALG: This is wrong for a connector connecting the same port of two different parts!
-			 * return false;
-			 * }
-			 */
+		if (oppositeRole != null) {
 
 			// UML Standard, p.181 : [3] The ConnectableElements attached as roles to each ConnectorEnd owned by a Connector must be roles
 			// of the Classifier, that owned the Connector, or they must be ports of such roles. (p.181)
@@ -188,15 +199,12 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 
 		final ConnectorEnd editedConnectorEnd;
 		final ConnectorEnd oppositeEnd;
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (isSourceRedirect()) {
 			editedConnectorEnd = getLink().getEnds().get(0);
 			oppositeEnd = getLink().getEnds().get(1);
-		} else if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		} else {
 			editedConnectorEnd = getLink().getEnds().get(1);
 			oppositeEnd = getLink().getEnds().get(0);
-		} else {
-			editedConnectorEnd = null;
-			oppositeEnd = null;
 		}
 		if (editedConnectorEnd != null) {
 			reorientEnd(editedConnectorEnd, oppositeEnd, (ConnectableElement) newEnd, newPartWithPort, oppositePartWithPort);
@@ -213,14 +221,13 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 	 * 
 	 * @param end
 	 * @param oppositeEnd
-	 *            TODO
 	 * @param role
 	 * @param partWithPort
 	 * @param oppositePartWithPort
 	 * @return
 	 * @throws ExecutionException
 	 */
-	protected CommandResult reorientEnd(final ConnectorEnd end, ConnectorEnd oppositeEnd, final ConnectableElement role, final Property partWithPort, final Property oppositePartWithPort) throws ExecutionException {
+	protected CommandResult reorientEnd(final ConnectorEnd end, ConnectorEnd oppositeEnd, final ConnectableElement role, final Property partWithPort, final Property oppositePartWithPort) {
 		end.setRole(role);
 		end.setPartWithPort(partWithPort);
 		oppositeEnd.setPartWithPort(oppositePartWithPort);
@@ -248,7 +255,7 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 		// Change owner and Connector name (possibly already exists in new container)
 		if (newOwner != connector.getOwner()) {
 			if (newOwner.getOwnedConnector(connector.getName()) != null) {
-				String replacementName = NamedElementHelper.getDefaultNameWithIncrementFromBase(Messages.ConnectorReorientSemanticCommand_0, newOwner.eContents()); // //$NON-NLS-0$ //$NON-NLS-1$
+				String replacementName = NamedElementUtil.getDefaultNameWithIncrementFromBase(Messages.ConnectorReorientSemanticCommand_0, newOwner.eContents()); // //$NON-NLS-0$ //$NON-NLS-1$
 				connector.setName(replacementName);
 			}
 			// Replace connector owner

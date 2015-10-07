@@ -15,11 +15,13 @@ package org.eclipse.papyrus.uml.service.types.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -117,7 +119,7 @@ public class ConnectorUtils {
 	 */
 	public List<View> getStructureContainers(View view) {
 
-		List<View> containerViews = new ArrayList<View>();
+		List<View> containerViews = new ArrayList<>();
 
 		for(View currentView = view; currentView != null; currentView = ViewUtil.getContainerView(currentView)) {
 			if((currentView instanceof Shape) && (getStructuredClassifier(currentView) != null)) {
@@ -137,22 +139,18 @@ public class ConnectorUtils {
 	 * @return the related {@link StructuredClassifier}
 	 */
 	public StructuredClassifier getStructuredClassifier(View view) {
-
 		StructuredClassifier structuredClassifier = null;
-
 		EObject semanticElement = view.getElement();
 		if(semanticElement instanceof StructuredClassifier) {
 			structuredClassifier = (StructuredClassifier)semanticElement;
 
 		} else if(semanticElement instanceof Property) {
 			Property property = (Property)semanticElement;
-			if((property.getType() != null) && (property.getType() instanceof StructuredClassifier)) {
+			if(property.getType() instanceof StructuredClassifier) {
 				structuredClassifier = (StructuredClassifier)property.getType();
 			}
 
-		} // else return null
-
-
+		} 
 		return structuredClassifier;
 	}
 
@@ -173,7 +171,7 @@ public class ConnectorUtils {
 	 * @return the list of {@link View} to delete
 	 */
 	public final Set<View> getViewsRepresentingConnector(final Connector connector) {
-		final Set<View> viewsToDestroy = new HashSet<View>();
+		final Set<View> viewsToDestroy = new HashSet<>();
 
 		// Find Views in Diagrams that are referencing current member
 		final Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(connector, null).iterator();
@@ -197,30 +195,68 @@ public class ConnectorUtils {
 		final Element element = connector.getOwner();
 		return element.getAppliedStereotype("SysML::Blocks::Block") == null && element.getAppliedStereotype("SysML::ConstraintBlocks::ConstraintBlock") == null ; //$NON-NLS-1$ //$NON-NLS-2$
 	}
-
+	
 	/**
 	 * 
 	 * @param connectorOwner
-	 *        the owner of the connector
+	 *            the owner of the connector
 	 * @return
-	 *         the list of the possible role for the connector, according to the UML Standard 2.4:
+	 * 		the list of the possible role for the connector, according to the UML Standard 2.4:
 	 *         We can deduce the possible roles for a UML Connector, because the roles must have the same owner than the connector:
 	 *         UML Standard, p.181 : [3] The ConnectableElements attached as roles to each ConnectorEnd owned by a Connector must be roles
 	 *         of the Classifier, that owned the Connector, or they must be ports of such roles. (p.181)
 	 */
 	public static final Collection<Property> getUMLPossibleRoles(final StructuredClassifier connectorOwner) {
-		final Set<Property> availableRole = new HashSet<Property>();
-		availableRole.addAll(connectorOwner.getAllAttributes());
-		final Iterator<Property> iterator = availableRole.iterator();
-		final Set<Property> toAdd = new HashSet<Property>();
-		while(iterator.hasNext()) {
-			final Property prop = iterator.next();
-			final Type type = prop.getType();
-			if(type instanceof EncapsulatedClassifier) {
-				toAdd.addAll(((EncapsulatedClassifier)type).getOwnedPorts());
+		final Set<EncapsulatedClassifier> availableClassifiers = new HashSet<>();
+		availableClassifiers.addAll(collectEncapsulatedClassifiers(connectorOwner.getAllAttributes()));
+		availableClassifiers.addAll(collectEncapsulatedClassifiers(connectorOwner.getOwnedElements()));
+		final Iterator<EncapsulatedClassifier> iterator = availableClassifiers.iterator();
+		final Set<Property> result = new HashSet<>();
+		while (iterator.hasNext()) {
+			final EncapsulatedClassifier nextClassifier = iterator.next();
+			result.addAll(nextClassifier.getOwnedPorts());
+		}
+		return result;
+	}
+
+	/**
+	 * @param properties
+	 *            the list of properties
+	 * @return
+	 * 		the list of encapsulated classifiers
+	 */
+	private static List<EncapsulatedClassifier> collectEncapsulatedClassifiers(List<Property> properties) {
+		final List<EncapsulatedClassifier> result = new ArrayList<>();
+		final Iterator<Property> propIterator = properties.iterator();
+		while (propIterator.hasNext()) {
+			final Property nextProp = propIterator.next();
+			final Type type = nextProp.getType();
+			if (type instanceof EncapsulatedClassifier) {
+				result.add((EncapsulatedClassifier) type);
 			}
 		}
-		availableRole.addAll(toAdd);
-		return availableRole;
+		return result;
 	}
+
+	/**
+	 * @param ownedElements
+	 *            the list of owned elements
+	 * @return
+	 * 		the list of encapsulated classifiers
+	 */
+	private static List<EncapsulatedClassifier> collectEncapsulatedClassifiers(EList<Element> ownedElements) {
+		if (ownedElements == null) {
+			return Collections.emptyList();
+		}
+		final List<EncapsulatedClassifier> result = new ArrayList<>();
+		final Iterator<Element> packageIterator = ownedElements.iterator();
+		while (packageIterator.hasNext()) {
+			final Element next = packageIterator.next();
+			if (next instanceof EncapsulatedClassifier) {
+				result.add((EncapsulatedClassifier) next);
+			}
+		}
+		return result;
+	}	
+	
 }

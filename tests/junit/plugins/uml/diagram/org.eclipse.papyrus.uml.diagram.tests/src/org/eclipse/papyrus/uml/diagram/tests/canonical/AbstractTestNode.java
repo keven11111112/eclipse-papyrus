@@ -346,7 +346,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 			assertEquals(DROP + INITIALIZATION_TEST, expectedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
 		}
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
-		ArrayList<Element> list = new ArrayList<Element>();
+		ArrayList<Element> list = new ArrayList<>();
 		for (Element element : getRootSemanticModel().getOwnedElements()) {
 			if (element != null && element.eClass().equals(eClass)) {
 				list.add(element);
@@ -444,6 +444,17 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 	 *            the type
 	 */
 	public void testToCreateANode(IElementType type, int expectedGraphicalChildren, int expectedSemanticChildren, int addedGraphicalChildren, int addedSemanticChildren, boolean maskmanaged, String initialName, int numberSemanticChildreen) {
+		testToCreateANode(getContainerEditPart(), type, expectedGraphicalChildren, expectedSemanticChildren, addedGraphicalChildren, addedSemanticChildren, maskmanaged, initialName, numberSemanticChildreen);
+	}
+
+	/**
+	 * Test to create a node.
+	 *
+	 * @param type
+	 *            the type
+	 */
+	public EditPart testToCreateANode(final IGraphicalEditPart container, IElementType type, int expectedGraphicalChildren, int expectedSemanticChildren, int addedGraphicalChildren, int addedSemanticChildren, boolean maskmanaged, String initialName,
+			int numberSemanticChildreen) {
 		command = null;
 		// CREATION
 		assertEquals(CREATION + INITIALIZATION_TEST, expectedGraphicalChildren, getRootView().getChildren().size());
@@ -456,7 +467,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 		Display.getDefault().syncExec(new Runnable() {
 
 			public void run() {
-				command = getContainerEditPart().getCommand(requestcreation);
+				command = container.getCommand(requestcreation);
 			}
 		});
 		assertNotNull(CREATION + COMMAND_NULL, command);
@@ -485,7 +496,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 			assertEquals(CREATION + TEST_THE_REDO, expectedSemanticChildren + addedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
 		}
 
-		EditPart createdEditPart = (EditPart) getContainerEditPart().getChildren().get((getContainerEditPart().getChildren().size() - 1));
+		EditPart createdEditPart = (EditPart) container.getChildren().get((container.getChildren().size() - 1));
 		Assert.assertNotNull("The editpart must be created", createdEditPart); //$NON-NLS-1$
 		testNodeEditPart(maskmanaged, createdEditPart, initialName);
 
@@ -509,6 +520,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.uml.diagram.t
 			}
 
 		}
+		return createdEditPart;
 	}
 
 	/**

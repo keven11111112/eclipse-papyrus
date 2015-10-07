@@ -22,30 +22,21 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
-		// Top Node
 		TestComponentDiagramTopNode.class,
-		// Child Node
 		TestComponentDiagramPackageChildNode.class,
-		// child nodes in components
 		TestComponentDiagramComponentChildNode.class,
-		// child nodes in interface
 		TestComponentDiagramChildLabel.class,
-		// Link
 		TestComponentDiagramLink.class,
-		// Link owned by source
 		TestComponentDiagramLinkOwnedBySource.class,
-		// CommentLink
 		TestComponentDiagramCommentLink.class,
-		// Constraint Link
 		TestComponentDiagramConstraintLink.class,
-		// List compartment duplicates
 		TestListCompartmentNodeChildDuplicates.class,
-		// List Compartment Illegal Elements
 		TestListCompartmentIllegalElements.class,
 		TestListCompartmentPropertiesOperationsDrop.class,
 		TestComponentDiagramConnector.class,
 		TestComponentDiagramPortLink.class,
 		TestPortLocation.class, 
+		TestComponentDiagramConnector.class
 })
 public class AllCanonicalTests {
 
