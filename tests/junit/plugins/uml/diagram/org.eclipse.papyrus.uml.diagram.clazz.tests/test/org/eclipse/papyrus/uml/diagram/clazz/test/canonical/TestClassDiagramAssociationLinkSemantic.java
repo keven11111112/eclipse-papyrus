@@ -36,7 +36,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
@@ -57,7 +56,6 @@ public class TestClassDiagramAssociationLinkSemantic extends AbstractPapyrusTest
 	}
 
 	@Test
-	@FailingTest
 	public void testAssociationLinkReorient() {
 		IGraphicalEditPart source = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 0);
 		IGraphicalEditPart target = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 1);
