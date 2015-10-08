@@ -18,6 +18,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
@@ -39,6 +40,14 @@ public class CustomDestructionOccurrenceSpecificationEditPart extends Destructio
 	 */
 	public CustomDestructionOccurrenceSpecificationEditPart(View view) {
 		super(view);
+	}
+
+	@Override
+	protected NodeFigure createNodePlate() {
+		NodeFigure result = super.createNodePlate();
+		// FIXME: workaround for #154536
+		result.getBounds().setSize(result.getPreferredSize());
+		return result;
 	}
 
 	/**
