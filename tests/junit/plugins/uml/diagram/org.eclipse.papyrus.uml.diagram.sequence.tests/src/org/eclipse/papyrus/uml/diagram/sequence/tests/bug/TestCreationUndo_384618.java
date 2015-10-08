@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -29,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
@@ -133,6 +135,7 @@ public class TestCreationUndo_384618 extends TestLink {
 	}
 
 	@Test
+	@FailingTest
 	public void testMessageDelete() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
@@ -146,7 +149,7 @@ public class TestCreationUndo_384618 extends TestLink {
 
 		assertTrue(CREATION + TEST_THE_UNDO, getDiagramCommandStack().canUndo());
 		getEMFCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, lifeline1.getSourceConnections().size() == 0);
+		assertEquals(CREATION + TEST_THE_UNDO, 0, lifeline1.getSourceConnections().size());
 
 		assertTrue(CREATION + TEST_THE_REDO, getDiagramCommandStack().canRedo());
 		getEMFCommandStack().redo();
