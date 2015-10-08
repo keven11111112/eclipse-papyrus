@@ -6,5 +6,13 @@
       <initializer
             class="org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenPreferenceInitializer">
       </initializer>
-    </extension>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.codegen.extensionpoints.languageCodegen">
+      <generator
+            id="Standard C++"
+            language="C++"
+            class="org.eclipse.papyrus.cpp.codegen.CppLangCodegen">
+      </generator>
+   </extension>
 </plugin>

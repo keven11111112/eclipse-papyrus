@@ -27,8 +27,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
-import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
@@ -42,6 +43,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.texteditor.cdt.Activator;
+import org.eclipse.papyrus.texteditor.cdt.TextEditorConstants;
 import org.eclipse.papyrus.texteditor.cdt.editor.PapyrusCDTEditor;
 import org.eclipse.papyrus.texteditor.cdt.modelresource.TextEditorModelSharedResource;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
@@ -49,10 +51,13 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelFacto
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Transition;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 /**
@@ -73,6 +78,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
+		// Filter Classes (including Behaviors, since Behavior inherits from Class), Operation and Transition
 		if (selectedEObject instanceof Class ||
 				selectedEObject instanceof Operation ||
 				selectedEObject instanceof Transition)
@@ -144,16 +150,27 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 
 		Classifier classifierToEdit = getClassifierToEdit();
-		if (LocateCppProject.getTargetProject(classifierToEdit, true) == null) {
-			return;
-		}
-
 		TextEditorModel editorModel = getEditorModel(serviceRegistry, classifierToEdit);
 		if (editorModel == null) {
 			// no editor exist for the given file => create
 			editorModel = createEditorModel(serviceRegistry, classifierToEdit);
-			// add the new editor model to the sash.
+			if (editorModel == null) {
+				return;
+			}
 		}
+		ILangCodegen codegen = LanguageCodegen.getGenerator(TextEditorConstants.CPP, editorModel.getGeneratorID());
+
+		if (codegen.getTargetProject(classifierToEdit, true) == null) {
+			return;
+		}
+		
+		if (selectedEObject instanceof Transition) {
+			Transition transition = (Transition) selectedEObject;
+			if (transition.getEffect() == null) {
+				Behavior effect = transition.createEffect("effectOf" + transition.getName(), UMLPackage.eINSTANCE.getOpaqueBehavior()); //$NON-NLS-1$
+			}
+		}
+		// add the new editor model to the sash.
 		editorModel.setSelectedObject(selectedEObject);
 
 		final TextEditorModel editorModelFinal = editorModel;
@@ -170,7 +187,6 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 					pageMngr.openPage(editorModelFinal);
 				}
 				try {
-					// TODO Auto-generated method stub
 					// move page to the RIGHT
 					DiSashModelManager modelMngr = ServiceUtils.getInstance().getService(DiSashModelManager.class, serviceRegistry);
 					ISashWindowsContentProvider sashContentProvider = modelMngr.getISashWindowsContentProvider();
@@ -213,6 +229,11 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		editorModel.setEditedObject(classifierToEdit);
 		editorModel.setType(PapyrusCDTEditor.EDITOR_TYPE);
 		editorModel.setName("CDT " + classifierToEdit.getName()); //$NON-NLS-1$
+		ILangCodegen codegen = LanguageCodegen.chooseGenerator(TextEditorConstants.CPP, classifierToEdit);
+		if (codegen == null) {
+			return null;
+		}
+		editorModel.setGeneratorID(LanguageCodegen.getID(codegen));
 		TextEditorModelSharedResource model = (TextEditorModelSharedResource)
 				ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
 		model.addTextEditorModel(editorModel);
@@ -231,6 +252,16 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		}
 		else if (selectedEObject instanceof Transition) {
 			return ((Transition) selectedEObject).getContainer().getStateMachine().getContext();
+		}
+		else if (selectedEObject instanceof Behavior) {
+			Element owner = (Behavior) selectedEObject;
+			while (owner != null) {
+				owner = owner.getOwner();
+				if ((owner instanceof Classifier) && !(owner instanceof Behavior)) {
+					return (Classifier) owner;
+				}
+			}
+			return null;
 		}
 		else if (selectedEObject instanceof Classifier) {
 			// must be class or datatype

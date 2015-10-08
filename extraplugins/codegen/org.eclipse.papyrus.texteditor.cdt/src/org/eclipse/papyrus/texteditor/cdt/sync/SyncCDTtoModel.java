@@ -44,18 +44,27 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Array;
 import org.eclipse.papyrus.C_Cpp.Const;
+import org.eclipse.papyrus.C_Cpp.EStorageClass;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
+import org.eclipse.papyrus.C_Cpp.StorageClass;
 import org.eclipse.papyrus.C_Cpp.Volatile;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen2;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.SyncInformation;
 import org.eclipse.papyrus.cpp.codegen.Constants;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.texteditor.cdt.CommandSupport;
+import org.eclipse.papyrus.texteditor.cdt.TextEditorConstants;
 import org.eclipse.papyrus.texteditor.cdt.Utils;
 import org.eclipse.papyrus.texteditor.cdt.listener.ModelListener;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
@@ -67,20 +76,27 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 public class SyncCDTtoModel implements Runnable {
+
+	public static final String REGISTER = "register"; //$NON-NLS-1$
+
+	public static final String CONST = "const";	 //$NON-NLS-1$
+
+	public static final String VOLATILE = "volatile"; //$NON-NLS-1$
 
 	public static final String sAtParam = "@param"; //$NON-NLS-1$
 
 	public static final String ansiCLib = "AnsiCLibrary"; //$NON-NLS-1$
 
-	public SyncCDTtoModel(IEditorInput input, Classifier classifier, String projectName) {
+	public SyncCDTtoModel(IEditorInput input, Classifier classifier, String projectName, String generatorID) {
 		m_input = input;
 		m_classifier = classifier;
 		m_projectName = projectName;
+		m_codegen = LanguageCodegen.getGenerator(TextEditorConstants.CPP, generatorID);
 	}
+	
 
-	public final String langID = "C/C++"; //$NON-NLS-1$
+	public final String c_cpp_langID = "C/C++"; //$NON-NLS-1$
 
 	public void syncCDTtoModel() {
 		CommandSupport.exec("update model from CDT", this);
@@ -113,10 +129,12 @@ public class SyncCDTtoModel implements Runnable {
 
 				CUIPlugin.getDefault().getProblemMarkerManager();
 				if (itu instanceof IWorkingCopy) {
-					// ((IWorkingCopy)itu).commit(true, new NullProgressMonitor());
+					// ((IWorkingCopy)itu).commit(true, new
+					// NullProgressMonitor());
 					// ((IWorkingCopy)itu).reconcile();
 					((IWorkingCopy) itu).reconcile(true, new NullProgressMonitor());
-					// ((IWorkingCopy)itu).reconcile(true, true, new NullProgressMonitor());
+					// ((IWorkingCopy)itu).reconcile(true, true, new
+					// NullProgressMonitor());
 				}
 
 			} catch (CModelException e) {
@@ -133,15 +151,16 @@ public class SyncCDTtoModel implements Runnable {
 	}
 
 	/**
-	 * Examine the children of a translation unit in order to extract the methods that are defined within
-	 * hte unit
+	 * Examine the children of a translation unit in order to extract the
+	 * methods that are defined within hte unit
 	 *
 	 * @param itu
 	 * @param selector
 	 * @param parent
 	 * @throws CModelException
 	 */
-	public void examineChildren(ITranslationUnit itu, IASTNodeSelector selector, IParent parent) throws CModelException {
+	public void examineChildren(ITranslationUnit itu, IASTNodeSelector selector, IParent parent)
+			throws CModelException {
 
 		int position = 0;
 		// if (parent instanceof Namespace) {
@@ -154,15 +173,25 @@ public class SyncCDTtoModel implements Runnable {
 				range = ((ISourceReference) child).getSourceRange();
 			}
 			if (child instanceof IFunctionDeclaration) {
-				// function declaration is a superclass for method declaration (but need to trace functions differently?)
+				// function declaration is a superclass for method declaration
+				// (but need to trace functions differently?)
 				String name = ((IFunctionDeclaration) child).getElementName();
 				IASTNode node = selector.findEnclosingNode(range.getStartPos(), range.getLength());
 				if (node instanceof IASTFunctionDefinition) {
 					IASTFunctionDefinition definition = (IASTFunctionDefinition) node;
 					IASTFunctionDeclarator declarator = definition.getDeclarator();
-					String body = getBody(itu, definition);
-					Operation operation = updateMethod(position, parent, name, body, declarator);
-					updateComment(itu, definition, operation);
+					String unfilteredBody = getBody(itu, definition);
+					// get additional information about method synchronization from generator
+					SyncInformation syncInfo = null;
+					if (m_codegen instanceof ILangCodegen2) {
+						syncInfo = ((ILangCodegen2) m_codegen).getSyncInformation(name, unfilteredBody);
+					}
+					String body = Utils.removeGenerated(unfilteredBody);
+					if (syncInfo == null || !syncInfo.isGenerated) {
+						// only update method, if it is not generated 
+						NamedElement ne = updateMethod(position, parent, name, body, declarator, syncInfo);
+						updateComment(itu, definition, ne);
+					}
 					// System.err.println("body source <" + body + ">");
 				}
 				position++;
@@ -199,17 +228,20 @@ public class SyncCDTtoModel implements Runnable {
 			}
 		}
 		if (body.length() > 0 || preBody.length() > 0) {
-			Include Include = StereotypeUtil.applyApp(m_classifier, Include.class);
-			Include.setPreBody(preBody);
-			Include.setBody(body);
+			Include include = StereotypeUtil.applyApp(m_classifier, Include.class);
+			if (include != null) {
+				include.setPreBody(preBody);
+				include.setBody(body);
+			}
 		}
 	}
 
 	/**
-	 * Update a method in the model while passing the qualified name
+	 * Update a method in the model based on the qualified name.
 	 *
 	 * @param position
-	 *            The position of the method within the file. Used to identify renaming operations
+	 *            The position of the method within the file. Used to identify
+	 *            renaming operations
 	 * @param parent
 	 *            the CDT parent which is used to get a list of children
 	 * @param qualifiedName
@@ -218,95 +250,97 @@ public class SyncCDTtoModel implements Runnable {
 	 *            the method body
 	 * @param declarator
 	 *            the declarator for the method
+	 * @return the operation or the behavior within the model that got updated. The latter is returned in
+	 *            case of behaviors that do not have a specification (e.g. the effect of a transition).
 	 */
-	public Operation updateMethod(int position, IParent parent, String qualifiedName, String body, IASTFunctionDeclarator declarator) {
+	public NamedElement updateMethod(int position, IParent parent, String qualifiedName, String body,
+			IASTFunctionDeclarator declarator, SyncInformation syncInfo) {
 
 		String names[] = qualifiedName.split(Utils.nsSep);
 		String name = names[names.length - 1];
 
-		Operation operation = m_classifier.getOperation(name, null, null);
-		if (operation == null) {
-			// operation is not found via name in the model. That does not necessarily mean that this is a new method.
-			// It may also have been renamed.
-			// Strategy: try to locate the operation in the model at the same "position" as the method in the file and
-			// verify that this method does not have the same name as any method in the CDT file.
-			if (position < m_classifier.getOperations().size()) {
-				operation = m_classifier.getOperations().get(position);
-				String modelName = operation.getName();
-				try {
-					for (ICElement child : parent.getChildren()) {
-						if (child instanceof IMethodDeclaration) {
-							String cdtName = ((IMethodDeclaration) child).getElementName();
-							if (cdtName.equals(modelName)) {
-								// an existing operation in the CDT file already has this name
-								operation = null;
-								break;
-							}
-						}
-					}
-				} catch (CModelException e) {
-				}
-			}
+		Operation operation = null;
+		Behavior behavior = null;
+
+		if (syncInfo == null || (syncInfo.behavior == null && syncInfo.createBehaviorName == null)) {
+			operation = getModelOperationFromName(name, parent, position);
 			if (operation != null) {
 				operation.setName(name);
+			} else {
+				// it is possible that the C++ method corresponds to the effect
+				// of a transition. try to locate the behavior (without using an operation)
+				behavior = FindTransition.findBehavior(m_classifier, name);
+				if (behavior == null) {
+					// still null => create new operation in model
+					if (m_classifier instanceof Class) {
+						operation = ((Class) m_classifier).createOwnedOperation(name, null, null);
+					} else if (m_classifier instanceof DataType) {
+						operation = ((DataType) m_classifier).createOwnedOperation(name, null, null);
+					}
+				}
+			}
+		}
+		else if (syncInfo.behavior != null) {
+			// operation is still null (=> does not enter operation != null case below)
+			behavior = syncInfo.behavior;
+		}
+		else if ((syncInfo.createBehaviorName != null) && (m_classifier instanceof Class)) {
+			Class clazz = (Class) m_classifier;
+			behavior = (OpaqueBehavior) clazz.createOwnedBehavior(syncInfo.createBehaviorName,
+					UMLPackage.eINSTANCE.getOpaqueBehavior().eClass());
+		}
+
+		if (operation != null) {
+			if (operation.getMethods().size() == 0) {
+				// operation exists, but does not have any method => create
+
+				if (m_classifier instanceof Class) {
+					behavior = ((Class) m_classifier).createOwnedBehavior(name, UMLPackage.eINSTANCE.getOpaqueBehavior());
+				} else if (m_classifier instanceof DataType) {
+					// ob = (OpaqueBehavior) ((DataType)
+					// m_classifier).createOwnedBehavior(name,
+					// UMLPackage.eINSTANCE.getOpaqueBehavior());
+				}
+				behavior.setSpecification(operation);
+				behavior.setIsReentrant(false);
 			}
 			else {
-				// still null => create new operation in model
-				if (m_classifier instanceof Class) {
-					operation = ((Class) m_classifier).createOwnedOperation(name, null, null);
-				}
-				else if (m_classifier instanceof DataType) {
-					operation = ((DataType) m_classifier).createOwnedOperation(name, null, null);
+				behavior = operation.getMethods().get(0);
+				// operation has at least one method, this may not be null.
+				if (!behavior.getName().equals(name)) {
+					behavior.setName(name);
 				}
 			}
 		}
 
-		OpaqueBehavior ob = null;
-		if (operation.getMethods().size() == 0) {
-			// does not exist, create
-
-			if (m_classifier instanceof Class) {
-				ob = (OpaqueBehavior) ((Class) m_classifier).createOwnedBehavior(name, UMLPackage.eINSTANCE.getOpaqueBehavior());
-			}
-			else if (m_classifier instanceof DataType) {
-				// ob = (OpaqueBehavior) ((DataType) m_classifier).createOwnedBehavior(name, UMLPackage.eINSTANCE.getOpaqueBehavior());
-			}
-			ob.setSpecification(operation);
-			ob.setIsReentrant(false);
+		// assertions: operation can be null, behavior is always non-null
+		
+		// Remove all parameters from operation / behavior (they will be added later).
+		// Calling parameters.clear() is not sufficient. Otherwise stereotype
+		// applications to unresolved elements remain in the model
+		if (operation != null) {
+			UMLUtil.destroyElements(operation.getOwnedParameters());
 		}
-		else {
-			ob = (OpaqueBehavior) operation.getMethods().get(0);
-			if (!ob.getName().equals(name)) {
-				ob.setName(name);
-			}
-		}
-
-		// a parameters.clear() is not sufficient. Otherwise stereotype applications to unresolved elements remain in the model
-		UMLUtil.destroyElements(operation.getOwnedParameters());
-		UMLUtil.destroyElements(ob.getOwnedParameters());
-
+		UMLUtil.destroyElements(behavior.getOwnedParameters());
+	
 		for (IASTNode declaratorChild : declarator.getChildren()) {
 			if (declaratorChild instanceof IASTParameterDeclaration) {
 				IASTParameterDeclaration parameter = (IASTParameterDeclaration) declaratorChild;
 				IASTName parameterName = parameter.getDeclarator().getName();
 				IASTDeclSpecifier parameterType = parameter.getDeclSpecifier();
-				boolean isPointer = false;
-				boolean isRef = false;
-				String array = ""; //$NON-NLS-1$
+				ParameterModifiers modifiers = new ParameterModifiers();
 				String parameterTypeName = ""; //$NON-NLS-1$
 				try {
 					IToken token = parameter.getDeclarator().getSyntax();
 					while (token != null) {
 						String tokenStr = token.toString();
 						if (tokenStr.equals("*")) { //$NON-NLS-1$
-							isPointer = true;
-						}
-						else if (tokenStr.equals("&")) { //$NON-NLS-1$
-							isRef = true;
-						}
-						else if (tokenStr.equals("[")) { //$NON-NLS-1$
+							modifiers.isPointer = true;
+						} else if (tokenStr.equals("&")) { //$NON-NLS-1$
+							modifiers.isRef = true;
+						} else if (tokenStr.equals("[")) { //$NON-NLS-1$
 							while (token != null) {
-								array += token.toString();
+								modifiers.array += token.toString();
 								token = token.getNext();
 							}
 							if (token == null) {
@@ -320,17 +354,17 @@ public class SyncCDTtoModel implements Runnable {
 					while (token != null) {
 						String tokenStr = token.toString();
 						if (tokenStr.equals("*")) { //$NON-NLS-1$
-							// TODO: check, if this can be called (depending on * position with different semantics?)
-							isPointer = true;
-						}
-						else if (tokenStr.equals("&")) { //$NON-NLS-1$
-							isRef = true;
-						}
-						else if (tokenStr.equals("const")) { //$NON-NLS-1$
-							// do nothing (use isConst() operation of parameterType)
+							// TODO: check, if this can be called (depending on
+							// * position with different semantics?)
+							modifiers.isPointer = true;
+						} else if (tokenStr.equals("&")) { //$NON-NLS-1$
+							modifiers.isRef = true;
+						} else if (tokenStr.equals(REGISTER)) {
+							modifiers.isRegister = true;
+						} else if (tokenStr.equals(CONST) || tokenStr.equals(VOLATILE)) {
+							// do nothing (use isConst() or isVolatile() operation of parameterType)
 							// is not part of parameter type
-						}
-						else {
+						} else {
 							if (parameterTypeName.length() > 0) {
 								parameterTypeName += " "; //$NON-NLS-1$
 							}
@@ -341,57 +375,127 @@ public class SyncCDTtoModel implements Runnable {
 				} catch (ExpansionOverlapsBoundaryException e) {
 				}
 
-				NamedElement umlParameterType = Utils.getQualifiedElement(Utils.getTop(m_classifier), parameterTypeName);
-				if (umlParameterType == null) {
-					umlParameterType = Utils.getQualifiedElement(Utils.getTop(m_classifier), ansiCLib + Utils.nsSep + parameterTypeName);
+				NamedElement namedElemParamType = Utils.getQualifiedElement(Utils.getTop(m_classifier),
+						parameterTypeName);
+				if (namedElemParamType == null) {
+					namedElemParamType = Utils.getQualifiedElement(Utils.getTop(m_classifier),
+							ansiCLib + Utils.nsSep + parameterTypeName);
 				}
 				if (parameterType.isRestrict()) {
 				}
 				Parameter umlParameter = null;
-				if (umlParameterType instanceof Type) {
-					umlParameter = operation.createOwnedParameter(parameterName.toString(), (Type) umlParameterType);
-					ob.createOwnedParameter(parameterName.toString(), (Type) umlParameterType);
+				Type paramType = namedElemParamType instanceof Type ? (Type) namedElemParamType : null;
+				if (operation != null) {
+					umlParameter = operation.createOwnedParameter(parameterName.toString(), paramType);
+					applyParameterModifiers(parameterType, umlParameter, modifiers);
 				}
-				else {
-					umlParameter = operation.createOwnedParameter(parameterName.toString(), null);
-					ob.createOwnedParameter(parameterName.toString(), null);
-				}
-				if (parameterType.isConst()) {
-					StereotypeUtil.apply(umlParameter, Const.class);
-				}
-				if (parameterType.isVolatile()) {
-					StereotypeUtil.apply(umlParameter, Volatile.class);
-				}
-				if (isPointer) {
-					StereotypeUtil.apply(umlParameter, Ptr.class);
-				}
-				else if (isRef) {
-					StereotypeUtil.apply(umlParameter, Ref.class);
-				}
-				if (array.length() > 0) {
-					Array arraySt = StereotypeUtil.applyApp(umlParameter, Array.class);
-					if (!array.equals("[]") && (!array.equals("[ ]"))) { //$NON-NLS-1$//$NON-NLS-2$
-						arraySt.setDefinition(array);
-					}
-				}
-
+				umlParameter = behavior.createOwnedParameter(parameterName.toString(), paramType);
+				applyParameterModifiers(parameterType, umlParameter, modifiers);
 			}
 		}
 
-		if (ob.getBodies().size() == 0) {
-			ob.getLanguages().add(langID);
-			ob.getBodies().add(""); //$NON-NLS-1$
+		if (behavior instanceof OpaqueBehavior) {
+			OpaqueBehavior ob = (OpaqueBehavior) behavior;
+			if (ob.getBodies().size() == 0) {
+				ob.getLanguages().add(c_cpp_langID);
+				ob.getBodies().add(""); //$NON-NLS-1$
+			}
+			for (int i = 0; i < ob.getLanguages().size(); i++) {
+				// update first body of one of the languages supported by CDT. This implies that
+				// it is actually not possible to have separate C and C++ bodes in the same opaque
+				// behavior (which is rarely a good idea).
+				String language = ob.getLanguages().get(i);
+				if (TextEditorConstants.CPP.matcher(language).matches() || c_cpp_langID.equals(language)) {
+					if (i < ob.getBodies().size()) {
+						// should always be true, unless sync between
+						// languages/bodies is lost
+						ob.getBodies().set(i, body);
+					}
+				}
+			}
 		}
-		for (int i = 0; i < ob.getLanguages().size(); i++) {
-			if (ob.getLanguages().get(i).equals(langID)) {
-				if (i < ob.getBodies().size()) { // should always be true, unless sync between languages/bodies is lost
-					ob.getBodies().set(i, body);
+		if (operation != null) {
+			return operation;
+		}
+		else {
+			return behavior;
+		}
+	}
+
+	/**
+	 * Apply the modifiers for a parameter, notably the stereotypes of the C++ profile
+	 * 
+	 * @param parameterType the CDT AST parameter specification
+	 * @param umlParameter the UML parameter (to which a stereotype should be applied)
+	 * @param modifiers the modifiers that should be applied (stored in an instance of class ParameterModifiers)
+	 */
+	public void applyParameterModifiers(IASTDeclSpecifier parameterType, Parameter umlParameter, ParameterModifiers modifiers) {
+		if (parameterType.isConst()) {
+			StereotypeUtil.apply(umlParameter, Const.class);
+		}
+		if (parameterType.isVolatile()) {
+			StereotypeUtil.apply(umlParameter, Volatile.class);
+		}
+		if (modifiers.isRegister) {
+			StorageClass sc = StereotypeUtil.applyApp(umlParameter, StorageClass.class);
+			if (sc != null) {
+				sc.setStorageClass(EStorageClass.REGISTER);
+			}
+		}
+		if (modifiers.isPointer) {
+			StereotypeUtil.apply(umlParameter, Ptr.class);
+		} else if (modifiers.isRef) {
+			StereotypeUtil.apply(umlParameter, Ref.class);
+		}
+		if (modifiers.array.length() > 0) {
+			Array arraySt = StereotypeUtil.applyApp(umlParameter, Array.class);
+			if (arraySt != null && !modifiers.array.equals("[]") && (!modifiers.array.equals("[ ]"))) { //$NON-NLS-1$//$NON-NLS-2$
+				arraySt.setDefinition(modifiers.array);
+			}
+		}
+	}
+	
+	/**
+	 * Obtain an operation from the model by using the name of a CDT method.
+	 * If an operation of the given name does not exist, it might indicate that
+	 * the method has been renamed.
+	 * 
+	 * @param name the operation name within CDT
+	 * @param parent the parent of the CDT method within CDT editor model
+	 * @param position the position within the other methods. This information is used to locate methods
+	 *   within the model that might have been renamed in the CDT editor.
+	 * @return
+	 */
+	public Operation getModelOperationFromName(String name, IParent parent, int position) {
+		Operation operation = m_classifier.getOperation(name, null, null);
+		
+		if (operation == null) {
+			// operation is not found via name in the model. try to locate the operation in the model at the same
+			// "position" as the method in the file and
+			// verify that this method does not have the same name as any method
+			// in the CDT file.
+			if (position < m_classifier.getOperations().size()) {
+				operation = m_classifier.getOperations().get(position);
+				String modelName = operation.getName();
+				try {
+					for (ICElement child : parent.getChildren()) {
+						if (child instanceof IMethodDeclaration) {
+							String cdtName = ((IMethodDeclaration) child).getElementName();
+							if (cdtName.equals(modelName)) {
+								// an existing operation in the CDT file already
+								// has this name
+								operation = null;
+								break;
+							}
+						}
+					}
+				} catch (CModelException e) {
 				}
 			}
 		}
 		return operation;
 	}
-
+	
 	public static String getBody(ITranslationUnit itu, IASTFunctionDefinition definition) {
 		IASTStatement body = definition.getBody();
 
@@ -402,15 +506,24 @@ public class SyncCDTtoModel implements Runnable {
 			int start = bodyLoc.getNodeOffset();
 			int end = start + bodyLoc.getNodeLength();
 			char contents[] = itu.getContents();
-			// body contains enclosing { } which we need to remove (+2, -2). We cannot use the
-			// first and last statement, since leading and trailing comments are not part
-			// of the AST tree.
+			// body contains enclosing { } which we need to remove (+2, -2). We
+			// cannot use the
+			// first and last statement, since leading and trailing comments are
+			// not part of the AST tree.
 			return Utils.decreaseIndent(contents, start + 2, end - 2);
 		}
 		return ""; //$NON-NLS-1$
 	}
 
-	public void updateComment(ITranslationUnit itu, IASTFunctionDefinition definition, Operation operation) {
+	/**
+	 * update a comment of a named element. Besides the comment of the element itself, comments on contained
+	 * parameters are handled.
+	 * 
+	 * @param itu a translation unit
+	 * @param definition
+	 * @param ne a named element that is either an operation or a behavior (in order to update parameters)
+	 */
+	public void updateComment(ITranslationUnit itu, IASTFunctionDefinition definition, NamedElement ne) {
 		IASTFileLocation bodyLoc = definition.getFileLocation();
 		int start = bodyLoc.getNodeOffset() - 1;
 		int end = start;
@@ -419,7 +532,8 @@ public class SyncCDTtoModel implements Runnable {
 		// backward scan for beginning /*
 		while (start > 0) {
 			if (contents[start] == '/' && contents[start + 1] == '*') {
-				start += "/**".length(); // TODO: common string constants with generator //$NON-NLS-1$
+				start += "/**".length(); // TODO: common string //$NON-NLS-1$
+											// constants with generator
 				for (int i = start; i < end; i++) {
 					comment += contents[i];
 				}
@@ -434,46 +548,53 @@ public class SyncCDTtoModel implements Runnable {
 			int atParam = comment.indexOf(sAtParam);
 			String commentMethodOnly = (atParam != -1) ? comment.substring(0, atParam).trim() : comment;
 
-			EList<Comment> commentsUML = operation.getOwnedComments();
+			EList<Comment> commentsUML = ne.getOwnedComments();
 			Comment commentUML;
 			if (commentsUML.size() == 0) {
-				commentUML = operation.createOwnedComment();
+				commentUML = ne.createOwnedComment();
 				commentUML.getAnnotatedElements().add(commentUML);
-			}
-			else {
+			} else {
 				commentUML = commentsUML.get(0);
 			}
 			while (atParam != -1) {
 				int currentAtParam = atParam;
 				atParam = comment.indexOf(sAtParam, atParam + 1);
-				String commentParam = (atParam != -1) ? comment.substring(currentAtParam, atParam) : comment.substring(currentAtParam);
+				String commentParam = (atParam != -1) ? comment.substring(currentAtParam, atParam)
+						: comment.substring(currentAtParam);
 				Comment commentParamUML;
 				int atParamName = sAtParam.length();
 
-				while ((atParamName < commentParam.length()) && Character.isWhitespace(commentParam.charAt(atParamName))) {
+				while ((atParamName < commentParam.length())
+						&& Character.isWhitespace(commentParam.charAt(atParamName))) {
 					atParamName++;
 				}
 				int atParamNameEnd = atParamName;
-				while ((atParamNameEnd < commentParam.length()) && !Character.isWhitespace(commentParam.charAt(atParamNameEnd))) {
+				while ((atParamNameEnd < commentParam.length())
+						&& !Character.isWhitespace(commentParam.charAt(atParamNameEnd))) {
 					atParamNameEnd++;
 				}
 				if (atParamNameEnd < commentParam.length() - 1) {
 					String parameterName = commentParam.substring(atParamName, atParamNameEnd);
 					String commentParamText = commentParam.substring(atParamNameEnd).trim();
-					Parameter parameter = operation.getOwnedParameter(parameterName, null, false, false);
+					Parameter parameter = null;
+					if (ne instanceof BehavioralFeature) {
+						parameter = ((BehavioralFeature) ne).getOwnedParameter(parameterName, null, false, false);
+					}
+					else if (ne instanceof Behavior) {
+						parameter = ((Behavior) ne).getOwnedParameter(parameterName, null, false, false);		
+					}
 					if (parameter != null) {
 						EList<Comment> commentsParamUML = parameter.getOwnedComments();
 						if (commentsParamUML.size() == 0) {
 							commentParamUML = parameter.createOwnedComment();
 							commentParamUML.getAnnotatedElements().add(commentParamUML);
-						}
-						else {
+						} else {
 							commentParamUML = commentsParamUML.get(0);
 						}
 						commentParamUML.setBody(commentParamText);
-					}
-					else {
-						// parameter is not found in model, e.g. either renamed or not yet existing
+					} else {
+						// parameter is not found in model, e.g. either renamed
+						// or not yet existing
 						// store comment in operation comment
 						commentMethodOnly += "\n " + sAtParam + parameterName + //$NON-NLS-1$
 								" not found(!) " + commentParamText; //$NON-NLS-1$
@@ -484,9 +605,31 @@ public class SyncCDTtoModel implements Runnable {
 		}
 	}
 
+	/**
+	 * Accessor
+	 * @return value of codegen attribute
+	 */
+	public ILangCodegen getCodeGen() {
+		return m_codegen;
+	}
+	
+	/**
+	 * input of the CDT editor. Used to obtain code within editor.
+	 */
 	protected IEditorInput m_input;
 
+	/**
+	 * The classifier (class) that is currently edited
+	 */
 	protected Classifier m_classifier;
 
+	/**
+	 * name of CDT project in which the generated code is stored.
+	 */
 	protected String m_projectName;
+	
+	/**
+	 * reference to code generator
+	 */
+	protected ILangCodegen m_codegen;
 }

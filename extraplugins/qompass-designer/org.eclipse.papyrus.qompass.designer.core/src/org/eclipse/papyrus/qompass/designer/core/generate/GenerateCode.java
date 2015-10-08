@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
  import org.eclipse.emf.compare.util.ModelUtils;
  */
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 
 public class GenerateCode {
 
-	public GenerateCode(IProject genProject, ILangSupport langSupport, ModelManagement genMM, IProgressMonitor monitor) {
+	public GenerateCode(IProject genProject, ILangCodegen langSupport, ModelManagement genMM, IProgressMonitor monitor) {
 		this.genProject = genProject;
 		this.genMM = genMM;
 		this.monitor = monitor;
@@ -122,7 +122,7 @@ public class GenerateCode {
 			} catch (CoreException e) {
 				throw new TransformationException(String.format(Messages.GenerateCode_CouldNotDeleteOldCode, e.getMessage()));
 			}
-			langSupport.generateCode(monitor, genModel);
+			langSupport.generateCode(genProject, genModel, monitor);
 		}
 		if (monitor.isCanceled()) {
 			return;
@@ -191,5 +191,5 @@ public class GenerateCode {
 
 	private IProgressMonitor monitor;
 
-	private ILangSupport langSupport;
+	private ILangCodegen langSupport;
 }

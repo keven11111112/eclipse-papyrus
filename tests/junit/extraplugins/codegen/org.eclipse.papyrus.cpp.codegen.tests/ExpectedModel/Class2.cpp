@@ -75,7 +75,7 @@ void Class2::nonStaticOp() {
  * @param inout 
  * @return ret 
  */
-int Class2::paramsOp(int /*in*/in, int /*out*/* out, int /*inout*/* inout) {
+int Class2::paramsOp(int /*in*/in, int* /*out*/out, int* /*inout*/inout) {
 }
 
 /**

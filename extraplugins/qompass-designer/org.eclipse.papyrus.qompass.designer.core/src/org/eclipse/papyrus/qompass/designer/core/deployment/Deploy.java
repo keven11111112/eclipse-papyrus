@@ -16,7 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Stack;
 
-import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
@@ -48,7 +48,7 @@ public class Deploy {
 	 * @param instance
 	 * @throws TransformationException
 	 */
-	public Deploy(LazyCopier copy, ILangSupport langSupport, InstanceSpecification node,
+	public Deploy(LazyCopier copy, ILangProjectSupport langSupport, InstanceSpecification node,
 			int nodeIndex, int numberOfNodes)
 			throws TransformationException
 	{

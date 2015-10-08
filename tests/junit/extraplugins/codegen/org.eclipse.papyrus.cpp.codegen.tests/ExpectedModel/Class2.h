@@ -80,7 +80,7 @@ public:
 	 * @param inout 
 	 * @return ret 
 	 */
-	int paramsOp(int /*in*/in, int /*out*/* out, int /*inout*/* inout);
+	int paramsOp(int /*in*/in, int* /*out*/out, int* /*inout*/inout);
 
 	/**
 	 * Void Method
