@@ -274,40 +274,98 @@ public class UMLElementTypes {
 	 *
 	 * @generated
 	 */
-	public static ENamedElement getElement(IAdaptable hint) {
+	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
+
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
+
+
 			elements.put(Interaction_2001, UMLPackage.eINSTANCE.getInteraction());
+
+
 			elements.put(ConsiderIgnoreFragment_3007, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
+
+
 			elements.put(CombinedFragment_3004, UMLPackage.eINSTANCE.getCombinedFragment());
+
+
 			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
+
+
 			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
+
+
 			elements.put(Continuation_3016, UMLPackage.eINSTANCE.getContinuation());
+
+
 			elements.put(Lifeline_3001, UMLPackage.eINSTANCE.getLifeline());
+
+
 			elements.put(ActionExecutionSpecification_3006, UMLPackage.eINSTANCE.getActionExecutionSpecification());
+
+
 			elements.put(BehaviorExecutionSpecification_3003, UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
+
+
 			elements.put(StateInvariant_3017, UMLPackage.eINSTANCE.getStateInvariant());
+
+
 			elements.put(CombinedFragment_3018, UMLPackage.eINSTANCE.getCombinedFragment());
+
+
 			elements.put(TimeConstraint_3019, UMLPackage.eINSTANCE.getTimeConstraint());
+
+
 			elements.put(TimeObservation_3020, UMLPackage.eINSTANCE.getTimeObservation());
+
+
 			elements.put(DurationConstraint_3021, UMLPackage.eINSTANCE.getDurationConstraint());
+
+
 			elements.put(DestructionOccurrenceSpecification_3022, UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
+
+
 			elements.put(Constraint_3008, UMLPackage.eINSTANCE.getConstraint());
+
+
 			elements.put(Comment_3009, UMLPackage.eINSTANCE.getComment());
+
+
 			elements.put(DurationConstraint_3023, UMLPackage.eINSTANCE.getDurationConstraint());
+
+
 			elements.put(DurationObservation_3024, UMLPackage.eINSTANCE.getDurationObservation());
+
+
 			elements.put(Message_4003, UMLPackage.eINSTANCE.getMessage());
+
+
 			elements.put(Message_4004, UMLPackage.eINSTANCE.getMessage());
+
+
 			elements.put(Message_4005, UMLPackage.eINSTANCE.getMessage());
+
+
 			elements.put(Message_4006, UMLPackage.eINSTANCE.getMessage());
+
+
 			elements.put(Message_4007, UMLPackage.eINSTANCE.getMessage());
+
+
 			elements.put(Message_4008, UMLPackage.eINSTANCE.getMessage());
+
+
 			elements.put(Message_4009, UMLPackage.eINSTANCE.getMessage());
+
 			elements.put(CommentAnnotatedElement_4010, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+
 			elements.put(ConstraintConstrainedElement_4011, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+
+
 			elements.put(GeneralOrdering_4012, UMLPackage.eINSTANCE.getGeneralOrdering());
+
 			elements.put(ConstraintContext_8500, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return elements.get(type);
@@ -323,7 +381,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static boolean isKnownElementType(IElementType elementType) {
+	public static synchronized boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
@@ -358,7 +416,17 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_4012);
 			KNOWN_ELEMENT_TYPES.add(ConstraintContext_8500);
 		}
-		return KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		if (!result) {
+			IElementType[] supertypes = elementType.getAllSuperTypes();
+			for (int i = 0; !result && (i < supertypes.length); i++) {
+				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -461,4 +529,20 @@ public class UMLElementTypes {
 			return org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes.getElement(elementTypeAdapter);
 		}
 	};
+
+	/**
+	 * @generated
+	 */
+	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
+		boolean result = subtype == supertype;
+
+		if (!result) {
+			IElementType[] supertypes = subtype.getAllSuperTypes();
+			for (int i = 0; !result && (i < supertypes.length); i++) {
+				result = supertype == supertypes[i];
+			}
+		}
+
+		return result;
+	}
 }
