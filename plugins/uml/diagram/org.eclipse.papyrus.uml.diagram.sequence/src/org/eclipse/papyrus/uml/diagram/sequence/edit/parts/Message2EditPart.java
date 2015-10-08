@@ -63,12 +63,12 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof MessageName2EditPart) {
-			((MessageName2EditPart) childEditPart).setLabel(getPrimaryShape().getMessageLabelFigure());
-			return true;
+			((MessageName2EditPart) childEditPart).setLabel(
+					getPrimaryShape().getMessageLabelFigure());
 		}
 		if (childEditPart instanceof MessageAsyncAppliedStereotypeEditPart) {
-			((MessageAsyncAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
+			((MessageAsyncAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

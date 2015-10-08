@@ -45,8 +45,8 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintContextAppliedStereotypeEditPart) {
-			((ConstraintContextAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
+			((ConstraintContextAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

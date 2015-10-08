@@ -82,7 +82,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * Generated not for add lifelines on lifeline
 	 *
 	 * @generated
-	 *            (update at each lifeline modification) add lifelines, add DurationObservation/Constraint
+	 * 			(update at each lifeline modification) add lifelines, add DurationObservation/Constraint
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
@@ -181,7 +181,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 
 	/**
 	 * @generated
-	 *            (update at each lifeline modification) add general ordering
+	 * 			(update at each lifeline modification) add general ordering
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		IElementType requestElementType = req.getElementType();
@@ -253,7 +253,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 
 	/**
 	 * @generated
-	 *            (update at each lifeline modification) add general ordering
+	 * 			(update at each lifeline modification) add general ordering
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		IElementType requestElementType = req.getElementType();
@@ -334,7 +334,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * model element associated with this node.
 	 *
 	 * @generated
-	 *            (update at each lifeline modification) add general ordering
+	 * 			(update at each lifeline modification) add general ordering
 	 */
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {

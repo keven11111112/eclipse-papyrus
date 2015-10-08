@@ -156,7 +156,8 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
 			ResizableEditPolicy ep = (ResizableEditPolicy) result;
-			ep.setResizeDirections(PositionConstants.NORTH | PositionConstants.SOUTH);
+			ep.setResizeDirections(
+					PositionConstants.NORTH | PositionConstants.SOUTH);
 		}
 		return result;
 	}
@@ -213,9 +214,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	 */
 	@Override
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof IPapyrusNodeFigure) { // Manually replaced, waiting for next generation
-			((IPapyrusNodeFigure) primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	// /**
@@ -232,7 +231,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) { // Manually replaced, waiting for next generation
+		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}

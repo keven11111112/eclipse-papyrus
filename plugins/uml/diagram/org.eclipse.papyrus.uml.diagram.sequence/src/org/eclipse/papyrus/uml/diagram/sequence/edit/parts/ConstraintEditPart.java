@@ -92,6 +92,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -150,6 +151,8 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 			((Constraint2EditPart) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -263,9 +266,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof IPapyrusNodeFigure) { // Manually replaced, waiting for next generation
-			((IPapyrusNodeFigure) primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**
@@ -273,7 +274,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) { // Manually replaced, waiting for next generation
+		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
