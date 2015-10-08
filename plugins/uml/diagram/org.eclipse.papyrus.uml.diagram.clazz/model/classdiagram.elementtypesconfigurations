@@ -211,42 +211,6 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_YG8VoDBeEeWaIJ-gnmghAA"
-      name="Component"
-      identifier="org.eclipse.papyrus.uml.diagram.clazz.Component_3055"
-      hint="3055">
-    <iconEntry
-        xmi:id="_5idDIDBeEeWaIJ-gnmghAA"
-        iconPath="/icons/full/obj16/Component.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_Gn9g0DBfEeWaIJ-gnmghAA"
-      name="Component"
-      identifier="org.eclipse.papyrus.uml.diagram.clazz.Component_3056"
-      hint="3056">
-    <iconEntry
-        xmi:id="_KWqKsDBgEeWaIJ-gnmghAA"
-        iconPath="/icons/full/obj16/Component.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_H4IIMDBfEeWaIJ-gnmghAA"
-      name="Component"
-      identifier="org.eclipse.papyrus.uml.diagram.clazz.Component_3057"
-      hint="3057">
-    <iconEntry
-        xmi:id="_LKmJEDBgEeWaIJ-gnmghAA"
-        iconPath="/icons/full/obj16/Component.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_rWNw_HPzEeSnGJwaJWHCSg"
       name="Connectable Element Template Parameter"
       identifier="org.eclipse.papyrus.uml.diagram.clazz.ConnectableElementTemplateParameter_3034"
