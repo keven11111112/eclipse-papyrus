@@ -122,7 +122,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * Instantiates a new rounded compartment figure.
 	 */
 	public RoundedCompartmentFigure(String taggedLabel) {
-		super(taggedLabel);
+		this(null, taggedLabel);
 	}
 
 	/**
