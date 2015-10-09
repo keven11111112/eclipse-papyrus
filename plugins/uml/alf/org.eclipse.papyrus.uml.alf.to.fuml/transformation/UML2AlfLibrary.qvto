@@ -17,9 +17,19 @@ modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 library UML2AlfLibrary;
 
 property model : Model;
+property modelScopeContextName : String;
 
 helper setModel(model_ : Model) {
 	model := model_;
+}
+
+query isModel(element : Element) : Boolean {
+	return element = model;
+}
+
+helper setModelScope(modelScope : ModelNamespace) {
+	modelScopeContextName := 
+		modelScope.context().asUml().oclAsType(NamedElement).umlQualifiedName(null); 
 }
 
 query Stereotype::toAnnotation() : StereotypeAnnotation {
@@ -48,7 +58,7 @@ query NamedElement::NamedElement_alfQualifiedName(context : NamedElement) : Qual
     	  names->any(true).toAlfQualifiedName(null)
     	endif
     else
-      self.qualifiedName.toAlfQualifiedName(context)
+      self.umlQualifiedName().toAlfQualifiedName(context)
     endif;
 }
 
@@ -104,7 +114,7 @@ query NamedElement::NamedElement_alfPathName(context : NamedElement) : String {
     	  names->any(true).toAlfPathName(null)
     	endif
     else
-      self.qualifiedName.toAlfPathName(context)
+      self.umlQualifiedName().toAlfPathName(context)
     endif;
 }
 
@@ -187,19 +197,29 @@ query String::toAlfQualifiedName(context : NamedElement) : QualifiedName {
 }
 
 query String::toAlfPathName(context : NamedElement) : String {
-	return 
-		self.toNameSequence(context)->iterate(n; s : String = "" |
-			if s = "" then "" else "::" endif + n
+	return self.toNameSequence(context)->iterate(n; s : String = "" |
+			if s = "" then n else s + "::" + n endif
 		);
 }
 
-// Return the UML qualified name, but allowing for empty names.
+// Return the UML qualified name, but allowing for empty names and accounting for model scope.
 query NamedElement::umlQualifiedName() : String {
+	return self.umlQualifiedName(modelScopeContextName);
+}
+
+query NamedElement::umlQualifiedName(outerQualifiedName : String) : String {
 	var name := if self.name->isEmpty() then "" else self.name endif;
+	var namespace := self.namespace;
+	if namespace = null and 
+		self.oclIsKindOf(ParameterableElement) and 
+		self.oclAsType(ParameterableElement).templateParameter <> null then {
+		namespace := self.oclAsType(ParameterableElement).templateParameter.signature.template.oclAsType(Namespace);
+	} endif;
 	return
-		if self.namespace->isEmpty() then name
-		else self.namespace.umlQualifiedName() + "::" + name
-		endif;
+		if namespace <> null then namespace.umlQualifiedName(outerQualifiedName) + "::" + name
+		else if outerQualifiedName = null then name
+		else outerQualifiedName
+		endif endif;
 }
 
 query toName(name : String) : String {

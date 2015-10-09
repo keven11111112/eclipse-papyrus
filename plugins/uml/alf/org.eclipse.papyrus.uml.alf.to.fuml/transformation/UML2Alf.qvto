@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Ed Seidewitz (MDS)
+ *   Ed Seidewitz (MDS)
  * 
  *****************************************************************************/
 import org.eclipse.papyrus.uml.alf.to.fuml.qvt.QVTLibrary;
@@ -22,16 +22,15 @@ transformation UML2Alf(in uml : UML, out alf : Alf)
 
 main() {
   var rootObjects := uml.rootObjects();
-  model := rootObjects![Model];
-  if model = null then
-  		rootObjects[Namespace]->map toUnitDefinition()
-  else
-  	model.packagedElement[Namespace][not name.startsWith("$")]->
-  	  map toUnitDefinition()
-  endif;
+  var model := rootObjects![Model];
+  if model = null then {
+  	model := rootObjects![Namespace].getModel();
+  } else {
+  	rootObjects := model.packagedElement[not name.startsWith("$")];
+  } endif;
+  setModel(model);
+  rootObjects[Namespace]->map toUnitDefinition();
 }
-
-property model : Model;
 
 // Elements
 
@@ -53,56 +52,9 @@ mapping NamedElement::toMember() : Member
   annotation := self.getAppliedStereotypes()->toAnnotation();
 }
 
-// Return the UML qualified name, but allowing for empty names.
-query NamedElement::umlQualifiedName() : String {
-	var name := if self.name->isEmpty() then "" else self.name endif;
-	return
-		if self.namespace->isEmpty() then name
-		else self.namespace.umlQualifiedName() + "::" + name
-		endif;
-}
-
 abstract mapping NamedElement::toMemberDefinition() : MemberDefinition
 {
   name := toName(self.name);
-}
-
-query toName(name : String) : String {
-  return
-   if name = null or name.isIdentifier() then name
-   else name.toRestrictedName()
-   endif;   	
-}
-
-query String::isIdentifier() : Boolean {
-	return self.matches("[a-zA-z_][a-zA-z_0-9]*") and not self.isReservedWord();
-}
-
-property reservedWords : Set(String) = Set{
-  "abstract", "accept", "active", "activity", "allInstances", "any",
-  "as", "assoc", "break", "case", "class", "classify", "clearAssoc",
-  "compose", "createLink", "datatype", "default", "destroyLink", "do",
-  "else", "enum" , "for", "from", "hastype", "if", "import", "in",
-  "inout", "instanceof", "let", "namespace", "new", "nonunique", "null",
-  "or", "ordered", "out", "package", "private", "protected", "public",
-  "receive", "redefines", "reduce", "return", "sequence", "specializes",
-  "super", "signal", "switch", "this", "to", "while"
-};
-
-query String::isReservedWord() : Boolean {
-	return reservedWords->includes(self);
-}
-
-query String::toRestrictedName() : String {
-	return "'" + self.
-	 replace("\\", "\\\\").
-	 replace("\b", "\\b").
-	 replace("\t", "\\t").
-	 replace("\n", "\\n").
-	 replace("\f", "\\f").
-	 replace("\r", "\\r").
-	 replace("'", "\\'") +
-	 "'";
 }
 
 mapping NamedElement::toDefinition() : MemberDefinition
@@ -119,7 +71,7 @@ mapping NamedElement::toDefinition() : MemberDefinition
 
 mapping Namespace::toUnitDefinition() : UnitDefinition 
   inherits Element::toDocumentedElement {
-  if self.namespace <> null and self.namespace <> model then
+  if self.namespace <> null and not isModel(self.namespace) then
     namespaceName := self.namespace.alfQualifiedName(null)
   endif;
 	definition := self.map toNamespaceDefinition();

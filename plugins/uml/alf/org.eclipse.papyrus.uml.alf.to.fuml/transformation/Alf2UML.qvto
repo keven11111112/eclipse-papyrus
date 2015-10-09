@@ -30,8 +30,10 @@ main() {
       name := "Model";
     };
   } endif;
+  var root := alf.rootObjects()![UnitDefinition];
   UML2AlfLibrary::setModel(model);
-  alf.rootObjects()![UnitDefinition].map toNamespace();
+  UML2AlfLibrary::setModelScope(root.definition.modelNamespace().oclAsType(ModelNamespace));
+  root.map toNamespace();
   model.packagedElement := uml.rootObjects()[PackageableElement]->excluding(model);
   applyStereotypes();
   applyDefinitions();
