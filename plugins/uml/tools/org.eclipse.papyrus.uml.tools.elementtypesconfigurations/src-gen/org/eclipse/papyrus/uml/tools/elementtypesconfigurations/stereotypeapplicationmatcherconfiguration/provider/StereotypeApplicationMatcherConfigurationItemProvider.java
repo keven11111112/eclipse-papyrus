@@ -60,6 +60,7 @@ public class StereotypeApplicationMatcherConfigurationItemProvider extends Match
 			super.getPropertyDescriptors(object);
 
 			addStereotypesQualifiedNamesPropertyDescriptor(object);
+			addProfileUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -78,6 +79,28 @@ public class StereotypeApplicationMatcherConfigurationItemProvider extends Match
 				 getString("_UI_StereotypeApplicationMatcherConfiguration_stereotypesQualifiedNames_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_StereotypeApplicationMatcherConfiguration_stereotypesQualifiedNames_feature", "_UI_StereotypeApplicationMatcherConfiguration_type"),
 				 StereotypeApplicationMatcherConfigurationPackage.Literals.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Profile Uri feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProfileUriPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StereotypeApplicationMatcherConfiguration_profileUri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StereotypeApplicationMatcherConfiguration_profileUri_feature", "_UI_StereotypeApplicationMatcherConfiguration_type"),
+				 StereotypeApplicationMatcherConfigurationPackage.Literals.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI,
 				 true,
 				 false,
 				 false,
@@ -125,6 +148,7 @@ public class StereotypeApplicationMatcherConfigurationItemProvider extends Match
 
 		switch (notification.getFeatureID(StereotypeApplicationMatcherConfiguration.class)) {
 			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES:
+			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

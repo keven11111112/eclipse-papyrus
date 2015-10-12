@@ -127,6 +127,15 @@ public class StereotypeApplicationMatcherConfigurationPackageImpl extends EPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getStereotypeApplicationMatcherConfiguration_ProfileUri() {
+		return (EAttribute)stereotypeApplicationMatcherConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StereotypeApplicationMatcherConfigurationFactory getStereotypeApplicationMatcherConfigurationFactory() {
 		return (StereotypeApplicationMatcherConfigurationFactory)getEFactoryInstance();
 	}
@@ -152,6 +161,7 @@ public class StereotypeApplicationMatcherConfigurationPackageImpl extends EPacka
 		// Create classes and their features
 		stereotypeApplicationMatcherConfigurationEClass = createEClass(STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION);
 		createEAttribute(stereotypeApplicationMatcherConfigurationEClass, STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES);
+		createEAttribute(stereotypeApplicationMatcherConfigurationEClass, STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI);
 	}
 
 	/**
@@ -191,6 +201,7 @@ public class StereotypeApplicationMatcherConfigurationPackageImpl extends EPacka
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stereotypeApplicationMatcherConfigurationEClass, StereotypeApplicationMatcherConfiguration.class, "StereotypeApplicationMatcherConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStereotypeApplicationMatcherConfiguration_StereotypesQualifiedNames(), theEcorePackage.getEString(), "stereotypesQualifiedNames", null, 1, -1, StereotypeApplicationMatcherConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStereotypeApplicationMatcherConfiguration_ProfileUri(), ecorePackage.getEString(), "profileUri", null, 0, 1, StereotypeApplicationMatcherConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

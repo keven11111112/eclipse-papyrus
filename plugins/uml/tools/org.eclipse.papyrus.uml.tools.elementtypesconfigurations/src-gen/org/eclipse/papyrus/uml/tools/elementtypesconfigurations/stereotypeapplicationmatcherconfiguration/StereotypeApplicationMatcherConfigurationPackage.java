@@ -96,13 +96,22 @@ public interface StereotypeApplicationMatcherConfigurationPackage extends EPacka
 	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Profile Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Stereotype Application Matcher Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION_FEATURE_COUNT = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION_FEATURE_COUNT + 1;
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION_FEATURE_COUNT = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Stereotype Application Matcher Configuration</em>' class.
@@ -134,6 +143,17 @@ public interface StereotypeApplicationMatcherConfigurationPackage extends EPacka
 	 * @generated
 	 */
 	EAttribute getStereotypeApplicationMatcherConfiguration_StereotypesQualifiedNames();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration#getProfileUri <em>Profile Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Profile Uri</em>'.
+	 * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration#getProfileUri()
+	 * @see #getStereotypeApplicationMatcherConfiguration()
+	 * @generated
+	 */
+	EAttribute getStereotypeApplicationMatcherConfiguration_ProfileUri();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -175,6 +195,14 @@ public interface StereotypeApplicationMatcherConfigurationPackage extends EPacka
 		 * @generated
 		 */
 		EAttribute STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES = eINSTANCE.getStereotypeApplicationMatcherConfiguration_StereotypesQualifiedNames();
+
+		/**
+		 * The meta object literal for the '<em><b>Profile Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI = eINSTANCE.getStereotypeApplicationMatcherConfiguration_ProfileUri();
 
 	}
 
