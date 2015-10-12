@@ -9,7 +9,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_MPE2kAEwEeSR--mxHEXKSA" name="Class2"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_nx9tkAFhEeSZGsrO_8UE3g" name="p2">
-      <packagedElement xmi:type="uml:Class" xmi:id="_qOTNIAFhEeSZGsrO_8UE3g" name="ClassWith1Sterotype"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qOTNIAFhEeSZGsrO_8UE3g" name="ClassWith1Stereotype"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_MmC_wAFqEeSZGsrO_8UE3g" name="ClassWith2Stereotypes"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_wGo5gAFhEeSZGsrO_8UE3g">

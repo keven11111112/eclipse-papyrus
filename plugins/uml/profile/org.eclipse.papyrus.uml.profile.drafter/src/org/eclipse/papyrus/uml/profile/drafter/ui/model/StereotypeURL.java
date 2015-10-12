@@ -331,7 +331,7 @@ public class StereotypeURL {
 	 * 
 	 * @return
 	 */
-	protected String computeQualifiedName() {
+	public String computeQualifiedName() {
 		
 		return computeQualifiedName(resourceName, profileName, stereotypeName);
 	}
@@ -408,7 +408,7 @@ public class StereotypeURL {
 	/**
 	 * @return the changeSupport
 	 */
-	protected PropertyChangeSupport getChangeSupport() {
+	public PropertyChangeSupport getChangeSupport() {
 		return changeSupport;
 	}
 

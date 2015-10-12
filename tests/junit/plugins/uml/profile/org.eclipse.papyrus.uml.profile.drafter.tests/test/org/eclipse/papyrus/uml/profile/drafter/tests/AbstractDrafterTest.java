@@ -19,9 +19,9 @@ import java.io.IOException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.osgi.framework.Bundle;
 
 
@@ -29,9 +29,9 @@ import org.osgi.framework.Bundle;
  * @author Francois Le Fevre
  *
  */
-public abstract class AbstractDrafterTest extends AbstractPapyrusTest {
+public abstract class AbstractDrafterTest extends AbstractEditorTest {
 
-	public static final String FROM_BUNDLE_NAME = "org.eclipse.papyrus.uml.profile.drafter";
+	public static final String FROM_BUNDLE_NAME = "org.eclipse.papyrus.uml.profile.drafter.tests"; //$NON-NLS-1$
 	
 	/**
 	 * Created project.
@@ -58,12 +58,17 @@ public abstract class AbstractDrafterTest extends AbstractPapyrusTest {
 	
 
 	protected String getSourcePath() {
-		return "models/";
+		return "models/"; //$NON-NLS-1$
 	}
 
 
+	/**
+	 *
+	 * @return
+	 *         the current bundle
+	 */
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.uml.profile.drafter.Activator.getDefault().getBundle();
+		return Activator.getDefault().getBundle();
 	}
 
 

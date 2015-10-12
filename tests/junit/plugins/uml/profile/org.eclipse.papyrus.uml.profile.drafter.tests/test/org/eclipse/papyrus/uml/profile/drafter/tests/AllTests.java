@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.uml.profile.drafter.tests;
 
 
-import org.eclipse.papyrus.uml.profile.drafter.tests.utils.UMLModelCreatorTest;
 import org.eclipse.papyrus.uml.profile.drafter.ui.model.CompoundTypeProviderTest;
 import org.eclipse.papyrus.uml.profile.drafter.ui.model.SimpleModelVisitorTest;
 import org.eclipse.papyrus.uml.profile.drafter.ui.model.StereotypeURLTest;
-import org.eclipse.papyrus.uml.profile.drafter.ui.model.TypeProviderTest;
 import org.eclipse.papyrus.uml.profile.drafter.ui.model.TypeProviderTest2;
 import org.eclipse.papyrus.uml.profile.drafter.utils.UMLPrimitiveTypesModelTest;
+import org.eclipse.papyrus.uml.profile.drafter.ui.model.TypeProviderTest;
+import org.eclipse.papyrus.uml.profile.drafter.tests.utils.UMLModelCreatorTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;

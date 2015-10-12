@@ -24,11 +24,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.databinding.property,
  org.eclipse.jface.databinding,
  com.ibm.icu,
- org.junit,
  org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.2.0"
 Export-Package: org.eclipse.papyrus.uml.profile.drafter,
  org.eclipse.papyrus.uml.profile.drafter.exceptions,
- org.eclipse.papyrus.uml.profile.drafter.ui.handler
+ org.eclipse.papyrus.uml.profile.drafter.ui.handler,
+ org.eclipse.papyrus.uml.profile.drafter.ui.model,
+ org.eclipse.papyrus.uml.profile.drafter.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier
