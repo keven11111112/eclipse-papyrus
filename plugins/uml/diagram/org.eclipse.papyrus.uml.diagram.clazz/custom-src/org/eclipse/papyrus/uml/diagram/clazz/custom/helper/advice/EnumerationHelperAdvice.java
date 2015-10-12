@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.uml2.uml.Enumeration;
@@ -102,17 +103,22 @@ public class EnumerationHelperAdvice extends AbstractEditHelperAdvice {
 
 		Set<View> viewsToDestroy = new HashSet<View>();
 
-		@SuppressWarnings("unchecked")
-		Iterator<EObject> it = request.getElementsToMove().keySet().iterator();
-		while (it.hasNext()) {
-			EObject eObject = it.next();
-			viewsToDestroy.addAll(getMemberViewsToDestroy(eObject));
-		}
-		Iterator<View> viewToDestroyIterator = viewsToDestroy.iterator();
-		while (viewToDestroyIterator.hasNext()) {
-			View view = viewToDestroyIterator.next();
-			DeleteCommand destroyViewsCommand = new DeleteCommand(request.getEditingDomain(), view);
-			moveCommand = CompositeCommand.compose(moveCommand, destroyViewsCommand);
+		Object parameter = request.getParameter(RequestParameterConstants.TYPE_MOVING);
+
+		if ((null == parameter) || (!RequestParameterConstants.TYPE_MOVING_DIAGRAM.equals(parameter))) {
+			@SuppressWarnings("unchecked")
+			Iterator<EObject> it = request.getElementsToMove().keySet().iterator();
+			while (it.hasNext()) {
+				EObject eObject = it.next();
+				viewsToDestroy.addAll(getMemberViewsToDestroy(eObject));
+			}
+
+			Iterator<View> viewToDestroyIterator = viewsToDestroy.iterator();
+			while (viewToDestroyIterator.hasNext()) {
+				View view = viewToDestroyIterator.next();
+				DeleteCommand destroyViewsCommand = new DeleteCommand(request.getEditingDomain(), view);
+				moveCommand = CompositeCommand.compose(moveCommand, destroyViewsCommand);
+			}
 		}
 
 		return moveCommand;

@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 465899
+ *   Bonnabesse Fanch (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476872
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.utils;
@@ -107,12 +108,12 @@ public interface RequestParameterConstants {
 	/**
 	 * the ID to store the name to be set for the new element.
 	 */
-	public final static String NAME_TO_SET = "nameToSet";
+	public final static String NAME_TO_SET = "nameToSet"; //$NON-NLS-1$
 
 	/**
 	 * this constant is used to precise if it is needed to launch UI during the edition of an element
 	 */
-	public static String USE_GUI = "USE_GUI";
+	public static String USE_GUI = "USE_GUI"; //$NON-NLS-1$
 
 	/**
 	 * A boolean-valued parameter for {@link CreateRelationshipRequest} that indicates
@@ -135,6 +136,16 @@ public interface RequestParameterConstants {
 	 * @see #AFFECTS_SOURCE
 	 */
 	public static final String AFFECTS_TARGET = "papyrus.affectsTarget"; //$NON-NLS-1$
+
+	/**
+	 * Constant used to indicate that the action is done in the diagram.
+	 */
+	public static final String TYPE_MOVING_DIAGRAM = "TYPE_MOVING_DIAGRAM"; //$NON-NLS-1$
+
+	/**
+	 * Constant used to indicate where the action is done.
+	 */
+	public static final String TYPE_MOVING = "TYPE_MOVING"; //$NON-NLS-1$
 
 	//
 	// Nested types
