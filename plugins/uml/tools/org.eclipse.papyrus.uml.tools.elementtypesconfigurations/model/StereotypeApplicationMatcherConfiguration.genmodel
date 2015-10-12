@@ -15,6 +15,7 @@
       ecorePackage="StereotypeApplicationMatcherConfiguration.ecore#/">
     <genClasses ecoreClass="StereotypeApplicationMatcherConfiguration.ecore#//StereotypeApplicationMatcherConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StereotypeApplicationMatcherConfiguration.ecore#//StereotypeApplicationMatcherConfiguration/stereotypesQualifiedNames"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StereotypeApplicationMatcherConfiguration.ecore#//StereotypeApplicationMatcherConfiguration/profileUri"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
