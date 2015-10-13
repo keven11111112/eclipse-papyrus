@@ -135,7 +135,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 			IElementType type = createElementRequest.getElementType();
 			List<IElementType> types = new ArrayList<IElementType>(Arrays.asList(type.getAllSuperTypes()));
 			types.add(type);
-			if (types.contains(UMLElementTypes.PORT)) {
+			if (types.contains(UMLElementTypes.PROPERTY) && (!UMLPackage.eINSTANCE.getProperty_Qualifier().equals(createElementRequest.getContainmentFeature()))) {
 				GetEditContextCommand command = new GetEditContextCommand(request);
 				if (request.getEditContext() instanceof Property) {
 					// this line is very important
