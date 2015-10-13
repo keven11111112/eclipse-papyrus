@@ -32,6 +32,8 @@ import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Region
 import org.eclipse.papyrus.cpp.codegen.utils.ClassUtils
 import org.eclipse.papyrus.codegen.base.GenUtils
+import org.eclipse.papyrus.C_Cpp.Variadic
+import org.eclipse.uml2.uml.ParameterDirectionKind
 
 class CppOperations {
 	static def CppOperationImplementation(Operation operation) '''
@@ -41,7 +43,7 @@ class CppOperations {
 				«GenUtils.getBody(operation, Constants.supportedLanguages)»
 			} 
 		«ELSE»
-			«CppTemplates.templateSignature(operation)»«InlineTxt(operation)»«CppReturnSpec(operation)»«GenUtils.getNestedOperationFarthestClassifierOwnerNamespace(operation)»«CppTemplates.templateShortSignature(operation)»::«destructor(operation)»«operation.name»(«CppParameter.CppOperationParameters(operation, false)»)«throwss(operation)»«Modifier.modCVQualifier(operation)»«CppConstInit(operation)» {
+			«CppTemplates.templateSignature(operation)»«InlineTxt(operation)»«CppReturnSpec(operation)»«GenUtils.getNestedOperationFarthestClassifierOwnerNamespace(operation)»«CppTemplates.templateShortSignature(operation)»::«destructor(operation)»«operation.name»(«CppParameter.CppOperationParameters(operation, false)»«variadicParameter(operation)»)«throwss(operation)»«Modifier.modCVQualifier(operation)»«CppConstInit(operation)» {
 				«GenUtils.getBody(operation, Constants.supportedLanguages)»
 			}
 		«ENDIF»
@@ -136,7 +138,7 @@ class CppOperations {
 	
 	static def CppOperationDeclaration(Operation operation) '''
 		«CppDocumentation.CppOperationDoc(operation)»
-		«InlineTxt(operation)»«virtualTxt(operation)»«staticTxt(operation)»«CppReturnSpec(operation)»«destructor(operation)»«operation.name»(«CppParameter.CppOperationParameters(operation,true)»)«Modifier.modCVQualifier(operation)»«virtualSuffix(operation)»;
+		«InlineTxt(operation)»«virtualTxt(operation)»«staticTxt(operation)»«CppReturnSpec(operation)»«destructor(operation)»«operation.name»(«CppParameter.CppOperationParameters(operation,true)»«variadicParameter(operation)»)«Modifier.modCVQualifier(operation)»«virtualSuffix(operation)»;
 	'''
 	
 	static def InlineTxt(Element element) {
@@ -180,5 +182,23 @@ class CppOperations {
 			}
 		}
 		return name
+	}
+	
+	static def variadicParameter(Operation operation) {
+		var hasParameters = false;
+		var i = 0;
+		if (GenUtils.hasStereotype(operation, Variadic)) {
+			while (i < operation.ownedParameters.size && !hasParameters) {
+				if (operation.ownedParameters.get(i).direction != ParameterDirectionKind.RETURN_LITERAL) {
+					hasParameters = true;
+				}
+			}
+			
+			if (hasParameters) {
+				', ...'
+			} else {
+				'...'
+			}
+		}
 	}
 }

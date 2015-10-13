@@ -33,6 +33,7 @@ import org.eclipse.papyrus.C_Cpp.Friend;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Inline;
 import org.eclipse.papyrus.C_Cpp.ManualGeneration;
+import org.eclipse.papyrus.C_Cpp.Mutable;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
@@ -42,6 +43,7 @@ import org.eclipse.papyrus.C_Cpp.TemplateBinding;
 import org.eclipse.papyrus.C_Cpp.TemplateParameter;
 import org.eclipse.papyrus.C_Cpp.Typedef;
 import org.eclipse.papyrus.C_Cpp.Union;
+import org.eclipse.papyrus.C_Cpp.Variadic;
 import org.eclipse.papyrus.C_Cpp.Virtual;
 import org.eclipse.papyrus.C_Cpp.Visibility;
 import org.eclipse.papyrus.C_Cpp.VisibilityKind;
@@ -114,6 +116,8 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 			case C_CppPackage.UNION: return createUnion();
 			case C_CppPackage.STORAGE_CLASS: return createStorageClass();
 			case C_CppPackage.VOLATILE: return createVolatile();
+			case C_CppPackage.VARIADIC: return createVariadic();
+			case C_CppPackage.MUTABLE: return createMutable();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -408,6 +412,26 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	public Volatile createVolatile() {
 		VolatileImpl volatile_ = new VolatileImpl();
 		return volatile_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Variadic createVariadic() {
+		VariadicImpl variadic = new VariadicImpl();
+		return variadic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mutable createMutable() {
+		MutableImpl mutable = new MutableImpl();
+		return mutable;
 	}
 
 	/**

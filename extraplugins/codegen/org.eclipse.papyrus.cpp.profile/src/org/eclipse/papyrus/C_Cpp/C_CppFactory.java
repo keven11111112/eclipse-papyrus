@@ -239,6 +239,24 @@ public interface C_CppFactory extends EFactory {
 	Volatile createVolatile();
 
 	/**
+	 * Returns a new object of class '<em>Variadic</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Variadic</em>'.
+	 * @generated
+	 */
+	Variadic createVariadic();
+
+	/**
+	 * Returns a new object of class '<em>Mutable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mutable</em>'.
+	 * @generated
+	 */
+	Mutable createMutable();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

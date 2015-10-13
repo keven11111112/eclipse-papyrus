@@ -184,5 +184,13 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Volatile/base_operation"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="C_Cpp.ecore#//Variadic">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Variadic/base_operation"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="C_Cpp.ecore#//Mutable">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Mutable/base_property"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

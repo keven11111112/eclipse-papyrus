@@ -33,6 +33,7 @@ import org.eclipse.papyrus.C_Cpp.Friend;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Inline;
 import org.eclipse.papyrus.C_Cpp.ManualGeneration;
+import org.eclipse.papyrus.C_Cpp.Mutable;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
@@ -42,6 +43,7 @@ import org.eclipse.papyrus.C_Cpp.TemplateBinding;
 import org.eclipse.papyrus.C_Cpp.TemplateParameter;
 import org.eclipse.papyrus.C_Cpp.Typedef;
 import org.eclipse.papyrus.C_Cpp.Union;
+import org.eclipse.papyrus.C_Cpp.Variadic;
 import org.eclipse.papyrus.C_Cpp.Virtual;
 import org.eclipse.papyrus.C_Cpp.Visibility;
 import org.eclipse.papyrus.C_Cpp.VisibilityKind;
@@ -216,6 +218,20 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * @generated
 	 */
 	private EClass volatileEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variadicEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mutableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1081,6 +1097,42 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVariadic() {
+		return variadicEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVariadic_Base_operation() {
+		return (EReference)variadicEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMutable() {
+		return mutableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMutable_Base_property() {
+		return (EReference)mutableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EEnum getVisibilityKind() {
 		return visibilityKindEEnum;
@@ -1236,6 +1288,12 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		createEReference(volatileEClass, VOLATILE__BASE_PROPERTY);
 		createEReference(volatileEClass, VOLATILE__BASE_OPERATION);
 
+		variadicEClass = createEClass(VARIADIC);
+		createEReference(variadicEClass, VARIADIC__BASE_OPERATION);
+
+		mutableEClass = createEClass(MUTABLE);
+		createEReference(mutableEClass, MUTABLE__BASE_PROPERTY);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		eAccessKindEEnum = createEEnum(EACCESS_KIND);
@@ -1376,6 +1434,12 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		initEReference(getVolatile_Base_parameter(), theUMLPackage.getParameter(), null, "base_parameter", null, 0, 1, Volatile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getVolatile_Base_property(), theUMLPackage.getProperty(), null, "base_property", null, 0, 1, Volatile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getVolatile_Base_operation(), theUMLPackage.getOperation(), null, "base_operation", null, 0, 1, Volatile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(variadicEClass, Variadic.class, "Variadic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVariadic_Base_operation(), theUMLPackage.getOperation(), null, "base_operation", null, 1, 1, Variadic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(mutableEClass, Mutable.class, "Mutable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMutable_Base_property(), theUMLPackage.getProperty(), null, "base_property", null, 1, 1, Mutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");

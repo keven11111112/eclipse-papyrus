@@ -28,6 +28,7 @@ import org.eclipse.papyrus.C_Cpp.Friend;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Inline;
 import org.eclipse.papyrus.C_Cpp.ManualGeneration;
+import org.eclipse.papyrus.C_Cpp.Mutable;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.C_Cpp.TemplateBinding;
 import org.eclipse.papyrus.C_Cpp.TemplateParameter;
 import org.eclipse.papyrus.C_Cpp.Typedef;
 import org.eclipse.papyrus.C_Cpp.Union;
+import org.eclipse.papyrus.C_Cpp.Variadic;
 import org.eclipse.papyrus.C_Cpp.Virtual;
 import org.eclipse.papyrus.C_Cpp.Visibility;
 import org.eclipse.papyrus.C_Cpp.Volatile;
@@ -188,6 +190,14 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseVolatile(Volatile object) {
 				return createVolatileAdapter();
+			}
+			@Override
+			public Adapter caseVariadic(Variadic object) {
+				return createVariadicAdapter();
+			}
+			@Override
+			public Adapter caseMutable(Mutable object) {
+				return createMutableAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -528,6 +538,34 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVolatileAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.C_Cpp.Variadic <em>Variadic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.C_Cpp.Variadic
+	 * @generated
+	 */
+	public Adapter createVariadicAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.C_Cpp.Mutable <em>Mutable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.C_Cpp.Mutable
+	 * @generated
+	 */
+	public Adapter createMutableAdapter() {
 		return null;
 	}
 

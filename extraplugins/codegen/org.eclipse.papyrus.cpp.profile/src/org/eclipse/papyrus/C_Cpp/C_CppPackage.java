@@ -1206,6 +1206,80 @@ public interface C_CppPackage extends EPackage {
 	int VOLATILE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.VariadicImpl <em>Variadic</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.VariadicImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getVariadic()
+	 * @generated
+	 */
+	int VARIADIC = 23;
+
+	/**
+	 * The feature id for the '<em><b>Base operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC__BASE_OPERATION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Variadic</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Variadic</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.MutableImpl <em>Mutable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.MutableImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getMutable()
+	 * @generated
+	 */
+	int MUTABLE = 24;
+
+	/**
+	 * The feature id for the '<em><b>Base property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUTABLE__BASE_PROPERTY = 0;
+
+	/**
+	 * The number of structural features of the '<em>Mutable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUTABLE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Mutable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUTABLE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1213,7 +1287,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 23;
+	int VISIBILITY_KIND = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.EAccessKind <em>EAccess Kind</em>}' enum.
@@ -1223,7 +1297,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getEAccessKind()
 	 * @generated
 	 */
-	int EACCESS_KIND = 24;
+	int EACCESS_KIND = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.EStorageClass <em>EStorage Class</em>}' enum.
@@ -1233,7 +1307,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getEStorageClass()
 	 * @generated
 	 */
-	int ESTORAGE_CLASS = 25;
+	int ESTORAGE_CLASS = 27;
 
 
 	/**
@@ -2072,6 +2146,48 @@ public interface C_CppPackage extends EPackage {
 	EReference getVolatile_Base_operation();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.Variadic <em>Variadic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Variadic</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.Variadic
+	 * @generated
+	 */
+	EClass getVariadic();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.Variadic#getBase_operation <em>Base operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base operation</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.Variadic#getBase_operation()
+	 * @see #getVariadic()
+	 * @generated
+	 */
+	EReference getVariadic_Base_operation();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.Mutable <em>Mutable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mutable</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.Mutable
+	 * @generated
+	 */
+	EClass getMutable();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.Mutable#getBase_property <em>Base property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base property</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.Mutable#getBase_property()
+	 * @see #getMutable()
+	 * @generated
+	 */
+	EReference getMutable_Base_property();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.C_Cpp.VisibilityKind <em>Visibility Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2792,6 +2908,42 @@ public interface C_CppPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VOLATILE__BASE_OPERATION = eINSTANCE.getVolatile_Base_operation();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.VariadicImpl <em>Variadic</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.C_Cpp.impl.VariadicImpl
+		 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getVariadic()
+		 * @generated
+		 */
+		EClass VARIADIC = eINSTANCE.getVariadic();
+
+		/**
+		 * The meta object literal for the '<em><b>Base operation</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIADIC__BASE_OPERATION = eINSTANCE.getVariadic_Base_operation();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.MutableImpl <em>Mutable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.C_Cpp.impl.MutableImpl
+		 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getMutable()
+		 * @generated
+		 */
+		EClass MUTABLE = eINSTANCE.getMutable();
+
+		/**
+		 * The meta object literal for the '<em><b>Base property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MUTABLE__BASE_PROPERTY = eINSTANCE.getMutable_Base_property();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.VisibilityKind <em>Visibility Kind</em>}' enum.

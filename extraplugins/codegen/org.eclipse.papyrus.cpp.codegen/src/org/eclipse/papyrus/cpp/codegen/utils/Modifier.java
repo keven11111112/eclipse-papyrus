@@ -13,6 +13,7 @@ package org.eclipse.papyrus.cpp.codegen.utils;
 
 import org.eclipse.papyrus.C_Cpp.Array;
 import org.eclipse.papyrus.C_Cpp.Const;
+import org.eclipse.papyrus.C_Cpp.Mutable;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
 import org.eclipse.papyrus.C_Cpp.StorageClass;
@@ -132,6 +133,14 @@ public class Modifier {
 					"volatile "; // before operation or parameter, //$NON-NLS-1$
 									// postfix with " "
 		}
+		
+		// Mutable (non-static attribute only)
+		if (GenUtils.hasStereotype(propertyOrParameter, Mutable.class)) {
+			if (propertyOrParameter instanceof Property && !((Property) propertyOrParameter).isStatic()) {
+				cvQualifier = "mutable " + cvQualifier;
+			}
+		}
+		
 		return cvQualifier;
 	}
 

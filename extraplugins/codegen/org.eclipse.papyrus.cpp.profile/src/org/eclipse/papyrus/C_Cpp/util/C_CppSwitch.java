@@ -27,6 +27,7 @@ import org.eclipse.papyrus.C_Cpp.Friend;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Inline;
 import org.eclipse.papyrus.C_Cpp.ManualGeneration;
+import org.eclipse.papyrus.C_Cpp.Mutable;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
@@ -36,6 +37,7 @@ import org.eclipse.papyrus.C_Cpp.TemplateBinding;
 import org.eclipse.papyrus.C_Cpp.TemplateParameter;
 import org.eclipse.papyrus.C_Cpp.Typedef;
 import org.eclipse.papyrus.C_Cpp.Union;
+import org.eclipse.papyrus.C_Cpp.Variadic;
 import org.eclipse.papyrus.C_Cpp.Virtual;
 import org.eclipse.papyrus.C_Cpp.Visibility;
 import org.eclipse.papyrus.C_Cpp.Volatile;
@@ -231,6 +233,18 @@ public class C_CppSwitch<T> extends Switch<T> {
 			case C_CppPackage.VOLATILE: {
 				Volatile volatile_ = (Volatile)theEObject;
 				T result = caseVolatile(volatile_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case C_CppPackage.VARIADIC: {
+				Variadic variadic = (Variadic)theEObject;
+				T result = caseVariadic(variadic);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case C_CppPackage.MUTABLE: {
+				Mutable mutable = (Mutable)theEObject;
+				T result = caseMutable(mutable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -580,6 +594,36 @@ public class C_CppSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVolatile(Volatile object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variadic</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variadic</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariadic(Variadic object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mutable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mutable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMutable(Mutable object) {
 		return null;
 	}
 

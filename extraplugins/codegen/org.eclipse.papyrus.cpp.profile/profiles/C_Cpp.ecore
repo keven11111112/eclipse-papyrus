@@ -192,4 +192,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_operation" ordered="false"
         unique="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variadic">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_operation" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Operation">
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mutable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_property" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Property">
+    </eStructuralFeatures>
+  </eClassifiers>
 </ecore:EPackage>
