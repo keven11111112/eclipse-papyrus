@@ -159,10 +159,7 @@ public class GenUtils {
 		while (attributes.hasNext()) {
 			Property currentAttribute = attributes.next();
 			Type type = currentAttribute.getType();
-			if (type instanceof Classifier) {
-				Classifier attrType = (Classifier) type;
-				result.add(attrType);
-			}
+			addFarthestOwnerType(type, result);
 		}
 		return result;
 	}
@@ -179,9 +176,7 @@ public class GenUtils {
 
 		for (Property currentAttribute : current.getAttributes()) {
 			Type type = currentAttribute.getType();
-			if (type instanceof Classifier) {
-				result.add((Classifier) type);
-			}
+			addFarthestOwnerType(type, result);
 		}
 		return result;
 	}
@@ -200,10 +195,25 @@ public class GenUtils {
 		for (Operation operation : current.getOperations()) {
 			for (Parameter param : operation.getOwnedParameters()) {
 				Type type = param.getType();
-				if (type instanceof Classifier) {
-					Classifier paramType = (Classifier) type;
-					result.add(paramType);
-				}
+				addFarthestOwnerType(type, result);
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieves a list of types used by inner classifiers of the current classifier
+	 * 
+	 * @param current
+	 *            Class on which the attributes are searched
+	 * @return collection of classes which are the types of the operations parameters
+	 */
+	public static EList<Classifier> getInnerClassifierTypes(Classifier current) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		for (Element ownedElement : current.allOwnedElements()) {
+			if (ownedElement instanceof Classifier) {
+				result.addAll(getOwnedAttributeTypes((Classifier) ownedElement));
+				result.addAll(getTypesViaOperations((Classifier) ownedElement));
 			}
 		}
 		return result;
@@ -225,9 +235,7 @@ public class GenUtils {
 				// there should always be at least one element in the target
 				// list and it should be a classifier, but better check.
 				Element element = relationship.getTargets().get(0);
-				if (element instanceof Classifier) {
-					classifiers.add((Classifier) element);
-				}
+				addFarthestOwnerType(element, classifiers);
 			}
 		}
 		return classifiers;
@@ -248,9 +256,7 @@ public class GenUtils {
 					// there should always be at least one element in the target
 					// list and it should be a classifier, but better check.
 					Element element = relationship.getTargets().get(0);
-					if (element instanceof Classifier) {
-						classifiers.add((Classifier) element);
-					}
+					addFarthestOwnerType(element, classifiers);
 				}
 			}
 		}
@@ -273,9 +279,7 @@ public class GenUtils {
 					// there should always be at least one element in the target
 					// list and it should be a classifier, but better check.
 					Element element = relationship.getTargets().get(0);
-					if (element instanceof Classifier) {
-						classifiers.add((Classifier) element);
-					}
+					addFarthestOwnerType(element, classifiers);
 				}
 			}
 		}
@@ -348,11 +352,74 @@ public class GenUtils {
 	public static EList<Classifier> getUsedClassifiers(Classifier cls) {
 		EList<Classifier> result = new BasicEList<Classifier>();
 		for (Element depElement : cls.getClientDependencies()) {
-			if (depElement instanceof Classifier) {
-				result.add((Classifier) depElement);
-			}
+			addFarthestOwnerType(depElement, result);
 		}
 		return result;
+	}
+	
+	/**
+	 * Adds the first element owned by a package in a classifier's namespace
+	 * 
+	 * @param classifier
+	 * @return
+	 */
+	private static void addFarthestOwnerType(Element element, EList<Classifier> result) {
+		if (element == null || result == null) {
+			return;
+		}
+		
+		if (element.getOwner() instanceof Package && element instanceof Classifier) {
+			result.add((Classifier) element);
+		} else { // Type is an inner class. We want to return a classifier C directly owned by a package since it is "C.h" that should be included
+			addFarthestOwnerType(element.getOwner(), result);
+		}
+	}
+	
+	/**
+	 * Get the namespace of the farthest classifier owner that owns an operation
+	 * 
+	 * @param op
+	 * @return
+	 */
+	public static String getNestedOperationFarthestClassifierOwnerNamespace(Operation op) {
+		StringBuffer buffer = new StringBuffer("");
+		if (op != null && op.getOwner() instanceof Classifier) {
+			getFarthestOwnerNamespace(op.getOwner(), buffer);
+		}
+		return buffer.toString();
+	}
+	
+	/**
+	 * Get the namespace of the farthest classifier owner that owns an operation
+	 * 
+	 * @param behavior
+	 * @return
+	 */
+	public static String getNestedBehaviorFarthestClassifierOwnerNamespace(OpaqueBehavior behavior) {
+		StringBuffer buffer = new StringBuffer("");
+		if (behavior != null && behavior.getOwner() instanceof Classifier) {
+			getFarthestOwnerNamespace(behavior.getOwner(), buffer);
+		}
+		return buffer.toString();
+	}
+	
+	/**
+	 * Build a namespace to the farthest owner (i.e. owned by a package) of some element
+	 *  
+	 * @param element
+	 * @param result
+	 */
+	private static void getFarthestOwnerNamespace(Element element, StringBuffer result) {
+		if (element == null || result == null) {
+			return;
+		}
+		
+		if (element.getOwner() instanceof Package) {
+			result.insert(0, ((Classifier) element).getName());
+		} else {
+			result.insert(0, "::" + ((Classifier) element).getName());
+			getFarthestOwnerNamespace(element.getOwner(), result);
+		}
 	}
 
 	/**

@@ -29,6 +29,10 @@ class CppClassOperationsImplementation {
 			«CppOperations.CppOperationImplementation(ownedOperation)»
 		«ENDFOR»
 		
+		«FOR nestedOperation : CppOperations.getNestedOperations(clazz).filter[(!(GenUtils.hasStereotype(it, NoCodeGen) || it.isAbstract)) && (GenUtils.hasStereotype(it, org.eclipse.papyrus.C_Cpp.Inline) == inline)] SEPARATOR "\n"»
+			«CppOperations.CppOperationImplementation(nestedOperation)»
+		«ENDFOR»
+		
 		«FOR b : clazz.eAllContents.toIterable.filter[(it instanceof OpaqueBehavior) && GenUtils.hasStereotype((it as OpaqueBehavior), Inline)==inline]»
 			«IF (b as OpaqueBehavior).specification == null»
 				// opaque behavior without specification (typically from state machine)

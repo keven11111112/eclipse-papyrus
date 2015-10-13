@@ -21,6 +21,8 @@ import org.eclipse.uml2.uml.Package
 import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.uml2.uml.VisibilityKind
 import org.eclipse.papyrus.codegen.base.GenUtils
+import org.eclipse.uml2.uml.DataType
+import org.eclipse.uml2.uml.UMLFactory
 
 /**
  * @author Önder GÜRCAN (onder.gurcan@cea.fr)
@@ -56,7 +58,14 @@ class CppClassTypeAndEnum {
 					return CppEnumerations.CppEnumerationDefinition(element as Enumeration)
 				} else if (element instanceof PrimitiveType) {
 					return CppPrimitiveTypes.CppPrimitiveTypeDefinition(element as PrimitiveType)
-				}	
+				} else if (element instanceof DataType || element.eClass.equals(UMLFactory.eINSTANCE.getUMLPackage().getClass_())) {
+					if (GenUtils.isTemplateBoundElement(element as Classifier)) {
+						return CppInnerClassifiers.CppInnerBindDefinition(element as Classifier)
+					} else {
+						return CppInnerClassifiers.CppInnerClassDefinition(element as Classifier)
+					}
+					
+				}
 			}
 		}
 	}

@@ -124,7 +124,7 @@ class CppClassifierGenerator {
 		«CppDocumentation.CppElementDoc(classifier)»
 		«CppTemplates.templateSignature(classifier)»«classUnionOrStruct(classifier)» «classifier.name»«CppClassInheritedDeclarations.
 			CppClassInheritedDeclarations(classifier)» {
-		«CppClassFriendDeclaration.CppClassIncludeFriendDeclaration(classifier)»«CppClassTypeAndEnum.CppClassTypeAndEnum(classifier)»
+		    «CppClassFriendDeclaration.CppClassIncludeFriendDeclaration(classifier)»«CppClassTypeAndEnum.CppClassTypeAndEnum(classifier)»
 			«var publicVisibility = VisibilityKind.PUBLIC_LITERAL»
 			«CppGenUtils.getSection(publicVisibility, defaultInitializer(classifier))»
 			«CppGenUtils.getSection(publicVisibility,

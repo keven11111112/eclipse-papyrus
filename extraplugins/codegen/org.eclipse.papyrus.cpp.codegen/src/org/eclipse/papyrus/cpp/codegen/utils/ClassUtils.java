@@ -16,7 +16,9 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.papyrus.codegen.base.GenUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Operation;
 
 /**
  * A set of utility functions related to classes.
@@ -41,6 +43,8 @@ public class ClassUtils {
 		usedClasses.addAll(GenUtils.getOwnedAttributeTypes(currentClass));
 		// operation parameters dependencies
 		usedClasses.addAll(GenUtils.getTypesViaOperations(currentClass));
+		// inner classifier dependencies
+		usedClasses.addAll(GenUtils.getInnerClassifierTypes(currentClass));
 		// realized interface dependencies
 		if (currentClass instanceof Class) {
 			Class clazz = (Class) currentClass;
@@ -54,5 +58,24 @@ public class ClassUtils {
 		// that can be included
 		usedClasses.removeAll(GenUtils.getTemplateParameteredElements(currentClass));
 		return usedClasses;
+	}
+	
+	/**
+	 * Retrieve the list of operations of classes nested in the current class
+	 * without the operations directly owned by the current class
+	 * 
+	 * @param currentClass
+	 * @return
+	 */
+	public static EList<Operation> nestedOperations(Classifier currentClass) {
+		EList<Operation> nestedOperations = new UniqueEList<Operation>();
+		
+		for (Element element : currentClass.allOwnedElements()) {
+			if (element instanceof Operation && !(element.getOwner().equals(currentClass))) {
+				nestedOperations.add((Operation) element);
+			}
+		}
+		
+		return nestedOperations;
 	}
 }

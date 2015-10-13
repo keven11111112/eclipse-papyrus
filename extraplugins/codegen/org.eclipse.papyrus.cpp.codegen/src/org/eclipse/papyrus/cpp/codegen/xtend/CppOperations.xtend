@@ -28,9 +28,10 @@ import org.eclipse.uml2.uml.profile.standard.Destroy
 import org.eclipse.papyrus.C_Cpp.ConstInit
 import org.eclipse.uml2.uml.util.UMLUtil
 import org.eclipse.papyrus.cpp.codegen.Constants
-import org.eclipse.papyrus.codegen.base.GenUtils
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Region
+import org.eclipse.papyrus.cpp.codegen.utils.ClassUtils
+import org.eclipse.papyrus.codegen.base.GenUtils
 
 class CppOperations {
 	static def CppOperationImplementation(Operation operation) '''
@@ -40,7 +41,7 @@ class CppOperations {
 				«GenUtils.getBody(operation, Constants.supportedLanguages)»
 			} 
 		«ELSE»
-			«CppTemplates.templateSignature(operation)»«InlineTxt(operation)»«CppReturnSpec(operation)»«operation.featuringClassifiers.get(0).name»«CppTemplates.templateShortSignature(operation)»::«destructor(operation)»«operation.name»(«CppParameter.CppOperationParameters(operation, false)»)«throwss(operation)»«Modifier.modCVQualifier(operation)»«CppConstInit(operation)» {
+			«CppTemplates.templateSignature(operation)»«InlineTxt(operation)»«CppReturnSpec(operation)»«GenUtils.getNestedOperationFarthestClassifierOwnerNamespace(operation)»«CppTemplates.templateShortSignature(operation)»::«destructor(operation)»«operation.name»(«CppParameter.CppOperationParameters(operation, false)»)«throwss(operation)»«Modifier.modCVQualifier(operation)»«CppConstInit(operation)» {
 				«GenUtils.getBody(operation, Constants.supportedLanguages)»
 			}
 		«ENDIF»
@@ -110,9 +111,25 @@ class CppOperations {
 		}
 	}
 	
+	static def getNestedOperations(Classifier c1) {
+		val operations = getNestedOperationsWNull(c1)
+		if (operations == null) {
+			emptySet
+		}
+		else {
+			operations
+		}
+	}
+	
+	static def getNestedOperationsWNull(Classifier cl) {
+		if (cl instanceof Class || cl instanceof Interface) {
+			ClassUtils.nestedOperations(cl)
+		}
+	}
+	
 	static def CppBehaviorImplementation(OpaqueBehavior behavior) '''
 		«CppDocumentation.CppBehaviorDoc(behavior)»
-		«CppReturnSpec(behavior)»«behavior.context.name»::«behavior.qualifiedBehaviorName»(«CppParameter.CppBehaviorParameters(behavior, false)»)«Modifier.modCVQualifier(behavior)» {
+		«CppReturnSpec(behavior)»«GenUtils.getNestedBehaviorFarthestClassifierOwnerNamespace(behavior)»::«behavior.qualifiedBehaviorName»(«CppParameter.CppBehaviorParameters(behavior, false)»)«Modifier.modCVQualifier(behavior)» {
 			«GenUtils.getBodyFromOB(behavior, Constants.supportedLanguages)»
 		}
 	'''
