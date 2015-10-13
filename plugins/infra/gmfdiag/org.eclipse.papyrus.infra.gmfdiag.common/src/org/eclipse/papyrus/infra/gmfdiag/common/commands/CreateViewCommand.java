@@ -39,6 +39,20 @@ public class CreateViewCommand extends CreateCommand {
 	@Override
 	public boolean canExecute() {
 
+		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=450921
+		// it should be possible to create not only elements with semantic
+		// like oval or note
+		int hint;
+		try {
+			hint = Integer.parseInt(viewDescriptor.getSemanticHint());
+		} catch(Exception e) {
+			hint = -1;
+		}
+
+		if (hint == -1) {
+			return super.canExecute();
+		}
+
 		// Warning the element adapter can possibly be null (see: https://bugs.eclipse.org/bugs/show_bug.cgi?id=353129)
 		if (viewDescriptor.getElementAdapter() == null) {
 			return false;
