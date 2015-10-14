@@ -27,11 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 import org.eclipse.jface.viewers.ICellEditorValidator;
-import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
-import org.eclipse.papyrus.uml.diagram.common.directedit.MultiLineCellEditor;
-import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.junit.Assert;
 import org.junit.Rule;
 
@@ -130,19 +125,15 @@ public abstract class AbstractEditableNodeTest extends EditableElementTest {
 						}
 					}
 				} catch (NoSuchMethodException e) {
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				}
 
 			}
