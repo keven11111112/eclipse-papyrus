@@ -16,5 +16,15 @@
          </editor>
       </paletteDefinition>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+      <diagramCategory
+            class="org.eclipse.papyrus.req.bmm.diagram.common.commands.CreateBmmModelCommand"
+            description="Papyrus BMM diagrams"
+            icon="platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/icons/bmm_32x32.png"
+            id="BMM"
+            label="BMM">
+      </diagramCategory>
+   </extension>
 
 </plugin>
