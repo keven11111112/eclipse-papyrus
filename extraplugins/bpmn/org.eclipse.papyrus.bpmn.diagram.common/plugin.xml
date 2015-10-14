@@ -21,6 +21,15 @@
         </Priority>
      </editpolicyProvider>
   </extension>
+  <extension
+        point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+     <editpartProvider
+           class="org.eclipse.papyrus.bpmn.diagram.common.providers.CustomBpmnUMLEditPartProvider">
+        <Priority
+              name="Highest">
+        </Priority>
+     </editpartProvider>
+  </extension>
      
  <!--
     <extension

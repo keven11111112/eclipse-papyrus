@@ -25,4 +25,10 @@
          </editor>
       </paletteDefinition>
    </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion">
+       <diagramexpansion
+             model="model/bpmnDiagramExpansion.xmi">
+       </diagramexpansion>
+    </extension>
 </plugin>

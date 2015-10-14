@@ -2226,7 +2226,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
    <editpartProvider
          class="org.eclipse.papyrus.uml.diagram.activity.providers.CustomUMLEditPartProvider">
       <Priority
-            name="Highest">
+            name="High">
       </Priority>
       <object
             class="org.eclipse.gmf.runtime.notation.Diagram"
