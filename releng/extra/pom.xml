@@ -37,7 +37,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo.debug</module>
@@ -227,6 +226,14 @@
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.traceabilityassistant</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
+		
+		<!-- Papyrus BMM -->
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.bmm</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.bmm.diagram</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.bmm.diagram.common</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.bmm.diagram.ui</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bmm.extra.feature</module>
 
 		<!-- Papyrus BPMN -->
 		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn</module>
