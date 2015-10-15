@@ -18,7 +18,7 @@
    sodipodi:docname="Goal.svg"><metadata
      id="metadata29"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
      id="defs27" /><sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -33,9 +33,9 @@
      id="namedview25"
      showgrid="false"
      inkscape:zoom="13.350176"
-     inkscape:cx="12.197384"
-     inkscape:cy="27.438451"
-     inkscape:window-x="-4"
+     inkscape:cx="-6.6787716"
+     inkscape:cy="27.363546"
+     inkscape:window-x="1596"
      inkscape:window-y="-4"
      inkscape:window-maximized="1"
      inkscape:current-layer="Layer_1" /><rect
@@ -77,10 +77,8 @@
      d="M37.762,5.671l0.673,8.323c0,0,3.129-0.786,6.565-3.384L44.998,2C41.053,5.022,37.762,5.671,37.762,5.671z"
      id="path21" /><path
      d="M39.057,21.679c0,0,3.014-0.559,5.941-2.259v9.051c-3.117,1.496-5.261,1.767-5.261,1.767L39.057,21.679z"
-     id="path23" /><g
-     id="g4216"
-     style="stroke:#ae5656;stroke-opacity:1;fill:none"><path
-       id="PapyrusPath"
-       style="fill:none;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-       d="m 4.4157463,8.4902071 c 2.398414,-2.312895 5.335235,-4.072469 8.5008897,-5.153281 3.165654,-1.080812 6.560142,-1.482862 9.873891,-1.080707 2.341327,0.329742 4.480977,1.496789 6.65407,2.47254 2.173093,0.975752 4.379629,1.760208 6.854728,1.324767 3.188908,-0.477987 6.12905,-2.029868 8.666421,-3.972319 l 0,6.61775 0,6.6177499 0,6.61775 0,6.61775 c -2.038836,1.044242 -4.284692,1.722839 -6.565268,1.94031 -2.280576,0.21747 -4.595871,-0.02619 -6.773583,-0.82645 -2.025049,-0.64037 -4.204882,-1.091793 -6.358626,-1.108236 -2.153744,-0.01644 -4.281401,0.402095 -6.2021,1.501647 -2.018981,0.76016 -4.145252,3.133926 -5.575852,3.764649 l -2.268643,-6.33348 -2.2686427,-6.33348 -2.268642,-6.33348 z M 18.561746,48.001205 C 13.488079,33.830206 8.4144133,19.659207 3.3407473,5.4882081"
-       inkscape:connector-curvature="0" /></g></svg>
+     id="path23" /><path
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;baseline-shift:baseline;text-anchor:start;white-space:normal;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.16000001;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#d96b6b;fill-opacity:0.22014926;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+     d="m 0.75,0.36132812 -0.5,0.5 0,48.53906288 0.5,0.5 47.939453,0 0.5,-0.5 0,-48.53906288 -0.5,-0.5 -47.939453,0 z m 0.5,0.99999998 46.939453,0 0,47.5390629 -46.939453,0 0,-47.5390629 z"
+     id="PapyrusPath"
+     inkscape:connector-curvature="0" /></svg>
