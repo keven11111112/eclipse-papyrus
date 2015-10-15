@@ -9,13 +9,14 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Jeremie Tatibouet (CEA LIST)
+ *  Jeremie Tatibouet (CEA LIST) - Apply fix for FUML12-33 Extensional values should have an unique identifier
  *
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.ExtensionalValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
@@ -23,7 +24,10 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 
-public class Locus{
+public class Locus {
+
+	/* Locus identifier (Issue fUML12-33) */
+	public String identifier;
 
 	// FIXME : To be removed
 	public Behavior currentModelToBeExecuted;
@@ -79,6 +83,7 @@ public class Locus{
 	public void add(ExtensionalValue value) {
 		// Add the given extensional value to this locus
 		value.locus = this;
+		value.identifier = this.identifier + "#" + this.makeIdentifier(value);
 		this.extensionalValues.add(value);
 	}
 
@@ -124,5 +129,11 @@ public class Locus{
 			}
 		}
 		return doesConform;
+	}
+
+	public String makeIdentifier(ExtensionalValue value) {
+		// Issue FUML12-33 Extensional values should have an unique identifier
+		// Implementation of this method is not normative
+		return UUID.randomUUID().toString();
 	}
 }
