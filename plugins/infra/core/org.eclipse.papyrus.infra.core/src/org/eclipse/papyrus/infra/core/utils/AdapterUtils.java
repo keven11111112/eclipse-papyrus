@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 479999
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
 
@@ -17,6 +18,7 @@ import static com.google.common.collect.Iterables.tryFind;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Predicates;
@@ -24,7 +26,10 @@ import com.google.common.base.Predicates;
 
 /**
  * Utilities for working with Eclipse platform adaptation.
+ * 
+ * @deprecated Use the corresponding {@link PlatformHelper} API, instead.
  */
+@Deprecated
 public class AdapterUtils {
 
 	/**
@@ -43,19 +48,26 @@ public class AdapterUtils {
 	 *            the type of adapter to get
 	 *
 	 * @return the best-effort adapter of the given {@code type}. Never {@code null}
+	 * @deprecated Use the {@link PlatformHelper#getAdapter(Object, Class)} API, instead.
 	 */
+	@Deprecated
 	public static <T> Optional<T> adapt(Object object, Class<T> type) {
 		Optional<T> result = Optional.absent();
 
-		if (object instanceof IAdaptable) {
-			result = result.or(getIntrinsicAdapter((IAdaptable) object, type));
-		}
+		// Don't provide adapters for null
+		if (object != null) {
+			if (type.isInstance(object)) {
+				result = Optional.of(type.cast(object));
+			} else if (object instanceof IAdaptable) {
+				result = getIntrinsicAdapter((IAdaptable) object, type);
+			}
 
-		if (!result.isPresent()) {
-			result = result.or(getExtrinsicAdapter(object, type));
+			if (!result.isPresent()) {
+				result = getExtrinsicAdapter(object, type);
 
-			if (!result.isPresent() && (object instanceof Notifier)) {
-				result = result.or(getEMFAdapter((Notifier) object, type));
+				if (!result.isPresent() && (object instanceof Notifier)) {
+					result = getEMFAdapter((Notifier) object, type);
+				}
 			}
 		}
 
@@ -99,7 +111,9 @@ public class AdapterUtils {
 	 *            a default adapter to return if none can be obtained (may be {@code null}
 	 *
 	 * @return the best-effort adapter of the given {@code type}, else the {@code defaultAdapter}
+	 * @deprecated Use the {@link PlatformHelper#getAdapter(Object, Class, Object)} API, instead.
 	 */
+	@Deprecated
 	public static <T> T adapt(Object object, Class<T> type, T defaultAdapter) {
 		T result = defaultAdapter;
 
