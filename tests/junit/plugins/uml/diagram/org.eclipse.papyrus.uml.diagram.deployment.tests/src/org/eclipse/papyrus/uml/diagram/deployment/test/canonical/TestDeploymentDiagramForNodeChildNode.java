@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 480000
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
@@ -22,8 +23,11 @@ import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.deployment.test.IDeploymentDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestChildNode;
+import org.eclipse.papyrus.uml.diagram.tests.rules.DisableDropStrategiesRule;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 
 /**
  * The Class TestDepoloymentDiagramChildNode.
@@ -31,10 +35,14 @@ import org.junit.Test;
 
 public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 
+	@ClassRule
+	public static final TestRule suppressDropStrategies = new DisableDropStrategiesRule();
+
 	@Override
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateDeploymentDiagramCommand();
@@ -54,33 +62,36 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	protected String getFileName() {
 		return IDeploymentDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	/**
-	* Test to manage Device.
-	*/
+	 * Test to manage Device.
+	 */
 	@Test
 	public void testToDevice() {
 		testToManageNode(UMLElementTypes.Device_16, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Node_23, false);
 	}
+
 	/**
-	* Test to manage ExecutionEnvironment.
-	*/
+	 * Test to manage ExecutionEnvironment.
+	 */
 	@Test
 	public void testToExecutionEnvironment() {
-		testToManageNode(UMLElementTypes.ExecutionEnvironment_21, UMLPackage.eINSTANCE.getExecutionEnvironment(),  UMLElementTypes.Node_23, false);
+		testToManageNode(UMLElementTypes.ExecutionEnvironment_21, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Node_23, false);
 	}
+
 	/**
-	* Test to manage Node.
-	*/
+	 * Test to manage Node.
+	 */
 	@Test
 	public void testToNode() {
-		testToManageNode(UMLElementTypes.Node_23, UMLPackage.eINSTANCE.getNode(),UMLElementTypes.Node_23, false);
+		testToManageNode(UMLElementTypes.Node_23, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Node_23, false);
 	}
+
 	/**
-	* Test to manage Artifact.
-	*/
+	 * Test to manage Artifact.
+	 */
 	@Test
 	public void testToArtifact() {
-		testToManageNode(UMLElementTypes.Artifact_25, UMLPackage.eINSTANCE.getArtifact(),UMLElementTypes.Node_23, false);
+		testToManageNode(UMLElementTypes.Artifact_25, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Node_23, false);
 	}
 }

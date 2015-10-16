@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 480000
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.policy;
 
@@ -91,6 +92,8 @@ public class DropStrategyManager {
 	 * oep.myStrategy.priority=12
 	 */
 	private final IPreferenceStore preferences;
+
+	private boolean enabled = true;
 
 	private DropStrategyManager() {
 		allAvailableStrategies = new TreeMap<Integer, List<DropStrategy>>();
@@ -200,10 +203,12 @@ public class DropStrategyManager {
 	 */
 	public List<DropStrategy> getActiveStrategies() {
 		List<DropStrategy> orderedActiveStrategies = new LinkedList<DropStrategy>();
-		for (List<DropStrategy> strategies : allAvailableStrategies.values()) {
-			for (DropStrategy strategy : strategies) {
-				if (isActive(strategy)) {
-					orderedActiveStrategies.add(strategy);
+		if (isEnabled()) {
+			for (List<DropStrategy> strategies : allAvailableStrategies.values()) {
+				for (DropStrategy strategy : strategies) {
+					if (isActive(strategy)) {
+						orderedActiveStrategies.add(strategy);
+					}
 				}
 			}
 		}
@@ -258,12 +263,17 @@ public class DropStrategyManager {
 	}
 
 	public boolean isActive(DropStrategy strategy) {
-		String preferenceKey = getIsActiveKey(strategy);
-		if (preferences.contains(preferenceKey)) {
-			return preferences.getBoolean(preferenceKey);
+		boolean result = true; // default preference
+
+		// But no strategy is active if the manager is disabled
+		if (isEnabled()) {
+			String preferenceKey = getIsActiveKey(strategy);
+			if (preferences.contains(preferenceKey)) {
+				return preferences.getBoolean(preferenceKey);
+			}
 		}
 
-		return true; // Default
+		return result;
 	}
 
 	public void setActive(DropStrategy strategy, boolean active) {
@@ -368,4 +378,28 @@ public class DropStrategyManager {
 		}
 	}
 
+	/**
+	 * Queries whether the pluggable drop strategy manager is enabled.
+	 * When it is not enabled, drag-and-drop never takes pluggable strategies
+	 * into account.
+	 * 
+	 * @return whether the drop strategy manager is enabled
+	 */
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * Sets whether the pluggable drop strategy manager is {@code enabled}.
+	 * When it is not enabled, drag-and-drop never takes pluggable strategies
+	 * into account. This is useful for testing the native drop implementation
+	 * in a diagram, for example, or other cases where the drop behavior needs
+	 * to be similarly restricted.
+	 * 
+	 * @param enabled
+	 *            whether to enable pluggable drop strategies
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 }
