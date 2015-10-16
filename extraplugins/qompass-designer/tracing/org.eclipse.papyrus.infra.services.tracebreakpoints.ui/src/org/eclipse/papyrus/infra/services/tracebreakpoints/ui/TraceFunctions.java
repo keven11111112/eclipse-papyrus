@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.services.decoration.IDecorationSpecificFunction
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TracepointConstants;
 
 
 public class TraceFunctions implements IDecorationSpecificFunctions {

@@ -5,13 +5,7 @@
 	<extension-point id="traceMechanism" name="traceMechanism" schema="schema/traceMechanism.exsd"/>
 	
 	
-	<extension
-    	point="org.eclipse.papyrus.infra.services.decoration.decorationSpecificFunctions">
-		<client
-			class="org.eclipse.papyrus.infra.services.tracebreakpoints.TraceFunctions"
-			decorationType="org.eclipse.papyrus.tporbpmarker">
-		</client>
-	</extension>
+	
 	
 	<extension
 		id="org.eclipse.papyrus.tporbpmarker"
