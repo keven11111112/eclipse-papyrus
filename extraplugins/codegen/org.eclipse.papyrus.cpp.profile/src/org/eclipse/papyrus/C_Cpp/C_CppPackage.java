@@ -177,13 +177,13 @@ public interface C_CppPackage extends EPackage {
 	int INCLUDE__BASE_CLASS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Base Package Import</b></em>' reference.
+	 * The feature id for the '<em><b>Base Classifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUDE__BASE_PACKAGE_IMPORT = 5;
+	int INCLUDE__BASE_CLASSIFIER = 5;
 
 	/**
 	 * The number of structural features of the '<em>Include</em>' class.
@@ -1345,15 +1345,15 @@ public interface C_CppPackage extends EPackage {
 	EReference getInclude_Base_class();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.Include#getBase_PackageImport <em>Base Package Import</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.Include#getBase_Classifier <em>Base Classifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Package Import</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.Include#getBase_PackageImport()
+	 * @return the meta object for the reference '<em>Base Classifier</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.Include#getBase_Classifier()
 	 * @see #getInclude()
 	 * @generated
 	 */
-	EReference getInclude_Base_PackageImport();
+	EReference getInclude_Base_Classifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.ManualGeneration <em>Manual Generation</em>}'.
@@ -2208,12 +2208,12 @@ public interface C_CppPackage extends EPackage {
 		EReference INCLUDE__BASE_CLASS = eINSTANCE.getInclude_Base_class();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Package Import</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Base Classifier</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INCLUDE__BASE_PACKAGE_IMPORT = eINSTANCE.getInclude_Base_PackageImport();
+		EReference INCLUDE__BASE_CLASSIFIER = eINSTANCE.getInclude_Base_Classifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.ManualGenerationImpl <em>Manual Generation</em>}' class.

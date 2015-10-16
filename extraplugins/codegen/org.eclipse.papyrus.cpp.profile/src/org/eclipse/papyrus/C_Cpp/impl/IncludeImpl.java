@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.C_Cpp.Include;
-import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.PackageImport;
  *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.IncludeImpl#getHeader <em>Header</em>}</li>
  *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.IncludeImpl#getBase_package <em>Base package</em>}</li>
  *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.IncludeImpl#getBase_class <em>Base class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.IncludeImpl#getBase_PackageImport <em>Base Package Import</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.IncludeImpl#getBase_Classifier <em>Base Classifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -121,14 +121,14 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 	protected org.eclipse.uml2.uml.Class base_class;
 
 	/**
-	 * The cached value of the '{@link #getBase_PackageImport() <em>Base Package Import</em>}' reference.
+	 * The cached value of the '{@link #getBase_Classifier() <em>Base Classifier</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBase_PackageImport()
+	 * @see #getBase_Classifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected PackageImport base_PackageImport;
+	protected Classifier base_Classifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -263,7 +263,6 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public org.eclipse.uml2.uml.Class getBase_class() {
 		if (base_class != null && base_class.eIsProxy()) {
 			InternalEObject oldBase_class = (InternalEObject)base_class;
@@ -290,7 +289,6 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_class(org.eclipse.uml2.uml.Class newBase_class) {
 		org.eclipse.uml2.uml.Class oldBase_class = base_class;
 		base_class = newBase_class;
@@ -303,17 +301,16 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public PackageImport getBase_PackageImport() {
-		if (base_PackageImport != null && base_PackageImport.eIsProxy()) {
-			InternalEObject oldBase_PackageImport = (InternalEObject)base_PackageImport;
-			base_PackageImport = (PackageImport)eResolveProxy(oldBase_PackageImport);
-			if (base_PackageImport != oldBase_PackageImport) {
+	public Classifier getBase_Classifier() {
+		if (base_Classifier != null && base_Classifier.eIsProxy()) {
+			InternalEObject oldBase_Classifier = (InternalEObject)base_Classifier;
+			base_Classifier = (Classifier)eResolveProxy(oldBase_Classifier);
+			if (base_Classifier != oldBase_Classifier) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, C_CppPackage.INCLUDE__BASE_PACKAGE_IMPORT, oldBase_PackageImport, base_PackageImport));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, C_CppPackage.INCLUDE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 			}
 		}
-		return base_PackageImport;
+		return base_Classifier;
 	}
 
 	/**
@@ -321,8 +318,8 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageImport basicGetBase_PackageImport() {
-		return base_PackageImport;
+	public Classifier basicGetBase_Classifier() {
+		return base_Classifier;
 	}
 
 	/**
@@ -330,12 +327,11 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setBase_PackageImport(PackageImport newBase_PackageImport) {
-		PackageImport oldBase_PackageImport = base_PackageImport;
-		base_PackageImport = newBase_PackageImport;
+	public void setBase_Classifier(Classifier newBase_Classifier) {
+		Classifier oldBase_Classifier = base_Classifier;
+		base_Classifier = newBase_Classifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.INCLUDE__BASE_PACKAGE_IMPORT, oldBase_PackageImport, base_PackageImport));
+			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.INCLUDE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 	}
 
 	/**
@@ -358,9 +354,9 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 			case C_CppPackage.INCLUDE__BASE_CLASS:
 				if (resolve) return getBase_class();
 				return basicGetBase_class();
-			case C_CppPackage.INCLUDE__BASE_PACKAGE_IMPORT:
-				if (resolve) return getBase_PackageImport();
-				return basicGetBase_PackageImport();
+			case C_CppPackage.INCLUDE__BASE_CLASSIFIER:
+				if (resolve) return getBase_Classifier();
+				return basicGetBase_Classifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -388,8 +384,8 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 			case C_CppPackage.INCLUDE__BASE_CLASS:
 				setBase_class((org.eclipse.uml2.uml.Class)newValue);
 				return;
-			case C_CppPackage.INCLUDE__BASE_PACKAGE_IMPORT:
-				setBase_PackageImport((PackageImport)newValue);
+			case C_CppPackage.INCLUDE__BASE_CLASSIFIER:
+				setBase_Classifier((Classifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -418,8 +414,8 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 			case C_CppPackage.INCLUDE__BASE_CLASS:
 				setBase_class((org.eclipse.uml2.uml.Class)null);
 				return;
-			case C_CppPackage.INCLUDE__BASE_PACKAGE_IMPORT:
-				setBase_PackageImport((PackageImport)null);
+			case C_CppPackage.INCLUDE__BASE_CLASSIFIER:
+				setBase_Classifier((Classifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -443,8 +439,8 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 				return base_package != null;
 			case C_CppPackage.INCLUDE__BASE_CLASS:
 				return base_class != null;
-			case C_CppPackage.INCLUDE__BASE_PACKAGE_IMPORT:
-				return base_PackageImport != null;
+			case C_CppPackage.INCLUDE__BASE_CLASSIFIER:
+				return base_Classifier != null;
 		}
 		return super.eIsSet(featureID);
 	}
