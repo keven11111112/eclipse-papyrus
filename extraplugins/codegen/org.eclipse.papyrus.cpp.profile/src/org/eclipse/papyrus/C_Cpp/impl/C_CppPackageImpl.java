@@ -395,7 +395,6 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getInclude_Base_class() {
 		return (EReference)includeEClass.getEStructuralFeatures().get(4);
 	}
@@ -405,8 +404,7 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EReference getInclude_Base_PackageImport() {
+	public EReference getInclude_Base_Classifier() {
 		return (EReference)includeEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1148,7 +1146,7 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		createEAttribute(includeEClass, INCLUDE__HEADER);
 		createEReference(includeEClass, INCLUDE__BASE_PACKAGE);
 		createEReference(includeEClass, INCLUDE__BASE_CLASS);
-		createEReference(includeEClass, INCLUDE__BASE_PACKAGE_IMPORT);
+		createEReference(includeEClass, INCLUDE__BASE_CLASSIFIER);
 
 		manualGenerationEClass = createEClass(MANUAL_GENERATION);
 		createEAttribute(manualGenerationEClass, MANUAL_GENERATION__EXTENSION_BODY);
@@ -1289,7 +1287,7 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		initEAttribute(getInclude_Header(), theTypesPackage.getString(), "header", "", 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getInclude_Base_package(), theUMLPackage.getPackage(), null, "base_package", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getInclude_Base_class(), theUMLPackage.getClass_(), null, "base_class", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getInclude_Base_PackageImport(), theUMLPackage.getPackageImport(), null, "base_PackageImport", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getInclude_Base_Classifier(), theUMLPackage.getClassifier(), null, "base_Classifier", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(manualGenerationEClass, ManualGeneration.class, "ManualGeneration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getManualGeneration_ExtensionBody(), theTypesPackage.getString(), "extensionBody", null, 1, 1, ManualGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

@@ -20,6 +20,16 @@
     <ownedComment xmi:type="uml:Comment" xmi:id="_PJcigNTQEeKiLbHSN_MIRQ" annotatedElement="_u3zF8ByLEdu0tMSz-ceC5A">
       <body>Indicates that this package shoudl be a root package, i.e. its contents should appear on top level folder during generation. Currently not used</body>
     </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_gLqSYGa2EeWN5dA9YwhK2A">
+      <body>Declare a new type that is based on another type.
+Can be used to define for instance primitive types (like int). Can also be used for function pointers (see wiki)</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_ak8boHQWEeWPzK4C44T8yw">
+      <body>The extension from Include to Class is not necessary, as Classifier is already extended, but kept for compatibility with old models</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_tw-LoHQWEeWPzK4C44T8yw">
+      <body>External classes reference existing C++ classes, but are typcially empty in the model. An include directive is generated if classes depend on these.</body>
+    </ownedComment>
     <elementImport xmi:type="uml:ElementImport" xmi:id="_TRvswByHEduN1bTiWJ0lyw">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
     </elementImport>
@@ -253,10 +263,10 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fSqJkOL5EeK7avO_9XJm4Q"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fSw3QOL5EeK7avO_9XJm4Q" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_kKB_YTlPEd2mO4M0idYmag" name="base_PackageImport" association="_kJ7RsDlPEd2mO4M0idYmag">
-        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#PackageImport"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gANMEOL5EeK7avO_9XJm4Q"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gAb1kOL5EeK7avO_9XJm4Q" value="1"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9Z58QHP-EeWZ7bKCqwPQEQ" name="base_Classifier" association="_9Z2R4HP-EeWZ7bKCqwPQEQ">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DN9lkHP_EeWZ7bKCqwPQEQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DOBP8HP_EeWZ7bKCqwPQEQ" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_zqqC4ByJEduN1bTiWJ0lyw" name="E_ExternLibrary_Package1" memberEnd="_zqayUByJEduN1bTiWJ0lyw _zqqC4RyJEduN1bTiWJ0lyw">
@@ -267,6 +277,9 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_0jpgYByJEduN1bTiWJ0lyw" name="E_Include_Class1" memberEnd="_0ja24ByJEduN1bTiWJ0lyw _0jpgYRyJEduN1bTiWJ0lyw">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_0jpgYRyJEduN1bTiWJ0lyw" name="extension_Include" type="_RwTdQByJEduN1bTiWJ0lyw" association="_0jpgYByJEduN1bTiWJ0lyw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_9Z2R4HP-EeWZ7bKCqwPQEQ" name="E_Include_Classifier1" memberEnd="_9Z5VMHP-EeWZ7bKCqwPQEQ _9Z58QHP-EeWZ7bKCqwPQEQ">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_9Z5VMHP-EeWZ7bKCqwPQEQ" name="extension_Include" type="_RwTdQByJEduN1bTiWJ0lyw" aggregation="composite" association="_9Z2R4HP-EeWZ7bKCqwPQEQ"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_u3zF8ByLEdu0tMSz-ceC5A" name="CppRoot">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_xOLHcByLEdu0tMSz-ceC5A" name="base_package" isUnique="false" association="_xObmIByLEdu0tMSz-ceC5A">
@@ -400,9 +413,6 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_O9D1YByQEduuTv8efIb91A" name="E_TemplateBinding_TemplateBinding1" memberEnd="_O8vFQByQEduuTv8efIb91A _O9D1YRyQEduuTv8efIb91A">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_O9D1YRyQEduuTv8efIb91A" name="extension_TemplateBinding" type="_9oCDQByPEduuTv8efIb91A" association="_O9D1YByQEduuTv8efIb91A"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_kJ7RsDlPEd2mO4M0idYmag" name="E_Include_PackageImport1" memberEnd="_kKB_YDlPEd2mO4M0idYmag _kKB_YTlPEd2mO4M0idYmag">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_kKB_YDlPEd2mO4M0idYmag" name="extension_Include" type="_RwTdQByJEduN1bTiWJ0lyw" aggregation="composite" association="_kJ7RsDlPEd2mO4M0idYmag"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_A3_lgCYNEeKe9vxHwEdBmA" name="ManualGeneration">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_vOBBoCYNEeKe9vxHwEdBmA" name="extensionBody" visibility="public">

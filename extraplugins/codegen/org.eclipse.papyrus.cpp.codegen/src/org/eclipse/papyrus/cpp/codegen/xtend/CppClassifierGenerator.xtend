@@ -15,7 +15,6 @@ import org.eclipse.papyrus.C_Cpp.Union
 import org.eclipse.papyrus.codegen.base.GenUtils
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils
 import org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils
-import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Classifier
 import org.eclipse.uml2.uml.DataType
 import org.eclipse.uml2.uml.NamedElement
@@ -26,11 +25,6 @@ import org.eclipse.uml2.uml.profile.standard.Create
  * @author Ansgar Radermacher (ansgar.radermacher@cea.fr)
  */
 class CppClassifierGenerator {
-
-	static def generateHeaderCode(Classifier classifier, String commentHeader) ''' 
-		«commentHeader»
-		AcceleoDriver.evaluate(cppInclude.getHeader(), classifier, null);
-	'''
 
 	static def generateBindHeaderCode(Classifier classifier) ''' 
 		#ifndef «GenUtils.getFullNameUC(classifier)»_H
