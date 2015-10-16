@@ -1,0 +1,45 @@
+[name="Chassis"]{
+	svgFile : 'images/chassis.svg'
+}
+
+[name="Trunk"]{
+	svgFile : 'images/trunk.svg'
+}
+
+[name="Engine"]{
+	svgFile : 'images/engine.svg'
+}
+
+[name="Windscreen"]{
+	svgFile : 'images/windscreen.svg'
+}
+
+[name="RightFrontDoor"]{
+	svgFile : 'images/RightDoor.svg'
+}
+
+[name="LeftFrontDoor"]{
+	svgFile : 'images/LeftDoor.svg'
+}
+
+[name="RightBackDoor"]{
+	svgFile : 'images/RightDoor.svg';
+	svgCssFile: 'images/OptionalDoor.css'
+}
+
+[name="LeftBackDoor"]{
+	svgFile : 'images/LeftDoor.svg';
+	svgCssFile: 'images/OptionalDoor.css'
+}
+
+/*
+ * 
+* {
+    fillColor: red;
+    fontColor: #0000FF;
+}
+
+ */
+
+* {
+	elementIcon:false }
