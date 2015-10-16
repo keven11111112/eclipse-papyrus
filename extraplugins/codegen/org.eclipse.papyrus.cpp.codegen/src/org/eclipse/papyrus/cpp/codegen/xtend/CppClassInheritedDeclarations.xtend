@@ -36,7 +36,9 @@ class CppClassInheritedDeclarations {
 	//and the target does not point to a classifier that has the no-code-gen Stereotype
 	//TODO: not sure if it makes sense NOT to declare an inheritance, since we do not generate code.
 	static def filteredRelationships(Classifier clazz) {
-		clazz.sourceDirectedRelationships.filter[((it instanceof Generalization) || (it instanceof InterfaceRealization)) && (!GenUtils.hasStereotype(it.targets.get(0), NoCodeGen))]
+		clazz.sourceDirectedRelationships.filter[((it instanceof Generalization) || (it instanceof InterfaceRealization)) &&
+				(it.targets.size > 0) && (!GenUtils.hasStereotype(it.targets.get(0), NoCodeGen))
+		]
 	}
 	
 	static def getCppVisibility(Relationship relationship) {
