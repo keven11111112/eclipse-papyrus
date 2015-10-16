@@ -1,10 +1,32 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ui
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.tracebreakpoints.ui
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.tracebreakpoints.ui;singleton:=true
 Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.services.tracebreakpoints.ui.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.emf.common,
+ org.eclipse.papyrus.infra.services.tracebreakpoints,
+ org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.emf.ecore;bundle-version="2.12.0",
+ org.eclipse.core.resources,
+ org.eclipse.uml2.uml,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.workspace,
+ org.eclipse.gmf.runtime.emf.commands.core,
+ org.eclipse.papyrus.infra.core,
+ org.eclipse.papyrus.infra.emf,
+ org.eclipse.papyrus.infra.core.log,
+ org.eclipse.papyrus.infra.gmfdiag.commands,
+ org.eclipse.papyrus.infra.services.decoration,
+ org.eclipse.papyrus.infra.services.markerlistener
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %pluginProvider
+Export-Package:  org.eclipse.papyrus.infra.services.tracebreakpoints.ui.preferences,
+ org.eclipse.papyrus.infra.services.tracebreakpoints.ui.commands,
+ org.eclipse.papyrus.infra.services.tracebreakpoints.ui.dialogs
+
+
+
