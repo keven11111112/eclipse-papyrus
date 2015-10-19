@@ -9,26 +9,34 @@
  * Contributors:
  * 
  *		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476873
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
@@ -108,7 +116,6 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 
 		ICommand gmfCommand = super.getBeforeMoveCommand(request);
 
-
 		// Find any ConnectorEnd that would become invalid after the Property move
 		for (Object movedObject : request.getElementsToMove().keySet()) {
 
@@ -135,7 +142,6 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 				}
 			}
 		}
-
 
 		// Treat related associations that required a re-factor action
 		// Retrieve elements already under re-factor.
@@ -218,5 +224,61 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return null;
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterMoveCommand(org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected ICommand getAfterMoveCommand(MoveRequest request) {
+		ICommand moveCommand = super.getAfterMoveCommand(request);
+
+		Set<View> viewsToDestroy = new HashSet<View>();
+
+		@SuppressWarnings("unchecked")
+		Iterator<EObject> it = request.getElementsToMove().keySet().iterator();
+		while (it.hasNext()) {
+			EObject eObject = it.next();
+
+			if (eObject instanceof Generalization) {
+				viewsToDestroy.addAll(getViewsToDestroy((Generalization) eObject));
+			}
+		}
+
+		Iterator<View> viewToDestroyIterator = viewsToDestroy.iterator();
+		while (viewToDestroyIterator.hasNext()) {
+			View view = viewToDestroyIterator.next();
+			DeleteCommand destroyViewsCommand = new DeleteCommand(request.getEditingDomain(), view);
+			moveCommand = CompositeCommand.compose(moveCommand, destroyViewsCommand);
+		}
+
+		return moveCommand;
+	}
+
+	/**
+	 * This methods looks for inconsistent views to delete in case the Classifier or a child is deleted or
+	 * re-oriented.
+	 *
+	 * @param object
+	 *            the modified Classifier
+	 * @return the list of {@link View} to delete
+	 */
+	private Set<View> getViewsToDestroy(Generalization movedObject) {
+		Set<View> viewsToDestroy = new HashSet<View>();
+
+		Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(movedObject, null).iterator();
+		while (viewIt.hasNext()) {
+			View view = viewIt.next();
+
+			String containerType = ViewUtil.getViewContainer(view) != null ? ViewUtil.getViewContainer(view).getType() : null;
+			if (containerType != null) {
+				viewsToDestroy.add(view);
+			}
+		}
+
+		return viewsToDestroy;
 	}
 }
