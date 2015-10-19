@@ -4,7 +4,6 @@
 
    <extension
          point="org.eclipse.emf.ecore.uri_mapping">
-<<<<<<< Upstream, based on origin/master
       <!--
       <mapping
             source="pathmap://B2MML_PROF/"
@@ -67,37 +66,6 @@
             uri="http://www.eclipse.org/uml2/4.2.0/XMLPrimitiveTypes"
             class="org.eclipse.papyrus.manufacturing.b2mml.xsd.profile.XMLPrimitiveTypes.XMLPrimitiveTypesPackage"
             genModel="model/B2MML-profile.genmodel"/>
-=======
-      <mapping
-            source="pathmap://B2MML_PROF/"
-            target="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/mockup">
-      </mapping>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
-      <profile
-            name="Business to Manufacturing Markup Language (B2MML) Profile"
-            path="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/mockup/B2mmlProcessSegment.profile.uml"
-            provider="CEA List"
-             description="UML profile for B2MML">
-      </profile>
-   </extension>
-       <extension
-         point="org.eclipse.uml2.uml.generated_package">
-      <profile
-            location="pathmap://B2MML_PROF/B2mmlProcessSegment.profile.uml#_-4BeoFJVEeWYd7vE_Ti-XA"
-            uri="pathmap://B2MML_PROF/B2mmlProcessSegment.profile.uml"
-            >
-      </profile>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated B2mmlProcessSegment.profile -->
-      <package
-            uri="http://papyrus/B2MML"
-            class="org.eclipse.papyrus.manufacturing.b2mml.profile.B2MML.B2mmlProcessSegmentPackage"
-            genModel="model/mockup/B2mmlProcessSegment.profile.genmodel"/>
->>>>>>> 3dfdb08 Papyrus BPMN project
    </extension>
 
 </plugin>

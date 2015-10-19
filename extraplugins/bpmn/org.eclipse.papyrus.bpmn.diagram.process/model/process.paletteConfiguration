@@ -47,7 +47,7 @@
         description="Manual Task (Opaque Action)">
       <icon
           pluginID="org.eclipse.papyrus.bpmn"
-          iconPath="/icons/Task.png"/>
+          iconPath="/icons/ManualTask.png"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.bpmn.process.ManualTask_OpaqueAction_3007"/>
     </ownedConfigurations>
@@ -58,7 +58,7 @@
         description="User Task (Opaque Action)">
       <icon
           pluginID="org.eclipse.papyrus.bpmn"
-          iconPath="/icons/Task.png"/>
+          iconPath="/icons/UserTask.png"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.bpmn.process.UserTask_OpaqueAction_3007"/>
     </ownedConfigurations>
@@ -69,7 +69,7 @@
         description="Script Task (Opaque Action)">
       <icon
           pluginID="org.eclipse.papyrus.bpmn"
-          iconPath="/icons/Task.png"/>
+          iconPath="/icons/ScriptTask.png"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.bpmn.process.ScriptTask_OpaqueAction_3007"/>
     </ownedConfigurations>
@@ -80,7 +80,7 @@
         description="Business Rule Task (Opaque Action)">
       <icon
           pluginID="org.eclipse.papyrus.bpmn"
-          iconPath="/icons/Task.png"/>
+          iconPath="/icons/BusinessRuleTask.png"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.bpmn.process.BusinessRuleTask_OpaqueAction_3007"/>
     </ownedConfigurations>
@@ -91,7 +91,7 @@
         description="Send Task (Call Operation Action)">
       <icon
           pluginID="org.eclipse.papyrus.bpmn"
-          iconPath="/icons/Task.png"/>
+          iconPath="/icons/SendTask.png"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.bpmn.process.SendTask_CallOperationAction_3010"/>
     </ownedConfigurations>
@@ -102,7 +102,7 @@
         description="Service Task (Call Operation Action)">
       <icon
           pluginID="org.eclipse.papyrus.bpmn"
-          iconPath="/icons/Task.png"/>
+          iconPath="/icons/ServiceTask.png"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.bpmn.process.ServiceTask_CallOperationAction_3010"/>
     </ownedConfigurations>

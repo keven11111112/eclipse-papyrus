@@ -86,7 +86,6 @@ mapping Model::classModel2ProfileModel() : Profile{
 									ownedEnd.type := resolvedDataType;
 								};
 							};
-<<<<<<< Upstream, based on origin/master
 							
 	log("Profile structure created");						
 	//Make all stereotypes extend NamedElement
@@ -163,100 +162,5 @@ mapping Association::association2association() : Association{
 	init{
 		result := self;//.deepclone()![Association];
 		result.ownedEnd := self.ownedEnd->map property2property();
-=======
-	//Make all stereotypes extend NamedElement
-	var namedElementMetaclass := umlMetamodel.objects()[Class]->selectOne(name = "NamedElement").oclAsType(Class);
-	Profile.allInstances()->forEach(profile){
-		var packageImport := profile.createPackageImport(umlMetamodel.rootObjects()![Package], VisibilityKind::public);
-		profile.metamodelReference := packageImport;
-		var extensions := profile.ownedStereotype.createExtension(namedElementMetaclass, true);
-		profile.packagedElement := profile.packagedElement->union(extensions);
-	}						
-							
-}
-
-mapping PrimitiveType::primitiveType2primitiveType() : PrimitiveType{
-	init{
-		result := self;//.deepclone()![PrimitiveType];
-	}
-	result.ownedAttribute := self.ownedAttribute.map property2property();
-	
-}
-
-mapping DataType::dataType2dataType() : DataType{
-	init{
-		result := self;//.deepclone()![DataType];
-	}
-	//result.ownedAttribute := self.ownedAttribute.map property2property();
-	
-}
-
-mapping Class::class2Stereotype() : Stereotype{
-	eAnnotations := self.eAnnotations.clone()[EAnnotation]->asSet();
-	ownedComment := self.ownedComment.clone()[Comment]->asSet();
-	name := self.name;
-	nameExpression := self.nameExpression.clone()![StringExpression];
-	visibility := self.visibility;
-	ownedRule := self.ownedRule.clone()[Constraint]->asSet();
-	elementImport := self.elementImport.clone()[ElementImport]->asSet();
-	packageImport := self.packageImport.clone()[PackageImport]->asSet();
-	isLeaf := self.isLeaf;
-	owningTemplateParameter := self.owningTemplateParameter.clone()![TemplateParameter];
-	templateParameter := self.templateParameter.clone()![TemplateParameter];
-	//package := self.package.clone()![Package];
-	templateBinding := self.templateBinding.clone()[TemplateBinding]->asSet();
-	ownedTemplateSignature := self.ownedTemplateSignature.clone()![TemplateSignature];
-	collaborationUse := self.collaborationUse.clone()[CollaborationUse]->asSet();
-	general := self.general.clone()[Classifier]->asSet();
-	generalization := self.generalization.deepclone()[Generalization]->asSet();
-	powertypeExtent := self.powertypeExtent.clone()[GeneralizationSet]->asSet();
-	isAbstract := self.isAbstract;
-	isFinalSpecialization := self.isFinalSpecialization;
-	ownedUseCase := self.ownedUseCase.clone()[UseCase]->asSet();
-	useCase := self.useCase.clone()[UseCase]->asSet();
-	redefinedClassifier := self.redefinedClassifier.clone()[Classifier]->asSet();
-	representation := self.representation.clone()![CollaborationUse];
-	substitution := self.substitution.clone()[Substitution]->asSet();
-	ownedAttribute := self.ownedAttribute.map property2property();
-	ownedConnector := self.ownedConnector.clone()[Connector]->asSet();
-	classifierBehavior := self.classifierBehavior.clone()![Behavior];
-	interfaceRealization := self.interfaceRealization.clone()[InterfaceRealization]->asSet();
-	ownedBehavior := self.ownedBehavior.clone()[Behavior]->asSet();
-	ownedOperation := self.ownedOperation.clone()[Operation]->asSet();
-	isActive := self.isActive;
-	nestedClassifier := self.nestedClassifier.clone()[Classifier]->asSet();
-	ownedReception := self.ownedReception.clone()[Reception]->asSet();
-	superClass := self.superClass.clone()[Class]->asSet();
-}
-
-mapping Property::property2property() : Property{
-	init{
-		result := self;//.deepclone()![Property];
-		//result.type := self.type.resolveone(Stereotype);
-		//result.association := self.association.resolveone(Association);		
-	}
-	
-}
-
-mapping Association::association2association() : Association{
-	init{
-		result := self;//.deepclone()![Association];
-		//result.memberEnd := self.memberEnd.clone()[Property];
-		result.ownedEnd := self.ownedEnd->map property2property();
-			
-			/*
-			->forEach(ownedEnd){
-				ownedEnd.type := ownedEnd.type.resolveone(Stereotype);
-				if (ownedEnd.type = null){
-					ownedEnd.type := ownedEnd.type.resolveone(DataType)	
-				}
-			};
-		
-		*/
-		
-		//result.memberEnd := self.memberEnd.resolveone(Property);
-		
-		//forEach(result.ownedEnd.type := self.type.resolveone(Stereotype)
->>>>>>> 3dfdb08 Papyrus BPMN project
 	}
 }
