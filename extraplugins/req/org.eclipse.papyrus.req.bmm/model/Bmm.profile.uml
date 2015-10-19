@@ -934,9 +934,19 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_bN2TfhEEEeWdY8_QZO32Xg" name="Asset">
     <generalization xmi:type="uml:Generalization" xmi:id="_bN2TfxEEEeWdY8_QZO32Xg" general="_bN2TWREEEeWdY8_QZO32Xg"/>
+    <icon xmi:type="uml:Image" xmi:id="_rzatEHZ3EeWX7Yz_StfVnw" location="platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/icons/Asset.png">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rzbUIHZ3EeWX7Yz_StfVnw" source="image_papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rzbUIXZ3EeWX7Yz_StfVnw" key="image_kind_key" value="icon"/>
+      </eAnnotations>
+    </icon>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_bN2TgBEEEeWdY8_QZO32Xg" name="BusinessProcess">
     <generalization xmi:type="uml:Generalization" xmi:id="_bN2TgREEEeWdY8_QZO32Xg" general="_bN2TWREEEeWdY8_QZO32Xg"/>
+    <icon xmi:type="uml:Image" xmi:id="_mP6BMHZ3EeWX7Yz_StfVnw" location="platform:/plugin/org.eclipse.papyrus.req.bmm.diagram.common/icons/BusinessProcess.png">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mP6BMXZ3EeWX7Yz_StfVnw" source="image_papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mP6BMnZ3EeWX7Yz_StfVnw" key="image_kind_key" value="icon"/>
+      </eAnnotations>
+    </icon>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_bN2TghEEEeWdY8_QZO32Xg" name="BusinessRule">
     <generalization xmi:type="uml:Generalization" xmi:id="_bN2TgxEEEeWdY8_QZO32Xg" general="_bN2TaBEEEeWdY8_QZO32Xg"/>
