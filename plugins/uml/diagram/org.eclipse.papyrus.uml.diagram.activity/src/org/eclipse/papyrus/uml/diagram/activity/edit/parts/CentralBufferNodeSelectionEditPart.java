@@ -446,7 +446,7 @@ public class CentralBufferNodeSelectionEditPart extends PapyrusLabelEditPart imp
 	/**
 	 * @generated NOT do not edit label if hidden
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		// do not edit label if hidden
 		boolean selectionSet = ((ObjectNode) resolveSemanticElement()).getSelection() != null;
 		if (getManager() instanceof TextDirectEditManager && selectionSet) {

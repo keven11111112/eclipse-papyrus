@@ -424,7 +424,7 @@ public class ComponentCompositeFloatingLabelEditPartCN extends FloatingLabelEdit
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

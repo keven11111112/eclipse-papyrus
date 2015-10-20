@@ -53,7 +53,7 @@ public class CustomLifelineNameEditPart extends LifelineNameEditPart {
 	/**
 	 * @Override
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

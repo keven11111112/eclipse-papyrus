@@ -389,7 +389,7 @@ public class Constraint2EditPart extends PapyrusCompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

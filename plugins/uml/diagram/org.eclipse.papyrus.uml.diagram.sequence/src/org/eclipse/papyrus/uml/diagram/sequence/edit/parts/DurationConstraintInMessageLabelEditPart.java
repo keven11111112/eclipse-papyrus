@@ -403,7 +403,7 @@ public class DurationConstraintInMessageLabelEditPart extends PapyrusCompartment
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

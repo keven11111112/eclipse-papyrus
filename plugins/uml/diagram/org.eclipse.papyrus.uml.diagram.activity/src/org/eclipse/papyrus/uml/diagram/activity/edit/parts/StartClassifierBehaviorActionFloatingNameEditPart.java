@@ -415,7 +415,7 @@ public class StartClassifierBehaviorActionFloatingNameEditPart extends FloatingL
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

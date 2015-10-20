@@ -415,7 +415,7 @@ public class ActionPinInTestIdentityActionAsSecondLabelEditPart extends PapyrusL
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

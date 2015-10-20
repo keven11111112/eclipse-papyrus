@@ -421,7 +421,7 @@ public class PropertyforPrimitiveTypeEditPart extends UMLCompartmentEditPart imp
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

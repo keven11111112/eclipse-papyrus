@@ -457,7 +457,7 @@ def performDirectEditAtPoint (GenCommonBase it)'''
 	
 override performDirectEditWithInitialChar (GenCommonBase it)'''
 	«generatedMemberComment»
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager) {
 			((org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

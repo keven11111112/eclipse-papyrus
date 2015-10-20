@@ -453,7 +453,7 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated NOT do not edit label if hidden
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		// do not edit label if hidden
 		boolean decisionSet = ((DecisionNode) resolveSemanticElement()).getDecisionInput() != null;
 		if (getManager() instanceof TextDirectEditManager && decisionSet) {

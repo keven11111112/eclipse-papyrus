@@ -415,7 +415,7 @@ public class ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
