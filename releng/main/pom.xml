@@ -255,7 +255,6 @@
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.dnd</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.icons</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.interactionoverview</module>
-		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.linklf</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.menu</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.modelexplorer</module>
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.navigation</module>
@@ -419,7 +418,7 @@
 			<id>gmf-tooling</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Tooling",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3.1/RC2</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a/</url>
 		</repository>
 		<repository>
 			<id>m2t-xpand</id>
