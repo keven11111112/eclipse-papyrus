@@ -23,7 +23,7 @@ public abstract class EventAccepter {
 	 */
 	public Execution registrationContext;
 	
-	public abstract void accept(SignalInstance signalInstance);
+	public abstract void accept(EventOccurrence eventOccurrence);
 
-	public abstract Boolean match(SignalInstance signalInstance);
+	public abstract Boolean match(EventOccurrence eventOccurrence);
 }

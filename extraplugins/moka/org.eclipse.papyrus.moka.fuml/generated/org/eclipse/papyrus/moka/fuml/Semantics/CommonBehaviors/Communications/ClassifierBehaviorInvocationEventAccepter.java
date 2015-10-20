@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Jeremie Tatibouet (CEA LIST)
+ *  Jeremie Tatibouet (CEA) - Apply Fix fUML12-35 Initial execution of an activity is not run to completion
  *
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications;
@@ -22,7 +22,11 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Pa
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 
-public class ClassifierBehaviorExecution {
+/**
+ * A classifier behavior accepts an invocation event occurrence for the invocation
+ * of the execution of a classifier behavior from a specific active class. 
+ */
+public class ClassifierBehaviorInvocationEventAccepter extends EventAccepter{
 
 	/*
 	 * The execution of the associated classifier behavior for a certain object.
@@ -40,7 +44,7 @@ public class ClassifierBehaviorExecution {
 	 */
 	public ObjectActivation objectActivation;
 	
-	public void execute(Class classifier, List<ParameterValue> inputs) {
+	public void invokeBehavior(Class classifier, List<ParameterValue> inputs) {
 		// Set the classifier for this classifier behavior execution to the
 		// given class.
 		// If the given class is a behavior, set the execution to be the object
@@ -48,11 +52,13 @@ public class ClassifierBehaviorExecution {
 		// Otherwise the class must be an active class, so get an execution
 		// object for the classifier behavior for the class.
 		// Set the input parameters for the execution to the given values.
-		// Then start the active behavior of this ClassifierBehaviorExecution
-		// object, which will execute the execution object on a separate thread
-		// of control.
+		// Then register this event accepter with the object activation..
 		// Debug.println("[execute] Executing behavior for " + classifier.name +
 		// "...");
+		
+		// fUML12-35 Initial execution of an activity is not run to completion
+		
+		
 		this.classifier = classifier;
 		Object_ object = this.objectActivation.object;
 		if (classifier instanceof Behavior) {
@@ -66,11 +72,7 @@ public class ClassifierBehaviorExecution {
 				this.execution.setParameterValue(input);
 			}
 		}
-		_startObjectBehavior();
-	}
-
-	public void _startObjectBehavior() {
-		this.execution.execute();
+		this.objectActivation.register(this);
 	}
 
 	public void terminate() {
@@ -84,4 +86,33 @@ public class ClassifierBehaviorExecution {
 			this.execution.destroy();
 		}
 	}
+
+	@Override
+	public void accept(EventOccurrence eventOccurrence) {
+		// Accept an invocation event occurrence. Execute the execution of this
+		// classifier behavior invocation event accepter.
+		
+		// fUML12-35 Initial execution of an activity is not run to completion
+		
+		if (eventOccurrence instanceof InvocationEventOccurrence) {
+			this.execution.execute();
+		}
+	}
+
+	@Override
+	public Boolean match(EventOccurrence eventOccurrence) {
+		// Return true if the given event occurrence is an invocation event
+		// occurrence for the execution of this classifier behavior invocation
+		// event accepter.
+		
+		// fUML12-35 Initial execution of an activity is not run to completion
+		
+		boolean matches = false;
+		if (eventOccurrence instanceof InvocationEventOccurrence) {
+			matches = ((InvocationEventOccurrence)eventOccurrence).execution == this.execution;
+		}
+		return matches;
+	}
+
+	
 }
