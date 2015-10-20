@@ -823,6 +823,9 @@ public class DurationConstraintAsLocalPrecondNameEditPart extends PapyrusCompart
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

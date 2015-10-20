@@ -736,6 +736,9 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

@@ -806,6 +806,9 @@ public class DataStoreNodeLabelEditPart extends PapyrusCompartmentEditPart imple
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

@@ -806,6 +806,9 @@ public class AcceptEventActionLabelEditPart extends PapyrusCompartmentEditPart i
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

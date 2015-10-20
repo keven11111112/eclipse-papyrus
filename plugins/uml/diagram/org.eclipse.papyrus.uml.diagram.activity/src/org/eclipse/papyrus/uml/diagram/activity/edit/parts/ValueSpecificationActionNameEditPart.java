@@ -823,6 +823,9 @@ public class ValueSpecificationActionNameEditPart extends PapyrusCompartmentEdit
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

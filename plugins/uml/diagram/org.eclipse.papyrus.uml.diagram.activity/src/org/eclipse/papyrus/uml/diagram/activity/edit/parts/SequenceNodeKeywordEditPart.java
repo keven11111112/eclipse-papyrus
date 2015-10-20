@@ -833,6 +833,9 @@ public class SequenceNodeKeywordEditPart extends PapyrusCompartmentEditPart impl
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**
