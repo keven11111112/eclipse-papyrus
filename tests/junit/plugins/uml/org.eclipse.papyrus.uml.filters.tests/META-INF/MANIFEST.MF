@@ -7,7 +7,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.types;bundle-version="2.0.0";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="5.1.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.11.0";visibility:=reexport,
- org.junit;visibility:=reexport
+ org.junit;visibility:=reexport,
+ org.eclipse.papyrus.junit.utils;bundle-version="1.1.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
