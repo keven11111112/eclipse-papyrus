@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *
+ *  Jeremie Tatibouet (CEA LIST) - Issue FUML12-36 Problem with CallActionActivation: possible infinite loop in removeCallExecution()
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.Semantics.Actions.BasicActions;
 
@@ -104,6 +104,7 @@ public abstract class CallActionActivation extends InvocationActionActivation {
 				this.callExecutions.remove(i - 1);
 				notFound = false;
 			}
+			i = i + 1; // FUML12-36 Problem with CallActionActivation: possible infinite loop in removeCallExecution()
 		}
 	}
 }
