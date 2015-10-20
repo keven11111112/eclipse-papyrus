@@ -90,10 +90,9 @@ public class ClassifierAsPropertyToStructuredCompartmentDropStrategy extends Tra
 				}
 				if (dropElement instanceof Classifier && (false == dropElement instanceof Association)) {
 					Classifier classifier = (Classifier) dropElement;
-					// check whether element is a nested classifier of the targetSemanticElement
-					if (classifier.allNamespaces().contains(getTargetSemanticElement(gtEditPart))) {
+					
 						cc.add(helper.dropTypeAsTypedProperty((GraphicalEditPart)gtEditPart, classifier, location));
-					}
+					
 				}
 			}
 			return cc.canExecute() ? cc : null;
