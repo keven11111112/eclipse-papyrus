@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Configuration.StateMachineConfiguration;
@@ -63,8 +64,7 @@ public class DefaultTransitionSelectionStrategy extends TransitionSelectionStrat
 	 * provided in parameter.
 	 */
 	@Override
-	public List<TransitionActivation> selectTriggeredTransitions(StateMachineConfiguration configuration,
-			SignalInstance signal) {
+	public List<TransitionActivation> selectTriggeredTransitions(StateMachineConfiguration configuration, EventOccurrence eventOccurrence) {
 		List<TransitionActivation> fireableTransition = new ArrayList<TransitionActivation>();
 		Map<Integer, Set<VertexActivation>> cartography = configuration.getCartography();
 		int i = cartography.size();
@@ -72,9 +72,14 @@ public class DefaultTransitionSelectionStrategy extends TransitionSelectionStrat
 		while(i >= 1 && nextLevel){
 			for(VertexActivation vertexActivation : cartography.get(i)){
 				for(TransitionActivation transitionActivation : vertexActivation.getOutgoingTransitions()){
-					if(transitionActivation.isTriggered() && 
-							transitionActivation.hasTrigger(signal)){
-						fireableTransition.add(transitionActivation);
+					if(transitionActivation.isTriggered()){
+						boolean isReady = false;
+						if(eventOccurrence instanceof SignalEventOccurrence){
+							isReady = transitionActivation.hasTrigger(((SignalEventOccurrence)eventOccurrence).signalInstance);
+						}
+						if(isReady){
+							fireableTransition.add(transitionActivation);
+						}
 					}
 				}
 			}

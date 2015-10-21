@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionSelectionStrategy;
 
@@ -46,10 +46,10 @@ public class SM_EventAccepter extends EventAccepter{
 	 * @param signalInstance - The signal consumed to trigger a transition 
 	 */
 	@Override
-	public void accept(SignalInstance signalInstance) {
+	public void accept(EventOccurrence eventOccurrence) {
 		/*1. Select the transition that will fire according to priority rules*/
 		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
-		List<TransitionActivation> fireableTransition = selectionStrategy.selectTriggeredTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), signalInstance);
+		List<TransitionActivation> fireableTransition = selectionStrategy.selectTriggeredTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence);
 		TransitionChoiceStrategy choiceStrategy = (TransitionChoiceStrategy)this.registrationContext.locus.factory.getStrategy(TransitionChoiceStrategy.NAME);
 		if(!fireableTransition.isEmpty()){
 			/*1.1. Fire the choosen transition */
@@ -72,11 +72,11 @@ public class SM_EventAccepter extends EventAccepter{
 	}
 
 	@Override
-	public Boolean match(SignalInstance signalInstance) {
+	public Boolean match(EventOccurrence eventOccurrence) {
 		// Return true if there is at least one transition that is 
 		// ready to fire on this event. Return false otherwise
 		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
-		return !selectionStrategy.selectTriggeredTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), signalInstance).isEmpty();
+		return !selectionStrategy.selectTriggeredTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence).isEmpty();
 	}
 
 }

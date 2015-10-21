@@ -15,7 +15,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Configuration.StateMachineConfiguration;
@@ -30,5 +30,5 @@ public abstract class TransitionSelectionStrategy extends SemanticStrategy{
 				
 	public abstract List<TransitionActivation> selectTransitions(StateMachineConfiguration configuration);
 	
-	public abstract List<TransitionActivation> selectTriggeredTransitions(StateMachineConfiguration configuration, SignalInstance signal);
+	public abstract List<TransitionActivation> selectTriggeredTransitions(StateMachineConfiguration configuration, EventOccurrence eventOccurrence);
 }
