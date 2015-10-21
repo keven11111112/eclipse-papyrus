@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *     Juan Cadavid <juan.cadavid@cea.fr> implementation
  *     Christian W. Damus (CEA) - bug 437217 - control-mode strategy changes interfere with later tests
  *     Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 459427
+ *     Christian W. Damus - bug 480209
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol;
 
@@ -39,6 +40,9 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 
 /**
  * The Class AbstractUncontrolModelTest.
@@ -145,6 +149,14 @@ public abstract class AbstractUncontrolModelTest extends AbstractPapyrusTest {
 		 * Constructor.
 		 *
 		 */
+		public UncontrolModeAssertion() {
+			this(Messages.UncontrolModelTest_4);
+		}
+
+		/**
+		 * Constructor.
+		 *
+		 */
 		public UncontrolModeAssertion(String assertionMessage) {
 			message = assertionMessage;
 		}
@@ -167,23 +179,23 @@ public abstract class AbstractUncontrolModelTest extends AbstractPapyrusTest {
 
 		private void selectElementToUncontrol() {
 
-			selectedElements = new ArrayList<PackageableElement>();
-			for (PackageableElement packageableElement : model.getPackagedElements()) {
-				if (packageableElement instanceof org.eclipse.uml2.uml.Package) {
-					selectedElements.add(packageableElement);
-				}
-			}
+			selectedElements = ImmutableList.copyOf(getElementsToSelectForUncontrol());
 
 			// Assert that this element is controlled
 			ModelExplorerUtils.setSelectionInTheModelexplorer(view, Arrays.asList(getElementToUnControl()));
+		}
+
+		protected Iterable<? extends PackageableElement> getElementsToSelectForUncontrol() {
+			return Iterables.filter(model.getPackagedElements(), org.eclipse.uml2.uml.Package.class);
 		}
 
 		/**
 		 * Assert before uncontrol.
 		 */
 		protected void assertBeforeUncontrol() {
-			Assert.assertNotNull(getElementToUnControl());
-			Assert.assertNotSame("The controlled submodel's resource equals its parent's", model.eResource(), getElementToUnControl().eResource());
+			Element element = getElementToUnControl();
+			Assert.assertNotNull(element);
+			Assert.assertNotSame("The controlled submodel's resource equals its parent's", element.eContainer().eResource(), element.eResource());
 			Assert.assertTrue(message, HandlerUtils.getActiveHandlerFor(getCommandId()).isEnabled());
 
 		}
@@ -222,7 +234,8 @@ public abstract class AbstractUncontrolModelTest extends AbstractPapyrusTest {
 
 			// Assert that the resource for the model and the submodel
 			// are the same
-			Assert.assertSame(Messages.AbstractUncontrolModelTest_1, model.eResource(), getElementToUnControl().eResource());
+			Element element = getElementToUnControl();
+			Assert.assertSame(Messages.AbstractUncontrolModelTest_1, element.eContainer().eResource(), element.eResource());
 
 		}
 
