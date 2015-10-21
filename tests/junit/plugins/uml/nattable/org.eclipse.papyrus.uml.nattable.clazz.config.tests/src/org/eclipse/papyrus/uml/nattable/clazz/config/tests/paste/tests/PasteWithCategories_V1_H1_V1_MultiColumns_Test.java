@@ -15,12 +15,8 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests;
 
 
 /**
- * @author VL222926
- *
- *         test pastes with 1 hidden category to the first level (H1), 3 hidden categories on the 2nd level (H3) et 1 hidden categories to the 3rd level
- *
+ * Test pastes with 1 visible category to the 1st level (V1), 1 hidden category on the 2nd level (H1) and 1 visible category to the 3rd level (V1).
  */
-public class PasteWithCategories_V1_H1_V1_MultiColumns_Test extends AbstractPasteWithCategoriesTests {
-
+public class PasteWithCategories_V1_H1_V1_MultiColumns_Test extends AbstractPasteWithCategoriesMultiColumnsTests {
 
 }

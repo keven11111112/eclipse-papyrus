@@ -57,6 +57,11 @@ public class CSVLexer {
 	 */
 	private static final int BUFFER_SIZE = 1024;
 
+	/**
+	 * Boolean to determinate if the beginning string whitespace must be kept or removed.
+	 */
+	private final boolean keepBeginningWhiteSpace;
+
 	private RewindableTextStream input; // the input stream
 	private char separator; // The cell separator character
 	private char textMarker; // The raw text beginning and end character
@@ -74,13 +79,30 @@ public class CSVLexer {
 	 * @param textMarker
 	 *            The character that marks the beginning and end of raw text
 	 */
-	public CSVLexer(Reader input, char valueSeparator, char textMarker) {
+	public CSVLexer(final Reader input, final char valueSeparator, final char textMarker) {
+		this(input, valueSeparator, textMarker, false);
+	}
+	
+	/**
+	 * Initializes this lexer with boolean to determinate if the beginning whitespace must be kept.
+	 *
+	 * @param input
+	 *            The input text reader
+	 * @param valueSeparator
+	 *            The character that separates values in rows
+	 * @param textMarker
+	 *            The character that marks the beginning and end of raw text
+	 * @param keepBeginningWhiteSpace
+	 *            Boolean to determinate if the beginning string whitespace must be kept or removed
+	 */
+	public CSVLexer(final Reader input, final char valueSeparator, final char textMarker, final boolean keepBeginningWhiteSpace) {
 		this.input = new RewindableTextStream(input);
 		this.separator = valueSeparator;
 		this.textMarker = textMarker;
 		this.builder = new char[BUFFER_SIZE];
 		this.lastTokenType = TOKEN_ERROR;
 		this.lastTokenValue = null;
+		this.keepBeginningWhiteSpace = keepBeginningWhiteSpace;
 	}
 
 	/**
@@ -112,10 +134,12 @@ public class CSVLexer {
 		if (input.isAtEnd()) {
 			return getTokenEOF();
 		}
-		while (isWhitespace(c)) {
-			c = input.read();
-			if (input.isAtEnd()) {
-				return getTokenEOF();
+		if (!keepBeginningWhiteSpace) {
+			while (isWhitespace(c)) {
+				c = input.read();
+				if (input.isAtEnd()) {
+					return getTokenEOF();
+				}
 			}
 		}
 
@@ -285,7 +309,7 @@ public class CSVLexer {
 	/**
 	 *
 	 * @return
-	 *         the number of read characters
+	 * 		the number of read characters
 	 */
 	public long getReadCharacters() {
 		return this.input.getReadCharacters();
