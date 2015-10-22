@@ -58,7 +58,7 @@ class CppClassTypeAndEnum {
 					return CppEnumerations.CppEnumerationDefinition(element as Enumeration)
 				} else if (element instanceof PrimitiveType) {
 					return CppPrimitiveTypes.CppPrimitiveTypeDefinition(element as PrimitiveType)
-				} else if (element instanceof DataType || element.eClass.equals(UMLFactory.eINSTANCE.getUMLPackage().getClass_())) {
+				} else if ((element instanceof DataType || element.eClass.equals(UMLFactory.eINSTANCE.getUMLPackage().getClass_())) && !(element.owner instanceof Package)) {
 					if (GenUtils.isTemplateBoundElement(element as Classifier)) {
 						return CppInnerClassifiers.CppInnerBindDefinition(element as Classifier)
 					} else {
