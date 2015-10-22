@@ -1,4 +1,4 @@
-/*****************************************************************************
+/***************************************************************************************************
  * Copyright (c) 2014 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
@@ -8,9 +8,14 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
- *****************************************************************************/
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Add the prepareElementInClipboard Method
+ ***************************************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -63,7 +68,7 @@ public interface ICopyStrategy extends IStrategy {
 	 * @param targetEditPart
 	 *            The target edit part
 	 * @return
-	 *         A command, or null if the strategy cannot handle the request
+	 * 		A command, or null if the strategy cannot handle the request
 	 */
 	public Command getCommand(Request request, EditPart targetEditPart);
 
@@ -77,6 +82,17 @@ public interface ICopyStrategy extends IStrategy {
 	@Override
 	@Deprecated
 	public int getPriority();
+
+	/**
+	 * This method allows to modify the elements list in the ClipBoard before being Paste
+	 * 
+	 * @param elementsInClipboard
+	 *            The list of Objects in the clipBoard to be modified, same as selectedElements by default
+	 * @param selectedElements
+	 *            The selected Elements
+	 */
+	public void prepareElementsInClipboard(List<EObject> elementsInClipboard, Collection<EObject> selectedElements);
+
 
 
 }
