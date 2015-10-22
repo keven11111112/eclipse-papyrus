@@ -29,6 +29,8 @@ public class RegionActivation extends SM_SemanticVisitor{
 	
 	protected List<TransitionActivation> transitionActivations;
 	
+	public boolean isCompleted;
+	
 	public List<VertexActivation> getVertexActivations() {
 		return vertexActivations;
 	}
@@ -39,6 +41,7 @@ public class RegionActivation extends SM_SemanticVisitor{
 	
 	public RegionActivation(){
 		this.node = null;
+		this.isCompleted = false;
 		this.vertexActivations = new ArrayList<VertexActivation>();
 		this.transitionActivations = new ArrayList<TransitionActivation>();
 	}
@@ -135,9 +138,16 @@ public class RegionActivation extends SM_SemanticVisitor{
 	}
 	
 	/**
+	 * 
+	 */
+	public void enter(TransitionActivation enteringTransition){
+		
+	}
+	
+	/**
 	 * Active states in this region will be exited
 	 */
-	public void exit(){
+	public void exit(TransitionActivation exitingTransition){
 		for(VertexActivation vertexActivation: this.getVertexActivations()){
 			if(vertexActivation.isActive()){
 				vertexActivation.exit(null);

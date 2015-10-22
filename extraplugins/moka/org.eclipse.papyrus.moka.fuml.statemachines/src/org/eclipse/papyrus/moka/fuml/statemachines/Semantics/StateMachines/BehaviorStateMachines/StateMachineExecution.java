@@ -20,8 +20,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Configuration.StateMachineConfiguration;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionChoiceStrategy;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionSelectionStrategy;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Vertex;
@@ -107,15 +105,6 @@ public class StateMachineExecution extends Execution {
 		/*3. Fire "concurrently" all initial transition in the different regions*/
 		for(RegionActivation activation: this.regionActivation){
 			activation.fireInitialTransition();
-		}
-		/*4. Try to find another transition available to fire*/
-		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
-		List<TransitionActivation> fireableTransition = selectionStrategy.selectTransitions(this.configuration);
-		while(!fireableTransition.isEmpty()){
-			TransitionChoiceStrategy choiceStrategy = (TransitionChoiceStrategy)this.locus.factory.getStrategy(TransitionChoiceStrategy.NAME);
-			TransitionActivation transitionActivation = choiceStrategy.choose(fireableTransition);  
-			transitionActivation.fire();
-			fireableTransition = selectionStrategy.selectTransitions(this.configuration);
 		}
 	}
 

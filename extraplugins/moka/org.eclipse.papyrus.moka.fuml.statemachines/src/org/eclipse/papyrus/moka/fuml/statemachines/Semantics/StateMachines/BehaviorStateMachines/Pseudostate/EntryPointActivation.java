@@ -13,12 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate;
 
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
 public class EntryPointActivation extends ConnectionPointReferenceActivation {
 	
-	public void run() {
-		super.run();
+	public void enter(TransitionActivation enteringTransition) {
+		super.enter(enteringTransition);
 		/*1. Enters all parent states that are currently not active*/
 		this._doEntry(this.getParentState());
 		/*2. Takes the outgoing transition (will be fixed)*/
@@ -28,11 +29,11 @@ public class EntryPointActivation extends ConnectionPointReferenceActivation {
 	protected void _doEntry(VertexActivation activation){
 		if(activation!=null){
 			if(!activation.isActive() && (activation.getParentState()==null || activation.getParentState().isActive())){
-				activation.run();
+				activation.enter(null);
 			}else{
 				this._doEntry(activation.getParentState());
 				if(!activation.isActive()){
-					activation.run();
+					activation.enter(null);
 				}
 			}
 		}

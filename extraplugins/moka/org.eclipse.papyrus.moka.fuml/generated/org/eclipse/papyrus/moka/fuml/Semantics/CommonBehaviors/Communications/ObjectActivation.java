@@ -107,7 +107,8 @@ public class ObjectActivation {
 				// ***
 				int j = ((ChoiceStrategy) this.object.locus.factory.getStrategy("choice")).choose(matchingEventAccepterIndexes.size());
 				EventAccepter selectedEventAccepter = this.waitingEventAccepters.get(matchingEventAccepterIndexes.get(j - 1));
-				this.waitingEventAccepters.remove(matchingEventAccepterIndexes.get(j - 1));
+				int removeAt = matchingEventAccepterIndexes.get(j - 1);
+				this.waitingEventAccepters.remove(removeAt);
 				selectedEventAccepter.accept(eventOccurrence);
 			}
 		}

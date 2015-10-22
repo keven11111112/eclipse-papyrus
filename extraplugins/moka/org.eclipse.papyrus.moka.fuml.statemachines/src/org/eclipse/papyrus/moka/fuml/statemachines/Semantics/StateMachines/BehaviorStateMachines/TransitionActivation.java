@@ -192,7 +192,7 @@ public class TransitionActivation extends SM_SemanticVisitor {
 		/*3. Run the target state (if transition is local or external)*/
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode());
 		if(node.getKind()!=TransitionKind.INTERNAL_LITERAL){
-			this.vertexTargetActivation.run();
+			this.vertexTargetActivation.enter(this);
 		}
 	}
 	

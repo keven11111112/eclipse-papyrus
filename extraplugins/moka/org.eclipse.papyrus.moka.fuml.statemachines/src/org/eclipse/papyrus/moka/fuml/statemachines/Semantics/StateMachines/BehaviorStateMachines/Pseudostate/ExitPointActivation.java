@@ -13,13 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate;
 
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
 
 public class ExitPointActivation extends ConnectionPointReferenceActivation {
 
-	public void run() {
-		super.run();
+	public void enter(TransitionActivation enteringTransition) {
+		super.enter(enteringTransition);
 		this._doExit(this.getParentState());
 		this.outgoingTransitionActivations.get(0).fire(); //FIXME: Just to make sure the test sequence is right
 	}

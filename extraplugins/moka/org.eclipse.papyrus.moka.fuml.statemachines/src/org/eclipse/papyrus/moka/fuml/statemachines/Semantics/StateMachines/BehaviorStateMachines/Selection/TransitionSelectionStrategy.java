@@ -28,7 +28,5 @@ public abstract class TransitionSelectionStrategy extends SemanticStrategy{
 		return NAME; 
 	}
 				
-	public abstract List<TransitionActivation> selectTransitions(StateMachineConfiguration configuration);
-	
-	public abstract List<TransitionActivation> selectTriggeredTransitions(StateMachineConfiguration configuration, EventOccurrence eventOccurrence);
+	public abstract List<TransitionActivation> selectTransitions(StateMachineConfiguration configuration, EventOccurrence eventOccurrence);
 }

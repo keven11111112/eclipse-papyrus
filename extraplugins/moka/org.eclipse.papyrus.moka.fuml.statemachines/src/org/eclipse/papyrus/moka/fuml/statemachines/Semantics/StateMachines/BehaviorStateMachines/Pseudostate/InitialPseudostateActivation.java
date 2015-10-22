@@ -16,11 +16,11 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
 
 import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 
 public class InitialPseudostateActivation extends PseudostateActivation{
 	
-	@Override
-	public void run() {
+	public void enter(TransitionActivation enteringTransition) {
 		/*1. The vertex becomes active*/
 		logger.info(this.getNode().getName()+" => ACTIVE");
 		this.setState(StateMetadata.ACTIVE);

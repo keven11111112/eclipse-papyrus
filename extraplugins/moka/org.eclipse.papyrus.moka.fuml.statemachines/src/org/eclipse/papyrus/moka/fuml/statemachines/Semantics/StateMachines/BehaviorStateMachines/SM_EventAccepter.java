@@ -47,22 +47,13 @@ public class SM_EventAccepter extends EventAccepter{
 	 */
 	@Override
 	public void accept(EventOccurrence eventOccurrence) {
-		/*1. Select the transition that will fire according to priority rules*/
+		/*1. Select the transition that will fire according to priority rules and fire it*/
 		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
-		List<TransitionActivation> fireableTransition = selectionStrategy.selectTriggeredTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence);
+		List<TransitionActivation> fireableTransition = selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence);
 		TransitionChoiceStrategy choiceStrategy = (TransitionChoiceStrategy)this.registrationContext.locus.factory.getStrategy(TransitionChoiceStrategy.NAME);
 		if(!fireableTransition.isEmpty()){
-			/*1.1. Fire the choosen transition */
 			TransitionActivation transitionActivation = choiceStrategy.choose(fireableTransition);
 			transitionActivation.fire();
-			/*1.2. Continue to fire transitions (not triggered) while it is possible*/
-			fireableTransition = selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration());
-			while(!fireableTransition.isEmpty()){
-				choiceStrategy = (TransitionChoiceStrategy)this.registrationContext.locus.factory.getStrategy(TransitionChoiceStrategy.NAME);
-				transitionActivation = choiceStrategy.choose(fireableTransition);  
-				transitionActivation.fire();
-				fireableTransition = selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration());
-			}
 		}
 		/*2. Register an event accepter for the executed state-machine*/
 		Object_ context = this.registrationContext.context;
@@ -76,7 +67,7 @@ public class SM_EventAccepter extends EventAccepter{
 		// Return true if there is at least one transition that is 
 		// ready to fire on this event. Return false otherwise
 		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
-		return !selectionStrategy.selectTriggeredTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence).isEmpty();
+		return !selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence).isEmpty();
 	}
 
 }

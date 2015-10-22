@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.moka.composites.CompositeStructuresExecutionEngine;
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_Executor;
-import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_Locus;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.debug.ControlDelegate;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.SM_ExecutionFactory;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.SM_Locus;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.papyrus.moka.fuml.statemachines.registry.SM_SemanticStrategyRegistry;
 import org.eclipse.papyrus.uml.extensionpoints.library.IRegisteredLibrary;
@@ -41,7 +41,7 @@ public class SM_ExecutionEngine extends CompositeStructuresExecutionEngine{
 		if(behavior!=null){
 			main = behavior;
 			// creates the locus, executor and execution factory
-			this.locus = new CS_Locus();
+			this.locus = new SM_Locus();
 			this.locus.setFactory(new SM_ExecutionFactory());
 			this.locus.setExecutor(new CS_Executor());
 			// initializes built-in primitive types

@@ -18,17 +18,56 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.SM_Object;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.PseudostateActivation;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Vertex;
 
+/**
+ * This class captures the semantics of a state that can be either simple or composite. 
+ */
 public class StateActivation extends VertexActivation {
 	
+	// The visitors for the regions owned by this state
 	protected List<RegionActivation> regionActivation;
 	
+	// The visitors for the connection points (EntryPoint / ExitPoint) owned by this state 
 	protected List<PseudostateActivation> connectionPointActivation;
+	
+	// Boolean flag to know if the entry behavior was completed
+	public boolean isEntryCompleted;
+	
+	// Boolean flag to know if the doActivity behavior was completed
+	public boolean isDoActivityCompleted;
+	
+	// Boolean flag to know if the exit behavior was completed
+	public boolean isExitCompleted; 
+	
+	public boolean hasCompleted(){
+		// A state can only be considered as being completed under the following circumstances
+		// 1 - If the state is simple, both its entry and doActivity have finished their execution
+		// 2 - If the state is composite, the same rules than used for the simple state, but additionally
+		//     all the region of the state must have completed by reaching their final states
+		// When the operation returns true then the generation of a completion event is allowed
+		// for that particular state
+		boolean stateCompleted = this.isEntryCompleted & this.isDoActivityCompleted;
+		int i = 0;
+		while(stateCompleted && i < this.regionActivation.size()){
+			stateCompleted = stateCompleted && this.regionActivation.get(i).isCompleted; 
+			i = i + 1;
+		}
+		return stateCompleted;
+	}
+	
+	public void notifyCompletion(){
+		// The notification of a completion event consists in sending in the execution
+		// context of the state-machine a completion event occurrence. This event is
+		// placed in the pool before any other event
+		SM_Object executionContext = (SM_Object) this.getExecutionContext();
+		executionContext.sendCompletionEvent(this);
+	}
 	
 	public List<PseudostateActivation> getConnectionPointActivation(){
 		return this.connectionPointActivation;
@@ -68,23 +107,23 @@ public class StateActivation extends VertexActivation {
 
 	public StateActivation(){
 		super();
+		this.isEntryCompleted = false;
+		this.isDoActivityCompleted = false;
 		this.regionActivation = new ArrayList<RegionActivation>();
 		this.connectionPointActivation = new ArrayList<PseudostateActivation>();
 	}
 	
 	public void activate(){
+		// Instantiate visitors for all vertices owned by this region 
 		State state = (State) this.getNode();
-		/*Contains at least one region*/
 		if(state.isComposite()){
 			Object_ context = this.getExecutionContext();
-			/*Handle pseudo-states*/
 			for(Pseudostate connectionPoint : state.getConnectionPoints()){
 				PseudostateActivation activation = (PseudostateActivation)context.locus.factory.instantiateVisitor(connectionPoint);
 				activation.setParent(this);
 				activation.setNode(connectionPoint);
 				this.connectionPointActivation.add(activation);
 			}
-			/*Handle owned regions*/
 			for(Region region: state.getRegions()){
 				RegionActivation activation = (RegionActivation) context.locus.factory.instantiateVisitor(region);
 				activation.setParent(this);
@@ -96,8 +135,8 @@ public class StateActivation extends VertexActivation {
 	}
 	
 	public void activateTransitions(){
+		// Instantiate visitor for transitions owned by this region
 		State state = (State) this.getNode();
-		/*Contains at least one region*/
 		if(state.isComposite()){
 			for(RegionActivation activation : this.regionActivation){
 				activation.activateTransitions();
@@ -105,62 +144,95 @@ public class StateActivation extends VertexActivation {
 		}
 	}
 	
-	public void doEntry(){
-		StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
-		smExecution.getConfiguration().register(this);
-		/*1. If an entry behavior is specified for that state then it is executed*/
+	public void tryExecuteEntry(){
+		// If an entry behavior is specified for that state then it is executed
 		State state = (State) this.getNode();
-		if(state.getEntry()!=null){
+		if(!this.isEntryCompleted){
 			Execution execution = this.getExecutionFor(state.getEntry());
 			if(execution!=null){
 				execution.execute();
+				this.isEntryCompleted = true;
+			}
+			// If state has completed then generate a completion event
+			if(this.hasCompleted()){
+				this.notifyCompletion();
 			}
 		}
-		/*2. Regions become active (i.e. they start their execution)*/
+		// If the state is not completed, then try to start its
+		// owned region
 		for(RegionActivation activation: this.regionActivation){
 			activation.fireInitialTransition();
 		}
 	}
 	
-	protected void doActivity(){
+	protected void tryExecuteDoActivity(){
 		State state = (State) this.getNode();
-		Execution execution = this.getExecutionFor(state.getDoActivity());
-		if(execution!=null){
-			execution.execute();
+		// If an doActivity behavior is specified for that state then it is executed*/
+		if(!this.isDoActivityCompleted){
+			Execution execution = this.getExecutionFor(state.getDoActivity());
+			if(execution!=null){
+				execution.execute();
+				this.isDoActivityCompleted = true;
+			}
+			// If state has completed then generate a completion event*/
+			if(this.hasCompleted()){
+				this.notifyCompletion();
+			}
 		}
 	}
 	
 	protected void doExit(){
-		/*1. Execute the exit behavior if any*/
+		// Execute the exit behavior if any
 		State state = (State) this.getNode();
 		Execution execution = this.getExecutionFor(state.getExit());
 		if(execution!=null){
 			execution.execute();
 		}
-		/*2. Make the state idle and unregister if from the StateMachineConfiguration*/
-		StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
-		smExecution.getConfiguration().unregister(this);
 		super.exit(null);
 	}
 	
-	public void exit(TransitionActivation exitingTransition){
-		/* In the case we are in a composite state then
-		 * sub-states must be exited 
-		 * */
-		if(!this.regionActivation.isEmpty()){
-			for(RegionActivation regionActivation : this.regionActivation){
-				regionActivation.exit();
+	public void enter(TransitionActivation enteringTransition) {
+		if(this.state.equals(StateMetadata.IDLE)){
+			State state = (State) this.getNode();
+			// Initialization
+			super.enter(enteringTransition);
+			this.isEntryCompleted = state.getEntry()==null;
+			this.isDoActivityCompleted = state.getDoActivity()==null;
+			this.isExitCompleted = state.getExit()==null;
+			// When the state is entered it is registered in the current
+			// state-machine configuration
+			StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
+			smExecution.getConfiguration().register(this);
+			// If state has completed then generate a completion event*/
+			if(this.hasCompleted()){
+				this.notifyCompletion();
+			}else{
+				// Execute the entry behavior if any
+				this.tryExecuteEntry();
+				// Execute the doActtivity if any
+				this.tryExecuteDoActivity();
 			}
 		}
-		this.doExit();
 	}
 	
-	@Override
-	public void run() {
-		if(this.state.equals(StateMetadata.IDLE)){
-			super.run();
-			this.doEntry();
-			this.doActivity();
+	public void exit(TransitionActivation exitingTransition){
+		// If we exit a composite state, this provokes the termination of all of its regions 
+		if(!this.regionActivation.isEmpty()){
+			for(RegionActivation regionActivation : this.regionActivation){
+				regionActivation.exit(null);
+			}
 		}
+		// If there is an exit behavior specified for the state it is executed
+		if(!this.isExitCompleted){
+			this.doExit();
+		}
+		super.exit(exitingTransition);
+		// When the state is exited then it is removed from the state-machine configuration
+		StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
+		smExecution.getConfiguration().unregister(this);
+		// Re-initialize the boolean flags
+		this.isEntryCompleted = false;
+		this.isDoActivityCompleted = false;
+		this.isExitCompleted = false;
 	}
 }

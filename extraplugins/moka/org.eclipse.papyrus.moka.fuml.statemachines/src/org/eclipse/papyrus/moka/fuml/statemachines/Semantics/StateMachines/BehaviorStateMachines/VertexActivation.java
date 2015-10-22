@@ -25,14 +25,19 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.Vertex;
 
+/**
+ *	A visitor for a vertex owned by a state-machine 
+ */
 public abstract class VertexActivation extends SM_SemanticVisitor {
 	
 	public enum StateMetadata{IDLE, ACTIVE}
 	
 	protected StateMetadata state;
 	
+	/*Incoming transitions of that vertex*/
 	protected List<TransitionActivation> incomingTransitionActivations;
 	
+	/*Outgoing transitions of that vertex*/
 	protected List<TransitionActivation> outgoingTransitionActivations;
 	
 	public VertexActivation(){
@@ -114,7 +119,7 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	/**
 	 * Describes the semantics of a vertex
 	 */
-	public void run(){
+	public void enter(TransitionActivation enteringTransition){
 		logger.info(this.getNode().getName()+" => ACTIVE");
 		/*1. The vertex becomes active*/
 		this.setState(StateMetadata.ACTIVE);
