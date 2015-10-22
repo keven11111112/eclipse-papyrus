@@ -127,4 +127,5 @@ public abstract class AbstractPasteStrategy implements IPasteStrategy {
 		return 1;
 	}
 
+
 }
