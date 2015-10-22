@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.providers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -48,7 +49,7 @@ public class DiagramDecorationAdapter {
 	protected IDecoratorTarget decoratorTarget;
 
 	/** The decoration. */
-	protected List<IDecoration> decorations;
+	final protected List<IDecoration> decorations = new ArrayList<IDecoration>();
 
 	/**
 	 * Instantiates a new diagram decoration adapter.
@@ -116,7 +117,7 @@ public class DiagramDecorationAdapter {
 	 */
 	final public List<IDecoration> setDecorationsNode(List<IPapyrusDecoration> pDecorations, int margin, boolean isVolatile) {
 
-		decorations = new BasicEList<IDecoration>();
+		decorations.clear();
 		for (IPapyrusDecoration pDecoration : pDecorations) {
 			Image image = addDecorationNode(pDecoration, margin, isVolatile);
 			if (image != null) {
@@ -146,7 +147,7 @@ public class DiagramDecorationAdapter {
 		final int percentageMin = 10;
 		final int percentageMax = 90;
 
-		decorations = new BasicEList<IDecoration>();
+		decorations.clear();
 		if (pDecorations.size() > 1) {
 			percentageFromSource -= distBetweenIconsPercent / 2 * (pDecorations.size() - 1);
 		}
