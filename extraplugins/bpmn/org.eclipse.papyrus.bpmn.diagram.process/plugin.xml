@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
- <extension
+ 	<extension
           point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
        <elementTypeSet
              id="org.eclipse.papyrus.bpmn.process.elementTypeSet"
              path="model/process.elementtypesconfigurations">
+       </elementTypeSet>
+    </extension> 
+    <extension
+          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+       <elementTypeSet
+             id="org.eclipse.papyrus.bpmn.process.elementTypeSetCustom"
+             path="model/processCustom.elementtypesconfigurations">
        </elementTypeSet>
     </extension> 
     <extension

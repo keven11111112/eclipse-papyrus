@@ -41,6 +41,13 @@
        </elementTypeSet>
     </extension>
     <extension
+          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+       <elementTypeSet
+             id="org.eclipse.papyrus.bpmn.customElementTypeSet"
+             path="model/customBpmn.elementtypesconfigurations">
+       </elementTypeSet>
+    </extension>
+    <extension
           point="org.eclipse.papyrus.views.properties.context">
        <context
              contextModel="properties/bpmn.ctx"

@@ -62,15 +62,18 @@ OpaqueAction > Compartment[kind="symbol"] {
 	fillColor: white;	
 	displayTag: false;
 }
+
+[appliedStereotypes~="BPMNProfile::Task"]{
+	fillColor: white;	
+	displayTag: false;
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/Task.svg";
+}
  
 [appliedStereotypes~="BPMNProfile::ManualTask"]{
 	fillColor: white;	
 	displayTag: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ManualTask.svg";
-	
-	
 }
-
 
 [appliedStereotypes~="BPMNProfile::ReceiveTask"]{
 	fillColor: white;	
@@ -142,6 +145,15 @@ OpaqueAction > Compartment[kind="symbol"] {
 	displayName: false;
 }
 
+[appliedStereotypes~="BPMNProfile::MessageEventDefinition"]
+{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/StartMessageEvent.svg";
+	transparency: 100;
+	fillColor: white;
+	followSVGSymbol: true;
+	displayName: false;
+}
+
 [appliedStereotypes~="BPMNProfile::IntermediateCatchEvent"]{
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/IntermediateEvent.svg";
 	transparency: 100;
@@ -199,11 +211,6 @@ OpaqueAction > Compartment[kind="symbol"] {
 	
 }
 
-[appliedStereotypes~="BPMNProfile::ManualTask"][name="10"]{	
-		lineColor: red;
-}
-
-
 alternateBorderColor path{
 	stroke: red;
 }
@@ -257,42 +264,6 @@ alternateBorderColor path{
 	visible: false;
 }
 
-[appliedStereotypes~="BPMNProfile::ParallelGateway"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/parallel.svg";
-	transparency: 100;
-	followSVGSymbol: true;
-	displayTag: false;
-	displayName : false;
-}
-
-[appliedStereotypes~="BPMNProfile::ExclusiveGateway"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ExclusiveGateway.svg";
-	transparency: 100;
-	followSVGSymbol: true;
-}
-
-[appliedStereotypes~="BPMNProfile::InclusiveGateway"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/InclusiveGateway.svg";
-	transparency: 100;
-	followSVGSymbol: true;
-	displayName: false;
-}
- 
-[appliedStereotypes~="BPMNProfile::StartEvent"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/StartEvent.svg";
-	transparency: 100;
-	fillColor: white;
-	followSVGSymbol: true;
-	displayName: false;
-}
-
-[appliedStereotypes~="BPMNProfile::IntermediateCatchEvent"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/IntermediateEvent.svg";
-	transparency: 100;
-	maintainSymbolRatio: true;
-	displayName: true;
-}
-
 [appliedStereotypes~="BPMNProfile::IntermediateThrowEvent"]{
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/IntermediateEvent.svg";
 	transparency: 100;
@@ -304,28 +275,6 @@ alternateBorderColor path{
 	visible: true;
 }
 
-
-[appliedStereotypes~="BPMNProfile::EndEvent"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/EndEvent.svg";
-	transparency: 100;
-	maintainSymbolRatio: true;
-	followSVGSymbol: true;
-	displayName: false;
-}
-
-
-[appliedStereotypes~="BPMNProfile::DataInput"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataInput.svg";
-	transparency: 100;
-	maintainSymbolRatio: true;
-}
-
-[appliedStereotypes~="BPMNProfile::DataOutput"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataOutput.svg";
-	transparency: 100;
-	maintainSymbolRatio: true;
-}
-
 [appliedStereotypes~="BPMNProfile::DataObject"]{
 	/*
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataObject.svg";
@@ -333,15 +282,6 @@ alternateBorderColor path{
 	transparency: 100;
 	maintainSymbolRatio: true;
 	
-}
-
-[appliedStereotypes~="BPMNProfile::EventBasedGateway"]{
-	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/EventBasedGateway.svg";
-	transparency: 100;
-}
-
-[appliedStereotypes~="BPMNProfile::SequenceFlow"]{
-	displayName: false;
 }
 
 [appliedStereotypes~="BPMNProfile::DataStoreReference"]{
@@ -388,7 +328,6 @@ alternateBorderColor path{
 	/*
 	 * 
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore100.svg";
-	 
 	transparency: 100;
 	displayTag: false;
 	maskLabel: stereotypeName;
