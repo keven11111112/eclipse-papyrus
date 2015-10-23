@@ -344,13 +344,6 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="AbstractHeaderAxisConfiguration" abstract="true"
         eSuperTypes="#//nattablestyle/StyledElement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="oneObjectLabelConfigurationTypes oneFeatureLabelConfigurationTypes"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="oneObjectLabelConfigurationTypes" value="ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::ObjectLabelProviderConfiguration))->size() &lt;= 1"/>
-        <details key="oneFeatureLabelConfigurationTypes" value="ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::FeatureLabelProviderConfiguration))->size() &lt;= 1"/>
-      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Abstract Class for the HeaderAxisConfiguration. This class provides : &#xD;&#xA;&lt;ul>&lt;li>informations on the appearance of the header&lt;/li>&#xD;&#xA;&lt;li> a list of label configuration which can be used by the header&lt;/li>&#xD;&#xA;&lt;li> a list of axisConfiguration. These axis configuration are used to provide the contents of the axis&lt;/li>&#xD;&#xA;&lt;/ul>"/>
       </eAnnotations>
@@ -459,7 +452,7 @@
         <details key="constraints" value="axisManagersIdUnique"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="axisManagersIdUnique" value="axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId &lt;> am2.axisManagerId)"/>
+        <details key="axisManagersIdUnique" value="axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | (am1&lt;>am2) and (am1.axisManagerId &lt;> am2.axisManagerId)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Defines the configuration of the axis in the TableConfiguration"/>
@@ -625,8 +618,7 @@
           <details key="documentation" value="Returns the local label configuration to use for this IAxis. This configuration&#xD;&#xA;will override the label configuration defined in the AxisManagerConfiguration."/>
         </eAnnotations>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="manager" lowerBound="1"
-          eType="#//nattableaxisconfiguration/AxisManagerRepresentation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="manager" eType="#//nattableaxisconfiguration/AxisManagerRepresentation">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="This field can't be null. Reference the axis manager providing this IAxis."/>
         </eAnnotations>
