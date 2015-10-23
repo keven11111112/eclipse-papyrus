@@ -814,8 +814,24 @@
 				type="16001">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="16002">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="17001">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="17002">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="18001">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="18002">
 			</mapping>
    </diagramMappings>
 </extension>

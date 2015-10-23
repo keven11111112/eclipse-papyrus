@@ -2799,5 +2799,17 @@
         genView="/0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"
         name="RoundedBorderNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Stereotype"
+        role="Stereotype"
+        iconPathRole="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
+        externalNodeLabels="/0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@childNodes.12/@labels.1 /0/@diagram/@childNodes.13/@labels.1"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
+        externalNodeLabels="/0/@diagram/@childNodes.13/@labels.0"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

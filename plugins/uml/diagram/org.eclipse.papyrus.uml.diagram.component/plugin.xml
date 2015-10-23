@@ -952,6 +952,14 @@
 				type="6025">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="5006">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5007">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6033">
 			</mapping>
@@ -962,6 +970,10 @@
 			<mapping
 				humanReadableType="Floating Label"
 				type="6027">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="0">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
@@ -978,6 +990,10 @@
 			<mapping
 				humanReadableType="Floating Label"
 				type="6031">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="5005">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"

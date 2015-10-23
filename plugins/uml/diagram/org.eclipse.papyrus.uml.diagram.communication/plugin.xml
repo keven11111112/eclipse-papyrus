@@ -699,25 +699,31 @@
 				         <context decoratorTargets="PRIMARY_VIEW"/>
 				      </decoratorProvider>
 				   </extension>
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-      <?gmfgen generated="true"?>
-	<diagramMappings diagramID="PapyrusUMLCommunicationDiagram">
-		<mapping type="PapyrusUMLCommunicationDiagram" humanReadableType="CommunicationDiagram"/>
-			
-		<mapping
-			humanReadableType="Interaction"
-			type="7001">
-		</mapping>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+   <?gmfgen generated="true"?>
+   <diagramMappings diagramID="PapyrusUMLCommunicationDiagram">
+   	<mapping type="PapyrusUMLCommunicationDiagram" humanReadableType="CommunicationDiagram"/>
+			<mapping
+				humanReadableType="Interaction"
+				type="7001">
+			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6014">
 			</mapping>
-
+			<mapping
+				humanReadableType="Floating Label"
+				type="5153">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5155">
+			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6013">
 			</mapping>
-	</diagramMappings>
+   </diagramMappings>
 </extension>
 
 

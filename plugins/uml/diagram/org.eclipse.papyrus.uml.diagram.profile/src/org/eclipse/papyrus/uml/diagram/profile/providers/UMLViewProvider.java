@@ -646,6 +646,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location2 = (Location) label2.getLayoutConstraint();
 		location2.setX(0);
 		location2.setY(5);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ShortCutDiagram");
 		return node;
 	}
 

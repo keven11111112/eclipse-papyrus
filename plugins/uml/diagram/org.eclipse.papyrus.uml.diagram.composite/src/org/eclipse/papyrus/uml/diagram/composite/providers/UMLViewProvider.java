@@ -1232,6 +1232,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5152 = (Location) label5152.getLayoutConstraint();
 		location5152.setX(25);
 		location5152.setY(-10);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "DurationObservation");
 		return node;
 	}
 
@@ -1259,6 +1260,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5143 = (Location) label5143.getLayoutConstraint();
 		location5143.setX(25);
 		location5143.setY(-10);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "TimeObservation");
 		return node;
 	}
 
@@ -1740,6 +1742,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6029 = (Location) label6029.getLayoutConstraint();
 		location6029.setX(25);
 		location6029.setY(-10);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Port");
 		return node;
 	}
 
@@ -1766,6 +1769,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6034 = (Location) label6034.getLayoutConstraint();
 		location6034.setX(25);
 		location6034.setY(-10);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Parameter");
 		return node;
 	}
 

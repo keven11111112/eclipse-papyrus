@@ -368,6 +368,7 @@ import xpt.editor.VisualIDRegistry
 				org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(«'node'», «'prefStore'», "«elementType.displayName»");
 			«ENDIF»
 			«««	END Papyrus Modification
+			«initLabelVisibility(it,'node', 'prefStore')»
 			return node;
 		}
 	'''

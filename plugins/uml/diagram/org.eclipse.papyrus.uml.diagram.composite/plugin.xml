@@ -1213,8 +1213,24 @@
 				type="5125">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="5125">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6029">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6033">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6033">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6034">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
@@ -1429,8 +1445,24 @@
 				type="5151">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="5151">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5152">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="5142">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="5142">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5143">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"

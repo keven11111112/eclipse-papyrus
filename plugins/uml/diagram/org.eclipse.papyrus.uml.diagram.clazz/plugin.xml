@@ -1701,8 +1701,16 @@
 				type="5155">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5156">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="5153">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5154">
 			</mapping>
    </diagramMappings>
 </extension>

@@ -969,6 +969,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5156 = (Location) label5156.getLayoutConstraint();
 		location5156.setX(25);
 		location5156.setY(-10);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "DurationObservation");
 		return node;
 	}
 
@@ -996,6 +997,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5154 = (Location) label5154.getLayoutConstraint();
 		location5154.setX(25);
 		location5154.setY(-10);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "TimeObservation");
 		return node;
 	}
 
@@ -2952,17 +2954,23 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String gradientColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_GRADIENT);
 		String gradientPolicyConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.GRADIENT_POLICY);
 
+
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
 
-		FillStyle fillStyle = (FillStyle) view.getStyle(NotationPackage.Literals.FILL_STYLE);
-		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
+
+		FillStyle fillStyle = (FillStyle) view
+				.getStyle(NotationPackage.Literals.FILL_STYLE);
+		fillStyle
+				.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
 
 		;
 		if (store.getBoolean(gradientPolicyConstant)) {
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store.getString(gradientColorConstant));
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+					store.getString(gradientColorConstant));
 			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
-			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
+			fillStyle
+					.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 	}
 }
