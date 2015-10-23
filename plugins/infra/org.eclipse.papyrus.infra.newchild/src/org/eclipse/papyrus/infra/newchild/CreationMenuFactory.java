@@ -16,12 +16,9 @@ package org.eclipse.papyrus.infra.newchild;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
@@ -30,29 +27,22 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.filters.Filter;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreateRelationshipMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
@@ -180,53 +170,10 @@ public class CreationMenuFactory {
 	 */
 	protected boolean constructMenu(EObject selectedObject, Menu menu, CreationMenu currentCreationMenu, Map<?, ?> adviceCache) {
 		// find the destination owner
-		GetEditContextRequest editContextRequest = new GetEditContextRequest(editingDomain, buildRequest(null, selectedObject, currentCreationMenu, adviceCache), selectedObject);
-
-		editContextRequest.setParameter(IRequestCacheEntries.Cache_Maps, adviceCache);
-		editContextRequest.setEditContext(selectedObject);
-		try {
-			editContextRequest.setClientContext(TypeContext.getContext());
-		} catch (ServiceException e) {
-			Activator.log.error(e);
+		final EObject target = ElementEditServiceUtils.getTargetFromContext(editingDomain, selectedObject,
+				buildRequest(null, selectedObject, currentCreationMenu, adviceCache));
+		if (target == null) {
 			return false;
-		}
-
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedObject);
-		if (provider == null) {
-			return false;
-		}
-
-		EObject target = selectedObject;
-		Object result = null;
-		final ICommand getEditContextCommand = provider.getEditCommand(editContextRequest);
-		if (getEditContextCommand != null) {
-			IStatus status = null;
-			try {
-				// this command could run in an unprotected transaction, it is not supposed to modify the model
-				InternalTransactionalEditingDomain domain = (InternalTransactionalEditingDomain) editingDomain;
-				Map<String, Object> options = new HashMap<String, Object>();
-				options.put(Transaction.OPTION_NO_NOTIFICATIONS, true);
-				options.put(Transaction.OPTION_NO_VALIDATION, true);
-				options.put(Transaction.OPTION_NO_TRIGGERS, true);
-				Transaction transaction = domain.startTransaction(false, options);
-				try {
-					status = getEditContextCommand.execute(null, null);
-				} finally {
-					transaction.commit();
-				}
-			} catch (InterruptedException e) {
-				Activator.log.error(e);
-			} catch (ExecutionException e) {
-				Activator.log.error(e);
-			} catch (RollbackException e) {
-				Activator.log.error(e);
-			}
-			if (!(status == null || !status.isOK())) {
-				result = getEditContextCommand.getCommandResult().getReturnValue();
-			}
-			if (result instanceof EObject) {
-				target = (EObject) result;
-			}
 		}
 
 		// find the feature between children and owner
@@ -273,7 +220,7 @@ public class CreationMenuFactory {
 	}
 
 	/**
-	 * display an icon from a specified url or from Element type
+	 * display an icon from a specified URL or from Element type
 	 *
 	 * @param currentCreationMenu
 	 * @param item
