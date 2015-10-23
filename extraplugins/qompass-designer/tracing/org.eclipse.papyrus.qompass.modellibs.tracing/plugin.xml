@@ -30,7 +30,7 @@
       </client>
 	</extension>
 	<extension
-         point="org.eclipse.papyrus.infra.services.tracepoints.traceMechanism">
+         point="org.eclipse.papyrus.infra.services.tracebreakpoints.traceMechanism">
       <client
             class="org.eclipse.papyrus.qompass.modellibs.tracing.QompassTraceMechanism"
             traceMechID="org.eclipse.papyrus.qompass.modellibs.tracing.qompass">

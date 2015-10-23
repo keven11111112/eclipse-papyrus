@@ -16,11 +16,11 @@ import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.RuleApplication;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.infra.services.tracepoints.ITraceMechanism;
-import org.eclipse.papyrus.infra.services.tracepoints.MarkerUtils;
-import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAOperation;
-import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.ITraceMechanism;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.MarkerUtils;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TraceActionEnums;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TracepointConstants;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
@@ -89,7 +89,7 @@ public class QompassTraceMechanism implements ITraceMechanism {
 				Class clazz = containerRule.getBase_Class();
 
 				if (clazz.getName().equals(id)) {
-					if (traceOption == TAOperation.OnlyCall.ordinal()) {
+					if (traceOption == TraceActionEnums.TAOperation.OnlyCall.ordinal()) {
 						// yes => what do we then (i.e. how is mapping done??)
 					}
 					RuleApplication ruleApplication = StereotypeUtil.applyApp(clazzContext, RuleApplication.class);
@@ -142,7 +142,7 @@ public class QompassTraceMechanism implements ITraceMechanism {
 		if (eObj == null) {
 			// load rules of registered Tracing model library
 			try {
-				ModelSet ms = ServiceUtilsForActionHandlers.getInstance().getModelSet();
+				ModelSet ms = ServiceUtilsForEObject.getInstance().getModelSet(eObj);
 				Resource rs = ms.getResource(tracingURI, true);
 				EList<EObject> contents = rs.getContents();
 				if ((contents.size() > 0) && (contents.get(0) instanceof Package)) {

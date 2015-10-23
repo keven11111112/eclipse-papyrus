@@ -7,8 +7,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.papyrus.infra.services.tracepoints.MarkerUtils;
-import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.MarkerUtils;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TracepointConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.uml2.uml.Element;
 

@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.views.tracepoints.views;
 
-
 import java.util.Map;
 
 import javax.swing.text.View;
@@ -54,11 +53,11 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
-import org.eclipse.papyrus.infra.services.tracepoints.MarkerUtils;
-import org.eclipse.papyrus.infra.services.tracepoints.TraceFunctions;
-import org.eclipse.papyrus.infra.services.tracepoints.TraceState;
-import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
-import org.eclipse.papyrus.infra.services.tracepoints.dialogs.TraceActionSelection;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.MarkerUtils;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TraceState;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TracepointConstants;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.TraceFunctions;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.dialogs.TraceActionSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;

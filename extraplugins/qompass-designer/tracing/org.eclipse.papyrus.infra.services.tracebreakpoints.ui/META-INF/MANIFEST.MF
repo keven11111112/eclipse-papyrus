@@ -25,9 +25,10 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %pluginProvider
-Export-Package:  org.eclipse.papyrus.infra.services.tracebreakpoints.ui.preferences,
+Export-Package: org.eclipse.papyrus.infra.services.tracebreakpoints.ui,
  org.eclipse.papyrus.infra.services.tracebreakpoints.ui.commands,
- org.eclipse.papyrus.infra.services.tracebreakpoints.ui.dialogs
+ org.eclipse.papyrus.infra.services.tracebreakpoints.ui.dialogs,
+ org.eclipse.papyrus.infra.services.tracebreakpoints.ui.preferences
 
 
 

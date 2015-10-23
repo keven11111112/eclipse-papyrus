@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.services.tracebreakpoints.ui;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TraceActionEnums.TraceFeature;
 import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.preferences.TPPreferenceConstants;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.State;
@@ -27,62 +28,6 @@ import org.eclipse.uml2.uml.State;
  */
 public class TraceActions {
 
-	public enum TraceScope {
-		clazz,
-		operation,
-		state,
-		activity,
-	};
-
-	/**
-	 * Options for tracing a class. Note that some options need additional information, e.g. "all operations"
-	 * needs additional information how operations are traced
-	 */
-	public enum TAClass {
-		Creation,
-		Destruction,
-		AllOperations,
-		AllPorts,
-		AllStates
-		// +(?) all properties/all operations
-		// +(all ports?)
-		// +all state changes? (hierarchical propagation?)
-
-	};
-
-	/**
-	 * Different ways to trace operations: put only the call itself or the values of the parameters into
-	 * a trace event.
-	 */
-	public enum TAOperation {
-		OnlyCall,
-		ParameterValues, // here exclusive (parameter values and OnlyCall may not be selected at the same time)
-	};
-
-	/**
-	 * Not used for the moment
-	 */
-	public enum TAAttribute {
-		PropertyRead,
-		PropertyWrite; // write old and new value
-	};
-
-	/**
-	 * Options to trace state
-	 */
-	public enum TAState {
-		StateEnter, // add incoming transition to trace?
-		StateLeave, // add outgoing transition to trace?
-		Transition // nothing (?) (triggers are known? - no, could be one out of many triggers)
-	};
-
-	/**
-	 * Not used for the moment
-	 */
-	public enum TAActivity {
-		activity // (i.e. call operation action) explicit choice of (named attribute?)
-	};
-
 	public static String[][] getStringFields(Enum<?>[] enumValues) {
 		int i = 0;
 		String[][] taOptions = new String[enumValues.length][2];
@@ -93,13 +38,6 @@ public class TraceActions {
 		}
 		return taOptions;
 	}
-
-	public enum TraceFeature {
-		Class,
-		Port,
-		State,
-		Operation
-	};
 
 	/**
 	 * Obtain the definition of a trace option in case of traces on classes

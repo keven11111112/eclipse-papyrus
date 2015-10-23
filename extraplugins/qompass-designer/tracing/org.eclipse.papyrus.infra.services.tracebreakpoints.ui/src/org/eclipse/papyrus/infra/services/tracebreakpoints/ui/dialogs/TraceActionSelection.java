@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.services.tracebreakpoints.ui.dialogs;
 
 import java.util.Arrays;
+
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -31,13 +32,13 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.services.tracebreakpoints.ITraceMechanism;
 import org.eclipse.papyrus.infra.services.tracebreakpoints.Messages;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TraceActionEnums.TAClass;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TraceActionEnums.TAOperation;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TraceActionEnums.TAState;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TraceActionEnums.TraceFeature;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TracepointConstants;
 import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.TraceActions;
 import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.TraceMechanism;
-import org.eclipse.papyrus.infra.services.tracebreakpoints.TracepointConstants;
-import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.TraceActions.TAClass;
-import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.TraceActions.TAOperation;
-import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.TraceActions.TAState;
-import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.TraceActions.TraceFeature;
 import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.preferences.BinaryEncodedMChoiceFieldEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;

@@ -4,9 +4,6 @@
 <plugin>
 	<extension-point id="traceMechanism" name="traceMechanism" schema="schema/traceMechanism.exsd"/>
 	
-	
-	
-	
 	<extension
 		id="org.eclipse.papyrus.tporbpmarker"
 		name="tracepoint or breakpoint marker"
@@ -42,6 +39,5 @@
            value="true">
 		</persistent>
 	</extension>
-	
 	
 </plugin>

@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.services.tracebreakpoints.ITraceMechanism;
-import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.TraceActions.TraceFeature;
+import org.eclipse.papyrus.infra.services.tracebreakpoints.TraceActionEnums.TraceFeature;
 import org.eclipse.papyrus.infra.services.tracebreakpoints.ui.preferences.TPPreferenceConstants;
 
 
