@@ -41,12 +41,15 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalAction
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeSelectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowInterruptibleIconEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreSelectionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionInputEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DestroyObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerIconEditPart;
@@ -215,8 +218,12 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomValueSpecificationActionEditPart(view);
 			case CentralBufferNodeEditPart.VISUAL_ID:
 				return new CustomCentralBufferNodeEditPart(view);
+			case CentralBufferNodeSelectionEditPart.VISUAL_ID:
+				return new CustomCentralBufferNodeSelectionEditPart(view);
 			case DataStoreNodeEditPart.VISUAL_ID:
 				return new CustomDataStoreNodeEditPart(view);
+			case DataStoreSelectionEditPart.VISUAL_ID:
+				return new CustomDataStoreSelectionEditPart(view);
 			case ActivityParameterNodeEditPart.VISUAL_ID:
 				return new CustomActivityParameterNodeEditPart(view);
 			case ActivityEditPart.VISUAL_ID:
@@ -229,6 +236,8 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomActivityFinalNodeEditPart(view);
 			case DecisionNodeEditPart.VISUAL_ID:
 				return new CustomDecisionNodeEditPart(view);
+			case DecisionInputEditPart.VISUAL_ID:
+				return new CustomDecisionInputEditPart(view);
 			case InitialNodeEditPart.VISUAL_ID:
 				return new CustomInitialNodeEditPart(view);
 			case FlowFinalNodeEditPart.VISUAL_ID:

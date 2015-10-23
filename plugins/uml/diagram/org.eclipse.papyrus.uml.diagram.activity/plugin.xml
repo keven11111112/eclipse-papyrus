@@ -3000,40 +3000,128 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				type="6034">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5080">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6033">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5081">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6035">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5082">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6028">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5083">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5084">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5085">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5086">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6029">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5087">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5088">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5089">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5090">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6020">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5091">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5092">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5093">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5094">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5095">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5096">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5097">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6036">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5098">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6037">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5099">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6038">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5100">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6039">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5101">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
@@ -3044,16 +3132,76 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				type="6027">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5102">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5103">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5104">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5105">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5106">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5107">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6032">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5108">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5109">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5110">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5111">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5112">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5113">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5115">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6040">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5114">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6026">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5125">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
@@ -3064,12 +3212,28 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				type="6025">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5145">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6024">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5147">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="5129">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6023">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5150">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
@@ -3082,6 +3246,10 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6021">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5165">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
