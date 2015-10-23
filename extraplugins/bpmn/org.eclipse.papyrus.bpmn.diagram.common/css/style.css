@@ -67,7 +67,7 @@ OpaqueAction > Compartment[kind="symbol"] {
 [appliedStereotypes~="BPMNProfile::Task"]{
 	fillColor: white;	
 	displayTag: false;
-} 
+}
  
 [appliedStereotypes~="BPMNProfile::ManualTask"]{
 	fillColor: white;	
