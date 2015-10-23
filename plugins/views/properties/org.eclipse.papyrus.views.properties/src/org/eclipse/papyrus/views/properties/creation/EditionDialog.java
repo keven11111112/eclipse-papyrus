@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.creation;
 
+import java.io.IOException;
 import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,14 +25,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.views.properties.Activator;
+import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.Section;
 import org.eclipse.papyrus.views.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.messages.Messages;
+import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.runtime.DefaultDisplayEngine;
 import org.eclipse.papyrus.views.properties.runtime.DisplayEngine;
 import org.eclipse.papyrus.views.properties.xwt.XWTSection;
@@ -135,6 +139,63 @@ public class EditionDialog extends SelectionDialog {
 	 */
 	public void setViews(Set<View> views) {
 		this.views = views;
+	}
+
+	/**
+	 * Provide information about context and view, as well as the element for which the dialog
+	 * should be provided. It will call setViews in turn.
+	 *
+	 * @param contextName The name of the context
+	 * @param contextURI The URI of the context, tries to load context, if it has not been done yet
+	 * @param viewName The name of the view
+	 */
+	public void setViewData(String contextName, String viewName) {
+		setViewData(contextName, null, viewName);
+	}
+
+	/**
+	 * Provide information about context and view, as well as the element for which the dialog
+	 * should be provided.
+	 *
+	 * @param contextName The name of the context
+ 	 * @param contextURI The URI of the context. If the context is not available yet, the function uses this URI to load it.
+ 	 * @param viewName The name of the view
+	 */
+	public void setViewData(String contextName, URI contextURI, String viewName) {
+
+		Context context = ConfigurationManager.getInstance().getContext(contextName);
+		if ((context == null) && (contextURI != null)) {
+			// might not have been loaded yet
+			loadFromURI(contextURI);
+			context = ConfigurationManager.getInstance().getContext(contextName);
+		}
+
+		Set<View> views = new HashSet<View>();
+
+		if (context != null) {
+			for (View view : context.getViews()) {
+				if (view.getName().equals(viewName)) {
+					views.add(view);
+					break;
+				}
+			}
+		}
+		if (views.isEmpty()) {
+			throw new RuntimeException (String.format(Messages.EditionDialog_CanNotFindview, viewName));
+		}
+		setViews(views);
+	}
+
+	/**
+	 * Load the passed context into the configuration manager.
+	 */
+	protected void loadFromURI(URI uri) {
+		try {
+			ConfigurationManager.getInstance().addContext(uri);
+		}
+		catch (IOException io) {
+			Activator.log.error(io);
+		}
 	}
 
 	private void display() {
