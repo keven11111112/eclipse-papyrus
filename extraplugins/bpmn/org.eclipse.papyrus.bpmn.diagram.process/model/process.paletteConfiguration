@@ -42,17 +42,6 @@
       description="Drawer Configuration for BPMN Process Diagram Tasks">
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
-        id="bpmn.task.tool"
-        label="Task"
-        description="Task (Opaque Action)">
-      <icon
-          pluginID="org.eclipse.papyrus.bpmn"
-          iconPath="/icons/Task.png"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.bpmn.process.Task_Action_3007"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
         id="bpmn.manualTask.tool"
         label="Manual Task"
         description="Manual Task (Opaque Action)">
