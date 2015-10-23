@@ -9,6 +9,13 @@
        </elementTypeSet>
     </extension> 
     <extension
+          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+       <elementTypeSet
+             id="org.eclipse.papyrus.bpmn.process.elementTypeSetCustom"
+             path="model/processCustom.elementtypesconfigurations">
+       </elementTypeSet>
+    </extension> 
+    <extension
          point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="org.eclipse.papyrus.bpmn.process.palette"
