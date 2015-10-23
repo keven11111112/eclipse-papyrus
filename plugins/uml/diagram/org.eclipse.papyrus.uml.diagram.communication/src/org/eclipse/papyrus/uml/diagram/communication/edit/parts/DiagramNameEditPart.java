@@ -123,6 +123,7 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -228,8 +229,7 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure
-			figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -336,14 +336,13 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid =
-								(IParserEditStatus) getEditingDomain().runExclusive(
-										new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+								new RunnableWithResult.Impl<java.lang.Object>() {
 
-											public void run() {
-												setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
-											}
-										});
+							public void run() {
+								setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+							}
+						});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
@@ -468,8 +467,7 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
-				}
-				else if (configuration instanceof IAdvancedEditorConfiguration) {
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
 					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()),
@@ -514,8 +512,7 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						}
-						else {
+						} else {
 							performDirectEdit();
 						}
 					}
@@ -548,15 +545,8 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 			maskLabelPolicy = getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 		}
 		if (maskLabelPolicy == null) {
-			View view = (View) getModel();
-			if (view.isVisible()) {
-				setLabelTextHelper(getFigure(), getLabelText());
-				setLabelIconHelper(getFigure(), getLabelIcon());
-			}
-			else {
-				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
-				setLabelIconHelper(getFigure(), null);
-			}
+			setLabelTextHelper(getFigure(), getLabelText());
+			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
@@ -572,17 +562,15 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if (resolveSemanticElement() instanceof Feature) {
 			if (((Feature) resolveSemanticElement()).isStatic()) {
 				((WrappingLabel) getFigure()).setTextUnderline(true);
-			}
-			else {
+			} else {
 				((WrappingLabel) getFigure()).setTextUnderline(false);
 			}
 		}
@@ -592,9 +580,8 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -605,9 +592,8 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
 			FontData fontData = new FontData(
 					style.getFontName(), style.getFontHeight(),
@@ -808,8 +794,7 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 				refreshLabel();
 			}
 			if (getParser() instanceof ISemanticParser) {
-				ISemanticParser modelParser =
-						(ISemanticParser) getParser();
+				ISemanticParser modelParser = (ISemanticParser) getParser();
 				if (modelParser.areSemanticElementsAffected(null, event)) {
 					removeSemanticListeners();
 					if (resolveSemanticElement() != null) {
