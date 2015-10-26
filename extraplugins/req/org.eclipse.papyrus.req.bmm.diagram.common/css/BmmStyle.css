@@ -24,6 +24,8 @@ Artifact> Label[kind="FloatingLabel"] {
 
 Dependency {
 	/*routing:tree;*/
+	routing:Rectilinear;
+	roundedBendpointsRadius:20;
 	/*avoidObstructions:true;*/
 	displayStereotypes:true;
 	displayName:false;
