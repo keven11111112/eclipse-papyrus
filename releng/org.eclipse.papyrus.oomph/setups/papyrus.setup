@@ -1775,6 +1775,7 @@
       <targlet name="Papyrus Test Generation Framework Dependencies">
         <requirement name="org.eclipse.upr.utp"/>
         <requirement name="org.eclipse.upr.utp.papyrus"/>
+        <requirement name="org.eclipse.gmf.tooling.codegen.xtend2.feature.group"/>
         <repositoryList>
           <repository url="${base.downloads.url}/upr/nightly/standardized/update/"/>
         </repositoryList>
