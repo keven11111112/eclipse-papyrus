@@ -380,7 +380,6 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		assertTrue(EDIT + TEST_THE_EXECUTION, label.getText().contains("1") && !label.getText().contains(SEP));
 	}
 
-	@FailingTest
 	@Test
 	// link to the top and bottom of execution specification on the single lifeline
 	public void testLinkingExecutionOnSameLifeline() {
