@@ -58,6 +58,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -286,6 +287,14 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new CustomDurationConstraintFigure();
+	}
+
+	@Override
+	protected IFigure setupContentPane(IFigure nodeShape) {
+		nodeShape = super.setupContentPane(nodeShape);
+		DefaultSizeNodeFigure parent = (DefaultSizeNodeFigure) nodeShape.getParent();
+		nodeShape.setPreferredSize(parent.getDefaultSize());
+		return nodeShape; // use nodeShape itself as contentPane
 	}
 
 	/**
