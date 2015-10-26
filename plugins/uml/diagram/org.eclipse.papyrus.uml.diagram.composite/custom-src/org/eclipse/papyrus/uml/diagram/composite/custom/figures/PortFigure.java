@@ -63,10 +63,9 @@ public class PortFigure extends AffixedNamedElementFigure {
 		behavior.setShadow(getShadow());
 		behavior.setLineStyle(getLineStyle());
 		behavior.setLineWidth(getLineWidth());
-		behavior.setGradientData(getGradientColor1(), getGradientColor2(), getGradientStyle());
-		behavior.setIsUsingGradient(isUsingGradient());
+		behavior.setIsUsingGradient(false);
 		behavior.setForegroundColor(getForegroundColor());
-		behavior.setBackgroundColor(getBackgroundColor());
+		behavior.setBackgroundColor(getForegroundColor());
 		return behavior;
 	}
 
@@ -75,6 +74,7 @@ public class PortFigure extends AffixedNamedElementFigure {
 		line.setForegroundColor(getForegroundColor());
 		line.setBackgroundColor(getBackgroundColor());
 		line.setLineWidth(getLineWidth());
+		line.setLineStyle(getLineStyle());
 		return line;
 	}
 
@@ -129,6 +129,9 @@ public class PortFigure extends AffixedNamedElementFigure {
 		if (myBehavior != null) {
 			myBehavior.setLineStyle(s);
 		}
+		if (myLineDecor != null) {
+			myLineDecor.setLineStyle(s);
+		}
 	}
 
 	@Override
@@ -143,40 +146,14 @@ public class PortFigure extends AffixedNamedElementFigure {
 	}
 
 	@Override
-	public void setGradientData(int gradientColor1, int gradientColor2, int gradientStyle) {
-		super.setGradientData(gradientColor1, gradientColor2, gradientStyle);
-		if (myBehavior != null) {
-			myBehavior.setGradientData(gradientColor1, gradientColor2, gradientStyle);
-		}
-	}
-
-	@Override
-	public void setIsUsingGradient(boolean b) {
-		super.setIsUsingGradient(b);
-		if (myBehavior != null) {
-			myBehavior.setIsUsingGradient(b);
-		}
-	}
-
-	@Override
 	public void setForegroundColor(Color fg) {
 		super.setForegroundColor(fg);
 		if (myBehavior != null) {
 			myBehavior.setForegroundColor(fg);
+			myBehavior.setBackgroundColor(fg);
 		}
 		if (myLineDecor != null) {
 			myLineDecor.setForegroundColor(fg);
-		}
-	}
-
-	@Override
-	public void setBackgroundColor(Color bg) {
-		super.setBackgroundColor(bg);
-		if (myBehavior != null) {
-			myBehavior.setBackgroundColor(bg);
-		}
-		if (myLineDecor != null) {
-			myLineDecor.setBackgroundColor(bg);
 		}
 	}
 }

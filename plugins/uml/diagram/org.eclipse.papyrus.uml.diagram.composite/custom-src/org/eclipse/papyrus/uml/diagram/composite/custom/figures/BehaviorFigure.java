@@ -14,15 +14,18 @@
 package org.eclipse.papyrus.uml.diagram.composite.custom.figures;
 
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 
 public class BehaviorFigure extends RoundedCompartmentFigure {
 
-	public static final int BEHAVIOR_OFFSET = 8;
+	private static final int HEIGHT = 8;
+
+	private static final int WIDTH = 14;
+
+	public static final int BEHAVIOR_OFFSET = 6;
 
 	public BehaviorFigure(PortFigure parent) {
-		setCornerDimensions(new Dimension(5, 5));
+		setOval(true);
 	}
 
 	public void setPosition(int parentPosition) {
@@ -41,10 +44,10 @@ public class BehaviorFigure extends RoundedCompartmentFigure {
 	}
 
 	private void doVerticalFigure() {
-		this.setSize(10, 16);
+		this.setSize(HEIGHT, WIDTH);
 	}
 
 	private void doHorizontalFigure() {
-		this.setSize(16, 10);
+		this.setSize(WIDTH, HEIGHT);
 	}
 }

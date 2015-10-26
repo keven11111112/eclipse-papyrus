@@ -18,6 +18,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.BehaviorFigure;
+import org.eclipse.papyrus.uml.diagram.composite.custom.figures.LineDecorator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.PortFigure;
 
 public class LineDecoratorLocator extends BasePortChildLocator {
@@ -29,34 +30,48 @@ public class LineDecoratorLocator extends BasePortChildLocator {
 	@Override
 	public void relocate(IFigure target) {
 		Rectangle portBounds = myPort.getBounds();
-		
+
+		// Rectangle constructor add 1 to width and height
+		int lengthAndWidthCorrection = 1;
+
 		Point start = portBounds.getCenter();
 		Point end = new Point();
-		
+
+		LineDecorator ld = (LineDecorator)target;
+		int lineWidth = ld.getLineWidth();
 		switch (getPortSide()) {
 		case PositionConstants.WEST:
-			start.x = start.x + portBounds.width / 2;
+			start.x = start.x + portBounds.width / 2 - 1;
 			end.x = start.x + BehaviorFigure.BEHAVIOR_OFFSET;
-			end.y = start.y;
+			start.y = start.y  - lineWidth/2 - lengthAndWidthCorrection;
+			end.y = start.y + lineWidth;
+			ld.setHorizontal(true);
 			break;
 		case PositionConstants.EAST:
-			start.x = start.x - portBounds.width / 2;
+			start.x = start.x - portBounds.width / 2 - 1;
 			end.x = start.x - BehaviorFigure.BEHAVIOR_OFFSET;
-			end.y = start.y;
+			start.y = start.y  - lineWidth/2 - lengthAndWidthCorrection;
+			end.y = start.y + lineWidth;
+			ld.setHorizontal(true);
 			break;
 		case PositionConstants.SOUTH:
-			start.y = start.y - portBounds.height / 2;
+			start.y = start.y - portBounds.height / 2 - 1;
 			end.y = start.y - BehaviorFigure.BEHAVIOR_OFFSET;
-			end.x = start.x;
+			start.x = start.x - lineWidth/2 - lengthAndWidthCorrection;
+			end.x = start.x + lineWidth;
+			ld.setHorizontal(false);
 			break;
 		case PositionConstants.NORTH:
-			start.y = start.y + portBounds.width / 2;
+			start.y = start.y + portBounds.width / 2 - 1;
 			end.y = start.y + BehaviorFigure.BEHAVIOR_OFFSET;
-			end.x = start.x;
+			start.x = start.x - lineWidth/2 - lengthAndWidthCorrection;
+			end.x = start.x + lineWidth;
+			ld.setHorizontal(false);
 			break;
 		default:
 			break;
 		}
+
 		target.setBounds(new Rectangle(start, end));
 	}
 }
