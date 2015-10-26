@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  */
@@ -135,7 +135,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SyncMappingPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -146,10 +146,12 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * @generated
 	 */
 	public static SyncMappingPackage init() {
-		if (isInited) return (SyncMappingPackage)EPackage.Registry.INSTANCE.getEPackage(SyncMappingPackage.eNS_URI);
+		if (isInited) {
+			return (SyncMappingPackage) EPackage.Registry.INSTANCE.getEPackage(SyncMappingPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SyncMappingPackageImpl theSyncMappingPackage = (SyncMappingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SyncMappingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SyncMappingPackageImpl());
+		SyncMappingPackageImpl theSyncMappingPackage = (SyncMappingPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SyncMappingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SyncMappingPackageImpl());
 
 		isInited = true;
 
@@ -162,7 +164,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 		// Mark meta-data to indicate it can't be changed
 		theSyncMappingPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SyncMappingPackage.eNS_URI, theSyncMappingPackage);
 		return theSyncMappingPackage;
@@ -173,6 +175,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMappingInstance() {
 		return mappingInstanceEClass;
 	}
@@ -182,8 +185,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMappingInstance_Type() {
-		return (EAttribute)mappingInstanceEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) mappingInstanceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -191,8 +195,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMappingInstance_Left() {
-		return (EAttribute)mappingInstanceEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) mappingInstanceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -200,8 +205,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMappingInstance_Right() {
-		return (EAttribute)mappingInstanceEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) mappingInstanceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -209,8 +215,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMappingInstance_Consequent() {
-		return (EReference)mappingInstanceEClass.getEStructuralFeatures().get(3);
+		return (EReference) mappingInstanceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -218,8 +225,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMappingInstance_Tracker() {
-		return (EAttribute)mappingInstanceEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) mappingInstanceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -227,6 +235,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIMappingInstance() {
 		return iMappingInstanceEClass;
 	}
@@ -236,6 +245,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInternalInstance() {
 		return internalInstanceEClass;
 	}
@@ -245,6 +255,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInternalEObject() {
 		return internalEObjectEClass;
 	}
@@ -254,6 +265,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMappingModel() {
 		return mappingModelEClass;
 	}
@@ -263,8 +275,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappingModel_Mapping() {
-		return (EReference)mappingModelEClass.getEStructuralFeatures().get(0);
+	@Override
+	public EReference getMappingModel_Instance() {
+		return (EReference) mappingModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -272,6 +285,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getOne() {
 		return oneEDataType;
 	}
@@ -281,6 +295,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getMapping() {
 		return mappingEDataType;
 	}
@@ -290,6 +305,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getObserverTracker() {
 		return observerTrackerEDataType;
 	}
@@ -299,6 +315,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getIterator() {
 		return iteratorEDataType;
 	}
@@ -308,8 +325,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SyncMappingFactory getSyncMappingFactory() {
-		return (SyncMappingFactory)getEFactoryInstance();
+		return (SyncMappingFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -327,7 +345,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -345,7 +365,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 		internalEObjectEClass = createEClass(INTERNAL_EOBJECT);
 
 		mappingModelEClass = createEClass(MAPPING_MODEL);
-		createEReference(mappingModelEClass, MAPPING_MODEL__MAPPING);
+		createEReference(mappingModelEClass, MAPPING_MODEL__INSTANCE);
 
 		// Create data types
 		oneEDataType = createEDataType(ONE);
@@ -369,7 +389,9 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package
@@ -459,7 +481,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
-		initEReference(getMappingModel_Mapping(), g1, null, "mapping", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMappingModel_Instance(), g1, null, "instance", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize data types
 		initEDataType(oneEDataType, IOne.class, "One", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  */
@@ -34,10 +34,10 @@ import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
  * The following operations are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#addConsequent(org.eclipse.papyrus.aof.sync.IMapping.Instance) <em>Add Consequent</em>}</li>
- * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#destroy() <em>Destroy</em>}</li>
- * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#iterator() <em>Iterator</em>}</li>
- * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#eBasicSetContainer(org.eclipse.emf.ecore.InternalEObject) <em>EBasic Set Container</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#addConsequent(org.eclipse.papyrus.aof.sync.IMapping.Instance) <em>Add Consequent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#destroy() <em>Destroy</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#iterator() <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#eBasicSetContainer(org.eclipse.emf.ecore.InternalEObject) <em>EBasic Set Container</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,7 +46,6 @@ public class MappingInstanceOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MappingInstanceOperations() {
@@ -56,7 +55,7 @@ public class MappingInstanceOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	public static <F, T> void addConsequent(MappingInstance<F, T> mappingInstance, Instance<?, ?> consequent) {
@@ -66,7 +65,7 @@ public class MappingInstanceOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	public static <F, T> void destroy(MappingInstance<F, T> mappingInstance) {
@@ -85,7 +84,7 @@ public class MappingInstanceOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	public static <F, T> Iterator<Instance<?, ?>> iterator(MappingInstance<F, T> mappingInstance) {
@@ -95,7 +94,7 @@ public class MappingInstanceOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	public static <F, T> void eBasicSetContainer(MappingInstance<F, T> mappingInstance, InternalEObject newContainer) {

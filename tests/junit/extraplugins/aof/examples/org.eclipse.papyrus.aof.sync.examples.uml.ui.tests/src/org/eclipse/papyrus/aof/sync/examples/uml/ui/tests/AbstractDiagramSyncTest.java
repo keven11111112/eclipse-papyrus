@@ -79,12 +79,12 @@ import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.emf.utils.TreeIterators;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.tools.util.StreamUtil;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
@@ -379,13 +379,13 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 				Object resultValue = (result == null) ? null : result.getReturnValue();
 				if (resultValue instanceof Iterable<?>) {
 					for (Object next : (Iterable<?>) resultValue) {
-						resultValue = AdapterUtils.adapt(next, EObject.class, null);
+						resultValue = PlatformHelper.getAdapter(next, EObject.class);
 						if (resultValue != null) {
 							break;
 						}
 					}
 				} else {
-					resultValue = AdapterUtils.adapt(resultValue, EObject.class, null);
+					resultValue = PlatformHelper.getAdapter(resultValue, EObject.class);
 				}
 				return resultValue;
 			}
@@ -393,7 +393,7 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 
 		T result;
 
-		EObject eObject = AdapterUtils.adapt(adapter, EObject.class, null);
+		EObject eObject = PlatformHelper.getAdapter(adapter, EObject.class);
 		if (eObject instanceof View) {
 			result = type.cast(((View) eObject).getElement());
 		} else {

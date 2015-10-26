@@ -155,7 +155,7 @@ public class CrossMetamodelMappingTest {
 			@Override
 			protected void doExecute() {
 				IMapping.Instance<Package, EPackage> instance = mapping.map(from, to);
-				mappingModel.getMappings().add(instance);
+				mappingModel.getInstances().add(instance);
 			}
 		});
 	}

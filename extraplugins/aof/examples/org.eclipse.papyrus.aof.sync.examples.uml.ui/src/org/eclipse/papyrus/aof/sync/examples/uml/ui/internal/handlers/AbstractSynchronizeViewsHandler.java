@@ -122,7 +122,7 @@ public abstract class AbstractSynchronizeViewsHandler<V extends View, E extends 
 											&& Objects.equal(view.getType(), otherView.getType())) {
 
 										// Of course the other is the same kind of edit part if it has a view of the same type
-										model.getMappings().add(mapping.map(viewType.cast(ep.getModel()), viewType.cast(other.getModel())));
+										model.getInstances().add(mapping.map(viewType.cast(ep.getModel()), viewType.cast(other.getModel())));
 									}
 								}
 							});

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  */
@@ -197,13 +197,13 @@ public interface SyncMappingPackage extends EPackage {
 	int MAPPING_MODEL = 4;
 
 	/**
-	 * The feature id for the '<em><b>Mapping</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL__MAPPING = 0;
+	int MAPPING_MODEL__INSTANCE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Mapping Model</em>' class.
@@ -364,15 +364,15 @@ public interface SyncMappingPackage extends EPackage {
 	EClass getMappingModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getMappings <em>Mapping</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getInstances <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Mapping</em>'.
-	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getMappings()
+	 * @return the meta object for the containment reference list '<em>Instance</em>'.
+	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getInstances()
 	 * @see #getMappingModel()
 	 * @generated
 	 */
-	EReference getMappingModel_Mapping();
+	EReference getMappingModel_Instance();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.papyrus.aof.core.IOne <em>One</em>}'.
@@ -531,12 +531,12 @@ public interface SyncMappingPackage extends EPackage {
 		EClass MAPPING_MODEL = eINSTANCE.getMappingModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Mapping</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Instance</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_MODEL__MAPPING = eINSTANCE.getMappingModel_Mapping();
+		EReference MAPPING_MODEL__INSTANCE = eINSTANCE.getMappingModel_Instance();
 
 		/**
 		 * The meta object literal for the '<em>One</em>' data type.

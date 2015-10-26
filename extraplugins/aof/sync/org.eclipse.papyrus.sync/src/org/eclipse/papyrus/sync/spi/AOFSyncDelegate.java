@@ -113,7 +113,7 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 
 		IMapping.Instance<F, T> result = mapping.map(source, target);
 		getMappings().add(result);
-		mappingModel.getMappings().add(result);
+		mappingModel.getInstances().add(result);
 
 		return result;
 	}
@@ -331,7 +331,7 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 	private class MappingModelAdapter extends AdapterImpl {
 		@Override
 		public void notifyChanged(Notification msg) {
-			if (!msg.isTouch() && (msg.getFeature() == SyncMappingPackage.Literals.MAPPING_MODEL__MAPPING)) {
+			if (!msg.isTouch() && (msg.getFeature() == SyncMappingPackage.Literals.MAPPING_MODEL__INSTANCE)) {
 				switch (msg.getEventType()) {
 				case Notification.ADD:
 					if (getMappings().contains(msg.getNewValue())) {

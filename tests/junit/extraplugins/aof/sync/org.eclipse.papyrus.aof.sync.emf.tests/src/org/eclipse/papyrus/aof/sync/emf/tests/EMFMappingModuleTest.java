@@ -150,7 +150,7 @@ public class EMFMappingModuleTest {
 			@Override
 			protected void doExecute() {
 				IMapping.Instance<EPackage, EPackage> instance = mapping.map(from, to);
-				mappingModel.getMappings().add(instance);
+				mappingModel.getInstances().add(instance);
 			}
 		});
 	}

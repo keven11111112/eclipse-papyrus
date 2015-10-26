@@ -28,7 +28,10 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import javax.inject.Named;
+import javax.inject.Provider;
 import javax.inject.Qualifier;
+import javax.inject.Scope;
+import javax.inject.Singleton;
 
 import org.eclipse.papyrus.aof.core.AOFFactory;
 import org.eclipse.papyrus.aof.core.IFactory;
@@ -41,7 +44,6 @@ import org.eclipse.papyrus.aof.sync.internal.GuiceUtil;
 import com.google.inject.AbstractModule;
 import com.google.inject.BindingAnnotation;
 import com.google.inject.Key;
-import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.TypeLiteral;
 import com.google.inject.binder.AnnotatedBindingBuilder;
@@ -54,6 +56,8 @@ import com.google.inject.util.Types;
  * A partial implementation (meant to be subclassed) of a Guice module for configuration
  * of mappings in a {@link MappingFactory}. It provides a few convenient services, as
  * described in the {@link #configure()} method.
+ * 
+ * @see #configure()
  */
 public class MappingModule extends AbstractModule {
 	// To support recursive corollaries
@@ -63,16 +67,26 @@ public class MappingModule extends AbstractModule {
 
 	/**
 	 * <p>
-	 * Automatically discovers and registers bindings from methods of the form
+	 * Automatically discovers and registers bindings from methods of any of the forms
 	 * </p>
 	 * <blockquote>
-	 * [{@literal @}<i>Q</i>]
+	 * [{@literal @}<i>S</i>] [{@literal @}<i>Q</i>]
 	 * public {@link Class}{@literal <}? extends <i>T</i>{@literal >} get<i>Xyz</i>Binding();
+	 * </blockquote><blockquote>
+	 * [{@literal @}<i>S</i>] [{@literal @}<i>Q</i>]
+	 * public {@link Provider}{@literal <}? extends <i>T</i>{@literal >} get<i>Xyz</i>Binding();
+	 * </blockquote><blockquote>
+	 * [{@literal @}<i>S</i>] [{@literal @}<i>Q</i>]
+	 * public {@link Constructor}{@literal <}? extends <i>T</i>{@literal >} get<i>Xyz</i>Binding();
+	 * </blockquote><blockquote>
+	 * [{@literal @}<i>Q</i>]
+	 * public <i>T</i> get<i>Xyz</i>Binding();
 	 * </blockquote>
 	 * <p>
 	 * where
 	 * </p>
 	 * <ul>
+	 * <li><i>S</i> is an optional {@linkplain Scope scope} annotation for the binding (e.g., {@link Singleton @Singleton})</li>
 	 * <li><i>Q</i> is an optional {@linkplain Qualifier qualifier} annotation for the binding (e.g., {@link Named @Named})</li>
 	 * <li><i>T</i> is the (generic) type for which the binding is to be registered</li>
 	 * <li><i>Xyz</i> is just a generic name of the binding, to distinguish it from other binding methods</li>

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  */
@@ -78,40 +78,57 @@ public class SyncMappingSwitch<T1> extends Switch<T1> {
 	@Override
 	protected T1 doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case SyncMappingPackage.MAPPING_INSTANCE: {
-				MappingInstance<?, ?> mappingInstance = (MappingInstance<?, ?>)theEObject;
-				T1 result = caseMappingInstance(mappingInstance);
-				if (result == null) result = caseInternalInstance(mappingInstance);
-				if (result == null) result = caseIMappingInstance(mappingInstance);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+		case SyncMappingPackage.MAPPING_INSTANCE: {
+			MappingInstance<?, ?> mappingInstance = (MappingInstance<?, ?>) theEObject;
+			T1 result = caseMappingInstance(mappingInstance);
+			if (result == null) {
+				result = caseInternalInstance(mappingInstance);
 			}
-			case SyncMappingPackage.IMAPPING_INSTANCE: {
-				IMapping.Instance<?, ?> iMappingInstance = (IMapping.Instance<?, ?>)theEObject;
-				T1 result = caseIMappingInstance(iMappingInstance);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = caseIMappingInstance(mappingInstance);
 			}
-			case SyncMappingPackage.INTERNAL_INSTANCE: {
-				AbstractMapping.InternalInstance<?, ?> internalInstance = (AbstractMapping.InternalInstance<?, ?>)theEObject;
-				T1 result = caseInternalInstance(internalInstance);
-				if (result == null) result = (T1)caseIMappingInstance(internalInstance);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case SyncMappingPackage.INTERNAL_EOBJECT: {
-				InternalEObject internalEObject = (InternalEObject)theEObject;
-				T1 result = caseInternalEObject(internalEObject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case SyncMappingPackage.IMAPPING_INSTANCE: {
+			IMapping.Instance<?, ?> iMappingInstance = (IMapping.Instance<?, ?>) theEObject;
+			T1 result = caseIMappingInstance(iMappingInstance);
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case SyncMappingPackage.MAPPING_MODEL: {
-				MappingModel mappingModel = (MappingModel)theEObject;
-				T1 result = caseMappingModel(mappingModel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case SyncMappingPackage.INTERNAL_INSTANCE: {
+			AbstractMapping.InternalInstance<?, ?> internalInstance = (AbstractMapping.InternalInstance<?, ?>) theEObject;
+			T1 result = caseInternalInstance(internalInstance);
+			if (result == null) {
+				result = caseIMappingInstance(internalInstance);
 			}
-			default: return defaultCase(theEObject);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case SyncMappingPackage.INTERNAL_EOBJECT: {
+			InternalEObject internalEObject = (InternalEObject) theEObject;
+			T1 result = caseInternalEObject(internalEObject);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case SyncMappingPackage.MAPPING_MODEL: {
+			MappingModel mappingModel = (MappingModel) theEObject;
+			T1 result = caseMappingModel(mappingModel);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

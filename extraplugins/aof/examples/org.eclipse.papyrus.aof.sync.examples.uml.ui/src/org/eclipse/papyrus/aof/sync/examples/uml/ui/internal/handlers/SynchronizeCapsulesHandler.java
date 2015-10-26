@@ -28,7 +28,7 @@ import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.examples.uml.internal.UMLRTMappingFactory;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.sync.ISyncMappingModel;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.Class;
@@ -48,7 +48,7 @@ public class SynchronizeCapsulesHandler extends AbstractHandler {
 		IStructuredSelection sel = (IStructuredSelection) HandlerUtil.getCurrentSelection(event);
 
 		synchronize(((List<?>) sel.toList()).stream()
-				.map(e -> AdapterUtils.adapt(e, Class.class, null))
+				.map(e -> PlatformHelper.getAdapter(e, Class.class))
 				.collect(Collectors.toList()));
 
 		return null;
@@ -73,7 +73,7 @@ public class SynchronizeCapsulesHandler extends AbstractHandler {
 				IMapping<Class, Class> mapping = new UMLRTMappingFactory(domain).getMapping(Class.class, Class.class);
 				MappingModel model = ISyncMappingModel.getInstance(modelSet).getMappingModel();
 
-				model.getMappings().add(mapping.map(from, to));
+				model.getInstances().add(mapping.map(from, to));
 			}
 		});
 	}

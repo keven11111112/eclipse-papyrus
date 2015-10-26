@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  */
@@ -143,6 +143,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IMapping<F, T> getType() {
 		return type;
 	}
@@ -152,11 +153,13 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(IMapping<F, T> newType) {
 		IMapping<F, T> oldType = type;
 		type = newType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SyncMappingPackage.MAPPING_INSTANCE__TYPE, oldType, type));
+		}
 	}
 
 	/**
@@ -164,6 +167,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IOne<F> getLeft() {
 		return left;
 	}
@@ -173,11 +177,13 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeft(IOne<F> newLeft) {
 		IOne<F> oldLeft = left;
 		left = newLeft;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SyncMappingPackage.MAPPING_INSTANCE__LEFT, oldLeft, left));
+		}
 	}
 
 	/**
@@ -185,6 +191,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IOne<T> getRight() {
 		return right;
 	}
@@ -194,11 +201,13 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRight(IOne<T> newRight) {
 		IOne<T> oldRight = right;
 		right = newRight;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SyncMappingPackage.MAPPING_INSTANCE__RIGHT, oldRight, right));
+		}
 	}
 
 	/**
@@ -206,6 +215,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Instance<?, ?>> getConsequents() {
 		if (consequents == null) {
 			consequents = new EObjectContainmentEList<Instance<?, ?>>(Instance.class, this, SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT);
@@ -218,6 +228,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ObserverTracker getTracker() {
 		return tracker;
 	}
@@ -227,11 +238,13 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTracker(ObserverTracker newTracker) {
 		ObserverTracker oldTracker = tracker;
 		tracker = newTracker;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SyncMappingPackage.MAPPING_INSTANCE__TRACKER, oldTracker, tracker));
+		}
 	}
 
 	/**
@@ -239,6 +252,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addConsequent(Instance<?, ?> consequent) {
 		MappingInstanceOperations.addConsequent(this, consequent);
 	}
@@ -248,6 +262,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void destroy() {
 		MappingInstanceOperations.destroy(this);
 	}
@@ -257,6 +272,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Iterator<Instance<?, ?>> iterator() {
 		return MappingInstanceOperations.iterator(this);
 	}
@@ -278,7 +294,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 			super.eBasicSetContainer(newContainer);
 		}
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,8 +303,8 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
-				return ((InternalEList<?>)getConsequents()).basicRemove(otherEnd, msgs);
+		case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
+			return ((InternalEList<?>) getConsequents()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -301,16 +317,16 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SyncMappingPackage.MAPPING_INSTANCE__TYPE:
-				return getType();
-			case SyncMappingPackage.MAPPING_INSTANCE__LEFT:
-				return getLeft();
-			case SyncMappingPackage.MAPPING_INSTANCE__RIGHT:
-				return getRight();
-			case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
-				return getConsequents();
-			case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
-				return getTracker();
+		case SyncMappingPackage.MAPPING_INSTANCE__TYPE:
+			return getType();
+		case SyncMappingPackage.MAPPING_INSTANCE__LEFT:
+			return getLeft();
+		case SyncMappingPackage.MAPPING_INSTANCE__RIGHT:
+			return getRight();
+		case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
+			return getConsequents();
+		case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
+			return getTracker();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -324,22 +340,22 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SyncMappingPackage.MAPPING_INSTANCE__TYPE:
-				setType((IMapping<F, T>)newValue);
-				return;
-			case SyncMappingPackage.MAPPING_INSTANCE__LEFT:
-				setLeft((IOne<F>)newValue);
-				return;
-			case SyncMappingPackage.MAPPING_INSTANCE__RIGHT:
-				setRight((IOne<T>)newValue);
-				return;
-			case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
-				getConsequents().clear();
-				getConsequents().addAll((Collection<? extends Instance<?, ?>>)newValue);
-				return;
-			case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
-				setTracker((ObserverTracker)newValue);
-				return;
+		case SyncMappingPackage.MAPPING_INSTANCE__TYPE:
+			setType((IMapping<F, T>) newValue);
+			return;
+		case SyncMappingPackage.MAPPING_INSTANCE__LEFT:
+			setLeft((IOne<F>) newValue);
+			return;
+		case SyncMappingPackage.MAPPING_INSTANCE__RIGHT:
+			setRight((IOne<T>) newValue);
+			return;
+		case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
+			getConsequents().clear();
+			getConsequents().addAll((Collection<? extends Instance<?, ?>>) newValue);
+			return;
+		case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
+			setTracker((ObserverTracker) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -352,21 +368,21 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SyncMappingPackage.MAPPING_INSTANCE__TYPE:
-				setType((IMapping<F, T>)null);
-				return;
-			case SyncMappingPackage.MAPPING_INSTANCE__LEFT:
-				setLeft((IOne<F>)null);
-				return;
-			case SyncMappingPackage.MAPPING_INSTANCE__RIGHT:
-				setRight((IOne<T>)null);
-				return;
-			case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
-				getConsequents().clear();
-				return;
-			case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
-				setTracker(TRACKER_EDEFAULT);
-				return;
+		case SyncMappingPackage.MAPPING_INSTANCE__TYPE:
+			setType((IMapping<F, T>) null);
+			return;
+		case SyncMappingPackage.MAPPING_INSTANCE__LEFT:
+			setLeft((IOne<F>) null);
+			return;
+		case SyncMappingPackage.MAPPING_INSTANCE__RIGHT:
+			setRight((IOne<T>) null);
+			return;
+		case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
+			getConsequents().clear();
+			return;
+		case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
+			setTracker(TRACKER_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -379,16 +395,16 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SyncMappingPackage.MAPPING_INSTANCE__TYPE:
-				return type != null;
-			case SyncMappingPackage.MAPPING_INSTANCE__LEFT:
-				return left != null;
-			case SyncMappingPackage.MAPPING_INSTANCE__RIGHT:
-				return right != null;
-			case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
-				return consequents != null && !consequents.isEmpty();
-			case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
-				return TRACKER_EDEFAULT == null ? tracker != null : !TRACKER_EDEFAULT.equals(tracker);
+		case SyncMappingPackage.MAPPING_INSTANCE__TYPE:
+			return type != null;
+		case SyncMappingPackage.MAPPING_INSTANCE__LEFT:
+			return left != null;
+		case SyncMappingPackage.MAPPING_INSTANCE__RIGHT:
+			return right != null;
+		case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
+			return consequents != null && !consequents.isEmpty();
+		case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
+			return TRACKER_EDEFAULT == null ? tracker != null : !TRACKER_EDEFAULT.equals(tracker);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -400,7 +416,9 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (type: "); //$NON-NLS-1$

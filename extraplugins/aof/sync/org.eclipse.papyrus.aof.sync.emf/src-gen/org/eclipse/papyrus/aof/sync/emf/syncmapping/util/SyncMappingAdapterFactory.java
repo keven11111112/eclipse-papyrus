@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  */
@@ -66,7 +66,7 @@ public class SyncMappingAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -77,33 +77,37 @@ public class SyncMappingAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SyncMappingSwitch<Adapter> modelSwitch =
-		new SyncMappingSwitch<Adapter>() {
-			@Override
-			public <F, T> Adapter caseMappingInstance(MappingInstance<F, T> object) {
-				return createMappingInstanceAdapter();
-			}
-			@Override
-			public <F, T> Adapter caseIMappingInstance(IMapping.Instance<F, T> object) {
-				return createIMappingInstanceAdapter();
-			}
-			@Override
-			public <F, T> Adapter caseInternalInstance(AbstractMapping.InternalInstance<F, T> object) {
-				return createInternalInstanceAdapter();
-			}
-			@Override
-			public Adapter caseInternalEObject(InternalEObject object) {
-				return createInternalEObjectAdapter();
-			}
-			@Override
-			public Adapter caseMappingModel(MappingModel object) {
-				return createMappingModelAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected SyncMappingSwitch<Adapter> modelSwitch = new SyncMappingSwitch<Adapter>() {
+		@Override
+		public <F, T> Adapter caseMappingInstance(MappingInstance<F, T> object) {
+			return createMappingInstanceAdapter();
+		}
+
+		@Override
+		public <F, T> Adapter caseIMappingInstance(IMapping.Instance<F, T> object) {
+			return createIMappingInstanceAdapter();
+		}
+
+		@Override
+		public <F, T> Adapter caseInternalInstance(AbstractMapping.InternalInstance<F, T> object) {
+			return createInternalInstanceAdapter();
+		}
+
+		@Override
+		public Adapter caseInternalEObject(InternalEObject object) {
+			return createInternalEObjectAdapter();
+		}
+
+		@Override
+		public Adapter caseMappingModel(MappingModel object) {
+			return createMappingModelAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -115,7 +119,7 @@ public class SyncMappingAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 

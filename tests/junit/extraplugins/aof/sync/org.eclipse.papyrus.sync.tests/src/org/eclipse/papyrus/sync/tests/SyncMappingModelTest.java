@@ -58,7 +58,7 @@ public class SyncMappingModelTest extends AbstractPapyrusTest {
 
 		// The model exists but is initially empty
 		assertThat(fixture.getMappingModel(), notNullValue());
-		assertThat(fixture.getMappingModel().getMappings(), not(hasItem(anything())));
+		assertThat(fixture.getMappingModel().getInstances(), not(hasItem(anything())));
 	}
 
 	@Test

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  */
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.aof.sync.IMapping.Instance;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getMappings <em>Mapping</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getInstances <em>Instance</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingModel()
@@ -35,7 +35,7 @@ import org.eclipse.papyrus.aof.sync.IMapping.Instance;
  */
 public interface MappingModel extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Mapping</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Instance</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.aof.sync.IMapping.Instance}&lt;?, ?>.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -43,11 +43,11 @@ public interface MappingModel extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mapping</em>' containment reference list.
-	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingModel_Mapping()
+	 * @return the value of the '<em>Instance</em>' containment reference list.
+	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingModel_Instance()
 	 * @model type="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>" containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<Instance<?, ?>> getMappings();
+	EList<Instance<?, ?>> getInstances();
 
 } // MappingModel

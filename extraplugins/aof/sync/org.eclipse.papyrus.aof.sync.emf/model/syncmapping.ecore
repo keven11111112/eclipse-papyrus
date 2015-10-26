@@ -83,7 +83,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="InternalEObject" instanceClassName="org.eclipse.emf.ecore.InternalEObject"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="MappingModel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" ordered="false"
         upperBound="-1" containment="true">
       <eGenericType eClassifier="#//IMappingInstance">
         <eTypeArguments/>

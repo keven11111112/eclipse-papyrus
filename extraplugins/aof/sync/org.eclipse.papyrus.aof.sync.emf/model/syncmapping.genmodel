@@ -5,8 +5,9 @@
     modelDirectory="/org.eclipse.papyrus.aof.sync.emf/src-gen" editDirectory="/org.eclipse.papyrus.aof.sync.emf.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.aof.sync.emf.editor/src-gen" modelPluginID="org.eclipse.papyrus.aof.sync.emf"
     modelName="SyncMapping" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testsDirectory="/org.eclipse.papyrus.aof.sync.emf.tests/src-gen" importerID="org.eclipse.uml2.uml.ecore.importer"
-    complianceLevel="8.0" copyrightFields="false" importOrganizing="true" pluralizedGetters="true">
+    codeFormatting="true" commentFormatting="true" testsDirectory="/org.eclipse.papyrus.aof.sync.emf.tests/src-gen"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    importOrganizing="true" cleanup="true" pluralizedGetters="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
     <details key="DUPLICATE_FEATURES" value="DISCARD"/>
@@ -76,7 +77,7 @@
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="syncmapping.ecore#//InternalEObject"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="syncmapping.ecore#//MappingModel">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference syncmapping.ecore#//MappingModel/mapping"/>
+          createChild="true" ecoreFeature="ecore:EReference syncmapping.ecore#//MappingModel/instance"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

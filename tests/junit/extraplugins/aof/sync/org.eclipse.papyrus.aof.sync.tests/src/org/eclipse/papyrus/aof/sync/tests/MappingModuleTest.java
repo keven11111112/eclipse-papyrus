@@ -19,6 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
 
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
@@ -28,7 +29,6 @@ import org.junit.Test;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
-import com.google.inject.Provider;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -57,7 +57,7 @@ public class MappingModuleTest {
 
 				bind(key(ICorrespondenceResolver.class, MutableInteger.class, MutableInteger.class, MappingModuleTest.class)).toInstance(resolver);
 
-				bind(Number.class).toProvider((Provider<Number>) () -> {
+				bind(Number.class).toProvider(() -> {
 					return provider.get().getCorrespondent(new MutableInteger(42), MappingModuleTest.this);
 				});
 			}
