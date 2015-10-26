@@ -56,7 +56,7 @@ public class BehaviorPositionLocator extends BasePortChildLocator {
 			behaviorPosition.x = behaviorPosition.x - behaviorPosition.width - BehaviorFigure.BEHAVIOR_OFFSET;
 			behaviorPosition.y = behaviorPosition.y + portPosition.height / 2 - behaviorPosition.height / 2;
 		} else if ((portSide & PositionConstants.WEST) != 0) {
-			behaviorPosition.x = behaviorPosition.x + portPosition.width + BehaviorFigure.BEHAVIOR_OFFSET  + /*correct position*/1;
+			behaviorPosition.x = behaviorPosition.x + portPosition.width + BehaviorFigure.BEHAVIOR_OFFSET;
 			behaviorPosition.y = behaviorPosition.y + portPosition.height / 2 - behaviorPosition.height / 2;
 		}
 		return behaviorPosition;
