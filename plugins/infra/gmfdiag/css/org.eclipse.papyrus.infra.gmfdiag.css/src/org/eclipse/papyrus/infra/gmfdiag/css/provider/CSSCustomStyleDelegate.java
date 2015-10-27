@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 480820
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 
@@ -100,7 +101,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 
 		try {
 			int value = Integer.parseInt(cssText);
-			return value > 0 ? -value : value;
+			return (value < 0) ? -value : value;
 		} catch (NumberFormatException ex) {
 			engine.handleExceptions(ex);
 			return NONE_VALUE;
