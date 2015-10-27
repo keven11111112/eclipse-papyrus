@@ -33,7 +33,8 @@ import org.junit.runners.Suite.SuiteClasses;
  AllDnDLinkTests.class,
  AllDeletionTests.class, 
  AllUtilsTests.class,
- AllCanonicalTests.class
+ AllCanonicalTests.class,
+ AllProviderTests.class
  })
 public class AllTests {
 
