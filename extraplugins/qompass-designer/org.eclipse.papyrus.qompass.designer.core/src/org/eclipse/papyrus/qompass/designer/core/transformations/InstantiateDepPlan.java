@@ -47,6 +47,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.Deploy;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
+import org.eclipse.papyrus.qompass.designer.core.deployment.GatherConfigData;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerateCode;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerationOptions;
@@ -328,16 +329,21 @@ public class InstantiateDepPlan {
 
 		String targetLanguage = DepUtils.getTargetLanguage(mainInstance);
 
-		ILangProjectSupport langSupport = configureLanguageSupport(mainInstance,
+		ILangProjectSupport projectSupport = configureLanguageSupport(mainInstance,
 				existingModel, node);
-		if (langSupport == null) {
+		if (projectSupport == null) {
 			return;
 		}
 
-		Deploy deployment = new Deploy(targetCopy, langSupport, node,
+		GatherConfigData gatherConfigData = new GatherConfigData(projectSupport);
+		Deploy deployment = new Deploy(targetCopy, gatherConfigData, node,
 				nodeIndex, nodes.size());
-		InstanceSpecification nodeRootIS = deployment
-				.distributeToNode(newRootIS);
+		InstanceSpecification nodeRootIS = deployment.distributeToNode(newRootIS);
+		
+		if ((generationOptions & GenerationOptions.REWRITE_SETTINGS) != 0) {
+			projectSupport.setSettings(genProject, gatherConfigData.getSettings());
+		}
+		
 		TransformationUtil.updateDerivedInterfaces(nodeRootIS);
 
 		// --------------------------------------------------------------------
@@ -384,14 +390,8 @@ public class InstantiateDepPlan {
 		genProject = ProjectManagement.getNamedProject(modelName);
 		if ((genProject == null) || !genProject.exists()) {
 			genProject = projectSupport.createProject(modelName);
-			if (genProject == null) {
-				return null;
-			}
-			projectSupport.setSettings(genProject, settings);
-
-		}
-		else if ((generationOptions & GenerationOptions.REWRITE_SETTINGS) != 0) {
-			projectSupport.setSettings(genProject, settings);
+			// project is new, force re-write of settings
+			generationOptions |= GenerationOptions.REWRITE_SETTINGS;
 		}
 		return projectSupport;
 	}
