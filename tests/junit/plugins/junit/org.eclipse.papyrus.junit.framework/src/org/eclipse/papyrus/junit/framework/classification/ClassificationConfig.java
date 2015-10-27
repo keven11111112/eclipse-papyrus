@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 451230
  *  Christian W. Damus - bug 464647
+ *  Christian W. Damus - bug 480812
  *****************************************************************************/
 package org.eclipse.papyrus.junit.framework.classification;
 
@@ -31,6 +32,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -198,7 +200,9 @@ public enum ClassificationConfig implements Set<TestCategory> {
 	public static boolean shouldRun(Annotation[] annotations) {
 		for (Annotation annotation : annotations) {
 			Class<? extends Annotation> annotationClass = annotation.annotationType();
-			if (isExcluded(annotationClass)) {
+
+			// Support the usual @Ignore annotation, too, of course
+			if ((annotationClass == Ignore.class) || isExcluded(annotationClass)) {
 				return false;
 			}
 		}
