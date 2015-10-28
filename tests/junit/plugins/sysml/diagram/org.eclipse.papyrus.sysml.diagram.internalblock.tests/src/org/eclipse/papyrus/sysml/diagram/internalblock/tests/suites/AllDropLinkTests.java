@@ -17,10 +17,10 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.link.TestLinkDr
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.link.TestLinkDropOnBlockStructureCpt;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.link.TestLinkDropOnDiagram;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	TestLinkDropOnDiagram.class,
 	TestLinkDropOnBlockStructureCpt.class,

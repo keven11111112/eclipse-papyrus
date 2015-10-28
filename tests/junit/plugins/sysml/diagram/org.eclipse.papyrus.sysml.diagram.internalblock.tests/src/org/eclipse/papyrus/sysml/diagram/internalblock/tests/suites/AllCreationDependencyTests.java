@@ -34,10 +34,10 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.depen
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.dependency.TestLinkCreationDependencyFromReference;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.dependency.TestLinkCreationDependencyFromValue;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	
 	TestLinkCreationDependencyForSources.class,

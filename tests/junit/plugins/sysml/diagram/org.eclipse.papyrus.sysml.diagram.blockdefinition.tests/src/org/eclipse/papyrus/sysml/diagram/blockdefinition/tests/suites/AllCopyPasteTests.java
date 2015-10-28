@@ -14,14 +14,14 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites;
 
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.copypaste.TestCopyGraphicallyPasteBlock;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * Test suite for Copy/Paste/PasteWithModel actions
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
  TestCopyGraphicallyPasteBlock.class,
 })

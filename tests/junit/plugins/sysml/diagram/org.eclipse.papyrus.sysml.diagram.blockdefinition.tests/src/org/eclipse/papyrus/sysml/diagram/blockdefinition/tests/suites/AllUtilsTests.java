@@ -14,14 +14,14 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites;
 
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.showhideelements.TestCompartmentUtils;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * Test Suite for all classes in this package
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ TestCompartmentUtils.class, })
 public class AllUtilsTests {
 

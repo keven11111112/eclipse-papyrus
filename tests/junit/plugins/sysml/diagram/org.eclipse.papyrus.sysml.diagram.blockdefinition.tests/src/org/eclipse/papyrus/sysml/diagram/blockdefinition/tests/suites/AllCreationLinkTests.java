@@ -25,11 +25,11 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.link.Tes
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.link.TestLinkCreationUsageForSources;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.link.TestLinkCreationUsageFromBlock;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	TestLinkCreationDependencyForSources.class, 
 	TestLinkCreationGeneralizationForSources.class,
