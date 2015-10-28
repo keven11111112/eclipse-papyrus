@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.uml.profile.assistants.generator.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * The master test suite for the plug-in.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		BasicAssistantsGenerationTest.class, DiagramSpecificAssistantsGenerationTest.class,
 		ProfilesWithPackageNestingTest.class, ConnectionTypesTest.class })

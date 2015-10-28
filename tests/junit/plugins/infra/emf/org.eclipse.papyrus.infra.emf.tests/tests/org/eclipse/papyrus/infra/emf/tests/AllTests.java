@@ -19,14 +19,14 @@ import org.eclipse.papyrus.infra.emf.edit.domain.PapyrusTransactionalEditingDoma
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexTest;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * The test suite for the {@code org.eclipse.papyrus.infra.emf} plug-in.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// oep.infra.emf.advice
 		ReadOnlyObjectEditAdviceTest.class,

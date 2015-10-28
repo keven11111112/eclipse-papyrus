@@ -22,13 +22,13 @@ import org.eclipse.papyrus.uml.profile.drafter.utils.UMLPrimitiveTypesModelTest;
 import org.eclipse.papyrus.uml.profile.drafter.ui.model.TypeProviderTest;
 import org.eclipse.papyrus.uml.profile.drafter.tests.utils.UMLModelCreatorTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Test suite for this fragment
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 	ProfileCatalogTest.class,
 	EclipseProjectTest.class, 

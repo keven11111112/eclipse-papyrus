@@ -21,10 +21,10 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeInd
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		SortAxisGenericTableTest.class,
 		InvertAxisGenericTableTest.class,

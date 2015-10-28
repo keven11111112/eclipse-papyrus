@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -23,7 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * @author cedric  dumoulin
  *
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ FakeEditorInputTest.class,
 	FakeMultiSashPageEditorTest.class
 	})

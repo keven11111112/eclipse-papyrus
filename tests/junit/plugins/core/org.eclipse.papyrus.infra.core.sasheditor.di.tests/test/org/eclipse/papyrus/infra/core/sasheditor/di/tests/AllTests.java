@@ -20,13 +20,13 @@ import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.Pag
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.TransactionalDiContentProvider2Test;
 import org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query.SashModelQueryTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Test suite for this fragment
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 	// package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider
 	DiSashModelMngrTest.class,

@@ -14,10 +14,10 @@
 package org.eclipse.papyrus.views.modelexplorer.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		ModelExplorerViewTests.class,
 		DeleteHandlerTest.class,

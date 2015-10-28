@@ -13,14 +13,14 @@
 package org.eclipse.papyrus.sysml.modelexplorer.tests.suites;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * Main test suite class
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ AllDragDropTests.class, AllCopyPasteTests.class, })
 public class AllTests {
 	//Test suite

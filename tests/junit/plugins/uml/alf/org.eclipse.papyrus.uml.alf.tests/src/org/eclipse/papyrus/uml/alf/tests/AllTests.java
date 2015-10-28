@@ -17,10 +17,10 @@ import org.eclipse.papyrus.uml.alf.tests.generator.GenerationTest;
 import org.eclipse.papyrus.uml.alf.tests.mapper.MappingTest;
 import org.eclipse.papyrus.uml.alf.tests.mapper.MergeTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({MappingTest.class, MergeTest.class, SemanticTest.class, 
 	SingleTest.class, SyntacticTest.class, GenerationTest.class})
 public class AllTests {

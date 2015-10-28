@@ -9,11 +9,11 @@
 package org.eclipse.papyrus.uml.diagram.timing.tests.canonical;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 //@formatter:off
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ TestTimingDiagramInteraction.class, TestTimingDiagramFullLifeline.class, TestTimingDiagramCompactLifeline.class,
 
 TestTimingDiagramFullStateInvariant.class, TestTimingDiagramCompactStateInvariant.class,

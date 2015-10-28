@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.uml.diagram.communication.tests.canonical;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -20,7 +20,7 @@ import org.junit.runners.Suite.SuiteClasses;
 /**
  * All test in canonical package
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 // testTopNodes
 	TestCommunicationDiagramChildNode.class,

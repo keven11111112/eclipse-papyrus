@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.portandflows.tests;
 import junit.framework.TestSuite;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
@@ -25,7 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
  *
  * @generated
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ FlowPortTest.class, FlowPropertyTest.class })
 public class PortandflowsTests extends TestSuite {
 	// PortandflowsTests

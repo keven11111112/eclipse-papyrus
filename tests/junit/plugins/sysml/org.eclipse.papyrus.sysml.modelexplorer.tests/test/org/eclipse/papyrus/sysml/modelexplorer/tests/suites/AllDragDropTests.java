@@ -15,14 +15,14 @@ package org.eclipse.papyrus.sysml.modelexplorer.tests.suites;
 
 import org.eclipse.papyrus.sysml.modelexplorer.tests.dragdrop.IBDDragDropTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * Tests suites for Drag And Drop inside the model explorer
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 IBDDragDropTest.class,
 })

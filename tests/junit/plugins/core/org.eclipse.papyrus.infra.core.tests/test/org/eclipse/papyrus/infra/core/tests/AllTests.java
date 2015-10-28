@@ -31,12 +31,12 @@ import org.eclipse.papyrus.infra.core.utils.AdapterUtilsTest;
 import org.eclipse.papyrus.infra.core.utils.JobBasedFutureTest;
 import org.eclipse.papyrus.infra.core.utils.JobExecutorServiceTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// {oep.resource}
 		ModelSetTest.class, AbstractModelWithSharedResourceTest.class, NestingTransactionalCommandStackTest.class, ResourceAdapterTest.class,

@@ -10,14 +10,14 @@ import org.eclipse.papyrus.infra.services.resourceloading.tests.testModel2.Strat
 import org.eclipse.papyrus.infra.services.resourceloading.tests.testModel2.Strategy2TestModel2WithModel1;
 import org.eclipse.papyrus.infra.services.resourceloading.tests.testModel2.Strategy2TestModel2WithPackage0;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * All tests together.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 	// testModel1
 Strategy1TestModel1.class,

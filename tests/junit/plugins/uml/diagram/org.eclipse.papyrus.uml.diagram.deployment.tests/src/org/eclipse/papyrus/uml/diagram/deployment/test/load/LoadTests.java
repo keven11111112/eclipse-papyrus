@@ -13,13 +13,13 @@
 package org.eclipse.papyrus.uml.diagram.deployment.test.load;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * All tests together.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 // 10 Node
 Load10NodeTest.class,

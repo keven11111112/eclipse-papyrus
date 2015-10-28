@@ -25,13 +25,13 @@ import org.eclipse.papyrus.infra.services.edit.tests.service.TestElementEditServ
 import org.eclipse.papyrus.infra.services.edit.tests.utils.TestElementTypeValidator;
 import org.eclipse.papyrus.infra.services.edit.tests.utils.TestGMFCommandUtils;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Main Test suite.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	TestClientContext.class,
 	TestElementEditService.class,

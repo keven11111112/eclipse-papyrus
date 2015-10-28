@@ -21,14 +21,14 @@ import org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.tests.Prof
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.tests.DecoratorModelCopierTest;
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.tests.DecoratorModelIndexTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * Main tests suite for this plugin
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		ExternalizeProfileApplicationTest.class, InternalizeProfileApplicationTest.class, //
 		ProfileMigrationTest.class, StereotypeApplicationRepairTest.class, //

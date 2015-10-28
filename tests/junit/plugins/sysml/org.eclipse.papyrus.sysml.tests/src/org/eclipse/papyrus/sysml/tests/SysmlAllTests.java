@@ -18,13 +18,13 @@ import org.eclipse.papyrus.sysml.modelelements.tests.ModelelementsTests;
 import org.eclipse.papyrus.sysml.portandflows.tests.PortandflowsTests;
 import org.eclipse.papyrus.sysml.requirements.tests.RequirementsTests;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * A test suite for the '<em><b>Sysml</b></em>' model.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ ModelelementsTests.class, PortandflowsTests.class, AllocationsTests.class, RequirementsTests.class
 
 })

@@ -16,13 +16,13 @@ package org.eclipse.papyrus.infra.gmfdiag.assistant.tests;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * The master test suite for the plug-in.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ AssistantAllTests.class, //
 		GenericModelingAssistantIntegrationTest.class, DiagramSpecificModelingAssistantIntegrationTest.class })
 public class AllTests {

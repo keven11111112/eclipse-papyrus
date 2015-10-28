@@ -12,14 +12,14 @@
 package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * All tests for package org.eclipse.papyrus.infra.core.sasheditor.editor
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ SashMultiPageEditorTest.class })
 public class AllTests {
 

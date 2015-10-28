@@ -15,10 +15,10 @@ package org.eclipse.papyrus.uml.nattable.tests.tests;
 import org.eclipse.papyrus.uml.nattable.tests.tests.configs.GenericTreeTableConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.tests.tests.configs.GenericTreeTableNattableConfigurationTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ UMLRestrictedContentProviderTest.class, UMLRestrictedContentProviderTestCustomProfile.class,
 	GenericTreeTableConfigurationTest.class,
 	GenericTreeTableNattableConfigurationTest.class

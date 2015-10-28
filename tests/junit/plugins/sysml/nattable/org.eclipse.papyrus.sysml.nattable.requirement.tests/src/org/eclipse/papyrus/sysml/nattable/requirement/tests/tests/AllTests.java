@@ -18,11 +18,11 @@ import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.InvertedAxisCha
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.without.service.edit.Bug443814_Enumeration;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		SortAxisRequirementTableTest.class,
 		InvertAxisRequirementTableTest.class,

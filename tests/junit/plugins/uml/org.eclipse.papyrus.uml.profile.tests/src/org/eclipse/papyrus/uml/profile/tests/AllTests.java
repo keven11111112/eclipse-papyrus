@@ -14,14 +14,14 @@ package org.eclipse.papyrus.uml.profile.tests;
 
 import org.eclipse.papyrus.uml.profile.service.ReapplyProfilesServiceTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * The Papyrus UML Profile bundle's master test suite.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ ReapplyProfilesServiceTest.class })
 public class AllTests {
 	// JUnit 4 Test Suite

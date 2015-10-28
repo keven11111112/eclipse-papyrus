@@ -15,10 +15,10 @@
 package org.eclipse.papyrus.sysml.nattable.allocation.tests.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ RevealAllocationTableTest.class })
 public class AllTests {
 	// JUnit 4 test suite

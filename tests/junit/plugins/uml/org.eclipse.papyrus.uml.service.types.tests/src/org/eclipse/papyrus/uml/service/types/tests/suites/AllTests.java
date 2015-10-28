@@ -29,13 +29,13 @@ import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteContainmentSub
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteDependentWithStereotypeApplications458685;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeletePureUMLElementTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Main Test suite.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// TestElementTypeRegistryContent.class,
 		CreatePureUMLElementTest.class, // pure uml tests, only element edit service

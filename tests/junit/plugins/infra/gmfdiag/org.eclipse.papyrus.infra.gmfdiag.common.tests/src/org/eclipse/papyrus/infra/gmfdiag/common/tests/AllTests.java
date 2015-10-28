@@ -15,14 +15,14 @@ package org.eclipse.papyrus.infra.gmfdiag.common.tests;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.tests.SyncTests;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafeTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * Master test suite for this test fragment.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// {oep.commands}
 		LoadExpansionModel.class,

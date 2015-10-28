@@ -13,14 +13,14 @@ package org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests;
 
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests.regression.Bug457712PaletteConfigurationRequiredProfile;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * All tests for this fragment
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ Bug457712PaletteConfigurationRequiredProfile.class, })
 public class AllTests {
 
