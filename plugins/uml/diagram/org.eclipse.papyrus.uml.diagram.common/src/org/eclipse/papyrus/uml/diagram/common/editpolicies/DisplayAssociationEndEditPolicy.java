@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
  *  Christian W. Damus - bug 393532
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 468166
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -57,12 +58,16 @@ public abstract class DisplayAssociationEndEditPolicy extends AbstractMaskManage
 	 */
 	@Override
 	public void addAdditionalListeners() {
-		// adds a listener to the element itself, and to linked elements, like Type
-		if (getUMLElement().getType() != null) {
-			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
+		Property umlElement = getUMLElement();
+
+		if (null != umlElement) {
+			// adds a listener to the element itself, and to linked elements, like Type
+			if (null != umlElement.getType()) {
+				getDiagramEventBroker().addNotificationListener(umlElement.getType(), this);
+			}
+			getDiagramEventBroker().addNotificationListener(umlElement.getUpperValue(), this);
+			getDiagramEventBroker().addNotificationListener(umlElement.getLowerValue(), this);
 		}
-		getDiagramEventBroker().addNotificationListener(getUMLElement().getUpperValue(), this);
-		getDiagramEventBroker().addNotificationListener(getUMLElement().getLowerValue(), this);
 	}
 
 	/**
@@ -161,7 +166,7 @@ public abstract class DisplayAssociationEndEditPolicy extends AbstractMaskManage
 			break;
 		case UMLPackage.PROPERTY__TYPE:
 			switch (notification.getEventType()) {
-				// if it is added => adds listener to the type element
+			// if it is added => adds listener to the type element
 			case Notification.ADD:
 				getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
 				refreshDisplay();

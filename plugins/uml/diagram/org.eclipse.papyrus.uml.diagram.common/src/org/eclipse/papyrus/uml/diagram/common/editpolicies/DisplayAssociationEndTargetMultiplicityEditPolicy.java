@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 468166
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -16,9 +17,12 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndTargetMultiplicityLabelHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * this class enables to refresh the multiplicity label of the association end (target)
@@ -27,9 +31,7 @@ import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 public class DisplayAssociationEndTargetMultiplicityEditPolicy extends DisplayAssociationEndTargetEditPolicy {
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndEditPolicy#getDefaultDisplayValue()
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
@@ -37,12 +39,30 @@ public class DisplayAssociationEndTargetMultiplicityEditPolicy extends DisplayAs
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndEditPolicy#createPropertyLabelHelper()
-	 *
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected PropertyLabelHelper createPropertyLabelHelper() {
 		return AssociationEndTargetMultiplicityLabelHelper.getInstance();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void notifyChanged(final Notification notification) {
+		super.notifyChanged(notification);
+
+		// Add listeners on this EditPolicy for the first modification of the target multiplicity
+		final Object notifier = notification.getNotifier();
+		final Property property = getUMLElement();
+
+		if (notifier.equals(property)) {
+			switch (notification.getFeatureID(Property.class)) {
+			case UMLPackage.PROPERTY__LOWER_VALUE:
+			case UMLPackage.PROPERTY__UPPER_VALUE:
+				addAdditionalListeners();
+			}
+		}
 	}
 }
