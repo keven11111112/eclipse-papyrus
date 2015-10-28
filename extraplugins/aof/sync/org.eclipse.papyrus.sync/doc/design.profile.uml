@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_tTVPAH16EeWDE7E6jH3mIw" name="design" metaclassReference="_7iaj4H16EeWDE7E6jH3mIw _px82IH1-EeWDE7E6jH3mIw">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KfRkwH17EeWDE7E6jH3mIw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_xbsOsX1-EeWDE7E6jH3mIw" name="design" nsURI="http:///schemas/design/_xbsOsH1-EeWDE7E6jH3mIw/1" nsPrefix="design">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xbtc0X1-EeWDE7E6jH3mIw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xbtc0n1-EeWDE7E6jH3mIw" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xbtc031-EeWDE7E6jH3mIw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xbtc1H1-EeWDE7E6jH3mIw" key="Copyright" value="Copyright (c) 2015 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation&#xA;"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xbtc1X1-EeWDE7E6jH3mIw" key="Date" value="2015-10-28"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xbtc1n1-EeWDE7E6jH3mIw" key="Author" value="Christian W. Damus"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_xbsOsn1-EeWDE7E6jH3mIw" name="Stereotype1">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xbsOs31-EeWDE7E6jH3mIw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9OZkkH16EeWDE7E6jH3mIw"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_xbsOtH1-EeWDE7E6jH3mIw" name="ExtensionPoint">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xbsOtX1-EeWDE7E6jH3mIw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__RzmwH16EeWDE7E6jH3mIw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_xbsOtn1-EeWDE7E6jH3mIw" name="base_Connector" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Connector"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_xbsOuH1-EeWDE7E6jH3mIw" name="Factory">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xbsOuX1-EeWDE7E6jH3mIw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qsSXcH1-EeWDE7E6jH3mIw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_xbsOun1-EeWDE7E6jH3mIw" name="base_Classifier" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_KfSL0H17EeWDE7E6jH3mIw" name="design" nsURI="http:///schemas/design/_KfPIgH17EeWDE7E6jH3mIw/0" nsPrefix="design">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KfTZ8X17EeWDE7E6jH3mIw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KfTZ8n17EeWDE7E6jH3mIw" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KfTZ8317EeWDE7E6jH3mIw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KfTZ9H17EeWDE7E6jH3mIw" key="Copyright" value="Copyright (c) 2015 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation&#xA;"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KfTZ9X17EeWDE7E6jH3mIw" key="Date" value="2015-10-28"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KfTZ9n17EeWDE7E6jH3mIw" key="Author" value="Christian W. Damus"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_KfSL0X17EeWDE7E6jH3mIw" name="Stereotype1">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KfSL0n17EeWDE7E6jH3mIw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9OZkkH16EeWDE7E6jH3mIw"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_KfSL0317EeWDE7E6jH3mIw" name="ExtensionPoint">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KfSL1H17EeWDE7E6jH3mIw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__RzmwH16EeWDE7E6jH3mIw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_KfSL1X17EeWDE7E6jH3mIw" name="base_Connector" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Connector"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_7iaj4H16EeWDE7E6jH3mIw" alias="Connector">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_px82IH1-EeWDE7E6jH3mIw" alias="Classifier">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_9OZkkH16EeWDE7E6jH3mIw" name="Stereotype1"/>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="__RzmwH16EeWDE7E6jH3mIw" name="ExtensionPoint">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_BzL-YH17EeWDE7E6jH3mIw" name="base_Connector" association="_BzIUAH17EeWDE7E6jH3mIw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_BzIUAH17EeWDE7E6jH3mIw" name="E_ExtensionPoint_Connector1" memberEnd="_BzLXUH17EeWDE7E6jH3mIw _BzL-YH17EeWDE7E6jH3mIw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_BzLXUH17EeWDE7E6jH3mIw" name="extension_ExtensionPoint" type="__RzmwH16EeWDE7E6jH3mIw" aggregation="composite" association="_BzIUAH17EeWDE7E6jH3mIw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_qsSXcH1-EeWDE7E6jH3mIw" name="Factory">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_sK2nMH1-EeWDE7E6jH3mIw" name="base_Classifier" association="_sK2AIH1-EeWDE7E6jH3mIw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_sK2AIH1-EeWDE7E6jH3mIw" name="E_Factory_Classifier1" memberEnd="_sK2AIX1-EeWDE7E6jH3mIw _sK2nMH1-EeWDE7E6jH3mIw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_sK2AIX1-EeWDE7E6jH3mIw" name="extension_Factory" type="_qsSXcH1-EeWDE7E6jH3mIw" aggregation="composite" association="_sK2AIH1-EeWDE7E6jH3mIw"/>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_tTzJEH16EeWDE7E6jH3mIw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tTzwIH16EeWDE7E6jH3mIw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+  </profileApplication>
+</uml:Profile>
