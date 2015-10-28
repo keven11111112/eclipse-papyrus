@@ -254,11 +254,14 @@ public class ClassificationSuite extends Suite {
 						while ((result == null) && feed().hasNext()) {
 							Description next = feed().next();
 
-							if (next.isTest()) {
+							if (next.isTest() && (next.getTestClass() != null)) {
 								result = next;
-							} else {
+							} else if (next.isSuite()) {
 								// Push this suite onto the stack
 								push(next);
+							} else {
+								// Otherwise it's a weird test without a class?!?
+								System.err.println("Leaf test without a class: " + next);
 							}
 						}
 
