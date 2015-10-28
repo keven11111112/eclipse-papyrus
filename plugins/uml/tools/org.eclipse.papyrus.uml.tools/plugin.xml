@@ -5,63 +5,7 @@
    <extension-point id="profileApplicationDelegates" name="Profile Application Delegates" schema="schema/profileApplicationDelegates.exsd"/>
    
 <!-- Register the UML delegating constraint provider -->
-<extension
-      point="org.eclipse.emf.validation.constraintProviders">
-   <category
-         id="org.eclipse.papyrus.uml.tools.uml"
-         name="UML Metamodel Constraints">
-   </category>
-   <constraintProvider
-         cache="true"
-         class="org.eclipse.papyrus.uml.tools.constraints.providers.DelegatingConstraintProviderWithOverride"
-         mode="Batch">
-      <package
-            namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
-      </package>
-      
-      <!-- Put the UML metamodel constraints into this category. -->
-      <category path="org.eclipse.papyrus.uml.tools.uml"/>
-      
-      <!-- EMF Facet replaces the UML Validator with one that delegates
-           to the ModelValidationService, which not only doesn't work
-           with the delegating provider, but would be a dependency
-           cycle anyways. -->
-      <eValidatorProvider class="org.eclipse.uml2.uml.validation.IEValidatorProvider$UML"/>
-      <constraints
-            categories="org.eclipse.papyrus.uml.tools.uml">
-         <constraint
-               class="org.eclipse.papyrus.uml.tools.contraints.UpperGeLowerConstraint"
-               id="org.eclipse.papyrus.uml.tools.uml.MultiplicityElement.UpperGeLower"
-               isEnabledByDefault="true"
-               lang="Java"
-               mode="Batch"
-               name="MultiplicityElement: UpperGeLower"
-               severity="WARNING"
-               statusCode="0">
-            <message>
-               Tue upper bound of multiplicity element {0} is not greater than or equal to its lower bound.
-            </message>
-            <target
-                  class="uml.MultiplicityElement">
-            </target>
-         </constraint>
-      </constraints>
-   </constraintProvider>
-</extension>
 <!-- Bind the UML metamodel constraint provider's constraints to the Papyrus application. -->
-<extension
-      point="org.eclipse.emf.validation.constraintBindings">
-   <clientContext
-         id="org.eclipse.papyrus.uml.tools.context">
-      <selector
-            class="org.eclipse.papyrus.infra.services.validation.PapyrusClientSelector">
-      </selector>
-   </clientContext>
-   <binding
-         context="org.eclipse.papyrus.uml.tools.context"
-         category="org.eclipse.papyrus.uml.tools.uml">
-   </binding>
-</extension>
 
 <extension
          point="org.eclipse.papyrus.infra.core.model">

@@ -37,6 +37,7 @@ import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLValidator;
 
 
@@ -149,8 +150,10 @@ public class EValidatorAdapter
 		boolean result = true;
 		if (eObject instanceof MultiplicityElement) {
 			final MultiplicityElement multiplicityElement = (MultiplicityElement) eObject;
-			if ((!((multiplicityElement.getLowerValue() instanceof LiteralInteger || multiplicityElement.getLowerValue() instanceof LiteralUnlimitedNatural)
-					&& (multiplicityElement.getUpperValue() instanceof LiteralInteger || multiplicityElement.getUpperValue() instanceof LiteralUnlimitedNatural)))) {
+			ValueSpecification lower = multiplicityElement.getLowerValue();
+			ValueSpecification upper = multiplicityElement.getUpperValue();	
+			if (!((lower instanceof LiteralInteger || lower instanceof LiteralUnlimitedNatural || lower == null)
+					&& (upper instanceof LiteralInteger || upper instanceof LiteralUnlimitedNatural || upper == null))) {
 				result = false;
 			}
 		}
