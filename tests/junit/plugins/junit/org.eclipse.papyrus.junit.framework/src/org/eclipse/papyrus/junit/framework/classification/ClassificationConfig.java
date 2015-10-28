@@ -90,7 +90,7 @@ public enum ClassificationConfig implements Set<TestCategory> {
 	 *
 	 * InteractiveTests are excluded as well, as this configuration is supposed to be executed on Hudson
 	 */
-	FAILING_TESTS_CONFIG(Standard, InteractiveTest, GeneratedTest),
+	FAILING_TESTS_CONFIG(Standard, InteractiveTest, GeneratedTest, ExpensiveTest),
 
 	/**
 	 * This tests configuration is expected to run in ~15 minutes. This is useful for quick testing,

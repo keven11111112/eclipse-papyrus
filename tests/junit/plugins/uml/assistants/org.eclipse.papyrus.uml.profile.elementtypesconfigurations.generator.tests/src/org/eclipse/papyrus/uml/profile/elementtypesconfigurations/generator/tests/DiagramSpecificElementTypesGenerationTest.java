@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests;
@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.Elementtypesconfigur
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IconEntry;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.emf.utils.EMFFunctions;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
@@ -46,7 +47,7 @@ import com.google.common.collect.ImmutableSet;
  */
 @PluginResource("/resources/j2ee.profile.uml")
 @BaseElementTypes("org.eclipse.papyrus.uml.diagram.usecase.elementTypeSet")
-public class DiagramSpecificElementTypesGenerationTest {
+public class DiagramSpecificElementTypesGenerationTest extends AbstractPapyrusTest {
 
 	@ClassRule
 	public static final ModelGenFixture fixture = new ModelGenFixture();
@@ -64,7 +65,7 @@ public class DiagramSpecificElementTypesGenerationTest {
 
 	/**
 	 * Verifies that diagram-specific element types are generated with both a semantic parent and a visual parent.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=461717
 	 */
 	@Test
