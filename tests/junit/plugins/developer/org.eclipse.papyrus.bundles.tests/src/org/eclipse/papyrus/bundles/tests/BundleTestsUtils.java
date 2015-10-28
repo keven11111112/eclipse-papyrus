@@ -16,7 +16,7 @@ import org.osgi.framework.BundleContext;
 public class BundleTestsUtils {
 
 	// This version number should be changed at each release
-	public static final String PAPYRUS_VERSION = "1.1.2"; //$NON-NLS-1$
+	public static final String PAPYRUS_VERSION = "1.1.3"; //$NON-NLS-1$
 
 	public static final String INCUBATION = "(Incubation)"; //$NON-NLS-1$
 

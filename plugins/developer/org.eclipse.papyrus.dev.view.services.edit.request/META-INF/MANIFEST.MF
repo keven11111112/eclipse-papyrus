@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
+Bundle-Description: %pluginDescription
+Bundle-SymbolicName: org.eclipse.papyrus.dev.view.services.edit.request;singleton:=true
+Bundle-Version: 1.1.3.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.emf.facet.common.ui;bundle-version="1.1.2"
-Bundle-Vendor: %providerName
+ org.eclipse.papyrus.emf.facet.common.ui;bundle-version="1.1.3"
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.2.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.dev.view.services.edit.request.Activator
 Bundle-ManifestVersion: 2
-Bundle-Description: %pluginDescription
-Bundle-SymbolicName: org.eclipse.papyrus.dev.view.services.edit.request;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName

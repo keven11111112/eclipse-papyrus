@@ -1,4 +1,17 @@
 Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor;singleton:=true
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3",
+ org.eclipse.core.runtime;bundle-version="3.7.0",
+ org.eclipse.e4.core.contexts;bundle-version="1.0.0";resolution:=optional,
+ org.eclipse.e4.ui.model.workbench;bundle-version="0.10.0";resolution:=optional,
+ org.eclipse.core.expressions;bundle-version="3.4.300",
+ org.eclipse.gef;bundle-version="3.8.1"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Eclipse-ExtensibleAPI: true
 Export-Package: org.eclipse.papyrus.infra.core.sasheditor,
  org.eclipse.papyrus.infra.core.sasheditor.contentprovider,
  org.eclipse.papyrus.infra.core.sasheditor.contentprovider.service,
@@ -10,21 +23,8 @@ Export-Package: org.eclipse.papyrus.infra.core.sasheditor,
  org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy,
  org.eclipse.papyrus.infra.core.sasheditor.multipage.editor,
  org.eclipse.papyrus.infra.core.sasheditor.utils
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
 Bundle-Name: %pluginName
+Bundle-Version: 1.1.3.qualifier
+Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.eclipse.ui,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.2",
- org.eclipse.core.runtime;bundle-version="3.7.0",
- org.eclipse.e4.core.contexts;bundle-version="1.0.0";resolution:=optional,
- org.eclipse.e4.ui.model.workbench;bundle-version="0.10.0";resolution:=optional,
- org.eclipse.core.expressions;bundle-version="3.4.300",
- org.eclipse.gef;bundle-version="3.8.1"
-Bundle-Vendor: %providerName
-Bundle-Version: 1.1.2.qualifier
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.core.sasheditor.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor;singleton:=true
-Eclipse-ExtensibleAPI: true
