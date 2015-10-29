@@ -229,7 +229,7 @@ public class NattableaxisconfigurationValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS_ID_UNIQUE__EEXPRESSION = "axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | (am1<>am2) and (am1.axisManagerId <> am2.axisManagerId)"; //$NON-NLS-1$
+	protected static final String TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS_ID_UNIQUE__EEXPRESSION = "axisManagers->forAll(am1 : AxisManagerRepresentation | ( (axisManagers->excluding (am1))->forAll(am2 : AxisManagerRepresentation | am1.axisManagerId<>am2.axisManagerId) ))"; //$NON-NLS-1$
 
 	/**
 	 * Validates the axisManagersIdUnique constraint of '<em>Table Header Axis Configuration</em>'.

@@ -885,7 +885,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		  (tableHeaderAxisConfigurationEClass, 
 		   source, 
 		   new String[] {
-			 "axisManagersIdUnique", "axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | (am1<>am2) and (am1.axisManagerId <> am2.axisManagerId)" //$NON-NLS-1$ //$NON-NLS-2$
+			 "axisManagersIdUnique", "axisManagers->forAll(am1 : AxisManagerRepresentation | ( (axisManagers->excluding (am1))->forAll(am2 : AxisManagerRepresentation | am1.axisManagerId<>am2.axisManagerId) ))" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 } // NattableaxisconfigurationPackageImpl
