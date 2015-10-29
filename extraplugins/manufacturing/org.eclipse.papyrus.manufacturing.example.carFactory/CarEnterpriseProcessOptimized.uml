@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:BPMNProfile="http://www.omg.org/spec/BPMNProfile/20121112/" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
-  <uml:Model xmi:id="_4vRZEAR0EeWIQumHcGWAvg" name="CarEnterpriseProcessOptimized">
+  <uml:Model xmi:id="_4vRZEAR0EeWIQumHcGWAvg" name="CarEnterpriseProcess">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_zFWN4HvuEeWhqqlqVGvv2Q">
+      <body>BPMN</body>
+    </ownedComment>
     <packageImport xmi:type="uml:PackageImport" xmi:id="_8yvQEA6cEeWAwbLB97M__A">
       <importedPackage xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.bpmn/model/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"/>
     </packageImport>
@@ -51,10 +54,6 @@
         <guard xmi:type="uml:LiteralBoolean" xmi:id="_pKXHgBTMEeWfYoAHTRGC0g" value="true"/>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_pKXHgRTMEeWfYoAHTRGC0g" value="1"/>
       </edge>
-      <edge xmi:type="uml:ObjectFlow" xmi:id="_8bpyABTMEeWfYoAHTRGC0g" target="_442ZoBTMEeWfYoAHTRGC0g" source="_wWcowAR7EeWyl-_r6kRgqw">
-        <guard xmi:type="uml:LiteralBoolean" xmi:id="_8ga9QBTMEeWfYoAHTRGC0g" value="true"/>
-        <weight xmi:type="uml:LiteralInteger" xmi:id="_8gbkUBTMEeWfYoAHTRGC0g" value="1"/>
-      </edge>
       <edge xmi:type="uml:ObjectFlow" xmi:id="_Ovm_oBTPEeWfYoAHTRGC0g" target="_vsznIASBEeWyl-_r6kRgqw" source="_MnS_4A6bEeWAwbLB97M__A">
         <guard xmi:type="uml:LiteralBoolean" xmi:id="_OymCMBTPEeWfYoAHTRGC0g" value="true"/>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_OymCMRTPEeWfYoAHTRGC0g" value="1"/>
@@ -75,6 +74,7 @@
         <guard xmi:type="uml:LiteralBoolean" xmi:id="_TNIEIBaNEeWjSLLJ7a_L5g" value="true"/>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_TNIEIRaNEeWjSLLJ7a_L5g" value="1"/>
       </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_p8X3cHZtEeW-L5mz4z4ihA" target="_442ZoBTMEeWfYoAHTRGC0g" source="_wWcowAR7EeWyl-_r6kRgqw"/>
       <node xmi:type="uml:OpaqueAction" xmi:id="_fZZZIAR4EeWyl-_r6kRgqw" name="Gather raw pieces in kit" incoming="_FuhVYASDEeWyl-_r6kRgqw">
         <outputValue xmi:type="uml:OutputPin" xmi:id="_1GSMoA6aEeWAwbLB97M__A" name=" " outgoing="_7pWAwBTLEeWfYoAHTRGC0g">
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_1GY6UA6aEeWAwbLB97M__A" value="100"/>
@@ -97,7 +97,7 @@
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_5-3FIA6aEeWAwbLB97M__A" value="1"/>
         </outputValue>
       </node>
-      <node xmi:type="uml:DataStoreNode" xmi:id="_wWcowAR7EeWyl-_r6kRgqw" name="Chassis Buffer" incoming="_TkKaEASEEeWyl-_r6kRgqw" outgoing="_8bpyABTMEeWfYoAHTRGC0g">
+      <node xmi:type="uml:DataStoreNode" xmi:id="_wWcowAR7EeWyl-_r6kRgqw" name="Chassis Buffer" incoming="_TkKaEASEEeWyl-_r6kRgqw" outgoing="_p8X3cHZtEeW-L5mz4z4ihA">
         <upperBound xmi:type="uml:LiteralInteger" xmi:id="_wWdP0AR7EeWyl-_r6kRgqw" value="10000"/>
       </node>
       <node xmi:type="uml:DataStoreNode" xmi:id="_x9oB8AR7EeWyl-_r6kRgqw" name="Car Parts Buffer" incoming="_NYBdYASDEeWyl-_r6kRgqw" outgoing="_pFvtQBTMEeWfYoAHTRGC0g">
@@ -107,7 +107,7 @@
         <inputValue xmi:type="uml:InputPin" xmi:id="_aORy8A6bEeWAwbLB97M__A" name=" " incoming="_pFvtQBTMEeWfYoAHTRGC0g">
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_aOSaAA6bEeWAwbLB97M__A" value="1"/>
         </inputValue>
-        <inputValue xmi:type="uml:InputPin" xmi:id="_442ZoBTMEeWfYoAHTRGC0g" name=" " incoming="_8bpyABTMEeWfYoAHTRGC0g">
+        <inputValue xmi:type="uml:InputPin" xmi:id="_442ZoBTMEeWfYoAHTRGC0g" name=" " incoming="_p8X3cHZtEeW-L5mz4z4ihA">
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_445c8BTMEeWfYoAHTRGC0g" value="1"/>
         </inputValue>
         <outputValue xmi:type="uml:OutputPin" xmi:id="_91exYA6aEeWAwbLB97M__A" name=" " outgoing="_APqYoASGEeWyl-_r6kRgqw">
