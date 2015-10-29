@@ -33,9 +33,7 @@ import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 
 import org.eclipse.papyrus.aof.sync.IMapping;
-
-import org.eclipse.papyrus.aof.sync.IMapping.Instance;
-
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.internal.syncmapping.operations.MappingInstanceOperations;
 
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance;
@@ -97,7 +95,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Instance<?, ?>> consequents;
+	protected EList<IMappingInstance<?, ?>> consequents;
 
 	/**
 	 * The default value of the '{@link #getTracker() <em>Tracker</em>}' attribute.
@@ -216,9 +214,9 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public EList<Instance<?, ?>> getConsequents() {
+	public EList<IMappingInstance<?, ?>> getConsequents() {
 		if (consequents == null) {
-			consequents = new EObjectContainmentEList<Instance<?, ?>>(Instance.class, this, SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT);
+			consequents = new EObjectContainmentEList<IMappingInstance<?, ?>>(IMappingInstance.class, this, SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT);
 		}
 		return consequents;
 	}
@@ -253,7 +251,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public void addConsequent(Instance<?, ?> consequent) {
+	public void addConsequent(IMappingInstance<?, ?> consequent) {
 		MappingInstanceOperations.addConsequent(this, consequent);
 	}
 
@@ -273,7 +271,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public Iterator<Instance<?, ?>> iterator() {
+	public Iterator<IMappingInstance<?, ?>> iterator() {
 		return MappingInstanceOperations.iterator(this);
 	}
 
@@ -351,7 +349,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 			return;
 		case SyncMappingPackage.MAPPING_INSTANCE__CONSEQUENT:
 			getConsequents().clear();
-			getConsequents().addAll((Collection<? extends Instance<?, ?>>) newValue);
+			getConsequents().addAll((Collection<? extends IMappingInstance<?, ?>>) newValue);
 			return;
 		case SyncMappingPackage.MAPPING_INSTANCE__TRACKER:
 			setTracker((ObserverTracker) newValue);

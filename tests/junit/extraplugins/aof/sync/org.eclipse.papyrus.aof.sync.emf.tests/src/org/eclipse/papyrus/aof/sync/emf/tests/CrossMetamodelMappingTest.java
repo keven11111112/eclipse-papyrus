@@ -29,6 +29,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
@@ -154,7 +155,7 @@ public class CrossMetamodelMappingTest {
 
 			@Override
 			protected void doExecute() {
-				IMapping.Instance<Package, EPackage> instance = mapping.map(from, to);
+				IMappingInstance<Package, EPackage> instance = mapping.map(from, to);
 				mappingModel.getInstances().add(instance);
 			}
 		});

@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.aof.sync.From;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.tests.AbstractMappingTest.TestMapping;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
@@ -51,7 +51,7 @@ public class MemoryLeakTest extends AbstractTest {
 		memory.add(from);
 		memory.add(to);
 
-		IMapping.Instance<EObject, EObject> instance = mapping.map(from, to);
+		IMappingInstance<EObject, EObject> instance = mapping.map(from, to);
 
 		memory.add(instance.getLeft());
 		memory.add(instance.getRight());

@@ -24,9 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.papyrus.aof.sync.IMapping.Instance;
-
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage;
 
@@ -52,7 +50,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Instance<?, ?>> instances;
+	protected EList<IMappingInstance<?, ?>> instances;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,9 +77,9 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	 * @generated
 	 */
 	@Override
-	public EList<Instance<?, ?>> getInstances() {
+	public EList<IMappingInstance<?, ?>> getInstances() {
 		if (instances == null) {
-			instances = new EObjectContainmentEList<Instance<?, ?>>(Instance.class, this, SyncMappingPackage.MAPPING_MODEL__INSTANCE);
+			instances = new EObjectContainmentEList<IMappingInstance<?, ?>>(IMappingInstance.class, this, SyncMappingPackage.MAPPING_MODEL__INSTANCE);
 		}
 		return instances;
 	}
@@ -125,7 +123,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 		switch (featureID) {
 		case SyncMappingPackage.MAPPING_MODEL__INSTANCE:
 			getInstances().clear();
-			getInstances().addAll((Collection<? extends Instance<?, ?>>) newValue);
+			getInstances().addAll((Collection<? extends IMappingInstance<?, ?>>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

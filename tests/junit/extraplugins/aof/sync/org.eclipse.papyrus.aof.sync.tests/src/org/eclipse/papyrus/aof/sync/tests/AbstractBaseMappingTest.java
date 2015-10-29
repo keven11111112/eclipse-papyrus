@@ -27,6 +27,7 @@ import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
 import org.junit.Before;
@@ -43,7 +44,7 @@ public abstract class AbstractBaseMappingTest<F extends EObject, T extends EObje
 	private Provider<IMapping<F, T>> fixture;
 
 	@CleanUp
-	protected IMapping.Instance<F, T> mapped;
+	protected IMappingInstance<F, T> mapped;
 
 	@Inject
 	@From

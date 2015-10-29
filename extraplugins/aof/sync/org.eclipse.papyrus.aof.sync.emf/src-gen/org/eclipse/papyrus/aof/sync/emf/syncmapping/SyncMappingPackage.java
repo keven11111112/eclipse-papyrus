@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,10 +67,10 @@ public interface SyncMappingPackage extends EPackage {
 	SyncMappingPackage eINSTANCE = org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.aof.sync.IMapping.Instance <em>IMapping Instance</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.aof.sync.IMappingInstance <em>IMapping Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.aof.sync.IMapping.Instance
+	 * @see org.eclipse.papyrus.aof.sync.IMappingInstance
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getIMappingInstance()
 	 * @generated
 	 */
@@ -321,11 +322,11 @@ public interface SyncMappingPackage extends EPackage {
 	EAttribute getMappingInstance_Tracker();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.aof.sync.IMapping.Instance <em>IMapping Instance</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.aof.sync.IMappingInstance <em>IMapping Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>IMapping Instance</em>'.
-	 * @see org.eclipse.papyrus.aof.sync.IMapping.Instance
+	 * @see org.eclipse.papyrus.aof.sync.IMappingInstance
 	 * @model instanceClass="org.eclipse.papyrus.aof.sync.IMapping$Instance" typeParameters="F T"
 	 * @generated
 	 */
@@ -491,10 +492,10 @@ public interface SyncMappingPackage extends EPackage {
 		EAttribute MAPPING_INSTANCE__TRACKER = eINSTANCE.getMappingInstance_Tracker();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.aof.sync.IMapping.Instance <em>IMapping Instance</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.aof.sync.IMappingInstance <em>IMapping Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.aof.sync.IMapping.Instance
+		 * @see org.eclipse.papyrus.aof.sync.IMappingInstance
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getIMappingInstance()
 		 * @generated
 		 */

@@ -29,6 +29,7 @@ import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.MappingModule;
 import org.eclipse.papyrus.aof.sync.SyncMapping;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
@@ -108,7 +109,7 @@ public class SyncMappingAdapterTest {
 	<L, R> void assertInjection(IMapping<L, R> mapping, L left, R right) {
 		assertThat("Not injected", mapping, notNullValue());
 
-		IMapping.Instance<L, R> instance = mapping.map(left, right);
+		IMappingInstance<L, R> instance = mapping.map(left, right);
 
 		assertThat(instance.getLeft(), BoxMatchers.matches(IConstraints.ONE));
 		assertThat(instance.getLeft().get(0), is(left));

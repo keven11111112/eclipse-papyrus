@@ -30,6 +30,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.emf.EMFMappingModule;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
@@ -149,7 +150,7 @@ public class EMFMappingModuleTest {
 
 			@Override
 			protected void doExecute() {
-				IMapping.Instance<EPackage, EPackage> instance = mapping.map(from, to);
+				IMappingInstance<EPackage, EPackage> instance = mapping.map(from, to);
 				mappingModel.getInstances().add(instance);
 			}
 		});

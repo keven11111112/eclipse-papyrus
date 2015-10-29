@@ -25,6 +25,7 @@ import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.MappingFactory;
 import org.eclipse.papyrus.aof.sync.MappingModule;
 import org.eclipse.papyrus.aof.sync.SyncMapping;
@@ -92,7 +93,7 @@ public class MappingFactoryTest {
 	<T> void assertMappingInjected(T left, T right, Class<T> type, MappingModule module) {
 		MappingFactory factory = new MappingFactory(module);
 		ISyncMapping<T> mapping = factory.getSyncMapping(type);
-		IMapping.Instance<T, T> pair = mapping.map(left, right);
+		IMappingInstance<T, T> pair = mapping.map(left, right);
 		assertThat(pair.getLeft().get(0), is(left));
 		assertThat(pair.getRight().get(0), is(right));
 	}

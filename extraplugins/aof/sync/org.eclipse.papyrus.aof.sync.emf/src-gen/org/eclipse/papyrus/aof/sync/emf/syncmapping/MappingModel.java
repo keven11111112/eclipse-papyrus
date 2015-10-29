@@ -14,8 +14,7 @@ package org.eclipse.papyrus.aof.sync.emf.syncmapping;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.aof.sync.IMapping.Instance;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +35,7 @@ import org.eclipse.papyrus.aof.sync.IMapping.Instance;
 public interface MappingModel extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Instance</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.aof.sync.IMapping.Instance}&lt;?, ?>.
+	 * The list contents are of type {@link org.eclipse.papyrus.aof.sync.IMappingInstance}&lt;?, ?>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mapping</em>' containment reference list isn't clear,
@@ -48,6 +47,6 @@ public interface MappingModel extends EObject {
 	 * @model type="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>" containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<Instance<?, ?>> getInstances();
+	EList<IMappingInstance<?, ?>> getInstances();
 
 } // MappingModel

@@ -39,6 +39,7 @@ import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.MappingFactory;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage;
@@ -64,7 +65,7 @@ import org.eclipse.papyrus.sync.internal.Activator;
  */
 public abstract class AOFSyncDelegate implements ISyncDelegate {
 
-	private final Set<IMapping.Instance<?, ?>> mappings = new HashSet<>();
+	private final Set<IMappingInstance<?, ?>> mappings = new HashSet<>();
 
 	private MappingFactory mappingFactory;
 
@@ -94,7 +95,7 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 	}
 
 	@Override
-	public IMapping.Instance<?, ?> synchronize(Object source, Object target) {
+	public IMappingInstance<?, ?> synchronize(Object source, Object target) {
 		EObject eSource = (EObject) source;
 		EObject eTarget = (EObject) target;
 
@@ -106,12 +107,12 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 		return synchronize(eSource, sourceType, eTarget, targetType);
 	}
 
-	protected <F extends EObject, T extends EObject> IMapping.Instance<F, T> synchronize(F source,
+	protected <F extends EObject, T extends EObject> IMappingInstance<F, T> synchronize(F source,
 			Class<? extends F> sourceType, T target, Class<? extends T> targetType) {
 
 		IMapping<F, T> mapping = mappingFactory.getMapping(sourceType, targetType);
 
-		IMapping.Instance<F, T> result = mapping.map(source, target);
+		IMappingInstance<F, T> result = mapping.map(source, target);
 		getMappings().add(result);
 		mappingModel.getInstances().add(result);
 
@@ -123,22 +124,22 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 		return Collections.unmodifiableCollection(getMappings());
 	}
 
-	protected Collection<IMapping.Instance<?, ?>> getMappings() {
+	protected Collection<IMappingInstance<?, ?>> getMappings() {
 		return mappings;
 	}
 
 	@Override
 	public boolean provides(Object synchronizationReference) {
-		return (synchronizationReference instanceof IMapping.Instance<?, ?>)
+		return (synchronizationReference instanceof IMappingInstance<?, ?>)
 				&& getMappings().contains(synchronizationReference);
 	}
 
-	protected final IMapping.Instance<?, ?> requireMappingInstance(Object synchReference) {
-		if (!(synchReference instanceof IMapping.Instance<?, ?>)) {
+	protected final IMappingInstance<?, ?> requireMappingInstance(Object synchReference) {
+		if (!(synchReference instanceof IMappingInstance<?, ?>)) {
 			throw new IllegalArgumentException("synchReference is not a mapping instance"); //$NON-NLS-1$
 		}
 
-		return (IMapping.Instance<?, ?>) synchReference;
+		return (IMappingInstance<?, ?>) synchReference;
 	}
 
 	@Override
@@ -245,14 +246,14 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 		listeners.remove(listener);
 	}
 
-	protected void fireSynchronizationAdded(IMapping.Instance<?, ?> mappingInstance) {
+	protected void fireSynchronizationAdded(IMappingInstance<?, ?> mappingInstance) {
 		if (!listeners.isEmpty()) {
 			fireSynchronizationChanged(new SyncEvent(SyncEvent.SyncEventKind.SYNCHRONIZATION_ADDED, this,
 					mappingInstance, mappingInstance.getLeft().get(), mappingInstance.getRight().get()));
 		}
 	}
 
-	protected void fireSynchronizationRemoved(IMapping.Instance<?, ?> mappingInstance) {
+	protected void fireSynchronizationRemoved(IMappingInstance<?, ?> mappingInstance) {
 		if (!listeners.isEmpty()) {
 			fireSynchronizationChanged(new SyncEvent(SyncEvent.SyncEventKind.SYNCHRONIZATION_REMOVED, this,
 					mappingInstance, mappingInstance.getLeft().get(), mappingInstance.getRight().get()));
@@ -335,14 +336,14 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 				switch (msg.getEventType()) {
 				case Notification.ADD:
 					if (getMappings().contains(msg.getNewValue())) {
-						fireSynchronizationAdded((IMapping.Instance<?, ?>) msg.getNewValue());
+						fireSynchronizationAdded((IMappingInstance<?, ?>) msg.getNewValue());
 					}
 					break;
 				case Notification.ADD_MANY:
 					@SuppressWarnings("unchecked")
-					Collection<? extends IMapping.Instance<?, ?>> newValues = (Collection<? extends IMapping.Instance<?, ?>>) msg
+					Collection<? extends IMappingInstance<?, ?>> newValues = (Collection<? extends IMappingInstance<?, ?>>) msg
 							.getNewValue();
-					for (IMapping.Instance<?, ?> next : newValues) {
+					for (IMappingInstance<?, ?> next : newValues) {
 						if (getMappings().contains(next)) {
 							fireSynchronizationAdded(next);
 						}
@@ -350,14 +351,14 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 					break;
 				case Notification.REMOVE:
 					if (getMappings().remove(msg.getOldValue())) {
-						fireSynchronizationRemoved((IMapping.Instance<?, ?>) msg.getOldValue());
+						fireSynchronizationRemoved((IMappingInstance<?, ?>) msg.getOldValue());
 					}
 					break;
 				case Notification.REMOVE_MANY:
 					@SuppressWarnings("unchecked")
-					Collection<? extends IMapping.Instance<?, ?>> oldValues = (Collection<? extends IMapping.Instance<?, ?>>) msg
+					Collection<? extends IMappingInstance<?, ?>> oldValues = (Collection<? extends IMappingInstance<?, ?>>) msg
 							.getOldValue();
-					for (IMapping.Instance<?, ?> next : oldValues) {
+					for (IMappingInstance<?, ?> next : oldValues) {
 						if (getMappings().remove(next)) {
 							fireSynchronizationRemoved(next);
 						}
@@ -366,10 +367,10 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 				case Notification.SET:
 				case Notification.UNSET:
 					if (getMappings().remove(msg.getOldValue())) {
-						fireSynchronizationRemoved((IMapping.Instance<?, ?>) msg.getOldValue());
+						fireSynchronizationRemoved((IMappingInstance<?, ?>) msg.getOldValue());
 					}
 					if (getMappings().contains(msg.getNewValue())) {
-						fireSynchronizationAdded((IMapping.Instance<?, ?>) msg.getNewValue());
+						fireSynchronizationAdded((IMappingInstance<?, ?>) msg.getNewValue());
 					}
 					break;
 				}

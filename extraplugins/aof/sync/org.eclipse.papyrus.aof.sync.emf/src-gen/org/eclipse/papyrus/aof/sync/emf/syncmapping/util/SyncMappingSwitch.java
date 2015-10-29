@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.papyrus.aof.sync.AbstractMapping;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.*;
 
 /**
@@ -93,7 +93,7 @@ public class SyncMappingSwitch<T1> extends Switch<T1> {
 			return result;
 		}
 		case SyncMappingPackage.IMAPPING_INSTANCE: {
-			IMapping.Instance<?, ?> iMappingInstance = (IMapping.Instance<?, ?>) theEObject;
+			IMappingInstance<?, ?> iMappingInstance = (IMappingInstance<?, ?>) theEObject;
 			T1 result = caseIMappingInstance(iMappingInstance);
 			if (result == null) {
 				result = defaultCase(theEObject);
@@ -158,7 +158,7 @@ public class SyncMappingSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <F, T> T1 caseIMappingInstance(IMapping.Instance<F, T> object) {
+	public <F, T> T1 caseIMappingInstance(IMappingInstance<F, T> object) {
 		return null;
 	}
 

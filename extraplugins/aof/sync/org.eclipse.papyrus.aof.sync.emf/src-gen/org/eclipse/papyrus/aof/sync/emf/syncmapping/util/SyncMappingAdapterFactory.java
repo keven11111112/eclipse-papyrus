@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.papyrus.aof.sync.AbstractMapping;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.*;
 
 /**
@@ -84,7 +84,7 @@ public class SyncMappingAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public <F, T> Adapter caseIMappingInstance(IMapping.Instance<F, T> object) {
+		public <F, T> Adapter caseIMappingInstance(IMappingInstance<F, T> object) {
 			return createIMappingInstanceAdapter();
 		}
 
@@ -138,13 +138,13 @@ public class SyncMappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.aof.sync.IMapping.Instance <em>IMapping Instance</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.aof.sync.IMappingInstance <em>IMapping Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.aof.sync.IMapping.Instance
+	 * @see org.eclipse.papyrus.aof.sync.IMappingInstance
 	 * @generated
 	 */
 	public Adapter createIMappingInstanceAdapter() {

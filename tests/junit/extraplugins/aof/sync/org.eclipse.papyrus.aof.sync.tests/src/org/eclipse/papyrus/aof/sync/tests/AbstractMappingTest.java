@@ -43,6 +43,7 @@ import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.From;
 import org.eclipse.papyrus.aof.sync.ICorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.SyncMapping;
 import org.eclipse.papyrus.aof.sync.To;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
@@ -91,7 +92,7 @@ public class AbstractMappingTest extends AbstractTest {
 
 	@Test
 	public void map() {
-		IMapping.Instance<EObject, EObject> pair = fixture.map(from, to);
+		IMappingInstance<EObject, EObject> pair = fixture.map(from, to);
 		assertThat(pair.getLeft(), matches(IConstraints.ONE));
 		assertThat(pair.getRight(), matches(IConstraints.ONE));
 
@@ -112,11 +113,11 @@ public class AbstractMappingTest extends AbstractTest {
 		IOne<EObject> left = Boxes.with(aof).immutableOne(from);
 		IOne<EObject> right = Boxes.with(aof).immutableOne(to);
 
-		IBox<IMapping.Instance<EObject, EObject>> instanceBox = fixture.map(left, right);
+		IBox<IMappingInstance<EObject, EObject>> instanceBox = fixture.map(left, right);
 
 		assertThat(instanceBox, matches(IConstraints.ONE));
 
-		IMapping.Instance<EObject, EObject> instance = instanceBox.get(0);
+		IMappingInstance<EObject, EObject> instance = instanceBox.get(0);
 
 		assertThat(instance.getLeft(), matches(IConstraints.ONE));
 		assertThat(instance.getRight(), matches(IConstraints.ONE));
@@ -341,7 +342,7 @@ public class AbstractMappingTest extends AbstractTest {
 		EList<EObject> toRef = (EList<EObject>) to.eGet(reference);
 		assumeThat(toRef, MoreMatchers.emptyIterable());
 
-		IMapping.Instance<EObject, EObject> instance = fixture.map(from, to);
+		IMappingInstance<EObject, EObject> instance = fixture.map(from, to);
 
 		EObject leftAlice = fromRef.get(0);
 		leftAlice.eSet(attribute, 42);
@@ -440,7 +441,7 @@ public class AbstractMappingTest extends AbstractTest {
 		}
 
 		@Override
-		protected <P, R> IBox<IMapping.Instance<P, R>> mapProperty(IOne<? extends EObject> fromBox, IOne<? extends EObject> toBox, Object identifiedBy, IMapping<P, R> using) {
+		protected <P, R> IBox<IMappingInstance<P, R>> mapProperty(IOne<? extends EObject> fromBox, IOne<? extends EObject> toBox, Object identifiedBy, IMapping<P, R> using) {
 			return super.mapProperty(fromBox, toBox, identifiedBy, using);
 		}
 

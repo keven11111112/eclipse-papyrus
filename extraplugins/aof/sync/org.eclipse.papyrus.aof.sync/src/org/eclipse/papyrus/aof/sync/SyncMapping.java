@@ -66,7 +66,7 @@ public abstract class SyncMapping<E> extends AbstractMapping<E, E>implements ISy
 	 * 
 	 * @return a pairing of the the boxed property values that are mapped
 	 */
-	protected <P, R> IBox<IMapping.Instance<P, R>> mapProperty(IOne<? extends E> fromBox, IOne<? extends E> toBox, Object identifiedBy, IMapping<P, R> using) {
+	protected <P, R> IBox<IMappingInstance<P, R>> mapProperty(IOne<? extends E> fromBox, IOne<? extends E> toBox, Object identifiedBy, IMapping<P, R> using) {
 		return mapProperty(fromBox, identifiedBy, toBox, identifiedBy, using);
 	}
 

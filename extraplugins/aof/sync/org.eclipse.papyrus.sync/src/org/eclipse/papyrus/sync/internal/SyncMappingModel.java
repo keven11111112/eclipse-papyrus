@@ -18,7 +18,7 @@ import java.io.IOException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingFactory;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage;
@@ -28,7 +28,7 @@ import org.eclipse.papyrus.sync.ISyncMappingModel;
 
 /**
  * The model implementation for the resource that stores
- * {@linkplain IMapping.Instance mapping instances} for the Papyrus Editor. The
+ * {@linkplain IMappingInstance mapping instances} for the Papyrus Editor. The
  * resource exists implicitly and is never saved to storage.
  */
 public class SyncMappingModel extends EMFLogicalModel implements ISyncMappingModel {

@@ -63,7 +63,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	}
 
 	@Override
-	public final Instance<F, T> map(F from, T to) {
+	public final IMappingInstance<F, T> map(F from, T to) {
 		IOne<F> fromBox = getFromFactory().createOne(from);
 		IOne<T> toBox = getToFactory().createOne(to);
 
@@ -121,7 +121,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * 
 	 * @return a pairing of the the boxed property values that are mapped
 	 */
-	protected <P, R> IBox<IMapping.Instance<P, R>> mapProperty(IOne<? extends F> fromBox, Object fromIdentifiedBy, IOne<? extends T> toBox, Object toIdentifiedBy, IMapping<P, R> using) {
+	protected <P, R> IBox<IMappingInstance<P, R>> mapProperty(IOne<? extends F> fromBox, Object fromIdentifiedBy, IOne<? extends T> toBox, Object toIdentifiedBy, IMapping<P, R> using) {
 		IPair<IBox<P>, IBox<R>> result = getToFactory().createPair(property(fromBox, fromType, fromIdentifiedBy), property(toBox, toType, toIdentifiedBy));
 		return using.map(result.getLeft(), result.getRight());
 	}
@@ -404,7 +404,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	// Nested types
 	//
 
-	public interface InternalInstance<F, T> extends Instance<F, T> {
+	public interface InternalInstance<F, T> extends IMappingInstance<F, T> {
 		void setTracker(ObserverTracker tracker);
 	}
 
@@ -413,7 +413,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 		private final IOne<T> to;
 
 		private ObserverTracker tracker;
-		private final List<Instance<?, ?>> consequents = new ArrayList<>(3);
+		private final List<IMappingInstance<?, ?>> consequents = new ArrayList<>(3);
 
 		InstanceImpl(IOne<F> from, IOne<T> to) {
 			super();
@@ -443,12 +443,12 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 		}
 
 		@Override
-		public Iterator<Instance<?, ?>> iterator() {
+		public Iterator<IMappingInstance<?, ?>> iterator() {
 			return consequents.iterator();
 		}
 
 		@Override
-		public void addConsequent(Instance<?, ?> consequent) {
+		public void addConsequent(IMappingInstance<?, ?> consequent) {
 			consequents.add(consequent);
 		}
 
@@ -457,7 +457,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 			if (tracker != null) {
 				tracker.dispose();
 			}
-			this.forEach(Instance::destroy);
+			this.forEach(IMappingInstance::destroy);
 		}
 	}
 }

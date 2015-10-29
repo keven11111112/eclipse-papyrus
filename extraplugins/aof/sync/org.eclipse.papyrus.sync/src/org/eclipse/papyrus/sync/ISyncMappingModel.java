@@ -13,7 +13,7 @@
 
 package org.eclipse.papyrus.sync;
 
-import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.util.SyncMappingResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -22,7 +22,7 @@ import org.eclipse.papyrus.sync.internal.Activator;
 
 /**
  * Interface for a Papyrus Model managing the resource that stores
- * {@linkplain IMapping.Instance mapping instances} for the Papyrus Editor. The
+ * {@linkplain IMappingInstance mapping instances} for the Papyrus Editor. The
  * resource exists implicitly and is never saved to storage.
  */
 public interface ISyncMappingModel extends IModel {
@@ -45,7 +45,7 @@ public interface ISyncMappingModel extends IModel {
 	}
 
 	/**
-	 * Obtains the container for all {@linkplain IMapping.Instance mapping
+	 * Obtains the container for all {@linkplain IMappingInstance mapping
 	 * instances} in the Papyrus {@link ModelSet}.
 	 * 
 	 * @return the mapping container

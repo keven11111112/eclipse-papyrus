@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 import org.eclipse.papyrus.aof.sync.IMapping;
-import org.eclipse.papyrus.aof.sync.IMapping.Instance;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 
@@ -34,7 +34,7 @@ import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
  * The following operations are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#addConsequent(org.eclipse.papyrus.aof.sync.IMapping.Instance) <em>Add Consequent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#addConsequent(org.eclipse.papyrus.aof.sync.IMapping.IMappingInstance) <em>Add Consequent</em>}</li>
  *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#destroy() <em>Destroy</em>}</li>
  *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#iterator() <em>Iterator</em>}</li>
  *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#eBasicSetContainer(org.eclipse.emf.ecore.InternalEObject) <em>EBasic Set Container</em>}</li>
@@ -58,7 +58,7 @@ public class MappingInstanceOperations {
 	 *
 	 * @generated NOT
 	 */
-	public static <F, T> void addConsequent(MappingInstance<F, T> mappingInstance, Instance<?, ?> consequent) {
+	public static <F, T> void addConsequent(MappingInstance<F, T> mappingInstance, IMappingInstance<?, ?> consequent) {
 		mappingInstance.getConsequents().add(consequent);
 	}
 
@@ -74,7 +74,7 @@ public class MappingInstanceOperations {
 			tracker.dispose();
 			mappingInstance.setTracker(null);
 		}
-		mappingInstance.forEach(Instance::destroy);
+		mappingInstance.forEach(IMappingInstance::destroy);
 
 		if (mappingInstance.eContainer() instanceof MappingModel) {
 			EcoreUtil.remove(mappingInstance);
@@ -87,7 +87,7 @@ public class MappingInstanceOperations {
 	 *
 	 * @generated NOT
 	 */
-	public static <F, T> Iterator<Instance<?, ?>> iterator(MappingInstance<F, T> mappingInstance) {
+	public static <F, T> Iterator<IMappingInstance<?, ?>> iterator(MappingInstance<F, T> mappingInstance) {
 		return mappingInstance.getConsequents().iterator();
 	}
 
@@ -114,7 +114,7 @@ public class MappingInstanceOperations {
 
 			// Grab its tracker and other details
 			mappingInstance.setTracker(newInstance.getTracker());
-			List<IMapping.Instance<?, ?>> consequents = new ArrayList<>(newInstance.getConsequents());
+			List<IMappingInstance<?, ?>> consequents = new ArrayList<>(newInstance.getConsequents());
 			ECollections.setEList(mappingInstance.getConsequents(), consequents);
 		}
 	}

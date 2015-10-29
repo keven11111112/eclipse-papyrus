@@ -23,8 +23,7 @@ import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 
 import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.IMapping;
-
-import org.eclipse.papyrus.aof.sync.IMapping.Instance;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -127,7 +126,7 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 
 	/**
 	 * Returns the value of the '<em><b>Consequent</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.aof.sync.IMapping.Instance}&lt;?, ?>.
+	 * The list contents are of type {@link org.eclipse.papyrus.aof.sync.IMappingInstance}&lt;?, ?>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Consequent</em>' containment reference list isn't clear,
@@ -139,7 +138,7 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * @model type="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>" containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<Instance<?, ?>> getConsequents();
+	EList<IMappingInstance<?, ?>> getConsequents();
 
 	/**
 	 * Returns the value of the '<em><b>Tracker</b></em>' attribute.
@@ -173,7 +172,7 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * @model consequentType="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>" consequentRequired="true" consequentOrdered="false"
 	 * @generated
 	 */
-	void addConsequent(Instance<?, ?> consequent);
+	void addConsequent(IMappingInstance<?, ?> consequent);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,6 +188,6 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * @model dataType="org.eclipse.papyrus.aof.sync.emf.syncmapping.Iterator<org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>>" required="true" ordered="false"
 	 * @generated
 	 */
-	Iterator<Instance<?, ?>> iterator();
+	Iterator<IMappingInstance<?, ?>> iterator();
 
 } // MappingInstance

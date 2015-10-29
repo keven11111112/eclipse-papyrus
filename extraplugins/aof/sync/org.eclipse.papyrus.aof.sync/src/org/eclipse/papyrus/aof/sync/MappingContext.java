@@ -26,7 +26,6 @@ import org.eclipse.papyrus.aof.core.impl.utils.cache.WeakKeysWeakValuesBinaryCac
 import org.eclipse.papyrus.aof.core.impl.utils.cache.WeakKeysWeakValuesUnaryCache;
 import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 import org.eclipse.papyrus.aof.core.utils.Observers;
-import org.eclipse.papyrus.aof.sync.IMapping.Instance;
 
 /**
  * Default implementation of the mapping context protocol.
@@ -36,8 +35,8 @@ public class MappingContext implements IMappingContext {
 
 	private final AtomicInteger openDepth = new AtomicInteger();
 
-	private final IBinaryCache<IOne<?>, IMapping<?, ?>, IMapping.Instance<?, ?>> mappingInstances = new WeakKeysWeakValuesBinaryCache<>();
-	private final ThreadLocal<IMapping.Instance<?, ?>> currentMappingInstance = new ThreadLocal<>();
+	private final IBinaryCache<IOne<?>, IMapping<?, ?>, IMappingInstance<?, ?>> mappingInstances = new WeakKeysWeakValuesBinaryCache<>();
+	private final ThreadLocal<IMappingInstance<?, ?>> currentMappingInstance = new ThreadLocal<>();
 
 	private final IUnaryCache<IObserver<?>, IObserver<?>> observerWrappers = new WeakKeysWeakValuesUnaryCache<>();
 
@@ -49,7 +48,7 @@ public class MappingContext implements IMappingContext {
 	public void open() {
 		openDepth.incrementAndGet();
 
-		IMapping.Instance<?, ?> context = currentMappingInstance.get();
+		IMappingInstance<?, ?> context = currentMappingInstance.get();
 		Observers.pushObserverIntercept((IObserver<?> o) -> wrapObserver(o, context));
 	}
 
@@ -70,13 +69,13 @@ public class MappingContext implements IMappingContext {
 	}
 
 	@Override
-	public <F, T> ObserverTracker run(Instance<F, T> instance, BiConsumer<? super IOne<F>, ? super IOne<T>> block) {
+	public <F, T> ObserverTracker run(IMappingInstance<F, T> instance, BiConsumer<? super IOne<F>, ? super IOne<T>> block) {
 		ObserverTracker result;
 
 		// Remember this instance for later ad hoc consequents
 		mappingInstances.put(instance.getLeft(), instance.getType(), instance);
 
-		IMapping.Instance<?, ?> parent = currentMappingInstance.get();
+		IMappingInstance<?, ?> parent = currentMappingInstance.get();
 		if (parent != null) {
 			parent.addConsequent(instance);
 		} else {
@@ -94,7 +93,7 @@ public class MappingContext implements IMappingContext {
 		return result;
 	}
 
-	private <E> IObserver<? super E> wrapObserver(IObserver<E> observer, IMapping.Instance<?, ?> context) {
+	private <E> IObserver<? super E> wrapObserver(IObserver<E> observer, IMappingInstance<?, ?> context) {
 		@SuppressWarnings("unchecked")
 		IObserver<? super E> result = (IObserver<? super E>) observerWrappers.get(observer);
 
@@ -112,9 +111,9 @@ public class MappingContext implements IMappingContext {
 
 	private class ContextualObserver<E> implements IObserver<E> {
 		private final IObserver<E> delegate;
-		private final IMapping.Instance<?, ?> context;
+		private final IMappingInstance<?, ?> context;
 
-		ContextualObserver(IObserver<E> observer, IMapping.Instance<?, ?> context) {
+		ContextualObserver(IObserver<E> observer, IMappingInstance<?, ?> context) {
 			super();
 
 			this.delegate = observer;
@@ -133,7 +132,7 @@ public class MappingContext implements IMappingContext {
 
 		@Override
 		public void added(int index, E element) {
-			IMapping.Instance<?, ?> restore = pushContext();
+			IMappingInstance<?, ?> restore = pushContext();
 			try {
 				delegate.added(index, element);
 			} finally {
@@ -143,7 +142,7 @@ public class MappingContext implements IMappingContext {
 
 		@Override
 		public void removed(int index, E element) {
-			IMapping.Instance<?, ?> restore = pushContext();
+			IMappingInstance<?, ?> restore = pushContext();
 			try {
 				delegate.removed(index, element);
 			} finally {
@@ -153,7 +152,7 @@ public class MappingContext implements IMappingContext {
 
 		@Override
 		public void replaced(int index, E newElement, E oldElement) {
-			IMapping.Instance<?, ?> restore = pushContext();
+			IMappingInstance<?, ?> restore = pushContext();
 			try {
 				delegate.replaced(index, newElement, oldElement);
 			} finally {
@@ -163,7 +162,7 @@ public class MappingContext implements IMappingContext {
 
 		@Override
 		public void moved(int newIndex, int oldIndex, E element) {
-			IMapping.Instance<?, ?> restore = pushContext();
+			IMappingInstance<?, ?> restore = pushContext();
 			try {
 				delegate.moved(newIndex, oldIndex, element);
 			} finally {
@@ -171,13 +170,13 @@ public class MappingContext implements IMappingContext {
 			}
 		}
 
-		private IMapping.Instance<?, ?> pushContext() {
-			IMapping.Instance<?, ?> result = currentMappingInstance.get();
+		private IMappingInstance<?, ?> pushContext() {
+			IMappingInstance<?, ?> result = currentMappingInstance.get();
 			currentMappingInstance.set(context);
 			return result;
 		}
 
-		private void popContext(IMapping.Instance<?, ?> restore) {
+		private void popContext(IMappingInstance<?, ?> restore) {
 			currentMappingInstance.set(restore);
 		}
 	}

@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 import org.eclipse.papyrus.aof.sync.IMapping;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 
 /**
  * Adapter for an {@link IMapping} that happens to satisfy the contract of the
@@ -33,7 +34,7 @@ public final class SyncMappingAdapter<E> implements ISyncMapping<E> {
 	}
 
 	@Override
-	public Instance<E, E> map(E from, E to) {
+	public IMappingInstance<E, E> map(E from, E to) {
 		return delegate.map(from, to);
 	}
 }

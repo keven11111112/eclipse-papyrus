@@ -31,7 +31,7 @@ import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 
 import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.IMapping;
-
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingFactory;
@@ -469,7 +469,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 		op = addEOperation(mappingInstanceEClass, null, "eBasicSetContainer", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getInternalEObject(), "newContainer", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(iMappingInstanceEClass, IMapping.Instance.class, "IMappingInstance", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(iMappingInstanceEClass, IMappingInstance.class, "IMappingInstance", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(internalInstanceEClass, AbstractMapping.InternalInstance.class, "InternalInstance", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

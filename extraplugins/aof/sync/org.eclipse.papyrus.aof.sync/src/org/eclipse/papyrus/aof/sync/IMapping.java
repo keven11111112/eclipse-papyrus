@@ -13,11 +13,7 @@
 
 package org.eclipse.papyrus.aof.sync;
 
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
-
 import org.eclipse.papyrus.aof.core.IBox;
-import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IPair;
 
 /**
@@ -47,7 +43,7 @@ public interface IMapping<F, T> {
 	 *         {@linkplain IPair#getLeft() left}) and {@code to} (the
 	 *         {@linkplain IPair#getRight() right} objects
 	 */
-	Instance<F, T> map(F from, T to);
+	IMappingInstance<F, T> map(F from, T to);
 
 	/**
 	 * Drills into {@linkplain IBox boxes} encapsulating mapped objects to establish
@@ -61,42 +57,8 @@ public interface IMapping<F, T> {
 	 * @return a box containing the same number of mapping pairs, per the
 	 *         {@link #map(Object, Object)} primitive operation
 	 */
-	default <G extends F, U extends T> IBox<Instance<F, T>> map(IBox<G> from, IBox<U> to) {
+	default <G extends F, U extends T> IBox<IMappingInstance<F, T>> map(IBox<G> from, IBox<U> to) {
 		return to.zipWith(from, (U t, G f) -> map(f, t));
 	}
 
-	//
-	// Nested types
-	//
-
-	/**
-	 * An instance of the mapping that I describe, which is an association of a boxed
-	 * source and a boxed target, together with a collection of consequents (sub-mappings).
-	 */
-	interface Instance<F, T> extends IPair<IOne<F>, IOne<T>>, Iterable<Instance<?, ?>> {
-		/**
-		 * Obtains the mapping of which I am an instance.
-		 * 
-		 * @return my (mapping) type
-		 */
-		IMapping<F, T> getType();
-
-		/**
-		 * Adds a down-stream mapping that is a consequence of myself.
-		 * 
-		 * @param consequent
-		 *            a down-stream mapping
-		 */
-		void addConsequent(Instance<?, ?> consequent);
-
-		/**
-		 * Destroys me, removing all active operations that implement me and my consequents,
-		 * recursively.
-		 */
-		void destroy();
-
-		default Stream<Instance<?, ?>> stream() {
-			return StreamSupport.stream(spliterator(), false);
-		}
-	}
 }

@@ -68,7 +68,7 @@ public interface IMappingContext {
 	 * 
 	 * @return a record of observers added during the progress of the {@code mapping}
 	 */
-	<F, T> ObserverTracker run(IMapping.Instance<F, T> instance, BiConsumer<? super IOne<F>, ? super IOne<T>> block);
+	<F, T> ObserverTracker run(IMappingInstance<F, T> instance, BiConsumer<? super IOne<F>, ? super IOne<T>> block);
 
 	/**
 	 * Runs a {@code block} of code that manipulates mappings, during which
