@@ -17,33 +17,32 @@
    </extension>
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
-      <!--
       <profile
             name="Business to Manufacturing Markup Language (B2MML) Profile"
             path="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/mockup/B2mmlProcessSegment.profile.uml"
             provider="CEA List"
              description="UML profile for B2MML">
-      -->
+      <!--
       <profile
             name="Business to Manufacturing Markup Language (B2MML) Profile"
             path="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/B2MML-profile.uml"
             provider="CEA List"
              description="UML profile for B2MML">
+      -->
       </profile>
    </extension>
        <extension
          point="org.eclipse.uml2.uml.generated_package">
-            <!--
       <profile
             location="pathmap://B2MML_PROF/B2mmlProcessSegment.profile.uml#_-4BeoFJVEeWYd7vE_Ti-XA"
             uri="pathmap://B2MML_PROF/B2mmlProcessSegment.profile.uml">
-            -->
+            <!--
       <profile
-            location="pathmap://B2MML_PROF/B2MML-profile.uml#_XWrjwFGDEeWke-fIeAhlQg"
+            location="pathmap://B2MML_PROF/B2MML-profile.uml#_ESB9YHivEeWliqHz-S4C7A"
             uri="pathmap://B2MML_PROF/B2MML-profile.uml">      
+            -->
       </profile>
    </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated B2mmlProcessSegment.profile -->
       <package
@@ -51,7 +50,6 @@
             class="org.eclipse.papyrus.manufacturing.b2mml.profile.B2MML.B2mmlProcessSegmentPackage"
             genModel="model/mockup/B2mmlProcessSegment.profile.genmodel"/>
    </extension>
-
       <!-- @generated B2MML-profile -->
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package

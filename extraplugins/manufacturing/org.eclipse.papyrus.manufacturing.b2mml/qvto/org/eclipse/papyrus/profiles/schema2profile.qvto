@@ -94,11 +94,3 @@ mapping XSDElementDeclaration::attribute2Property() : Property{
 	type := self.type.oclAsType(XSDComplexTypeDefinition).resolveone(Stereotype);
 }
 
-/*
-helper XSDSchema::setAttributeTypes(stereotypes : Set(Stereotype)){
-	self.contents[XSDComplexTypeDefinition].
-	
-	stereotypes->forEach(stereotype){
-		stereotype.ownedAttribute
-	}
-}*/
