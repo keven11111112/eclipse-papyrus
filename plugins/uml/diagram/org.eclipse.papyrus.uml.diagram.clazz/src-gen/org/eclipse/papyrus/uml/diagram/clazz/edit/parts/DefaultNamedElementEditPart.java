@@ -32,17 +32,18 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNode
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.swt.graphics.Color;
 
 /**
  * @generated
  */
-public class DefaultNamedElementEditPart extends NamedElementEditPart {
+public class DefaultNamedElementEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -129,7 +130,7 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected IFigure createNodeShape() {
-		return primaryShape = new NodeNamedElementFigure();
+		return primaryShape = new RoundedCompartmentFigure();
 	}
 
 	/**
@@ -138,8 +139,8 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	@Override
-	public NodeNamedElementFigure getPrimaryShape() {
-		return (NodeNamedElementFigure) primaryShape;
+	public RoundedCompartmentFigure getPrimaryShape() {
+		return (RoundedCompartmentFigure) primaryShape;
 	}
 
 	/**
