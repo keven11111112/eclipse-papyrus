@@ -5178,7 +5178,7 @@
             editHelperClassName="DefaultNamedElementEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="100"
@@ -8704,7 +8704,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="adding to manange otherNamedElement"
-        genView="/0/@diagram /0/@diagram/@topLevelNodes.19"
+        genView="/0/@diagram"
         name="OtherNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
@@ -8881,7 +8881,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Elements that inherits RoundedCompartmentEditPart"
-        genView="/0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.18 /0/@diagram/@topLevelNodes.17 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.24"
+        genView="/0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.18 /0/@diagram/@topLevelNodes.17 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.19"
         name="Rounded Compartment EP inheritance"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
     <extensionNodes

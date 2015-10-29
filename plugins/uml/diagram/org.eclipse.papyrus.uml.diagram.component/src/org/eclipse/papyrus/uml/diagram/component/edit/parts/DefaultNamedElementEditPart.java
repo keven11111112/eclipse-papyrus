@@ -24,17 +24,17 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.ComponentDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
@@ -43,7 +43,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class DefaultNamedElementEditPart extends NodeEditPart {
+public class DefaultNamedElementEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -119,7 +119,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected IFigure createNodeShape() {
-		return primaryShape = new NodeNamedElementFigure();
+		return primaryShape = new RoundedCompartmentFigure();
 	}
 
 	/**
@@ -128,8 +128,8 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 * @generated
 	 */
 	@Override
-	public NodeNamedElementFigure getPrimaryShape() {
-		return (NodeNamedElementFigure) primaryShape;
+	public RoundedCompartmentFigure getPrimaryShape() {
+		return (RoundedCompartmentFigure) primaryShape;
 	}
 
 	/**

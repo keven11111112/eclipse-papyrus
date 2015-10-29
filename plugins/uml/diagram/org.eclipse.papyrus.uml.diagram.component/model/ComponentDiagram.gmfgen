@@ -1752,7 +1752,7 @@
             editHelperClassName="DefaultNamedElementEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="100"
@@ -3475,7 +3475,7 @@
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        genView="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@topLevelNodes.1 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.3 /0/@diagram/@topLevelNodes.4"
+        genView="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@topLevelNodes.1 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.7"
         name="RoundedCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
     <extensionNodes
