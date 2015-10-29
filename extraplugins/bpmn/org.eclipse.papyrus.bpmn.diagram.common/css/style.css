@@ -12,7 +12,7 @@ ControlFlow{
 ObjectFlow{
 	routing:Rectilinear;
 	roundedBendpointsRadius:20 ;
-	lineStyle:dashed;
+	lineStyle:dotted;
 }
 
 ObjectFlow > Label{
@@ -281,7 +281,7 @@ alternateBorderColor path{
 	 */
 	transparency: 100;
 	maintainSymbolRatio: true;
-	
+	displayTag: false;
 }
 
 [appliedStereotypes~="BPMNProfile::DataStoreReference"]{
