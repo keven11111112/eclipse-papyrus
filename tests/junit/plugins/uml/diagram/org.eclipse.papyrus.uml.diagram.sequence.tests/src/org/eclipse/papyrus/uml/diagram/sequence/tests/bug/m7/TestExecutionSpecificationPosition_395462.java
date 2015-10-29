@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -28,6 +30,9 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.text.FlowPage;
+import org.eclipse.draw2d.text.TextFlow;
+import org.eclipse.draw2d.text.TextFragmentBox;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -43,11 +48,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.swt.SWT;
@@ -107,21 +114,56 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 
 	@Test
 	public void testOnChangeLifelineName() {
-		//Make sure the lifeline width is -1 to enable auto-increment.
+		// Make sure the lifeline width is -1 to enable auto-increment.
 		LifelineEditPart lifeline = createLifeline("Lifeline", new Point(100, 100), null);
 		AbstractExecutionSpecificationEditPart es = createExecutionSpecification(lifeline, new Point(131, 150), null);
-		//Old bounds
+		// Old bounds
 		Rectangle lifelineBounds = getAbsoluteBounds(lifeline);
 		Rectangle esBounds = getAbsoluteBounds(es);
-		assertTrue(CHECK_ES_POSITION, lifelineBounds.getCenter().x == esBounds.getCenter().x);
-		//rename
-		rename(lifeline, "Rename to Long Name of Lifeline...");
-		//New bounds
+		assertEquals(CHECK_ES_POSITION, esBounds.getCenter().x, lifelineBounds.getCenter().x);
+		// rename
+		final String newLifelineName = "Rename to Long Name of Lifeline";
+		rename(lifeline, newLifelineName);
+		checkRenamedLabel(newLifelineName, lifeline, lifelineBounds);
+		// New bounds
 		Rectangle newLifelineBounds = getAbsoluteBounds(lifeline);
-		//Check width after renamed.
-		assertTrue(CHECK_LIFELINE_WIDTH_AFTER_RENAMED, lifelineBounds.width < newLifelineBounds.width);
 		Rectangle newEsBounds = getAbsoluteBounds(es);
 		assertTrue(CHECK_ES_POSITION, Math.abs(newLifelineBounds.getCenter().x - newEsBounds.getCenter().x) < 2);
+	}
+
+	/**
+	 * check renamed lifeline name
+	 */
+	private void checkRenamedLabel(String newName, LifelineEditPart lifeline, Rectangle oldBounds) {
+		TextFragmentBox nameContainer = getLifelineNameContainer(lifeline);
+		boolean isTruncated = nameContainer.isTruncated();
+		String realName = isTruncated ? getLifelineNameLabelText(nameContainer, newName) : newName;
+		assertTrue(newName.startsWith(realName));
+		Rectangle newBounds = getAbsoluteBounds(lifeline);
+		assertTrue(CHECK_LIFELINE_WIDTH_AFTER_RENAMED, isTruncated || oldBounds.width < newBounds.width);
+	}
+
+	/**
+	 * returns lifeline name container
+	 */
+	private TextFragmentBox getLifelineNameContainer(LifelineEditPart lifeline) {
+		LifelineNameEditPart nameEP = (LifelineNameEditPart) lifeline.getChildBySemanticHint(String.valueOf(LifelineNameEditPart.VISUAL_ID));
+		assertNotNull("Parent " + lifeline + " looking for: " + LifelineNameEditPart.VISUAL_ID, nameEP);
+		PapyrusWrappingLabel nameFigure = (PapyrusWrappingLabel) nameEP.getFigure();
+		assertNotNull(nameFigure);
+		assertFalse(nameFigure.getChildren().isEmpty());
+		FlowPage flowPage = (FlowPage) nameFigure.getChildren().get(0);
+		assertFalse(flowPage.getChildren().isEmpty());
+		TextFlow textFlow = (TextFlow) flowPage.getChildren().get(0);
+		assertFalse(textFlow.getFragments().isEmpty());
+		return (TextFragmentBox) textFlow.getFragments().get(0);
+	}
+
+	/**
+	 * returns truncated text
+	 */
+	private String getLifelineNameLabelText(TextFragmentBox textFragmentBox, String name) {
+		return name.substring(textFragmentBox.offset, textFragmentBox.length);
 	}
 
 	/**
@@ -129,7 +171,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	 * @param newName
 	 */
 	private void rename(LifelineEditPart editPart, final String newName) {
-		final Lifeline lifeline = (Lifeline)editPart.resolveSemanticElement();
+		final Lifeline lifeline = (Lifeline) editPart.resolveSemanticElement();
 		getDiagramCommandStack().execute(new ICommandProxy(new AbstractTransactionalCommand(getEditingDomain(), "Rename", Collections.singletonList(file)) {
 
 			@Override
@@ -148,7 +190,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	 * @return
 	 */
 	private AbstractExecutionSpecificationEditPart createExecutionSpecification(LifelineEditPart lifeline, Point location, Dimension size) {
-		return (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, location, size);
+		return (AbstractExecutionSpecificationEditPart) createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, location, size);
 	}
 
 	/**
@@ -158,8 +200,8 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	 * @return
 	 */
 	private LifelineEditPart createLifeline(String name, Point location, Dimension size) {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), location, size);
-		if(name != null) {
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), location, size);
+		if (name != null) {
 			rename(lifeline, name);
 		}
 		return lifeline;
@@ -169,17 +211,17 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	public void testOnResizeLifeline() {
 		LifelineEditPart lifeline = createLifeline("Lifeline", new Point(200, 100), null);
 		AbstractExecutionSpecificationEditPart es = createExecutionSpecification(lifeline, new Point(231, 150), null);
-		//Old bounds
+		// Old bounds
 		Rectangle lifelineBounds = getAbsoluteBounds(lifeline);
 		Rectangle esBounds = getAbsoluteBounds(es);
 		assertTrue(CHECK_ES_POSITION, lifelineBounds.getCenter().x == esBounds.getCenter().x);
-		//resize west
+		// resize west
 		resize(lifeline, lifelineBounds.getLocation(), PositionConstants.WEST, new Dimension(30, 0));
 		Rectangle newLifelineBounds = getAbsoluteBounds(lifeline);
 		assertTrue(CHECK_ES_POSITION, lifelineBounds.width + 30 == newLifelineBounds.width);
 		Rectangle newEsBounds = getAbsoluteBounds(es);
 		assertTrue(CHECK_ES_POSITION, newLifelineBounds.getCenter().x == newEsBounds.getCenter().x);
-		//resize east
+		// resize east
 		resize(lifeline, lifelineBounds.getLocation(), PositionConstants.EAST, new Dimension(30, 0));
 		Rectangle newLifelineBounds2 = getAbsoluteBounds(lifeline);
 		assertTrue(CHECK_ES_POSITION, newLifelineBounds.width + 30 == newLifelineBounds2.width);
@@ -208,26 +250,26 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		assertNotNull(PREPARE_MODEL, bookType);
 		assertNotNull(PREPARE_MODEL, authorProperty);
 		assertNotNull(PREPARE_MODEL, booksProperty);
-		//set represents;
+		// set represents;
 		setRepresents(host, booksProperty);
 		assertTrue(host instanceof CustomLifelineEditPart);
-		//create PartDecomposition
+		// create PartDecomposition
 		Rectangle bounds = getAbsoluteBounds(host);
 		LifelineEditPart lifeline = createLifeline(host, new Point(bounds.x + 40, bounds.y + 1), authorProperty);
 		assertNotNull(PREPARE_MODEL, lifeline);
-		assertTrue(((CustomLifelineEditPart)host).isInlineMode());
+		assertTrue(((CustomLifelineEditPart) host).isInlineMode());
 		Rectangle b1 = getAbsoluteBounds(lifeline);
 		AbstractExecutionSpecificationEditPart es = createExecutionSpecification(lifeline, b1.getCenter(), null);
 		assertNotNull(es);
 		Rectangle esBounds = getAbsoluteBounds(es);
 		assertTrue(CHECK_ES_POSITION, b1.getCenter().x == esBounds.getCenter().x);
-		//resize west
+		// resize west
 		resize(lifeline, b1.getLocation(), PositionConstants.WEST, new Dimension(30, 0));
 		Rectangle newLifelineBounds = getAbsoluteBounds(lifeline);
 		assertTrue(CHECK_ES_POSITION, b1.width + 30 == newLifelineBounds.width);
 		Rectangle newEsBounds = getAbsoluteBounds(es);
 		assertTrue(CHECK_ES_POSITION, newLifelineBounds.getCenter().x == newEsBounds.getCenter().x);
-		//resize east
+		// resize east
 		resize(lifeline, b1.getLocation(), PositionConstants.EAST, new Dimension(30, 0));
 		Rectangle newLifelineBounds2 = getAbsoluteBounds(lifeline);
 		assertTrue(CHECK_ES_POSITION, newLifelineBounds.width + 30 == newLifelineBounds2.width);
@@ -241,7 +283,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	 * @return
 	 */
 	private LifelineEditPart createLifeline(LifelineEditPart lifeline, Point location, final Property property) {
-		//CREATION
+		// CREATION
 		IElementType type = UMLElementTypes.Lifeline_3001;
 		CreateViewRequest createReq = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		createReq.setLocation(location);
@@ -253,20 +295,20 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		Display.getCurrent().addFilter(SWT.Show, new Listener() {
 
 			public void handleEvent(Event event) {
-				if(event.widget instanceof Shell) {
-					final Shell shell = (Shell)event.widget;
+				if (event.widget instanceof Shell) {
+					final Shell shell = (Shell) event.widget;
 					Object data = shell.getData();
-					if(!(data instanceof ElementListSelectionDialog)) {
+					if (!(data instanceof ElementListSelectionDialog)) {
 						return;
 					}
-					ElementListSelectionDialog dialog = (ElementListSelectionDialog)data;
-					dialog.setInitialSelections(new Object[]{ property });
+					ElementListSelectionDialog dialog = (ElementListSelectionDialog) data;
+					dialog.setInitialSelections(new Object[] { property });
 					dialog.create();
 					waitForComplete();
 					try {
 						Method m1 = AbstractElementListSelectionDialog.class.getDeclaredMethod("setSelection", Object[].class);
 						m1.setAccessible(true);
-						m1.invoke(dialog, new Object[]{ property });
+						m1.invoke(dialog, new Object[] { property });
 						waitForComplete();
 						Method m2 = AbstractElementListSelectionDialog.class.getDeclaredMethod("handleElementsChanged");
 						m2.setAccessible(true);
@@ -276,7 +318,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 					waitForComplete();
 					Button okButton = dialog.getOkButton();
 					final Event e = new Event();
-					e.time = (int)System.currentTimeMillis();
+					e.time = (int) System.currentTimeMillis();
 					e.widget = okButton;
 					e.display = okButton.getDisplay();
 					e.type = SWT.Selection;
@@ -296,30 +338,30 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		});
 		getDiagramCommandStack().execute(command);
 		waitForComplete();
-		//waiting until dialog closed.
-		while(true) {
-			if(!result.isEmpty()) {
+		// waiting until dialog closed.
+		while (true) {
+			if (!result.isEmpty()) {
 				result.get(0).close();
 				Shell shell = result.get(0).getShell();
-				if(shell != null) {
+				if (shell != null) {
 					shell.dispose();
 				}
 				break;
 			}
 		}
-		//return the created EditPart.
+		// return the created EditPart.
 		List<? extends ViewDescriptor> viewDescriptors = createReq.getViewDescriptors();
-		for(ViewDescriptor viewDescriptor : viewDescriptors) {
+		for (ViewDescriptor viewDescriptor : viewDescriptors) {
 			String semanticHint = viewDescriptor.getSemanticHint();
-			if(type instanceof IHintedType) {
-				if(!semanticHint.equals(((IHintedType)type).getSemanticHint())) {
+			if (type instanceof IHintedType) {
+				if (!semanticHint.equals(((IHintedType) type).getSemanticHint())) {
 					continue;
 				}
 			}
 			Object adapter = viewDescriptor.getAdapter(View.class);
 			Object object = lifeline.getViewer().getEditPartRegistry().get(adapter);
-			if(object instanceof LifelineEditPart) {
-				return (LifelineEditPart)object;
+			if (object instanceof LifelineEditPart) {
+				return (LifelineEditPart) object;
 			}
 		}
 		return null;
@@ -330,7 +372,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	 * @param libraryType
 	 */
 	private void setRepresents(LifelineEditPart editPart, final ConnectableElement represents) {
-		Lifeline lifeline = (Lifeline)editPart.resolveSemanticElement();
+		Lifeline lifeline = (Lifeline) editPart.resolveSemanticElement();
 		EReference feature = UMLPackage.eINSTANCE.getLifeline_Represents();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(lifeline);
 		SetRequest request = new SetRequest(editPart.getEditingDomain(), lifeline, feature, represents);
@@ -339,7 +381,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		assertTrue(CHANGE_REPRESENTS + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
 		getEMFCommandStack().execute(emfCommand);
 		waitForComplete();
-		if(represents != null) {
+		if (represents != null) {
 			assertTrue(CHANGE_REPRESENTS + TEST_THE_EXECUTION, lifeline.getRepresents().equals(represents));
 		}
 	}
