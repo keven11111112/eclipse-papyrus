@@ -22,7 +22,7 @@
 ## BUILD_ALIAS=M4
 ##
 
-p2UpdateSiteDir=${WORKSPACE}/releng/main/site/target/repository
+p2UpdateSiteDir=${WORKSPACE}/source/releng/main/site/target/repository
 updateSite=${WORKSPACE}/repository
 
 if [ -n "$BUILD_ALIAS" ]; then
