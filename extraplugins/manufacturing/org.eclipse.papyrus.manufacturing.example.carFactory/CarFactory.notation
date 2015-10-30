@@ -3718,13 +3718,13 @@
       <element xmi:type="uml:Class" href="CarFactory.uml#_c1l1QG2XEeWIL8vkyXioGQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PMEZoW2ZEeWIL8vkyXioGQ" x="40" y="40" width="1497" height="765"/>
     </children>
-    <children xmi:type="notation:Shape" xmi:id="_PNPeUG2ZEeWIL8vkyXioGQ" type="StereotypeComment">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_PNPeUW2ZEeWIL8vkyXioGQ" showTitle="true"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_PNPeU22ZEeWIL8vkyXioGQ" name="BASE_ELEMENT">
+    <children xmi:type="notation:Shape" xmi:id="_r5ud0H7lEeWbUK2TODqFLw" type="StereotypeComment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_r5ud0X7lEeWbUK2TODqFLw" showTitle="true"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_r5vE4H7lEeWbUK2TODqFLw" name="BASE_ELEMENT">
         <eObjectValue xmi:type="uml:Class" href="CarFactory.uml#_c1l1QG2XEeWIL8vkyXioGQ"/>
       </styles>
       <element xsi:nil="true"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PNPeUm2ZEeWIL8vkyXioGQ" x="240" y="40"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_r5ud0n7lEeWbUK2TODqFLw" x="240" y="40"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_PMDykW2ZEeWIL8vkyXioGQ"/>
     <styles xmi:type="style:PapyrusViewStyle" xmi:id="_PMDykm2ZEeWIL8vkyXioGQ">
@@ -3732,16 +3732,6 @@
     </styles>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_PMLuYG2ZEeWIL8vkyXioGQ" name="diagram_compatibility_version" stringValue="1.1.0"/>
     <element xmi:type="uml:Class" href="CarFactory.uml#_c1l1QG2XEeWIL8vkyXioGQ"/>
-    <edges xmi:type="notation:Connector" xmi:id="_PNPeVG2ZEeWIL8vkyXioGQ" type="StereotypeCommentLink" source="_PMEZoG2ZEeWIL8vkyXioGQ" target="_PNPeUG2ZEeWIL8vkyXioGQ">
-      <styles xmi:type="notation:FontStyle" xmi:id="_PNPeVW2ZEeWIL8vkyXioGQ"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_PNPeWW2ZEeWIL8vkyXioGQ" name="BASE_ELEMENT">
-        <eObjectValue xmi:type="uml:Class" href="CarFactory.uml#_c1l1QG2XEeWIL8vkyXioGQ"/>
-      </styles>
-      <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_PNPeVm2ZEeWIL8vkyXioGQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PNPeV22ZEeWIL8vkyXioGQ"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PNPeWG2ZEeWIL8vkyXioGQ"/>
-    </edges>
     <edges xmi:type="notation:Connector" xmi:id="_b8o6kG3EEeWjcIKjKwsfEw" type="link_uml_connector" source="_rLgG4G3DEeWjcIKjKwsfEw" target="_bIwmkG3EEeWjcIKjKwsfEw">
       <children xmi:type="notation:DecorationNode" xmi:id="_b8phoG3EEeWjcIKjKwsfEw" type="linklabel_uml_appliedstereotype">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_b8phoW3EEeWjcIKjKwsfEw" y="-30"/>
@@ -3760,6 +3750,16 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_b8o6km3EEeWjcIKjKwsfEw" points="[13, 3, -47, -12]$[57, 28, -3, 13]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_b-3IIG3EEeWjcIKjKwsfEw" id="(1.0,0.6)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_b-3IIW3EEeWjcIKjKwsfEw" id="(0.0,0.4)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_r5vE4X7lEeWbUK2TODqFLw" type="StereotypeCommentLink" source="_PMEZoG2ZEeWIL8vkyXioGQ" target="_r5ud0H7lEeWbUK2TODqFLw">
+      <styles xmi:type="notation:FontStyle" xmi:id="_r5vE4n7lEeWbUK2TODqFLw"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_r5vE5n7lEeWbUK2TODqFLw" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:Class" href="CarFactory.uml#_c1l1QG2XEeWIL8vkyXioGQ"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_r5vE437lEeWbUK2TODqFLw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_r5vE5H7lEeWbUK2TODqFLw"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_r5vE5X7lEeWbUK2TODqFLw"/>
     </edges>
   </notation:Diagram>
   <css:EmbeddedStyleSheet xmi:id="_bFcXMG2gEeWjcIKjKwsfEw" label="HideCompartments" content="Class > Compartment[kind=&quot;operations&quot;]{&#xD;&#xA;&#x9;visible : false;&#xD;&#xA;}&#xD;&#xA;Class > Compartment[kind=&quot;constraints&quot;]{&#xD;&#xA;&#x9;visible : false;&#xD;&#xA;}&#xD;&#xA;Class > Compartment[kind=&quot;properties&quot;] {&#xD;&#xA;&#x9;showTitle : false;&#xD;&#xA;}"/>
@@ -3812,13 +3812,13 @@
       <element xmi:type="uml:Class" href="CarFactory.uml#_K6SGQG2XEeWIL8vkyXioGQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_F87WQW2pEeWjcIKjKwsfEw" x="40" y="40" width="504" height="341"/>
     </children>
-    <children xmi:type="notation:Shape" xmi:id="_GArN0G2pEeWjcIKjKwsfEw" type="StereotypeComment">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_GArN0W2pEeWjcIKjKwsfEw" showTitle="true"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_GArN022pEeWjcIKjKwsfEw" name="BASE_ELEMENT">
+    <children xmi:type="notation:Shape" xmi:id="_hF35sH7lEeWbUK2TODqFLw" type="StereotypeComment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_hF35sX7lEeWbUK2TODqFLw" showTitle="true"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_hF35s37lEeWbUK2TODqFLw" name="BASE_ELEMENT">
         <eObjectValue xmi:type="uml:Class" href="CarFactory.uml#_K6SGQG2XEeWIL8vkyXioGQ"/>
       </styles>
       <element xsi:nil="true"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GArN0m2pEeWjcIKjKwsfEw" x="240" y="40"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hF35sn7lEeWbUK2TODqFLw" x="240" y="40"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_F84S8W2pEeWjcIKjKwsfEw"/>
     <styles xmi:type="style:PapyrusViewStyle" xmi:id="_F84S8m2pEeWjcIKjKwsfEw">
@@ -3826,92 +3826,16 @@
     </styles>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_F-MhkG2pEeWjcIKjKwsfEw" name="diagram_compatibility_version" stringValue="1.1.0"/>
     <element xmi:type="uml:Class" href="CarFactory.uml#_K6SGQG2XEeWIL8vkyXioGQ"/>
-    <edges xmi:type="notation:Connector" xmi:id="_GArN1G2pEeWjcIKjKwsfEw" type="StereotypeCommentLink" source="_F87WQG2pEeWjcIKjKwsfEw" target="_GArN0G2pEeWjcIKjKwsfEw">
-      <styles xmi:type="notation:FontStyle" xmi:id="_GArN1W2pEeWjcIKjKwsfEw"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_GAr04m2pEeWjcIKjKwsfEw" name="BASE_ELEMENT">
+    <edges xmi:type="notation:Connector" xmi:id="_hF4gwH7lEeWbUK2TODqFLw" type="StereotypeCommentLink" source="_F87WQG2pEeWjcIKjKwsfEw" target="_hF35sH7lEeWbUK2TODqFLw">
+      <styles xmi:type="notation:FontStyle" xmi:id="_hF4gwX7lEeWbUK2TODqFLw"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_hF4gxX7lEeWbUK2TODqFLw" name="BASE_ELEMENT">
         <eObjectValue xmi:type="uml:Class" href="CarFactory.uml#_K6SGQG2XEeWIL8vkyXioGQ"/>
       </styles>
       <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_GArN1m2pEeWjcIKjKwsfEw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_GAr04G2pEeWjcIKjKwsfEw"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_GAr04W2pEeWjcIKjKwsfEw"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_hF4gwn7lEeWbUK2TODqFLw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hF4gw37lEeWbUK2TODqFLw"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hF4gxH7lEeWbUK2TODqFLw"/>
     </edges>
-  </notation:Diagram>
-  <notation:Diagram xmi:id="_BTPhcG3BEeWjcIKjKwsfEw" type="PapyrusUMLClassDiagram" name="Interfaces" measurementUnit="Pixel">
-    <children xmi:type="notation:Shape" xmi:id="_Dynt8G3BEeWjcIKjKwsfEw" type="2004">
-      <children xmi:type="notation:DecorationNode" xmi:id="_Dyo8EG3BEeWjcIKjKwsfEw" type="5011"/>
-      <children xmi:type="notation:DecorationNode" xmi:id="_Dyo8EW3BEeWjcIKjKwsfEw" type="8507">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_Dyo8Em3BEeWjcIKjKwsfEw" y="5"/>
-      </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_DypjIG3BEeWjcIKjKwsfEw" type="7006">
-        <styles xmi:type="notation:TitleStyle" xmi:id="_DypjIW3BEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:SortingStyle" xmi:id="_DypjIm3BEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:FilteringStyle" xmi:id="_DypjI23BEeWjcIKjKwsfEw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DypjJG3BEeWjcIKjKwsfEw"/>
-      </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_DypjJW3BEeWjcIKjKwsfEw" type="7007">
-        <children xmi:type="notation:Shape" xmi:id="_FZLcEG3BEeWjcIKjKwsfEw" type="3007">
-          <element xmi:type="uml:Operation" href="CarFactory.uml#_FZC5MG3BEeWjcIKjKwsfEw"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_FZLcEW3BEeWjcIKjKwsfEw"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_GQ2D4G3BEeWjcIKjKwsfEw" type="3007">
-          <element xmi:type="uml:Operation" href="CarFactory.uml#_GQuIEG3BEeWjcIKjKwsfEw"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_GQ2D4W3BEeWjcIKjKwsfEw"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_HLg8YG3BEeWjcIKjKwsfEw" type="3007">
-          <element xmi:type="uml:Operation" href="CarFactory.uml#_HLZAkG3BEeWjcIKjKwsfEw"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_HLg8YW3BEeWjcIKjKwsfEw"/>
-        </children>
-        <styles xmi:type="notation:TitleStyle" xmi:id="_DypjJm3BEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:SortingStyle" xmi:id="_DypjJ23BEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:FilteringStyle" xmi:id="_DypjKG3BEeWjcIKjKwsfEw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DypjKW3BEeWjcIKjKwsfEw"/>
-      </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_DypjKm3BEeWjcIKjKwsfEw" type="7008">
-        <styles xmi:type="notation:TitleStyle" xmi:id="_DypjK23BEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:SortingStyle" xmi:id="_DypjLG3BEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:FilteringStyle" xmi:id="_DypjLW3BEeWjcIKjKwsfEw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DypjLm3BEeWjcIKjKwsfEw"/>
-      </children>
-      <element xmi:type="uml:Interface" href="CarFactory.uml#_DykDkG3BEeWjcIKjKwsfEw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Dynt8W3BEeWjcIKjKwsfEw" x="216" y="144"/>
-    </children>
-    <children xmi:type="notation:Shape" xmi:id="_aN3WgG3CEeWjcIKjKwsfEw" type="2004">
-      <children xmi:type="notation:DecorationNode" xmi:id="_aN3Wgm3CEeWjcIKjKwsfEw" type="5011"/>
-      <children xmi:type="notation:DecorationNode" xmi:id="_aN3Wg23CEeWjcIKjKwsfEw" type="8507">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_aN3WhG3CEeWjcIKjKwsfEw" y="5"/>
-      </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_aN3WhW3CEeWjcIKjKwsfEw" type="7006">
-        <styles xmi:type="notation:TitleStyle" xmi:id="_aN3Whm3CEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:SortingStyle" xmi:id="_aN3Wh23CEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:FilteringStyle" xmi:id="_aN3WiG3CEeWjcIKjKwsfEw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aN3WiW3CEeWjcIKjKwsfEw"/>
-      </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_aN3Wim3CEeWjcIKjKwsfEw" type="7007">
-        <children xmi:type="notation:Shape" xmi:id="_a_C70G3CEeWjcIKjKwsfEw" type="3007">
-          <element xmi:type="uml:Operation" href="CarFactory.uml#_a-3VoG3CEeWjcIKjKwsfEw"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_a_C70W3CEeWjcIKjKwsfEw"/>
-        </children>
-        <styles xmi:type="notation:TitleStyle" xmi:id="_aN3Wi23CEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:SortingStyle" xmi:id="_aN3WjG3CEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:FilteringStyle" xmi:id="_aN3WjW3CEeWjcIKjKwsfEw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aN3Wjm3CEeWjcIKjKwsfEw"/>
-      </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_aN3Wj23CEeWjcIKjKwsfEw" type="7008">
-        <styles xmi:type="notation:TitleStyle" xmi:id="_aN3WkG3CEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:SortingStyle" xmi:id="_aN3WkW3CEeWjcIKjKwsfEw"/>
-        <styles xmi:type="notation:FilteringStyle" xmi:id="_aN3Wkm3CEeWjcIKjKwsfEw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aN3Wk23CEeWjcIKjKwsfEw"/>
-      </children>
-      <element xmi:type="uml:Interface" href="CarFactory.uml#_06BskG3BEeWjcIKjKwsfEw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aN3WgW3CEeWjcIKjKwsfEw" x="411" y="156"/>
-    </children>
-    <styles xmi:type="notation:StringValueStyle" xmi:id="_BTPhcW3BEeWjcIKjKwsfEw" name="diagram_compatibility_version" stringValue="1.1.0"/>
-    <styles xmi:type="notation:DiagramStyle" xmi:id="_BTPhcm3BEeWjcIKjKwsfEw"/>
-    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_BTPhc23BEeWjcIKjKwsfEw">
-      <owner xmi:type="uml:Package" href="CarFactory.uml#__UANkG3AEeWjcIKjKwsfEw"/>
-    </styles>
-    <element xmi:type="uml:Package" href="CarFactory.uml#__UANkG3AEeWjcIKjKwsfEw"/>
   </notation:Diagram>
   <notation:Diagram xmi:id="_IPCPUHvtEeWhqqlqVGvv2Q" type="PapyrusUMLClassDiagram" name="CarCeaFactoryArchitecture" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_Jie0MHvtEeWhqqlqVGvv2Q" type="2005">
@@ -4136,5 +4060,249 @@
       <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/model/clazzdiagram.configuration#_zzf4cXDtEeWh-MssWmCB_A"/>
     </styles>
     <element xmi:type="uml:Model" href="CarFactory.uml#_3fnGwDXyEeWqJN_QlWY8-Q"/>
+  </notation:Diagram>
+  <css:EmbeddedStyleSheet xmi:id="_PeAxgH7tEeWbUK2TODqFLw" label="compartment" content="Interface > Compartment[kind=&quot;attributes&quot;] {&#xD;&#xA;    visible:false;&#xD;&#xA;}&#xD;&#xA;Interface > Compartment[kind=&quot;nestedClassifiers&quot;] {&#xD;&#xA;    visible:false;&#xD;&#xA;}&#xD;&#xA;"/>
+  <notation:Diagram xmi:id="_AxUzQH7wEeWbUK2TODqFLw" type="PapyrusUMLClassDiagram" name="SystemsInterfaceDefinitionDiagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_BlZUgH7wEeWbUK2TODqFLw" type="2004">
+      <children xmi:type="notation:DecorationNode" xmi:id="_BlZUgn7wEeWbUK2TODqFLw" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_BlZ7kH7wEeWbUK2TODqFLw" type="8507">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BlZ7kX7wEeWbUK2TODqFLw" y="5"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_BlZ7kn7wEeWbUK2TODqFLw" type="7006">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_BlZ7k37wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_BlZ7lH7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_BlZ7lX7wEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BlZ7ln7wEeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_BlZ7l37wEeWbUK2TODqFLw" type="7007">
+        <children xmi:type="notation:Shape" xmi:id="_DQrxoH7wEeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_FZC5MG3BEeWjcIKjKwsfEw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_DQrxoX7wEeWbUK2TODqFLw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_DQsYsH7wEeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_GQuIEG3BEeWjcIKjKwsfEw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_DQsYsX7wEeWbUK2TODqFLw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_DQs_wH7wEeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_HLZAkG3BEeWjcIKjKwsfEw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_DQs_wX7wEeWbUK2TODqFLw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_vDC20H7zEeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_vCv74H7zEeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_vDC20X7zEeWbUK2TODqFLw"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_BlZ7mH7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_BlZ7mX7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_BlZ7mn7wEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BlZ7m37wEeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_BlZ7nH7wEeWbUK2TODqFLw" type="7008">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_BlZ7nX7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_BlZ7nn7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_BlZ7n37wEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BlZ7oH7wEeWbUK2TODqFLw"/>
+      </children>
+      <element xmi:type="uml:Interface" href="CarFactory.uml#_DykDkG3BEeWjcIKjKwsfEw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BlZUgX7wEeWbUK2TODqFLw" x="57" y="44"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_HrAA0H7wEeWbUK2TODqFLw" type="2004">
+      <children xmi:type="notation:DecorationNode" xmi:id="_HrAn4H7wEeWbUK2TODqFLw" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_HrAn4X7wEeWbUK2TODqFLw" type="8507">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_HrAn4n7wEeWbUK2TODqFLw" y="5"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_HrAn437wEeWbUK2TODqFLw" type="7006">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_HrAn5H7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_HrAn5X7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_HrAn5n7wEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HrAn537wEeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_HrBO8H7wEeWbUK2TODqFLw" type="7007">
+        <children xmi:type="notation:Shape" xmi:id="__T3E0H7xEeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#__TreoH7xEeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="__T3E0X7xEeWbUK2TODqFLw"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_HrBO8X7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_HrBO8n7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_HrBO837wEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HrBO9H7wEeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_HrBO9X7wEeWbUK2TODqFLw" type="7008">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_HrBO9n7wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_HrBO937wEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_HrBO-H7wEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HrBO-X7wEeWbUK2TODqFLw"/>
+      </children>
+      <element xmi:type="uml:Interface" href="CarFactory.uml#_Hq8WcH7wEeWbUK2TODqFLw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HrAA0X7wEeWbUK2TODqFLw" x="212" y="43" width="90" height="170"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_oiB2UH7yEeWbUK2TODqFLw" type="2004">
+      <children xmi:type="notation:DecorationNode" xmi:id="_oiH88H7yEeWbUK2TODqFLw" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_oiH88X7yEeWbUK2TODqFLw" type="8507">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_oiH88n7yEeWbUK2TODqFLw" y="5"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_oiH8837yEeWbUK2TODqFLw" type="7006">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_oiH89H7yEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_oiH89X7yEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_oiH89n7yEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oiH8937yEeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_oiH8-H7yEeWbUK2TODqFLw" type="7007">
+        <children xmi:type="notation:Shape" xmi:id="_bQ_ooH7zEeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_bQsGoH7zEeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_bQ_ooX7zEeWbUK2TODqFLw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_cPQAoH7zEeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_cO6pcH7zEeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_cPQAoX7zEeWbUK2TODqFLw"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_oiH8-X7yEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_oiH8-n7yEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_oiH8-37yEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oiH8_H7yEeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_oiH8_X7yEeWbUK2TODqFLw" type="7008">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_oiH8_n7yEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_oiH8_37yEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_oiH9AH7yEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oiH9AX7yEeWbUK2TODqFLw"/>
+      </children>
+      <element xmi:type="uml:Interface" href="CarFactory.uml#_oh890H7yEeWbUK2TODqFLw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oiB2UX7yEeWbUK2TODqFLw" x="56" y="253" width="142"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_erG_EH7zEeWbUK2TODqFLw" type="2004">
+      <children xmi:type="notation:DecorationNode" xmi:id="_erG_En7zEeWbUK2TODqFLw" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_erHmIH7zEeWbUK2TODqFLw" type="8507">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_erHmIX7zEeWbUK2TODqFLw" y="5"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_erHmIn7zEeWbUK2TODqFLw" type="7006">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_erHmI37zEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_erHmJH7zEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_erHmJX7zEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_erHmJn7zEeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_erHmJ37zEeWbUK2TODqFLw" type="7007">
+        <children xmi:type="notation:Shape" xmi:id="_JskTIH70EeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_JsOU4H70EeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_JskTIX70EeWbUK2TODqFLw"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_erHmKH7zEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_erHmKX7zEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_erHmKn7zEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_erHmK37zEeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_erHmLH7zEeWbUK2TODqFLw" type="7008">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_erHmLX7zEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_erHmLn7zEeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_erHmL37zEeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_erHmMH7zEeWbUK2TODqFLw"/>
+      </children>
+      <element xmi:type="uml:Interface" href="CarFactory.uml#_erDUsH7zEeWbUK2TODqFLw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_erG_EX7zEeWbUK2TODqFLw" x="299" y="264"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_MeiEcH70EeWbUK2TODqFLw" type="2004">
+      <children xmi:type="notation:DecorationNode" xmi:id="_MeirgH70EeWbUK2TODqFLw" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_MeirgX70EeWbUK2TODqFLw" type="8507">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Meirgn70EeWbUK2TODqFLw" y="5"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_MejSkH70EeWbUK2TODqFLw" type="7006">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_MejSkX70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_MejSkn70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_MejSk370EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MejSlH70EeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_MejSlX70EeWbUK2TODqFLw" type="7007">
+        <children xmi:type="notation:Shape" xmi:id="_TljKcH70EeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_TlPocH70EeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_TljKcX70EeWbUK2TODqFLw"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_MejSln70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_MejSl370EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_MejSmH70EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MejSmX70EeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_MejSmn70EeWbUK2TODqFLw" type="7008">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_MejSm370EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_MejSnH70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_MejSnX70EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MejSnn70EeWbUK2TODqFLw"/>
+      </children>
+      <element xmi:type="uml:Interface" href="CarFactory.uml#_MedzAH70EeWbUK2TODqFLw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MeiEcX70EeWbUK2TODqFLw" x="500" y="248"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_ZhlrEH70EeWbUK2TODqFLw" type="2004">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZhmSIH70EeWbUK2TODqFLw" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Zhm5MH70EeWbUK2TODqFLw" type="8507">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Zhm5MX70EeWbUK2TODqFLw" y="5"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_Zhm5Mn70EeWbUK2TODqFLw" type="7006">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_Zhm5M370EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_Zhm5NH70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_Zhm5NX70EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Zhm5Nn70EeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_Zhm5N370EeWbUK2TODqFLw" type="7007">
+        <children xmi:type="notation:Shape" xmi:id="_jnTW0H70EeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_jm68UH70EeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_jnTW0X70EeWbUK2TODqFLw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_l7wFsH70EeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_l7dKwH70EeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_l7wFsX70EeWbUK2TODqFLw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_obeQcH70EeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_obJgUH70EeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_obeQcX70EeWbUK2TODqFLw"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_Zhm5OH70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_Zhm5OX70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_Zhm5On70EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Zhm5O370EeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_Zhm5PH70EeWbUK2TODqFLw" type="7008">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_Zhm5PX70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_Zhm5Pn70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_Zhm5P370EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Zhm5QH70EeWbUK2TODqFLw"/>
+      </children>
+      <element xmi:type="uml:Interface" href="CarFactory.uml#_ZhhZoH70EeWbUK2TODqFLw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZhlrEX70EeWbUK2TODqFLw" x="723" y="253"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_sX6Q0H70EeWbUK2TODqFLw" type="2004">
+      <children xmi:type="notation:DecorationNode" xmi:id="_sX634H70EeWbUK2TODqFLw" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_sX634X70EeWbUK2TODqFLw" type="8507">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_sX634n70EeWbUK2TODqFLw" y="5"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_sX634370EeWbUK2TODqFLw" type="7006">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_sX635H70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_sX635X70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_sX635n70EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sX635370EeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_sX636H70EeWbUK2TODqFLw" type="7007">
+        <children xmi:type="notation:Shape" xmi:id="_vP05IH70EeWbUK2TODqFLw" type="3007">
+          <element xmi:type="uml:Operation" href="CarFactory.uml#_vPfh8H70EeWbUK2TODqFLw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_vP05IX70EeWbUK2TODqFLw"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_sX636X70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_sX636n70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_sX636370EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sX637H70EeWbUK2TODqFLw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_sX637X70EeWbUK2TODqFLw" type="7008">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_sX637n70EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_sX637370EeWbUK2TODqFLw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_sX638H70EeWbUK2TODqFLw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sX638X70EeWbUK2TODqFLw"/>
+      </children>
+      <element xmi:type="uml:Interface" href="CarFactory.uml#_sX3NgH70EeWbUK2TODqFLw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sX6Q0X70EeWbUK2TODqFLw" x="576" y="49"/>
+    </children>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_AxUzQX7wEeWbUK2TODqFLw" name="diagram_compatibility_version" stringValue="1.1.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_AxUzQn7wEeWbUK2TODqFLw"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_AxUzQ37wEeWbUK2TODqFLw">
+      <owner xmi:type="uml:Package" href="CarFactory.uml#_39gNMH7vEeWbUK2TODqFLw"/>
+      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.robotml.diagram.common/viewpoints/robotml.configuration#_0kz9EvL_EeONXPQ2mbw9vA"/>
+    </styles>
+    <element xmi:type="uml:Package" href="CarFactory.uml#_39gNMH7vEeWbUK2TODqFLw"/>
   </notation:Diagram>
 </xmi:XMI>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:B2MML="http://papyrus/B2MML" xmlns:BPMNProfile="http://www.omg.org/spec/BPMNProfile/20121112/" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:Constraint="http://Sequoia/schemas/Constraint/_P8AXwKMREeCLgMuEnJrmvA/21" xmlns:Design="http://Sequoia/schemas/Design/_8OJtMK4WEeG0iPbDUv9fBg/25" xmlns:FeatureProfile="http:///schemas/FeatureProfile/_IuyLkOitEeKBFr9MJtPPqA/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks http://Sequoia/schemas/Constraint/_P8AXwKMREeCLgMuEnJrmvA/21 pathmap://Sequoia_PROFILES/sequoia.profile.uml http://Sequoia/schemas/Design/_8OJtMK4WEeG0iPbDUv9fBg/25 pathmap://Sequoia_PROFILES/sequoia.profile.uml http:///schemas/FeatureProfile/_IuyLkOitEeKBFr9MJtPPqA/4 pathmap://Sequoia_PROFILES/FeatureProfile.profile.uml">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:B2MML="http://papyrus/B2MML" xmlns:BPMNProfile="http://www.omg.org/spec/BPMNProfile/20121112/" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:Constraint="http://Sequoia/schemas/Constraint/_P8AXwKMREeCLgMuEnJrmvA/21" xmlns:Design="http://Sequoia/schemas/Design/_8OJtMK4WEeG0iPbDUv9fBg/25" xmlns:FeatureProfile="http:///schemas/FeatureProfile/_YJSjsFFHEeWWUsSyiZaNIg/5" xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks http://Sequoia/schemas/Constraint/_P8AXwKMREeCLgMuEnJrmvA/21 pathmap://Sequoia_PROFILES/sequoia.profile.uml http://Sequoia/schemas/Design/_8OJtMK4WEeG0iPbDUv9fBg/25 pathmap://Sequoia_PROFILES/sequoia.profile.uml http:///schemas/FeatureProfile/_YJSjsFFHEeWWUsSyiZaNIg/5 pathmap://Sequoia_PROFILES/FeatureProfile.profile.uml#_YJSjsVFHEeWWUsSyiZaNIg">
   <uml:Model xmi:id="_3fnGwDXyEeWqJN_QlWY8-Q" name="CeaCarFactory">
     <packagedElement xmi:type="uml:Package" xmi:id="_S9CjIG2UEeWIL8vkyXioGQ" name="Datatypes">
       <packagedElement xmi:type="uml:Class" xmi:id="_UfnwMG2UEeWIL8vkyXioGQ" name="Force"/>
@@ -246,33 +246,7 @@
           <ownedComment xmi:type="uml:Comment" xmi:id="_1KyLMHwAEeW58uGvBWqVTQ">
             <body>Papyrus4Lego</body>
           </ownedComment>
-          <packagedElement xmi:type="uml:Class" xmi:id="_aPvp0G2WEeWIL8vkyXioGQ" name="EV3Brick"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_lhY9MG2WEeWIL8vkyXioGQ" name="EV3ServoMotor"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_oipuwG2WEeWIL8vkyXioGQ" name="RcServoMotor"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_4cD3cG2WEeWIL8vkyXioGQ" name="ColorSensor"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="__vpZ0G2WEeWIL8vkyXioGQ" name="Keypad"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_K6SGQG2XEeWIL8vkyXioGQ" name="Arm">
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_TotJwG2pEeWjcIKjKwsfEw" name="rotator" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_Tow0IG2pEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_WfWmwG2pEeWjcIKjKwsfEw" name="motor" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_WfaRIG2pEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_Ygms0G2pEeWjcIKjKwsfEw" name="part3" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_YgpwIG2pEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_Zk2_IG2pEeWjcIKjKwsfEw" name="motor" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_Zk5bYG2pEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_cEUEIG2pEeWjcIKjKwsfEw" name="colorPicker" type="_4cD3cG2WEeWIL8vkyXioGQ" aggregation="composite" association="_cEWgYG2pEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Port" xmi:id="_MOsiYG3BEeWjcIKjKwsfEw" name="armServices" type="_DykDkG3BEeWjcIKjKwsfEw" aggregation="composite"/>
-          </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_QnJicG2XEeWIL8vkyXioGQ" name="Module"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_c1l1QG2XEeWIL8vkyXioGQ" name="LegoCarFactory">
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_VJT0IG2ZEeWIL8vkyXioGQ" name="chassisAssemblyModule" type="_ycQFkG2gEeWjcIKjKwsfEw" aggregation="composite" association="_VJYsoG2ZEeWIL8vkyXioGQ"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_gDKSkG2ZEeWIL8vkyXioGQ" name="trunkAssemblyModule" type="_zzVNQG2gEeWjcIKjKwsfEw" aggregation="composite" association="_gDLgsG2ZEeWIL8vkyXioGQ"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_nynRkG2ZEeWIL8vkyXioGQ" name="engineAssemblyModule" type="_zzVNQG2gEeWjcIKjKwsfEw" aggregation="composite" association="_nyofsG2ZEeWIL8vkyXioGQ"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_r5YSoG2ZEeWIL8vkyXioGQ" name="roofAssemblyModule" type="_3eJSIG2gEeWjcIKjKwsfEw" aggregation="composite" association="_r5Y5sG2ZEeWIL8vkyXioGQ"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_ftiSwG2XEeWIL8vkyXioGQ" name="Conveyor"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_jaz1wG2XEeWIL8vkyXioGQ" name="Rack">
-            <ownedAttribute xmi:type="uml:Port" xmi:id="_2DoHAG3DEeWjcIKjKwsfEw" name="armServices" type="_DykDkG3BEeWjcIKjKwsfEw" aggregation="composite" isConjugated="true"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_sOeq0G2XEeWIL8vkyXioGQ" name="StatusLED"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_7IcIsG2XEeWIL8vkyXioGQ" name="Socket"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="__phHMG2XEeWIL8vkyXioGQ" name="Press"/>
           <packagedElement xmi:type="uml:Association" xmi:id="_VJYsoG2ZEeWIL8vkyXioGQ" name="Association1" memberEnd="_VJT0IG2ZEeWIL8vkyXioGQ _VJYso22ZEeWIL8vkyXioGQ">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VJYsoW2ZEeWIL8vkyXioGQ" source="org.eclipse.papyrus">
               <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VJYsom2ZEeWIL8vkyXioGQ" key="nature" value="SysML_Nature"/>
@@ -479,24 +453,92 @@
             </eAnnotations>
             <ownedEnd xmi:type="uml:Property" xmi:id="_cEWgY22pEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" association="_cEWgYG2pEeWjcIKjKwsfEw"/>
           </packagedElement>
-          <packagedElement xmi:type="uml:Package" xmi:id="__UANkG3AEeWjcIKjKwsfEw" name="Interfaces">
-            <packagedElement xmi:type="uml:Interface" xmi:id="_DykDkG3BEeWjcIKjKwsfEw" name="ArmServices">
-              <ownedOperation xmi:type="uml:Operation" xmi:id="_FZC5MG3BEeWjcIKjKwsfEw" name="pick"/>
-              <ownedOperation xmi:type="uml:Operation" xmi:id="_GQuIEG3BEeWjcIKjKwsfEw" name="rotate"/>
-              <ownedOperation xmi:type="uml:Operation" xmi:id="_HLZAkG3BEeWjcIKjKwsfEw" name="place"/>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Interface" xmi:id="_06BskG3BEeWjcIKjKwsfEw" name="ChassisAssemblyModuleServices">
-              <ownedOperation xmi:type="uml:Operation" xmi:id="_a-3VoG3CEeWjcIKjKwsfEw" name="assemblyChassis"/>
-            </packagedElement>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Package" xmi:id="_ikwsQHv1EeW58uGvBWqVTQ" name="ProductionWorkCenter">
+          <packagedElement xmi:type="uml:Package" xmi:id="_ikwsQHv1EeW58uGvBWqVTQ" name="ProductionLine">
             <packagedElement xmi:type="uml:Package" xmi:id="_sfHaQH1uEeW11410LKyvTg" name="ChassisAssemblyModule"/>
             <packagedElement xmi:type="uml:Package" xmi:id="_tDsmoH1xEeW11410LKyvTg" name="TrunkAssemblyModule"/>
             <packagedElement xmi:type="uml:Package" xmi:id="_FBMhkH1yEeW11410LKyvTg" name="EngineAssemblyModule"/>
             <packagedElement xmi:type="uml:Package" xmi:id="_N4WvgH1yEeW11410LKyvTg" name="RoofAssemblyModule"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_hD0fsH7vEeWbUK2TODqFLw" name="ProductionLineSystems">
+              <packagedElement xmi:type="uml:Class" xmi:id="__phHMG2XEeWIL8vkyXioGQ" name="Press"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="_4cD3cG2WEeWIL8vkyXioGQ" name="ColorSensor"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="_lhY9MG2WEeWIL8vkyXioGQ" name="EV3ServoMotor"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="_oipuwG2WEeWIL8vkyXioGQ" name="RcServoMotor"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="_K6SGQG2XEeWIL8vkyXioGQ" name="Arm">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_TotJwG2pEeWjcIKjKwsfEw" name="rotator" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_Tow0IG2pEeWjcIKjKwsfEw"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_WfWmwG2pEeWjcIKjKwsfEw" name="motor" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_WfaRIG2pEeWjcIKjKwsfEw"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_Ygms0G2pEeWjcIKjKwsfEw" name="part3" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_YgpwIG2pEeWjcIKjKwsfEw"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_Zk2_IG2pEeWjcIKjKwsfEw" name="motor" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_Zk5bYG2pEeWjcIKjKwsfEw"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_cEUEIG2pEeWjcIKjKwsfEw" name="colorPicker" type="_4cD3cG2WEeWIL8vkyXioGQ" aggregation="composite" association="_cEWgYG2pEeWjcIKjKwsfEw"/>
+                <ownedAttribute xmi:type="uml:Port" xmi:id="_MOsiYG3BEeWjcIKjKwsfEw" name="armServices" type="_DykDkG3BEeWjcIKjKwsfEw" aggregation="composite"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_ftiSwG2XEeWIL8vkyXioGQ" name="Conveyor"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="_aPvp0G2WEeWIL8vkyXioGQ" name="EV3Brick"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="_jaz1wG2XEeWIL8vkyXioGQ" name="Rack">
+                <ownedAttribute xmi:type="uml:Port" xmi:id="_2DoHAG3DEeWjcIKjKwsfEw" name="armServices" type="_DykDkG3BEeWjcIKjKwsfEw" aggregation="composite" isConjugated="true"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_7IcIsG2XEeWIL8vkyXioGQ" name="Socket"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="__vpZ0G2WEeWIL8vkyXioGQ" name="Keypad"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="_sOeq0G2XEeWIL8vkyXioGQ" name="StatusLED"/>
+              <packagedElement xmi:type="uml:Package" xmi:id="_39gNMH7vEeWbUK2TODqFLw" name="ProductionLineSystemsInterfaces">
+                <packagedElement xmi:type="uml:Interface" xmi:id="_DykDkG3BEeWjcIKjKwsfEw" name="ArmServices">
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_FZC5MG3BEeWjcIKjKwsfEw" name="pickup"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_GQuIEG3BEeWjcIKjKwsfEw" name="transport"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_HLZAkG3BEeWjcIKjKwsfEw" name="place"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_vCv74H7zEeWbUK2TODqFLw" name="hold"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Interface" xmi:id="_06BskG3BEeWjcIKjKwsfEw" name="ChassisAssemblyModuleServices">
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_a-3VoG3CEeWjcIKjKwsfEw" name="assemblyChassis"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Interface" xmi:id="_Hq8WcH7wEeWbUK2TODqFLw" name="PressServices">
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="__TreoH7xEeWbUK2TODqFLw" name="fasten"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Interface" xmi:id="_oh890H7yEeWbUK2TODqFLw" name="ConveyorServices">
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_bQsGoH7zEeWbUK2TODqFLw" name="detect"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_cO6pcH7zEeWbUK2TODqFLw" name="transport"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Interface" xmi:id="_erDUsH7zEeWbUK2TODqFLw" name="RackServices">
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_JsOU4H70EeWbUK2TODqFLw" name="align"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Interface" xmi:id="_MedzAH70EeWbUK2TODqFLw" name="KeypadServices">
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_TlPocH70EeWbUK2TODqFLw" name="getInputConfig"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Interface" xmi:id="_ZhhZoH70EeWbUK2TODqFLw" name="StatusLedServices">
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_jm68UH70EeWbUK2TODqFLw" name="turnOn"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_l7dKwH70EeWbUK2TODqFLw" name="turnOff"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_obJgUH70EeWbUK2TODqFLw" name="getStatus"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Interface" xmi:id="_sX3NgH70EeWbUK2TODqFLw" name="ColorSensorServices">
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_vPfh8H70EeWbUK2TODqFLw" name="getColor"/>
+                </packagedElement>
+              </packagedElement>
+            </packagedElement>
           </packagedElement>
+          <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_73CEgH7kEeWbUK2TODqFLw">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_73CrkH7kEeWbUK2TODqFLw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+              <references xmi:type="ecore:EPackage" href="http://Papyrus/RobotML/1#/"/>
+            </eAnnotations>
+            <appliedProfile xmi:type="uml:Profile" href="pathmap://Robotml_PROFILES/RobotMLProfile.profile.uml#_3QOHEPcEEd-J06U5HM_o-Q"/>
+          </profileApplication>
         </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_c1l1QG2XEeWIL8vkyXioGQ" name="LegoCarFactory">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_VJT0IG2ZEeWIL8vkyXioGQ" name="chassisAssemblyModule" type="_ycQFkG2gEeWjcIKjKwsfEw" aggregation="composite" association="_VJYsoG2ZEeWIL8vkyXioGQ"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_gDKSkG2ZEeWIL8vkyXioGQ" name="trunkAssemblyModule" type="_zzVNQG2gEeWjcIKjKwsfEw" aggregation="composite" association="_gDLgsG2ZEeWIL8vkyXioGQ"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_nynRkG2ZEeWIL8vkyXioGQ" name="engineAssemblyModule" type="_zzVNQG2gEeWjcIKjKwsfEw" aggregation="composite" association="_nyofsG2ZEeWIL8vkyXioGQ"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_r5YSoG2ZEeWIL8vkyXioGQ" name="roofAssemblyModule" type="_3eJSIG2gEeWjcIKjKwsfEw" aggregation="composite" association="_r5Y5sG2ZEeWIL8vkyXioGQ"/>
+        </packagedElement>
+        <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_5XkYcH7kEeWbUK2TODqFLw">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_5Xm0sH7kEeWbUK2TODqFLw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="ecore:EPackage" href="http://Papyrus/RobotML/1#/"/>
+          </eAnnotations>
+          <appliedProfile xmi:type="uml:Profile" href="pathmap://Robotml_PROFILES/RobotMLProfile.profile.uml#_3QOHEPcEEd-J06U5HM_o-Q"/>
+        </profileApplication>
       </packagedElement>
+      <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_eqefMH7uEeWbUK2TODqFLw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eqfGQH7uEeWbUK2TODqFLw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://Papyrus/RobotML/1#/"/>
+        </eAnnotations>
+        <appliedProfile xmi:type="uml:Profile" href="pathmap://Robotml_PROFILES/RobotMLProfile.profile.uml#_3QOHEPcEEd-J06U5HM_o-Q"/>
+      </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_V89BYG0GEeWywYVrwoEzuQ" name="Variability">
       <ownedComment xmi:type="uml:Comment" xmi:id="_pnUdwG0HEeWywYVrwoEzuQ">
@@ -613,15 +655,15 @@
       <appliedProfile xmi:type="uml:Profile" href="pathmap://Sequoia_PROFILES/VariantBinding.profile.uml#_uBRXcOWIEeKRtI7c2Gt5sg"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_nZM5AG0KEeW29Z6Rz6lTdg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_najj4G0KEeW29Z6Rz6lTdg" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_najj4W0KEeW29Z6Rz6lTdg" key="Version" value="0.0.5"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_najj4m0KEeW29Z6Rz6lTdg" key="Comment" value="set defaultValue"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_najj420KEeW29Z6Rz6lTdg" key="Copyright" value="CEA LIST"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_najj5G0KEeW29Z6Rz6lTdg" key="Date" value="2013-07-09"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_najj5W0KEeW29Z6Rz6lTdg" key="Author" value="P. Tessoer"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qy_7wH7kEeWbUK2TODqFLw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qy_7wX7kEeWbUK2TODqFLw" key="Version" value="0.0.6"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qy_7wn7kEeWbUK2TODqFLw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qy_7w37kEeWbUK2TODqFLw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qy_7xH7kEeWbUK2TODqFLw" key="Date" value="2015-09-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qy_7xX7kEeWbUK2TODqFLw" key="Author" value="CEA LIST"/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nZNgEG0KEeW29Z6Rz6lTdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://Sequoia_PROFILES/FeatureProfile.profile.uml#_IuyLkeitEeKBFr9MJtPPqA"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://Sequoia_PROFILES/FeatureProfile.profile.uml#_YJSjsVFHEeWWUsSyiZaNIg"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://Sequoia_PROFILES/FeatureProfile.profile.uml#_NQ69EOVXEeKcde_kEnMkaw"/>
     </profileApplication>
@@ -711,20 +753,6 @@
   <Constraint:PropagatedVariationGroup xmi:id="_yhoUEG0MEeW29Z6Rz6lTdg" motivation="Rule 4: Dependency propagation" base_Constraint="_yhRuwG0MEeW29Z6Rz6lTdg" constraintLanguage="Nothing" variableElement="_lORAkG0MEeW29Z6Rz6lTdg _mc3XIG0LEeW29Z6Rz6lTdg"/>
   <Design:PropagatedVariableElement xmi:id="_yigd0G0MEeW29Z6Rz6lTdg" base_NamedElement="_lOUD4G0MEeW29Z6Rz6lTdg" reason="Rule 4: Dependency propagation" variationOrigin="_zQGZEG0LEeW29Z6Rz6lTdg"/>
   <Constraint:PropagatedVariationGroup xmi:id="_yjR54G0MEeW29Z6Rz6lTdg" motivation="Rule 4: Dependency propagation" base_Constraint="_yjCCQG0MEeW29Z6Rz6lTdg" constraintLanguage="Nothing" variableElement="_lOUD4G0MEeW29Z6Rz6lTdg _mcxQgG0LEeW29Z6Rz6lTdg"/>
-  <Blocks:Block xmi:id="_aP1JYG2WEeWIL8vkyXioGQ" base_Class="_aPvp0G2WEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_lhZkQG2WEeWIL8vkyXioGQ" base_Class="_lhY9MG2WEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_oiqV0G2WEeWIL8vkyXioGQ" base_Class="_oipuwG2WEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_4cGTsG2WEeWIL8vkyXioGQ" base_Class="_4cD3cG2WEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="__vqA4G2WEeWIL8vkyXioGQ" base_Class="__vpZ0G2WEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_K6StUG2XEeWIL8vkyXioGQ" base_Class="_K6SGQG2XEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_QnKJgG2XEeWIL8vkyXioGQ" base_Class="_QnJicG2XEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_c1qtwG2XEeWIL8vkyXioGQ" base_Class="_c1l1QG2XEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_ftjg4G2XEeWIL8vkyXioGQ" base_Class="_ftiSwG2XEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_ja1D4G2XEeWIL8vkyXioGQ" base_Class="_jaz1wG2XEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_sOf48G2XEeWIL8vkyXioGQ" base_Class="_sOeq0G2XEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_aP1JYG2WEeWIL8vkyXioGQ" base_Class="_aPvp0G2WEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="_7IcvwG2XEeWIL8vkyXioGQ" base_Class="_7IcIsG2XEeWIL8vkyXioGQ"/>
-  <Blocks:Block xmi:id="__phHMW2XEeWIL8vkyXioGQ" base_Class="__phHMG2XEeWIL8vkyXioGQ"/>
   <Blocks:Block xmi:id="_ycjAgG2gEeWjcIKjKwsfEw" base_Class="_ycQFkG2gEeWjcIKjKwsfEw"/>
   <Blocks:Block xmi:id="_zzas0G2gEeWjcIKjKwsfEw" base_Class="_zzVNQG2gEeWjcIKjKwsfEw"/>
   <Blocks:Block xmi:id="_3eLuYG2gEeWjcIKjKwsfEw" base_Class="_3eJSIG2gEeWjcIKjKwsfEw"/>
@@ -738,4 +766,30 @@
   <BPMNProfile:ServiceTask xmi:id="_caDaQHy1EeW11410LKyvTg" base_Element="_y8RykDX_EeWiK_ux5XfvRw" base_ActivityNode="_y8RykDX_EeWiK_ux5XfvRw" base_Action="_y8RykDX_EeWiK_ux5XfvRw"/>
   <BPMNProfile:ServiceTask xmi:id="_eyM9YHy1EeW11410LKyvTg" base_Element="_2d6GQDX_EeWiK_ux5XfvRw" base_ActivityNode="_2d6GQDX_EeWiK_ux5XfvRw" base_Action="_2d6GQDX_EeWiK_ux5XfvRw"/>
   <BPMNProfile:DataObject xmi:id="_SbjUUHy2EeW11410LKyvTg" base_Element="_SbH2gHy2EeW11410LKyvTg" base_TypedElement="_SbH2gHy2EeW11410LKyvTg" base_DataStoreNode="_SbH2gHy2EeW11410LKyvTg"/>
+  <RobotML:RoboticSystem xmi:id="__Q6KYH7kEeWbUK2TODqFLw" base_Class="_aPvp0G2WEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_aP1JYG2WEeWIL8vkyXioGQ" base_Class="_aPvp0G2WEeWIL8vkyXioGQ"/>
+  <RobotML:EngineSystem xmi:id="_KH8lYH7lEeWbUK2TODqFLw" base_Class="_lhY9MG2WEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_LNfRIH7lEeWbUK2TODqFLw" base_Class="_lhY9MG2WEeWIL8vkyXioGQ"/>
+  <RobotML:EngineSystem xmi:id="_NIFVkH7lEeWbUK2TODqFLw" base_Class="_oipuwG2WEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_O9xr4H7lEeWbUK2TODqFLw" base_Class="_oipuwG2WEeWIL8vkyXioGQ"/>
+  <RobotML:CameraSystem xmi:id="_RRurgH7lEeWbUK2TODqFLw" base_Class="_4cD3cG2WEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_SBWxoH7lEeWbUK2TODqFLw" base_Class="_4cD3cG2WEeWIL8vkyXioGQ"/>
+  <RobotML:SensorSystem xmi:id="_cuGBIH7lEeWbUK2TODqFLw" base_Class="__vpZ0G2WEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_dwnOEH7lEeWbUK2TODqFLw" base_Class="__vpZ0G2WEeWIL8vkyXioGQ"/>
+  <RobotML:Manipulator xmi:id="_hFPAgH7lEeWbUK2TODqFLw" base_Class="_K6SGQG2XEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_jA7RIH7lEeWbUK2TODqFLw" base_Class="_K6SGQG2XEeWIL8vkyXioGQ"/>
+  <RobotML:RoboticSystem xmi:id="_ozPOAH7lEeWbUK2TODqFLw" base_Class="_QnJicG2XEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_p0nygH7lEeWbUK2TODqFLw" base_Class="_QnJicG2XEeWIL8vkyXioGQ"/>
+  <RobotML:RoboticSystem xmi:id="_xIqn4H7lEeWbUK2TODqFLw" base_Class="_ftiSwG2XEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_yEc6sH7lEeWbUK2TODqFLw" base_Class="_ftiSwG2XEeWIL8vkyXioGQ"/>
+  <RobotML:RoboticSystem xmi:id="_z5S8cH7lEeWbUK2TODqFLw" base_Class="_jaz1wG2XEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_1rsuMH7lEeWbUK2TODqFLw" base_Class="_jaz1wG2XEeWIL8vkyXioGQ"/>
+  <RobotML:SensorSystem xmi:id="_OhQSgH7mEeWbUK2TODqFLw" base_Class="_sOeq0G2XEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_Pp8Y4H7mEeWbUK2TODqFLw" base_Class="_sOeq0G2XEeWIL8vkyXioGQ"/>
+  <RobotML:RoboticSystem xmi:id="_SO63EH7mEeWbUK2TODqFLw" base_Class="_7IcIsG2XEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_TRLlUH7mEeWbUK2TODqFLw" base_Class="_7IcIsG2XEeWIL8vkyXioGQ"/>
+  <RobotML:ActuatorSystem xmi:id="_UjGgMH7mEeWbUK2TODqFLw" base_Class="__phHMG2XEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_Vv978H7mEeWbUK2TODqFLw" base_Class="__phHMG2XEeWIL8vkyXioGQ"/>
+  <RobotML:Environment xmi:id="_hPxGcH7uEeWbUK2TODqFLw" base_Class="_c1l1QG2XEeWIL8vkyXioGQ"/>
+  <Blocks:Block xmi:id="_t_45EH7lEeWbUK2TODqFLw" base_Class="_c1l1QG2XEeWIL8vkyXioGQ"/>
 </xmi:XMI>
