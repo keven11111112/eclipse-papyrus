@@ -37,7 +37,7 @@ public class SingleBooleanCellEditorConfiguration implements ICellAxisConfigurat
 	/**
 	 * the id of this editor
 	 */
-	private static final String ID = "org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.SingleBooleanCellEditorConfiguration.CheckBox";//$NON-NLS-1$	
+	private static final String ID = "org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.SingleBooleanCellEditorConfiguration.CheckBox";//$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationId()
@@ -71,10 +71,12 @@ public class SingleBooleanCellEditorConfiguration implements ICellAxisConfigurat
 		Object object = AxisUtils.getRepresentedElement(axisElement);
 		if (object instanceof EStructuralFeature) {
 			EStructuralFeature feature = (EStructuralFeature) object;
-			EClassifier etype = feature.getEType();
-			if (etype instanceof EDataType) {
-				EDataType datatype = (EDataType) etype;
-				return TypesConstants.BOOLEAN.equals(datatype.getName());
+			if (!feature.isMany()) {
+				EClassifier etype = feature.getEType();
+				if (etype instanceof EDataType) {
+					EDataType datatype = (EDataType) etype;
+					return TypesConstants.BOOLEAN.equals(datatype.getName());
+				}
 			}
 		}
 		return false;

@@ -15,6 +15,18 @@
             class="org.eclipse.papyrus.uml.nattable.config.UMLMultiReferenceTextualCellEditorWithButtonConfiguration"
             order="401">
       </configuration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleBooleanCellEditorConfiguration"
+            order="410">
+      </cellAxisConfiguration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleIntegerCellEditorConfiguration"
+            order="420">
+      </cellAxisConfiguration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleStringCellEditorConfiguration"
+            order="430">
+      </cellAxisConfiguration>
    </extension>
  <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
