@@ -53,6 +53,7 @@ public abstract class ResourceAdapter extends AdapterImpl {
 			// Discover existing resources. Iterate the current set; any new additions
 			// will be discovered automatically
 			for (Resource next : ImmutableList.copyOf(((ResourceSet) newTarget).getResources())) {
+				addAdapter(next);
 				handleResourceAdded(next);
 				if (next.isLoaded()) {
 					handleResourceLoaded(next);
@@ -183,8 +184,8 @@ public abstract class ResourceAdapter extends AdapterImpl {
 				Object newValue = msg.getNewValue();
 				if (newValue instanceof Iterable<?>) {
 					for (Object next : (Iterable<?>) newValue) {
-					handleRootAdded(resource, (EObject) next);
-				}
+						handleRootAdded(resource, (EObject) next);
+					}
 				}
 				break;
 			}
@@ -199,8 +200,8 @@ public abstract class ResourceAdapter extends AdapterImpl {
 				Object oldValue = msg.getOldValue();
 				if (oldValue instanceof Iterable<?>) {
 					for (Object next : (Iterable<?>) oldValue) {
-					handleRootRemoved(resource, (EObject) next);
-				}
+						handleRootRemoved(resource, (EObject) next);
+					}
 				}
 				break;
 			}
@@ -213,8 +214,8 @@ public abstract class ResourceAdapter extends AdapterImpl {
 				}
 				break;
 			}
+			}
 		}
-	}
 	}
 
 	protected void handleResourceAdded(Resource resource) {

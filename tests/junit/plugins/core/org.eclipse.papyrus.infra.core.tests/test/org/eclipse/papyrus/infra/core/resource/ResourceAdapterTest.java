@@ -23,10 +23,11 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
-import org.junit.After;
+import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
+import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableSet;
@@ -52,8 +53,12 @@ public class ResourceAdapterTest extends AbstractPapyrusTest {
 
 	private static final String RESOURCE_ROOT_REMOVED = "handleRootRemoved";
 
+	@Rule
+	public final HouseKeeper houseKeeper = new HouseKeeper();
+
 	private ResourceSet rset;
 
+	@CleanUp
 	private Fixture fixture;
 
 	public ResourceAdapterTest() {
@@ -143,30 +148,39 @@ public class ResourceAdapterTest extends AbstractPapyrusTest {
 		fixture.assertRoots(root);
 	}
 
+
+	@Test
+	public void testChangesInPreexistingResources_bug481151() {
+		// Need a different one than the usual, which already has the fixture attached
+		ResourceSet rset = houseKeeper.createResourceSet();
+
+		// A pre-existing resource
+		Resource resource = new ResourceImpl(URI.createURI("bogus://test"));
+		rset.getResources().add(resource);
+
+		rset.eAdapters().add(fixture);
+
+		// Consequence of initial discovery
+		fixture.assertHooks(RESOURCE_ADDED);
+		fixture.reset();
+
+		EObject newRoot = EcoreFactory.eINSTANCE.createEObject();
+		resource.getContents().add(newRoot);
+
+		// An unloaded resource becomes implicitly loaded when its contents are changed
+		fixture.assertHooks(RESOURCE_LOADED, RESOURCE_ROOT_ADDED);
+	}
+
 	//
 	// Test framework
 	//
 
 	@Before
 	public void createFixture() {
-		rset = new ResourceSetImpl();
+		rset = houseKeeper.createResourceSet();
 		fixture = new Fixture();
 
 		rset.eAdapters().add(fixture);
-	}
-
-	@After
-	public void disposeFixture() {
-		fixture = null;
-
-		for(Resource next : rset.getResources()) {
-			next.unload();
-			next.eAdapters().clear();
-		}
-
-		rset.getResources().clear();
-		rset.eAdapters().clear();
-		rset = null;
 	}
 
 	URI getTestResourceURI() {
@@ -195,15 +209,15 @@ public class ResourceAdapterTest extends AbstractPapyrusTest {
 		}
 
 		void assertResources(Resource... resources) {
-			assertThat(this.resources, is((Set<Resource>)ImmutableSet.copyOf(resources)));
+			assertThat(this.resources, is((Set<Resource>) ImmutableSet.copyOf(resources)));
 		}
 
 		void assertHooks(String... hooks) {
-			assertThat(this.hooksCalled, is((Set<String>)ImmutableSet.copyOf(hooks)));
+			assertThat(this.hooksCalled, is((Set<String>) ImmutableSet.copyOf(hooks)));
 		}
 
 		void assertRoots(EObject... objects) {
-			assertThat(this.roots, is((Set<EObject>)ImmutableSet.copyOf(objects)));
+			assertThat(this.roots, is((Set<EObject>) ImmutableSet.copyOf(objects)));
 		}
 
 		void assertURIs(URI oldURI, URI newURI) {
