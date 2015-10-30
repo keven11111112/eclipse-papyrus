@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 Atos Origin, CEA LIST, and others.
- *
+ * Copyright (c) 2010, 2015 Atos Origin, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +12,7 @@
  *  Christian W. Damus (CEA LIST) - support control mode in CDO resources
  *  Christian W. Damus (CEA) - bug 437052
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
+ *  Christian W. Damus - bug 481149
  *
  *
  *****************************************************************************/
@@ -67,13 +67,13 @@ public class AdditionalResourcesModel extends AbstractModel implements IModel {
 	@Deprecated
 	public void loadModel(IPath path) {
 		// call registered snippets
-		snippets.performStart(this);
+		startSnippets();
 	}
 
 	@Override
 	public void loadModel(URI uri) {
 		// call registered snippets
-		snippets.performStart(this);
+		startSnippets();
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class AdditionalResourcesModel extends AbstractModel implements IModel {
 	@Override
 	public void unload() {
 		// call registered snippets
-		snippets.performDispose(this);
+		stopSnippets();
 
 		// Unload remaining resources
 		for (int i = 0; i < modelSet.getResources().size(); i++) {

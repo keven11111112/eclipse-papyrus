@@ -11,6 +11,7 @@
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 458655
  *  Christian W. Damus - bug 458197
+ *  Christian W. Damus - bug 481149
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.model;
@@ -33,7 +34,6 @@ import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.AbstractModel;
-import org.eclipse.papyrus.infra.core.resource.IModelSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.uml.decoratormodel.Activator;
@@ -112,8 +112,9 @@ public class DecoratorModel extends AbstractModel {
 				Activator.log.error(e);
 			}
 		}
+
 		// call registered snippets
-		snippets.performStart(this);
+		startSnippets();
 	}
 
 	/**
@@ -165,16 +166,12 @@ public class DecoratorModel extends AbstractModel {
 	@Override
 	public void unload() {
 		// call registered snippets
-		snippets.performDispose(this);
+		stopSnippets();
+
 		List<Resource> resources = getResources();
 		for (Resource resource : resources) {
 			resource.unload();
 		}
-	}
-
-	@Override
-	public void addModelSnippet(IModelSnippet snippet) {
-		snippets.add(snippet);
 	}
 
 	@Override

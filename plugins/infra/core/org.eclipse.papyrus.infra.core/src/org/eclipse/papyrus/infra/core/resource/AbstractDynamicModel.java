@@ -1,6 +1,17 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2010, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 481149
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
@@ -56,8 +67,9 @@ public abstract class AbstractDynamicModel<T extends EObject> extends AbstractBa
 		}
 		// The resource do not exist, crate it.
 		createModel(fullPathWithoutExtension);
+
 		// call registered snippets
-		snippets.performStart(this);
+		startSnippets();
 	}
 
 	/**
