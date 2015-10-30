@@ -77,11 +77,13 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 		if (editorDeclaration.equals(CellEditorDeclaration.COLUMN)) {
 			final ColumnOverrideLabelAccumulator accumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack);
 			declaredCellEditors(modelManager.getColumnElementsList(), configRegistry, accumulator, null);
-			bodyLayerStack.setConfigLabelAccumulator(accumulator);
+			//bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator instead of  bodyLayerStack.setConfigLabelAccumulator to fix bug 480190
+			bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator(accumulator);
 		} else if (editorDeclaration.equals(CellEditorDeclaration.ROW)) {
 			final CustomRowOverrideLabelAccumulator accumulator = new CustomRowOverrideLabelAccumulator(bodyLayerStack);
 			declaredCellEditors(modelManager.getRowElementsList(), configRegistry, null, accumulator);
-			bodyLayerStack.setConfigLabelAccumulator(accumulator);
+			//bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator instead of  bodyLayerStack.setConfigLabelAccumulator to fix bug 480190
+			bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator(accumulator);
 		} else if (editorDeclaration.equals(CellEditorDeclaration.CELL)) {
 			// not yet supported
 			throw new UnsupportedOperationException(Messages.EditConfiguration_DeclarationNotYetSupported);
