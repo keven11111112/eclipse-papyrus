@@ -37,6 +37,7 @@ import org.junit.Test;
  */
 @PluginResource("resources/capsules.di")
 @ActiveDiagram(CapsuleDiagramMappingTest.CAPSULES)
+@TargetDiagram(CapsuleDiagramMappingTest.DOPPELGANGERS)
 @ShowView(PaletteView.ID)
 public class CapsuleDiagramMappingTest extends AbstractDiagramSyncTest {
 	static final String CAPSULES = "Capsules";

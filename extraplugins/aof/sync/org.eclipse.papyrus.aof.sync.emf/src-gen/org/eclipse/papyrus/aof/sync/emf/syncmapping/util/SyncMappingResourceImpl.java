@@ -11,8 +11,11 @@
  */
 package org.eclipse.papyrus.aof.sync.emf.syncmapping.util;
 
-import org.eclipse.emf.common.util.URI;
+import java.io.IOException;
+import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
 /**
@@ -34,4 +37,21 @@ public class SyncMappingResourceImpl extends ResourceImpl implements SyncMapping
 		super(uri);
 	}
 
+	/**
+	 * Persistence is not supported; load requests are just ignored (except that
+	 * I change to loaded state).
+	 */
+	@Override
+	public void load(Map<?, ?> options) throws IOException {
+		setLoaded(true);
+	}
+	
+	/**
+	 * Persistence is not supported; save requests are just ignored (except that
+	 * I become {@linkplain Resource#isModified() unmodified}.
+	 */
+	@Override
+	public void save(Map<?, ?> options) throws IOException {
+		setModified(false);
+	}
 } //SyncMappingResourceImpl

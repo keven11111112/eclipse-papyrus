@@ -19,7 +19,7 @@
       <profile
             description="Profile used to identify UML-RT-like &quot;Capsules&quot; in demonstration of model-to-model synchronization with the Active Operations Framework"
             name="UML Synchronization Example Profile"
-            path="profiles/sync-example.profile.uml"
+            path="platform:/plugin/org.eclipse.papyrus.aof.sync.examples.uml/profiles/sync-example.profile.uml"
             provider="Eclipse Modeling Project">
       </profile>
    </extension>
@@ -29,6 +29,13 @@
             class="org.eclipse.papyrus.aof.sync.examples.uml.internal.CapsuleSyncDelegate"
             priority="50">
       </syncDelegate>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.modelListener">
+      <listener
+            name="UML Sync Example Trigger"
+            realization="org.eclipse.papyrus.aof.sync.examples.uml.internal.SupercapsuleListener">
+      </listener>
    </extension>
 
 </plugin>

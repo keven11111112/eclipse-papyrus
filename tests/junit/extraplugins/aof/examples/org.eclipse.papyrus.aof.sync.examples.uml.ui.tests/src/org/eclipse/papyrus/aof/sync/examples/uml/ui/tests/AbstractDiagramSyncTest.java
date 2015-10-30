@@ -35,8 +35,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.function.Predicate;
 
-import javax.inject.Inject;
-
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandWrapper;
@@ -49,6 +47,7 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
@@ -73,12 +72,12 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers.AbstractSynchronizeViewsHandler;
 import org.eclipse.papyrus.aof.sync.tests.ModelFixtureRuleModule;
 import org.eclipse.papyrus.aof.sync.tests.runners.GuiceRunner;
 import org.eclipse.papyrus.aof.sync.tests.runners.InjectWith;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.emf.utils.TreeIterators;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -92,6 +91,7 @@ import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
 import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
+import org.eclipse.papyrus.sync.ISyncService;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
@@ -129,11 +129,11 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 	@Rule
 	public final PapyrusEditorFixture editor = new PapyrusEditorFixture();
 
+	@Rule
+	public final AnnotationRule<String> targetDiagramName = AnnotationRule.create(TargetDiagram.class);
+
 	@CleanUp
 	private ComposedAdapterFactory adapterFactory;
-
-	@Inject
-	private AbstractSynchronizeViewsHandler<Diagram, DiagramEditPart> syncHandler;
 
 	public AbstractDiagramSyncTest() {
 		super();
@@ -145,9 +145,25 @@ public abstract class AbstractDiagramSyncTest extends AbstractPapyrusTest {
 	}
 
 	@Before
-	public void synchronizeActiveDiagram() {
-		syncHandler.synchronize(Collections.singleton(getDiagramEditPart()));
+	public void synchronizeActiveDiagram() throws Exception {
+		Diagram source = getDiagramEditPart().getDiagramView();
+		Diagram target = editor.getDiagram(targetDiagramName.get()).getDiagramView();
+
+		synchronize(source, target);
 		waitForUIEvents();
+	}
+
+	protected void synchronize(Object source, Object target) throws Exception {
+		ISyncService syncService = ServiceUtilsForResourceSet.getInstance().getService(ISyncService.class, editor.getResourceSet());
+
+		TransactionalEditingDomain domain = editor.getEditingDomain();
+		domain.getCommandStack().execute(new RecordingCommand(domain, "Synchronize") {
+
+			@Override
+			protected void doExecute() {
+				syncService.synchronize(source, target);
+			}
+		});
 	}
 
 	protected DiagramEditPart getDiagramEditPart() {

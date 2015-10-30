@@ -4,16 +4,6 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers.SynchronizeCapsulesHandler"
-            id="org.eclipse.papyrus.umlrt.aof.ui.synchCapsules"
-            name="%syncCapsules.command">
-      </command>
-      <command
-            defaultHandler="org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers.SynchronizeNodesHandler"
-            id="org.eclipse.papyrus.umlrt.aof.ui.synchNodes"
-            name="%syncViews.command">
-      </command>
-      <command
             defaultHandler="org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers.SynchronizeDiagramsHandler"
             id="org.eclipse.papyrus.umlrt.aof.ui.synchDiagrams"
             name="%syncDiagrams.command">
@@ -25,8 +15,8 @@
             allPopups="false"
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <command
-               commandId="org.eclipse.papyrus.umlrt.aof.ui.synchCapsules"
-               label="%syncCapsules.label"
+               commandId="org.eclipse.papyrus.umlrt.aof.ui.synchDiagrams"
+               label="%syncDiagrams.label"
                style="push">
             <visibleWhen
                   checkEnabled="false">
@@ -34,49 +24,25 @@
                   <count
                         value="2">
                   </count>
-                  <iterate
-                        operator="and">
+                  <iterate>
                      <adapt
                            type="org.eclipse.emf.ecore.EObject">
                         <instanceof
-                              value="org.eclipse.uml2.uml.Class">
+                              value="org.eclipse.gmf.runtime.notation.Diagram">
                         </instanceof>
                      </adapt>
                   </iterate>
                </and>
             </visibleWhen>
          </command>
-         <command
-               commandId="org.eclipse.papyrus.umlrt.aof.ui.synchNodes"
-               label="%syncViews.label"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <iterate
-                     operator="and"
-                     ifEmpty="false">
-                  <instanceof
-                        value="org.eclipse.gef.NodeEditPart">
-                  </instanceof>
-               </iterate>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.umlrt.aof.ui.synchDiagrams"
-               label="%syncDiagrams.label"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <iterate
-                     operator="and"
-                     ifEmpty="false">
-                  <instanceof
-                        value="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
-                  </instanceof>
-               </iterate>
-            </visibleWhen>
-         </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.sync.syncDelegates">
+      <syncDelegate
+            class="org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.DiagramSyncDelegate"
+            priority="75">
+      </syncDelegate>
    </extension>
 
 </plugin>

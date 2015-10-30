@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.aof.sync.examples.uml.internal;
 
-import static org.eclipse.papyrus.infra.tools.util.StreamUtil.select;
-
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.aof.sync.MappingFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -22,7 +20,6 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sync.spi.AOFSyncDelegate;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -60,14 +57,15 @@ public class CapsuleSyncDelegate extends AOFSyncDelegate {
 
 	protected void discoverCapsule(Class class_) {
 		if (isCapsule(class_)) {
-			select(class_.getTargetDirectedRelationships().stream(), Generalization.class)
-					.map(Generalization::getSpecific)
+			// Synchronize existing generalization pairs
+			class_.getGenerals().stream()
 					.filter(CapsuleSyncDelegate::isCapsule)
-					.forEach(specific -> synchronize(class_, specific));
+					.forEach(general -> synchronize(general, class_));
 		}
 	}
 
 	static boolean isCapsule(Classifier classifier) {
-		return classifier.getAppliedStereotype("sync-example::Capsule") != null;
+		return (classifier != null)
+				&& (classifier.getAppliedStereotype("sync-example::Capsule") != null);
 	}
 }

@@ -21,13 +21,10 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
-import java.util.Arrays;
-
 import org.eclipse.gef.ui.views.palette.PaletteView;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers.SynchronizeCapsulesHandler;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.junit.utils.rules.ShowView;
@@ -46,6 +43,7 @@ import org.junit.Test;
  */
 @PluginResource("resources/capsules-with-machines.di")
 @ActiveDiagram(StateMachineDiagramMappingTest.LIFECYCLE)
+@TargetDiagram(StateMachineDiagramMappingTest.DOPPELGANGERS)
 @ShowView(PaletteView.ID)
 public class StateMachineDiagramMappingTest extends AbstractDiagramSyncTest {
 	static final String LIFECYCLE = "Lifecycle";
@@ -283,7 +281,7 @@ public class StateMachineDiagramMappingTest extends AbstractDiagramSyncTest {
 	}
 
 	@Override
-	public void synchronizeActiveDiagram() {
+	public void synchronizeActiveDiagram() throws Exception {
 		Class capsule1 = (Class) editor.getModel().getOwnedType("Capsule1");
 		capsule1Behavior = (StateMachine) capsule1.getClassifierBehavior();
 		capsule1Region = capsule1Behavior.getRegions().get(0);
@@ -297,7 +295,7 @@ public class StateMachineDiagramMappingTest extends AbstractDiagramSyncTest {
 		capsule2Attach = capsule2Region.getTransition("attach");
 
 		// Synchronize the capsules for creation of new elements
-		new SynchronizeCapsulesHandler().synchronize(Arrays.asList(capsule1, capsule2));
+		synchronize(capsule1, capsule2);
 
 		// Synchronize the diagram
 		super.synchronizeActiveDiagram();

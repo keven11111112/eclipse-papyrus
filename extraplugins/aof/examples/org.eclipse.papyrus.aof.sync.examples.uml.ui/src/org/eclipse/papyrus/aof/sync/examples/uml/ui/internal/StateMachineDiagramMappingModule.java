@@ -11,7 +11,7 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.aof.sync.examples.uml.ui.internal.handlers;
+package org.eclipse.papyrus.aof.sync.examples.uml.ui.internal;
 
 import static org.eclipse.papyrus.aof.gmf.util.ViewUtil.SEMANTIC_CORRESPONDENCE;
 

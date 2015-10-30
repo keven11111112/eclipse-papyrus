@@ -154,12 +154,16 @@ public class RedefinitionUtil {
 	/**
 	 * Queries whether two elements are in a redefinition relationship.
 	 * 
-	 * @return whether {@code element} redefines {@code other}, or vice versa
+	 * @return whether {@code element} redefines {@code other}
 	 */
 	public static boolean redefines(EObject element, EObject other) {
 		boolean result = false;
 
-		if ((element instanceof RedefinableElement) && (other instanceof RedefinableElement)) {
+		if ((element instanceof Behavior) && (other instanceof Behavior)) {
+			// The redefinition of redefinedBehavior as StateMachine::extendedStateMachine
+			// makes the redefinedElement superset not always work reliably
+			result = ((Behavior) element).getRedefinedBehaviors().contains(other);
+		} else if ((element instanceof RedefinableElement) && (other instanceof RedefinableElement)) {
 			result = ((RedefinableElement) element).getRedefinedElements().contains(other);
 		} else if ((element instanceof Vertex) && (other instanceof Vertex)) {
 			Vertex v1 = (Vertex) element;

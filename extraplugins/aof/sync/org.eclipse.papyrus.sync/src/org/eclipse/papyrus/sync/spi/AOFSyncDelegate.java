@@ -161,6 +161,10 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 
 	protected abstract MappingFactory createMappingFactory(ServicesRegistry serviceRegistry);
 
+	protected final MappingFactory getMappingFactory() {
+		return mappingFactory;
+	}
+
 	@Override
 	public void install(ServicesRegistry serviceRegistry) throws ServiceException {
 		mappingFactory = createMappingFactory(serviceRegistry);
@@ -180,6 +184,11 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 					protected void handleResourceLoaded(Resource resource) {
 						discoverInitialSynchronizations(resource.getContents());
 					}
+
+					@Override
+					protected void handleRootAdded(Resource resource, EObject root) {
+						discoverInitialSynchronizations(Collections.singleton(root));
+					}
 				});
 			}
 
@@ -190,10 +199,6 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 				if (mappingModel != null) {
 					mappingModel.eAdapters().remove(mappingModelAdapter);
 					mappingModelAdapter = null;
-
-					// TODO If the service registry is shutting down, then this
-					// is unnecessary
-					mappingModel.eResource().unload();
 				}
 
 				getMappings().clear();
