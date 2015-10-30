@@ -49,6 +49,7 @@
 				<configuration>
 					<outputDirectory>xtend-gen</outputDirectory>
 					<testOutputDirectory>${project.build.directory}/xtend-gen/test</testOutputDirectory>
+					<encoding>ISO-8859-1</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
