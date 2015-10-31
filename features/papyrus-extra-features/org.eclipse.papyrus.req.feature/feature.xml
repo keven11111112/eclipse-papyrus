@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.req.feature" label="%featureName" provider-name="%providerName" version="0.7.0.qualifier">
 
    <description>
-      This feature enables to help to manage SysMLReq and to assist tracability
+      This feature helps to manage SysML Requirements
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
