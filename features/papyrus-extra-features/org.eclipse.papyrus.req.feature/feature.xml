@@ -6,7 +6,7 @@
       provider-name="%providerName">
 
    <description>
-      This feature enables to help to manage SysMLReq and to assist tracability
+      This feature helps to manage SysML Requirements
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
