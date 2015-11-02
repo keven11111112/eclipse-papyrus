@@ -450,3 +450,8 @@ InteractionOverviewDiagram Activity
 	bottomMarginLabel:5;
 }
 
+/*---------- Sequence Diagram ----------*/
+
+SequenceDiagram InteractionOperand {
+	borderStyle: dash;
+}

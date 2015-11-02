@@ -79,8 +79,8 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 	@Override
 	protected void createTopNode() {
 		super.createTopNode();
-		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
-		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
+		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+		CombinedFragment cf = (CombinedFragment) cep.resolveSemanticElement();
 		changeOperatorKind(cep, cf, InteractionOperatorKind.ALT_LITERAL);
 		waitForComplete();
 	}
@@ -100,16 +100,17 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 	IChildTestProvider operandProvider = new IChildTestProvider() {
 
 		public int getEditPartChildrenSize() {
-			return getParentEditPart().getChildren().size() - 1;//ignore guard editpart.
+			return getParentEditPart().getChildren().size() - 1;// ignore guard editpart.
 		}
 
 		public int getSemanticChildrenSize() {
-			InteractionOperand operand = ((InteractionOperand)getParentEditPart().getNotationView().getElement());
+			InteractionOperand operand = ((InteractionOperand) getParentEditPart().getNotationView().getElement());
 			return operand.getFragments().size();
 		}
 
 		public int getViewChildrenSize() {
-			return getParentEditPart().getNotationView().getChildren().size() - 1;//ignore guard editpart.
+			// ignore guard editpart and compartment_shape_display
+			return getParentEditPart().getNotationView().getChildren().size() - 2;
 		}
 
 		public Element getDropElement() {
@@ -117,17 +118,17 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public GraphicalEditPart getParentEditPart() {
-			if(containerEditPart == null) {
-				CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
-				CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
-				containerEditPart = (GraphicalEditPart)cfp.getChildren().get(0); // operand
+			if (containerEditPart == null) {
+				CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+				CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
+				containerEditPart = (GraphicalEditPart) cfp.getChildren().get(0); // operand
 			}
 			return containerEditPart;
 		}
 
 		public GraphicalEditPart getDestroyEditPart() {
 			List children = getParentEditPart().getChildren();
-			return (GraphicalEditPart)children.get(children.size() - 1);
+			return (GraphicalEditPart) children.get(children.size() - 1);
 		}
 
 		public boolean hasSemanticChild() {
@@ -149,7 +150,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public int getSemanticChildrenSize() {
-			CombinedFragment cf = ((CombinedFragment)getParentEditPart().getNotationView().getElement());
+			CombinedFragment cf = ((CombinedFragment) getParentEditPart().getNotationView().getElement());
 			return cf.getOperands().size() - 1;
 		}
 
@@ -162,9 +163,9 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public GraphicalEditPart getParentEditPart() {
-			if(containerEditPart == null) {
-				CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
-				CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
+			if (containerEditPart == null) {
+				CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+				CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
 				containerEditPart = cfp;
 			}
 			return containerEditPart;
@@ -172,7 +173,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 
 		public GraphicalEditPart getDestroyEditPart() {
 			List children = getParentEditPart().getChildren();
-			return (GraphicalEditPart)children.get(children.size() - 1);
+			return (GraphicalEditPart) children.get(children.size() - 1);
 		}
 
 		public boolean hasSemanticChild() {
