@@ -11,14 +11,14 @@
    <wizard
          category="org.eclipse.papyrus.editor.category"
          class="org.eclipse.papyrus.req.reqif.integration.assistant.ReqIFImportWizard"
-         icon="img/Darwin_logo_16x16.bmp"
+         icon="img/Papyrus_Req_logo_16x16.bmp"
          id="com.cea.darwin.reqif.importWizard"
          name="Import ReqIF">
    </wizard>
     <wizard
          category="org.eclipse.papyrus.editor.category"
          class="org.eclipse.papyrus.req.reqif.integration.assistant.ReqIFReImportWizard"
-         icon="img/Darwin_logo_16x16.bmp"
+         icon="img/Papyrus_Req_logo_16x16.bmp"
          id="com.cea.darwin.reqif.reimportWizard"
          name="Re-Import ReqIF">
    </wizard>
@@ -32,7 +32,7 @@
    <wizard
          category="org.eclipse.papyrus.editor.category"
          class="org.eclipse.papyrus.req.reqif.integration.assistant.ReqIFExportWizard"
-         icon="img/Darwin_logo_16x16.bmp"
+         icon="img/Papyrus_Req_logo_16x16.bmp"
          id="com.cea.darwin.reqif.exportWizard"
          name="Export ReqIF">
    </wizard>

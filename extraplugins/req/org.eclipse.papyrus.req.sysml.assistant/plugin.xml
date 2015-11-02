@@ -7,7 +7,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
          <menu
-               icon="images/Papyrus_Req_logo_16x16.bmp"
+               icon="images/Papyrus_Req_logo_16x16.png"
                id="org.eclipse.papyrus.req.sysml.menu"
                label="%menu.label"
                tooltip="%menu.tooltip">
@@ -25,7 +25,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <menu
-               icon="images/Papyrus_Req_logo_16x16.bmp"
+               icon="images/Papyrus_Req_logo_16x16.png"
                id="org.eclipse.papyrus.req.sysml.menu"
                label="%menu.label"
                tooltip="%menu.tooltip">
