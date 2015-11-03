@@ -77,9 +77,7 @@ public class PortNodeLabelDisplayEditPolicy extends AppliedStereotypeNodeLabelDi
 				} else if (portBounds.y() >= parentBounds.bottom() - portBounds.height()) {
 					// bottom
 					return new Image(icon.getDevice(), RotationHelper.rotateImage(icon, -90), SWT.IMAGE_COPY);
-				} else {
-					return null;
-				}
+				} 
 			}
 			return Activator.getIconElement(getUMLElement(), stereotype, false);
 

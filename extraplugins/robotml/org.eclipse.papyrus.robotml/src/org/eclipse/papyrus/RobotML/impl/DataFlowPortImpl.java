@@ -228,7 +228,7 @@ public class DataFlowPortImpl extends PortImpl implements DataFlowPort {
 	public Image getIcon() {
 		Image ImageNotFound = null;
 		if (getBase_Port() != null) {
-			Stereotype st = getBase_Port().getAppliedStereotype("RobotML::DataFlowPort");
+		Stereotype st = getBase_Port().getAppliedStereotype("RobotML::DataFlowPort");
 			Image image = st.getIcons().get(0);
 
 			if (getDirection() == DataFlowDirectionKind.OUT) {
