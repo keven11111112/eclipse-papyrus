@@ -276,6 +276,14 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	public void revealSemanticElement(List<?> elementList) {
 		if (encapsulated instanceof IRevealSemanticElement) {
 			((IRevealSemanticElement) encapsulated).revealSemanticElement(elementList);
+		} else if (encapsulated instanceof CompositeContentProvider) {
+			if (((CompositeContentProvider) encapsulated).getContentProviders() != null) {
+				for (ITreeContentProvider contentProvider : ((CompositeContentProvider) encapsulated).getContentProviders()) {
+					if (contentProvider instanceof IRevealSemanticElement) {
+						((IRevealSemanticElement) contentProvider).revealSemanticElement(elementList);
+					}
+				}
+			}
 		}
 	}
 
