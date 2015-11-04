@@ -331,6 +331,10 @@ bVal = false;</body>
         <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_FT8swGwdEeOUiKqqNL5BkQ" value="&quot;Hello World&quot;"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ap3tsJK8EeWKuoeJMU001g" name="charStringStaticConstInit" isStatic="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ap3tsZK8EeWKuoeJMU001g" value="&quot;Hello World&quot;"/>
+      </ownedAttribute>
       <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_lIB18CxBEeOcwILjsIdkdw" name="pChar"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_hTMV0CumEeOcwILjsIdkdw" name="Class5" isAbstract="true">
@@ -496,4 +500,6 @@ bVal = false;</body>
   <C_Cpp:StorageClass xmi:id="_pH54YHxwEeOJEKG9thf66A" base_Parameter="_ncNyoHxwEeOJEKG9thf66A"/>
   <C_Cpp:StorageClass xmi:id="_HmN08HxxEeOJEKG9thf66A" storageClass="register" base_Parameter="_Fs7YEHxxEeOJEKG9thf66A"/>
   <C_Cpp:StorageClass xmi:id="_PWYJIHxyEeOJEKG9thf66A" storageClass="extern" base_Parameter="_Nx8h8HxyEeOJEKG9thf66A"/>
+  <C_Cpp:Ptr xmi:id="_aqMd0JK8EeWKuoeJMU001g" base_property="_ap3tsJK8EeWKuoeJMU001g"/>
+  <C_Cpp:Const xmi:id="_eG51QJK8EeWKuoeJMU001g" base_property="_ap3tsJK8EeWKuoeJMU001g"/>
 </xmi:XMI>

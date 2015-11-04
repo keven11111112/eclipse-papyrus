@@ -145,6 +145,10 @@ public:
 	 * 
 	 */
 	static char* charStringStaticInit;
+	/**
+	 * 
+	 */
+	static const char* charStringStaticConstInit;
 
 };
 /************************************************************/

@@ -18,6 +18,10 @@
  * 
  */
 char* Class4::charStringStaticInit = "Hello World";
+/**
+ * 
+ */
+char* Class4::charStringStaticConstInit = "Hello World";
 
 /************************************************************
  End of Class4 class body
