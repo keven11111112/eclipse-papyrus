@@ -15,13 +15,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -43,12 +39,17 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.ContainmentBrowseStrategy;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
+import org.eclipse.papyrus.infra.hyperlink.util.TreeViewContentProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
+import org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -241,41 +242,14 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		// SemanticEMFContentProvider(amodel)); //This content provider will
 		// only display the selected element, instead of the root element
 		// FIXME: Use a standard, non-deprecated content
-		treeViewer.setContentProvider(new SemanticEMFContentProvider(null, null, new EObject[] { EcoreUtil.getRootContainer(amodel) }) {
-
-			@Override
-			public boolean hasChildren(Object element) {
-				return super.getChildren(element).length > 0;
-			}
-
-			/**
-			 *
-			 * @see org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider#getChildren(java.lang.Object)
-			 *
-			 * @param parentElement
-			 * @return
-			 */
-			// in some case we return diagram twice!
-			// TODO the best correction we be able to manage applied facet, because if we get diagram twice it is probably because there are 2 facets with the same behavior applied
-			@Override
-			public Object[] getChildren(Object parentElement) {
-				Set<Object> alreadyVisited = new HashSet<Object>();
-				List<Object> returnedChildren = new ArrayList<Object>();
-				Object[] children = super.getChildren(parentElement);
-				for (Object current : children) {
-					EObject el = EMFHelper.getEObject(current);
-					if (el != null) {
-						if (!alreadyVisited.contains(el)) {
-							returnedChildren.add(current);
-							alreadyVisited.add(el);
-						}
-					}
-				}
-				return returnedChildren.toArray();
-			}
-		});
-		// treeViewer.setInput(model.eResource());
+		IHierarchicContentProvider semanticProvider = new TreeViewContentProvider(new EObject[] { EcoreUtil.getRootContainer(amodel) });
+		ContainmentBrowseStrategy strategy = new ContainmentBrowseStrategy(semanticProvider);
+		IGraphicalContentProvider graphicalContentProvider = new EMFGraphicalContentProvider(strategy, model.eResource().getResourceSet(), Activator.PLUGIN_ID + ".editorTreeView");
+		treeViewer.setContentProvider(graphicalContentProvider);
+		//treeViewer.setInput(model.eResource());
 		treeViewer.setInput(registry);
+		graphicalContentProvider.createAfter(getAfterTreeViewComposite());
+		this.setChildrenBackground(getAfterTreeViewComposite(), Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 
 		// install diagramlist
 		diagramListTreeViewer = getDiagramfilteredTree().getViewer();
@@ -353,7 +327,6 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 			public void selectionChanged(SelectionChangedEvent event) {
 				Object selection = ((IStructuredSelection) getModeFilteredTree().getViewer().getSelection()).getFirstElement();
 				refresh(selection);
-
 			}
 		});
 
@@ -371,6 +344,9 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		getOKbutton().addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
+				if (treeViewer.getContentProvider() instanceof ICommitListener) {
+					((ICommitListener) treeViewer.getContentProvider()).commit(null);
+				}
 				getLookforShell().close();
 			}
 

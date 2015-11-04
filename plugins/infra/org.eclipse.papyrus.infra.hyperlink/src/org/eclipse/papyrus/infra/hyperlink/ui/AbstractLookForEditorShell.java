@@ -18,11 +18,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -51,6 +54,8 @@ public class AbstractLookForEditorShell {
 
 	/** The tree viewcomposite. */
 	private Composite treeViewcomposite = null;
+	
+	private Composite afterTreeViewComposite = null;
 
 	/** The modeltree. */
 	private final Tree modeltree = null;
@@ -152,17 +157,20 @@ public class AbstractLookForEditorShell {
 	 * This method initializes treeViewcomposite.
 	 */
 	private void createTreeViewcomposite() {
-		GridData gridData5 = new GridData();
-		gridData5.horizontalAlignment = GridData.FILL;
-		gridData5.verticalAlignment = GridData.CENTER;
 		GridData gridData4 = new GridData();
 		gridData4.horizontalAlignment = GridData.FILL;
 		gridData4.verticalAlignment = GridData.CENTER;
+		GridData gridData5 = new GridData();
+		gridData4.horizontalAlignment = GridData.FILL;
+		gridData4.verticalAlignment = GridData.CENTER;
+		
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 2;
 		treeViewcomposite = new Composite(cTabFolder, SWT.NONE);
 		treeViewcomposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		
 		createModelFilteredTree();
+		
 		treeViewcomposite.setLayout(gridLayout);
 		newDiagrambutton = new Button(treeViewcomposite, SWT.NONE);
 		newDiagrambutton.setText(Messages.AbstractLookForEditorShell_New);
@@ -173,6 +181,27 @@ public class AbstractLookForEditorShell {
 		cLabel = new CLabel(treeViewcomposite, SWT.NONE);
 		cLabel.setText("   "); //$NON-NLS-1$
 		cLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		
+		afterTreeViewComposite = new Composite(treeViewcomposite, SWT.NONE);
+		afterTreeViewComposite.setLayout(new FillLayout());
+		afterTreeViewComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		afterTreeViewComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+	}
+	
+	/**
+	 * Recursively set the background of all children of parent composite to chosen color
+	 * @param parent
+	 *        The composite that contains children
+	 * @param color
+	 *        The background color
+	 */
+	protected void setChildrenBackground(Composite parent, Color color) {
+		for (Control child : parent.getChildren()) {
+			child.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+			if (child instanceof Composite) {
+				setChildrenBackground((Composite) child, color);
+			}
+		}
 	}
 
 	/**
@@ -341,4 +370,7 @@ public class AbstractLookForEditorShell {
 		return modeFilteredTree;
 	}
 
+	protected Composite getAfterTreeViewComposite() {
+		return afterTreeViewComposite;
+	}
 }
