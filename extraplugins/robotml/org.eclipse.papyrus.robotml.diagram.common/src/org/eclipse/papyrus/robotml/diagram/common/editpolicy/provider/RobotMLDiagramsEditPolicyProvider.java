@@ -29,6 +29,7 @@ import org.eclipse.papyrus.robotml.diagram.common.editpolicies.PortNodeLabelDisp
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
@@ -74,6 +75,9 @@ public class RobotMLDiagramsEditPolicyProvider extends AbstractProvider
 				editPart.installEditPolicy(
 						AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 						(EditPolicy) editPolicy);
+				
+				//Uninstall AppliedStereotypeCommentEditPolicy because it is refreshing the port's stereotype icon with the original icon from the profile.
+				editPart.installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, null);
 
 				Object model = editPart.getModel();
 

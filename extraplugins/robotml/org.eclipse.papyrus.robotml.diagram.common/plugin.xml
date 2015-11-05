@@ -158,7 +158,7 @@
 	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
 	<editpolicyProvider
 		class="org.eclipse.papyrus.robotml.diagram.common.editpolicy.provider.RobotMLDiagramsEditPolicyProvider">
-		<Priority name="Low"/>
+		<Priority name="Highest"/>
 	</editpolicyProvider>
 </extension>
 <extension
