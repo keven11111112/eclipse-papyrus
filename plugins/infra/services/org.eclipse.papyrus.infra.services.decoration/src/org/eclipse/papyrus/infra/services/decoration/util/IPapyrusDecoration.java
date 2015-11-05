@@ -111,7 +111,7 @@ public interface IPapyrusDecoration {
 
 	/**
 	 * @return the decoration position as enumerated by constants in IDecoration from JFace
-	 *         (TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, UNDERLAY
+	 *         (TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, UNDERLAY)
 	 */
 	int getPositionForJFace();
 

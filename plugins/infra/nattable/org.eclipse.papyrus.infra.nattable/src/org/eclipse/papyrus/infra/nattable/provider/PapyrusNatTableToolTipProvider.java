@@ -18,28 +18,46 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.tooltip.NatTableContentTooltip;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.Constants;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.papyrus.infra.services.decoration.util.Decoration;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.internal.SharedImages;
+import org.eclipse.ui.PlatformUI;
 
 /**
  *
  * @author VL222926
  *         This class provides the tooltip to display in the table
+ *         
+ *         This class allows to display as tooltip : 
+ *         <ul>
+ *         <li> the text and image when there is Problem associated to a cell located in the body area</li>
+ *         <li> the text and image when there is decoration associated to the object represented by a cell located in a header area </li>
+ *         </ul>
  */
-@SuppressWarnings("restriction")
-// suppress warning for SharedImages
 public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 
 	/**
 	 * the shared images registry
 	 */
-	private final ISharedImages sharedImage = new SharedImages();
+	private final ISharedImages sharedImage = PlatformUI.getWorkbench().getSharedImages();
 
+	/**
+	 * the wrapper used to get the text and image from the table label provider
+	 */
+	private final LabelProviderCellContextElementWrapper wrapper = new LabelProviderCellContextElementWrapper();
 	/**
 	 *
 	 * Constructor.
@@ -54,6 +72,30 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	}
 
 	/**
+	 * 
+	 * @param cell
+	 *            a cell
+	 * @return
+	 * 		return <code>true</code> if the cell is in a header region
+	 */
+	protected boolean isInHeaderRegion(final ILayerCell cell) {
+		LabelStack labels = cell.getConfigLabels();
+		return labels.hasLabel(GridRegion.ROW_HEADER) || labels.hasLabel(GridRegion.COLUMN_HEADER);
+	}
+
+	/**
+	 * 
+	 * @param cell
+	 *            a cell
+	 * @return
+	 * 		<code>true</code> if the cell is in the body region
+	 */
+	protected boolean isInBodyRegion(final ILayerCell cell) {
+		LabelStack labels = cell.getConfigLabels();
+		return labels.hasLabel(GridRegion.BODY);
+	}
+	
+	/**
 	 *
 	 * @see org.eclipse.jface.window.DefaultToolTip#getImage(org.eclipse.swt.widgets.Event)
 	 *
@@ -61,9 +103,25 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 * @return
 	 */
 	@Override
-	protected Image getImage(Event event) {
-		if (isCellWithError(event)) {
+	protected Image getImage(final Event event) {
+		ILayerCell cell = getCell(event);
+		if (cell == null) {
+			return null;
+		}
+		// we return the error image
+		if (isInBodyRegion(cell) && isCellWithError(cell)) {
 			return this.sharedImage.getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
+		}
+
+		// we return the image of the object with its decorator
+		if (isInHeaderRegion(cell) && isCellWithDecorationMarker(cell)) {
+			LabelProviderService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+			
+			wrapper.setCell(cell);
+			wrapper.setConfigRegistry(natTable.getConfigRegistry());
+			wrapper.setObject(cell.getDataValue());
+			// we return the image with the decoration
+			return serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT, wrapper).getImage(wrapper);
 		}
 		return super.getImage(event);
 	}
@@ -77,12 +135,39 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 */
 	@Override
 	protected String getText(final Event event) {
-		if (isCellWithError(event)) {
-			final ILayerCell cell = getCell(event);
-			return getProblemTooltip(cell.getDataValue());
-		} else {
-			return super.getText(event);
+		ILayerCell cell = getCell(event);
+		if (cell == null) {
+			return null;
 		}
+
+		// we return the text of the error
+		if (isInBodyRegion(cell) && isCellWithError(cell)) {
+			return getProblemTooltip(cell.getDataValue());
+		}
+
+		// we return the text of the decoration
+		if (isInHeaderRegion(cell) && isCellWithDecorationMarker(cell)) {
+			DecorationService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
+			Object value = cell.getDataValue();
+			return Decoration.getMessageFromDecorations(serv, AxisUtils.getRepresentedElement(value));
+		}
+		return super.getText(event);
+	}
+
+	/**
+	 * 
+	 * @param cell
+	 *            a cell
+	 * @return
+	 * 		<code>true</code> if there are decoration marked to display
+	 */
+	protected boolean isCellWithDecorationMarker(final ILayerCell cell) {
+		if (cell == null) {
+			return false;
+		}
+		DecorationService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
+		Object value = cell.getDataValue();
+		return serv.getDecorations(AxisUtils.getRepresentedElement(value), true).size() > 0;
 	}
 
 	/**
@@ -116,7 +201,7 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 * @param event
 	 *            an event
 	 * @return
-	 *         the cell for this event
+	 * 		the cell for this event
 	 */
 	protected ILayerCell getCell(final Event event) {
 		int col = this.natTable.getColumnPositionByX(event.x);
@@ -129,10 +214,9 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 * @param event
 	 *            an event
 	 * @return
-	 *         <code>true</code> if the cell have a problem
+	 * 		<code>true</code> if the cell have a problem
 	 */
-	protected boolean isCellWithError(final Event event) {
-		final ILayerCell cell = getCell(event);
+	protected boolean isCellWithError(final ILayerCell cell) {
 		boolean hasError = false;
 		if (cell != null) {
 			final Object value = cell.getDataValue();
@@ -157,7 +241,14 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 */
 	@Override
 	protected boolean shouldCreateToolTip(final Event event) {
-		if (isCellWithError(event)) {
+		final ILayerCell cell = getCell(event);
+		if(cell==null){
+			return false;
+		}
+		if (isCellWithError(cell)) {
+			return true;
+		}
+		if (isCellWithDecorationMarker(cell)) {
 			return true;
 		}
 		if (!isDisplayingFullCellText(event)) {
