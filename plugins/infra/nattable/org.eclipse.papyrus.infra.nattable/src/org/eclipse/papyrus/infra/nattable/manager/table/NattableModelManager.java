@@ -19,6 +19,8 @@ import java.util.Collection;
 import java.util.EventObject;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.runtime.Assert;
@@ -172,6 +174,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * the focus listener
 	 */
 	private FocusListener focusListener;
+
+	/**
+	 * listener on the decoration service, to be able to update the table when marker are added or removed
+	 */
+	private Observer decoractionServiceObserver;
 
 	/**
 	 * the resourceSet listener
@@ -331,6 +338,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		};
 	}
+	
 	private ListEventListener<Object> listEventListener;
 
 	/**
@@ -361,7 +369,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *            manage the list events
 	 */
 	private void manageEventListChanges(final ListEvent<Object> listChanges) {
-		if(natTable != null && !natTable.isDisposed()){
+		if (natTable != null && !natTable.isDisposed()) {
 			final EventList<?> sourceList = listChanges.getSourceList();
 			final CellEditorDeclaration declaration = TableHelper.getCellEditorDeclaration(this);
 			boolean needConfiguration = false;
@@ -433,6 +441,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public SortedList<Object> getColumnSortedList() {
 		return this.columnSortedList;
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#getRowSortModel()
 	 *
@@ -492,6 +501,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		nattable.addLayerListener(layerListener);
 
 		updateToggleActionState();// required, because the focus listener is not notified just after the creation of the widget
+
+		// add the decoration service observer to be able update the table when markers changed
+		this.decoractionServiceObserver = getOrCreateDecorationServiceObserver();
+		getDecorationService().addListener(decoractionServiceObserver);
+
 		return nattable;
 	}
 
@@ -787,6 +801,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public void dispose() {
+		if (this.decoractionServiceObserver != null) {
+			getDecorationService().deleteListener(this.decoractionServiceObserver);
+			this.decoractionServiceObserver = null;
+		}
 		if (this.tableEditingDomain != null) {
 			if (this.tableEditingDomain.getCommandStack() != null) {
 				this.tableEditingDomain.getCommandStack().removeCommandStackListener(this.refreshListener);
@@ -821,7 +839,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			if (this.invertAxisListener != null) {
 				table.eAdapters().remove(this.invertAxisListener);
 			}
-		}		if (this.cellsMap != null) {
+		}
+		
+		if (this.cellsMap != null) {
 			this.cellsMap.clear();
 		}
 		if (this.natTable != null) {
@@ -1046,7 +1066,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public void updateAxisContents(final AbstractAxisProvider axis) {
 
 		try {
-			if(null != getContextEditingDomain()){
+			if (null != getContextEditingDomain()) {
 				getContextEditingDomain().runExclusive(new Runnable() {
 	
 					@Override
@@ -1708,7 +1728,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 							@Override
 							public void run() {
-								if(null != natTable && !natTable.isDisposed()){
+								if (null != natTable && !natTable.isDisposed()) {
 									// already created booleanValues and intValues
 									if (notification.getNotifier() instanceof BooleanValueStyle) {
 										// as the filter already prevented any nonBooleanValueStyle, and therefore any non EObject, it can be cast without verification
@@ -1878,8 +1898,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		 */
 		@Override
 		public void setDataValue(final Object rowObject, final int columnIndex, final Object newValue) {
-			// TODO Auto-generated method stub
-
+			//nothing to do 
 		}
 
 		/**
@@ -1889,7 +1908,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		 */
 		@Override
 		public int getColumnCount() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
@@ -1906,5 +1924,29 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		// TODO
 		// FIXME warning to invert axis
 		// return new PapyrusFilterStrategy(this, this.horizontalFilterList, new PapyrusColumnAccesor(), null);
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		a new decoration service listener
+	 */
+	private Observer getOrCreateDecorationServiceObserver() {
+		if (this.decoractionServiceObserver == null) {
+			this.decoractionServiceObserver = new Observer() {
+				/**
+				 * 
+				 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+				 *
+				 * @param o
+				 * @param arg
+				 */
+				@Override
+				public void update(Observable o, Object arg) {
+					refreshNatTable();
+				}
+			};
+		}
+		return this.decoractionServiceObserver;
 	}
 }
