@@ -33,10 +33,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * Abstract handler in order to connect to Papyrus
+ * Abstract handler in order to do the connection with Papyrus
  *
  */
-public abstract class PapyrusReqSysMLAbstractHandler extends AbstractHandler {
+public abstract class PapyrusAbstractHandler extends AbstractHandler {
 
 	protected TransactionalEditingDomain transactionalEditingDomain=null;
 	protected IMultiDiagramEditor papyrusEditor;
@@ -87,7 +87,7 @@ public abstract class PapyrusReqSysMLAbstractHandler extends AbstractHandler {
 		return null;
 	}
 	/**
-	 * getSelected element in the diagram or in hte model explorer
+	 * getSelected element in the diagram or in the model explorer
 	 * @return Element or null
 	 */
 	protected ArrayList<Element> getSelectionSet(){

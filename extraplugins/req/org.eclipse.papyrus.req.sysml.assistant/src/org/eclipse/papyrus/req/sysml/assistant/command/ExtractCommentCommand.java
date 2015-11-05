@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 /**
  * 
- * parse the text of the requirement and move some parts as comment
+ * Parses the text of the requirement and move some parts as comments
  *
  */
 public class ExtractCommentCommand extends RecordingCommand {

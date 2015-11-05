@@ -18,7 +18,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
- * this command is used to create a "decompose" link between requirements
+ * This class creates a "Decompose" link between requirements
  *
  */
 public class DecomposeReqCommand extends RecordingCommand {
@@ -36,7 +36,8 @@ public class DecomposeReqCommand extends RecordingCommand {
 	 *            element that will nest the child
 	 * 
 	 */
-	public DecomposeReqCommand(TransactionalEditingDomain domain, org.eclipse.uml2.uml.Class child, org.eclipse.uml2.uml.Class parent) {
+	public DecomposeReqCommand(TransactionalEditingDomain domain, org.eclipse.uml2.uml.Class child,
+			org.eclipse.uml2.uml.Class parent) {
 		super(domain, "Create a Decompositon");
 		this.parent = parent;
 		this.child = child;
@@ -44,7 +45,7 @@ public class DecomposeReqCommand extends RecordingCommand {
 
 	@Override
 	protected void doExecute() {
-			parent.getNestedClassifiers().add(child);
-		}
+		parent.getNestedClassifiers().add(child);
+	}
 
 }

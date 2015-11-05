@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
- *create a derived requirement from a set of requirement with concatened text
+ * Creates a derived requirement from a set of requirements with concatened text
  *
  */
 public class InitDerivedReqCommand extends RecordingCommand {

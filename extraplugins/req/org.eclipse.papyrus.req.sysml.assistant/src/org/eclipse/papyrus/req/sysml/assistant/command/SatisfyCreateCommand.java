@@ -22,35 +22,39 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 
-
 /**
- * This command is used to create a "Satisfy" link between a requirement and a namedElement
+ * Creates a "Satisfy" link between a requirement and a namedElement
  *
  */
 public class SatisfyCreateCommand extends RecordingCommand {
 	private NamedElement source;
 	private NamedElement target;
-	/**
-	 * use to make an abstraction 
-	 * @param domain the domain to execute a transaction
-	 * @param source the source of the abstraction (the more concrete element)
-	 * @param target the target of the abstraction (the more abstract element)
 
+	/**
+	 * use to make an abstraction
+	 * 
+	 * @param domain
+	 *            the domain to execute a transaction
+	 * @param source
+	 *            the source of the abstraction (the more concrete element)
+	 * @param target
+	 *            the target of the abstraction (the more abstract element)
+	 * 
 	 */
-	public SatisfyCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target){ 
-		super(domain,"Create an Abstraction");
-		this.source=source;
-		this.target=target;
+	public SatisfyCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target) {
+		super(domain, "Create an Abstraction");
+		this.source = source;
+		this.target = target;
 	}
 
 	@Override
 	protected void doExecute() {
-		Abstraction theAbstraction= UMLFactory.eINSTANCE.createAbstraction();
+		Abstraction theAbstraction = UMLFactory.eINSTANCE.createAbstraction();
 		source.getNearestPackage().getPackagedElements().add(theAbstraction);
 		theAbstraction.getSuppliers().add(target);
 		theAbstraction.getClients().add(source);
-		theAbstraction.setName("Satisfies_"+this.target.getName());
-		Stereotype satisfyStereotype= theAbstraction.getApplicableStereotype(I_SysMLStereotype.SATISFY_STEREOTYPE);
+		theAbstraction.setName("Satisfies_" + this.target.getName());
+		Stereotype satisfyStereotype = theAbstraction.getApplicableStereotype(I_SysMLStereotype.SATISFY_STEREOTYPE);
 		theAbstraction.applyStereotype(satisfyStereotype);
 	}
 

@@ -8,8 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     Mauricio Alférez (mauricio.alferez@cea.fr) CEA LIST. - initial API and implementation
- *     
+ *     Mauricio Alférez (mauricio.alferez@cea.fr) CEA LIST. - initial API and implementation 
  *******************************************************************************/
 package org.eclipse.papyrus.req.sysml.assistant.handler;
 
@@ -19,10 +18,12 @@ import org.eclipse.papyrus.req.sysml.assistant.command.InitDecomposeReqCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * is used to create a "decompose" link between requirements
+ * Executes the decomposition of a parent requirement to create a new child
+ * requirement with a name based on its ancestors as defined in the Papyrus Req
+ * preferences page.
+ *
  */
-
-public class DecomposeReqHandler extends PapyrusReqSysMLAbstractHandler {
+public class DecomposeReqHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);

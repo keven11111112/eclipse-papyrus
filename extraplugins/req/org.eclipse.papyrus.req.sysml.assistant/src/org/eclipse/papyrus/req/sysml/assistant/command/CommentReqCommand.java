@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 /**
  * 
- * parse the text of the requirement and move some parts as comment
+ * Parses the text of the requirement and move some parts as comment
  *
  */
 public class CommentReqCommand extends RecordingCommand {

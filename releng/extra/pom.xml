@@ -223,8 +223,9 @@
 
 		<!-- Papyrus Req -->
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.reqif</module>
-		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.domainModel2Profile</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.traceabilityassistant</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 		

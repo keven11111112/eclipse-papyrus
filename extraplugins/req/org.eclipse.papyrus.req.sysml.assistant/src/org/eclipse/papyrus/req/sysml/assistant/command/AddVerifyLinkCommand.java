@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
- * This class creates a set of Verify links
+ * Creates a set of Verify links
  */
 public class AddVerifyLinkCommand extends RecordingCommand {
 	protected Element selectedElement;

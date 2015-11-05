@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
- * This class creates a set of Satisfy links
+ * Creates a set of Satisfy links
  */
 public class AddSatisfyLinkCommand extends RecordingCommand {
 	protected Element selectedElement;

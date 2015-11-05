@@ -22,25 +22,24 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * This class executes Verify link 
+ * Executes the addition of Verify links
+ *
  */
-
-public class AddVerifyLinkHandler extends PapyrusReqSysMLAbstractHandler { 
-
-
+public class AddVerifyLinkHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
-		ArrayList<Element> selectedElements=getSelectionSet();
-		if( selectedElements.size()==2){
-			VerifyCreateCommand addVerifyCreateCommand= new VerifyCreateCommand(transactionalEditingDomain,(NamedElement)selectedElements.get(1),(NamedElement) selectedElements.get(0));
+		ArrayList<Element> selectedElements = getSelectionSet();
+		if (selectedElements.size() == 2) {
+			VerifyCreateCommand addVerifyCreateCommand = new VerifyCreateCommand(transactionalEditingDomain,
+					(NamedElement) selectedElements.get(1), (NamedElement) selectedElements.get(0));
 			transactionalEditingDomain.getCommandStack().execute(addVerifyCreateCommand);
-		}
-		else{
+		} else {
 
-			Element selectedElement=getSelection();
-			if( selectedElement!=null){
-				AddVerifyLinkCommand addAddVerifyLinkCommand= new AddVerifyLinkCommand(transactionalEditingDomain,selectedElement);
+			Element selectedElement = getSelection();
+			if (selectedElement != null) {
+				AddVerifyLinkCommand addAddVerifyLinkCommand = new AddVerifyLinkCommand(transactionalEditingDomain,
+						selectedElement);
 				transactionalEditingDomain.getCommandStack().execute(addAddVerifyLinkCommand);
 			}
 		}
@@ -55,12 +54,12 @@ public class AddVerifyLinkHandler extends PapyrusReqSysMLAbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		Element selectedElement=getSelection();
-		if( selectedElement!=null){
+		Element selectedElement = getSelection();
+		if (selectedElement != null) {
 			return true;
+		} else {
+			return false;
 		}
-		else{ return false;}
 	}
-
 
 }

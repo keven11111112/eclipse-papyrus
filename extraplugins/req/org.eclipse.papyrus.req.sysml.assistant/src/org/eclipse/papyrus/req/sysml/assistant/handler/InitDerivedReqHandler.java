@@ -20,23 +20,22 @@ import org.eclipse.papyrus.req.sysml.assistant.command.InitDerivedReqCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * Use to create a derived requirement
+ * Executes the creation of a derived requirement
+ *
  */
-
-public class InitDerivedReqHandler extends PapyrusReqSysMLAbstractHandler { 
-
-	
+public class InitDerivedReqHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
-		ArrayList<Element> selectedElement=getSelectionSet();
-		if( selectedElement.size()!=0){
-			InitDerivedReqCommand initDerivedReqCommand= new InitDerivedReqCommand(transactionalEditingDomain,selectedElement);
+		ArrayList<Element> selectedElement = getSelectionSet();
+		if (selectedElement.size() != 0) {
+			InitDerivedReqCommand initDerivedReqCommand = new InitDerivedReqCommand(transactionalEditingDomain,
+					selectedElement);
 			transactionalEditingDomain.getCommandStack().execute(initDerivedReqCommand);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
@@ -45,12 +44,12 @@ public class InitDerivedReqHandler extends PapyrusReqSysMLAbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		ArrayList<Element> selectedElement=getSelectionSet();
-		if( selectedElement.size()!=0){
+		ArrayList<Element> selectedElement = getSelectionSet();
+		if (selectedElement.size() != 0) {
 			return true;
+		} else {
+			return false;
 		}
-		else{ return false;}
 	}
 
-	
 }

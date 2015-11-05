@@ -22,25 +22,24 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * This class executes Satisfy link 
+ * Executes the addition of Satisfy links
+ * 
  */
-
-public class AddSatisfyLinkHandler extends PapyrusReqSysMLAbstractHandler { 
-
-
+public class AddSatisfyLinkHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
-		ArrayList<Element> selectedElements=getSelectionSet();
-		if( selectedElements.size()==2){
-			SatisfyCreateCommand addSatisfyCreateCommand= new SatisfyCreateCommand(transactionalEditingDomain,(NamedElement)selectedElements.get(1),(NamedElement) selectedElements.get(0));
+		ArrayList<Element> selectedElements = getSelectionSet();
+		if (selectedElements.size() == 2) {
+			SatisfyCreateCommand addSatisfyCreateCommand = new SatisfyCreateCommand(transactionalEditingDomain,
+					(NamedElement) selectedElements.get(1), (NamedElement) selectedElements.get(0));
 			transactionalEditingDomain.getCommandStack().execute(addSatisfyCreateCommand);
-		}
-		else{
+		} else {
 
-			Element selectedElement=getSelection();
-			if( selectedElement!=null){
-				AddSatisfyLinkCommand addAddSatisfyLinkCommand= new AddSatisfyLinkCommand(transactionalEditingDomain,selectedElement);
+			Element selectedElement = getSelection();
+			if (selectedElement != null) {
+				AddSatisfyLinkCommand addAddSatisfyLinkCommand = new AddSatisfyLinkCommand(transactionalEditingDomain,
+						selectedElement);
 				transactionalEditingDomain.getCommandStack().execute(addAddSatisfyLinkCommand);
 			}
 		}
@@ -55,12 +54,12 @@ public class AddSatisfyLinkHandler extends PapyrusReqSysMLAbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		Element selectedElement=getSelection();
-		if( selectedElement!=null){
+		Element selectedElement = getSelection();
+		if (selectedElement != null) {
 			return true;
+		} else {
+			return false;
 		}
-		else{ return false;}
 	}
-
 
 }

@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
- * This class creates a set of DerivedReq links
+ * Creates a set of DerivedReq links
  */
 public class AddDerivedLinkReqCommand extends RecordingCommand {
 	protected Element selectedElement;
