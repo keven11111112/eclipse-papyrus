@@ -60,7 +60,7 @@ public class CppLangCodegen implements ILangCodegen2 {
 			if (nearestPackage != null) {
 				// check whether the C++ profile is applied
 				for (Profile profile : nearestPackage.getAllAppliedProfiles()) {
-					if (profile.getName().equals(C_CppPackage.eINSTANCE.getName())) {
+					if (C_CppPackage.eINSTANCE.getName().equals(profile.getName())) {
 						return true;
 					}
 				}
