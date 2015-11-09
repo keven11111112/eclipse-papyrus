@@ -10,10 +10,12 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 468030
+ *  Christian W. Damus - bug 481302
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.tests;
 
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.uml.decoratormodel.helper.tests.DecoratorModelUtilsTest;
 import org.eclipse.papyrus.uml.decoratormodel.helper.tests.PapyrusStereotypeApplicationHelperTest;
 import org.eclipse.papyrus.uml.decoratormodel.internal.expressions.tests.FilePropertyTesterTest;
@@ -21,7 +23,6 @@ import org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.tests.Prof
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.tests.DecoratorModelCopierTest;
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.tests.DecoratorModelIndexTest;
 import org.junit.runner.RunWith;
-import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -35,7 +36,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		DecoratorModelIndexTest.class, DecoratorModelCopierTest.class, //
 		DecoratorModelUtilsTest.class, PapyrusStereotypeApplicationHelperTest.class, //
 		FilePropertyTesterTest.class,
-		ProfileIndexTest.class
+		ProfileIndexTest.class,
+		RegressionTest.class,
 })
 public class AllTests {
 	// Test suite
