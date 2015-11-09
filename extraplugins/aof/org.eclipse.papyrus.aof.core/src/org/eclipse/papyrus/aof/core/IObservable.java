@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
@@ -34,7 +35,7 @@ public interface IObservable<E> {
 	 *             if the observer is null
 	 *
 	 */
-	void addObserver(IObserver<E> observer);
+	void addObserver(IObserver<? super E> observer);
 
 	/**
 	 * Removes an observer from the list of observers for this observable contents.
@@ -44,7 +45,7 @@ public interface IObservable<E> {
 	 * @throws IllegalStateException
 	 *             if the observer is already contained in the list of observers
 	 */
-	void removeObserver(IObserver<E> observer);
+	void removeObserver(IObserver<?> observer);
 
 	/**
 	 * Returns the list of observers that have been registered to this observable contents.
@@ -55,7 +56,7 @@ public interface IObservable<E> {
 	 *
 	 * @return the list of observers observing this observable contents
 	 */
-	Iterable<IObserver<E>> getObservers();
+	Iterable<IObserver<? super E>> getObservers();
 
 	/**
 	 * Returns whether this observable contents has registered observer or not.

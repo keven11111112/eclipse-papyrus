@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl.operation;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.aof.core.IBox;
+import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.IObserver;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
@@ -26,24 +28,37 @@ public class CollectBox<E, R> extends Operation<R> {
 
 	private IUnaryFunction<? super E, ? extends IBox<R>> collector;
 
-	private IBox<R> resultDefault;
+	private IConstraints resultConstraints;
 
 	public CollectBox(IBox<E> sourceBox, E sourceDefault, IUnaryFunction<? super E, ? extends IBox<R>> collector) {
+		this(sourceBox, (sourceDefault == null) ? null : collector.apply(sourceDefault).getConstraints(), collector);
+	}
+	
+	public CollectBox(IBox<E> sourceBox, IConstraints resultConstraints, IUnaryFunction<? super E, ? extends IBox<R>> collector) {
 		this.sourceBox = sourceBox;
+		this.resultConstraints = resultConstraints;
 		this.collector = collector;
-		// if the cache already contains the result, don't compute it twice
-		if (cache.getTarget(sourceBox, collector) == null) {
-			// try to get the result default: if the sourceDefault is null and the collector does not handle this null
-			// value, it is a large change to throw a null pointer exception
-			try {
-				this.resultDefault = collector.apply(sourceDefault);
-			} catch (NullPointerException exception) {
-				if (sourceDefault == null) {
-					throw new IllegalStateException("The collector must provide a default box given a null argument value", exception);
-				} else {
-					throw exception;
+
+		if (resultConstraints == null) {
+			// Infer it from the computed result
+			if (sourceBox.length() > 0) {
+				IBox<R> peek = collector.apply(sourceBox.get(0));
+				resultConstraints = peek.getConstraints();
+			} else {
+				// Maybe the collector provides a default value for a null input?
+				try {
+					IBox<R> peek = collector.apply(null);
+					resultConstraints = peek.getConstraints();
+				} catch (Exception e) {
+					// Guess not.
+					throw new IllegalArgumentException("Cannot infer result constraints without a source element.");
 				}
 			}
+		}
+		this.resultConstraints = resultConstraints;
+		
+		// if the cache already contains the result, don't compute it twice
+		if (cache.getTarget(sourceBox, collector) == null) {
 			SourceObserver sourceObserver = new SourceObserver();
 			// register first so that we can use its added method in the init phase
 			registerObservation(sourceBox, sourceObserver);
@@ -58,22 +73,22 @@ public class CollectBox<E, R> extends Operation<R> {
 
 	@Override
 	public boolean isOptional() {
-		return sourceBox.isOptional() || resultDefault.isOptional();
+		return sourceBox.isOptional() || resultConstraints.isOptional();
 	}
 
 	@Override
 	public boolean isSingleton() {
-		return sourceBox.isSingleton() && resultDefault.isSingleton();
+		return sourceBox.isSingleton() && resultConstraints.isSingleton();
 	}
 
 	@Override
 	public boolean isOrdered() {
-		return sourceBox.isOrdered() && resultDefault.isOrdered();
+		return sourceBox.isOrdered() && resultConstraints.isOrdered();
 	}
 
 	@Override
 	public boolean isUnique() {
-		return sourceBox.isSingleton() && resultDefault.isUnique();
+		return sourceBox.isSingleton() && resultConstraints.isUnique();
 	}
 
 	@Override

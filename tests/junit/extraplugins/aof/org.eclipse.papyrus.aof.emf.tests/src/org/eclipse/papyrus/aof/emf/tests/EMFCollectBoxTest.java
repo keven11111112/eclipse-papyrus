@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,12 +7,18 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - JUnit testing of CollectBox operation on all box types
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.emf.tests;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.IFactory;
@@ -295,6 +301,39 @@ public class EMFCollectBoxTest extends CollectBoxTest implements EMFTest {
 		parentEmails.clear();
 		IBox<String> actualParentEmails = parentProperty.collectMutable(Person, "emails");
 		assertEquals(parentEmails, actualParentEmails);
+	}
+	
+	//
+	// Other tests
+	//
+	
+	/**
+	 * Test that we can process boxes of abstract types without NPEs when the box's type
+	 * is abstract but it contains elements.
+	 */
+	@Test
+	public void testCollectBoxAbstractTypeNotEmpty() {
+		// Three different kinds of ENamedElement, which is an abstract type
+		ENamedElement[] elements = { EcorePackage.eINSTANCE, EcorePackage.Literals.ECLASS, EcorePackage.Literals.ECLASS__ABSTRACT };
+		IBox<ENamedElement> a = factory.createBox(IConstraints.SEQUENCE, elements);
+		IBox<String> b = a.collectMutable(factory, EcorePackage.Literals.ENAMED_ELEMENT, EcorePackage.Literals.ENAMED_ELEMENT__NAME);
+		IBox<String> expected = factory.createBox(IConstraints.SEQUENCE, EcorePackage.eNAME, EcorePackage.Literals.ECLASS.getName(), EcorePackage.Literals.ECLASS__ABSTRACT.getName());
+		assertThat(b.matches(IConstraints.SEQUENCE), is(true));
+		assertThat(b.sameAs(expected), is(true));
+	}
+	
+	/**
+	 * Test that we can process boxes of abstract types without NPEs when the box's type
+	 * is abstract and it is empty.
+	 */
+	@Test
+	public void testCollectBoxAbstractTypeEmpty() {
+		// No instances of of ENamedElement, which is an abstract type
+		IBox<ENamedElement> a = factory.createBox(IConstraints.SEQUENCE);
+		IBox<String> b = a.collectMutable(factory, EcorePackage.Literals.ENAMED_ELEMENT, EcorePackage.Literals.ENAMED_ELEMENT__NAME);
+		IBox<String> expected = factory.createBox(IConstraints.SEQUENCE);
+		assertThat(b.matches(IConstraints.SEQUENCE), is(true));
+		assertThat(b.sameAs(expected), is(true));
 	}
 
 }

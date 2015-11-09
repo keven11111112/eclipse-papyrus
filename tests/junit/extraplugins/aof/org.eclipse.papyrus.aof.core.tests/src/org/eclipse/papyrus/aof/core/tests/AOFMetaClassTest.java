@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,9 +7,11 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.tests;
 
+import org.eclipse.papyrus.aof.core.IMetaClass;
 import org.eclipse.papyrus.aof.core.tests.population.Person;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -66,6 +68,20 @@ public class AOFMetaClassTest extends MetaClassTest {
 	@Test
 	public void testGetPropertyAccessorForPersonChildrenProperty() {
 		testGetPropertyAccessorOfMetaClass(Person.class, "children", new Person());
+	}
+
+	//
+	// Subclass queries
+	//
+
+	@Override
+	public void testIsSubclassOtherPlatform() {
+		// Skip this test, because this is not a different platform
+	}
+
+	@Override
+	protected IMetaClass<?> getAnyPlatformMetaclass() {
+		return factory.getMetaClass(Person.class);
 	}
 
 }

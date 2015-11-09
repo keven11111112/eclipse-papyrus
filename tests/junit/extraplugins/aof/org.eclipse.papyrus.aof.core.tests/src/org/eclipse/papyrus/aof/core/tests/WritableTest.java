@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.tests;
 
@@ -72,13 +73,11 @@ public class WritableTest extends BaseTest {
 
 	@Test
 	public void testWritableForAddDuplicateOnSet() {
-		thrown.expect(IllegalStateException.class);
 		testWritableForAdd(IConstraints.SET, 3, 3, 1, 2, 3, 4);
 	}
 
 	@Test
 	public void testWritableForAddOnDuplicateOSet() {
-		thrown.expect(IllegalStateException.class);
 		testWritableForAdd(IConstraints.ORDERED_SET, 3, 3, 1, 2, 3, 4);
 	}
 
@@ -99,7 +98,9 @@ public class WritableTest extends BaseTest {
 		if (inputType.isSingleton()) {
 			expected.clear();
 		}
-		expected.add(index, elementToAdd);
+		if (!inputType.isUnique() || !expected.contains(elementToAdd)) {
+			expected.add(index, elementToAdd);
+		}
 		assertEquals(expected, box);
 	}
 
@@ -215,13 +216,11 @@ public class WritableTest extends BaseTest {
 
 	@Test
 	public void testWritableForAddNullDuplicateOnSet() {
-		thrown.expect(IllegalStateException.class);
 		testWritableForAdd(IConstraints.SET, null, 3, 1, 2, null, 3, 4);
 	}
 
 	@Test
 	public void testWritableForAddNullsOnDuplicateOSet() {
-		thrown.expect(IllegalStateException.class);
 		testWritableForAdd(IConstraints.ORDERED_SET, null, 3, 1, 2, null, 3, 4);
 	}
 
@@ -497,9 +496,9 @@ public class WritableTest extends BaseTest {
 	}
 
 	public void testWritableForTryForRemove(IConstraints inputType, int elementToRemove, Integer... elements) {
-		thrown.expect(IllegalStateException.class);
 		IBox<Integer> box = factory.createBox(inputType, elements);
 		box.remove(elementToRemove);
+		assertEquals(factory.createBox(inputType, elements), box);
 	}
 
 	// Replace

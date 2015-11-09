@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
@@ -56,11 +57,12 @@ public class AOFMetaClass<C> extends BaseMetaClass<C> {
 
 	@Override
 	public boolean isSubTypeOf(IMetaClass<?> that) {
-		if (that instanceof AOFMetaClass) {
-			AOFMetaClass<?> thatAOFClass = (AOFMetaClass) that;
+		if (that instanceof AOFMetaClass<?>) {
+			AOFMetaClass<?> thatAOFClass = (AOFMetaClass<?>) that;
 			return thatAOFClass.javaClass.isAssignableFrom(this.javaClass);
 		} else {
-			throw new IllegalArgumentException("Meta-class " + that + " must be an instance of " + AOFMetaClass.class);
+			// Can't be a subtype of a metaclass from a different platform
+			return false;
 		}
 	}
 
@@ -75,6 +77,7 @@ public class AOFMetaClass<C> extends BaseMetaClass<C> {
 					for (PropertyDescriptor descriptor : Introspector.getBeanInfo(javaClass).getPropertyDescriptors()) {
 						if (descriptor.getName().equals(property)) {
 							readMethod = descriptor.getReadMethod();
+							break;
 						}
 					}
 				} catch (IntrospectionException e) {

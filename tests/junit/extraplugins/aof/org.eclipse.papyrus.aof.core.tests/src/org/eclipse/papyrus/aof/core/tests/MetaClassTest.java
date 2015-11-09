@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,8 +7,12 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.tests;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 
@@ -199,11 +203,39 @@ public abstract class MetaClassTest extends BaseTest {
 		testGetPropertyAccessorOfMetaClass(Sample.class, "prop", null);
 	}
 
-	public void testGetPropertyAccessorOfMetaClass(Object platformClass, Object propertyName, Object instance, Object... exceptedPropertyElements) {
+	public void testGetPropertyAccessorOfMetaClass(Object platformClass, Object propertyName, Object instance,
+			Object... exceptedPropertyElements) {
 		IMetaClass<Object> metaClass = factory.getMetaClass(platformClass);
 		IUnaryFunction<Object, IBox<Object>> accessor = metaClass.getPropertyAccessor(propertyName);
 		assertEquals(Arrays.asList(exceptedPropertyElements), accessor.apply(instance));
 	}
 
+	//
+	// Subclass queries
+	//
 
+	@Test
+	public void testIsSubclass() {
+		assertThat(factory.getMetaClass(Concrete.class).isSubTypeOf(factory.getMetaClass(Abstract.class)), is(true));
+	}
+
+	@Test
+	public void testIsNotSubclass() {
+		assertThat(factory.getMetaClass(Concrete.class).isSubTypeOf(factory.getMetaClass(Base.class)), is(false));
+	}
+
+	@Test
+	public void testIsSubclassOtherPlatform() {
+		IMetaClass<?> platform = getAnyPlatformMetaclass();
+		IMetaClass<?> object = factory.getMetaClass(Object.class);
+
+		// You would think that everything is a subclass of Object, but
+		// not metaclasses from other platforms
+		assertThat(platform.isSubTypeOf(object), is(false));
+
+		// And this should be trivially false, even without the mix of platforms
+		assertThat(object.isSubTypeOf(platform), is(false));
+	}
+
+	protected abstract IMetaClass<?> getAnyPlatformMetaclass();
 }

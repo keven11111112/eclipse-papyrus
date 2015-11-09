@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.tests;
 
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstraints;
@@ -502,5 +504,89 @@ public class BoxTest extends BaseTest {
 		assertNotEquals(a, b);
 	}
 
+	//
+	// Select-type tests
+	//
+
+
+	@Test
+	public void testSelectTypeFromSeq() {
+		testSelectTypeFromBox(IConstraints.SEQUENCE);
+	}
+
+	@Test
+	public void testSelectTypeFromBag() {
+		testSelectTypeFromBox(IConstraints.BAG);
+	}
+
+	@Test
+	public void testSelectTypeFromOSet() {
+		testSelectTypeFromBox(IConstraints.ORDERED_SET);
+	}
+
+	@Test
+	public void testSelectTypeFromSet() {
+		testSelectTypeFromBox(IConstraints.SET);
+	}
+
+	@Test
+	public void testSelectTypeFromOpt() {
+		testSelectTypeFromBox(IConstraints.OPTION);
+	}
+
+	@Test
+	public void testSelectTypeFromOne() {
+		testSelectTypeFromBox(IConstraints.ONE);
+	}
+
+	void testSelectTypeFromBox(IConstraints boxType) {
+		// An absolutely non-comparable number, because its value fluctuates
+		// randomly
+		class RandomNumber extends Number {
+			private static final long serialVersionUID = 1L;
+
+			private Random random = new Random(42L);
+
+			@Override
+			public int intValue() {
+				return random.nextInt();
+			}
+
+			@Override
+			public long longValue() {
+				return random.nextLong();
+			}
+
+			@Override
+			public float floatValue() {
+				return random.nextFloat();
+			}
+
+			@Override
+			public double doubleValue() {
+				return random.nextDouble();
+			}
+		}
+
+		IBox<Number> box = factory.createBox(boxType, 1, new RandomNumber(), 1, 2, new RandomNumber(), 3, 3);
+
+		// The Comparable type is unrelated to Number
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		Iterable<IBox<Comparable<?>>> boxesOfComparables = (Iterable) Arrays.asList( //
+				box.select(Comparable.class), //
+				box.select(factory.getMetaClass(Comparable.class)));
+
+		for (IBox<Comparable<?>> nextBox : boxesOfComparables) {
+			if (boxType.isUnique()) {
+				if (boxType.isSingleton()) {
+					assertEquals(Arrays.asList(3), nextBox);
+				} else {
+					assertEquals(Arrays.asList(1, 2, 3), nextBox);
+				}
+			} else {
+				assertEquals(Arrays.asList(1, 1, 2, 3, 3), nextBox);
+			}
+		}
+	}
 
 }

@@ -1,5 +1,14 @@
-/**
- */
+/*******************************************************************************
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *
+ *  Contributors:
+ *     ESEO - initial API and implementation
+ *     Christian W. Damus - bug 476683
+ *******************************************************************************/
 package org.eclipse.papyrus.aof.emf.tests.population;
 
 import org.eclipse.emf.common.util.EList;
@@ -13,14 +22,17 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getAge <em>Age</em>}</li>
- * <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getEmails <em>Emails</em>}</li>
- * <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getParent <em>Parent</em>}</li>
- * <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getChildren <em>Children</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getAge <em>Age</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getEmails <em>Emails</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getFavorite <em>Favorite</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getLockerCombination <em>Locker Combination</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getAcquaintances <em>Acquaintances</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson()
  * @model
@@ -36,11 +48,10 @@ public interface Person extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson_Name()
-	 * @model default="Name" unique="false" required="true"
+	 * @model default="Name" required="true"
 	 * @generated
 	 */
 	String getName();
@@ -49,9 +60,7 @@ public interface Person extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -65,11 +74,10 @@ public interface Person extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Age</em>' attribute.
 	 * @see #setAge(int)
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson_Age()
-	 * @model unique="false"
+	 * @model
 	 * @generated
 	 */
 	int getAge();
@@ -78,9 +86,7 @@ public interface Person extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getAge <em>Age</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Age</em>' attribute.
+	 * @param value the new value of the '<em>Age</em>' attribute.
 	 * @see #getAge()
 	 * @generated
 	 */
@@ -95,7 +101,6 @@ public interface Person extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Emails</em>' attribute list.
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson_Emails()
 	 * @model
@@ -112,7 +117,6 @@ public interface Person extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Parent</em>' reference.
 	 * @see #setParent(Person)
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson_Parent()
@@ -126,9 +130,7 @@ public interface Person extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getParent <em>Parent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Parent</em>' reference.
+	 * @param value the new value of the '<em>Parent</em>' reference.
 	 * @see #getParent()
 	 * @generated
 	 */
@@ -144,7 +146,6 @@ public interface Person extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Children</em>' reference list.
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson_Children()
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getParent
@@ -152,5 +153,90 @@ public interface Person extends EObject {
 	 * @generated
 	 */
 	EList<Person> getChildren();
+
+	/**
+	 * Returns the value of the '<em><b>Favorite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Favorite</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Favorite</em>' reference.
+	 * @see #isSetFavorite()
+	 * @see #unsetFavorite()
+	 * @see #setFavorite(Person)
+	 * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson_Favorite()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	Person getFavorite();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getFavorite <em>Favorite</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Favorite</em>' reference.
+	 * @see #isSetFavorite()
+	 * @see #unsetFavorite()
+	 * @see #getFavorite()
+	 * @generated
+	 */
+	void setFavorite(Person value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getFavorite <em>Favorite</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetFavorite()
+	 * @see #getFavorite()
+	 * @see #setFavorite(Person)
+	 * @generated
+	 */
+	void unsetFavorite();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getFavorite <em>Favorite</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Favorite</em>' reference is set.
+	 * @see #unsetFavorite()
+	 * @see #getFavorite()
+	 * @see #setFavorite(Person)
+	 * @generated
+	 */
+	boolean isSetFavorite();
+
+	/**
+	 * Returns the value of the '<em><b>Locker Combination</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Integer}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Locker Combination</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Locker Combination</em>' attribute list.
+	 * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson_LockerCombination()
+	 * @model unique="false"
+	 * @generated
+	 */
+	EList<Integer> getLockerCombination();
+
+	/**
+	 * Returns the value of the '<em><b>Acquaintances</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.aof.emf.tests.population.Person}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Acquaintances</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Acquaintances</em>' reference list.
+	 * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationPackage#getPerson_Acquaintances()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<Person> getAcquaintances();
 
 } // Person

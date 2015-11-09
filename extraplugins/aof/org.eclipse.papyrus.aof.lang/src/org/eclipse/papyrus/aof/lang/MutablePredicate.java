@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  *
  *  Contributors:
  *     Frederic Jouault - initial API and implementation
+ *     Christian W. Damus - bug 476683
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.aof.lang;
 
@@ -19,6 +21,7 @@ import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
 import org.eclipse.papyrus.aof.core.impl.utils.cache.IUnaryCache;
 import org.eclipse.papyrus.aof.core.impl.utils.cache.WeakKeysWeakValuesUnaryCache;
+import org.eclipse.papyrus.aof.core.utils.Boxes;
 import org.eclipse.papyrus.aof.emf.EMFFactory;
 
 /**
@@ -37,11 +40,12 @@ public abstract class MutablePredicate<E> extends ComposableUnaryFunction<E, IOn
 	/**
 	 * A boxed boolean false constant.
 	 */
-	public static final IOne<Boolean> FALSE = new ConstantOne<Boolean>(false);
+	public static final IOne<Boolean> FALSE = Boxes.immutableOne(false);
+	
 	/**
 	 * A boxed boolean true constant.
 	 */
-	public static final IOne<Boolean> TRUE = new ConstantOne<Boolean>(true);
+	public static final IOne<Boolean> TRUE = Boxes.immutableOne(true);
 
 	private static ComposableBinaryFunction<IBox<Boolean>, IBox<Boolean>, IBox<Boolean>> AND = Predicate.and.lift();
 

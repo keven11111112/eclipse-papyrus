@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,11 +7,20 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.tests;
 
+import static org.hamcrest.CoreMatchers.both;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.papyrus.aof.core.IBox;
@@ -27,7 +36,7 @@ public class ObserverTest extends BaseTest {
 
 	// Add/remove observers
 
-	private static class TraceObserver extends DefaultObserver<Integer> {
+	private static class TraceObserver extends DefaultObserver<Object> {
 
 		private List<Object> trace = new ArrayList<Object>();
 
@@ -36,21 +45,21 @@ public class ObserverTest extends BaseTest {
 		}
 
 		@Override
-		public void added(int index, Integer element) {
+		public void added(int index, Object element) {
 			trace.add("add");
 			trace.add(index);
 			trace.add(element);
 		}
 
 		@Override
-		public void removed(int index, Integer element) {
+		public void removed(int index, Object element) {
 			trace.add("rem");
 			trace.add(index);
 			trace.add(element);
 		}
 
 		@Override
-		public void replaced(int index, Integer newElement, Integer oldElement) {
+		public void replaced(int index, Object newElement, Object oldElement) {
 			trace.add("rep");
 			trace.add(index);
 			trace.add(oldElement);
@@ -58,7 +67,7 @@ public class ObserverTest extends BaseTest {
 		}
 
 		@Override
-		public void moved(int newIndex, int oldIndex, Integer element) {
+		public void moved(int newIndex, int oldIndex, Object element) {
 			trace.add("mov");
 			trace.add(newIndex);
 			trace.add(oldIndex);
@@ -98,11 +107,11 @@ public class ObserverTest extends BaseTest {
 
 	public void testObserverAddRemove(IConstraints inputType) {
 		IBox<Integer> box = factory.createBox(inputType);
-		IObserver<Integer> observer = new TraceObserver();
+		IObserver<? super Integer> observer = new TraceObserver();
 		// addition test
 		box.addObserver(observer);
 		int count = 0;
-		for (IObserver<Integer> o : box.getObservers()) {
+		for (IObserver<? super Integer> o : box.getObservers()) {
 			count++;
 			assertEquals(observer, o);
 		}
@@ -110,7 +119,7 @@ public class ObserverTest extends BaseTest {
 		// removal test
 		box.removeObserver(observer);
 		count = 0;
-		for (IObserver<Integer> o : box.getObservers()) {
+		for (@SuppressWarnings("unused") IObserver<? super Integer> o : box.getObservers()) {
 			count++;
 		}
 		assertEquals(0, count);
@@ -118,19 +127,26 @@ public class ObserverTest extends BaseTest {
 
 	@Test
 	public void testObserverRemoveNotAddedObserver() {
-		thrown.expect(IllegalStateException.class);
 		IBox<Integer> box = factory.createSet();
-		IObserver<Integer> observer = new TraceObserver();
+		IObserver<? super Integer> observer = new TraceObserver();
+		box.addObserver(new TraceObserver());
 		box.removeObserver(observer);
+		
+		Iterator<?> iterator = box.getObservers().iterator();
+		assertThat(iterator.next(), both(instanceOf(TraceObserver.class)).and(not(observer)));
+		assertThat(iterator.hasNext(), is(false)); // No change from removal attempt
 	}
 
 	@Test
 	public void testObserverAddAddedObserver() {
-		thrown.expect(IllegalStateException.class);
 		IBox<Integer> box = factory.createSet();
-		IObserver<Integer> observer = new TraceObserver();
+		IObserver<? super Integer> observer = new TraceObserver();
 		box.addObserver(observer);
 		box.addObserver(observer);
+		
+		Iterator<?> iterator = box.getObservers().iterator();
+		assertThat(iterator.next(), is(observer));
+		assertThat(iterator.hasNext(), is(false)); // No duplicate
 	}
 
 

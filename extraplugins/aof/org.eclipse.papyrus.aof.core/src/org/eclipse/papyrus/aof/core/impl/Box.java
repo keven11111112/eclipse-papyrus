@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
@@ -112,7 +113,7 @@ public abstract class Box<E> implements IBox<E> {
 	@Override
 	public E get(int index) {
 		if ((index < 0) || (index >= length())) {
-			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + length() + "[");
+			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + length() + ")");
 		}
 		return delegate.get(index);
 	}
@@ -138,18 +139,14 @@ public abstract class Box<E> implements IBox<E> {
 	public void add(int index, E element) {
 		if ((index < 0) || (index > length())) {
 			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + length() + "]");
-		} else if (isUnique() && contains(element)) {
-			throw new IllegalStateException("Element " + element + " is already contained in " + this);
-		} else {
+		} else if (!isUnique() || !contains(element)) {
 			delegate.add(index, element);
 		}
 	}
 
 	@Override
 	public void add(E element) {
-		if (isUnique() && contains(element)) {
-			throw new IllegalStateException("Element " + element + " is already contained in " + this);
-		} else {
+		if (!isUnique() || !contains(element)) {
 			delegate.add(element);
 		}
 	}
@@ -157,16 +154,14 @@ public abstract class Box<E> implements IBox<E> {
 	@Override
 	public void removeAt(int index) {
 		if ((index < 0) || (index >= length())) {
-			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + length() + "[");
+			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + length() + ")");
 		}
 		delegate.removeAt(index);
 	}
 
 	@Override
 	public void remove(E element) {
-		if (!contains(element)) {
-			throw new IllegalStateException("Element " + element + " is not contained in " + this);
-		} else {
+		if (contains(element)) {
 			delegate.remove(element);
 		}
 	}
@@ -174,7 +169,7 @@ public abstract class Box<E> implements IBox<E> {
 	@Override
 	public void set(int index, E element) {
 		if ((index < 0) || (index >= length())) {
-			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + length() + "[");
+			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + length() + ")");
 		} else if (isUnique() && (!Equality.optionalEquals(get(index), element)) && contains(element)) {
 			throw new IllegalStateException("Element " + element + " is already contained in " + this);
 		} else {
@@ -185,9 +180,9 @@ public abstract class Box<E> implements IBox<E> {
 	@Override
 	public void move(int newIndex, int oldIndex) {
 		if ((newIndex < 0) || (newIndex >= length())) {
-			throw new IndexOutOfBoundsException("New index " + newIndex + " should be in interval [0, " + length() + "[");
+			throw new IndexOutOfBoundsException("New index " + newIndex + " should be in interval [0, " + length() + ")");
 		} else if ((oldIndex < 0) || (oldIndex >= length())) {
-			throw new IndexOutOfBoundsException("Old index " + oldIndex + " should be in interval [0, " + length() + "[");
+			throw new IndexOutOfBoundsException("Old index " + oldIndex + " should be in interval [0, " + length() + ")");
 		} else {
 			delegate.move(newIndex, oldIndex);
 		}
@@ -201,17 +196,17 @@ public abstract class Box<E> implements IBox<E> {
 	// IObservable
 
 	@Override
-	public void addObserver(IObserver<E> observer) {
+	public void addObserver(IObserver<? super E> observer) {
 		delegate.addObserver(observer);
 	}
 
 	@Override
-	public void removeObserver(IObserver<E> observer) {
+	public void removeObserver(IObserver<?> observer) {
 		delegate.removeObserver(observer);
 	}
 
 	@Override
-	public Iterable<IObserver<E>> getObservers() {
+	public Iterable<IObserver<? super E>> getObservers() {
 		return delegate.getObservers();
 	}
 
@@ -346,14 +341,27 @@ public abstract class Box<E> implements IBox<E> {
 
 	@Override
 	public <R> IBox<R> collectMutable(IMetaClass<E> containingClass, Object property) {
-		E sourceDefault = containingClass.getDefaultInstance();
+		E sourceDefault = null;
+		try {
+			if (length() > 0) {
+				sourceDefault = get(0);
+			} else {
+				// On the off chance ...
+				sourceDefault = containingClass.getDefaultInstance();
+			}
+		} catch (Exception e) {
+			// Default instance not supported? We will have to try to determine the constraints on-the-fly
+		}
+		
 		IUnaryFunction<E, IBox<R>> accessor = containingClass.getPropertyAccessor(property);
+		
 		return new CollectBox<E, R>(this, sourceDefault, accessor).getResult();
 	}
 
 	@Override
 	public <R> IBox<R> collectMutable(IUnaryFunction<? super E, ? extends IBox<R>> collector) {
-		return new CollectBox<E, R>(this, null, collector).getResult();
+		// We will have to try to determine the constraints on-the-fly
+		return new CollectBox<E, R>(this, (IConstraints)null, collector).getResult();
 	}
 
 	@Override
@@ -362,12 +370,12 @@ public abstract class Box<E> implements IBox<E> {
 	}
 
 	@Override
-	public <C extends E> IBox<C> select(Class<C> javaClass) {
+	public <C> IBox<C> select(Class<C> javaClass) {
 		return (IBox<C>) select(Functions.instanceOf(javaClass));
 	}
 
 	@Override
-	public <C extends E> IBox<C> select(IMetaClass<C> metaClass) {
+	public <C> IBox<C> select(IMetaClass<C> metaClass) {
 		return (IBox<C>) select(Functions.instanceOf(metaClass));
 	}
 

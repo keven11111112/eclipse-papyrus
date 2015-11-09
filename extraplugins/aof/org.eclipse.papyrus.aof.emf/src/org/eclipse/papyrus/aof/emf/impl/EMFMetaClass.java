@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.emf.impl;
 
@@ -55,11 +56,12 @@ public class EMFMetaClass<C extends EObject> extends BaseMetaClass<C> {
 			EMFMetaClass<?> thatEMFClass = (EMFMetaClass<?>) that;
 			return thatEMFClass.ecoreClass.isSuperTypeOf(this.ecoreClass);
 		} else {
-			throw new IllegalArgumentException("Meta-class " + that + " must be an instance of " + EMFMetaClass.class);
+			// Can't be a subtype of a metaclass from a different platform
+			return false;
 		}
 	}
 
-	private Map<EStructuralFeature, PropertyAccessor<?>> cache = new HashMap<EStructuralFeature, PropertyAccessor<?>>();
+	private Map<EStructuralFeature, PropertyAccessor<?,C>> cache = new HashMap<EStructuralFeature, PropertyAccessor<?,C>>();
 
 	@Override
 	public <B> IUnaryFunction<C, IBox<B>> getPropertyAccessor(Object property) {
@@ -74,9 +76,9 @@ public class EMFMetaClass<C extends EObject> extends BaseMetaClass<C> {
 		} else {
 			throw new IllegalArgumentException("Property " + property + " is neither a Java String, nor an EMF EStructuralFeature");
 		}
-		PropertyAccessor<B> ret = (PropertyAccessor<B>) cache.get(feature);
+		PropertyAccessor<B,C> ret = (PropertyAccessor<B,C>) cache.get(feature);
 		if (ret == null) {
-			ret = new PropertyAccessor<B>(feature);
+			ret = new PropertyAccessor<B,C>(feature);
 			cache.put(feature, ret);
 		}
 		return ret;
@@ -99,33 +101,6 @@ public class EMFMetaClass<C extends EObject> extends BaseMetaClass<C> {
 		return this.ecoreClass.hashCode() * 11 + 1;
 	}
 
-	private class PropertyAccessor<B> implements IUnaryFunction<C, IBox<B>> {
 
-		private EStructuralFeature feature;
-
-		// cache defined for memory optimization
-		private IUnaryCache<EObject, IBox<B>> cache = new WeakKeysWeakValuesUnaryCache<EObject, IBox<B>>();
-
-		public PropertyAccessor(EStructuralFeature feature) {
-			this.feature = feature;
-		}
-
-		@Override
-		public IBox<B> apply(C object) {
-			IBox<B> box = cache.get(object);
-			if (box == null) {
-				FeatureDelegate<B> delegate;
-				if (feature.isMany()) {
-					delegate = new ListFeatureDelegate<B>(object, feature);
-				} else {
-					delegate = new GetSetFeatureDelegate<B>(object, feature);
-				}
-				box = ((EMFFactory) EMFFactory.INSTANCE).createBox(delegate, delegate);
-				cache.put(object, box);
-			}
-			return box;
-		}
-
-	}
 
 }

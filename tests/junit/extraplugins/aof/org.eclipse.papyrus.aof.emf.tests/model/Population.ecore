@@ -12,5 +12,11 @@
         eOpposite="#//Person/children"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
         upperBound="-1" eType="#//Person" eOpposite="#//Person/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="favorite" eType="#//Person"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lockerCombination" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acquaintances" ordered="false"
+        upperBound="-1" eType="#//Person"/>
   </eClassifiers>
 </ecore:EPackage>

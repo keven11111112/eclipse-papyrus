@@ -1,5 +1,14 @@
-/**
- */
+/*******************************************************************************
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *
+ *  Contributors:
+ *     ESEO - initial API and implementation
+ *     Christian W. Damus - bug 476683
+ *******************************************************************************/
 package org.eclipse.papyrus.aof.emf.tests.population;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -19,10 +28,8 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.aof.emf.tests.population.PopulationFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel importerID='org.eclipse.emf.importer.ecore' basePackage='org.eclipse.papyrus.aof.emf.tests'"
  * @generated
  */
 public interface PopulationPackage extends EPackage {
@@ -30,7 +37,6 @@ public interface PopulationPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNAME = "population";
@@ -39,7 +45,6 @@ public interface PopulationPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/aof-emf-samples/population";
@@ -48,7 +53,6 @@ public interface PopulationPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_PREFIX = "pop";
@@ -57,7 +61,6 @@ public interface PopulationPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	PopulationPackage eINSTANCE = org.eclipse.papyrus.aof.emf.tests.population.impl.PopulationPackageImpl.init();
@@ -66,7 +69,6 @@ public interface PopulationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.aof.emf.tests.population.impl.PersonImpl <em>Person</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.impl.PersonImpl
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.impl.PopulationPackageImpl#getPerson()
 	 * @generated
@@ -77,7 +79,6 @@ public interface PopulationPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -87,7 +88,6 @@ public interface PopulationPackage extends EPackage {
 	 * The feature id for the '<em><b>Age</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -97,7 +97,6 @@ public interface PopulationPackage extends EPackage {
 	 * The feature id for the '<em><b>Emails</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -107,7 +106,6 @@ public interface PopulationPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -117,27 +115,51 @@ public interface PopulationPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int PERSON__CHILDREN = 4;
 
 	/**
-	 * The number of structural features of the '<em>Person</em>' class.
+	 * The feature id for the '<em><b>Favorite</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
-	int PERSON_FEATURE_COUNT = 5;
+	int PERSON__FAVORITE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Locker Combination</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__LOCKER_COMBINATION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Acquaintances</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__ACQUAINTANCES = 7;
+
+	/**
+	 * The number of structural features of the '<em>Person</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Person</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -148,7 +170,6 @@ public interface PopulationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.aof.emf.tests.population.Person <em>Person</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Person</em>'.
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person
 	 * @generated
@@ -159,7 +180,6 @@ public interface PopulationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getName()
 	 * @see #getPerson()
@@ -171,7 +191,6 @@ public interface PopulationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getAge <em>Age</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Age</em>'.
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getAge()
 	 * @see #getPerson()
@@ -183,7 +202,6 @@ public interface PopulationPackage extends EPackage {
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getEmails <em>Emails</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute list '<em>Emails</em>'.
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getEmails()
 	 * @see #getPerson()
@@ -195,7 +213,6 @@ public interface PopulationPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference '<em>Parent</em>'.
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getParent()
 	 * @see #getPerson()
@@ -207,7 +224,6 @@ public interface PopulationPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference list '<em>Children</em>'.
 	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getChildren()
 	 * @see #getPerson()
@@ -216,10 +232,42 @@ public interface PopulationPackage extends EPackage {
 	EReference getPerson_Children();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getFavorite <em>Favorite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Favorite</em>'.
+	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getFavorite()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EReference getPerson_Favorite();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getLockerCombination <em>Locker Combination</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Locker Combination</em>'.
+	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getLockerCombination()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EAttribute getPerson_LockerCombination();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.aof.emf.tests.population.Person#getAcquaintances <em>Acquaintances</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Acquaintances</em>'.
+	 * @see org.eclipse.papyrus.aof.emf.tests.population.Person#getAcquaintances()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EReference getPerson_Acquaintances();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -236,7 +284,6 @@ public interface PopulationPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	interface Literals {
@@ -244,7 +291,6 @@ public interface PopulationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.aof.emf.tests.population.impl.PersonImpl <em>Person</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.aof.emf.tests.population.impl.PersonImpl
 		 * @see org.eclipse.papyrus.aof.emf.tests.population.impl.PopulationPackageImpl#getPerson()
 		 * @generated
@@ -255,7 +301,6 @@ public interface PopulationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute PERSON__NAME = eINSTANCE.getPerson_Name();
@@ -264,7 +309,6 @@ public interface PopulationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Age</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute PERSON__AGE = eINSTANCE.getPerson_Age();
@@ -273,7 +317,6 @@ public interface PopulationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Emails</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute PERSON__EMAILS = eINSTANCE.getPerson_Emails();
@@ -282,7 +325,6 @@ public interface PopulationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference PERSON__PARENT = eINSTANCE.getPerson_Parent();
@@ -291,10 +333,33 @@ public interface PopulationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Children</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference PERSON__CHILDREN = eINSTANCE.getPerson_Children();
+
+		/**
+		 * The meta object literal for the '<em><b>Favorite</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERSON__FAVORITE = eINSTANCE.getPerson_Favorite();
+
+		/**
+		 * The meta object literal for the '<em><b>Locker Combination</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PERSON__LOCKER_COMBINATION = eINSTANCE.getPerson_LockerCombination();
+
+		/**
+		 * The meta object literal for the '<em><b>Acquaintances</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERSON__ACQUAINTANCES = eINSTANCE.getPerson_Acquaintances();
 
 	}
 

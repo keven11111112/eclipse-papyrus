@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  *
  *  Contributors:
  *     Frederic Jouault - initial API and implementation
+ *     Christian W. Damus - bug 476683
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.aof.lang;
 
@@ -17,6 +19,7 @@ import org.eclipse.papyrus.aof.core.IUnaryFunction;
 import org.eclipse.papyrus.aof.core.impl.utils.cache.IUnaryCache;
 import org.eclipse.papyrus.aof.core.impl.utils.cache.StrongKeysStrongValuesUnaryCache;
 import org.eclipse.papyrus.aof.core.impl.utils.cache.WeakKeysWeakValuesUnaryCache;
+import org.eclipse.papyrus.aof.core.utils.Boxes;
 
 /**
  * A {@link ComposableUnaryFunction} is a unary function (and therefore implements {@link IUnaryFunction}) with additional
@@ -107,7 +110,7 @@ public abstract class ComposableUnaryFunction<P, R> implements IUnaryFunction<P,
 		return new ComposableUnaryFunction<P, IOne<R>>() {
 			@Override
 			public IOne<R> apply(P a) {
-				return new ConstantOne<R>(ComposableUnaryFunction.this.apply(a));
+				return Boxes.immutableOne(ComposableUnaryFunction.this.apply(a));
 			}
 
 			@Override

@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core;
 
@@ -803,7 +804,7 @@ public interface IBox<E> extends IConstrained, IReadable<E>, IWritable<E>, IObse
 	 *            meta-class used to select the elements of this box
 	 * @return a box that contains the elements of this box which are instances of the specified meta-class
 	 */
-	<C extends E> IBox<C> select(IMetaClass<C> metaClass);
+	<C> IBox<C> select(IMetaClass<C> metaClass);
 
 	/**
 	 * Creates and returns a box that contains the elements of this box which are instances of the specified Java
@@ -818,7 +819,7 @@ public interface IBox<E> extends IConstrained, IReadable<E>, IWritable<E>, IObse
 	 * @return a box that contains the elements of this box which are instances of the specified Java
 	 *         meta-class.
 	 */
-	<C extends E> IBox<C> select(Class<C> javaClass);
+	<C> IBox<C> select(Class<C> javaClass);
 
 
 	/**
@@ -1174,62 +1175,5 @@ public interface IBox<E> extends IConstrained, IReadable<E>, IWritable<E>, IObse
 	 * @return a box containing all elements of this box followed by all elements of the specified box
 	 */
 	IBox<E> union(IBox<E> that);
-
-
-	// Default empty boxes
-
-	/**
-	 * Defines an empty option box.
-	 * <p>
-	 * It can can be used by collector function for providing the option type.
-	 *
-	 * @see #collectMutable(IUnaryFunction)
-	 */
-	IOption<Object> OPTION = AOFFactory.INSTANCE.createOption();
-
-	/**
-	 * Defines a one box containing the default null value.
-	 * <p>
-	 * It can can be used by collector function for providing the one type.
-	 *
-	 * @see #collectMutable(IUnaryFunction)
-	 */
-	IOne<Object> ONE = AOFFactory.INSTANCE.createOne(null);
-
-	/**
-	 * Defines an empty set box.
-	 * <p>
-	 * It can can be used by collector function for providing the set type.
-	 *
-	 * @see #collectMutable(IUnaryFunction)
-	 */
-	ISet<Object> SET = AOFFactory.INSTANCE.createSet();
-
-	/**
-	 * Defines an empty ordered-set box.
-	 * <p>
-	 * It can can be used by collector function for providing the ordered-set type.
-	 *
-	 * @see #collectMutable(IUnaryFunction)
-	 */
-	IOrderedSet<Object> ORDERED_SET = AOFFactory.INSTANCE.createOrderedSet();
-
-	/**
-	 * Defines an empty sequence box.
-	 * <p>
-	 * It can can be used by collector function for providing the sequence type.
-	 *
-	 * @see #collectMutable(IUnaryFunction)
-	 */
-	ISequence<Object> SEQUENCE = AOFFactory.INSTANCE.createSequence();
-
-	/**
-	 * Defines an empty bag box.
-	 * <p>
-	 * It can can be used by collector function for providing the bag type.
-	 *
-	 * @see #collectMutable(IUnaryFunction)
-	 */
-	IBag<Object> BAG = AOFFactory.INSTANCE.createBag();
 
 }

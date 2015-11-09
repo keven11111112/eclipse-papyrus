@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
- *
+ * Copyright (c) 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,10 +8,10 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 476683
  *
  *****************************************************************************/
 package org.eclipse.papyrus.aof.core.tests;
-
 
 import org.eclipse.papyrus.aof.core.tests.operation.AOFCollectBoxTest;
 import org.eclipse.papyrus.aof.core.tests.operation.AsBoxTest;
@@ -36,8 +35,12 @@ import org.junit.runners.Suite.SuiteClasses;
  * A test suite for the '<em><b>AOF Core</b></em>'.
  */
 @RunWith(Suite.class)
-@SuiteClasses({ AOFCollectBoxTest.class, AOFFactoryTest.class, AOFMetaClassTest.class, AsBoxTest.class, BindTest.class, BoxTest.class, CollectTest.class, CollectToTest.class, ConcatTest.class, ConstraintsTest.class, DistinctTest.class,
-		InspectTest.class, ObserverTest.class, ReadableTest.class, SelectWithMutablePredicateTest.class, SelectWithPredicateTest.class, SelectWithPresenceTest.class, SizeTest.class, SwitchCollectTest.class, WritableTest.class, ZipWithTest.class })
+@SuiteClasses({ AOFCollectBoxTest.class, AOFFactoryTest.class, AOFMetaClassTest.class, AsBoxTest.class, BindTest.class,
+		BoxTest.class, CollectTest.class, CollectToTest.class, ConcatTest.class, ConstraintsTest.class,
+		DistinctTest.class, InspectTest.class, ObserverTest.class, ReadableTest.class,
+		SelectWithMutablePredicateTest.class, SelectWithPredicateTest.class, SelectWithPresenceTest.class,
+		SizeTest.class, SwitchCollectTest.class, WritableTest.class, ZipWithTest.class, BoxesTest.class,
+		ConstraintsSwitchTest.class, BoxSwitchTest.class })
 public class AllTests {
 
 }

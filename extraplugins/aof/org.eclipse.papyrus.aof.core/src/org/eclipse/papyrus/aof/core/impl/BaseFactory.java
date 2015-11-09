@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
@@ -34,7 +35,7 @@ public abstract class BaseFactory implements IFactory {
 			if (constraints.matches(IConstraints.OPTION)) {
 				box = new Option<E>();
 			} else if (constraints.matches(IConstraints.ONE)) {
-				box = new One<E>();
+				box = (delegate instanceof BaseDelegate.IOneDelegate<?>) ? new One.Delegator<E>() : new One<E>();
 			} else if (constraints.matches(IConstraints.ORDERED_SET)) {
 				box = new OrderedSet<E>();
 			} else if (constraints.matches(IConstraints.SEQUENCE)) {
@@ -53,7 +54,9 @@ public abstract class BaseFactory implements IFactory {
 
 	@Override
 	public <E> IBox<E> createBox(IConstraints constraints, E... elements) {
-		IBox<E> box = createBox(constraints, new ListDelegate<E>());
+		BaseDelegate<E> delegate = constraints.matches(IConstraints.ONE) ? new ListDelegate.One<E>()
+				: new ListDelegate<E>();
+		IBox<E> box = createBox(constraints, delegate);
 		if (box.matches(IConstraints.ONE)) {
 			// if elements is empty => null default value
 			// else: default value = the first of the list

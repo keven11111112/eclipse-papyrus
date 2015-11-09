@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,8 +7,12 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - JUnit testing of CollectBox operation on all box types
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.tests.operation;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -270,7 +274,7 @@ public class AOFCollectBoxTest extends CollectBoxTest {
 	// = Tests on "anonymous" meta-model =
 	// ===================================
 
-	public static class Sample {
+	public static abstract class Sample {
 
 		private IBox<Integer> box;
 
@@ -1192,5 +1196,43 @@ public class AOFCollectBoxTest extends CollectBoxTest {
 	}
 
 
+	//
+	// Other tests
+	//
+	
+	/**
+	 * Test that we can process boxes of abstract types without NPEs when the box's type
+	 * is abstract but it contains elements.
+	 */
+	@Test
+	public void testCollectBoxAbstractTypeNotEmpty() {
+		Sample sample1 = createSample(IConstraints.ONE, 1);
+		Sample sample2 = createSample(IConstraints.SEQUENCE, 2, 3);
+		Sample sample3 = createSample(IConstraints.ONE, 4);
+		Sample[] samples = { sample1, sample2, sample3 };
+		IBox<Sample> a = factory.createBox(IConstraints.SEQUENCE, samples);
+		IBox<Integer> b = a.collectMutable(factory, Sample.class, "box"); // Abstract class!
+		IBox<Integer> expected = factory.createBox(IConstraints.SEQUENCE, 1, 2, 3, 4);
+		assertThat(b.matches(IConstraints.SEQUENCE), is(true));
+		assertThat(b.sameAs(expected), is(true));
+	}
+	
+	/**
+	 * Test that we can process boxes of abstract types without NPEs when the box's type
+	 * is abstract and it contains no elements.
+	 */
+	@Test
+	public void testCollectBoxAbstractTypeEmpty() {
+		IBox<Sample> a = factory.createBox(IConstraints.SEQUENCE);
+		IBox<Integer> b = a.collectMutable(new IUnaryFunction<Sample, IBox<Integer>>() {
+			@Override
+			public IBox<Integer> apply(Sample e) {
+				return (e == null) ? factory.<Integer> createBox(IConstraints.ONE) : e.getBox();
+			}
+		});
+		IBox<Integer> expected = factory.createBox(IConstraints.SEQUENCE);
+		assertThat(b.matches(IConstraints.SEQUENCE), is(true));
+		assertThat(b.sameAs(expected), is(true));
+	}
 
 }

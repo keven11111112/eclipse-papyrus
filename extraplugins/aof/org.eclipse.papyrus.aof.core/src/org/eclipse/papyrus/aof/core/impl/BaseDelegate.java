@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
@@ -14,11 +15,13 @@ import static org.eclipse.papyrus.aof.core.impl.utils.Equality.optionalEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IObservable;
 import org.eclipse.papyrus.aof.core.IObserver;
+import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IReadable;
 import org.eclipse.papyrus.aof.core.IWritable;
 
@@ -28,11 +31,11 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 
 	private IBox<E> delegator; // delegator should be used when invoking methods of interface IWritable
 
-	protected IBox<E> getDelegator() {
+	public IBox<E> getDelegator() {
 		return delegator;
 	}
 
-	protected void setDelegator(IBox<E> delegator) {
+	public void setDelegator(IBox<E> delegator) {
 		this.delegator = delegator;
 	}
 
@@ -148,31 +151,38 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 
 	// IObservable
 
-	private List<IObserver<E>> observers = new ArrayList<IObserver<E>>();
+	private List<IObserver<? super E>> observers = new ArrayList<IObserver<? super E>>();
 
 	@Override
-	public void addObserver(IObserver<E> observer) {
+	public void addObserver(IObserver<? super E> observer) {
 		if (observer == null) {
 			throw new IllegalArgumentException("An observer cannot be null ");
 		}
-		if (observers.contains(observer)) {
-			throw new IllegalStateException("Observer " + observer + " has been already registered for box " + delegator);
+		if (!observers.contains(observer)) {
+			observers.add(observer);
 		}
-		observers.add(observer);
 	}
 
 	@Override
-	public void removeObserver(IObserver<E> observer) {
-		if (!observers.contains(observer)) {
-			throw new IllegalStateException("Observer " + observer + " cannot be removed since it is not registered for box " + delegator);
-		}
+	public void removeObserver(IObserver<?> observer) {
 		observers.remove(observer);
 	}
 
-	// copying the list is necessary because getObservers is used in change propagation, which can trigger ConcurrentModificationException
 	@Override
-	public Iterable<IObserver<E>> getObservers() {
-		return new ArrayList<IObserver<E>>(observers);
+	public Iterable<IObserver<? super E>> getObservers() {
+		return Collections.unmodifiableList(observers);
+	}
+
+	/**
+	 * Obtains an unique copy of the current observers list for iteration,
+	 * to notify them without concurrent modification (as observers may
+	 * add/remove observers in these call-backs).
+	 * 
+	 * @return an unique copy of the current observers
+	 */
+	public Iterable<IObserver<? super E>> getObserversForNotification() {
+		// Observers can add/remove observers in this call-back
+		return new ArrayList<IObserver<? super E>>(((java.util.Collection<IObserver<? super E>>)getObservers()));
 	}
 
 	@Override
@@ -181,7 +191,7 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 	}
 
 	protected void fireAdded(int index, E element) {
-		for (IObserver<E> observer : getObservers()) {
+		for (IObserver<? super E> observer : getObserversForNotification()) {
 			if (!observer.isDisabled()) {
 				observer.added(index, element);
 			}
@@ -189,7 +199,7 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 	}
 
 	protected void fireRemoved(int index, E element) {
-		for (IObserver<E> observer : getObservers()) {
+		for (IObserver<? super E> observer : getObserversForNotification()) {
 			if (!observer.isDisabled()) {
 				observer.removed(index, element);
 			}
@@ -197,7 +207,7 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 	}
 
 	protected void fireReplaced(int index, E newElement, E oldElement) {
-		for (IObserver<E> observer : getObservers()) {
+		for (IObserver<? super E> observer : getObserversForNotification()) {
 			if (!observer.isDisabled()) {
 				observer.replaced(index, newElement, oldElement);
 			}
@@ -205,12 +215,69 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 	}
 
 	protected void fireMoved(int newIndex, int oldIndex, E element) {
-		for (IObserver<E> observer : getObservers()) {
+		for (IObserver<? super E> observer : getObserversForNotification()) {
 			if (!observer.isDisabled()) {
 				observer.moved(newIndex, oldIndex, element);
 			}
 		}
 	}
 
+	//
+	// Nested types
+	//
 
+	/**
+	 * Protocol for a specific delegator for {@link IOne one}s that provides the
+	 * default value.
+	 * 
+	 * @see BaseDelegate.OneDelegate
+	 */
+	public interface IOneDelegate<E> {
+		/**
+		 * Obtains the {@link IOne one}'s default value.
+		 * 
+		 * @return the default element, or {@code null} if none
+		 * 
+		 * @see IOne#getDefaultElement()
+		 */
+		E getDefaultElement();
+
+		/**
+		 * <p>
+		 * Clears the {@link IOne one} to a new default value.
+		 * </p>
+		 * <p>
+		 * This is an <b>optional operation</b>.
+		 * </p>
+		 * 
+		 * @param newDefaultElement
+		 * 
+		 * @throws UnsupportedOperationException
+		 *             if the setting of a default element is not supported
+		 * 
+		 * @see IOne#clear(Object)
+		 */
+		void clear(E newDefaultElement);
+	}
+
+	/**
+	 * A specific delegator for {@link IOne one}s that provides the default
+	 * value.
+	 */
+	public static abstract class OneDelegate<E> extends BaseDelegate<E>implements IOneDelegate<E> {
+		public OneDelegate() {
+			super();
+		}
+		
+		@Override
+		public E getDefaultElement() {
+			return null;
+		}
+
+		@Override
+		public void clear(E newDefaultElement) {
+			throw new UnsupportedOperationException("clear(E)");
+		}
+	}
+	
 }

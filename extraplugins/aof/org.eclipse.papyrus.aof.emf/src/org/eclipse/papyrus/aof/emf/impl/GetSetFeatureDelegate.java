@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.emf.impl;
 
@@ -15,13 +16,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.papyrus.aof.core.IObserver;
+import org.eclipse.papyrus.aof.core.impl.BaseDelegate;
+import org.eclipse.papyrus.aof.core.impl.utils.Equality;
 
-public class GetSetFeatureDelegate<E> extends FeatureDelegate<E> {
+public class GetSetFeatureDelegate<E> extends FeatureDelegate<E>implements BaseDelegate.IOneDelegate<E> {
 
 	public GetSetFeatureDelegate(EObject object, EStructuralFeature feature) {
 		super(object, feature);
@@ -76,7 +78,10 @@ public class GetSetFeatureDelegate<E> extends FeatureDelegate<E> {
 
 	@Override
 	public void remove(E element) {
-		getObject().eUnset(getFeature());
+		// Don't remove an element that isn't in this box!
+		if (Equality.optionalEquals(getObject().eGet(getFeature()), element)) {
+			getObject().eUnset(getFeature());
+		}
 	}
 
 	@Override
@@ -89,61 +94,46 @@ public class GetSetFeatureDelegate<E> extends FeatureDelegate<E> {
 		// do nothing since moving inside a singleton is a nonsense
 	}
 
+	@Override
+	public void clear() {
+		getObject().eUnset(getFeature());
+	}
+
+	// IOneDelegate
+
+	@Override
+	public E getDefaultElement() {
+		return (E) getFeature().getDefaultValue();
+	}
+
+	@Override
+	public void clear(E newDefaultElement) {
+		if (((EClassImpl) getFeature().getEContainingClass()).isFrozen()) {
+			throw new UnsupportedOperationException("clear(E)");
+		}
+		getFeature().setDefaultValue(newDefaultElement);
+	}
+
 	// IObservable
 
 	private Adapter adapter;
 
 	@Override
-	public void addObserver(IObserver<E> observer) {
+	public void addObserver(IObserver<? super E> observer) {
 		super.addObserver(observer);
 		if (adapter == null) {
-			adapter = new NotificationAdapter();
+			adapter = new GetSetFeatureNotificationAdapter<E>(this);
 			getObject().eAdapters().add(adapter);
 		}
 	}
 
 	@Override
-	public void removeObserver(IObserver<E> observer) {
+	public void removeObserver(IObserver<?> observer) {
 		super.removeObserver(observer);
 		if (!isObserved()) {
 			getObject().eAdapters().remove(adapter);
 			adapter = null;
 		}
-	}
-
-	private class NotificationAdapter extends AdapterImpl {
-
-		@Override
-		public void notifyChanged(Notification notification) {
-			for (IObserver<E> observer : getObservers()) {
-				if (!observer.isDisabled() && (getFeature() == notification.getFeature())) {
-					switch (notification.getEventType()) {
-					case Notification.ADD:
-						observer.added(notification.getPosition(), (E) notification.getNewValue());
-						break;
-					case Notification.REMOVE:
-						observer.removed(notification.getPosition(), (E) notification.getOldValue());
-						break;
-					case Notification.SET:
-						if (notification.wasSet() || !isOptional()) {
-							observer.replaced(0, (E) notification.getNewValue(), (E) notification.getOldValue());
-						} else {
-							observer.added(0, (E) notification.getNewValue());
-						}
-						break;
-					case Notification.UNSET:
-						observer.removed(0, (E) notification.getOldValue());
-						break;
-					case Notification.ADD_MANY:
-					case Notification.REMOVE_MANY:
-					case Notification.MOVE:
-						throw new UnsupportedOperationException("EMF notification " + notification + " can never occur on a list-based feature");
-					default: // REMOVING_ADAPTER | RESOLVE
-					}
-				}
-			}
-		}
-
 	}
 
 }

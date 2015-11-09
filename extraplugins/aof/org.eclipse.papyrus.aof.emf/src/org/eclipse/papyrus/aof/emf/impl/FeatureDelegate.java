@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
  *     Frederic Jouault - API and implementation improvements
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.emf.impl;
 
@@ -15,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.impl.BaseDelegate;
-import org.eclipse.papyrus.aof.core.impl.Constraints;
 
 /**
  * A delegate bound to an EMF object property.
@@ -25,62 +25,89 @@ import org.eclipse.papyrus.aof.core.impl.Constraints;
  * @param <E>
  */
 
-public abstract class FeatureDelegate<E> extends BaseDelegate<E>implements IConstraints {
+public abstract class FeatureDelegate<E> extends BaseDelegate<E> implements IConstraints {
 
 	private EObject object;
 
 	private EStructuralFeature feature;
 
+	private IConstraints constraints;
+
+	private IDisposalDelegate disposalDelegate;
+
 	protected FeatureDelegate(EObject object, EStructuralFeature feature) {
 		this.object = object;
 		this.feature = feature;
+		this.constraints = new EMFConstraints(feature);
 	}
 
 	protected EObject getObject() {
 		return object;
 	}
 
-
 	protected EStructuralFeature getFeature() {
 		return feature;
 	}
 
+	protected final void onDisposed(final IDisposalDelegate disposalDelegate) {
+		if (this.disposalDelegate == null) {
+			this.disposalDelegate = disposalDelegate;
+		} else {
+			// Chain them
+			final IDisposalDelegate chained = this.disposalDelegate;
 
-	// IConstraints
+			this.disposalDelegate = new IDisposalDelegate() {
 
-	// All EMF singleton features behave as Ones with possible null value
-	// @see GetSetFeatureDelagate.size
+				@Override
+				public void onDisposed(FeatureDelegate<?> delegate) {
+					disposalDelegate.onDisposed(delegate);
+					chained.onDisposed(delegate);
+				}
+			};
+		}
+	}
+
+	protected final void disposed() {
+		if (disposalDelegate != null) {
+			disposalDelegate.onDisposed(this);
+			disposalDelegate = null;
+		}
+	}
+
+	// IConstraints delegation
+
 	@Override
 	public boolean isOptional() {
-		return feature.isMany();// || !feature.isRequired();
+		return constraints.isOptional();
 	}
 
 	@Override
 	public boolean isSingleton() {
-		return !feature.isMany();
+		return constraints.isSingleton();
 	}
 
 	@Override
 	public boolean isOrdered() {
-		return true;// feature.isOrdered() || isSingleton(); // FIXME mandatory to have all EMF features ordered ??
+		return constraints.isOrdered();
 	}
 
 	@Override
 	public boolean isUnique() {
-		return feature.isUnique() || isSingleton();
+		return constraints.isUnique();
 	}
 
-	// the constraints are computed form the EMF feature, so we need to check for their consistency
 	@Override
 	public boolean isLegal() {
-		IConstraints delegate = new Constraints(this);
-		return delegate.isLegal();
+		return constraints.isLegal();
 	}
 
 	@Override
 	public boolean matches(IConstraints that) {
-		IConstraints delegate = new Constraints(this);
-		return delegate.matches(that);
+		return constraints.matches(that);
 	}
+
+	//
+	// Nested types
+	//
 
 }
