@@ -12,36 +12,27 @@
        point="org.eclipse.ui.menus">
     <menuContribution
           allPopups="true"
-          locationURI="popup:org.eclipse.ui.popup.any">
+          locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu">
+      
+       <separator
+             name="table.generic.actions"
+             visible="false">
+       </separator>
        <command
-             commandId="org.eclipse.papyrus.infra.nattable.import.command"
+             commandId="org.eclipse.ui.file.print"
+             label="Print Table"
+             mnemonic="&amp;P"
              style="push">
-          <visibleWhen>
-             <and>
-                <with
-                      variable="selection">
-                   <test
-                         forcePluginActivation="true"
-                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                         value="true">
-                   </test>
-                </with>
-             </and>
-          </visibleWhen>
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
+             style="push">
        </command>
        <command
              commandId="org.eclipse.papyrus.infra.nattable.invert.axis"
              style="toggle">
           <visibleWhen>
              <and>
-                <with
-                      variable="selection">
-                   <test
-                         forcePluginActivation="true"
-                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                         value="true">
-                   </test>
-                </with>
                 <with
                       variable="selection">
                    <test
@@ -53,65 +44,53 @@
              </and>
           </visibleWhen>
        </command>
-       <command
-             commandId="org.eclipse.ui.file.print"
-             label="Print Table"
-             mnemonic="&amp;P"
-             style="push">
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
-       </command>
+         <separator
+             name="edit"
+             visible="true">
+       </separator>
        <command
              commandId="org.eclipse.ui.edit.selectAll"
              style="push">
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
        </command>
-         <command
-             commandId="org.eclipse.papyrus.infra.nattable.row.categories.command"
+       <command
+             commandId="org.eclipse.ui.edit.paste"
              style="push">
           <visibleWhen>
              <with
                    variable="selection">
                 <test
+                      args="cell"
                       forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isHierarchicTable"
+                      property="org.eclipse.papyrus.infra.nattable.canPaste"
                       value="true">
                 </test>
              </with>
           </visibleWhen>
        </command>
        <command
-             commandId="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
+             commandId="org.eclipse.papyrus.infra.nattable.import.command"
+             style="push">
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.insert"
              style="push">
           <visibleWhen>
              <with
                    variable="selection">
                 <test
+                      args="none"
                       forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      property="org.eclipse.papyrus.infra.nattable.canInsert"
                       value="true">
                 </test>
              </with>
           </visibleWhen>
        </command>
-        <menu
+       <separator
+             name="table.tree.separator"
+             visible="true">
+       </separator>
+       <menu
              label="Hierarchic Style">
           <visibleWhen>
              <with
@@ -142,30 +121,27 @@
              </parameter>
           </command>
        </menu>
-       <menu
-       		icon="icons/mergeTable.gif"
-       		label="Merge Options">
-       		<visibleWhen>
-             <and>
-             	<with
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.row.categories.command"
+             style="push">
+          <visibleWhen>
+             <with
                    variable="selection">
-                	<test
+                <test
                       forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isHierarchicTable"
                       value="true">
-                	</test>
-             	</with>
-             </and>
+                </test>
+             </with>
           </visibleWhen>
-<!--          <command
-                commandId="org.eclipse.papyrus.infra.nattable.mergeTable"
-                label="Merge/UnMerge all Table Cells"
-                style="toggle"
-                tooltip="Merge/UnMerge all Table Cells option">
-             <visibleWhen
-             	checkEnabled="false">
-             </visibleWhen>
-          </command> -->
+       </command>
+       <separator
+             name="cell.separator"
+             visible="true">
+       </separator>
+       <menu
+             icon="icons/mergeTable.gif"
+             label="Merge Options">
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.mergeRows"
                 label="Merge/UnMerge Rows Cells"
@@ -178,28 +154,27 @@
           </command>
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.mergeSelectedRows"
-                label="Merge/UnMerge Selected Rows' Cells"
+                label="Merge/UnMerge Selected Rows&apos; Cells"
                 style="toggle">
           </command>
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.mergeSelectedColumns"
-                label="Merge/UnMerge Selected Columns' Cells"
+                label="Merge/UnMerge Selected Columns&apos; Cells"
                 style="toggle">
           </command>
        </menu>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.mark.as.resolved.command"
+             style="push">
+       </command>
+       <separator
+             name="rows.and.columns.separator"
+             visible="true">
+       </separator>
        <menu
              icon="icons/tableColumnAction.gif"
+             id="org.eclipse.papyrus.infra.nattable.columns.menu"
              label="Columns">
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.createdestroycolumns"
                 label="Create/Destroy columns"
@@ -218,15 +193,8 @@
                    name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
                    value="true">
              </parameter>
-             <visibleWhen>
-                <with
-                      variable="selection">
-                   <test
-                         forcePluginActivation="true"
-                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                         value="true">
-                   </test>
-                </with>
+             <visibleWhen
+                   checkEnabled="false">
              </visibleWhen>
           </command>
           <command
@@ -238,15 +206,8 @@
                    name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
                    value="false">
              </parameter>
-             <visibleWhen>
-                <with
-                      variable="selection">
-                   <test
-                         forcePluginActivation="true"
-                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                         value="true">
-                   </test>
-                </with>
+             <visibleWhen
+                   checkEnabled="true">
              </visibleWhen>
           </command>
           <command
@@ -382,19 +343,12 @@
                 style="push">
           </command>
        </menu>
-      
        <menu
              icon="icons/tableRowAction.gif"
+             id="org.eclipse.papyrus.infra.nattable.rows.menu"
              label="Rows">
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-             </with>
+          <visibleWhen
+                checkEnabled="true">
           </visibleWhen>
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.createdestroyrows"
@@ -532,8 +486,7 @@
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.row.disconnect.slave"
                 style="toggle">
-             <visibleWhen
-                   checkEnabled="true">
+             <visibleWhen>
                 <with
                       variable="selection">
                    <test
@@ -555,63 +508,14 @@
                 style="push">
           </command>
        </menu>
-       <command
-             commandId="org.eclipse.papyrus.infra.nattable.mark.as.resolved.command"
-             style="push">
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
-       </command>
        <separator
-             name="org.eclipse.papyrus.infra.nattable.separator1">
+             name="creations"
+             visible="true">
        </separator>
-       <command
-             commandId="org.eclipse.ui.edit.paste"
-             style="push">
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-                <test
-                      args="cell"
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.canPaste"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
-       </command>
-       <command
-             commandId="org.eclipse.papyrus.infra.nattable.insert"
-             style="push">
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-                <test
-                      args="none"
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.canInsert"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
-       </command>
+       <separator
+             name="additions"
+             visible="true">
+       </separator>
     </menuContribution>
   </extension>
    <extension

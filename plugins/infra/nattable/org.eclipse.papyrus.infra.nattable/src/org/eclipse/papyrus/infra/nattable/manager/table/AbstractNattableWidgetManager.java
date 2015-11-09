@@ -43,6 +43,7 @@ import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
@@ -160,6 +161,16 @@ import org.eclipse.ui.services.IDisposable;
  *
  */
 public abstract class AbstractNattableWidgetManager implements INattableModelManager, NavigationTarget, IAdaptable {
+
+	/**
+	 * the table popup menu id
+	 */
+	public static final String TABLE_POPUP_MENU_ID = "org.eclipse.papyrus.infra.nattable.widget.menu"; //$NON-NLS-1$
+
+	/**
+	 * the string popup used to declare the menu location
+	 */
+	public static final String POPUP = "popup"; //$NON-NLS-1$
 
 	/**
 	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
@@ -401,16 +412,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		addRowHeaderResizeListener(this.rowHeaderLayerStack);
 		addDragAndDropSupport(this.natTable);
 
-
-		if (site != null) {
-			final MenuManager menuMgr = createMenuManager(this.natTable);
-			final Menu menu = menuMgr.createContextMenu(this.natTable);
-			this.natTable.setMenu(menu);
-
-			this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
-			site.registerContextMenu(menuMgr, this.selectionProvider);
-			site.setSelectionProvider(this.selectionProvider);
-		}
+		this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
+		createAndRegisterMenuManagerAndSelectionProvider(this.natTable, site, this.selectionProvider);
 
 
 		new PapyrusNatTableToolTipProvider(this.natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
@@ -640,23 +643,35 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *
 	 * @param natTable
 	 * @return
+	 * 
+	 * @deprecated since Papyrus 1.3 (Eclipse Neon)
 	 */
+	@Deprecated
 	public MenuManager createMenuManager(final NatTable natTable) {
-		final MenuManager menuManager = new MenuManager("#PopUp", "org.eclipse.papyrus.infra.nattable.widget.menu") { //$NON-NLS-1$ //$NON-NLS-2$
+		return createAndRegisterMenuManagerAndSelectionProvider(natTable, null, this.selectionProvider);
+	}
 
-			@Override
-			public void add(final IAction action) {
-				super.add(action);
-			}
-
-			@Override
-			public void add(final IContributionItem item) {
-				super.add(item);
-			}
-		};
-		menuManager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
-
+	/**
+	 *
+	 * @param natTable
+	 * @param site
+	 * @param selectionProvider
+	 * 
+	 * @return
+	 * 		This method creates the MenuManager used for theBody of the table and register it, with the selection provider in the {@link IWorkbenchPartSite} of the editor when not <code>null</code>
+	 */
+	public MenuManager createAndRegisterMenuManagerAndSelectionProvider(final NatTable natTable, final IWorkbenchPartSite site, ISelectionProvider selectionProvider) {
+		final MenuManager menuManager = new MenuManager(POPUP, TABLE_POPUP_MENU_ID);
 		menuManager.setRemoveAllWhenShown(true);
+
+		final Menu menu = menuManager.createContextMenu(this.natTable);
+
+		this.natTable.setMenu(menu);
+		if (site != null) {
+			site.registerContextMenu(menuManager.getId(), menuManager, selectionProvider);
+			site.setSelectionProvider(this.selectionProvider);
+		}
+
 		return menuManager;
 	}
 
