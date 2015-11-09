@@ -10,6 +10,7 @@
  *		
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434993
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 419357
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests;
@@ -17,12 +18,11 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.tests;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
-import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
 import org.eclipse.ui.IEditorPart;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -54,12 +54,11 @@ public abstract class AbstractTest extends AbstractPapyrusTest {
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
 		editor = houseKeeper.openPapyrusEditor(emptyModel_di);
 
-		//set the preference to never for the dialog to display existing link instead of create a new one.
-		final IPreferenceStore store = org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getPreferenceStore();
-		boolean contains = store.contains(CreateOrShowExistingElementHelper.DISPLAY_DIALOG_FOR_CREATE_OR_RESTORE_ELEMENT);
-		if(!contains) {
-			store.setValue(CreateOrShowExistingElementHelper.DISPLAY_DIALOG_FOR_CREATE_OR_RESTORE_ELEMENT, MessageDialogWithToggle.NEVER);
-			store.setDefault(CreateOrShowExistingElementHelper.DISPLAY_DIALOG_FOR_CREATE_OR_RESTORE_ELEMENT, MessageDialogWithToggle.NEVER);
-		}
+		// Set the preference to never for the dialog to display existing link instead of create a new one.
+		// The activator of "org.eclipse.papyrus.sysml.diagram.internalblock" returns the preference store of "org.eclipse.papyrus.infra.gmfdiag.preferences".
+		final IPreferenceStore store = Activator.getInstance().getPreferenceStore();
+		final String alwaysCreateLinkPreferenceName = PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RESTORE_LINK_ELEMENT);
+		store.setValue(alwaysCreateLinkPreferenceName, true);
+		store.setDefault(alwaysCreateLinkPreferenceName, true);
 	}
 }
