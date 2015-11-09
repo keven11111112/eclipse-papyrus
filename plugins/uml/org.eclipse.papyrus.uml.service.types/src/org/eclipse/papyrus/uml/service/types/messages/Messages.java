@@ -57,6 +57,10 @@ public class Messages extends NLS {
 
 	public static String AssociationSelectionDialog_0;
 
+	public static String CollaborationRoleCreateCommand_CollaborationRoleCreation_Message;
+
+	public static String CollaborationRoleCreateCommand_CollaborationRoleCreation_Title;
+
 	public static String ConnectorReorientSemanticCommand_0;
 
 	public static String ContainmentSubsetRemovalAdvice_0;

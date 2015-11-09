@@ -19,28 +19,6 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.composite.custom.messages.messages"; //$NON-NLS-1$
 
-	public static String CollaborationRoleSelectionDialog_Title;
-
-	public static String CollaborationRoleSelectionDialog_Message;
-
-	public static String ConnectorCreateCommand_INVALID_ARGS_MSG;
-
-	public static String ConnectorCreateCommand_INVALID_SOURCE_MSG;
-
-	public static String ConnectorCreateCommand_INVALID_TARGET_MSG;
-
-	public static String RoleBindingCreateCommand_INVALID_ARGS_MSG;
-
-	public static String RoleBindingRoleSelectionDialog_Title;
-
-	public static String RoleBindingRoleSelectionDialog_Message;
-
-	public static String InformationFlowSelectionDialog_Title;
-
-	public static String InformationFlowSelectionDialog_Message;
-
-	public static String InformationItemGetNameDialog_Error_Message;
-
 	public static String SelectionValidated;
 
 	public static String ShowHideRelatedContentsAction_Message;
