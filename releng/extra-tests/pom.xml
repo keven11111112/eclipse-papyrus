@@ -52,41 +52,41 @@
 			<layout>p2</layout>
 			<url>${papyrus.repo.extra}</url>
 		</repository>
-		<repository>
+				<repository>
 			<id>cdt</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDT",0) -->
-			<url>http://download.eclipse.org/tools/cdt/builds/neon/milestones</url>
+			<url>${cdt.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF CDO",0) -->
-			<url>http://download.eclipse.org/modeling/emf/cdo/drops/S20150819-1258</url>
+			<url>${emf-cdo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF COMPARE",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201509300604</url>
+			<url>${emf-compare.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-query</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF Query",0) -->
-			<url>http://download.eclipse.org/modeling/emf/query/updates/releases/R201505312221</url>
+			<url>${emf-query.repo.url}</url>
 		</repository>
 		<repository>
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201509300618</url>
+			<url>${m2t-acceleo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>RMF</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
-			<url>${repo.rmf.url}</url>
+			<url>${rmf.repo.url}</url>
 		</repository>
 	</repositories>
 	<build>

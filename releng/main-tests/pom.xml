@@ -108,24 +108,24 @@
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF COMPARE",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201509300604</url>
+			<url>${emf-compare.repo.url}</url>
 		</repository>
 		<repository>
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201509300618</url>
+			<url>${m2t-acceleo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>swtbot</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
-			<url>${repo.swtbot.url}</url>
+			<url>${swtbot.repo.url}</url>
 		</repository>
 		<repository>
 			<id>UPR</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/upr/0.9RC1/update/</url>
+			<url>${upr.repo.url}</url>
 		</repository>
 	</repositories>
 	<build>

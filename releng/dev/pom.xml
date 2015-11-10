@@ -51,31 +51,31 @@
 			<id>nebula-tablecombo</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
-			<url>${repo.nebula-tablecombo.url}</url>
+			<url>${nebula-tablecombo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441</url>
+			<url>${m2t-acceleo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>b3</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
-			<url>http://download.eclipse.org/modeling/emft/b3/updates-4.4</url>
+			<url>${b3.repo.url}</url>
 		</repository>
 		<repository>
 			<id>oomph</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Oomph",0) -->
-			<url>http://download.eclipse.org/oomph/drops/milestone/S20150819-113829-1.2.0-M1</url>
+			<url>${oomph.repo.url}</url>
 		</repository>
 		<repository>
 			<id>UPR</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
-			<url>http://download.eclipse.org/upr/0.9RC1/update/</url>
+			<url>${upr.repo.url}</url>
 		</repository>
 		<repository>
 			<id>papyrus-main</id>
