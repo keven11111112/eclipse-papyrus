@@ -176,20 +176,22 @@ public abstract class AOFSyncDelegate implements ISyncDelegate {
 			@Override
 			public void start(IModel startingModel) {
 				mappingModel = ISyncMappingModel.getInstance(modelSet).getMappingModel();
-				mappingModelAdapter = new MappingModelAdapter();
-				mappingModel.eAdapters().add(mappingModelAdapter);
+				if (mappingModel != null) {
+					mappingModelAdapter = new MappingModelAdapter();
+					mappingModel.eAdapters().add(mappingModelAdapter);
 
-				modelSet.eAdapters().add(new ResourceAdapter() {
-					@Override
-					protected void handleResourceLoaded(Resource resource) {
-						discoverInitialSynchronizations(resource.getContents());
-					}
+					modelSet.eAdapters().add(new ResourceAdapter() {
+						@Override
+						protected void handleResourceLoaded(Resource resource) {
+							discoverInitialSynchronizations(resource.getContents());
+						}
 
-					@Override
-					protected void handleRootAdded(Resource resource, EObject root) {
-						discoverInitialSynchronizations(Collections.singleton(root));
-					}
-				});
+						@Override
+						protected void handleRootAdded(Resource resource, EObject root) {
+							discoverInitialSynchronizations(Collections.singleton(root));
+						}
+					});
+				}
 			}
 
 			@Override
