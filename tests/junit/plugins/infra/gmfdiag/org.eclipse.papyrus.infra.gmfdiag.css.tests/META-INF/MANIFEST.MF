@@ -28,5 +28,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: CSS Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.tests.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.tests
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
