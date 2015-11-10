@@ -25,6 +25,7 @@ import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumulator;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
@@ -137,36 +138,39 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		final Table table = modelManager.getTable();
 		final IAxisCellEditorConfiguration config = CellEditorConfigurationFactory.INSTANCE.getFirstCellEditorConfiguration(table, current);
-		final ICellEditor editor = config.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
-		if (editor != null) {
-			final String editorId = config.getEditorConfigId() + Integer.toString(indexOfTheAxis);
-			final StringBuilder builder = new StringBuilder(editorId);
-			builder.append(CELL_ID);
-			final String cellId = builder.toString();
-
-			final ICellPainter painter = config.getCellPainter(table, current);
-			final String displayMode = config.getDisplayMode(table, current);
-			final IDisplayConverter converter = config.getDisplayConvert(table, current, new EMFLabelProvider());// TODO : label provider
-
-			final IDataValidator validator = config.getDataValidator(table, current);
-			if (columnAccumulator != null) {
-				columnAccumulator.registerColumnOverrides(indexOfTheAxis, editorId, cellId);
-			} else {
-				rowAccumulator.registerRowOverrides(indexOfTheAxis, editorId, cellId);
+		
+		if(null != config){
+			final ICellEditor editor = config.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
+			if (editor != null) {
+				final String editorId = config.getEditorConfigId() + Integer.toString(indexOfTheAxis);
+				final StringBuilder builder = new StringBuilder(editorId);
+				builder.append(CELL_ID);
+				final String cellId = builder.toString();
+	
+				final ICellPainter painter = config.getCellPainter(table, current);
+				final String displayMode = config.getDisplayMode(table, current);
+				final IDisplayConverter converter = config.getDisplayConvert(table, current, new EMFLabelProvider());// TODO : label provider
+	
+				final IDataValidator validator = config.getDataValidator(table, current);
+				if (columnAccumulator != null) {
+					columnAccumulator.registerColumnOverrides(indexOfTheAxis, editorId, cellId, GridRegion.BODY);
+				} else {
+					rowAccumulator.registerRowOverrides(indexOfTheAxis, editorId, cellId, GridRegion.BODY);
+				}
+				if (painter != null) {
+					configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, painter, displayMode, cellId);
+				}
+				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, editor, displayMode, editorId);
+	
+				if (converter != null) {
+					configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, converter, displayMode, cellId);
+				}
+	
+				if (validator != null) {
+					configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, cellId);
+				}
+				return true;
 			}
-			if (painter != null) {
-				configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, painter, displayMode, cellId);
-			}
-			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, editor, displayMode, editorId);
-
-			if (converter != null) {
-				configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, converter, displayMode, cellId);
-			}
-
-			if (validator != null) {
-				configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, cellId);
-			}
-			return true;
 		}
 		return false;
 	}
@@ -197,9 +201,9 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 			final String cellId = builder.toString();
 			ceConfig.configureCellEditor(configRegistry, current, cellId);
 			if (columnAccumulator != null) {
-				columnAccumulator.registerColumnOverrides(indexOfTheAxis, editorId, cellId);
+				columnAccumulator.registerColumnOverrides(indexOfTheAxis, editorId, cellId, GridRegion.BODY);
 			} else {
-				rowAccumulator.registerRowOverrides(indexOfTheAxis, editorId, cellId);
+				rowAccumulator.registerRowOverrides(indexOfTheAxis, editorId, cellId, GridRegion.BODY);
 			}
 			return true;
 		}
