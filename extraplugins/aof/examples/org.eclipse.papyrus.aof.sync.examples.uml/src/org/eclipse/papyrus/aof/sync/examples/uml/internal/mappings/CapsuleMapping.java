@@ -53,7 +53,7 @@ public class CapsuleMapping extends NamedElementMapping<Class> {
 
 		IBox<StateMachine> mapping = parentMachine.collectTo(m -> getCorresponding(m, childCapsule.get()));
 
-		childMachine.bind(mapping).setAutoDisable(true);
+		autoDisable(childCapsule, childMachine.bind(mapping));
 	}
 
 	protected StateMachine getCorresponding(StateMachine superMachine, Class subCapsule) {

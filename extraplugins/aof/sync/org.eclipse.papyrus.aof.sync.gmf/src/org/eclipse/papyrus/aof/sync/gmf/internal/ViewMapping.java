@@ -54,8 +54,8 @@ abstract class ViewMapping<V extends View> extends EMFSyncMapping<V> {
 		mapCorresponding(from, to, NotationPackage.Literals.VIEW__ELEMENT, elementCorrespondence);
 
 		// Ensure the same type
-		property(to, NotationPackage.Literals.VIEW__TYPE).bind(property(from, NotationPackage.Literals.VIEW__TYPE))
-				.setAutoDisable(true);
+		autoDisable(to, property(to, NotationPackage.Literals.VIEW__TYPE).bind(
+				property(from, NotationPackage.Literals.VIEW__TYPE)));
 
 		// One-way synch all inherited (not attached by distinct style objects) style attributes
 		from.get().eClass().getEAllAttributes().stream()
@@ -74,4 +74,5 @@ abstract class ViewMapping<V extends View> extends EMFSyncMapping<V> {
 	boolean isStandardStyle(Style style) {
 		return !(style instanceof NamedStyle) && (style.eClass().getEPackage() == NotationPackage.eINSTANCE);
 	}
+
 }

@@ -16,10 +16,12 @@ package org.eclipse.papyrus.aof.sync;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.inject.Inject;
 
 import org.eclipse.papyrus.aof.core.IBinaryFunction;
+import org.eclipse.papyrus.aof.core.IBinding;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConditionalBinding;
 import org.eclipse.papyrus.aof.core.IFactory;
@@ -27,6 +29,7 @@ import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
 import org.eclipse.papyrus.aof.core.impl.Pair;
+import org.eclipse.papyrus.aof.core.impl.utils.DefaultObserver;
 import org.eclipse.papyrus.aof.core.utils.Functions;
 import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 
@@ -142,8 +145,50 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 */
 	protected <P> IPair<IBox<P>, IBox<P>> bindProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy) {
 		IPair<IBox<P>, IBox<P>> result = getToFactory().createPair(property(fromBox, fromType, fromIdentifiedBy), property(toBox, toType, toIdentifiedBy));
-		result.getRight().bind(result.getLeft()).setAutoDisable(true);
+		autoDisable(toBox, result.getRight().bind(result.getLeft()));
 		return result;
+	}
+
+	protected Consumer<IBox<? extends T>> getAutoDisableHook() {
+		return null;
+	}
+
+	protected <E> IBinding<E> autoDisable(IBox<? extends T> toBox, IBinding<E> binding) {
+		Consumer<IBox<? extends T>> hook = getAutoDisableHook();
+		Runnable onDisable = (hook == null) ? null : () -> hook.accept(toBox);
+		return autoDisable(binding, onDisable);
+	}
+
+	protected <E> IBinding<E> autoDisable(IBinding<E> binding, Runnable onDisable) {
+		binding.setAutoDisable(true);
+
+		if (onDisable != null) {
+			binding.isEnabled().addObserver(new DefaultObserver<Boolean>() {
+				@Override
+				public void replaced(int index, Boolean newElement, Boolean oldElement) {
+					if (Boolean.FALSE.equals(newElement) && Boolean.TRUE.equals(oldElement)) {
+						onDisable.run();
+					}
+				}
+
+				@Override
+				public void added(int index, Boolean element) {
+					// Doesn't occur in this box
+				}
+
+				@Override
+				public void removed(int index, Boolean element) {
+					// Doesn't occur in this box
+				}
+
+				@Override
+				public void moved(int newIndex, int oldIndex, Boolean element) {
+					// Doesn't occur in this box
+				}
+			});
+		}
+
+		return binding;
 	}
 
 	/**
@@ -178,7 +223,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 */
 	protected <P> IPair<IBox<P>, IBox<P>> bindPropertyValue(IBox<P> fromBox, IBox<? extends T> toBox, Object ofType, Object identifiedBy) {
 		IPair<IBox<P>, IBox<P>> result = getToFactory().createPair(fromBox, property(toBox, ofType, identifiedBy));
-		result.getRight().bind(result.getLeft()).setAutoDisable(true);
+		autoDisable(toBox, result.getRight().bind(result.getLeft()));
 		return result;
 	}
 
@@ -336,7 +381,7 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 
 		// Bind the elements before mapping them, so that, if the property is a containment
 		// reference, the they will be attached to the model before we recursively map anything
-		toElements.bind(mapping).setAutoDisable(true);
+		autoDisable(toContext, toElements.bind(mapping));
 
 		IBox<? extends IPair<IOne<D>, IOne<E>>> result;
 
