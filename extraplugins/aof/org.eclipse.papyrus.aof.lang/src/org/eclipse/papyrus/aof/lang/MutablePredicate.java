@@ -37,16 +37,6 @@ import org.eclipse.papyrus.aof.emf.EMFFactory;
  */
 public abstract class MutablePredicate<E> extends ComposableUnaryFunction<E, IOne<Boolean>> {
 
-	/**
-	 * A boxed boolean false constant.
-	 */
-	public static final IOne<Boolean> FALSE = Boxes.immutableOne(false);
-	
-	/**
-	 * A boxed boolean true constant.
-	 */
-	public static final IOne<Boolean> TRUE = Boxes.immutableOne(true);
-
 	private static ComposableBinaryFunction<IBox<Boolean>, IBox<Boolean>, IBox<Boolean>> AND = Predicate.and.lift();
 
 	/**
@@ -165,7 +155,7 @@ public abstract class MutablePredicate<E> extends ComposableUnaryFunction<E, IOn
 			@Override
 			public IOne<Boolean> apply(E a) {
 				if (a == null) {
-					return FALSE;
+					return Boxes.FALSE;
 				} else {
 					return (IOne<Boolean>) EMFFactory.INSTANCE.createPropertyBox(a, propertyName).collect(Predicate.valueEquals(value));
 				}
@@ -194,7 +184,7 @@ public abstract class MutablePredicate<E> extends ComposableUnaryFunction<E, IOn
 			@Override
 			public IOne<Boolean> apply(E a) {
 				if (a == null) {
-					return FALSE;
+					return Boxes.FALSE;
 				} else {
 					return EMFFactory.INSTANCE.createPropertyBox(a, propertyName).isEmpty();
 				}

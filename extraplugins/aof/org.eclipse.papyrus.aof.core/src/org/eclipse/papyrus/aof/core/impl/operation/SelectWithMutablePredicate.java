@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  *  Contributors:
  *     Frederic Jouault - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl.operation;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.aof.core.IBox;
+import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IObserver;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
@@ -54,6 +56,11 @@ public class SelectWithMutablePredicate<E> extends Operation<E> {
 		}
 		registerObservation(sourceBox, new SourceObserver());
 		registerObservation(getResult(), new ResultObserver());
+	}
+	
+	@Override
+	public IFactory getFactory() {
+		return sourceBox.getFactory();
 	}
 
 	@Override

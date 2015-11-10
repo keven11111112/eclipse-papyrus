@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,13 +7,21 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - JUnit testing of apply operation on all box types
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.tests.operation;
+
+import static org.eclipse.papyrus.aof.core.tests.matchers.BoxMatchers.sameAs;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.eclipse.papyrus.aof.core.IBinding;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstraints;
+import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.tests.BaseTest;
+import org.eclipse.papyrus.aof.core.tests.rules.TestObserver;
+import org.eclipse.papyrus.aof.core.tests.rules.TestObserver.ObservationKind;
+import org.eclipse.papyrus.aof.core.utils.Boxes;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -666,6 +674,95 @@ public class BindTest extends BaseTest {
 		rightBox.add(8);
 		IBox<Integer> expectedBox = factory.createBox(boxType, 1, 2, 3, 4, 5, 6, 7, 8);
 		assertEquals(expectedBox, leftBox);
+	}
+
+	//
+	// Auto-disabled (one-way) bindings
+	//
+
+	@Test
+	public void testAutoDisableBindingOnSequence() {
+		testAutoDisableBinding(IConstraints.SEQUENCE);
+	}
+
+	@Test
+	public void testAutoDisableBindingOnBag() {
+		testAutoDisableBinding(IConstraints.BAG);
+	}
+
+	@Test
+	public void testAutoDisableBindingOnOrderedSet() {
+		testAutoDisableBinding(IConstraints.ORDERED_SET);
+	}
+
+	@Test
+	public void testAutoDisableBindingOnSet() {
+		testAutoDisableBinding(IConstraints.SET);
+	}
+
+	@Test
+	public void testAutoDisableBindingOnOption() {
+		testAutoDisableBinding(IConstraints.OPTION);
+	}
+
+	@Test
+	public void testAutoDisableBindingOnOne() {
+		testAutoDisableBinding(IConstraints.ONE);
+	}
+
+	public void testAutoDisableBinding(IConstraints boxType) {
+		IBox<Integer> leftBox = factory.createBox(boxType);
+		IBox<Integer> rightBox = factory.createBox(boxType, 1, 2, 3);
+		IBinding<Integer> binding = leftBox.bind(rightBox);
+		binding.setAutoDisable(true);
+		rightBox.add(4);
+		rightBox.add(5);
+		IOne<Boolean> enabled = binding.isEnabled();
+		TestObserver<Boolean> observer = TestObserver.observe(enabled);
+
+		// Binding is still enabled
+		assertThat(binding.isEnabled(), sameAs(Boxes.TRUE));
+
+		leftBox.add(6);
+		leftBox.add(7);
+
+		// Binding disabled itself
+		assertThat(binding.isEnabled(), sameAs(Boxes.FALSE));
+		observer.assertObservation(ObservationKind.REPLACE, 0, false);
+
+		IBox<Integer> expectedLeft = factory.createBox(boxType, 1, 2, 3, 4, 5, 6, 7);
+		assertThat(leftBox, sameAs(expectedLeft));
+
+		// The changes were not propagated from the left to the right
+		IBox<Integer> expectedRight = factory.createBox(boxType, 1, 2, 3, 4, 5);
+		assertThat(rightBox, sameAs(expectedRight));
+	}
+
+	@Test
+	public void testEnabledBox() {
+		IBox<Integer> leftBox = factory.createSequence();
+		IBox<Integer> rightBox = factory.createSequence(1, 2, 3);
+		IBinding<Integer> binding = leftBox.bind(rightBox);
+		IOne<Boolean> enabled = binding.isEnabled();
+		TestObserver<Boolean> observer = TestObserver.observe(enabled);
+
+		rightBox.add(4);
+		rightBox.add(5);
+		enabled.set(false); // Disable via the enabled box
+		observer.assertObservation(ObservationKind.REPLACE, 0, false);
+		rightBox.add(6);
+		rightBox.add(7);
+		IBox<Integer> expectedBox = factory.createSequence(1, 2, 3, 4, 5);
+		assertThat(leftBox, sameAs(expectedBox));
+
+		enabled.set(true); // Re-enable via the enabled box
+		observer.assertObservation(ObservationKind.REPLACE, 0, true);
+		expectedBox = factory.createSequence(1, 2, 3, 4, 5, 6, 7);
+		assertThat(leftBox, sameAs(expectedBox));
+
+		// Try a redunant enable
+		enabled.set(true);
+		observer.assertNoObservation();
 	}
 
 }

@@ -26,24 +26,23 @@ import org.eclipse.papyrus.aof.core.ISet;
 
 public abstract class BaseFactory implements IFactory {
 
-
 	public <E> IBox<E> createBox(IConstraints constraints, BaseDelegate<E> delegate) {
 		if (!constraints.isLegal()) {
 			throw new IllegalStateException("Invalid constraints " + constraints);
 		} else {
 			Box<E> box;
 			if (constraints.matches(IConstraints.OPTION)) {
-				box = new Option<E>();
+				box = new Option<E>(this);
 			} else if (constraints.matches(IConstraints.ONE)) {
-				box = (delegate instanceof BaseDelegate.IOneDelegate<?>) ? new One.Delegator<E>() : new One<E>();
+				box = (delegate instanceof BaseDelegate.IOneDelegate<?>) ? new One.Delegator<E>(this) : new One<E>(this);
 			} else if (constraints.matches(IConstraints.ORDERED_SET)) {
-				box = new OrderedSet<E>();
+				box = new OrderedSet<E>(this);
 			} else if (constraints.matches(IConstraints.SEQUENCE)) {
-				box = new Sequence<E>();
+				box = new Sequence<E>(this);
 			} else if (constraints.matches(IConstraints.SET)) {
-				box = new Set<E>();
+				box = new Set<E>(this);
 			} else if (constraints.matches(IConstraints.BAG)) {
-				box = new Bag<E>();
+				box = new Bag<E>(this);
 			} else {
 				throw new IllegalStateException("Invalid constraints " + constraints);
 			}
@@ -63,8 +62,14 @@ public abstract class BaseFactory implements IFactory {
 			IOne<E> one = (IOne<E>) box;
 			E defaultElement = (elements.length > 0) ? elements[0] : null;
 			one.clear(defaultElement);
+
+			if (elements.length > 1) {
+				// assign the non-default, also
+				box.assign(Arrays.asList(elements));
 		}
+		} else {
 		box.assign(Arrays.asList(elements));
+		}
 		return box;
 	}
 

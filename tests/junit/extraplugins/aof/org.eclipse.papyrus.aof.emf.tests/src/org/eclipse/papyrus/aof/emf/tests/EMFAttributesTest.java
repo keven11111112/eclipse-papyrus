@@ -7,7 +7,7 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
- *     Christian W. Damus - fix NPEs in bindings of primitive EAttributes
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.emf.tests;
 
@@ -95,11 +95,11 @@ public class EMFAttributesTest extends CollectBoxTest implements EMFTest {
 
 		janesCombo.bind(fredsCombo);
 
-		assertThat(janesCombo, sameAs(Boxes.immutableSequence(1, 2, 6)));
+		assertThat(janesCombo, sameAs(Boxes.with().immutableSequence(1, 2, 6)));
 
 		fred.getLockerCombination().addAll(2, Arrays.asList(3, 4, 5));
 
-		IBox<Integer> expected = Boxes.immutableSequence(1, 2, 3, 4, 5, 6);
+		IBox<Integer> expected = Boxes.with().immutableSequence(1, 2, 3, 4, 5, 6);
 		assumeThat(fredsCombo, sameAs(expected));
 		assertThat(janesCombo, sameAs(expected));
 	}
@@ -116,11 +116,11 @@ public class EMFAttributesTest extends CollectBoxTest implements EMFTest {
 
 		janesCombo.bind(fredsCombo);
 
-		assertThat(janesCombo, sameAs(Boxes.immutableSequence(1, 2, 3, 4, 5, 6)));
+		assertThat(janesCombo, sameAs(Boxes.with().immutableSequence(1, 2, 3, 4, 5, 6)));
 
 		fred.getLockerCombination().removeAll(Arrays.asList(3, 4, 5));
 
-		IBox<Integer> expected = Boxes.immutableSequence(1, 2, 6);
+		IBox<Integer> expected = Boxes.with().immutableSequence(1, 2, 6);
 		assumeThat(fredsCombo, sameAs(expected));
 		assertThat(janesCombo, sameAs(expected));
 	}
@@ -137,7 +137,7 @@ public class EMFAttributesTest extends CollectBoxTest implements EMFTest {
 
 		janesCombo.bind(fredsCombo);
 
-		assertThat(janesCombo, sameAs(Boxes.immutableSequence(1, 2, 6)));
+		assertThat(janesCombo, sameAs(Boxes.with().immutableSequence(1, 2, 6)));
 
 		fred.getLockerCombination().clear();
 

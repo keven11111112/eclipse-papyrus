@@ -11,7 +11,9 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.tests;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -19,6 +21,7 @@ import java.util.Random;
 
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstraints;
+import org.eclipse.papyrus.aof.core.IOne;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -587,6 +590,64 @@ public class BoxTest extends BaseTest {
 				assertEquals(Arrays.asList(1, 1, 2, 3, 3), nextBox);
 			}
 		}
+	}
+
+	//
+	// Additional tests
+	//
+
+	@Test
+	public void testDefaultOne() {
+		IOne<Integer> a = factory.createOne(42);
+
+		assertThat(a.get(), is(42));
+		assertThat(a.isDefault(), is(true));
+
+		a.set(17);
+		assertThat(a.get(), is(17));
+		assertThat(a.isDefault(), is(false));
+
+		a.set(42);
+		assertThat(a.get(), is(a.getDefaultElement()));
+		assertThat(a.isDefault(), is(false)); // Coincidental set
+
+		a.clear();
+		assertThat(a.get(), is(a.getDefaultElement()));
+		assertThat(a.isDefault(), is(true));
+	}
+
+	@Test
+	public void testAssignDefaultOneToDifferentDefault() {
+		IOne<Integer> a = factory.createOne(42);
+		IOne<Integer> b = factory.createOne(17);
+
+		assertThat(a.isDefault(), is(true));
+		assertThat(b.isDefault(), is(true));
+
+		b.set(3);
+		assertThat(b.isDefault(), is(false));
+		assertThat(b.get(), is(3));
+
+		b.assign(a);
+		assertThat(b.get(), is(42)); // Assignment must set the requested value
+		assertThat(b.isDefault(), is(false));
+	}
+
+	@Test
+	public void testAssignDefaultOneToSameDefault() {
+		IOne<Integer> a = factory.createOne(42);
+		IOne<Integer> b = factory.createOne(42);
+
+		assertThat(a.isDefault(), is(true));
+		assertThat(b.isDefault(), is(true));
+
+		b.set(3);
+		assertThat(b.isDefault(), is(false));
+		assertThat(b.get(), is(3));
+
+		b.assign(a);
+		assertThat(b.get(), is(42));
+		assertThat(b.isDefault(), is(false)); // Unset state does not propagate
 	}
 
 }

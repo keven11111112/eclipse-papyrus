@@ -15,6 +15,7 @@ package org.eclipse.papyrus.aof.core.tests;
 
 import org.eclipse.papyrus.aof.core.tests.operation.AOFCollectBoxTest;
 import org.eclipse.papyrus.aof.core.tests.operation.AsBoxTest;
+import org.eclipse.papyrus.aof.core.tests.operation.BindConditionallyTest;
 import org.eclipse.papyrus.aof.core.tests.operation.BindTest;
 import org.eclipse.papyrus.aof.core.tests.operation.CollectTest;
 import org.eclipse.papyrus.aof.core.tests.operation.CollectToTest;
@@ -36,11 +37,11 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({ AOFCollectBoxTest.class, AOFFactoryTest.class, AOFMetaClassTest.class, AsBoxTest.class, BindTest.class,
-		BoxTest.class, CollectTest.class, CollectToTest.class, ConcatTest.class, ConstraintsTest.class,
-		DistinctTest.class, InspectTest.class, ObserverTest.class, ReadableTest.class,
+		BindConditionallyTest.class, BoxTest.class, CollectTest.class, CollectToTest.class, ConcatTest.class,
+		ConstraintsTest.class, DistinctTest.class, InspectTest.class, ObserverTest.class, ReadableTest.class,
 		SelectWithMutablePredicateTest.class, SelectWithPredicateTest.class, SelectWithPresenceTest.class,
 		SizeTest.class, SwitchCollectTest.class, WritableTest.class, ZipWithTest.class, BoxesTest.class,
-		ConstraintsSwitchTest.class, BoxSwitchTest.class })
+		ConstraintsSwitchTest.class, BoxSwitchTest.class, ObserverTrackerTest.class, ObserversTest.class })
 public class AllTests {
 
 }

@@ -105,12 +105,12 @@ public abstract class ComposableUnaryFunction<P, R> implements IUnaryFunction<P,
 	 */
 	// Remark: although constant ones are returned, the cache is necessary to make sure that if the result is
 	// further processed by calling other operations (e.g., MutablePredicate.not()) their cache will work.
-	// Alternatively, we could override equals and hashCode in ConstantOne.
+	// Alternatively, we could override equals and hashCode in the ImmutableBox.
 	public ComposableUnaryFunction<P, IOne<R>> boxOutput() {
 		return new ComposableUnaryFunction<P, IOne<R>>() {
 			@Override
 			public IOne<R> apply(P a) {
-				return Boxes.immutableOne(ComposableUnaryFunction.this.apply(a));
+				return Boxes.with().immutableOne(ComposableUnaryFunction.this.apply(a));
 			}
 
 			@Override

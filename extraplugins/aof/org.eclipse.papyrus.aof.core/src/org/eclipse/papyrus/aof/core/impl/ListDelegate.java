@@ -103,6 +103,7 @@ public class ListDelegate<E> extends BaseDelegate<E> {
 	 */
 	public static class One<E> extends ListDelegate<E> implements BaseDelegate.IOneDelegate<E> {
 		private E defaultElement;
+		private boolean isDefault = true;
 
 		public One() {
 			super(new ArrayList<E>(1));
@@ -126,6 +127,64 @@ public class ListDelegate<E> extends BaseDelegate<E> {
 			} else {
 				set(0, getDefaultElement());
 			}
+			this.isDefault = true;
+		}
+
+		@Override
+		public void add(E element) {
+			unsetDefault();
+			super.add(element);
+		}
+
+		@Override
+		public void add(int index, E element) {
+			unsetDefault();
+			super.add(index, element);
+		}
+
+		@Override
+		public void set(int index, E element) {
+			unsetDefault();
+			super.set(index, element);
+		}
+
+		@Override
+		public void move(int newIndex, int oldIndex) {
+			unsetDefault();
+			super.move(newIndex, oldIndex);
+		}
+
+		@Override
+		public void remove(E element) {
+			unsetDefault();
+			super.remove(element);
+		}
+
+		@Override
+		public void removeAt(int index) {
+			unsetDefault();
+			super.removeAt(index);
+		}
+
+		@Override
+		public void assign(E... elements) {
+			unsetDefault();
+			super.assign(elements);
+		}
+
+		@Override
+		public void assign(Iterable<? extends E> iterable) {
+			super.assign(iterable);
+			unsetDefault();
+		}
+
+		@Override
+		public boolean isDefault() {
+			return isDefault;
+		}
+
+		void unsetDefault() {
+			isDefault = false;
 		}
 	}
 
@@ -201,7 +260,7 @@ public class ListDelegate<E> extends BaseDelegate<E> {
 		}
 
 		@Override
-		public void assign(Iterable<E> iterable) {
+		public void assign(Iterable<? extends E> iterable) {
 			throw new UnsupportedOperationException("assign"); //$NON-NLS-1$
 		}
 
@@ -239,7 +298,7 @@ public class ListDelegate<E> extends BaseDelegate<E> {
 					result.add(next);
 				}
 			}
-			
+
 			return result;
 		}
 
@@ -282,6 +341,11 @@ public class ListDelegate<E> extends BaseDelegate<E> {
 			public final E getDefaultElement() {
 				return defaultElement;
 			}
+
+			@Override
+			public final boolean isDefault() {
+				return isDefault;
+			}
 		}
 
 		/**
@@ -289,6 +353,27 @@ public class ListDelegate<E> extends BaseDelegate<E> {
 		 * {@linkplain ICollection collection} boxes.
 		 */
 		public static final class Unique<E> extends Immutable<E> {
+			public Unique() {
+				this(Collections.<E> emptyList());
+			}
+
+			public Unique(E singleton) {
+				this(Arrays.asList(singleton));
+			}
+
+			public Unique(E first, E second) {
+				this(Arrays.asList(first, second));
+			}
+
+			public Unique(E first, E second, E third) {
+				this(Arrays.asList(first, second, third));
+			}
+
+			@SafeVarargs
+			public Unique(E first, E second, E third, E fourth, E... rest) {
+				this(asList(first, second, third, fourth, rest));
+			}
+
 			public Unique(Iterable<? extends E> elements) {
 				super(uniquify(elements));
 			}

@@ -13,11 +13,11 @@ package org.eclipse.papyrus.aof.core.impl;
 
 import java.util.Iterator;
 
-import org.eclipse.papyrus.aof.core.AOFFactory;
 import org.eclipse.papyrus.aof.core.IBag;
 import org.eclipse.papyrus.aof.core.IBinaryFunction;
 import org.eclipse.papyrus.aof.core.IBinding;
 import org.eclipse.papyrus.aof.core.IBox;
+import org.eclipse.papyrus.aof.core.IConditionalBinding;
 import org.eclipse.papyrus.aof.core.IConstraints;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IMetaClass;
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.aof.core.ISet;
 import org.eclipse.papyrus.aof.core.ISingleton;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
 import org.eclipse.papyrus.aof.core.impl.operation.Bind;
+import org.eclipse.papyrus.aof.core.impl.operation.BindConditionally;
 import org.eclipse.papyrus.aof.core.impl.operation.CollectBijective;
 import org.eclipse.papyrus.aof.core.impl.operation.CollectBox;
 import org.eclipse.papyrus.aof.core.impl.operation.CollectSurjective;
@@ -54,12 +55,23 @@ public abstract class Box<E> implements IBox<E> {
 
 	public static IObserver<IBox<?>> factoryObserver;
 
-	public Box() {
+	private final IFactory factory;
+	
+	public Box(IFactory factory) {
+		super();
+		
+		this.factory = factory;
+		
 		if (factoryObserver != null) {
 			factoryObserver.added(0, this);
 		}
 	}
 
+	@Override
+	public final IFactory getFactory() {
+		return factory;
+	}
+	
 	private BaseDelegate<E> delegate;
 
 	protected BaseDelegate<E> getDelegate() {
@@ -71,7 +83,8 @@ public abstract class Box<E> implements IBox<E> {
 		this.delegate.setDelegator(this);
 	}
 
-	// IConstraints (implemented for facility purpose only: shortcuts to getConstraint().<method>())
+	// IConstraints (implemented for facility purpose only: shortcuts to
+	// getConstraint().<method>())
 
 	@Override
 	public boolean isOptional() {
@@ -161,9 +174,7 @@ public abstract class Box<E> implements IBox<E> {
 
 	@Override
 	public void remove(E element) {
-		if (contains(element)) {
-			delegate.remove(element);
-		}
+		delegate.remove(element);
 	}
 
 	@Override
@@ -180,9 +191,11 @@ public abstract class Box<E> implements IBox<E> {
 	@Override
 	public void move(int newIndex, int oldIndex) {
 		if ((newIndex < 0) || (newIndex >= length())) {
-			throw new IndexOutOfBoundsException("New index " + newIndex + " should be in interval [0, " + length() + ")");
+			throw new IndexOutOfBoundsException(
+					"New index " + newIndex + " should be in interval [0, " + length() + ")");
 		} else if ((oldIndex < 0) || (oldIndex >= length())) {
-			throw new IndexOutOfBoundsException("Old index " + oldIndex + " should be in interval [0, " + length() + ")");
+			throw new IndexOutOfBoundsException(
+					"Old index " + oldIndex + " should be in interval [0, " + length() + ")");
 		} else {
 			delegate.move(newIndex, oldIndex);
 		}
@@ -218,9 +231,9 @@ public abstract class Box<E> implements IBox<E> {
 	// IBox
 
 	@Override
-	public boolean sameAs(IBox<E> other) {
+	public boolean sameAs(IBox<?> other) {
 		if (other instanceof Box<?>) {
-			Box<E> that = (Box<E>) other;
+			Box<?> that = (Box<?>) other;
 			if (!this.getConstraints().equals(that)) {
 				return false;
 			} else if (isOrdered()) {
@@ -235,13 +248,13 @@ public abstract class Box<E> implements IBox<E> {
 
 	@Override
 	public IBox<E> snapshot() {
-		IBox<E> box = AOFFactory.INSTANCE.createBox(this);
+		IBox<E> box = getFactory().createBox(this);
 		box.assign(this);
 		return box;
 	}
 
 	@Override
-	public void assign(Iterable<E> iterable) {
+	public void assign(Iterable<? extends E> iterable) {
 		if (iterable == null) {
 			throw new IllegalArgumentException("Cannot assign a box from a null iterator");
 		}
@@ -256,6 +269,12 @@ public abstract class Box<E> implements IBox<E> {
 	@Override
 	public IBinding<E> bind(IBox<E> that) {
 		return new Bind<E>(this, that).getBinding();
+	}
+
+	@Override
+	public <F extends E> IConditionalBinding<E, F> bindConditionally(IBox<F> that,
+			IUnaryFunction<? super IBox<? extends E>, Boolean> condition) {
+		return new BindConditionally<E, F>(this, that, condition).getBinding();
 	}
 
 	@Override
@@ -304,12 +323,17 @@ public abstract class Box<E> implements IBox<E> {
 	}
 
 	@Override
-	public <R> IBox<R> switchCollect(IUnaryFunction<? super E, IOne<Boolean>>[] conditions, IUnaryFunction<? super E, ? extends R>[] collectors, IUnaryFunction<? super E, ? extends R> defaultCollector, IUnaryFunction<? super R, ? extends E> reverseCollector) {
+	public <R> IBox<R> switchCollect(IUnaryFunction<? super E, IOne<Boolean>>[] conditions,
+			IUnaryFunction<? super E, ? extends R>[] collectors,
+			IUnaryFunction<? super E, ? extends R> defaultCollector,
+			IUnaryFunction<? super R, ? extends E> reverseCollector) {
 		return new SwitchCollect<E, R>(this, conditions, collectors, defaultCollector, reverseCollector).getResult();
 	}
 
 	@Override
-	public <R> IBox<R> switchCollect(IUnaryFunction<? super E, IOne<Boolean>>[] conditions, IUnaryFunction<? super E, ? extends R>[] collectors, IUnaryFunction<? super E, ? extends R> defaultCollector) {
+	public <R> IBox<R> switchCollect(IUnaryFunction<? super E, IOne<Boolean>>[] conditions,
+			IUnaryFunction<? super E, ? extends R>[] collectors,
+			IUnaryFunction<? super E, ? extends R> defaultCollector) {
 		return new SwitchCollect<E, R>(this, conditions, collectors, defaultCollector).getResult();
 	}
 
@@ -350,7 +374,8 @@ public abstract class Box<E> implements IBox<E> {
 				sourceDefault = containingClass.getDefaultInstance();
 			}
 		} catch (Exception e) {
-			// Default instance not supported? We will have to try to determine the constraints on-the-fly
+			// Default instance not supported? We will have to try to determine
+			// the constraints on-the-fly
 		}
 		
 		IUnaryFunction<E, IBox<R>> accessor = containingClass.getPropertyAccessor(property);
@@ -361,7 +386,7 @@ public abstract class Box<E> implements IBox<E> {
 	@Override
 	public <R> IBox<R> collectMutable(IUnaryFunction<? super E, ? extends IBox<R>> collector) {
 		// We will have to try to determine the constraints on-the-fly
-		return new CollectBox<E, R>(this, (IConstraints)null, collector).getResult();
+		return new CollectBox<E, R>(this, (IConstraints) null, collector).getResult();
 	}
 
 	@Override
@@ -409,7 +434,8 @@ public abstract class Box<E> implements IBox<E> {
 	}
 
 	@Override
-	public <F, R> IBox<R> zipWith(IBox<F> that, boolean leftRightDependency, IBinaryFunction<E, F, R> zipper, IUnaryFunction<R, IPair<E, F>> unzipper) {
+	public <F, R> IBox<R> zipWith(IBox<F> that, boolean leftRightDependency, IBinaryFunction<E, F, R> zipper,
+			IUnaryFunction<R, IPair<E, F>> unzipper) {
 		return new ZipWith<E, F, R>(this, that, leftRightDependency, zipper, unzipper).getResult();
 	}
 
@@ -432,7 +458,7 @@ public abstract class Box<E> implements IBox<E> {
 		if (this instanceof IOption<?>) {
 			return (IOption<E>) this;
 		} else {
-			IOption<E> option = AOFFactory.INSTANCE.createOption();
+			IOption<E> option = getFactory().createOption();
 			new First<E>(this, option, false);
 			return option;
 		}
@@ -446,7 +472,7 @@ public abstract class Box<E> implements IBox<E> {
 				return (IOne<E>) this;
 			}
 		}
-		IOne<E> one = AOFFactory.INSTANCE.createOne(defaultElement);
+		IOne<E> one = getFactory().createOne(defaultElement);
 		new First<E>(this, one, false);
 		return one;
 	}
@@ -456,7 +482,7 @@ public abstract class Box<E> implements IBox<E> {
 		if (this instanceof ISequence<?>) {
 			return (ISequence<E>) this;
 		} else {
-			ISequence<E> that = AOFFactory.INSTANCE.createSequence();
+			ISequence<E> that = getFactory().createSequence();
 			if (this.isSingleton()) {
 				new First<E>(that, (ISingleton<E>) this, true);
 			} else if (this.isUnique()) {
@@ -473,7 +499,7 @@ public abstract class Box<E> implements IBox<E> {
 		if (this instanceof IBag<?>) {
 			return (IBag<E>) this;
 		} else {
-			IBag<E> that = AOFFactory.INSTANCE.createBag();
+			IBag<E> that = getFactory().createBag();
 			if (this.isSingleton()) {
 				new First<E>(that, (ISingleton<E>) this, true);
 			} else if (this.isUnique()) {
@@ -490,7 +516,7 @@ public abstract class Box<E> implements IBox<E> {
 		if (this instanceof IOrderedSet<?>) {
 			return (IOrderedSet<E>) this;
 		} else {
-			IOrderedSet<E> that = AOFFactory.INSTANCE.createOrderedSet();
+			IOrderedSet<E> that = getFactory().createOrderedSet();
 			if (this.isSingleton()) {
 				new First<E>(that, (ISingleton<E>) this, true);
 			} else if (this.isUnique()) {
@@ -507,7 +533,7 @@ public abstract class Box<E> implements IBox<E> {
 		if (this instanceof ISet<?>) {
 			return (ISet<E>) this;
 		} else {
-			ISet<E> that = AOFFactory.INSTANCE.createSet();
+			ISet<E> that = getFactory().createSet();
 			if (this.isSingleton()) {
 				new First<E>(that, (ISingleton<E>) this, true);
 			} else if (this.isUnique()) {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2015 ESEO.
+ *  Copyright (c) 2015 ESEO, Christian W. Damus, and others.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,11 +7,12 @@
  *
  *  Contributors:
  *     Olivier Beaudoux - initial API and implementation
+ *     Christian W. Damus - bug 476683
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl.operation;
 
-import org.eclipse.papyrus.aof.core.AOFFactory;
 import org.eclipse.papyrus.aof.core.IBox;
+import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.core.impl.utils.DefaultObserver;
@@ -30,6 +31,11 @@ public class SelectWithPresence<E> extends Operation<E> {
 		}
 		registerObservation(sourceBox, new SourceObserver());
 		registerObservation(getResult(), new ResultObserver());
+	}
+	
+	@Override
+	public IFactory getFactory() {
+		return sourceBox.getFactory();
 	}
 
 	@Override
@@ -128,7 +134,7 @@ public class SelectWithPresence<E> extends Operation<E> {
 	private class ResultObserver extends DefaultObserver<E> {
 
 		private IPair<E, Boolean> createPair(E element, Boolean selected) {
-			return AOFFactory.INSTANCE.createPair(element, selected);
+			return getFactory().createPair(element, selected);
 		}
 
 		@Override

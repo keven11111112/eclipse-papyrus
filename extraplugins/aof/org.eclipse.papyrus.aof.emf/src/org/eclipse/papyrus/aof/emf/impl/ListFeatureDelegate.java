@@ -23,7 +23,7 @@ import org.eclipse.papyrus.aof.core.IObserver;
 import org.eclipse.papyrus.aof.core.impl.ListDelegate;
 
 public class ListFeatureDelegate<E> extends FeatureDelegate<E> {
-
+	final EObject object;
 	EList<E> list;
 
 	// Delegate to a list that is used as a redundant backing store because
@@ -34,7 +34,7 @@ public class ListFeatureDelegate<E> extends FeatureDelegate<E> {
 	// of these calls refers to indices that are no longer valid
 	final ListDelegate<E> delegate;
 
-	private final Adapter adapter;
+	private Adapter adapter;
 	boolean silentForward;
 	boolean silentReverse;
 
@@ -42,13 +42,9 @@ public class ListFeatureDelegate<E> extends FeatureDelegate<E> {
 	public ListFeatureDelegate(EObject object, EStructuralFeature feature) {
 		super(object, feature);
 
-		list = (EList<E>) object.eGet(feature);
-		delegate = new ListDelegate();
-
-		// Must always be listening to the EMF list to maintain integrity
-		// of our redundant backing store 'proxyBox'
-		adapter = new ListForwardNotificationAdapter<E>(this);
-		object.eAdapters().add(adapter);
+		this.object = object;
+		this.list = (EList<E>) object.eGet(feature);
+		delegate = new BackingStore();
 	}
 
 	@Override
@@ -151,5 +147,45 @@ public class ListFeatureDelegate<E> extends FeatureDelegate<E> {
 	@Override
 	public boolean isObserved() {
 		return delegate.isObserved();
+	}
+
+	//
+	// Nested types
+	//
+
+	/**
+	 * A specialized list-delegate that adds the forward notification adapter only when it
+	 * is actually needed, which is when we have observers listening to the list.
+	 * More importantly, it ensures (by a {@link FeatureDelegate#disposed()} call) that
+	 * the cache of list elements is cleaned up when nobody is listening so that when the
+	 * list is observed again, it doesn't present stale contents to observers.
+	 */
+	private class BackingStore extends ListDelegate<E> {
+		@Override
+		public void setDelegator(IBox<E> delegator) {
+			super.setDelegator(delegator);
+		}
+
+		@Override
+		public void addObserver(IObserver<? super E> observer) {
+			super.addObserver(observer);
+
+			if (adapter == null) {
+				adapter = new ListForwardNotificationAdapter<>(ListFeatureDelegate.this);
+				object.eAdapters().add(adapter);
+			}
+		}
+
+		@Override
+		public void removeObserver(IObserver<?> observer) {
+			super.removeObserver(observer);
+
+			if (!isObserved() && (adapter != null)) {
+				object.eAdapters().remove(adapter);
+				adapter = null;
+				disposed();
+			}
+		}
+
 	}
 }

@@ -16,7 +16,9 @@ import static org.eclipse.papyrus.aof.core.impl.utils.Equality.optionalEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IObservable;
@@ -24,6 +26,8 @@ import org.eclipse.papyrus.aof.core.IObserver;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IReadable;
 import org.eclipse.papyrus.aof.core.IWritable;
+import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
+import org.eclipse.papyrus.aof.core.utils.Observers;
 
 public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IObservable<E> {
 
@@ -40,7 +44,7 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 	}
 
 	// equality in any order
-	public boolean similarTo(BaseDelegate<E> that) {
+	public boolean similarTo(BaseDelegate<?> that) {
 		if (this.length() == that.length()) {
 			for (E element : this) {
 				if (count(this, element) != count(that, element)) {
@@ -53,7 +57,7 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 		}
 	}
 
-	public boolean sameAs(BaseDelegate<E> that) {
+	public boolean sameAs(BaseDelegate<?> that) {
 		if (this.length() != that.length()) {
 			return false;
 		} else {
@@ -66,9 +70,9 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 		}
 	}
 
-	private int count(Iterable<E> iterable, E element) {
+	private int count(Iterable<?> iterable, Object element) {
 		int result = 0;
-		for (E e : iterable) {
+		for (Object e : iterable) {
 			if (e == null) {
 				if (element == null) {
 					result++;
@@ -111,7 +115,7 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 	}
 
 	@Override
-	public void assign(Iterable<E> iterable) {
+	public void assign(Iterable<? extends E> iterable) {
 		delegator.clear(); // note that a null iterable represents an empty box
 		for (E element : iterable) {
 			// note that assign cannot be defined in
@@ -128,7 +132,10 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 
 	@Override
 	public void remove(E element) {
-		delegator.removeAt(indexOf(element));
+		int index = indexOf(element);
+		if (index >= 0) {
+			delegator.removeAt(index);
+		}
 	}
 
 	@Override
@@ -158,14 +165,21 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 		if (observer == null) {
 			throw new IllegalArgumentException("An observer cannot be null ");
 		}
+		observer = Observers.intercept(observer);
 		if (!observers.contains(observer)) {
 			observers.add(observer);
+			ObserverTracker.observerAdded(this, observer);
 		}
 	}
 
 	@Override
 	public void removeObserver(IObserver<?> observer) {
-		observers.remove(observer);
+		if (observer != null) {
+			observer = Observers.intercept(observer);
+			if (observers.remove(observer)) {
+				ObserverTracker.observerRemoved(this, observer);
+			}
+		}
 	}
 
 	@Override
@@ -258,6 +272,15 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 		 * @see IOne#clear(Object)
 		 */
 		void clear(E newDefaultElement);
+
+		/**
+		 * Queries whether the {@link IOne one} is defaulted.
+		 * 
+		 * @return whether I am in the default (unset) state
+		 * 
+		 * @see IOne#isDefault()
+		 */
+		boolean isDefault();
 	}
 
 	/**
@@ -278,6 +301,85 @@ public abstract class BaseDelegate<E> implements IReadable<E>, IWritable<E>, IOb
 		public void clear(E newDefaultElement) {
 			throw new UnsupportedOperationException("clear(E)");
 		}
+		
+		@Override
+		public int length() {
+			return 1; // Ones always have length 1, even if default- or null-valued
+		}
+		
+		@Override
+		public void assign(Iterable<? extends E> iterable) {
+			if ((iterable instanceof IOne<?>) && ((IOne<?>)iterable).isDefault()) {
+				clear();
+			} else {
+				super.assign(iterable);
+			}
+		}
+
+		@Override
+		public E get(int index) {
+			return read();
+		}
+
+		protected abstract E read();
+
+		@Override
+		public Iterator<E> iterator() {
+			return Collections.singletonList(get(0)).iterator();
+		}
+
+		@Override
+		public void add(int index, E element) {
+			// Only the zero position of a 'one' has significance
+			if (index == 0) {
+				// All 'one' assignments are semantically set operations
+				set(index, element);
+			}
+		}
+
+		@Override
+		public void removeAt(int index) {
+			// Only the zero position of a 'one' has significance
+			if ((index == 0) && !isDefault()) {
+				// All 'one' assignments are semantically set operations
+				set(0, getDefaultElement());
+			}
+		}
+
+		@Override
+		public void set(int index, E element) {
+			// Only the zero position of a 'one' has significance
+			if (index == 0) {
+				E oldElement = read();
+
+				if (!Objects.equals(oldElement, element)) {
+					write(element);
+					fireReplaced(index, element, oldElement);
+				}
+			}
+		}
+
+		protected abstract void write(E element);
+
+		@Override
+		public void move(int newIndex, int oldIndex) {
+			if (newIndex != 0) {
+				// Only the zero position exists in a 'one'
+				throw new IndexOutOfBoundsException(String.valueOf(newIndex));
+			}
+			if (oldIndex != 0) {
+				// Only the zero position exists in a 'one'
+				throw new IndexOutOfBoundsException(String.valueOf(oldIndex));
+			}
+
+			// No-op
+		}
+
+		@Override
+		public boolean isDefault() {
+			return Objects.equals(read(), getDefaultElement());
+		}
+
 	}
 	
 }

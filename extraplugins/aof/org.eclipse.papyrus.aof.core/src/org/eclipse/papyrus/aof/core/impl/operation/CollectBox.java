@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstraints;
+import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IObserver;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
@@ -69,6 +70,11 @@ public class CollectBox<E, R> extends Operation<R> {
 			// backward observation
 			registerObservation(getResult(), new ResultObserver());
 		}
+	}
+	
+	@Override
+	public IFactory getFactory() {
+		return sourceBox.getFactory();
 	}
 
 	@Override

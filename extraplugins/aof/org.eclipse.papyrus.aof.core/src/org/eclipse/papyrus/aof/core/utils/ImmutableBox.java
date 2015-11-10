@@ -21,6 +21,7 @@ import org.eclipse.papyrus.aof.core.ConstraintsKind;
 import org.eclipse.papyrus.aof.core.IBag;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstraints;
+import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IObserver;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IOption;
@@ -38,8 +39,8 @@ import org.eclipse.papyrus.aof.core.impl.ListDelegate;
 class ImmutableBox<E> extends Box<E> {
 	private final IConstraints constraints;
 
-	ImmutableBox(IConstraints constraints, Iterable<? extends E> elements) {
-		super();
+	ImmutableBox(IFactory factory, IConstraints constraints, Iterable<? extends E> elements) {
+		super(factory);
 
 		this.constraints = constraints;
 
@@ -69,45 +70,45 @@ class ImmutableBox<E> extends Box<E> {
 	}
 
 	@SafeVarargs
-	static <E> IBox<E> create(IConstraints constraints, E... elements) {
-		return create(constraints, Arrays.asList(elements));
+	static <E> IBox<E> create(IFactory factory, IConstraints constraints, E... elements) {
+		return create(factory, constraints, Arrays.asList(elements));
 	}
 
-	static <E> IBox<E> create(IConstraints constraints, final Iterable<? extends E> elements) {
+	static <E> IBox<E> create(final IFactory factory, IConstraints constraints, final Iterable<? extends E> elements) {
 		return new ConstraintsSwitch<ImmutableBox<E>>() {
 			@Override
 			public ImmutableBox<E> caseOne(IConstraints one) {
-				return new ImmutableOne<E>(elements);
+				return new ImmutableOne<E>(factory, elements);
 			}
 
 			@Override
 			public ImmutableBox<E> caseOption(IConstraints option) {
-				return new ImmutableOption<E>(elements);
+				return new ImmutableOption<E>(factory, elements);
 			}
 
 			@Override
 			public ImmutableBox<E> caseSet(IConstraints set) {
-				return new ImmutableSet<E>(elements);
+				return new ImmutableSet<E>(factory, elements);
 			}
 
 			@Override
 			public ImmutableBox<E> caseOrderedSet(IConstraints orderedSet) {
-				return new ImmutableOrderedSet<E>(elements);
+				return new ImmutableOrderedSet<E>(factory, elements);
 			}
 
 			@Override
 			public ImmutableBox<E> caseSequence(IConstraints sequence) {
-				return new ImmutableSequence<E>(elements);
+				return new ImmutableSequence<E>(factory, elements);
 			}
 
 			@Override
 			public ImmutableBox<E> caseBag(IConstraints bag) {
-				return new ImmutableBag<E>(elements);
+				return new ImmutableBag<E>(factory, elements);
 			}
 
 			@Override
 			public ImmutableBox<E> defaultCase(IConstraints constraints) {
-				return new ImmutableBox<E>(constraints, elements);
+				return new ImmutableBox<E>(factory, constraints, elements);
 			}
 
 		}.doSwitch(constraints);
@@ -128,8 +129,8 @@ class ImmutableBox<E> extends Box<E> {
 	}
 
 	@Override
-	public final void assign(Iterable<E> iterable) {
-		throw new UnsupportedOperationException("assign(Iterable<E>)"); //$NON-NLS-1$
+	public final void assign(Iterable<? extends E> iterable) {
+		throw new UnsupportedOperationException("assign(Iterable<? extends E>)"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -191,9 +192,9 @@ class ImmutableBox<E> extends Box<E> {
 	// Nested types
 	//
 
-	private static class ImmutableSingleton<E> extends ImmutableBox<E> implements ISingleton<E> {
-		ImmutableSingleton(IConstraints constraints, Iterable<? extends E> elements) {
-			super(constraints, elements);
+	private static class ImmutableSingleton<E> extends ImmutableBox<E>implements ISingleton<E> {
+		ImmutableSingleton(IFactory factory, IConstraints constraints, Iterable<? extends E> elements) {
+			super(factory, constraints, elements);
 		}
 
 		@Override
@@ -207,9 +208,9 @@ class ImmutableBox<E> extends Box<E> {
 		}
 	}
 
-	private static final class ImmutableOne<E> extends ImmutableSingleton<E> implements IOne<E> {
-		ImmutableOne(Iterable<? extends E> elements) {
-			super(IConstraints.ONE, elements);
+	private static final class ImmutableOne<E> extends ImmutableSingleton<E>implements IOne<E> {
+		ImmutableOne(IFactory factory, Iterable<? extends E> elements) {
+			super(factory, IConstraints.ONE, elements);
 		}
 
 		@SuppressWarnings("unchecked")
@@ -224,35 +225,42 @@ class ImmutableBox<E> extends Box<E> {
 			throw new UnsupportedOperationException("clear"); //$NON-NLS-1$
 		}
 
+		@SuppressWarnings("unchecked")
+		@Override
+		public boolean isDefault() {
+			// This cast is safe by construction
+			return ((BaseDelegate.IOneDelegate<E>) getDelegate()).isDefault();
+		}
+
 	}
 
-	private static final class ImmutableOption<E> extends ImmutableSingleton<E> implements IOption<E> {
-		ImmutableOption(Iterable<? extends E> elements) {
-			super(IConstraints.OPTION, elements);
+	private static final class ImmutableOption<E> extends ImmutableSingleton<E>implements IOption<E> {
+		ImmutableOption(IFactory factory, Iterable<? extends E> elements) {
+			super(factory, IConstraints.OPTION, elements);
 		}
 	}
 
-	private static final class ImmutableSet<E> extends ImmutableBox<E> implements ISet<E> {
-		ImmutableSet(Iterable<? extends E> elements) {
-			super(IConstraints.SET, elements);
+	private static final class ImmutableSet<E> extends ImmutableBox<E>implements ISet<E> {
+		ImmutableSet(IFactory factory, Iterable<? extends E> elements) {
+			super(factory, IConstraints.SET, elements);
 		}
 	}
 
-	private static final class ImmutableOrderedSet<E> extends ImmutableBox<E> implements IOrderedSet<E> {
-		ImmutableOrderedSet(Iterable<? extends E> elements) {
-			super(IConstraints.ORDERED_SET, elements);
+	private static final class ImmutableOrderedSet<E> extends ImmutableBox<E>implements IOrderedSet<E> {
+		ImmutableOrderedSet(IFactory factory, Iterable<? extends E> elements) {
+			super(factory, IConstraints.ORDERED_SET, elements);
 		}
 	}
 
-	private static final class ImmutableSequence<E> extends ImmutableBox<E> implements ISequence<E> {
-		ImmutableSequence(Iterable<? extends E> elements) {
-			super(IConstraints.SEQUENCE, elements);
+	private static final class ImmutableSequence<E> extends ImmutableBox<E>implements ISequence<E> {
+		ImmutableSequence(IFactory factory, Iterable<? extends E> elements) {
+			super(factory, IConstraints.SEQUENCE, elements);
 		}
 	}
 
-	private static final class ImmutableBag<E> extends ImmutableBox<E> implements IBag<E> {
-		ImmutableBag(Iterable<? extends E> elements) {
-			super(IConstraints.BAG, elements);
+	private static final class ImmutableBag<E> extends ImmutableBox<E>implements IBag<E> {
+		ImmutableBag(IFactory factory, Iterable<? extends E> elements) {
+			super(factory, IConstraints.BAG, elements);
 		}
 	}
 }

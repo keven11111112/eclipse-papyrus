@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.aof.core.tests.matchers;
 
 import org.eclipse.papyrus.aof.core.IBox;
+import org.eclipse.papyrus.aof.core.IConstraints;
 import org.hamcrest.Matcher;
 
 /**
@@ -27,5 +28,9 @@ public class BoxMatchers {
 
 	public static <E> Matcher<IBox<E>> sameAs(IBox<E> box) {
 		return new SameAs<E>(box);
+	}
+
+	public static Matcher<IConstraints> matches(IConstraints constraints) {
+		return new Matches(constraints);
 	}
 }

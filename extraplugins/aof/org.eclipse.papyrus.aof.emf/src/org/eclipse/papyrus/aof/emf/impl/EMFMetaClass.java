@@ -20,17 +20,23 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IMetaClass;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
+import org.eclipse.papyrus.aof.core.impl.BaseFactory;
 import org.eclipse.papyrus.aof.core.impl.BaseMetaClass;
-import org.eclipse.papyrus.aof.core.impl.utils.cache.IUnaryCache;
-import org.eclipse.papyrus.aof.core.impl.utils.cache.WeakKeysWeakValuesUnaryCache;
-import org.eclipse.papyrus.aof.emf.EMFFactory;
 
 public class EMFMetaClass<C extends EObject> extends BaseMetaClass<C> {
 
-	private EClass ecoreClass;
+	private final EClass ecoreClass;
 
-	public EMFMetaClass(EClass ecoreClass) {
+	private Map<EStructuralFeature, PropertyAccessor<?, C>> cache = new HashMap<>();
+
+	public EMFMetaClass(BaseFactory factory, EClass ecoreClass) {
+		super(factory);
+
 		this.ecoreClass = ecoreClass;
+	}
+
+	protected final EClass getEClass() {
+		return ecoreClass;
 	}
 
 	@Override
@@ -61,27 +67,42 @@ public class EMFMetaClass<C extends EObject> extends BaseMetaClass<C> {
 		}
 	}
 
-	private Map<EStructuralFeature, PropertyAccessor<?,C>> cache = new HashMap<EStructuralFeature, PropertyAccessor<?,C>>();
-
 	@Override
-	public <B> IUnaryFunction<C, IBox<B>> getPropertyAccessor(Object property) {
-		EStructuralFeature feature;
+	public final <B> IUnaryFunction<C, IBox<B>> getPropertyAccessor(final Object property) {
+		return getPropertyAccessor(property, resolveStructuralFeature(property));
+	}
+
+	protected EStructuralFeature resolveStructuralFeature(final Object property) {
+		EStructuralFeature result;
+
 		if (property instanceof EStructuralFeature) {
-			feature = (EStructuralFeature) property;
+			result = (EStructuralFeature) property;
 		} else if (property instanceof String) {
-			feature = ecoreClass.getEStructuralFeature((String) property);
-			if (feature == null) {
+			result = ecoreClass.getEStructuralFeature((String) property);
+			if (result == null) {
 				throw new IllegalArgumentException("Property " + property + " not defined in class " + ecoreClass);
 			}
 		} else {
 			throw new IllegalArgumentException("Property " + property + " is neither a Java String, nor an EMF EStructuralFeature");
 		}
-		PropertyAccessor<B,C> ret = (PropertyAccessor<B,C>) cache.get(feature);
-		if (ret == null) {
-			ret = new PropertyAccessor<B,C>(feature);
-			cache.put(feature, ret);
+
+		return result;
+	}
+
+	protected <B> PropertyAccessor<B, C> getPropertyAccessor(final Object property, final EStructuralFeature feature) {
+		@SuppressWarnings("unchecked")
+		PropertyAccessor<B, C> result = (PropertyAccessor<B, C>) cache.get(property);
+
+		if (result == null) {
+			result = createPropertyAccessor(property, feature);
+			cache.put(feature, result);
 		}
-		return ret;
+
+		return result;
+	}
+
+	protected <B> PropertyAccessor<B, C> createPropertyAccessor(Object property, EStructuralFeature feature) {
+		return new PropertyAccessor<>(feature);
 	}
 
 	// Object

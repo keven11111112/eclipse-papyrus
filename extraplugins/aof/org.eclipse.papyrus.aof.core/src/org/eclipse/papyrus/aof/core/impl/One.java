@@ -11,14 +11,19 @@
  *******************************************************************************/
 package org.eclipse.papyrus.aof.core.impl;
 
-import org.eclipse.papyrus.aof.core.AOFFactory;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstraints;
+import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 
 public class One<E> extends Singleton<E>implements IOne<E> {
 
+	public One(IFactory factory) {
+		super(factory);
+	}
+	
 	private E defaultElement;
+	private boolean isDefault = true;
 
 	@Override
 	public E getDefaultElement() {
@@ -34,6 +39,22 @@ public class One<E> extends Singleton<E>implements IOne<E> {
 	@Override
 	public void clear() {
 		add(defaultElement);
+		isDefault = true;
+	}
+	
+	@Override
+	public void assign(Iterable<? extends E> iterable) {
+		super.assign(iterable);
+		unsetDefault();
+	}
+
+	@Override
+	public boolean isDefault() {
+		return isDefault;
+	}
+
+	void unsetDefault() {
+		isDefault = false;
 	}
 
 	// IConstrained
@@ -47,9 +68,7 @@ public class One<E> extends Singleton<E>implements IOne<E> {
 
 	@Override
 	public void remove(E element) {
-		if (contains(element)) {
-			removeAt(0);
-		}
+		removeAt(0);
 	}
 
 	@Override
@@ -57,14 +76,33 @@ public class One<E> extends Singleton<E>implements IOne<E> {
 		if (index != 0) {
 			throw new IndexOutOfBoundsException("Index " + index + " should be 0");
 		}
-		clear();
+		getDelegate().set(0, getDefaultElement());
+		unsetDefault();
+	}
+
+	@Override
+	public void add(E element) {
+		unsetDefault();
+		super.add(element);
+	}
+
+	@Override
+	public void set(int index, E element) {
+		unsetDefault();
+		super.set(index, element);
+	}
+
+	@Override
+	public void move(int newIndex, int oldIndex) {
+		unsetDefault();
+		super.move(newIndex, oldIndex);
 	}
 
 	// IBox
 
 	@Override
 	public IBox<E> snapshot() {
-		IBox<E> box = AOFFactory.INSTANCE.createOne(getDefaultElement());
+		IBox<E> box = getFactory().createOne(getDefaultElement());
 		box.assign(this);
 		return box;
 	}
@@ -79,8 +117,8 @@ public class One<E> extends Singleton<E>implements IOne<E> {
 	public static class Delegator<E> extends One<E> {
 		private BaseDelegate.IOneDelegate<E> delegate;
 
-		public Delegator() {
-			super();
+		public Delegator(IFactory factory) {
+			super(factory);
 		}
 
 		/**
@@ -122,6 +160,11 @@ public class One<E> extends Singleton<E>implements IOne<E> {
 		@Override
 		public void clear(E newDefaultElement) {
 			getOneDelegate().clear(newDefaultElement);
+		}
+
+		@Override
+		public boolean isDefault() {
+			return getOneDelegate().isDefault();
 		}
 	}
 }

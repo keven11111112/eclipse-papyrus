@@ -39,6 +39,14 @@ package org.eclipse.papyrus.aof.core;
  */
 public interface IBox<E> extends IConstrained, IReadable<E>, IWritable<E>, IObservable<E> {
 
+	/**
+	 * Obtains the AOF factory that created me.  This represents the AOF domain that
+	 * governs me.
+	 * 
+	 * @return my factory
+	 */
+	IFactory getFactory();
+	
 	// Comparison
 
 	/**
@@ -54,7 +62,7 @@ public interface IBox<E> extends IConstrained, IReadable<E>, IWritable<E>, IObse
 	 *            box to be compared with this box
 	 * @return true if this box is exactly the same as that box, false otherwise
 	 */
-	boolean sameAs(IBox<E> that);
+	boolean sameAs(IBox<?> that);
 
 	// Binding
 
@@ -103,6 +111,26 @@ public interface IBox<E> extends IConstrained, IReadable<E>, IWritable<E>, IObse
 	 */
 	IBinding<E> bind(IBox<E> that);
 
+	/**
+	 * <p>
+	 * Conditionally binding from {@code that} box.  This is like a {@linkplain #bind(IBox) binding},
+	 * except that:
+	 * </p>
+	 * <ul>
+	 * <li>it is one-way:  values are only ever propagated from {@code that} box to myself</li> 
+	 * <li>it is conditional:  the binding is enabled when and only when I satisfy the given {@code condition}</li> 
+	 * </ul>
+	 * <p>
+	 * This is particularly useful for configuring initialization:  bindings that only fire when the bound box
+	 * is {@link #isEmpty() empty}, for example.
+	 * </p>
+	 * 
+	 * @param that a box to conditionally bind to me
+	 * @param condition a predicate that determines, when evaluated on me, whether the binding is active
+	 * 
+	 * @return the conditional binding, which may be used to further control the behavior (such as "manual override")
+	 */
+	<F extends E> IConditionalBinding<E, F> bindConditionally(IBox<F> that, IUnaryFunction<? super IBox<? extends E>, Boolean> condition);
 
 	// Debug operations
 

@@ -23,7 +23,7 @@ import org.eclipse.papyrus.aof.core.IObserver;
 import org.eclipse.papyrus.aof.core.impl.BaseDelegate;
 import org.eclipse.papyrus.aof.core.impl.utils.Equality;
 
-public class GetSetFeatureDelegate<E> extends FeatureDelegate<E>implements BaseDelegate.IOneDelegate<E> {
+public class GetSetFeatureDelegate<E> extends FeatureDelegate<E> implements BaseDelegate.IOneDelegate<E> {
 
 	public GetSetFeatureDelegate(EObject object, EStructuralFeature feature) {
 		super(object, feature);
@@ -112,6 +112,12 @@ public class GetSetFeatureDelegate<E> extends FeatureDelegate<E>implements BaseD
 			throw new UnsupportedOperationException("clear(E)");
 		}
 		getFeature().setDefaultValue(newDefaultElement);
+		clear();
+	}
+
+	@Override
+	public boolean isDefault() {
+		return !getObject().eIsSet(getFeature());
 	}
 
 	// IObservable
