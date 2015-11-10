@@ -165,14 +165,20 @@
    <feature url="features/org.eclipse.papyrus.umldi.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.umldi.feature.source" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.dd.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.req.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.req.feature" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.req"/>
+   <feature url="features/org.eclipse.papyrus.req.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.req.feature.source" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.extra.uml.diagram.linklf.feature_1.1.3.qualifier.jar" id="org.eclipse.papyrus.extra.uml.diagram.linklf.feature" version="1.1.3.qualifier">
-      <category name="org.eclipse.papyrus.uml.diagram.linklf.category"/>
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.extra.uml.diagram.linklf.feature.source_1.1.3.qualifier.jar" id="org.eclipse.papyrus.extra.uml.diagram.linklf.feature.source" version="1.1.3.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.revisiontool.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.revisiontool.feature" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.revision"/>
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.revisiontool.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.revisiontool.feature.source" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <bundle id="org.eclipse.papyrusrt.umlrt.profile" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
@@ -206,21 +212,6 @@
    <category-def name="org.eclipse.papyrus.extra.dd.category" label="Papyrus Diagram Definition">
       <description>
          Diagram Definition Category
-      </description>
-   </category-def>
-   <category-def name="org.eclipse.papyrus.extra.req" label="Papyrus Req">
-      <description>
-         Papyrus Req is a module to manage SysML requirements
-      </description>
-   </category-def>
-   <category-def name="org.eclipse.papyrus.uml.diagram.linklf.category" label="Diagram Link Look And Feel">
-      <description>
-         Diagram Link Look And Feel enhances the behavior of the links in Papyrus Diagram
-      </description>
-   </category-def>
-   <category-def name="org.eclipse.papyrus.extra.revision" label="Papyrus Revision">
-      <description>
-         This module  adds the mode revision inside Papyrus.
       </description>
    </category-def>
 </site>
