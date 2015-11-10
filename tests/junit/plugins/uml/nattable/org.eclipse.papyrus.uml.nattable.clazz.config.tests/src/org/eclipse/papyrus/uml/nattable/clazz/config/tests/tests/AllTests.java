@@ -85,6 +85,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		EditInvalidPastedText_V1_V3_V1.class,
 		OpenTableTest.class,
 		OpenAndDeleteTest.class,
+		Bug_481017_ReloadEditorTest.class,
 
 		SortAxisClassTreeTableTest.class,
 		EditAxisClassTreeTableTest.class,

@@ -1174,6 +1174,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.tableEditingDomain = null;
 		this.contextEditingDomain = null;
 		this.tableContext = null;
+          	if(this.natTable!=null){
+			this.natTable.dispose();
+                }
 	}
 
 	public EObject getTableContext() {
