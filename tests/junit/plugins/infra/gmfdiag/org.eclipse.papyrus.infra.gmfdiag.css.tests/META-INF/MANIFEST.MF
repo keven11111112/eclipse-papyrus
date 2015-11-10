@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.tests,
  org.eclipse.papyrus.infra.gmfdiag.css.tests.tests
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.tests
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.tests;singleton:=true
 Bundle-Version: 1.1.3.qualifier
 Bundle-Name: CSS Tests
 Require-Bundle: org.eclipse.ui,

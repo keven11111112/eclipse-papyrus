@@ -22,6 +22,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		CSSClassProviderTest.class,
 		CSSStylesheetTest.class,
 		CSSModelStylesheetTest.class,
+		CSSNamedStyleTest.class,
 		CSSCompartmentsTests.class,
 		CSSSupportTest.class,
 		CSSProjectStylesheetsTest.class,
