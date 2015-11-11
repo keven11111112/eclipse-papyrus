@@ -20,20 +20,19 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
 
 /**
  * Mapping of a discrete style attached to a view.
  */
 @Singleton
-public class StyleMapping extends EMFSyncMapping<Style> {
+public class StyleMapping extends NotationMapping<Style> {
 	@Inject
 	public StyleMapping(IFactory factory) {
 		super(NotationPackage.Literals.STYLE, factory);
 	}
 
 	@Override
-	protected void mapProperties(IOne<Style> from, IOne<Style> to) {
+	protected void doMapProperties(IOne<Style> from, IOne<Style> to) {
 		from.get().eClass().getEAllAttributes().stream().forEach(attr -> bindProperty(from, to, attr));
 	}
 

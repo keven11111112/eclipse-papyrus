@@ -34,7 +34,7 @@ import com.google.inject.util.Modules;
  * to configure the {@linkplain IMapping mapping rules}, {@linkplain ICorrespondenceResolver correspondences},
  * and other parameters.
  */
-public class MappingFactory {
+public class MappingFactory implements IMappingProvider {
 	private final Injector guice;
 
 	public MappingFactory() {
@@ -50,6 +50,7 @@ public class MappingFactory {
 			protected void configure() {
 				// Make myself available for injection
 				bind(MappingFactory.class).toInstance(MappingFactory.this);
+				bind(IMappingProvider.class).toInstance(MappingFactory.this);
 			}
 		});
 
@@ -57,42 +58,17 @@ public class MappingFactory {
 		userModules.add(module);
 		Collections.addAll(userModules, more);
 
-		guice = Guice.createInjector(Modules.override(myModules).with(userModules));
+		guice = Guice.createInjector(Modules.override(userModules).with(myModules));
 	}
 
-	/**
-	 * Obtains a mapping relation between objects of the specified
-	 * {@code fromType} and {@code toType}.
-	 * 
-	 * @param fromType
-	 *            the mapping source type
-	 * @param toType
-	 *            the mapping target type
-	 * 
-	 * @return the mapping
-	 */
+	@Override
 	public final <F, T> IMapping<F, T> getMapping(Type fromType, Type toType) {
 		return getInstance(IMapping.class, fromType, toType);
 	}
 
+	@Override
 	public final boolean hasMapping(Type fromType, Type toType) {
 		return !guice.findBindingsByType(GuiceUtil.getTypeLiteral(IMapping.class, fromType, toType)).isEmpty();
-	}
-
-	/**
-	 * Obtains a mapping relation between objects of the specified {@code type}.
-	 * 
-	 * @param type
-	 *            the mapping type
-	 * 
-	 * @return the mapping
-	 */
-	public final <E> IMapping<E, E> getMapping(Type type) {
-		return getMapping(type, type);
-	}
-
-	public final boolean hasMapping(Type type) {
-		return hasMapping(type, type);
 	}
 
 	/**

@@ -52,8 +52,8 @@ public class NodeMapping extends ViewMapping<Node> {
 	}
 
 	@Override
-	protected void mapProperties(IOne<Node> from, IOne<Node> to) {
-		super.mapProperties(from, to);
+	protected void doMapProperties(IOne<Node> from, IOne<Node> to) {
+		super.doMapProperties(from, to);
 
 		mapCorresponding(from, to, NotationPackage.Literals.LOCATION, locationCorrespondence, location);
 		mapCorresponding(from, to, NotationPackage.Literals.SIZE, sizeCorrespondence, size);

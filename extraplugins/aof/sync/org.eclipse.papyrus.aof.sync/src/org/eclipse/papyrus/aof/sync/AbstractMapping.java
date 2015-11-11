@@ -16,7 +16,7 @@ package org.eclipse.papyrus.aof.sync;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 import javax.inject.Inject;
 
@@ -63,6 +63,10 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 
 	protected final IFactory getToFactory() {
 		return toFactory;
+	}
+
+	protected final IMappingContext getContext() {
+		return context;
 	}
 
 	@Override
@@ -145,17 +149,21 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 */
 	protected <P> IPair<IBox<P>, IBox<P>> bindProperty(IBox<? extends F> fromBox, Object fromIdentifiedBy, IBox<? extends T> toBox, Object toIdentifiedBy) {
 		IPair<IBox<P>, IBox<P>> result = getToFactory().createPair(property(fromBox, fromType, fromIdentifiedBy), property(toBox, toType, toIdentifiedBy));
-		autoDisable(toBox, result.getRight().bind(result.getLeft()));
+
+		if (isSyncEnabled(toBox, toIdentifiedBy)) {
+			autoDisable(toBox, toIdentifiedBy, result.getRight().bind(result.getLeft()));
+		}
+
 		return result;
 	}
 
-	protected Consumer<IBox<? extends T>> getAutoDisableHook() {
+	protected BiConsumer<IBox<? extends T>, Object> getAutoDisableHook() {
 		return null;
 	}
 
-	protected <E> IBinding<E> autoDisable(IBox<? extends T> toBox, IBinding<E> binding) {
-		Consumer<IBox<? extends T>> hook = getAutoDisableHook();
-		Runnable onDisable = (hook == null) ? null : () -> hook.accept(toBox);
+	protected <E> IBinding<E> autoDisable(IBox<? extends T> toBox, Object userData, IBinding<E> binding) {
+		BiConsumer<IBox<? extends T>, Object> hook = getAutoDisableHook();
+		Runnable onDisable = (hook == null) ? null : () -> hook.accept(toBox, userData);
 		return autoDisable(binding, onDisable);
 	}
 
@@ -166,7 +174,9 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 			binding.isEnabled().addObserver(new DefaultObserver<Boolean>() {
 				@Override
 				public void replaced(int index, Boolean newElement, Boolean oldElement) {
-					if (Boolean.FALSE.equals(newElement) && Boolean.TRUE.equals(oldElement)) {
+					if (Boolean.FALSE.equals(newElement) && Boolean.TRUE.equals(oldElement)
+							&& !getContext().isSuppressAutoDisableHooks()) {
+
 						onDisable.run();
 					}
 				}
@@ -223,8 +233,16 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 */
 	protected <P> IPair<IBox<P>, IBox<P>> bindPropertyValue(IBox<P> fromBox, IBox<? extends T> toBox, Object ofType, Object identifiedBy) {
 		IPair<IBox<P>, IBox<P>> result = getToFactory().createPair(fromBox, property(toBox, ofType, identifiedBy));
-		autoDisable(toBox, result.getRight().bind(result.getLeft()));
+
+		if (isSyncEnabled(toBox, identifiedBy)) {
+			autoDisable(toBox, identifiedBy, result.getRight().bind(result.getLeft()));
+		}
+
 		return result;
+	}
+
+	protected boolean isSyncEnabled(IBox<? extends T> toBox, Object identifiedBy) {
+		return true;
 	}
 
 	/**
@@ -351,12 +369,12 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 		IBox<D> fromElements = property(fromContext, fromType, fromProperty);
 		IBox<E> toElements = property(toContext, toType, toProperty);
 
-		return mapCorresponding(fromElements, toElements, toContext, resolvedWith, mappedWith);
+		return mapCorresponding(fromElements, toElements, toContext, toProperty, resolvedWith, mappedWith);
 	}
 
 	/**
 	 * Maps the objects in some {@code property} from one contextual object to another, according to some
-	 * biject correspondence relation, and optionally mapping them recursively.
+	 * bijective correspondence relation, and optionally mapping them recursively.
 	 * 
 	 * @param fromElements
 	 *            a box of elements from the mapping source
@@ -364,6 +382,8 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 *            a box of elements in the mapping target
 	 * @param toContext
 	 *            a boxed object that is the mapping target
+	 * @param toProperty
+	 *            the property of the {@code toContext} object that is the mapping target
 	 * @param resolvedWith
 	 *            a bijective correspondence relation between objects in the {@code fromElements}
 	 *            and objects in the same {@code toElements} of the {@code toContext}
@@ -374,14 +394,16 @@ public abstract class AbstractMapping<F, T> implements IMapping<F, T> {
 	 * @return a pairing of the the boxed objects that are mapped
 	 */
 	protected <D, E, U extends T> IBox<? extends IPair<IOne<D>, IOne<E>>> mapCorresponding(IBox<D> fromElements, IBox<E> toElements,
-			IOne<U> toContext, ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<D, E> mappedWith) {
+			IOne<U> toContext, Object toProperty, ICorrespondenceResolver<D, E, ? super U> resolvedWith, IMapping<D, E> mappedWith) {
 
 		IBox<E> mapping = fromElements.collectTo(
 				(D d) -> getCorresponding(d, toContext.get(), resolvedWith));
 
 		// Bind the elements before mapping them, so that, if the property is a containment
 		// reference, the they will be attached to the model before we recursively map anything
-		autoDisable(toContext, toElements.bind(mapping));
+		if (isSyncEnabled(toContext, toProperty)) {
+			autoDisable(toContext, toProperty, toElements.bind(mapping));
+		}
 
 		IBox<? extends IPair<IOne<D>, IOne<E>>> result;
 

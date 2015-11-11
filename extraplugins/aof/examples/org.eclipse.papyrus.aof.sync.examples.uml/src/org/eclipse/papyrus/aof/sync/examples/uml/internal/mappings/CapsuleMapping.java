@@ -16,6 +16,7 @@ package org.eclipse.papyrus.aof.sync.examples.uml.internal.mappings;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
@@ -48,12 +49,13 @@ public class CapsuleMapping extends NamedElementMapping<Class> {
 	protected void mapProperties(IOne<Class> parentCapsule, IOne<Class> childCapsule) {
 		// Don't call super because we don't want to synchronize the names
 
-		IBox<StateMachine> parentMachine = property(parentCapsule, UMLPackage.Literals.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR).select(StateMachine.class);
-		IBox<StateMachine> childMachine = property(childCapsule, UMLPackage.Literals.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR).select(StateMachine.class);
+		EReference classifierBehavior = UMLPackage.Literals.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR;
+		IBox<StateMachine> parentMachine = property(parentCapsule, classifierBehavior).select(StateMachine.class);
+		IBox<StateMachine> childMachine = property(childCapsule, classifierBehavior).select(StateMachine.class);
 
 		IBox<StateMachine> mapping = parentMachine.collectTo(m -> getCorresponding(m, childCapsule.get()));
 
-		autoDisable(childCapsule, childMachine.bind(mapping));
+		autoDisable(childCapsule, classifierBehavior, childMachine.bind(mapping));
 	}
 
 	protected StateMachine getCorresponding(StateMachine superMachine, Class subCapsule) {

@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -327,5 +328,27 @@ public class ViewUtil {
 		} else {
 			view.unsetElement();
 		}
+	}
+
+	public <V extends View> V getAncestor(EObject object, Class<V> ofType) {
+		V result = null;
+
+		for (EObject scan = object; scan != null; scan = scan.eContainer()) {
+			if (ofType.isInstance(scan)) {
+				result = ofType.cast(scan);
+				break;
+			}
+		}
+
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public <S extends Style> S getStyle(View view, EClass type, boolean create) {
+		Style result = view.getStyle(type);
+		if ((result == null) && create) {
+			result = view.createStyle(type);
+		}
+		return (S) result;
 	}
 }

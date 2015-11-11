@@ -58,6 +58,13 @@ public interface IMappingContext {
 	void close();
 
 	/**
+	 * Obtains a provider of mappings in this context.
+	 * 
+	 * @return the mapping provider
+	 */
+	IMappingProvider getMappingProvider();
+
+	/**
 	 * Runs the given {@code instance} of a {@linkplain IMapping mapping} in context.
 	 * Nested mappings (consequents) that are run recursively are captured in this {@code instance}.
 	 * 
@@ -142,4 +149,24 @@ public interface IMappingContext {
 	default <F, G, T> IPair<T, ObserverTracker> call(F input1, G input2, BiFunction<? super F, ? super G, ? extends T> function) {
 		return call(() -> function.apply(input1, input2));
 	}
+
+	/**
+	 * Obtains all of the mapping instances in this context map something to the given
+	 * {@code target} object.
+	 * 
+	 * @param target
+	 *            the target of one or more mappings (hopefully not more than one of the
+	 *            same {@linkplain IMappingInstance#getType() type})
+	 * 
+	 * @return an immutable iteration of the mappings targeting the object
+	 */
+	<T> Iterable<IMappingInstance<?, ? super T>> getMappingInstances(T target);
+
+	/**
+	 * Queries whether {@linkplain AutoDisableHook auto-disable hooks} should not
+	 * be allowed to fire.
+	 * 
+	 * @return whether auto-disable processing is suppressed
+	 */
+	boolean isSuppressAutoDisableHooks();
 }

@@ -101,7 +101,8 @@ public class NodeMappingTest extends AbstractMappingTest<Node> {
 		// Not the same object
 		assertThat(toLoc, not(fromLoc));
 
-		assertFeature(fromLoc, toLoc, NotationPackage.Literals.LOCATION__X, 42, 17);
+		// Don't override target side first time because that breaks synchronization for the other
+		assertFeature(fromLoc, toLoc, NotationPackage.Literals.LOCATION__X, 42, null);
 		assertFeature(fromLoc, toLoc, NotationPackage.Literals.LOCATION__Y, 42, 17);
 	}
 
@@ -113,8 +114,43 @@ public class NodeMappingTest extends AbstractMappingTest<Node> {
 		// Not the same object
 		assertThat(toSize, not(fromSize));
 
-		assertFeature(fromSize, toSize, NotationPackage.Literals.SIZE__WIDTH, 42, 17);
+		// Don't override target side first time because that breaks synchronization for the other
+		assertFeature(fromSize, toSize, NotationPackage.Literals.SIZE__WIDTH, 42, null);
 		assertFeature(fromSize, toSize, NotationPackage.Literals.SIZE__HEIGHT, 42, 17);
+	}
+
+	@Test
+	public void breakSyncOnLocationOverride() {
+		Location fromLoc = (Location) getFrom().getLayoutConstraint();
+		Location toLoc = (Location) getTo().getLayoutConstraint();
+		Size fromSize = (Size) getFrom().getLayoutConstraint();
+		Size toSize = (Size) getTo().getLayoutConstraint();
+
+		// Not the same object
+		assertThat(toLoc, not(fromLoc));
+
+		// This first one overrides the target side, breaking synchronization
+		assertFeature(fromLoc, toLoc, NotationPackage.Literals.LOCATION__X, 42, 17);
+		assertNotFeature(fromLoc, toLoc, NotationPackage.Literals.LOCATION__Y, 42);
+		assertNotFeature(fromSize, toSize, NotationPackage.Literals.SIZE__WIDTH, 42);
+		assertNotFeature(fromSize, toSize, NotationPackage.Literals.SIZE__HEIGHT, 42);
+	}
+
+	@Test
+	public void breakSyncOnSizeOverride() {
+		Size fromSize = (Size) getFrom().getLayoutConstraint();
+		Size toSize = (Size) getTo().getLayoutConstraint();
+		Location fromLoc = (Location) getFrom().getLayoutConstraint();
+		Location toLoc = (Location) getTo().getLayoutConstraint();
+
+		// Not the same object
+		assertThat(toSize, not(fromSize));
+
+		// This first one overrides the target side, breaking synchronization
+		assertFeature(fromSize, toSize, NotationPackage.Literals.SIZE__WIDTH, 42, 17);
+		assertNotFeature(fromSize, toSize, NotationPackage.Literals.SIZE__HEIGHT, 42);
+		assertNotFeature(fromLoc, toLoc, NotationPackage.Literals.LOCATION__X, 42);
+		assertNotFeature(fromLoc, toLoc, NotationPackage.Literals.LOCATION__Y, 42);
 	}
 
 	@Test

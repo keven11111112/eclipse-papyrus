@@ -87,6 +87,10 @@ public abstract class AbstractBaseMappingTest<F extends EObject, T extends EObje
 		assertFeature(getFrom(), getTo(), feature, forwardValue, reverseValue);
 	}
 
+	/**
+	 * Assert that a feature synchronizes. If {@code reversevalue} is not null, the
+	 * non-synchronization from target to source is verified.
+	 */
 	protected void assertFeature(EObject from, EObject to, EStructuralFeature feature, Object forwardValue, Object reverseValue) {
 		assumeThat(from.eGet(feature), not(forwardValue));
 		assumeThat(to.eGet(feature), is(from.eGet(feature)));
@@ -95,12 +99,22 @@ public abstract class AbstractBaseMappingTest<F extends EObject, T extends EObje
 
 		assertThat(to.eGet(feature), is(forwardValue));
 
-		// The reverse direction does not sync
+		if (reverseValue != null) {
+			// The reverse direction does not sync
+			to.eSet(feature, reverseValue);
 
-		to.eSet(feature, reverseValue);
-
-		assertThat(from.eGet(feature), not(reverseValue));
-		assertThat(from.eGet(feature), is(forwardValue));
+			assertThat(from.eGet(feature), not(reverseValue));
+			assertThat(from.eGet(feature), is(forwardValue));
+		}
 	}
 
+	/** Assert that a feature does not synchronize. */
+	protected void assertNotFeature(EObject from, EObject to, EStructuralFeature feature, Object value) {
+		assumeThat(from.eGet(feature), not(value));
+		assumeThat(to.eGet(feature), is(from.eGet(feature)));
+
+		from.eSet(feature, value);
+
+		assertThat(to.eGet(feature), not(value));
+	}
 }

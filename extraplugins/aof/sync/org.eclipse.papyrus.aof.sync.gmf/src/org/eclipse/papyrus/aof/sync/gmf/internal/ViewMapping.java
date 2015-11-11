@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
@@ -27,13 +28,12 @@ import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.InjectCached;
-import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
 
 /**
  * Abstract mapping of views, taking care of properties such as type (the "visual ID") and the
  * reference to the semantic element.
  */
-abstract class ViewMapping<V extends View> extends EMFSyncMapping<V> {
+abstract class ViewMapping<V extends View> extends NotationMapping<V> {
 
 	@InjectCached
 	private ISyncCorrespondenceResolver<EObject, View> elementCorrespondence;
@@ -50,12 +50,11 @@ abstract class ViewMapping<V extends View> extends EMFSyncMapping<V> {
 	}
 
 	@Override
-	protected void mapProperties(IOne<V> from, IOne<V> to) {
+	protected void doMapProperties(IOne<V> from, IOne<V> to) {
 		mapCorresponding(from, to, NotationPackage.Literals.VIEW__ELEMENT, elementCorrespondence);
 
 		// Ensure the same type
-		autoDisable(to, property(to, NotationPackage.Literals.VIEW__TYPE).bind(
-				property(from, NotationPackage.Literals.VIEW__TYPE)));
+		bindProperty(from, to, NotationPackage.Literals.VIEW__TYPE);
 
 		// One-way synch all inherited (not attached by distinct style objects) style attributes
 		from.get().eClass().getEAllAttributes().stream()
@@ -63,12 +62,13 @@ abstract class ViewMapping<V extends View> extends EMFSyncMapping<V> {
 				.forEach(attr -> bindProperty(from, to, attr));
 
 		// Also attached discrete Style objects such as FontStyle for DecorationNodes
-		IBox<Style> fromStyles = property(from, NotationPackage.Literals.VIEW__STYLES);
+		EReference stylesRef = NotationPackage.Literals.VIEW__STYLES;
+		IBox<Style> fromStyles = property(from, stylesRef);
 		fromStyles = fromStyles.select(this::isStandardStyle);
-		IBox<Style> toStyles = property(to, NotationPackage.Literals.VIEW__STYLES);
+		IBox<Style> toStyles = property(to, stylesRef);
 		toStyles = toStyles.select(this::isStandardStyle);
 
-		mapCorresponding(fromStyles, toStyles, to, styleCorrespondence, styles);
+		mapCorresponding(fromStyles, toStyles, to, stylesRef, styleCorrespondence, styles);
 	}
 
 	boolean isStandardStyle(Style style) {

@@ -13,9 +13,13 @@
 
 package org.eclipse.papyrus.aof.sync;
 
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
+import java.util.stream.StreamSupport;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.eclipse.papyrus.aof.core.IObserver;
@@ -35,13 +39,18 @@ public class MappingContext implements IMappingContext {
 
 	private final AtomicInteger openDepth = new AtomicInteger();
 
-	private final IBinaryCache<IOne<?>, IMapping<?, ?>, IMappingInstance<?, ?>> mappingInstances = new WeakKeysWeakValuesBinaryCache<>();
+	private final IBinaryCache<Object, IMapping<?, ?>, IMappingInstance<?, ?>> mappingInstances = new WeakKeysWeakValuesBinaryCache<>();
 	private final ThreadLocal<IMappingInstance<?, ?>> currentMappingInstance = new ThreadLocal<>();
 
 	private final IUnaryCache<IObserver<?>, IObserver<?>> observerWrappers = new WeakKeysWeakValuesUnaryCache<>();
 
-	public MappingContext() {
+	private final IMappingProvider provider;
+
+	@Inject
+	public MappingContext(IMappingProvider provider) {
 		super();
+
+		this.provider = provider;
 	}
 
 	@Override
@@ -69,11 +78,16 @@ public class MappingContext implements IMappingContext {
 	}
 
 	@Override
+	public IMappingProvider getMappingProvider() {
+		return provider;
+	}
+
+	@Override
 	public <F, T> ObserverTracker run(IMappingInstance<F, T> instance, BiConsumer<? super IOne<F>, ? super IOne<T>> block) {
 		ObserverTracker result;
 
 		// Remember this instance for later ad hoc consequents
-		mappingInstances.put(instance.getLeft(), instance.getType(), instance);
+		mappingInstances.put(instance.getRight().get(), instance.getType(), instance);
 
 		IMappingInstance<?, ?> parent = currentMappingInstance.get();
 		if (parent != null) {
@@ -103,6 +117,25 @@ public class MappingContext implements IMappingContext {
 		}
 
 		return result;
+	}
+
+	@Override
+	public <T> Iterable<IMappingInstance<?, ? super T>> getMappingInstances(T target) {
+		return new Iterable<IMappingInstance<?, ? super T>>() {
+			@Override
+			public Iterator<IMappingInstance<?, ? super T>> iterator() {
+				@SuppressWarnings({ "unchecked", "rawtypes" })
+				Iterator<IMappingInstance<?, ? super T>> result = (Iterator) StreamSupport.stream(mappingInstances.get(target).spliterator(), false)
+						.map(Map.Entry::getValue)
+						.iterator();
+				return result;
+			}
+		};
+	}
+
+	@Override
+	public boolean isSuppressAutoDisableHooks() {
+		return false;
 	}
 
 	//

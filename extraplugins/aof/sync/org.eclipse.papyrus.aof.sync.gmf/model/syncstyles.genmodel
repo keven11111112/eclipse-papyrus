@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2015 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.aof.sync.gmf/src-gen" editDirectory="/org.eclipse.papyrus.aof.sync.gmf.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.aof.sync.gmf.editor/src-gen" modelPluginID="org.eclipse.papyrus.aof.sync.gmf"
+    modelName="SyncStyles" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" commentFormatting="true" testsDirectory="/org.eclipse.papyrus.aof.sync.gmf.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation ../../org.eclipse.papyrus.aof.sync.emf/model/syncmapping.genmodel#//syncmapping"
+    importOrganizing="true" cleanup="true">
+  <foreignModel>syncstyles.ecore</foreignModel>
+  <genPackages prefix="SyncStyles" basePackage="org.eclipse.papyrus.aof.sync.gmf"
+      disposableProviderFactory="true" generateExampleClass="false" ecorePackage="syncstyles.ecore#/">
+    <genClasses image="false" ecoreClass="syncstyles.ecore#//SyncStyle">
+      <genOperations ecoreOperation="syncstyles.ecore#//SyncStyle/isEnabled">
+        <genParameters ecoreParameter="syncstyles.ecore#//SyncStyle/isEnabled/mapping"/>
+        <genParameters ecoreParameter="syncstyles.ecore#//SyncStyle/isEnabled/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="syncstyles.ecore#//SyncExclusion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute syncstyles.ecore#//SyncExclusion/excludedTypes"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

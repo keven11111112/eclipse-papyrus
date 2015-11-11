@@ -15,23 +15,32 @@ package org.eclipse.papyrus.aof.sync.gmf;
 
 import static org.eclipse.papyrus.aof.gmf.util.ViewUtil.SEMANTIC_CORRESPONDENCE;
 
+import java.util.Collections;
+import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 
 import javax.inject.Named;
 import javax.inject.Provider;
+import javax.inject.Singleton;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.gmf.DiagramFactory;
 import org.eclipse.papyrus.aof.gmf.util.ViewUtil;
+import org.eclipse.papyrus.aof.sync.AutoDisableHook;
+import org.eclipse.papyrus.aof.sync.IMappingContext;
+import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.ISyncCorrespondenceResolver;
 import org.eclipse.papyrus.aof.sync.ISyncMapping;
 import org.eclipse.papyrus.aof.sync.emf.EMFMappingModule;
@@ -41,6 +50,9 @@ import org.eclipse.papyrus.aof.sync.gmf.internal.LocationMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.NodeMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.SizeMapping;
 import org.eclipse.papyrus.aof.sync.gmf.internal.StyleMapping;
+import org.eclipse.papyrus.aof.sync.gmf.syncstyles.SyncExclusion;
+import org.eclipse.papyrus.aof.sync.gmf.syncstyles.SyncStyle;
+import org.eclipse.papyrus.aof.sync.gmf.syncstyles.SyncStylesPackage;
 
 import com.google.inject.Provides;
 
@@ -163,5 +175,54 @@ public class DiagramMappingModule extends EMFMappingModule {
 
 			return element == other;
 		};
+	}
+
+	@Provides
+	@Singleton
+	@AutoDisableHook
+	public BiConsumer<IBox<? extends Size>, Object> provideSizeAutoDisableHook(ViewUtil util, IMappingContext context) {
+		return getShapeLayoutAutoDisableHook(util, context);
+	}
+
+	@Provides
+	@Singleton
+	@AutoDisableHook
+	public BiConsumer<IBox<? extends Location>, Object> provideLocationAutoDisableHook(ViewUtil util, IMappingContext context) {
+		return getShapeLayoutAutoDisableHook(util, context);
+	}
+
+	private <T extends EObject> BiConsumer<IBox<? extends T>, Object> getShapeLayoutAutoDisableHook(ViewUtil util, IMappingContext context) {
+		return (box, data) -> {
+			for (T next : box) {
+				Shape shape = util.getAncestor(next, Shape.class);
+				if (shape != null) {
+					purgeLayoutMappings(shape, util, context);
+				}
+			}
+		};
+	}
+
+	private void purgeLayoutMappings(Shape shape, ViewUtil util, IMappingContext context) {
+		SyncExclusion style = util.getStyle(shape, SyncStylesPackage.Literals.SYNC_EXCLUSION, true);
+
+		// Ensure that it excludes layout synchronization
+		boolean updated = false;
+		updated = style.getExcludedTypes().add(Location.class) || updated;
+		updated = style.getExcludedTypes().add(Size.class) || updated;
+
+		if (updated) {
+			// Newly excluded? Purge existing mappings
+			apply(style, shape, util, context);
+		}
+	}
+
+	private void apply(SyncStyle syncStyle, View toView, ViewUtil util, IMappingContext context) {
+		EcoreUtil.getAllContents(Collections.singleton(toView)).forEachRemaining(object -> {
+			for (IMappingInstance<?, ?> mapping : context.getMappingInstances(object)) {
+				if (!syncStyle.isEnabled(mapping.getType(), context)) {
+					mapping.destroy();
+				}
+			}
+		});
 	}
 }

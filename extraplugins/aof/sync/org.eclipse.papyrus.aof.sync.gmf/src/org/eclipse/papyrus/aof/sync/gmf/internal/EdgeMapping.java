@@ -50,8 +50,8 @@ public class EdgeMapping extends ViewMapping<Edge> {
 	}
 
 	@Override
-	protected void mapProperties(IOne<Edge> from, IOne<Edge> to) {
-		super.mapProperties(from, to);
+	protected void doMapProperties(IOne<Edge> from, IOne<Edge> to) {
+		super.doMapProperties(from, to);
 
 		mapCorresponding(from, to, NotationPackage.Literals.EDGE__SOURCE, endpointCorrespondence);
 		mapCorresponding(from, to, NotationPackage.Literals.EDGE__TARGET, endpointCorrespondence);

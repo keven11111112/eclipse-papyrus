@@ -43,6 +43,7 @@ import org.eclipse.papyrus.aof.sync.internal.GuiceUtil;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.BindingAnnotation;
+import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.Provides;
 import com.google.inject.TypeLiteral;
@@ -157,6 +158,26 @@ public class MappingModule extends AbstractModule {
 	 */
 	protected IFactory getDefaultFactory() {
 		return AOFFactory.INSTANCE;
+	}
+
+	/**
+	 * Default mapping provider binding, usually overridden by a {@link MappingFactory}
+	 * when I am used to configure one of those.
+	 */
+	@Provides
+	@Singleton
+	public IMappingProvider provideMappingProvider(Injector guice) {
+		return new IMappingProvider() {
+			@Override
+			public boolean hasMapping(Type fromType, Type toType) {
+				return guice.getExistingBinding(key(IMapping.class, fromType, toType)) != null;
+			}
+
+			@Override
+			public <F, T> IMapping<F, T> getMapping(Type fromType, Type toType) {
+				return guice.getInstance(key(IMapping.class, fromType, toType));
+			}
+		};
 	}
 
 	/**

@@ -19,6 +19,7 @@ import javax.inject.Provider;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -232,10 +233,11 @@ public class TestFixtureModule extends EMFMappingModule {
 
 		@Override
 		protected void mapProperties(IOne<EPackage> from, IOne<EPackage> to) {
-			IBox<EClass> fromClasses = property(from, EcorePackage.Literals.EPACKAGE__ECLASSIFIERS).select(EClass.class);
-			IBox<EClass> toClasses = property(to, EcorePackage.Literals.EPACKAGE__ECLASSIFIERS).select(EClass.class);
+			EReference ref = EcorePackage.Literals.EPACKAGE__ECLASSIFIERS;
+			IBox<EClass> fromClasses = property(from, ref).select(EClass.class);
+			IBox<EClass> toClasses = property(to, ref).select(EClass.class);
 
-			mapCorresponding(fromClasses, toClasses, to, eclassResolver, eclassMapping);
+			mapCorresponding(fromClasses, toClasses, to, ref, eclassResolver, eclassMapping);
 		}
 	}
 

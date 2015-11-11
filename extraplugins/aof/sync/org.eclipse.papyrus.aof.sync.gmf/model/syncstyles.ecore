@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="syncstyles" nsURI="http://www.eclipse.org/Papyrus/2015/sync/gmf/styles"
+    nsPrefix="sync">
+  <eClassifiers xsi:type="ecore:EClass" name="SyncStyle" abstract="true" interface="true"
+      eSuperTypes="../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//Style">
+    <eOperations name="isEnabled" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="mapping" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.papyrus.aof.sync.emf/model/syncmapping.ecore#//Mapping">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="context" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.papyrus.aof.sync.emf/model/syncmapping.ecore#//MappingContext"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SyncExclusion" eSuperTypes="#//SyncStyle">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="excludedTypes" ordered="false"
+        upperBound="-1">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

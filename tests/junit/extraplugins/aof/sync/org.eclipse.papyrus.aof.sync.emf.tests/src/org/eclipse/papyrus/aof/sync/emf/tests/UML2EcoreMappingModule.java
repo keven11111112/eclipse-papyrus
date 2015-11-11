@@ -257,7 +257,8 @@ public class UML2EcoreMappingModule extends EMFMappingModule {
 			IBox<Class> fromClasses = property(from, UMLPackage.Literals.PACKAGE, UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT).select(Class.class);
 			IBox<EClass> toClasses = property(to, EcorePackage.Literals.EPACKAGE, EcorePackage.Literals.EPACKAGE__ECLASSIFIERS).select(EClass.class);
 
-			mapCorresponding(fromClasses, toClasses, to, classResolver, classMapping);
+			mapCorresponding(fromClasses, toClasses, to, EcorePackage.Literals.EPACKAGE__ECLASSIFIERS,
+					classResolver, classMapping);
 		}
 	}
 

@@ -20,20 +20,19 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
-import org.eclipse.papyrus.aof.sync.emf.EMFSyncMapping;
 
 /**
  * Mapping of size layout constraints on nodes.
  */
 @Singleton
-public class SizeMapping extends EMFSyncMapping<Size> {
+public class SizeMapping extends NotationMapping<Size> {
 	@Inject
 	public SizeMapping(IFactory factory) {
 		super(NotationPackage.Literals.SIZE, factory);
 	}
 
 	@Override
-	protected void mapProperties(IOne<Size> from, IOne<Size> to) {
+	protected void doMapProperties(IOne<Size> from, IOne<Size> to) {
 		bindProperty(from, to, NotationPackage.Literals.SIZE__WIDTH);
 		bindProperty(from, to, NotationPackage.Literals.SIZE__HEIGHT);
 	}
