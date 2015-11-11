@@ -112,6 +112,8 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	protected int initialEnvironmentChildsCount = 4;
 
+	protected int rootSemanticOwnedElementsBeforeCreatingLink = 4;
+
 	/**
 	 * Test view deletion.
 	 *
@@ -294,23 +296,30 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	}
 
 	protected void testCreateLink(IElementType linkType, String initialName) {
-		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
-		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 4);
+		assertEquals(CREATION + INITIALIZATION_TEST, 4, getRootEditPart().getChildren().size());
+		assertEquals(CREATION + INITIALIZATION_TEST, rootSemanticOwnedElementsBeforeCreatingLink, getRootSemanticModel().getOwnedElements().size());
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
 		assertNotNull(CREATION + COMMAND_NULL, command);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertEquals(CREATION + INITIALIZATION_TEST, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(CREATION + INITIALIZATION_TEST, createdEdgesCount, calculateDiagramEdgesCount());
 		assertEquals(CREATION + INITIALIZATION_TEST, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
-		assertEquals(CREATION + INITIALIZATION_TEST, initialEnvironmentChildsCount + createdChildsCount, getDiagramEditPart().getChildren().size());
+		assertEquals(CREATION + INITIALIZATION_TEST, initialEnvironmentChildsCount + createdChildsCount, getRootEditPart().getChildren().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, getRootView().getChildren().size() == 4);
-		assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 4);
+		assertEquals(CREATION + TEST_THE_UNDO, 4, getRootView().getChildren().size());
+		assertEquals(CREATION + TEST_THE_UNDO, rootSemanticOwnedElementsBeforeCreatingLink, getRootSemanticModel().getOwnedElements().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertEquals(CREATION + TEST_THE_REDO, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(CREATION + TEST_THE_REDO, createdEdgesCount, calculateDiagramEdgesCount());
 		assertEquals(CREATION + TEST_THE_REDO, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 		ConnectionEditPart linkEditPart = (ConnectionEditPart) getDiagramEditPart().getConnections().get(0);
 		testLinkEditPart(linkEditPart, initialName);
+	}
+
+	/**
+	 * calculate diagram edges count
+	 */
+	protected int calculateDiagramEdgesCount() {
+		return ((Diagram) getDiagramEditPart().getDiagramView()).getEdges().size();
 	}
 
 	/**
@@ -360,46 +369,50 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	}
 
 	public void installEnvironment(IElementType sourceType, IElementType targetType) {
-		assertEquals(CREATION + INITIALIZATION_TEST, 0, getDiagramEditPart().getChildren().size());
+		assertEquals(CREATION + INITIALIZATION_TEST, 0, getRootEditPart().getChildren().size());
 		assertEquals(CREATION + INITIALIZATION_TEST, 0, getRootSemanticModel().getOwnedElements().size());
 		// create the source
-		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
+		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(100, 100));
-		Command command = getDiagramEditPart().getCommand(requestcreation);
+		Command command = getRootEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
+		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute()); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		// create the source player to test reconnect
-		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
+		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(100, 300));
-		command = getDiagramEditPart().getCommand(requestcreation);
+		command = getRootEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
+		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute()); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		// create the target
-		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
+		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(300, 100));
-		command = getDiagramEditPart().getCommand(requestcreation);
+		command = getRootEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
+		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute()); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		// create the target player to test reconnect
-		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
+		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(300, 300));
-		command = getDiagramEditPart().getCommand(requestcreation);
+		command = getRootEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
+		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute()); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		source = (GraphicalEditPart) getDiagramEditPart().getChildren().get(0);
-		sourcePlayer = (GraphicalEditPart) getDiagramEditPart().getChildren().get(1);
-		target = (GraphicalEditPart) getDiagramEditPart().getChildren().get(2);
-		targetPlayer = (GraphicalEditPart) getDiagramEditPart().getChildren().get(3);
+		source = (GraphicalEditPart) getRootEditPart().getChildren().get(0);
+		sourcePlayer = (GraphicalEditPart) getRootEditPart().getChildren().get(1);
+		target = (GraphicalEditPart) getRootEditPart().getChildren().get(2);
+		targetPlayer = (GraphicalEditPart) getRootEditPart().getChildren().get(3);
 
 		performAdditionalEnvironmentConfiguration(sourceType, targetType);
+	}
+
+	protected IGraphicalEditPart getRootEditPart() {
+		return getDiagramEditPart();
 	}
 
 	public CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target) {
@@ -617,12 +630,12 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	@Target({ ElementType.METHOD, ElementType.TYPE })
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface SourceConfigurator {
-		Class<? extends FixtureEditPartConfigurator>value();
+		Class<? extends FixtureEditPartConfigurator> value();
 	}
 
 	@Target({ ElementType.METHOD, ElementType.TYPE })
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface TargetConfigurator {
-		Class<? extends FixtureEditPartConfigurator>value();
+		Class<? extends FixtureEditPartConfigurator> value();
 	}
 }

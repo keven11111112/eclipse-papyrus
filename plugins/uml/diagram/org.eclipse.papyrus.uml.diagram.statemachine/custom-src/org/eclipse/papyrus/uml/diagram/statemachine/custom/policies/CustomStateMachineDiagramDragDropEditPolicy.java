@@ -64,10 +64,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.strategy.paste.ShowConstraintContextLink;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CreateViewCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomCompositeStateSetBoundsCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomCompositeStateWithDefaultRegionCreateNodeCommand;
@@ -82,6 +84,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.StateMachineL
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.locators.CustomEntryExitPointPositionLocator;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
@@ -103,6 +106,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPar
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ConnectionPointReference;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Pseudostate;
@@ -775,6 +779,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 		droppableElementsVisualId.add(PseudostateJunctionEditPart.VISUAL_ID);
 		// add final state
 		droppableElementsVisualId.add(FinalStateEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ConstraintEditPart.VISUAL_ID);
 
 		// droppableElementsVisualId.add(EntryStateBehaviorEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
@@ -838,11 +843,34 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 			case PseudostateJoinEditPart.VISUAL_ID:
 			case PseudostateJunctionEditPart.VISUAL_ID:
 				return dropPseudostate(dropRequest, semanticElement, nodeVISUALID);
+			case ConstraintEditPart.VISUAL_ID:
+				return dropConstraint(dropRequest, (Constraint) semanticElement, nodeVISUALID);
 
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			}
 		}
+	}
+
+	/**
+	 * Returns the command to drop the Constraint + the link to attach it to its contrainted elements
+	 *
+	 * @param dropRequest
+	 *            the drop request
+	 * @param constraint
+	 *            the dropped constraint
+	 * @param nodeVISUALID
+	 *            the node visual id
+	 *
+	 * @return the command
+	 */
+	protected Command dropConstraint(DropObjectsRequest dropRequest, Constraint constraint, int nodeVISUALID) {
+		ICommand dropConstraintCommand = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), constraint, dropRequest);
+		if (constraint.getContext() != null) {
+			ShowConstraintContextLink showConstraintContextLink = new ShowConstraintContextLink(getEditingDomain(), (GraphicalEditPart) getHost(), constraint);
+			dropConstraintCommand = dropConstraintCommand.compose(showConstraintContextLink);
+		}
+		return GMFtoGEFCommandWrapper.wrap(dropConstraintCommand);
 	}
 
 	@Override

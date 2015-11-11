@@ -17,11 +17,12 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
 public abstract class TestContextLink extends TestLink {
+
+	protected int rootSemanticOwnedElementsAfterDestroy = 4;
 
 	protected void manageContextLink(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType containerType) {
 		testToManageLink(sourceType, targetType, linkType, containerType, false, null);
@@ -65,7 +66,7 @@ public abstract class TestContextLink extends TestLink {
 	@Override
 	public void testDestroy(IElementType type) {
 		// DESTROY SEMANTIC+ VIEW
-		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, calculateDiagramEdgesCount());
 		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, source.getSourceConnections().size());
 		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, getDiagramEditPart().getConnections().size());
@@ -78,23 +79,23 @@ public abstract class TestContextLink extends TestLink {
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 
-		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 0, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 0, calculateDiagramEdgesCount());
 		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 0, source.getSourceConnections().size());
-		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 4, getRootSemanticModel().getOwnedElements().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, rootSemanticOwnedElementsAfterDestroy, getRootSemanticModel().getOwnedElements().size());
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, diagramEditor.getDiagramEditDomain().getDiagramCommandStack().canUndo());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, createdEdgesCount, calculateDiagramEdgesCount());
 		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, createdEdgesCount, source.getSourceConnections().size());
 		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, 0, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, 0, calculateDiagramEdgesCount());
 		assertEquals(DESTROY_DELETION + TEST_THE_REDO, 0, source.getSourceConnections().size());
-		assertEquals(DESTROY_DELETION + TEST_THE_REDO, 4, getRootSemanticModel().getOwnedElements().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO, rootSemanticOwnedElementsAfterDestroy, getRootSemanticModel().getOwnedElements().size());
 	}
 
 	private void testConstraintViewDeletion() {
-		assertEquals(VIEW_DELETION + INITIALIZATION_TEST, 4, ((Diagram) getRootView()).getChildren().size());
-		assertEquals(VIEW_DELETION + INITIALIZATION_TEST, 1, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(VIEW_DELETION + INITIALIZATION_TEST, 4, getRootEditPart().getChildren().size());
+		assertEquals(VIEW_DELETION + INITIALIZATION_TEST, createdEdgesCount, calculateDiagramEdgesCount());
 		assertEquals(VIEW_DELETION + INITIALIZATION_TEST, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = source.getCommand(deleteViewRequest);
@@ -102,48 +103,44 @@ public abstract class TestContextLink extends TestLink {
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertEquals(VIEW_DELETION + TEST_THE_EXECUTION, 3, ((Diagram) getRootView()).getChildren().size());
-		assertEquals(VIEW_DELETION + TEST_THE_EXECUTION, 0, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(VIEW_DELETION + TEST_THE_EXECUTION, 3, getRootEditPart().getChildren().size());
+		assertEquals(VIEW_DELETION + TEST_THE_EXECUTION, 0, calculateDiagramEdgesCount());
 		assertEquals(VIEW_DELETION + TEST_THE_EXECUTION, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertEquals(VIEW_DELETION + TEST_THE_UNDO, 4, ((Diagram) getRootView()).getChildren().size());
-		assertEquals(VIEW_DELETION + TEST_THE_UNDO, 1, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(VIEW_DELETION + TEST_THE_UNDO, 4, getRootEditPart().getChildren().size());
+		assertEquals(VIEW_DELETION + TEST_THE_UNDO, createdEdgesCount, calculateDiagramEdgesCount());
 		assertEquals(VIEW_DELETION + TEST_THE_UNDO, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertEquals(VIEW_DELETION + TEST_THE_REDO, 3, ((Diagram) getRootView()).getChildren().size());
-		assertEquals(VIEW_DELETION + TEST_THE_REDO, 0, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(VIEW_DELETION + TEST_THE_REDO, 3, getRootEditPart().getChildren().size());
+		assertEquals(VIEW_DELETION + TEST_THE_REDO, 0, calculateDiagramEdgesCount());
 		assertEquals(VIEW_DELETION + TEST_THE_REDO, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
 	}
 
 	private void testDropConstraint() {
-		assertEquals(DROP + INITIALIZATION_TEST, 3, getDiagramEditPart().getChildren().size());
-		assertEquals(DROP + INITIALIZATION_TEST, 3, ((Diagram) getRootView()).getChildren().size());
+		assertEquals(DROP + INITIALIZATION_TEST, 3, getRootEditPart().getChildren().size());
 		assertEquals(DROP + INITIALIZATION_TEST, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
-		assertEquals(CREATION + INITIALIZATION_TEST, 0, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(CREATION + INITIALIZATION_TEST, 0, calculateDiagramEdgesCount());
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
 		list.add(((Element) target.resolveSemanticElement()).getOwnedElements().get(0));
 		dropObjectsRequest.setObjects(list);
 		dropObjectsRequest.setLocation(new Point(20, 20));
-		Command command = getDiagramEditPart().getCommand(dropObjectsRequest);
+		Command command = getRootEditPart().getCommand(dropObjectsRequest);
 		assertNotNull(DROP + COMMAND_NULL, command);
 		assertTrue(DROP + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(DROP + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertEquals(DROP + TEST_THE_EXECUTION, 4, getDiagramEditPart().getChildren().size());
+		assertEquals(DROP + TEST_THE_EXECUTION, 4, getRootEditPart().getChildren().size());
 		assertEquals(DROP + TEST_THE_EXECUTION, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
-		assertEquals(DROP + TEST_THE_EXECUTION, 4, ((Diagram) getRootView()).getChildren().size());
-		assertEquals(DROP + TEST_THE_EXECUTION, 1, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DROP + TEST_THE_EXECUTION, createdEdgesCount, calculateDiagramEdgesCount());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertEquals(DROP + TEST_THE_UNDO, 3, getDiagramEditPart().getChildren().size());
+		assertEquals(DROP + TEST_THE_UNDO, 3, getRootEditPart().getChildren().size());
 		assertEquals(DROP + TEST_THE_UNDO, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
-		assertEquals(DROP + TEST_THE_UNDO, 3, ((Diagram) getRootView()).getChildren().size());
-		assertEquals(DROP + TEST_THE_UNDO, 0, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DROP + TEST_THE_UNDO, 0, calculateDiagramEdgesCount());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertEquals(DROP + TEST_THE_REDO, 4, getDiagramEditPart().getChildren().size());
+		assertEquals(DROP + TEST_THE_REDO, 4, getRootEditPart().getChildren().size());
 		assertEquals(DROP + TEST_THE_REDO, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
-		assertEquals(DROP + TEST_THE_REDO, 4, ((Diagram) getRootView()).getChildren().size());
-		assertEquals(DROP + TEST_THE_REDO, 1, ((Diagram) getRootView()).getEdges().size());
+		assertEquals(DROP + TEST_THE_REDO, createdEdgesCount, calculateDiagramEdgesCount());
 	}
 
 	@Override
