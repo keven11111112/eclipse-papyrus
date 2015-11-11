@@ -48,6 +48,7 @@
     <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="syncmapping.ecore#//Iterator">
       <genTypeParameters ecoreTypeParameter="syncmapping.ecore#//Iterator/E"/>
     </genDataTypes>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="syncmapping.ecore#//MappingContext"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="syncmapping.ecore#//MappingInstance">
       <genTypeParameters ecoreTypeParameter="syncmapping.ecore#//MappingInstance/F"/>
       <genTypeParameters ecoreTypeParameter="syncmapping.ecore#//MappingInstance/T"/>

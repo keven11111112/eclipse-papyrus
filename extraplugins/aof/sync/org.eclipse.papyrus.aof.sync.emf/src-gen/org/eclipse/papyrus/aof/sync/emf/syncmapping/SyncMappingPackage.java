@@ -16,19 +16,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.aof.sync.IMappingInstance;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ *
  * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingFactory
  * @model kind="package"
  * @generated
@@ -38,6 +38,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	String eNAME = "syncmapping"; //$NON-NLS-1$
@@ -46,6 +47,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/2015/syncmapping"; //$NON-NLS-1$
@@ -54,6 +56,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	String eNS_PREFIX = "syncmapping"; //$NON-NLS-1$
@@ -62,6 +65,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	SyncMappingPackage eINSTANCE = org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl.init();
@@ -70,6 +74,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.aof.sync.IMappingInstance <em>IMapping Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.papyrus.aof.sync.IMappingInstance
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getIMappingInstance()
 	 * @generated
@@ -80,6 +85,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The number of structural features of the '<em>IMapping Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -89,6 +95,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.aof.sync.AbstractMapping.InternalInstance <em>Internal Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.papyrus.aof.sync.AbstractMapping.InternalInstance
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getInternalInstance()
 	 * @generated
@@ -99,6 +106,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The number of structural features of the '<em>Internal Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -108,6 +116,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl <em>Mapping Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getMappingInstance()
 	 * @generated
@@ -118,6 +127,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -127,6 +137,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The feature id for the '<em><b>Left</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -136,6 +147,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The feature id for the '<em><b>Right</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -145,6 +157,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The feature id for the '<em><b>Consequent</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -154,6 +167,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The feature id for the '<em><b>Tracker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -163,6 +177,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The number of structural features of the '<em>Mapping Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -172,6 +187,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.emf.ecore.InternalEObject <em>Internal EObject</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.emf.ecore.InternalEObject
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getInternalEObject()
 	 * @generated
@@ -182,6 +198,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The number of structural features of the '<em>Internal EObject</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -191,6 +208,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingModelImpl <em>Mapping Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingModelImpl
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getMappingModel()
 	 * @generated
@@ -201,6 +219,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The feature id for the '<em><b>Instance</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -210,6 +229,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The number of structural features of the '<em>Mapping Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -219,6 +239,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '<em>One</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.papyrus.aof.core.IOne
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getOne()
 	 * @generated
@@ -229,6 +250,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '<em>Mapping</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.papyrus.aof.sync.IMapping
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getMapping()
 	 * @generated
@@ -239,6 +261,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '<em>Observer Tracker</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.papyrus.aof.core.utils.ObserverTracker
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getObserverTracker()
 	 * @generated
@@ -249,6 +272,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * The meta object id for the '<em>Iterator</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see java.util.Iterator
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getIterator()
 	 * @generated
@@ -257,9 +281,22 @@ public interface SyncMappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Mapping Context</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.aof.sync.IMappingContext
+	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getMappingContext()
+	 * @generated
+	 */
+	int MAPPING_CONTEXT = 9;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance <em>Mapping Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for class '<em>Mapping Instance</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance
 	 * @generated
@@ -270,6 +307,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getType()
 	 * @see #getMappingInstance()
@@ -281,6 +319,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getLeft <em>Left</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for the attribute '<em>Left</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getLeft()
 	 * @see #getMappingInstance()
@@ -292,6 +331,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getRight <em>Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for the attribute '<em>Right</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getRight()
 	 * @see #getMappingInstance()
@@ -303,6 +343,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getConsequents <em>Consequent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for the containment reference list '<em>Consequent</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getConsequents()
 	 * @see #getMappingInstance()
@@ -314,6 +355,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getTracker <em>Tracker</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for the attribute '<em>Tracker</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getTracker()
 	 * @see #getMappingInstance()
@@ -325,9 +367,10 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.aof.sync.IMappingInstance <em>IMapping Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for class '<em>IMapping Instance</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.IMappingInstance
-	 * @model instanceClass="org.eclipse.papyrus.aof.sync.IMapping$Instance" typeParameters="F T"
+	 * @model instanceClass="org.eclipse.papyrus.aof.sync.IMappingInstance" typeParameters="F T"
 	 * @generated
 	 */
 	EClass getIMappingInstance();
@@ -336,9 +379,10 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.aof.sync.AbstractMapping.InternalInstance <em>Internal Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for class '<em>Internal Instance</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.AbstractMapping.InternalInstance
-	 * @model instanceClass="org.eclipse.papyrus.aof.sync.AbstractMapping$InternalInstance" typeParameters="F T" superTypes="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance"
+	 * @model instanceClass="org.eclipse.papyrus.aof.sync.AbstractMapping$InternalInstance" typeParameters="F T" superTypes="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<F, T>"
 	 * @generated
 	 */
 	EClass getInternalInstance();
@@ -347,6 +391,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.emf.ecore.InternalEObject <em>Internal EObject</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for class '<em>Internal EObject</em>'.
 	 * @see org.eclipse.emf.ecore.InternalEObject
 	 * @model instanceClass="org.eclipse.emf.ecore.InternalEObject"
@@ -358,6 +403,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel <em>Mapping Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for class '<em>Mapping Model</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel
 	 * @generated
@@ -368,6 +414,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getInstances <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for the containment reference list '<em>Instance</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getInstances()
 	 * @see #getMappingModel()
@@ -379,6 +426,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.papyrus.aof.core.IOne <em>One</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for data type '<em>One</em>'.
 	 * @see org.eclipse.papyrus.aof.core.IOne
 	 * @model instanceClass="org.eclipse.papyrus.aof.core.IOne" typeParameters="E"
@@ -390,6 +438,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.papyrus.aof.sync.IMapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for data type '<em>Mapping</em>'.
 	 * @see org.eclipse.papyrus.aof.sync.IMapping
 	 * @model instanceClass="org.eclipse.papyrus.aof.sync.IMapping" typeParameters="F T"
@@ -401,6 +450,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.papyrus.aof.core.utils.ObserverTracker <em>Observer Tracker</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for data type '<em>Observer Tracker</em>'.
 	 * @see org.eclipse.papyrus.aof.core.utils.ObserverTracker
 	 * @model instanceClass="org.eclipse.papyrus.aof.core.utils.ObserverTracker"
@@ -412,6 +462,7 @@ public interface SyncMappingPackage extends EPackage {
 	 * Returns the meta object for data type '{@link java.util.Iterator <em>Iterator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the meta object for data type '<em>Iterator</em>'.
 	 * @see java.util.Iterator
 	 * @model instanceClass="java.util.Iterator" typeParameters="E"
@@ -420,9 +471,22 @@ public interface SyncMappingPackage extends EPackage {
 	EDataType getIterator();
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipse.papyrus.aof.sync.IMappingContext <em>Mapping Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for data type '<em>Mapping Context</em>'.
+	 * @see org.eclipse.papyrus.aof.sync.IMappingContext
+	 * @model instanceClass="org.eclipse.papyrus.aof.sync.IMappingContext"
+	 * @generated
+	 */
+	EDataType getMappingContext();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -432,12 +496,13 @@ public interface SyncMappingPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	interface Literals {
@@ -445,6 +510,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl <em>Mapping Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getMappingInstance()
 		 * @generated
@@ -455,6 +521,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @generated
 		 */
 		EAttribute MAPPING_INSTANCE__TYPE = eINSTANCE.getMappingInstance_Type();
@@ -463,6 +530,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Left</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @generated
 		 */
 		EAttribute MAPPING_INSTANCE__LEFT = eINSTANCE.getMappingInstance_Left();
@@ -471,6 +539,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Right</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @generated
 		 */
 		EAttribute MAPPING_INSTANCE__RIGHT = eINSTANCE.getMappingInstance_Right();
@@ -479,6 +548,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Consequent</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @generated
 		 */
 		EReference MAPPING_INSTANCE__CONSEQUENT = eINSTANCE.getMappingInstance_Consequent();
@@ -487,6 +557,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Tracker</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @generated
 		 */
 		EAttribute MAPPING_INSTANCE__TRACKER = eINSTANCE.getMappingInstance_Tracker();
@@ -495,6 +566,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.aof.sync.IMappingInstance <em>IMapping Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see org.eclipse.papyrus.aof.sync.IMappingInstance
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getIMappingInstance()
 		 * @generated
@@ -505,6 +577,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.aof.sync.AbstractMapping.InternalInstance <em>Internal Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see org.eclipse.papyrus.aof.sync.AbstractMapping.InternalInstance
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getInternalInstance()
 		 * @generated
@@ -515,6 +588,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.emf.ecore.InternalEObject <em>Internal EObject</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see org.eclipse.emf.ecore.InternalEObject
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getInternalEObject()
 		 * @generated
@@ -525,6 +599,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingModelImpl <em>Mapping Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingModelImpl
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getMappingModel()
 		 * @generated
@@ -535,6 +610,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Instance</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @generated
 		 */
 		EReference MAPPING_MODEL__INSTANCE = eINSTANCE.getMappingModel_Instance();
@@ -543,6 +619,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em>One</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see org.eclipse.papyrus.aof.core.IOne
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getOne()
 		 * @generated
@@ -553,6 +630,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em>Mapping</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see org.eclipse.papyrus.aof.sync.IMapping
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getMapping()
 		 * @generated
@@ -563,6 +641,7 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em>Observer Tracker</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see org.eclipse.papyrus.aof.core.utils.ObserverTracker
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getObserverTracker()
 		 * @generated
@@ -573,12 +652,24 @@ public interface SyncMappingPackage extends EPackage {
 		 * The meta object literal for the '<em>Iterator</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 *
 		 * @see java.util.Iterator
 		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getIterator()
 		 * @generated
 		 */
 		EDataType ITERATOR = eINSTANCE.getIterator();
 
+		/**
+		 * The meta object literal for the '<em>Mapping Context</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.aof.sync.IMappingContext
+		 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.SyncMappingPackageImpl#getMappingContext()
+		 * @generated
+		 */
+		EDataType MAPPING_CONTEXT = eINSTANCE.getMappingContext();
+
 	}
 
-} //SyncMappingPackage
+} // SyncMappingPackage

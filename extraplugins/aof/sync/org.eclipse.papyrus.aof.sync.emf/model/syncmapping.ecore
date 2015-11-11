@@ -66,16 +66,20 @@
       <eTypeArguments eTypeParameter="#//MappingInstance/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IMappingInstance" instanceClassName="org.eclipse.papyrus.aof.sync.IMapping$Instance"
+  <eClassifiers xsi:type="ecore:EClass" name="IMappingInstance" instanceClassName="org.eclipse.papyrus.aof.sync.IMappingInstance"
       abstract="true" interface="true">
     <eTypeParameters name="F"/>
     <eTypeParameters name="T"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ObserverTracker" instanceClassName="org.eclipse.papyrus.aof.core.utils.ObserverTracker"/>
   <eClassifiers xsi:type="ecore:EClass" name="InternalInstance" instanceClassName="org.eclipse.papyrus.aof.sync.AbstractMapping$InternalInstance"
-      abstract="true" interface="true" eSuperTypes="#//IMappingInstance">
+      abstract="true" interface="true">
     <eTypeParameters name="F"/>
     <eTypeParameters name="T"/>
+    <eGenericSuperTypes eClassifier="#//IMappingInstance">
+      <eTypeArguments eTypeParameter="#//InternalInstance/F"/>
+      <eTypeArguments eTypeParameter="#//InternalInstance/T"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Iterator" instanceClassName="java.util.Iterator">
     <eTypeParameters name="E"/>
@@ -91,4 +95,5 @@
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="MappingContext" instanceClassName="org.eclipse.papyrus.aof.sync.IMappingContext"/>
 </ecore:EPackage>

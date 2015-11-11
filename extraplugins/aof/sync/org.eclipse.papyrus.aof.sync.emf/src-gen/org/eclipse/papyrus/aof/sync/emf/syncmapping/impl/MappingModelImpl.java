@@ -36,7 +36,7 @@ import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingModelImpl#getInstances <em>Instance</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingModelImpl#getInstances <em>Instance</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,6 +46,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	 * The cached value of the '{@link #getInstances() <em>Instance</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see #getInstances()
 	 * @generated
 	 * @ordered
@@ -55,6 +56,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected MappingModelImpl() {
@@ -64,6 +66,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -74,6 +77,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -87,6 +91,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -101,6 +106,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -115,6 +121,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -132,6 +139,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -147,6 +155,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -158,4 +167,4 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 		return super.eIsSet(featureID);
 	}
 
-} //MappingModelImpl
+} // MappingModelImpl

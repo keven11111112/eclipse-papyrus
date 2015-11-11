@@ -25,7 +25,7 @@ import org.eclipse.papyrus.aof.sync.IMappingInstance;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getInstances <em>Instance</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel#getInstances <em>Instance</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingModel()
@@ -42,6 +42,7 @@ public interface MappingModel extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Instance</em>' containment reference list.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingModel_Instance()
 	 * @model type="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>" containment="true" ordered="false"

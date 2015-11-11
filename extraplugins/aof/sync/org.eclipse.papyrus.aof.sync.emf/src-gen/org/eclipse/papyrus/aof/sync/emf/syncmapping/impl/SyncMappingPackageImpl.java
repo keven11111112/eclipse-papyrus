@@ -31,6 +31,7 @@ import org.eclipse.papyrus.aof.core.utils.ObserverTracker;
 
 import org.eclipse.papyrus.aof.sync.AbstractMapping;
 import org.eclipse.papyrus.aof.sync.IMapping;
+import org.eclipse.papyrus.aof.sync.IMappingContext;
 import org.eclipse.papyrus.aof.sync.IMappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance;
 import org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingModel;
@@ -41,12 +42,14 @@ import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ *
  * @generated
  */
 public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EClass mappingInstanceEClass = null;
@@ -54,6 +57,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EClass iMappingInstanceEClass = null;
@@ -61,6 +65,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EClass internalInstanceEClass = null;
@@ -68,6 +73,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EClass internalEObjectEClass = null;
@@ -75,6 +81,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EClass mappingModelEClass = null;
@@ -82,6 +89,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EDataType oneEDataType = null;
@@ -89,6 +97,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EDataType mappingEDataType = null;
@@ -96,6 +105,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EDataType observerTrackerEDataType = null;
@@ -103,20 +113,31 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private EDataType iteratorEDataType = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EDataType mappingContextEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
+	 * <p>
+	 * Note: the correct way to create the package is via the static
 	 * factory method {@link #init init()}, which also performs
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#eNS_URI
 	 * @see #init()
@@ -129,6 +150,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -136,10 +158,12 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
-	 * <p>This method is used to initialize {@link SyncMappingPackage#eINSTANCE} when that field is accessed.
+	 * <p>
+	 * This method is used to initialize {@link SyncMappingPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -173,6 +197,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -183,6 +208,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -193,6 +219,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -203,6 +230,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -213,6 +241,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -223,6 +252,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -233,6 +263,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -243,6 +274,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -253,6 +285,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -263,6 +296,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -273,6 +307,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -283,6 +318,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -293,6 +329,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -303,6 +340,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -313,6 +351,7 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -323,6 +362,18 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EDataType getMappingContext() {
+		return mappingContextEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -333,15 +384,17 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -372,20 +425,23 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 		mappingEDataType = createEDataType(MAPPING);
 		observerTrackerEDataType = createEDataType(OBSERVER_TRACKER);
 		iteratorEDataType = createEDataType(ITERATOR);
+		mappingContextEDataType = createEDataType(MAPPING_CONTEXT);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -404,8 +460,8 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 		ETypeParameter mappingInstanceEClass_T = addETypeParameter(mappingInstanceEClass, "T"); //$NON-NLS-1$
 		addETypeParameter(iMappingInstanceEClass, "F"); //$NON-NLS-1$
 		addETypeParameter(iMappingInstanceEClass, "T"); //$NON-NLS-1$
-		addETypeParameter(internalInstanceEClass, "F"); //$NON-NLS-1$
-		addETypeParameter(internalInstanceEClass, "T"); //$NON-NLS-1$
+		ETypeParameter internalInstanceEClass_F = addETypeParameter(internalInstanceEClass, "F"); //$NON-NLS-1$
+		ETypeParameter internalInstanceEClass_T = addETypeParameter(internalInstanceEClass, "T"); //$NON-NLS-1$
 		addETypeParameter(oneEDataType, "E"); //$NON-NLS-1$
 		addETypeParameter(mappingEDataType, "F"); //$NON-NLS-1$
 		addETypeParameter(mappingEDataType, "T"); //$NON-NLS-1$
@@ -420,7 +476,12 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 		g2 = createEGenericType(mappingInstanceEClass_T);
 		g1.getETypeArguments().add(g2);
 		mappingInstanceEClass.getEGenericSuperTypes().add(g1);
-		internalInstanceEClass.getESuperTypes().add(this.getIMappingInstance());
+		g1 = createEGenericType(this.getIMappingInstance());
+		g2 = createEGenericType(internalInstanceEClass_F);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(internalInstanceEClass_T);
+		g1.getETypeArguments().add(g2);
+		internalInstanceEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(mappingInstanceEClass, MappingInstance.class, "MappingInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -488,9 +549,10 @@ public class SyncMappingPackageImpl extends EPackageImpl implements SyncMappingP
 		initEDataType(mappingEDataType, IMapping.class, "Mapping", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEDataType(observerTrackerEDataType, ObserverTracker.class, "ObserverTracker", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEDataType(iteratorEDataType, Iterator.class, "Iterator", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(mappingContextEDataType, IMappingContext.class, "MappingContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //SyncMappingPackageImpl
+} // SyncMappingPackageImpl

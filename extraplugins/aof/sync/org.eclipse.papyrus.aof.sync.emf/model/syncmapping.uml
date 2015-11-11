@@ -27,68 +27,68 @@
           <ownedParameteredElement xmi:type="uml:Class" xmi:id="_ew4Z0WH9EeWNbu76LiDmgQ" name="T" templateParameter="_ew4Z0GH9EeWNbu76LiDmgQ"/>
         </ownedParameter>
       </ownedTemplateSignature>
-      <ownedAttribute xmi:id="_sstmEWH-EeWNbu76LiDmgQ" name="type" type="_Ta7_0GH-EeWNbu76LiDmgQ" association="_sss_AGH-EeWNbu76LiDmgQ"/>
-      <ownedAttribute xmi:id="_b7Tzg2IAEeWNbu76LiDmgQ" name="left" type="_8cKsEGH_EeWNbu76LiDmgQ" association="_b7TzgGIAEeWNbu76LiDmgQ"/>
-      <ownedAttribute xmi:id="_hLPcEmIAEeWNbu76LiDmgQ" name="right" type="_C-VYkGIAEeWNbu76LiDmgQ" association="_hLO1AGIAEeWNbu76LiDmgQ"/>
-      <ownedAttribute xmi:id="_V7Dr0mIBEeWNbu76LiDmgQ" name="consequent" type="_0Yq6QGIAEeWNbu76LiDmgQ" aggregation="composite" association="_V7DEwGIBEeWNbu76LiDmgQ">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_sstmEWH-EeWNbu76LiDmgQ" name="type" type="_Ta7_0GH-EeWNbu76LiDmgQ" association="_sss_AGH-EeWNbu76LiDmgQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_b7Tzg2IAEeWNbu76LiDmgQ" name="left" type="_8cKsEGH_EeWNbu76LiDmgQ" association="_b7TzgGIAEeWNbu76LiDmgQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_hLPcEmIAEeWNbu76LiDmgQ" name="right" type="_C-VYkGIAEeWNbu76LiDmgQ" association="_hLO1AGIAEeWNbu76LiDmgQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_V7Dr0mIBEeWNbu76LiDmgQ" name="consequent" type="_0Yq6QGIAEeWNbu76LiDmgQ" aggregation="composite" association="_V7DEwGIBEeWNbu76LiDmgQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fAFWoGIBEeWNbu76LiDmgQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fAF9sGIBEeWNbu76LiDmgQ" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ukyVcGITEeWT-t_KGyrfBA" name="tracker" type="_o9c5gGITEeWT-t_KGyrfBA" association="_ukuEAGITEeWT-t_KGyrfBA"/>
-      <interfaceRealization xmi:id="_a9gj8GH_EeWNbu76LiDmgQ" client="_8f8gMGH8EeWNbu76LiDmgQ" supplier="_UdUNYGH_EeWNbu76LiDmgQ" contract="_UdUNYGH_EeWNbu76LiDmgQ"/>
-      <ownedOperation xmi:id="_jXYHAGIBEeWNbu76LiDmgQ" name="addConsequent">
-        <ownedParameter xmi:id="_pYVj4GIBEeWNbu76LiDmgQ" name="consequent" type="_0Yq6QGIAEeWNbu76LiDmgQ" effect="read"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ukyVcGITEeWT-t_KGyrfBA" name="tracker" type="_o9c5gGITEeWT-t_KGyrfBA" association="_ukuEAGITEeWT-t_KGyrfBA"/>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_a9gj8GH_EeWNbu76LiDmgQ" client="_8f8gMGH8EeWNbu76LiDmgQ" supplier="_UdUNYGH_EeWNbu76LiDmgQ" contract="_UdUNYGH_EeWNbu76LiDmgQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_jXYHAGIBEeWNbu76LiDmgQ" name="addConsequent">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_pYVj4GIBEeWNbu76LiDmgQ" name="consequent" type="_0Yq6QGIAEeWNbu76LiDmgQ" effect="read"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_t8ymgGIBEeWNbu76LiDmgQ" name="destroy"/>
-      <ownedOperation xmi:id="_2PVrgGIBEeWNbu76LiDmgQ" name="iterator">
-        <ownedParameter xmi:id="_bWdIEGICEeWNbu76LiDmgQ" type="_LJ72IGICEeWNbu76LiDmgQ" direction="return"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_t8ymgGIBEeWNbu76LiDmgQ" name="destroy"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_2PVrgGIBEeWNbu76LiDmgQ" name="iterator">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_bWdIEGICEeWNbu76LiDmgQ" type="_LJ72IGICEeWNbu76LiDmgQ" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_MLt0sGItEeWo04MhJl8C2w" name="eBasicSetContainer" visibility="protected">
-        <ownedParameter xmi:id="_XRaWwGItEeWo04MhJl8C2w" name="newContainer" type="_BRTVkGItEeWo04MhJl8C2w" effect="read"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_MLt0sGItEeWo04MhJl8C2w" name="eBasicSetContainer" visibility="protected">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_XRaWwGItEeWo04MhJl8C2w" name="newContainer" type="_BRTVkGItEeWo04MhJl8C2w" effect="read"/>
       </ownedOperation>
       <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_Ta7_0GH-EeWNbu76LiDmgQ" name="Mapping_F_T" visibility="private">
-        <templateBinding xmi:id="_cRVYwGH-EeWNbu76LiDmgQ" signature="_xq63YGH8EeWNbu76LiDmgQ">
-          <parameterSubstitution xmi:id="_eSibgGH-EeWNbu76LiDmgQ" actual="_ew2koWH9EeWNbu76LiDmgQ" formal="_y5rJgGH8EeWNbu76LiDmgQ"/>
-          <parameterSubstitution xmi:id="_jH2koGH-EeWNbu76LiDmgQ" actual="_ew4Z0WH9EeWNbu76LiDmgQ" formal="_zkRlsGH8EeWNbu76LiDmgQ"/>
+        <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_cRVYwGH-EeWNbu76LiDmgQ" signature="_xq63YGH8EeWNbu76LiDmgQ">
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_eSibgGH-EeWNbu76LiDmgQ" actual="_ew2koWH9EeWNbu76LiDmgQ" formal="_y5rJgGH8EeWNbu76LiDmgQ"/>
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_jH2koGH-EeWNbu76LiDmgQ" actual="_ew4Z0WH9EeWNbu76LiDmgQ" formal="_zkRlsGH8EeWNbu76LiDmgQ"/>
         </templateBinding>
       </nestedClassifier>
       <nestedClassifier xmi:type="uml:Interface" xmi:id="_UdUNYGH_EeWNbu76LiDmgQ" name="InternalInstance_F_T" visibility="private">
-        <templateBinding xmi:id="_XHAMcGH_EeWNbu76LiDmgQ" signature="_Y6aeQGIUEeWT-t_KGyrfBA">
-          <parameterSubstitution xmi:id="_ZHe2cGH_EeWNbu76LiDmgQ" actual="_ew2koWH9EeWNbu76LiDmgQ" formal="_nmIEwGIUEeWT-t_KGyrfBA"/>
-          <parameterSubstitution xmi:id="_ZHgEkGH_EeWNbu76LiDmgQ" actual="_ew4Z0WH9EeWNbu76LiDmgQ" formal="_nmLIEGIUEeWT-t_KGyrfBA"/>
+        <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_XHAMcGH_EeWNbu76LiDmgQ" signature="_Y6aeQGIUEeWT-t_KGyrfBA">
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_ZHe2cGH_EeWNbu76LiDmgQ" actual="_ew2koWH9EeWNbu76LiDmgQ" formal="_nmIEwGIUEeWT-t_KGyrfBA"/>
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_ZHgEkGH_EeWNbu76LiDmgQ" actual="_ew4Z0WH9EeWNbu76LiDmgQ" formal="_nmLIEGIUEeWT-t_KGyrfBA"/>
         </templateBinding>
       </nestedClassifier>
       <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_8cKsEGH_EeWNbu76LiDmgQ" name="One_F" visibility="private">
-        <templateBinding xmi:id="_Ix1BMGIAEeWNbu76LiDmgQ" signature="_rcYuAGH7EeWNbu76LiDmgQ">
-          <parameterSubstitution xmi:id="_SX3HUGIAEeWNbu76LiDmgQ" actual="_ew2koWH9EeWNbu76LiDmgQ" formal="_WndREGH8EeWNbu76LiDmgQ"/>
+        <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_Ix1BMGIAEeWNbu76LiDmgQ" signature="_rcYuAGH7EeWNbu76LiDmgQ">
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_SX3HUGIAEeWNbu76LiDmgQ" actual="_ew2koWH9EeWNbu76LiDmgQ" formal="_WndREGH8EeWNbu76LiDmgQ"/>
         </templateBinding>
       </nestedClassifier>
       <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_C-VYkGIAEeWNbu76LiDmgQ" name="One_T" visibility="private">
-        <templateBinding xmi:id="_Wq97QGIAEeWNbu76LiDmgQ" signature="_rcYuAGH7EeWNbu76LiDmgQ">
-          <parameterSubstitution xmi:id="_aNeYsGIAEeWNbu76LiDmgQ" actual="_ew4Z0WH9EeWNbu76LiDmgQ" formal="_WndREGH8EeWNbu76LiDmgQ"/>
+        <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_Wq97QGIAEeWNbu76LiDmgQ" signature="_rcYuAGH7EeWNbu76LiDmgQ">
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_aNeYsGIAEeWNbu76LiDmgQ" actual="_ew4Z0WH9EeWNbu76LiDmgQ" formal="_WndREGH8EeWNbu76LiDmgQ"/>
         </templateBinding>
       </nestedClassifier>
       <nestedClassifier xmi:type="uml:Class" xmi:id="_0Yq6QGIAEeWNbu76LiDmgQ" name="Instance_?_?" visibility="private">
-        <templateBinding xmi:id="_4g0bYGIAEeWNbu76LiDmgQ" signature="_GSJvMGH_EeWNbu76LiDmgQ">
-          <parameterSubstitution xmi:id="_LATOcGIBEeWNbu76LiDmgQ" actual="_9Lpy0GIAEeWNbu76LiDmgQ" formal="_GSJvMWH_EeWNbu76LiDmgQ">
+        <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_4g0bYGIAEeWNbu76LiDmgQ" signature="_GSJvMGH_EeWNbu76LiDmgQ">
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_LATOcGIBEeWNbu76LiDmgQ" actual="_9Lpy0GIAEeWNbu76LiDmgQ" formal="_GSJvMWH_EeWNbu76LiDmgQ">
             <ownedActual xmi:type="uml:Class" xmi:id="_9Lpy0GIAEeWNbu76LiDmgQ" name="?"/>
           </parameterSubstitution>
-          <parameterSubstitution xmi:id="_NcgyMGIBEeWNbu76LiDmgQ" actual="_NcgyMWIBEeWNbu76LiDmgQ" formal="_GSJvM2H_EeWNbu76LiDmgQ">
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_NcgyMGIBEeWNbu76LiDmgQ" actual="_NcgyMWIBEeWNbu76LiDmgQ" formal="_GSJvM2H_EeWNbu76LiDmgQ">
             <ownedActual xmi:type="uml:Class" xmi:id="_NcgyMWIBEeWNbu76LiDmgQ" name="?"/>
           </parameterSubstitution>
         </templateBinding>
       </nestedClassifier>
       <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_LJ72IGICEeWNbu76LiDmgQ" name="Iterator_Instance_?_?" visibility="private">
-        <templateBinding xmi:id="_ROn8cGICEeWNbu76LiDmgQ" signature="_EFWZEGICEeWNbu76LiDmgQ">
-          <parameterSubstitution xmi:id="_VL-i0GICEeWNbu76LiDmgQ" actual="_0Yq6QGIAEeWNbu76LiDmgQ" formal="_EFWZEWICEeWNbu76LiDmgQ"/>
+        <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_ROn8cGICEeWNbu76LiDmgQ" signature="_EFWZEGICEeWNbu76LiDmgQ">
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_VL-i0GICEeWNbu76LiDmgQ" actual="_0Yq6QGIAEeWNbu76LiDmgQ" formal="_EFWZEWICEeWNbu76LiDmgQ"/>
         </templateBinding>
       </nestedClassifier>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_sss_AGH-EeWNbu76LiDmgQ" memberEnd="_sstmEWH-EeWNbu76LiDmgQ _sstmEmH-EeWNbu76LiDmgQ">
-      <eAnnotations xmi:id="_sss_AWH-EeWNbu76LiDmgQ" source="org.eclipse.papyrus">
-        <details xmi:id="_sstmEGH-EeWNbu76LiDmgQ" key="nature" value="UML_Nature"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sss_AWH-EeWNbu76LiDmgQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sstmEGH-EeWNbu76LiDmgQ" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:id="_sstmEmH-EeWNbu76LiDmgQ" name="instance" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_sss_AGH-EeWNbu76LiDmgQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_sstmEmH-EeWNbu76LiDmgQ" name="instance" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_sss_AGH-EeWNbu76LiDmgQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uto8AGH-EeWNbu76LiDmgQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_utqKIGH-EeWNbu76LiDmgQ" value="*"/>
       </ownedEnd>
@@ -104,28 +104,28 @@
       </ownedTemplateSignature>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_b7TzgGIAEeWNbu76LiDmgQ" memberEnd="_b7Tzg2IAEeWNbu76LiDmgQ _b7UakGIAEeWNbu76LiDmgQ">
-      <eAnnotations xmi:id="_b7TzgWIAEeWNbu76LiDmgQ" source="org.eclipse.papyrus">
-        <details xmi:id="_b7TzgmIAEeWNbu76LiDmgQ" key="nature" value="UML_Nature"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_b7TzgWIAEeWNbu76LiDmgQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_b7TzgmIAEeWNbu76LiDmgQ" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:id="_b7UakGIAEeWNbu76LiDmgQ" name="leftOf" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_b7TzgGIAEeWNbu76LiDmgQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_b7UakGIAEeWNbu76LiDmgQ" name="leftOf" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_b7TzgGIAEeWNbu76LiDmgQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fOkUAGIAEeWNbu76LiDmgQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fOliIGIAEeWNbu76LiDmgQ" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_hLO1AGIAEeWNbu76LiDmgQ" memberEnd="_hLPcEmIAEeWNbu76LiDmgQ _hLPcE2IAEeWNbu76LiDmgQ">
-      <eAnnotations xmi:id="_hLPcEGIAEeWNbu76LiDmgQ" source="org.eclipse.papyrus">
-        <details xmi:id="_hLPcEWIAEeWNbu76LiDmgQ" key="nature" value="UML_Nature"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hLPcEGIAEeWNbu76LiDmgQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hLPcEWIAEeWNbu76LiDmgQ" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:id="_hLPcE2IAEeWNbu76LiDmgQ" name="rightOf" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_hLO1AGIAEeWNbu76LiDmgQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_hLPcE2IAEeWNbu76LiDmgQ" name="rightOf" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_hLO1AGIAEeWNbu76LiDmgQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jmVlgGIAEeWNbu76LiDmgQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jmVlgWIAEeWNbu76LiDmgQ" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_V7DEwGIBEeWNbu76LiDmgQ" memberEnd="_V7Dr0mIBEeWNbu76LiDmgQ _V7Dr02IBEeWNbu76LiDmgQ">
-      <eAnnotations xmi:id="_V7Dr0GIBEeWNbu76LiDmgQ" source="org.eclipse.papyrus">
-        <details xmi:id="_V7Dr0WIBEeWNbu76LiDmgQ" key="nature" value="UML_Nature"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_V7Dr0GIBEeWNbu76LiDmgQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_V7Dr0WIBEeWNbu76LiDmgQ" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:id="_V7Dr02IBEeWNbu76LiDmgQ" name="precursor" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_V7DEwGIBEeWNbu76LiDmgQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_V7Dr02IBEeWNbu76LiDmgQ" name="precursor" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_V7DEwGIBEeWNbu76LiDmgQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dOHdMGIWEeWT-t_KGyrfBA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dOIEQGIWEeWT-t_KGyrfBA" value="1"/>
       </ownedEnd>
@@ -139,10 +139,10 @@
     </packagedElement>
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_o9c5gGITEeWT-t_KGyrfBA" name="ObserverTracker"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_ukuEAGITEeWT-t_KGyrfBA" memberEnd="_ukyVcGITEeWT-t_KGyrfBA _ukyVcWITEeWT-t_KGyrfBA">
-      <eAnnotations xmi:id="_ukwgQGITEeWT-t_KGyrfBA" source="org.eclipse.papyrus">
-        <details xmi:id="_ukxHUGITEeWT-t_KGyrfBA" key="nature" value="UML_Nature"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ukwgQGITEeWT-t_KGyrfBA" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ukxHUGITEeWT-t_KGyrfBA" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:id="_ukyVcWITEeWT-t_KGyrfBA" name="instance" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_ukuEAGITEeWT-t_KGyrfBA">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_ukyVcWITEeWT-t_KGyrfBA" name="instance" type="_8f8gMGH8EeWNbu76LiDmgQ" association="_ukuEAGITEeWT-t_KGyrfBA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zfsJMGITEeWT-t_KGyrfBA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zfwaoGITEeWT-t_KGyrfBA" value="*"/>
       </ownedEnd>
@@ -156,35 +156,42 @@
           <ownedParameteredElement xmi:type="uml:Class" xmi:id="_nmLIEWIUEeWT-t_KGyrfBA" name="T" templateParameter="_nmLIEGIUEeWT-t_KGyrfBA"/>
         </ownedParameter>
       </ownedTemplateSignature>
-      <generalization xmi:id="_ojzN8GIUEeWT-t_KGyrfBA" general="_BJBSMGH_EeWNbu76LiDmgQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_ojzN8GIUEeWT-t_KGyrfBA" general="_E-4AUIiJEeW0eKhrxU34kA"/>
+      <nestedClassifier xmi:type="uml:Interface" xmi:id="_E-4AUIiJEeW0eKhrxU34kA" name="IMappingInstance_F_T" visibility="private">
+        <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_gOCY8IiMEeWAWrTAjjx38Q" signature="_GSJvMGH_EeWNbu76LiDmgQ">
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_OAg_8IiJEeW0eKhrxU34kA" actual="_nmIEwWIUEeWT-t_KGyrfBA" formal="_GSJvMWH_EeWNbu76LiDmgQ"/>
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_btDBYIiJEeW0eKhrxU34kA" actual="_nmLIEWIUEeWT-t_KGyrfBA" formal="_GSJvM2H_EeWNbu76LiDmgQ"/>
+        </templateBinding>
+      </nestedClassifier>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_gLlJUGIVEeWT-t_KGyrfBA" name="MappingModel">
-      <ownedAttribute xmi:id="_UNX1cmIWEeWT-t_KGyrfBA" name="instance" type="_0Yq6QGIAEeWNbu76LiDmgQ" aggregation="composite" association="_UNXOYGIWEeWT-t_KGyrfBA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_UNX1cmIWEeWT-t_KGyrfBA" name="instance" type="_0Yq6QGIAEeWNbu76LiDmgQ" aggregation="composite" association="_UNXOYGIWEeWT-t_KGyrfBA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bMxQgGIWEeWT-t_KGyrfBA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bMyeoGIWEeWT-t_KGyrfBA" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_UNXOYGIWEeWT-t_KGyrfBA" memberEnd="_UNX1cmIWEeWT-t_KGyrfBA _UNZDkGIWEeWT-t_KGyrfBA">
-      <eAnnotations xmi:id="_UNX1cGIWEeWT-t_KGyrfBA" source="org.eclipse.papyrus">
-        <details xmi:id="_UNX1cWIWEeWT-t_KGyrfBA" key="nature" value="UML_Nature"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UNX1cGIWEeWT-t_KGyrfBA" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_UNX1cWIWEeWT-t_KGyrfBA" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:id="_UNZDkGIWEeWT-t_KGyrfBA" name="model" type="_gLlJUGIVEeWT-t_KGyrfBA" association="_UNXOYGIWEeWT-t_KGyrfBA">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_UNZDkGIWEeWT-t_KGyrfBA" name="model" type="_gLlJUGIVEeWT-t_KGyrfBA" association="_UNXOYGIWEeWT-t_KGyrfBA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cUwMQGIWEeWT-t_KGyrfBA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cUxaYGIWEeWT-t_KGyrfBA" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_BRTVkGItEeWo04MhJl8C2w" name="InternalEObject"/>
-    <profileApplication xmi:id="_Q9YfoGH7EeWNbu76LiDmgQ">
-      <eAnnotations xmi:id="_Q9bi8GH7EeWNbu76LiDmgQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_jitnMIi3EeWAWrTAjjx38Q" name="MappingContext"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Q9YfoGH7EeWNbu76LiDmgQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Q9bi8GH7EeWNbu76LiDmgQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Package>
   <Ecore:EDataType xmi:id="_hC8_kGH8EeWNbu76LiDmgQ" instanceClassName="org.eclipse.papyrus.aof.core.IOne" base_PrimitiveType="_f4JOwGH7EeWNbu76LiDmgQ"/>
   <Ecore:EDataType xmi:id="_-IjcwGH8EeWNbu76LiDmgQ" instanceClassName="org.eclipse.papyrus.aof.sync.IMapping" base_PrimitiveType="_t0EhoGH8EeWNbu76LiDmgQ"/>
   <Ecore:EClass xmi:id="_A_3LoGH-EeWNbu76LiDmgQ" base_Class="_8f8gMGH8EeWNbu76LiDmgQ"/>
-  <Ecore:EClass xmi:id="_DIsq8GH_EeWNbu76LiDmgQ" instanceClassName="org.eclipse.papyrus.aof.sync.IMapping$Instance" base_Interface="_BJBSMGH_EeWNbu76LiDmgQ"/>
+  <Ecore:EClass xmi:id="_DIsq8GH_EeWNbu76LiDmgQ" instanceClassName="org.eclipse.papyrus.aof.sync.IMappingInstance" base_Interface="_BJBSMGH_EeWNbu76LiDmgQ"/>
   <Ecore:EGenericType xmi:id="_-6CAMGIAEeWNbu76LiDmgQ" base_Class="_9Lpy0GIAEeWNbu76LiDmgQ"/>
   <Ecore:EGenericType xmi:id="_NciAUGIBEeWNbu76LiDmgQ" base_Class="_NcgyMWIBEeWNbu76LiDmgQ"/>
   <Ecore:EDataType xmi:id="_A56-4GICEeWNbu76LiDmgQ" instanceClassName="java.util.Iterator" base_PrimitiveType="_-4iV8GIBEeWNbu76LiDmgQ"/>
@@ -199,4 +206,6 @@
   <Ecore:EClass xmi:id="_iOyXMGIVEeWT-t_KGyrfBA" base_Class="_gLlJUGIVEeWT-t_KGyrfBA"/>
   <Ecore:EClass xmi:id="_GvL6kGItEeWo04MhJl8C2w" instanceClassName="org.eclipse.emf.ecore.InternalEObject" base_Interface="_BRTVkGItEeWo04MhJl8C2w"/>
   <Ecore:EOperation xmi:id="_OTZ58GItEeWo04MhJl8C2w" base_Operation="_MLt0sGItEeWo04MhJl8C2w" visibility="None"/>
+  <Ecore:EGenericType xmi:id="_G0678IiJEeW0eKhrxU34kA" base_Interface="_E-4AUIiJEeW0eKhrxU34kA"/>
+  <Ecore:EDataType xmi:id="_lh1mUIi3EeWAWrTAjjx38Q" instanceClassName="org.eclipse.papyrus.aof.sync.IMappingContext" base_PrimitiveType="_jitnMIi3EeWAWrTAjjx38Q"/>
 </xmi:XMI>

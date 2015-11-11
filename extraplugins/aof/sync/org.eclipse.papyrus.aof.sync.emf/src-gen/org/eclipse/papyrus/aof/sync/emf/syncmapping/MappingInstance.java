@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  */
@@ -34,11 +34,11 @@ import org.eclipse.papyrus.aof.sync.IMappingInstance;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getLeft <em>Left</em>}</li>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getRight <em>Right</em>}</li>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getConsequents <em>Consequent</em>}</li>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getTracker <em>Tracker</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getLeft <em>Left</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getRight <em>Right</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getConsequents <em>Consequent</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getTracker <em>Tracker</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingInstance()
@@ -54,19 +54,23 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(IMapping)
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingInstance_Type()
 	 * @model dataType="org.eclipse.papyrus.aof.sync.emf.syncmapping.Mapping<F, T>" required="true" ordered="false"
 	 * @generated
 	 */
+	@Override
 	IMapping<F, T> getType();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
+	 *
+	 * @param value
+	 *            the new value of the '<em>Type</em>' attribute.
 	 * @see #getType()
 	 * @generated
 	 */
@@ -80,19 +84,23 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Left</em>' attribute.
 	 * @see #setLeft(IOne)
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingInstance_Left()
 	 * @model dataType="org.eclipse.papyrus.aof.sync.emf.syncmapping.One<F>" required="true" ordered="false"
 	 * @generated
 	 */
+	@Override
 	IOne<F> getLeft();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getLeft <em>Left</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Left</em>' attribute.
+	 *
+	 * @param value
+	 *            the new value of the '<em>Left</em>' attribute.
 	 * @see #getLeft()
 	 * @generated
 	 */
@@ -106,19 +114,23 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Right</em>' attribute.
 	 * @see #setRight(IOne)
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingInstance_Right()
 	 * @model dataType="org.eclipse.papyrus.aof.sync.emf.syncmapping.One<T>" required="true" ordered="false"
 	 * @generated
 	 */
+	@Override
 	IOne<T> getRight();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getRight <em>Right</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Right</em>' attribute.
+	 *
+	 * @param value
+	 *            the new value of the '<em>Right</em>' attribute.
 	 * @see #getRight()
 	 * @generated
 	 */
@@ -133,6 +145,7 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Consequent</em>' containment reference list.
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingInstance_Consequent()
 	 * @model type="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>" containment="true" ordered="false"
@@ -148,6 +161,7 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 *
 	 * @return the value of the '<em>Tracker</em>' attribute.
 	 * @see #setTracker(ObserverTracker)
 	 * @see org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage#getMappingInstance_Tracker()
@@ -160,34 +174,43 @@ public interface MappingInstance<F, T> extends EObject, AbstractMapping.Internal
 	 * Sets the value of the '{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.MappingInstance#getTracker <em>Tracker</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tracker</em>' attribute.
+	 *
+	 * @param value
+	 *            the new value of the '<em>Tracker</em>' attribute.
 	 * @see #getTracker()
 	 * @generated
 	 */
+	@Override
 	void setTracker(ObserverTracker value);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @model consequentType="org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>" consequentRequired="true" consequentOrdered="false"
 	 * @generated
 	 */
+	@Override
 	void addConsequent(IMappingInstance<?, ?> consequent);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @model
 	 * @generated
 	 */
+	@Override
 	void destroy();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @model dataType="org.eclipse.papyrus.aof.sync.emf.syncmapping.Iterator<org.eclipse.papyrus.aof.sync.emf.syncmapping.IMappingInstance<?, ?>>" required="true" ordered="false"
 	 * @generated
 	 */
+	@Override
 	Iterator<IMappingInstance<?, ?>> iterator();
 
 } // MappingInstance

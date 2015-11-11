@@ -47,11 +47,11 @@ import org.eclipse.papyrus.aof.sync.emf.syncmapping.SyncMappingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getRight <em>Right</em>}</li>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getConsequents <em>Consequent</em>}</li>
- *   <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getTracker <em>Tracker</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getLeft <em>Left</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getRight <em>Right</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getConsequents <em>Consequent</em>}</li>
+ * <li>{@link org.eclipse.papyrus.aof.sync.emf.syncmapping.impl.MappingInstanceImpl#getTracker <em>Tracker</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +61,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -71,6 +72,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * The cached value of the '{@link #getLeft() <em>Left</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see #getLeft()
 	 * @generated
 	 * @ordered
@@ -81,6 +83,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * The cached value of the '{@link #getRight() <em>Right</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see #getRight()
 	 * @generated
 	 * @ordered
@@ -91,6 +94,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * The cached value of the '{@link #getConsequents() <em>Consequent</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see #getConsequents()
 	 * @generated
 	 * @ordered
@@ -101,6 +105,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * The default value of the '{@link #getTracker() <em>Tracker</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see #getTracker()
 	 * @generated
 	 * @ordered
@@ -111,6 +116,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	 * The cached value of the '{@link #getTracker() <em>Tracker</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @see #getTracker()
 	 * @generated
 	 * @ordered
@@ -120,6 +126,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected MappingInstanceImpl() {
@@ -129,6 +136,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -139,6 +147,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -149,6 +158,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -163,6 +173,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -173,6 +184,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -187,6 +199,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -197,6 +210,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -211,6 +225,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -224,6 +239,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -234,6 +250,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -248,6 +265,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -258,6 +276,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -268,6 +287,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -278,6 +298,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public void eBasicSetContainerGen(InternalEObject newContainer) {
@@ -296,6 +317,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -310,6 +332,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -332,6 +355,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -361,6 +385,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -388,6 +413,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -410,6 +436,7 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -431,4 +458,4 @@ public class MappingInstanceImpl<F, T> extends MinimalEObjectImpl.Container impl
 		return result.toString();
 	}
 
-} //MappingInstanceImpl
+} // MappingInstanceImpl
