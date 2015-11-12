@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
@@ -46,7 +46,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class PackageEditPartCN extends NamedElementEditPart {
+public class PackageEditPartCN extends PackageEditPart {
 
 	/**
 	 * @generated

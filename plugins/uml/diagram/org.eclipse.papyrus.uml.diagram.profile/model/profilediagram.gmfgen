@@ -192,7 +192,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.EnumerationLiteralLabelEditPolicy"/>        
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.EnumerationLiteralLabelEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/EnumerationLiteral"/>
@@ -3729,7 +3729,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="adding to manange otherNamedElement"
-        genView="/0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.11 /0/@diagram /0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.7"
+        genView="/0/@diagram"
         name="OtherNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
@@ -3774,6 +3774,12 @@
         genView="/0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.5"
         name="comment extended node"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment=""
+        genView="/0/@diagram/@childNodes.12 /0/@diagram/@topLevelNodes.9 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.7"
+        name="PackageEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:AdditionalEditPartCandies"
         comment="add the basic helper to remove all application of stereotypes"
