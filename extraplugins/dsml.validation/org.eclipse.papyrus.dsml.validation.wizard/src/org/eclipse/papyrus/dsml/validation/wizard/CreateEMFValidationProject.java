@@ -19,8 +19,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
 import org.eclipse.pde.internal.ui.wizards.plugin.NewPluginProjectWizard;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -76,8 +75,7 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 	 * run the dialog
 	 */
 	public void openDialog() {
-		Shell frame = new Shell(SWT.SHELL_TRIM);
-		WizardDialog dialog = new WizardDialog(frame, this);
+		WizardDialog dialog = new WizardDialog(Display.getDefault().getActiveShell(), this);
 		dialog.open();
 	}
 
