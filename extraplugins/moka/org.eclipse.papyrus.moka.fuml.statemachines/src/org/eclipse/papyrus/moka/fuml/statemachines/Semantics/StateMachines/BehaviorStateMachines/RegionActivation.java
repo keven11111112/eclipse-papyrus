@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
+import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.SM_SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.InitialPseudostateActivation;
 import org.eclipse.uml2.uml.Region;
@@ -117,8 +118,11 @@ public class RegionActivation extends SM_SemanticVisitor{
 	}
 	
 	protected void enter(boolean explicit){
-		// An implicit entry of a region means a the initial transition is searched.
-		// If such transition exists then it is fired. An explicit entry as no impact on the region
+		// An implicit entry of a region means the initial transition is searched.
+		// If such transition exists then it is fired. An explicit entry as no impact on the region.
+		// In case the region is entered implicitly a initial pseudo state shall be found to
+		// start its execution. If no such pseudo-state is found and the state containing
+		// the region has no other region(s) then the state is treated as a simple leaf state
 		if(!explicit){
 			int i = 0; 
 			VertexActivation initialNodeActivation = null;
@@ -132,6 +136,15 @@ public class RegionActivation extends SM_SemanticVisitor{
 			if(initialNodeActivation!=null){
 				for(TransitionActivation transitionActivation : initialNodeActivation.getOutgoingTransitions()){
 					transitionActivation.fire();
+				}
+			}else{
+				SemanticVisitor parent = this.getParent();
+				if(parent != null && parent instanceof StateActivation){
+					StateActivation parentState = (StateActivation) parent; 
+					parentState.regionActivation.remove(this);
+					if(parentState.hasCompleted()){
+						parentState.notifyCompletion();
+					}
 				}
 			}
 		}
