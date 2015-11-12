@@ -22,8 +22,8 @@
 ## BUILD_ALIAS=M4
 ##
 
-p2UpdateSiteDir=${WORKSPACE}/releng/extra/site/target/repository
-updateSite=${WORKSPACE}/repository
+p2UpdateSiteDir=${WORKSPACE}/source/releng/extra/site/target/repository
+updateSite=${WORKSPACE}/source/repository
 
 updateZipName=Papyrus-Extra-Update.zip
 zipName=Papyrus-Extra.zip
