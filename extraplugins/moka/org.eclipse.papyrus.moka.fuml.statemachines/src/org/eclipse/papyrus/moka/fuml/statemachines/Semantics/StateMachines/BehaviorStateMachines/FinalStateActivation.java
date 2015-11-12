@@ -18,7 +18,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class FinalStateActivation extends PseudostateActivation {
 
-	public void enter(TransitionActivation enteringTransition) {
+	public void enter(TransitionActivation enteringTransition, boolean explicit) {
 		// The final state completes the region in which it is located*/
 		RegionActivation regionActivation = (RegionActivation) this.getParent();
 		regionActivation.isCompleted = true;

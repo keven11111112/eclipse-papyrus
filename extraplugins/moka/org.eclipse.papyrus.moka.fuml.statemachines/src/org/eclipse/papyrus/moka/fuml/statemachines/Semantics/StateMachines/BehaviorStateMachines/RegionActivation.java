@@ -116,32 +116,25 @@ public class RegionActivation extends SM_SemanticVisitor{
 		return activation;
 	}
 	
-	protected void fireInitialTransition(){
-		/*1. Find out the initial node activation*/
-		int i = 0; 
-		VertexActivation initialNodeActivation = null;
-		while(initialNodeActivation==null && i < this.vertexActivations.size()){
-			if(this.vertexActivations.get(i) instanceof InitialPseudostateActivation){
-				initialNodeActivation = this.vertexActivations.get(i);
-			}else{
-				i++;
+	protected void enter(boolean explicit){
+		// An implicit entry of a region means a the initial transition is searched.
+		// If such transition exists then it is fired. An explicit entry as no impact on the region
+		if(!explicit){
+			int i = 0; 
+			VertexActivation initialNodeActivation = null;
+			while(initialNodeActivation==null && i < this.vertexActivations.size()){
+				if(this.vertexActivations.get(i) instanceof InitialPseudostateActivation){
+					initialNodeActivation = this.vertexActivations.get(i);
+				}else{
+					i++;
+				}
+			}
+			if(initialNodeActivation!=null){
+				for(TransitionActivation transitionActivation : initialNodeActivation.getOutgoingTransitions()){
+					transitionActivation.fire();
+				}
 			}
 		}
-		/*2. Fires its outgoing transition*/
-		if(initialNodeActivation!=null){
-			for(TransitionActivation transitionActivation : initialNodeActivation.getOutgoingTransitions()){
-				transitionActivation.fire();
-			}
-		}else{
-			System.err.println("[RegionActivation] -- Could not find initial transition");
-		}
-	}
-	
-	/**
-	 * 
-	 */
-	public void enter(TransitionActivation enteringTransition){
-		
 	}
 	
 	/**

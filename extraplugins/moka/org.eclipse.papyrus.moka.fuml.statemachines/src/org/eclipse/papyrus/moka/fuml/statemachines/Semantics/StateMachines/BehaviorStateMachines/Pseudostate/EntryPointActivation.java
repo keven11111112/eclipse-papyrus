@@ -18,24 +18,15 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class EntryPointActivation extends ConnectionPointReferenceActivation {
 	
-	public void enter(TransitionActivation enteringTransition) {
-		super.enter(enteringTransition);
-		/*1. Enters all parent states that are currently not active*/
-		this._doEntry(this.getParentState());
-		/*2. Takes the outgoing transition (will be fixed)*/
-		this.outgoingTransitionActivations.get(0).fire(); //FIXME: should be delegated to transition selection strategy
-	}
-	
-	protected void _doEntry(VertexActivation activation){
-		if(activation!=null){
-			if(!activation.isActive() && (activation.getParentState()==null || activation.getParentState().isActive())){
-				activation.enter(null);
-			}else{
-				this._doEntry(activation.getParentState());
-				if(!activation.isActive()){
-					activation.enter(null);
-				}
-			}
+	public void enter(TransitionActivation enteringTransition, boolean explicit) {
+		// Enter a state through an entry point. The state on which the entry point is
+		// placed can be a deeply nested state. Therefore parent state of that state must
+		// be entered before if it is not already the case.
+		super.enter(enteringTransition, explicit);
+		VertexActivation vertexActivation = this.getParentState();
+		if(vertexActivation!=null && !vertexActivation.isActive()){
+			vertexActivation.enter(enteringTransition, explicit);
 		}
+		this.outgoingTransitionActivations.get(0).fire(); //FIXME: should be delegated to transition selection strategy
 	}
 }

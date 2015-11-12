@@ -32,12 +32,14 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	
 	public enum StateMetadata{IDLE, ACTIVE}
 	
+	// Meta-information about the state
+	// used by the implementation only for debug
 	protected StateMetadata state;
 	
-	/*Incoming transitions of that vertex*/
+	// Incoming transitions of that vertex
 	protected List<TransitionActivation> incomingTransitionActivations;
 	
-	/*Outgoing transitions of that vertex*/
+	// Outgoing transitions of that vertex
 	protected List<TransitionActivation> outgoingTransitionActivations;
 	
 	public VertexActivation(){
@@ -119,7 +121,7 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	/**
 	 * Describes the semantics of a vertex
 	 */
-	public void enter(TransitionActivation enteringTransition){
+	public void enter(TransitionActivation enteringTransition,  boolean explicit){
 		logger.info(this.getNode().getName()+" => ACTIVE");
 		/*1. The vertex becomes active*/
 		this.setState(StateMetadata.ACTIVE);
@@ -150,6 +152,8 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	}
 	
 	public boolean isActive(){
+		// FIXME: Shall be replaced by a call to the state-machine configuration
+		// If a state is active, it is in the state-machine configuration
 		return this.state.equals(StateMetadata.ACTIVE);
 	} 
 }

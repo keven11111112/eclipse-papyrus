@@ -158,11 +158,6 @@ public class StateActivation extends VertexActivation {
 				this.notifyCompletion();
 			}
 		}
-		// If the state is not completed, then try to start its
-		// owned region
-		for(RegionActivation activation: this.regionActivation){
-			activation.fireInitialTransition();
-		}
 	}
 	
 	protected void tryExecuteDoActivity(){
@@ -191,11 +186,43 @@ public class StateActivation extends VertexActivation {
 		super.exit(null);
 	}
 	
-	public void enter(TransitionActivation enteringTransition) {
+	public void enterRegions(TransitionActivation enteringTransition, boolean explicit){
+		// Regions can be entered either implicitly or explicitly. 
+		// A region is typically entered implicitly when its activation is triggered
+		// by a transition terminating on the edge of its containing state.
+		// A region is typically entered explicitly when on of its contained
+		// state is targeted by a transition coming from the outside.
+		// *** Regions are entered concurrently ***
+		Vertex vertex = (Vertex)enteringTransition.getTargetActivation().getNode();
+		for(int i=0; i < this.regionActivation.size(); i++){
+			RegionActivation regionActivation = this.regionActivation.get(i);
+			if(explicit){
+				if(regionActivation.getVertexActivation(vertex)!=null){
+					regionActivation.enter(explicit);
+				}else{
+					regionActivation.enter(false);
+				}
+			}else{
+				regionActivation.enter(false);
+			}
+		}
+	}
+	
+	public void enter(TransitionActivation enteringTransition, boolean explicit) {
 		if(this.state.equals(StateMetadata.IDLE)){
-			State state = (State) this.getNode();
+			// The state is entered via an explicit transition
+			// The impact on the execution is that the parent state
+			// of the current state is not active then it must be entered
+			// the rule applies recursively
+			if(explicit){
+				VertexActivation vertexActivation = this.getParentState();
+				if(vertexActivation!=null && !vertexActivation.isActive()){
+					vertexActivation.enter(enteringTransition, explicit);
+				}
+			}
 			// Initialization
-			super.enter(enteringTransition);
+			State state = (State) this.getNode();
+			super.enter(enteringTransition, explicit);
 			this.isEntryCompleted = state.getEntry()==null;
 			this.isDoActivityCompleted = state.getDoActivity()==null;
 			this.isExitCompleted = state.getExit()==null;
@@ -209,6 +236,9 @@ public class StateActivation extends VertexActivation {
 			}else{
 				// Execute the entry behavior if any
 				this.tryExecuteEntry();
+				// If the state is not completed, then try to start its owned regions.
+				// A region is entered implicitly since the is not the 
+				this.enterRegions(enteringTransition, explicit);
 				// Execute the doActtivity if any
 				this.tryExecuteDoActivity();
 			}

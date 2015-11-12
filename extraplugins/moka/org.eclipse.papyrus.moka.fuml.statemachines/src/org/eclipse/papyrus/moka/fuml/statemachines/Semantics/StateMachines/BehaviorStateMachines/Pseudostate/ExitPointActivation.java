@@ -19,8 +19,8 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class ExitPointActivation extends ConnectionPointReferenceActivation {
 
-	public void enter(TransitionActivation enteringTransition) {
-		super.enter(enteringTransition);
+	public void enter(TransitionActivation enteringTransition, boolean explicit) {
+		super.enter(enteringTransition, explicit);
 		this._doExit(this.getParentState());
 		this.outgoingTransitionActivations.get(0).fire(); //FIXME: Just to make sure the test sequence is right
 	}

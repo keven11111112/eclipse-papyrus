@@ -170,7 +170,8 @@ public class TransitionActivation extends SM_SemanticVisitor {
 		this.vertexTargetActivation = vertexTargetActivation;
 	}
 	
-	public void effect(){
+	public void executeEffect(){
+		// Execute the effect that is on the transition if it exists one
 		Transition transition = (Transition) this.getNode();
 		Execution execution = this.getExecutionFor(transition.getEffect());
 		if(execution!=null){
@@ -178,21 +179,54 @@ public class TransitionActivation extends SM_SemanticVisitor {
 		}
 	}
 	
+	protected StateActivation getContainingState(){
+		RegionActivation regionActivation = (RegionActivation) this.getParent();
+		if(regionActivation!=null){
+			if(regionActivation.getParent() instanceof StateActivation){
+				return (StateActivation) regionActivation.getParent();
+			}
+		}
+		return null;
+	}
+	
+	private boolean isExplicitEntry(){
+		// A transition implies an explicit entry of region since it targets
+		// a state that is owned by a composite state that is not already
+		// active (i.e. member of the current state-machine configuration)
+		VertexActivation vertexActivation = this.vertexTargetActivation.getParentState();
+		if(vertexActivation==null){
+			return false;
+		}else{
+			return !vertexActivation.isActive();
+		}
+	}
+	
 	public void fire(){
 		Transition node = (Transition) this.getNode();
-		logger.info(this.getNode().getName()+" => TRAVERSED");
-		this.setState(TransitionMetadata.TRAVERSED);
-		/*1. Exit the source state (if transition is local or external)*/
-		if(node.getKind()!=TransitionKind.INTERNAL_LITERAL){
+		// A source state is exited when the transition fires under the following conditions:
+		// 1 - The transition leaving the source state is external
+		// 2 - The transition leaving the source state is local but the source state is not the
+		//	   state which contains the transition
+		boolean exitSourceState = false;
+		if(node.getKind()==TransitionKind.EXTERNAL_LITERAL){
+			exitSourceState = true;
+		}else if(node.getKind()==TransitionKind.LOCAL_LITERAL){
+			StateActivation stateActivation = this.getContainingState();
+			exitSourceState = stateActivation!=null && node.getSource()!=stateActivation.getNode();
+		}
+		if(exitSourceState){
 			this.vertexSourceActivation.exit(this);
 		}
-		FUMLExecutionEngine.eInstance.getControlDelegate().control(this);
-		/*2. Execute the effect on the transition if present*/
-		this.effect();
-		/*3. Run the target state (if transition is local or external)*/
-		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode());
+		FUMLExecutionEngine.eInstance.getControlDelegate().control(this); // FIXME: specific to the Moka implementation
+		// Execute the effect on the transition if present*/
+		this.executeEffect();
+		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode()); 	// FIXME: specific to the Moka implementation
+		this.setState(TransitionMetadata.TRAVERSED);
+		logger.info(this.getNode().getName()+" => TRAVERSED");
+		// A target state is always entered except when the transition reaching this latter
+		// has the internal kind
 		if(node.getKind()!=TransitionKind.INTERNAL_LITERAL){
-			this.vertexTargetActivation.enter(this);
+			this.vertexTargetActivation.enter(this, this.isExplicitEntry());
 		}
 	}
 	
