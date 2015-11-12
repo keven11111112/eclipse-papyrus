@@ -29,16 +29,11 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.dsml.validation.model.elements.impl.ConstraintManagerImpl;
-import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
-import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
-import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
-import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.papyrus.dsml.validation.wizard.CreateEMFValidationProject;
 import org.eclipse.papyrus.dsml.validation.wizard.JavaContentGenerator;
 import org.eclipse.papyrus.dsml.validation.wizard.ValidationPluginGenerator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -101,27 +96,8 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 			Profile profileSelection = (Profile) selection;
 
 			constraintsManager = new ConstraintManagerImpl(profileSelection);
-			boolean isOCLConstraint = false;
-			for (IConstraintProvider constraintProvider : constraintsManager.getConstraintsProviders()) {
-				for (IConstraintsCategory constraintCategory : constraintProvider.getConstraintsCategories()) {
-					for (IValidationRule constraint : constraintCategory.getConstraints()) {
-						// this is an OCL constraint?
-						if (Utils.hasSpecificationForOCL(constraint.getConstraint())) {
-							isOCLConstraint = true;
-						}
-					}
-				}
-			}
 			EPackage definition = null;
-			if (isOCLConstraint) {
-				definition = profileSelection.getDefinition();
-				if (definition == null) {
-					NotificationBuilder errorDialog = NotificationBuilder.createErrorPopup(Messages.CreateJavaValidationPluginHandler_ProfileMustBeDefined);
-					errorDialog.run();
-					// finish by displaying a message for the user to inform that it need to define it before to launch it.
-					return null;
-				}
-			}
+
 			IProject existingProject = null;
 			URI uri = profileSelection.eResource().getURI();
 

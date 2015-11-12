@@ -36,6 +36,7 @@ import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -97,9 +98,6 @@ public class ValidationPluginGenerator {
 	// A generated plugin will depend on the validation profile, since it typically contains the profile as well.
 	// [well, that's not always the case]
 	private static final String UML_VALIDATION_PROFILE_PLUGIN = "org.eclipse.papyrus.dsml.validation"; //$NON-NLS-1$
-
-	private static final String UML_URL = "http://www.eclipse.org/uml2/5.0.0/UML"; //$NON-NLS-1$
-
 
 	/**
 	 * singleton
@@ -365,7 +363,7 @@ public class ValidationPluginGenerator {
 		Element pcg = editor.addChild(extElForConstraintsProvider, "package");
 
 		if (constraintProvider.getEPackage() == null) {
-			pcg.setAttribute("namespaceUri", UML_URL);
+			pcg.setAttribute("namespaceUri", UMLPackage.eNS_URI);
 		} else {
 			pcg.setAttribute("namespaceUri", constraintProvider.getEPackage().getNsURI());
 
