@@ -23,7 +23,7 @@
 ##
 
 p2UpdateSiteDir=${WORKSPACE}/source/releng/dev/site/target/repository
-updateSite=${WORKSPACE}/source/repository
+updateSite=${WORKSPACE}/repository
 
 updateZipName=Papyrus-Developer-Update.zip
 zipName=Papyrus-Developer.zip
