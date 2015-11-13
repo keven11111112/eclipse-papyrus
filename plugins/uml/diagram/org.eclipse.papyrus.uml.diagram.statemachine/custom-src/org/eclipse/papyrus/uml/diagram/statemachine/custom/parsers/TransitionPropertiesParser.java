@@ -189,9 +189,19 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	 * @return
 	 */
 	protected String getTextForGuard(Transition trans) {
-		Constraint valueSpec = trans.getGuard();
-		if (valueSpec != null) {
-			String value = ValueSpecificationUtil.getConstraintnValue(valueSpec);
+		Constraint constraint = trans.getGuard();
+		if (constraint != null) {
+			String value;
+			if (constraint.getSpecification() != null) {
+				value = ValueSpecificationUtil.getConstraintnValue(constraint);
+			}
+			else {
+				String name = constraint.getName();
+				if (name == null) {
+					name = "<undef>"; //$NON-NLS-1$
+				}
+				value = String.format("%s (no spec)", name); //$NON-NLS-1$
+			}
 			if (value != null) {
 				return String.format("[%s]", value); //$NON-NLS-1$
 			}
