@@ -81,6 +81,7 @@ public class LocateCppProject {
 					ILangProjectSupport langSupport = LanguageProjectSupport.getProjectSupport(LANGUAGE_NAME);
 					if (langSupport != null) {
 						modelProject = langSupport.createProject(projectName);
+						langSupport.setSettings(modelProject, langSupport.initialConfigurationData());
 						if (modelProject == null) {
 							return null;
 						}
