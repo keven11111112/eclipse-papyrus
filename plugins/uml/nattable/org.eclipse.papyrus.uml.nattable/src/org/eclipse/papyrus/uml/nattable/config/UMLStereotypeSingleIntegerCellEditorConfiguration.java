@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -23,20 +23,20 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
- * @author VL222926
- *
+ * The cell editor configuration for the UML Stereotype single integer value.
  */
 public class UMLStereotypeSingleIntegerCellEditorConfiguration extends SingleIntegerCellEditorConfiguration {
 
 	/**
-	 * the id of this editor
+	 * The id of this editor.
 	 */
-	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.SingleIntegerCellEditorConfiguration.Text";//$NON-NLS-1$
+	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleIntegerCellEditorConfiguration.Text";//$NON-NLS-1$
+
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationId()
-	 *
-	 * @return
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleIntegerCellEditorConfiguration#getConfigurationId()
 	 */
 	@Override
 	public String getConfigurationId() {
@@ -44,14 +44,13 @@ public class UMLStereotypeSingleIntegerCellEditorConfiguration extends SingleInt
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleStringCellEditorConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
-	 *
-	 * @param table
-	 * @param axisElement
-	 * @return
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleIntegerCellEditorConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
 	 */
 	@Override
-	public boolean handles(Table table, Object axisElement) {
+	public boolean handles(final Table table, final Object axisElement) {
+		boolean result = false;
 		final String id = AxisUtils.getPropertyId(axisElement);
 		if (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX)) {
 			Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), id);
@@ -59,10 +58,10 @@ public class UMLStereotypeSingleIntegerCellEditorConfiguration extends SingleInt
 				Type type = prop.getType();
 				if (type instanceof DataType) {
 					final String name = type.getName();
-					return PrimitivesTypesUtils.UML_INTEGER.equals(name);
+					result = PrimitivesTypesUtils.UML_INTEGER.equals(name);
 				}
 			}
 		}
-		return false;
+		return result;
 	}
 }

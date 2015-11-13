@@ -5,7 +5,7 @@
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
       <configuration
             class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig"
-            order="1000">
+            order="1200">
       </configuration>
       <cellAxisConfiguration
             class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleBooleanCellEditorConfiguration"
@@ -13,15 +13,15 @@
       </cellAxisConfiguration>
       <cellAxisConfiguration
             class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleEEnumTypeCellEditorConfiguration"
-            order="1001">
+            order="1010">
       </cellAxisConfiguration>
       <cellAxisConfiguration
             class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleIntegerCellEditorConfiguration"
-            order="1002">
+            order="1020">
       </cellAxisConfiguration>
       <cellAxisConfiguration
             class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleStringCellEditorConfiguration"
-            order="1003">
+            order="1030">
       </cellAxisConfiguration>
    </extension>
  <extension

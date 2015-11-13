@@ -67,7 +67,14 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
+/**
+ * The configuration to edit UML properties
+ *
+ * @author Vincent Lorenzo
+ * @deprecated Used just until Papyrus Mars. Replaced by classes that are specific to each type of cell editor in the package org.eclipse.papyrus.uml.nattable.config.
+ * 
+ */
+@Deprecated
 public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
