@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<toc label="Papyrus Guide" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
-   <topic href="target/generated-eclipse-help/viewpoints.html" label="Viewpoints">
-      <anchor id="viewpoint"/>
+<toc label="Viewpoints" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
+   <topic href="target/generated-eclipse-help/viewpoints.html" label="Viewpoints in Papyrus">
       <link toc="target/generated-eclipse-help/viewpoints-toc.xml"/>
-   </topic>	
+      <anchor id="ViewpointsID"/>
+   </topic>
 </toc>
