@@ -299,7 +299,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			initDiagramModel(modelSet, diagramCategoryId);
 
 			initProfile(modelSet);
+
 			initTemplate(modelSet);
+
+			saveDiagram(modelSet);
+
 			openDiagram(newURI);
 
 		} catch (ServiceException e) {
@@ -322,7 +326,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		boolean isToApplyProfile = selectDiagramKindPage.getProfileURI() != null;
 		if (isToApplyProfile) {
 			applyProfile(modelSet);
-			saveDiagram(modelSet);
 		}
 	}
 
@@ -610,7 +613,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	protected void initDiagramModel(ModelSet modelSet, String categoryId) {
 		initDiagrams(modelSet, categoryId);
-		saveDiagram(modelSet);
 	}
 
 

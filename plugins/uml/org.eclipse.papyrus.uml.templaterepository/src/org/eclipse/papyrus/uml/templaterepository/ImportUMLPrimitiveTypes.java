@@ -11,9 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.templaterepository;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -23,12 +20,10 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.uml.diagram.wizards.transformation.IGenerator;
 //import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
-import org.eclipse.uml2.uml.PackageImport;
-
-//import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Package;
 
 
-public class ImportUMLPrimitiveTypesInModel implements IGenerator {
+public class ImportUMLPrimitiveTypes implements IGenerator {
 	// This class is used when the element is checked inside SelectModelTemplateComposite's templateTableViewer
 
 	private ModelSet modelSet;
@@ -37,43 +32,50 @@ public class ImportUMLPrimitiveTypesInModel implements IGenerator {
 
 	private EObject primitiveTypes;
 
+	private EObject umlMetamodel;
 
 	public void execute() {
-		// Get the umlModel from the modelSet
-		// UmlModel umlModel = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
-		// Get its resource
-		// Resource umlResource = umlModel.getResource();
 		Resource umlResource = UmlUtils.getUmlModel(modelSet).getResource();
 
 		// Select the root element to add the wanted imports
-		rootElement = (org.eclipse.uml2.uml.Model) umlResource.getContents().get(0);
+		if (umlResource.getContents().isEmpty()) {
+			return;
+		}
 
-		// Load the needed libraries. Calling them directly with the path renders the resource folder obsolete ?
-		URI primitiveTypesURI = URI.createURI("pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml").appendFragment("_0");
+		// Always required
+		URI primitiveTypesURI = URI.createURI("pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml", true).appendFragment("_0");
 		primitiveTypes = modelSet.getEObject(primitiveTypesURI, true);
+		rootElement = (Package) umlResource.getContents().get(0);
+
+		if (umlResource.getContents().get(0) instanceof org.eclipse.uml2.uml.Profile) {
+			URI umlMetamodelURI = URI.createURI("pathmap://UML_METAMODELS/UML.metamodel.uml", true).appendFragment("_0");
+			umlMetamodel = modelSet.getEObject(umlMetamodelURI, true);
+		}
 
 		// Creates the import packages at the root of the model (elements of type packageImport)
-		this.getCommandStack(modelSet).execute(new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
+		this.getCommandStack(modelSet).execute(getImportCommand());
+
+	}
+
+	private RecordingCommand getImportCommand() {
+		return new RecordingCommand(this.modelSet.getTransactionalEditingDomain()) {
 
 			@Override
 			protected void doExecute() {
-				// PackageImport packageImport = UMLFactory.eINSTANCE.createPackageImport();
-				// packageImport.setImportedPackage((org.eclipse.uml2.uml.Package) ImportUMLPrimitiveTypesInModel.this.primitiveTypes);
-				// rootElement.getPackageImports().add(packageImport);
 
-				PackageImport importPrimitivePack = rootElement.createPackageImport((org.eclipse.uml2.uml.Package) primitiveTypes);
-				if (!rootElement.getPackageImports().contains(importPrimitivePack)) {
-					rootElement.getPackageImports().add(importPrimitivePack);
+				// Creates the import packages at the root of the model (elements of type packageImport)
+				if (!rootElement.getImportedPackages().contains(primitiveTypes)) {
+					rootElement.createPackageImport((org.eclipse.uml2.uml.Package) primitiveTypes);
 				}
 
-				try {
-					rootElement.eResource().save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					Activator.log.error(e);
+				if (umlMetamodel != null) {
+					if (!rootElement.getImportedPackages().contains(umlMetamodel)) {
+						rootElement.createPackageImport((org.eclipse.uml2.uml.Package) umlMetamodel);
+					}
 				}
+
 			}
-		});
-
+		};
 	}
 
 	/**
