@@ -115,7 +115,13 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 		if (canFlip != false) {
 			for (IProject iproject : projects) {
-				if (this.getProjectName().equalsIgnoreCase(iproject.getName())) {
+				if (this.getProjectName() == null) {
+					canFlip = false;
+					this.setErrorMessage(Messages.PapyrusProjectCreationPage_page_null_name_desc);
+					// A conflict has been found, no need to go further
+					break;
+				}
+				if (this.getProjectName() != null && this.getProjectName().equalsIgnoreCase(iproject.getName())) {
 					canFlip = false;
 					this.setErrorMessage(Messages.PapyrusProjectCreationPage_page_same_case_desc + iproject.getName());
 					// A conflict has been found, no need to go further
