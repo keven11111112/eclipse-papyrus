@@ -46,7 +46,6 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
@@ -307,7 +306,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			initDiagramModel(modelSet, diagramCategoryId);
 
 			initProfile(modelSet);
+
 			initTemplate(modelSet);
+
+			saveDiagram(modelSet);
+
 			openDiagram(newURI);
 
 		} catch (ServiceException e) {
@@ -330,7 +333,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		boolean isToApplyProfile = selectDiagramKindPage.getProfileURI() != null;
 		if (isToApplyProfile) {
 			applyProfile(modelSet);
-			saveDiagram(modelSet);
 		}
 	}
 
@@ -624,7 +626,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	protected void initDiagramModel(ModelSet modelSet, String categoryId) {
 		initDiagrams(modelSet, categoryId);
-		saveDiagram(modelSet);
 	}
 
 

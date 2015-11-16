@@ -4,14 +4,14 @@
    <extension
          point="org.eclipse.papyrus.uml.diagram.wizards.templates">
       <transformation
-            Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInModel"
+            Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypes"
          	id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInModel"
             language="uml"
             name="A UML model with basic primitive types">
       </transformation>
 
       <transformation
-            Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInProfile"
+            Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypes"
             id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInProfile"
             language="profile"
             name="A UML profile with basic primitive types">
