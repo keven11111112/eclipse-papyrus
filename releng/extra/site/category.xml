@@ -63,9 +63,6 @@
    <feature url="features/org.eclipse.papyrus.extra.umlrt.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.umlrt.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.extra.moka.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.moka.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
@@ -103,9 +100,6 @@
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.extra.cpp.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.cpp.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.moka.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.moka.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.uml.alf.extra.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.uml.alf.extra.feature.source" version="0.7.0.qualifier">

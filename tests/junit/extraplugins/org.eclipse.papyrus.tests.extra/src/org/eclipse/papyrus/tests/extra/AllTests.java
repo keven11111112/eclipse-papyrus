@@ -38,9 +38,6 @@ public class AllTests {
 		/* CPP Codegen tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.cpp.codegen.tests.AllPapyrusCPPCodegenTests.class));
 
-		/* MOKA COMPOSITES tests */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.moka.tests.AllTests.class));
-
 		/* UmlRT tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.umlrt.validation.tests.AllTests.class));
 
