@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.papyrus.examples.toolsmith.wizard.category"
+            name="Papyrus for toolsmiths"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+      <category
+            id="org.eclipse.papyrus.examples.modeler.wizard.category"
+            name="Papyrus for modelers"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+   </extension>
+
+</plugin>

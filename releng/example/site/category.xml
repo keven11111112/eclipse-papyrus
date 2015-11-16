@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.papyrus.example.feature.source_1.1.3.qualifier.jar" id="org.eclipse.papyrus.example.feature.source" version="1.1.3.qualifier">
+      <category name="org.eclipse.papyrus.example.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.example.feature_1.1.3.qualifier.jar" id="org.eclipse.papyrus.example.feature" version="1.1.3.qualifier">
+      <category name="org.eclipse.papyrus.example.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.training.library.feature_1.1.3.qualifier.jar" id="org.eclipse.papyrus.training.library.feature" version="1.1.3.qualifier">
+      <category name="org.eclipse.papyrus.training.library.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.training.library.feature.source_1.1.3.qualifier.jar" id="org.eclipse.papyrus.training.library.feature.source" version="1.1.3.qualifier">
+      <category name="org.eclipse.papyrus.training.library.category"/>
+   </feature>
+  <category-def name="org.eclipse.papyrus.example.category" label="Papyrus Examples">
+      <description>
+         Papyrus Examples Category
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.papyrus.training.library.category" label="Papyrus training Library">
+      <description>
+         Papyrus Library Example Category
+      </description>
+   </category-def>
+</site>
