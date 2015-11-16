@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.NotVisibleBorder;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
@@ -83,11 +84,15 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	/** set to true to define the figure as a package. */
 	private boolean isPackage = false;
 
+	/** set to true to define if the figure has a shadow. */
+	private boolean shadow;
+
 	/**
 	 * Gets the shadow color.
 	 *
 	 * @return the shadowColor
 	 */
+	@Override
 	public String getShadowColor() {
 		return shadowColor;
 	}
@@ -98,6 +103,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param shadowColor
 	 *            the shadowColor to set
 	 */
+	@Override
 	public void setShadowColor(String shadowColor) {
 		this.shadowColor = shadowColor;
 	}
@@ -140,7 +146,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 	/**
 	 * Constructor with a tagged value.
-	 * 
+	 *
 	 * @param compartmentFigure
 	 *            a list of id for the compartment figure
 	 * @param taggedLabelValue
@@ -153,12 +159,14 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		if (compartmentFigure != null) {
 			createContentPane(compartmentFigure);
 		}
+		setBorder(getRoundedBorder());
 	}
 
 	/**
 	 * @param shadowWidth
 	 *            the shadowWidth to set
 	 */
+	@Override
 	public void setShadowWidth(int shadowWidth) {
 		this.shadowWidth = shadowWidth;
 	}
@@ -173,6 +181,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param isPackage
 	 *            the isPackage to set
 	 */
+	@Override
 	public void setIsPackage(boolean isPackage) {
 		this.isPackage = isPackage;
 	}
@@ -246,7 +255,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		if (isPackage) {
 			SVGNodePlateFigure mainFigure = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
 			// Get the connection anchor
-			ConnectionAnchor connectionAnchor = ((SVGNodePlateFigure) mainFigure).getConnectionAnchor("");
+			ConnectionAnchor connectionAnchor = mainFigure.getConnectionAnchor(""); //$NON-NLS-1$
 
 			if (connectionAnchor instanceof SlidableRoundedRectangleAnchor) {
 
@@ -289,9 +298,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 				// Fill figure
 				if (isUsingGradient()) {
-
 					fillPolygonWithGradient(graphics, polygonPoints);
-
 				} else {
 					graphics.fillPolygon(polygonPoints);
 				}
@@ -306,12 +313,15 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				}
 
 				// no used of the border of figure
-				if (getBorder() != null) {
-					setBorder(null);
+				if (null != getBorder() && !(getBorder() instanceof NotVisibleBorder)) {
+					// Set a not visible border to the figure
+					setBorder(new NotVisibleBorder());
 				}
 
-				// Draw lines
-				graphics.drawPolyline(polygonPoints);
+				if (!noBorder) {
+					// Draw lines
+					graphics.drawPolyline(polygonPoints);
+				}
 			}
 
 		} else {
@@ -352,6 +362,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				setShadowTransparency(graphics, false);
 			}
 
+			// Fill figure
 			if (isUsingGradient()) {
 				fillRoundedRectangleWithGradient(graphics, rectangle, cornerDimension.width, cornerDimension.height);
 			} else {
@@ -365,6 +376,15 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			// Draw header if needed
 			if (hasHeader) {
 				graphics.drawPolyline(getHeader());
+			}
+
+			// Draw border
+			Border border = getBorder();
+			if (border instanceof RoundedRectangleBorder) {
+				((RoundedRectangleBorder) border).setArcHeight(cornerDimension.height);
+				((RoundedRectangleBorder) border).setArcWidth(cornerDimension.width);
+				((RoundedRectangleBorder) border).setWidth(getLineWidth());
+				((RoundedRectangleBorder) border).setStyle(borderStyle);
 			}
 		}
 		graphics.popState();
@@ -454,10 +474,10 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 
 	/**
-	 * Sets the shadow backgroud color.
+	 * Sets the shadow background color.
 	 *
 	 * @param graphics
-	 *            the new shadow backgroud color
+	 *            the new shadow background color
 	 */
 	private void setShadowBackgroundColor(Graphics graphics) {
 
@@ -515,6 +535,17 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		}
 	}
 
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#isShadow()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean isShadow() {
+		return shadow;
+	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#setShadow(boolean)
 	 *
@@ -522,10 +553,16 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 */
 	@Override
 	public void setShadow(boolean shadow) {
-		super.setShadow(shadow);
+		this.shadow = shadow;
+	}
+
+	/**
+	 * @return the Rounded border used as border for this figure.
+	 * 
+	 */
+	private Border getRoundedBorder() {
 
 		refreshCornerSizeWhenOval();
-
 		RoundedRectangleBorder border = new RoundedRectangleBorder(cornerDimension.width, cornerDimension.height) {
 			/**
 			 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder#paint(org.eclipse.draw2d.IFigure, org.eclipse.draw2d.Graphics, org.eclipse.draw2d.geometry.Insets)
@@ -542,10 +579,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			}
 		};
 
-		border.setWidth(getLineWidth());
-		border.setStyle(borderStyle);
-		setBorder(border);
-		setLineStyle(borderStyle);
+		return border;
 	}
 
 	/**
@@ -557,8 +591,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			if (cornerDimension.width != getBounds().width || cornerDimension.height != getBounds().height) {
 				cornerDimension.width = getBounds().width;
 				cornerDimension.height = getBounds().height;
-				// Force to repaint the border thought setShadow()
-				setShadow(isShadow());
 			}
 		}
 	}
@@ -588,6 +620,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		isOval = booleanValue;
 		if (booleanValue) {
 			refreshCornerSizeWhenOval();
+
 		}
 	}
 
@@ -695,6 +728,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @return the package header
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
 	 */
+	@Override
 	public Rectangle getPackageHeader() {
 		Rectangle headerBound = new Rectangle();
 		if (isPackage) {
@@ -704,8 +738,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			}
 			// If the width of the figure is < to the label width
 			headerBound.width = Math.min(headerBound.width, getBounds().width);
-		} else {
-			headerBound = nameLabel.getBounds().getCopy();
 		}
 		return headerBound;
 	}
