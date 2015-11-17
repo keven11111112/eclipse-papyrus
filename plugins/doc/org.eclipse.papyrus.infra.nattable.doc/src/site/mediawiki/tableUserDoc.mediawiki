@@ -207,6 +207,8 @@ Moreover Tree table provides some specific features
 ; AutoResize axis
 ; Merge Cell
 ; Resize Axis
+; Unset cell value (reset to default value)
+: Selecting a cell in the table and doing "Delete" unset the cell value. That is to say, than the value is set to the default value (which is often null). It works only for editeable feature.
 
 ===The list of available features for tables===
 This table lists all feature available for Tabular editors provided by Papyrus (the 17th of December 2014). This list could be considered as representative of tables capabilities '''assuming 3 points''':
@@ -382,6 +384,11 @@ if the user changed the configuration
 |-
 | Filter Rows
 | colspan="5" style="text-align: center;" | Yes
+|-
+| Unset cell value
+| colspan="3" style="text-align: center;" | Yes
+| style="text-align: center;" | No
+| style="text-align: center;" | Yes
 |}
 
 ==Tree Table Features==
@@ -697,19 +704,357 @@ When the user clicks on the left most part of the merged area, under the activit
 
  [[File:images/classifierEdition.png|none|frame|classifier edition]] <br/>
 
- [[File:images/editedTable.png|none|frame|dition's result]] <br/>
+ [[File:images/editedTable.png|none|frame|edition's result]] <br/>
 
 
 The tool will then automatically detect the possibility, or impossibility, of the edition and split the merge accordingly. <br/>
 Please note that the merge selection will not be changed and the selected axis will still carry their merge booleans as other values might still be equal and therefore the user might still want those merged. <br/>
 
-=Existing Cell Editors=
-Several kind of cell editors are available in Papyrus Table. Currently, the user can't choose himself the cell editor to use for a cell/row/column.
-==DialogCellEditor==
+=Paste and insert=
+==Description==
 
-==TextualCellEditor==
-Several kind of cell editors are available:
-===String cell editor===
-===String with completion cell editor===
-*UML ValueSpecification Cell Editor: This editor allows to edit and create ValueSpecification from a text field. Description is available [[Papyrus_Developer_Guide/Papyrus_Embedded_Editors_Documentation/Value_Specification_Xtext_editor|here]]
-*UML Reference Cell Editor: This editor allows to edit reference (single or multi valued) using a text field. This editor provides a completion mechanism (using CTRL+SPACE) and validate the string (the string is valid when we are able to find element from the text typed by the user). For further information, please see the page [[Papyrus_Developer_Guide/Papyrus_Embedded_Editors_Documentation/Textual_Editor_For_NamedElement]]
+The paste and the insert work differently (create new objects or update existing ones) depending on the selection in the table as following:
+
+{| class="wikitable"  border="1"
+! 
+! style="text-align: center;" | Paste ( 1 )
+! style="text-align: center;" | Insert ( 2 )
+|-
+| No selection ( A )
+| style="text-align: center;" | Create
+| style="text-align: center;" | Create
+|-
+| Cells ( B )
+| style="text-align: center;" | Update
+| style="text-align: center;" | X
+|-
+| Rows Header ( C )
+| style="text-align: center;" | Update
+| style="text-align: center;" | Create
+|-
+| Columns Header ( D )
+| style="text-align: center;" | Update
+| style="text-align: center;" | X
+|}
+
+Actions:
+*<u>'''Create'''</u>: It shall imply first the check of the elements' existence in the table (or selection), then eventual creation of new elements at a given position or at the end of the table
+*<u>'''Update'''</u>: It shall only imply the update of existing elements
+
+
+In details:
+*<u>'''A1'''</u>: Two differents possible "paste" types :
+**Number of columns pasted equals to the number of columns in table (including rows header): The objects pasted must be created according to the rows header in the clipboard.
+**Else (The result will be the same for '''A2'''): The existence of the pasted objects must be checked (depending on the axis identifier):
+***Object exists: The user can choose the action to do in this case:
+****<u>Replace</u>: The values must be overwritten 
+****<u>Add</u>: A row must be added at the end of the table (for the tree table, if this is a sub-element of the first row selected, the row will be added to the end of the sub category) corresponding to the created object
+****<u>Skip</u>: No modification for this object
+****<u>Cancel</u>: Cancel all the actions 
+***Object doesn't exist: A row must be added at the end of the table corresponding to the created object
+
+*<u>'''B1'''</u>: Only the update of the cells must be applied:
+**Depending on the selection, values must be overwritten (for the following table, selection must be represented as following: ''[NumberOfRows, NumberOfColumn]''):
+{| class="wikitable"  border="1"
+! style="text-align: center;" | Selection
+! style="text-align: center;" | Paste
+! style="text-align: center;" | Action
+|-
+| style="text-align: center;" | [X, Y]
+| style="text-align: center;" | [X, Y]
+| Values in the selection must be updated.
+|-
+| style="text-align: center;" | [X, Y]
+| style="text-align: center;" | [1, Y]
+| The values pasted must be updated for all selected rows (by repeat of the pasted row values).
+|-
+| style="text-align: center;" | |X, Y]
+| style="text-align: center;" | [Z, Y]
+| An error message will be displayed.
+|-
+| style="text-align: center;" | [X, Y]
+| style="text-align: center;" | [X, Z]
+| An error message will be displayed.
+|}
+
+*<u>'''C1'''</u>: The existence of the pasted objects must be checked into the selection (depending on the axis identifier):
+**Object exists: the values of the corresponding row must be updated
+**Object doesn't exist: No modification
+
+*<u>'''C2'''</u>: The existence of the pasted objects must be checked into the selection (depending on the axis identifier):
+**Object exists: The user can choose the action to add in this case:
+***<u>Replace</u>: The values must be overwritten 
+***<u>Add</u>: A row must be added before the selection (for the tree table, if this is a sub-element of the first row selected, the row will be added to the end of the sub category) of the table corresponding to the created object
+***<u>Skip</u>: No modification for this row
+***<u>Cancel</u>: Cancel all the action
+**Object doesn't exist: A row must be added before the selection (if the first element selected is a category, the row will be added as first child of this category) of the table corresponding to the created object
+
+*<u>'''D1'''</u>: Only the update of the columns must be applied:
+**Depending on the selection, values must be overwritten (for the following table, selection must be represented as following: ''[NumberOfRows, NumberOfColumn]''):
+{| class="wikitable"  border="1"
+! style="text-align: center;" | Selection
+! style="text-align: center;" | Paste
+! style="text-align: center;" | Action
+|-
+| style="text-align: center;" | [X, Y]
+| style="text-align: center;" | [X, Y]
+| Values in the selection must be updated.
+|-
+| style="text-align: center;" | [X, Y]
+| style="text-align: center;" | [X, 1]
+| The values pasted must be updated for all selected columns (by repeat of the pasted column values).
+|-
+| style="text-align: center;" | |X, Y]
+| style="text-align: center;" | [Z, Y]
+| An error message will be displayed.
+|-
+| style="text-align: center;" | [X, Y]
+| style="text-align: center;" | [X, Z]
+| An error message will be displayed.
+|}
+
+
+==How axis identifier comparison works==
+
+In some cases (A1, A2 and C2), the existence of the pasted or inserted objects must be checked. This is done by comparison between pasted object axis identifier and the existing axis identifier values.
+To define this axis identifier, just select the column (available in the table) from the paste configuration:
+ [[File:images/ManageAxisIdentifier.jpg|none|frame]]
+
+
+==Warnings and errors==
+===Warnings===
+Here, you will find the possible warning messages at the end of the paste/insert (if no modification is applied during the paste/insert and a warning message was caught, the warning message must be displayed as error):
+*When an identifier is not found in the selection:
+ [[File:images/WarningNotFound.jpg|none|frame]]
+*When an identifier is not found in the selection but is created:
+ [[File:images/WarningNotFoundButCreated.jpg|none|frame]]
+*When a non-editable value tried to be updated, this type of warning will appear:
+ [[File:images/WarningNonEditableValue.jpg|none|frame]]
+
+===Errors===
+Two types of error can be displayed while the paste/insert:
+*PasteConfiguration definition error
+*Error during the process of the paste/insert
+
+
+====PasteConfiguration errors====
+Here, you will find the possible paste configuration error messages at the end of the paste/insert:
+*When the element id is not defined:
+ [[File:images/ErrorPCElementIdNull.jpg|none|frame]]
+*When the containment feature is not defined:
+ [[File:images/ErrorPCContainmentFeatureNull.jpg|none|frame]]
+*When the axis identifier is not defined (and when it is necessary):
+ [[File:images/ErrorPCAxisIdentifierNull.jpg|none|frame]]
+*When the element type cannot be found:
+ [[File:images/ErrorPCElementTypeCantBeFound.jpg|none|frame]]
+*When the feature is not containment:
+ [[File:images/ErrorPCFeatureNotContainment.jpg|none|frame]]
+*When the feature is not compatible:
+ [[File:images/ErrorPCFeatureNotCompatible.jpg|none|frame]]
+*When the context of the table does not have the declared containment feature:
+ [[File:images/ErrorPCContextDoesNotHaveFeature.jpg|none|frame]]
+*When a TreeFillingConfiguration does not have paste configuration:
+ [[File:images/ErrorPCTreeFillingNoPasteConfiguration.jpg|none|frame]]
+*When more than 1 category is defined for a depth and when the table has hidden categories:
+ [[File:images/ErrorPCMoreThan1Category.jpg|none|frame]]
+
+ 
+====Errors during the process====
+Here, you will find the possible error messages at the end of the paste/insert:
+*When the axis identifier was not found in the table:
+ [[File:images/ErrorAxisIdentifierNotFound.jpg|none|frame]]
+*When the number of rows pasted is not equals to the number of rows in the table:
+ [[File:images/ErrorRowsNotEquals.jpg|none|frame]]
+*When the number of columns pasted is not equals to the number of columns in the table:
+ [[File:images/ErrorColumnsNotEquals.jpg|none|frame]]
+*When the 'Replace' action is wanted by the user but more than one object correspond to the identifier:
+ [[File:images/ErrorCorrespondingMultipleRows.jpg|none|frame]]
+*When an invalid value tried to be set in a new object in attached mode or during the update:
+ [[File:images/ErrorInvalidValueAttachedModeOrUpdate.jpg|none|frame]]
+*When an invalid value tried to be set in a new object in detached mode:
+ [[File:images/ErrorInvalidValueDetachedModeAndCreation.jpg|none|frame]]
+*When an unknown exception occured:
+ [[File:images/ErrorUnknownExceptionOccurred.jpg|none|frame]]
+
+==Details and Example==
+===Paste with rows header===
+The paste with rows header in the clipboard must respect the number of columns in the target table.
+The hierarchy of the rows header must be respected, i.e. when the categories are hidden or shown.
+
+When the categories are hidden, the number of defined categories by depth must be equals to 1 if you want to paste.
+
+<u>N.B:</u> The undo/redo is not implemented for this paste.
+
+====Examples====
+=====Visible categories=====
+Get the following current table:
+ [[File:images/PasteWithRowsHeaderVisibleCategoriesInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteWithRowsHeaderVisibleCategoriesToCopy.jpg|none|frame]]
+
+
+The objects are created with the correct values:
+ [[File:images/PasteWithRowsHeaderVisibleCategoriesResult.jpg|none|frame]]
+
+
+=====Hidden categories=====
+Get the following current table:
+ [[File:images/PasteWithRowsHeaderHiddenCategoriesInitial.jpg|none|frame]]
+
+With this following categories configuration:
+ [[File:images/PasteWithRowsHeaderHiddenCategoriesConfiguration.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteWithRowsHeaderHiddenCategoriesToCopy.jpg|none|frame]]
+
+
+The objects are created with the correct values:
+ [[File:images/PasteWithRowsHeaderHiddenCategoriesResult.jpg|none|frame]]
+
+
+===Paste and insert without selection (A1 and A2)===
+This paste or insert allows to replace, add or skip the existing objects and allows to create the non-existing objects. The 'Replace' action allows to update the values of the existing object, the 'Skip' action does nothing on it and the 'Add' action allows to create an object on the same depth of the existing one.
+The created objects must be at the end of the table.
+
+For the TreeTable, some specifications exist:
+*if no object was found for the identifier, the created object must be a depth 0 object because we can't defined the depth of the paste object
+*if an existing object is found for the identifier and the user wants its creation, an object with the same depth will be created depending on the paste configuration of the existing object
+*the non first level created object won't be at the end of the table but at the end of the feature which it is associated
+
+====Example====
+Get the following current table:
+ [[File:images/PasteWithoutSelectionInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteWithoutSelectionToCopy.jpg|none|frame]]
+
+
+Depending on the previous specifications explained, the result is the following:
+ [[File:images/PasteWithoutSelectionResult.jpg|none|frame]]
+
+
+===Paste with cells selection (B1)===
+Depending on the selection and to the clipboard, differents actions are possible:
+*if only one cell is selected, the cells corresponding to rectangular width and height of clipboard must be overwritten
+*if some rows are selected and only one is available in the clipboard, the selected rows must be updated with the values of the single row of the clipboard
+*else the width and height of the selection must be equals respectively to the width and height from the clipboard, the selected cells will be modified
+
+====Examples====
+=====Cells with some rows and columns=====
+Get the following current table and selection:
+ [[File:images/PasteSomeRowsInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteCellsSelectedToCopy.jpg|none|frame]]
+
+
+The result of the paste is selected and is this following:
+ [[File:images/PasteCellsSelectedResult.jpg|none|frame]]
+
+
+=====One cell selected=====
+Get the following current table and selection:
+ [[File:images/PasteOneCellSelectedInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteCellsSelectedToCopy.jpg|none|frame]]
+
+
+The result of the paste is selected and is this following:
+ [[File:images/PasteCellsSelectedResult.jpg|none|frame]]
+
+
+=====One row in clipboard=====
+Get the following current table and selection:
+ [[File:images/PasteOneRowClipboardInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteOneRowClipboardToCopy.jpg|none|frame]]
+
+
+The result of the paste is selected and is this following:
+ [[File:images/PasteOneRowClipboardResult.jpg|none|frame]]
+
+
+===Paste with rows header selection (C1)===
+This paste allows to update the selected existing rows when the rows header height selected is equals to the height of rows in the clipboard.
+
+====Example====
+Get the following current table and selection:
+ [[File:images/PasteRowsSelectionInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteRowsSelectionToCopy.jpg|none|frame]]
+
+
+The result of the paste is selected and is like following (the first class is not modified because it does not exist):
+ [[File:images/PasteRowsSelectionResult.jpg|none|frame]]
+
+
+===Insert with rows header selection (C2)===
+This paste or insert allows to replace, add, skip the existing objects and allows to create the non-existing objects. The 'Replace' action allows to update the values of the existing object, the 'Skip' action does nothing on it and the 'Add' action allows to create an object on the same depth of the existing one.
+The created objects must be inserted before the selection.
+
+For the TreeTable, some specifications exist (in addition of specifications of the paste/insert without selection ([[#Paste and insert without selection (A1 and A2)|A1 and A2]]):
+*if a paste is realised with a selected category , an object will be created and added to this feature at the first position
+*the created objects must be inserted before the first selected row for the depth 0 but must be added at the last position for others depths because it is not possible to define the position to be used
+
+====Examples====
+=====Insert on object=====
+Get the following current table and selection:
+ [[File:images/InsertRowSelectionInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/InsertRowSelectionToCopy.jpg|none|frame]]
+
+
+The result is the following:
+ [[File:images/InsertRowSelectionResult.jpg|none|frame]]
+
+
+=====Insert on category=====
+Get the following current table and selection:
+ [[File:images/InsertOnCategorySelectionInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/InsertOnCategorySelectionToCopy.jpg|none|frame]]
+
+
+The result is the following:
+ [[File:images/InsertOnCategorySelectionResult.jpg|none|frame]]
+
+
+===Paste with columns header selection (D2)===
+Depending on the selection and to the clipboard, different actions are possible:
+*if some columns are selected and only one is available in the clipboard, the selected columns must be updated with the values of the single column of the clipboard
+*else the width of the selection must be equals to the width from the clipboard, the selected columns will be modified
+
+====Examples==== 
+=====Some column selected=====
+Get the following current table and selection:
+ [[File:images/PasteSomeColumnsSelectionInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteSomeColumnsSelectionToCopy.jpg|none|frame]]
+
+
+The result is the following:
+ [[File:images/PasteSomeColumnsSelectionResult.jpg|none|frame]]
+
+
+=====One column in clipboard=====
+Get the following current table and selection:
+ [[File:images/PasteOneColumnClipboardInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteOneColumnClipboardToCopy.jpg|none|frame]]
+
+
+The result is the following:
+ [[File:images/PasteOneColumnClipboardResult.jpg|none|frame]]
+
+=Import from file (CSV)=
+The import from file (CSV) works like [[#Paste with rows header|paste with rows header]] when the rows header are available in the CSV.
+
+If the rows header are not available, the rows works like [[#Paste and insert without selection (A1 and A2)|insert without selection]] or [[#Insert with rows header selection (C2)|insert with rows header selection]] depending to the selection.
